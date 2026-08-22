@@ -60,30 +60,28 @@ you are logged in.
 ### 5. Create the storage the wire lives in
 
 ```bash
-npx wrangler kv namespace create WIRE_KV
+npm run setup-kv
 ```
 
-It prints a block that looks like this:
+That creates the storage on your Cloudflare account and writes its id into
+`wrangler.toml` for you. There is nothing to copy by hand. If it says you are not
+logged in, go back to step 4.
 
-```
-[[kv_namespaces]]
-binding = "WIRE_KV"
-id = "8f2c1a4e6b9d4c7f8a1b2c3d4e5f6a7b"
-```
+Run it twice and it will not clobber anything: it stops and tells you the id it
+already has.
 
-Copy that long `id` value. Open `wrangler.toml` in this project, find the line that
-says `id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"`, and paste your id in place of
-`REPLACE_WITH_YOUR_KV_NAMESPACE_ID`. Keep the quote marks. Save the file.
-
-### 6. Check the feeds are alive
+### 6. Check the feeds and fix the roster
 
 ```bash
-npm run verify-feeds
+npm run verify-feeds -- --apply
 ```
 
-This visits every feed and tells you which ones work. If it says to switch a feed
-on or off, open `src/feeds.js`, find that feed, and change `enabled: true` to
-`enabled: false` (or the reverse). Save. See
+This visits all seven feeds, reports which ones actually work, and switches the
+roster in `src/feeds.js` to match. Drop the `-- --apply` if you would rather see
+the report first and change nothing.
+
+It also prints what each site's robots.txt says about the feed path, so anything
+that does not want to be aggregated can be switched off deliberately. See
 [Feed status](#feed-status-read-this-before-you-launch) below for where things
 stood when this was built.
 
@@ -140,8 +138,9 @@ Press Ctrl+C to stop watching.
 ## Feed status, read this before you launch
 
 The build environment could not reach the feed hosts, so nothing here was checked
-against the live web. `npm run verify-feeds` does that check on your machine in
-about ten seconds. What is set right now, and why:
+against the live web. `npm run verify-feeds -- --apply` does that check on your
+machine in about ten seconds and fixes the roster for you. What is set right now,
+and why:
 
 | Source | State | Why |
 |---|---|---|
@@ -154,7 +153,7 @@ about ten seconds. What is set right now, and why:
 | AP | **off** | The URL in the brief is an HTML page, not a feed. AP does not publish a public travel feed. |
 
 Nothing breaks if a feed is wrong. A feed that fails is logged and skipped, and the
-rest of the run continues.
+rest of the run continues. `verify-feeds` is the tool that settles the roster.
 
 If Reuters and AP stay unavailable, the honest options are to run with the four
 working desks, or to license a wire service. Both are fine. Four desks fills the
@@ -215,10 +214,13 @@ To add a city, put it in `src/gazetteer.js` under its country code and add a tes
 ## Working on it
 
 ```bash
-npm test            # 45 unit tests, no network needed
-npm run dev         # run it locally at http://localhost:8787
-npm run verify-feeds
+npm test                         # 51 unit tests, no network needed
+npm run dev                      # run it locally at http://localhost:8787
+npm run setup-kv                 # create the KV namespace, write its id to wrangler.toml
+npm run verify-feeds             # check the feeds, report only
+npm run verify-feeds -- --apply  # check the feeds, then fix src/feeds.js
 npm run deploy
+npm run tail                     # watch the cron runs
 ```
 
 | File | What it does |
@@ -232,6 +234,8 @@ npm run deploy
 | `src/gazetteer.js` | Places |
 | `src/regions.js` | Country to region table |
 | `src/store.js` | KV read and write, dedupe, filters |
+| `scripts/setup-kv.mjs` | Creates the KV namespace and updates `wrangler.toml` |
+| `scripts/verify-feeds.mjs` | Checks every feed, optionally rewrites the roster |
 
 ## The rules this service keeps
 

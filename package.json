@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "verify-feeds": "node scripts/verify-feeds.mjs",
-    "tail": "wrangler tail"
+    "tail": "wrangler tail",
+    "setup-kv": "node scripts/setup-kv.mjs"
   },
   "devDependencies": {
     "vitest": "^2.1.9",

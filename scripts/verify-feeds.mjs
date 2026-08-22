@@ -2,13 +2,17 @@
 // Check every feed in src/feeds.js: is it reachable, is it really a feed, does
 // it parse, and does robots.txt say anything about it.
 //
-//   npm run verify-feeds
+//   npm run verify-feeds           check and report
+//   npm run verify-feeds -- --apply  check, then write the changes to src/feeds.js
 //
-// Run this before the first deploy and any time the wire looks thin. It tells
-// you exactly which entries in src/feeds.js to switch on or off.
+// Run this before the first deploy and any time the wire looks thin.
 
+import { readFileSync, writeFileSync } from 'node:fs';
 import { FEEDS } from '../src/feeds.js';
 import { parseFeed } from '../src/xml.js';
+import { applyFlags } from './lib/feed-flags.mjs';
+
+const APPLY = process.argv.includes('--apply');
 
 const TIMEOUT_MS = 15000;
 const UA = 'TLLTravelWire/1.0 (+https://thatlayover.life; headline aggregator)';
@@ -90,14 +94,34 @@ for (const result of results) {
 
 const turnOn = results.filter((r) => r.ok && !r.feed.enabled);
 const turnOff = results.filter((r) => !r.ok && r.feed.enabled);
+const changes = [
+  ...turnOn.map((r) => ({ id: r.feed.id, enabled: true, source: r.feed.source })),
+  ...turnOff.map((r) => ({ id: r.feed.id, enabled: false, source: r.feed.source })),
+];
 
-if (turnOn.length) {
-  console.log(`${YELLOW}Set enabled: true in src/feeds.js for:${RESET} ${turnOn.map((r) => r.feed.id).join(', ')}`);
+if (!changes.length) {
+  console.log(`${GREEN}No changes needed. src/feeds.js matches what is live.${RESET}\n`);
+  process.exit(results.some((r) => r.ok) ? 0 : 1);
 }
-if (turnOff.length) {
-  console.log(`${YELLOW}Set enabled: false in src/feeds.js for:${RESET} ${turnOff.map((r) => r.feed.id).join(', ')}`);
+
+if (APPLY) {
+  const path = new URL('../src/feeds.js', import.meta.url);
+  const before = readFileSync(path, 'utf8');
+  writeFileSync(path, applyFlags(before, changes));
+  console.log(`${GREEN}Updated src/feeds.js:${RESET}`);
+  for (const change of changes) {
+    console.log(`       ${change.source} is now ${change.enabled ? 'ON' : 'OFF'}`);
+  }
+  console.log(`\n${DIM}Deploy the change with: npx wrangler deploy${RESET}\n`);
+} else {
+  if (turnOn.length) {
+    console.log(`${YELLOW}These work but are switched off:${RESET} ${turnOn.map((r) => r.feed.id).join(', ')}`);
+  }
+  if (turnOff.length) {
+    console.log(`${YELLOW}These are switched on but do not work:${RESET} ${turnOff.map((r) => r.feed.id).join(', ')}`);
+  }
+  console.log(`\n${DIM}Run "npm run verify-feeds -- --apply" to make these changes for you.${RESET}\n`);
 }
-if (!turnOn.length && !turnOff.length) {
-  console.log(`${GREEN}No changes needed. src/feeds.js matches what is live.${RESET}`);
-}
-console.log('');
+
+// A run where nothing at all worked is a failure worth noticing in a script.
+process.exit(results.some((r) => r.ok) ? 0 : 1);
