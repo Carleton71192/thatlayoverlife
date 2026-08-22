@@ -18,8 +18,12 @@ GET /health                       is it alive, and how fresh is the wire
 
 ## Deploy it, step by step
 
-You need a terminal and about 15 minutes. Every command below is one line you paste
-and press Enter on. If a step asks you to confirm something, say yes.
+You need a terminal and about 15 minutes.
+
+**Paste one command, press Enter, wait for it to finish, then paste the next.**
+Pasting several at once is the one way this goes wrong: the lines run together,
+and anything still queued gets fed into the next question the terminal asks. If a
+step asks you to confirm something, type `y` and press Enter.
 
 ### 1. Install Node.js
 
@@ -38,9 +42,18 @@ installer did not finish. Try it again.
 
 ```bash
 git clone https://github.com/Carleton71192/thatlayoverlife.git
+```
+
+```bash
 cd thatlayoverlife
+```
+
+```bash
 npm install
 ```
+
+Let `npm install` finish before going on. It takes 30 to 60 seconds and ends with
+a line like `added 200 packages`. Nothing after this point works without it.
 
 ### 3. Make a free Cloudflare account
 

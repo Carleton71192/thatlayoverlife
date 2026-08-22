@@ -8,7 +8,8 @@
 // leaves it alone unless you pass --force.
 
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const PLACEHOLDER = 'REPLACE_WITH_YOUR_KV_NAMESPACE_ID';
 const CONFIG = new URL('../wrangler.toml', import.meta.url);
@@ -26,6 +27,26 @@ function fail(message, hint) {
   process.exit(1);
 }
 
+// Call the installed binary directly. Going through `npx` lets it offer to
+// download a different wrangler, and that prompt can swallow whatever is queued
+// in the terminal.
+const WRANGLER = fileURLToPath(new URL(
+  process.platform === 'win32' ? '../node_modules/.bin/wrangler.cmd' : '../node_modules/.bin/wrangler',
+  import.meta.url,
+));
+
+if (!existsSync(WRANGLER)) {
+  fail(
+    'Wrangler is not installed in this project yet.',
+    'That means `npm install` has not finished. Run it on its own, wait for it to\nend, then try again:\n\n  npm install\n',
+  );
+}
+
+/** Run wrangler with no stdin, so a stray prompt can never eat queued input. */
+function wrangler(args) {
+  return execFileSync(WRANGLER, args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+}
+
 const config = readFileSync(CONFIG, 'utf8');
 const current = config.match(/^\s*id\s*=\s*"([^"]+)"/m)?.[1];
 
@@ -40,7 +61,7 @@ if (current && current !== PLACEHOLDER && !FORCE) {
 // would be captured rather than shown, and this would look like a hang.
 let whoami = '';
 try {
-  whoami = execFileSync('npx', ['wrangler', 'whoami'], { encoding: 'utf8', stdio: ['inherit', 'pipe', 'pipe'] });
+  whoami = wrangler(['whoami']);
 } catch (error) {
   whoami = `${error.stdout || ''}${error.stderr || ''}`;
 }
@@ -54,10 +75,7 @@ console.log('\nCreating the KV namespace on your Cloudflare account...\n');
 
 let output;
 try {
-  output = execFileSync('npx', ['wrangler', 'kv', 'namespace', 'create', 'WIRE_KV'], {
-    encoding: 'utf8',
-    stdio: ['inherit', 'pipe', 'pipe'],
-  });
+  output = wrangler(['kv', 'namespace', 'create', 'WIRE_KV']);
 } catch (error) {
   const detail = `${error.stdout || ''}${error.stderr || ''}`;
   console.error(detail.trim());
