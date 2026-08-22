@@ -1,0 +1,17 @@
+name = "tll-travel-wire"
+main = "src/index.js"
+compatibility_date = "2025-08-01"
+
+# The scheduled job. Every 30 minutes, on the hour and the half hour.
+[triggers]
+crons = ["*/30 * * * *"]
+
+# Where the wire is stored between runs.
+# Run `npx wrangler kv namespace create WIRE_KV` and paste the id it prints here.
+[[kv_namespaces]]
+binding = "WIRE_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+# One-line log per cron run, readable with `npx wrangler tail`.
+[observability]
+enabled = true

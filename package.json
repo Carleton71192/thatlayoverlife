@@ -1,0 +1,19 @@
+{
+  "name": "tll-travel-wire",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RSS aggregation service for The Travel Wire on ThatLayover.Life",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify-feeds": "node scripts/verify-feeds.mjs",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.9",
+    "wrangler": "^3.114.1"
+  }
+}
