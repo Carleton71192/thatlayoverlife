@@ -148,6 +148,48 @@ wire 2026-08-22T14:30:00.000Z total=98 new=12 feeds[skift=24 points-guy=18 simpl
 
 Press Ctrl+C to stop watching.
 
+## When something goes wrong
+
+**`npm error EACCES: permission denied` and a path in `~/.npm/_cacache`**
+
+Your npm cache has files owned by root, usually left behind by an old
+`sudo npm install -g`. It blocks every npm command until it is repaired:
+
+```bash
+sudo chown -R $(whoami) ~/.npm
+```
+
+It asks for your Mac login password. Nothing appears on screen while you type it,
+which is normal. Then run `npm install` again.
+
+To sidestep it without a password, `npm install --cache ~/.npm-tll-cache` uses a
+different cache, though the broken one will keep causing trouble elsewhere.
+
+**Two commands ran together on one line**
+
+Something like `npm installnpx wrangler login`, followed by `Unknown command`.
+The paste landed without a newline. Press Enter after each command and wait for
+the prompt to come back before pasting the next one.
+
+**`Cloudflare is not logged in yet`**
+
+Run `npx wrangler login`, click Allow in the browser, then try again.
+
+**`Wrangler is not installed in this project yet`**
+
+`npm install` has not finished successfully. Run it on its own and watch for it
+to end with a line like `added 200 packages`.
+
+**The wire is empty at `/wire`**
+
+The scheduled job has not run yet. Step 8 above fills it immediately. To confirm
+the service itself is alive, open `/health`.
+
+**Fewer sources than expected**
+
+Run `npm run verify-feeds` and read the report. A feed that fails is skipped, and
+the run carries on with the rest.
+
 ## Feed status, read this before you launch
 
 The build environment could not reach the feed hosts, so nothing here was checked
