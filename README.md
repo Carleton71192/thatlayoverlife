@@ -204,13 +204,43 @@ and why:
 
 | Source | State | Why |
 |---|---|---|
-| Skift | on | Standard public WordPress feed at `/feed/`. |
-| The Points Guy | on | Standard public WordPress feed at `/feed/`. |
-| Simple Flying | on | Standard public WordPress feed at `/feed/`. |
-| BBC | on | Uses the BBC World feed with a travel keyword filter, because the standalone BBC Travel feed was retired. |
-| Lonely Planet | **off** | The URL in the brief is unconfirmed. |
-| Reuters | **off** | Reuters shut down its public agency feeds. It needs a current URL or it gets dropped. |
-| AP | **off** | The URL in the brief is an HTML page, not a feed. AP does not publish a public travel feed. |
+| Skift | on | Trade press. Confirmed live, 10 items. |
+| The Points Guy | on | Loyalty and aviation. Confirmed live, 20 items. |
+| Simple Flying | on | Aviation. Confirmed live, 10 items. |
+| BBC | on | BBC World with a travel keyword filter, because the standalone BBC Travel feed was retired. Confirmed live, 3 of 29 items kept. |
+| The Guardian | on | Travel desk of a national paper. Added for destination coverage. |
+| Atlas Obscura | on | Place-led features. Added for destination coverage. |
+| Conde Nast Traveler | on | Consumer magazine. Added for destination coverage. |
+| AFAR | on | Consumer magazine. URL unconfirmed. |
+| Nomadic Matt | on | Independent blog. |
+| Adventurous Kate | on | Independent blog. |
+| Never Ending Footsteps | on | Independent blog. |
+| Lonely Planet | **off** | Serves HTML, not a feed. Confirmed dead. |
+| Reuters | **off** | HTTP 404. Reuters shut down its public agency feeds. |
+| AP | **off** | Serves HTML. That URL is the hub page, and AP publishes no public travel feed. |
+
+The first four were confirmed live on 23 August 2026. The seven added after that
+have not been checked from here, so run `npm run verify-feeds -- --apply` and it
+will switch off any that do not work.
+
+### Adding your own
+
+Open `src/feeds.js`, copy an existing block, and change the three fields that
+matter: `id` (anything unique), `source` (the name shown on the card, verbatim),
+and `url`. Most blogs put their feed at `/feed/` or `/rss`. Then:
+
+```bash
+npm run verify-feeds -- --apply
+npm run deploy
+```
+
+If a feed carries a lot of non-travel content, add `travelOnly: true` and it gets
+the same keyword filter the BBC World feed uses.
+
+Two things worth knowing. The wire keeps the newest 100 items across every feed,
+so a very prolific source can crowd out quieter ones. And more card and loyalty
+blogs will push the mix toward `GLOBAL`, because that writing rarely names a
+place. Destination writing is what fills the region chips.
 
 Nothing breaks if a feed is wrong. A feed that fails is logged and skipped, and the
 rest of the run continues. `verify-feeds` is the tool that settles the roster.
