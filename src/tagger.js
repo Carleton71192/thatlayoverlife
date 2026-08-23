@@ -7,6 +7,7 @@
 
 import {
   AMBIGUOUS_TERMS,
+  BLOCKED_PHRASES,
   CITY_TERMS,
   CODE_STOPLIST,
   COUNTRY_TERMS,
@@ -123,6 +124,20 @@ function scanPhrases(text, sourceText, weight, hits) {
   const titleCased = isTitleCase(sourceText);
   let i = 0;
   while (i < words.length) {
+    // "American Express" is a card, not a continent. Step over the whole phrase
+    // so its place word never gets read on its own.
+    let blocked = 0;
+    for (let n = Math.min(MAX_PHRASE_WORDS, words.length - i); n >= 2; n -= 1) {
+      if (BLOCKED_PHRASES.has(words.slice(i, i + n).join(' '))) {
+        blocked = n;
+        break;
+      }
+    }
+    if (blocked) {
+      i += blocked;
+      continue;
+    }
+
     let matched = 0;
     for (let n = Math.min(MAX_PHRASE_WORDS, words.length - i); n >= 1; n -= 1) {
       const phrase = words.slice(i, i + n).join(' ');

@@ -45,6 +45,25 @@ describe('tagItem', () => {
     expect(tag('A nice weekend for rail travel')).toEqual({ region: 'GLOBAL', country: null });
   });
 
+  it('ignores place words inside brand names', () => {
+    // Seen live on The Points Guy: these were landing in AMERICAS/US.
+    expect(tag('American Express Membership Rewards: how to earn and transfer')).toEqual({
+      region: 'GLOBAL',
+      country: null,
+    });
+    expect(tag('The best time to apply for these popular American Express cards')).toEqual({
+      region: 'GLOBAL',
+      country: null,
+    });
+    expect(tag('Bank of America adds a new lounge benefit')).toEqual({ region: 'GLOBAL', country: null });
+  });
+
+  it('still reads a country inside an airline name', () => {
+    // Deliberate: a Japan Airlines story is usually about Japan.
+    expect(tag('Japan Airlines orders more widebodies')).toEqual({ region: 'ASIA', country: 'JP' });
+    expect(tag('American Airlines adds a route to Naples')).toEqual({ region: 'AMERICAS', country: 'US' });
+  });
+
   it('ignores place words used as personal names', () => {
     expect(tag('Michael Jordan opens a hotel')).toEqual({ region: 'GLOBAL', country: null });
     expect(tag('Amman, Jordan adds a low-cost base')).toEqual({ region: 'MIDDLE EAST', country: 'JO' });

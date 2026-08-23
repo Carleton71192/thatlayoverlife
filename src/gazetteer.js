@@ -407,6 +407,23 @@ export const AMBIGUOUS_TERMS = new Set([
   'union', 'sandy', 'colombo',
 ]);
 
+// Brand and proper names that contain a place word but are not about the place.
+// Checked before matching, and the whole phrase is skipped when one is found.
+// Airline names are deliberately absent: a Japan Airlines story is usually about
+// Japan, and that is a useful signal rather than a false one.
+export const BLOCKED_PHRASES = new Set([
+  'american express',
+  'bank of america',
+  'american eagle',
+  'american dream',
+  'india pale ale',
+  'french toast',
+  'french press',
+  'turkey sandwich',
+  'jordan brand',
+  'georgia tech',
+]);
+
 // Region words that carry no single country.
 export const REGION_TERMS = {
   EUROPE: 'Europe|European|Schengen|Balkans|Scandinavia|Nordics|Nordic countries|Mediterranean|Iberian Peninsula|Baltics|Alps',
