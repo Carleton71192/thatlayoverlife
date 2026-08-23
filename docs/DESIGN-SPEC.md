@@ -1,5 +1,19 @@
 # Design spec: rendering the Travel Wire on ThatLayover.Life
 
+> **Check against the brand kit before building.** This spec, as received in the
+> handoff package, calls for Playfair Display 800 headlines. TLL BrandKit v2
+> (4 August 2026, Google Drive, "That Layover life" folder) specifies **Syne 800**
+> for the wordmark, all H1 and H2, pull quotes and stat numbers, heavy weights
+> only, never below 700. DM Sans for body and JetBrains Mono for meta labels both
+> match. The kit's stated type rule is "Two fonts. Infinite range."
+>
+> Playfair is the Nancy Carleton and TBC headline face, not TLL's. Building the
+> Travel Wire page in Playfair would put it in the wrong family's typeface.
+> The palette in this spec does match the kit: midnight #0D0F1A, rose #F0507A,
+> teal #00C9C8, bone #F7F1E8, paper #FDF9F3.
+>
+> Flagged rather than edited, since this file is the handoff as delivered.
+
 For the Webflow page script (Claude Design writes this once the endpoint exists). Kept here so the whole feature lives in one package.
 
 ## Page

@@ -1,0 +1,79 @@
+<!--
+  NewsArticle schema for ThatLayover.Life posts.
+
+  WHERE THIS GOES
+  Webflow Designer, open the CMS Collection page template for your posts (not a
+  static page), drag an Embed element to the bottom of the page, and paste this in.
+
+  FILLING THE FIELDS
+  Every {{ }} below is a placeholder. Inside the Webflow Embed editor, delete the
+  placeholder including its braces, click "+ Add Field", and pick the matching CMS
+  field. Webflow inserts a purple token. Do not type the token by hand.
+
+  If a field does not exist in your collection yet, either add it or delete that
+  line. A missing field is better than an empty one.
+
+  CHECK IT
+  After publishing, run one live post through Google's Rich Results Test at
+  https://search.google.com/test/rich-results
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.thatlayover.life/blog/{{ SLUG FIELD }}"
+  },
+  "headline": "{{ POST NAME FIELD }}",
+  "description": "{{ SUMMARY OR EXCERPT FIELD }}",
+  "image": [
+    "{{ MAIN IMAGE FIELD, URL }}"
+  ],
+  "datePublished": "{{ PUBLISHED DATE FIELD }}",
+  "dateModified": "{{ UPDATED DATE FIELD, OR REUSE PUBLISHED DATE }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ AUTHOR NAME FIELD, OR TYPE Nancy Carleton }}",
+    "url": "https://www.thatlayover.life/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "That Layover Life",
+    "url": "https://www.thatlayover.life",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.thatlayover.life/{{ PATH TO LOGO PNG }}",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "isAccessibleForFree": true,
+  "inLanguage": "en-US"
+}
+</script>
+
+<!--
+  NOTES ON THE AWKWARD FIELDS
+
+  headline
+    Google truncates past 110 characters. Longer than that and it is ignored.
+
+  image
+    Needs an absolute URL, and Google wants at least 1200px wide. Webflow image
+    fields output the full URL already, so the token alone is enough.
+
+  datePublished / dateModified
+    Must be ISO 8601 with a timezone offset. Webflow date fields output this
+    correctly. If you formatted the date for display anywhere, do not reuse that
+    field here, add a separate raw one.
+
+  logo
+    Must be a real file that resolves. A 600x60 PNG on a transparent or light
+    ground is the safe shape. Update the width and height if yours differs.
+
+  author
+    A real named person beats an organization here. TLL's whole position is that a
+    named traveler wrote it, and the schema should say so too.
+-->
