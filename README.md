@@ -115,24 +115,29 @@ https://tll-travel-wire.YOUR-SUBDOMAIN.workers.dev
 
 ### 8. Fill the wire immediately
 
-The scheduled job runs on the half hour, so right after deploying the wire is
-empty. To load it now, set a password and trigger a run by hand:
+The scheduled job runs on the hour and the half hour, so right after deploying the
+wire is empty. To load it now, set a password:
 
 ```bash
 npx wrangler secret put REFRESH_TOKEN
 ```
 
-Type any password you like when it asks, and press Enter. Then redeploy so the
-worker picks it up, and trigger the run (replace both the URL and the password
-with yours):
+Type any password you like when it asks and press Enter. Nothing appears on screen
+as you type it. The secret reaches the live worker straight away, with no redeploy
+needed.
+
+Then trigger a run, putting your own password and your own URL in:
 
 ```bash
-npx wrangler deploy
 curl -X POST -H "Authorization: Bearer YOUR-PASSWORD" https://tll-travel-wire.YOUR-SUBDOMAIN.workers.dev/refresh
 ```
 
-Now open your `/wire` URL in a browser. You should see headlines. From here it
-refreshes itself every 30 minutes and you never touch it again.
+It answers with a summary of what it pulled from each feed. Now open your `/wire`
+URL in a browser and you should see headlines. From here it refreshes itself every
+30 minutes and you never touch it again.
+
+Without `REFRESH_TOKEN` set, `/refresh` returns 404 and cannot be triggered by
+anyone else.
 
 ### Watching it run
 
