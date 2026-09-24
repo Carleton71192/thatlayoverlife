@@ -215,13 +215,23 @@ and why:
 | Nomadic Matt | on | Independent blog. |
 | Adventurous Kate | on | Independent blog. |
 | Never Ending Footsteps | on | Independent blog. |
+| NYT, The Independent, The Telegraph, CNN, Euronews, Smithsonian | on | Newspaper and broadcaster travel desks. Added September 2026. |
+| Al Jazeera | on | World feed with the travel keyword filter, like BBC. Covers the Gulf hubs. |
+| Travel + Leisure, Matador, Travel Off Path, TravelPulse, Travel Noire | on | Magazines and trade press. Added September 2026. |
+| Business Traveller, Executive Traveller, Schengen News | on | Hubs, lounges, visa and border rules. Added September 2026. |
+| One Mile at a Time, View from the Wing, Paddle Your Own Kanoo, Head for Points, LoyaltyLobby, Live and Let's Fly, AirlineGeeks, Airways, AeroTime | on | Aviation and loyalty. Added September 2026. |
+| Rick Steves, Expert Vagabond, Uncornered Market, Legal Nomads, Hand Luggage Only, Goats on the Road | on | Independent destination blogs. Added September 2026. |
 | Lonely Planet | **off** | Serves HTML, not a feed. Confirmed dead. |
 | Reuters | **off** | HTTP 404. Reuters shut down its public agency feeds. |
 | AP | **off** | Serves HTML. That URL is the hub page, and AP publishes no public travel feed. |
 
-The first four were confirmed live on 23 August 2026. The seven added after that
-have not been checked from here, so run `npm run verify-feeds -- --apply` and it
-will switch off any that do not work.
+The first four were confirmed live on 23 August 2026. None of the others have
+been checked from here, so run `npm run verify-feeds -- --apply` and it will
+switch off any that do not work.
+
+Keep the number of enabled feeds at 45 or fewer. Cloudflare's free plan allows 50
+outbound fetches per run, each feed is one, and `npm test` fails if the roster
+goes over.
 
 ### Adding your own
 
@@ -304,7 +314,7 @@ To add a city, put it in `src/gazetteer.js` under its country code and add a tes
 ## Working on it
 
 ```bash
-npm test                         # 51 unit tests, no network needed
+npm test                         # 56 unit tests, no network needed
 npm run dev                      # run it locally at http://localhost:8787
 npm run setup-kv                 # create the KV namespace, write its id to wrangler.toml
 npm run verify-feeds             # check the feeds, report only
