@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 107 · Done 1 · Partial 5 · Blocked 14 · N/A 0 · Deferred 0
+Summary: TODO 106 · Done 1 · Partial 6 · Blocked 14 · N/A 0 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -33,7 +33,7 @@ Summary: TODO 107 · Done 1 · Partial 5 · Blocked 14 · N/A 0 · Deferred 0
 | B07 | Pen a Tale submission (members gate, Write/Link fork) | TODO |  |
 | B08 | Travel Wire | TODO |  |
 | B09 | Editor desk (role gate, NOINDEX) | TODO |  |
-| B10 | Country page | TODO |  |
+| B10 | Country page | Partial | Staged 28 Sep 2026, unpublished, on the Countries collection template (page 6a8afbda8e907b41c4da10a1, /countries/{slug}). Already live and kept: flag, region eyebrow, name, verdict, Quick facts checked against public data, One word to know, Filed from here (story ref + layover, marathon and Paw lists), sources line. Added per screen 10: hero meta line (region · N stories filed, N counted from the cards on the page, never typed), Been here / Want to go row (same D03 script as the story page, member JSON tllPlaces keyed by country name), Quick answers as an honest OPEN SLOT (no answers exist yet, so no "1 of 1 said so"), On the wire · {Country} fed by the Travel Wire Worker with ?country=ISO2 and hidden when the wire has nothing, Reader submissions · {Country} open slot with Submit yours, closing CTA "Been to {Country}?" / "Add it to your map, or write the story nobody has written yet." / Log it · Pen a tale. Kept against the design on purpose: no "logged by N travelers" (no data source for it yet), no prototype quote or answers (would be invented), Quick facts and One word stay because they are real, checked data the design does not show. Left: live check on /countries/bulgaria after publish, confirm the Worker accepts the country filter. |
 | B11 | Public profile (link stack) | TODO |  |
 | B12 | Edit profile (three toggles, link stack editor) | TODO |  |
 | B13 | Spotlight (honest slots only) | TODO |  |
