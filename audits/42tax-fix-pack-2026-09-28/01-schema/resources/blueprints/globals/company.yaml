@@ -1,0 +1,76 @@
+title: Company
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: 'Name, address, phone'
+        instructions: 'These values feed the structured data on every page. They must match the Google Business Profile exactly.'
+        fields:
+          -
+            handle: legal_name
+            field:
+              type: text
+              display: 'Company name'
+              instructions: 'Exactly as shown on the Google Business Profile.'
+              validate:
+                - required
+          -
+            handle: street_address
+            field:
+              type: text
+              display: 'Street address'
+              validate:
+                - required
+          -
+            handle: postal_code
+            field:
+              type: text
+              display: 'Postal code'
+              validate:
+                - required
+          -
+            handle: locality
+            field:
+              type: text
+              display: 'City'
+              instructions: 'Use the spelling on the Google Business Profile.'
+              validate:
+                - required
+          -
+            handle: phone
+            field:
+              type: text
+              display: 'Phone'
+              instructions: 'International format, as shown in the site footer.'
+          -
+            handle: email
+            field:
+              type: text
+              display: 'Contact email'
+              input_type: email
+          -
+            handle: cvr
+            field:
+              type: text
+              display: 'CVR number'
+              instructions: 'Digits only, as shown on the site.'
+      -
+        display: 'Brand'
+        fields:
+          -
+            handle: logo
+            field:
+              type: assets
+              display: 'Logo (PNG or JPG)'
+              instructions: 'A raster logo for search engines and link previews. The inline SVG in the header cannot be used here.'
+              container: assets
+              max_files: 1
+              mode: list
+          -
+            handle: linkedin_url
+            field:
+              type: text
+              display: 'LinkedIn company page URL'
+              instructions: 'Paste the same URL the footer links to. Leave empty until confirmed; the schema skips it when empty.'
+              input_type: url

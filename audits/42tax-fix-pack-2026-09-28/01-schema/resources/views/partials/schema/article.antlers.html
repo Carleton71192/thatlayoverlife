@@ -1,0 +1,57 @@
+{{#
+  42TAX: Article JSON-LD for one What we think entry.
+
+  Include from the article entry template, inside the entry context:
+    {{ partial:schema/article }}
+
+  datePublished is only written when the entry has a date (dated collection).
+  author: if the blueprint has an `author` field that points at a user, the name
+  comes from author:name; if it points at a team entry, from author:title.
+  When there is no author field, the firm is the author. Nothing is invented.
+#}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "{{ permalink }}#article",
+  "headline": {{ title | to_json }},
+  "url": {{ permalink | to_json }},
+  "mainEntityOfPage": {{ permalink | to_json }},
+  "inLanguage": "{{ site:short_locale }}",
+  {{ if date }}
+  "datePublished": "{{ date format="Y-m-d" }}",
+  {{ /if }}
+  {{ if last_modified }}
+  "dateModified": "{{ last_modified format="Y-m-d" }}",
+  {{ /if }}
+  {{ if seo:description }}
+  "description": {{ seo:description | to_json }},
+  {{ /if }}
+  {{ if author }}
+  "author": {
+    "@type": "Person",
+    {{ if author:name }}
+    "name": {{ author:name | to_json }}
+    {{ else }}
+    "name": {{ author:title | to_json }},
+    "url": {{ author:permalink | to_json }}
+    {{ /if }}
+  },
+  {{ else }}
+  "author": {
+    "@type": "Organization",
+    "@id": "{{ config:app:url }}/#organization",
+    "name": {{ company:legal_name | to_json }}
+  },
+  {{ /if }}
+  "publisher": {
+    "@type": "Organization",
+    "@id": "{{ config:app:url }}/#organization",
+    "name": {{ company:legal_name | to_json }}{{ if company:logo }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ company:logo:permalink | to_json }}
+    }{{ /if }}
+  }
+}
+</script>

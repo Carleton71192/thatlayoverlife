@@ -1,0 +1,54 @@
+{{#
+  42TAX: ProfessionalService JSON-LD, site-wide.
+
+  Include once in the layout <head>, after {{ seo_pro:meta }}:
+    {{ partial:schema/professional-service }}
+
+  Every value comes from the "Company" global set (content/globals/{site}/company.yaml).
+  Nothing is hard-coded except the schema.org vocabulary and the country code.
+  The address must match the Google Business Profile character for character:
+  Bredgade 6, 1260 København K.
+#}}
+{{ company }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "{{ config:app:url }}/#organization",
+  "name": {{ legal_name | to_json }},
+  "url": "{{ config:app:url }}/",
+  {{ if logo }}
+  "logo": {
+    "@type": "ImageObject",
+    "url": {{ logo:permalink | to_json }}
+  },
+  "image": {{ logo:permalink | to_json }},
+  {{ /if }}
+  {{ if phone }}
+  "telephone": {{ phone | to_json }},
+  {{ /if }}
+  {{ if email }}
+  "email": {{ email | to_json }},
+  {{ /if }}
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ street_address | to_json }},
+    "postalCode": {{ postal_code | to_json }},
+    "addressLocality": {{ locality | to_json }},
+    "addressCountry": "DK"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Denmark"
+  }{{ if linkedin_url }},
+  "sameAs": [
+    {{ linkedin_url | to_json }}
+  ]{{ /if }}{{ if cvr }},
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "CVR",
+    "value": {{ cvr | to_json }}
+  }{{ /if }}
+}
+</script>
+{{ /company }}

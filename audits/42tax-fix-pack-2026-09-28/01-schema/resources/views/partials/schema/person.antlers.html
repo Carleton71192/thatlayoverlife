@@ -1,0 +1,41 @@
+{{#
+  42TAX: Person JSON-LD for one team page (Who we are / Hvem vi er).
+
+  Include from the team entry template, inside the entry context:
+    {{ partial:schema/person }}
+
+  Field handles below are the usual ones. Check the team blueprint
+  (resources/blueprints/collections/<team-collection>/) and rename a handle here
+  if it differs (for example `position` instead of `job_title`). Use the SAME field
+  that prints the title on the page, so jobTitle always matches what a visitor reads.
+  Do not add content that is not already on the page.
+#}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ permalink }}#person",
+  "name": {{ title | to_json }},
+  "url": {{ permalink | to_json }},
+  {{ if job_title }}
+  "jobTitle": {{ job_title | to_json }},
+  {{ /if }}
+  {{ if image }}
+  "image": {{ image:permalink | to_json }},
+  {{ /if }}
+  {{ if email }}
+  "email": {{ email | to_json }},
+  {{ /if }}
+  {{ if linkedin }}
+  "sameAs": [
+    {{ linkedin | to_json }}
+  ],
+  {{ /if }}
+  "worksFor": {
+    "@type": "ProfessionalService",
+    "@id": "{{ config:app:url }}/#organization",
+    "name": {{ company:legal_name | to_json }},
+    "url": "{{ config:app:url }}/"
+  }
+}
+</script>
