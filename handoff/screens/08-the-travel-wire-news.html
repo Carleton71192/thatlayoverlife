@@ -1,0 +1,83 @@
+<!-- ============ THE TRAVEL WIRE (NEWS) ============ -->
+<sc-if value="{{ isWire }}" hint-placeholder-val="{{ false }}">
+<div style="background:#FDF9F3;min-height:100vh;padding:40px 28px 60px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:12px">THE TRAVEL WIRE · FROM THE MAJOR DESKS · UPDATED DAILY</div>
+    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1.02;color:#0A0B14;margin-bottom:10px">The news, <span style="color:#F0507A;font-style:italic">sorted by where.</span></div>
+    <div style="font-size:15px;color:#6B6660;margin-bottom:8px;max-width:640px">Headlines from the wire services and the trade press, tagged by place. We link out — the reporting is theirs, the sorting is ours.</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#9a958d;margin-bottom:22px">PROTOTYPE NOTE: EXAMPLE ITEMS. LIVE VERSION PULLS RSS FROM THE NAMED SOURCES.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px">
+      <sc-for list="{{ wireRegions }}" as="r" hint-placeholder-count="7">
+        <span onClick="{{ r.pick }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.5px;color:{{ r.color }};background:{{ r.bg }};border:1.5px solid {{ r.border }};padding:8px 16px;border-radius:22px;cursor:pointer;font-weight:600">{{ r.label }}</span>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ wireItems }}" as="w" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:18px 22px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:none;width:120px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#fff;background:{{ w.regionColor }};padding:4px 10px;border-radius:4px;display:inline-block;font-weight:700;margin-bottom:6px">{{ w.region }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d">{{ w.country }}</div>
+          </div>
+          <div style="flex:1;min-width:260px">
+            <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:18px;line-height:1.25;color:#0A0B14;margin-bottom:5px">{{ w.title }}</div>
+            <div style="font-size:13px;color:#3a3a3a;line-height:1.55;margin-bottom:8px">{{ w.sum }}</div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#6B6660;font-weight:600">{{ w.source }} · {{ w.when }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:600;cursor:pointer">READ AT SOURCE ↗</span>
+            </div>
+          </div>
+          <sc-if value="{{ w.hasTake }}" hint-placeholder-val="{{ false }}">
+            <div style="flex:none;width:230px;background:#FDF9F3;border-left:3px solid #F0507A;border-radius:0 7px 7px 0;padding:10px 13px"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#F0507A;font-weight:700;margin-bottom:4px">THE LAYOVER ANGLE</div><div style="font-size:11.5px;color:#3a3a3a;line-height:1.5;font-style:italic">{{ w.take }}</div></div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ wireEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="border:2px dashed #c9b89a;border-radius:10px;padding:28px;text-align:center;background:#fff"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:17px;color:#0A0B14;margin-bottom:4px">Quiet on this desk today.</div><div style="font-size:13px;color:#6B6660">Nothing filed for this region in the last 48 hours.</div></div>
+    </sc-if>
+    <!-- THE BLOG DESK -->
+    <div style="margin-top:40px;padding-top:30px;border-top:1px solid #E0DACE">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#D98A2B;font-weight:600;margin-bottom:8px">THE BLOG DESK · INDEPENDENT VOICES</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;line-height:1.05;color:#0A0B14">Blogs we read, <span style="color:#D98A2B;font-style:italic">on the wire.</span></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#9a958d">CURATED BY A HUMAN · REAL WRITERS ONLY</div>
+      </div>
+      <div style="font-size:13.5px;color:#6B6660;line-height:1.55;max-width:640px;margin-bottom:18px">Independent travel blogs, hand-approved, riding the same wire as the major desks. Headlines and links only — every click lands on their site, with their name on it.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px">
+        <sc-for list="{{ blogWireItems }}" as="b" hint-placeholder-count="2">
+          <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:none;width:120px;display:flex;flex-direction:column;gap:5px">
+              <span style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#7a4d10;background:#f5e3c8;padding:3px 8px;border-radius:4px;font-weight:700">BLOG</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d">{{ b.region }}</span>
+            </div>
+            <div style="flex:1;min-width:240px">
+              <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;line-height:1.25;color:#0A0B14;margin-bottom:5px">{{ b.title }}</div>
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#6B6660;font-weight:600">{{ b.blog }} · BY {{ b.author }} · {{ b.when }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:600;cursor:pointer">READ ON THEIR SITE ↗</span>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <!-- Apply card -->
+      <div style="background:#0A0B14;border-radius:12px;padding:24px 28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px">
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:#F7F1E8;margin-bottom:6px">Write a travel blog? Get on the wire.</div>
+          <div style="font-size:13px;color:#cfcbc4;line-height:1.55">Apply from your traveler profile. Nancy reads your last five posts; if a human wrote them about places you actually went, your RSS joins the desk. Backlink on every headline, credit on every click.</div>
+          <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#4a4d63">HOUSE RULES: REAL WRITER · REAL TRIPS · NO AI CONTENT FARMS · DISCLOSURE ON SPONSORED POSTS</div>
+        </div>
+        <sc-if value="{{ blogApplied }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7de8e7;background:#0d2b2a;padding:12px 20px;border-radius:7px;font-weight:600">APPLIED ✓ · NANCY IS READING</div>
+        </sc-if>
+        <sc-if value="{{ blogNotApplied }}" hint-placeholder-val="{{ true }}">
+          <div onClick="{{ applyBlog }}" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#0A0B14;background:#D98A2B;padding:13px 22px;border-radius:7px;font-weight:700;cursor:pointer;white-space:nowrap">ADD MY BLOG TO THE WIRE →</div>
+        </sc-if>
+      </div>
+    </div>
+    <div style="margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#9a958d;line-height:1.8">SOURCES ON THE WIRE: REUTERS · AP · BBC TRAVEL · SKIFT · THE POINTS GUY · LONELY PLANET NEWS · SIMPLE FLYING · + THE BLOG DESK<br>AGGREGATED HEADLINES + LINKS ONLY. NO SCRAPED BODIES. EVERY CLICK GOES TO THE PEOPLE WHO DID THE REPORTING.</div>
+  </div>
+</div>
+</sc-if>

@@ -1,0 +1,20 @@
+<!-- ============ COOKIES ============ -->
+<sc-if value="{{ isCookies }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:680px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#00C9C8;font-weight:600;margin-bottom:10px">LEGAL · COOKIES</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1.02;margin-bottom:8px">Cookie policy.</div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:26px">Every cookie, who sets it, why, and for how long. Change your mind any time.</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
+    <sc-for list="{{ cookieCats }}" as="cc" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:15px 18px;display:flex;gap:14px;align-items:flex-start">
+        <span style="flex:none;width:10px;height:10px;border-radius:50%;background:{{ cc.dot }};margin-top:4px"></span>
+        <div><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:4px">{{ cc.t }}</div><div style="font-size:13px;color:#3a3a3a;line-height:1.55">{{ cc.b }}</div></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="background:#0A0B14;border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <span style="font-size:13px;color:#cfcbc4">Withdrawing is as easy as giving.</span>
+    <span style="font-size:12px;color:#06302f;background:#00C9C8;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer">Open cookie preferences</span>
+  </div>
+</div>
+</sc-if>

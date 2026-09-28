@@ -1,0 +1,36 @@
+<!-- ============ RECRUIT PAGES (§21) ============ -->
+<sc-if value="{{ isRecruit }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#0A0B14;border-bottom:1px solid #16182a">
+    <div style="max-width:1080px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#7d7f96;margin-right:6px">FIND YOUR PEOPLE</span>
+      <sc-for list="{{ groupTabs }}" as="gt" hint-placeholder-count="4">
+        <span onClick="{{ gt.go }}" style="font-size:12px;font-weight:600;color:{{ gt.color }};background:{{ gt.bg }};border:1px solid {{ gt.border }};border-radius:16px;padding:6px 14px;cursor:pointer">{{ gt.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+    <div style="background:#0A0B14;padding:50px 28px 44px"><div style="max-width:900px;margin:0 auto">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:{{ recruitAccent }};font-weight:600;margin-bottom:10px">{{ recruitEyebrow }}</div>
+    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:42px;line-height:1.02;color:#F7F1E8;margin-bottom:10px">{{ recruitTitle }} <span style="color:{{ recruitAccent }};font-style:italic">{{ recruitAccentWord }}</span></div>
+    <div style="font-size:15px;color:#7d7f96;max-width:560px;line-height:1.55">{{ recruitSub }}</div>
+  </div></div>
+  <div style="max-width:900px;margin:0 auto;padding:34px 28px 60px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px">
+      <sc-for list="{{ recruitCards }}" as="rc" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E0DACE;border-radius:9px;padding:18px">
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;margin-bottom:6px">{{ rc.t }}</div>
+          <div style="font-size:12px;color:#6B6660;line-height:1.5">{{ rc.b }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <span onClick="{{ goShare }}" style="font-size:13px;color:#fff;background:#F0507A;padding:11px 24px;border-radius:6px;font-weight:700;cursor:pointer">Share your story →</span>
+      <span style="display:flex;gap:6px">
+        <span onClick="{{ goExpats }}" style="font-size:11px;font-family:'JetBrains Mono',monospace;color:{{ tabExpats }};cursor:pointer;padding:6px 10px">EXPATS</span>
+        <span onClick="{{ goPress }}" style="font-size:11px;font-family:'JetBrains Mono',monospace;color:{{ tabPress }};cursor:pointer;padding:6px 10px">PRESS</span>
+        <span onClick="{{ goAffiliates }}" style="font-size:11px;font-family:'JetBrains Mono',monospace;color:{{ tabAffiliates }};cursor:pointer;padding:6px 10px">AFFILIATES</span>
+      </span>
+    </div>
+  </div>
+</div>
+</sc-if>

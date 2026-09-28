@@ -1,0 +1,56 @@
+<!-- ============ DESTINATIONS ============ -->
+<sc-if value="{{ isDestinations }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1180px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">THE ATLAS</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1;margin-bottom:10px">Every story starts <span style="color:#F0507A;font-style:italic">somewhere.</span></div>
+  <div style="font-size:15px;color:#6B6660;margin-bottom:30px">Countries with a published story: {{ atlasStoryCount }}. The other {{ atlasRest }} are open until someone files. <span onClick="{{ goAtlasAll }}" style="color:#0A0B14;text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px;cursor:pointer">Jump to every country by flag</span>.</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px">
+    <sc-for list="{{stories}}" as="s" hint-placeholder-count="4">
+      <div onClick="{{ s.open }}" style="background:#fff;border:1px solid #E0DACE;border-radius:10px;overflow:hidden;cursor:pointer">
+        <div style="position:relative;height:110px;background:#0A0B14 url('{{ s.img }}') center/cover"><span style="position:absolute;left:10px;bottom:10px;width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.75);background-image:{{ s.flag }}"></span></div>
+        <div style="padding:14px 16px">
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:18px;margin-bottom:3px">{{ s.place }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d;margin-bottom:8px">{{ s.continent }} · 1 STORY FILED</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:600">Read the story →</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div data-tll-anchor="atlas-all" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#067A79;font-weight:600;margin:8px 0 14px">EVERY COUNTRY · BY FLAG · {{ atlasTotal }}</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px">
+    <sc-for list="{{atlas}}" as="c" hint-placeholder-count="0">
+      <div onClick="{{ c.go }}" style="display:flex;align-items:center;gap:9px;background:{{ c.bg }};border:1px solid {{ c.border }};border-radius:8px;padding:9px 11px;cursor:pointer">
+        <span style="width:24px;height:24px;border-radius:50%;flex:none;background-size:cover;background-image:{{ c.flagCss }}"></span>
+        <div style="min-width:0">
+          <div style="font-size:12px;font-weight:{{ c.weight }};color:#0A0B14;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;color:{{ c.metaColor }}">{{ c.meta }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:14px;font-size:12px;color:#9a958d;text-align:center">Empty country? <span onClick="{{ goShare }}" style="color:#067A79;font-weight:600;cursor:pointer">Be the first to tell us about it →</span></div>
+</div>
+</sc-if>
+
+<!-- FOOTER -->
+<div style="background:#0A0B14;border-top:1px solid #16182a;padding:40px 28px 30px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:28px">
+      <div style="max-width:260px">
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;color:#F7F1E8;margin-bottom:10px"><span style="font-family:'Dancing Script',cursive;font-weight:700;opacity:.72;font-size:1.1em">that</span>LAYOVER <span style="color:#F0507A">LIFE.</span></div>
+        <div style="font-size:12px;color:#5f6178;line-height:1.5">Travel writing by people who were actually there.&nbsp;</div>
+      </div>
+      <div style="display:flex;gap:44px;flex-wrap:wrap">
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A;margin-bottom:11px">NAVIGATE</div><div style="display:flex;flex-direction:column;gap:7px"><span onClick="{{ goHome }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Home</span><span onClick="{{ goStories }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Stories</span><span onClick="{{ goMapPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">The Map</span><span onClick="{{ goTravelers }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Travelers</span></div></div>
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A;margin-bottom:11px">DISCOVER</div><div style="display:flex;flex-direction:column;gap:7px"><span onClick="{{ goDestinations }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Countries</span><span onClick="{{ goWire }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">The Travel Wire</span><span onClick="{{ goPetsIndex }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Pets we travel with</span><span onClick="{{ goGallery }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">The Layover Lounge</span><span onClick="{{ goSpotlight }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Spotlight</span><span onClick="{{ goContact }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Contact</span></div></div>
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A;margin-bottom:11px">CONTRIBUTE</div><div style="display:flex;flex-direction:column;gap:7px"><span onClick="{{ goShare }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Share your story</span><span onClick="{{ goSharePhotos }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Share photos</span><span onClick="{{ goExpats }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">For expats</span><span onClick="{{ goPress }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">For press</span><span onClick="{{ goAffiliates }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">For affiliates</span></div></div>
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A;margin-bottom:11px">TLL</div><div style="display:flex;flex-direction:column;gap:7px"><span onClick="{{ goLegalPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Privacy policy</span><span onClick="{{ goLegalPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Terms of service</span><span onClick="{{ goCharter }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Editorial charter</span><span onClick="{{ goGuidelines }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Community guidelines</span><span onClick="{{ goCookiesPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Cookie preferences</span></div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#4a4d63">GUIDES</span><span onClick="{{ goGuideCph }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">Copenhagen stopover</span><span onClick="{{ goGuideEes }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">EES and ETIAS on a layover</span><span onClick="{{ goAwards }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">The Layover Awards</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#4a4d63;margin-left:14px">WORK WITH US</span><span onClick="{{ goForBrands }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">For brands</span><span onClick="{{ goClub }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">The Layover Club</span><span onClick="{{ goCharterPaid }}" style="font-size:12px;color:#cfcbc4;cursor:pointer">How paid work works</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid #16182a;flex-wrap:wrap;gap:10px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a4d63">{{ footerStats }}</div>
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><a href="mailto:hello@thatlayover.life" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#00C9C8;text-decoration:none">HELLO@THATLAYOVER.LIFE</a><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a4d63">© 2026 THAT LAYOVER LIFE</span></div>
+    </div>
+  </div>
+</div>

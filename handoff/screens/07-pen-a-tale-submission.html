@@ -1,0 +1,100 @@
+<!-- ============ PEN A TALE (SUBMISSION) ============ -->
+<sc-if value="{{ isShare }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:760px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#F0507A;font-weight:600;margin-bottom:10px">SHARE YOUR STORY · SUBMIT YOURS</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1.02;margin-bottom:10px">Three steps. <span style="color:#F0507A;font-style:italic">Your voice stays yours.</span></div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:24px">About 10 fields total. Reviewed by a human, usually within 48 hours. Phone photos welcome.</div>
+
+
+  <div style="display:flex;gap:6px;margin-bottom:20px">
+    <span onClick="{{ shareGo1 }}" style="flex:1;height:4px;background:{{ stepBar1 }};border-radius:2px;cursor:pointer"></span>
+    <span onClick="{{ shareGo2 }}" style="flex:1;height:4px;background:{{ stepBar2 }};border-radius:2px;cursor:pointer"></span>
+    <span onClick="{{ shareGo3 }}" style="flex:1;height:4px;background:{{ stepBar3 }};border-radius:2px;cursor:pointer"></span>
+  </div>
+  <sc-if value="{{ isShareStep1 }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:11px;padding:24px 26px;margin-bottom:16px;opacity:{{ shareFormOpacity }}">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:16px">STEP 1 OF 3 · THE STORY</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px">Where did it happen?</div>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d;margin-bottom:16px">Country, city…</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:2px">The headline</div>
+    <div style="font-size:11px;color:#9a958d;margin-bottom:6px">60 characters or fewer. Specific beats clever.</div>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d;margin-bottom:16px">e.g. The night train conductor who collected marriage proposals</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:2px">The story</div>
+    <div style="font-size:11px;color:#9a958d;margin-bottom:6px">Autosaves every 20 seconds. Drafts wait on your account.</div>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d;min-height:110px;margin-bottom:18px">Start anywhere. The middle is fine.</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d">{{ shareSaveNote }}</span>
+      <span onClick="{{ shareGo2 }}" style="font-size:13px;color:#fff;background:#F0507A;padding:11px 22px;border-radius:6px;font-weight:700;cursor:pointer">Next: details →</span>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{ isShareStep2 }}" hint-placeholder-val="{{ false }}">
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:11px;padding:24px 26px;margin-bottom:16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:16px">STEP 2 OF 3 · THE DETAILS</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px">Which lens does it file under?</div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px">
+      <sc-for list="{{pillars}}" as="p" hint-placeholder-count="5"><span style="font-size:12px;border:1px solid #d8d2c6;border-radius:16px;padding:6px 14px;color:#3a3a3a;cursor:pointer">{{ p }}</span></sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Sensory anchors</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d">A dish, an animal, a sound — three minimum</div></div>
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Pets along?</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d">Tag their Paw Passport</div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px">The pull quote</div>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d;margin-bottom:16px">The line people will screenshot. Leave blank and the editor suggests three.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Sign-off</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d">Mood + name, e.g. "Still raising glasses. Nancy"</div></div>
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Reader question</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#9a958d">The closing prompt that invites reply</div></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span onClick="{{ shareGo1 }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;cursor:pointer">← BACK</span>
+      <span onClick="{{ shareGo3 }}" style="font-size:13px;color:#fff;background:#F0507A;padding:11px 22px;border-radius:6px;font-weight:700;cursor:pointer">Next: credit &amp; photos →</span>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:11px;padding:20px 24px;margin-bottom:16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:11px">SPONSORED OR HOSTED? SAY SO — IT GOES AT THE TOP</div>
+    <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;margin-bottom:11px"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12.5px;color:#3a3a3a;line-height:1.45">This story involves sponsorship, hosted travel, or a gifted stay</span></label>
+    <div style="font-size:12px;font-weight:700;margin-bottom:5px">Sponsored by</div>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:10px 12px;font-size:12.5px;color:#9a958d">Who paid, hosted, or gifted — named exactly</div>
+    <div style="font-size:11px;color:#9a958d;margin-top:8px;line-height:1.45">Disclosure renders at the top of the published story and on its library card. Undisclosed sponsorship is the one thing that gets a story pulled.</div>
+  </div>
+  </sc-if>
+  <sc-if value="{{ isShareStep3 }}" hint-placeholder-val="{{ false }}">
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:11px;padding:24px 26px;margin-bottom:16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:16px">STEP 3 OF 3 · CREDIT &amp; PHOTOS</div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">How should we credit you?</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+      <span style="font-size:12px;border:1.5px solid #F0507A;background:#F0507A;color:#fff;border-radius:16px;padding:7px 16px;font-weight:600;cursor:pointer">Named — Nancy Carleton</span>
+      <span style="font-size:12px;border:1px solid #d8d2c6;border-radius:16px;padding:7px 16px;color:#3a3a3a;cursor:pointer">Pen name</span>
+      <span style="font-size:12px;border:1px solid #d8d2c6;border-radius:16px;padding:7px 16px;color:#3a3a3a;cursor:pointer">Anonymous Traveler</span>
+    </div>
+    <div style="font-size:11px;color:#9a958d;margin-bottom:16px">Every byline is a real person, whatever the credit mode.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Website</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#0A0B14">nancycarleton.com <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#067A79">PREFILLED</span></div></div>
+      <div><div style="font-size:13px;font-weight:700;margin-bottom:6px">Instagram</div><div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 13px;font-size:13px;color:#0A0B14">@thatlayoverlife <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#067A79">PREFILLED</span></div></div>
+    </div>
+    <div style="font-size:13px;font-weight:700;margin-bottom:6px">Your photos</div>
+    <div style="border:2px dashed #c9b89a;border-radius:8px;padding:22px;text-align:center;background:#FDF9F3;cursor:pointer;margin-bottom:16px">
+      <div style="font-size:22px;color:#c9b89a;margin-bottom:5px">↑</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d;margin-bottom:4px">HERO + UP TO 12 GALLERY SHOTS</div>
+      <div style="font-size:12px;color:#6B6660">Straight from your Photos app. 1600×900 is plenty; phone cameras clear it. JPEG or HEIC.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12.5px;color:#3a3a3a;line-height:1.5">These are my words and my photos (or I have the right to publish them), and they follow the <span style="color:#C8425E;font-weight:600">Community Guidelines</span>.</span></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12.5px;color:#3a3a3a;line-height:1.5">If a person is the clear subject of a photo, they're fine with being published. Crowd and street scenes where nobody is the focus are fine. If a child is the subject, I have a parent or guardian's permission.</span></label>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12.5px;color:#3a3a3a;line-height:1.5">I have read and agree to the <span style="color:#C8425E;font-weight:600">Editorial Charter</span>.</span></label>
+    </div>
+    <div style="font-size:11px;color:#6B6660;line-height:1.55;background:#F0EBE0;border-radius:6px;padding:10px 13px;margin-bottom:16px">Stories are the writer's own account. That Layover Life publishes in good faith but is not liable for inaccuracies, and does not represent its authors or submitters. Hate has no home here — hateful content is removed and its author is done publishing with us.</div>
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <span onClick="{{ shareGo2 }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;cursor:pointer">← BACK</span>
+      <span onClick="{{ shareSubmit }}" style="font-size:13px;color:#fff;background:#F0507A;padding:12px 26px;border-radius:6px;font-weight:700;cursor:pointer">Send it to the editor →</span>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{ shareSubmitted }}" hint-placeholder-val="{{ false }}">
+  <div style="background:#0d2b2a;border:1px solid #067A79;border-radius:11px;padding:24px 26px;margin-bottom:16px">
+    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:#7de8e7;margin-bottom:6px">It's with the editor.</div>
+    <div style="font-size:13px;color:#cfcbc4;line-height:1.55">Nancy reads it. You'll hear back within 48 hours at the email on your account, including weekends. Questions meanwhile: <a href="mailto:hello@thatlayover.life" style="color:#7de8e7">hello@thatlayover.life</a>. Your draft stays on your shelf either way.</div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>

@@ -1,0 +1,47 @@
+<!-- ============ PUBLIC PAW PASSPORT (§27 payoff) ============ -->
+<sc-if value="{{ isPawPassport }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:680px;margin:0 auto;padding:44px 28px 60px">
+  <div style="position:relative;height:190px;background:#0A0B14 url('images/magnus.jpg') center/cover;border-radius:12px 12px 0 0;overflow:hidden">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.05),rgba(10,11,20,.75))"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:16px 20px;display:flex;align-items:flex-end;gap:12px">
+      <div style="width:54px;height:54px;border-radius:50%;background:#0A0B14 url('images/magnus.jpg') center/cover;border:3px solid #F0507A;flex:none"></div>
+      <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;color:#F7F1E8;line-height:1.1">Magnus 🐻‍❄️ Waffles</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#cfcbc4">SAMOYED · SUPERVISED BY NANCY CARLETON</div></div>
+    </div>
+  </div>
+  <div style="background:#16182a;display:flex;border:1px solid #23263c;border-top:0">
+    <div style="flex:1;text-align:center;padding:14px;border-right:1px solid #23263c"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">13</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#7d7f96;margin-top:2px">COUNTRIES</div></div>
+    <div style="flex:1;text-align:center;padding:14px;border-right:1px solid #23263c"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">6</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#7d7f96;margin-top:2px">YEARS ROAMING</div></div>
+    <div style="flex:1;text-align:center;padding:14px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">2</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#7d7f96;margin-top:2px">CONTINENTS</div></div>
+  </div>
+  <div style="background:#fff;border:1px solid #E0DACE;border-top:0;padding:17px 20px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:10px">COUNTRIES CROSSED</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇩🇰 Denmark</span>
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇩🇪 Germany</span>
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇦🇹 Austria</span>
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇸🇮 Slovenia</span>
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇭🇷 Croatia</span>
+      <span style="font-size:10px;background:#0A0B14;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇲🇪 Montenegro</span>
+      <span style="font-size:10px;background:#16182a;color:#4a4d63;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">+16 more</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:9px">STORIES FEATURING MAGNUS</div>
+    <div onClick="{{ openMontenegro }}" style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:6px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:14px">
+      <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:13px;line-height:1.2;margin-bottom:2px">Magnus 🐻‍❄️ Refuses to Acknowledge Goats</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d">MONTENEGRO · NANCY CARLETON</div></div>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79">→</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:9px">FOLLOW MAGNUS</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px">
+      <sc-for list="{{ petPublicLinks }}" as="l" hint-placeholder-count="0">
+        <div style="display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:12px 16px;cursor:pointer" style-hover="border-color:#067A79">
+          <span style="flex:none;width:36px;height:36px;border-radius:50%;background:#0A0B14;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;justify-content:center">{{ l.badge }}</span>
+          <span style="flex:1;min-width:0"><span style="display:block;font-size:14px;font-weight:700;color:#0A0B14">{{ l.label }}</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B6660;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ l.url }}</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#067A79;font-weight:700">↗</span>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ petNoLinks }}" hint-placeholder-val="{{ true }}"><div style="font-size:12px;color:#6B6660;line-height:1.5;margin-bottom:14px">Magnus has not linked any accounts yet. Pets can add Instagram, TikTok and YouTube from <span onClick="{{ goMyPets }}" style="color:#0A0B14;text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px;cursor:pointer">My pets</span>.</div></sc-if>
+    <div style="height:6px"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d">thatlayover.life/paw-passport/magnus</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#067A79;font-weight:600;cursor:pointer">Share →</span></div>
+  </div>
+</div>
+</sc-if>

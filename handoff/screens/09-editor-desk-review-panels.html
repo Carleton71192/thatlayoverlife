@@ -1,0 +1,87 @@
+<!-- ============ EDITOR DESK (REVIEW PANELS) ============ -->
+<sc-if value="{{ isEditor }}" hint-placeholder-val="{{ false }}">
+<div style="background:#0A0B14;min-height:100vh;padding:36px 28px 60px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#F0507A;font-weight:600;margin-bottom:10px">THE EDITOR'S DESK · NANCY ONLY · NOINDEX</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1.02;color:#F7F1E8">{{ queueCount }} waiting. <span style="color:#FF7093;font-style:italic">48h clock running.</span></div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a4d63;letter-spacing:1px">AI SUGGESTS · A HUMAN DECIDES · EVERY TIME</div>
+    </div>
+
+    <sc-if value="{{ editorQueueView }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ queue }}" as="s" hint-placeholder-count="3">
+          <div onClick="{{ s.open }}" style="background:#12141F;border:1px solid {{ s.border }};border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;flex-wrap:wrap">
+            <div style="flex:1;min-width:260px">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:5px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:{{ s.clockColor }};font-weight:700">{{ s.clock }}</span>
+                <sc-if value="{{ s.flagged }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#0A0B14;background:#D98A2B;padding:2px 7px;border-radius:4px;font-weight:700">NEEDS ATTENTION</span></sc-if>
+              </div>
+              <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:17px;color:#F7F1E8;margin-bottom:3px">{{ s.title }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7d7f96">{{ s.meta }}</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center;flex:none">
+              <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:{{ s.voiceColor }}">{{ s.voice }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">VOICE</div></div>
+              <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:{{ s.seoColor }}">{{ s.seo }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">SEO</div></div>
+              <div style="text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:{{ s.dashColor }}">{{ s.dashes }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">EM DASHES</div></div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:600">REVIEW →</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ editorReviewView }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ backToQueue }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;cursor:pointer;margin-bottom:14px">← BACK TO THE QUEUE</div>
+      <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
+        <!-- STORY PREVIEW -->
+        <div style="flex:1.6;min-width:340px;background:#FDF9F3;border-radius:12px;padding:26px 28px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#F0507A;letter-spacing:1px;margin-bottom:8px">{{ curMeta }}</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;line-height:1.1;color:#0A0B14;margin-bottom:10px">{{ curTitle }}</div>
+          <div style="font-size:13px;color:#3a3a3a;line-height:1.65;margin-bottom:14px">{{ curExcerpt }}</div>
+          <div style="border:1px dashed #c9b89a;border-radius:8px;padding:12px 14px;font-size:12px;color:#6B6660;line-height:1.55;margin-bottom:14px">Full manuscript renders here — body, photos, links. The preview is exactly what publishing produces, disclosure line included.</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#067A79;background:#e2f3f2;padding:4px 10px;border-radius:4px">DISCLOSURE: {{ curDisclosure }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#6B6660;background:#F0EBE0;padding:4px 10px;border-radius:4px">CREDIT: {{ curCredit }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#6B6660;background:#F0EBE0;padding:4px 10px;border-radius:4px">PHOTOS: {{ curPhotos }}</span>
+          </div>
+        </div>
+        <!-- REVIEW RAIL -->
+        <div style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:#12141F;border:1px solid #23263c;border-radius:10px;padding:16px 18px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#00C9C8;font-weight:600;margin-bottom:11px">AI FIRST READ · SUGGESTS, NEVER DECIDES</div>
+            <div style="display:flex;gap:12px;margin-bottom:12px">
+              <div style="flex:1;text-align:center;background:#0A0B14;border-radius:7px;padding:10px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:{{ curVoiceColor }}">{{ curVoice }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">VOICE SCORE</div></div>
+              <div style="flex:1;text-align:center;background:#0A0B14;border-radius:7px;padding:10px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:{{ curSeoColor }}">{{ curSeo }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">SEO SCORE</div></div>
+              <div style="flex:1;text-align:center;background:#0A0B14;border-radius:7px;padding:10px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:{{ curDashColor }}">{{ curDashes }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:#4a4d63">EM DASHES</div></div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#7d7f96;margin-bottom:5px">BANNED WORDS</div>
+            <div style="font-size:12px;color:{{ curBannedColor }};margin-bottom:12px">{{ curBanned }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#7d7f96;margin-bottom:7px">PULL-QUOTE CANDIDATES · TAP TO PICK</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ curQuotes }}" as="pq" hint-placeholder-count="3">
+                <div onClick="{{ pq.pick }}" style="font-size:12px;color:#cfcbc4;line-height:1.5;background:{{ pq.bg }};border:1px solid {{ pq.border }};border-radius:6px;padding:9px 11px;cursor:pointer;font-style:italic">"{{ pq.text }}"</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:#12141F;border:1px solid #23263c;border-radius:10px;padding:16px 18px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#D98A2B;font-weight:600;margin-bottom:10px">EDITOR NOTE TO THE WRITER · OPTIONAL</div>
+            <input value="{{ editorNote }}" onChange="{{ setEditorNote }}" placeholder="One human sentence. It travels with the decision." style="width:100%;box-sizing:border-box;background:#0A0B14;border:1px solid #2b2f52;border-radius:6px;padding:10px 12px;font-size:12px;color:#F7F1E8;font-family:'DM Sans',sans-serif;outline:none"></input>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span onClick="{{ decidePublish }}" style="flex:1;text-align:center;font-size:13px;color:#06302f;background:#00C9C8;padding:12px;border-radius:7px;font-weight:700;cursor:pointer;min-width:110px">Publish →</span>
+            <span onClick="{{ decideChanges }}" style="flex:1;text-align:center;font-size:13px;color:#0A0B14;background:#D98A2B;padding:12px;border-radius:7px;font-weight:700;cursor:pointer;min-width:110px">Request changes</span>
+            <span onClick="{{ decideDecline }}" style="flex:1;text-align:center;font-size:13px;color:#fff;background:#C8425E;padding:12px;border-radius:7px;font-weight:700;cursor:pointer;min-width:110px">Decline</span>
+          </div>
+          <sc-if value="{{ hasDecision }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#0d2b2a;border:1px solid #067A79;border-radius:8px;padding:12px 15px;font-size:12px;color:#7de8e7;line-height:1.5">{{ decisionNote }}</div>
+          </sc-if>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#4a4d63;line-height:1.6">EVERY DECISION SHIPS WITH REASONS (DSA ART. 17). DECLINED WRITERS CAN CONTEST — A HUMAN RE-READS.</div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</sc-if>

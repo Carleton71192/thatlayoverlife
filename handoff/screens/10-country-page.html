@@ -1,0 +1,65 @@
+<!-- ============ COUNTRY PAGE (§49) ============ -->
+<sc-if value="{{ isCountry }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="position:relative;height:300px;background:#0A0B14 url('images/bulgaria.jpg') center/cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.5) 0%,rgba(10,11,20,.2) 35%,rgba(10,11,20,.94) 100%)"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0"><div style="max-width:1000px;margin:0 auto;padding:0 28px 26px">
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:9px">
+        <img src="https://hatscripts.github.io/circle-flags/flags/bg.svg" width="38" height="38" style="border-radius:50%;border:2px solid rgba(247,241,232,.6);flex:none" alt="Bulgarian flag">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1;color:#F7F1E8;text-shadow:0 2px 14px rgba(10,11,20,.8)">Bulgaria</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#00C9C8;margin-top:4px">EUROPE · 1 STORY FILED · LOGGED BY 1 TRAVELER</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div style="max-width:1000px;margin:0 auto;padding:24px 28px 60px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px;padding:14px 16px;background:#fff;border:1px solid #E0DACE;border-radius:10px">
+      <span onClick="{{ ctryToggleBeen }}" style="font-size:13px;font-weight:700;color:{{ ctryBeen.color }};background:{{ ctryBeen.bg }};border:1.5px solid {{ ctryBeen.border }};border-radius:18px;padding:8px 16px;cursor:pointer">{{ ctryBeen.label }}</span>
+      <span onClick="{{ ctryToggleWant }}" style="font-size:13px;font-weight:700;color:{{ ctryWant.color }};background:{{ ctryWant.bg }};border:1.5px solid {{ ctryWant.border }};border-radius:18px;padding:8px 16px;cursor:pointer">{{ ctryWant.label }}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#6B6660;margin-left:auto">{{ ctryToggleCount }}</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:12px">QUICK ANSWERS · FROM THE TRAVELERS WHO LOGGED IT</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:9px;padding:14px 15px"><div style="font-size:12px;color:#6B6660;margin-bottom:8px">Worth leaving the airport?</div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:23px;color:#067A79">Yes</span><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d">1 OF 1 SAID SO</span></div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:9px;padding:14px 15px"><div style="font-size:12px;color:#6B6660;margin-bottom:8px">Cash or card?</div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:23px;color:#b8791f">Both</span><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d">CARD IN SOFIA</span></div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:9px;padding:14px 15px"><div style="font-size:12px;color:#6B6660;margin-bottom:8px">Best month to go</div><div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:23px;color:#C8425E">May</span><span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d">AS OF MAY 2026</span></div></div>
+    </div>
+    <div style="background:#fff;border-left:3px solid #00C9C8;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:24px"><div style="font-size:13px;color:#3a3a3a;font-style:italic;line-height:1.5">"The metro from the airport is 30 minutes and costs almost nothing."</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d;margin-top:5px">NANCY C. · MAY 2026</div></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#F0507A;font-weight:600;margin-bottom:12px">FILED FROM BULGARIA</div>
+    <div onClick="{{ openStory0 }}" style="display:flex;background:#fff;border:1px solid #E0DACE;border-radius:10px;overflow:hidden;cursor:pointer;max-width:620px;margin-bottom:24px">
+      <div style="width:170px;flex:none;background:#0A0B14 url('images/bulgaria.jpg') center/cover;min-height:120px"></div>
+      <div style="padding:15px 18px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#067A79;letter-spacing:1px;margin-bottom:5px">TRAVEL LOGISTICS · 9 MIN</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:17px;line-height:1.2;margin-bottom:5px">Fourteen days, twelve countries, one EV, and a gal who cannot be historically trusted to charge her own phone</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:600">Read → <span style="color:#9a958d;font-weight:400">Nancy Carleton</span></div>
+      </div>
+    </div>
+    <!-- ON THE WIRE · this country -->
+    <sc-if value="{{ hasCountryWire }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#067A79;font-weight:600">ON THE WIRE · BULGARIA</div>
+        <div onClick="{{ goWire }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#067A79;cursor:pointer">ALL TRAVEL NEWS →</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;max-width:620px">
+        <sc-for list="{{ countryWire }}" as="cw" hint-placeholder-count="1">
+          <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:12px 16px">
+            <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:14px;line-height:1.3;color:#0A0B14;margin-bottom:4px">{{ cw.title }}</div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#6B6660;font-weight:600">{{ cw.source }} · {{ cw.when }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#067A79;font-weight:600;cursor:pointer">READ AT SOURCE ↗</span></div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <!-- READER SUBMISSIONS · this country -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#D98A2B;font-weight:600;margin-bottom:12px">READER SUBMISSIONS · BULGARIA</div>
+    <div style="border:2px dashed #c9b89a;border-radius:10px;padding:18px 22px;background:#fff;margin-bottom:24px;max-width:620px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <div style="font-size:13px;color:#3a3a3a;line-height:1.5">Nothing from the readers yet. First Bulgaria submission gets the slot — reviewed by a human within 48 hours.</div>
+      <span onClick="{{ goShare }}" style="font-size:12px;color:#fff;background:#F0507A;padding:9px 16px;border-radius:6px;font-weight:700;cursor:pointer;flex:none">Submit yours →</span>
+    </div>
+    <div style="background:#0A0B14;border-radius:10px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:18px;color:#F7F1E8;margin-bottom:3px">Been to Bulgaria?</div><div style="font-size:12px;color:#7d7f96">Add it to your map, or write the story nobody has written yet.</div></div>
+      <div style="display:flex;gap:8px"><a href="TLL Map.html" style="font-size:12px;color:#06302f;background:#00C9C8;padding:9px 16px;border-radius:6px;font-weight:700">Log it</a><span onClick="{{ goShare }}" style="font-size:12px;color:#F7F1E8;border:1px solid #3a3d55;padding:9px 16px;border-radius:6px;cursor:pointer">Pen a tale</span></div>
+    </div>
+  </div>
+</div>
+</sc-if>

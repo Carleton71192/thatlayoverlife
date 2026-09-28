@@ -1,0 +1,19 @@
+<!-- ============ LEGAL: PRIVACY / TERMS (§12) ============ -->
+<sc-if value="{{ isLegal }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:680px;margin:0 auto;padding:44px 28px 60px">
+  <div style="display:flex;gap:8px;margin-bottom:22px">
+    <span onClick="{{ pickPrivacy }}" style="font-size:12px;font-family:'JetBrains Mono',monospace;border:1px solid {{ privacyBorder }};background:{{ privacyBg }};color:{{ privacyColor }};border-radius:16px;padding:6px 16px;cursor:pointer;font-weight:600">PRIVACY</span>
+    <span onClick="{{ pickTerms }}" style="font-size:12px;font-family:'JetBrains Mono',monospace;border:1px solid {{ termsBorder }};background:{{ termsBg }};color:{{ termsColor }};border-radius:16px;padding:6px 16px;cursor:pointer;font-weight:600">TERMS</span>
+  </div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1.05;margin-bottom:6px">{{ legalTitle }}</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;margin-bottom:24px">LAST REVIEWED · 22 AUGUST 2026 · GOVERNED BY DANISH LAW</div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ legalSections }}" as="ls" hint-placeholder-count="5">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:15px 18px">
+        <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:4px">{{ ls.t }}</div>
+        <div style="font-size:13px;color:#3a3a3a;line-height:1.55">{{ ls.b }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>

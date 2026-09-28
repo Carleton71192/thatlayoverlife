@@ -1,0 +1,61 @@
+<!-- ============ EDIT PROFILE (§25) ============ -->
+<sc-if value="{{ isEditProfile }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:760px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#F0507A;font-weight:600;margin-bottom:10px">YOUR PROFILE · EDIT MODE · NOINDEX</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1.05;margin-bottom:6px">Edit your profile.</div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:26px">The public page shows the last published snapshot. Nothing goes live until you hit Publish.</div>
+  <div style="display:flex;gap:18px;align-items:center;margin-bottom:22px">
+    <div style="position:relative;width:84px;height:84px;flex:none"><div style="width:84px;height:84px;border-radius:50%;background:#0A0B14 url('images/denmark.jpg') center/cover;border:3px solid #F0507A"></div><span style="position:absolute;right:-4px;bottom:-4px;width:28px;height:28px;border-radius:50%;background:#00C9C8;color:#06302f;display:inline-flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;border:2px solid #FDF9F3">✎</span></div>
+    <div style="flex:1"><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#9a958d;margin-bottom:5px">AVATAR</div><div style="font-size:13px;color:#3a3a3a">Swap the initials circle for a photo. JPEG or HEIC, straight from your phone.</div></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px">
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:13px 16px"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#9a958d;margin-bottom:5px">CURRENTLY IN</div><div style="font-size:14px;color:#0A0B14">Copenhagen, Denmark · filing weekly</div></div>
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:13px 16px"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#9a958d;margin-bottom:5px">TRUST ME WITH A FLIGHT DELAY BECAUSE…</div><div style="font-size:14px;color:#0A0B14;font-style:italic">…I have turned an 87-country head start into a habit of staying calm in airports.</div></div>
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:13px 16px"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#9a958d;margin-bottom:5px">ONE STRONG OPINION</div><div style="font-size:14px;color:#0A0B14">Layovers are not dead time. They are the cheapest country you will ever visit.</div></div>
+  </div>
+  <div style="background:#0A0B14;border-radius:10px;padding:17px 20px;margin-bottom:22px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#00C9C8">TRIP LEDGER · DRIVES YOUR MAP</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a4d63">87 COUNTRIES</span></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px">
+      <span style="font-size:11px;background:#16182a;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇧🇬 Bulgaria · #88</span>
+      <span style="font-size:11px;background:#16182a;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇯🇵 Japan</span>
+      <span style="font-size:11px;background:#16182a;color:#cfcbc4;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">🇬🇭 Ghana</span>
+      <span style="font-size:11px;background:#16182a;color:#4a4d63;padding:4px 10px;border-radius:4px;font-family:'JetBrains Mono',monospace">+84 more</span>
+    </div>
+    <span style="font-size:12px;color:#06302f;background:#00C9C8;padding:8px 16px;border-radius:6px;font-weight:700;cursor:pointer;display:inline-block">Edit visited countries →</span>
+  </div>
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:17px 20px;margin-bottom:22px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:5px">YOUR LINKS · OFF UNTIL YOU SWITCH THEM ON</div>
+    <div style="font-size:12.5px;color:#6B6660;line-height:1.5;margin-bottom:14px">Your blog, newsletter and socials, stacked on your profile and your Travelers card. Each one stays private until you switch it on.</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <sc-for list="{{ linkEditRows }}" as="r" hint-placeholder-count="7">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="flex:none;width:32px;height:32px;border-radius:50%;background:#0A0B14;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-size:7.5px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ r.badge }}</span>
+          <span style="width:120px;flex:none;font-size:13px;font-weight:600;color:#0A0B14">{{ r.label }}</span>
+          <input value="{{ r.url }}" onChange="{{ r.setUrl }}" placeholder="{{ r.ph }}" aria-label="{{ r.label }}" style="flex:1;min-width:160px;background:#FBF7F0;border:1px solid #E0DACE;border-radius:6px;padding:9px 12px;font-size:13px;color:#0A0B14;outline:none">
+          <span onClick="{{ r.toggle }}" role="switch" style="flex:none;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;font-weight:700;color:{{ r.tgColor }};background:{{ r.tgBg }};border:1px solid {{ r.tgBorder }};border-radius:14px;padding:6px 12px;cursor:pointer;min-width:62px;text-align:center">{{ r.tgLabel }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-size:11px;color:#6B6660;line-height:1.5;margin-top:12px;background:#F0EBE0;border-radius:6px;padding:9px 12px">Links open in a new tab. Affiliate links get labeled. Travel with a pet? Their accounts go on their Paw Passport, not here.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:17px 20px;margin-bottom:22px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#9a958d;margin-bottom:13px">DESIGNATIONS · APPLY, A HUMAN REVIEWS WITHIN 48H</div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px"><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:2px">📍 Location Expert <span onClick="{{ goExpats }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#067A79;cursor:pointer;font-weight:600">WHAT IS THIS? →</span></div><div style="font-size:12px;color:#6B6660">Claim the place you actually live. Your stories anchor its page.</div></div>
+        <span onClick="{{ applyExpat }}" style="font-size:12px;color:#fff;background:{{ expatBtnBg }};padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer;flex:none">{{ expatBtnLabel }}</span>
+      </div>
+      <div style="border-top:1px solid #F0EBE0;padding-top:11px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px"><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:2px">📰 Press · The Pros <span onClick="{{ goPress }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#067A79;cursor:pointer;font-weight:600">WHAT IS THIS? →</span></div><div style="font-size:12px;color:#6B6660">Credentialed, disclosed, accountable. Outlet + two published pieces.</div></div>
+        <span onClick="{{ applyPress }}" style="font-size:12px;color:#06302f;background:{{ pressBtnBg }};padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer;flex:none">{{ pressBtnLabel }}</span>
+      </div>
+      <div style="border-top:1px solid #F0EBE0;padding-top:11px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px"><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:2px">📡 Blog on the Wire <span onClick="{{ goWire }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#D98A2B;cursor:pointer;font-weight:600">SEE THE DESK →</span></div><div style="font-size:11.5px;color:#6B6660;line-height:1.45">Your travel blog's RSS joins the Travel Wire's Blog Desk. Headlines + backlinks, credit on every click. Nancy reads your last five posts first.</div></div>
+        <span onClick="{{ applyBlogProfile }}" style="font-size:12px;color:#0A0B14;background:{{ blogBtnBg }};padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer;flex:none">{{ blogBtnLabel }}</span>
+      </div>
+      <div style="font-size:11px;color:#6B6660;line-height:1.55;background:#F0EBE0;border-radius:6px;padding:9px 12px">By registering as a Press Traveler you accept that partners can send you press-trip offerings through TLL. You can switch this off any time. The label stays, the inbox quiets.</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px"><span style="font-size:13px;color:#fff;background:#F0507A;padding:11px 24px;border-radius:6px;font-weight:700;cursor:pointer">Publish changes</span><span onClick="{{ goProfile }}" style="font-size:13px;color:#0A0B14;border:1.5px solid #0A0B14;padding:11px 24px;border-radius:6px;font-weight:700;cursor:pointer">View public profile</span></div>
+</div>
+</sc-if>

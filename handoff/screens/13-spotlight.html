@@ -1,0 +1,27 @@
+<!-- ============ SPOTLIGHT (§14) ============ -->
+<sc-if value="{{ isSpotlight }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#0A0B14;padding:44px 28px 40px"><div style="max-width:1180px;margin:0 auto">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#F0507A;font-weight:600;margin-bottom:10px">THE SPOTLIGHT · ONE AT A TIME</div>
+    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:42px;line-height:1.02;color:#F7F1E8;margin-bottom:8px">Travelers worth <span style="color:#F0507A;font-style:italic">the detour.</span></div>
+    <div style="font-size:14px;color:#7d7f96;max-width:560px">One traveler featured at a time. Stories boosted, links shipped, byline up top.</div>
+  </div></div>
+  <div style="max-width:1180px;margin:0 auto;padding:34px 28px 60px">
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:12px;overflow:hidden;display:flex;margin-bottom:26px;flex-wrap:wrap">
+      <div style="width:340px;min-height:240px;flex:none;background:#0A0B14 url('images/denmark.jpg') center/cover"></div>
+      <div style="flex:1;min-width:280px;padding:26px 30px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#D98A2B;font-weight:600;margin-bottom:9px">★ TRAVELER OF THE WEEK</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:28px;margin-bottom:5px">Nancy Carleton</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;margin-bottom:13px">THE FOUNDER · EXPAT · LIFER · COPENHAGEN</div>
+        <div style="font-size:14px;color:#3a3a3a;line-height:1.55;margin-bottom:15px">87 countries, one Samoyed, endless opinions. This week: twelve countries in an EV and the Serbian stranger who found me a charger nobody on the internet had heard of.</div>
+        <div style="display:flex;gap:8px"><span onClick="{{ goProfile }}" style="font-size:12px;color:#fff;background:#F0507A;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer">Full profile →</span><span onClick="{{ goStories }}" style="font-size:12px;color:#0A0B14;border:1.5px solid #0A0B14;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer">Read the stories</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="border:2px dashed #c9b89a;border-radius:10px;padding:22px;text-align:center;background:#fff;opacity:.8"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#D98A2B;font-weight:700;margin-bottom:8px">COMING SOON</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;margin-bottom:5px">Spotlight slot</div><div style="font-size:12px;color:#6B6660;line-height:1.45">Lisbon, Portugal. Slow travel + food culture. Reach out if this is you.</div></div>
+      <div style="border:2px dashed #c9b89a;border-radius:10px;padding:22px;text-align:center;background:#fff;opacity:.8"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#D98A2B;font-weight:700;margin-bottom:8px">COMING SOON</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;margin-bottom:5px">Spotlight slot</div><div style="font-size:12px;color:#6B6660;line-height:1.45">Berlin, Germany. Night trains + border towns. Could be you.</div></div>
+      <div style="border:2px dashed #F0507A;border-radius:10px;padding:22px;text-align:center;background:#fff"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#F0507A;font-weight:700;margin-bottom:8px">OPEN SLOT</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;margin-bottom:5px">Your name here.</div><div style="font-size:12px;color:#6B6660;line-height:1.45;margin-bottom:12px">One story gets you the feature.</div><span onClick="{{ goShare }}" style="font-size:12px;color:#fff;background:#F0507A;padding:8px 16px;border-radius:6px;font-weight:700;cursor:pointer">Share your story →</span></div>
+    </div>
+  </div>
+</div>
+</sc-if>

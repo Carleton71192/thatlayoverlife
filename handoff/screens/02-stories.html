@@ -1,0 +1,84 @@
+<!-- ============ STORIES ============ -->
+<sc-if value="{{ isStories }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1180px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">THE LIBRARY</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1;margin-bottom:10px">Four stories, all worth <span style="color:#F0507A;font-style:italic">the detour.</span></div>
+  <div style="font-size:15px;color:#6B6660;margin-bottom:28px">Counted by hand in Copenhagen. More landing weekly.</div>
+  <div style="background:#fff;border:1.5px solid #0A0B14;border-radius:28px;padding:12px 19px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;max-width:640px">
+    <input value="{{ searchQ }}" onChange="{{ setSearchQ }}" placeholder="Search stories — a country, a train line, a feeling…" style="flex:1;border:0;outline:none;background:transparent;font-size:14px;color:#0A0B14;font-family:'DM Sans',sans-serif"></input>
+    <sc-if value="{{ hasSearchQ }}" hint-placeholder-val="{{ false }}"><span onClick="{{ clearSearch }}" style="font-size:12px;color:#9a958d;cursor:pointer;padding:0 10px;flex:none">✕ Clear</span></sc-if>
+    <span style="font-size:13px;color:#06302f;background:#00C9C8;padding:7px 18px;border-radius:20px;font-weight:700;flex:none">Search</span>
+  </div>
+  <!-- FRONT OF THE SHELF -->
+  <sc-if value="{{ noFrontHide }}" hint-placeholder-val="{{ true }}">
+  <div style="margin-bottom:26px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#F0507A;font-weight:600">FRONT OF THE SHELF</div>
+      <div onClick="{{ goWire }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:#067A79;font-weight:600;cursor:pointer">THE TRAVEL WIRE · TODAY'S NEWS →</div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <div style="flex:1.2;min-width:280px;background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:16px 18px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#6B6660;font-weight:600;margin-bottom:11px">MOST READ THIS WEEK</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ mostRead }}" as="m" hint-placeholder-count="2">
+            <div onClick="{{ m.open }}" style="display:flex;gap:11px;align-items:center;cursor:pointer">
+              <div style="width:54px;height:40px;flex:none;border-radius:6px;background:#0A0B14 url('{{ m.img }}') center/cover"></div>
+              <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:13.5px;line-height:1.25;color:#0A0B14">{{ m.title }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#9a958d;margin-top:2px">{{ m.country }} · {{ m.mins }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1;min-width:230px;background:#0A0B14;border-radius:10px;padding:16px 18px;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#00C9C8;font-weight:600;margin-bottom:10px">FROM THE PRESS DESK</div>
+        <div style="font-size:12.5px;color:#cfcbc4;line-height:1.55;flex:1">No press bylines yet. The Pros are being recruited — hosted trips disclosed at the top, verdicts their own.</div>
+        <div onClick="{{ goForPress }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:600;cursor:pointer;margin-top:10px">WRITE AS PRESS →</div>
+      </div>
+      <div style="flex:1;min-width:230px;background:#fff;border:2px dashed #c9b89a;border-radius:10px;padding:16px 18px;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#F0507A;font-weight:600;margin-bottom:10px">FROM THE LOCATION EXPERTS</div>
+        <div style="font-size:12.5px;color:#3a3a3a;line-height:1.55;flex:1">Open slots. Eight years somewhere beats eight days everywhere — the first Location Expert stories land here.</div>
+        <div onClick="{{ goForExpats }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#C8425E;font-weight:600;cursor:pointer;margin-top:10px">BECOME ONE →</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+    <div style="border:2px dashed #c9b89a;border-radius:10px;padding:28px;text-align:center;background:#fff;margin-bottom:20px">
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:18px;margin-bottom:5px">Nothing on the shelf for "{{ searchQ }}" yet.</div>
+      <div style="font-size:13px;color:#6B6660;margin-bottom:12px">Be the first!</div>
+      <span onClick="{{ goShare }}" style="font-size:12px;color:#fff;background:#F0507A;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer">Share your story →</span>
+    </div>
+  </sc-if>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#9a958d;min-width:64px">PILLAR</span>
+      <sc-for list="{{pillars}}" as="p" hint-placeholder-count="5"><span style="font-size:12px;border:1px solid #d8d2c6;border-radius:16px;padding:6px 15px;color:#3a3a3a;cursor:pointer">{{ p }}</span></sc-for>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#9a958d;min-width:64px">PLACE</span>
+      <sc-for list="{{locFilters}}" as="lf" hint-placeholder-count="5">
+        <span onClick="{{ lf.pick }}" style="font-size:12px;border:1px solid {{ lf.border }};background:{{ lf.bg }};color:{{ lf.color }};border-radius:16px;padding:6px 15px;cursor:pointer;font-weight:{{ lf.weight }}">{{ lf.label }}</span>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#9a958d;min-width:64px">SORT</span>
+      <sc-for list="{{sortOpts}}" as="so" hint-placeholder-count="3">
+        <span onClick="{{ so.pick }}" style="font-size:12px;border:1px solid {{ so.border }};background:{{ so.bg }};color:{{ so.color }};border-radius:16px;padding:6px 15px;cursor:pointer;font-weight:{{ so.weight }}">{{ so.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px">
+    <sc-for list="{{stories}}" as="s" hint-placeholder-count="4">
+      <div onClick="{{ s.open }}" style="display:flex;background:#fff;border:1px solid #E0DACE;border-radius:10px;overflow:hidden;cursor:pointer">
+        <div style="width:190px;flex:none;background:#0A0B14 url('{{ s.img }}') center/cover;min-height:150px;position:relative"><span style="position:absolute;left:9px;top:9px;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);background-image:{{ s.flag }}"></span></div>
+        <div style="padding:18px 20px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F0507A;letter-spacing:1px;margin-bottom:7px">{{ s.country }} · {{ s.pillar }} · {{ s.mins }}</div>
+          <sc-if value="{{ s.isSponsored }}" hint-placeholder-val="{{ false }}"><div style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#0A0B14;background:#D98A2B;border-radius:4px;padding:3px 8px;font-weight:700;margin-bottom:7px">SPONSORED · BY {{ s.sponsorName }}</div></sc-if>
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;line-height:1.2;margin-bottom:7px">{{ s.title }}</div>
+          <div style="font-size:13px;color:#6B6660;line-height:1.45;margin-bottom:8px">{{ s.lede }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:600">Read → <span style="color:#9a958d;font-weight:400">{{ s.author }}</span></div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>

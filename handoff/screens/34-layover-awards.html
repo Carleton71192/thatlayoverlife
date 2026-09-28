@@ -1,0 +1,38 @@
+<!-- ============ LAYOVER AWARDS ============ -->
+<sc-if value="{{ isAwards }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#0A0B14;padding:64px 28px 44px">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#D98A2B;font-weight:600;margin-bottom:12px">THE TLL LAYOVER AWARDS · 2026 · PROPOSED WINDOW 1 TO 31 OCTOBER</div>
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(34px,4.2vw,52px);line-height:1.02;color:#F7F1E8;margin-bottom:12px">You nominate. <span style="color:#F0507A;font-style:italic">The editors decide.</span></div>
+      <div style="font-size:16px;line-height:1.6;color:#cfcbc4;max-width:640px">No "vote for us" campaigns, no public tallies. Travelers nominate, and every nomination is labeled by whether the nominator has logged that country. Editors pick the winners and write why.</div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:34px 28px 64px;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:22px">
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:22px 24px;display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Nominate</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#067A79;font-weight:600">CATEGORY</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ awardCats }}" as="ac" hint-placeholder-count="5"><span onClick="{{ ac.pick }}" style="font-size:12px;font-weight:700;color:{{ ac.color }};background:{{ ac.bg }};border:1px solid {{ ac.border }};border-radius:14px;padding:6px 12px;cursor:pointer">{{ ac.label }}</span></sc-for></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-top:4px">WHICH ONE</div>
+      <input value="{{ awardPlace }}" onChange="{{ setAwardPlace }}" placeholder="An airport, a city or a country" style="border:1px solid #d8d2c6;border-radius:7px;padding:11px 13px;font-size:14px;background:#FBF7F0;outline:none">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-top:4px">WHY, IN ONE LINE</div>
+      <input value="{{ awardWhy }}" onChange="{{ setAwardWhy }}" maxlength="140" placeholder="The detail that won you over" style="border:1px solid #d8d2c6;border-radius:7px;padding:11px 13px;font-size:14px;background:#FBF7F0;outline:none">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#6B6660">{{ awardWhyCount }} / 140</div>
+      <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:8px;padding:10px 13px;font-size:12px;color:#3a3a3a;line-height:1.45">{{ awardVerifyLine }}</div>
+      <span onClick="{{ submitAward }}" style="align-self:flex-start;font-size:13px;font-weight:700;color:#fff;background:#F0507A;padding:11px 20px;border-radius:7px;cursor:pointer">Send the nomination →</span>
+      <div role="status" style="font-size:12.5px;color:{{ awardMsgColor }};line-height:1.45">{{ awardMsg }}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#0A0B14;border-radius:12px;padding:18px 20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#00C9C8;margin-bottom:10px">HOUSE RULES</div>
+        <div style="font-size:12.5px;color:#cfcbc4;line-height:1.6">One nomination per category per traveler. No nominating a business you own or are paid by. Editors can disqualify campaigns. Winners get a free badge; nobody pays to enter or to win.</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:18px 20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;margin-bottom:10px">YOUR NOMINATIONS</div>
+        <sc-for list="{{ awardMine }}" as="am" hint-placeholder-count="0"><div style="padding:8px 0;border-bottom:1px solid #E0DACE"><div style="font-size:13px;font-weight:700">{{ am.place }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#6B6660;margin-top:2px">{{ am.cat }} · {{ am.tag }} · IN REVIEW</div></div></sc-for>
+        <sc-if value="{{ awardNone }}" hint-placeholder-val="{{ true }}"><div style="font-size:12.5px;color:#6B6660">None yet. The first one is always the hardest.</div></sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>

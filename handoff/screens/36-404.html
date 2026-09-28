@@ -1,0 +1,15 @@
+<!-- ============ 404 ============ -->
+<sc-if value="{{ isNotFound }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;background:#0A0B14 url('images/doha.jpg') center/cover;padding:90px 28px">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.55),rgba(10,11,20,.93))"></div>
+  <div style="position:relative;text-align:center;max-width:560px;margin:0 auto">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#D98A2B;margin-bottom:16px">ERROR 404</div>
+    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1;color:#F7F1E8;margin-bottom:14px;text-shadow:0 2px 16px rgba(10,11,20,.8)">This page missed its <span style="color:#FF7093;font-style:italic">connection.</span></div>
+    <div style="font-size:14px;color:#e8e5df;line-height:1.5;margin-bottom:24px;text-shadow:0 1px 8px rgba(10,11,20,.9)">Somewhere between the link you clicked and the page you wanted, something got rerouted through Frankfurt.</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span onClick="{{ goStories }}" style="font-size:13px;color:#0A0B14;background:#F7F1E8;padding:11px 22px;border-radius:6px;font-weight:700;cursor:pointer">Read the library →</span>
+      <a href="TLL Map.html" style="font-size:13px;color:#F7F1E8;border:1.5px solid rgba(255,255,255,.4);padding:11px 22px;border-radius:6px">Open the map</a>
+    </div>
+  </div>
+</div>
+</sc-if>

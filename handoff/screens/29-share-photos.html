@@ -1,0 +1,37 @@
+<!-- ============ SHARE PHOTOS (§38) ============ -->
+<sc-if value="{{ isSharePhotos }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:640px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;margin-bottom:16px;cursor:pointer" onClick="{{ goGallery }}">← THE LAYOVER LOUNGE</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#D98A2B;font-weight:600;margin-bottom:10px">THE LAYOVER LOUNGE · MEMBER-GATED</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:38px;line-height:1.02;margin-bottom:8px">Submit your shot.</div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:26px">Real photos from real places. No filters, no stock, no staging. If you were there, it counts.</div>
+  <div style="margin-bottom:18px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:8px">01 · YOUR PHOTO</div>
+    <div style="border:2px dashed #c9b89a;border-radius:9px;padding:30px;text-align:center;background:#fff;cursor:pointer">
+      <div style="font-size:26px;color:#c9b89a;margin-bottom:7px">↑</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9a958d;margin-bottom:5px">DRAG &amp; DROP OR CLICK TO UPLOAD</div>
+      <div style="font-size:12px;color:#6B6660;line-height:1.5;max-width:400px;margin:0 auto">Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram. JPEG or HEIC, up to 25MB.</div>
+    </div>
+  </div>
+  <div style="margin-bottom:18px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:8px">02 · THE STORY</div>
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:11px 14px;font-size:13px;color:#9a958d;margin-bottom:8px">Where is this?</div>
+    <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:11px 14px;font-size:13px;color:#9a958d;margin-bottom:8px">What was happening? Two or three sentences.</div>
+    <div style="font-size:11px;color:#6B6660;line-height:1.5;background:#F0EBE0;border-radius:6px;padding:9px 12px">We strip GPS data from every file before publishing. If somewhere is fragile or crowded, "somewhere in northern Portugal" is a perfectly good caption.</div>
+  </div>
+  <div style="margin-bottom:18px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:8px">03 · YOUR CREDIT</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:11px 14px;font-size:13px;color:#0A0B14">Nancy Carleton</div><div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:11px 14px;font-size:13px;color:#9a958d">Link (optional)</div></div>
+  </div>
+  <div style="margin-bottom:20px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:8px">04 · THREE PROMISES · TICKED SEPARATELY, NEVER PRE-TICKED</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start"><span style="flex:none;width:16px;height:16px;border:2px solid #0A0B14;border-radius:4px;margin-top:1px"></span><div style="font-size:12px;color:#3a3a3a;line-height:1.5"><strong>This is my photograph.</strong> I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools.</div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start"><span style="flex:none;width:16px;height:16px;border:2px solid #0A0B14;border-radius:4px;margin-top:1px"></span><div style="font-size:12px;color:#3a3a3a;line-height:1.5"><strong>I have read the licence and I agree.</strong> I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI. <span style="color:#C8425E;font-weight:600;cursor:pointer">Read the full licence</span></div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:12px 14px;display:flex;gap:11px;align-items:flex-start"><span style="flex:none;width:16px;height:16px;border:2px solid #0A0B14;border-radius:4px;margin-top:1px"></span><div style="font-size:12px;color:#3a3a3a;line-height:1.5"><strong>If a person is the clear subject, they're fine with it being published.</strong> Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.</div></div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#fff;background:#F0507A;padding:12px;border-radius:7px;font-weight:700;text-align:center;cursor:pointer;margin-bottom:12px">Send it to the Lounge →</div>
+  <div style="font-size:11px;color:#6B6660;line-height:1.55;text-align:center">We read every submission and come back to you either way, usually within two weeks. You can withdraw it any time, before or after we publish.</div>
+</div>
+</sc-if>

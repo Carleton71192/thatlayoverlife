@@ -1,0 +1,70 @@
+<!-- ============ ACCOUNT ============ -->
+<sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1180px;margin:0 auto;padding:44px 28px 60px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:14px">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span style="flex:none;width:60px;height:60px;border-radius:50%;border:2.5px solid #F0507A;overflow:hidden;background:#1d5e5d;display:block"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n.jpg" alt="Nancy Carleton" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:30px;line-height:1">Welcome back, Nancy.</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;margin-top:5px">COPENHAGEN · MEMBER SINCE MAY 2026</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:9px">
+      <span style="font-size:12px;color:#3a3a3a;border:1px solid #d8d2c6;padding:9px 16px;border-radius:6px;cursor:pointer">Edit profile</span>
+      <span onClick="{{ doLogout }}" style="font-size:12px;color:#C8425E;border:1px solid #C8425E;padding:9px 16px;border-radius:6px;cursor:pointer">Sign out</span>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+    <div style="background:#0A0B14;border-radius:11px;overflow:hidden">
+      <div style="padding:13px 16px;border-bottom:1px solid #1a1d35;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#00C9C8">LOGGED</span><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#F7F1E8">87</span></div>
+      <div style="padding:13px 16px"><div style="font-size:12px;color:#cfcbc4;margin-bottom:11px;line-height:1.4">Countries on your map. 108 to go.</div><a href="TLL Map.html" style="display:block;font-size:11px;color:#06302f;background:#00C9C8;padding:8px;border-radius:5px;font-weight:700;text-align:center">Open my map →</a></div>
+    </div>
+    <div style="background:#0A0B14;border-radius:11px;overflow:hidden">
+      <div style="padding:13px 16px;border-bottom:1px solid #1a1d35;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#00C9C8">PAWED</span><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#F7F1E8">1</span></div>
+      <div style="padding:13px 16px"><div style="font-size:12px;color:#cfcbc4;margin-bottom:11px;line-height:1.4">Magnus · 13 countries and zero complaints.</div><span onClick="{{ goPaw }}" style="display:block;font-size:11px;color:#F7F1E8;border:1px solid #3a3d55;padding:8px;border-radius:5px;text-align:center;cursor:pointer">His passport →</span></div>
+    </div>
+    <div style="background:#0A0B14;border-radius:11px;overflow:hidden">
+      <div style="padding:13px 16px;border-bottom:1px solid #1a1d35;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A">WRITTEN</span><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#F7F1E8">4</span></div>
+      <div style="padding:13px 16px"><div style="font-size:12px;color:#cfcbc4;margin-bottom:11px;line-height:1.4">Stories published. One draft waiting.</div><span onClick="{{ goShare }}" style="display:block;font-size:11px;color:#fff;background:#F0507A;padding:8px;border-radius:5px;font-weight:700;text-align:center;cursor:pointer">Resume draft →</span></div>
+    </div>
+    <div style="background:#0A0B14;border-radius:11px;overflow:hidden">
+      <div style="padding:13px 16px;border-bottom:1px solid #1a1d35;display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#D98A2B">SNAPPED</span><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#4a4d63">0</span></div>
+      <div style="padding:13px 16px"><div style="font-size:12px;color:#7d7f96;margin-bottom:11px;line-height:1.4">The Lounge is missing your shot.</div><span onClick="{{ goGallery }}" style="display:block;font-size:11px;color:#0A0B14;background:#D98A2B;padding:8px;border-radius:5px;font-weight:700;text-align:center;cursor:pointer">Share a photo →</span></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:16px;margin-bottom:24px">
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;border-radius:11px;padding:18px 20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px">Your lists</div><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#6B6660">A STICKER SHEET, NOT A LEADERBOARD</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+        <sc-for list="{{ listTabs }}" as="lt" hint-placeholder-count="5"><span onClick="{{ lt.pick }}" style="font-size:11.5px;font-weight:700;color:{{ lt.color }};background:{{ lt.bg }};border:1px solid {{ lt.border }};border-radius:14px;padding:5px 12px;cursor:pointer">{{ lt.label }}</span></sc-for>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <sc-for list="{{ listStamps }}" as="st" hint-placeholder-count="6">
+          <div style="width:84px;text-align:center;padding:10px 4px 8px;border:1.5px dashed {{ st.ring }};border-radius:10px;background:#fff;transform:rotate({{ st.tilt }}deg)">
+            <span style="width:34px;height:34px;border-radius:50%;display:block;margin:0 auto 6px;background:#E0DACE center/cover;background-image:{{ st.flag }}"></span>
+            <div style="font-size:10.5px;font-weight:700;line-height:1.2;color:#0A0B14">{{ st.name }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.5px;color:#6B6660;margin-top:3px">{{ st.meta }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}"><div style="border:2px dashed #c9b89a;border-radius:10px;padding:16px;font-size:12.5px;color:#6B6660;line-height:1.5;background:#fff">{{ listEmptyLine }}</div></sc-if>
+    </div>
+    <div style="background:#0A0B14;border-radius:11px;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#00C9C8">LAYOVER WRAPPED · LANDS 1 DECEMBER</div>
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;line-height:1.1;color:#F7F1E8">{{ wrapHeadline }}</div>
+      <sc-for list="{{ wrapStats }}" as="ws" hint-placeholder-count="4">
+        <div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #1a1d35"><span style="font-size:12px;color:#cfcbc4">{{ ws.k }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#F7F1E8;font-weight:700">{{ ws.v }}</span></div>
+      </sc-for>
+      <div style="font-size:11.5px;color:#7d7f96;line-height:1.45">{{ wrapCrewLine }}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:auto">
+        <span onClick="{{ toggleWrapQuiet }}" style="font-size:11px;color:#F7F1E8;border:1px solid #3a3d55;padding:7px 12px;border-radius:5px;cursor:pointer">{{ wrapQuietLabel }}</span>
+        <span onClick="{{ toggleWrapHide }}" style="font-size:11px;color:{{ wrapHideColor }};border:1px solid {{ wrapHideColor }};padding:7px 12px;border-radius:5px;cursor:pointer">{{ wrapHideLabel }}</span>
+      </div>
+    </div>
+  </div>
+  <div style="background:#fff;border:1px solid #E0DACE;border-radius:11px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div><div style="font-size:14px;font-weight:700;margin-bottom:3px">Your data stays yours.</div><div style="font-size:12px;color:#6B6660">Export everything as JSON + Markdown, or delete the account entirely. No exit interview.</div></div>
+    <div style="display:flex;gap:8px"><span onClick="{{ exportMyData }}" style="font-size:12px;color:#0A0B14;border:1.5px solid #0A0B14;padding:8px 15px;border-radius:6px;font-weight:600;cursor:pointer">{{ exportLabel }}</span><span style="font-size:12px;color:#C8425E;border:1.5px solid #C8425E;padding:8px 15px;border-radius:6px;font-weight:600;cursor:pointer">Delete account</span></div>
+  </div>
+</div>
+</sc-if>

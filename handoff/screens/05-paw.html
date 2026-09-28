@@ -1,0 +1,84 @@
+<!-- ============ PAW ============ -->
+<sc-if value="{{ isPaw }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#0A0B14;border-bottom:1px solid #16182a">
+    <div style="max-width:1080px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#7d7f96;margin-right:6px">FIND YOUR PEOPLE</span>
+      <sc-for list="{{ groupTabs }}" as="gt" hint-placeholder-count="4">
+        <span onClick="{{ gt.go }}" style="font-size:12px;font-weight:600;color:{{ gt.color }};background:{{ gt.bg }};border:1px solid {{ gt.border }};border-radius:16px;padding:6px 14px;cursor:pointer">{{ gt.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+    <div style="position:relative;height:300px;background:#0A0B14 url('images/denmark.jpg') center/cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.55),rgba(10,11,20,.88))"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#00C9C8;margin-bottom:12px;background:rgba(10,11,20,.72);padding:6px 14px;border-radius:4px">PAW PASSPORT · FOR EVERY TRAVEL COMPANION</div>
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:42px;line-height:1;color:#F7F1E8;margin-bottom:10px;text-shadow:0 2px 16px rgba(10,11,20,.85)">Your bestie gets a passport too.</div>
+      <div style="font-size:15px;color:#e8e5df;max-width:480px;line-height:1.5;text-shadow:0 1px 10px rgba(10,11,20,.9)">Dog, cat, ferret, one extremely well-traveled parrot. If they crossed a border with you, they get a page.</div>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:0 auto;padding:36px 28px 60px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:20px;text-align:center"><div style="width:34px;height:34px;border-radius:50%;background:#0A0B14;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:11px">1</div><div style="font-weight:700;font-size:15px;margin-bottom:5px">Register your pet</div><div style="font-size:12.5px;color:#6B6660;line-height:1.45">Name, breed, photo, and the countries they've crossed.</div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:20px;text-align:center"><div style="width:34px;height:34px;border-radius:50%;background:#0A0B14;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:11px">2</div><div style="font-weight:700;font-size:15px;margin-bottom:5px">Add border crossings</div><div style="font-size:12.5px;color:#6B6660;line-height:1.45">Entry dates, modes of travel, any good border-control stories.</div></div>
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:20px;text-align:center"><div style="width:34px;height:34px;border-radius:50%;background:#0A0B14;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:11px">3</div><div style="font-weight:700;font-size:15px;margin-bottom:5px">Get a public passport</div><div style="font-size:12.5px;color:#6B6660;line-height:1.45">Shareable. Magnus already has his.</div></div>
+    </div>
+<!-- paw guide sales block -->
+    <div data-screen-label="Paw guide" style="margin-bottom:32px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#067A79;font-weight:600;margin-bottom:8px">THE PAW PASSPORT · A FIELD GUIDE · PDF</div>
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:34px;line-height:1.08;margin-bottom:10px">Crossing borders with a dog, <span style="color:#F0507A;font-style:italic">without the part where you cry at a checkpoint.</span></div>
+      <div style="font-size:15px;color:#3a3a3a;line-height:1.6;max-width:680px;margin-bottom:20px">Written from 13 countries and one transatlantic flight, by someone whose dog weighs 35 kilos and has opinions. The law is the free part. What happened at the border at 11pm with a Samoyed in the back is the part you pay for.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch">
+        <div style="background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:11px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#067A79;font-weight:600">ON THE HOUSE · READ IT FIRST</div>
+          <div onClick="{{ goStories }}" style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;line-height:1.2;cursor:pointer">Four ways to get turned back at a border with your dog.</div>
+          <div style="font-size:13px;color:#6B6660;line-height:1.5">The four mistakes, in full, because they are the most searched and the most useful. Three of the four are about order, not paperwork.</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#3a3a3a"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;margin-top:2px">FREE</span><span>Chip first, then the rabies shot. The other way round does not count.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#3a3a3a"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;margin-top:2px">FREE</span><span>21 days, counted from the end of the protocol, not from booking the ferry.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#3a3a3a"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;margin-top:2px">FREE</span><span>The booster has to land inside the old one. Miss it by a day and the clock restarts.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#3a3a3a"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;margin-top:2px">FREE</span><span>Puppies: 12 weeks at the shot, then 21 days. Roughly 15 weeks before a first border.</span></div>
+          <span onClick="{{ goStories }}" style="margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;cursor:pointer">READ THE FREE STORY →</span>
+        </div>
+        <div style="background:#0A0B14;border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:11px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#00C9C8;font-weight:600">IN THE GUIDE</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#e8e5df"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:2px">✓</span><span>Leaving the EU: listed vs unlisted, and why no secondhand list can be trusted (four official sources, four answers).</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#e8e5df"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:2px">✓</span><span>The one blood draw before you leave that makes the three-month wait to come home disappear.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#e8e5df"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:2px">✓</span><span>The tapeworm window for Finland, Ireland, Malta, Northern Ireland and Norway: 96 hours, and it shuts a day early.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#e8e5df"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:2px">✓</span><span>A 10-minute check before every single trip.</span></div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#e8e5df"><span style="flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:2px">✓</span><span>Hotels that genuinely take a 35-kilo dog, long drives and EV charging stops, ferries, trains, and finding a vet abroad before you need one.</span></div>
+          <div style="margin-top:auto;padding-top:14px;border-top:1px solid #23263c;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;color:#F7F1E8">€9</div><div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#7d7f96;margin-top:2px">PDF · V1.0 · INCL. 25% MOMS · FREE UPDATES WHEN THE RULES CHANGE</div></div>
+            <span style="font-size:14px;font-weight:700;color:#0A0B14;background:#00C9C8;padding:12px 20px;border-radius:7px;opacity:.55;cursor:not-allowed" title="Ko-fi link goes live when the guide ships">Get it on Ko-fi</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#D98A2B;letter-spacing:1px">COMING SOON · THE KO-FI LINK GOES LIVE WHEN THE GUIDE SHIPS</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:#6B6660;line-height:1.5">
+        <span>Built on the 2026 EU pet rules, Regulation (EU) 2026/131. Version 1.0, rules verified 28 September 2026. Every rule carries a source.</span>
+        <span>Find something out of date? Tell <span style="color:#0A0B14;text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px">hello@thatlayover.life</span> and we reissue it to everyone who bought it.</span>
+        <span>Not legal or veterinary advice. Your vet has the final word.</span>
+      </div>
+    </div>
+        <div style="background:#0A0B14;border-radius:12px;overflow:hidden;display:flex">
+      <div style="width:280px;flex:none;background:#0A0B14 url('images/magnus.jpg') center/cover"></div>
+      <div style="padding:26px 30px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#00C9C8;margin-bottom:9px">EXAMPLE · SO YOU KNOW WHAT YOURS LOOKS LIKE</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:28px;color:#F7F1E8;margin-bottom:5px">Magnus</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#7d7f96;margin-bottom:16px">SAMOYED · SUPERVISED BY NANCY CARLETON</div>
+        <div style="display:flex;gap:18px;margin-bottom:16px">
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">13</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#4a4d63">COUNTRIES</div></div>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">4</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#4a4d63">YEARS</div></div>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#00C9C8">2</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#4a4d63">CONTINENTS</div></div>
+        </div>
+        <div style="font-size:13px;color:#cfcbc4;line-height:1.5;font-style:italic;margin-bottom:14px">"Croatian goat cheese: 4/5. The goat, possibly insulted, rated me considerably lower."</div>
+        <sc-if value="{{ petHasLinks }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#7d7f96">FOLLOW THE FLUFF</span>
+          <sc-for list="{{ petPublicLinks }}" as="l" hint-placeholder-count="0">
+            <span title="{{ l.url }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:#00C9C8;border:1px solid #067A79;border-radius:12px;padding:4px 11px;cursor:pointer">{{ l.label }} ↗</span>
+          </sc-for>
+        </div></sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>

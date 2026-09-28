@@ -1,0 +1,36 @@
+<!-- ============ SHARE CARD / OG PREVIEW (§22) ============ -->
+<sc-if value="{{ isShareCard }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:760px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">§22 · THE SHARE CARD · GENERATED PER TRAVELER</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:36px;line-height:1.05;margin-bottom:8px">The passport card.</div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:18px">1200×630, generated server-side per traveler, written into the profile's og:image. This is what a shared link looks like on social.</div>
+  <div style="margin-bottom:18px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#067A79;font-weight:600;margin-bottom:7px">YOUR LINE · OPTIONAL, 60 CHARACTERS</div>
+    <input value="{{ cardLine }}" onChange="{{ setCardLine }}" maxLength="60" placeholder="e.g. Layovers are the cheapest country you will ever visit." style="width:100%;box-sizing:border-box;background:#fff;border:1.5px solid #E0DACE;border-radius:8px;padding:11px 14px;font-size:14px;color:#0A0B14;font-family:'DM Sans',sans-serif;outline:none"></input>
+  </div>
+  <div style="aspect-ratio:1200/630;background:#0A0B14;border-radius:12px;overflow:hidden;position:relative;border:1px solid #232744;box-shadow:0 12px 40px rgba(13,15,26,.3)">
+    <div style="position:absolute;inset:0;background:url('images/montenegro.jpg') center/cover;opacity:.22"></div>
+    <div style="position:absolute;inset:0;padding:5% 6%;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(12px,2.6vw,20px);color:#F7F1E8"><span style="font-family:'Dancing Script',cursive;font-weight:700;opacity:.7">that</span>LAYOVER <span style="color:#F0507A">LIFE.</span></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:clamp(8px,1.4vw,11px);letter-spacing:2px;color:#00C9C8">TRAVELER PASSPORT</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:4%">
+        <div style="width:17%;aspect-ratio:1;border-radius:50%;background:#0A0B14 url('images/denmark.jpg') center/cover;border:3px solid #F0507A;flex:none"></div>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(18px,4.4vw,34px);color:#F7F1E8;line-height:1.05;margin-bottom:2%">Nancy Carleton</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:clamp(8px,1.6vw,12px);letter-spacing:1.5px;color:#9a958d">THE FOUNDER · EXPAT · LIFER · COPENHAGEN</div>
+          <sc-if value="{{ hasCardLine }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(10px,2vw,16px);color:#F7F1E8;opacity:.92;margin-top:2%">"{{ cardLine }}"</div></sc-if>
+        </div>
+      </div>
+      <div style="display:flex;gap:3%">
+        <div style="flex:1;background:rgba(22,24,42,.85);border:1px solid #23263c;border-radius:8px;padding:2.5% 3%;text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(14px,3vw,24px);color:#00C9C8">87</div><div style="font-family:'JetBrains Mono',monospace;font-size:clamp(6px,1.1vw,9px);color:#7d7f96;letter-spacing:1px">COUNTRIES</div></div>
+        <div style="flex:1;background:rgba(22,24,42,.85);border:1px solid #23263c;border-radius:8px;padding:2.5% 3%;text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(14px,3vw,24px);color:#00C9C8">7</div><div style="font-family:'JetBrains Mono',monospace;font-size:clamp(6px,1.1vw,9px);color:#7d7f96;letter-spacing:1px">CONTINENTS</div></div>
+        <div style="flex:1;background:rgba(22,24,42,.85);border:1px solid #23263c;border-radius:8px;padding:2.5% 3%;text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(14px,3vw,24px);color:#F0507A">45%</div><div style="font-family:'JetBrains Mono',monospace;font-size:clamp(6px,1.1vw,9px);color:#7d7f96;letter-spacing:1px">OF THE WORLD</div></div>
+        <div style="flex:1;background:rgba(22,24,42,.85);border:1px solid #23263c;border-radius:8px;padding:2.5% 3%;text-align:center"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(14px,3vw,24px);color:#D98A2B">4</div><div style="font-family:'JetBrains Mono',monospace;font-size:clamp(6px,1.1vw,9px);color:#7d7f96;letter-spacing:1px">STORIES FILED</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px;font-size:12px;color:#6B6660;line-height:1.55;background:#F0EBE0;border-radius:6px;padding:11px 14px">The generation service itself (§22 amendment) and §30a/§30b implementation contracts are engineering specs — they live in the wireframes doc, not as prototype screens.</div>
+</div>
+</sc-if>

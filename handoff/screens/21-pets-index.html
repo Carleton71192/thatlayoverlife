@@ -1,0 +1,16 @@
+<!-- ============ PETS INDEX (§32) ============ -->
+<sc-if value="{{ isPets }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:900px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#00C9C8;font-weight:600;margin-bottom:10px">PETS WE TRAVEL WITH</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1.02;margin-bottom:8px">The Paw Passport <span style="color:#F0507A;font-style:italic">crew.</span></div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:28px">One Samoyed on the roster so far. Honest count, growing slowly.</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div onClick="{{ goPawPassport }}" style="background:#0A0B14;border-radius:10px;overflow:hidden;cursor:pointer">
+      <div style="height:130px;background:#0A0B14 url('images/magnus.jpg') center/cover"></div>
+      <div style="padding:14px 16px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:16px;color:#F7F1E8;margin-bottom:3px">Magnus 🐻‍❄️ Waffles</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#7d7f96;margin-bottom:8px">SAMOYED · 13 COUNTRIES</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#00C9C8;font-weight:600">Passport →</div></div>
+    </div>
+    <div style="border:2px dashed #c9b89a;border-radius:10px;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#fff;opacity:.8"><div style="font-size:20px;margin-bottom:6px">🐾</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:14px;margin-bottom:4px">Awaiting a first trip</div><div style="font-size:11px;color:#6B6660">Any species, with paperwork.</div></div>
+    <div onClick="{{ goMyPets }}" style="border:2px dashed #F0507A;border-radius:10px;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#fff;cursor:pointer"><div style="font-size:20px;color:#F0507A;margin-bottom:6px">+</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:14px;margin-bottom:4px">Add your bestie</div><div style="font-size:11px;color:#6B6660">Takes two minutes. Free, obviously.</div></div>
+  </div>
+</div>
+</sc-if>

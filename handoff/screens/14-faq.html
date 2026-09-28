@@ -1,0 +1,15 @@
+<!-- ============ FAQ (§16) ============ -->
+<sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:760px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">FAQ</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1.02;margin-bottom:26px">Questions, answered. <span style="color:#F0507A;font-style:italic">No filler.</span></div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ faqItems }}" as="q" hint-placeholder-count="6">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:16px 18px">
+        <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;color:#0A0B14;margin-bottom:6px">{{ q.q }}</div>
+        <div style="font-size:13px;color:#3a3a3a;line-height:1.55">{{ q.a }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>

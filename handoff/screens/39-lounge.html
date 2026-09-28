@@ -1,0 +1,20 @@
+<!-- ============ LOUNGE ============ -->
+<sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1180px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#b8791f;font-weight:600;margin-bottom:10px">THE LAYOVER LOUNGE</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1;margin-bottom:10px">A photo, not an essay. <span style="color:#D98A2B;font-style:italic">The easiest yes.</span></div>
+  <div style="font-size:15px;color:#6B6660;margin-bottom:30px">Real places, shot by the people who actually went. All frames currently by Nancy — the honest version.</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+    <sc-for list="{{loungeTiles}}" as="t" hint-placeholder-count="8">
+      <div style="position:relative;aspect-ratio:1;border-radius:9px;overflow:hidden;background:#0A0B14 url('{{ t.img }}') center/cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,11,20,.6),transparent 45%)"></div>
+        <span style="position:absolute;left:8px;bottom:8px;font-family:'JetBrains Mono',monospace;font-size:8px;color:#fff;background:rgba(10,11,20,.6);padding:3px 8px;border-radius:4px">{{ t.credit }}</span>
+      </div>
+    </sc-for>
+    <div onClick="{{ goShare }}" style="aspect-ratio:1;border:2px dashed #c9b89a;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;background:#fff">
+      <div style="font-size:26px;color:#c9b89a;margin-bottom:8px">+</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;letter-spacing:1px">ADD YOURS</div>
+    </div>
+  </div>
+</div>
+</sc-if>

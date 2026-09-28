@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>That Layover Life · The Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@400;600&family=Playfair+Display:ital,wght@0,800;1,800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0D0F1A;font-family:'DM Sans',sans-serif;color:#F7F1E8}
+  a{color:#00C9C8}a:hover{color:#F0507A}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .nav{background:#0D0F1A;border-bottom:1px solid #1a1d35;padding:14px 0}
+  .navin{max-width:1180px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+  .mark{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:.5px}
+  .mark .that{font-family:'Dancing Script',cursive;font-weight:700;opacity:.72;font-size:1.15em;margin-right:2px}
+  .navlinks{display:flex;gap:18px;align-items:center}
+  .navlinks span{font-size:13px;color:#b8b4ad;cursor:pointer}
+  .navlinks span.on{color:#00C9C8}
+  .cta{font-size:13px;color:#fff;background:#F0507A;padding:7px 15px;border-radius:6px;font-weight:600;cursor:pointer}
+  header.hd{padding:30px 0 20px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:38px;line-height:1;margin:0 0 8px}
+  h1 em{color:#F0507A;font-style:italic}
+  .sub{font-size:14px;color:#b8b4ad;margin:0}
+  .counters{display:flex;gap:0;background:#12141F;border:1px solid #232744;border-radius:10px;overflow:hidden}
+  .ct{padding:12px 22px;text-align:center;border-right:1px solid #232744}
+  .ct:last-child{border-right:none}
+  .ct b{display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:24px;line-height:1}
+  .ct span{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#4a4d63}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .layers{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;border:1px solid #2b2f52;border-radius:14px;padding:6px 13px;color:#cfcbc4;cursor:pointer;background:none;transition:all .15s}
+  .chip:hover{border-color:#4a4d63}
+  .chip.on{background:#00C9C8;color:#06302f;border-color:#00C9C8;font-weight:600}
+  .chip .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .tools{display:flex;gap:7px}
+  .tool{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;border:1px solid #2b2f52;background:none;color:#cfcbc4;border-radius:6px;padding:7px 13px;cursor:pointer}
+  .tool:hover{border-color:#00C9C8;color:#00C9C8}
+  .tool.pri{background:#F0507A;border-color:#F0507A;color:#fff;font-weight:600}
+  .stage{position:relative;background:#12141F;border:1px solid #232744;border-radius:12px;overflow:hidden}
+  svg{display:block;width:100%;height:auto}
+  .land{stroke:#00C9C8;stroke-width:.45;stroke-opacity:.42;fill:#171A2B;transition:fill .18s}
+  .land.hasdata{cursor:pointer}
+  .land.hasdata:hover{fill:#2b3150;stroke:#00C9C8;stroke-opacity:1;stroke-width:.9}
+  .land.lived{fill:#F0507A;stroke:#FF7093;stroke-opacity:.85}
+  .land.visited{fill:#0a8f8e;stroke:#00C9C8;stroke-opacity:.9}
+  .land.layover{fill:#8a5518;stroke:#D98A2B;stroke-opacity:.85}
+  .land.sel{stroke:#F7F1E8;stroke-width:1.4;stroke-opacity:1}
+  .grat{fill:none;stroke:#00C9C8;stroke-opacity:.07;stroke-width:.4}
+  .sphere{fill:#0D0F1A;stroke:#00C9C8;stroke-opacity:.22;stroke-width:.8}
+  .pin{pointer-events:none}
+  .tip{position:absolute;pointer-events:none;background:#0D0F1A;border:1px solid #2b2f52;border-radius:8px;padding:9px 12px;font-size:12px;opacity:0;transition:opacity .12s;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5);max-width:230px}
+  .tip .tn{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;gap:8px}
+  .tip .tm{font-family:'JetBrains Mono',monospace;font-size:9px;color:#00C9C8;letter-spacing:1px;margin-top:4px}
+  .tip .ts{font-size:11px;color:#9a958d;margin-top:5px;line-height:1.4}
+  .flag{width:17px;height:17px;border-radius:50%;flex:none;border:1px solid rgba(247,241,232,.5)}
+  .panel{position:absolute;top:0;right:0;bottom:0;width:320px;background:#0D0F1A;border-left:1px solid #232744;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);z-index:30;display:flex;flex-direction:column}
+  .panel.open{transform:translateX(0)}
+  .ph{padding:18px 20px;border-bottom:1px solid #1a1d35}
+  .ph .pt{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .ph h3{font-family:'Playfair Display',serif;font-weight:800;font-size:21px;margin:0}
+  .ph .pm{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:#00C9C8}
+  .pclose{position:absolute;top:16px;right:16px;background:none;border:none;color:#4a4d63;font-size:20px;cursor:pointer;line-height:1;padding:0}
+  .pclose:hover{color:#F0507A}
+  .pb{padding:16px 20px;overflow-y:auto;flex:1}
+  .plab{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#4a4d63;margin-bottom:10px}
+  .scard{background:#16182a;border:1px solid #232744;border-radius:8px;overflow:hidden;margin-bottom:10px;cursor:pointer;transition:border-color .15s}
+  .scard:hover{border-color:#00C9C8}
+  .scard .simg{height:74px;background-size:cover;background-position:center;position:relative}
+  .scard .sbody{padding:10px 12px}
+  .scard .sm{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.5px;color:#00C9C8;margin-bottom:4px}
+  .scard h4{font-family:'Playfair Display',serif;font-weight:800;font-size:13px;line-height:1.2;margin:0 0 5px}
+  .scard .sa{font-size:10px;color:#7d7f96}
+  .empty{background:#16182a;border:1px dashed #2b2f52;border-radius:8px;padding:18px 16px;text-align:center}
+  .empty p{font-size:12px;color:#7d7f96;line-height:1.45;margin:0 0 12px}
+  .empty .eb{font-size:11px;color:#fff;background:#F0507A;padding:8px 15px;border-radius:6px;font-weight:600;display:inline-block;cursor:pointer}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;padding:14px 0 0}
+  .lg{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9a958d;display:flex;align-items:center;gap:7px}
+  .lg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .note{font-size:12px;color:#7d7f96;padding:16px 0 40px;line-height:1.5;max-width:640px}
+  @media(max-width:900px){.panel{width:100%}h1{font-size:28px}.counters{width:100%}}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="navin">
+  <span class="mark"><span class="that">that</span>LAYOVER <span style="color:#F0507A">LIFE.</span></span>
+  <span class="navlinks"><span class="on">Map</span><span>Stories</span><span>Travelers</span><span>About</span><span class="cta">Share your story</span></span>
+</div></div>
+
+<div class="wrap">
+  <header class="hd">
+    <div>
+      <h1>The world, <em>counted by hand.</em></h1>
+      <p class="sub">Click any lit country to read what we filed there.</p>
+    </div>
+    <div class="counters">
+      <div class="ct"><b style="color:#F0507A">4</b><span>STORIES</span></div>
+      <div class="ct"><b style="color:#00C9C8">4</b><span>COUNTRIES</span></div>
+      <div class="ct"><b style="color:#D98A2B">1</b><span>TRAVELERS</span></div>
+      <div class="ct"><b style="color:#00C9C8">1</b><span>PETS</span></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="layers">
+      <button class="chip on" data-layer="all">All layers</button>
+      <button class="chip" data-layer="lived"><i class="dot" style="background:#F0507A"></i>Lived in</button>
+      <button class="chip" data-layer="visited"><i class="dot" style="background:#00C9C8"></i>Visited</button>
+      <button class="chip" data-layer="layover"><i class="dot" style="background:#D98A2B"></i>Layover only</button>
+      <button class="chip" data-layer="pet"><i class="dot" style="background:#7C5CBF"></i>With Magnus</button>
+    </div>
+    <div class="tools">
+      <button class="tool">Download image</button>
+      <button class="tool pri">Edit my countries</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="tip" id="tip"></div>
+    <div class="panel" id="panel">
+      <button class="pclose" id="pclose">×</button>
+      <div class="ph">
+        <div class="pt"><span class="flag" id="pflag"></span><h3 id="pname">Bulgaria</h3></div>
+        <div class="pm" id="pmeta">1 STORY FILED · VISITED</div>
+      </div>
+      <div class="pb" id="pbody"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lg"><i style="background:#F0507A"></i> Lived in</span>
+    <span class="lg"><i style="background:#0a8f8e"></i> Visited</span>
+    <span class="lg"><i style="background:#8a5518"></i> Layover only</span>
+    <span class="lg"><i style="background:#171A2B;border:1px solid rgba(0,201,200,.42)"></i> Not yet</span>
+    <span class="lg"><i style="background:#7C5CBF;border-radius:50%"></i> Magnus was here</span>
+  </div>
+
+  <p class="note">Outlines are real Natural Earth geometry, stroked in Electric Teal at low opacity so the whole world reads as one continuous brand surface. Filled countries use the three state colors; everything unvisited stays near-midnight so the lit countries carry all the attention.</p>
+</div>
+
+<script>
+// Real data only — every country here has a published story or a recorded visit.
+const LEDGER = {
+  '100': {state:'visited', pet:false, name:'Bulgaria', flag:'linear-gradient(#fff 0 33%,#00966E 33% 66%,#D62612 66% 100%)',
+    stories:[{t:'Sofia, where Anton ordered the plum brandy at nine in the morning',m:'CULTURAL PATTERN · 4 MIN',a:'Nancy Carleton',img:'images/bulgaria.jpg'}]},
+  '499': {state:'visited', pet:true, name:'Montenegro', flag:'linear-gradient(#C40308 0 33%,#0C1446 33% 66%,#C40308 66% 100%)',
+    stories:[{t:'Magnus, along for the Adriatic',m:'PAW PASSPORT · 5 MIN',a:'Nancy Carleton',img:'images/montenegro.jpg'}]},
+  '288': {state:'visited', pet:false, name:'Ghana', flag:'linear-gradient(#CE1126 0 33%,#FCD116 33% 66%,#006B3F 66% 100%)',
+    stories:[{t:'The hibiscus that remembered me',m:'CULTURAL PATTERN · 6 MIN',a:'Nancy Carleton',img:'images/ghana.jpg'}]},
+  '392': {state:'layover', pet:false, name:'Japan', flag:'radial-gradient(circle at 50% 50%,#BC002D 0 30%,#fff 31%)',
+    stories:[{t:'Yamanote at dawn, Tokyo before the major',m:'STORIES FROM THE ROAD · 6 MIN',a:'Nancy Carleton',img:'images/japan.jpg'}]},
+  '208': {state:'lived', pet:true, name:'Denmark', flag:'linear-gradient(90deg,transparent 0 33%,#fff 33% 47%,transparent 47%),linear-gradient(0deg,transparent 0 40%,#fff 40% 56%,transparent 56%),#C8102E', stories:[]},
+  '578': {state:'visited', pet:true, name:'Norway', flag:'linear-gradient(90deg,transparent 0 33%,#fff 33% 47%,transparent 47%),linear-gradient(0deg,transparent 0 40%,#fff 40% 56%,transparent 56%),#BA0C2F', stories:[]},
+  '276': {state:'visited', pet:true, name:'Germany', flag:'linear-gradient(#000 0 33%,#DD0000 33% 66%,#FFCE00 66% 100%)', stories:[]},
+  '528': {state:'visited', pet:true, name:'Netherlands', flag:'linear-gradient(#AE1C28 0 33%,#fff 33% 66%,#21468B 66% 100%)', stories:[]},
+  '752': {state:'visited', pet:false, name:'Sweden', flag:'linear-gradient(90deg,transparent 0 33%,#FECC00 33% 47%,transparent 47%),linear-gradient(0deg,transparent 0 40%,#FECC00 40% 56%,transparent 56%),#006AA7', stories:[]},
+  '076': {state:'visited', pet:false, name:'Brazil', flag:'radial-gradient(circle at 50% 50%,#002776 0 22%,#FEDF00 23% 44%,#009739 45%)', stories:[]},
+  '032': {state:'visited', pet:false, name:'Argentina', flag:'linear-gradient(#74ACDF 0 33%,#fff 33% 66%,#74ACDF 66% 100%)', stories:[]},
+  '634': {state:'layover', pet:false, name:'Qatar', flag:'linear-gradient(90deg,#fff 0 30%,#8D1B3D 30%)', stories:[]},
+  '010': {state:'visited', pet:false, name:'Antarctica', flag:'#3f5f8f', stories:[]},
+  '400': {state:'visited', pet:false, name:'Jordan', flag:'linear-gradient(#000 0 33%,#fff 33% 66%,#007A3D 66% 100%)', stories:[]},
+  '504': {state:'visited', pet:false, name:'Morocco', flag:'#C1272D', stories:[]},
+  '705': {state:'visited', pet:true, name:'Slovenia', flag:'linear-gradient(#fff 0 33%,#0000A0 33% 66%,#D50000 66% 100%)', stories:[]},
+  '191': {state:'visited', pet:true, name:'Croatia', flag:'linear-gradient(#FF0000 0 33%,#fff 33% 66%,#171796 66% 100%)', stories:[]},
+  '040': {state:'visited', pet:true, name:'Austria', flag:'linear-gradient(#ED2939 0 33%,#fff 33% 66%,#ED2939 66% 100%)', stories:[]},
+  '380': {state:'visited', pet:false, name:'Italy', flag:'linear-gradient(90deg,#008C45 0 33%,#fff 33% 66%,#CD212A 66%)', stories:[]},
+  '724': {state:'visited', pet:false, name:'Spain', flag:'linear-gradient(#AA151B 0 25%,#F1BF00 25% 75%,#AA151B 75%)', stories:[]},
+  '620': {state:'visited', pet:false, name:'Portugal', flag:'linear-gradient(90deg,#006600 0 40%,#FF0000 40%)', stories:[]},
+  '250': {state:'visited', pet:true, name:'France', flag:'linear-gradient(90deg,#002395 0 33%,#fff 33% 66%,#ED2939 66%)', stories:[]},
+  '826': {state:'visited', pet:false, name:'United Kingdom', flag:'#012169', stories:[]},
+  '372': {state:'visited', pet:false, name:'Ireland', flag:'linear-gradient(90deg,#169B62 0 33%,#fff 33% 66%,#FF883E 66%)', stories:[]},
+  '203': {state:'visited', pet:true, name:'Czechia', flag:'linear-gradient(#fff 0 50%,#D7141A 50%)', stories:[]},
+  '616': {state:'visited', pet:false, name:'Poland', flag:'linear-gradient(#fff 0 50%,#DC143C 50%)', stories:[]},
+  '348': {state:'visited', pet:false, name:'Hungary', flag:'linear-gradient(#CE2939 0 33%,#fff 33% 66%,#477050 66%)', stories:[]},
+  '300': {state:'visited', pet:false, name:'Greece', flag:'linear-gradient(#0D5EAF 0 20%,#fff 20% 40%,#0D5EAF 40% 60%,#fff 60% 80%,#0D5EAF 80%)', stories:[]},
+  '792': {state:'visited', pet:false, name:'Türkiye', flag:'#E30A17', stories:[]},
+  '818': {state:'visited', pet:false, name:'Egypt', flag:'linear-gradient(#CE1126 0 33%,#fff 33% 66%,#000 66%)', stories:[]},
+  '710': {state:'visited', pet:false, name:'South Africa', flag:'linear-gradient(#007A4D 0 100%)', stories:[]},
+  '404': {state:'visited', pet:false, name:'Kenya', flag:'linear-gradient(#000 0 33%,#BB0000 33% 66%,#006600 66%)', stories:[]},
+  '834': {state:'visited', pet:false, name:'Tanzania', flag:'linear-gradient(135deg,#1EB53A 0 45%,#000 45% 55%,#00A3DD 55%)', stories:[]},
+  '356': {state:'visited', pet:false, name:'India', flag:'linear-gradient(#FF9933 0 33%,#fff 33% 66%,#138808 66%)', stories:[]},
+  '764': {state:'visited', pet:false, name:'Thailand', flag:'linear-gradient(#A51931 0 17%,#fff 17% 33%,#2D2A4A 33% 66%,#fff 66% 83%,#A51931 83%)', stories:[]},
+  '704': {state:'visited', pet:false, name:'Vietnam', flag:'#DA251D', stories:[]},
+  '036': {state:'visited', pet:false, name:'Australia', flag:'#012169', stories:[]},
+  '554': {state:'visited', pet:false, name:'New Zealand', flag:'#00247D', stories:[]},
+  '840': {state:'visited', pet:false, name:'United States', flag:'linear-gradient(#B22234 0 15%,#fff 15% 30%,#B22234 30% 45%,#fff 45% 60%,#B22234 60%)', stories:[]},
+  '124': {state:'visited', pet:true, name:'Canada', flag:'linear-gradient(90deg,#FF0000 0 28%,#fff 28% 72%,#FF0000 72%)', stories:[]},
+  '484': {state:'visited', pet:false, name:'Mexico', flag:'linear-gradient(90deg,#006847 0 33%,#fff 33% 66%,#CE1126 66%)', stories:[]},
+  '152': {state:'visited', pet:false, name:'Chile', flag:'linear-gradient(90deg,#0039A6 0 33%,#fff 33%),linear-gradient(#fff 0 50%,#D52B1E 50%)', stories:[]},
+  '604': {state:'visited', pet:false, name:'Peru', flag:'linear-gradient(90deg,#D91023 0 33%,#fff 33% 66%,#D91023 66%)', stories:[]},
+  '218': {state:'visited', pet:false, name:'Ecuador', flag:'linear-gradient(#FFDD00 0 50%,#034EA2 50% 75%,#ED1C24 75%)', stories:[]},
+  '170': {state:'visited', pet:false, name:'Colombia', flag:'linear-gradient(#FCD116 0 50%,#003893 50% 75%,#CE1126 75%)', stories:[]},
+  '188': {state:'layover', pet:false, name:'Costa Rica', flag:'linear-gradient(#002B7F 0 20%,#fff 20% 33%,#CE1126 33% 66%,#fff 66% 80%,#002B7F 80%)', stories:[]},
+  '352': {state:'visited', pet:false, name:'Iceland', flag:'#02529C', stories:[]},
+  '246': {state:'visited', pet:false, name:'Finland', flag:'linear-gradient(90deg,transparent 0 30%,#003580 30% 45%,transparent 45%),linear-gradient(0deg,transparent 0 40%,#003580 40% 58%,transparent 58%),#fff', stories:[]},
+  '233': {state:'visited', pet:false, name:'Estonia', flag:'linear-gradient(#0072CE 0 33%,#000 33% 66%,#fff 66%)', stories:[]},
+  '428': {state:'visited', pet:false, name:'Latvia', flag:'linear-gradient(#9E3039 0 40%,#fff 40% 60%,#9E3039 60%)', stories:[]},
+  '440': {state:'visited', pet:false, name:'Lithuania', flag:'linear-gradient(#FDB913 0 33%,#006A44 33% 66%,#C1272D 66%)', stories:[]},
+  '703': {state:'visited', pet:true, name:'Slovakia', flag:'linear-gradient(#fff 0 33%,#0B4EA2 33% 66%,#EE1C25 66%)', stories:[]},
+  '642': {state:'visited', pet:false, name:'Romania', flag:'linear-gradient(90deg,#002B7F 0 33%,#FCD116 33% 66%,#CE1126 66%)', stories:[]},
+  '688': {state:'visited', pet:true, name:'Serbia', flag:'linear-gradient(#C6363C 0 33%,#0C4076 33% 66%,#fff 66%)', stories:[]},
+  '070': {state:'visited', pet:true, name:'Bosnia and Herzegovina', flag:'#002F6C', stories:[]},
+  '008': {state:'visited', pet:true, name:'Albania', flag:'#E41E20', stories:[]},
+  '807': {state:'visited', pet:true, name:'North Macedonia', flag:'#D20000', stories:[]},
+  '056': {state:'visited', pet:true, name:'Belgium', flag:'linear-gradient(90deg,#000 0 33%,#FDDA24 33% 66%,#EF3340 66%)', stories:[]},
+  '442': {state:'visited', pet:true, name:'Luxembourg', flag:'linear-gradient(#ED2939 0 33%,#fff 33% 66%,#00A1DE 66%)', stories:[]},
+  '756': {state:'visited', pet:true, name:'Switzerland', flag:'#FF0000', stories:[]},
+  '196': {state:'visited', pet:false, name:'Cyprus', flag:'#fff', stories:[]},
+  '470': {state:'visited', pet:false, name:'Malta', flag:'linear-gradient(90deg,#fff 0 50%,#CF142B 50%)', stories:[]},
+  '784': {state:'layover', pet:false, name:'United Arab Emirates', flag:'linear-gradient(#00732F 0 33%,#fff 33% 66%,#000 66%)', stories:[]},
+  '682': {state:'layover', pet:false, name:'Saudi Arabia', flag:'#006C35', stories:[]},
+  '512': {state:'visited', pet:false, name:'Oman', flag:'linear-gradient(#fff 0 33%,#DB161B 33% 66%,#008000 66%)', stories:[]},
+  '360': {state:'visited', pet:false, name:'Indonesia', flag:'linear-gradient(#FF0000 0 50%,#fff 50%)', stories:[]},
+  '458': {state:'layover', pet:false, name:'Malaysia', flag:'#010066', stories:[]},
+  '702': {state:'layover', pet:false, name:'Singapore', flag:'linear-gradient(#EF3340 0 50%,#fff 50%)', stories:[]},
+  '410': {state:'visited', pet:false, name:'South Korea', flag:'#fff', stories:[]},
+  '156': {state:'visited', pet:false, name:'China', flag:'#EE1C25', stories:[]},
+  '344': {state:'visited', pet:false, name:'Hong Kong', flag:'#DE2910', stories:[]},
+  '524': {state:'visited', pet:false, name:'Nepal', flag:'#DC143C', stories:[]},
+  '144': {state:'visited', pet:false, name:'Sri Lanka', flag:'#FFB700', stories:[]},
+  '104': {state:'visited', pet:false, name:'Myanmar', flag:'linear-gradient(#FECB00 0 33%,#34B233 33% 66%,#EA2839 66%)', stories:[]},
+  '116': {state:'visited', pet:false, name:'Cambodia', flag:'linear-gradient(#032EA1 0 25%,#E00025 25% 75%,#032EA1 75%)', stories:[]},
+  '418': {state:'visited', pet:false, name:'Laos', flag:'linear-gradient(#CE1126 0 30%,#002868 30% 70%,#CE1126 70%)', stories:[]},
+  '608': {state:'visited', pet:false, name:'Philippines', flag:'linear-gradient(#0038A8 0 50%,#CE1126 50%)', stories:[]},
+  '242': {state:'visited', pet:false, name:'Fiji', flag:'#68BFE5', stories:[]},
+  '598': {state:'visited', pet:false, name:'Papua New Guinea', flag:'#000', stories:[]},
+  '012': {state:'visited', pet:false, name:'Algeria', flag:'linear-gradient(90deg,#006233 0 50%,#fff 50%)', stories:[]},
+  '788': {state:'visited', pet:false, name:'Tunisia', flag:'#E70013', stories:[]},
+  '504b':{state:'visited', pet:false, name:'Western Sahara', flag:'#000', stories:[]},
+  '566': {state:'visited', pet:false, name:'Nigeria', flag:'linear-gradient(90deg,#008751 0 33%,#fff 33% 66%,#008751 66%)', stories:[]},
+  '231': {state:'visited', pet:false, name:'Ethiopia', flag:'linear-gradient(#078930 0 33%,#FCDD09 33% 66%,#DA121A 66%)', stories:[]},
+  '800': {state:'visited', pet:false, name:'Uganda', flag:'linear-gradient(#000 0 17%,#FCDC04 17% 33%,#D90000 33% 50%,#000 50% 67%,#FCDC04 67% 83%,#D90000 83%)', stories:[]},
+  '646': {state:'visited', pet:false, name:'Rwanda', flag:'linear-gradient(#00A1DE 0 50%,#FAD201 50% 75%,#20603D 75%)', stories:[]},
+  '516': {state:'visited', pet:false, name:'Namibia', flag:'#003580', stories:[]},
+  '072': {state:'visited', pet:false, name:'Botswana', flag:'linear-gradient(#75AADB 0 40%,#000 40% 60%,#75AADB 60%)', stories:[]},
+  '894': {state:'visited', pet:false, name:'Zambia', flag:'#198A00', stories:[]},
+  '716': {state:'visited', pet:false, name:'Zimbabwe', flag:'#319208', stories:[]},
+  '480': {state:'visited', pet:false, name:'Mauritius', flag:'linear-gradient(#EA2839 0 25%,#1A206D 25% 50%,#FFD500 50% 75%,#00A551 75%)', stories:[]},
+  '132': {state:'visited', pet:false, name:'Cabo Verde', flag:'#003893', stories:[]},
+  '858': {state:'visited', pet:false, name:'Uruguay', flag:'#fff', stories:[]},
+  '600': {state:'visited', pet:false, name:'Paraguay', flag:'linear-gradient(#D52B1E 0 33%,#fff 33% 66%,#0038A8 66%)', stories:[]},
+  '068': {state:'visited', pet:false, name:'Bolivia', flag:'linear-gradient(#D52B1E 0 33%,#F9E300 33% 66%,#007934 66%)', stories:[]},
+  '862': {state:'layover', pet:false, name:'Venezuela', flag:'linear-gradient(#FFCC00 0 33%,#00247D 33% 66%,#CF142B 66%)', stories:[]},
+  '388': {state:'visited', pet:false, name:'Jamaica', flag:'#009B3A', stories:[]},
+  '192': {state:'visited', pet:false, name:'Cuba', flag:'#002A8F', stories:[]},
+  '214': {state:'visited', pet:false, name:'Dominican Republic', flag:'#002D62', stories:[]},
+  '320': {state:'visited', pet:false, name:'Guatemala', flag:'linear-gradient(90deg,#4997D0 0 33%,#fff 33% 66%,#4997D0 66%)', stories:[]},
+  '340': {state:'visited', pet:false, name:'Honduras', flag:'linear-gradient(#0073CF 0 33%,#fff 33% 66%,#0073CF 66%)', stories:[]},
+  '558': {state:'visited', pet:false, name:'Nicaragua', flag:'linear-gradient(#0067C6 0 33%,#fff 33% 66%,#0067C6 66%)', stories:[]},
+  '591': {state:'visited', pet:false, name:'Panama', flag:'#fff', stories:[]},
+  '084': {state:'visited', pet:false, name:'Belize', flag:'#003F87', stories:[]},
+  '222': {state:'visited', pet:false, name:'El Salvador', flag:'linear-gradient(#0F47AF 0 33%,#fff 33% 66%,#0F47AF 66%)', stories:[]},
+  '643': {state:'visited', pet:false, name:'Russia', flag:'linear-gradient(#fff 0 33%,#0039A6 33% 66%,#D52B1E 66%)', stories:[]},
+  '804': {state:'visited', pet:false, name:'Ukraine', flag:'linear-gradient(#0057B7 0 50%,#FFDD00 50%)', stories:[]},
+  '112': {state:'visited', pet:false, name:'Belarus', flag:'linear-gradient(#C8313E 0 66%,#4AA657 66%)', stories:[]},
+  '498': {state:'visited', pet:false, name:'Moldova', flag:'linear-gradient(90deg,#0046AE 0 33%,#FFD200 33% 66%,#CC0000 66%)', stories:[]},
+  '268': {state:'visited', pet:false, name:'Georgia', flag:'#fff', stories:[]},
+  '051': {state:'visited', pet:false, name:'Armenia', flag:'linear-gradient(#D90012 0 33%,#0033A0 33% 66%,#F2A800 66%)', stories:[]},
+  '031': {state:'visited', pet:false, name:'Azerbaijan', flag:'linear-gradient(#0092BC 0 33%,#E4002B 33% 66%,#00AF66 66%)', stories:[]},
+  '398': {state:'visited', pet:false, name:'Kazakhstan', flag:'#00AFCA', stories:[]},
+  '860': {state:'visited', pet:false, name:'Uzbekistan', flag:'linear-gradient(#0099B5 0 33%,#fff 33% 66%,#1EB53A 66%)', stories:[]},
+  '417': {state:'visited', pet:false, name:'Kyrgyzstan', flag:'#E8112D', stories:[]},
+  '496': {state:'visited', pet:false, name:'Mongolia', flag:'linear-gradient(90deg,#C4272F 0 33%,#015197 33% 66%,#C4272F 66%)', stories:[]},
+  '048': {state:'layover', pet:false, name:'Bahrain', flag:'linear-gradient(90deg,#fff 0 35%,#CE1126 35%)', stories:[]},
+  '414': {state:'layover', pet:false, name:'Kuwait', flag:'linear-gradient(#007A3D 0 33%,#fff 33% 66%,#CE1126 66%)', stories:[]},
+  '376': {state:'visited', pet:false, name:'Israel', flag:'#fff', stories:[]},
+  '400b':{state:'visited', pet:false, name:'Lebanon', flag:'linear-gradient(#EE161F 0 25%,#fff 25% 75%,#EE161F 75%)', stories:[]}
+};
+
+const W = 1140, H = 560;
+const stage = document.getElementById('stage');
+const tip = document.getElementById('tip');
+const panel = document.getElementById('panel');
+let activeLayer = 'all', selected = null;
+
+const svg = d3.select('#stage').append('svg')
+  .attr('viewBox', `0 0 ${W} ${H}`)
+  .attr('preserveAspectRatio','xMidYMid meet');
+
+const projection = d3.geoNaturalEarth1().scale(200).translate([W/2, H/2]);
+const path = d3.geoPath(projection);
+
+svg.append('path').attr('class','sphere').attr('d', path({type:'Sphere'}));
+svg.append('path').attr('class','grat').attr('d', path(d3.geoGraticule10()));
+
+const gLand = svg.append('g');
+const gPins = svg.append('g').attr('class','pin');
+
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(topo => {
+  const feats = topojson.feature(topo, topo.objects.countries).features;
+
+  gLand.selectAll('path').data(feats).join('path')
+    .attr('d', path)
+    .attr('class', d => {
+      const e = LEDGER[d.id];
+      return 'land' + (e ? ' hasdata ' + e.state : '');
+    })
+    .on('mousemove', function(ev, d){
+      const e = LEDGER[d.id];
+      const [x,y] = d3.pointer(ev, stage);
+      const nm = e ? e.name : (d.properties && d.properties.name) || '';
+      if(e){
+        const ns = e.stories.length;
+        tip.innerHTML = `<div class="tn"><span class="flag" style="background:${e.flag};background-size:cover"></span>${nm}</div>`
+          + `<div class="tm">${e.state.toUpperCase()}${e.pet ? ' · WITH MAGNUS' : ''}</div>`
+          + `<div class="ts">${ns ? ns + ' story filed. Click to read.' : 'No story filed yet. Click to change that.'}</div>`;
+      } else {
+        tip.innerHTML = `<div class="tn">${nm}</div><div class="ts">Not yet.</div>`;
+      }
+      tip.style.opacity = 1;
+      tip.style.left = Math.min(x + 14, stage.clientWidth - 245) + 'px';
+      tip.style.top = (y + 14) + 'px';
+    })
+    .on('mouseleave', () => tip.style.opacity = 0)
+    .on('click', function(ev, d){
+      const e = LEDGER[d.id];
+      if(!e) return;
+      gLand.selectAll('path').classed('sel', false);
+      d3.select(this).classed('sel', true);
+      openPanel(e);
+    });
+
+  // Magnus pins
+  const petPins = Object.keys(LEDGER).filter(k => LEDGER[k].pet);
+  const byId = {}; feats.forEach(f => byId[f.id] = f);
+  gPins.selectAll('circle').data(petPins.filter(k => byId[k])).join('circle')
+    .attr('cx', k => path.centroid(byId[k])[0])
+    .attr('cy', k => path.centroid(byId[k])[1])
+    .attr('r', 3.2)
+    .attr('fill', '#7C5CBF')
+    .attr('stroke', '#F7F1E8')
+    .attr('stroke-width', .9);
+});
+
+function openPanel(e){
+  document.getElementById('pflag').style.background = e.flag;
+  document.getElementById('pflag').style.backgroundSize = 'cover';
+  document.getElementById('pname').textContent = e.name;
+  document.getElementById('pmeta').textContent =
+    (e.stories.length ? e.stories.length + ' STORY FILED' : 'NO STORY YET') + ' · ' + e.state.toUpperCase() + (e.pet ? ' · WITH MAGNUS' : '');
+  const b = document.getElementById('pbody');
+  if(e.stories.length){
+    b.innerHTML = '<div class="plab">FILED FROM HERE</div>' + e.stories.map(s =>
+      `<div class="scard"><div class="simg" style="background-image:url('${s.img}')"></div>`
+      + `<div class="sbody"><div class="sm">${s.m}</div><h4>${s.t}</h4><div class="sa">${s.a}</div></div></div>`).join('');
+  } else {
+    b.innerHTML = '<div class="plab">FILED FROM HERE</div>'
+      + `<div class="empty"><p>Been here, written nothing. Yet.</p><span class="eb">Pen a tale →</span></div>`;
+  }
+  panel.classList.add('open');
+}
+document.getElementById('pclose').onclick = () => {
+  panel.classList.remove('open');
+  gLand.selectAll('path').classed('sel', false);
+};
+
+document.querySelectorAll('.chip').forEach(c => c.onclick = () => {
+  document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  activeLayer = c.dataset.layer;
+  gLand.selectAll('path').style('opacity', d => {
+    const e = LEDGER[d.id];
+    if(activeLayer === 'all') return 1;
+    if(!e) return .28;
+    if(activeLayer === 'pet') return e.pet ? 1 : .22;
+    return e.state === activeLayer ? 1 : .22;
+  });
+  gPins.style('opacity', activeLayer === 'all' || activeLayer === 'pet' ? 1 : .15);
+});
+
+// ── mode: personal (logged-in user's map) vs generic (visitor) ──
+(function(){
+  const q = new URLSearchParams(location.search);
+  if (q.get('embed') === '1') {
+    ['.nav'].forEach(s => { const el = document.querySelector(s); if (el) el.style.display = 'none'; });
+    const hd = document.querySelector('header.hd'); if (hd) { hd.style.padding = '18px 0 12px'; }
+    const note = document.querySelector('.note'); if (note) note.style.display = 'none';
+    document.body.style.background = '#12141F';
+  }
+  const mode = q.get('mode') || 'personal';
+  if (mode !== 'generic') return;
+  // de-personalize labels
+  document.querySelectorAll('.chip').forEach(c => {
+    if ((c.textContent||'').indexOf('Magnus') > -1) c.innerHTML = c.innerHTML.replace('With Magnus','With a pet');
+  });
+  document.querySelectorAll('.lg').forEach(l => {
+    if ((l.textContent||'').indexOf('Magnus') > -1) l.innerHTML = l.innerHTML.replace('Magnus was here','Pet traveled here');
+  });
+  const h1 = document.querySelector('h1');
+  if (h1) h1.innerHTML = 'Where the Travelers have <em>been.</em>';
+  const sub = document.querySelector('.sub');
+  if (sub) sub.textContent = 'Every lit country carries a real visit. Join to draw your own map.';
+  const edit = Array.from(document.querySelectorAll('.tool')).find(t => (t.textContent||'').indexOf('Edit') > -1);
+  if (edit) edit.textContent = 'Join to log yours';
+  // pet-pin tooltips: swap Magnus mention
+  const _open = window.openPanel;
+  document.addEventListener('mousemove', function(){
+    const tip = document.getElementById('tip');
+    if (tip && tip.innerHTML.indexOf('WITH MAGNUS') > -1) tip.innerHTML = tip.innerHTML.replace(/WITH MAGNUS/g,'WITH A PET');
+  }, true);
+  const pm = document.getElementById('pmeta');
+  if (pm) new MutationObserver(function(){
+    if (pm.textContent.indexOf('WITH MAGNUS') > -1) pm.textContent = pm.textContent.replace('WITH MAGNUS','WITH A PET');
+  }).observe(pm, {childList:true, characterData:true, subtree:true});
+})();
+</script>
+</body>
+</html>

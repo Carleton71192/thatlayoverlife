@@ -1,0 +1,418 @@
+> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+
+# REQUIREMENTS · every item, numbered
+
+This is the master list. **Every ID must end in STATUS.md as Done, Blocked, N/A or Deferred, with evidence.** If an ID is not in STATUS.md, it is not done. Nothing here is optional unless it says N/A or Deferred.
+
+Total: **127 items**.
+
+## A · Site-wide rules
+
+- **A01** No em dashes in any live copy, meta or alt text
+  - Where: all pages
+  - Verify: verify-live.mjs reports 0 "—" hits
+- **A02** Vibe collections gone (Sunset Mist, Desert Glow, Alpine Escape, Wild Routes, Salty Air)
+  - Where: all pages, CMS
+  - Verify: verify-live.mjs reports 0 hits; the Collections template is unpublished or redirected
+- **A03** Anti-AI marketing gone ("not chatbots", "0 stories by a chatbot", "written by humans" as a claim)
+  - Where: all pages
+  - Verify: verify-live.mjs reports 0 hits. The charter fine print may keep the practice
+- **A04** Dates read "28 September 2026". No "September 28, 2026", no numeric dates
+  - Where: all pages, CMS date formats
+  - Verify: verify-live.mjs reports 0 US-order dates
+- **A05** Teal #00C9C8 only on dark surfaces. #067A79 for teal text on cream/paper. Body links on light = Ink text + teal underline
+  - Where: all pages
+  - Verify: Spot-check 5 pages with devtools; no #00C9C8 text on a light background
+- **A06** Type: Playfair Display 800 headlines, IBM Plex Sans Condensed body, JetBrains Mono meta. Syne only in the wordmark
+  - Where: all pages
+  - Verify: Spot-check computed font-family on H1, body and an eyebrow on 5 pages
+- **A07** hello@thatlayover.life is the only contact address on the site
+  - Where: all pages, forms, emails
+  - Verify: verify-live.mjs lists every email found; only hello@ appears
+- **A08** Sign-up age checkbox says "I am 16 or older"
+  - Where: /signup
+  - Verify: Fetch /signup, see the exact string
+- **A09** "microchip", "titer/titre", "FAVN" absent from UI, forms and marketing. Exempt: the Paw Passport guide and the free "chip first" story
+  - Where: all pages
+  - Verify: verify-live.mjs reports hits only on exempt URLs
+- **A10** Every publish goes to both custom domains + the Webflow subdomain, checked with ?v=
+  - Where: process
+  - Verify: Each STATUS row has a ?v= URL as evidence
+- **A11** TLL Nav v1 Memberstack blocks untouched. Logged out shows Log in; logged in shows avatar + Account
+  - Where: nav
+  - Verify: Test both states in a real browser and note it in STATUS
+- **A12** No invented people, pets, photo credits, quotes or stats. Empty slots say OPEN SLOT / COMING SOON / SAMPLE
+  - Where: all pages
+  - Verify: Read each rebuilt page once for this before marking it Done
+- **A13** "Every byline a real person" and "reviewed within 48 hours" (never "published within 48 hours")
+  - Where: all pages
+  - Verify: verify-live.mjs reports 0 hits for the retired wording
+- **A14** The photo feature is called "The Layover Lounge" everywhere
+  - Where: all pages
+  - Verify: verify-live.mjs reports 0 hits for "Sharing Gallery"
+- **A15** Preservation: no published story, binding, data-ms-* attribute, element ID or form input removed
+  - Where: everything
+  - Verify: Story count on /stories is the same or higher than before you started; list any removed hook in STATUS (should be none)
+
+## B · Page parity (one row per screen file, nothing skipped)
+
+- **B00** Global nav
+  - Where: every page · screens/00-global-nav-and-chrome.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B01** Home
+  - Where: / · screens/01-home.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B02** Stories index
+  - Where: /stories · screens/02-stories.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B03** Story detail (ledger, route strip, Been/Want)
+  - Where: /stories/{slug} · screens/03-story-detail.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B04** Travelers
+  - Where: /travelers · screens/04-travelers.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B05** Paw Passport hub (+ groups switcher)
+  - Where: /the-paw-passport · screens/05-paw.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B06** About
+  - Where: /about · screens/06-about-share.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B07** Pen a Tale submission (members gate, Write/Link fork)
+  - Where: /share · screens/07-pen-a-tale-submission.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B08** Travel Wire
+  - Where: /travel-wire · screens/08-the-travel-wire-news.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B09** Editor desk (role gate, NOINDEX)
+  - Where: /editor-desk · screens/09-editor-desk-review-panels.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B10** Country page
+  - Where: /countries/{slug} · screens/10-country-page.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B11** Public profile (link stack)
+  - Where: /profile/{slug} · screens/11-public-profile.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B12** Edit profile (three toggles, link stack editor)
+  - Where: /edit-profile · screens/12-edit-profile.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B13** Spotlight (honest slots only)
+  - Where: /spotlight · screens/13-spotlight.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B14** FAQ
+  - Where: /faq · screens/14-faq.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B15** Support (+ Layover Club)
+  - Where: /support · screens/15-support.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B16** For expats (finder, directory teaser, groups form)
+  - Where: /for-expats · screens/16-expats-the-location-experts.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B17** For press
+  - Where: /for-press · screens/17-press-trips-the-pros.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B18** For affiliates / creators
+  - Where: /for-affiliates · screens/18-recruit-pages.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B19** My pets (+ Pack request)
+  - Where: /my-pets · screens/19-my-pets-form.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B20** Public Paw Passport (+ The Pack)
+  - Where: /paw-passport/{slug} · screens/20-public-paw-passport-payoff.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B21** Pets index
+  - Where: /pets · screens/21-pets-index.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B22** The Map (chrome only, engine untouched)
+  - Where: /the-map · screens/22-the-map.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B23** Editorial charter (+ rule 08 DRAFT)
+  - Where: /editorial-charter · screens/23-editorial-charter.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B24** Community guidelines
+  - Where: /community-guidelines · screens/24-community-guidelines.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B25** Privacy + Terms
+  - Where: /privacy, /terms · screens/25-legal-privacy-terms.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B26** Forgot password
+  - Where: /forgot-password · screens/26-forgot-password.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B27** Contact
+  - Where: /contact · screens/27-contact.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B28** Cookies
+  - Where: /cookies · screens/28-cookies.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B29** Share photos (members gate, depicted-persons consent)
+  - Where: /share-photos · screens/29-share-photos.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B30** Story share card / OG preview
+  - Where: og tags on /stories/{slug} · screens/30-share-card-og-preview.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B31** Style guide (reference, no route)
+  - Where: none · screens/31-style-guide.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+  - Allowed: N/A (reference only)
+- **B32** Directory boards (reference for group C)
+  - Where: see C · screens/32-directory-boards-expats-creators-press.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+  - Allowed: N/A (reference only)
+- **B33** Answer guides (DRAFT banner)
+  - Where: /guides/copenhagen-stopover, /guides/ees-etias-layover · screens/33-answer-guides-aeo.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B34** Layover Awards
+  - Where: /awards · screens/34-layover-awards.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B35** For brands (no prices)
+  - Where: /for-brands · screens/35-for-brands-stopover-partnerships.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B36** 404
+  - Where: any unknown URL · screens/36-404.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B37** Login + Sign up (consent block)
+  - Where: /login, /signup · screens/37-login-signup.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B38** Account (real counters, lists, Wrapped, export)
+  - Where: /account · screens/38-account.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B39** The Layover Lounge (truthful credits)
+  - Where: /gallery · screens/39-lounge.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B40** Destinations (every country by flag)
+  - Where: /destinations · screens/40-destinations.html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+- **B41** Global footer (GUIDES + WORK WITH US rows) on every page
+  - Where: every page · screens/40-destinations (end of file, after <!-- FOOTER -->).html
+  - Verify: Side by side with the screen file: section order, copy, components, states, links, empty states all match. List every difference found and fixed in STATUS
+
+## C · Traveler directory (DESIGN-SPEC §3c, screens/32)
+
+- **C01** Memberstack custom fields: is-expat, is-creator, is-press; lives-country, lives-city, lives-years, knows, tags, languages; roles, affiliation, regions, monetization; link-{type} + link-{type}-on; contact-mode, contact-ig, contact-wa, contact-relay-on
+  - Where: Memberstack
+  - Verify: Screenshot or list of the fields in STATUS
+- **C02** Directory CMS collection synced from opted-in members only. Toggle off removes on next sync. contact-mode none hides every route
+  - Where: CMS + sync
+  - Verify: Toggle a test member off and on; show the item disappear and return
+- **C03** /expats directory page
+  - Where: /expats
+  - Verify: Live page matches board D-series; shuffled order
+- **C04** /creators directory page
+  - Where: /creators
+  - Verify: Live page matches board
+- **C05** /press directory page + manual Verified flag
+  - Where: /press
+  - Verify: Live page matches; Verified shows only when Nancy sets it
+- **C06** /press-trips board + Press Trips collection. Trips hide after deadline, all labeled "Hosted trip"
+  - Where: /press-trips
+  - Verify: Add a past-deadline test trip; it does not render
+- **C07** Expat block on every country page, correct with 1 card, honest empty state
+  - Where: /countries/{slug}
+  - Verify: Check Denmark (1 card) and Chad (empty)
+- **C08** Resources collection + the 4 Denmark seeds exactly as in DESIGN-SPEC §3b. No other country seeded
+  - Where: CMS
+  - Verify: Collection has exactly 4 live items
+- **C09** Expat Groups collection + groups form, status starts "in review", email never shown
+  - Where: /for-expats
+  - Verify: Submit a test group; it lands as in review
+- **C10** Link-out stories: external-url, platform, gated fields; /share fork; "Opens on {platform} ↗" cards; count toward totals
+  - Where: /share, /stories
+  - Verify: Create one test link-out story end to end
+- **C11** Contact without exposure: only Instagram, wa.me/message/… (reject wa.me/{number}), or relay form. Raw phone/email never rendered
+  - Where: directory cards
+  - Verify: Try saving wa.me/4512345678; it is rejected
+- **C12** Shuffled on every load, never ranked, no paid placement
+  - Where: /expats /creators /press
+  - Verify: Reload 3 times; order changes
+- **C13** "Report this profile" on every directory card; relay form rate-limited
+  - Where: directory
+  - Verify: Present on every card
+- **C14** Interest tags as a CMS option list (PROVISIONAL), not hardcoded
+  - Where: CMS
+  - Verify: Tags come from the collection
+- **C15** Opt-in link stack renders on public profile, Travelers card (max 4 chips), expats card, pet passport. Links default hidden. rel="noopener nofollow ugc"
+  - Where: profiles
+  - Verify: A link with -on false does not render
+- **C16** "Find your people" switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates
+  - Where: 4 pages
+  - Verify: Present on all 4, active pill correct
+- **C17** Expat finder: autocomplete from Countries, aliases, quick picks with circle flags, result panel, honest no-match
+  - Where: /for-expats
+  - Verify: Type "UK", "Copenhagen", "zzz"
+- **C18** Seed: Nancy is the only real directory member. Never render her WhatsApp or email
+  - Where: directory
+  - Verify: Only Nancy appears; no phone/email in page source
+
+## D · Story ledger, lists, guides, awards (CHANGES v6)
+
+- **D01** Story ledger (8 rows, "Contributor to add" when empty) + new Stories fields + correction mailto
+  - Where: /stories/{slug}
+  - Verify: Visible on every published story
+- **D02** Route strip renders only when route-stops is filled
+  - Where: /stories/{slug}
+  - Verify: Balkans shows it; a story without stops does not
+- **D03** Been here / Want to go toggles, stored in member JSON tllPlaces (never tllStates)
+  - Where: story + country pages
+  - Verify: Toggle as a test member; tllStates unchanged
+- **D04** Your lists on /account, member JSON tllLists
+  - Where: /account
+  - Verify: Tabs render, empty tabs have honest lines
+- **D05** Layover Wrapped card on /account with quiet-year fallback + wrapped-hidden field
+  - Where: /account
+  - Verify: Test member with 0 trips sees the fallback
+- **D06** Export my data as an email request (JSON + Markdown within one month)
+  - Where: /account
+  - Verify: Button sends the request to hello@
+- **D07** Two answer guides with H3 questions, sources, ledger, DRAFT banner kept until Nancy checks
+  - Where: /guides/*
+  - Verify: Banner present
+- **D08** /awards nomination form (members only) + Award Nominations collection. No public tallies
+  - Where: /awards
+  - Verify: Submit a test nomination; no counts render
+
+## E · Monetization (CHANGES v7)
+
+- **E01** /for-brands page, no prices, mailto subject PARTNERSHIP
+  - Where: /for-brands
+  - Verify: Live page matches screens/35
+- **E02** Charter rule 08 + #paid-work block, labeled DRAFT until Nancy approves
+  - Where: /editorial-charter
+  - Verify: Anchor works, DRAFT label present
+- **E03** Layover Club on /support #layover-club, buttons disabled "COMING SOON"; club-supporter boolean field; never gates content
+  - Where: /support
+  - Verify: Buttons disabled; field exists
+- **E04** Paw guide sales block: "V1.0 · INCL. 25% MOMS", cites Regulation (EU) 2026/131
+  - Where: /the-paw-passport
+  - Verify: Exact strings present
+- **E05** Footer WORK WITH US row: For brands · The Layover Club · How paid work works
+  - Where: footer, every page
+  - Verify: Present on 5 random pages
+- **E06** Labeling mechanism: Reklame before sponsored headlines, Reklamelink beside affiliate links, Annonce row for any paid slot
+  - Where: story template
+  - Verify: A test sponsored story shows Reklame first
+
+## F · Memberstack gating (IMPLEMENTATION-BRIEF mapping)
+
+- **F01** Members/anonymous split on /share, /share-photos, /my-pets, /edit-profile, /account, /editor-desk
+  - Where: 6 pages
+  - Verify: Logged out, each shows its gate copy; logged in, the page
+- **F02** Editor desk: role gate, log-in only (no join CTA), NOINDEX
+  - Where: /editor-desk
+  - Verify: Non-editor member cannot see the queue
+- **F03** Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge, the map generic mode, /p/{handle}
+  - Where: public pages
+  - Verify: Logged out, all render
+- **F04** Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); counters show real numbers
+  - Where: /account
+  - Verify: Click avatar; lands on /account with non-zero counts
+
+## G · Shareables (SHAREABLES-SPEC.md, shareables/)
+
+- **G01** Counting engine: headline base (UN 193 default, pending Nancy), bonus places chip, tier ladder airside/escaped/fed/slept/lived
+  - Where: shared module
+  - Verify: Unit test: sample member → 62/193 = 32%, +4 bonus, airside excluded
+- **G02** Data hygiene: ignore/remove non-ISO keys (the "undefined" entry) before any count or card
+  - Where: tllStates reader
+  - Verify: Nancy's card count excludes "undefined"
+- **G03** Percent card: master 1080×1920, feed 1080×1350, link 1200×630, light + dark
+  - Where: shareables/02
+  - Verify: Rendered PNGs match frames 02A–02D
+- **G04** Map card: precomputed Equal Earth SVG from world-atlas 50m, clipped ~60°S, Antarctica badge, small-state dot + ring
+  - Where: shareables/03
+  - Verify: Singapore/Malta visible as dots; Antarctica not drawn on the map
+- **G05** Passport: cover + stamp page (shape encodes type, border encodes tier), MRZ strip with no birth date or document-like number
+  - Where: shareables/04
+  - Verify: Matches 04A–04E
+- **G06** Pet passport + pet map: 5 sections, paw-ring cover (never stars), joke ID string
+  - Where: shareables/05
+  - Verify: Matches 05A–05E
+- **G07** Duo card: human rose, pet striped purple + stroke, shared count
+  - Where: shareables/01
+  - Verify: Matches 01A–01D
+- **G08** Pack card (approved pack friends only; open slots when fewer than 9)
+  - Where: shareables/05b
+  - Verify: Matches 05F–05H
+- **G09** Share flow: "Make my card" then "Share". modern-screenshot 4.7 in the browser. Fallbacks: files → link only → download + copy link. Desktop Firefox state
+  - Where: /the-map drawer, pet profile
+  - Verify: Test on iPhone Safari, Android Chrome, desktop Firefox
+- **G10** Privacy panel "Who gets to see this?": Memberstack fields share-level (off|unlisted|public, default off), share-slug, share-items, share-ranges
+  - Where: /the-map, /account
+  - Verify: New member starts Off
+- **G11** Public page /p/{handle} (public) and /p/{slug} (unlisted, noindex). Off = private message. Stats as live text
+  - Where: /p/*
+  - Verify: Toggle levels on a test member and fetch
+- **G12** Empty, new-member and quiet-year states for every card (15 states)
+  - Where: shareables/09
+  - Verify: Test member with 0 and with 2 countries
+- **G13** Alt text generated from data for every card; repeated as live text on /p/
+  - Where: cards
+  - Verify: Alt attribute present on the preview
+- **G14** Accessibility: Ink text on rose chips; rose vs light teal never the only difference; pet purple always hatch + stroke
+  - Where: cards
+  - Verify: Contrast check passes
+- **G15** Never shown: dates, current city, "currently in". Years only on stamps. EXIF stripped. Pet inherits owner visibility. Turning off purges cached preview
+  - Where: cards + /p/
+  - Verify: Review a public card for dates
+- **G16** Per-member OG images via a server route (Webflow Cloud /p). PHASE 2: only after G01–G15 are live
+  - Where: server
+  - Verify: Mark Deferred until then
+  - Allowed: Deferred
+
+## H · The Pack (Magnus's friends)
+
+- **H01** "The Pack" on /paw-passport/{slug}: approved friends only, grid, open slots when fewer, "How a friend gets here" note
+  - Where: screens/20
+  - Verify: Magnus page shows the section with honest slots
+- **H02** /my-pets: add a friend by handle → request to the friend's human → shows only after approval. Either side can remove
+  - Where: screens/19
+  - Verify: Pending friend never renders
+- **H03** Pack Links collection: pet, friend-pet (ref) or friend-ig-handle, friend-photo (uploaded by friend's human), status pending/approved/removed, requested-on
+  - Where: CMS
+  - Verify: Collection exists with these fields
+- **H04** No scraped or embedded Instagram posts or photos
+  - Where: pack
+  - Verify: Only uploaded/approved images
+
+## I · Waiting on Nancy (mark Blocked, never guess)
+
+- **I01** Sitemap + robots.txt (Site Settings → SEO)
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I02** 301s /share→/submit, /gallery→/the-layover-lounge, then flip slugs
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I03** A real Magnus quote to replace the placeholder
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I04** AMSOC full name and URL (Brazil resource)
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I05** Her headline count base (UN 193 / 195 / 250)
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I06** Final tier names
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I07** How existing "layover" map entries migrate (default Escaped recommended)
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I08** Magnus: add Denmark? Kosovo as bonus under UN 193
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I09** Confirm companion purple #7C5CBF
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I10** Layover Club price + Ko-fi link
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I11** Approve charter rule 08
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I12** Guide PDF checked against Regulation (EU) 2026/131 and 2026/705
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I13** Magnus's real pack friends: handles + their humans' OK
+  - Where: Nancy
+  - Verify: Nancy confirms in writing
+- **I14** Short GDPR review before public travel profiles go live
+  - Where: Nancy
+  - Verify: Nancy confirms in writing

@@ -1,0 +1,49 @@
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="images/coast2.jpg">
+<meta name="ext-resource-dependency" content="images/doha.jpg">
+<meta name="ext-resource-dependency" content="images/bulgaria.jpg">
+<meta name="ext-resource-dependency" content="images/ghana.jpg">
+<meta name="ext-resource-dependency" content="images/fitzroy.jpg">
+<meta name="ext-resource-dependency" content="images/antarctica.jpg">
+<meta name="ext-resource-dependency" content="images/rio.jpg">
+<meta name="ext-resource-dependency" content="images/montenegro.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;family=Dancing+Script:wght@700&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>body{margin:0;background:#FDF9F3;font-family:'IBM Plex Sans Condensed',sans-serif;color:#1A1A1A} a{color:#067A79;text-decoration:none}a:hover{color:#F0507A}</style>
+</helmet>
+
+<!-- NAV -->
+<div style="background:#0A0B14;position:sticky;top:0;z-index:50">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between">
+    <span onClick="{{ goHome }}" style="font-family:'Playfair Display',serif;font-weight:800;font-size:17px;color:#F7F1E8;cursor:pointer"><span style="font-family:'Dancing Script',cursive;font-weight:700;opacity:.72;font-size:1.1em">that</span>LAYOVER <span style="color:#F0507A">LIFE.</span></span>
+    <div style="display:flex;gap:22px;align-items:center">
+      <sc-for list="{{navItems}}" as="n" hint-placeholder-count="5">
+        <span onClick="{{ n.go }}" style="font-size:14px;color:{{ n.color }};cursor:pointer;font-weight:{{ n.weight }}">{{ n.label }}</span>
+      </sc-for>
+      <span onClick="{{ goShare }}" style="font-size:13px;color:#fff;background:#F0507A;padding:8px 17px;border-radius:6px;font-weight:700;cursor:pointer">Share your story</span>
+      <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
+        <span onClick="{{ goLogin }}" style="font-size:13px;color:#b8b4ad;cursor:pointer;border:1px solid #2b2f52;padding:7px 15px;border-radius:6px">Log in</span>
+      </sc-if>
+      <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+        <span onClick="{{ goAccount }}" style="display:inline-flex;align-items:center;gap:7px;background:#16182a;border:1px solid #2b2f52;border-radius:16px;padding:4px 12px 4px 5px;cursor:pointer">
+          <span style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);display:inline-flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:10px;color:#0A0B14">N</span>
+          <span style="font-size:12px;color:#F7F1E8">Account</span>
+        </span>
+      </sc-if>
+    </div>
+  </div>
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A0B14"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-weight="800" font-size="64" fill="#F7F1E8">T<tspan fill="#F0507A">L</tspan>L</text></svg></template>
+<!-- PROTOTYPE SCREEN SWITCHER (not part of the site design) -->
+<div style="position:fixed;bottom:14px;left:14px;z-index:9999;background:#0A0B14;border:1px solid #23263c;border-radius:8px;padding:8px 10px;box-shadow:0 6px 24px rgba(0,0,0,.5);max-width:calc(100vw - 28px)">
+  <div onClick="{{ toggleProtoNav }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#4a4d63"><span>PROTOTYPE · ALL SCREENS · {{ protoScreenLabel }}</span><span style="color:#00C9C8">{{ protoToggleLabel }}</span></div>
+  <div style="display:{{ protoNavDisplay }};flex-wrap:wrap;gap:5px;margin-top:6px">
+    <sc-for list="{{ protoNav }}" as="p" hint-placeholder-count="12">
+      <span onClick="{{ p.go }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;border-radius:5px;background: {{ p.bg }};color: {{ p.color }};white-space:nowrap">{{ p.label }}</span>
+    </sc-for>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<!-- ============ TRAVELERS ============ -->
+<sc-if value="{{ isTravelers }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:1180px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">THE TRAVELERS</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1;margin-bottom:10px">Where the Travelers <span style="color:#F0507A;font-style:italic">live.</span></div>
+  <div style="font-size:15px;color:#6B6660;margin-bottom:22px">One founder, one Samoyed in an advisory capacity. The rest of the roster is an invitation.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px">
+    <sc-for list="{{ travFilters }}" as="f" hint-placeholder-count="5">
+      <span onClick="{{ f.pick }}" style="font-size:12px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};border-radius:16px;padding:7px 16px;cursor:pointer;font-weight:600">{{ f.label }}</span>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showFounders }}" hint-placeholder-val="{{ true }}">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#F0507A;font-weight:600;margin-bottom:12px">THE FOUNDER</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px">
+      <div onClick="{{ goProfile }}" style="background:#0A0B14;border-radius:12px;padding:24px;cursor:pointer">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#F0507A;background:rgba(240,80,122,.12);border:1px solid rgba(240,80,122,.45);border-radius:12px;padding:3px 10px">THE FOUNDER</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#cfcbc4;background:rgba(207,203,196,.08);border:1px solid #3a3d55;border-radius:12px;padding:3px 10px">EXPAT</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#D98A2B;background:rgba(217,138,43,.12);border:1px solid rgba(217,138,43,.45);border-radius:12px;padding:3px 10px">LIFER</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+          <span style="flex:none;width:56px;height:56px;border-radius:50%;border:2.5px solid #F0507A;overflow:hidden;background:#1d5e5d;display:block"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n.jpg" alt="Nancy Carleton" style="width:100%;height:100%;object-fit:cover;display:block"></span>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:21px;color:#F7F1E8">Nancy Carleton</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7d7f96;margin-top:2px">CURRENTLY IN COPENHAGEN</div><div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:9px"><span style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:#7d7f96;margin-right:2px">FROM · HAS LIVED IN</span><span title="DENMARK · NOW" style="display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#cfcbc4;background:#16182a;border:1px solid #2b2f52;border-radius:16px;padding:3px 10px 3px 3px"><span style="flex:none;width:16px;height:16px;border-radius:50%;display:block;background:#E0DACE center/cover url('https://cdn.jsdelivr.net/gh/HatScripts/circle-flags@gh-pages/flags/us.svg')"></span><span style="flex:none;width:16px;height:16px;border-radius:50%;display:block;background:#E0DACE center/cover url('https://cdn.jsdelivr.net/gh/HatScripts/circle-flags@gh-pages/flags/dk.svg')"></span>DENMARK · NOW</span><span title="BRAZIL" style="display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#cfcbc4;background:#16182a;border:1px solid #2b2f52;border-radius:16px;padding:3px 10px 3px 3px"><span style="flex:none;width:16px;height:16px;border-radius:50%;display:block;background:#E0DACE center/cover url('https://cdn.jsdelivr.net/gh/HatScripts/circle-flags@gh-pages/flags/br.svg')"></span>BRAZIL</span><span title="VIETNAM" style="display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#cfcbc4;background:#16182a;border:1px solid #2b2f52;border-radius:16px;padding:3px 10px 3px 3px"><span style="flex:none;width:16px;height:16px;border-radius:50%;display:block;background:#E0DACE center/cover url('https://cdn.jsdelivr.net/gh/HatScripts/circle-flags@gh-pages/flags/vn.svg')"></span>VIETNAM</span></div></div>
+        </div>
+        <div style="display:flex;gap:16px;margin-bottom:14px">
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:#00C9C8">87</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#7d7f96">COUNTRIES</div></div>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:#00C9C8">6</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#7d7f96">STORIES</div></div>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:#00C9C8">7</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:#7d7f96">CONTINENTS</div></div>
+        </div>
+        <div style="font-size:12.5px;color:#cfcbc4;line-height:1.5;font-style:italic;margin-bottom:14px">"Layovers are not dead time. They are the cheapest country you will ever visit."</div>
+        <sc-if value="{{ hasPublicLinks }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:12px;border-top:1px solid #23263c">
+            <sc-for list="{{ cardLinks }}" as="l" hint-placeholder-count="2">
+              <span onClick="{{ l.stop }}" title="{{ l.url }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:#00C9C8;border:1px solid #2b2f52;background:#16182a;border-radius:12px;padding:4px 10px;cursor:pointer">{{ l.label }} ↗</span>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#fff">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:10px">OPEN SLOT</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;margin-bottom:8px">Your name here.</div>
+        <div style="font-size:13px;color:#6B6660;line-height:1.5;margin-bottom:16px">One story gets you a card, a map, a byline that stays yours, and a place for your blog and socials.</div>
+        <span onClick="{{ goShare }}" style="font-size:13px;color:#fff;background:#F0507A;padding:10px 20px;border-radius:6px;font-weight:700;cursor:pointer">Share your story →</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showExperts }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:40px 0 14px;padding-top:26px;border-top:1px solid #E0DACE">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#C8425E;font-weight:600;margin-bottom:6px">THE LOCATION EXPERTS</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;line-height:1.1;color:#0A0B14">People who <span style="color:#F0507A;font-style:italic">live</span> there.</div></div>
+      <div style="font-size:13px;color:#6B6660;max-width:420px;line-height:1.5">Eight years somewhere beats eight days everywhere. Each expert anchors their city’s country page.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:22px;background:#fff;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:9px">OPEN DESK · LISBON</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;margin-bottom:6px">Lisbon desk open.</div>
+        <div style="font-size:12.5px;color:#6B6660;line-height:1.5">For the person who knows which tram to skip and which pastelaria to defend.</div>
+      </div>
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:22px;background:#fff;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:9px">OPEN DESK · BERLIN</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;margin-bottom:6px">Berlin desk open.</div>
+        <div style="font-size:12.5px;color:#6B6660;line-height:1.5">For the person who can explain the Späti economy to a first-timer.</div>
+      </div>
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:22px;background:#fff;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:9px">OPEN DESK · SINGAPORE</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;margin-bottom:6px">Singapore desk open.</div>
+        <div style="font-size:12.5px;color:#6B6660;line-height:1.5">For the person with a hawker-centre ranking and receipts.</div>
+      </div>
+      <div onClick="{{ goExpats }}" style="background:#0A0B14;border-radius:12px;padding:22px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#F0507A;font-weight:600;margin-bottom:9px">LIVE SOMEWHERE?</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:#F7F1E8;margin-bottom:6px">Claim your city.</div><div style="font-size:12.5px;color:#cfcbc4;line-height:1.5">A human reviews every application within 48 hours.</div></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:14px">BECOME A LOCATION EXPERT →</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showPress }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:40px 0 14px;padding-top:26px;border-top:1px solid #E0DACE">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#067A79;font-weight:600;margin-bottom:6px">THE PROS · PRESS</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;line-height:1.1;color:#0A0B14">Credentialed, disclosed, <span style="color:#F0507A;font-style:italic">accountable.</span></div></div>
+      <div style="font-size:13px;color:#6B6660;max-width:420px;line-height:1.5">Working travel journalists. Hosted trips labeled at the top of the story, verdicts their own.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:22px;background:#fff;display:flex;flex-direction:column">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:9px">PRESS DESK · OPEN</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;margin-bottom:6px">First press byline, open.</div>
+        <div style="font-size:12.5px;color:#6B6660;line-height:1.5">Outlet plus two published pieces. Your byline, your links, disclosure built in.</div>
+      </div>
+      <div onClick="{{ goPress }}" style="background:#0A0B14;border-radius:12px;padding:22px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#00C9C8;font-weight:600;margin-bottom:9px">WRITE FOR A LIVING?</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:#F7F1E8;margin-bottom:6px">Apply as press.</div><div style="font-size:12.5px;color:#cfcbc4;line-height:1.5">Registered press can receive press-trip offers through TLL. Switch it off any time.</div></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00C9C8;font-weight:700;margin-top:14px">SEE THE PRESS DESK →</div>
+      </div>
+      <div onClick="{{ goPress }}" style="background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:22px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between">
+        <div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:9px">FOR PR TEAMS</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;margin-bottom:6px">Share a press trip.</div><div style="font-size:12.5px;color:#6B6660;line-height:1.5">One submission reaches every registered Pro. Disclosure terms included.</div></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#067A79;font-weight:700;margin-top:14px">SUBMIT A TRIP →</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showPets }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:40px 0 14px;padding-top:26px;border-top:1px solid #E0DACE">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#067A79;font-weight:600;margin-bottom:6px">TRAVEL COMPANIONS</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;line-height:1.1;color:#0A0B14">Any species, <span style="color:#F0507A;font-style:italic">with paperwork.</span></div></div>
+      <div style="font-size:13px;color:#6B6660;max-width:420px;line-height:1.5">Pets get a Passport page, and their own links if they have a following. Some do.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px">
+      <div onClick="{{ goPawPassport }}" style="background:#0A0B14;border-radius:12px;padding:22px;cursor:pointer">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+          <span style="flex:none;width:56px;height:56px;border-radius:50%;border:2.5px solid #00C9C8;background:#0A0B14 url('images/magnus.jpg') center/cover;display:block"></span>
+          <div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:21px;color:#F7F1E8">Magnus 🐻‍❄️ Waffles</div><div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7d7f96;margin-top:2px">SAMOYED · COPENHAGEN · ADVISORY CAPACITY</div></div>
+        </div>
+        <div style="font-size:12.5px;color:#cfcbc4;line-height:1.5;margin-bottom:12px">Supervises Nancy. Rates cheese. Has opinions about goats.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding-top:12px;border-top:1px solid #23263c">
+          <sc-for list="{{ petPublicLinks }}" as="l" hint-placeholder-count="0">
+            <span onClick="{{ l.stop }}" title="{{ l.url }}" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.5px;color:#00C9C8;border:1px solid #2b2f52;background:#16182a;border-radius:12px;padding:4px 10px;cursor:pointer">{{ l.label }} ↗</span>
+          </sc-for>
+          <sc-if value="{{ petNoLinks }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7d7f96">NO LINKS YET · VIEW PASSPORT →</span></sc-if>
+        </div>
+      </div>
+      <div style="border:2px dashed #c9b89a;border-radius:12px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#fff">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#b8791f;font-weight:600;margin-bottom:10px">OPEN SLOT</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;margin-bottom:8px">Your bestie here.</div>
+        <div style="font-size:13px;color:#6B6660;line-height:1.5;margin-bottom:16px">Dog, cat, rabbit, or a very well-travelled tortoise. Their Instagram goes on their page, not yours.</div>
+        <span onClick="{{ goMyPets }}" style="font-size:13px;color:#06302f;background:#00C9C8;padding:10px 20px;border-radius:6px;font-weight:700;cursor:pointer">Register a pet →</span>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>

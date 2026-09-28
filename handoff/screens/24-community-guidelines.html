@@ -1,0 +1,16 @@
+<!-- ============ COMMUNITY GUIDELINES (§34) ============ -->
+<sc-if value="{{ isGuidelines }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:680px;margin:0 auto;padding:44px 28px 60px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600;margin-bottom:10px">COMMUNITY GUIDELINES</div>
+  <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1.02;margin-bottom:8px">Five house rules, <span style="color:#F0507A;font-style:italic">enforced by a human.</span></div>
+  <div style="font-size:14px;color:#6B6660;margin-bottom:26px">Short on purpose. If a rule needs a lawyer to read it, it is a bad rule.</div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ guidelineRules }}" as="g" hint-placeholder-count="5">
+      <div style="background:#fff;border:1px solid #E0DACE;border-radius:8px;padding:15px 18px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:16px;flex:none">{{ g.icon }}</span>
+        <div><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;color:#0A0B14;margin-bottom:4px">{{ g.t }}</div><div style="font-size:13px;color:#3a3a3a;line-height:1.5">{{ g.b }}</div></div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>

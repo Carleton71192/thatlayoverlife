@@ -1,0 +1,44 @@
+<!-- ============ LOGIN / SIGNUP ============ -->
+<sc-if value="{{ isAuth }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:50px 28px;background:#0A0B14">
+  <div style="width:420px;max-width:100%">
+    <div style="text-align:center;margin-bottom:22px">
+      <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:28px;color:#F7F1E8;margin-bottom:6px">{{ authTitle }}</div>
+      <div style="font-size:13px;color:#7d7f96">{{ authSub }}</div>
+    </div>
+    <div style="background:#12141F;border:1px solid #232744;border-radius:12px;padding:26px">
+      <div style="border:1px solid #2b2f52;border-radius:7px;padding:11px;text-align:center;font-size:13px;color:#cfcbc4;cursor:pointer;margin-bottom:14px;font-weight:600">Continue with Google</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="flex:1;height:1px;background:#232744"></span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#4a4d63">OR</span><span style="flex:1;height:1px;background:#232744"></span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#4a4d63;margin-bottom:6px">EMAIL</div>
+      <div style="background:#0A0B14;border:1px solid #2b2f52;border-radius:6px;padding:10px 12px;font-size:13px;color:#4a4d63;margin-bottom:12px">you@somewhere.travel</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:#4a4d63;margin-bottom:6px">PASSWORD</div>
+      <div style="background:#0A0B14;border:1px solid #2b2f52;border-radius:6px;padding:10px 12px;font-size:13px;color:#4a4d63;margin-bottom:16px">••••••••••</div>
+      <sc-if value="{{ isSignup }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:16px;padding:13px 14px;background:#0A0B14;border-radius:7px">
+          <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12px;color:#cfcbc4;line-height:1.45">I have read and agree to the <span style="color:#00C9C8">Terms of Service</span>, the <span style="color:#00C9C8">Editorial Charter</span> and the <span style="color:#00C9C8">Privacy Policy</span>.</span></label>
+          <label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer"><input type="checkbox" style="margin-top:2px;flex:none"><span style="font-size:12px;color:#cfcbc4;line-height:1.45">I am 16 or older.</span></label>
+          <div style="font-size:10.5px;color:#4a4d63;line-height:1.4">Every byline a real person. Sponsorships disclosed at the top, never in a footnote.</div>
+        </div>
+        <div onClick="{{ toggleSignupLinks }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px dashed #2b2f52;border-radius:7px;padding:11px 13px;margin-bottom:12px;cursor:pointer">
+          <span><span style="display:block;font-size:12.5px;color:#F7F1E8;font-weight:600">Add your blog and socials</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:#7d7f96;margin-top:2px">OPTIONAL · 30 SECONDS · OR LATER IN EDIT PROFILE</span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#00C9C8">{{ signupLinksIcon }}</span>
+        </div>
+        <sc-if value="{{ signupLinksOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+            <sc-for list="{{ signupLinkRows }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="flex:none;width:28px;height:28px;border-radius:50%;background:#16182a;color:#00C9C8;font-family:'JetBrains Mono',monospace;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ r.badge }}</span>
+                <input value="{{ r.url }}" onChange="{{ r.setUrl }}" placeholder="{{ r.phFull }}" aria-label="{{ r.label }}" style="flex:1;min-width:0;background:#0A0B14;border:1px solid #2b2f52;border-radius:6px;padding:9px 11px;font-size:12.5px;color:#F7F1E8;outline:none">
+                <span onClick="{{ r.toggle }}" role="switch" style="flex:none;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;font-weight:700;color:{{ r.tgDarkColor }};background:{{ r.tgDarkBg }};border:1px solid {{ r.tgDarkBorder }};border-radius:12px;padding:5px 9px;cursor:pointer;min-width:54px;text-align:center">{{ r.tgLabel }}</span>
+              </div>
+            </sc-for>
+            <div style="font-size:10.5px;color:#7d7f96;line-height:1.45">Hidden unless you switch each one to SHOWN. Newsletter, YouTube, Strava and the rest live in Edit profile. Pets get their own links on their Paw Passport.</div>
+          </div>
+        </sc-if>
+      </sc-if>
+      <div onClick="{{ doLogin }}" style="font-size:14px;color:#fff;background:#F0507A;padding:12px;border-radius:7px;font-weight:700;text-align:center;cursor:pointer">{{ authCta }}</div>
+    </div>
+    <div style="text-align:center;margin-top:14px;font-size:12px;color:#7d7f96">{{ authSwapLead }} <span onClick="{{ authSwap }}" style="color:#00C9C8;cursor:pointer;font-weight:600">{{ authSwapLabel }}</span></div>
+  </div>
+</div>
+</sc-if>
