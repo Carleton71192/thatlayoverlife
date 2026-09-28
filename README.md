@@ -304,7 +304,7 @@ To add a city, put it in `src/gazetteer.js` under its country code and add a tes
 ## Working on it
 
 ```bash
-npm test                         # 51 unit tests, no network needed
+npm test                         # 72 unit tests, no network needed
 npm run dev                      # run it locally at http://localhost:8787
 npm run setup-kv                 # create the KV namespace, write its id to wrangler.toml
 npm run verify-feeds             # check the feeds, report only
@@ -335,6 +335,47 @@ npm run tail                     # watch the cron runs
 - No API keys, no paid services.
 - A feed that disallows aggregation gets switched off in `src/feeds.js` and
   `verify-feeds` reports what robots.txt says about each one.
+
+## Published stories go on the author's map
+
+When a story is published on thatlayover.life (which means a human approved
+it), Webflow tells this worker, and the story's countries are added to its
+author's map. It only ever adds: a country already on the map keeps the trip
+type the author gave it, and nothing is removed. Each story is applied once, so
+republishing never puts back a country the author took off.
+
+Countries come from the story's Countries reference when it is set, otherwise
+from the byline line ("CHILE AND ARGENTINA" adds both; "BALKANS" adds none).
+
+To switch it on, set three secrets, one command at a time:
+
+```bash
+npx wrangler secret put STORY_HOOK_TOKEN
+```
+
+(any long password you make up; it goes in the webhook address below)
+
+```bash
+npx wrangler secret put WEBFLOW_TOKEN
+```
+
+(a Webflow site API token with CMS read access)
+
+```bash
+npx wrangler secret put MEMBERSTACK_KEY
+```
+
+(your Memberstack secret key, from Memberstack under Dev Tools)
+
+Then in Webflow, under Site settings, then Apps and integrations, then
+Webhooks, add a webhook for **Collection item published** pointing at:
+
+```
+https://tll-travel-wire.YOUR-SUBDOMAIN.workers.dev/hooks/story-published?token=YOUR-PASSWORD
+```
+
+Until all three secrets are set, the address does nothing. `npx wrangler tail`
+shows one `story-hook` line per published story, with what was added.
 
 ## Docs
 

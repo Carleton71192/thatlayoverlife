@@ -12,6 +12,13 @@ crons = ["*/30 * * * *"]
 binding = "WIRE_KV"
 id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
 
+# Collections the story-published webhook reads (see src/story-hook.js).
+# Secrets it also needs: STORY_HOOK_TOKEN, WEBFLOW_TOKEN, MEMBERSTACK_KEY.
+[vars]
+STORIES_COLLECTION_ID = "6a0b29eddc14f1444e935760"
+CONTRIBUTORS_COLLECTION_ID = "6a0b29c7a7b1840afe9390a5"
+COUNTRIES_COLLECTION_ID = "6a8afbd98e907b41c4da109b"
+
 # One-line log per cron run, readable with `npx wrangler tail`.
 [observability]
 enabled = true

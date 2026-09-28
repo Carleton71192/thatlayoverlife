@@ -2,9 +2,12 @@
 //   GET /wire?region=&country=&limit=   public JSON for thatlayover.life
 //   GET /health                         liveness plus wire freshness
 //   POST /refresh                       manual ingest, only when REFRESH_TOKEN is set
+//   POST /hooks/story-published         Webflow publish webhook: adds a story's
+//                                       countries to its author's map (story-hook.js)
 // Cron (every 30 min) runs the same ingest as /refresh.
 
 import { runIngest, summarizeRun } from './ingest.js';
+import { handleStoryHook } from './story-hook.js';
 import { FEEDS } from './feeds.js';
 import { filterItems, readWire } from './store.js';
 import { REGIONS } from './regions.js';
@@ -70,6 +73,11 @@ export default {
     if (url.pathname === '/refresh') {
       if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
       return handleRefresh(request, env);
+    }
+
+    if (url.pathname === '/hooks/story-published') {
+      if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
+      return handleStoryHook(request, env);
     }
 
     if (request.method !== 'GET' && request.method !== 'HEAD') {
