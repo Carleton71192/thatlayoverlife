@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 111 · Done 1 · Partial 1 · Blocked 14 · N/A 0 · Deferred 0
+Summary: TODO 109 · Done 1 · Partial 3 · Blocked 14 · N/A 0 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -17,7 +17,7 @@ Summary: TODO 111 · Done 1 · Partial 1 · Blocked 14 · N/A 0 · Deferred 0
 | A07 | hello@thatlayover.life is the only contact address on the site | TODO |  |
 | A08 | Sign-up age checkbox says "I am 16 or older" | Done |  https://www.thatlayover.life/signup?v=20260928 (live already: checkbox label "I am 16 or older.", input name age-16) |
 | A09 | "microchip", "titer/titre", "FAVN" absent from UI, forms and marketing. Exempt: the Paw Pa | TODO |  |
-| A10 | Every publish goes to both custom domains + the Webflow subdomain, checked with ?v= | TODO |  |
+| A10 | Every publish goes to both custom domains + the Webflow subdomain, checked with ?v= | Partial | Every publish so far (28 Sep 2026) went to both custom domains plus the Webflow subdomain via the API. After the B01 publish Nancy ran PageSpeed: mobile Performance 57, Accessibility 95, Best Practices 96, SEO 100; desktop 73 / 95 / 96 / 100. HubSpot Website Grader 94/100 (Performance 24/30: page size 3 MB, 61 requests, 5.1 s; SEO 30, Mobile 30, Security 10; only fail: responsive image sizing). Not Done until a per-publish ?v= check on all three hosts is logged. |
 | A11 | TLL Nav v1 Memberstack blocks untouched. Logged out shows Log in; logged in shows avatar + | TODO |  |
 | A12 | No invented people, pets, photo credits, quotes or stats. Empty slots say OPEN SLOT / COMI | TODO |  |
 | A13 | "Every byline a real person" and "reviewed within 48 hours" (never "published within 48 ho | TODO |  |
@@ -25,7 +25,7 @@ Summary: TODO 111 · Done 1 · Partial 1 · Blocked 14 · N/A 0 · Deferred 0
 | A15 | Preservation: no published story, binding, data-ms-* attribute, element ID or form input r | TODO |  |
 | B00 | Global nav | TODO |  |
 | B01 | Home | Partial | Published 28 Sep 2026, https://www.thatlayover.life/?v=20260928b (hero reads "Find your next somewhere.", Doors opening block, Paw and Lounge copy per screen 01): hero eyebrow, H1 "Find your next somewhere.", sub, shelf label (6 stories, static until the count binds), Doors opening block, newsletter line + success copy, map headline "Where the Travelers have been." + CTA, Paw eyebrow/H2/sub, Magnus meta (3 yrs, 13 countries), Lounge eyebrow + sub, hero strip hidden (fc03d2d5…c2c5, visibility off). Kept against the design on purpose: "The Layover Lounge" (A14 beats screen 01 "Travel Lounge"), the live Magnus line instead of the PLACEHOLDER quote (I03), and the body line about submissions, since Share Your Story is live. Left: shelf photo cards (design-spec note), the map headline logged-in variant, the writer count and shelf count bound to data (B38/A12), the 3-step block the design does not have. Still Partial for the shelf photo cards and the bound counts. |
-| B02 | Stories index | TODO |  |
+| B02 | Stories index | Partial | Staged 28 Sep 2026, unpublished (awaiting Nancy's publish go). Per screen 02: eyebrow "The Library", H1 "Six stories, all worth the detour.", lede "Counted by hand in Copenhagen. More landing weekly.", Place and Sort chip rows (All places, Europe, Africa, Americas, Antarctica; Most recent, A to Z by country, Read time) driven by hidden per-card data blocks bound to region, reading time, published date and byline location, Front of the shelf rail (Most read = OPEN SLOT until the read counter exists, Press desk dark card, Location experts dashed slot card), footer script tll-lib-chips-v1. Chips use tll-shelf-chip and tll-filter-chip-on (single classes; the multi-class set_style call fails in the MCP). Rose text on light uses #C8325B for contrast. Left: live URL check after publish, the story count bound to data (A12), search form success/error copy check. |
 | B03 | Story detail (ledger, route strip, Been/Want) | TODO |  |
 | B04 | Travelers | TODO |  |
 | B05 | Paw Passport hub (+ groups switcher) | TODO |  |
