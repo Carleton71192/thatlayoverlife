@@ -1,0 +1,429 @@
+--- index.html (Drive, 18 Aug 2026)
++++ index.html (corrected, 28 Sep 2026)
+@@ -3,8 +3,201 @@
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<title>Valideringseksperterne | Revalidering af sterilisatorer i Skandinavien</title>
+-<meta name="description" content="Planlagt revalidering og rekvalificering af dampsterilisatorer, vaskedekontaminatorer og lavtemperatur-sterilisatorer. Sporbare certifikater, navngivne specialister, fast pris. En del af Damgaard Solutions.">
++<title>Revalidering af sterilisatorer | Valideringseksperterne</title>
++<meta name="description" content="Planlagt revalidering af autoklaver og vaskedekontaminatorer til hospitaler efter EN 285, DS/EN ISO 15883 og ISO 17665. Fast pris og sporbare certifikater.">
++<link rel="canonical" href="https://valideringseksperterne.dk/">
++<meta name="robots" content="index,follow">
++<meta property="og:type" content="website">
++<meta property="og:title" content="Revalidering af sterilisatorer | Valideringseksperterne">
++<meta property="og:description" content="Planlagt revalidering af autoklaver og vaskedekontaminatorer til hospitaler efter EN 285, DS/EN ISO 15883 og ISO 17665. Fast pris og sporbare certifikater.">
++<meta property="og:url" content="https://valideringseksperterne.dk/">
++<meta property="og:site_name" content="Valideringseksperterne">
++<meta property="og:locale" content="da_DK">
++<meta property="og:image" content="https://valideringseksperterne.dk/og-image.jpg">
++<meta property="og:image:width" content="1100">
++<meta property="og:image:height" content="1100">
++<meta property="og:image:alt" content="Tekniker placerer termoelementer i et sterilisatorkammer under revalidering">
++<meta name="twitter:card" content="summary_large_image">
++<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312263A'/%3E%3Cpath d='M16 18h9l7 20 7-20h9L37 46H27z' fill='%23FFFFFF'/%3E%3C/svg%3E">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@graph": [
++    {
++      "@type": "WebSite",
++      "@id": "https://valideringseksperterne.dk/#website",
++      "url": "https://valideringseksperterne.dk/",
++      "name": "Valideringseksperterne",
++      "inLanguage": "da",
++      "publisher": {
++        "@id": "https://valideringseksperterne.dk/#organization"
++      }
++    },
++    {
++      "@type": "ProfessionalService",
++      "@id": "https://valideringseksperterne.dk/#organization",
++      "name": "Valideringseksperterne",
++      "alternateName": "Valideringseksperterne, en del af Damgaard Solutions",
++      "url": "https://valideringseksperterne.dk/",
++      "image": "https://valideringseksperterne.dk/og-image.jpg",
++      "email": "kca@damgaardgroup.com",
++      "telephone": "+45 30 53 07 93",
++      "inLanguage": "da",
++      "parentOrganization": {
++        "@type": "Organization",
++        "name": "Damgaard Solutions ApS",
++        "url": "https://damgaard-solutions.com"
++      },
++      "address": [
++        {
++          "@type": "PostalAddress",
++          "streetAddress": "Kildehøjvej 15A",
++          "postalCode": "3460",
++          "addressLocality": "Birkerød",
++          "addressCountry": "DK"
++        },
++        {
++          "@type": "PostalAddress",
++          "streetAddress": "Præstemarksvænge 10E",
++          "postalCode": "4000",
++          "addressLocality": "Roskilde",
++          "addressCountry": "DK"
++        }
++      ],
++      "areaServed": [
++        {
++          "@type": "Country",
++          "name": "Danmark"
++        },
++        {
++          "@type": "Country",
++          "name": "Sverige"
++        },
++        {
++          "@type": "Country",
++          "name": "Norge"
++        }
++      ],
++      "openingHoursSpecification": {
++        "@type": "OpeningHoursSpecification",
++        "dayOfWeek": [
++          "Monday",
++          "Tuesday",
++          "Wednesday",
++          "Thursday",
++          "Friday"
++        ],
++        "opens": "08:00",
++        "closes": "16:00"
++      },
++      "knowsAbout": [
++        "Revalidering af dampsterilisatorer (autoklaver)",
++        "Revalidering af vaskedekontaminatorer",
++        "FSTA nationale vejledende retningslinjer for revalidering",
++        "EN 285",
++        "DS/EN ISO 15883",
++        "ISO 17665",
++        "ISO 14937",
++        "A0-værdi",
++        "Vandkvalitet"
++      ],
++      "contactPoint": {
++        "@type": "ContactPoint",
++        "contactType": "sales",
++        "email": "kca@damgaardgroup.com",
++        "telephone": "+45 30 53 07 93",
++        "availableLanguage": [
++          "da",
++          "sv",
++          "no",
++          "en"
++        ]
++      }
++    },
++    {
++      "@type": "Service",
++      "@id": "https://valideringseksperterne.dk/#service",
++      "name": "Revalidering af sterilisatorer",
++      "serviceType": "Revalidering og rekvalificering af sterilisatorer og vaskedekontaminatorer",
++      "description": "Planlagt revalidering og rekvalificering af dampsterilisatorer, vaskedekontaminatorer og lavtemperatur-sterilisatorer efter EN 285, DS/EN ISO 15883, ISO 17665 og ISO 14937 samt FSTA's nationale vejledende retningslinjer for revalidering, herunder A0-værdi og vandkvalitet. Sporbare certifikater for hvert besøg.",
++      "url": "https://valideringseksperterne.dk/#omfang",
++      "inLanguage": "da",
++      "provider": {
++        "@id": "https://valideringseksperterne.dk/#organization"
++      },
++      "areaServed": [
++        {
++          "@type": "Country",
++          "name": "Danmark"
++        },
++        {
++          "@type": "Country",
++          "name": "Sverige"
++        },
++        {
++          "@type": "Country",
++          "name": "Norge"
++        }
++      ],
++      "audience": {
++        "@type": "Audience",
++        "audienceType": "Sterilcentraler og tekniske afdelinger på hospitaler"
++      },
++      "hasOfferCatalog": {
++        "@type": "OfferCatalog",
++        "name": "Udstyrsrekvalificering og instrumentkalibrering",
++        "itemListElement": [
++          {
++            "@type": "Offer",
++            "itemOffered": {
++              "@type": "Service",
++              "name": "Revalidering af dampsterilisatorer (autoklaver)",
++              "description": "EN 285, herunder vandkvalitet"
++            }
++          },
++          {
++            "@type": "Offer",
++            "itemOffered": {
++              "@type": "Service",
++              "name": "Revalidering af vaskedekontaminatorer",
++              "description": "DS/EN ISO 15883, herunder A0-værdi"
++            }
++          },
++          {
++            "@type": "Offer",
++            "itemOffered": {
++              "@type": "Service",
++              "name": "Revalidering af lavtemperatur-sterilisatorer",
++              "description": "ISO 14937"
++            }
++          },
++          {
++            "@type": "Offer",
++            "itemOffered": {
++              "@type": "Service",
++              "name": "Termometrisk performance-testning",
++              "description": "ISO 17665"
++            }
++          },
++          {
++            "@type": "Offer",
++            "itemOffered": {
++              "@type": "Service",
++              "name": "Instrumentkalibrering med sporbare certifikater"
++            }
++          }
++        ]
++      },
++      "offers": {
++        "@type": "Offer",
++        "description": "Fast pris pr. enhed med årsaftale",
++        "priceCurrency": "DKK",
++        "availability": "https://schema.org/InStock"
++      }
++    }
++  ]
++}
++</script>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+@@ -13,8 +206,9 @@
+     --navy: #12263A;
+     --steel: #4885A5;
+     --sky: #5096B3;
+-    --neutral-mid: #6B7178;
++    --neutral-mid: #5A6168;
+     --neutral-light: #C7C3BF;
++    --steel-text: #2C6382; /* tekstfarve på lys baggrund, 6.1:1 på off-white. Steel #4885A5 forbliver til kanter og flader */
+     --off-white: #F7F8F9;
+     --white: #FFFFFF;
+     --text: #1a1a1a;
+@@ -38,8 +232,8 @@
+     -webkit-font-smoothing: antialiased;
+   }
+ 
+-  a { color: var(--sky); text-decoration: none; }
+-  a:hover { color: var(--steel); }
++  a { color: var(--steel-text); text-decoration: none; }
++  a:hover { color: var(--navy); }
+ 
+   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 40px; }
+ 
+@@ -48,7 +242,7 @@
+     font-weight: 700;
+     letter-spacing: 3px;
+     text-transform: uppercase;
+-    color: var(--steel);
++    color: var(--steel-text);
+     margin: 0 0 14px;
+   }
+ 
+@@ -81,7 +275,7 @@
+     font-weight: 600;
+     letter-spacing: 1.5px;
+     text-transform: uppercase;
+-    color: var(--steel);
++    color: var(--steel-text);
+     margin-top: 2px;
+   }
+   .nav-links { display: flex; align-items: center; gap: 28px; }
+@@ -119,6 +313,7 @@
+   .btn-primary:hover { background: var(--steel); color: var(--white); }
+   .btn-secondary { background: transparent; color: var(--navy); border-color: var(--navy); }
+   .btn-secondary:hover { border-color: var(--steel); color: var(--steel); }
++  a:focus-visible, button:focus-visible, summary:focus-visible, .lf-input:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+ 
+   /* buttons on dark hero */
+   .btn-on-dark-primary { background: var(--white); color: var(--navy); }
+@@ -140,6 +335,7 @@
+     margin: 0 0 22px;
+     max-width: 22ch;
+     hyphens: auto;
++    overflow-wrap: break-word;
+   }
+   .hero-sub {
+     font-size: 20px;
+@@ -184,7 +380,7 @@
+   }
+   .trust-text { font-size: 14px; color: var(--text-secondary); font-weight: 600; max-width: 52ch; }
+   .trust-logos { font-size: 13px; font-weight: 700; color: var(--navy); letter-spacing: 0.3px; }
+-  .trust-logos span { color: var(--neutral-light); font-weight: 400; padding: 0 8px; }
++  .trust-logos span { color: var(--neutral-mid); font-weight: 400; padding: 0 8px; }
+ 
+   /* ---------- Sections ---------- */
+   section { padding: 84px 0; border-bottom: 1px solid var(--border); }
+@@ -208,7 +404,7 @@
+   .pcard p { font-size: 15px; color: var(--text-secondary); margin: 0; }
+ 
+   /* scope */
+-  .scope-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel); margin: 0 0 18px; }
++  .scope-col h3 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel-text); margin: 0 0 18px; }
+   .scope-list { list-style: none; margin: 0; padding: 0; }
+   .scope-list li {
+     font-size: 15px;
+@@ -253,7 +449,7 @@
+     font-size: 11px;
+     font-weight: 700;
+     letter-spacing: 2px;
+-    color: var(--steel);
++    color: var(--steel-text);
+     margin: 0 0 14px;
+   }
+   .step h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+@@ -263,14 +459,14 @@
+   .spec { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: start; }
+   .spec-photo { aspect-ratio: 4 / 3; }
+   .spec h3 { font-size: 24px; font-weight: 700; color: var(--navy); margin: 0 0 4px; }
+-  .spec .role { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel); margin: 0 0 20px; }
++  .spec .role { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel-text); margin: 0 0 20px; }
+   .spec ul { margin: 0; padding: 0; list-style: none; }
+   .spec li { font-size: 15px; color: var(--text); padding: 10px 0; border-bottom: 1px solid var(--border); }
+   .spec li:last-child { border-bottom: none; }
+ 
+   /* why cards */
+   .usp { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--steel); border-radius: 10px; padding: 30px 26px; }
+-  .usp .n { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--steel); margin: 0 0 14px; }
++  .usp .n { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--steel-text); margin: 0 0 14px; }
+   .usp h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 0 0 10px; line-height: 1.3; }
+   .usp p { font-size: 15px; color: var(--text-secondary); margin: 0; }
+ 
+@@ -309,7 +505,7 @@
+     content: "+";
+     font-size: 24px;
+     font-weight: 400;
+-    color: var(--steel);
++    color: var(--steel-text);
+     line-height: 1;
+   }
+   details.q[open] summary::after { content: "\2013"; }
+@@ -326,7 +522,7 @@
+   .foot-brand .brand-name { font-size: 18px; }
+   .foot-brand p { font-size: 13px; color: var(--text-secondary); margin: 12px 0 0; max-width: 42ch; }
+   .foot-cols { display: flex; gap: 56px; flex-wrap: wrap; }
+-  .foot-col .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); margin: 0 0 12px; }
++  .foot-col .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--steel-text); margin: 0 0 12px; }
+   .foot-col p, .foot-col a { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; display: block; line-height: 1.5; }
+   .foot-bottom {
+     border-top: 1px solid var(--border);
+@@ -367,7 +563,7 @@
+   .lead-form { margin-top: 28px; max-width: 540px; }
+   .lf-row { display: flex; gap: 12px; }
+   .lf-input { width: 100%; font-family: inherit; font-size: 15px; color: var(--white); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.28); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+-  .lf-input::placeholder { color: rgba(255,255,255,0.6); }
++  .lf-input::placeholder { color: rgba(255,255,255,0.75); }
+   .lf-input:focus { outline: none; border-color: var(--sky); background: rgba(255,255,255,0.13); }
+   .lf-textarea { resize: vertical; min-height: 88px; }
+   .lf-submit { margin-top: 4px; border: none; cursor: pointer; }
+@@ -397,7 +593,7 @@
+       </nav>
+       <div class="lang" aria-label="Sprog / Language">
+         <span class="lang-active" aria-current="true">DA</span>
+-        <span class="lang-sep">·</span>
++        <span class="lang-sep" aria-hidden="true">·</span>
+         <a class="lang-link" href="https://damgaard-solutions.com/revalidation/en">EN</a>
+       </div>
+       <a href="#kontakt" class="btn btn-primary nav-cta">Book gratis vurdering</a>
+@@ -405,11 +601,12 @@
+   </div>
+ </header>
+ 
++<main id="main">
+ <!-- HERO -->
+ <section class="hero">
+   <div class="hero-inner">
+     <p class="eyebrow">Revalidering af sterilisatorer · Skandinavien</p>
+-    <h1>Revalidering, der holder hospitalssterilisation compliant.</h1>
++    <h1>Revalidering, der holder hospitals&shy;sterilisation compliant.</h1>
+     <p class="hero-sub">Autoklaver, vaskedekontaminatorer og lavtemperatur-sterilisatorer drifter over tid. Vi leverer planlagt revalidering og rekvalificering på faste aftaler, med sporbare certifikater og navngivne specialister i hele Skandinavien.</p>
+     <div class="hero-cta">
+       <a href="#kontakt" class="btn btn-on-dark-primary">Book en gratis vurdering</a>
+@@ -440,7 +637,6 @@
+ <div class="trust">
+   <div class="trust-inner">
+     <p class="trust-text">Ingeniørleverancer betroet på Europas mest compliance-tunge GMP-sites.</p>
+-    <p class="trust-logos">Novo Nordisk <span>/</span> Bavarian Nordic <span>/</span> Fujifilm</p>
+   </div>
+ </div>
+ 
+@@ -481,8 +677,8 @@
+       <div class="scope-col">
+         <h3>Udstyrsrekvalificering</h3>
+         <ul class="scope-list">
+-          <li><span>Dampsterilisatorer (autoklaver)</span> <span class="std">EN 285</span></li>
+-          <li><span>Vaskedekontaminatorer</span> <span class="std">ISO 15883</span></li>
++          <li><span>Dampsterilisatorer (autoklaver, vandkvalitet)</span> <span class="std">EN 285</span></li>
++          <li><span>Vaskedekontaminatorer (A0-værdi)</span> <span class="std">DS/EN ISO 15883</span></li>
+           <li><span>Lavtemperatur-sterilisatorer</span> <span class="std">ISO 14937</span></li>
+           <li><span>Termometrisk performance-testning</span> <span class="std">ISO 17665</span></li>
+         </ul>
+@@ -576,7 +772,7 @@
+       <div class="usp">
+         <p class="n">01</p>
+         <h3>Etableret ingeniørbrand</h3>
+-        <p>Vi leverer allerede på GMP-sites hos Novo Nordisk, Bavarian Nordic og Fujifilm.</p>
++        <p>Vi leverer allerede på nogle af Europas mest compliance-tunge GMP-sites.</p>
+       </div>
+       <div class="usp">
+         <p class="n">02</p>
+@@ -604,13 +800,13 @@
+           <input type="hidden" name="access_key" value="9eb0a877-817f-48cc-a9b3-9e7d5e960794">
+           <input type="hidden" name="subject" value="Ny forespørgsel fra valideringseksperterne.dk">
+           <input type="hidden" name="from_name" value="Valideringseksperterne.dk">
+-          <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
++          <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" aria-hidden="true">
+           <div class="lf-row">
+-            <input class="lf-input" type="text" name="Navn" placeholder="Navn" required>
+-            <input class="lf-input" type="email" name="E-mail" placeholder="E-mail" required>
++            <input class="lf-input" type="text" name="Navn" placeholder="Navn" aria-label="Navn" autocomplete="name" required>
++            <input class="lf-input" type="email" name="E-mail" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
+           </div>
+-          <input class="lf-input" type="text" name="Virksomhed" placeholder="Virksomhed">
+-          <textarea class="lf-input lf-textarea" name="Besked" placeholder="Kort om jeres udstyr og behov" rows="3"></textarea>
++          <input class="lf-input" type="text" name="Virksomhed" placeholder="Virksomhed" aria-label="Virksomhed" autocomplete="organization">
++          <textarea class="lf-input lf-textarea" name="Besked" placeholder="Kort om jeres udstyr og behov" aria-label="Besked" rows="3"></textarea>
+           <button class="btn btn-on-dark-primary lf-submit" type="submit">Send forespørgsel</button>
+           <p class="lf-status" id="lfStatus" role="status" aria-live="polite"></p>
+           <p class="lf-phone">Eller ring <a href="tel:+4530530793">+45 30 53 07 93</a></p>
+@@ -641,7 +837,7 @@
+     </details>
+     <details class="q">
+       <summary>Hvilke standarder arbejder I efter?</summary>
+-      <p>ISO 17665, EN 285, ISO 15883 og ISO 14937, med sporbare certifikater for hvert besøg. Alle rapporter er audit-klare og dokumenterer den fulde cyklus.</p>
++      <p>ISO 17665, EN 285, DS/EN ISO 15883 og ISO 14937 samt FSTA's nationale vejledende retningslinjer for revalidering af dampautoklaver og instrumentvaskemaskiner. Sporbare certifikater for hvert besøg. Alle rapporter er audit-klare og dokumenterer den fulde cyklus.</p>
+     </details>
+     <details class="q">
+       <summary>Understøtter I flere producenter?</summary>
+@@ -649,7 +845,7 @@
+     </details>
+     <details class="q">
+       <summary>Hvad dækker en revalidering?</summary>
+-      <p>Instrumentkalibrering, udstyrsrekvalificering, verifikation af sensorer og controllere, bekræftelse af cyklus samt fuld dokumentation med sporbare certifikater.</p>
++      <p>Instrumentkalibrering, udstyrsrekvalificering, verifikation af sensorer og controllere, bekræftelse af cyklus, herunder A0-værdi for vaskedekontaminatorer og vandkvalitet for dampsterilisatorer, samt fuld dokumentation med sporbare certifikater.</p>
+     </details>
+     <details class="q">
+       <summary>Hvor meget nedetid skal vi regne med?</summary>
+@@ -657,6 +853,7 @@
+     </details>
+   </div>
+ </section>
++</main>
+ 
+ <!-- FOOTER -->
+ <footer class="site">

@@ -1,0 +1,35 @@
+/* valideringseksperterne.dk contrast patch, 28 Sep 2026.
+   Apply inside the existing <style> block. Kit colors Navy #12263A, Steel #4885A5 and Sky #5096B3
+   stay as they are for backgrounds, borders and the hero labels. Only text on light backgrounds moves
+   to a darker steel shade. Measured: --steel-text 6.14:1 on #F7F8F9 and 6.53:1 on #FFFFFF;
+   --neutral-mid 5.91:1 on #F7F8F9. Sky on Navy is 4.66:1 and unchanged. */
+
+:root {
+  --neutral-mid: #5A6168;   /* was #6B7178 */
+  --steel-text: #2C6382;    /* new: text-only shade of Steel */
+}
+
+a { color: var(--steel-text); }
+a:hover { color: var(--navy); }
+
+.eyebrow { color: var(--steel-text); }          /* hero and CTA eyebrows keep Sky on Navy via their own rules */
+.brand-endorse { color: var(--steel-text); }
+.trust-logos span { color: var(--neutral-mid); } /* was --neutral-light, 1.75:1 */
+.scope-col h3 { color: var(--steel-text); }
+.step-num { color: var(--steel-text); }
+.spec .role { color: var(--steel-text); }
+.usp .n { color: var(--steel-text); }
+details.q summary::after { color: var(--steel-text); }
+.foot-col .label { color: var(--steel-text); }
+
+.lf-input::placeholder { color: rgba(255,255,255,0.75); } /* was 0.6, passed at 5.06:1, lifted for comfort */
+
+/* keyboard focus, previously invisible on links and summaries */
+a:focus-visible, button:focus-visible, summary:focus-visible, .lf-input:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 3px;
+}
+
+/* hero H1 overflowed a 390px viewport on the word hospitalssterilisation */
+.hero h1 { overflow-wrap: break-word; }
+/* and in the markup: hospitals&shy;sterilisation */
