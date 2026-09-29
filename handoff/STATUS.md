@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 82 · Done 1 · Partial 30 · Blocked 14 · N/A 0 · Deferred 0
+Summary: TODO 81 · Done 1 · Partial 30 · Blocked 15 · N/A 0 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -53,7 +53,7 @@ Summary: TODO 82 · Done 1 · Partial 30 · Blocked 14 · N/A 0 · Deferred 0
 | B27 | Contact | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Per screen 27: eyebrow "SAY HELLO · REAL HUMAN, REAL INBOX", lede "Everything reaches one human, usually the same day", three doors relabeled PRESS / PARTNERSHIPS / EVERYTHING ELSE with the design's questions (On assignment? Something to propose? Just saying hi?) and routing lines (subject PRESS, subject PARTNER), support pointer "Need support instead?". Kept: the Response times line (editorial 48h, takedowns 4h, press 3 business days) because it is a live commitment; the door emoji icons (kit says no generic icons, but they predate this pass and removing them is a design call for Nancy). Not added: the prototype's "full imprint and CVR on the way (counsel pending)" line, which asserts something I cannot verify. |
 | B28 | Cookies | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Checked side by side with screen 28: eyebrow, H1 "Cookie policy." and the four categories already matched; lede tightened to the design's "Every cookie, who sets it, why, and for how long. Change your mind any time." The "open the cookie preferences" link and the withdrawal line were already there. Left: live check after publish that the preferences link reopens the CookieConsent panel (cannot be exercised from this container). |
 | B29 | Share photos (members gate, depicted-persons consent) | TODO |  |
-| B30 | Story share card / OG preview | TODO |  |
+| B30 | Story share card / OG preview | Blocked | Checked 29 Sep 2026. Stories already ship a share card from real data: og:image is bound to the story's hero image and og:title / og:description copy the bound SEO title and description, so a shared story link previews correctly. Screen 30 describes something different: a 1200×630 passport card generated server-side per traveler and written into the profile's og:image, which the prototype itself notes lives in the wireframes as an engineering spec (section 22, 30a, 30b), not a screen. Building it means a new Worker endpoint that renders an image from the contributor's live counts. Blocked on Nancy deciding whether that service is wanted now; until then contributor pages use the avatar as og:image. |
 | B31 | Style guide (reference, no route) | TODO |  |
 | B32 | Directory boards (reference for group C) | TODO |  |
 | B33 | Answer guides (DRAFT banner) | TODO |  |
