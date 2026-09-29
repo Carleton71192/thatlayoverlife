@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 83 · Done 1 · Partial 29 · Blocked 14 · N/A 0 · Deferred 0
+Summary: TODO 82 · Done 1 · Partial 30 · Blocked 14 · N/A 0 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -51,7 +51,7 @@ Summary: TODO 83 · Done 1 · Partial 29 · Blocked 14 · N/A 0 · Deferred 0
 | B25 | Privacy + Terms | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Chrome only, per screen 25: PRIVACY / TERMS / COOKIES tab switcher above both heroes (active tab rose), H1s "Privacy policy." and "Terms of service.". Kept against the design: the effective and last-updated lines stay at 20 May 2026 (the prototype's "last reviewed 22 August 2026 · governed by Danish law" is not something I can verify), and the legal body text was not rewritten: the live pages are full documents and the prototype has short summaries; legal wording is Nancy's call. |
 | B26 | Forgot password | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Per screen 26: eyebrow "Reset password", H1 already matched ("Lost the thread."), lede per design, email placeholder "you@somewhere.com" set by a head script (placeholder is a reserved attribute), own success and error copy on the Webflow messages, back link "← Back to log in". Kept: the Memberstack form (data-ms-form) and its fields untouched, so the submit button keeps its current label rather than the design's "Send the magic link"; the CDG Lost & Found stamp stays (the prototype has no ephemera, the kit allows it). |
 | B27 | Contact | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Per screen 27: eyebrow "SAY HELLO · REAL HUMAN, REAL INBOX", lede "Everything reaches one human, usually the same day", three doors relabeled PRESS / PARTNERSHIPS / EVERYTHING ELSE with the design's questions (On assignment? Something to propose? Just saying hi?) and routing lines (subject PRESS, subject PARTNER), support pointer "Need support instead?". Kept: the Response times line (editorial 48h, takedowns 4h, press 3 business days) because it is a live commitment; the door emoji icons (kit says no generic icons, but they predate this pass and removing them is a design call for Nancy). Not added: the prototype's "full imprint and CVR on the way (counsel pending)" line, which asserts something I cannot verify. |
-| B28 | Cookies | TODO |  |
+| B28 | Cookies | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Checked side by side with screen 28: eyebrow, H1 "Cookie policy." and the four categories already matched; lede tightened to the design's "Every cookie, who sets it, why, and for how long. Change your mind any time." The "open the cookie preferences" link and the withdrawal line were already there. Left: live check after publish that the preferences link reopens the CookieConsent panel (cannot be exercised from this container). |
 | B29 | Share photos (members gate, depicted-persons consent) | TODO |  |
 | B30 | Story share card / OG preview | TODO |  |
 | B31 | Style guide (reference, no route) | TODO |  |
