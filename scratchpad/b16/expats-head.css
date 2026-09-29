@@ -1,10 +1,7 @@
 /* tll-expats-v1 : page head CSS for /for-expats (attribute-scoped, no new Webflow classes) */
 [data-tll-x=inner]{max-width:1080px;margin:0 auto;padding:44px 28px}
-[data-tll-x=eyebrow],[data-tll-x=label],[data-tll-x=desk-eyebrow],[data-tll-x=tabs-label],[data-tll-x=step-n]{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;font-weight:600;color:#C8325B;margin-bottom:6px}
-[data-tll-x=tabs]{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-[data-tll-x=tabs-label]{color:#7d7f96;margin:0 6px 0 0;font-size:9px;letter-spacing:2px}
-[data-tll-x=tabs] a{font-size:12px;font-weight:600;color:#cfcbc4;border:1px solid #2a2c3e;border-radius:16px;padding:6px 14px;text-decoration:none}
-[data-tll-x=tabs] a[aria-current=page]{color:#0A0B14;background:#00C9C8;border-color:#00C9C8}
+[data-tll-x=eyebrow],[data-tll-x=label],[data-tll-x=desk-eyebrow],[data-tll-x=step-n]{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;font-weight:600;color:#C8325B;margin-bottom:6px}
+.tll-fyp-label h6{font:inherit;margin:0;color:inherit;letter-spacing:inherit;text-transform:inherit}
 [data-tll-x=btns]{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 [data-tll-btn]{font-size:14px;font-weight:700;padding:13px 24px;border-radius:7px;text-decoration:none;display:inline-block}
 [data-tll-btn=rose]{color:#fff;background:#D63859}
