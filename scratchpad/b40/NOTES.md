@@ -1,0 +1,2 @@
+# B40 Destinations (/destinations, page 6a47adad7a97f26b91c7d78e)
+Staged 29 Sep 2026. New block #atlas-all (data-tll-atlas=all) before the "Empty country?" note: kicker + grid rendered by tll-atlas-v1 footer script from the ISO list (same CODES + SLUG alias table as the expats finder). Story counts computed from the .tlldx-card elements on the page (flag emoji decoded to ISO2). Lede and "N countries, N stories." heading rewritten at runtime. Head: tll-atlas-v1 CSS.
