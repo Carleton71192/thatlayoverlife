@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 80 · Done 1 · Partial 31 · Blocked 15 · N/A 0 · Deferred 0
+Summary: TODO 77 · Done 1 · Partial 32 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -54,12 +54,12 @@ Summary: TODO 80 · Done 1 · Partial 31 · Blocked 15 · N/A 0 · Deferred 0
 | B28 | Cookies | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Checked side by side with screen 28: eyebrow, H1 "Cookie policy." and the four categories already matched; lede tightened to the design's "Every cookie, who sets it, why, and for how long. Change your mind any time." The "open the cookie preferences" link and the withdrawal line were already there. Left: live check after publish that the preferences link reopens the CookieConsent panel (cannot be exercised from this container). |
 | B29 | Share photos (members gate, depicted-persons consent) | Partial | Staged 29 Sep 2026, not published (awaiting Nancy's go). Checked side by side with screen 29: the members gate, the five steps, the three promises ticked separately and never pre-ticked, the depicted-persons consent line and the own success/error copy were already in place from the earlier form pass. Added today: "← The Layover Lounge" back link to /gallery, eyebrow "The Layover Lounge · Member-gated", button "Send it to the Lounge →", and US spelling on the license line (the prototype's "licence" loses to the US spelling rule). Kept against the design: the EXIF line stays "we strip EXIF if you pick anonymous" because that is what the form actually does; the design's "we strip GPS data from every file" would be a promise the pipeline does not yet keep. Not built: the design's "Read the full license" link, because no license page exists yet (Terms cover it for now). |
 | B30 | Story share card / OG preview | Blocked | Checked 29 Sep 2026. Stories already ship a share card from real data: og:image is bound to the story's hero image and og:title / og:description copy the bound SEO title and description, so a shared story link previews correctly. Screen 30 describes something different: a 1200×630 passport card generated server-side per traveler and written into the profile's og:image, which the prototype itself notes lives in the wireframes as an engineering spec (section 22, 30a, 30b), not a screen. Building it means a new Worker endpoint that renders an image from the contributor's live counts. Blocked on Nancy deciding whether that service is wanted now; until then contributor pages use the avatar as og:image. |
-| B31 | Style guide (reference, no route) | TODO |  |
-| B32 | Directory boards (reference for group C) | TODO |  |
+| B31 | Style guide (reference, no route) | N/A | Reference only per REQUIREMENTS (no route). Checked 29 Sep 2026: the tokens it lists (Midnight, Rose, Teal, Amber, Bone, Paper, Playfair 800 headlines, JetBrains Mono eyebrows, no em dashes, LIFE always Rose) are the ones used across the staged pages. The Webflow /style-guide draft page is internal and stays a draft. |
+| B32 | Directory boards (reference for group C) | N/A | Reference only per REQUIREMENTS. Used as the source for the traveler directory rows in group C (tags taxonomy is provisional pending the search research it names). |
 | B33 | Answer guides (DRAFT banner) | TODO |  |
 | B34 | Layover Awards | TODO |  |
 | B35 | For brands (no prices) | TODO |  |
-| B36 | 404 | TODO |  |
+| B36 | 404 | Partial | Checked 29 Sep 2026 side by side with screen 36: eyebrow ERROR 404, H1 "This page missed its connection.", the Frankfurt line, Read the library → /stories and Open the map → /the-map all already match. No change needed. Left: live check after publish that an unknown URL serves it. |
 | B37 | Login + Sign up (consent block) | TODO |  |
 | B38 | Account (real counters, lists, Wrapped, export) | TODO |  |
 | B39 | The Layover Lounge (truthful credits) | TODO |  |
