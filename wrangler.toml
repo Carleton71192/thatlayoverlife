@@ -14,6 +14,7 @@ id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
 
 # Collections the story-published webhook reads (see src/story-hook.js).
 # Secrets it also needs: STORY_HOOK_TOKEN, WEBFLOW_TOKEN, MEMBERSTACK_KEY.
+# The member-updated webhook (src/profile-sync.js) also needs PROFILE_HOOK_TOKEN.
 [vars]
 STORIES_COLLECTION_ID = "6a0b29eddc14f1444e935760"
 CONTRIBUTORS_COLLECTION_ID = "6a0b29c7a7b1840afe9390a5"

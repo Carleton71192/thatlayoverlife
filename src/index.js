@@ -2,6 +2,8 @@
 //   GET /wire?region=&country=&limit=   public JSON for thatlayover.life
 //   GET /health                         liveness plus wire freshness
 //   POST /refresh                       manual ingest, only when REFRESH_TOKEN is set
+//   POST /hooks/member-updated          Memberstack webhook: copies a member's profile
+//                                       fields onto their Contributors CMS item (profile-sync.js)
 //   POST /hooks/story-published         Webflow publish webhook: adds a story's
 //                                       countries to its author's map (story-hook.js)
 // Cron (every 30 min) runs the same ingest as /refresh.
@@ -11,6 +13,7 @@ import { handleStoryHook } from './story-hook.js';
 import { FEEDS } from './feeds.js';
 import { filterItems, readWire } from './store.js';
 import { REGIONS } from './regions.js';
+import { handleProfileHook } from './profile-sync.js';
 
 const EDGE_CACHE_SECONDS = 300;
 
@@ -73,6 +76,11 @@ export default {
     if (url.pathname === '/refresh') {
       if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
       return handleRefresh(request, env);
+    }
+
+    if (url.pathname === '/hooks/member-updated') {
+      if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
+      return handleProfileHook(request, env);
     }
 
     if (url.pathname === '/hooks/story-published') {
