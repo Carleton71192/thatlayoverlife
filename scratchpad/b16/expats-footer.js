@@ -11,15 +11,11 @@
   function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m];}); }
   function first(s){ return (s||"").trim().split(/\s+/)[0]||""; }
   var $=function(k){ return document.querySelector('[data-tll-x="'+k+'"]'); };
-  var input=$("finder-input"), form=$("finder-form"), list=$("finder-list"), quick=$("finder-quick"), err=$("finder-error"), out=$("finder-result");
+  var input=$("finder-input"), go=$("finder-go"), list=$("finder-list"), quick=$("finder-quick"), err=$("finder-error"), out=$("finder-result");
   if(input) input.placeholder="Where did you move? Try Denmark, Portugal, Japan";
   if(list){ list.id="tll-country-list"; list.innerHTML=CODES.map(function(c){return '<option value="'+esc(name(c))+'">';}).join(""); }
   var apply=document.querySelector('[data-tll-x="apply"]'); if(apply) apply.id="tll-expert-apply";
   var groups=$("groups"); if(groups) groups.id="tll-groups";
-  ["group-name","city-or-area","country","group-link","email","runs-group-and-open"].forEach(function(n){
-    var el=document.querySelector('[data-tll-x="groups-form"] [name="'+n+'"]'); if(!el) return;
-    el.type = n==="email"?"email": n==="group-link"?"url": n==="runs-group-and-open"?"checkbox":"text";
-  });
   function resolve(q){
     var n=norm(q); if(!n) return null;
     if(ALIAS[n]) return ALIAS[n];
@@ -57,7 +53,8 @@
     if(!code){ out.hidden=true; err.textContent='We could not match "'+q+'" to a country. Try the English name, like Denmark or Czechia.'; err.hidden=false; return; }
     loadTravelers().then(function(l){ render(code,l); });
   }
-  if(form){ form.addEventListener("submit",function(e){ e.preventDefault(); run(input.value); }); }
+  if(go){ go.addEventListener("click",function(e){ e.preventDefault(); run(input.value); }); }
+  if(input){ input.addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); run(input.value); } }); }
   var q0=new URLSearchParams(location.search).get("country"); if(q0&&input){ input.value=q0; run(q0); }
   /* quick chips: countries that already have a Location Expert on /travelers, then the directory grid */
   loadTravelers().then(function(l){
