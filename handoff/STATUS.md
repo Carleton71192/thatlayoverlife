@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 77 · Done 1 · Partial 32 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 75 · Done 1 · Partial 34 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -57,8 +57,8 @@ Summary: TODO 77 · Done 1 · Partial 32 · Blocked 15 · N/A 2 · Deferred 0
 | B31 | Style guide (reference, no route) | N/A | Reference only per REQUIREMENTS (no route). Checked 29 Sep 2026: the tokens it lists (Midnight, Rose, Teal, Amber, Bone, Paper, Playfair 800 headlines, JetBrains Mono eyebrows, no em dashes, LIFE always Rose) are the ones used across the staged pages. The Webflow /style-guide draft page is internal and stays a draft. |
 | B32 | Directory boards (reference for group C) | N/A | Reference only per REQUIREMENTS. Used as the source for the traveler directory rows in group C (tags taxonomy is provisional pending the search research it names). |
 | B33 | Answer guides (DRAFT banner) | TODO |  |
-| B34 | Layover Awards | TODO |  |
-| B35 | For brands (no prices) | TODO |  |
+| B34 | Layover Awards | Partial | Built 29 Sep 2026 on new page /awards (nav + footer instances, content from screen 34). Matches: eyebrow with PROPOSED WINDOW 1 TO 31 OCTOBER, H1, lede, Nominate card, CATEGORY / WHICH ONE / WHY, IN ONE LINE, 0 / 140 counter, verify line (both logged-in and logged-out wording), Send the nomination →, HOUSE RULES, YOUR NOMINATIONS with empty state "None yet. The first one is always the hardest." Differences: category is a native select, not the pill row (accessible and agent-fillable; pills need JS-only state); form is a real Webflow form "Award nomination" (POST) gated with data-ms-content=members, logged-out block links /login and /signup; own success/error copy; one-per-category and the "Your nominations" list are kept per browser (localStorage) with tag LABEL CHECKED IN REVIEW · IN REVIEW. Submissions land in Webflow Forms with member-id and year; nothing writes the Award Nominations collection yet (needs a Worker or manual review), so no tallies and no winners shown, which matches the no-public-tally rule. Left: Nancy confirms the window dates; decide Worker vs manual move into the collection; live check after publish. Staged, unpublished. |
+| B35 | For brands (no prices) | Partial | Built 29 Sep 2026 on new page /for-brands (nav + footer instances, content from screen 35). Matches: eyebrow FOR BRANDS · TOURISM BOARDS, AIRLINES, HOTELS, H1 with italic accent, lede, Start a brief → (mailto hello@thatlayover.life subject PARTNERSHIP), Read the rules first → /editorial-charter#rule-08, THREE WAYS TO WORK TOGETHER with cards 01–03 verbatim, WHAT WE MEASURE, WHAT IS NEVER FOR SALE with Charter rule 08 link, PAST PARTNERS · OPEN SLOT "None yet…", HELLO@THATLAYOVER.LIFE · PARTNERSHIP →, TBC invoicing line. No prices anywhere. Also gave the charter's rule 08 section the DOM id rule-08 so both anchors resolve. Difference: the screen's Denmark hero photo is not used (no confirmed site asset), plain Midnight hero instead. Left: live check after publish; footer WORK WITH US row (B41, with Nancy). Staged, unpublished. |
 | B36 | 404 | Partial | Checked 29 Sep 2026 side by side with screen 36: eyebrow ERROR 404, H1 "This page missed its connection.", the Frankfurt line, Read the library → /stories and Open the map → /the-map all already match. No change needed. Left: live check after publish that an unknown URL serves it. |
 | B37 | Login + Sign up (consent block) | TODO |  |
 | B38 | Account (real counters, lists, Wrapped, export) | TODO |  |
