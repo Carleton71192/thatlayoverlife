@@ -24,3 +24,5 @@ Pattern: whtml shell with data-tll-dir-src slot; CMSCollection element moved int
 - Contributors template 6a0b29c8a7b1840afe9390ab: dir-hero 714bdfb4-…ca07 (in hero-id), dir-links 84c48f2e-…c469 (before links-list), dir-contact 613a57ed-…4505 (after links-empty); Directory wrapper c9efcd7a-…92c1 (data-tll-prof=dir-src, item …92c3, node f0299086-…7ccf). Styles tll-prof-dir-v1, script tll-prof-dir-js-v1 appended.
 - /submit 6a0d5e5eb7804d3a750dc266: fork db792b8d-…1e95 (before form wrapper 410fe31c-…7d36), link-out block 51b9abee-…e25c (FormWrapper …e254, FormForm …e255, success …e256/…e257, error …e259/…e25a). Head: tll-share-fork-v1 style + js.
 - /contact 69d61469f421c777840c204f: relay section a6a41b6f-…353b after doors section 34cabe89-…8756. Head: tll-relay-v1 style + js.
+- /travelers 6a0e0632ef1e4948167e827c: Directory wrapper 69ecb6a8-…2320 (data-tll-trav-dirsrc, item …2322); footer gained tll-trav-dir-css + tll-trav-dir-js (chips are spans opening a new tab, since cards are anchors).
+- /submit link-out button 38cc5534-…97be; /contact relay button 740cb8b5-…360b; relay FormForm a6a41b6f-…3531 (name Relay, post).
