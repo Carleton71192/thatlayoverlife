@@ -1,0 +1,19 @@
+<!-- tll-trips-js-v1 -->
+<script>
+(function(){
+  var root=document.querySelector('[data-tll-trips]'); if(!root) return;
+  var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var now=Date.now();
+  var trips=[].slice.call(document.querySelectorAll('[data-tll-trip]')).map(function(n){var d=n.dataset;return {dest:d.dest||'',dates:d.dates||'',covered:d.covered||'',wants:d.wants||'',host:d.host||'',deadline:d.deadline||'',apply:d.apply||'',status:(d.status||'').toLowerCase()}})
+    .filter(function(t){ if(!t.dest||t.status!=='live') return false; var dl=Date.parse(t.deadline); return !(dl&&dl<now); });
+  var fmt=function(s){var d=new Date(s); return isNaN(d)?esc(s):d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};
+  var grid=root.querySelector('[data-tll-trips-grid]'), count=root.querySelector('[data-tll-trips-count]');
+  count.textContent=trips.length+' open trip'+(trips.length===1?'':'s')+' · every one labeled hosted · drops off after the deadline';
+  var html=trips.map(function(t){
+    var apply=t.apply?'<a class="tlltr-apply" href="'+esc(t.apply)+'" target="_blank" rel="noopener nofollow">Apply on the host\'s own link →</a>':'<span class="tlltr-apply">Apply: see the host</span>';
+    return '<article class="tlltr-card"><div class="tlltr-top"><span class="tlltr-hosted">Hosted trip</span><span class="tlltr-deadline">Deadline: '+fmt(t.deadline)+'</span></div><h3 class="tlltr-dest">'+esc(t.dest)+'</h3><p class="tlltr-dates">'+esc(t.dates)+'</p><p class="tlltr-row"><b>Covered</b>'+esc(t.covered)+'</p><p class="tlltr-row"><b>Wants</b>'+esc(t.wants)+'</p><p class="tlltr-row"><b>Posted by</b>Reklame for '+esc(t.host)+'</p>'+apply+'</article>';
+  }).join('');
+  if(trips.length<2) html+='<article class="tlltr-card tlltr-card--sample"><span class="tlltr-sample">Sample · not a real trip</span><div class="tlltr-top"><span class="tlltr-hosted">Hosted trip</span><span class="tlltr-deadline">Deadline: date</span></div><h3 class="tlltr-dest">Destination · Dates</h3><p class="tlltr-row"><b>Covered</b>what the host pays for</p><p class="tlltr-row"><b>Wants</b>format + audience</p><p class="tlltr-row"><b>Posted by</b>board, PR team or brand</p><span class="tlltr-apply">Apply: on the host\'s own link</span></article>';
+  grid.innerHTML=html;
+})();
+</script>
