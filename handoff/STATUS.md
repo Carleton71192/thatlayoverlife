@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 46 · Done 1 · Partial 63 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 44 · Done 1 · Partial 65 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -99,8 +99,8 @@ Summary: TODO 46 · Done 1 · Partial 63 · Blocked 15 · N/A 2 · Deferred 0
 | E06 | Labeling mechanism: Reklame before sponsored headlines, Reklamelink beside affiliate links | TODO |  |
 | F01 | Members/anonymous split on /share, /share-photos, /my-pets, /edit-profile, /account, /edit | Partial | Checked 30 Sep 2026 in the element tree: members + anonymous blocks present on /submit (two pairs), /share-photos, /my-pets, /edit-profile (locked state), /account. Left: /edit (story edit) not checked; live behavior check signed in and out after publish. |
 | F02 | Editor desk: role gate, log-in only (no join CTA), NOINDEX | Partial | Verified 30 Sep 2026: /editors-desk head has noindex, nofollow; gate script tll-desk-gate-v1 (29 Sep) hides the desk until a signed-in member is confirmed, locked state offers Sign in only, no join CTA; while EDITOR_PLANS is empty the gate is sign-in only. Left: Nancy creates the admin-assigned Editor plan in Memberstack and its id goes into EDITOR_PLANS. |
-| F03 | Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge,  | TODO |  |
-| F04 | Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); c | TODO |  |
+| F03 | Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge,  | Partial | Checked 30 Sep 2026 in the element tree: no data-ms-content gate on the Contributors template (public profiles), the Paw Passport diary template, /countries, /travel-wire, /gallery (the Lounge) or /the-map (the map canvas sits in an ungated section; only save goes through Memberstack). /p/{handle} does not exist yet (G11). Left: logged-out live check after publish. |
+| F04 | Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); c | Partial | Checked 30 Sep 2026: the nav avatar (tll-nav-account-link) links straight to /account, no interstitial page in between; /account counters on the LOGGED and PAWED cards now read tllStates (B38). Left: signed-in live check that the numbers are non-zero for Nancy after publish; WRITTEN and SNAPPED still have no per-member source. |
 | G01 | Counting engine: headline base (UN 193 default, pending Nancy), bonus places chip, tier la | TODO |  |
 | G02 | Data hygiene: ignore/remove non-ISO keys (the "undefined" entry) before any count or card | TODO |  |
 | G03 | Percent card: master 1080×1920, feed 1080×1350, link 1200×630, light + dark | TODO |  |
