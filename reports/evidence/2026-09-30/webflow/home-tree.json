@@ -1,0 +1,3796 @@
+{
+ "id": {
+  "component": "69d6145df421c777840c1e46",
+  "element": "69d6149a769462c4e6caa30f"
+ },
+ "type": "Body",
+ "children": [
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "fc03d2d5-0d43-2f25-e314-9d19ec59c2c5"
+   },
+   "type": "Block",
+   "styleNames": [
+    "inline-div-0-1-2"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": false,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "fc03d2d5-0d43-2f25-e314-9d19ec59c2c4"
+     },
+     "type": "String",
+     "textContent": "Real trips. Real takes."
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "6e4b18ee-020c-2340-51bf-668d5e39e337"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "name": "TLL Nav v1",
+    "props": [],
+    "slots": []
+   }
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "300047e7-de75-7f9c-7045-af42c0caff72"
+   },
+   "type": "Block",
+   "styleNames": [
+    "inline-div-4-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "2a95bf83-46fd-a265-7610-7f13b2eb4e29"
+     },
+     "type": "Image",
+     "styleNames": [
+      "inline-imgraw-0-1-2-3-4-5"
+     ],
+     "attributes": {
+      "data-tll-parallax": "hero",
+      "loading": "eager",
+      "fetchpriority": "high",
+      "decoding": "async"
+     },
+     "settings": {
+      "visibility": true,
+      "assetId": "6a115e2be857613f33b48a9d",
+      "altText": "Azure water and a quiet boat, shot by someone who actually went"
+     }
+    },
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "300047e7-de75-7f9c-7045-af42c0caff62"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     }
+    },
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "300047e7-de75-7f9c-7045-af42c0caff71"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "300047e7-de75-7f9c-7045-af42c0caff64"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff63"
+         },
+         "type": "String",
+         "textContent": "Travel stories by people who were there"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "300047e7-de75-7f9c-7045-af42c0caff69"
+       },
+       "type": "Heading",
+       "styleNames": [
+        "inline-h1-0-1-2-3-4-5-6-7-8-9-10-11"
+       ],
+       "settings": {
+        "tag": "h1",
+        "visibility": true,
+        "headingLevel": 1
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff65"
+         },
+         "type": "String",
+         "textContent": "Find your next "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff67"
+         },
+         "type": "Emphasized",
+         "styleNames": [
+          "inline-em-0-1-2-3-4-5-6-7-8-9-10-11-12"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "300047e7-de75-7f9c-7045-af42c0caff66"
+           },
+           "type": "String",
+           "textContent": "somewhere"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff68"
+         },
+         "type": "String",
+         "textContent": "."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "300047e7-de75-7f9c-7045-af42c0caff6b"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff6a"
+         },
+         "type": "String",
+         "textContent": "Real places, real opinions, real names. Shared by people who went."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "300047e7-de75-7f9c-7045-af42c0caff70"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff6d"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36"
+         ],
+         "attributes": {
+          "href": "/stories"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/stories"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "300047e7-de75-7f9c-7045-af42c0caff6c"
+           },
+           "type": "String",
+           "textContent": "Read the library →"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "300047e7-de75-7f9c-7045-af42c0caff6f"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25"
+         ],
+         "attributes": {
+          "href": "/share"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/submit"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "300047e7-de75-7f9c-7045-af42c0caff6e"
+           },
+           "type": "String",
+           "textContent": "Share your story"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5eaf"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-shero"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": false,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5eae"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-shero-in"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "f6ba03e4-d912-fe1e-f04e-77c8a708dcc9"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "f6ba03e4-d912-fe1e-f04e-77c8a708dcc8"
+         },
+         "type": "String",
+         "textContent": "★ Featured story"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea6"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-shero-ey"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea1"
+         },
+         "type": "String",
+         "textContent": "Bulgaria "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea2"
+         },
+         "type": "String",
+         "textContent": "·"
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea3"
+         },
+         "type": "String",
+         "textContent": " Cultural Pattern "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea4"
+         },
+         "type": "String",
+         "textContent": "·"
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea5"
+         },
+         "type": "String",
+         "textContent": " 4 min read"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea8"
+       },
+       "type": "Heading",
+       "styleNames": [
+        "tll-shero-h1"
+       ],
+       "settings": {
+        "tag": "h2",
+        "visibility": true,
+        "headingLevel": 2
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea7"
+         },
+         "type": "String",
+         "textContent": "Sofia, where Anton ordered the plum brandy at nine in the morning."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5eaa"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "tll-shero-sub"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ea9"
+         },
+         "type": "String",
+         "textContent": "A 9am plum brandy, a retired physics teacher, and the Balkans country that finally undid the spreadsheet."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5ead"
+       },
+       "type": "Link",
+       "styleNames": [
+        "tll-shero-cta"
+       ],
+       "attributes": {
+        "href": "/stories/sofia-9am-bulgaria-88"
+       },
+       "settings": {
+        "visibility": true,
+        "link": {
+         "linkType": "url",
+         "href": "/stories/sofia-88-bulgaria-plum-brandy"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5eab"
+         },
+         "type": "String",
+         "textContent": "Read the story "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "7a9aa446-1048-bbeb-71c2-d115fc7a5eac"
+         },
+         "type": "String",
+         "textContent": "→"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "e646451a-68a7-b183-3a52-6da4762de20c"
+   },
+   "type": "Section",
+   "styleNames": [
+    "inline-section-0-1-2-3-4-5-6-7-8-9-10-11-12"
+   ],
+   "attributes": {
+    "id": "tll-shelf"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "e646451a-68a7-b183-3a52-6da4762de20b"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-16-1-2-3-4"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "e646451a-68a7-b183-3a52-6da4762de1e7"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "e646451a-68a7-b183-3a52-6da4762de1e6"
+         },
+         "type": "String",
+         "textContent": "Already on the shelf · 6 stories, counted by hand"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "e646451a-68a7-b183-3a52-6da4762de204"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-13-1-2-3-4-5-6-7-8-9-10-11"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "cd17db29-e34a-8909-36d3-0fb4d2bd6ef6"
+         },
+         "type": "HtmlEmbed",
+         "settings": {
+          "visibility": true
+         }
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "e646451a-68a7-b183-3a52-6da4762de207"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-14-1-2-3-4-5"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "e646451a-68a7-b183-3a52-6da4762de206"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-4-1-2-3-4-5-6-7-8"
+         ],
+         "attributes": {
+          "href": "/stories"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/stories"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "e646451a-68a7-b183-3a52-6da4762de205"
+           },
+           "type": "String",
+           "textContent": "See the full library →"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ffb"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff1"
+           },
+           "type": "FormWrapper",
+           "styleNames": [
+            "inline-form-0-1-2"
+           ],
+           "settings": {
+            "visibility": true,
+            "form": {
+             "name": "Library search",
+             "formSettings": {
+              "action": "/stories",
+              "method": "get",
+              "name": "Library search",
+              "redirect": "",
+              "state": "normal"
+             }
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff2"
+             },
+             "type": "FormForm",
+             "settings": {
+              "visibility": true,
+              "form": {
+               "name": "Library search",
+               "formSettings": {
+                "action": "/stories",
+                "method": "get",
+                "name": "Library search",
+                "redirect": "",
+                "state": "normal"
+               }
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9fee"
+               },
+               "type": "FormTextInput",
+               "styleNames": [
+                "inline-input-0-1-2-3"
+               ],
+               "attributes": {
+                "id": "Search-the-library",
+                "aria-label": "Search stories"
+               },
+               "settings": {
+                "visibility": true,
+                "input": {
+                 "inputName": "Search the library",
+                 "inputType": "text"
+                }
+               }
+              },
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff0"
+               },
+               "type": "FormButton",
+               "styleNames": [
+                "inline-button-0-1-2-3"
+               ],
+               "settings": {
+                "visibility": true
+               }
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff3"
+             },
+             "type": "FormSuccessMessage",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff4"
+               },
+               "type": "Block",
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff5"
+                 },
+                 "type": "String",
+                 "textContent": "Check your inbox. One click to confirm, and you will hear the day the doors open. Nothing else, ever."
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff6"
+             },
+             "type": "FormErrorMessage",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff7"
+               },
+               "type": "Block",
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff8"
+                 },
+                 "type": "String",
+                 "textContent": "That did not go through. Try once more, or email hello@thatlayover.life."
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ffa"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "c618aa80-c5fc-05d8-1a40-9ccfa36c9ff9"
+             },
+             "type": "String",
+             "textContent": "Double opt-in · No newsletter bribe · Leave any time"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "e646451a-68a7-b183-3a52-6da4762de20a"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-15-1-2-3-4-5"
+       ],
+       "attributes": {
+        "id": "tll-ad-slot-home",
+        "data-tll-ad-slot": "in-feed"
+       },
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9461d417-a616-d1af-2562-03eb2351372a"
+         },
+         "type": "Image",
+         "styleNames": [
+          "inline-imgraw-0"
+         ],
+         "settings": {
+          "visibility": true,
+          "assetId": "6a115ea686f678134db92154",
+          "altText": "Doha at night, photographed on a long layover"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f5a04"
+   },
+   "type": "Section",
+   "styleNames": [
+    "inline-section-0-1-2-3-4-5-6-7-8-9-10-11-12-13"
+   ],
+   "attributes": {
+    "data-tll-library-search": "1"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f5a03"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59e6"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59e5"
+         },
+         "type": "String",
+         "textContent": "Browse the Stories"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59e8"
+       },
+       "type": "Heading",
+       "styleNames": [
+        "inline-h2-0-1-2-3-4-5-6-7-8-9-10"
+       ],
+       "settings": {
+        "tag": "h2",
+        "visibility": true,
+        "headingLevel": 2
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59e7"
+         },
+         "type": "String",
+         "textContent": "Pick a country. Someone already went."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59ea"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59e9"
+         },
+         "type": "String",
+         "textContent": "Named travelers, specific dates. Find the country, the city, or the pillar you came for."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f5a02"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59f7"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28"
+         ],
+         "attributes": {
+          "href": "/stories"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/stories"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59f6"
+           },
+           "type": "String",
+           "textContent": "All stories"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59f9"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18"
+         ],
+         "attributes": {
+          "href": "/pillars/layover-guides"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/pillars/layover-guides"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59f8"
+           },
+           "type": "String",
+           "textContent": "Layover Guides"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59fb"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+         ],
+         "attributes": {
+          "href": "/pillars/paw-passport"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/pillars/paw-passport"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59fa"
+           },
+           "type": "String",
+           "textContent": "Paw Passport"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59fd"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-3-1-2-3-4-5-6-7-8-9-10-11-12"
+         ],
+         "attributes": {
+          "href": "/pillars/travel-logistics"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/pillars/travel-logistics"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59fc"
+           },
+           "type": "String",
+           "textContent": "Travel Logistics"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59ff"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-4-1-2-3-4-5-6-7-8-9-10-11-12"
+         ],
+         "attributes": {
+          "href": "/pillars/cultural-intelligence"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/pillars/cultural-intelligence"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f59fe"
+           },
+           "type": "String",
+           "textContent": "Cultural Intelligence"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f5a01"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-5-1-2-3-4-5-6-7-8-9-10"
+         ],
+         "attributes": {
+          "href": "/pillars/stories-from-the-road"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/pillars/stories-from-the-road"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "acdcaf9c-31d7-f4ab-dff6-af1b990f5a00"
+           },
+           "type": "String",
+           "textContent": "Stories From the Road"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "9c10ff57-6eaf-8454-a70a-39e2092f0396"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-comm"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "9c10ff57-6eaf-8454-a70a-39e2092f0395"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-comm-in"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "9c10ff57-6eaf-8454-a70a-39e2092f0372"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-comm-ey"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f0371"
+         },
+         "type": "String",
+         "textContent": "Doors opening"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "9c10ff57-6eaf-8454-a70a-39e2092f0376"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-comm-h"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f0373"
+         },
+         "type": "String",
+         "textContent": "One writer so far. Room on the shelf for "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f0375"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-comm-accent"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0374"
+           },
+           "type": "String",
+           "textContent": "yours."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "9c10ff57-6eaf-8454-a70a-39e2092f0378"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "tll-comm-sub"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "aa171515-0f50-d0b2-f5a3-7112b2da5635"
+         },
+         "type": "String",
+         "textContent": "TLL is being written in public. Your byline stays yours, your photos stay credited, and a real person reads every word before it ships."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "9c10ff57-6eaf-8454-a70a-39e2092f037e"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-comm-cta"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f037a"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-comm-btn"
+         ],
+         "attributes": {
+          "href": "/share"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/submit"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0379"
+           },
+           "type": "String",
+           "textContent": "Share Your Story"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f037d"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-comm-link"
+         ],
+         "attributes": {
+          "href": "/stories"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/stories"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f037b"
+           },
+           "type": "String",
+           "textContent": "Read the library "
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f037c"
+           },
+           "type": "String",
+           "textContent": "→"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "9c10ff57-6eaf-8454-a70a-39e2092f038e"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-comm-steps"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f0383"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-comm-step"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0380"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-num"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "9c10ff57-6eaf-8454-a70a-39e2092f037f"
+             },
+             "type": "String",
+             "textContent": "1"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0382"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-stext"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "9c10ff57-6eaf-8454-a70a-39e2092f0381"
+             },
+             "type": "String",
+             "textContent": "Send your trip"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f0388"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-comm-step"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0385"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-num"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "9c10ff57-6eaf-8454-a70a-39e2092f0384"
+             },
+             "type": "String",
+             "textContent": "2"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f0387"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-stext"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "9c10ff57-6eaf-8454-a70a-39e2092f0386"
+             },
+             "type": "String",
+             "textContent": "Light edit, your voice"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "9c10ff57-6eaf-8454-a70a-39e2092f038d"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-comm-step"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9c10ff57-6eaf-8454-a70a-39e2092f038a"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-num"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "9c10ff57-6eaf-8454-a70a-39e2092f0389"
+             },
+             "type": "String",
+             "textContent": "3"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "28a16ba4-782f-93ff-68d7-a832db008f13"
+           },
+           "type": "Span",
+           "styleNames": [
+            "tll-comm-stext"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "28a16ba4-782f-93ff-68d7-a832db008f12"
+             },
+             "type": "String",
+             "textContent": "Reviewed in 48h, credited"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "f298ea24-268d-59a9-7715-915a4458ed2a"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-comm-fine"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "f298ea24-268d-59a9-7715-915a4458ed29"
+         },
+         "type": "String",
+         "textContent": "Free to read, free to publish · No newsletter bribe · No pressure"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "beb831d5-0273-2ff1-9c40-a7e05a6553f9"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-map"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "beb831d5-0273-2ff1-9c40-a7e05a6553f2"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-map-top"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "beb831d5-0273-2ff1-9c40-a7e05a6553ee"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-map-h"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "beb831d5-0273-2ff1-9c40-a7e05a6553eb"
+         },
+         "type": "String",
+         "textContent": "Where the Travelers have "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "beb831d5-0273-2ff1-9c40-a7e05a6553ed"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-map-accent"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "beb831d5-0273-2ff1-9c40-a7e05a6553ec"
+           },
+           "type": "String",
+           "textContent": "been."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "beb831d5-0273-2ff1-9c40-a7e05a6553f1"
+       },
+       "type": "Link",
+       "styleNames": [
+        "tll-map-link"
+       ],
+       "attributes": {
+        "href": "/the-map"
+       },
+       "settings": {
+        "visibility": true,
+        "link": {
+         "linkType": "url",
+         "href": "/the-map"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "beb831d5-0273-2ff1-9c40-a7e05a6553ef"
+         },
+         "type": "String",
+         "textContent": "Open the full map"
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "beb831d5-0273-2ff1-9c40-a7e05a6553f0"
+         },
+         "type": "String",
+         "textContent": "→"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "61b09da1-6a8c-03d1-dfcd-074478161a51"
+     },
+     "type": "HtmlEmbed",
+     "settings": {
+      "visibility": true
+     }
+    },
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "4dd8dfd1-f3cd-d8e9-cd19-bed01b68a63c"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-map-note"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "4dd8dfd1-f3cd-d8e9-cd19-bed01b68a63b"
+       },
+       "type": "String",
+       "textContent": "Every pink country belongs to the editor. Go make a worse one."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "77240a57-705d-72c0-ed6c-2dd1197fb60a"
+   },
+   "type": "Section",
+   "styleNames": [
+    "inline-section-0-1-2-3-4-5-6-7-8"
+   ],
+   "attributes": {
+    "id": "paw-passport"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "77240a57-705d-72c0-ed6c-2dd1197fb609"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-34"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "77240a57-705d-72c0-ed6c-2dd1197fb5df"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-11-1-2-3-4-5-6-7-8-9-10"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5b8"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5b7"
+           },
+           "type": "String",
+           "textContent": "For every travel companion"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5ba"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "inline-h2-0-1-2-3-4-5-6-7"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5b9"
+           },
+           "type": "String",
+           "textContent": "Your bestie gets a passport too."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5bc"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-guide-intro"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5bb"
+           },
+           "type": "String",
+           "textContent": "Dog, cat, ferret, one extremely well-traveled parrot. If they crossed a border with you, they get a page, a stamp collection, and a byline in your stories."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5d8"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-10-1-2-3-4-5-6-7-8-9-10-11-12-13-14"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c6"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-6-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5be"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5bd"
+               },
+               "type": "String",
+               "textContent": "🐾"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c5"
+             },
+             "type": "Block",
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c0"
+               },
+               "type": "Block",
+               "styleNames": [
+                "inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+               ],
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "77240a57-705d-72c0-ed6c-2dd1197fb5bf"
+                 },
+                 "type": "String",
+                 "textContent": "Magnus Waffles"
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "19f94072-7fb2-48a8-adf6-c4d07bc912d1"
+               },
+               "type": "Block",
+               "styleNames": [
+                "inline-div-4-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+               ],
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "19f94072-7fb2-48a8-adf6-c4d07bc912d0"
+                 },
+                 "type": "String",
+                 "textContent": "Samoyed · 3 yrs · Copenhagen, DK"
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c4"
+               },
+               "type": "Block",
+               "styleNames": [
+                "inline-div-5-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+               ],
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c3"
+                 },
+                 "type": "String",
+                 "textContent": "13 countries · 0 complaints"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c8"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-7-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5c7"
+             },
+             "type": "String",
+             "textContent": "Passport stamps"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "b3064d74-ba98-3f72-d26a-bc25399d880f"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-8-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d8804"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-0-1-2-3-4-5-6-7-8-9-10-11"
+             ],
+             "attributes": {
+              "title": "Brazil"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d8803"
+               },
+               "type": "String",
+               "textContent": "🇧🇷"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d8806"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-1-1-2-3-4-5-6-7-8-9-10-11"
+             ],
+             "attributes": {
+              "title": "Germany"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d8805"
+               },
+               "type": "String",
+               "textContent": "🇩🇪"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d8808"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-2-1-2-3-4-5-6-7-8-9-10-11"
+             ],
+             "attributes": {
+              "title": "Austria"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d8807"
+               },
+               "type": "String",
+               "textContent": "🇦🇹"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d880a"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-3-1-2-3-4-5-6-7-8-9-10-11"
+             ],
+             "attributes": {
+              "title": "Bulgaria"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d8809"
+               },
+               "type": "String",
+               "textContent": "🇧🇬"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d880c"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-4-1-2-3-4"
+             ],
+             "attributes": {
+              "title": "Sweden"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d880b"
+               },
+               "type": "String",
+               "textContent": "🇸🇪"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "b3064d74-ba98-3f72-d26a-bc25399d880e"
+             },
+             "type": "Span",
+             "styleNames": [
+              "inline-span-5-1-2-3"
+             ],
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "b3064d74-ba98-3f72-d26a-bc25399d880d"
+               },
+               "type": "String",
+               "textContent": "+8"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "35c68bb0-375a-0c75-8cdd-c5ca37c1724f"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-9-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "35c68bb0-375a-0c75-8cdd-c5ca37c1724e"
+             },
+             "type": "String",
+             "textContent": "Often confused with a polar bear, seal, or teddy bear. 100% Samoyed."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5da"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "inline-p-0-1-2-3-4-5-6-7-8-9"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "87c10def-8fb8-2bd5-0d98-73a77fbd9db4"
+           },
+           "type": "String",
+           "textContent": "The Paw Passport is for traveling with your bestie, whatever the species. Every pet gets a page: where they went, what they rated, which airlines lost their dignity. Magnus was simply first."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5de"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14"
+         ],
+         "attributes": {
+          "href": "/the-paw-passport"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/the-paw-passport"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "a162e640-77be-b5ef-3bf8-5eecf1a2f639"
+           },
+           "type": "String",
+           "textContent": "🐾 Meet Magnus & the Travelers →"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "77240a57-705d-72c0-ed6c-2dd1197fb608"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-33"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5e1"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-12-1-2-3-4-5-6-7-8-9"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5e0"
+           },
+           "type": "String",
+           "textContent": "More from the pack"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f9"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-25-1"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5ea"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-17-1"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": false,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5e3"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-13-1-2-3-4-5-6-7-8-9"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5e2"
+               },
+               "type": "String",
+               "textContent": "B"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "2eedfd52-f118-80ed-46ed-b43821941df7"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-14-1-2-3"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "2eedfd52-f118-80ed-46ed-b43821941df6"
+               },
+               "type": "String",
+               "textContent": "Open slot"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "d309d366-a66f-004f-2de6-a89c7dd46a3f"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-15-1-2-3"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "d309d366-a66f-004f-2de6-a89c7dd46a3e"
+               },
+               "type": "String",
+               "textContent": "Any species · with paperwork"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "d16437f3-26c4-9e57-ae79-5d28fd29fdc9"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-16-1-2"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "d16437f3-26c4-9e57-ae79-5d28fd29fdc8"
+               },
+               "type": "String",
+               "textContent": "Awaiting a first trip"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f3"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-22-1"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": false,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5ec"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-18-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5eb"
+               },
+               "type": "String",
+               "textContent": "O"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "d4974dc6-a6f2-e519-3e51-1ba2bbd90a27"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-19-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "d4974dc6-a6f2-e519-3e51-1ba2bbd90a26"
+               },
+               "type": "String",
+               "textContent": "Also open"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "a479f534-00b8-ed1f-1be8-61a7a1a2dabd"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-20-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "a479f534-00b8-ed1f-1be8-61a7a1a2dabc"
+               },
+               "type": "String",
+               "textContent": "Cats welcome, reluctantly"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "4be82f2b-3e4b-3d61-0521-7aaf223d9c22"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-21-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "4be82f2b-3e4b-3d61-0521-7aaf223d9c21"
+               },
+               "type": "String",
+               "textContent": "Awaiting a first trip"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f8"
+           },
+           "type": "Link",
+           "styleNames": [
+            "inline-a-1-1-2-3-4-5-6-7-8-9-10"
+           ],
+           "attributes": {
+            "href": "/my-pets#add-pet"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/my-pets#add-pet"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f5"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-23-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f4"
+               },
+               "type": "String",
+               "textContent": "+"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f7"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-24-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5f6"
+               },
+               "type": "String",
+               "textContent": "Your pet"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "77240a57-705d-72c0-ed6c-2dd1197fb607"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-32"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb5fa"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-26-1"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "77240a57-705d-72c0-ed6c-2dd1197fb606"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-31"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5fc"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-27-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5fb"
+               },
+               "type": "String",
+               "textContent": "Latest trip with Magnus along"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb5fe"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-28-1"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb5fd"
+               },
+               "type": "String",
+               "textContent": "Magnus, along for the Balkans"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "7005d999-752d-8a85-e58d-b20807627b69"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-29"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "7005d999-752d-8a85-e58d-b20807627b68"
+               },
+               "type": "String",
+               "textContent": "Twelve countries in an EV. One coconut, one dog bakery, and a baguette on every sidewalk."
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "77240a57-705d-72c0-ed6c-2dd1197fb605"
+             },
+             "type": "Block",
+             "styleNames": [
+              "inline-div-30"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb602"
+               },
+               "type": "Span",
+               "styleNames": [
+                "inline-span-6-1-2-3"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "77240a57-705d-72c0-ed6c-2dd1197fb601"
+                 },
+                 "type": "String",
+                 "textContent": "Balkans · 9 min · Nancy Carleton"
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d6145df421c777840c1e46",
+                "element": "77240a57-705d-72c0-ed6c-2dd1197fb604"
+               },
+               "type": "Link",
+               "styleNames": [
+                "inline-a-2-1-2-3-4-5-6-7-8-9-10"
+               ],
+               "settings": {
+                "visibility": true,
+                "link": {
+                 "linkType": "url",
+                 "href": "/stories/balkans-ev-road-trip-twelve-countries"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d6145df421c777840c1e46",
+                  "element": "77240a57-705d-72c0-ed6c-2dd1197fb603"
+                 },
+                 "type": "String",
+                 "textContent": "Read →"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f203"
+   },
+   "type": "Section",
+   "styleNames": [
+    "inline-section-0-1-2-3-4-5-6-7-8-9"
+   ],
+   "attributes": {
+    "id": "layover-lounge"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d6145df421c777840c1e46",
+      "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f202"
+     },
+     "type": "Block",
+     "styleNames": [
+      "inline-div-4-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ca"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "85e6dcc0-911c-15c2-c0bd-9a77bf3eca07"
+         },
+         "type": "String",
+         "textContent": "A photo, not an essay · The easiest yes"
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1cc"
+       },
+       "type": "Heading",
+       "styleNames": [
+        "inline-h2-0-1-2-3-4-5-6-7-8"
+       ],
+       "settings": {
+        "tag": "h2",
+        "visibility": true,
+        "headingLevel": 2
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1cb"
+         },
+         "type": "String",
+         "textContent": "The Layover Lounge."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ce"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "inline-p-0-1-2-3-4-5-6-7-8-9-10"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1cd"
+         },
+         "type": "String",
+         "textContent": "Real places, shot by the people who actually went. All frames currently by Nancy. Yours changes that."
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1fc"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d3"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "fcd56c7f-c5e2-beea-03a8-09625e83e2db"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-0"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a115ea686f678134db92154",
+            "altText": "Doha layover"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d2"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-0-1-2-3-4-5-6-7-8-9-10-11-12"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d1"
+             },
+             "type": "String",
+             "textContent": "NC"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d8"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-1-1-2-3-4-5-6-7-8-9-10-11"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "bcd942b1-bc9f-7a13-4eff-df75849d69ef"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-1"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e02265e2392e5fc632431",
+            "altText": "Montenegro coast"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d7"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-1-1-2-3-4-5-6-7-8-9-10-11-12"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1d6"
+             },
+             "type": "String",
+             "textContent": "MW"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1dd"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-2-1-2-3-4-5-6-7-8-9-10-11"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "19130e6d-ecc9-4fe2-43ab-ddf060d3a7d4"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-2"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e0224fb0e0ee3c092ec01",
+            "altText": "Accra, Ghana"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1dc"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-2-1-2-3-4-5-6-7-8-9-10-11-12"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1db"
+             },
+             "type": "String",
+             "textContent": "NC"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e2"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-3-1-2-3-4-5-6-7"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9dde3bee-e87b-4d97-7aef-1f8e7076b7bd"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-3"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e02257422651f60ae30bd",
+            "altText": "Rio de Janeiro"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e1"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-3-1-2-3-4-5-6-7-8-9-10-11-12"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e0"
+             },
+             "type": "String",
+             "textContent": "JP"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e7"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-4-1-2-3-4-5-6-7"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "ebe1cc00-288f-2fae-d617-92822382a52d"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-4"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e0227a8a057dc93c81813",
+            "altText": "Germany"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e6"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-4-1-2-3-4-5"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1e5"
+             },
+             "type": "String",
+             "textContent": "SD"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ec"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-5-1-2-3-4-5-6-7"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "09b839ce-1e72-3978-51e3-728a7fe91250"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-5"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e022587e5a98acb19fe9d",
+            "altText": "Antarctica"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1eb"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-5-1-2-3-4"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ea"
+             },
+             "type": "String",
+             "textContent": "AL"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f1"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-6-1"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "9880cca2-1227-5433-bcb6-d027a25c5fab"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-6"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a1183262f8a632aeff43aed",
+            "altText": "Sofia, Bulgaria"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f0"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-6-1-2-3-4"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ef"
+             },
+             "type": "String",
+             "textContent": "TR"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f6"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-7-1"
+         ],
+         "attributes": {
+          "href": "/gallery"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/gallery"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "eb4be319-2f38-4df4-e19d-326c43ce37f8"
+           },
+           "type": "Image",
+           "styleNames": [
+            "inline-imgraw-7"
+           ],
+           "settings": {
+            "visibility": true,
+            "assetId": "6a0e02257957fd335eff3224",
+            "altText": "Ubatuba, Brazil"
+           }
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f5"
+           },
+           "type": "Span",
+           "styleNames": [
+            "inline-span-7-1-2-3"
+           ],
+           "settings": {
+            "visibility": false
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f4"
+             },
+             "type": "String",
+             "textContent": "RO"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1fb"
+         },
+         "type": "Link",
+         "styleNames": [
+          "inline-a-8-1"
+         ],
+         "attributes": {
+          "href": "/share-photos"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/share-photos"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f8"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f7"
+             },
+             "type": "String",
+             "textContent": "+"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1fa"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d6145df421c777840c1e46",
+              "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1f9"
+             },
+             "type": "String",
+             "textContent": "Add yours"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d6145df421c777840c1e46",
+        "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f201"
+       },
+       "type": "Paragraph",
+       "styleNames": [
+        "inline-p-1-1-2-3-4-5-6-7"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1fd"
+         },
+         "type": "String",
+         "textContent": "Featured shots run on our Instagram and LinkedIn with your "
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1ff"
+         },
+         "type": "Span",
+         "styleNames": [
+          "inline-span-8-1-2-3"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d6145df421c777840c1e46",
+            "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f1fe"
+           },
+           "type": "String",
+           "textContent": "@handle"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d6145df421c777840c1e46",
+          "element": "765b2cb2-27c7-a4e8-206b-eb3b5818f200"
+         },
+         "type": "String",
+         "textContent": " credited. Always. The bus that left without you is welcome too."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "dbd74c80-ca53-1e53-c374-acd8f7629cbd"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-schema-wrapper",
+    "inline-div-0"
+   ],
+   "attributes": {
+    "aria-hidden": "true"
+   },
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   }
+  },
+  {
+   "id": {
+    "component": "69d6145df421c777840c1e46",
+    "element": "843bc15c-a8e1-b165-0277-dcef656d871a"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+    "name": "TLL Site Footer",
+    "props": [],
+    "slots": []
+   }
+  }
+ ]
+}

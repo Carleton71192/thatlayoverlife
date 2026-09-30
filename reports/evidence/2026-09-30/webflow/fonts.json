@@ -1,0 +1,25 @@
+{
+  "customFontsUploaded": [],
+  "customFontsTotal": 0,
+  "googleFontsRequestsFoundInCustomCode": [
+    "fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=IBM+Plex+Sans+Condensed:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap",
+    "fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=JetBrains+Mono:wght@400;600&display=swap"
+  ],
+  "googleFontFamilies": [
+    "IBM Plex Sans Condensed:wght@400;700",
+    "JetBrains Mono:wght@400;600",
+    "Playfair Display:ital,wght@0,800;1,800"
+  ],
+  "fontFamiliesReferencedInCSS": [
+    "DM Sans",
+    "DM Serif Display",
+    "Druk",
+    "IBM Plex Sans Condensed",
+    "Inter",
+    "JetBrains Mono",
+    "Playfair Display",
+    "Recoleta",
+    "Syne"
+  ],
+  "note": "data_fonts_tool lists only uploaded custom fonts (none). Google Fonts are loaded via <link> tags in custom code; Webflow Designer-level Google font settings are not exposed by the MCP API."
+}

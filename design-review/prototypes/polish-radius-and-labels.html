@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TLL polish: radius and labels</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.b .card{border-radius:14px}.b .card2{border-radius:24px}.b .chip{border-radius:2px}.b .chip2{border-radius:16px}.b .badge{border-radius:0}.b .slot{border-radius:4px;border-color:#aaa}.b .av{border-radius:8px}
+.av{width:40px;height:40px;background:var(--midnight);display:inline-block;vertical-align:middle;margin-right:8px}
+.a .av{border-radius:50%}
+.badge.contact{background:#e2f3f2;color:var(--teal-deep)}.badge.aff{background:#fbf0df;color:var(--amber-text)}.badge.press{background:var(--teal-deep);color:#fff}.badge.hosted{background:#C8425E;color:#fff}.badge.sample{color:var(--amber-text);background:none;padding-left:0}
+.ttl{font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink);margin:8px 0 4px;line-height:1.2}
+.slot .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber-text);font-weight:600}
+</style></head><body><div class="wrap">
+<div class="compare">
+<div class="b"><p class="label before">Before · twelve radius values across the style sheet (2, 4, 6, 8, 12, 14, 16, 24, 50%, 999 …), badges with no shared shape</p>
+<div class="grid">
+<div class="card"><span class="av"></span><span class="chip">Denmark</span> <span class="chip chip2">Layover Guides</span><div class="ttl">Chip first, then the rabies shot.</div><span class="badge contact">Contact open</span></div>
+<div class="card card2"><div class="ttl">A press card, 24px corners</div><span class="badge press">Verified press</span></div>
+<div class="slot"><div class="k">Open slot</div><div class="ttl" style="color:var(--muted)">Nobody here yet.</div></div>
+</div></div>
+<div class="a"><p class="label">After · four tokens: 6px buttons, 12px cards, 999px chips, 50% avatars and flags. Labels on the kit palette.</p>
+<div class="grid">
+<div class="card"><span class="av"></span><span class="chip on">Denmark</span> <span class="chip">Layover Guides</span><div class="ttl">Chip first, then the rabies shot.</div><span class="badge contact">Contact open</span> <span class="badge aff">Earns from affiliates</span></div>
+<div class="card"><div class="ttl">A press card, 12px corners</div><span class="badge press">✓ Verified press</span> <span class="badge hosted">Hosted trip</span></div>
+<div class="slot"><div class="k">Open slot</div><div class="ttl" style="color:var(--muted)">Nobody here yet. Lived in Denmark? Put yourself on the map.</div><a class="btn btn-outline-light" href="#" style="margin-top:10px">Claim the desk</a><div class="badge sample" style="margin-top:10px">Sample · not a member</div></div>
+</div></div>
+</div>
+<p class="note">OPEN SLOT keeps the dashed #c9b89a border and the amber mono label from the spec. Never a fake name, pet or count.</p>
+</div></body></html>

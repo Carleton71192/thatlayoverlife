@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TLL polish: buttons and contrast</title>
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0 18px}
+.dark{background:var(--midnight);padding:18px;border-radius:12px}
+.b .p1{background:#F0507A;color:#fff;border-radius:8px}.b .p2{background:#C04A6B;color:#fff;border-radius:4px}.b .p3{background:#00DCD3;color:#fff;border-radius:16px}.b .t{color:#00C9C8;font-size:13px}
+.b .l{color:#0a8f8e;text-decoration:underline}
+.a .link{color:var(--ink);text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:3px}
+.a .small-rose{color:var(--rose-text);font-size:13px;font-weight:600}
+.a .btn-teal{background:var(--teal);color:var(--midnight)}
+.c{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted)}
+</style></head><body><div class="wrap">
+<div class="compare">
+<div class="b"><p class="label before">Before · live buttons and links</p>
+<div class="row"><a class="btn p1" href="#">Share your story</a><span class="c">white on #F0507A · 3.4:1 · fails AA</span></div>
+<div class="row"><a class="btn p2" href="#">Vouch</a><span class="c">retired #C04A6B, radius 4</span></div>
+<div class="row"><a class="btn p3" href="#">Open full map</a><span class="c">retired #00DCD3, radius 16</span></div>
+<div class="row"><a class="l" href="#">Read the charter</a><span class="c">#0a8f8e on Paper · 4.3:1 · borderline</span></div>
+<div class="dark"><span class="t">Maldives Teal small text on Midnight is fine (9.9:1)</span></div>
+</div>
+<div class="a"><p class="label">After · one primary, one outline, one link style; every pair passes AA</p>
+<div class="row"><a class="btn btn-primary" href="#">Share your story</a><span class="c">Ink on #F0507A · 8.6:1</span></div>
+<div class="row"><a class="btn btn-primary" style="background:var(--rose-deep);color:#fff" href="#">Share your story</a><span class="c">white on #D63859 · 4.6:1 (hover)</span></div>
+<div class="row"><a class="btn btn-outline-light" href="#">Open full map</a><span class="c">outline, radius 6</span></div>
+<div class="row"><a class="link" href="#">Read the charter</a><span class="c">Ink + teal underline · 15:1</span></div>
+<div class="row"><span class="small-rose">MEMBERS ONLY · EDITOR'S DESK</span><span class="c">small Rose text uses #C8325B · 4.9:1</span></div>
+<div class="dark"><a class="btn btn-teal" href="#">Open full map</a> <span class="c" style="color:var(--meta-dark)">Ink on Maldives Teal · 11:1</span></div>
+</div>
+</div>
+<p class="note">Contrast figures computed from the hex pairs (WCAG 2.1 relative luminance). The Rose button decision is an open Notion task; both AA options are shown.</p>
+</div></body></html>
