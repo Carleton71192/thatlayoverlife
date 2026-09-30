@@ -1,0 +1,10 @@
+Patch plan for tll-expats-js-v1 (for-expats footer):
+1. After esc(): add readers
+   var RES=[].slice.call(document.querySelectorAll('[data-tll-res]')).map(function(n){var d=n.dataset;return {name:d.name||'',type:d.type||'',url:d.url||'',host:d.host||'',note:d.note||'',country:d.country||''}}).filter(function(r){return r.name&&r.url});
+   var GRP=[].slice.call(document.querySelectorAll('[data-tll-group]')).map(function(n){var d=n.dataset;return {name:d.name||'',city:d.city||'',link:d.link||'',country:d.country||''}}).filter(function(g){return g.name});
+2. In render(): replace the two hardcoded columns with
+   var cn=norm(nm);
+   var gr=GRP.filter(function(g){return norm(g.country)===cn});
+   var rs=RES.filter(function(r){return norm(r.country)===cn});
+   groups col: gr.length ? list of <a class="tllx-expert" href=link target=_blank rel="noopener nofollow"><span><b>name</b><small>CITY</small></span></a> : existing empty
+   resources col: rs.length ? list of <a class="tllx-expert" href=url target=_blank rel="noopener nofollow"><span><b>name</b> <small>TYPE</small><br><span class="tllx-note">note</span><small>host</small></span></a> + footnote "External sites. We don't run them, we just think they're useful." + "SUGGEST A RESOURCE →" mailto:hello@thatlayover.life?subject=RESOURCE · {nm} : existing empty (with mailto instead of /support)
