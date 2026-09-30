@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 47 · Done 1 · Partial 62 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 46 · Done 1 · Partial 63 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -98,7 +98,7 @@ Summary: TODO 47 · Done 1 · Partial 62 · Blocked 15 · N/A 2 · Deferred 0
 | E05 | Footer WORK WITH US row: For brands · The Layover Club · How paid work works | Partial | Done under B41 (30 Sep 2026): WORK WITH US row in the footer component. Staged, unpublished. |
 | E06 | Labeling mechanism: Reklame before sponsored headlines, Reklamelink beside affiliate links | TODO |  |
 | F01 | Members/anonymous split on /share, /share-photos, /my-pets, /edit-profile, /account, /edit | Partial | Checked 30 Sep 2026 in the element tree: members + anonymous blocks present on /submit (two pairs), /share-photos, /my-pets, /edit-profile (locked state), /account. Left: /edit (story edit) not checked; live behavior check signed in and out after publish. |
-| F02 | Editor desk: role gate, log-in only (no join CTA), NOINDEX | TODO |  |
+| F02 | Editor desk: role gate, log-in only (no join CTA), NOINDEX | Partial | Verified 30 Sep 2026: /editors-desk head has noindex, nofollow; gate script tll-desk-gate-v1 (29 Sep) hides the desk until a signed-in member is confirmed, locked state offers Sign in only, no join CTA; while EDITOR_PLANS is empty the gate is sign-in only. Left: Nancy creates the admin-assigned Editor plan in Memberstack and its id goes into EDITOR_PLANS. |
 | F03 | Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge,  | TODO |  |
 | F04 | Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); c | TODO |  |
 | G01 | Counting engine: headline base (UN 193 default, pending Nancy), bonus places chip, tier la | TODO |  |
