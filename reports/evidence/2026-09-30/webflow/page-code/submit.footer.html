@@ -1,0 +1,88 @@
+<style id="tll-form-fix">
+fieldset.tll-pen-fieldset{border:1px solid rgba(13,15,26,.08) !important;border-radius:14px;box-shadow:0 1px 3px rgba(13,15,26,.05);padding:24px !important;}
+.tll-pen-legend{float:left;width:100%;padding:0;margin:0 0 6px;border:0;}
+.tll-pen-legend + *{clear:both;}
+h3.tll-pen-legend{font-size:inherit;line-height:inherit;float:none;}
+input[type=checkbox],input[type=radio]{accent-color:#F0507A;width:18px;height:18px;}
+.tll-pen-input.w-select, select.tll-pen-input, .tll-pen-fieldset select{min-height:50px !important;height:auto !important;line-height:1.4 !important;padding:13px 16px !important;background-color:#FBF7F0;}
+.tll-pen-checkbox,.tll-pen-radio{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
+.tll-pen-checkbox .w-checkbox,.tll-pen-radio .w-radio{width:auto !important;min-height:0;display:inline-flex;align-items:center;margin:0;padding-left:0;flex:0 0 auto;}
+.tll-pen-checkbox .w-checkbox-input,.tll-pen-radio .w-radio-input{margin:0 8px 0 0 !important;float:none;}
+.tll-pen-checkbox,.tll-pen-checkbox span,.tll-pen-checkbox label,.tll-pen-radio,.tll-pen-radio span,.tll-pen-radio label,.tll-pen-fieldset .w-form-label,.tll-pen-fieldset .w-checkbox span{color:#3a3a3a !important;}
+.tll-pen-checkbox a,.tll-pen-radio a,.tll-pen-fieldset .w-checkbox a{color:#C8325B !important;}
+.tll-pen-checkbox div{margin:0;}
+[data-tll-sponsor="toggle"]{flex-direction:row-reverse;justify-content:flex-end;font-weight:600}
+[data-tll-sponsor="toggle"] input{flex:0 0 auto}
+</style>
+<style id="tll-form-steps-v2">
+.tllst-bar{width:100%;margin:0 0 22px;box-sizing:border-box}
+.tllst-eb{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#067A79;text-transform:uppercase;margin-bottom:10px}
+.tllst-track{display:flex;gap:6px}
+.tllst-seg{flex:1;height:5px;background:#EDE6DA;border-radius:6px;border:0;padding:0;cursor:pointer;transition:background .3s}
+.tllst-seg.on{background:#067A79}
+.tllst-seg.done{background:#0A0B14}
+.tllst-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0 0;flex-wrap:wrap}
+.tllst-nav button{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;font-weight:600;text-transform:uppercase;border-radius:999px;padding:14px 24px;cursor:pointer;min-height:44px}
+.tllst-next{background:#D63859;color:#fff;border:0;margin-left:auto}
+.tllst-back{background:transparent;color:#0A0B14;border:1px solid #E0DACE}
+.tllst-save{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:#6B6660;flex:1 1 100%;margin-top:8px}
+.tllst-hide{display:none !important}
+[data-tll-sponsor="box"]{background:#FFF6F8;border-color:#F0507A !important}
+[data-tll-sponsor="box"] h3{color:#C8325B}
+.tllst-prefilled{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#067A79;margin-left:8px}
+</style>
+<script id="tll-form-steps-js-v2">
+/* Three-step share form v2 (28 Sep 2026, screen 07). Same form, same input names. Fieldsets carry data-tll-step; the script only shows and hides. */
+(function(){
+var LABELS={1:'The story',2:'The details',3:'Credit & photos'};
+var NEXT={1:'Next: details →',2:'Next: credit & photos →'};
+var KEY='tllStoryDraft';
+function init(){
+var f=document.querySelector('form[data-tll-form="submit-story"]');if(!f||f.__tllSteps2)return;f.__tllSteps2=1;
+var groups={1:[],2:[],3:[]};
+[].forEach.call(f.querySelectorAll('[data-tll-step]'),function(x){var n=x.getAttribute('data-tll-step');if(groups[n])groups[n].push(x);});
+if(!groups[1].length||!groups[3].length)return;
+var actions=f.querySelector('.tll-pen-actions');
+var bar=document.createElement('div');bar.className='tllst-bar';
+bar.innerHTML='<div class="tllst-eb" aria-live="polite"></div><div class="tllst-track"><button type="button" class="tllst-seg" aria-label="Step 1"></button><button type="button" class="tllst-seg" aria-label="Step 2"></button><button type="button" class="tllst-seg" aria-label="Step 3"></button></div>';
+f.insertBefore(bar,f.firstChild);
+var nav=document.createElement('div');nav.className='tllst-nav';
+nav.innerHTML='<button type="button" class="tllst-back">← Back</button><button type="button" class="tllst-next"></button><div class="tllst-save" aria-live="polite"></div>';
+f.insertBefore(nav,actions||null);
+var back=nav.children[0],next=nav.children[1],save=nav.children[2],segs=bar.querySelectorAll('.tllst-seg'),cur=1;
+function show(i){cur=i;for(var k=1;k<=3;k++){groups[k].forEach(function(x){x.classList.toggle('tllst-hide',k!==i);});segs[k-1].className='tllst-seg'+(k<i?' done':k===i?' on':'');}
+if(actions)actions.classList.toggle('tllst-hide',i!==3);
+back.classList.toggle('tllst-hide',i===1);next.classList.toggle('tllst-hide',i===3);next.textContent=NEXT[i]||'';
+bar.querySelector('.tllst-eb').textContent='Step '+i+' of 3 · '+LABELS[i];}
+function valid(i){var ok=true;groups[i].forEach(function(x){[].forEach.call(x.querySelectorAll('input,textarea,select'),function(el){if(ok&&el.willValidate&&!el.checkValidity()){el.reportValidity();ok=false;}});});return ok;}
+function go(i){show(i);bar.scrollIntoView({behavior:'smooth',block:'start'});}
+next.addEventListener('click',function(){if(valid(cur))go(cur+1);});
+back.addEventListener('click',function(){go(cur-1);});
+[].forEach.call(segs,function(s,j){s.addEventListener('click',function(){var t=j+1;if(t>cur&&!valid(cur))return;go(t);});});
+f.addEventListener('invalid',function(e){for(var k=1;k<=3;k++){if(groups[k].some(function(x){return x.contains(e.target);})){if(k!==cur)show(k);break;}}},true);
+/* Sponsored box: name fields only show once the box is ticked. */
+var chk=f.querySelector('[data-tll-sponsor="check"]');
+var box=f.querySelector('[data-tll-sponsor="box"]');
+if(chk&&box){var dep=[].slice.call(box.querySelectorAll('.tll-pen-field'));function tog(){dep.forEach(function(d){d.classList.toggle('tllst-hide',!chk.checked);});}chk.addEventListener('change',tog);tog();}
+/* Autosave every 20 seconds: text fields to this browser, and to the member's account JSON when signed in. */
+function fields(){return [].filter.call(f.querySelectorAll('input[name],textarea[name],select[name]'),function(el){return el.type!=='file'&&el.type!=='password'&&el.name;});}
+function snap(){var o={};fields().forEach(function(el){if(el.type==='checkbox'||el.type==='radio'){if(el.checked)o[el.name+'='+el.value]=1;}else if(el.value)o[el.name]=el.value;});return o;}
+function fill(o){if(!o)return;fields().forEach(function(el){if(el.type==='checkbox'||el.type==='radio'){if(o[el.name+'='+el.value])el.checked=true;}else if(o[el.name]&&!el.value)el.value=o[el.name];});if(chk&&box)tog();}
+var last='';
+function autosave(){var o=snap(),s=JSON.stringify(o);if(s===last||Object.keys(o).length===0)return;last=s;
+try{localStorage.setItem(KEY,s);}catch(e){}
+var ms=window.$memberstackDom;if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){var j=(r&&r.data)||{};j.tllStoryDraft={at:new Date().toISOString(),fields:o};return ms.updateMemberJSON({json:j});}).catch(function(){});}
+var t=new Date();save.textContent='Draft saved '+t.getHours()+':'+('0'+t.getMinutes()).slice(-2)+' · waits on your account';}
+try{fill(JSON.parse(localStorage.getItem(KEY)||'null'));}catch(e){}
+var ms=window.$memberstackDom;
+if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){var j=(r&&r.data)||{};if(j.tllStoryDraft&&j.tllStoryDraft.fields)fill(j.tllStoryDraft.fields);
+var links=j.tllLinks||{};var w=f.querySelector('input[name="credit-website"]');var ig=f.querySelector('input[name="credit-instagram"]');
+function pre(el,v){if(el&&v&&!el.value){el.value=v;var l=el.closest('.tll-pen-field');var lab=l&&l.querySelector('.tll-pen-label');if(lab&&!lab.querySelector('.tllst-prefilled')){var s=document.createElement('span');s.className='tllst-prefilled';s.textContent='PREFILLED';lab.appendChild(s);}}}
+pre(w,links.website);pre(ig,links.instagram);if((!links.website||!links.instagram)&&ms.getCurrentMember){ms.getCurrentMember().then(function(m){var c=(m&&m.data&&m.data.customFields)||{};pre(w,c.website||c.Website);pre(ig,c.instagram||c.Instagram);}).catch(function(){});}}).catch(function(){});}
+setInterval(autosave,20000);
+f.addEventListener('submit',function(){try{localStorage.removeItem(KEY);}catch(e){}});
+show(1);
+}
+if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>

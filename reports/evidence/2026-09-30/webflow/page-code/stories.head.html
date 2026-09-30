@@ -1,0 +1,35 @@
+<link rel="canonical" href="https://www.thatlayover.life/stories">
+<style id="tll-lib-search-v2">
+/* Library search bar. Webflow applies an authored form class to the .w-form WRAPPER and leaves the inner <form>
+   bare, so the wrapper is the pill and the inner form is the row. It also re-adds .w-input / .w-button defaults
+   (block, 100% width, its own grey border), which is what stacked the field above the button. */
+.tllsb-form{display:flex;align-items:center}
+.tllsb-form > form{display:flex;align-items:center;gap:8px;flex:1 1 auto;min-width:0;width:100%;margin:0}
+.tllsb-input{flex:1 1 auto !important;width:auto !important;min-width:0;height:42px;margin:0 !important;padding:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;outline:0 !important;font-size:16px;color:#1A1A1A;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,-apple-system,sans-serif !important}
+.tllsb-input::placeholder{color:#6B6660;opacity:1}
+.tllsb-btn{flex:0 0 auto;height:42px;margin:0 !important;padding:0 24px !important;border:0 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,-apple-system,sans-serif !important;transition:background .15s ease}
+.tllsb-btn:hover{background:#05605F}
+.tllsb-label,.tllsb-clear{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace !important}
+.tllsb-clear:hover{text-decoration:underline}
+.tllsb-input:focus-visible,.tllsb-btn:focus-visible,.tllsb-clear:focus-visible{outline:3px solid #F0507A !important;outline-offset:2px}
+.tllsb-form .w-form-done,.tllsb-form .w-form-fail{display:none !important}
+.tllsb-form.w-form-loading{opacity:1}
+@media(max-width:700px){.tllsb-inner{gap:12px}.tllsb-label{width:100%}.tllsb-form{min-width:0;width:100%;max-width:none;padding-left:16px}.tllsb-btn{padding:0 16px !important}}
+</style>
+<style id="tll-lib-filters-mobile-v1">
+/* 2026-09-29: under 700px the filter bar laid its three columns (lenses, place + sort, Share CTA) side by side, so every
+   chip stacked into a tall tower. Stack the groups instead, and make each chip group one thumb-scrollable row. */
+@media(max-width:700px){
+.tll-library-filters .tll-filters-inner{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:10px !important;padding-top:12px !important;padding-bottom:12px !important}
+.tll-library-filters [data-tll-chiprow]{display:flex !important;flex-direction:row !important;flex-wrap:nowrap !important;align-items:center !important;gap:8px !important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px;width:auto !important}
+.tll-library-filters [data-tll-chiprow]::-webkit-scrollbar{display:none}
+.tll-library-filters [data-tll-chiprow] > a{flex:0 0 auto !important;white-space:nowrap !important;padding:8px 14px !important;font-size:13px !important;line-height:1.2 !important;border-radius:999px !important;margin:0 !important}
+.tll-library-filters [data-tll-chiprow] > span{display:none !important}
+.tll-library-filters .tll-chip-rows{display:flex !important;flex-direction:column !important;gap:6px !important;width:auto !important}
+.tll-library-filters .tll-chip-row{display:flex !important;flex-direction:row !important;flex-wrap:nowrap !important;align-items:center !important;gap:6px !important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+.tll-library-filters .tll-chip-row::-webkit-scrollbar{display:none}
+.tll-library-filters .tll-filter-label{min-width:0 !important;width:auto !important;flex:0 0 auto !important;margin:0 4px 0 0 !important}
+.tll-library-filters .tll-shelf-chip,.tll-library-filters .tll-filter-chip-on{flex:0 0 auto !important;white-space:nowrap !important;padding:7px 12px !important;font-size:10px !important;line-height:1.2 !important;margin:0 !important}
+.tll-library-filters .tll-filter-cta{align-self:flex-start;padding:10px 16px !important;font-size:12px !important;margin:2px 0 0 !important}
+}
+</style>

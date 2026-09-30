@@ -1,0 +1,29 @@
+<link rel="canonical" href="https://www.thatlayover.life/">
+<style id="tll-home-search-v3">
+/* 2026-09-23: the search bar drew two pills. The site-level prototype rule styles form.tll-home-search as the pill,
+   and the Webflow form wrapper (.w-form) drew the same border around it. Wrapper goes flat; the form keeps the pill.
+   If the class-adding script never runs, the wrapper keeps its own pill, so no-JS still renders one clean bar. */
+.w-form:has(> form.tll-home-search){background:transparent !important;border:0 !important;border-radius:0 !important;padding:0 !important;box-shadow:none !important;display:block !important}
+form.tll-home-search{max-width:none;width:100%;gap:10px;padding:6px 6px 6px 22px}
+form.tll-home-search input[type=text]{font-size:16px;height:46px}
+form.tll-home-search input[type=text]::placeholder{color:#6B6660}
+/* Teal on a light surface is #067A79, not #00C9C8 */
+form.tll-home-search input[type=submit]{background:#067A79 !important;color:#fff !important;height:46px;padding:0 26px;border-radius:26px;font-size:13px;letter-spacing:.4px;white-space:nowrap;transition:background .15s ease}
+form.tll-home-search input[type=submit]:hover{background:#05605F !important}
+form.tll-home-search input[type=submit]:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+@media(max-width:560px){form.tll-home-search{padding-left:16px}form.tll-home-search input[type=submit]{padding:0 16px;font-size:12px}}
+</style>
+<style id="tll-home-search-mobile-v4">
+/* 2026-09-29: under 600px the site-wide craft-polish rule sets every .w-input to width:100% !important, which starved the
+   search input inside the flex pill and let the Search button fill the whole bar. Pin the input and button widths here. */
+@media(max-width:600px){
+form:has(> #Search-the-library),form.tll-home-search{display:flex !important;flex-wrap:nowrap !important;align-items:center !important;gap:6px !important;padding:5px 5px 5px 14px !important}
+#Search-the-library,form.tll-home-search input[type=text]{width:auto !important;flex:1 1 auto !important;min-width:0 !important;height:42px !important;font-size:16px !important}
+form:has(> #Search-the-library) input[type=submit],form.tll-home-search input[type=submit]{width:auto !important;flex:0 0 auto !important;height:42px !important;min-height:0 !important;padding:0 16px !important;font-size:12px !important;line-height:42px !important}
+}
+</style>
+<script id="tll-home-search-placeholder-v1">
+/* 2026-09-29: the Designer API cannot set a placeholder, and the site script only rewrites one that already starts with "Search". Set it here. */
+(function(){function p(){var i=document.getElementById('Search-the-library');if(i&&!i.getAttribute('placeholder'))i.setAttribute('placeholder','Search a country, a layover, a feeling…');}
+if(document.readyState!=='loading')p();else document.addEventListener('DOMContentLoaded',p);})();
+</script>

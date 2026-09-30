@@ -1,0 +1,2821 @@
+{
+ "id": {
+  "component": "6a0f08563ad49486b75a58dd",
+  "element": "6a0f08563ad49486b75a58e8"
+ },
+ "type": "Body",
+ "children": [
+  {
+   "id": {
+    "component": "6a0f08563ad49486b75a58dd",
+    "element": "1d08507e-9c96-d549-104b-7a582718ff57"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "name": "TLL Nav v1",
+    "props": [],
+    "slots": []
+   }
+  },
+  {
+   "id": {
+    "component": "6a0f08563ad49486b75a58dd",
+    "element": "4e4398cb-11a5-1301-9a55-4ae0580f0209"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-legal-page"
+   ],
+   "settings": {
+    "tag": "main",
+    "visibility": true,
+    "block": {
+     "tag": "main"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "6a0f08563ad49486b75a58dd",
+      "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e5"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-hero"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f08563ad49486b75a58dd",
+        "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e4"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-hero-inner"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "804b904f-53d7-b8cc-d07b-113d42e263d5"
+         },
+         "type": "DOM",
+         "attributes": {
+          "data-tll-legal": "tabs",
+          "aria-label": "Legal pages"
+         },
+         "settings": {
+          "tag": "nav",
+          "visibility": true,
+          "dom": {
+           "tag": "nav"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "307a86ed-3f46-6164-bfbe-367d321dccd8"
+           },
+           "type": "Link",
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/privacy"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "7dc96774-e693-7942-073a-a9bef7b5dc00"
+             },
+             "type": "String",
+             "textContent": "PRIVACY"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "6aab071d-938e-afb6-13ec-c55ef60eb097"
+           },
+           "type": "Link",
+           "attributes": {
+            "aria-current": "page"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/terms"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "d55ad216-1518-e0a4-2bc2-994c7adb754d"
+             },
+             "type": "String",
+             "textContent": "TERMS"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "b7d4b162-df9d-2ba1-41e6-52723c6bd36a"
+           },
+           "type": "Link",
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/cookies"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "5a3e27c3-4a73-ac25-bb57-2bfcea63af3b"
+             },
+             "type": "String",
+             "textContent": "COOKIES"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00d7"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-eyebrow-rose"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00d6"
+           },
+           "type": "String",
+           "textContent": "TERMS OF SERVICE"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00dc"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-display-xl",
+          "tll-legal-title"
+         ],
+         "settings": {
+          "tag": "h1",
+          "visibility": true,
+          "headingLevel": 1
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00d8"
+           },
+           "type": "String",
+           "textContent": "Terms of "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00da"
+           },
+           "type": "Emphasized",
+           "styleNames": [
+            "tll-text-rose"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00d9"
+             },
+             "type": "String",
+             "textContent": "service"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00db"
+           },
+           "type": "String",
+           "textContent": "."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e3"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "tll-legal-meta"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00de"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00dd"
+             },
+             "type": "String",
+             "textContent": "Effective:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00df"
+           },
+           "type": "String",
+           "textContent": " 20 May 2026 · "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e1"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e0"
+             },
+             "type": "String",
+             "textContent": "Last updated:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e2"
+           },
+           "type": "String",
+           "textContent": " 20 May 2026"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "6a0f08563ad49486b75a58dd",
+      "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f8"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-tldr"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f08563ad49486b75a58dd",
+        "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f7"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-content"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e7"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e6"
+           },
+           "type": "String",
+           "textContent": "The short version"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e9"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "Paragraph 4"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00e8"
+           },
+           "type": "String",
+           "textContent": "By using TLL, you agree to:"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f4"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "43f195d0-16f6-c151-2000-ce6f8ccc4089"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "43f195d0-16f6-c151-2000-ce6f8ccc4088"
+             },
+             "type": "String",
+             "textContent": "Tell the truth in your stories. Real trips. Real takes. No AI-generated travel reports."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00ed"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00ec"
+             },
+             "type": "String",
+             "textContent": "Respect other travelers, the countries you write about, and Magnus 🐻‍❄."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00ef"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00ee"
+             },
+             "type": "String",
+             "textContent": "Keep ownership of your own writing and photos. We get permission to display them; you can take them down whenever."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f1"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f0"
+             },
+             "type": "String",
+             "textContent": "Not use TLL for hate, harassment, illegal stuff, or anything you wouldn't tell a curious eight-year-old."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f3"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f2"
+             },
+             "type": "String",
+             "textContent": "Accept that we might edit lightly for clarity, never for tone."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f6"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "Paragraph 5"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f5"
+           },
+           "type": "String",
+           "textContent": "If that sounds reasonable, you've already agreed in spirit. The full version is below."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "6a0f08563ad49486b75a58dd",
+      "element": "4e4398cb-11a5-1301-9a55-4ae0580f01c5"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-body"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f08563ad49486b75a58dd",
+        "element": "4e4398cb-11a5-1301-9a55-4ae0580f01c4"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-content"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00fa"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00f9"
+           },
+           "type": "String",
+           "textContent": "1. Who you're agreeing with"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f00ff"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00fb"
+           },
+           "type": "String",
+           "textContent": "You're agreeing with "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00fd"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f00fc"
+             },
+             "type": "String",
+             "textContent": "That Layover Life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f00fe"
+           },
+           "type": "String",
+           "textContent": " (\"TLL,\" \"we,\" \"us\"), operated by Nancy Carleton, based in Copenhagen, Denmark."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0101"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0100"
+           },
+           "type": "String",
+           "textContent": "If you're under 16, you cannot use TLL. We require all members to be at least 16."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0106"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0102"
+           },
+           "type": "String",
+           "textContent": "By creating an account, submitting a story, or even just bookmarking a piece, you accept these Terms and our "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0104"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "/privacy"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/privacy"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0103"
+             },
+             "type": "String",
+             "textContent": "Privacy Policy"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0105"
+           },
+           "type": "String",
+           "textContent": "."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0108"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0107"
+           },
+           "type": "String",
+           "textContent": "2. Your account"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f010a"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0109"
+           },
+           "type": "String",
+           "textContent": "Creating one"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f010c"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f010b"
+           },
+           "type": "String",
+           "textContent": "You can sign up with email + password, OR with Google. We use Memberstack to manage accounts. Your account is free, always."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f010e"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f010d"
+           },
+           "type": "String",
+           "textContent": "Keeping it secure"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0113"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f010f"
+           },
+           "type": "String",
+           "textContent": "You're responsible for your password and for anything done from your account. If you suspect unauthorized access, email "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0111"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0110"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0112"
+           },
+           "type": "String",
+           "textContent": " immediately and we'll lock the account."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0115"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0114"
+           },
+           "type": "String",
+           "textContent": "Deleting it"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0117"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0116"
+           },
+           "type": "String",
+           "textContent": "You can delete your account anytime via /account → Settings → Delete Account. All your stories and submissions are removed within 30 days unless you opt to leave them anonymously published."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0119"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0118"
+           },
+           "type": "String",
+           "textContent": "One person, one account"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f011b"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f011a"
+           },
+           "type": "String",
+           "textContent": "Don't impersonate other travelers, brands, or public figures. Pen names are allowed; identity theft is not."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f011d"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f011c"
+           },
+           "type": "String",
+           "textContent": "3. Your content"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f011f"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f011e"
+           },
+           "type": "String",
+           "textContent": "What you submit"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0124"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0120"
+           },
+           "type": "String",
+           "textContent": "When you submit a story, photo, or pet record to TLL, you grant us a "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0122"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0121"
+             },
+             "type": "String",
+             "textContent": "non-exclusive, worldwide, royalty-free license"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0123"
+           },
+           "type": "String",
+           "textContent": " to display your content on TLL, reformat it for different screen sizes, include it in the rotation gallery and weekly digest, and show it in our marketing if it's particularly excellent (we'll always ask first for major campaigns)."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0128"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0126"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0125"
+             },
+             "type": "String",
+             "textContent": "You keep ownership."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0127"
+           },
+           "type": "String",
+           "textContent": " TLL is a publishing venue, not a copyright transfer. You can take your content down anytime."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f012a"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0129"
+           },
+           "type": "String",
+           "textContent": "The Anonymous Traveler choice"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0135"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f012b"
+           },
+           "type": "String",
+           "textContent": "You choose how you're credited on every submission: "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f012d"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f012c"
+             },
+             "type": "String",
+             "textContent": "Named"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f012e"
+           },
+           "type": "String",
+           "textContent": " (full name + avatar), "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0130"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f012f"
+             },
+             "type": "String",
+             "textContent": "Pen name"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0131"
+           },
+           "type": "String",
+           "textContent": " (name of your choosing), or "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0133"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0132"
+             },
+             "type": "String",
+             "textContent": "Anonymous Traveler"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0134"
+           },
+           "type": "String",
+           "textContent": " (badge only, no identifying info)."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0137"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0136"
+           },
+           "type": "String",
+           "textContent": "What you can submit"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0140"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0139"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0138"
+             },
+             "type": "String",
+             "textContent": "Real trips you actually took"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f013b"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f013a"
+             },
+             "type": "String",
+             "textContent": "Real photos you actually took (or have the right to publish)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f013d"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f013c"
+             },
+             "type": "String",
+             "textContent": "Real opinions about places, food, customs, layovers"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f013f"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f013e"
+             },
+             "type": "String",
+             "textContent": "Real pets you actually travel with"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0142"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0141"
+           },
+           "type": "String",
+           "textContent": "What you cannot submit"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0153"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0144"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0143"
+             },
+             "type": "String",
+             "textContent": "Stories generated by AI (Claude, ChatGPT, Gemini, Midjourney). The byline is human or it doesn't ship."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0146"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0145"
+             },
+             "type": "String",
+             "textContent": "Stories about trips you didn't take"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0148"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0147"
+             },
+             "type": "String",
+             "textContent": "Stock photography labeled as your own"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f014a"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0149"
+             },
+             "type": "String",
+             "textContent": "Sponsored content disclosed as if it weren't"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f014c"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f014b"
+             },
+             "type": "String",
+             "textContent": "Hate, harassment, doxxing, or targeting individuals or groups"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f014e"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f014d"
+             },
+             "type": "String",
+             "textContent": "Sexually explicit content"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0150"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f014f"
+             },
+             "type": "String",
+             "textContent": "Illegal content under Danish or international law"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0152"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0151"
+             },
+             "type": "String",
+             "textContent": "Content that punches down at a country, culture, or its people"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0155"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0154"
+           },
+           "type": "String",
+           "textContent": "Editorial review"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0157"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0156"
+           },
+           "type": "String",
+           "textContent": "Every submission goes through: (1) an AI-assisted first read for factual flags and Editorial Charter alignment, (2) a human review by Nancy or future TLL editorial staff, and (3) a publish-or-revise decision within 48 hours."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0159"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0158"
+           },
+           "type": "String",
+           "textContent": "We may edit lightly for clarity, grammar, and length. We don't change your voice. If we want a substantive edit, we'll ask you first."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f015b"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f015a"
+           },
+           "type": "String",
+           "textContent": "4. The Editorial Charter"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0160"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f015c"
+           },
+           "type": "String",
+           "textContent": "All published TLL content follows the "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f015e"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "/editorial-charter"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/editorial-charter"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f015d"
+             },
+             "type": "String",
+             "textContent": "Editorial Charter"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f015f"
+           },
+           "type": "String",
+           "textContent": ", which boils down to:"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f016b"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "443a59e8-d256-3539-730a-61e7576636e1"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "443a59e8-d256-3539-730a-61e7576636e0"
+             },
+             "type": "String",
+             "textContent": "Named travelers. Specific places at specific times."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0164"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0163"
+             },
+             "type": "String",
+             "textContent": "Real numbers, not fake numbers."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0166"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0165"
+             },
+             "type": "String",
+             "textContent": "Magnus 🐻‍❄ appears in his work only."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0168"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0167"
+             },
+             "type": "String",
+             "textContent": "We don't punch down."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f016a"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0169"
+             },
+             "type": "String",
+             "textContent": "AI is a tool for editing, not a co-author. The byline is human."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f016d"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f016c"
+           },
+           "type": "String",
+           "textContent": "5. What TLL is, what it isn't"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f016f"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f016e"
+           },
+           "type": "String",
+           "textContent": "TLL is a community-powered travel storytelling platform. Travelers submit, an editor curates, the library grows."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0174"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0170"
+           },
+           "type": "String",
+           "textContent": "TLL is "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0172"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0171"
+             },
+             "type": "String",
+             "textContent": "not"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0173"
+           },
+           "type": "String",
+           "textContent": " a booking platform, an influencer agency, a social network, or a travel agency."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0176"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0175"
+           },
+           "type": "String",
+           "textContent": "Future paid tier"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0178"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0177"
+           },
+           "type": "String",
+           "textContent": "TLL is currently free. We may add a paid tier in the future for premium features. Existing accounts will always have a free tier option. We'll never paywall existing published stories."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f017a"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0179"
+           },
+           "type": "String",
+           "textContent": "6. Other people's content"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f017f"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f017b"
+           },
+           "type": "String",
+           "textContent": "Stories on TLL are written by travelers. We curate, but we don't fact-check every detail. If something looks wrong, please email "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f017d"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f017c"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f017e"
+           },
+           "type": "String",
+           "textContent": ". We investigate within 7 days."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0181"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0180"
+           },
+           "type": "String",
+           "textContent": "Don't copy other travelers' stories or photos for use elsewhere without their permission."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0183"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0182"
+           },
+           "type": "String",
+           "textContent": "7. Press, partnerships, sponsored content"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0188"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0184"
+           },
+           "type": "String",
+           "textContent": "If you're press: "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0186"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life?subject=PRESS"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life?subject=PRESS"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0185"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0187"
+           },
+           "type": "String",
+           "textContent": " with subject line \"PRESS.\" We respond within 3 business days."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f018d"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0189"
+           },
+           "type": "String",
+           "textContent": "If you're a partner (tourism board, brand): "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f018b"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life?subject=PARTNERSHIPS"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life?subject=PARTNERSHIPS"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f018a"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f018c"
+           },
+           "type": "String",
+           "textContent": " with subject \"PARTNERSHIPS.\" All paid placements disclosed inline; we don't run hidden sponsored content."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f018f"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f018e"
+           },
+           "type": "String",
+           "textContent": "8. Takedown / DMCA-style requests"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0194"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0190"
+           },
+           "type": "String",
+           "textContent": "If you believe content on TLL infringes your copyright: email "
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0192"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life?subject=TAKEDOWN%20REQUEST"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life?subject=TAKEDOWN%20REQUEST"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f0191"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0193"
+           },
+           "type": "String",
+           "textContent": " with subject line \"TAKEDOWN REQUEST,\" include your contact info, the URL of the infringing content, identification of your work, a good-faith statement, and your signature. We act within 7 days."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0196"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0195"
+           },
+           "type": "String",
+           "textContent": "9. Termination"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f0198"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0197"
+           },
+           "type": "String",
+           "textContent": "We may suspend or terminate accounts that violate these Terms, submit AI-generated content disguised as personal writing, harass other travelers, or submit fraudulent content. We'll always email you first unless the violation is egregious."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f019a"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f0199"
+           },
+           "type": "String",
+           "textContent": "You can terminate your own account anytime via /account."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f019c"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f019b"
+           },
+           "type": "String",
+           "textContent": "10. Disclaimers"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f019e"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f019d"
+           },
+           "type": "String",
+           "textContent": "TLL is provided \"as is.\" Travel stories are personal experiences from named travelers, not professional travel advice. We make no warranties about accuracy, completeness, or fitness for any purpose."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a0"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f019f"
+           },
+           "type": "String",
+           "textContent": "Don't rely on TLL stories for visa requirements, medical advice, safety conditions, or legal status of destinations. Always check official sources before traveling."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a2"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a1"
+           },
+           "type": "String",
+           "textContent": "11. Limitation of liability"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a4"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a3"
+           },
+           "type": "String",
+           "textContent": "To the maximum extent allowed by law, TLL is not liable for indirect, incidental, or consequential damages arising from your use of the platform."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a6"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a5"
+           },
+           "type": "String",
+           "textContent": "If you have a claim, our maximum liability is the amount you've paid TLL in the last 12 months (currently €0 for all members)."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a8"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a7"
+           },
+           "type": "String",
+           "textContent": "12. Governing law"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01aa"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01a9"
+           },
+           "type": "String",
+           "textContent": "These Terms are governed by Danish law. Any disputes will be resolved in the courts of Copenhagen, Denmark."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01ac"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01ab"
+           },
+           "type": "String",
+           "textContent": "If you're an EU consumer, you also have rights under your local consumer protection law, which we respect."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01ae"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01ad"
+           },
+           "type": "String",
+           "textContent": "13. Changes to these Terms"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b0"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01af"
+           },
+           "type": "String",
+           "textContent": "We'll update these Terms when our practices change. Material changes will be emailed to all members 30 days in advance and posted as a banner on the site."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b2"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b1"
+           },
+           "type": "String",
+           "textContent": "This is version 1, effective 20 May 2026."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01c0"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-legal-contact"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b4"
+           },
+           "type": "Heading",
+           "styleNames": [
+            "tll-legal-h3"
+           ],
+           "settings": {
+            "tag": "h3",
+            "visibility": true,
+            "headingLevel": 3
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b3"
+             },
+             "type": "String",
+             "textContent": "Contact"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b8"
+           },
+           "type": "Paragraph",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b5"
+             },
+             "type": "String",
+             "textContent": "Terms or platform questions: "
+            },
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b7"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "mailto:hello@thatlayover.life"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "email",
+               "href": "mailto:hello@thatlayover.life"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f08563ad49486b75a58dd",
+                "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b6"
+               },
+               "type": "String",
+               "textContent": "hello@thatlayover.life"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01bf"
+           },
+           "type": "Paragraph",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01b9"
+             },
+             "type": "String",
+             "textContent": "Related: "
+            },
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01bb"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "/privacy"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/privacy"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f08563ad49486b75a58dd",
+                "element": "4e4398cb-11a5-1301-9a55-4ae0580f01ba"
+               },
+               "type": "String",
+               "textContent": "Privacy Policy"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01bc"
+             },
+             "type": "String",
+             "textContent": " · "
+            },
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "4e4398cb-11a5-1301-9a55-4ae0580f01be"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "/editorial-charter"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/editorial-charter"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f08563ad49486b75a58dd",
+                "element": "4e4398cb-11a5-1301-9a55-4ae0580f01bd"
+               },
+               "type": "String",
+               "textContent": "Editorial Charter"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f08563ad49486b75a58dd",
+          "element": "4e4398cb-11a5-1301-9a55-4ae0580f01c3"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "tll-legal-signoff"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f08563ad49486b75a58dd",
+            "element": "4e4398cb-11a5-1301-9a55-4ae0580f01c2"
+           },
+           "type": "Emphasized",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f08563ad49486b75a58dd",
+              "element": "259bad35-9da2-5e2d-cde3-f559f872ba97"
+             },
+             "type": "String",
+             "textContent": "The trips happened. The opinions are uncut. The third-act sag has been edited out."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "6a0f08563ad49486b75a58dd",
+    "element": "903ad690-4fec-5a73-3e90-e7a86c0cce66"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+    "name": "TLL Site Footer",
+    "props": [],
+    "slots": []
+   }
+  }
+ ]
+}

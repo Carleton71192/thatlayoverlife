@@ -1,0 +1,2781 @@
+{
+ "id": {
+  "component": "6a0f0846441306de87ab07cd",
+  "element": "6a0f0847441306de87ab07d5"
+ },
+ "type": "Body",
+ "children": [
+  {
+   "id": {
+    "component": "6a0f0846441306de87ab07cd",
+    "element": "92bb9ab6-df86-033a-eea5-e08c15708bae"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "name": "TLL Nav v1",
+    "props": [],
+    "slots": []
+   }
+  },
+  {
+   "id": {
+    "component": "6a0f0846441306de87ab07cd",
+    "element": "91da74f3-d449-21c3-b5e4-b762e556857c"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-legal-page"
+   ],
+   "settings": {
+    "tag": "main",
+    "visibility": true,
+    "block": {
+     "tag": "main"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "6a0f0846441306de87ab07cd",
+      "element": "91da74f3-d449-21c3-b5e4-b762e556845a"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-hero"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f0846441306de87ab07cd",
+        "element": "91da74f3-d449-21c3-b5e4-b762e5568459"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-hero-inner"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "d1076037-3a7f-64e5-5c07-de19d6040f05"
+         },
+         "type": "DOM",
+         "attributes": {
+          "data-tll-legal": "tabs",
+          "aria-label": "Legal pages"
+         },
+         "settings": {
+          "tag": "nav",
+          "visibility": true,
+          "dom": {
+           "tag": "nav"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "aaa77ff1-bc80-4d9f-72ad-f03720f0ca17"
+           },
+           "type": "Link",
+           "attributes": {
+            "aria-current": "page"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/privacy"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "7f3ed2b4-b4d8-4955-39b3-773b375745d7"
+             },
+             "type": "String",
+             "textContent": "PRIVACY"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "c7be028c-a66d-48d5-4cba-3b30bc029384"
+           },
+           "type": "Link",
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/terms"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "da87288a-f709-12d2-61d4-3d3d2c314dce"
+             },
+             "type": "String",
+             "textContent": "TERMS"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "bdda023c-2f40-6282-6f2b-bc7abff25b6b"
+           },
+           "type": "Link",
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/cookies"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "3973ba7e-98ec-baa5-eea1-1b082b594e39"
+             },
+             "type": "String",
+             "textContent": "COOKIES"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556844c"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-eyebrow-rose"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556844b"
+           },
+           "type": "String",
+           "textContent": "PRIVACY POLICY"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568451"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-display-xl",
+          "tll-legal-title"
+         ],
+         "settings": {
+          "tag": "h1",
+          "visibility": true,
+          "headingLevel": 1
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556844d"
+           },
+           "type": "String",
+           "textContent": "Privacy "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556844f"
+           },
+           "type": "Emphasized",
+           "styleNames": [
+            "tll-text-rose"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556844e"
+             },
+             "type": "String",
+             "textContent": "policy"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568450"
+           },
+           "type": "String",
+           "textContent": "."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568458"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "tll-legal-meta"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568453"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568452"
+             },
+             "type": "String",
+             "textContent": "Effective:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568454"
+           },
+           "type": "String",
+           "textContent": " 20 May 2026 · "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568456"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568455"
+             },
+             "type": "String",
+             "textContent": "Last updated:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568457"
+           },
+           "type": "String",
+           "textContent": " 20 May 2026"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "6a0f0846441306de87ab07cd",
+      "element": "91da74f3-d449-21c3-b5e4-b762e556846f"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-tldr"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f0846441306de87ab07cd",
+        "element": "91da74f3-d449-21c3-b5e4-b762e556846e"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-content"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556845c"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556845b"
+           },
+           "type": "String",
+           "textContent": "The short version"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556845e"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556845d"
+           },
+           "type": "String",
+           "textContent": "If you join TLL, share a story, or just read the library, here's what we do with your data:"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556846b"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568460"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556845f"
+             },
+             "type": "String",
+             "textContent": "We collect the bare minimum needed to run the platform."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568462"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568461"
+             },
+             "type": "String",
+             "textContent": "We use Google Analytics to understand what works, only with your consent."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568464"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568463"
+             },
+             "type": "String",
+             "textContent": "We use Memberstack as our auth partner. They follow GDPR."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568466"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568465"
+             },
+             "type": "String",
+             "textContent": "We will never sell your data. Not to advertisers. Not to data brokers. Not to anyone."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568468"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568467"
+             },
+             "type": "String",
+             "textContent": "You can delete your account anytime, take your stories with you, or stay anonymous from day one."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556846a"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568469"
+             },
+             "type": "String",
+             "textContent": "EU/UK residents have full GDPR rights. We respect them."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556846d"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556846c"
+           },
+           "type": "String",
+           "textContent": "The legal version is below. It's long because lawyers. The spirit is above."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "6a0f0846441306de87ab07cd",
+      "element": "91da74f3-d449-21c3-b5e4-b762e5568538"
+     },
+     "type": "Section",
+     "styleNames": [
+      "tll-legal-body"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a0f0846441306de87ab07cd",
+        "element": "91da74f3-d449-21c3-b5e4-b762e5568537"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-container",
+        "tll-legal-content"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568471"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568470"
+           },
+           "type": "String",
+           "textContent": "1. Who runs this thing"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568473"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568472"
+           },
+           "type": "String",
+           "textContent": "That Layover Life (\"TLL,\" \"we,\" \"us\") is operated by Nancy Carleton, an independent American expat based in Copenhagen, Denmark. TLL is a community-powered travel storytelling platform."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568480"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568475"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568474"
+             },
+             "type": "String",
+             "textContent": "Contact:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568477"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568476"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568478"
+           },
+           "type": "",
+           "settings": {
+            "visibility": true
+           }
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556847a"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568479"
+             },
+             "type": "String",
+             "textContent": "Business location:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556847b"
+           },
+           "type": "String",
+           "textContent": " Copenhagen, Denmark"
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556847c"
+           },
+           "type": "",
+           "settings": {
+            "visibility": true
+           }
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556847e"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556847d"
+             },
+             "type": "String",
+             "textContent": "Data Controller:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556847f"
+           },
+           "type": "String",
+           "textContent": " Nancy Carleton"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568482"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568481"
+           },
+           "type": "String",
+           "textContent": "For privacy concerns or data requests, we respond within 14 days."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568484"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568483"
+           },
+           "type": "String",
+           "textContent": "2. What we collect, and why"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568486"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568485"
+           },
+           "type": "String",
+           "textContent": "When you visit the site (no account needed)"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568491"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568488"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568487"
+             },
+             "type": "String",
+             "textContent": "IP address (anonymized for analytics)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556848a"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568489"
+             },
+             "type": "String",
+             "textContent": "Browser type, device type, screen resolution"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556848c"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556848b"
+             },
+             "type": "String",
+             "textContent": "Pages visited, time on page, referring site"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556848e"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556848d"
+             },
+             "type": "String",
+             "textContent": "Whether you accepted or rejected cookies"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568490"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556848f"
+             },
+             "type": "String",
+             "textContent": "Approximate location (city-level, never precise)"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568495"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568493"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568492"
+             },
+             "type": "String",
+             "textContent": "Why:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568494"
+           },
+           "type": "String",
+           "textContent": " to understand which stories resonate, fix broken pages, improve the editorial mix. We use Google Analytics 4 (only with your consent) with IP anonymization and a 14-month data retention window, and Ahrefs Web Analytics, which counts page views without cookies or personal data."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568497"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568496"
+           },
+           "type": "String",
+           "textContent": "When you create an account"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684a2"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568499"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568498"
+             },
+             "type": "String",
+             "textContent": "Email address (required)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556849b"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556849a"
+             },
+             "type": "String",
+             "textContent": "First name (required for Google flow)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556849d"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556849c"
+             },
+             "type": "String",
+             "textContent": "Google account profile photo (if you sign in with Google)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556849f"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556849e"
+             },
+             "type": "String",
+             "textContent": "Date you joined"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684a1"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684a0"
+             },
+             "type": "String",
+             "textContent": "Membership plan (currently free \"Traveler\")"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684a6"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684a4"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684a3"
+             },
+             "type": "String",
+             "textContent": "Why:"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684a5"
+           },
+           "type": "String",
+           "textContent": " to give you a member account so your travel passport, stories, and bookmarks persist across sessions."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684a8"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684a7"
+           },
+           "type": "String",
+           "textContent": "When you submit a story"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684b1"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684aa"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684a9"
+             },
+             "type": "String",
+             "textContent": "The content itself (text, photos, country tag, traveler credit choice)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ac"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684ab"
+             },
+             "type": "String",
+             "textContent": "Your credit toggle: named, anonymous, or pen name"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ae"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684ad"
+             },
+             "type": "String",
+             "textContent": "Your syndication preferences (allow republish, press inquiries)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684b0"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684af"
+             },
+             "type": "String",
+             "textContent": "Timestamps and editorial status"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684b3"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684b2"
+           },
+           "type": "String",
+           "textContent": "When you fill your travel passport"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684ba"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684b5"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684b4"
+             },
+             "type": "String",
+             "textContent": "Country list (where you've been)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684b7"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684b6"
+             },
+             "type": "String",
+             "textContent": "Pet records (name, species, microchip number if you choose, always stored privately)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684b9"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684b8"
+             },
+             "type": "String",
+             "textContent": "Layover cities, marathon list, continents marathoned"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684bc"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684bb"
+           },
+           "type": "String",
+           "textContent": "What we do NOT collect"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684c5"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684be"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684bd"
+             },
+             "type": "String",
+             "textContent": "Precise GPS location (ever)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684c0"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684bf"
+             },
+             "type": "String",
+             "textContent": "Financial information (TLL is free; no card data passes through us)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684c2"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684c1"
+             },
+             "type": "String",
+             "textContent": "Health records, sexual orientation, political views, religious beliefs, biometrics"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684c4"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684c3"
+             },
+             "type": "String",
+             "textContent": "Children under 16's data (TLL is for adults)"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684c7"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684c6"
+           },
+           "type": "String",
+           "textContent": "3. Cookies and tracking"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684c9"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "46224e9e-6afc-b3b1-73b4-8d982292eb67"
+           },
+           "type": "String",
+           "textContent": "TLL uses cookies, but only with your active consent (per GDPR and ePrivacy). When you first visit, a consent banner (CookieConsent, an open-source tool) asks you to choose."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684ce"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ca"
+           },
+           "type": "String",
+           "textContent": "You can change your cookie choices anytime by clicking "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684cc"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "javascript:Cookiebot.show();"
+           },
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684cb"
+             },
+             "type": "String",
+             "textContent": "Cookie Preferences"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684cd"
+           },
+           "type": "String",
+           "textContent": " in the footer."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684d0"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684cf"
+           },
+           "type": "String",
+           "textContent": "4. How we share data (and who with)"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684d2"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684d1"
+           },
+           "type": "String",
+           "textContent": "We use the following third parties to run TLL. They're contractually bound to GDPR-equivalent standards and cannot use your data for their own purposes."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684e7"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684d6"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684d4"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e55684d3"
+               },
+               "type": "String",
+               "textContent": "Memberstack"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684d5"
+             },
+             "type": "String",
+             "textContent": ": authentication, member accounts"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684da"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684d8"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e55684d7"
+               },
+               "type": "String",
+               "textContent": "Webflow"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684d9"
+             },
+             "type": "String",
+             "textContent": ": site hosting and CMS"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684de"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684dc"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e55684db"
+               },
+               "type": "String",
+               "textContent": "Google Analytics 4"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684dd"
+             },
+             "type": "String",
+             "textContent": ": analytics (only with consent)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684e2"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684e0"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e55684df"
+               },
+               "type": "String",
+               "textContent": "CookieConsent"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684e1"
+             },
+             "type": "String",
+             "textContent": ": consent management"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684e6"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684e4"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e55684e3"
+               },
+               "type": "String",
+               "textContent": "Google Sign-In (OAuth)"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684e5"
+             },
+             "type": "String",
+             "textContent": ": only when you click \"Continue with Google\""
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684eb"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684e9"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684e8"
+             },
+             "type": "String",
+             "textContent": "We don't sell your data."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ea"
+           },
+           "type": "String",
+           "textContent": " Never. If TLL is ever acquired, we will notify members before transferring data and give the option to delete."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684ed"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ec"
+           },
+           "type": "String",
+           "textContent": "5. Your data, your control"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684ef"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ee"
+           },
+           "type": "String",
+           "textContent": "If you're in the EU/EEA/UK (GDPR rights)"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684f4"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f0"
+           },
+           "type": "String",
+           "textContent": "You have the right to access, correct, delete, export, restrict processing, object, and withdraw consent. Email "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f2"
+           },
+           "type": "Link",
+           "attributes": {
+            "href": "mailto:hello@thatlayover.life?subject=GDPR%20Request"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "email",
+             "href": "mailto:hello@thatlayover.life?subject=GDPR%20Request"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e55684f1"
+             },
+             "type": "String",
+             "textContent": "hello@thatlayover.life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f3"
+           },
+           "type": "String",
+           "textContent": " with subject \"GDPR Request\". We act within 30 days. You can also lodge a complaint with the Danish Data Protection Agency (Datatilsynet)."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684f6"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f5"
+           },
+           "type": "String",
+           "textContent": "If you're in California (CCPA/CPRA rights)"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684f8"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f7"
+           },
+           "type": "String",
+           "textContent": "You have the right to know, delete, opt out of any \"sale\" (which we don't do), and non-discrimination."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684fa"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h3"
+         ],
+         "settings": {
+          "tag": "h3",
+          "visibility": true,
+          "headingLevel": 3
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684f9"
+           },
+           "type": "String",
+           "textContent": "Delete your account"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684fc"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684fb"
+           },
+           "type": "String",
+           "textContent": "Go to /account → Settings → Delete Account. Your data is deleted within 30 days. Offsite archive purged within 90 days."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e55684fe"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684fd"
+           },
+           "type": "String",
+           "textContent": "6. The Anonymous Traveler treatment"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568509"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e55684ff"
+           },
+           "type": "String",
+           "textContent": "Three credit modes per story: "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568501"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568500"
+             },
+             "type": "String",
+             "textContent": "Named"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568502"
+           },
+           "type": "String",
+           "textContent": " (full name + avatar), "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568504"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568503"
+             },
+             "type": "String",
+             "textContent": "Pen name"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568505"
+           },
+           "type": "String",
+           "textContent": " (name of your choosing, no avatar), or "
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568507"
+           },
+           "type": "Strong",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568506"
+             },
+             "type": "String",
+             "textContent": "Anonymous Traveler"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568508"
+           },
+           "type": "String",
+           "textContent": " (badge only, EXIF stripped from photos, no name in any byline)."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556850b"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556850a"
+           },
+           "type": "String",
+           "textContent": "7. Children"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556850d"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556850c"
+           },
+           "type": "String",
+           "textContent": "TLL is built for adults. You must be at least 16 to create an account. We don't knowingly collect data from anyone under 16."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556850f"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556850e"
+           },
+           "type": "String",
+           "textContent": "8. Data security"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568518"
+         },
+         "type": "List",
+         "styleNames": [
+          "tll-legal-list"
+         ],
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568511"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568510"
+             },
+             "type": "String",
+             "textContent": "All traffic encrypted with TLS 1.3 (Webflow auto-SSL)"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568513"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568512"
+             },
+             "type": "String",
+             "textContent": "Memberstack hashes passwords with bcrypt"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568515"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568514"
+             },
+             "type": "String",
+             "textContent": "Google OAuth means we never store your Google password"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568517"
+           },
+           "type": "ListItem",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568516"
+             },
+             "type": "String",
+             "textContent": "Production backups encrypted at rest"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556851a"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568519"
+           },
+           "type": "String",
+           "textContent": "If there's ever a data breach, we'll notify affected users within 72 hours per GDPR."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556851c"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556851b"
+           },
+           "type": "String",
+           "textContent": "9. International transfers"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e556851e"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556851d"
+           },
+           "type": "String",
+           "textContent": "TLL is operated from Copenhagen. Some processors are US-based. Data transferred to the US is covered by Standard Contractual Clauses (SCCs) per the EU-US Data Privacy Framework where applicable."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568520"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "tll-legal-h2"
+         ],
+         "settings": {
+          "tag": "h2",
+          "visibility": true,
+          "headingLevel": 2
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e556851f"
+           },
+           "type": "String",
+           "textContent": "10. Changes to this policy"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568522"
+         },
+         "type": "Paragraph",
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568521"
+           },
+           "type": "String",
+           "textContent": "Material changes get emailed to all members 30 days in advance, with a banner on the site. This is version 1, effective 20 May 2026."
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568533"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-legal-contact"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568524"
+           },
+           "type": "Heading",
+           "styleNames": [
+            "tll-legal-h3"
+           ],
+           "settings": {
+            "tag": "h3",
+            "visibility": true,
+            "headingLevel": 3
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568523"
+             },
+             "type": "String",
+             "textContent": "Contact"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568528"
+           },
+           "type": "Paragraph",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568525"
+             },
+             "type": "String",
+             "textContent": "Privacy questions or requests: "
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568527"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "mailto:hello@thatlayover.life"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "email",
+               "href": "mailto:hello@thatlayover.life"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e5568526"
+               },
+               "type": "String",
+               "textContent": "hello@thatlayover.life"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568532"
+           },
+           "type": "Paragraph",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568529"
+             },
+             "type": "String",
+             "textContent": "Related: "
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556852b"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "/terms"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/terms"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e556852a"
+               },
+               "type": "String",
+               "textContent": "Terms of Service"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556852c"
+             },
+             "type": "String",
+             "textContent": " · "
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556852e"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "/editorial-charter"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/editorial-charter"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e556852d"
+               },
+               "type": "String",
+               "textContent": "Editorial Charter"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e556852f"
+             },
+             "type": "String",
+             "textContent": " · "
+            },
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568531"
+             },
+             "type": "Link",
+             "attributes": {
+              "href": "/cookies"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/cookies"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a0f0846441306de87ab07cd",
+                "element": "91da74f3-d449-21c3-b5e4-b762e5568530"
+               },
+               "type": "String",
+               "textContent": "Cookie Declaration"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a0f0846441306de87ab07cd",
+          "element": "91da74f3-d449-21c3-b5e4-b762e5568536"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "tll-legal-signoff"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a0f0846441306de87ab07cd",
+            "element": "91da74f3-d449-21c3-b5e4-b762e5568535"
+           },
+           "type": "Emphasized",
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a0f0846441306de87ab07cd",
+              "element": "91da74f3-d449-21c3-b5e4-b762e5568534"
+             },
+             "type": "String",
+             "textContent": "Travel stories deserve a better home than a group chat. That home should also respect the privacy of the traveler."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "6a0f0846441306de87ab07cd",
+    "element": "e7f20c2f-a04d-e44b-558a-6d66874e5ee7"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+    "name": "TLL Site Footer",
+    "props": [],
+    "slots": []
+   }
+  }
+ ]
+}

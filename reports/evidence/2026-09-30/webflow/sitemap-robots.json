@@ -1,0 +1,294 @@
+{
+  "note": "Webflow MCP data_sitemap_tool exposes per-page includeInSitemap only; robots.txt content and sitemap.xml settings are not exposed via this API. 404 page is not listed (utility page). Per-page noindex: only /404 has an explicit <meta name=robots noindex> in page custom code (see page-code/404.head.html).",
+  "pages_sitemap_status": {
+    "pages": [
+      {
+        "id": "6abd0c6f580bbf3da54a1091",
+        "title": "Press trips · Hosted trips board",
+        "slug": "press-trips",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abd0c6f7cf398d2a5c5d76d",
+        "title": "Press · Travel journalists on TLL",
+        "slug": "press",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abd0c6f30f767558eb3782b",
+        "title": "Creators · Travel creators on TLL",
+        "slug": "creators",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abd0c6e7cf398d2a5c5d71d",
+        "title": "Expats · The Location Experts",
+        "slug": "expats",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abbdbbbbcdc0c05aaa893fc",
+        "title": "EES and ETIAS on a layover · That Layover Life",
+        "slug": "ees-etias-layover",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abbdbbadcc11e6928b4481c",
+        "title": "The Copenhagen stopover, with or without a dog · That Layover Life",
+        "slug": "copenhagen-stopover",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abbd8cec872cf76da1d1e59",
+        "title": "For Brands · That Layover Life",
+        "slug": "for-brands",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6abbd8ce8bbb9040c31da900",
+        "title": "The Layover Awards · That Layover Life",
+        "slug": "awards",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6ab3c5d8d29a4e99a68f69bb",
+        "title": "Editor's Desk",
+        "slug": "editors-desk",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a8b07db18f836c65f4a3dfe",
+        "title": "Countries · That Layover Life",
+        "slug": "countries",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a8ab89bd9945fd4cbf0e891",
+        "title": "The Travel Wire · That Layover Life",
+        "slug": "travel-wire",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a89d2fde90b577397cb4611",
+        "title": "Cookie Policy · That Layover Life",
+        "slug": "cookies",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a89841b8c022c36155d6627",
+        "title": "Newsletter · That Layover Life",
+        "slug": "newsletter",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a47b65d1bd06c35de2f99d5",
+        "title": "Community Guidelines · That Layover Life",
+        "slug": "community-guidelines",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a47b43244ed9a20a78dec63",
+        "title": "Editorial Charter · That Layover Life",
+        "slug": "editorial-charter",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a47adad44ed9a20a78bfce4",
+        "title": "Pets We Travel With · That Layover Life",
+        "slug": "pets",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a47adad7a97f26b91c7d78e",
+        "title": "Destinations · That Layover Life",
+        "slug": "destinations",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a3e5e3ed36c8c6a1df1d12e",
+        "title": "The Paw Passport · That Layover Life",
+        "slug": "the-paw-passport",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a3e5e3e9de41030cdc7524b",
+        "title": "The Layover Lounge · That Layover Life",
+        "slug": "gallery",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a3e5c69e76442d430914f64",
+        "title": "For Affiliates · That Layover Life",
+        "slug": "for-affiliates",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a3e5c68288bde39aeeed7de",
+        "title": "For Press · That Layover Life",
+        "slug": "for-press",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a3e5c68993a0f9ad19ee39d",
+        "title": "For Expats · That Layover Life",
+        "slug": "for-expats",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0f08563ad49486b75a58dd",
+        "title": "Terms of Service",
+        "slug": "terms",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0f0846441306de87ab07cd",
+        "title": "Privacy Policy",
+        "slug": "privacy",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0e9dd62c4fa53ce7776986",
+        "title": "Spotlight Crew",
+        "slug": "spotlight-crew",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0e9cda80e7b222d6d20f32",
+        "title": "Spotlight Index",
+        "slug": "spotlight-index",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0e9c71167aeb2da791f69d",
+        "title": "Spotlight",
+        "slug": "spotlight",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0e960f7a8024d33df17e83",
+        "title": "Support",
+        "slug": "support",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0e960b053efebac06a79ae",
+        "title": "FAQ",
+        "slug": "faq",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0e069950a7b8ad0f7ebaf2",
+        "title": "Travelers",
+        "slug": "travelers-archive",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0e0632ef1e4948167e827c",
+        "title": "Travelers · That Layover Life",
+        "slug": "travelers",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0e05a2685ba39d73f2feb7",
+        "title": "About · That Layover Life",
+        "slug": "about",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0dfca3f9fa5b751d154257",
+        "title": "Share photos · That Layover Life",
+        "slug": "share-photos",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0df9ffc4a846ee4db92b63",
+        "title": "Your Paw Passport · That Layover Life",
+        "slug": "my-pets",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0df81df4016d4f78cfb22a",
+        "title": "The Map · That Layover Life",
+        "slug": "the-map",
+        "includeInSitemap": true
+      },
+      {
+        "id": "6a0df6db0940a815072a3e04",
+        "title": "Your passport · That Layover Life",
+        "slug": "my-passport",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0df371cd5b09ac504421ae",
+        "title": "Edit your profile · That Layover Life",
+        "slug": "edit-profile",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0d5e5eb7804d3a750dc266",
+        "title": "Share Your Story",
+        "slug": "submit",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0d5c23c57426a9c563e8de",
+        "title": "Account",
+        "slug": "account",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0d5c21d56feff00d7f10f2",
+        "title": "Forgot Password",
+        "slug": "forgot-password",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0d5c1fa1d71485d8688f7b",
+        "title": "Signup",
+        "slug": "signup",
+        "includeInSitemap": false
+      },
+      {
+        "id": "6a0d5c1cdf2debc69dd1b7f9",
+        "title": "Login",
+        "slug": "login",
+        "includeInSitemap": false
+      },
+      {
+        "id": "69d61469f421c777840c204f",
+        "title": "Contact",
+        "slug": "contact",
+        "includeInSitemap": true
+      },
+      {
+        "id": "69d61469f421c777840c204e",
+        "title": "Profile",
+        "slug": "profile",
+        "includeInSitemap": false
+      },
+      {
+        "id": "69d61469f421c777840c204d",
+        "title": "Stories",
+        "slug": "stories",
+        "includeInSitemap": true
+      },
+      {
+        "id": "69d61460f421c777840c1e90",
+        "title": "Style guide",
+        "slug": "style-guide",
+        "includeInSitemap": false
+      },
+      {
+        "id": "69d6145df421c777840c1e46",
+        "title": "Home",
+        "slug": "",
+        "includeInSitemap": true
+      }
+    ],
+    "pagination": {
+      "limit": 100,
+      "offset": 0,
+      "total": 47
+    }
+  }
+}

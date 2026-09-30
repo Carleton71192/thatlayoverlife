@@ -1,0 +1,127 @@
+<style id="tll-pet-editor-css">
+.tpe-row{background:#0A0B14;border-radius:12px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:16px;color:#F7F1E8}
+.tpe-av{width:56px;height:56px;border-radius:50%;flex:none;border:2px solid #00C9C8;background:#16182a center/cover;display:flex;align-items:center;justify-content:center;font-size:26px}
+.tpe-nm{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:20px;line-height:1.15;margin:0 0 4px;color:#F7F1E8}
+.tpe-meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#9a9cb3}
+.tpe-acts{display:flex;flex-direction:column;gap:6px;align-items:flex-end;margin-left:auto}
+.tpe-acts button,.tpe-acts a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:1px;background:none;border:0;padding:6px 0;min-height:32px;cursor:pointer;text-decoration:none}
+.tpe-edit{color:#00C9C8;font-weight:600}.tpe-view{color:#9a9cb3}
+.tpe-panel{scroll-margin-top:110px;background:#0A0B14;border:1px solid #00C9C8;border-radius:12px;padding:22px;margin:0 0 22px;color:#F7F1E8}
+.tpe-panel[hidden]{display:none}
+.tpe-ey{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:#00C9C8;font-weight:600;margin-bottom:16px;text-transform:uppercase}
+.tpe-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.tpe-g3{grid-template-columns:1fr 1fr 1fr}
+.tpe-f{margin-bottom:12px}
+.tpe-f label,.tpe-lbl{display:block;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9a9cb3;margin-bottom:6px}
+.tpe-f input,.tpe-f textarea,.tpe-f select{width:100%;background:#16182a;border:1px solid #2b2f52;border-radius:6px;padding:10px 12px;font-size:15px;color:#F7F1E8;font-family:inherit}
+.tpe-f textarea{min-height:84px;resize:vertical}
+.tpe-f input:focus,.tpe-f textarea:focus,.tpe-f select:focus{outline:2px solid #00C9C8;outline-offset:1px}
+.tpe-yn{display:flex;gap:8px}
+.tpe-yn button{font-size:14px;background:#16182a;color:#c9cbe0;border:1px solid #2b2f52;padding:8px 16px;border-radius:6px;cursor:pointer;min-height:40px}
+.tpe-yn button[aria-pressed="true"]{background:#00C9C8;color:#06302f;border-color:#00C9C8;font-weight:700}
+.tpe-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tpe-chip{font-size:13px;background:#16182a;border:1px solid #2b2f52;border-radius:999px;padding:5px 6px 5px 12px;display:inline-flex;align-items:center;gap:4px}
+.tpe-chip button{background:none;border:0;color:#9a9cb3;cursor:pointer;font-size:16px;line-height:1;min-width:28px;min-height:28px}
+.tpe-addrow{display:flex;gap:8px}.tpe-addrow input{flex:1}
+.tpe-addrow button{background:none;border:1px solid #00C9C8;color:#00C9C8;border-radius:6px;padding:0 14px;cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:12px}
+.tpe-btns{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.tpe-save{background:#00C9C8;color:#06302f;border:0;border-radius:6px;padding:12px 22px;font-weight:700;font-size:15px;cursor:pointer;min-height:44px}
+.tpe-cancel{background:none;border:1px solid #2b2f52;color:#c9cbe0;border-radius:6px;padding:12px 18px;cursor:pointer;min-height:44px}
+.tpe-del{background:none;border:0;color:#F0507A;margin-left:auto;cursor:pointer;font-size:14px;min-height:44px}
+.tpe-msg{font-size:14px;color:#c9cbe0;margin-top:10px}
+.tpe-note{font-size:13px;color:#9a9cb3;margin-top:12px;line-height:1.45}
+@media(max-width:600px){.tpe-g,.tpe-g3{grid-template-columns:1fr}.tpe-row{flex-wrap:wrap}.tpe-acts{flex-direction:row;gap:16px;margin-left:72px}}
+</style>
+<script id="tll-pet-editor">
+/* TLL pet editor v1.1 (2026-09-21). Member pets live in Memberstack member JSON (json.pets).
+   Renders the member's own pets on /my-pets, with an Edit panel per pet. Keeps the add-pet form and its input names;
+   a new submission is also saved to the member's pets. Public /pets/{slug} pages still come from the CMS. */
+(function(){
+  var FOUNDER_SLUG='nancy-carleton';
+  /* Seed for the founder's first load only. Countries and weight are filled from the CMS (Pets: countries-list, weight-kg) via the public passport page. */
+  var MAGNUS={id:'magnus-waffles',cmsSlug:'magnus-waffles',name:'Magnus Waffles',emoji:'🐻‍❄️',species:'Dog',breed:'Samoyed',dob:'2023-07-03',weightKg:null,euPassport:true,
+    countries:[],
+    bio:'Polar bear by appearance, supervisor by profession. Has crossed more EU borders than your accountant.',snack:'Coconut. He drinks the water, then eats the meat.',
+    avatar:'https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e02c4823ce7e6fcd3e743_6a0e022486157e60bbf8ce14_Magnus%2520colors.jpeg',instagram:'',tiktok:'',strava:''};
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+  function age(p){if(p.dob){var b=new Date(p.dob),n=new Date(),a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;return a>=0?a:null;}return p.ageYears!=null&&p.ageYears!==''?Number(p.ageYears):null;}
+  function slugify(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+  function meta(p){var a=age(p),bits=[p.breed||p.species];if(a!=null)bits.push(a+(a===1?' yr':' yrs'));if(p.weightKg)bits.push(p.weightKg+' kg');var c=(p.countries||[]).length;bits.push(c+(c===1?' country':' countries'));return bits.filter(Boolean).join(' · ');}
+  var ms,member,json,pets=[],grid,title,panel,editing=null;
+  function save(){json=json||{};json.pets=pets;return ms.updateMemberJSON({json:json});}
+  function heading(){if(!title)return;var em=title.querySelector('em');var n=pets.length;if(em)em.textContent=n+(n===1?' bestie':' besties');}
+  function render(){
+    [].forEach.call(grid.querySelectorAll('.tll-mypets-card:not(.tll-mypets-card-add),.tpe-row'),function(el){el.remove();});
+    var add=grid.querySelector('.tll-mypets-card-add');
+    pets.forEach(function(p,i){
+      var r=document.createElement('article');r.className='tpe-row';
+      var av=p.avatar?'<div class="tpe-av" style="background-image:url(\''+esc(p.avatar).replace(/'/g,'%27')+'\')" role="img" aria-label="'+esc(p.name)+'"></div>':'<div class="tpe-av" aria-hidden="true">'+esc(p.emoji||'🐾')+'</div>';
+      var nm=esc(p.name);if(p.emoji&&p.avatar){var parts=nm.split(' ');nm=parts.length>1?parts[0]+' '+esc(p.emoji)+' '+parts.slice(1).join(' '):nm+' '+esc(p.emoji);}
+      r.innerHTML=av+'<div><h3 class="tpe-nm">'+nm+'</h3><div class="tpe-meta">'+esc(meta(p))+(p.euPassport?' · EU passport':'')+'</div></div><div class="tpe-acts"><button type="button" class="tpe-edit" data-i="'+i+'">Edit →</button>'+(p.cmsSlug?'<a class="tpe-view" href="/pets/'+esc(p.cmsSlug)+'">View public</a>':'')+'</div>';
+      grid.insertBefore(r,add||null);
+    });
+    heading();
+  }
+  function field(id,lab,val,type,extra){return '<div class="tpe-f"><label for="tpe-'+id+'">'+lab+'</label><input id="tpe-'+id+'" type="'+(type||'text')+'" value="'+esc(val)+'" '+(extra||'')+'></div>';}
+  function openEdit(i){
+    editing=i;var p=pets[i];var cs=(p.countries||[]).slice();
+    panel.innerHTML='<div class="tpe-ey">Edit · '+esc(p.name)+'</div>'
+      +'<div class="tpe-g">'+field('name','Name',p.name,'text','required maxlength="80"')+field('emoji','Emoji',p.emoji,'text','maxlength="12"')+'</div>'
+      +'<div class="tpe-g">'+field('species','Species',p.species)+field('breed','Breed',p.breed)+'</div>'
+      +'<div class="tpe-g">'+field('dob','Date of birth',p.dob,'date')+field('weight','Weight (kg)',p.weightKg,'number','min="0" max="120" step="0.1"')+'</div>'
+      +'<div class="tpe-f"><span class="tpe-lbl" id="tpe-eu-l">EU pet passport</span><div class="tpe-yn" role="group" aria-labelledby="tpe-eu-l"><button type="button" data-v="1" aria-pressed="'+(!!p.euPassport)+'">Yes</button><button type="button" data-v="0" aria-pressed="'+(!p.euPassport)+'">Not yet</button></div></div>'
+      +'<div class="tpe-f"><label for="tpe-cin">Countries crossed together</label><div class="tpe-addrow"><input id="tpe-cin" placeholder="Type a country, press Enter"><button type="button" id="tpe-cadd">+ Add</button></div><div class="tpe-chips" id="tpe-chips"></div></div>'
+      +'<div class="tpe-f"><label for="tpe-bio">Bio</label><textarea id="tpe-bio" maxlength="500">'+esc(p.bio)+'</textarea></div>'
+      +'<div class="tpe-g">'+field('snack','Favorite snack',p.snack)+field('avatar','Photo URL',p.avatar,'url')+'</div>'
+      +'<span class="tpe-lbl">Social profiles · optional</span><div class="tpe-g tpe-g3">'+field('ig','Instagram @',p.instagram)+field('tt','TikTok @',p.tiktok)+field('st','Strava',p.strava)+'</div>'
+      +'<div class="tpe-btns"><button type="button" class="tpe-save" id="tpe-save">Save changes</button><button type="button" class="tpe-cancel" id="tpe-cancel">Cancel</button><button type="button" class="tpe-del" id="tpe-del">Remove pet</button></div>'
+      +'<div class="tpe-msg" id="tpe-msg" role="status" aria-live="polite"></div>'
+      +(p.cmsSlug?'<p class="tpe-note">Saved to your account right away. The public page at /pets/'+esc(p.cmsSlug)+' updates separately.</p>':'');
+    panel.hidden=false;
+    var eu=!!p.euPassport;[].forEach.call(panel.querySelectorAll('.tpe-yn button'),function(b){b.onclick=function(){eu=b.getAttribute('data-v')==='1';[].forEach.call(panel.querySelectorAll('.tpe-yn button'),function(x){x.setAttribute('aria-pressed',String(x===b));});};});
+    function chips(){var c=document.getElementById('tpe-chips');c.innerHTML=cs.map(function(n,k){return '<span class="tpe-chip">'+esc(n)+'<button type="button" aria-label="Remove '+esc(n)+'" data-k="'+k+'">×</button></span>';}).join('')||'<span class="tpe-note" style="margin:0">None logged yet.</span>';[].forEach.call(c.querySelectorAll('button'),function(b){b.onclick=function(){cs.splice(+b.getAttribute('data-k'),1);chips();};});}
+    function addC(){var inp=document.getElementById('tpe-cin'),v=inp.value.trim();if(v&&cs.map(function(x){return x.toLowerCase();}).indexOf(v.toLowerCase())<0)cs.push(v);inp.value='';chips();inp.focus();}
+    chips();document.getElementById('tpe-cadd').onclick=addC;document.getElementById('tpe-cin').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();addC();}};
+    function v(id){var el=document.getElementById('tpe-'+id);return el?el.value.trim():'';}
+    var msg=document.getElementById('tpe-msg');
+    document.getElementById('tpe-cancel').onclick=function(){panel.hidden=true;panel.innerHTML='';};
+    var armed=false;document.getElementById('tpe-del').onclick=function(){if(!armed){armed=true;this.textContent='Tap again to remove '+p.name;return;}pets.splice(i,1);msg.textContent='Removing…';save().then(function(){panel.hidden=true;render();}).catch(function(e){msg.textContent='Could not save: '+((e&&e.message)||e);});};
+    document.getElementById('tpe-save').onclick=function(){
+      if(!v('name')){msg.textContent='Your pet needs a name.';return;}
+      var w=v('weight');
+      var np=Object.assign({},p,{name:v('name'),emoji:v('emoji'),species:v('species'),breed:v('breed'),dob:v('dob'),weightKg:w===''?null:Number(w),euPassport:eu,countries:cs,bio:v('bio'),snack:v('snack'),avatar:v('avatar'),instagram:v('ig').replace(/^@/,''),tiktok:v('tt').replace(/^@/,''),strava:v('st'),updated:new Date().toISOString()});
+      pets[i]=np;msg.textContent='Saving…';
+      save().then(function(){msg.textContent='Saved.';render();setTimeout(function(){panel.hidden=true;panel.innerHTML='';},900);}).catch(function(e){msg.textContent='Could not save: '+((e&&e.message)||e);});
+    };
+    panel.scrollIntoView({behavior:'smooth',block:'start'});var f=document.getElementById('tpe-name');if(f)f.focus({preventScroll:true});
+  }
+  function hookAddForm(){
+    var f=document.querySelector('form[data-tll-form="add-pet"]');if(!f||f.dataset.tpe)return;f.dataset.tpe='1';
+    f.addEventListener('submit',function(){
+      var g=function(n){var el=f.querySelector('[name="'+n+'"]');return el?(el.type==='checkbox'?el.checked:el.value.trim()):'';};
+      var name=g('name');if(!name||!ms)return;
+      var p={id:slugify(name)+'-'+Date.now().toString(36),name:name,emoji:'',species:g('species'),breed:g('breed'),ageYears:g('age'),dob:'',weightKg:null,euPassport:!!g('has-eu-passport'),countries:[],bio:g('bio'),snack:'',avatar:'',instagram:'',tiktok:'',strava:'',added:new Date().toISOString()};
+      pets.push(p);save().then(render).catch(function(){});
+    },true);
+  }
+  function init(){
+    ms=window.$memberstackDom;grid=document.querySelector('.tll-mypets-grid');title=document.querySelector('.tll-mypets-grid-title');
+    if(!ms||!grid)return;
+    panel=document.createElement('div');panel.className='tpe-panel';panel.hidden=true;panel.id='tpe-panel';grid.parentNode.insertBefore(panel,grid.nextSibling);
+    ms.getCurrentMember().then(function(r){
+      member=r&&r.data;if(!member)return null;
+      return ms.getMemberJSON().then(function(j){
+        json=(j&&j.data)||{};pets=Array.isArray(json.pets)?json.pets:[];
+        var cf=member.customFields||{},slug=cf['custom-slug']||slugify((cf['first-name']||'')+' '+(cf['last-name']||''));
+        var seed=!json.petsSeeded&&slug===FOUNDER_SLUG&&!pets.some(function(p){return p.cmsSlug==='magnus-waffles';});
+        if(seed){pets.unshift(MAGNUS);json.petsSeeded=true;}
+        var mg=pets.filter(function(p){return p.cmsSlug==='magnus-waffles'&&!p.cmsSync2;})[0];
+        if(!mg)return seed?save():null;
+        /* One-time sync (21 Sep 2026): Nancy confirmed Magnus's countries and weight; pull them from the CMS item. */
+        return fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var m=h.match(/window\.TLL_PET=\{countries:"([^"]*)",weight:"([^"]*)"\}/);if(m){var cl=m[1].split(',').map(function(x){return x.trim();}).filter(Boolean);if(cl.length)mg.countries=cl;var w=parseFloat(m[2]);if(w)mg.weightKg=w;mg.cmsSync2=true;return save();}return seed?save():null;}).catch(function(){return seed?save():null;});
+      });
+    }).then(function(){if(member){render();hookAddForm();grid.addEventListener('click',function(e){var b=e.target.closest('.tpe-edit');if(b)openEdit(+b.getAttribute('data-i'));});}}).catch(function(e){if(window.console)console.warn('[tll-pet-editor]',e);});
+  }
+  if(window.$memberstackDom)init();else{var n=0,t=setInterval(function(){if(window.$memberstackDom||++n>40){clearInterval(t);init();}},250);}
+})();
+</script>

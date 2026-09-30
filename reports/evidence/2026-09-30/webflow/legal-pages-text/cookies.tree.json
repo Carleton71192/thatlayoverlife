@@ -1,0 +1,643 @@
+{
+ "id": {
+  "component": "6a89d2fde90b577397cb4611",
+  "element": "6a89d2fde90b577397cb4617"
+ },
+ "type": "Body",
+ "children": [
+  {
+   "id": {
+    "component": "6a89d2fde90b577397cb4611",
+    "element": "1234299f-c2cb-5c92-e973-6c567a373c3f"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "name": "TLL Nav v1",
+    "props": [],
+    "slots": []
+   }
+  },
+  {
+   "id": {
+    "component": "6a89d2fde90b577397cb4611",
+    "element": "8b31a0ec-caf6-2af2-f885-28aaf8895906"
+   },
+   "type": "Block",
+   "styleNames": [
+    "inline-main-0-1"
+   ],
+   "settings": {
+    "tag": "main",
+    "visibility": true,
+    "block": {
+     "tag": "main"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "6a89d2fde90b577397cb4611",
+      "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e0"
+     },
+     "type": "Section",
+     "styleNames": [
+      "inline-section-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a89d2fde90b577397cb4611",
+        "element": "8b31a0ec-caf6-2af2-f885-28aaf88958df"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a89d2fde90b577397cb4611",
+          "element": "8b31a0ec-caf6-2af2-f885-28aaf88958da"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958d9"
+           },
+           "type": "String",
+           "textContent": "LEGAL · COOKIES"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a89d2fde90b577397cb4611",
+          "element": "8b31a0ec-caf6-2af2-f885-28aaf88958dc"
+         },
+         "type": "Heading",
+         "styleNames": [
+          "inline-h1-0-1-2-3-4-5-6-7"
+         ],
+         "settings": {
+          "tag": "h1",
+          "visibility": true,
+          "headingLevel": 1
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "6f3018da-488b-de82-bc81-2791a76913f9"
+           },
+           "type": "String",
+           "textContent": "Cookie "
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "82d267a4-c4dd-f8f7-c610-8d721c883d1b"
+           },
+           "type": "DOM",
+           "styleNames": [
+            "tll-text-rose"
+           ],
+           "settings": {
+            "tag": "em",
+            "visibility": true,
+            "dom": {
+             "tag": "em"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "4c216b96-323e-d2d5-e324-fedc49632c0f"
+             },
+             "type": "String",
+             "textContent": "policy."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "6a89d2fde90b577397cb4611",
+          "element": "8b31a0ec-caf6-2af2-f885-28aaf88958de"
+         },
+         "type": "Paragraph",
+         "styleNames": [
+          "inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958dd"
+           },
+           "type": "String",
+           "textContent": "Every cookie, who sets it, why, and for how long. Change your mind any time."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "6a89d2fde90b577397cb4611",
+      "element": "8b31a0ec-caf6-2af2-f885-28aaf8895905"
+     },
+     "type": "Section",
+     "styleNames": [
+      "inline-section-1-1-2-3-4-5-6-7"
+     ],
+     "settings": {
+      "tag": "section",
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "6a89d2fde90b577397cb4611",
+        "element": "8b31a0ec-caf6-2af2-f885-28aaf8895904"
+       },
+       "type": "Block",
+       "styleNames": [
+        "inline-div-4-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "6a89d2fde90b577397cb4611",
+          "element": "8b31a0ec-caf6-2af2-f885-28aaf8895903"
+         },
+         "type": "Block",
+         "styleNames": [
+          "inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e2"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-1-1-2-3-4-5-6-7-8"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "a41621d6-eda8-b134-97b0-73d9d0585615"
+             },
+             "type": "String",
+             "textContent": "This site uses CookieConsent, an open-source consent banner, to manage consent. What the site stores falls into the four categories below. Google Analytics only runs after you say yes."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e6"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-2-1-2-3-4-5-6-7"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e4"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e3"
+               },
+               "type": "String",
+               "textContent": "Necessary."
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e5"
+             },
+             "type": "String",
+             "textContent": " Keep the site working: your login session (Memberstack), your consent choice itself (CookieConsent, stored on your device). These cannot be switched off."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ea"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-3-1-2-3-4-5-6-7"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e8"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e7"
+               },
+               "type": "String",
+               "textContent": "Preferences."
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958e9"
+             },
+             "type": "String",
+             "textContent": " Remember choices you make, like the countries and parks you tick on your passport, so you do not have to make them again. These live in your browser's storage (not a cookie) and never leave your device unless you are signed in, when they also save to your account."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ee"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-4-1-2-3-4-5-6-7"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ec"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958eb"
+               },
+               "type": "String",
+               "textContent": "Statistics."
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ed"
+             },
+             "type": "String",
+             "textContent": " Google Analytics 4, consent-gated. Tells us which stories get read. Data retained 14 months. We also use Ahrefs Web Analytics, which counts page views without cookies or personal data, so it runs without a banner choice."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f2"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-5-1-2"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f0"
+             },
+             "type": "Strong",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ef"
+               },
+               "type": "String",
+               "textContent": "Marketing."
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f1"
+             },
+             "type": "String",
+             "textContent": " Not currently used. If that ever changes, this page changes first and nothing runs without fresh consent."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f5"
+           },
+           "type": "Block",
+           "styleNames": [
+            "inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28"
+           ],
+           "attributes": {
+            "id": "cookie-declaration-slot"
+           },
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f4"
+             },
+             "type": "Paragraph",
+             "styleNames": [
+              "inline-p-6-1"
+             ],
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "a4ca0d3c-2a67-1eed-e329-c48965f4ad1a"
+               },
+               "type": "String",
+               "textContent": "The cookie preferences panel lists each category the banner manages, and your browser's site settings show every cookie stored for this site."
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf88958fa"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-7-1"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f6"
+             },
+             "type": "String",
+             "textContent": "Withdrawing consent is as easy as giving it: "
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f8"
+             },
+             "type": "Link",
+             "styleNames": [
+              "inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29"
+             ],
+             "attributes": {
+              "href": "#"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f7"
+               },
+               "type": "String",
+               "textContent": "open the cookie preferences"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958f9"
+             },
+             "type": "String",
+             "textContent": " and untick anything. The banner reappears and your new choice applies immediately."
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "6a89d2fde90b577397cb4611",
+            "element": "8b31a0ec-caf6-2af2-f885-28aaf8895902"
+           },
+           "type": "Paragraph",
+           "styleNames": [
+            "inline-p-8"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958fb"
+             },
+             "type": "String",
+             "textContent": "Questions? One human reads "
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958fd"
+             },
+             "type": "Link",
+             "styleNames": [
+              "inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19"
+             ],
+             "attributes": {
+              "href": "mailto:hello@thatlayover.life"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "email",
+               "href": "mailto:hello@thatlayover.life"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958fc"
+               },
+               "type": "String",
+               "textContent": "hello@thatlayover.life"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf88958fe"
+             },
+             "type": "String",
+             "textContent": ". More in the "
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf8895900"
+             },
+             "type": "Link",
+             "styleNames": [
+              "inline-a-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18"
+             ],
+             "attributes": {
+              "href": "/privacy"
+             },
+             "settings": {
+              "visibility": true,
+              "link": {
+               "linkType": "url",
+               "href": "/privacy"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "6a89d2fde90b577397cb4611",
+                "element": "8b31a0ec-caf6-2af2-f885-28aaf88958ff"
+               },
+               "type": "String",
+               "textContent": "privacy policy"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "6a89d2fde90b577397cb4611",
+              "element": "8b31a0ec-caf6-2af2-f885-28aaf8895901"
+             },
+             "type": "String",
+             "textContent": "."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": {
+    "component": "6a89d2fde90b577397cb4611",
+    "element": "2b77b5ab-18f2-e50e-2ca8-a067559e8691"
+   },
+   "type": "ComponentInstance",
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+    "name": "TLL Site Footer",
+    "props": [],
+    "slots": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+<script>
+/* TLL story card links v2 (2026-09-21): each CMS card carries its story slug in its id; point the card at /stories/{slug} and drop the false current-page state. */
+(function(){
+  function fix(){[].slice.call(document.querySelectorAll('a.tll-lib-card[id]')).forEach(function(a){if(!/\/stories\/./.test(a.getAttribute('href')||'')){a.setAttribute('href','/stories/'+a.id);a.removeAttribute('aria-current');a.classList.remove('w--current');}});}
+  if(document.readyState!=='loading')fix();else document.addEventListener('DOMContentLoaded',fix);
+})();
+</script>
+<style>
+/* TLL Stories Index v4 (2026-07-29): server-rendered cards replace the v3 JS grid (design s39 STEP 1). Do NOT re-add a client-side card builder; it duplicates the crawlable cards. */
+.tll-library-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;align-items:start}
+.tll-library-grid a[data-tll-card]{transition:box-shadow .2s ease, transform .2s ease}
+.tll-library-grid a[data-tll-card]:hover{box-shadow:0 12px 30px rgba(13,15,26,.12);transform:translateY(-3px)}
+.tll-library-grid a[data-tll-card] h3{font-family:'Syne','Playfair Display',serif;font-weight:800;line-height:1.25}
+.tll-library-grid a[data-tll-card] span{display:block;font-family:'JetBrains Mono',monospace}
+@media(max-width:600px){.tll-library-grid{grid-template-columns:1fr}}
+</style>
+<script>
+/* TLL library search v3 (2026-09-23): reads ?q= from either search bar and filters the server-rendered
+   [data-tll-card] grid client-side. Crawlers see all cards (no-JS = unfiltered). v3 fixes "1 STORIES". */
+(function(){
+  var q = new URLSearchParams(location.search).get('q');
+  if (!q) return;
+  q = q.trim().toLowerCase();
+  if (!q) return;
+  function run(){
+    var cards = document.querySelectorAll('[data-tll-card]');
+    if (!cards.length) return;
+    var hits = 0;
+    cards.forEach(function(c){
+      var hit = c.textContent.toLowerCase().indexOf(q) > -1;
+      c.style.display = hit ? '' : 'none';
+      if (hit) hits++;
+    });
+    var grid = document.querySelector('.tll-lib-grid') || document.querySelector('.tll-library-grid');
+    if (!grid) return;
+    var note = document.createElement('div');
+    note.setAttribute('role', 'status');
+    note.style.cssText = 'grid-column:1/-1;font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:1px;color:#6B6660;padding:4px 0 12px';
+    note.textContent = hits
+      ? hits + (hits === 1 ? ' STORY MATCHING “' : ' STORIES MATCHING “') + q.toUpperCase() + '” · CLEAR THE SEARCH TO SEE THE WHOLE SHELF'
+      : 'NOTHING FILED FOR “' + q.toUpperCase() + '” YET. THE SHELF GROWS WEEKLY.';
+    grid.parentNode.insertBefore(note, grid);
+    if (!hits) cards.forEach(function(c){ c.style.display = ''; });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
+</script>
+<script>
+/* TLL library search UI v2 (2026-09-23): the filter bar now carries a visible search field driving the same ?q=
+   the script above reads, so the no-JS page is still the whole crawlable shelf.
+   Webflow puts every form behind Turnstile bot protection, which leaves the submit button disabled. That is right
+   for the newsletter and submission forms and wrong for a search box, which is a GET navigation and collects
+   nothing. Detach this one form from Turnstile and keep its button enabled, then handle submit ourselves in the
+   capture phase so Webflow's form handler never sees it. */
+(function(){
+  function boot(){
+    var i = document.getElementById('tll-lib-q');
+    if (!i || i.__tllWired) return;
+    i.__tllWired = 1;
+    var form = i.form, wrap = form && form.closest('.w-form'), clear = document.getElementById('tll-lib-clear');
+    var q = new URLSearchParams(location.search).get('q') || '';
+    if (q.trim()) { i.value = q; if (clear) clear.style.display = 'inline'; }
+
+    if (form) {
+      form.removeAttribute('data-turnstile-sitekey');
+      if (wrap) wrap.classList.remove('w-form-loading');
+      var btn = form.querySelector('input[type=submit],button[type=submit]');
+      if (btn) {
+        var enable = function(){
+          if (btn.disabled) btn.disabled = false;
+          if (btn.classList.contains('w-form-loading')) btn.classList.remove('w-form-loading');
+          if (wrap && wrap.classList.contains('w-form-loading')) wrap.classList.remove('w-form-loading');
+        };
+        enable();
+        try { new MutationObserver(enable).observe(btn, { attributes: true, attributeFilter: ['disabled','class'] }); } catch (e) {}
+      }
+      document.addEventListener('submit', function(e){
+        if (e.target !== form) return;
+        e.preventDefault(); e.stopPropagation(); submit();
+      }, true);
+    }
+
+    function submit(){
+      var v = (i.value || '').trim();
+      location.href = '/stories' + (v ? '?q=' + encodeURIComponent(v) : '');
+    }
+    i.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+  }
+  if (document.readyState !== 'loading') boot(); else document.addEventListener('DOMContentLoaded', boot);
+  setTimeout(boot, 1200);
+})();
+</script>
+<script id="tll-lib-chips-v1">
+/* TLL Stories chips v1 (2026-09-28, design screen 02): place filter + sort on the server-rendered [data-tll-card] grid.
+   Reads the hidden per-card data blocks (region, reading time, published date, byline location). No-JS = whole shelf.
+   Chips swap tll-shelf-chip (inactive) and tll-filter-chip-on (active); both are single classes on purpose. */
+(function(){
+  function run(){
+    var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');if(!grid||grid.dataset.tllChips)return;grid.dataset.tllChips='1';
+    var items=[].slice.call(grid.children).filter(function(el){return el.hasAttribute('data-tll-card')||el.querySelector('[data-tll-card]');});
+    function d(el,s){var n=el.querySelector('['+s+']');return n?n.textContent.trim():'';}
+    var rows=items.map(function(el,i){return{el:el,i:i,region:d(el,'data-tll-region'),mins:parseFloat(d(el,'data-tll-mins'))||999,date:Date.parse(d(el,'data-tll-date'))||0,country:(d(el,'data-tll-country')||d(el,'data-tll-region')).toLowerCase()};});
+    var place='all',sort='recent';
+    function apply(){
+      var shown=rows.filter(function(r){return place==='all'||r.region===place;});
+      rows.forEach(function(r){r.el.style.display=shown.indexOf(r)>-1?'':'none';});
+      shown.sort(function(a,b){return sort==='az'?a.country.localeCompare(b.country):sort==='time'?a.mins-b.mins:(b.date-a.date)||(a.i-b.i);});
+      shown.forEach(function(r){grid.appendChild(r.el);});
+      var note=document.getElementById('tll-chip-note');
+      if(!shown.length){if(!note){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';grid.parentNode.insertBefore(note,grid);}
+        note.innerHTML='<div style="font-family:\'Playfair Display\',serif;font-weight:800;font-size:18px;margin-bottom:6px;color:#0A0B14">Nothing on the shelf for '+place+' yet.</div><div style="color:#6B6660;margin-bottom:12px">Be the first.</div><a href="/submit" style="display:inline-block;background:#D63859;color:#fff;padding:10px 18px;border-radius:6px;font-weight:700;text-decoration:none">Share your story →</a>';}
+      else if(note)note.remove();
+    }
+    function wire(attr,set){[].forEach.call(document.querySelectorAll('['+attr+']'),function(c){c.addEventListener('click',function(e){e.preventDefault();set(c.getAttribute(attr));
+      [].forEach.call(document.querySelectorAll('['+attr+']'),function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});apply();});});}
+    wire('data-tll-place',function(v){place=v;});wire('data-tll-sort',function(v){sort=v;});
+    var old=document.querySelector('[data-tll-chiprow] span');if(old&&/SORT:/.test(old.textContent))old.style.display='none';
+    if(!grid.id)grid.id='tll-shelf-grid';
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-lib-chips-css-v1">
+.tll-shelf-chip:focus-visible,.tll-filter-chip-on:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+.tll-shelf-chip:hover{border-color:#0A0B14}
+@media(max-width:820px){.tll-fos-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.tll-filter-label{min-width:100%}}
+</style>

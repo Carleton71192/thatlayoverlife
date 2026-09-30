@@ -1,0 +1,109 @@
+<!-- TLL /travelers roster v3 · roster chip filter + spotlight expertise filter + spotlight category badges · keep data-tll-chip / data-tll-group hooks -->
+<script>
+(function(){
+  var chips=document.querySelectorAll('[data-tll-chip]');
+  var groups=document.querySelectorAll('[data-tll-group]');
+  if(chips.length&&groups.length){
+    var apply=function(f){
+      chips.forEach(function(c){
+        var on=c.getAttribute('data-tll-chip')===f;
+        c.style.background=on?'#0D0F1A':'transparent';
+        c.style.color=on?'#ffffff':'#3a3a3a';
+        c.style.borderColor=on?'#0D0F1A':'#d8d2c6';
+      });
+      groups.forEach(function(g){
+        g.style.display=(f==='all'||g.getAttribute('data-tll-group')===f)?'':'none';
+      });
+    };
+    chips.forEach(function(c){
+      c.addEventListener('click',function(){apply(c.getAttribute('data-tll-chip'));});
+    });
+  }
+  var LABELS=['All experts','Food','Pet travel','Train + rail','Cultural pattern','Endurance + outdoor','EV routing'];
+  var ALIAS={'Endurance + outdoor':['Endurance','Marathon'],'Train + rail':['Train + rail','rail'],'Cultural pattern':['Cultural pattern'],'Pet travel':['Pet travel'],'Food':['Food'],'EV routing':['EV routing']};
+  function labelOf(a){var t=(a.textContent||'').replace(/[^A-Za-z+ ]/g,' ').replace(/\s+/g,' ').trim();
+    for(var i=0;i<LABELS.length;i++)if(t.toLowerCase()===LABELS[i].toLowerCase())return LABELS[i];return null;}
+  var spotChips=[];
+  document.querySelectorAll('a[href="#"]').forEach(function(a){if(labelOf(a))spotChips.push(a);});
+  var cards=document.querySelectorAll('[class*="tll-spot-card"]');
+  if(spotChips.length){
+    function paint(sel){spotChips.forEach(function(c){var on=labelOf(c)===sel;
+      c.style.background=on?'#0D0F1A':'';c.style.color=on?'#ffffff':'';c.style.borderColor=on?'#0D0F1A':'';});}
+    function applySpot(sel){
+      cards.forEach(function(card){
+        if(sel==='All experts'){card.style.display='';return;}
+        var terms=ALIAS[sel]||[sel];var txt=card.textContent||'';var hit=false;
+        for(var i=0;i<terms.length;i++)if(txt.toLowerCase().indexOf(terms[i].toLowerCase())>-1){hit=true;break;}
+        card.style.display=hit?'':'none';
+      });}
+    spotChips.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();
+      paint(labelOf(c));applySpot(labelOf(c));});});
+    paint('All experts');
+  }
+  /* Category badges on spotlight cards (Nancy, 2026-07-03): expat/nomad/press chip per card */
+  var CAT=[['Copenhagen','EXPAT'],['Lisbon','EXPAT'],['Berlin','EXPAT'],['Singapore','EXPAT'],['Tokyo','EXPAT'],['Mexico City','EXPAT'],['Press','PRESS'],['Nomad','NOMAD']];
+  cards.forEach(function(card){
+    if(card.getAttribute('data-tll-cat-badge'))return;
+    var txt=card.textContent||'';var cat=null;
+    for(var i=0;i<CAT.length;i++)if(txt.indexOf(CAT[i][0])>-1){cat=CAT[i][1];break;}
+    if(!cat)return;card.setAttribute('data-tll-cat-badge',cat);
+    var b=document.createElement('span');b.textContent=cat;
+    b.style.cssText="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#0a8f8e;border:1px solid #0a8f8e;border-radius:999px;padding:4px 10px;display:inline-block;margin:0 0 10px";
+    card.insertBefore(b,card.firstChild);
+  });
+  /* TLL copy fix H5 (audit 2026-08-22): "Where the Travelers lives" → "live". Remove once fixed in Designer. */
+  var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),tn;
+  while((tn=tw.nextNode())){if(tn.nodeValue&&tn.nodeValue.indexOf('Travelers lives')>-1){tn.nodeValue=tn.nodeValue.replace(/Travelers lives/g,'Travelers live');}}
+})();
+</script>
+<script id="tll-trav-v2-js">
+/* TLL Travelers v2 (2026-09-28, design screen 04): Everyone / Founder / Location Experts / Press / Travel companions chips show and hide the four groups.
+   The v3 roster and Spotlight blocks above stay in the DOM, hidden (handoff contract). */
+(function(){
+  function run(){
+    var S=document.querySelector('[data-tll-travelers="v2"]');if(!S||S.dataset.tllDone)return;S.dataset.tllDone='1';
+    var chips=[].slice.call(S.querySelectorAll('[data-tll-trav-filter]')),groups=[].slice.call(S.querySelectorAll('[data-tll-trav-group]'));
+    chips.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();var f=c.getAttribute('data-tll-trav-filter');
+      chips.forEach(function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});
+      groups.forEach(function(g){g.style.display=(f==='all'||g.getAttribute('data-tll-trav-group')===f)?'':'none';});});});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-trav-v2-css">
+.tll-trav-card-dark:hover{box-shadow:0 12px 30px rgba(10,11,20,.18)}
+.tll-trav-card-dark:focus-visible,.tll-fos-cta:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+[data-tll-travelers="v2"] h2.tll-display-m{color:#0A0B14;margin:0 0 8px}
+@media(max-width:600px){.tll-trav-grid{grid-template-columns:1fr}}
+</style>
+<style id="tll-trav-dir-css">
+[data-tll-trav-dirsrc]{display:none}
+.tll-trav-linkchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tll-trav-linkchips span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 9.5px 'JetBrains Mono',ui-monospace,monospace;background:#0A0B14;color:#F7F1E8;cursor:pointer}
+.tll-trav-linkchips span[data-t="instagram"]{background:#F0507A;color:#fff}.tll-trav-linkchips span[data-t="tiktok"]{background:#0A0B14;color:#00C9C8}.tll-trav-linkchips span[data-t="youtube"]{background:#C8425E;color:#fff}.tll-trav-linkchips span[data-t="strava"]{background:#D98A2B;color:#0A0B14}
+.tll-trav-card-dark .tll-trav-linkchips span{background:#F7F1E8;color:#0A0B14}.tll-trav-card-dark .tll-trav-linkchips span[data-t="instagram"]{background:#F0507A;color:#fff}.tll-trav-card-dark .tll-trav-linkchips span[data-t="youtube"]{background:#C8425E;color:#fff}
+.tll-trav-linkchips span:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+</style>
+<script id="tll-trav-dir-js">
+/* C15 (30 Sep 2026): up to 4 opt-in link chips on each Travelers card, read from the member's Directory item (switched-on links only). Cards are links themselves, so chips are keyboard-focusable spans that open the URL in a new tab with noopener. */
+(function(){
+  function run(){
+    var nodes=[].slice.call(document.querySelectorAll('[data-tll-dir]')); if(!nodes.length) return;
+    var BADGE={instagram:'IG',tiktok:'TT',youtube:'YT',strava:'SS',newsletter:'NL',website:'WEB',blog:'WEB',other:'LINK'};
+    var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+    function go(e){var t=e.target.closest('[data-u]'); if(!t) return; e.preventDefault(); e.stopPropagation(); window.open(t.getAttribute('data-u'),'_blank','noopener');}
+    nodes.forEach(function(n){
+      var slug=(n.dataset.slug||'').toLowerCase(); if(!slug) return; var links=[]; try{links=JSON.parse(n.dataset.links||'[]')}catch(e){}
+      links=links.filter(function(l){return /^https?:\/\//i.test(l.url||'')}).slice(0,4); if(!links.length) return;
+      [].forEach.call(document.querySelectorAll('[data-tll-travelers="v2"] a[href*="/contributors/'+slug+'"]'),function(card){
+        if(card.querySelector('.tll-trav-linkchips')) return;
+        var row=document.createElement('div'); row.className='tll-trav-linkchips';
+        row.innerHTML=links.map(function(l){return '<span role="link" tabindex="0" data-t="'+esc(l.type)+'" data-u="'+esc(l.url)+'" aria-label="'+esc(l.type)+', opens in a new tab">'+(BADGE[l.type]||'LINK')+'</span>'}).join('');
+        row.addEventListener('click',go); row.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e);});
+        card.appendChild(row);
+      });
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>

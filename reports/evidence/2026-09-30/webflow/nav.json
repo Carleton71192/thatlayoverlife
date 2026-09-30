@@ -1,0 +1,514 @@
+{
+ "id": {
+  "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+  "element": "8484ce87-193e-8ab5-fff8-590bb198f8a8"
+ },
+ "type": "Block",
+ "styleNames": [
+  "tll-nav-v1"
+ ],
+ "settings": {
+  "tag": "nav",
+  "visibility": true,
+  "block": {
+   "tag": "nav"
+  }
+ },
+ "children": [
+  {
+   "id": {
+    "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "element": "8484ce87-193e-8ab5-fff8-590bb198f8a9"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-nav-main"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+      "element": "8484ce87-193e-8ab5-fff8-590bb198f8aa"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-nav-inner"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+        "element": "8484ce87-193e-8ab5-fff8-590bb198f8ab"
+       },
+       "type": "Link",
+       "styleNames": [
+        "tll-nav-logo"
+       ],
+       "attributes": {
+        "href": "/"
+       },
+       "settings": {
+        "visibility": true,
+        "link": {
+         "linkType": "url",
+         "href": "/"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8ac"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-nav-logo-that"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8ad"
+           },
+           "type": "String",
+           "textContent": "that"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8ae"
+         },
+         "type": "Span",
+         "styleNames": [
+          "tll-nav-logo-block"
+         ],
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8af"
+           },
+           "type": "String",
+           "textContent": "LAYOVER LIFE"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+        "element": "8484ce87-193e-8ab5-fff8-590bb198f8b2"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-nav-links-row"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8b3"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-nav-link"
+         ],
+         "attributes": {
+          "href": "/stories"
+         },
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/stories"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8b4"
+           },
+           "type": "String",
+           "textContent": "Stories"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "7593d683-32fe-906b-6c81-822ae2baea9d"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-nav-link"
+         ],
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/countries"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "6c871e6c-40d5-e2c7-fda7-b597185a2e8d"
+           },
+           "type": "String",
+           "textContent": "Countries"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8b5"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-nav-link"
+         ],
+         "attributes": {
+          "href": "/travelers"
+         },
+         "settings": {
+          "visibility": false,
+          "link": {
+           "linkType": "url",
+           "href": "/travelers"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8b6"
+           },
+           "type": "String",
+           "textContent": "Travelers"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "9e94766a-84ea-b5ba-26e8-09a29c21b916"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-nav-link"
+         ],
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/the-paw-passport"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "936c4d0a-0abf-79ab-d646-d5c0d7e5e92c"
+           },
+           "type": "String",
+           "textContent": "Paw Passport"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8b7"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-nav-link"
+         ],
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/about"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8b8"
+           },
+           "type": "String",
+           "textContent": "About"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+        "element": "8484ce87-193e-8ab5-fff8-590bb198f8bb"
+       },
+       "type": "Block",
+       "styleNames": [
+        "tll-nav-cta-row"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "98e1ab42-2b46-5a8a-7c87-7602839ba95c"
+         },
+         "type": "Link",
+         "styleNames": [
+          "tll-btn",
+          "tll-btn-ghost-rose",
+          "tll-nav-pen-cta"
+         ],
+         "settings": {
+          "visibility": true,
+          "link": {
+           "linkType": "url",
+           "href": "/submit"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "5364e489-6bd4-ec23-0c46-38410c003372"
+           },
+           "type": "String",
+           "textContent": "Share your story"
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8bc"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-nav-anon"
+         ],
+         "attributes": {
+          "data-ms-content": "anonymous"
+         },
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8bd"
+           },
+           "type": "Link",
+           "styleNames": [
+            "tll-nav-link",
+            "tll-nav-signin"
+           ],
+           "attributes": {
+            "href": "/login"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/login"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+              "element": "8484ce87-193e-8ab5-fff8-590bb198f8be"
+             },
+             "type": "String",
+             "textContent": "Log in"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8bf"
+           },
+           "type": "Link",
+           "styleNames": [
+            "tll-btn",
+            "tll-btn-primary",
+            "tll-nav-signup"
+           ],
+           "attributes": {
+            "href": "/signup"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/signup"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+              "element": "8484ce87-193e-8ab5-fff8-590bb198f8c0"
+             },
+             "type": "String",
+             "textContent": "Sign up"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+          "element": "8484ce87-193e-8ab5-fff8-590bb198f8c1"
+         },
+         "type": "Block",
+         "styleNames": [
+          "tll-nav-member"
+         ],
+         "attributes": {
+          "data-ms-content": "members"
+         },
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+            "element": "8484ce87-193e-8ab5-fff8-590bb198f8c2"
+           },
+           "type": "Link",
+           "styleNames": [
+            "tll-nav-account-link"
+           ],
+           "attributes": {
+            "href": "/account"
+           },
+           "settings": {
+            "visibility": true,
+            "link": {
+             "linkType": "url",
+             "href": "/account"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+              "element": "8484ce87-193e-8ab5-fff8-590bb198f8c3"
+             },
+             "type": "Span",
+             "styleNames": [
+              "tll-nav-avatar"
+             ],
+             "attributes": {
+              "data-ms-member": "first-letter"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+                "element": "8484ce87-193e-8ab5-fff8-590bb198f8c4"
+               },
+               "type": "String",
+               "textContent": "N"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+              "element": "8484ce87-193e-8ab5-fff8-590bb198f8c5"
+             },
+             "type": "Span",
+             "styleNames": [
+              "tll-nav-account-text"
+             ],
+             "attributes": {
+              "data-ms-member": "first-name"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+                "element": "8484ce87-193e-8ab5-fff8-590bb198f8c6"
+               },
+               "type": "String",
+               "textContent": "Account"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

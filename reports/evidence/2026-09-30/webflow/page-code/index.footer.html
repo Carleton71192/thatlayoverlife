@@ -1,0 +1,105 @@
+<script>
+(function(){
+  if(window.__tllLiveCounts)return;window.__tllLiveCounts=1;
+  function withData(cb){var ls=null;try{ls=JSON.parse(localStorage.getItem("tllStates")||"null");}catch(e){}
+    if(ls&&ls.v===2&&ls.states)return cb(ls);
+    var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;
+      if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(mj){var d=mj&&mj.data&&mj.data.tllStates;if(d&&d.v===2&&d.states)cb(d);});}).catch(function(){});}
+      else if(++n>40)clearInterval(iv);},250);}
+  function texts(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),out=[],x;while(x=w.nextNode())out.push(x);return out;}
+  function apply(d){
+    var n=Object.keys(d.states).length,pct=Math.round(n/195*100),togo=195-n;
+    texts(document.body).forEach(function(t){var s=t.nodeValue;if(!s)return;var o=s;
+      s=s.replace(/\b\d+(?= countries, counted by hand)/,n);
+      s=s.replace(/\b\d+(?= countries on )/,n);
+      s=s.replace(/\b\d+ of 195 · \d+ to go/,n+" of 195 · "+togo+" to go");
+      s=s.replace(/(View all )\d+( visits)/,"$1"+n+"$2");
+      if(s!==o)t.nodeValue=s;});
+    var c=document.getElementById("tll-map-counter");if(c)c.textContent=n+" / 195";
+    var p=document.getElementById("tll-map-pct");if(p)p.textContent=pct+"%";
+    [].slice.call(document.querySelectorAll("div,span,p")).forEach(function(e){
+      if(e.children.length===0&&/^countries$/i.test(e.textContent.trim())){
+        var q=e.previousElementSibling;
+        if(q&&/^\d+$/.test(q.textContent.trim()))q.textContent=String(n);
+      }
+      if(e.children.length===0&&/^the lifer progress$/i.test(e.textContent.trim())){
+        var s2=e.nextElementSibling;if(s2&&/^\d+%$/.test(s2.textContent.trim()))s2.textContent=pct+"%";
+      }
+    });
+  }
+  function boot(){withData(apply);}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+  setTimeout(boot,1600);setTimeout(boot,4000);
+})();
+</script>
+<script>
+/* TLL Home honesty pass v1 (2026-07-03): Lounge tile initials are Nancy's own photos (NC) or Magnus's (MW);
+   crew open-slot avatar letters become +. Raw markup relabeled separately; this covers stragglers. */
+(function(){
+  function fix(){
+    [].slice.call(document.querySelectorAll("span,div")).forEach(function(e){
+      if(e.children.length)return;var t=e.textContent.trim();
+      if(["JP","SD","AL","TR","RO"].indexOf(t)>-1&&e.closest("a[href*='gallery']"))e.textContent="NC";
+      if((t==="B"||t==="O")&&e.parentElement&&/Open slot|Also open/i.test(e.parentElement.textContent))e.textContent="+";
+    });
+  }
+  if(document.readyState!=="loading")fix();else document.addEventListener("DOMContentLoaded",fix);
+  setTimeout(fix,1500);
+})();
+</script>
+<script>
+/* TLL voice sweep v1 (2026-08-23): anti-AI framing retired as marketing; byline claim = "Every byline a real person".
+   The chatbot line is injected by a site-level footer script, so rewrite at runtime. */
+(function(){
+  function sweep(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;
+    while(t=w.nextNode()){var s=t.nodeValue;if(!s)continue;var o=s;
+      s=s.replace(/\s*·?\s*0 stories by a chatbot/g,"");
+      s=s.replace(/Every byline a real name\./g,"Every byline a real person.");
+      if(s!==o)t.nodeValue=s;}
+  }
+  if(document.readyState!=="loading")sweep();else document.addEventListener("DOMContentLoaded",sweep);
+  setTimeout(sweep,1500);setTimeout(sweep,4000);
+})();
+</script>
+<script>
+/* TLL home search routing v2 (2026-09-23): two faults behind one broken button.
+   1. The form had no action, so submitting reloaded the home page with the query stranded in the URL.
+      It now goes to /stories, which already filters on ?q=.
+   2. Webflow puts every form behind Turnstile bot protection, which left the Search button permanently disabled.
+      That is right for the newsletter and submission forms and wrong for a search box: it is a GET navigation and
+      collects nothing. Detach this one form from Turnstile and hold its button enabled.
+   Submit is handled in the capture phase so Webflow's own form handler never sees the event. */
+(function(){
+  function wire(){
+    var i = document.querySelector('input[name="Search-the-library"]');
+    if (!i || !i.form || i.form.__tllRouted) return;
+    var f = i.form; f.__tllRouted = 1;
+    f.setAttribute('action', '/stories');
+    f.setAttribute('method', 'get');
+    f.removeAttribute('data-turnstile-sitekey');
+
+    var btn = f.querySelector('input[type=submit],button[type=submit]');
+    if (btn) {
+      var enable = function(){
+        if (btn.disabled) btn.disabled = false;
+        if (btn.classList.contains('w-form-loading')) btn.classList.remove('w-form-loading');
+      };
+      enable();
+      try { new MutationObserver(enable).observe(btn, { attributes: true, attributeFilter: ['disabled','class'] }); } catch (e) {}
+    }
+
+    function go(){
+      var q = (i.value || '').trim();
+      location.href = '/stories' + (q ? '?q=' + encodeURIComponent(q) : '');
+    }
+    document.addEventListener('submit', function(e){
+      if (e.target !== f) return;
+      e.preventDefault(); e.stopPropagation(); go();
+    }, true);
+    i.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); go(); } });
+  }
+  if (document.readyState !== 'loading') wire(); else document.addEventListener('DOMContentLoaded', wire);
+  setTimeout(wire, 1200);
+})();
+</script>
