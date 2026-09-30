@@ -1,23 +1,23 @@
-<!-- tll-dir-v1 · directory pages (/expats /creators /press) -->
+<!-- tll-dir-v1.1 · directory pages (/expats /creators /press) -->
 <style>
-.tlldir-page{background:#FDF9F3;color:#0A0B14;font-family:'Inter',system-ui,sans-serif}
-.tlldir-wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-.tlldir-hero{background:#0A0B14;color:#F7F1E8;padding:72px 0 44px}
-.tlldir-eyebrow{font:600 11.5px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#00C9C8}
-.tlldir-h1{font-family:'Syne','Inter',sans-serif;font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.02em;margin:14px 0 18px}
-.tlldir-h1 em{font-style:italic;color:#00C9C8}
-.tlldir-lede{max-width:640px;font-size:17px;line-height:1.55;color:rgba(247,241,232,.82);margin:0}
-.tlldir-tools{padding:26px 0 8px;border-bottom:1px solid #E0DACE}
+[data-tll-dir-page]{background:#FDF9F3;color:#0A0B14;font-family:'Inter',system-ui,sans-serif}
+[data-tll-dir-page]>section>div{max-width:1180px;margin:0 auto;padding:0 20px}
+[data-tll-dir-page]>section:nth-of-type(1){background:#0A0B14;color:#F7F1E8;padding:72px 0 44px}
+[data-tll-dir-page]>section>div>div:first-child:not([data-tll-dir-tools]):not([data-tll-dir-count]){font:600 11.5px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#00C9C8}
+[data-tll-dir-page] h1{font-family:'Syne','Inter',sans-serif;font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.02em;margin:14px 0 18px}
+[data-tll-dir-page] h1 em{font-style:italic;color:#00C9C8}
+[data-tll-dir-page]>section:nth-of-type(1) p{max-width:640px;font-size:17px;line-height:1.55;color:rgba(247,241,232,.82);margin:0}
+[data-tll-dir-page]>section:nth-of-type(2){padding:26px 0 8px;border-bottom:1px solid #E0DACE}
 .tlldir-search,input[data-tll-dir-search]{width:100%;max-width:560px;padding:13px 16px;border:1.5px solid #0A0B14;border-radius:12px;background:#fff;font:inherit;font-size:15px}
-.tlldir-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
-.tlldir-chip{border:1.5px solid #0A0B14;background:transparent;color:#0A0B14;border-radius:999px;padding:7px 13px;font:600 12.5px/1 'Inter',sans-serif;cursor:pointer}
-.tlldir-chip[aria-pressed="true"]{background:#0A0B14;color:#F7F1E8}
-.tlldir-tagrow .tlldir-chip{font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px;border-color:#c9b89a}
-.tlldir-tagrow .tlldir-chip[aria-pressed="true"]{border-color:#0A0B14}
-.tlldir-tagslabel{font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;color:#6B6660;margin:18px 0 8px}
-.tlldir-count{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:26px 0 14px;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
-.tlldir-count span:last-child{color:#6B6660}
-.tlldir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding-bottom:48px}
+[data-tll-dir-tools]>div:not([data-tll-dir-tags]):not(.tlldir-tagslabel){display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.tlldir-chip,[data-tll-dir-filter]{border:1.5px solid #0A0B14;background:transparent;color:#0A0B14;border-radius:999px;padding:7px 13px;font:600 12.5px/1 'Inter',sans-serif;cursor:pointer}
+.tlldir-chip[aria-pressed="true"],[data-tll-dir-filter][aria-pressed="true"]{background:#0A0B14;color:#F7F1E8}
+[data-tll-dir-tags]{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}[data-tll-dir-tags] .tlldir-chip{font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px;border-color:#c9b89a}
+[data-tll-dir-tags] .tlldir-chip[aria-pressed="true"]{border-color:#0A0B14}
+[data-tll-dir-tools]>div:nth-last-child(2){font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;color:#6B6660;margin:18px 0 8px}
+[data-tll-dir-count]{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:26px 0 14px;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+[data-tll-dir-count] span:last-child{color:#6B6660}
+[data-tll-dir-grid]{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding-bottom:48px}
 .tlldir-card{background:#fff;border:1.5px solid #E0DACE;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;position:relative}
 .tlldir-card--invite{border:1.5px dashed #c9b89a;background:transparent}
 .tlldir-top{display:flex;gap:14px;align-items:center}
@@ -38,19 +38,19 @@
 .tlldir-report:hover{color:#C8325B}
 .tlldir-sample{font:600 10px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;color:#6B6660;text-transform:uppercase}
 .tlldir-plus{width:52px;height:52px;border-radius:50%;border:1.5px dashed #c9b89a;display:grid;place-items:center;font:300 28px/1 'Inter',sans-serif;color:#6B6660}
-.tlldir-invite-link{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#C8325B;text-decoration:none}
+.tlldir-invite-link,[data-tll-dir-page]>section:nth-of-type(4):not(:last-of-type) a{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#C8325B;text-decoration:none}
 .tlldir-empty{padding:40px 0 60px;max-width:560px}
 .tlldir-empty h2{font:800 30px/1.1 'Syne','Inter',sans-serif;margin:0 0 10px}
-.tlldir-cta{background:#0A0B14;color:#F7F1E8;padding:56px 0}
-.tlldir-cta h2{font:800 clamp(28px,4vw,42px)/1.05 'Syne','Inter',sans-serif;margin:8px 0 12px}
-.tlldir-cta p{color:rgba(247,241,232,.8);max-width:560px;margin:0 0 20px}
-.tlldir-btn{display:inline-block;background:#F0507A;color:#fff;text-decoration:none;font:700 13px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;border-radius:999px}
-.tlldir-switch{display:flex;gap:6px;flex-wrap:wrap;padding:14px 0 0}
-.tlldir-switch a{font:600 11.5px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#F7F1E8;text-decoration:none;border:1px solid rgba(247,241,232,.35);border-radius:999px;padding:8px 13px}
-.tlldir-switch a[aria-current="page"]{background:#F0507A;border-color:#F0507A}
-.tlldir-src{display:none}
-.tlldir-board{padding:40px 0 56px;border-top:1px solid #E0DACE}
-.tlldir-board h2{font:800 30px/1.1 'Syne','Inter',sans-serif;margin:8px 0 10px}
-.tlldir-board p{color:#6B6660;max-width:600px}
-@media (max-width:640px){.tlldir-hero{padding:56px 0 34px}.tlldir-card{padding:16px}}
+[data-tll-dir-page]>section:last-of-type{background:#0A0B14;color:#F7F1E8;padding:56px 0}
+[data-tll-dir-page]>section:last-of-type h2{font:800 clamp(28px,4vw,42px)/1.05 'Syne','Inter',sans-serif;margin:8px 0 12px}
+[data-tll-dir-page]>section:last-of-type p{color:rgba(247,241,232,.8);max-width:560px;margin:0 0 20px}
+[data-tll-dir-page]>section:last-of-type a{display:inline-block;background:#F0507A;color:#fff;text-decoration:none;font:700 13px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;border-radius:999px}
+[data-tll-dir-page] nav[aria-label="Directory"]{display:flex;gap:6px;flex-wrap:wrap;padding:14px 0 0}
+[data-tll-dir-page] nav[aria-label="Directory"] a{font:600 11.5px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#F7F1E8;text-decoration:none;border:1px solid rgba(247,241,232,.35);border-radius:999px;padding:8px 13px}
+[data-tll-dir-page] nav[aria-label="Directory"] a[aria-current="page"]{background:#F0507A;border-color:#F0507A}
+[data-tll-dir-src]{display:none}
+[data-tll-dir-page]>section:nth-of-type(4):not(:last-of-type){padding:40px 0 56px;border-top:1px solid #E0DACE}
+[data-tll-dir-page]>section:nth-of-type(4):not(:last-of-type) h2{font:800 30px/1.1 'Syne','Inter',sans-serif;margin:8px 0 10px}
+[data-tll-dir-page]>section:nth-of-type(4):not(:last-of-type) p{color:#6B6660;max-width:600px}
+@media (max-width:640px){[data-tll-dir-page]>section:nth-of-type(1){padding:56px 0 34px}.tlldir-card{padding:16px}}
 </style>
