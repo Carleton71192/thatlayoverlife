@@ -1,0 +1,52 @@
+<script id="tll-flow-js-v1">
+/* TLL long-scroll layer v1 (30 Sep 2026). Everything is additive and derived from what is on the page; the country list is the list of countries, nothing invented. */
+(function(){
+  if(window.__tllFlow)return;window.__tllFlow=1;
+  var NAMES="Afghanistan|Albania|Algeria|Andorra|Angola|Antigua and Barbuda|Argentina|Armenia|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Brazil|Brunei|Bulgaria|Burkina Faso|Burundi|Cabo Verde|Cambodia|Cameroon|Canada|Central African Republic|Chad|Chile|China|Colombia|Comoros|Congo|DR Congo|Costa Rica|Ivory Coast|Croatia|Cuba|Cyprus|Czechia|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Eswatini|Ethiopia|Fiji|Finland|France|Gabon|Gambia|Georgia|Germany|Ghana|Greece|Grenada|Guatemala|Guinea|Guinea-Bissau|Guyana|Haiti|Honduras|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Israel|Italy|Jamaica|Japan|Jordan|Kazakhstan|Kenya|Kiribati|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Mauritania|Mauritius|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|New Zealand|Nicaragua|Niger|Nigeria|North Macedonia|Norway|Oman|Pakistan|Palau|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Poland|Portugal|Qatar|Romania|Russia|Rwanda|Saint Kitts and Nevis|Saint Lucia|Saint Vincent|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|South Korea|South Sudan|Spain|Sri Lanka|Sudan|Suriname|Sweden|Switzerland|Syria|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tonga|Trinidad and Tobago|Tunisia|Turkiye|Turkmenistan|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Yemen|Zambia|Zimbabwe|Antarctica".split('|');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function nice(s){s=(s||'').split(',')[0].trim();return s.toLowerCase().replace(/(^|[\s-])([a-zà-ÿ])/g,function(m,a,b){return a+b.toUpperCase();});}
+  function storyCountries(root){var has={};if(!root)return has;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),t;
+    while(t=w.nextNode()){var s=t.nodeValue||'';if(s.indexOf('·')<0&&!/min/i.test(s))continue;var first=s.split('·')[0];first.split(/,| and /i).forEach(function(p){var n=nice(p);if(n&&NAMES.indexOf(n)>-1)has[n]=1;});}
+    return has;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+  function reveal(sel,root){[].slice.call((root||document).querySelectorAll(sel)).forEach(function(el){if(!el.classList.contains('tll-flow-reveal')){el.classList.add('tll-flow-reveal');io.observe(el);}});}
+  window.tllAtlas=function(anchor,has,opts){opts=opts||{};if(!anchor||document.querySelector('.tll-atlas'))return;
+    var n=Object.keys(has).length;var sec=document.createElement('section');sec.className='tll-atlas';sec.setAttribute('data-tll-atlas','1');
+    sec.innerHTML='<div class="in"><div class="e">Every country · by name</div><h2>'+NAMES.length+' countries. '+(n||'None')+' with a story'+(n?'':' yet')+'. The rest are open.</h2><p>This list does not end. It loops, because the map is not finished and neither are you. A rose name has a story. Everything else is waiting for someone who went.</p><div class="list"></div><div class="more" role="status">Loading the next stretch of the map…</div></div>';
+    anchor.parentNode.insertBefore(sec,opts.before?anchor:anchor.nextSibling);
+    var list=sec.querySelector('.list'),more=sec.querySelector('.more'),idx=0,lap=0;
+    function batch(){var f=document.createDocumentFragment();for(var k=0;k<40;k++){var c=NAMES[idx%NAMES.length];idx++;if(idx%NAMES.length===0)lap++;var a=document.createElement('a');var h=!!has[c];a.className='k'+(h?' has':'');
+        a.href=h?'/stories?q='+encodeURIComponent(c):'/submit?country='+encodeURIComponent(c);a.innerHTML='<span class="n"></span><span class="s">'+(h?'Has a story':'Open · be the first')+'</span>';a.firstChild.textContent=c;f.appendChild(a);}
+      list.appendChild(f);more.textContent=lap?'Lap '+(lap+1)+' of the map. Still open.':'Loading the next stretch of the map…';reveal('.tll-atlas .k:not(.tll-flow-reveal)',sec);}
+    batch();batch();var sio=new IntersectionObserver(function(e){if(e[0].isIntersecting)batch();},{rootMargin:'600px'});sio.observe(more);};
+  window.tllReveal=reveal;window.tllStoryCountries=storyCountries;
+  function home(){
+    var h1=document.querySelector('main h1,h1');if(!h1)return;var hero=h1.closest('div,section');while(hero&&!hero.querySelector('img')&&hero.parentNode!==document.body)hero=hero.parentNode;
+    if(hero&&hero!==document.body)hero.setAttribute('data-tll-flow','hero');
+    var secs=[].slice.call(document.querySelectorAll('#tll-shelf,[data-tll-library-search],.tll-comm,.tll-map,#paw-passport,#layover-lounge'));
+    secs.forEach(function(s){s.setAttribute('data-tll-flow','section');reveal('h2,h3,p,a.w-button,.tll-btn,[class*="card"]',s);});
+    /* ticker: the five pillars, from the browse chips already on the page (falls back to nothing, never invents) */
+    var chips=[].slice.call(document.querySelectorAll('a[href^="/pillars/"]')).map(function(a){return a.textContent.trim();}).filter(Boolean);
+    if(chips.length&&hero&&!reduce){var tk=document.createElement('div');tk.className='tll-flow-ticker';tk.setAttribute('aria-hidden','true');var items=chips.map(function(c){return '<span>'+c+'</span>';}).join('')+'<span>Counted by hand</span>';tk.innerHTML='<div class="t">'+items+items+'</div>';hero.parentNode.insertBefore(tk,hero.nextSibling);}
+    /* manifesto: the hero lede, one line at a time */
+    var lede=hero&&hero.querySelector('p');var parts=lede?lede.textContent.split(/\.\s+|\.$/).map(function(x){return x.trim();}).filter(Boolean):[];
+    if(parts.length>=3){var man=document.createElement('section');man.className='tll-flow-man';man.setAttribute('aria-label','What TLL is');var html='<div class="pin"><div class="c">01 / 0'+parts.length+'</div>';
+      parts.forEach(function(p){var w=p.split(' ');var last=w.pop();html+='<h2 class="l">'+w.join(' ')+' <em>'+last+'</em>.</h2>';});man.innerHTML=html+'</div>';
+      var after=document.querySelector('.tll-flow-ticker')||hero;after.parentNode.insertBefore(man,after.nextSibling);
+      var lines=man.querySelectorAll('.l'),mc=man.querySelector('.c');
+      function step(){if(reduce||window.innerWidth<900){[].forEach.call(lines,function(l){l.classList.add('on');});return;}var r=man.getBoundingClientRect();var p=Math.min(.999,Math.max(0,-r.top/(r.height-window.innerHeight)));var i=Math.floor(p*lines.length);[].forEach.call(lines,function(l,k){l.classList.toggle('on',k===i);});mc.textContent='0'+(i+1)+' / 0'+lines.length;}
+      window.addEventListener('scroll',function(){requestAnimationFrame(step);},{passive:true});step();}
+    /* rail */
+    var stops=[['#tll-shelf','The shelf'],['[data-tll-library-search]','Browse'],['.tll-comm','Doors opening'],['.tll-map','The Map'],['#paw-passport','Paw Passport'],['#layover-lounge','The Lounge'],['[data-tll-atlas]','Every country']];
+    var rail=document.createElement('nav');rail.className='tll-flow-rail';rail.setAttribute('aria-label','Sections');
+    /* endless atlas after the Lounge, countries with a story read from the shelf */
+    var lounge=document.getElementById('layover-lounge');if(lounge)window.tllAtlas(lounge,storyCountries(document.getElementById('tll-shelf')));
+    stops.forEach(function(s){var el=document.querySelector(s[0]);if(!el)return;if(!el.id)el.id='tll-flow-'+s[1].toLowerCase().replace(/[^a-z]+/g,'-');var a=document.createElement('a');a.href='#'+el.id;a.innerHTML='<span>'+s[1]+'</span>';a.__el=el;rail.appendChild(a);});
+    if(rail.children.length){document.body.appendChild(rail);var links=[].slice.call(rail.children);function upd(){var y=window.scrollY+window.innerHeight*.4,cur=-1;links.forEach(function(a,i){if(a.__el.offsetTop<=y)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+      window.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});upd();}
+  }
+  function stories(){var grid=document.querySelector('.tll-library-grid,.tll-lib-grid');if(!grid)return;reveal('[data-tll-card],a.tll-lib-card',grid);window.tllAtlas(grid,storyCountries(grid));}
+  function run(){if(location.pathname==='/'||location.pathname==='')home();else if(/^\/stories\/?$/.test(location.pathname))stories();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>

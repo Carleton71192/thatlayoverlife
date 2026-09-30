@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 24 · Done 1 · Partial 85 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 24 · Done 1 · Partial 86 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -135,3 +135,9 @@ Summary: TODO 24 · Done 1 · Partial 85 · Blocked 15 · N/A 2 · Deferred 0
 | I12 | Guide PDF checked against Regulation (EU) 2026/131 and 2026/705 | Blocked | Waiting on Nancy |
 | I13 | Magnus's real pack friends: handles + their humans' OK | Blocked | Waiting on Nancy |
 | I14 | Short GDPR review before public travel profiles go live | Blocked | Waiting on Nancy |
+
+## R · Design direction changes after v8 (Nancy, 30 Sep 2026)
+
+| ID | Item | Status | Notes |
+|---|---|---|---|
+| R01 | Readymag-style long scroll: sticky oversized hero, pillar ticker, pinned manifesto lines, scroll reveals, progress rail, endless country atlas on home and /stories | Partial | Nancy asked for the Readymag endless-scroll vibe on 30 Sep 2026. Prototype with the 8 published stories and the real hero photo: design-review/prototypes/long-scroll/tll-long-scroll.html (captures in reports/evidence/design-2026-09-30/). Live: style tll-flow-v1 appended to the home and /stories heads; script tll-flow-js-v1 added as an HTML embed at the end of each body (home 81aad1d1-60de-9d15-b2bf-263de891af9c, stories 133b8eba-b739-99ba-a0f6-216a688ccbf9). Everything additive: hero gets data-tll-flow, sections get reveal classes, ticker from the pillar chips, manifesto from the hero lede, atlas from the country list with "has a story" read from the shelf cards. Reduced motion respected; rail hidden under 900px. Not in the v8 prototype (design change by Nancy). Open: Nancy reviews the prototype and says publish; the counted-by-hand ledger hero (Concept A) is a separate build. Unpublished. |

@@ -1,0 +1,36 @@
+<style id="tll-flow-v1">
+/* TLL long-scroll layer v1 (30 Sep 2026, Readymag brief). Additive: no element removed, no binding touched. Kit v2.1 tokens only. */
+[data-tll-flow="hero"]{min-height:100vh;display:flex;align-items:flex-end}
+[data-tll-flow="hero"] h1{font-size:clamp(46px,8.4vw,132px)!important;line-height:.96!important;letter-spacing:-.02em;max-width:12ch}
+.tll-flow-ticker{border-top:1px solid #23263c;border-bottom:1px solid #23263c;overflow:hidden;white-space:nowrap;padding:12px 0;background:#0A0B14}
+.tll-flow-ticker .t{display:inline-block;animation:tllTick 50s linear infinite}
+.tll-flow-ticker span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#00C9C8;margin-right:40px}
+@keyframes tllTick{to{transform:translateX(-50%)}}
+.tll-flow-man{position:relative;height:240vh;background:#FDF9F3;color:#1A1A1A}
+.tll-flow-man .pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.tll-flow-man .l{position:absolute;left:24px;right:24px;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(40px,8vw,128px);line-height:1.02;letter-spacing:-.02em;opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);margin:0}
+.tll-flow-man .l em{font-style:italic;color:#F0507A}.tll-flow-man .l.on{opacity:1;transform:none}
+.tll-flow-man .c{position:absolute;left:24px;top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#067A79}
+.tll-flow-reveal{opacity:0;transform:translateY(22px);transition:opacity .52s cubic-bezier(.2,.7,.2,1),transform .52s cubic-bezier(.2,.7,.2,1)}
+.tll-flow-reveal.in{opacity:1;transform:none}
+[data-tll-flow="section"] h2{font-size:clamp(34px,5vw,84px)!important;line-height:1.02!important;letter-spacing:-.02em}
+.tll-flow-rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.tll-flow-rail a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:#7d7f96;display:flex;align-items:center;gap:8px;mix-blend-mode:difference}
+.tll-flow-rail a::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.tll-flow-rail a.on{color:#F0507A}.tll-flow-rail a span{opacity:0;transition:opacity .16s}.tll-flow-rail a.on span,.tll-flow-rail:hover a span{opacity:1}
+@media(max-width:900px){.tll-flow-rail{display:none}.tll-flow-man{height:auto}.tll-flow-man .pin{height:auto;display:block;padding:72px 24px}.tll-flow-man .l{position:static;opacity:1;transform:none;margin:0 0 12px}.tll-flow-man .c{display:none}}
+.tll-atlas{background:#FDF9F3;color:#1A1A1A;padding:80px 24px 0}
+.tll-atlas .in{max-width:1180px;margin:0 auto}
+.tll-atlas .e{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#067A79}
+.tll-atlas h2{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(32px,5vw,84px);line-height:1.02;letter-spacing:-.02em;max-width:14ch;margin:10px 0 0;color:#1A1A1A}
+.tll-atlas p{color:#6B6660;max-width:52ch;margin:14px 0 30px}
+.tll-atlas .list{columns:3;column-gap:32px;border-top:1px solid #E0DACE}
+@media(max-width:800px){.tll-atlas .list{columns:1}}
+.tll-atlas .k{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E0DACE;break-inside:avoid;text-decoration:none;color:#1A1A1A}
+.tll-atlas .k .n{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:20px}
+.tll-atlas .k .s{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#6B6660;white-space:nowrap}
+.tll-atlas .k.has .n{color:#C8325B}.tll-atlas .k.has .s{color:#067A79}
+.tll-atlas .k:hover .n{text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px}
+.tll-atlas .more{padding:40px 0 60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6B6660}
+@media(prefers-reduced-motion:reduce){.tll-flow-ticker .t{animation:none}.tll-flow-reveal,.tll-flow-man .l{opacity:1;transform:none;transition:none}.tll-flow-man{height:auto}.tll-flow-man .pin{height:auto;position:static;display:block;padding:72px 24px}.tll-flow-man .l{position:static;margin:0 0 12px}}
+</style>

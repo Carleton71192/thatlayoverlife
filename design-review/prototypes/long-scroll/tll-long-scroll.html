@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>That Layover Life · the long scroll</title>
+<meta name="description" content="Prototype: one continuous editorial scroll for thatlayover.life. Real stories, real counts, brand kit v2.1 tokens only.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=JetBrains+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=Syne:wght@800&display=swap">
+<style>
+/* Prototype only. Nothing here touches the live site. Tokens: TLL Brand Kit v2.1 + DESIGN-SPEC v8. */
+:root{--midnight:#0A0B14;--card:#16182a;--dborder:#23263c;--rose:#F0507A;--rose-deep:#D63859;--rose-text:#C8325B;--teal:#00C9C8;--teal-deep:#067A79;--amber:#D98A2B;--amber-text:#b8791f;--cream:#F7F1E8;--paper:#FDF9F3;--border:#E0DACE;--dashed:#c9b89a;--ink:#1A1A1A;--body:#3a3a3a;--muted:#6B6660;--muted-dark:#cfcbc4;--meta-dark:#7d7f96;
+--display:'Playfair Display',Georgia,serif;--bodyf:'IBM Plex Sans Condensed',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--wordmark:'Syne',sans-serif;
+--ease:cubic-bezier(.2,.7,.2,1);--t-micro:160ms;--t-reveal:520ms}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--midnight);color:var(--cream);font-family:var(--bodyf);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.eyebrow{color:var(--teal)}.on-light .eyebrow{color:var(--teal-deep)}
+h1,h2,h3{font-family:var(--display);font-weight:800;margin:0;line-height:1.02}
+em{font-style:italic;color:var(--rose)}
+.btn{display:inline-block;font-weight:600;font-size:15px;padding:13px 20px;border-radius:6px;text-decoration:none;min-height:44px;line-height:1.2;transition:transform var(--t-micro) var(--ease),background var(--t-micro) var(--ease)}
+.btn-primary{background:var(--rose);color:var(--midnight)}.btn-primary:hover{background:var(--rose-deep);color:#fff;transform:translateY(-1px)}
+.btn-outline{border:1.5px solid var(--cream);color:var(--cream)}.on-light .btn-outline{border-color:var(--midnight);color:var(--midnight)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+/* Nav (static stand-in for TLL Nav v1) */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;mix-blend-mode:difference;color:#fff}
+.wordmark{font-family:var(--wordmark);font-weight:800;font-size:15px;letter-spacing:.02em;text-decoration:none;color:#fff}
+.wordmark i{font-style:italic;opacity:.7;font-weight:800}.wordmark b{color:var(--rose)}
+.nav .links{display:flex;gap:22px;font-size:14px}.nav .links a{text-decoration:none}
+@media(max-width:700px){.nav .links{display:none}}
+/* Progress rail */
+.rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.rail a{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--meta-dark);display:flex;align-items:center;gap:8px;transition:color var(--t-micro)}
+.rail a::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.rail a.on{color:var(--rose)}
+.rail a span{opacity:0;transition:opacity var(--t-micro)}.rail a.on span,.rail:hover a span{opacity:1}
+@media(max-width:900px){.rail{display:none}}
+/* Sticky hero */
+.hero{position:relative;height:160vh}
+.hero .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:flex-end}
+.hero .photo{position:absolute;inset:0;background:url("https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-1600.jpg") center/cover no-repeat;transform:scale(1.04);will-change:transform;transition:none}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(rgba(10,11,20,.42),rgba(10,11,20,.22) 40%,rgba(10,11,20,.78) 75%,rgba(10,11,20,.94))}
+.hero .in{position:relative;padding:0 24px 64px;width:100%;max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(46px,9.2vw,148px);letter-spacing:-.02em;line-height:.96;max-width:12ch}
+.hero .lede{max-width:44ch;color:var(--muted-dark);margin:20px 0 26px;font-size:clamp(16px,1.4vw,19px)}
+.hero .cue{position:absolute;right:24px;bottom:28px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--meta-dark);writing-mode:vertical-rl;transform:rotate(180deg)}
+/* Ticker */
+.ticker{border-top:1px solid var(--dborder);border-bottom:1px solid var(--dborder);overflow:hidden;white-space:nowrap;padding:12px 0;background:var(--midnight)}
+.ticker .track{display:inline-block;animation:tick 60s linear infinite}
+.ticker span{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-right:40px}
+.ticker span i{font-style:normal;color:var(--meta-dark);margin-left:14px}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* Ledger */
+.ledger{padding:96px 0}
+.ledger .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--dborder)}
+.ledger .cell{padding:28px 0 8px;border-bottom:1px solid var(--dborder)}
+.ledger .n{font-family:var(--display);font-weight:800;font-size:clamp(48px,7vw,112px);line-height:1;color:var(--cream)}
+.ledger .k{margin-top:10px;color:var(--teal)}
+.ledger .s{color:var(--meta-dark);font-size:13px;margin-top:4px}
+@media(max-width:800px){.ledger .grid{grid-template-columns:1fr 1fr}}
+/* Manifesto (pinned lines) */
+.manifesto{position:relative;height:360vh;background:var(--paper);color:var(--ink)}
+.manifesto .pin{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.manifesto .line{position:absolute;left:24px;right:24px;font-size:clamp(40px,8vw,128px);letter-spacing:-.02em;opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease);max-width:1180px;margin:0 auto}
+.manifesto .line.on{opacity:1;transform:none}
+.manifesto .count{position:absolute;left:24px;top:32px}
+/* Stream */
+.stream{background:var(--paper);color:var(--ink);padding:40px 0 0}
+.stream .head{display:flex;justify-content:space-between;align-items:baseline;padding:0 0 18px;border-bottom:2px solid var(--ink)}
+.stream .head h2{font-size:clamp(28px,3.6vw,54px)}
+.row{display:grid;grid-template-columns:90px 1fr 380px;gap:32px;align-items:center;padding:44px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;opacity:0;transform:translateY(26px);transition:opacity var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease)}
+.row.in{opacity:1;transform:none}
+.row .num{font-family:var(--display);font-weight:800;font-size:44px;color:var(--border);line-height:1}
+.row.in .num{color:var(--rose)}
+.row h3{font-size:clamp(26px,3.4vw,52px);letter-spacing:-.015em;line-height:1.05;transition:transform var(--t-micro) var(--ease)}
+.row:hover h3{transform:translateX(6px)}
+.row .meta{margin:10px 0 0;color:var(--teal-deep)}
+.row .lede{color:var(--body);margin:12px 0 0;max-width:60ch}
+.row .pic{aspect-ratio:3/2;overflow:hidden;border-radius:12px;background:var(--border)}
+.row .pic img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform .6s var(--ease)}
+.row:hover .pic img{transform:scale(1.06)}
+.row.alt{grid-template-columns:90px 380px 1fr}
+@media(max-width:800px){.row,.row.alt{grid-template-columns:1fr;gap:14px;padding:32px 0}.row .num{font-size:28px}.row .pic{order:-1}}
+.slot{margin:40px 0 0;border:2px dashed var(--dashed);border-radius:12px;padding:28px;color:var(--muted);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.slot .k{color:var(--amber-text)}
+.slot h3{font-size:clamp(22px,2.6vw,34px);color:var(--muted)}
+/* Atlas endless */
+.atlas{background:var(--paper);color:var(--ink);padding:80px 0 0}
+.atlas h2{font-size:clamp(32px,5vw,84px);letter-spacing:-.02em;max-width:14ch}
+.atlas .sub{color:var(--muted);max-width:52ch;margin:14px 0 30px}
+.atlas .list{columns:3;column-gap:32px;border-top:1px solid var(--border)}
+@media(max-width:800px){.atlas .list{columns:1}}
+.atlas .c{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);break-inside:avoid;text-decoration:none;color:var(--ink);opacity:0;transform:translateY(12px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.atlas .c.in{opacity:1;transform:none}
+.atlas .c .name{font-family:var(--display);font-weight:800;font-size:20px}
+.atlas .c .st{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.atlas .c.has .st{color:var(--teal-deep)}
+.atlas .c.has .name{color:var(--rose-text)}
+.atlas .more{padding:40px 0 60px;text-align:center;color:var(--muted)}
+/* Paw + Lounge + Map */
+.paw{background:var(--midnight);color:var(--cream);padding:120px 0}
+.paw .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media(max-width:800px){.paw .grid{grid-template-columns:1fr}}
+.paw h2{font-size:clamp(34px,5.4vw,88px);letter-spacing:-.02em}
+.paw p{color:var(--muted-dark);max-width:48ch}
+.passport{border:1px solid var(--dborder);border-radius:12px;background:var(--card);padding:26px}
+.passport .name{font-family:var(--display);font-weight:800;font-size:30px}
+.passport .k{color:var(--meta-dark);font-size:13px}
+.passport .stamps{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.passport .stamp{width:38px;height:38px;border-radius:50%;background:var(--midnight);border:1px solid var(--dborder);display:flex;align-items:center;justify-content:center;font-size:18px}
+.passport .stamp.more{font-family:var(--mono);font-size:10px;color:var(--teal)}
+.lounge{background:var(--paper);color:var(--ink);padding:100px 0}
+.lounge h2{font-size:clamp(34px,5.4vw,88px);letter-spacing:-.02em}
+.lounge .strip{display:flex;gap:12px;overflow-x:auto;padding:30px 0 10px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.lounge .strip::-webkit-scrollbar{display:none}
+.lounge .tile{flex:0 0 min(420px,80vw);aspect-ratio:3/2;border-radius:12px;overflow:hidden;scroll-snap-align:start;background:var(--border);position:relative}
+.lounge .tile img{width:100%;height:100%;object-fit:cover;display:block}
+.lounge .tile .cap{position:absolute;left:12px;bottom:12px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);background:rgba(10,11,20,.72);padding:6px 10px;border-radius:999px}
+.lounge .tile.add{border:2px dashed var(--dashed);background:var(--paper);display:flex;align-items:center;justify-content:center;color:var(--amber-text);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.map{background:var(--midnight);color:var(--cream);padding:100px 0 60px}
+.map h2{font-size:clamp(34px,5.4vw,88px);letter-spacing:-.02em}
+.map .canvas{margin-top:30px;border:1px solid var(--dborder);border-radius:12px;background:var(--card);min-height:320px;padding:8px}
+.map .note{color:var(--meta-dark);font-size:13px;margin-top:12px}
+footer{background:var(--midnight);color:var(--meta-dark);padding:40px 0 60px;border-top:1px solid var(--dborder);font-size:13px}
+footer .wordmark{font-size:14px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker .track{animation:none}.reveal,.row,.atlas .c,.manifesto .line{opacity:1;transform:none;transition:none}.manifesto{height:auto}.manifesto .pin{height:auto;position:static;display:block;padding:80px 0}.manifesto .line{position:static;margin:0 0 16px}.hero{height:100vh}}
+.a11y-skip{position:absolute;left:-999px}.a11y-skip:focus{left:24px;top:70px;z-index:99;background:var(--rose);color:var(--midnight);padding:8px 12px;border-radius:6px}
+</style>
+</head>
+<body>
+<a class="a11y-skip" href="#stream">Skip to the stories</a>
+<nav class="nav" aria-label="Prototype navigation">
+  <a class="wordmark" href="#top"><i>that</i> LAYOVER <b>LIFE.</b></a>
+  <div class="links"><a href="#stream">Stories</a><a href="#atlas">Countries</a><a href="#paw">Paw Passport</a><a href="#map">The Map</a><a class="btn btn-primary" style="padding:8px 14px;min-height:0;font-size:13px;mix-blend-mode:normal" href="#stream">Share your story</a></div>
+</nav>
+<nav class="rail" aria-label="Sections">
+  <a href="#top" data-rail="top"><span>Top</span></a>
+  <a href="#ledger" data-rail="ledger"><span>Counted by hand</span></a>
+  <a href="#stream" data-rail="stream"><span>The shelf</span></a>
+  <a href="#atlas" data-rail="atlas"><span>Every country</span></a>
+  <a href="#paw" data-rail="paw"><span>Paw Passport</span></a>
+  <a href="#lounge" data-rail="lounge"><span>The Lounge</span></a>
+  <a href="#map" data-rail="map"><span>The Map</span></a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="pin">
+    <div class="photo" data-parallax aria-hidden="true"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="in">
+      <div class="mono eyebrow">Travel stories by people who were there</div>
+      <h1>Find your next <em>somewhere</em>.</h1>
+      <p class="lede">Real places, real opinions, real names. Shared by people who went.</p>
+      <a class="btn btn-primary" href="#stream">Read the library →</a> &nbsp; <a class="btn btn-outline" href="#stream">Share your story</a>
+    </div>
+    <div class="cue" aria-hidden="true">Keep scrolling · it does not end</div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="track" id="ticker"></div></div>
+
+<section class="ledger" id="ledger">
+  <div class="wrap">
+    <div class="mono eyebrow reveal">Counted by hand · never typed</div>
+    <div class="grid">
+      <div class="cell reveal"><div class="n" data-count="8">0</div><div class="mono k">Stories on the shelf</div><div class="s">Two filed today</div></div>
+      <div class="cell reveal"><div class="n" data-count="8">0</div><div class="mono k">Countries with a story</div><div class="s">of 194 on the map</div></div>
+      <div class="cell reveal"><div class="n" data-count="1">0</div><div class="mono k">Travelers</div><div class="s">Room on the shelf for yours</div></div>
+      <div class="cell reveal"><div class="n" data-count="1">0</div><div class="mono k">Pets with a passport</div><div class="s">A Samoyed. Thirteen countries.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto on-light" aria-label="What TLL is">
+  <div class="pin">
+    <div class="mono eyebrow count" id="mcount">01 / 04</div>
+    <h2 class="line" data-line>Real <em>places</em>.</h2>
+    <h2 class="line" data-line>Real <em>opinions</em>.</h2>
+    <h2 class="line" data-line>Real <em>names</em>.</h2>
+    <h2 class="line" data-line>Shared by people who <em>went</em>.</h2>
+  </div>
+</section>
+
+<section class="stream on-light" id="stream">
+  <div class="wrap">
+    <div class="head"><h2>Already on the shelf.</h2><div class="mono eyebrow" id="shelfcount"></div></div>
+    <div id="rows"></div>
+    <div class="slot"><div><div class="mono k">Open slot · yours</div><h3>Room on the shelf for the next one.</h3></div><a class="btn btn-primary" href="#">Share your story</a></div>
+  </div>
+</section>
+
+<section class="atlas" id="atlas">
+  <div class="wrap">
+    <div class="mono eyebrow reveal">Every country · by name</div>
+    <h2 class="reveal">194 countries. Eight with a story. The rest are open.</h2>
+    <p class="sub reveal">This list does not end. It loops, because the map is not finished and neither are you. A rose name has a story. Everything else is waiting for someone who went.</p>
+    <div class="list" id="atlaslist"></div>
+    <div class="more mono" id="atlasmore">Loading the next stretch of the map…</div>
+  </div>
+</section>
+
+<section class="paw" id="paw">
+  <div class="wrap grid">
+    <div>
+      <div class="mono eyebrow reveal">For every travel companion</div>
+      <h2 class="reveal">Your bestie gets a <em>passport</em> too.</h2>
+      <p class="reveal">Dog, cat, ferret, one extremely well-traveled parrot. If they crossed a border with you, they get a page, a stamp collection, and a byline in your stories.</p>
+      <p class="reveal"><a class="btn btn-primary" href="#">Meet Magnus and the Travelers →</a></p>
+    </div>
+    <div class="passport reveal">
+      <div class="mono eyebrow">Here is one · so you know what yours looks like</div>
+      <div class="name" style="margin-top:10px">Magnus Waffles</div>
+      <div class="k">Samoyed · 3 yrs · Copenhagen, DK · 13 countries · 0 complaints</div>
+      <div class="stamps"><span class="stamp">🇧🇷</span><span class="stamp">🇩🇪</span><span class="stamp">🇦🇹</span><span class="stamp">🇧🇬</span><span class="stamp">🇸🇪</span><span class="stamp more">+8</span></div>
+      <div class="k" style="margin-top:16px">Often confused with a polar bear, seal, or teddy bear. 100% Samoyed.</div>
+    </div>
+  </div>
+</section>
+
+<section class="lounge on-light" id="lounge">
+  <div class="wrap">
+    <div class="mono eyebrow reveal">A photo, not an essay · the easiest yes</div>
+    <h2 class="reveal">The Layover <em>Lounge</em>.</h2>
+    <p class="reveal" style="color:var(--muted);max-width:52ch">Real places, shot by the people who actually went. All frames currently by Nancy. Yours changes that.</p>
+    <div class="strip" id="strip"></div>
+  </div>
+</section>
+
+<section class="map" id="map">
+  <div class="wrap">
+    <div class="mono eyebrow reveal">Where the Travelers have been</div>
+    <h2 class="reveal">Every pink country belongs to the editor. Go make a <em>worse</em> one.</h2>
+    <div class="canvas reveal" id="tll-map-canvas" data-visited="008,010,020,032,036,040,056,068,070,076,084,100,116,124,152,158,170,188,191,196,203,208,214,218,222,242,246,250,276,288,300,320,332,340,348,352,356,360,372,380,388,398,418,426,428,440,442,458,470,484,492,499,504,524,528,540,554,578,591,600,604,608,616,620,634,688,702,703,704,705,710,716,724,748,752,756,764,784,792,807,818,826,834,840,858,894"></div>
+    <div class="note">Map loads d3 and the world atlas from jsDelivr, exactly like the live site. The visited list is the editor's own record.</div>
+  </div>
+</section>
+
+<footer><div class="wrap"><a class="wordmark" href="#top"><i>that</i> LAYOVER <b>LIFE.</b></a> &nbsp; Every byline a real person. · © 2026 That Layover Life · Copenhagen, Denmark · Run by humans, supervised by one Samoyed</div></footer>
+
+<script>
+window.TLL_STORIES=[{"name": "From Sequins to Sloths: Northern Brazil for the Chronically Curious", "slug": "northern-brazil-sequins-to-sloths", "country": "SALVADOR, BRAZIL", "pillar": "Stories From the Road", "mins": 6, "lede": "When you are seeking that spark of life, you chase it. Carnaval in Salvador with 2.5 million people, a desert that fills with water every year, and six days on the Rio Negro with pink dolphins and one sloth with somewher", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6abccf813c37a815d4c03dde_6abcce087012c0cb94fe18b3_brazil-hero-riverboats-at-sunset-rio-negro.jpeg"}, {"name": "I Drove Across Denmark to Watch a Million Birds Go to Bed", "slug": "sort-sol-black-sun-denmark", "country": "RUDBØL, DENMARK", "pillar": "Stories From the Road", "mins": 8, "lede": "A last-minute trip to the German border for Sort Sol, the marshland murmuration that only does the famous part when something tries to eat it. Plus the falcon that never showed, and the correct way to cross the Fyn bridg", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg"}, {"name": "La Paz, whale sharks, and a sea lion who chose chaos", "slug": "la-paz-mexico-whale-sharks", "country": "MEXICO", "pillar": "Stories From the Road", "mins": 3, "lede": "Wider than your sense of scale, moving with an ease that is almost funny once the initial shock wears off. Then the sea lions, who chose chaos.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg"}, {"name": "Patagonia, measured in Camp Italianos", "slug": "patagonia-w-trek-christmas-new-year", "country": "CHILE AND ARGENTINA", "pillar": "Stories From the Road", "mins": 6, "lede": "Some people do vision boards. We did blisters. An accelerated W Trek over Christmas, a rainbow nobody deserved, and a New Year in the golden light at Estancia Bonanza.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg"}, {"name": "The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender", "slug": "montenegro-budva-switchback-roads", "country": "MONTENEGRO", "pillar": "Stories From the Road", "mins": 3, "lede": "Montenegro's roads are about to get a quiet word from Nepal, Austria and Croatia. Narrow, one-way as a suggestion, with semi-trucks reversing down mountains.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg"}, {"name": "Ghana asked us to wear all white. We complied. Eventually.", "slug": "ghana-easter-everyone-wears-white", "country": "GHANA", "pillar": "Cultural Intelligence", "mins": 3, "lede": "Denmark had just thrown the coldest winter in 16 years at us, the map had a gap, and we had a few days. Then we landed in a country where everyone was wearing white except us.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg"}, {"name": "Fourteen days, twelve countries, one EV, and a gal who cannot be historically trusted to charge her own phone", "slug": "balkans-ev-road-trip-twelve-countries", "country": "BALKANS", "pillar": "Travel Logistics", "mins": 9, "lede": "Copenhagen to Kosovo and back in an EV, with one Samoyed operating in an advisory capacity and a back seat that ended up looking like a small artisan jam factory in transit.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg"}, {"name": "Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon", "slug": "antarctica-marathon", "country": "KING GEORGE ISLAND, ANTARCTICA", "pillar": "Stories From the Road", "mins": 12, "lede": "The honeymoon that became a four-year cancellation saga, and then the coldest, strangest, most beautiful race I have ever run. Four attempts, one pandemic, and an apartment marathon I recommend to nobody.", "img": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg"}];
+window.TLL_COUNTRIES=[{"iso2": "af", "name": "Afghanistan"}, {"iso2": "al", "name": "Albania"}, {"iso2": "dz", "name": "Algeria"}, {"iso2": "ad", "name": "Andorra"}, {"iso2": "ao", "name": "Angola"}, {"iso2": "ag", "name": "Antigua and Barbuda"}, {"iso2": "ar", "name": "Argentina"}, {"iso2": "am", "name": "Armenia"}, {"iso2": "au", "name": "Australia"}, {"iso2": "at", "name": "Austria"}, {"iso2": "az", "name": "Azerbaijan"}, {"iso2": "bs", "name": "Bahamas"}, {"iso2": "bh", "name": "Bahrain"}, {"iso2": "bd", "name": "Bangladesh"}, {"iso2": "bb", "name": "Barbados"}, {"iso2": "by", "name": "Belarus"}, {"iso2": "be", "name": "Belgium"}, {"iso2": "bz", "name": "Belize"}, {"iso2": "bj", "name": "Benin"}, {"iso2": "bt", "name": "Bhutan"}, {"iso2": "bo", "name": "Bolivia"}, {"iso2": "ba", "name": "Bosnia and Herzegovina"}, {"iso2": "bw", "name": "Botswana"}, {"iso2": "br", "name": "Brazil"}, {"iso2": "bn", "name": "Brunei"}, {"iso2": "bg", "name": "Bulgaria"}, {"iso2": "bf", "name": "Burkina Faso"}, {"iso2": "bi", "name": "Burundi"}, {"iso2": "cv", "name": "Cabo Verde"}, {"iso2": "kh", "name": "Cambodia"}, {"iso2": "cm", "name": "Cameroon"}, {"iso2": "ca", "name": "Canada"}, {"iso2": "cf", "name": "Central African Republic"}, {"iso2": "td", "name": "Chad"}, {"iso2": "cl", "name": "Chile"}, {"iso2": "cn", "name": "China"}, {"iso2": "co", "name": "Colombia"}, {"iso2": "km", "name": "Comoros"}, {"iso2": "cg", "name": "Congo"}, {"iso2": "cd", "name": "DR Congo"}, {"iso2": "cr", "name": "Costa Rica"}, {"iso2": "ci", "name": "Ivory Coast"}, {"iso2": "hr", "name": "Croatia"}, {"iso2": "cu", "name": "Cuba"}, {"iso2": "cy", "name": "Cyprus"}, {"iso2": "cz", "name": "Czechia"}, {"iso2": "dk", "name": "Denmark"}, {"iso2": "dj", "name": "Djibouti"}, {"iso2": "dm", "name": "Dominica"}, {"iso2": "do", "name": "Dominican Republic"}, {"iso2": "ec", "name": "Ecuador"}, {"iso2": "eg", "name": "Egypt"}, {"iso2": "sv", "name": "El Salvador"}, {"iso2": "gq", "name": "Equatorial Guinea"}, {"iso2": "er", "name": "Eritrea"}, {"iso2": "ee", "name": "Estonia"}, {"iso2": "sz", "name": "Eswatini"}, {"iso2": "et", "name": "Ethiopia"}, {"iso2": "fj", "name": "Fiji"}, {"iso2": "fi", "name": "Finland"}, {"iso2": "fr", "name": "France"}, {"iso2": "ga", "name": "Gabon"}, {"iso2": "gm", "name": "Gambia"}, {"iso2": "ge", "name": "Georgia"}, {"iso2": "de", "name": "Germany"}, {"iso2": "gh", "name": "Ghana"}, {"iso2": "gr", "name": "Greece"}, {"iso2": "gd", "name": "Grenada"}, {"iso2": "gt", "name": "Guatemala"}, {"iso2": "gn", "name": "Guinea"}, {"iso2": "gw", "name": "Guinea-Bissau"}, {"iso2": "gy", "name": "Guyana"}, {"iso2": "ht", "name": "Haiti"}, {"iso2": "hn", "name": "Honduras"}, {"iso2": "hu", "name": "Hungary"}, {"iso2": "is", "name": "Iceland"}, {"iso2": "in", "name": "India"}, {"iso2": "id", "name": "Indonesia"}, {"iso2": "ir", "name": "Iran"}, {"iso2": "iq", "name": "Iraq"}, {"iso2": "ie", "name": "Ireland"}, {"iso2": "il", "name": "Israel"}, {"iso2": "it", "name": "Italy"}, {"iso2": "jm", "name": "Jamaica"}, {"iso2": "jp", "name": "Japan"}, {"iso2": "jo", "name": "Jordan"}, {"iso2": "kz", "name": "Kazakhstan"}, {"iso2": "ke", "name": "Kenya"}, {"iso2": "ki", "name": "Kiribati"}, {"iso2": "kw", "name": "Kuwait"}, {"iso2": "kg", "name": "Kyrgyzstan"}, {"iso2": "la", "name": "Laos"}, {"iso2": "lv", "name": "Latvia"}, {"iso2": "lb", "name": "Lebanon"}, {"iso2": "ls", "name": "Lesotho"}, {"iso2": "lr", "name": "Liberia"}, {"iso2": "ly", "name": "Libya"}, {"iso2": "li", "name": "Liechtenstein"}, {"iso2": "lt", "name": "Lithuania"}, {"iso2": "lu", "name": "Luxembourg"}, {"iso2": "mg", "name": "Madagascar"}, {"iso2": "mw", "name": "Malawi"}, {"iso2": "my", "name": "Malaysia"}, {"iso2": "mv", "name": "Maldives"}, {"iso2": "ml", "name": "Mali"}, {"iso2": "mt", "name": "Malta"}, {"iso2": "mh", "name": "Marshall Islands"}, {"iso2": "mr", "name": "Mauritania"}, {"iso2": "mu", "name": "Mauritius"}, {"iso2": "mx", "name": "Mexico"}, {"iso2": "fm", "name": "Micronesia"}, {"iso2": "md", "name": "Moldova"}, {"iso2": "mc", "name": "Monaco"}, {"iso2": "mn", "name": "Mongolia"}, {"iso2": "me", "name": "Montenegro"}, {"iso2": "ma", "name": "Morocco"}, {"iso2": "mz", "name": "Mozambique"}, {"iso2": "mm", "name": "Myanmar"}, {"iso2": "na", "name": "Namibia"}, {"iso2": "nr", "name": "Nauru"}, {"iso2": "np", "name": "Nepal"}, {"iso2": "nl", "name": "Netherlands"}, {"iso2": "nz", "name": "New Zealand"}, {"iso2": "ni", "name": "Nicaragua"}, {"iso2": "ne", "name": "Niger"}, {"iso2": "ng", "name": "Nigeria"}, {"iso2": "mk", "name": "North Macedonia"}, {"iso2": "no", "name": "Norway"}, {"iso2": "om", "name": "Oman"}, {"iso2": "pk", "name": "Pakistan"}, {"iso2": "pw", "name": "Palau"}, {"iso2": "pa", "name": "Panama"}, {"iso2": "pg", "name": "Papua New Guinea"}, {"iso2": "py", "name": "Paraguay"}, {"iso2": "pe", "name": "Peru"}, {"iso2": "ph", "name": "Philippines"}, {"iso2": "pl", "name": "Poland"}, {"iso2": "pt", "name": "Portugal"}, {"iso2": "qa", "name": "Qatar"}, {"iso2": "ro", "name": "Romania"}, {"iso2": "ru", "name": "Russia"}, {"iso2": "rw", "name": "Rwanda"}, {"iso2": "kn", "name": "Saint Kitts and Nevis"}, {"iso2": "lc", "name": "Saint Lucia"}, {"iso2": "vc", "name": "Saint Vincent"}, {"iso2": "ws", "name": "Samoa"}, {"iso2": "sm", "name": "San Marino"}, {"iso2": "st", "name": "Sao Tome and Principe"}, {"iso2": "sa", "name": "Saudi Arabia"}, {"iso2": "sn", "name": "Senegal"}, {"iso2": "rs", "name": "Serbia"}, {"iso2": "sc", "name": "Seychelles"}, {"iso2": "sl", "name": "Sierra Leone"}, {"iso2": "sg", "name": "Singapore"}, {"iso2": "sk", "name": "Slovakia"}, {"iso2": "si", "name": "Slovenia"}, {"iso2": "sb", "name": "Solomon Islands"}, {"iso2": "so", "name": "Somalia"}, {"iso2": "za", "name": "South Africa"}, {"iso2": "kr", "name": "South Korea"}, {"iso2": "ss", "name": "South Sudan"}, {"iso2": "es", "name": "Spain"}, {"iso2": "lk", "name": "Sri Lanka"}, {"iso2": "sd", "name": "Sudan"}, {"iso2": "sr", "name": "Suriname"}, {"iso2": "se", "name": "Sweden"}, {"iso2": "ch", "name": "Switzerland"}, {"iso2": "sy", "name": "Syria"}, {"iso2": "tj", "name": "Tajikistan"}, {"iso2": "tz", "name": "Tanzania"}, {"iso2": "th", "name": "Thailand"}, {"iso2": "tl", "name": "Timor-Leste"}, {"iso2": "tg", "name": "Togo"}, {"iso2": "to", "name": "Tonga"}, {"iso2": "tt", "name": "Trinidad and Tobago"}, {"iso2": "tn", "name": "Tunisia"}, {"iso2": "tr", "name": "Turkiye"}, {"iso2": "tm", "name": "Turkmenistan"}, {"iso2": "tv", "name": "Tuvalu"}, {"iso2": "ug", "name": "Uganda"}, {"iso2": "ua", "name": "Ukraine"}, {"iso2": "ae", "name": "United Arab Emirates"}, {"iso2": "gb", "name": "United Kingdom"}, {"iso2": "us", "name": "United States"}, {"iso2": "uy", "name": "Uruguay"}, {"iso2": "uz", "name": "Uzbekistan"}, {"iso2": "vu", "name": "Vanuatu"}, {"iso2": "va", "name": "Vatican City"}, {"iso2": "ve", "name": "Venezuela"}, {"iso2": "vn", "name": "Vietnam"}, {"iso2": "ye", "name": "Yemen"}, {"iso2": "zm", "name": "Zambia"}, {"iso2": "zw", "name": "Zimbabwe"}, {"iso2": "aq", "name": "Antarctica"}];
+</script>
+<script>
+(function(){
+  var S=window.TLL_STORIES||[], C=window.TLL_COUNTRIES||[];
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function nice(s){s=(s||'').split(',')[0].trim();return s.toLowerCase().replace(/(^|[\s-])([a-zà-ÿ])/g,function(m,a,b){return a+b.toUpperCase();});}
+  // Ticker: real story countries, repeated twice for the loop
+  var t=document.getElementById('ticker');var items=S.map(function(s){return '<span>'+s.country+'<i>'+s.mins+' min</i></span>';}).join('');t.innerHTML=items+items;
+  // Stream rows
+  var rows=document.getElementById('rows');
+  S.forEach(function(s,i){var a=document.createElement('a');a.className='row'+(i%2?' alt':'');a.href='https://www.thatlayover.life/stories/'+s.slug;
+    var txt='<div><h3>'+s.name+'</h3><div class="mono meta">'+s.country+' · '+s.pillar+' · '+s.mins+' min read</div><p class="lede">'+s.lede+'</p></div>';
+    var pic='<div class="pic"><img loading="lazy" alt="" src="'+s.img+'"></div>';
+    a.innerHTML='<div class="num">'+String(i+1).padStart(2,'0')+'</div>'+(i%2?pic+txt:txt+pic);rows.appendChild(a);});
+  document.getElementById('shelfcount').textContent=S.length+' stories · counted by hand';
+  // Countries with a story (from the real story countries)
+  var has={};S.forEach(function(s){s.country.split(/,| and /i).forEach(function(p){var n=nice(p);if(n)has[n]=1;});});
+  has['Bulgaria']=has['Bulgaria']||0; // Balkans story spans several; keep honest: only exact names match
+  // Reveal observer (declared before the first batch runs)
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  function observeAll(){document.querySelectorAll('.reveal:not(.in),.row:not(.in),.atlas .c:not(.in)').forEach(function(el){io.observe(el);});}
+  // Endless atlas: append 40 countries per batch, loop forever
+  var list=document.getElementById('atlaslist'),more=document.getElementById('atlasmore'),idx=0,lap=0;
+  function batch(){var frag=document.createDocumentFragment();for(var k=0;k<40;k++){var c=C[idx%C.length];idx++;if(idx%C.length===0)lap++;
+      var a=document.createElement('a');var h=!!has[c.name];a.className='c'+(h?' has':'');a.href=h?'https://www.thatlayover.life/stories':'https://www.thatlayover.life/submit?country='+encodeURIComponent(c.name);
+      a.innerHTML='<span class="name">'+c.name+'</span><span class="st">'+(h?'Has a story':'Open · be the first')+'</span>';frag.appendChild(a);}
+    list.appendChild(frag);more.textContent=lap?'Lap '+(lap+1)+' of the map. Still open.':'Loading the next stretch of the map…';observeAll();}
+  batch();batch();
+  var sentinel=new IntersectionObserver(function(e){if(e[0].isIntersecting)batch();},{rootMargin:'600px'});sentinel.observe(more);
+  // Reveals
+  observeAll();
+  // Count-up
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target,n=+el.dataset.count;cio.unobserve(el);if(reduce){el.textContent=n;return;}var t0=null;function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/600);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
+  // Manifesto pinned lines
+  var man=document.querySelector('.manifesto'),lines=document.querySelectorAll('[data-line]'),mc=document.getElementById('mcount');
+  function manifesto(){if(reduce){lines.forEach(function(l){l.classList.add('on');});return;}var r=man.getBoundingClientRect();var p=Math.min(.999,Math.max(0,-r.top/(r.height-window.innerHeight)));var i=Math.floor(p*lines.length);lines.forEach(function(l,k){l.classList.toggle('on',k===i);});mc.textContent='0'+(i+1)+' / 0'+lines.length;}
+  // Hero parallax (desktop only)
+  var photo=document.querySelector('[data-parallax]');
+  function parallax(){if(reduce||window.innerWidth<900)return;var y=Math.min(window.scrollY,window.innerHeight);photo.style.transform='scale(1.04) translateY('+(y*.18)+'px)';}
+  // Rail
+  var rail=document.querySelectorAll('.rail a');var secs=Array.prototype.map.call(rail,function(a){return document.querySelector(a.getAttribute('href'));});
+  function railUpdate(){var y=window.scrollY+window.innerHeight*.4,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i;});rail.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  var ticking=false;function onScroll(){if(ticking)return;ticking=true;requestAnimationFrame(function(){manifesto();parallax();railUpdate();ticking=false;});}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+  // Lounge strip: real story photos, credited NC
+  var strip=document.getElementById('strip');S.forEach(function(s){var d=document.createElement('a');d.className='tile';d.href='https://www.thatlayover.life/gallery';d.innerHTML='<img loading="lazy" alt="" src="'+s.img+'"><span class="cap">'+nice(s.country)+' · NC</span>';strip.appendChild(d);});
+  var add=document.createElement('a');add.className='tile add';add.href='https://www.thatlayover.life/share-photos';add.textContent='+ Add yours';strip.appendChild(add);
+  // Map (same libs as the live site)
+  (async function(){var c=document.getElementById('tll-map-canvas');var load=function(src){return new Promise(function(res,rej){var s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});};
+    try{await load('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js');await load('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js');var r=await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');var w=await r.json();
+      var visited=c.dataset.visited.split(',');var f=topojson.feature(w,w.objects.countries).features;var W=c.clientWidth||1100,H=Math.round(W*.5);var svg=d3.select(c).append('svg').attr('viewBox','0 0 '+W+' '+H).attr('width','100%');var proj=d3.geoEqualEarth().fitSize([W,H],{type:'Sphere'});var path=d3.geoPath(proj);
+      svg.selectAll('path').data(f).join('path').attr('d',path).attr('fill',function(d){return visited.indexOf(String(d.id).padStart(3,'0'))>-1?'#F0507A':'#FDF9F3';}).attr('stroke','#0A0B14').attr('stroke-width',.4);}
+    catch(e){c.innerHTML='<div style="padding:40px;text-align:center;color:#7d7f96">Map could not load here. On the live site it does.</div>';}})();
+})();
+</script>
+</body>
+</html>
