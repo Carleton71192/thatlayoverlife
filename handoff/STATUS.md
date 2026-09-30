@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 52 · Done 1 · Partial 57 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 49 · Done 1 · Partial 60 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -83,9 +83,9 @@ Summary: TODO 52 · Done 1 · Partial 57 · Blocked 15 · N/A 2 · Deferred 0
 | C16 | "Find your people" switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates | Partial | Done under B15 to B18 (29 Sep 2026): shared tll-fyp switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates. Published 30 Sep 2026. |
 | C17 | Expat finder: autocomplete from Countries, aliases, quick picks with circle flags, result  | Partial | Done under B16 (29 Sep 2026): finder with Countries autocomplete, alias table, quick chips, result card. Circle flags on quick picks and the directory feed still open (C02). Published 30 Sep 2026. |
 | C18 | Seed: Nancy is the only real directory member. Never render her WhatsApp or email | TODO |  |
-| D01 | Story ledger (8 rows, "Contributor to add" when empty) + new Stories fields + correction m | TODO |  |
-| D02 | Route strip renders only when route-stops is filled | TODO |  |
-| D03 | Been here / Want to go toggles, stored in member JSON tllPlaces (never tllStates) | TODO |  |
+| D01 | Story ledger (8 rows, "Contributor to add" when empty) + new Stories fields + correction m | Partial | Live since 28 Sep 2026 under B03: 8-row ledger with "Contributor to add" for empties, Tell the editor mailto. Left: confirm the new Stories fields (trip-when, cost-summary, sources, edited-by, route-stops, route-note) exist in the collection and are bound; correction mechanism check. |
+| D02 | Route strip renders only when route-stops is filled | Partial | Live since 28 Sep 2026 under B03: route strip hides when route-stops is empty. |
+| D03 | Been here / Want to go toggles, stored in member JSON tllPlaces (never tllStates) | Partial | Live since 28 Sep 2026 under B03 and B10: Been here / Want to go on story and country pages, member JSON tllPlaces, never tllStates; logged out goes to /login?redirect=. Note: the country page keys tllPlaces by country name while the account lists script (B38) expects ISO2 or numeric keys; names still render as stamps without a flag. Align the key to ISO2 on the country page next. |
 | D04 | Your lists on /account, member JSON tllLists | Partial | Done under B38 (29 Sep 2026): Your lists on /account reads tllLists (airports, marathons, parks), tllPlaces for Want to go, tllStates for pet stamps. Nothing writes tllLists yet. Published 30 Sep 2026. |
 | D05 | Layover Wrapped card on /account with quiet-year fallback + wrapped-hidden field | Partial | Done under B38 (29 Sep 2026): Wrapped card with quiet-year fallback; switch writes custom field wrapped-hidden, member JSON fallback until the field exists. Published 30 Sep 2026. |
 | D06 | Export my data as an email request (JSON + Markdown within one month) | Partial | Live as an email request (mailto Data export request) with the one-month promise in the copy (B38). Published 30 Sep 2026. Left: the fulfilment itself is manual. |
