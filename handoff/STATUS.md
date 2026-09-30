@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 63 · Done 1 · Partial 46 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 54 · Done 1 · Partial 55 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -80,19 +80,19 @@ Summary: TODO 63 · Done 1 · Partial 46 · Blocked 15 · N/A 2 · Deferred 0
 | C13 | "Report this profile" on every directory card; relay form rate-limited | TODO |  |
 | C14 | Interest tags as a CMS option list (PROVISIONAL), not hardcoded | TODO |  |
 | C15 | Opt-in link stack renders on public profile, Travelers card (max 4 chips), expats card, pe | TODO |  |
-| C16 | "Find your people" switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates | TODO |  |
-| C17 | Expat finder: autocomplete from Countries, aliases, quick picks with circle flags, result  | TODO |  |
+| C16 | "Find your people" switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates | Partial | Done under B15 to B18 (29 Sep 2026): shared tll-fyp switcher on /for-expats, /for-press, /the-paw-passport, /for-affiliates. Published 30 Sep 2026. |
+| C17 | Expat finder: autocomplete from Countries, aliases, quick picks with circle flags, result  | Partial | Done under B16 (29 Sep 2026): finder with Countries autocomplete, alias table, quick chips, result card. Circle flags on quick picks and the directory feed still open (C02). Published 30 Sep 2026. |
 | C18 | Seed: Nancy is the only real directory member. Never render her WhatsApp or email | TODO |  |
 | D01 | Story ledger (8 rows, "Contributor to add" when empty) + new Stories fields + correction m | TODO |  |
 | D02 | Route strip renders only when route-stops is filled | TODO |  |
 | D03 | Been here / Want to go toggles, stored in member JSON tllPlaces (never tllStates) | TODO |  |
-| D04 | Your lists on /account, member JSON tllLists | TODO |  |
-| D05 | Layover Wrapped card on /account with quiet-year fallback + wrapped-hidden field | TODO |  |
-| D06 | Export my data as an email request (JSON + Markdown within one month) | TODO |  |
-| D07 | Two answer guides with H3 questions, sources, ledger, DRAFT banner kept until Nancy checks | TODO |  |
-| D08 | /awards nomination form (members only) + Award Nominations collection. No public tallies | TODO |  |
-| E01 | /for-brands page, no prices, mailto subject PARTNERSHIP | TODO |  |
-| E02 | Charter rule 08 + #paid-work block, labeled DRAFT until Nancy approves | TODO |  |
+| D04 | Your lists on /account, member JSON tllLists | Partial | Done under B38 (29 Sep 2026): Your lists on /account reads tllLists (airports, marathons, parks), tllPlaces for Want to go, tllStates for pet stamps. Nothing writes tllLists yet. Published 30 Sep 2026. |
+| D05 | Layover Wrapped card on /account with quiet-year fallback + wrapped-hidden field | Partial | Done under B38 (29 Sep 2026): Wrapped card with quiet-year fallback; switch writes custom field wrapped-hidden, member JSON fallback until the field exists. Published 30 Sep 2026. |
+| D06 | Export my data as an email request (JSON + Markdown within one month) | Partial | Live as an email request (mailto Data export request) with the one-month promise in the copy (B38). Published 30 Sep 2026. Left: the fulfilment itself is manual. |
+| D07 | Two answer guides with H3 questions, sources, ledger, DRAFT banner kept until Nancy checks | Partial | Done under B33 (29 Sep 2026): /copenhagen-stopover and /ees-etias-layover, DRAFT banner and noindex kept until Nancy checks. Published 30 Sep 2026. |
+| D08 | /awards nomination form (members only) + Award Nominations collection. No public tallies | Partial | Done under B34 (29 Sep 2026): /awards members-only form, no tallies. Submissions go to Webflow Forms; the Award Nominations collection is not written automatically yet. Published 30 Sep 2026. |
+| E01 | /for-brands page, no prices, mailto subject PARTNERSHIP | Partial | Done under B35 (29 Sep 2026): /for-brands, no prices, mailto subject PARTNERSHIP. Published 30 Sep 2026. |
+| E02 | Charter rule 08 + #paid-work block, labeled DRAFT until Nancy approves | Partial | Charter rule 08 section built under B23 (DRAFT tag via data-tll-draft) and now carries the anchor rule-08 (29 Sep 2026). Left: confirm the #paid-work DRAFT label with Nancy. |
 | E03 | Layover Club on /support #layover-club, buttons disabled "COMING SOON"; club-supporter boo | TODO |  |
 | E04 | Paw guide sales block: "V1.0 · INCL. 25% MOMS", cites Regulation (EU) 2026/131 | TODO |  |
 | E05 | Footer WORK WITH US row: For brands · The Layover Club · How paid work works | TODO |  |
