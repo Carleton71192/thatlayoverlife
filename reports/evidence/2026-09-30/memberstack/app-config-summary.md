@@ -1,0 +1,11 @@
+# Memberstack app config (read 30 Sep 2026 via Memberstack MCP, currentApp / getCustomFields / getPlans)
+- App: thatlayover.life (app_cmpdpi625001s0slnhgz17hgs), stack WEBFLOW, status ACTIVE
+- Domains: that-layover-life.webflow.io (SANDBOX, verified:false), thatlayover.life (LIVE, verified:false), www.thatlayover.life (LIVE, verified:false)
+- captchaEnabled: false · preventDisposableEmails: true · requireUser2FA: false · passwordless: false
+- memberSessionDurationDays: 14 · allowMemberSelfDelete: false · analyticsEnabled: true
+- termsOfServiceURL: null · privacyPolicyURL: null · businessEntityName: null
+- businessTagline (AI-generated profile, source "ai"): "Real travel stories written by real humans, not AI chatbots."
+- businessSummary mentions "without the influence of AI-generated content"
+- Plans: one free plan "Traveler" (pln_traveler-l97086o), no prices, memberCount 1. stripeConnection: null (no member payments)
+- Redirects: afterSignup /account?welcome=true, afterLogin /account, afterLogout /
+- Custom fields (58): all visibility PRIVATE. Personal data categories: name, first/last name, bios, home base, lives-country/city/years, knows, languages, tags, roles, affiliation, regions, monetization, contact-ig, contact-wa, contact-mode, contact-relay-on, link-* URLs, social URLs (instagram, tiktok, linkedin, substack, twitter-x, vimeo, personal-website), counts (countries, cities, states, national parks), accepts-newsletter, available-for-* flags, club-supporter and press-verified (admin only), wrapped-hidden
