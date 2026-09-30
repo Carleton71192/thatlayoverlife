@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 49 · Done 1 · Partial 60 · Blocked 15 · N/A 2 · Deferred 0
+Summary: TODO 47 · Done 1 · Partial 62 · Blocked 15 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -93,11 +93,11 @@ Summary: TODO 49 · Done 1 · Partial 60 · Blocked 15 · N/A 2 · Deferred 0
 | D08 | /awards nomination form (members only) + Award Nominations collection. No public tallies | Partial | Done under B34 (29 Sep 2026): /awards members-only form, no tallies. Submissions go to Webflow Forms; the Award Nominations collection is not written automatically yet. Published 30 Sep 2026. |
 | E01 | /for-brands page, no prices, mailto subject PARTNERSHIP | Partial | Done under B35 (29 Sep 2026): /for-brands, no prices, mailto subject PARTNERSHIP. Published 30 Sep 2026. |
 | E02 | Charter rule 08 + #paid-work block, labeled DRAFT until Nancy approves | Partial | Charter rule 08 section built under B23 (DRAFT tag via data-tll-draft) and now carries the anchor rule-08 (29 Sep 2026). Left: confirm the #paid-work DRAFT label with Nancy. |
-| E03 | Layover Club on /support #layover-club, buttons disabled "COMING SOON"; club-supporter boo | TODO |  |
+| E03 | Layover Club on /support #layover-club, buttons disabled "COMING SOON"; club-supporter boo | Partial | Checked 30 Sep 2026: /support has the Layover Club section (now id layover-club): "Optional, always", "Stories stay free. This is the tip jar with a badge.", perks, "Price TBC · USD 3 to 5 a month, or yearly", Coming soon card, Join on Ko-fi and Or just leave a tip both aria-disabled. Left: club-supporter boolean in Memberstack and the badge on profiles (needs the Ko-fi page first). |
 | E04 | Paw guide sales block: "V1.0 · INCL. 25% MOMS", cites Regulation (EU) 2026/131 | TODO |  |
 | E05 | Footer WORK WITH US row: For brands · The Layover Club · How paid work works | Partial | Done under B41 (30 Sep 2026): WORK WITH US row in the footer component. Staged, unpublished. |
 | E06 | Labeling mechanism: Reklame before sponsored headlines, Reklamelink beside affiliate links | TODO |  |
-| F01 | Members/anonymous split on /share, /share-photos, /my-pets, /edit-profile, /account, /edit | TODO |  |
+| F01 | Members/anonymous split on /share, /share-photos, /my-pets, /edit-profile, /account, /edit | Partial | Checked 30 Sep 2026 in the element tree: members + anonymous blocks present on /submit (two pairs), /share-photos, /my-pets, /edit-profile (locked state), /account. Left: /edit (story edit) not checked; live behavior check signed in and out after publish. |
 | F02 | Editor desk: role gate, log-in only (no join CTA), NOINDEX | TODO |  |
 | F03 | Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge,  | TODO |  |
 | F04 | Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); c | TODO |  |
