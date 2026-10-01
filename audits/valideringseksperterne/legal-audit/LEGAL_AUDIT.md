@@ -18,10 +18,9 @@ Legal entity:         Damgård Solutions ApS (registered name, with å; the site
                       spelling "Damgaard Solutions"). Director: Kasper Wolter Carlsen. Founded 2 Aug 2022.
                       Confirmed by Nancy 1 Oct 2026 from the CVR register via proff.dk.
 Registration no.:     CVR 43424092 (confirmed 1 Oct 2026)
-VAT no.:              DK43424092 (inferred from the CVR, confirm VAT registration)
-Registered address:   Kildehøjvej 15A, 3460 Birkerød (registered seat, confirmed 1 Oct 2026).
-                      Præstemarksvænge 10E, 4000 Roskilde is a second address shown in the footer
-                      (afdeling: inferred, confirm).
+VAT no.:              DK43424092 (VAT registration confirmed by Nancy 1 Oct 2026)
+Registered address:   Kildehøjvej 15A, 3460 Birkerød (registered seat per the CVR register).
+                      Site address shown, per Nancy 1 Oct 2026: Præstemarksvænge 10E, 4000 Roskilde, Denmark.
 Country of establishment: Denmark
 Audience:             B2B only (hospital sterile supply departments and technical departments,
                       secondary pharma QA). No consumer offer.

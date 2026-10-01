@@ -39,8 +39,8 @@ Legal sources could not be re-read from this environment, so the rules cited are
 
 | ID | Area | Severity | Page | What is wrong | Evidence | Rule | Suggested fix | Effort | Tag |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| L01 | 2.1 | Critical (live), fixed in corrected file | / (footer) | No CVR number and no VAT number anywhere in the live page. CVR 43424092 confirmed by Nancy on 1 Oct 2026 from the CVR register. Applied to the corrected `index.html` footer and copyright line on 1 Oct (Draft fix A, now in the file awaiting upload). VAT registration still unconfirmed. | 18 Aug base: `grep -c CVR` = 0; corrected file: "CVR 43424092" in the Kontakt column and the copyright line | E-Commerce Directive 2000/31/EC Art. 5(1)(d) and (g); Danish E-handelsloven §7; CVR display duty for Danish companies | Upload the corrected file. Add "Momsnr. DK43424092" only if VAT registered. | S | FIX (applied locally), NEEDS OWNER CONFIRMATION (VAT) |
-| L02 | 2.1 | Medium, fixed in corrected file | / (footer) | Two addresses with no indication which is the registered office. Register confirms Kildehøjvej 15A, 3460 Birkerød as the seat. Corrected file now labels Birkerød "(hovedadresse)" and Roskilde "(afdeling)". | footer "Adresser" column | Art. 5(1)(b) geographic address of establishment | Upload the corrected file. Confirm Roskilde is in fact a branch. | S | FIX (applied locally), NEEDS OWNER CONFIRMATION (Roskilde) |
+| L01 | 2.1 | Critical (live), fixed in corrected file | / (footer) | No CVR number and no VAT number anywhere in the live page. CVR 43424092 and VAT registration confirmed by Nancy on 1 Oct 2026. Corrected `index.html` now shows "CVR 43424092" and "Momsnr. DK43424092" in the Kontakt column, the CVR in the copyright line, and `vatID` in the JSON-LD. | 18 Aug base: `grep -c CVR` = 0; corrected file: Kontakt column and copyright line | E-Commerce Directive 2000/31/EC Art. 5(1)(d) and (g); Danish E-handelsloven §7; CVR display duty for Danish companies | Upload the corrected file. | S | FIX (applied locally) |
+| L02 | 2.1 | Medium, fixed in corrected file | / (footer) | Two addresses with no indication which is the registered office. Nancy chose Roskilde as the location the site shows (1 Oct 2026). The register ties the CVR to Kildehøjvej 15A, 3460 Birkerød, so the corrected file shows "Præstemarksvænge 10E / 4000 Roskilde, Denmark" as the address and one line "Hjemsted (CVR): Kildehøjvej 15A, 3460 Birkerød" beneath it. The JSON-LD ProfessionalService address is Roskilde; the parentOrganization address is the Birkerød seat. | footer "Adresser" column | Art. 5(1)(b) geographic address of establishment | Upload the corrected file. If the Birkerød line should go, the register address then appears nowhere on the site; keep it unless counsel says otherwise. | S | FIX (applied locally) |
 | L16 | 2.1 | Medium, fixed in corrected file | / (footer) | The registered legal name is "Damgård Solutions ApS" (with å). The page used only the trading spelling "Damgaard Solutions ApS", so the legal name as registered never appeared. Corrected file: copyright line now reads "© 2026 Damgård Solutions ApS (Damgaard Solutions), CVR 43424092", the Kontakt column shows "Damgård Solutions ApS, CVR 43424092", and the JSON-LD parentOrganization carries `legalName`, the CVR as an identifier, and the Birkerød address. | CVR register via proff.dk (Nancy, 1 Oct 2026) | Art. 5(1)(a) name of the service provider; Danish E-handelsloven §7 | Upload the corrected file. Use the same pairing on damgaard-solutions.com and damgaardgroup.com footers (separate task). | S | FIX (applied locally) |
 | L03 | 2.2 | High | / | Montserrat is loaded from fonts.googleapis.com and fonts.gstatic.com on page load. The visitor's IP reaches Google before any consent and the site has no banner. Danish and German regulators treat this as a transfer needing a legal basis. | `<link href="https://fonts.googleapis.com/css2?family=Montserrat...">` in head | GDPR Art. 6, 44 to 49; ePrivacy Art. 5(3); Datatilsynet guidance on third-party requests | Download the five Montserrat weights as woff2, upload to /valideringseksperterne.dk/fonts/, replace the link with @font-face. See Draft fix D. | S | FIX |
 | L04 | 2.2 | NOT VERIFIED | / | Whether the server (Simply) sets any cookie, and whether any request other than fonts and the form fires. Page JS sets no cookie, localStorage or sessionStorage and loads no analytics, pixel, map, video or chat. | source grep: none of document.cookie, localStorage, gtag, dataLayer, fbq, hotjar, clarity | ePrivacy Art. 5(3); Cookiebekendtgørelsen | Run `scripts/consent-test.js` mode A when the network allows. If no non-essential cookies appear, no banner is required; keep the cookie page truthful ("ingen cookies"). | S | NOT VERIFIED |
@@ -84,23 +84,23 @@ No analytics, tag manager, pixel, heatmap, map, video embed, chat widget or CDN 
 ```html
 <div class="foot-col">
   <p class="label">Kontakt</p>
-  <p>Damgård Solutions ApS<br>CVR 43424092</p>
+  <p>Damgård Solutions ApS<br>CVR 43424092<br>Momsnr. DK43424092</p>
   <a href="mailto:kca@damgaardgroup.com">kca@damgaardgroup.com</a>
   <a href="tel:+4530530793">+45 30 53 07 93</a>
   <p>Man-fre 8:00-16:00 CET</p>
 </div>
 ```
 
-"Adresser" column:
+"Adresser" column (Roskilde chosen by Nancy, 1 Oct 2026; Birkerød kept as the registered seat):
 
 ```html
-<p>Kildehøjvej 15A, 3460 Birkerød (hovedadresse)</p>
-<p>Præstemarksvænge 10E, 4000 Roskilde (afdeling)</p>
+<p>Præstemarksvænge 10E<br>4000 Roskilde, Denmark</p>
+<p>Hjemsted (CVR): Kildehøjvej 15A, 3460 Birkerød</p>
 ```
 
 Copyright line: `© 2026 Damgård Solutions ApS (Damgaard Solutions), CVR 43424092. Alle rettigheder forbeholdes.`
 
-JSON-LD `parentOrganization` gained `legalName`, a CVR `identifier` and the Birkerød address. Still open: add "Momsnr. DK43424092" only once VAT registration is confirmed; confirm Roskilde is a branch. If you transplant into the live file instead of uploading whole, copy these three footer edits across too.
+JSON-LD: the ProfessionalService carries `vatID` and the Roskilde address; `parentOrganization` carries `legalName`, the CVR `identifier`, `vatID` and the Birkerød seat. If you transplant into the live file instead of uploading whole, copy these three footer edits across too.
 
 ### B. Legal links
 
