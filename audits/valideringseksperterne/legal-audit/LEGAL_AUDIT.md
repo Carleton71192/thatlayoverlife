@@ -14,12 +14,14 @@ Other domains/langs:  https://valideringseksperterne.com/ and https://www.valide
                       No staging URL known.
 Platform:             Static index.html on Simply.com shared hosting (web hotel damgaardsolutions.dk,
                       server linux244, 93.191.156.127, folder /valideringseksperterne.dk). Not Webflow.
-Legal entity:         Damgaard Solutions ApS (footer: "© 2026 Damgaard Solutions ApS")
-Registration no.:     CVR 43424092 (inferred from the Damgaard Solutions CV template in Drive, confirm)
+Legal entity:         Damgård Solutions ApS (registered name, with å; the site uses the trading
+                      spelling "Damgaard Solutions"). Director: Kasper Wolter Carlsen. Founded 2 Aug 2022.
+                      Confirmed by Nancy 1 Oct 2026 from the CVR register via proff.dk.
+Registration no.:     CVR 43424092 (confirmed 1 Oct 2026)
 VAT no.:              DK43424092 (inferred from the CVR, confirm VAT registration)
-Registered address:   Two addresses in the footer: Kildehøjvej 15A, 3460 Birkerød and
-                      Præstemarksvænge 10E, 4000 Roskilde. Which one is the registered address:
-                      inferred, confirm against the CVR register.
+Registered address:   Kildehøjvej 15A, 3460 Birkerød (registered seat, confirmed 1 Oct 2026).
+                      Præstemarksvænge 10E, 4000 Roskilde is a second address shown in the footer
+                      (afdeling: inferred, confirm).
 Country of establishment: Denmark
 Audience:             B2B only (hospital sterile supply departments and technical departments,
                       secondary pharma QA). No consumer offer.

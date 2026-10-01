@@ -17,7 +17,7 @@ Legal sources could not be re-read from this environment, so the rules cited are
 
 | Area | Result | Open items |
 | --- | --- | --- |
-| 2.1 Company identification | FAIL | 2 (no CVR, address shown only in footer without stating which is the registered seat) |
+| 2.1 Company identification | FAIL on live, PASS in corrected file | 3 fixed locally (CVR, registered seat label, registered name spelling); VAT registration unconfirmed |
 | 2.2 Cookies and tracking | PARTIAL | 1 verified (Google Fonts from Google servers before any consent), rest NOT VERIFIED |
 | 2.3 Privacy and GDPR | FAIL | 4 (no privacy policy on the site, form has no notice, Web3Forms and Simply DPAs unconfirmed) |
 | 2.4 Consumer law | NOT APPLICABLE | B2B only, no checkout |
@@ -29,7 +29,7 @@ Legal sources could not be re-read from this environment, so the rules cited are
 
 ## Top 5 fixes
 
-1. Add the CVR number and the registered address to the footer next to the legal name. Danish law requires the CVR on the website, and the E-Commerce Directive requires the geographic address and registration number to be easy to find from every page.
+1. Upload the corrected file, which now carries the registered name "Damgård Solutions ApS", CVR 43424092 and the Birkerød seat in the footer (done locally 1 Oct 2026 after Nancy confirmed the register entry). Danish law requires the CVR on the website, and the E-Commerce Directive requires the name, geographic address and registration number to be easy to find from every page.
 2. Publish a privacy policy on the .dk (or link to the real Damgaard Solutions policy page, not its homepage) that names Damgaard Solutions ApS as controller, the contact form processing via Web3Forms, Google Fonts, retention, and the right to complain to Datatilsynet. Add a cookie page with the same accuracy.
 3. Put a one-line privacy notice with the policy link directly above the "Send forespørgsel" button.
 4. Self-host the Montserrat font files so no request goes to Google before any consent. Today the browser contacts fonts.googleapis.com and fonts.gstatic.com on every load.
@@ -39,8 +39,9 @@ Legal sources could not be re-read from this environment, so the rules cited are
 
 | ID | Area | Severity | Page | What is wrong | Evidence | Rule | Suggested fix | Effort | Tag |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| L01 | 2.1 | Critical | / (footer) | Legal name "Damgaard Solutions ApS" is present, but no CVR number and no VAT number anywhere in the page. | `grep -c CVR index.html` = 0; footer line "© 2026 Damgaard Solutions ApS. Alle rettigheder forbeholdes." | E-Commerce Directive 2000/31/EC Art. 5(1)(d) and (g); Danish E-handelsloven §7; CVR display duty for Danish companies | Add to the footer contact column: "Damgaard Solutions ApS, CVR 43424092" (confirm number) and the registered address. See Draft fix A. | S | FIX, NEEDS OWNER CONFIRMATION (CVR and seat) |
-| L02 | 2.1 | Medium | / (footer) | Two addresses (Birkerød, Roskilde) with no indication which is the registered office. Email and phone are present as text. | footer "Adresser" column | Art. 5(1)(b) geographic address of establishment | Label the registered seat, keep the second as "Afdeling". | S | FIX, NEEDS OWNER CONFIRMATION |
+| L01 | 2.1 | Critical (live), fixed in corrected file | / (footer) | No CVR number and no VAT number anywhere in the live page. CVR 43424092 confirmed by Nancy on 1 Oct 2026 from the CVR register. Applied to the corrected `index.html` footer and copyright line on 1 Oct (Draft fix A, now in the file awaiting upload). VAT registration still unconfirmed. | 18 Aug base: `grep -c CVR` = 0; corrected file: "CVR 43424092" in the Kontakt column and the copyright line | E-Commerce Directive 2000/31/EC Art. 5(1)(d) and (g); Danish E-handelsloven §7; CVR display duty for Danish companies | Upload the corrected file. Add "Momsnr. DK43424092" only if VAT registered. | S | FIX (applied locally), NEEDS OWNER CONFIRMATION (VAT) |
+| L02 | 2.1 | Medium, fixed in corrected file | / (footer) | Two addresses with no indication which is the registered office. Register confirms Kildehøjvej 15A, 3460 Birkerød as the seat. Corrected file now labels Birkerød "(hovedadresse)" and Roskilde "(afdeling)". | footer "Adresser" column | Art. 5(1)(b) geographic address of establishment | Upload the corrected file. Confirm Roskilde is in fact a branch. | S | FIX (applied locally), NEEDS OWNER CONFIRMATION (Roskilde) |
+| L16 | 2.1 | Medium, fixed in corrected file | / (footer) | The registered legal name is "Damgård Solutions ApS" (with å). The page used only the trading spelling "Damgaard Solutions ApS", so the legal name as registered never appeared. Corrected file: copyright line now reads "© 2026 Damgård Solutions ApS (Damgaard Solutions), CVR 43424092", the Kontakt column shows "Damgård Solutions ApS, CVR 43424092", and the JSON-LD parentOrganization carries `legalName`, the CVR as an identifier, and the Birkerød address. | CVR register via proff.dk (Nancy, 1 Oct 2026) | Art. 5(1)(a) name of the service provider; Danish E-handelsloven §7 | Upload the corrected file. Use the same pairing on damgaard-solutions.com and damgaardgroup.com footers (separate task). | S | FIX (applied locally) |
 | L03 | 2.2 | High | / | Montserrat is loaded from fonts.googleapis.com and fonts.gstatic.com on page load. The visitor's IP reaches Google before any consent and the site has no banner. Danish and German regulators treat this as a transfer needing a legal basis. | `<link href="https://fonts.googleapis.com/css2?family=Montserrat...">` in head | GDPR Art. 6, 44 to 49; ePrivacy Art. 5(3); Datatilsynet guidance on third-party requests | Download the five Montserrat weights as woff2, upload to /valideringseksperterne.dk/fonts/, replace the link with @font-face. See Draft fix D. | S | FIX |
 | L04 | 2.2 | NOT VERIFIED | / | Whether the server (Simply) sets any cookie, and whether any request other than fonts and the form fires. Page JS sets no cookie, localStorage or sessionStorage and loads no analytics, pixel, map, video or chat. | source grep: none of document.cookie, localStorage, gtag, dataLayer, fbq, hotjar, clarity | ePrivacy Art. 5(3); Cookiebekendtgørelsen | Run `scripts/consent-test.js` mode A when the network allows. If no non-essential cookies appear, no banner is required; keep the cookie page truthful ("ingen cookies"). | S | NOT VERIFIED |
 | L05 | 2.3 | Critical | / (footer, form) | No privacy policy on the site. The "Privatlivspolitik" and "Cookiepolitik" links both point to https://damgaard-solutions.com (homepage), not to a policy. | `<a href="https://damgaard-solutions.com">Privatlivspolitik</a>` | GDPR Arts. 12 to 14 | Either publish /privatlivspolitik.html on the .dk or link to the exact Damgaard Solutions policy URL, and make sure that policy names the .dk, Web3Forms and Google Fonts. See Draft fix B. | M | FIX, NEEDS COUNSEL for wording |
@@ -76,28 +77,30 @@ No analytics, tag manager, pixel, heatmap, map, video embed, chat widget or CDN 
 
 ## Draft fixes (for approval, not applied)
 
-### A. Footer company identification (Danish)
+### A. Footer company identification (Danish): APPLIED to the corrected index.html on 1 Oct 2026
 
-Replace the "Kontakt" column in the footer with:
+"Kontakt" column now reads:
 
 ```html
 <div class="foot-col">
   <p class="label">Kontakt</p>
-  <p>Damgaard Solutions ApS<br>CVR 43424092</p>
+  <p>Damgård Solutions ApS<br>CVR 43424092</p>
   <a href="mailto:kca@damgaardgroup.com">kca@damgaardgroup.com</a>
   <a href="tel:+4530530793">+45 30 53 07 93</a>
   <p>Man-fre 8:00-16:00 CET</p>
 </div>
 ```
 
-and in the "Adresser" column mark the registered seat:
+"Adresser" column:
 
 ```html
 <p>Kildehøjvej 15A, 3460 Birkerød (hovedadresse)</p>
 <p>Præstemarksvænge 10E, 4000 Roskilde (afdeling)</p>
 ```
 
-Confirm the CVR number, VAT registration (add "Momsnr. DK43424092" if registered) and which address is the registered office before uploading.
+Copyright line: `© 2026 Damgård Solutions ApS (Damgaard Solutions), CVR 43424092. Alle rettigheder forbeholdes.`
+
+JSON-LD `parentOrganization` gained `legalName`, a CVR `identifier` and the Birkerød address. Still open: add "Momsnr. DK43424092" only once VAT registration is confirmed; confirm Roskilde is a branch. If you transplant into the live file instead of uploading whole, copy these three footer edits across too.
 
 ### B. Legal links
 
