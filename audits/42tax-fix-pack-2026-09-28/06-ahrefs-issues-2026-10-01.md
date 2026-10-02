@@ -64,6 +64,8 @@ Every page needs exactly one H1 and it should say what the page is about, not a 
 
 ### Orphan page (2)
 
+**Resolved on 2 Oct 2026 from the affected-URL export.** The two orphans are `/da/contact-form` (the July test page, title "Contact | 42TAX", on the Danish site) and `/42tax` (the duplicate homepage). Neither should be linked. Delete the first; redirect and unpublish the second per `05-seo-pro-titles-canonical.md`, part 2. Both are in the sitemap today and leave it once unpublished. The guidance below stays for any future orphan that is a real page.
+
 An orphan page has no internal link pointing at it. Find the two URLs in Ahrefs, then add at least one contextual link to each from a page that already talks about the same subject. In the control panel: open the related entry, select text in the Bard editor, add link, pick the entry. If one of the two is a What we think article, link it from a related article; if it is a service page, link it from the services overview (option A in `02-sitemap-404s.md`) and from the homepage services block.
 
 Also check whether the two orphans are leftover test pages from July (`/everything-counts-in-large-amounts` variants, `/da/det-er-vi-gode-til/ccc`, `/da/contact-form`). Those should be deleted, not linked.
@@ -119,6 +121,8 @@ Replace `what_we_think` with the real collection handle. If articles carry a tag
 **c. The services overview page** from option A in `02-sitemap-404s.md` adds one more link to each service page.
 
 ### Changed pages not submitted to IndexNow (1, new)
+
+**2 Oct 2026:** the one page is `/about/privacy-policy`. No search value, no action needed; the note below explains the options if the notice should go.
 
 IndexNow is a ping that tells Bing (and through Bing, ChatGPT's index) that a page changed. Google does not use it. Statamic has no built-in IndexNow. Two options:
 
