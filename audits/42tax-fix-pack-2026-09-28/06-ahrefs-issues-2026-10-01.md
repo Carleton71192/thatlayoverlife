@@ -10,7 +10,7 @@ Two kinds of fix. **Control panel** means Nancy can do it in Statamic today. **C
 |---|---|---|
 | 3XX redirect | 3 | Normal. Redirects that work are not a fault. |
 | HTTP to HTTPS redirect | 2 | Normal and required. |
-| Pages dropped from Top 10 | 6, new | A ranking movement to watch, not a site fault. Re-check after the title fixes land. |
+| Pages dropped from Top 10 | 6, new | All six dropped for the same query, the brand name "42tax": the Danish home, both contact pages, both team pages and What we've done. Google is consolidating the brand result onto the homepage and shuffling which pages show as sitelinks. Not a site fault, nothing to change. |
 | Organic traffic dropped | 1, new | Same. One page; identify it in Ahrefs and see whether it is one of the five long titles. |
 
 ## Fix in the control panel
@@ -27,7 +27,26 @@ That clears "4XX page in sitemap". The "404 page" rows only clear when the URLs 
 
 ### Title too long (5)
 
-Two causes, one fix each.
+**Resolved on 2 Oct 2026 from the affected-URL export.** The site name already prints as `| 42TAX` on these pages, so cause one below is done. The five are all long article titles. Open each entry, SEO tab, Title, and paste the proposed title. Lengths include the ` | 42TAX` suffix.
+
+| Entry | Now | Proposed SEO title | New |
+|---|---|---|---|
+| `/what-we-think/bridging-the-gap-why-tax-professionals-struggle-to-get-started-with-using-ai-to-support-their-tax-work` | 111 | Why Tax Professionals Struggle to Start with AI | 55 |
+| `/da/det-vi-taenker/bridging-the-gap-why-tax-professionals-struggle-to-get-started-with-using-ai-to-support-their-tax-work` | 79 | Svært at komme i gang med AI i skattefunktionen | 55 |
+| `/da/det-vi-taenker/hoeringssvar-paa-l194-minimumsskatteloven-ll-2-b-og-transfer-pricing-dokumentation` | 93 | Høringssvar L194: minimumsskat og TP-dokumentation | 58 |
+| `/what-we-think/consultation-response-to-public-consulting-paper-on-the-oecd-guidelines-chapter-vii` | 91 | Consultation Response: OECD Guidelines Chapter VII | 58 |
+| `/what-we-think/consultation-response-for-new-regulations-on-transfer-pricing-documentation-and-minimum-taxation-act` | 108 | Consultation Response: New TP Documentation Rules | 57 |
+
+Ahrefs flags at 70 characters. Google starts cutting at about 60. Two more sit between the two limits and are worth doing in the same sitting:
+
+| Entry | Now | Proposed SEO title | New |
+|---|---|---|---|
+| `/what-we-think/statistical-intervals-in-transfer-pricing-an-analysis-of-eet` (and the Danish twin) | 69 | Statistical Intervals in TP: An Analysis of EET | 55 |
+| `/what-we-think/bridging-the-gap-artificial-intelligence-for-tax-functions` | 67 | AI for Tax Functions: Bridging the Gap | 46 |
+
+The Danish proposals are suggestions for Anja to approve; the English ones keep the article's own words. The page title (H1) stays as written; only the SEO title changes.
+
+Two causes, one fix each, kept for reference.
 
 **Cause one, every page:** the site name prints as "42TAX (en)". SEO Pro > Site Defaults:
 
@@ -74,6 +93,8 @@ Also check whether the two orphans are leftover test pages from July (`/everythi
 
 ### X-default hreflang annotation missing (46)
 
+**Confirmed on 2 Oct 2026 from the CSV export.** All 46 pages (23 English, 23 Danish pairs) carry both the `en` and `da` alternates and the only issue Ahrefs reports is "Missing x-default". One line in the layout fixes every page.
+
 SEO Pro already prints the `en` and `da` alternates for each page. It does not print the `x-default` line, which tells search engines which version to show visitors whose language matches neither. For 42TAX that is the English page. Add this to the layout `<head>`, directly after `{{ seo_pro:meta }}`:
 
 ```antlers
@@ -98,6 +119,8 @@ with the understanding that an entry with no English version then gets no x-defa
 Confirm after deploy: view source on `/` and on `/da/`. Both should carry three `rel="alternate"` lines: `en`, `da`, `x-default`, all pointing at the English URL for x-default.
 
 ### Page has only one dofollow incoming internal link (28)
+
+**Confirmed on 2 Oct 2026 from the affected-URL export.** All 28 are articles: the English What we think (`/what-we-think/`) and What we've done (`/what-weve-done/`) collections and their Danish twins (`/da/det-vi-taenker/`, `/da/vores-erfaring/`). Each has exactly one link in, from its listing page, plus the hreflang link from its other-language version. Nothing in any article body links to another article. So this is a template job, not a copywriting job: fix (a) below on both article templates clears all 28 at once.
 
 Twenty-eight pages are reachable by a single link, which is almost certainly the navigation or the listing page. Two template additions fix most of it without anyone writing copy:
 

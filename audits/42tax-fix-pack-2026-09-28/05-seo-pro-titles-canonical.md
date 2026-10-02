@@ -10,7 +10,9 @@
 
 ## 1. Insights titles capped at 60 characters
 
-Today an insight renders as `42TAX (en) / <full article title>`. Two things are wrong: the site name is a language code, and long article titles run past what Google shows.
+**Update 2 Oct 2026:** the 1 Oct Ahrefs crawl shows every page already rendering as `<Title> | 42TAX`, so step a below is done. Google's search snippets were stale. Steps b and c still apply; the five entries and their proposed titles are listed in `06-ahrefs-issues-2026-10-01.md`.
+
+Before that change an insight rendered as `42TAX (en) / <full article title>`. Two things are wrong: the site name is a language code, and long article titles run past what Google shows.
 
 **a. Fix the site name once, for every page.** SEO Pro > Site Defaults:
 
@@ -57,6 +59,8 @@ Google indexes `https://42tax.com/42tax` with the homepage's old title, "Transfe
 Either way, clear the static cache afterwards.
 
 ## 3. The Danish contact page has an English title
+
+**Done before 1 Oct 2026.** The crawl shows `/da/om-os/kontakt-os` with the title "Kontakt 42TAX i København | 42TAX" and `/about/contact` with "Contact 42TAX in Copenhagen | 42TAX". The Google snippet that showed "42TAX (en) / Contact" was stale. Nothing left to do here except confirm the Danish meta description is also in Danish. The original note follows for the record.
 
 The Danish contact entry (the localization of `/about/contact`) carries the English entry title "Contact", so the page renders as `42TAX (da) / Contact`. Danish visitors searching in Danish see an English title.
 
