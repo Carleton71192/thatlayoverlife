@@ -7,6 +7,8 @@
 
 Both sit in the page tree as parents so the navigation can group the services, but neither has a page of its own. SEO Pro still lists them in `sitemap.xml`, so Google is sent to two dead ends, and the breadcrumb on every service page links to a 404. Ahrefs flagged this on 20 Aug and again on 27 Aug 2026.
 
+**Update 2 Oct 2026, from the Ahrefs affected-URL export.** Both URLs show 0 incoming internal links and depth 0. Nothing on the site links to them: not the navigation, not the breadcrumbs. They are sitemap-only. So option B shrinks to two toggles plus two optional redirect lines; step 3 (breadcrumbs and nav) is not needed unless a later template change adds those links. Option A is unchanged and still the better outcome for the business.
+
 Pick one of the two options. Option A is the better one for the business. Option B is the ten-minute one.
 
 ## Option A (recommended): make the parents real overview pages
@@ -46,7 +48,7 @@ A services overview page is the page a prospect lands on when they search for th
    Route::redirect('/da/det-er-vi-gode-til', '/da/det-er-vi-gode-til/transfer-pricing', 301);
    ```
 
-3. Point the breadcrumb and the main navigation at the first child. In the breadcrumb partial:
+3. Only if something links to the parents (as of 2 Oct 2026 nothing does), point the breadcrumb and the main navigation at the first child. In the breadcrumb partial:
 
    ```antlers
    <nav aria-label="Breadcrumb">
