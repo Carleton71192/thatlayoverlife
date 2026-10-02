@@ -12,6 +12,7 @@ Prepared by The Brand Collective for 42tax.com (Statamic Pro + SEO Pro). Finding
 | `03-consent-banner.md` | Cookie Information: language per site, mobile size, `#coi-expand` label, where settings live | Developer + whoever holds the Cookie Information login | 1 hour |
 | `04-accessibility.md` | Logo link name, `.toggle` button, contact form labels, "Read more" links | Developer | 1 to 2 hours |
 | `05-seo-pro-titles-canonical.md` | Site name, insights title cap, `/42tax` redirect or canonical, Danish contact title | Anja in the control panel, developer for the redirect | 1 hour |
+| `06-ahrefs-issues-2026-10-01.md` | Every issue type in the 1 Oct Ahrefs Site Audit mapped to a control panel or code fix: titles, descriptions, H1, orphans, x-default hreflang, internal links, IndexNow | Nancy in the control panel, developer for code | 3 to 4 hours |
 
 The audit report behind this pack is at `../42tax-site-lab-2026-09-28.md`.
 
