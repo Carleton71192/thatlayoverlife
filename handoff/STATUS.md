@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 24 · Done 1 · Partial 85 · Blocked 16 · N/A 2 · Deferred 0
+Summary: TODO 20 · Done 1 · Partial 89 · Blocked 16 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -101,8 +101,8 @@ Summary: TODO 24 · Done 1 · Partial 85 · Blocked 16 · N/A 2 · Deferred 0
 | F02 | Editor desk: role gate, log-in only (no join CTA), NOINDEX | Partial | Verified 30 Sep 2026: /editors-desk head has noindex, nofollow; gate script tll-desk-gate-v1 (29 Sep) hides the desk until a signed-in member is confirmed, locked state offers Sign in only, no join CTA; while EDITOR_PLANS is empty the gate is sign-in only. Left: Nancy creates the admin-assigned Editor plan in Memberstack and its id goes into EDITOR_PLANS. |
 | F03 | Never gated: public profiles, /paw-passport/{slug}, /countries, /travel-wire, the Lounge,  | Partial | Checked 30 Sep 2026 in the element tree: no data-ms-content gate on the Contributors template (public profiles), the Paw Passport diary template, /countries, /travel-wire, /gallery (the Lounge) or /the-map (the map canvas sits in an ungated section; only save goes through Memberstack). /p/{handle} does not exist yet (G11). Left: logged-out live check after publish. |
 | F04 | Profile click goes straight to /account (no interstitial, no "shelf is a door" flicker); c | Partial | Checked 30 Sep 2026: the nav avatar (tll-nav-account-link) links straight to /account, no interstitial page in between; /account counters on the LOGGED and PAWED cards now read tllStates (B38). Left: signed-in live check that the numbers are non-zero for Nancy after publish; WRITTEN and SNAPPED still have no per-member source. |
-| G01 | Counting engine: headline base (UN 193 default, pending Nancy), bonus places chip, tier la | TODO |  |
-| G02 | Data hygiene: ignore/remove non-ISO keys (the "undefined" entry) before any count or card | TODO |  |
+| G01 | Counting engine: headline base (UN 193 default, pending Nancy), bonus places chip, tier la | Partial | Shared module src/shareables/count.js (5 Oct 2026): bases un 193 (default) / tll 195 / been 250 with their mono labels, tier ladder airside|escaped|fed|slept|lived (legacy visited→escaped, lived→lived, layover→escaped by default, switchable to airside for I07), bonus places chip, airside flex chip, continents on the 7-continent model, tier names from the spec samples (I06), ranges (60+, 30%+). Unit tests in test/shareables-count.test.js: sample member 62/193 = 32%, +4 bonus, airside excluded. Open: Nancy confirms the base (I05), tier names (I06) and the layover migration (I07); then a one-line default change. Not yet wired to a live card. |
+| G02 | Data hygiene: ignore/remove non-ISO keys (the "undefined" entry) before any count or card | Partial | cleanStates() in src/shareables/count.js drops every non-ISO key (the "undefined" entry, non 3-digit keys, codes the map has no shape for) and unknown tier values before any count; reads v2 and pre-v2 shapes. Tested: the sample record with an "undefined" entry reports dropped ["undefined"] and counts 62. Open: run it against Nancy's real tllStates once the share flow (G09) reads member JSON in the browser. |
 | G03 | Percent card: master 1080×1920, feed 1080×1350, link 1200×630, light + dark | TODO |  |
 | G04 | Map card: precomputed Equal Earth SVG from world-atlas 50m, clipped ~60°S, Antarctica badg | TODO |  |
 | G05 | Passport: cover + stamp page (shape encodes type, border encodes tier), MRZ strip with no  | TODO |  |
@@ -112,8 +112,8 @@ Summary: TODO 24 · Done 1 · Partial 85 · Blocked 16 · N/A 2 · Deferred 0
 | G09 | Share flow: "Make my card" then "Share". modern-screenshot 4.7 in the browser. Fallbacks:  | TODO |  |
 | G10 | Privacy panel "Who gets to see this?": Memberstack fields share-level (off/unlisted/public | TODO |  |
 | G11 | Public page /p/{handle} (public) and /p/{slug} (unlisted, noindex). Off = private message. | TODO |  |
-| G12 | Empty, new-member and quiet-year states for every card (15 states) | TODO |  |
-| G13 | Alt text generated from data for every card; repeated as live text on /p/ | TODO |  |
+| G12 | Empty, new-member and quiet-year states for every card (15 states) | Partial | src/shareables/copy.js: percent card states new (0), early (1 to 2, leads with the count), quiet year (only when the year count is known to be 0; the map stores no dates today, so this stays null and falls back to lifetime), full. Copy strings from board 09A to 09C and 02A to 02D. Open: the same for map, passport, pet and duo cards (12 of 15 states), and rendering. |
+| G13 | Alt text generated from data for every card; repeated as live text on /p/ | Partial | percentAlt() builds the alt text from the data only ("@nancy has been to 62 of 193 UN states, 32%. Plus 4 bonus places…"), tested. Open: other cards, and repeating it as live text on /p/ (G11). |
 | G14 | Accessibility: Ink text on rose chips; rose vs light teal never the only difference; pet p | TODO |  |
 | G15 | Never shown: dates, current city, "currently in". Years only on stamps. EXIF stripped. Pet | TODO |  |
 | G16 | Per-member OG images via a server route (Webflow Cloud /p). PHASE 2: only after G01–G15 ar | TODO |  |
