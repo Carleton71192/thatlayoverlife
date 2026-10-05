@@ -1,10 +1,10 @@
-> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
 
 # REQUIREMENTS · every item, numbered
 
 This is the master list. **Every ID must end in STATUS.md as Done, Blocked, N/A or Deferred, with evidence.** If an ID is not in STATUS.md, it is not done. Nothing here is optional unless it says N/A or Deferred.
 
-Total: **127 items**.
+Total: **146 items** (v9 adds J01 to J16).
 
 ## A · Site-wide rules
 
@@ -53,6 +53,15 @@ Total: **127 items**.
 - **A15** Preservation: no published story, binding, data-ms-* attribute, element ID or form input removed
   - Where: everything
   - Verify: Story count on /stories is the same or higher than before you started; list any removed hook in STATUS (should be none)
+- **A16** Small rose text on light surfaces uses #C8325B. #F0507A on Paper/Cream only at headline size. Button labels: Ink on Rose, or white on #D63859
+  - Where: all pages
+  - Verify: Contrast check on 5 pages; no #F0507A text under ~24px on a light background
+- **A17** Brand Kit v2.1 overuse list: "real" in the H1 only; "actually" once per page; the 48-hour review line only on /share and /faq; one triad per page; no triple negations or "Not X, it is Y"
+  - Where: all pages
+  - Verify: verify-live.mjs reports the counts per page
+- **A18** "Truth over polish" and "No filler" appear nowhere
+  - Where: all pages
+  - Verify: verify-live.mjs reports 0 hits
 
 ## B · Page parity (one row per screen file, nothing skipped)
 
@@ -416,3 +425,55 @@ Total: **127 items**.
 - **I14** Short GDPR review before public travel profiles go live
   - Where: Nancy
   - Verify: Nancy confirms in writing
+
+
+## J · v9: 2.0 look, accessibility, mobile (5 October 2026)
+
+- **J01** Every clickable thing is a real `<button>` or `<a>`. No click handlers on div/span
+  - Where: all pages
+  - Verify: Tab through home, story, travelers, paw: every action reachable; axe reports 0 "interactive role" issues
+- **J02** Keyboard: Enter and Space activate buttons, tabs and switches; tab order follows reading order
+  - Where: all pages
+  - Verify: Manual keyboard pass on 5 core routes
+- **J03** Focus ring on everything focusable: `outline:3px solid #0A0B14; outline-offset:2px; box-shadow:0 0 0 6px #00C9C8` via `:focus-visible`. Never `outline:none` without a replacement
+  - Where: site CSS
+  - Verify: Ring visible on cream AND on Ink surfaces
+- **J04** Skip link "SKIP TO CONTENT" (Rose bg, Ink text, mono 12px) first in tab order, jumps to `#main`. Landmarks: `<header>`, `<nav aria-label="Main">`, `<main id="main">`, `<footer>`
+  - Where: global chrome
+  - Verify: axe landmark rules pass; skip link appears on first Tab
+- **J05** Contrast: muted text on dark = #9496AC; muted text on light = #6B6660. Retired for text: #7d7f96, #9a958d, #4a4d63. CTA on light = white on #D63859 or Ink on #F0507A (never white on #F0507A)
+  - Where: all pages
+  - Verify: verify-live grep finds 0 retired hexes as `color:`; axe contrast 0 fails
+- **J06** Minimum text 10px (mono meta), body 15px+. Tap targets 44px min on mobile
+  - Where: all pages
+  - Verify: Lighthouse tap-target audit passes at 390px
+- **J07** Mobile nav below 900px: wordmark + MENU button (mono 12px, 1.5px Cream border, 44px tall) toggling a full-width Ink dropdown, links stacked; button reads CLOSE ✕ when open, `aria-expanded`, closes on any pick. Do this inside TLL Nav v1 WITHOUT touching its Memberstack blocks
+  - Where: global nav
+  - Verify: Works at 390px logged in and logged out
+- **J08** Images: hero `fetchpriority="high"`, every other image `loading="lazy" decoding="async"`, Webflow responsive srcset on, hero served ≤ 300 KB at 1920w
+  - Where: all pages
+  - Verify: Lighthouse LCP < 2.5s mobile on / and one story
+- **J09** Motion set: parallax on `[data-px]` photos (factor 0.1 to 0.16), count-up numbers (1.3s ease-out cubic, once, at 30% visible), stamp thump on passport toggle, route line drawing through story pins on the home map as it scrolls in, drag-to-place stickers. ALL disabled under `prefers-reduced-motion` (final state shown)
+  - Where: home, passport, stickers
+  - Verify: Toggle OS reduced motion: nothing moves, everything visible
+- **J10** Departures header on non-story pages (DESIGN-SPEC-v9 §4): full-width Ink board, mode-neutral (ROUTE · FROM · TO · VIA · STOP · DEPARTS · STATUS), no ticket props. Never "flight", "gate", "seat" or ✈. Story and home pages skip it
+  - Where: page headers
+  - Verify: Matches standalone "Departures header" and screens-v9/02-stories.jpg
+- **J11** Type scale: page titles Playfair 800 clamp(44px, 6.4vw, 112px), line-height .9, tracking -.035em; section heads 64px; hero up to 186px
+  - Where: all pages
+  - Verify: Spot-check 5 pages
+- **J12** Library search = big underlined headline input (3px Ink underline, Rose SEARCH → chip). Story cards = shelf card (photo, overlapping Playfair title)
+  - Where: home, /stories
+  - Verify: Matches standalone
+- **J13** Story page opens with a full-bleed photo, larger title below it
+  - Where: /stories/{slug}
+  - Verify: Matches standalone
+- **J14** Luggage-tag cards for people: cut top corners (24px), grommet hole (20px Cream circle, 4px #c9b89a ring), PROPERTY OF · TLL TRAVELER mono row, slight rotation (-0.6° / 0.8°). Open slot = blank paper tag with dashed inset. Profile header = horizontal tag, hole on the left
+  - Where: /travelers, /profile, directory cards
+  - Verify: Matches standalone Travelers + Profile
+- **J15** Never "currently in" anywhere. Profiles say where you know ("KNOWS COPENHAGEN"), never where you are. Nancy: "ABROAD SINCE 2018 · LIVES IN DENMARK"
+  - Where: profiles, directory, edit profile
+  - Verify: verify-live finds 0 "currently in"
+- **J16** Sticker Passport page and Colophon page built as in the standalone (SCREENS menu → Stickers, Colophon). Stickers save to the browser only until Nancy approves a member field
+  - Where: /sticker-passport, /colophon
+  - Verify: Both routes live, no 404

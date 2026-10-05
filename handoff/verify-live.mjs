@@ -26,6 +26,8 @@ const CHECKS = [
   ['A13 byline wording', /Every byline a real name/gi],
   ['A14 old Lounge name', /Sharing Gallery/gi],
   ['A12 placeholder leftovers', /Lorem ipsum|TODO:|\[placeholder\]/gi],
+  ['A18 retired slogan', /Truth over polish|No filler/gi],
+  ['J15 "currently in"', /currently in\b/gi],
 ];
 const PET = ['A09 banned pet word', /microchip|titer|titre|FAVN/gi];
 const strip = h => h.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
@@ -37,9 +39,15 @@ for (const r of ROUTES) {
   if (code >= 400) { rows.push([r, String(code), 'route missing or broken']); fails++; continue; }
   const body = strip(html);
   for (const [name, re] of CHECKS) { const m = body.match(re); if (m) hits.push(name + ' ×' + m.length + ' ("' + m[0] + '")'); }
+  { const m = html.match(/color:\s*#(7d7f96|9a958d|4a4d63)\b/gi); if (m) hits.push('J05 retired grey ×' + m.length); }
   if (!EXEMPT_PET.some(x => x.test(r))) { const m = body.match(PET[1]); if (m) hits.push(PET[0] + ' ×' + m.length); }
   (html.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi) || []).forEach(e => { if (!/\.(png|jpe?g|webp|svg)$/i.test(e)) emails.set(e.toLowerCase(), (emails.get(e.toLowerCase()) || new Set()).add(r)); });
   if (!/hello@thatlayover\.life/i.test(html)) hits.push('A07 footer/contact email missing');
+  const plain = body.replace(/<[^>]+>/g, ' ');
+  const nReal = (plain.match(/\breal\b/gi) || []).length, nAct = (plain.match(/\bactually\b/gi) || []).length;
+  if (nReal > 1) hits.push('A17 "real" ×' + nReal + ' (H1 only)');
+  if (nAct > 1) hits.push('A17 "actually" ×' + nAct + ' (max 1)');
+  if (!/\/(share|faq)$/.test(r) && /reviews every submission within 48 hours/i.test(plain)) hits.push('A17 48-hour line outside /share and /faq');
   if (hits.length) fails++;
   rows.push([r, String(code) + (code >= 300 ? ' → ' + res.headers.get('location') : ''), hits.join('; ') || 'ok']);
 }

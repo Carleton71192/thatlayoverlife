@@ -1,4 +1,6 @@
-> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+
+> **Brand reference: TLL-BrandKit-v2.1.html (in this folder).** Where this spec and the kit differ on color, type or voice, the kit wins. Its new rules are A16 to A18 in REQUIREMENTS.md.
 
 # TLL Design Spec · for the live Webflow build
 

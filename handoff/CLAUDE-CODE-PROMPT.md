@@ -1,15 +1,24 @@
-> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
 
 > **FIRST:** read the "⚠ PRESERVATION RULES" section at the top of IMPLEMENTATION-BRIEF.md. Published stories and Memberstack functionality are never removed, only optimized.
 
-# Paste this into Claude Code · TLL full build, v8
-**28 September 2026 · from Claude Design · site thatlayover.life (Webflow `69d6145cf421c777840c1e25`)**
+# Paste this into Claude Code · TLL full build, v9
+**5 October 2026 · from Claude Design · site thatlayover.life (Webflow `69d6145cf421c777840c1e25`)**
 
 You are bringing thatlayover.life into full parity with the approved design, then building the traveler directory, the v6/v7 features, the shareables system and The Pack. The design is the source of truth.
 
+## What changed in v9 (read before anything else)
+- **The design source is now `TLL Site Prototype 2.0 (standalone).html`.** Where it differs from `screens-v8-reference/`, 2.0 wins. The v8 screen files stay for copy and structure only.
+- **New group J (J01 to J16):** accessibility, mobile nav, image loading, motion, boarding-pass headers, luggage-tag people cards, type scale, Sticker Passport, Colophon.
+- **Build order for v9:** J01 to J07 on the global nav, home and one story first (these touch every page), then the B parity rows, then J08 to J16.
+- **One metaphor per job** (DESIGN-SPEC-v9.md §1). Don't put a stamp where a tag belongs.
+- Read COUNCIL-REVIEW.md once. **Nancy approved the freeze (5 October 2026): no new screens or features until STATUS.md shows 50 Done rows with evidence.**
+- `screens-v9/` has 16 screenshots for quick visual reference.
+- The page header is the **Departures board** (J10). Layovers are trains, boats and roads too: no flight-only words in UI.
+
 ## ⚠ Completion protocol (this is why v8 exists)
 Earlier sessions reported "done" while items were silently skipped. From now on:
-1. **REQUIREMENTS.md is the contract.** It has **127 numbered items** (A01 to I14). Nothing counts unless it has an ID.
+1. **REQUIREMENTS.md is the contract.** It has **146 numbered items** (A01 to J16). Nothing counts unless it has an ID.
 2. **STATUS.md is the ledger.** One row per ID, never merged. Allowed statuses: TODO, In progress, Done, Partial, Blocked, N/A, Deferred.
    - **Done needs evidence:** the live URL with `?v=` and one line on what you saw. No URL, not Done.
    - **Partial** says exactly what is left. **Blocked** says who or what it waits on. N/A is only allowed where REQUIREMENTS says so (B31, B32). Deferred only for G16.
@@ -22,11 +31,11 @@ Earlier sessions reported "done" while items were silently skipped. From now on:
 ## 0 · Read these first, in this order
 1. `handoff/README.md`
 2. `handoff/REQUIREMENTS.md` and `handoff/STATUS.md`
-3. `handoff/DESIGN-SPEC.md` (tokens, components, copy rules, §3b group pages, §3c directory)
+3. `handoff/DESIGN-SPEC-v9.md` then `handoff/DESIGN-SPEC.md` (tokens, components, copy rules, §3b group pages, §3c directory)
 4. `handoff/IMPLEMENTATION-BRIEF.md` (Memberstack mapping, contract hooks)
 5. `handoff/SHAREABLES-SPEC.md` (cards, counting, share flow, privacy, The Pack)
-6. `handoff/TLL Site Prototype (standalone).html` (floating SCREENS menu, bottom left) and `handoff/TLL Shareables (standalone).html` (pan/zoom board)
-7. `handoff/screens/NN-*.html` and `handoff/shareables/NN-*.html` for exact markup, plus the two logic files for data and copy
+6. `handoff/TLL Site Prototype 2.0 (standalone).html` (floating SCREENS menu, bottom left) and `handoff/TLL Shareables (standalone).html` (pan/zoom board)
+7. `handoff/screens-v8-reference/NN-*.html` and `handoff/shareables/NN-*.html` for exact markup, plus the two logic files for data and copy
 
 The prototype markup is a reference, not code to paste. Rebuild it in Webflow with existing classes where they exist and inline styles where they don't.
 

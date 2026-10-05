@@ -1,10 +1,10 @@
-> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
 
 # STATUS · fill this in as you work
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 19 · Done 1 · Partial 90 · Blocked 16 · N/A 2 · Deferred 0
+Summary: TODO 35 · Done 1 · Partial 92 · Blocked 17 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -23,6 +23,9 @@ Summary: TODO 19 · Done 1 · Partial 90 · Blocked 16 · N/A 2 · Deferred 0
 | A13 | "Every byline a real person" and "reviewed within 48 hours" (never "published within 48 ho | Partial | Sweep 29 Sep 2026: no "published within" on the pages swept so far. Signup tagline now "Every byline a real person. Sponsorships disclosed at the top, never in a footnote." |
 | A14 | The photo feature is called "The Layover Lounge" everywhere | Partial | Sweep 29 Sep 2026: no "photo wall" strings on the pages swept so far; /gallery H1, eyebrow and lede use The Layover Lounge. Page SEO description of /gallery still says "photo wall" (page settings, not element text). |
 | A15 | Preservation: no published story, binding, data-ms-* attribute, element ID or form input r | TODO |  |
+| A16 | Small rose text on light uses #C8325B | TODO |  |
+| A17 | Brand Kit v2.1 overuse list | TODO |  |
+| A18 | No "Truth over polish" / "No filler" | TODO |  |
 | B00 | Global nav | Partial | 29 Sep 2026, with Nancy: the Log in link (inside the anonymous block next to Sign up, TLL Nav v1) was hidden on phones by two style rules (combo .tll-nav-link.tll-nav-signin display:none at the small breakpoint, .tll-nav-signin display:none at tiny). Both removed, so logged-out mobile now shows Log in and Sign up; Memberstack blocks and attributes untouched. Staged, unpublished. Left: the rest of the screen 00 nav check with Nancy. |
 | B01 | Home | Partial | Published 28 Sep 2026, https://www.thatlayover.life/?v=20260928b (hero reads "Find your next somewhere.", Doors opening block, Paw and Lounge copy per screen 01): hero eyebrow, H1 "Find your next somewhere.", sub, shelf label (6 stories, static until the count binds), Doors opening block, newsletter line + success copy, map headline "Where the Travelers have been." + CTA, Paw eyebrow/H2/sub, Magnus meta (3 yrs, 13 countries), Lounge eyebrow + sub, hero strip hidden (fc03d2d5…c2c5, visibility off). Kept against the design on purpose: "The Layover Lounge" (A14 beats screen 01 "Travel Lounge"), the live Magnus line instead of the PLACEHOLDER quote (I03), and the body line about submissions, since Share Your Story is live. Left: shelf photo cards (design-spec note), the map headline logged-in variant, the writer count and shelf count bound to data (B38/A12), the 3-step block the design does not have. Still Partial for the shelf photo cards and the bound counts. 29 Sep 2026 published (Nancy's go, https://www.thatlayover.life/?v=20260929a): mobile search fix. The site-wide craft-polish rule (width:100% !important on .w-input under 600px) starved the search input inside the flex pill, so the Search button filled the bar. Page head style tll-home-search-mobile-v4 pins input flex:1 and button auto width under 600px; design placeholder set by a small page head script (the API rejects placeholder as a reserved attribute). |
 | B02 | Stories index | Partial | Published 28 Sep 2026 evening (Nancy's go), https://www.thatlayover.life/stories?v=20260928c, both custom domains + subdomain. Per screen 02: eyebrow "The Library", H1 "Six stories, all worth the detour.", lede "Counted by hand in Copenhagen. More landing weekly.", Place and Sort chip rows (All places, Europe, Africa, Americas, Antarctica; Most recent, A to Z by country, Read time) driven by hidden per-card data blocks bound to region, reading time, published date and byline location, Front of the shelf rail (Most read = OPEN SLOT until the read counter exists, Press desk dark card, Location experts dashed slot card), footer script tll-lib-chips-v1. Chips use tll-shelf-chip and tll-filter-chip-on (single classes; the multi-class set_style call fails in the MCP). Rose text on light uses #C8325B for contrast. 28 Sep 18:05 follow-up (Nancy's flag, author badge and count requests): Danish flag uploaded as site asset flag-dk.svg (6abaabea6aa280006821dd68), footer script tllflagsv3 replaces v2 on this page and the story template; tllauthorlinkv1 makes the author badge on cards and story pages link to /contributors/{slug}; tllstorycountv2 (Stories, home) reads the story count from /sitemap.xml so the H1 word and the shelf label follow the CMS (7 live stories). Site script block is at Webflow's 15 limit, so these run as page scripts. Published https://www.thatlayover.life/stories?v=20260928e. 29 Sep 2026 published (Nancy's go, https://www.thatlayover.life/stories?v=20260929b): mobile filter bar. Under 700px the three filter groups (lenses, place + sort, Share CTA) sat side by side and every chip stacked into a tall tower; page head style tll-lib-filters-mobile-v1 stacks the groups and makes each chip set one thumb-scrollable row with compact chips. Left: search form success/error copy check. |
@@ -109,9 +112,9 @@ Summary: TODO 19 · Done 1 · Partial 90 · Blocked 16 · N/A 2 · Deferred 0
 | G06 | Pet passport + pet map: 5 sections, paw-ring cover (never stars), joke ID string | TODO |  |
 | G07 | Duo card: human rose, pet striped purple + stroke, shared count | TODO |  |
 | G08 | Pack card (approved pack friends only; open slots when fewer than 9) | TODO |  |
-| G09 | Share flow: "Make my card" then "Share". modern-screenshot 4.7 in the browser. Fallbacks:  | TODO |  |
-| G10 | Privacy panel "Who gets to see this?": Memberstack fields share-level (off/unlisted/public | TODO |  |
-| G11 | Public page /p/{handle} (public) and /p/{slug} (unlisted, noindex). Off = private message. | TODO |  |
+| G09 | Share flow: "Make my card" then "Share". modern-screenshot 4.7 in the browser. Fallbacks:  | Partial | Staged 5 Oct 2026, unpublished. src/site-layers/tll-share-v1.js bundled with the counting engine into dist/tll-share-v1.min.js (scripts/build-share-layer.mjs); /the-map loads it from an HTML embed at the end of main (c5140aff-9078-63b3-d035-738e82ec8beb) via jsDelivr pinned to commit 0a8e6c2. Members only (public view untouched): mounts after the map's own share bar; percent card light/dark, story or grid layout; Make my card renders the real card with modern-screenshot 4.7 (scale 2); Share tries files, then link only, then the desktop state (Download PNG + Copy link, LINK COPIED for 2 s); render failure state with Try again, second failure offers the link; copy from board 06A to 06H. QR (qrcode-generator) printed on the card once a link exists. Headless Chromium run with the board sample: reports/evidence/design-2026-09-30/share-flow-*.png. Left: live test on iPhone Safari, Android Chrome and desktop Firefox after publish; fonts for iOS renders (Google Fonts embed by modern-screenshot, self-host if iOS drops them); pet profile placement waits on G06. |
+| G10 | Privacy panel "Who gets to see this?": Memberstack fields share-level (off/unlisted/public | Partial | Memberstack custom fields created 5 Oct 2026 (all PRIVATE): share-level, share-slug, share-items, share-ranges. Panel "Who gets to see this?" in the same layer as G09 on /the-map and on /account (embed c870e60b-083c-1236-2cf3-b04f486c8267 inside the members block, after Settings; host #tll-share-host). Levels Off (default, no slug stored) / Unlisted (random 6-char slug, NEW LINK, REVOKE) / Public (handle input prefilled from the first name, validated a-z 0-9 dashes); items Country count, Percent, Map, plus the pet by its own name only when the map has a pet traveler; ranges switch rewrites the card; Save writes only the four fields via updateMember; turning Off clears the cached preview (G15). Unit tests: test/share-layer.test.js (new member starts Off). Left: publish and a live save on Nancy's account; Nancy decides whether Public handles come from the profile slug instead of a typed handle. |
+| G11 | Public page /p/{handle} (public) and /p/{slug} (unlisted, noindex). Off = private message. | Blocked | Not started. A public /p/ page needs a store a logged-out visitor can read. Memberstack member JSON is private; the only public-read option without a server is a Data Table with readRule PUBLIC (story_comments already uses that), which the developers docs are blocked from this container, so the client-side table API is unverified. Also: v9 (5 Oct 2026) freezes new screens until 50 rows are Done. Resume after the freeze: table share_cards (slug, level, items, ranges, stats snapshot, alt text) written from the privacy panel, page /p reading ?slug or the path, noindex for unlisted, the private message for Off. |
 | G12 | Empty, new-member and quiet-year states for every card (15 states) | Partial | src/shareables/copy.js: percent card states new (0), early (1 to 2, leads with the count), quiet year (only when the year count is known to be 0; the map stores no dates today, so this stays null and falls back to lifetime), full. Copy strings from board 09A to 09C and 02A to 02D. Open: the same for map, passport, pet and duo cards (12 of 15 states), and rendering. |
 | G13 | Alt text generated from data for every card; repeated as live text on /p/ | Partial | percentAlt() builds the alt text from the data only ("@nancy has been to 62 of 193 UN states, 32%. Plus 4 bonus places…"), tested. Open: other cards, and repeating it as live text on /p/ (G11). |
 | G14 | Accessibility: Ink text on rose chips; rose vs light teal never the only difference; pet p | TODO |  |
@@ -135,6 +138,27 @@ Summary: TODO 19 · Done 1 · Partial 90 · Blocked 16 · N/A 2 · Deferred 0
 | I12 | Guide PDF checked against Regulation (EU) 2026/131 and 2026/705 | Blocked | Waiting on Nancy |
 | I13 | Magnus's real pack friends: handles + their humans' OK | Blocked | Waiting on Nancy |
 | I14 | Short GDPR review before public travel profiles go live | Blocked | Waiting on Nancy |
+
+## J · v9: 2.0 look, accessibility, mobile (5 October 2026)
+
+| ID | Item | Status | Evidence / what is left |
+|---|---|---|---|
+| J01 | Every clickable thing is a real <button> or <a>. No click handlers on div/span | TODO |  |
+| J02 | Keyboard: Enter and Space activate buttons, tabs and switches; tab order follows reading o | TODO |  |
+| J03 | Focus ring on everything focusable: outline:3px solid #0A0B14; outline-offset:2px; box-sha | TODO |  |
+| J04 | Skip link "SKIP TO CONTENT" (Rose bg, Ink text, mono 12px) first in tab order, jumps to #m | TODO |  |
+| J05 | Contrast: muted text on dark = #9496AC; muted text on light = #6B6660. Retired for text: # | TODO |  |
+| J06 | Minimum text 10px (mono meta), body 15px+. Tap targets 44px min on mobile | TODO |  |
+| J07 | Mobile nav below 900px: wordmark + MENU button (mono 12px, 1.5px Cream border, 44px tall)  | TODO |  |
+| J08 | Images: hero fetchpriority="high", every other image loading="lazy" decoding="async", Webf | TODO |  |
+| J09 | Motion set: parallax on [data-px] photos (factor 0.1 to 0.16), count-up numbers (1.3s ease | TODO |  |
+| J10 | Departures header, full-width Ink board, mode-neutral, no ticket props | TODO |  |
+| J11 | Type scale: page titles Playfair 800 clamp(44px, 6.4vw, 112px), line-height .9, tracking - | TODO |  |
+| J12 | Library search = big underlined headline input (3px Ink underline, Rose SEARCH → chip). St | TODO |  |
+| J13 | Story page opens with a full-bleed photo, larger title below it | TODO |  |
+| J14 | Luggage-tag cards for people: cut top corners (24px), grommet hole (20px Cream circle, 4px | TODO |  |
+| J15 | Never "currently in" anywhere. Profiles say where you know ("KNOWS COPENHAGEN"), never whe | TODO |  |
+| J16 | Sticker Passport page and Colophon page built as in the standalone (SCREENS menu → Sticker | TODO |  |
 
 ## R · Design direction changes after v8 (Nancy, 30 Sep 2026)
 

@@ -1,28 +1,30 @@
-> **HANDOFF VERSION: v8 · 28 September 2026 · shareables + completion protocol.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
 
-# TLL handoff for Claude Code · v8 · 28 September 2026
+# TLL handoff for Claude Code · v9 · 5 October 2026
 
-**Paste `CLAUDE-CODE-PROMPT.md` into Claude Code first.** Its top section is the completion protocol: every item has an ID, every ID gets a STATUS row with evidence, and a checker script catches what slips.
+**Paste `CLAUDE-CODE-PROMPT.md` into Claude Code first.** The completion protocol from v8 still applies: every item has an ID, every ID gets a STATUS row with evidence.
+
+The HTML files here are **design references**, not production code. Rebuild them in Webflow (site `69d6145cf421c777840c1e25`) with existing classes where they exist. Fidelity is **high**: colors, type, spacing and copy are final.
 
 | File | What it is |
 |---|---|
-| CLAUDE-CODE-PROMPT.md | Full instructions, protocol, parity table, build order |
-| **REQUIREMENTS.md** | **127 numbered items (A01 to I14). The contract.** |
-| **STATUS.md** | **The ledger Claude Code fills in, one row per ID, with evidence** |
-| **verify-live.mjs** | `node verify-live.mjs`: checks every live route + audits STATUS.md. Writes verify-report.md |
-| DESIGN-SPEC.md | Tokens, type, components, copy rules, group pages (§3b), directory (§3c) |
-| IMPLEMENTATION-BRIEF.md | Preservation rules, Memberstack mapping, contracts |
-| **SHAREABLES-SPEC.md** | New: cards, counting rules, share flow, privacy, The Pack |
-| CHANGES.md | What's new in v8, v7 and v6 |
-| TLL Site Prototype (standalone).html | Every site screen, clickable (SCREENS menu bottom left) |
-| **TLL Shareables (standalone).html** | New: the shareables board (pan/zoom; 06, 07, 08 are live) |
-| screens/ | 00 to 40, one file per site screen + prototype-logic.js. Footer at the end of 40 |
-| **shareables/** | New: one file per board section + shareables-logic.js |
-| TLL Map.html | Map reference. The live engine on /the-map stays |
-| circle-flags/ | 406 round SVG flags (MIT) |
+| CLAUDE-CODE-PROMPT.md | Instructions, protocol, parity table, build order (v9 section on top) |
+| **REQUIREMENTS.md** | **146 numbered items (A01 to J16). The contract.** New group J is v9 |
+| **STATUS.md** | The ledger, one row per ID, with evidence |
+| **DESIGN-SPEC-v9.md** | **New: one-object-per-job map, tokens, type scale, Departures header, luggage tag, focus ring, mobile nav, motion** |
+| DESIGN-SPEC.md | v8 spec (group pages §3b, directory §3c). v9 addendum wins on conflict |
+| IMPLEMENTATION-BRIEF.md | Preservation rules, Memberstack mapping |
+| SHAREABLES-SPEC.md | Cards, counting, share flow, privacy, The Pack |
+| **COUNCIL-REVIEW.md** | **New: five-advisor review. Freeze approved by Nancy** |
+| CHANGES.md | v9, then v8 and earlier |
+| **TLL Site Prototype 2.0 (standalone).html** | **New source of truth.** Every screen, SCREENS menu bottom left |
+| TLL Shareables (standalone).html | Shareables board |
+| **screens-v9/** | **New: 16 screenshots of the 2.0 build** |
+| screens-v8-reference/ | v8 per-screen markup, for copy and structure only. 2.0 wins on looks |
+| shareables/ | One file per board section |
+| verify-live.mjs | Route + copy checker, audits STATUS.md |
+| TLL Map.html, circle-flags/, TLL-BrandKit-v2.1.html | Map reference, 406 round flags (MIT), brand kit |
 
-Both standalone files need a connection for photos (Webflow CDN) and the map data (jsDelivr).
-
-Webflow site `69d6145cf421c777840c1e25`. Never edit the TLL Nav v1 Memberstack blocks.
+The standalone files need a connection for photos (Webflow CDN) and map data (jsDelivr).
 
 **Nancy:** ask Claude Code for STATUS.md at the end of every session. If a row says Done without a link, it isn't done.

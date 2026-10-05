@@ -1,3 +1,25 @@
+> **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
+
+# CHANGES · v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile
+
+**Folder is `tll-handoff-v9-2026-10-05`.**
+
+## New in v9
+1. **2.0 editorial look across every page.** Playfair 800 titles to 112px (hero to 186px), 64px section heads, Cream pages with Paper cards, IBM Plex Sans Condensed body, sharp 2 to 4px corners. Big underlined search; shelf-style story cards; full-bleed photo opening each story.
+2. **Departures header** replaces the boarding pass: a full-width, mode-neutral board (air, rail, sea, road). The ticket props are gone.
+3. **Luggage-tag people cards** on Travelers, the open slot and the profile header.
+4. **Accessibility pass:** real buttons, keyboard activation, focus ring, skip link, landmarks, contrast fixes (three greys retired), labelled inputs.
+5. **Mobile:** MENU dropdown under 900px, 10px text floor, overflow fixes.
+6. **Motion:** route line drawing on the home map joins parallax, count-up, stamps and stickers. Everything respects reduced motion.
+7. **Performance:** lazy images, hero priority.
+8. **Copy fixes:** "currently in" removed (where you know, never where you are); Nancy's line reads "ABROAD SINCE 2018 · LIVES IN DENMARK".
+9. **Sticker Passport + Colophon** pages are in the standalone and in REQUIREMENTS (J16).
+10. **screens-v9/:** 16 screenshots of the 2.0 build.
+11. **Approved by Nancy (5 October 2026):** the feature freeze until 50 rows are Done, and one open slot per grid until the roster has three real people.
+12. **COUNCIL-REVIEW.md:** five-advisor review of the build and the feature freeze it recommends.
+
+---
+
 # CHANGES · v8 · 28 September 2026 · shareables + completion protocol
 
 **Folder is `tll-handoff-v8-2026-09-28`.** Every doc starts with the v8 version line.

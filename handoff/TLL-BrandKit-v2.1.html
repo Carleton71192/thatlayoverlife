@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>That Layover Life — Brand Kit + Strategy v2.1</title>
+<style>
+  :root {
+    --tll-midnight: #0D0F1A;
+    --tll-midnight-2: #1A1A2E;
+    --tll-maldives: #00C9C8;
+    --tll-rose: #F0507A;
+    --tll-rose-dark: #D63859;
+    --tll-cream: #F7F1E8;
+    --tll-paper: #FDF9F3;
+    --tll-text: #1A1A1A;
+    --tll-text-secondary: #555;
+    --tll-border: #E8E2D6;
+    --tll-mid: #6B6660;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--tll-paper);
+    color: var(--tll-text);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  h1, h2, h3, h4 { font-family: 'Syne', 'DM Sans', serif; font-weight: 800; letter-spacing: -0.01em; }
+
+  /* COVER */
+  .cover {
+    background: var(--tll-midnight);
+    color: var(--tll-cream);
+    min-height: 100vh;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: ""; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, var(--tll-rose) 0%, transparent 70%);
+    opacity: 0.25;
+  }
+  .cover::after {
+    content: ""; position: absolute; bottom: -150px; left: -150px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, var(--tll-maldives) 0%, transparent 70%);
+    opacity: 0.2;
+  }
+  .cover-inner { position: relative; z-index: 2; max-width: 1100px; }
+  .cover-eyebrow {
+    font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--tll-maldives); margin-bottom: 40px; font-weight: 600;
+  }
+  .cover-title {
+    font-size: 96px; line-height: 0.95; margin-bottom: 24px;
+    color: var(--tll-cream);
+  }
+  .cover-title em { font-style: italic; color: var(--tll-rose); }
+  .cover-tagline {
+    font-size: 28px; line-height: 1.4; max-width: 700px; margin-bottom: 60px;
+    font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--tll-cream);
+  }
+  .cover-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 80px; }
+  .cover-stat-num { font-family: 'Syne', serif; font-size: 36px; font-weight: 800; color: var(--tll-maldives); margin-bottom: 8px; }
+  .cover-stat-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tll-cream); opacity: 0.8; line-height: 1.4; }
+
+  /* TABLE OF CONTENTS */
+  .toc { background: var(--tll-midnight-2); color: var(--tll-cream); padding: 80px 60px; }
+  .toc-inner { max-width: 1100px; margin: 0 auto; }
+  .toc h2 { font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--tll-rose); margin-bottom: 32px; font-weight: 600; }
+  .toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 48px; }
+  .toc-grid a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid rgba(247,241,232,0.1);
+    color: var(--tll-cream); text-decoration: none; font-size: 16px;
+    transition: all 0.2s;
+  }
+  .toc-grid a:hover { color: var(--tll-maldives); border-bottom-color: var(--tll-maldives); }
+  .toc-num { font-family: 'Syne', serif; font-weight: 800; color: var(--tll-rose); }
+
+  /* SECTIONS */
+  .section { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+  .section-header { margin-bottom: 60px; padding-bottom: 24px; border-bottom: 3px solid var(--tll-midnight); }
+  .section-num { font-family: 'Syne', serif; font-size: 14px; font-weight: 800; letter-spacing: 4px; color: var(--tll-rose); margin-bottom: 12px; }
+  .section-title { font-size: 56px; line-height: 1.05; color: var(--tll-midnight); margin-bottom: 16px; }
+  .section-lede { font-size: 19px; line-height: 1.5; color: var(--tll-text-secondary); max-width: 800px; }
+
+  h2.h2 { font-size: 28px; color: var(--tll-midnight); margin: 48px 0 16px; line-height: 1.2; }
+  h3.h3 { font-size: 20px; color: var(--tll-midnight); margin: 32px 0 12px; line-height: 1.3; }
+  p { margin-bottom: 16px; max-width: 800px; }
+  ul, ol { margin: 0 0 16px 24px; }
+  li { margin-bottom: 8px; max-width: 800px; }
+  strong { color: var(--tll-midnight); }
+  em { font-style: italic; }
+
+  /* CALLOUTS */
+  .callout {
+    background: var(--tll-cream);
+    border-left: 4px solid var(--tll-rose);
+    padding: 24px 32px;
+    margin: 32px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .callout.maldives { border-left-color: var(--tll-maldives); }
+  .callout.midnight { background: var(--tll-midnight); color: var(--tll-cream); border-left-color: var(--tll-maldives); }
+  .callout.midnight strong { color: var(--tll-maldives); }
+  .callout-title { font-family: 'Syne', serif; font-weight: 800; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--tll-rose); margin-bottom: 8px; }
+  .callout.midnight .callout-title { color: var(--tll-maldives); }
+
+  /* COLOR SWATCHES */
+  .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+  .swatch { border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .swatch-color { height: 140px; }
+  .swatch-info { padding: 16px 20px; background: white; }
+  .swatch-name { font-family: 'Syne', serif; font-weight: 800; font-size: 16px; color: var(--tll-midnight); margin-bottom: 4px; }
+  .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--tll-text-secondary); }
+  .swatch-use { font-size: 13px; color: var(--tll-mid); margin-top: 6px; line-height: 1.4; }
+
+  /* TWO-COLUMN */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 32px 0; }
+  .never-card { background: var(--tll-cream); padding: 32px; border-radius: 12px; }
+  .never-card.always { background: var(--tll-midnight); color: var(--tll-cream); }
+  .never-card h3 { color: var(--tll-rose); margin-top: 0; }
+  .never-card.always h3 { color: var(--tll-maldives); }
+  .never-card ul { margin-left: 20px; }
+  .never-card li { font-size: 14px; }
+
+  /* USP CARDS */
+  .usp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+  .usp-card {
+    background: white; border: 1px solid var(--tll-border); border-radius: 12px;
+    padding: 28px; transition: all 0.2s;
+  }
+  .usp-card:hover { border-color: var(--tll-maldives); transform: translateY(-2px); }
+  .usp-num {
+    font-family: 'Syne', serif; font-size: 14px; font-weight: 800; letter-spacing: 2px;
+    color: var(--tll-rose); margin-bottom: 8px;
+  }
+  .usp-title { font-family: 'Syne', serif; font-weight: 800; font-size: 18px; margin-bottom: 12px; color: var(--tll-midnight); }
+  .usp-body { font-size: 14px; line-height: 1.6; color: var(--tll-text-secondary); }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  th { background: var(--tll-midnight); color: var(--tll-cream); padding: 14px 16px; text-align: left; font-family: 'Syne', serif; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  td { padding: 14px 16px; border-bottom: 1px solid var(--tll-border); font-size: 14px; }
+  tr:nth-child(even) td { background: var(--tll-cream); }
+
+  /* FOOTER */
+  .footer { background: var(--tll-midnight); color: var(--tll-cream); padding: 60px; text-align: center; }
+  .footer-tagline { font-family: 'Syne', serif; font-size: 36px; font-weight: 800; color: var(--tll-rose); margin-bottom: 16px; }
+  .footer-meta { font-size: 13px; opacity: 0.7; letter-spacing: 1px; }
+
+  /* PRINT */
+  @media print { .section { page-break-after: always; } }
+</style>
+</head>
+<body>
+
+<!-- ============= COVER ============= -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="cover-eyebrow">Brand Kit + Strategy · v2.1 · September 2026</div>
+    <h1 class="cover-title">That<br>Layover<br><em>Life.</em></h1>
+    <p class="cover-tagline">A travel magazine written by the people who took the trips. A storytelling engine for repeat travelers, expats, and anyone who turns a six-hour connection into a story worth telling.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-num">87</div>
+        <div class="cover-stat-label">Countries on the founder's board</div>
+      </div>
+      <div>
+        <div class="cover-stat-num">7/7</div>
+        <div class="cover-stat-label">Continents marathoned</div>
+      </div>
+      <div>
+        <div class="cover-stat-num">∞</div>
+        <div class="cover-stat-label">Stories the algorithm never told</div>
+      </div>
+      <div>
+        <div class="cover-stat-num">1</div>
+        <div class="cover-stat-label">Samoyed in supervisory role</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= TOC ============= -->
+<section class="toc">
+  <div class="toc-inner">
+    <h2>Contents</h2>
+    <div class="toc-grid">
+      <a href="#s01"><span>The Story</span><span class="toc-num">01</span></a>
+      <a href="#s02"><span>Brand Architecture</span><span class="toc-num">02</span></a>
+      <a href="#s03"><span>Brand Voice</span><span class="toc-num">03</span></a>
+      <a href="#s04"><span>Visual Identity</span><span class="toc-num">04</span></a>
+      <a href="#s05"><span>Messaging &amp; Taglines</span><span class="toc-num">05</span></a>
+      <a href="#s06"><span>USPs &amp; Value Menu</span><span class="toc-num">06</span></a>
+      <a href="#s07"><span>Audience</span><span class="toc-num">07</span></a>
+      <a href="#s08"><span>Content Pillars</span><span class="toc-num">08</span></a>
+      <a href="#s09"><span>Never / Always</span><span class="toc-num">09</span></a>
+      <a href="#s10"><span>LinkedIn Strategy</span><span class="toc-num">10</span></a>
+      <a href="#s11"><span>KPIs &amp; Benchmarks</span><span class="toc-num">11</span></a>
+      <a href="#s12"><span>To-Do &amp; Versions</span><span class="toc-num">12</span></a>
+      <a href="#s13"><span>Master Content Rules</span><span class="toc-num">★</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 01 STORY ============= -->
+<section class="section" id="s01">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <h1 class="section-title">The Story</h1>
+    <p class="section-lede">Why TLL exists. Who it serves. What it believes.</p>
+  </div>
+
+  <h2 class="h2">Origin</h2>
+  <p>That Layover Life started because, 87 countries in, I still had not found a travel platform that told the truth. Not the algorithm version. The real one. The 6am food market in Accra. The cab driver who named three Portlanders he had met. The moment you land somewhere and feel like you are the last person to find out about a party everyone else has known about for years.</p>
+  <p>That is what we are building. A home for stories that actually happened.</p>
+
+  <h2 class="h2">Positioning Statement</h2>
+  <div class="callout midnight">
+    <p style="margin:0; font-family: 'Syne', serif; font-size: 22px; line-height: 1.4; color: var(--tll-cream);">TLL is a travel storytelling platform for repeat travelers, expats, and dog-traveling explorers, and a community engine that turns their stories into the platform itself. <strong>Real places, by the people who actually went.</strong> <em style="font-size:14px;color:#067A79">[v2.1: working line, replaces the retired tagline. Confirm.]</em></p>
+  </div>
+
+  <h2 class="h2">What We Believe</h2>
+  <ul>
+    <li><strong>Layovers are not problems to survive.</strong> They are the most concentrated cultural experience in travel.</li>
+    <li><strong>The truth about a place lives in the cab driver, the 6am market, and the cafe nobody Instagrammed yet.</strong></li>
+    <li><strong>The best stories rarely happen on your itinerary.</strong> They happen when you order the local thing and stay long enough for the world to introduce itself.</li>
+    <li><strong>Travel content has a voice problem.</strong> Lonely Planet had the bones. The algorithm-era successors lost the voice. TLL brings the voice back.</li>
+    <li><strong>The community is the platform.</strong> Our readers are also our writers, our scouts, our editors. We are an engine for their stories, not a content factory.</li>
+  </ul>
+
+  <h2 class="h2">Three Questions Anchor</h2>
+  <div class="callout">
+    <div class="callout-title">Who specifically are we for?</div>
+    <p>Repeat travelers (30+ countries), expats, layover hackers, dog-traveling explorers, adventure-curious professionals with money and time, and digital nomads building portable lives. Not first-time tourists. Not bucket-listers. Not algorithm-fed travelers shopping for the next hidden gem.</p>
+  </div>
+  <div class="callout maldives">
+    <div class="callout-title" style="color: var(--tll-maldives);">What do we believe that competitors do not?</div>
+    <p>That community-powered storytelling beats editorial-controlled storytelling every time. That a 6-hour Istanbul layover is more interesting than a 7-day Istanbul itinerary. That repeat travelers are starving for honest, vivid, slightly unhinged content from people who have actually been there. That Magnus Waffles is funnier than your average influencer dog and we should not pretend otherwise.</p>
+  </div>
+  <div class="callout">
+    <div class="callout-title">What can we actually deliver?</div>
+    <p>Honest, vivid, character-led travel intel. Stories from named travelers about specific places at specific times. A platform that publishes what your friend would tell you, not what the SEO calendar requires. A community where your story is the content.</p>
+  </div>
+</section>
+
+<!-- ============= 02 ARCHITECTURE ============= -->
+<section class="section" id="s02">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <h1 class="section-title">Brand Architecture</h1>
+    <p class="section-lede">How TLL fits into the Carleton brand family.</p>
+  </div>
+
+  <h2 class="h2">Ownership &amp; Legal Structure</h2>
+  <div class="callout midnight">
+    <p style="margin:0;"><strong>Nan C LLC</strong> (Nancy's company)<br>
+    &nbsp;&nbsp;&nbsp;└── <strong>The Brand Collective</strong> (TBC — holding group)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <strong>That Layover Life</strong> (TLL — this brand)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <strong>Lub Bub</strong> (LB)</p>
+  </div>
+  <p>TLL is owned by The Brand Collective, which is owned by Nan C LLC. TBC is the holding group for Nancy's owned brands and for outside client consulting work. TLL and LubBub are sister brands under TBC.</p>
+
+  <h2 class="h2">The Carleton Brand Family</h2>
+  <p>TLL is one of four brands in the Carleton family — the brands Nancy actually owns through Nan C LLC:</p>
+  <table>
+    <tr><th>Brand</th><th>Role in family</th><th>Voice register</th></tr>
+    <tr><td><strong>Nancy Carleton</strong></td><td>Personal flagship — the human, the founder, professional brand</td><td>Group chat from your sharpest friend</td></tr>
+    <tr><td><strong>The Brand Collective</strong></td><td>Holding group + part-time client consulting</td><td>Vanity Fair meets Klarna, elder-millennial warmth</td></tr>
+    <tr><td><strong>That Layover Life</strong></td><td>Travel storytelling platform + community engine</td><td>Lonely Planet meets Klarna meets a National Park Service sign</td></tr>
+    <tr><td><strong>Lub Bub</strong></td><td>Free global marketing for cause-driven orgs</td><td>Warm, exciting, community-building</td></tr>
+  </table>
+
+  <h2 class="h2">Separately: Nancy's Full-Time Employer (Not Carleton Family)</h2>
+  <p>The Damgaard family is Nancy's full-time employer, not part of the Carleton brand family. These brands are <strong>employer IP, not Nancy's IP</strong>. They are listed here only to ensure clean separation:</p>
+  <table>
+    <tr><th>Brand</th><th>Relationship to Nancy</th></tr>
+    <tr><td><strong>Damgaard Group (DG)</strong></td><td>Full-time employer — pharma engineering parent company</td></tr>
+    <tr><td><strong>Damgaard Solutions (DS)</strong></td><td>Subsidiary of DG — Nancy runs marketing</td></tr>
+    <tr><td><strong>Catalyst Reactivate (CR)</strong></td><td>Subsidiary of DG — Nancy transitioning toward CR lead</td></tr>
+  </table>
+  <p>TLL has no business relationship, no shared assets, no cross-promotion, and no voice overlap with the Damgaard family. Strict separation.</p>
+
+  <h2 class="h2">TLL's Relationship to Other Carleton Brands</h2>
+  <ul>
+    <li><strong>Nancy Carleton ↔ TLL:</strong> Same human, two surfaces. Nancy is the founder, voice anchor, and primary writer. Travel content lives on TLL. Career, marketing, and brand thinking live on Nancy. Sometimes they cross over (Magnus appears on both; cultural intelligence posts can run on either).</li>
+    <li><strong>TLL ↔ TBC:</strong> Direct sister brands under TBC's holding structure. TBC is also the strongest portfolio piece for "we built brands" credibility — TBC built TLL. Travel-brand clients hiring TBC see TLL as proof.</li>
+    <li><strong>TLL ↔ Lub Bub:</strong> Sister brands under TBC. Aligned in values (community-powered, free at point of access, storytelling-first). Different audiences. Occasional cross-promotion possible (e.g., dog rescue stories with travel-with-pets community).</li>
+    <li><strong>TLL ↔ Damgaard family:</strong> No relationship. Strict separation.</li>
+  </ul>
+
+  <h2 class="h2">Magnus Waffles in the Architecture</h2>
+  <p><strong>Magnus is a recurring TLL character, not the brand.</strong> He shows up as scout, supervisor, co-pilot, and emotional support fluffball. He has a content pillar (Paw Passport) but he is not the platform's identity. The platform's identity is the storytelling engine. Magnus is the breakout star who appears on the marquee but does not run the theater.</p>
+</section>
+
+<!-- ============= 03 VOICE ============= -->
+<section class="section" id="s03">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <h1 class="section-title">Brand Voice</h1>
+    <p class="section-lede">How TLL sounds. The signatures. The rules. The reference moves that anyone using this kit can copy.</p>
+  </div>
+
+  <h2 class="h2">The Tone in One Sentence</h2>
+  <div class="callout midnight">
+    <p style="margin:0; font-size:18px;">Lonely Planet meets Klarna meets a National Park Service sign. Written by the smartest, most well-traveled friend in your group chat, who happens to also be a comedy writer, who has not slept enough.</p>
+  </div>
+
+  <h2 class="h2">The Five Voice Signatures</h2>
+  <p>These are the moves that make TLL sound like TLL. Anyone writing TLL copy should be able to point to which signature they are using.</p>
+
+  <h3 class="h3">1. The dry parenthetical aside</h3>
+  <p>Used to wink at the reader without breaking the narrative. Often deflates a serious sentence with a comedic specific.</p>
+  <div class="callout">
+    <p style="margin:0;"><em>"Every March, fifteen thousand cranes <strong>(the bird, not the construction equipment)</strong> migrate to Lake Hornborgasjön."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Jay carried my water <strong>(because husbands)</strong>."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Kasper drove a 5,000-passenger van <strong>(it was big)</strong>."</em></p>
+  </div>
+
+  <h3 class="h3">2. The "I am aware of how this sounds" preempt</h3>
+  <p>Acknowledges the absurdity before the reader can. Disarms and pulls them in.</p>
+  <div class="callout">
+    <p style="margin:0;"><em>"Sophisticated travel planning, truly."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"I am aware of how this sounds. Stay with me."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Possibly it was."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"The universe was off its meds and showing off."</em></p>
+  </div>
+
+  <h3 class="h3">3. Named characters with one defining detail</h3>
+  <p>Real people with one line that makes them stick. Never generic.</p>
+  <div class="callout">
+    <p style="margin:0;"><em>"Sofie, a Spanish toddler maybe two years old whose Spanish was roughly at my level."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Tanu price-checked every souvenir stand in the country with Olympic-level negotiator energy."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"My guesthouse was run by a former AstraZeneca scientist who covered, in one check-in conversation, Nordic business culture and the ethics of moose hunting."</em></p>
+  </div>
+
+  <h3 class="h3">4. The signed sign-off</h3>
+  <p>Every long post ends with a signed sign-off that is a mini emotional summary. Always in voice. Always specific.</p>
+  <div class="callout">
+    <p style="margin:0;"><em>"Sunburned, well-fed, slightly hibiscus-stained, <strong>Nancy &amp; Jay</strong>"</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Tan, fed, and full of hvala, <strong>Nancy</strong>"</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Defrosted, slightly improved, <strong>Nancy</strong>"</em></p>
+  </div>
+
+  <h3 class="h3">5. Specific food, animals, and sensory anchors</h3>
+  <p>Every TLL post has at least three concrete sensory anchors — a specific food, a specific animal, a specific weather/sound/smell. Generalities are the enemy.</p>
+  <div class="callout">
+    <p style="margin:0;"><em>"Veggie curry, banku, fufu, hibiscus juice, and a fresh coconut."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"Mangalitsa fillet to our carnivores."</em></p>
+    <p style="margin:8px 0 0 0;"><em>"A circle of kids drumming and singing for Easter sent the sound bouncing through the valley like the mountain had agreed to acoustics."</em></p>
+  </div>
+
+  <h2 class="h2">The Hashtag Energy (Non-Negotiable)</h2>
+  <p>TLL hashtags are flag emoji + 5–10 hashtags including 2–3 unhinged ones. The unhinged hashtags are the brand. Examples that have already worked:</p>
+  <ul>
+    <li>#HibiscusIsAPersonality</li>
+    <li>#UkrainianLingerieWasNotOnMyBingoCard</li>
+    <li>#EligibleBachelorMoose</li>
+    <li>#CranesNotConstruction</li>
+    <li>#ThirtySevenHourPropaganda</li>
+    <li>#SemiTrucksInReverse</li>
+    <li>#SofieTheTravelAgent</li>
+  </ul>
+  <p>If a hashtag could appear on any travel brand's post, it is not a TLL hashtag. The TLL hashtag is one your grandma would call you about.</p>
+</section>
+
+<!-- ============= 04 VISUAL ============= -->
+<section class="section" id="s04">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <h1 class="section-title">Visual Identity</h1>
+    <p class="section-lede">Color, typography, photo direction, and the system that holds it together.</p>
+  </div>
+
+  <h2 class="h2">Color Palette</h2>
+  <div class="color-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background: #0A0B14;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Midnight</div>
+        <div class="swatch-hex">#0A0B14 <span style="font-size:11px;color:#067A79">[v2.1: was #0D0F1A. The site and the v8 handoff use #0A0B14. Confirm.]</span></div>
+        <div class="swatch-use">Primary background. Headers. Dark mode hero areas.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #00C9C8;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Maldives Teal</div>
+        <div class="swatch-hex">#00C9C8</div>
+        <div class="swatch-use">Primary accent on Midnight only. On Paper or Cream it is 1.97:1 and fails at every size. For text on light surfaces use Deep Teal #067A79 (4.92:1 on Paper, 4.60:1 on Cream). [v2.1]</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #F0507A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Sunset Rose</div>
+        <div class="swatch-hex">#F0507A</div>
+        <div class="swatch-use">Secondary accent. Pull quotes, the italic accent word, CTA buttons, logo accents. On Paper it is 3.26:1, so headline size only. Small rose text uses #C8325B (4.93:1). Button labels: Ink on Rose, or white on #D63859. [v2.1]</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #F7F1E8;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Cream</div>
+        <div class="swatch-hex">#F7F1E8</div>
+        <div class="swatch-use">Light background. Card surfaces. Type on midnight.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #FDF9F3;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Paper</div>
+        <div class="swatch-hex">#FDF9F3</div>
+        <div class="swatch-use">Default body background. Long-form reading surfaces.</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background: #1A1A1A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-hex">#1A1A1A</div>
+        <div class="swatch-use">Body type. Headlines on light surfaces.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h2">Typography</h2>
+  <h3 class="h3">Playfair Display 800 (Display) <span style="font-size:11px;color:#067A79">[v2.1: was Syne 800]</span></h3>
+  <p>Used for all H1/H2 headers, pull quotes and stat numbers. Heavy weight only. Never use anything below 700. The italic accent word in a headline is Playfair italic.</p>
+  <h3 class="h3">IBM Plex Sans Condensed (Body) <span style="font-size:11px;color:#067A79">[v2.1: was DM Sans]</span></h3>
+  <p>Used for body copy, navigation, captions. Regular (400) and Medium (500) weights. Bold (700) reserved for emphasis.</p>
+  <h3 class="h3">JetBrains Mono (Meta) <span style="font-size:11px;color:#067A79">[v2.1: new]</span></h3>
+  <p>Eyebrows, ledger labels, dates, counts and hashtags. Uppercase with 2 to 4px letter spacing.</p>
+  <h3 class="h3">Syne 800 (Wordmark only)</h3>
+  <p>Syne appears in the wordmark and the TLL icon mark. Nowhere else. [v2.1]</p>
+  <div class="callout maldives">
+    <div class="callout-title" style="color: var(--tll-maldives);">Type rule</div>
+    <p style="margin:0;">Three fonts with three jobs: Playfair for display, Plex Condensed for body, JetBrains Mono for meta. Syne only in the wordmark. Never a fifth. [v2.1]</p>
+  </div>
+
+  <h2 class="h2">Logo System</h2>
+  <p>Wordmark format: "that LAYOVER LIFE." with weight contrast. "that" lowercase + light weight. "LAYOVER" uppercase + heavy. "LIFE." uppercase + heavy + period as full stop.</p>
+  <ul>
+    <li><strong>Primary:</strong> Cream wordmark on Midnight background</li>
+    <li><strong>Inverse:</strong> Midnight wordmark on Cream background</li>
+    <li><strong>Rose variant:</strong> Cream wordmark on Sunset Rose background (for accents only)</li>
+    <li><strong>Icon mark:</strong> "TLL" in Syne 800 inside a Sunset Rose circle (avatar/favicon use)</li>
+  </ul>
+
+  <h2 class="h2">Photography Direction</h2>
+  <h3 class="h3">Always show</h3>
+  <ul>
+    <li>Specific places at specific times — sunrise market, 6am cafe, Tuesday afternoon hike</li>
+    <li>Real travelers, named — including the storyteller themselves</li>
+    <li>Food, animals, and sensory specifics</li>
+    <li>Imperfect moments — windswept hair, real light, slight motion blur</li>
+    <li>The texture of place — peeling paint, market signs, hand-painted menus</li>
+  </ul>
+  <h3 class="h3">Never use</h3>
+  <ul>
+    <li>Stock photography. Ever.</li>
+    <li>Drone shots that could be anywhere</li>
+    <li>Polished influencer-style poses</li>
+    <li>Generic "wanderlust" silhouettes</li>
+    <li>Heavily filtered or over-saturated edits</li>
+    <li>Photos without a story behind them</li>
+  </ul>
+</section>
+
+<!-- ============= 05 MESSAGING ============= -->
+<section class="section" id="s05">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <h1 class="section-title">Messaging &amp; Taglines</h1>
+    <p class="section-lede">The lines that do the heavy lifting. Locked, working, and rotating.</p>
+  </div>
+
+  <h2 class="h2">Primary Tagline</h2>
+  <div class="callout midnight">
+    <p style="margin:0; font-family: 'Syne', serif; font-size: 32px; font-weight: 800; color: var(--tll-rose);">Real places, by the people who actually went.</p>
+    <p style="margin:12px 0 0; font-size:13px; color: var(--tll-cream);">[v2.1] Working line, taken from the live home page H1. Confirm as the locked tagline or supply another.</p>
+  </div>
+  <h3 class="h3">Retired taglines (do not reuse)</h3>
+  <ul>
+    <li>"The world is your layover." Retired 28 September 2026 per the v8 site handoff. It stays out of new copy, graphics and bios.</li>
+  </ul>
+
+  <h2 class="h2">Positioning Statement (Locked)</h2>
+  <p>A travel storytelling platform for repeat travelers, expats, and anyone who turns a six-hour connection into a story worth telling. We are an engine for your stories, not a content factory.</p>
+
+  <h2 class="h2">30-Second Pitch</h2>
+  <p>That Layover Life is a travel platform for people who have already been everywhere and still feel like they have not seen anything yet. We publish honest, vivid, character-led travel stories from named travelers about specific places — and we are building toward a community where your story is the content. Currently free. Currently growing. Currently looking for your story from that 9-hour layover in Doha.</p>
+
+  <h2 class="h2">Working Hooks (Test, Refine, Swap)</h2>
+  <ul>
+    <li><em>"The world is your layover."</em> retired, see above</li>
+    <li><em>"Stories that did not get edited out for the algorithm."</em> — content positioning</li>
+    <li><em>"For travelers who already have 30 countries on the board and still feel like they have not seen anything yet."</em> — audience-specific</li>
+    <li><em>"Your story is the content."</em> — community angle</li>
+    <li><em>"A home for stories that actually happened."</em> — origin echo</li>
+  </ul>
+</section>
+
+<!-- ============= 06 USPs ============= -->
+<section class="section" id="s06">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <h1 class="section-title">USPs &amp; Value Menu</h1>
+    <p class="section-lede">What TLL offers that no other travel brand does. Pain-first, outcome-led.</p>
+  </div>
+
+  <h2 class="h2">Five USPs</h2>
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-num">USP 01</div>
+      <div class="usp-title">Voice over template</div>
+      <div class="usp-body">Travel content has become algorithm-shaped sludge. TLL has voice — specific, observational, slightly unhinged. Every post sounds like a real person wrote it because one did.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">USP 02</div>
+      <div class="usp-title">Community is the platform</div>
+      <div class="usp-body">Most travel publishers are one-to-many: editor → audience. TLL is many-to-many: travelers → audience → travelers. Your story is the content.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">USP 03</div>
+      <div class="usp-title">Layover-first lens</div>
+      <div class="usp-body">A 6-hour layover is more interesting than a 7-day itinerary. TLL specializes in the time windows other platforms ignore.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">USP 04</div>
+      <div class="usp-title">Honest about the unexpected</div>
+      <div class="usp-body">We tell you what actually happened. The chargers that did not work. The 1990s saxophone Easter brunch. The casting director three feet away. Truth over polish.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">USP 05</div>
+      <div class="usp-title">Magnus Waffles supervises</div>
+      <div class="usp-body">A fluffball Samoyed scout with content pillars and opinions. He is not the brand. He is the breakout character. There is a difference, and yes it matters strategically.</div>
+    </div>
+  </div>
+
+  <h2 class="h2">Value Menu (Pains We Solve)</h2>
+  <p>What readers and contributors get from TLL — written as the pain they feel before they find us.</p>
+  <table>
+    <tr><th>Pain</th><th>What TLL delivers</th></tr>
+    <tr><td>"Every travel article sounds the same."</td><td>Voice-led storytelling that reads like a person, not a template.</td></tr>
+    <tr><td>"I have a great travel story but no platform for it."</td><td>An engine for your story, with a community that wants to read it.</td></tr>
+    <tr><td>"I have a 6-hour layover and zero ideas."</td><td>Layover-specific guides written by people who have actually done it.</td></tr>
+    <tr><td>"I cannot tell which travel content is real anymore."</td><td>Named travelers, specific moments, honest about the chaos.</td></tr>
+    <tr><td>"I travel with my dog and most travel content ignores me."</td><td>Paw Passport content for the dog-traveling explorer community.</td></tr>
+  </table>
+</section>
+
+<!-- ============= 07 AUDIENCE ============= -->
+<section class="section" id="s07">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <h1 class="section-title">Audience</h1>
+    <p class="section-lede">Four segments, one platform. Different content, same voice.</p>
+  </div>
+
+  <h2 class="h2">The Four Segments</h2>
+
+  <h3 class="h3">Segment 1: Repeat Travelers (the core)</h3>
+  <ul>
+    <li><strong>Profile:</strong> 30+ countries, 30s–50s, professional or self-employed, treats travel as identity not vacation</li>
+    <li><strong>Pain:</strong> Travel content has stopped surprising them. They want voice, not lists.</li>
+    <li><strong>Content fit:</strong> Stories from the road, cultural intelligence, layover guides, the unexpected encounters</li>
+    <li><strong>Where they are:</strong> LinkedIn, Substack, expat Facebook groups, Twitter/X (still)</li>
+  </ul>
+
+  <h3 class="h3">Segment 2: Adventure-Curious Professionals</h3>
+  <ul>
+    <li><strong>Profile:</strong> 35–55, has money + 4+ weeks vacation, wants meaningful travel but is time-constrained</li>
+    <li><strong>Pain:</strong> Everyone tells them the same 12 destinations. They want depth not breadth.</li>
+    <li><strong>Content fit:</strong> "Why this place is worth your one big trip" angle, cultural depth, slow-travel reframes</li>
+    <li><strong>Where they are:</strong> LinkedIn, NYTimes Travel, Outside Magazine, premium newsletters</li>
+  </ul>
+
+  <h3 class="h3">Segment 3: Younger Digital Nomads (20s–30s)</h3>
+  <ul>
+    <li><strong>Profile:</strong> Building portable lives, work-from-anywhere, 20s–30s, infrastructure-curious</li>
+    <li><strong>Pain:</strong> "Best digital nomad city" lists are saturated and lying. They want infrastructure intel.</li>
+    <li><strong>Content fit:</strong> Travel logistics, EV charging, visa specifics, real wifi reviews, hotel-as-office takes</li>
+    <li><strong>Where they are:</strong> Instagram, TikTok, Reddit, niche Discord servers, Nomadlist</li>
+  </ul>
+
+  <h3 class="h3">Segment 4: Travel-with-Pets Community</h3>
+  <ul>
+    <li><strong>Profile:</strong> Dog-traveling explorers (especially large breeds), engaged niche, very loyal</li>
+    <li><strong>Pain:</strong> Most travel content ignores them. They need real logistics for real pets.</li>
+    <li><strong>Content fit:</strong> Paw Passport pillar, Magnus content, EU pet travel rules, large-dog hotel reviews</li>
+    <li><strong>Where they are:</strong> Instagram, Facebook groups (Samoyed community especially), Pinterest</li>
+  </ul>
+
+  <h2 class="h2">Cross-Segment Threads</h2>
+  <p>Some content threads serve multiple segments simultaneously. These are the most efficient TLL posts.</p>
+  <ul>
+    <li><strong>Magnus content</strong> serves Segment 4 directly and Segments 1–3 as personality glue</li>
+    <li><strong>Cultural intelligence posts</strong> (the Sweden 37-hour-week piece) serve Segments 1–3 across feeds</li>
+    <li><strong>Layover guides</strong> are specifically Segment 1 + 3</li>
+  </ul>
+</section>
+
+<!-- ============= 08 CONTENT PILLARS ============= -->
+<section class="section" id="s08">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <h1 class="section-title">Content Pillars</h1>
+    <p class="section-lede">What TLL publishes. Five pillars on rotation. Built for community submission as well as founder voice.</p>
+  </div>
+
+  <h2 class="h2">The Five Pillars</h2>
+
+  <h3 class="h3">Pillar 1: Stories From the Road (long-form)</h3>
+  <p>The flagship. Long-form posts about specific places at specific times. 300–700 words for social, 800–2000 for blog. Always character-led. Always with sensory anchors. Always signed off.</p>
+  <p><strong>Recent examples:</strong> Ghana Easter, Montenegro retreat, Sweden cranes.</p>
+  <p><strong>Community version:</strong> "Submit your story." Curated and lightly edited by TLL editorial. Always credited to the contributor.</p>
+
+  <h3 class="h3">Pillar 2: Layover Guides</h3>
+  <p>Specific city + specific time window. "A 6-hour Budva layover guide." "What to do with 9 hours in Doha." Practical, voice-led, with named recommendations from named people.</p>
+
+  <h3 class="h3">Pillar 3: Travel Logistics &amp; Infrastructure</h3>
+  <p>Visas, AHCs, EV charging, real wifi, large-dog-friendly hotels, customs surprises. The unsexy intel that saves trips. Honest about what does not work.</p>
+
+  <h3 class="h3">Pillar 4: Paw Passport (Magnus + Dog Travel)</h3>
+  <p>Magnus-led content. Dog travel logistics. EU pet travel rules. Hotels that actually welcome large dogs. Border crossing tips. Reads as personality content but delivers real intel.</p>
+
+  <h3 class="h3">Pillar 5: Cultural Intelligence</h3>
+  <p>What travel teaches about people, work, and how the world actually operates. The Sweden 37-hour-work-week post is the prototype. Crosses over beautifully into LinkedIn-Nancy territory.</p>
+
+  <h2 class="h2">Community Submissions: The Engine</h2>
+  <div class="callout maldives">
+    <div class="callout-title" style="color: var(--tll-maldives);">The strategic core</div>
+    <p style="margin:0;">TLL is not just a publisher. It is an engine for other travelers' stories. Every pillar above accepts community submissions. Every contributor is named, credited, and given platform. The platform's growth is directly tied to how many people feel safe and proud to send us their story.</p>
+  </div>
+
+  <h3 class="h3">Submission flow (to build)</h3>
+  <ul>
+    <li>Simple submission form on the website (5 fields max)</li>
+    <li>TLL editorial review (light edit, voice-preserving)</li>
+    <li>Publication with full credit + contributor profile link</li>
+    <li>Social amplification across TLL channels</li>
+    <li>Contributor receives a TLL contributor badge / community status</li>
+  </ul>
+
+  <h3 class="h3">Editorial principles for community content</h3>
+  <ul>
+    <li>Preserve the contributor's voice. Do not rewrite into TLL house style.</li>
+    <li>Light edit only — clarity, structure, factual checks. Never tone-flatten.</li>
+    <li>Add a TLL editor's note at the top if context helps the reader, but do not overshadow the storyteller.</li>
+    <li>Always name the contributor at the top of the piece, with a brief bio line.</li>
+  </ul>
+</section>
+
+<!-- ============= 09 NEVER / ALWAYS ============= -->
+<section class="section" id="s09">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <h1 class="section-title">Never / Always</h1>
+    <p class="section-lede">The non-negotiables. Anyone writing TLL copy should be able to recite these.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="never-card">
+      <h3>Never</h3>
+      <ul>
+        <li>Em dashes (Nancy's standing rule)</li>
+        <li>Generic travel cliches: "wanderlust," "hidden gems," "off the beaten path," "bucket list"</li>
+        <li>Stock photography</li>
+        <li>Passive voice</li>
+        <li>Long-winded paragraphs when a sentence will do</li>
+        <li>Polished influencer voice</li>
+        <li>Calling people "employees" — use "people," "team," "friends"</li>
+        <li>Generic AI phrasing — if it sounds like a template, it isn't TLL</li>
+        <li>"Casual and clean" rewrites — TLL is funny, weird, specific</li>
+        <li>Mean humor — laugh with the world, not at it</li>
+        <li>Forced takeaways — let the moment be the lesson</li>
+        <li>Sounding too "written"</li>
+        <li>[v2.1] The tics "honestly", "look" and "anyway" as voice markers. They are not in the kit signatures and they read as filler.</li>
+        <li>[v2.1] Implying more contributors, readers or partners than exist. Open slots say OPEN SLOT.</li>
+        <li>[v2.1] "Campfire" as a tone word. The line is Lonely Planet × Klarna × a National Park Service sign.</li>
+        <li>Hashtags that could appear on any travel brand's post</li>
+      </ul>
+    </div>
+    <div class="never-card always">
+      <h3>Always</h3>
+      <ul>
+        <li>Flag emoji opener for travel posts</li>
+        <li>Counterintuitive or specific hook in the first sentence</li>
+        <li>At least one named character with one defining detail</li>
+        <li>At least three sensory anchors (food, animal, sound, smell, weather)</li>
+        <li>One dry parenthetical aside per post (minimum)</li>
+        <li>One "I am aware of how this sounds" preempt where appropriate</li>
+        <li>Signed sign-off in voice ("Defrosted, slightly improved, Nancy")</li>
+        <li>2–3 unhinged hashtags in the closing set</li>
+        <li>A question to invite reader stories</li>
+        <li>Magnus where natural, never forced</li>
+        <li>Specific places at specific times</li>
+        <li>Imperfect on purpose — leave the rough edges</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============= 10 LINKEDIN ============= -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h1 class="section-title">LinkedIn Strategy</h1>
+    <p class="section-lede">How TLL shows up on LinkedIn specifically. Different from Facebook. Different from Instagram.</p>
+  </div>
+
+  <h2 class="h2">LinkedIn vs Other Channels</h2>
+  <table>
+    <tr><th>Channel</th><th>Length</th><th>Voice</th><th>Hashtag energy</th></tr>
+    <tr><td>Facebook</td><td>400–600 words</td><td>Full unhinged + signed sign-off</td><td>5–10 hashtags, 3+ unhinged</td></tr>
+    <tr><td>LinkedIn</td><td>150–300 words</td><td>Tightened, one reflective line, voice-preserved</td><td>5–8 hashtags, 1–2 unhinged</td></tr>
+    <tr><td>Instagram</td><td>Caption ≤ 200 words</td><td>Punchy + visual-led</td><td>10–15 hashtags, 3+ unhinged</td></tr>
+    <tr><td>Pinterest</td><td>Description ≤ 100 words</td><td>SEO-aware but voice-led</td><td>Keyword-driven, not unhinged</td></tr>
+  </table>
+
+  <h2 class="h2">LinkedIn Post Structure</h2>
+  <ol>
+    <li>Flag emoji + counterintuitive hook (1 line)</li>
+    <li>Brief context (1–2 short paragraphs)</li>
+    <li>The named character + the moment (2–3 short paragraphs)</li>
+    <li>One reflective line connecting the moment to a bigger idea (do not force this)</li>
+    <li>Magnus appearance if natural (optional)</li>
+    <li>Question to invite reader stories</li>
+    <li>Signed sign-off in voice</li>
+    <li>Hashtag set (5–8, with 1–2 unhinged)</li>
+  </ol>
+
+  <h2 class="h2">LinkedIn Series (Recurring Anchors)</h2>
+  <ul>
+    <li><strong>Country observations</strong> — Sweden, Ghana, Montenegro style. Cultural intelligence + travel.</li>
+    <li><strong>Magnus the supervisor</strong> — Magnus-led content with travel intel underneath.</li>
+    <li><strong>Where the universe handed me the right person</strong> — the Buka casting director, the AstraZeneca scientist guesthouse, the Spanish toddler.</li>
+    <li><strong>Layover deep cuts</strong> — specific city + time window guides.</li>
+  </ul>
+</section>
+
+<!-- ============= 11 KPIs ============= -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h1 class="section-title">KPIs &amp; Benchmarks</h1>
+    <p class="section-lede">What TLL measures right now. The platform is pre-launch — the goal in 2026 is authority-building, not traffic. Quality of audience matters more than quantity. Different metrics for different phases.</p>
+  </div>
+
+  <h2 class="h2">Phase 0: Pre-Launch Authority (RIGHT NOW — 2026)</h2>
+  <p>The platform is not ready for traffic. Pushing scale metrics before the product can convert that scale is wasted effort. We're building the audience that will be there when we launch — quality, not quantity. The right ten thousand readers beat the wrong fifty thousand.</p>
+  <table>
+    <tr><th>Metric</th><th>What good looks like</th><th>Why it matters</th></tr>
+    <tr><td><strong>Quality of LinkedIn followers</strong></td><td>People who travel 30+ countries, expats, niche travel media, hospitality professionals</td><td>Authority is built on WHO follows, not how many. A travel editor following us is worth a thousand random follows.</td></tr>
+    <tr><td><strong>Save rate per post</strong></td><td>Ratio of saves to impressions (target: 1%+)</td><td>Saves signal the content is useful and worth coming back to. Algorithm gold. Authority signal.</td></tr>
+    <tr><td><strong>Share rate from quality accounts</strong></td><td>3-5 shares per post from accounts with traveler/media audiences</td><td>Word-of-mouth from trusted voices is the real growth lever. Quality re-shares beat reach.</td></tr>
+    <tr><td><strong>Comment depth, not count</strong></td><td>Substantive comments (2+ sentences, real questions) over reactions</td><td>Real conversation = real interest = real audience. Fire emojis are noise.</td></tr>
+    <tr><td><strong>Inbound DMs from "right people"</strong></td><td>Travel editors, hospitality buyers, fellow founders, potential contributors</td><td>The relationships that matter for launch start here. Track who is reaching out.</td></tr>
+    <tr><td><strong>Pen-a-Tale submission interest</strong></td><td>Proof people want to contribute when the platform is ready</td><td>Validates the community-engine thesis before investing in build.</td></tr>
+  </table>
+
+  <div class="callout maldives">
+    <div class="callout-title" style="color: var(--tll-maldives);">The Phase 0 mindset</div>
+    <p style="margin:0;">We are not chasing followers right now. We are chasing <em>the right followers</em>. Every post is an authority signal — to travel media, to potential contributors, to the audience we want to have when we open the doors. If a post performs on vanity metrics but doesn't reach the right rooms, it didn't work.</p>
+  </div>
+
+  <h2 class="h2">Phase 1: Post-Launch Growth (When TLL platform launches)</h2>
+  <table>
+    <tr><th>Metric</th><th>Target (12 months post-launch)</th><th>Why it matters</th></tr>
+    <tr><td>LinkedIn followers</td><td>5,000 (quality > quantity)</td><td>Primary discovery channel</td></tr>
+    <tr><td>Email list signups</td><td>1,500</td><td>Owned audience — most valuable long-term metric</td></tr>
+    <tr><td>Community story submissions</td><td>50 quality submissions</td><td>The strategic core — proof the engine works</td></tr>
+    <tr><td>Average post saves (LinkedIn)</td><td>20+ per post</td><td>Saves indicate the post is useful</td></tr>
+    <tr><td>Pinterest monthly views</td><td>50,000</td><td>SEO-driven traffic engine for evergreen content</td></tr>
+    <tr><td>Website monthly visitors</td><td>10,000</td><td>The platform itself, where the engine runs</td></tr>
+  </table>
+
+  <h2 class="h2">Phase 2: Monetization (2027+)</h2>
+  <ul>
+    <li>Brand partnership pipeline (3–5 active per quarter)</li>
+    <li>Sponsored post revenue (target TBD based on partnership rates)</li>
+    <li>Newsletter sponsor revenue (if newsletter monetizes)</li>
+    <li>Membership tier conversion rate (if launched)</li>
+    <li>Event/experience sales (if launched)</li>
+  </ul>
+
+  <h2 class="h2">Anti-KPIs (Things We Will Not Optimize For)</h2>
+  <ul>
+    <li><strong>Vanity follower count.</strong> 1,000 engaged readers beat 100,000 ghosts. Especially pre-launch.</li>
+    <li><strong>Posting frequency over quality.</strong> Two great posts a week beat seven mediocre ones.</li>
+    <li><strong>SEO at the cost of voice.</strong> If a headline reads like SEO, it isn't TLL.</li>
+    <li><strong>Trending topics that aren't ours.</strong> No tying TLL to news cycles for traffic.</li>
+    <li><strong>Pre-launch traffic to a half-built site.</strong> Sending people to a site that isn't ready damages the brand more than no visit at all.</li>
+    <li><strong>Generic travel content for reach.</strong> "10 hidden gems" posts might trend but they erode the voice we are building.</li>
+  </ul>
+</section>
+
+<!-- ============= 12 TODO ============= -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h1 class="section-title">To-Do &amp; Versions</h1>
+    <p class="section-lede">What's next for TLL. What's open. What's being decided.</p>
+  </div>
+
+  <h2 class="h2">v2.1 rulings, 28 September 2026 (proposed, accept or strike)</h2>
+  <p>Eight things the site build settled that the kit did not carry. Each one is also applied where it belongs above and tagged [v2.1]. This block is the index.</p>
+  <table>
+    <tr><th>#</th><th>Ruling</th><th>Was</th><th>Now</th><th>Source</th></tr>
+    <tr><td>1</td><td>Midnight hex</td><td>#0D0F1A</td><td>#0A0B14 (confirm)</td><td>v8 handoff DESIGN-SPEC; site CSS</td></tr>
+    <tr><td>2</td><td>Teal on light surfaces</td><td>Teal used for links everywhere</td><td>Maldives Teal on Midnight only. Deep Teal #067A79 for text on Paper and Cream. Alternative on the table: Ink links with a teal underline.</td><td>Site lab 28 Sep, 49 contrast failures</td></tr>
+    <tr><td>3</td><td>Rose as text</td><td>No size rule</td><td>Headline size only on Paper (3.26:1). Small rose text #C8325B. Buttons: Ink on Rose or white on #D63859.</td><td>Site lab 28 Sep</td></tr>
+    <tr><td>4</td><td>Type stack</td><td>Syne 800 + DM Sans</td><td>Playfair Display 800, IBM Plex Sans Condensed, JetBrains Mono. Syne in the wordmark only.</td><td>v8 handoff; live site</td></tr>
+    <tr><td>5</td><td>Tagline</td><td>"The world is your layover." (locked)</td><td>Retired. Working line: "Real places, by the people who actually went." (confirm)</td><td>v8 handoff</td></tr>
+    <tr><td>6</td><td>Tone line</td><td>Lonely Planet × Klarna × campfire</td><td>Lonely Planet × Klarna × a National Park Service sign</td><td>v8 handoff never-list</td></tr>
+    <tr><td>7</td><td>Countries</td><td>82</td><td>87, and the kit points to Nancy's profile as the only place the number lives</td><td>Nancy's ruling; /contributors/nancy-carleton</td></tr>
+    <tr><td>8</td><td>Voice tics</td><td>"honestly / look / anyway" listed as characteristic in the brand-kit-at-hand skill</td><td>Out. The five signatures (aside, preempt, named character, sign-off, sensory anchors) are the voice.</td><td>Nancy, 28 Sep</td></tr>
+  </table>
+
+  <h2 class="h2">Overuse list [v2.1]</h2>
+  <p>The banned-word list catches templated copy. These are the words that were fine once and became tells by repetition on the live site (28 September edit).</p>
+  <table>
+    <tr><th>Word or line</th><th>Limit</th><th>Why</th></tr>
+    <tr><td>"real"</td><td>The H1 only</td><td>It was on every page. Show it with a name, a date or a place instead.</td></tr>
+    <tr><td>"actually"</td><td>Once per page, and only where it carries a joke</td><td>Same crutch. It earned its place in "Stopovers, sold by someone who actually stops over." Nowhere else.</td></tr>
+    <tr><td>"A human reviews every submission within 48 hours"</td><td>Share Your Story and the FAQ. Nowhere else.</td><td>It appeared nine times. Say "reviewed", never "published", within 48 hours.</td></tr>
+    <tr><td>Triads ("Drop a story. Drop a photo set. Drop both.")</td><td>One per page</td><td>Stacked triads read as generated. Keep the one with a joke.</td></tr>
+    <tr><td>"Not a gym, not a feed, not a booking site"</td><td>One negation, then say what it is</td><td>Triple negation is a tell.</td></tr>
+    <tr><td>"Think LinkedIn for travel, not a feed"</td><td>Cut</td><td>"Not X, it is Y" comparisons. Say the concrete thing.</td></tr>
+  </table>
+
+  <h2 class="h2">Standing rules that were unwritten [v2.1]</h2>
+  <ul>
+    <li><strong>Dates:</strong> Copenhagen order, month spelled out. "28 September 2026". Never "September 28, 2026", never numeric.</li>
+    <li><strong>Minimum age:</strong> 16. The sign-up checkbox says "I am 16 or older".</li>
+    <li><strong>Pet-travel vocabulary:</strong> "microchip", "titer/titre" and "FAVN" stay out of site UI, forms and marketing. Exempt: the Paw Passport guide, its free companion story and the FAQ pets answer, because EU Regulation 576/2013 requires those steps. Cite the regulation whenever they appear.</li>
+    <li><strong>Scale honesty:</strong> never imply more contributors, readers or partners than exist. Open slots say OPEN SLOT, sample content says SAMPLE, and a section that lists traveler types is an invitation, not a roster.</li>
+    <li><strong>Numbers live in one place:</strong> country, city, state and marathon counts come from Nancy's profile record. The kit, bios and graphics quote it; they never restate a number of their own.</li>
+    <li><strong>Every byline is a real person.</strong> No invented travelers, pets, quotes, photo credits or statistics, including in samples and mockups.</li>
+    <li><strong>Publishing:</strong> nothing publishes without Nancy's approval. Both custom domains plus the Webflow subdomain, every time.</li>
+  </ul>
+
+  <h2 class="h2">Current Open Items</h2>
+  <ul>
+    <li>Webflow rebuild (priority pages: Homepage, Stories, Profiles, Contact)</li>
+    <li>Memberstack integration for community auth</li>
+    <li>GoDaddy renewal for thatlayover.life (April 2026 — verify status)</li>
+    <li>Submission form design + editorial workflow</li>
+    <li>Pinterest content sprint (90-day SEO push)</li>
+    <li>Email list strategy (which provider, lead magnet, cadence)</li>
+    <li>First five community contributors identified + invited</li>
+  </ul>
+
+  <h2 class="h2">Decisions to Make</h2>
+  <ul>
+    <li>Membership tier — yes/no/when</li>
+    <li>Newsletter — own platform vs Substack</li>
+    <li>Magnus content cadence — weekly? monthly? "as he supervises"?</li>
+    <li>First brand partnership category to pursue (travel gear? hospitality? airline?)</li>
+  </ul>
+
+  <h2 class="h2">Version History</h2>
+  <ul>
+    <li><strong>v1.0 — May 2026</strong> — Initial brand kit. Built on the FB voice + Lonely Planet meets Klarna meets campfire positioning. Community-as-engine codified. Family standard structure adopted.</li>
+    <li><strong>v2.0, August 2026:</strong> Strategy sections, LinkedIn plan, KPIs, Master Content Rules appended.</li>
+    <li><strong>v2.1, 28 September 2026:</strong> Proposed. Rulings from the site build folded in: palette contrast rules and Midnight hex, type stack, tagline retired, tone line, 87 countries, overuse list, standing rules. Every v2.1 edit is tagged [v2.1] in the document so it can be accepted or struck line by line.</li>
+  </ul>
+</section>
+
+<!-- ============= 13 MASTER CONTENT RULES ============= -->
+<section class="section" id="s13">
+  <div class="section-header">
+    <div class="section-num">★</div>
+    <h1 class="section-title">Master Content Rules</h1>
+    <p class="section-lede">The cross-brand rules that govern all content across Nancy's eight brand accounts. This section codifies what applies to TLL specifically and what is explicitly off-limits because it belongs to other brands. Read before publishing anything.</p>
+  </div>
+
+  <h2 class="h2">The non-negotiables (apply to ALL TLL content)</h2>
+
+  <h3 class="h3">Never in any TLL content</h3>
+  <ul>
+    <li><strong>Em dashes.</strong> Not one. Not ever.</li>
+    <li><strong>AI tells.</strong> See full banned list below.</li>
+    <li><strong>Fabricated facts, quotes, studies, or statistics.</strong> If you cannot verify it, cut it.</li>
+    <li><strong>Generic stock examples.</strong> Every post needs a real, specific detail.</li>
+    <li><strong>Generic travel cliches.</strong> No "wanderlust," "hidden gems," "off the beaten path," "bucket list."</li>
+    <li><strong>Stock photography.</strong> Ever.</li>
+    <li><strong>Lame metaphors.</strong> No "navigating the waters of" or "in the fast-paced world of."</li>
+    <li><strong>The word "employees."</strong> Use "people," "team," "travelers," or "friends."</li>
+  </ul>
+
+  <h3 class="h3">Always in every TLL post</h3>
+  <ul>
+    <li>A hook that earns the "see more" click in the first line. No warm-up sentences.</li>
+    <li>At least one named character with one defining detail.</li>
+    <li>At least three sensory anchors (food, animal, sound, smell, weather).</li>
+    <li>One dry parenthetical aside per post (minimum).</li>
+    <li>A signed sign-off in voice ("Defrosted, slightly improved, Nancy").</li>
+    <li>A question to invite reader stories.</li>
+    <li>3 to 5 relevant hashtags including 1 to 2 unhinged ones.</li>
+    <li>US English. Color not colour. Organize not organise.</li>
+  </ul>
+
+  <h2 class="h2">The AI tells list (banned words)</h2>
+  <p>If any of these appear in a draft, rewrite. They are auto-flags that the copy was AI-generated or templated.</p>
+  <table>
+    <tr><th>Banned word</th><th>Why</th><th>Use instead</th></tr>
+    <tr><td><em>delve</em></td><td>Nobody says this out loud, ever.</td><td>"Look into" or just say what you mean</td></tr>
+    <tr><td><em>foster</em></td><td>You are not a parent.</td><td>"Build," "create," "support"</td></tr>
+    <tr><td><em>furthermore / moreover</em></td><td>You are not writing an essay.</td><td>Just continue the next sentence</td></tr>
+    <tr><td><em>at its core</em></td><td>Vague and overused.</td><td>Say what you mean directly</td></tr>
+    <tr><td><em>it is important to note</em></td><td>If it is important, just say it.</td><td>Cut the throat-clearing</td></tr>
+    <tr><td><em>daunting</em></td><td>Reach for something more specific.</td><td>Name what makes it hard</td></tr>
+    <tr><td><em>leverage (verb)</em></td><td>Corporate jargon.</td><td>"Use" or "apply"</td></tr>
+    <tr><td><em>synergy</em></td><td>No exceptions.</td><td>None</td></tr>
+    <tr><td><em>game changer</em></td><td>Unless full irony.</td><td>Show the change instead</td></tr>
+    <tr><td><em>in today's fast-paced world</em></td><td>Automatic rewrite.</td><td>Cut entirely</td></tr>
+    <tr><td><em>navigate the complexities</em></td><td>Empty.</td><td>Name the complexities</td></tr>
+    <tr><td><em>cutting-edge</em></td><td>Show the edge.</td><td>Do not describe it</td></tr>
+    <tr><td><em>transformative</em></td><td>Prove it.</td><td>Show the transformation</td></tr>
+  </table>
+
+  <h2 class="h2">The 50/20/20/10 content mix</h2>
+  <p>TLL content should hit this split across a rolling two-week window. If one bucket is overloaded, redistribute.</p>
+  <table>
+    <tr><th>%</th><th>Bucket</th><th>What it is</th><th>TLL examples</th></tr>
+    <tr><td><strong>50%</strong></td><td>Entertainment / Story</td><td>Stories from the road, observations, humor, character moments.</td><td>Ghana Buka casting director, Sweden cranes + AstraZeneca scientist, Magnus 4/5 stars review.</td></tr>
+    <tr><td><strong>20%</strong></td><td>Brand Information</td><td>What TLL is, how it works, the community engine, Paw Passport explained.</td><td>"What 14,000 stories taught us about travel content." "Why we are a library, not a feed."</td></tr>
+    <tr><td><strong>20%</strong></td><td>Cheerleading</td><td>Celebrating travelers, spotlighting community contributors, sharing reader stories.</td><td>"Traveler of the week: [Name] just hit 78 countries."</td></tr>
+    <tr><td><strong>10%</strong></td><td>Hard Sell</td><td>Direct asks: join the crew, pen a tale, sign up.</td><td>"Pen a tale and we publish it. Free. Fast." "Join the crew for free, no email required."</td></tr>
+  </table>
+
+  <h2 class="h2">The post ranking system</h2>
+  <p>Every post is scored on five dimensions before publishing. Below 7 = rewrite. 9+ = priority schedule + planned first comment.</p>
+  <table>
+    <tr><th>Dimension</th><th>Pts</th><th>Test</th></tr>
+    <tr><td><strong>Hook</strong></td><td>2</td><td>Does the first sentence earn the "see more" click? Read it in isolation. Stop scrolling? 2 = yes immediately. 1 = maybe. 0 = warm-up.</td></tr>
+    <tr><td><strong>Depth</strong></td><td>2</td><td>Real story, real character, unique POV? Reiterates TLL USP? 2 = clear value. 1 = some. 0 = surface-level.</td></tr>
+    <tr><td><strong>Visual</strong></td><td>2</td><td>2 = carousel or video. 1 = single graphic or photo. 0 = text only.</td></tr>
+    <tr><td><strong>CTA</strong></td><td>2</td><td>Specific question someone wants to answer? 2 = yes. 1 = vague. 0 = "let me know your thoughts."</td></tr>
+    <tr><td><strong>Hashtags</strong></td><td>2</td><td>3 to 5 relevant + 1 to 2 unhinged. 2 = on-brand. 1 = generic. 0 = missing.</td></tr>
+  </table>
+
+  <h2 class="h2">Brand cluster separation</h2>
+  <div class="callout midnight">
+    <div class="callout-title" style="color: var(--tll-rose);">⚠️ Critical separation</div>
+    <p style="margin:0;">TLL is in the Carleton family (Nancy's owned brands under Nan C LLC → TBC). The Damgaard cluster (DS, DG, CR) is Nancy's full-time employer's IP, separate ownership. The two clusters NEVER cross-pollinate in voice, content, or channels.</p>
+  </div>
+  <ul>
+    <li>TLL content goes only on TLL channels. Never on DS, DG, or CR channels.</li>
+    <li>TLL voice (Lonely Planet × Klarna × a National Park Service sign) never appears on Damgaard cluster.</li>
+    <li>Magnus appears on TLL and Nancy Carleton personal. Never on Damgaard cluster.</li>
+    <li>Sister-brand crossover is fine within Carleton family (TLL + LubBub, TLL + Nancy, etc).</li>
+  </ul>
+
+  <h2 class="h2">Brand voice cluster summary</h2>
+  <table>
+    <tr><th>Brand</th><th>Cluster</th><th>Tone</th><th>Sarcasm allowed?</th></tr>
+    <tr><td><strong>That Layover Life</strong></td><td>Carleton family</td><td>Lonely Planet × Klarna × a National Park Service sign</td><td>Yes</td></tr>
+    <tr><td>Nancy Carleton</td><td>Carleton family</td><td>Klarna witty, self-aware, warm</td><td>Yes</td></tr>
+    <tr><td>The Brand Collective</td><td>Carleton family</td><td>Vanity Fair × Klarna × elder-millennial</td><td>Yes</td></tr>
+    <tr><td>Lub Bub</td><td>Carleton family</td><td>Warm, community-first, mission-driven</td><td>Yes (never cold)</td></tr>
+    <tr><td>Damgaard Solutions</td><td>Damgaard (employer)</td><td>Precise, credible, technically confident</td><td>No</td></tr>
+    <tr><td>Damgaard Group</td><td>Damgaard (employer)</td><td>Authoritative, measured, Gulf-aware</td><td>No</td></tr>
+    <tr><td>Catalyst Reactivate</td><td>Damgaard (employer)</td><td>Confident challenger, sustainability-forward</td><td>No</td></tr>
+  </table>
+
+  <p style="margin-top:32px; font-style:italic; color: var(--tll-mid);">Master Content Rules sourced from <em>Master Content Rules · All 8 Brands · Living Document</em> (March 2026). This section travels with every brand kit.</p>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer">
+  <div class="footer-tagline">The world is your layover.</div>
+  <div class="footer-meta">That Layover Life · Brand Kit + Strategy · v2.1 · September 2026 · Produced by The Brand Collective</div>
+</footer>
+
+<!-- ============= ✦ CLAUDE DESIGN INSTRUCTIONS ============= -->
+<section class="section" id="s14">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h1 class="section-title">Claude Design Instructions</h1>
+    <p class="section-lede">Machine-readable design direction for Claude Design and any other tool asked to make something that looks like TLL. Everything in blocks 1 to 4 is either extracted verbatim from this kit or flagged as standardised, so nothing here invents a brand value.</p>
+  </div>
+
+  <div class="callout maldives">
+    <div class="callout-title">How to read this section</div>
+    <p style="margin:0;">Values marked <strong>extracted</strong> come from this kit and win every time. Values marked <strong>standardised</strong> are cross-kit house geometry and are not TLL brand values. Where this kit says nothing, the row reads <strong>[NOT SPECIFIED IN KIT]</strong> and you must ask rather than guess. The anti-pattern universals in block 2 govern anything you design; they do not describe the styling of this kit document itself, which predates them and conflicts with them in places.</p>
+  </div>
+
+  <h2 class="h2">1. Design Tokens</h2>
+
+  <h3 class="h3">Colour (extracted from Section 04, Visual Identity)</h3>
+  <table>
+    <tr><th>Token</th><th>Hex</th><th>Role, as written in this kit</th><th>Usage weight</th></tr>
+    <tr><td>Midnight</td><td>#0D0F1A</td><td>"Primary background. Headers. Dark mode hero areas."</td><td>Dominant on dark surfaces. Cover, table of contents, footer, dark callouts, table headers.</td></tr>
+    <tr><td>Maldives Teal</td><td>#00C9C8</td><td>"Primary accent. Links. Hover states. Highlight type."</td><td>Accent only. Links, hover, eyebrows, stat numbers, highlight type on Midnight.</td></tr>
+    <tr><td>Sunset Rose</td><td>#F0507A</td><td>"Secondary accent. Pull quotes. CTA buttons. Logo accents."</td><td>Accent only. Pull quotes, CTAs, section numbers, the italic accent word in headlines.</td></tr>
+    <tr><td>Cream</td><td>#F7F1E8</td><td>"Light background. Card surfaces. Type on midnight."</td><td>Secondary surface. Cards, callout fills, alternating table rows, all type set on Midnight.</td></tr>
+    <tr><td>Paper</td><td>#FDF9F3</td><td>"Default body background. Long-form reading surfaces."</td><td>Dominant on light. The default page background.</td></tr>
+    <tr><td>Ink</td><td>#1A1A1A</td><td>"Body type. Headlines on light surfaces."</td><td>Dominant type colour on light. Also the shadow base.</td></tr>
+  </table>
+
+  <h3 class="h3">Secondary hexes declared in this kit's own CSS variables</h3>
+  <p>These exist as CSS custom properties in this document but carry no written role in the Color Palette. Treat them as support values, never as brand accents.</p>
+  <table>
+    <tr><th>Token</th><th>Hex</th><th>Role</th><th>Usage weight</th></tr>
+    <tr><td>--tll-midnight-2</td><td>#1A1A2E</td><td>[NOT SPECIFIED IN KIT]. Used in practice as the table of contents surface, one step lighter than Midnight.</td><td>Rare. Secondary dark surface only.</td></tr>
+    <tr><td>--tll-rose-dark</td><td>#D63859</td><td>[NOT SPECIFIED IN KIT]. Declared but not applied anywhere in this document.</td><td>Reserve. Do not introduce without approval.</td></tr>
+    <tr><td>--tll-border</td><td>#E8E2D6</td><td>[NOT SPECIFIED IN KIT]. Used in practice as hairline borders and table cell rules on light surfaces.</td><td>Structural. 1px borders only.</td></tr>
+    <tr><td>--tll-mid</td><td>#6B6660</td><td>[NOT SPECIFIED IN KIT]. Used in practice for muted captions and source notes.</td><td>Low. Caption and footnote type.</td></tr>
+    <tr><td>--tll-text-secondary</td><td>#555555</td><td>[NOT SPECIFIED IN KIT]. Used in practice for ledes and secondary body copy.</td><td>Medium. Supporting body copy.</td></tr>
+  </table>
+
+  <h3 class="h3">Type (extracted from Section 04, plus this document's own font stacks)</h3>
+  <table>
+    <tr><th>Role</th><th>Primary font</th><th>Substitute when unavailable</th><th>Spec, as written in this kit</th></tr>
+    <tr><td>Display, wordmark, all H1 and H2, pull quotes, stat numbers</td><td>Syne 800</td><td>DM Sans, then serif. This is the fallback chain declared in this document: <code>'Syne', 'DM Sans', serif</code>. No branded substitute is named in the kit.</td><td>"Used for the wordmark, all H1/H2 headers, pull quotes, stat numbers. Heavy weight only. Never use anything below 700."</td></tr>
+    <tr><td>Body, navigation, captions</td><td>DM Sans</td><td>-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif. This is the fallback chain declared in this document. No branded substitute is named in the kit.</td><td>"Used for body copy, navigation, captions. Regular (400) and Medium (500) weights. Bold (700) reserved for emphasis."</td></tr>
+    <tr><td>Code and hex values</td><td>JetBrains Mono</td><td>monospace</td><td>[NOT SPECIFIED IN KIT]. Present only as a CSS declaration for hex swatch labels, with no written rule.</td></tr>
+    <tr><td>Headline treatment</td><td>Syne 800</td><td>See display row</td><td>Extracted from this document's cover styling: Syne 800 at 96px, line height 0.95, letter spacing -0.01em, set in Cream #F7F1E8 on Midnight #0D0F1A, with the emphasised word set in italic <strong>Sunset Rose #F0507A</strong>. Note: the italic accent word is Rose in this kit, not teal. Teal is reserved for the uppercase eyebrow above the headline and for stat numbers.</td></tr>
+    <tr><td>Section title</td><td>Syne 800</td><td>See display row</td><td>Extracted: 56px, line height 1.05, Midnight #0D0F1A on light, above it a Rose #F0507A uppercase number at 14px with 4px letter spacing.</td></tr>
+    <tr><td>Type system rule</td><td colspan="3">"Two fonts. Infinite range. Never mix in a third. Resist the urge."</td></tr>
+  </table>
+
+  <h3 class="h3">Geometry</h3>
+  <div class="callout">
+    <div class="callout-title">Standardised across kits, not extracted from this kit</div>
+    <p style="margin:0;">Nothing in the table below is a TLL brand value. It is house geometry applied to every brand kit in this family so that output stays consistent. If TLL ever specifies its own geometry, that specification wins.</p>
+  </div>
+  <table>
+    <tr><th>Property</th><th>Value</th><th>Applies to</th></tr>
+    <tr><td>Card radius</td><td>10px</td><td>Cards, panels, callouts, modals, inputs</td></tr>
+    <tr><td>Pill radius</td><td>999px</td><td>Tags, chips, badges, pill buttons</td></tr>
+    <tr><td>Photographic image radius</td><td>0px, and always square 1:1</td><td>Every photograph, without exception</td></tr>
+    <tr><td>Border</td><td>1px</td><td>All borders. Full perimeter only.</td></tr>
+    <tr><td>Section rule</td><td>1.25px</td><td>Horizontal dividers between sections</td></tr>
+    <tr><td>Shadow, one value only</td><td>0 2px 12px rgba(26,26,26,0.10)</td><td>Every elevated surface. 26,26,26 is Ink #1A1A1A. No second shadow value exists.</td></tr>
+    <tr><td>Spacing base</td><td>8px base, scale 8 / 16 / 24 / 40 / 64</td><td>All padding, margin, and gap values</td></tr>
+    <tr><td>Minimum outer margin</td><td>40px desktop, 24px mobile</td><td>Page and artboard edges</td></tr>
+  </table>
+
+  <h2 class="h2">2. Anti-Patterns</h2>
+
+  <div class="two-col">
+    <div class="never-card">
+      <h3>Never, universal across all kits</h3>
+      <ul>
+        <li>Never use em dashes.</li>
+        <li>Never put an accent line under a title.</li>
+        <li>Never use decorative colour bars, sidebar stripes, or single-edge card borders.</li>
+        <li>Never centre body text.</li>
+        <li>Never round photographs.</li>
+        <li>Never use generic geometric icons.</li>
+        <li>Never render an accent below 0.7 opacity.</li>
+        <li>Never end a standalone graphic on empty space.</li>
+        <li>Never use more than one shadow value.</li>
+      </ul>
+    </div>
+    <div class="never-card always">
+      <h3>Never, specific to TLL</h3>
+      <ul>
+        <li>Never use sepia, or any aged, faded, or washed treatment.</li>
+        <li>Never use vintage travel or airline-postcard styling, luggage-tag motifs, passport-stamp graphics, or retro poster pastiche.</li>
+        <li>Never use stock photography. The kit says "Stock photography. Ever." under Never use.</li>
+        <li>Never use drone shots that could be anywhere.</li>
+        <li>Never use polished influencer-style poses.</li>
+        <li>Never use generic "wanderlust" silhouettes.</li>
+        <li>Never use heavily filtered or over-saturated edits.</li>
+        <li>Never use photos without a story behind them.</li>
+        <li>Never mix in a third typeface.</li>
+        <li>Never set Syne below weight 700.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="h3">Never-words, extracted verbatim</h3>
+  <p>These are copy prohibitions from Section 09 and the Master Content Rules. They apply to every word that appears in a design, including placeholder and dummy text.</p>
+  <table>
+    <tr><th>Category</th><th>Never</th></tr>
+    <tr><td>Punctuation</td><td>Em dashes. "Not one. Not ever."</td></tr>
+    <tr><td>Travel cliches</td><td>"wanderlust," "hidden gems," "off the beaten path," "bucket list"</td></tr>
+    <tr><td>People</td><td>The word "employees." Use "people," "team," "travelers," or "friends."</td></tr>
+    <tr><td>Lame metaphors</td><td>"navigating the waters of," "in the fast-paced world of"</td></tr>
+    <tr><td>AI tells, banned outright</td><td>delve, foster, furthermore, moreover, at its core, it is important to note, daunting, leverage (verb), synergy, game changer, in today's fast-paced world, navigate the complexities, cutting-edge, transformative</td></tr>
+  </table>
+
+  <h3 class="h3">Other hard prohibitions from Section 09 and Master Content Rules</h3>
+  <ul>
+    <li>Never use passive voice.</li>
+    <li>Never write long-winded paragraphs when a sentence will do.</li>
+    <li>Never use polished influencer voice.</li>
+    <li>Never use generic AI phrasing. "If it sounds like a template, it isn't TLL."</li>
+    <li>Never produce "casual and clean" rewrites. "TLL is funny, weird, specific."</li>
+    <li>Never use mean humor. "Laugh with the world, not at it."</li>
+    <li>Never force takeaways. "Let the moment be the lesson."</li>
+    <li>Never sound too "written."</li>
+    <li>Never use hashtags that could appear on any travel brand's post.</li>
+    <li>Never fabricate facts, quotes, studies, or statistics. "If you cannot verify it, cut it."</li>
+    <li>Never use generic stock examples. "Every post needs a real, specific detail."</li>
+    <li>Never mix TLL with the Damgaard cluster (DS, DG, CR). "Strict separation."</li>
+    <li>Never treat Magnus Waffles as the brand. He is a recurring character, "the breakout star who appears on the marquee but does not run the theater."</li>
+    <li>Never build a customer-facing campaign. The platform is pre-launch and "the goal in 2026 is authority-building, not traffic." Do not design anything that sends traffic to a half-built site.</li>
+    <li>Use US English. "Color not colour. Organize not organise." This applies to all copy inside a design, even though this section's own headings use house spelling.</li>
+  </ul>
+
+  <h2 class="h2">3. Output-Type Presets</h2>
+
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-num">PRESET 01</div>
+      <div class="usp-title">Low-fi wireframe</div>
+      <div class="usp-body">Greyscale only. No brand colour at all, not even a single accent. Neutral grey fills for surfaces, mid grey for type, light grey hairlines for structure. Substitute a system sans for both Syne and DM Sans so nobody reads the wireframe as a finished look. Keep the standardised geometry so the layout translates directly. Show hierarchy, grid, and content order. Label image slots as square 1:1 boxes with a cross, never as a placeholder photograph.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">PRESET 02</div>
+      <div class="usp-title">High-fi static</div>
+      <div class="usp-body">Full palette, real type, real photography. Paper #FDF9F3 or Midnight #0D0F1A as the base. Syne 800 display, DM Sans body. Teal #00C9C8 and Rose #F0507A as accents only, never as large fields. Every photograph square and unrounded, sourced from real travel imagery with a story behind it, never stock. One shadow value. Final copy in voice, with no lorem ipsum.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">PRESET 03</div>
+      <div class="usp-title">Interactive prototype</div>
+      <div class="usp-body">Everything from the high-fi preset, plus an explicit state list for every interactive element: default, hover, focus-visible, active or pressed, disabled, loading, selected, error, and success. Also specify the page-level states: empty, partial, full, and error. Hover and link states use Maldives Teal #00C9C8, which is the kit's stated role for that colour. Focus-visible must be a visible ring, not a colour change alone. Motion stays under 200ms and never bounces.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">PRESET 04</div>
+      <div class="usp-title">Presentation deck</div>
+      <div class="usp-body">Slide size 13.333 x 7.5 inches. Use Cambria for display in place of Syne, and Calibri for body in place of DM Sans, because the recipient will not have Syne installed and a missing font substitutes unpredictably. Keep every hex, the geometry, and the spacing scale exactly as specified. Cambria is a serif, so set it tighter and heavier than you would set Syne, and do not add a third face to compensate.</div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-num">PRESET 05</div>
+      <div class="usp-title">Production code</div>
+      <div class="usp-body">Emit every token as a CSS custom property on <code>:root</code>, reusing this kit's existing names so nothing forks: <code>--tll-midnight</code>, <code>--tll-midnight-2</code>, <code>--tll-maldives</code>, <code>--tll-rose</code>, <code>--tll-rose-dark</code>, <code>--tll-cream</code>, <code>--tll-paper</code>, <code>--tll-text</code>, <code>--tll-text-secondary</code>, <code>--tll-border</code>, <code>--tll-mid</code>. Add geometry properties in the same block: <code>--radius-card: 10px</code>, <code>--radius-pill: 999px</code>, <code>--radius-photo: 0px</code>, <code>--border: 1px</code>, <code>--rule: 1.25px</code>, <code>--shadow: 0 2px 12px rgba(26,26,26,0.10)</code>, and the spacing steps 8, 16, 24, 40, 64. Reference tokens only. No raw hex values anywhere in component code.</div>
+    </div>
+  </div>
+
+  <h2 class="h2">4. Paste Block</h2>
+  <div class="callout midnight">
+    <div class="callout-title">Copy everything below into Claude Design. It assumes no skills, no kit, and no prior context.</div>
+<p style="font-size:13px; padding:10px 14px; border-left:3px solid #067A79; background:#F7F1E8;">[v2.1] The paragraphs below were written for v2 and still quote the retired tagline, the campfire tone line, Syne, DM Sans and Midnight #0D0F1A. Read them with the v2.1 rulings in section 12 applied: Playfair Display 800, IBM Plex Sans Condensed, JetBrains Mono, Midnight #0A0B14, Deep Teal #067A79 for text on light surfaces, and no tagline until the working line is confirmed. They are kept unchanged so the extraction history stays honest.</p>
+    <p style="margin:0;">Design for That Layover Life, a travel storytelling platform whose tagline is "The world is your layover." and whose positioning line is "A travel storytelling platform for repeat travelers, expats, and anyone who turns a six-hour connection into a story worth telling. We are an engine for your stories, not a content factory." The brand sounds like Lonely Planet meets Klarna meets a campfire, written by the smartest, most well-traveled friend in your group chat, who happens to also be a comedy writer, who has not slept enough. It is honest, vivid, character-led, funny, weird, specific, and slightly unhinged, and it leaves the rough edges in on purpose. It is not polished, not influencer-shaped, and not algorithm-shaped. The palette is exactly six colours and you may not add a seventh. Midnight #0D0F1A is the primary background, the header colour, and the dark hero surface. Maldives Teal #00C9C8 is the primary accent for links, hover states, and highlight type. Sunset Rose #F0507A is the secondary accent for pull quotes, CTA buttons, and logo accents. Cream #F7F1E8 is the light background, the card surface, and the type colour used on Midnight. Paper #FDF9F3 is the default body background and the long-form reading surface. Ink #1A1A1A is body type and headlines on light surfaces. Five support values exist in the codebase and may be used structurally but never as accents: #1A1A2E for a secondary dark surface, #D63859 as a reserved deeper rose, #E8E2D6 for hairline borders on light surfaces, #6B6660 for captions, and #555555 for secondary body copy. Typography is two typefaces and never a third. Syne at weight 800 sets the wordmark, all H1 and H2 headers, pull quotes, and stat numbers, and it is never set below weight 700; if Syne is unavailable fall back to DM Sans and then to a serif. DM Sans sets body copy, navigation, and captions at regular 400 and medium 500, with bold 700 reserved for emphasis; if DM Sans is unavailable fall back to -apple-system, then BlinkMacSystemFont, then 'Segoe UI', then any sans-serif. Hex values and code may be set in JetBrains Mono falling back to monospace. The signature headline treatment is Syne 800 at large display size with line height 0.95 and letter spacing -0.01em, set in Cream #F7F1E8 on a Midnight #0D0F1A field, with one single accent word set in italic Sunset Rose #F0507A, above which sits a small uppercase eyebrow in Maldives Teal #00C9C8 at roughly 13px with 4px letter spacing. The italic accent word is rose, not teal, and teal belongs to the eyebrow and to stat numbers. Geometry is fixed: cards, panels, callouts, and inputs use a 10px radius; pills, tags, and chips use 999px; every photograph uses a 0px radius and is always square at 1:1; borders are 1px and always run the full perimeter; section rules are 1.25px; there is exactly one shadow in the entire system and it is 0 2px 12px rgba(26,26,26,0.10); all spacing sits on an 8px base using only the steps 8, 16, 24, 40, and 64; and the minimum outer margin is 40px on desktop and 24px on mobile. Photography must show specific places at specific times, real and named travelers including the storyteller, food and animals and sensory specifics, imperfect moments with windswept hair and real light and slight motion blur, and the texture of place such as peeling paint, market signs, and hand-painted menus. Now the prohibitions, and treat every one of them as absolute. Never use an em dash anywhere, in copy or in labels. Never place an accent line under a title. Never use decorative colour bars, sidebar stripes, or single-edge card borders. Never centre body text. Never round a photograph. Never use generic geometric icons. Never render an accent at less than 0.7 opacity. Never end a standalone graphic on empty space. Never use more than one shadow value. Never use sepia or any aged, faded, or washed treatment. Never use vintage travel or airline-postcard styling, luggage tags, passport stamps, or retro poster pastiche. Never use stock photography under any circumstances, and never use drone shots that could be anywhere, polished influencer poses, generic wanderlust silhouettes, heavily filtered or over-saturated edits, or photographs with no story behind them. Never introduce a third typeface. In any copy that appears inside the design, never use the words wanderlust, hidden gems, off the beaten path, or bucket list, never use the word employees where people or team or travelers or friends would do, never use the phrases navigating the waters of or in the fast-paced world of, and never use any of these AI tells: delve, foster, furthermore, moreover, at its core, it is important to note, daunting, leverage as a verb, synergy, game changer, in today's fast-paced world, navigate the complexities, cutting-edge, or transformative. Never use passive voice, never write a long paragraph where a sentence will do, never adopt a polished influencer voice, never flatten the copy into something merely casual and clean, never use mean humor, never force a takeaway, and never fabricate a fact, quote, study, or statistic. Use US English throughout, so color and organize rather than colour and organise. Finally, the brand is pre-launch and the entire 2026 goal is authority-building rather than traffic, so design authority pieces and never a customer-facing campaign, a signup push, or anything that drives traffic to a site that is not finished.</p>
+  </div>
+
+  <p style="margin-top:32px; font-style:italic; color: var(--tll-mid);">Extraction note. This section quotes That Layover Life Brand Kit + Strategy directly and adds nothing that the kit does not state, except the geometry block and the anti-pattern universals, both of which are labelled as standardised house values rather than TLL brand values. Four things are worth flagging for whoever briefed this. First, the kit nowhere describes TLL as "not a vintage travel brand," "post-internet," "slightly chaotic," "editorial magazine meets independent travel zine," or as using "hot pink" and "electric teal"; its own words are "Lonely Planet meets Klarna meets a campfire" and its own colour names are Sunset Rose and Maldives Teal, so the sepia and vintage prohibitions above are recorded as design guardrails rather than as quotations. Second, the kit lists no verbal tics of the "honestly / look / anyway" kind; its actual voice signatures are the dry parenthetical aside, the "I am aware of how this sounds" preempt, named characters with one defining detail, the signed sign-off, and specific food, animal, and sensory anchors, and the words honestly, look, and anyway appear nowhere in the kit, so those tics are marked [NOT SPECIFIED IN KIT]. Third, the headline accent word is Sunset Rose #F0507A in this kit's own styling, not teal; teal sits in the eyebrow above the headline. Fourth, the kit is emphatic that stock photography is banned but says nothing at all about illustration, so the preference for real photography over illustration is marked [NOT SPECIFIED IN KIT] and needs a decision.</p>
+</section>
+
+</body>
+</html>
