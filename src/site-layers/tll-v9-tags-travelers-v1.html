@@ -1,0 +1,32 @@
+<style id="tll-v9-tags-v1">
+/* v9 J14 (6 Oct 2026): luggage-tag people cards on /travelers (DESIGN-SPEC-v9 §4). The founder tag is Ink, rotated -0.6°; the open slot is a Paper
+   tag with a dashed inset, rotated 0.8°. Grommet and PROPERTY OF row are pseudo-elements; the shadow sits on a wrapper the script adds, because
+   clip-path clips box-shadow. One open slot per grid until the roster has three real people (COUNCIL-REVIEW decision). Additive: no card removed. */
+[data-tll-travelers="v2"] .tll-trav-card-dark,[data-tll-travelers="v2"] .tll-fos-card-open{position:relative;box-sizing:border-box;height:100%;padding:84px 24px 24px !important;border-radius:0 !important;clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%,0 24px);box-shadow:none !important}
+[data-tll-travelers="v2"] .tll-trav-card-dark{background:#0A0B14 !important;color:#F7F1E8}
+[data-tll-travelers="v2"] .tll-fos-card-open{background:#FDF9F3 !important;outline:2px dashed #c9b89a;outline-offset:-14px;border:0 !important}
+[data-tll-travelers="v2"] .tll-trav-card-dark::before,[data-tll-travelers="v2"] .tll-fos-card-open::before{content:"";position:absolute;top:18px;left:50%;margin-left:-10px;width:20px;height:20px;border-radius:50%;background:#F7F1E8;box-shadow:inset 0 0 0 4px #c9b89a;pointer-events:none}
+[data-tll-travelers="v2"] .tll-trav-card-dark::after,[data-tll-travelers="v2"] .tll-fos-card-open::after{content:"PROPERTY OF";position:absolute;top:50px;left:24px;right:24px;padding-top:8px;border-top:1.5px dashed #2b2f52;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;font-weight:600;color:#9496AC;pointer-events:none}
+[data-tll-travelers="v2"] .tll-fos-card-open::after{border-top-color:#c9b89a;color:#6B6660}
+[data-tll-travelers="v2"] .tll-tag-owner{position:absolute;top:58px;right:24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;font-weight:600;color:#9496AC;pointer-events:none}
+[data-tll-travelers="v2"] .tll-fos-card-open .tll-tag-owner{color:#6B6660}
+.tll-tag-wrap{filter:drop-shadow(0 14px 26px rgba(10,11,20,.18));display:block;height:100%}
+.tll-tag-wrap[data-tag="founder"]{transform:rotate(-.6deg)}
+.tll-tag-wrap[data-tag="open"]{transform:rotate(.8deg)}
+[data-tll-travelers="v2"] .tll-trav-grid{align-items:stretch;gap:18px}
+@media(prefers-reduced-motion:reduce){.tll-tag-wrap{transform:none}}
+</style>
+<script id="tll-v9-tags-js-v1">
+(function(){
+  function run(){
+    var S=document.querySelector('[data-tll-travelers="v2"]');if(!S)return;
+    [].forEach.call(S.querySelectorAll('.tll-trav-card-dark,.tll-fos-card-open'),function(card){
+      if(card.closest('.tll-tag-wrap'))return;
+      var w=document.createElement('div');w.className='tll-tag-wrap';w.setAttribute('data-tag',card.classList.contains('tll-fos-card-open')?'open':'founder');
+      card.parentNode.insertBefore(w,card);w.appendChild(card);
+      var o=document.createElement('span');o.className='tll-tag-owner';o.setAttribute('aria-hidden','true');o.textContent='TLL TRAVELER';card.appendChild(o);
+    });
+  }
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>

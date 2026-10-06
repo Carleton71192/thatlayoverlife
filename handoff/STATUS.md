@@ -4,7 +4,7 @@
 
 **Rules:** one row per ID, no merging. Status is one of TODO, In progress, Done, Partial, Blocked, N/A, Deferred. **Done needs evidence**: the live URL with `?v=` and what you saw. Partial says exactly what is left. Blocked says who or what it waits on. Update this file after every item, commit it, and print the summary line at the end of every session.
 
-Summary: TODO 25 · Done 1 · Partial 102 · Blocked 17 · N/A 2 · Deferred 0
+Summary: TODO 23 · Done 1 · Partial 104 · Blocked 17 · N/A 2 · Deferred 0
 
 | ID | Item | Status | Evidence / what is left |
 |---|---|---|---|
@@ -156,8 +156,8 @@ Summary: TODO 25 · Done 1 · Partial 102 · Blocked 17 · N/A 2 · Deferred 0
 | J11 | Type scale: page titles Playfair 800 clamp(44px, 6.4vw, 112px), line-height .9, tracking - | Partial | Staged 6 Oct 2026 in the site head (style tll-v9-type-v1): page titles Playfair 800 clamp(44px, 6.4vw, 112px) / .9 / -.035em balanced, home hero clamp(46px, 9.6vw, 186px) / .86, section heads clamp(34px, 5vw, 64px); story titles and rich-text headings excluded. Left: spot-check 5 pages after publish; hero sections whose layouts assumed 60px titles may need padding tweaks (B rows). |
 | J12 | Library search = big underlined headline input (3px Ink underline, Rose SEARCH → chip). St | TODO |  |
 | J13 | Story page opens with a full-bleed photo, larger title below it | TODO |  |
-| J14 | Luggage-tag cards for people: cut top corners (24px), grommet hole (20px Cream circle, 4px | TODO |  |
-| J15 | Never "currently in" anywhere. Profiles say where you know ("KNOWS COPENHAGEN"), never whe | TODO |  |
+| J14 | Luggage-tag cards for people: cut top corners (24px), grommet hole (20px Cream circle, 4px | Partial | 6 Oct 2026: luggage-tag styles and wrapper script written to src/site-layers/tll-v9-tags-travelers-v1.html (clip-path tag, grommet, PROPERTY OF / TLL TRAVELER row, Ink founder tag at -0.6°, Paper open slot with dashed inset at 0.8°, drop-shadow on a wrapper, reduced motion flattens the rotation). Two of the three expert open-slot cards hidden with visibility (Berlin, Singapore kept in the DOM) so each grid shows one open slot, per the 5 Oct council decision. NOT yet added to the /travelers page head: held for Nancy's approval under the 6 Oct draft-first rule. Left: her go, then the profile header horizontal tag and directory cards. |
+| J15 | Never "currently in" anywhere. Profiles say where you know ("KNOWS COPENHAGEN"), never whe | Partial | 6 Oct 2026 (staged, unpublished): the founder card on /travelers no longer says Currently in Copenhagen; it reads Knows Copenhagen · abroad since 2018 · lives in Denmark. Left: verify-live grep for currently in across every page after the next publish; profile and edit-profile copy. |
 | J16 | Sticker Passport page and Colophon page built as in the standalone (SCREENS menu → Sticker | TODO |  |
 
 ## R · Design direction changes after v8 (Nancy, 30 Sep 2026)
