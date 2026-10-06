@@ -8,7 +8,7 @@ Nancy's screen capture of the live page (reports/live-capture-2026-10-06-p1..p3.
 
 Resolved the same day: Nancy supplied the live HTML (kept here as `index-live-2026-10-06.html`). `index.html` is now that live file with the fixes merged in, so it IS the upload. `changes.diff` is live versus merged. Body copy is untouched except the hero eyebrow (dropped "· Skandinavien") and six section kickers removed. Added: the head block, `index,follow`, self-canonical, 55-char title, 159-char description, OG set, JSON-LD (WebSite, ProfessionalService, Service), inline favicon, `--steel-text` for every Steel-on-light label, 12 px micro-labels, hover and press states gated for pointer devices, reduced-motion handling, visible focus ring, a "Book vurdering" button in the header at every width, the four portraits served from `img/` instead of the Webflow CDN, and the registered name, CVR, VAT number and Roskilde address in the footer. The earlier draft built on the 18 Aug base is superseded and was removed from this folder; its history is in git.
 
-Montserrat is self-hosted too (`fonts/montserrat-latin.woff2`, one variable file for every weight), so the upload set is `index.html`, `og-image.jpg`, `img/` and `fonts/`, all inside `/valideringseksperterne.dk/`. Nothing on the page calls Google any more. `og-image.jpg` is the technician photo, which no longer appears on the live page; swap it if you want the OG image to match something visible.
+Montserrat is self-hosted too (`fonts/montserrat-latin.woff2`, one variable file for every weight), so the upload set is `index.html`, `og-image.jpg`, `img/`, `fonts/` and `photos/`, all inside `/valideringseksperterne.dk/`. Nothing on the page calls Google any more. Later on 6 Oct Nancy supplied five sterile-processing photos; three are placed on the page (`photos/`, WebP, 1200 px wide, 33 to 64 KB each: autoclave chamber under the hero facts, pH test above the Omfang lists, sterilizer room beside the installation-validation note) and `og-image.jpg` is now the probes-on-towel photo at 1200 x 630, so the share image matches the measuring kit the page talks about. Alt texts describe only what is visible; no client, site or person is named.
 
 ## What I could and could not reach
 
@@ -61,7 +61,7 @@ diff <(sed -E 's#data:image/[a-z+]+;base64,[A-Za-z0-9+/=]+#IMG#g' live.html) \
 
 ### Low
 
-10. **og:image is 1100 x 1100.** It is the technician photo already embedded on the page, extracted to `og-image.jpg`. Facebook and LinkedIn prefer 1200 x 630; the square renders but is cropped in some previews. Swap for a landscape crop when convenient.
+10. **og:image is 1100 x 1100.** Resolved 6 Oct 2026: `og-image.jpg` is now a 1200 x 630 JPG (probes, logger and thermocouple in front of an instrument washer) with matching og:image:width, height and alt.
 11. **Both photos are still base64 data URIs (338 KB of HTML).** Left as is to keep the upload to two files. Moving them to `.jpg` files would cut HTML weight by about 95 percent.
 
 ## Body copy changes in the built file (Danish, confirm before use)
@@ -107,12 +107,14 @@ The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` 
 
 1. Back up first. In the Simply control panel open the damgaardsolutions.dk product, then the file manager (or connect over SFTP with the credentials shown there). Download `/valideringseksperterne.dk/index.html` and save it as `index-live-2026-09-28.html`. Also note whether `.htaccess`, `robots.txt` and `sitemap.xml` are in that folder; leave them as they are.
 2. Run the diff command at the top of this report against the backup and pick transplant or replace.
-3. Upload `index.html` (or the transplanted live file), `og-image.jpg`, and the whole `img/` folder (four team portraits, added 6 Oct 2026) into `/valideringseksperterne.dk/`. The HTML now references `og-image.jpg` as the scope photo and `img/<name>.jpg` for the team, so all of them must sit next to the page: `https://valideringseksperterne.dk/og-image.jpg` and `https://valideringseksperterne.dk/img/morten-winslow.jpg` must both resolve. The page itself is 37 KB now; the photos are no longer embedded.
+3. Upload `index.html`, `og-image.jpg`, and the whole `img/`, `fonts/` and `photos/` folders (four team portraits, one Montserrat file, three page photos, all added 6 Oct 2026) into `/valideringseksperterne.dk/`. The HTML references `og-image.jpg` for sharing, `img/<name>.jpg` for the team, `fonts/montserrat-latin.woff2` for type and `photos/<name>.webp` for the three page photos, so all of them must sit next to the page: `https://valideringseksperterne.dk/og-image.jpg`, `https://valideringseksperterne.dk/img/morten-winslow.jpg`, `https://valideringseksperterne.dk/fonts/montserrat-latin.woff2` and `https://valideringseksperterne.dk/photos/sterilisatorkammer.webp` must all resolve. The page itself is 30 KB; nothing is embedded.
 4. Verify from your Mac:
 
 ```
 curl -s https://valideringseksperterne.dk/ | grep -oE '<link rel="canonical"[^>]*>|<meta name="robots"[^>]*>|<title>[^<]*</title>|og:image" content="[^"]*"'
 curl -sI https://valideringseksperterne.dk/og-image.jpg | head -1
+curl -sI https://valideringseksperterne.dk/photos/sterilisatorkammer.webp | head -1
+curl -sI https://valideringseksperterne.dk/fonts/montserrat-latin.woff2 | head -1
 curl -s https://valideringseksperterne.dk/ | python3 -c "import sys,re,json; b=re.search(r'ld\+json\">(.*?)</script>',sys.stdin.read(),re.S).group(1); print([x['@type'] for x in json.loads(b)['@graph']])"
 ```
 
@@ -166,7 +168,8 @@ Nancy Carleton, on behalf of Damgaard Solutions ApS
 - `index.html`: corrected full page built on the 18 Aug base (345 KB, images still embedded).
 - `head-block.html`: the new head lines to transplant into the live file.
 - `contrast-patch.css`: the CSS token and rule changes only.
-- `og-image.jpg`: the technician photo extracted from the page for og:image (1100 x 1100).
+- `og-image.jpg`: share image, 1200 x 630 JPG (replaced 6 Oct 2026).
+- `photos/`: three page photos as WebP, 1200 px wide.
 - `changes.diff`: unified diff of base versus corrected, images collapsed.
 
 ## Profile update proposed for the brand-site-lab skill

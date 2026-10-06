@@ -79,6 +79,14 @@ Verification on the merged file: axe 0 violations at 1440, 768 and 375; no overf
 
 Still open from the craft floor, not in the approved scope: card radius 10 px (the floor prefers 12 to 16 px for cards, though no cards remain), Montserrat served from Google (legal audit fix D), and the hero lede length.
 
+## Photos added 6 Oct 2026 (Nancy's five sterile-processing photos)
+
+Nancy sent five 1280 x 720 photos and approved my recommended set. Placed: the open autoclave chamber as a 2:1 band under the hero facts (12 px radius, the floor's card radius), the pH/water test as a band above the Omfang lists (it illustrates "Vandkvalitet og pH (Testplan 4)", the page's main differentiator), and the sterilizer room beside the "Vi laver ikke den første installationsvalidering" note, which turns that thin section into a text-plus-photo split at 1.1fr/.9fr and stacks at 860 px. The probes-on-towel photo became the 1200 x 630 share image instead of a fourth band, so the page carries three photos, not four. The wrapped-packs photo is held in reserve: it shows sterile supply rather than revalidation.
+
+Craft notes: photos are re-encoded WebP at 1200 px (33 to 64 KB), carry width/height to reserve layout, decode async, and the two below the fold lazy-load. Alt texts describe only what is visible and name no client, site or person. Hero bottom moves from 684 to 1296 px at 1440 because of the band; H1, lede, both CTAs and the facts row stay above the fold at 900 px tall.
+
+Verification after placement: axe 0 violations at 1440, 768 and 375; no horizontal overflow at any width; all seven images decode; Montserrat loads from the self-hosted file over HTTP; no external requests; JSON-LD still parses with WebSite, ProfessionalService and Service; one H1; lang="da"; no em or en dashes. Renders: `photo-final-1440.png`, `photo-final-375.png`.
+
 ## Evidence
 
 - Renders: `scratchpad/vk/design-audit/mode-A-{375,768,1440}.png` (session scratchpad, not committed)
