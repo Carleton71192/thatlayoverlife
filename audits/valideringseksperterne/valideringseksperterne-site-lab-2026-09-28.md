@@ -101,6 +101,18 @@ If the live page already carries FSTA, A0 and vandkvalitet wording, use the tran
 - valideringseksperterne.com should 301 to the .dk over https: Still open, certificate issue (Simply request B).
 - GPTBot 429: Still open (Simply request A).
 
+## Update 6 Oct 2026, afternoon: hreflang and the English twin
+
+`index.html` now carries `hreflang="da"` (self), `hreflang="en"` and `x-default` pointing at `https://www.damgaard-solutions.com/revalidation/en`. Re-upload `index.html` alone to pick this up; no other file changed. The matching lines for the English Webflow page go into Page settings, Custom code, Inside head tag (the Webflow API cannot set them):
+
+```
+<link rel="alternate" hreflang="en" href="https://www.damgaard-solutions.com/revalidation/en">
+<link rel="alternate" hreflang="da" href="https://valideringseksperterne.dk/">
+<link rel="alternate" hreflang="x-default" href="https://www.damgaard-solutions.com/revalidation/en">
+```
+
+Webflow changes made the same afternoon (all unpublished, in the Designer): English page photos swapped to the 2026 set (chamber in Scope, report binder in Agreement, pH test in Why Damgaard) with English alt text; the Danish twin `/revalidation/da` got the same three photos, the 2026 headshots and "Retningslinjerne kræver det" instead of "Loven kræver det"; English copy fixes "The guidelines require it", eyebrow casing, FSTA named in the two scope bullets. See `reports/en-da-discrepancies-2026-10-06.md` and `reports/research-certificates-vs-reports-2026-10-06.md`.
+
 ## Upload steps (Simply, damgaardsolutions.dk hotel)
 
 The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` on the NON-hyphenated `damgaardsolutions.dk` web hotel (server linux244, IP 93.191.156.127). That folder sits next to `public_html`, not inside it. Do not touch `public_html`, which serves damgaardsolutions.dk itself.
