@@ -99,7 +99,7 @@ The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` 
 
 1. Back up first. In the Simply control panel open the damgaardsolutions.dk product, then the file manager (or connect over SFTP with the credentials shown there). Download `/valideringseksperterne.dk/index.html` and save it as `index-live-2026-09-28.html`. Also note whether `.htaccess`, `robots.txt` and `sitemap.xml` are in that folder; leave them as they are.
 2. Run the diff command at the top of this report against the backup and pick transplant or replace.
-3. Upload `index.html` (or the transplanted live file) and `og-image.jpg` into `/valideringseksperterne.dk/`. Both belong at the folder root so that `https://valideringseksperterne.dk/og-image.jpg` resolves.
+3. Upload `index.html` (or the transplanted live file), `og-image.jpg`, and the whole `img/` folder (four team portraits, added 6 Oct 2026) into `/valideringseksperterne.dk/`. The HTML now references `og-image.jpg` as the scope photo and `img/<name>.jpg` for the team, so all of them must sit next to the page: `https://valideringseksperterne.dk/og-image.jpg` and `https://valideringseksperterne.dk/img/morten-winslow.jpg` must both resolve. The page itself is 37 KB now; the photos are no longer embedded.
 4. Verify from your Mac:
 
 ```

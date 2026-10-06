@@ -65,6 +65,17 @@ Two regressions caught and fixed during verification: adding `width`/`height` to
 
 Copy wording is unchanged except one punctuation swap in the facts strip ("ISO 17665, EN 285, ISO 15883" instead of middle dots) and the two "(valgfri)" markers on optional form fields. The hero lede is still about 30 words, above the Taste Skill's 20-word guide; shortening it is a copy decision for Nancy, not applied.
 
+## Roster added 6 Oct 2026 (Nancy's four headshots)
+
+The single-specialist block (Morten Winsløw, portrait plus four bullets) is now a four-person roster: photo, name, role. Photos are 600 px JPEGs in `img/` (37 to 43 KB each) instead of inline data, and the scope photo now points at `og-image.jpg`, so `index.html` dropped from 346 KB to 37 KB. Names and surnames come from Nancy's mapping plus the Damgaard SharePoint member list (Morten Winsløv/Winsløw, Peter Mastrup, Raquel Petersen, Valeria Meloni).
+
+Open before upload, marked in the file:
+- Valeria Meloni's role shows "[Rolle bekræftes]"; no source gives it. Replace before upload.
+- Peter Mastrup's role "Senior ingeniør, autoklaver og vaskemaskiner" is a Danish rendering of his Damgaard CV (Senior Engineer, specialist autoclaves and washers). Confirm the wording.
+- Raquel Petersen's role "Projektleder" comes from the Kunderum customer guide ("jeres projektleder, Raquel"). Confirm.
+- Morten's four bullets (30+ år, Belimed/Steelco/Miele, CSSD-automation, languages) left the page with the roster layout. The 30+ år fact survives in the facts strip. Say if any bullet should return as a one-liner under his role.
+- The SharePoint list spells Morten's surname "Winsløv"; the page keeps the existing "Winsløw". Confirm which is right.
+
 Still open from the craft floor, not in the approved scope: card radius 10 px (the floor prefers 12 to 16 px for cards, though no cards remain), Montserrat served from Google (legal audit fix D), and the hero lede length.
 
 ## Evidence
