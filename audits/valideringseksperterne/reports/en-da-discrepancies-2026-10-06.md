@@ -49,3 +49,11 @@ D. Hold for confirmation: certificates versus reports (item 2); whether to port 
 E. The .dk side: add the `hreflang="en"` link to `index.html` (one line, re-upload index.html only).
 
 Everything in A to C lands unpublished in the Designer. Publishing stays with Nancy.
+
+## Applied 6 Oct 2026, afternoon (all unpublished in the Designer)
+
+A, B, C and E as proposed, plus the parked items after Nancy's "carry on":
+
+- English page: meta description now "Independent, scheduled revalidation of hospital autoclaves and washer-disinfectors across Scandinavia. Revalidation report to EN ISO 17665 and EN ISO 15883." Steps renamed to Planning / Preparation, Part I / On-site testing, Part II / Report, Part III with the .dk texts translated. Scope bullet now "Traceable ISO/IEC 17025 calibration certificates on every logger and reference thermometer". FAQ answer now ends "Every visit ends with a signed revalidation report." Sixth FAQ added before the downtime question ("What if we do not want to run all the test plans?"). New section after Why Damgaard: "We do not do the initial installation qualification." with the .dk lede translated, built from the existing rc-sec, rc-wrap, rc-h2 and rc-lede styles. JSON-LD FAQPage updated to six questions and the report wording; Service description names FSTA, EN 285, EN ISO 17665 and EN ISO 15883.
+- Danish Webflow twin: meta description rewritten around FSTA and "Revalideringsrapport efter hvert besøg"; "Rapport, Del III" step; ISO/IEC 17025 bullet; FAQ answer ends with "en underskrevet revalideringsrapport"; page excluded from the sitemap as an interim measure.
+- Not possible through the API: the 301 from `/revalidation/da` to `https://valideringseksperterne.dk/` (Webflow exposes no redirect endpoint to this connector) and the EN page's custom head code for hreflang. Both are two-minute jobs in Site settings; steps in the site-lab report.

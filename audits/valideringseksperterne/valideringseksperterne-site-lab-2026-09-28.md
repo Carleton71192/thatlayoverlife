@@ -113,6 +113,11 @@ If the live page already carries FSTA, A0 and vandkvalitet wording, use the tran
 
 Webflow changes made the same afternoon (all unpublished, in the Designer): English page photos swapped to the 2026 set (chamber in Scope, report binder in Agreement, pH test in Why Damgaard) with English alt text; the Danish twin `/revalidation/da` got the same three photos, the 2026 headshots and "Retningslinjerne kræver det" instead of "Loven kræver det"; English copy fixes "The guidelines require it", eyebrow casing, FSTA named in the two scope bullets. See `reports/en-da-discrepancies-2026-10-06.md` and `reports/research-certificates-vs-reports-2026-10-06.md`.
 
+### Two Webflow settings to do by hand
+
+1. Redirect the duplicate Danish page: Webflow, Site settings, Publishing, 301 redirects. Old path `/revalidation/da`, redirect to `https://valideringseksperterne.dk/`. Save, then publish. The Danish page itself can stay in the Designer (it is already out of the sitemap); the redirect wins over it on the live site.
+2. hreflang on the English page: Pages, Revalidation EN, Settings, Custom code, Inside head tag: paste the three lines above.
+
 ## Upload steps (Simply, damgaardsolutions.dk hotel)
 
 The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` on the NON-hyphenated `damgaardsolutions.dk` web hotel (server linux244, IP 93.191.156.127). That folder sits next to `public_html`, not inside it. Do not touch `public_html`, which serves damgaardsolutions.dk itself.
