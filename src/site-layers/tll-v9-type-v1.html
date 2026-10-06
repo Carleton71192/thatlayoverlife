@@ -1,0 +1,9 @@
+<style id="tll-v9-type-v1">
+/* v9 J11 (6 Oct 2026): the 2.0 type scale. Page titles Playfair 800 clamp(44px, 6.4vw, 112px) / .9 / -.035em, balanced; home hero up to 186px;
+   section heads 64px. Story titles (J13) and rich-text headings keep their own rules. Overrides the 20 Sep consistency sizes, which sit earlier in the head. */
+h1:not(.tll-story-title){font-size:clamp(44px,6.4vw,112px) !important;line-height:.9 !important;letter-spacing:-.035em !important;text-wrap:balance}
+.tllp-home h1:not(.tll-story-title){font-size:clamp(46px,9.6vw,186px) !important;line-height:.86 !important;letter-spacing:-.04em !important}
+h2:not(.w-richtext h2):not(.tll-story-body h2):not([class*="card"] h2):not([class*="-title"]):not(.tll-shelf-title):not(.tll-lib-title):not(.tll-related-headline){font-size:clamp(34px,5vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+h1:not(.tll-story-title) + p,h1:not(.tll-story-title) + div:not(:has(*)){font-size:17px !important;line-height:1.55 !important}
+@media(max-width:767px){h1:not(.tll-story-title){line-height:.92 !important}}
+</style>
