@@ -17,6 +17,8 @@ The HTML files here are **design references**, not production code. Rebuild them
 | SHAREABLES-SPEC.md | Cards, counting, share flow, privacy, The Pack |
 | **COUNCIL-REVIEW.md** | **New: five-advisor review. Freeze approved by Nancy** |
 | CHANGES.md | v9, then v8 and earlier |
+| **ADDENDUM-v9.1-craft-fixes.md** | **DRAFT (6 October 2026): 10 craft fixes from the Taste / Impeccable / Emil audit. Build on a deploy preview only; Nancy approves item by item** |
+| **claude-design-source/** | **Editable Claude Design source: `TLL Site Prototype 2.0.dc.html` + `support.js` + `image-slot.js` + `STANDING-RULINGS.md` (rename to `CLAUDE.md` in the new project). Upload this folder to a Claude Design project to keep designing** |
 | **TLL Site Prototype 2.0 (standalone).html** | **New source of truth.** Every screen, SCREENS menu bottom left |
 | TLL Shareables (standalone).html | Shareables board |
 | **screens-v9/** | **New: 16 screenshots of the 2.0 build** |
