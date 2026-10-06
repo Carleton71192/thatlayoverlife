@@ -3,6 +3,9 @@
    Remove the scrim once photo-safe zones exist. */
 .tllp-home :has(> img[data-tll-parallax="hero"]){position:relative}
 .tllp-home :has(> img[data-tll-parallax="hero"])::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(10,11,20,0) 40%,rgba(10,11,20,.72) 100%)}
-.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *,.tllp-home :has(> img[data-tll-parallax="hero"]) > :not(img){position:relative;z-index:2}
+.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *,.tllp-home :has(> img[data-tll-parallax="hero"]) > :not(img):not(:empty){position:relative;z-index:2}
+/* 6 Oct 2026 (Nancy: "sticking out like a sore thumb"): the empty gradient overlay div is absolute in its own class; the rule above used to make it
+   position:relative too, so it became a 100%-wide flex sibling and pushed the hero copy into the right half at every width over 1180px. Empty divs stay absolute. */
+.tllp-home :has(> img[data-tll-parallax="hero"]) > div:empty{position:absolute !important;inset:0;z-index:1}
 .tllp-home [class*=eyebrow]{font-size:12px !important;letter-spacing:.18em !important;color:#00C9C8 !important}
 </style>
