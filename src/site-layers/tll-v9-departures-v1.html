@@ -1,0 +1,76 @@
+<script id="tll-v9-departures-v1">
+/* v9 J10 (6 Oct 2026): the Departures board, mode-neutral (air, rail, sea, road), inserted at the top of main on every page except
+   home and story pages. Values per page come from the 2.0 prototype's TX table; VIA uses the prototype's hash so each page keeps one mode.
+   Additive: nothing moved or removed; the page's own title follows the board. Skipped in embed mode. */
+(function(){
+var TX={
+ stories:['LIB','Your couch','The Library','S1','14C','NOW','{N} stories, all first-hand. More landing weekly.','SHELF CHECKED'],
+ destinations:['ATL','Everywhere','The Atlas','A1','ANY','ANYTIME','Every country by flag. Most are open slots.','193 TO STAMP'],
+ country:['CTY','The Atlas','A country','A2','AISLE','NOW','Facts checked, verdict ours.','FACTS CHECKED'],
+ travelers:['CRW','Arrivals hall','The Travelers','T1','ROW 1','NOW','Named humans. No fake crowd for scale.','EVERY BYLINE A PERSON'],
+ profile:['PRF','The Travelers','A profile','T2','1A','NOW','Where they know, never where they are.','LOCATION: COUNTRY ONLY'],
+ editprofile:['EDT','Your profile','Edit mode','T3','YOURS','WHENEVER','Every switch starts off. You turn things on.','PRIVATE BY DEFAULT'],
+ spotlight:['SPT','The Travelers','Spotlight','T4','STAGE','SOON','Open slots, honestly labeled.','OPEN SLOT'],
+ paw:['PAW','The kennel','Paw Passport','P1','FLOOR','PAWS DOWN','Floof class. Window seat, obviously.','PET BOARDING'],
+ mypets:['PET','Paw Passport','My pets','P2','FLOOR','WHENEVER','Name, species, breed, countries along. That is it.','NO PAPERWORK HERE'],
+ pawpassport:['PPT','My pets','A pet passport','P3','FLOOR','NOW','Good boy. Great passport.','PAWS DOWN'],
+ pets:['PTS','Paw Passport','The pets','P4','FLOOR','NOW','Every pet here has a human who said yes.','HUMAN APPROVED'],
+ gallery:['LNG','The terminal','The Layover Lounge','L1','LOUNGE','OPEN','Wish you were here. Most of them did.','LOUNGE ACCESS'],
+ map:['MAP','Your passport','The Map','M1','ALL','ANYTIME','Rose means been there. Blank means working on it.','LEFT THE AIRPORT'],
+ about:['ABT','Arrivals','About TLL','B1','1A','NOW','One editor, one Samoyed, a lot of opinions.','EST. COPENHAGEN'],
+ share:['PEN','Your notes app','Pen a Tale','W1','DESK','WHEN READY','Reviewed within 48 hours by a human.','DRAFT SAVES ITSELF'],
+ sharephotos:['PIX','Camera roll','Share a postcard','W2','DESK','WHEN READY','Pack light. Bring the good shot.','PAR AVION'],
+ forexpats:['EXP','Somewhere new','The expats','E1','LOCAL','NOW','Find the people who know the place.','LOCAL KNOWLEDGE'],
+ forpress:['PRS','The newsroom','Press trips','E2','PRESS','DEADLINE','Hosted trips labeled at the top. Always.','REKLAME LABELED'],
+ foraffiliates:['CRT','Your channel','Creators','E3','STUDIO','NOW','Credit given, links followed.','CREDITED'],
+ faq:['FAQ','Confused','Answers','H1','HELP','NOW','Short answers. Longer ones by email.','ANSWERED'],
+ support:['SUP','Help desk','Support','H2','HELP','NOW','A human reads every message.','HUMAN ON DUTY'],
+ contact:['MSG','Your inbox','Contact','H3','HELLO@','NOW','A human reads this. Usually with coffee.','RETURN TO SENDER'],
+ auth:['ID','Departures','Your account','X1','YOURS','NOW','Free to join. Free forever.','CHECK-IN OPEN'],
+ forgot:['RST','Lost and found','Password reset','X2','DESK','NOW','It happens to the best of us.','LOST AND FOUND'],
+ account:['ACC','Check-in','Your account','X3','YOURS','NOW','Your map, your stories, your pets.','MEMBER'],
+ charter:['CHR','The fine print','Editorial charter','F1','READ','NOW','How we work, in plain words.','SIGNED OFF'],
+ guidelines:['GDL','The fine print','House rules','F2','READ','NOW','Five rules. Shorter than the safety demo.','HOUSE RULES'],
+ legal:['LGL','The fine print','Privacy and terms','F3','READ','NOW','Lawyer-approved words, human-readable layout.','GDPR DEFAULTS'],
+ cookies:['CKE','The fine print','Cookies','F4','READ','NOW','Necessary ones only, unless you say yes.','YOUR CALL'],
+ directory:['DIR','Arrivals hall','The directories','D1','ROSTER','SHUFFLED','Shuffled on every load. Never ranked.','NO PAID PLACEMENT'],
+ editor:['EDI','The queue','Editor desk','Z1','EDITOR','QUEUE','The queue, read by a human.','EDITOR ONLY'],
+ wire:['WIR','The world','The Travel Wire','N1','NEWS','LIVE','Headlines from the people who did the reporting.','ON THE WIRE'],
+ guide:['GDE','The question','A guide','G1','ANSWER','NOW','Sourced, dated, checked.','SOURCES CITED'],
+ awards:['AWD','The ballot','Layover Awards','G2','VOTE','DECEMBER','Members nominate. The editor picks.','NOMINATIONS OPEN'],
+ forbrands:['BRD','Your brand','For brands','G3','PARTNER','BY EMAIL','Paid work never buys a verdict.','REKLAME FIRST'],
+ notfound:['404','A wrong turn','Nowhere','??','LOST','NEVER','Rebooking you on the next page.','GATE CLOSED'],
+ styleguide:['STY','The kit','Style guide','K1','REF','NOW','Reference only.','INTERNAL']
+};
+var ROUTES=[[/^\/stories$/,'stories'],[/^\/destinations$/,'destinations'],[/^\/countries\//,'country'],[/^\/travelers(-archive)?$/,'travelers'],[/^\/(profile|contributors)(\/|$)/,'profile'],[/^\/edit-profile$/,'editprofile'],[/^\/spotlight/,'spotlight'],[/^\/the-paw-passport$/,'paw'],[/^\/my-pets$/,'mypets'],[/^\/paw-passport\//,'pawpassport'],[/^\/pets$/,'pets'],[/^\/gallery$/,'gallery'],[/^\/the-map$/,'map'],[/^\/about$/,'about'],[/^\/submit$/,'share'],[/^\/share-photos$/,'sharephotos'],[/^\/for-expats$/,'forexpats'],[/^\/(for-press|press-trips)$/,'forpress'],[/^\/for-affiliates$/,'foraffiliates'],[/^\/(expats|creators|press)$/,'directory'],[/^\/faq$/,'faq'],[/^\/support$/,'support'],[/^\/contact$/,'contact'],[/^\/(login|signup)$/,'auth'],[/^\/forgot-password$/,'forgot'],[/^\/(account|my-passport)$/,'account'],[/^\/editorial-charter$/,'charter'],[/^\/community-guidelines$/,'guidelines'],[/^\/(privacy|terms)$/,'legal'],[/^\/cookies$/,'cookies'],[/^\/editors-desk$/,'editor'],[/^\/travel-wire$/,'wire'],[/^\/guides\//,'guide'],[/^\/awards$/,'awards'],[/^\/for-brands$/,'forbrands'],[/^\/404$/,'notfound'],[/^\/style-guide$/,'styleguide']];
+function hash(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function build(){
+  if(document.getElementById('tll-departures'))return;
+  if(/[?&]embed=1/.test(location.search))return;
+  var P=location.pathname.replace(/\/$/,'')||'/';
+  if(P==='/'||/^\/stories\//.test(P))return;
+  var key=null;for(var i=0;i<ROUTES.length;i++){if(ROUTES[i][0].test(P)){key=ROUTES[i][1];break;}}
+  if(!key&&document.title.indexOf('404')>-1)key='notfound';
+  var tx=TX[key]||['TLL','Somewhere','That Layover Life','A1','1A','NOW','Somewhere worth the layover.','LEFT THE AIRPORT'];
+  var via=['RAIL','SEA','AIR','ROAD'][hash(key||'x')%4];
+  var line=tx[6];
+  if(line.indexOf('{N}')>-1){var n=0;try{n=+sessionStorage.getItem('tllStoryN')||0;}catch(e){}line=n?line.replace('{N}',n):'All first-hand. More landing weekly.';}
+  var main=document.querySelector('main');if(!main)return;
+  var L="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;font-weight:600;color:#9496AC";
+  var V="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:1px;font-weight:700;color:#F7F1E8;margin-top:8px";
+  function cell(lab,val,flex,extra){return '<div style="flex:'+flex+';min-width:0;padding:16px 20px 18px 0"><div style="'+L+'">'+lab+'</div><div style="'+V+(extra||'')+'">'+esc(val)+'</div></div>';}
+  var b=document.createElement('div');b.id='tll-departures';b.setAttribute('data-tll-departures',key||'default');b.setAttribute('role','region');b.setAttribute('aria-label','Departures');
+  b.style.cssText='background:#0A0B14;color:#F7F1E8;border-bottom:6px solid #F7F1E8';
+  b.innerHTML='<div style="padding:0 6vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #23263c;font-family:\'JetBrains Mono\',monospace;font-size:10.5px;letter-spacing:3px;font-weight:700;color:#9496AC"><span style="padding:14px 0">DEPARTURES · THAT LAYOVER LIFE</span><span style="padding:14px 0">AIR · RAIL · SEA · ROAD</span></div>'
+   +'<div style="padding:0 6vw;display:flex;flex-wrap:wrap;column-gap:20px;align-items:flex-end">'
+   +cell('ROUTE','TLL '+tx[0],'1 1 120px',';color:#00C9C8;white-space:nowrap')
+   +cell('FROM',tx[1],'1 1 120px')
+   +'<div style="flex:2.4 1 240px;min-width:0;padding:16px 20px 18px 0"><div style="'+L+'">TO</div><div style="font-family:\'Playfair Display\',serif;font-weight:800;font-size:clamp(22px,2.4vw,30px);line-height:1.1;letter-spacing:-.01em;color:#F7F1E8;margin-top:6px">'+esc(tx[2])+'</div></div>'
+   +cell('VIA',via,'1 1 120px')+cell('STOP',tx[3],'.6 1 80px')+cell('DEPARTS',tx[5],'.8 1 100px')+cell('STATUS',tx[7],'1.4 1 170px',';color:#F0507A')
+   +'</div><div style="padding:14px 6vw;border-top:1px solid #23263c;font-family:\'IBM Plex Sans Condensed\',sans-serif;font-size:15px;line-height:1.45;color:#9496AC">'+esc(line)+'</div>';
+  main.insertBefore(b,main.firstChild);
+}
+if(document.readyState!=='loading')build();else document.addEventListener('DOMContentLoaded',build);
+})();
+</script>
