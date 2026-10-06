@@ -1,0 +1,35 @@
+<style id="tll-v9-j12-v1">
+/* v9 J12 (6 Oct 2026, 2.0 parity for /stories, DRAFT): the Library search becomes the big underlined headline input, and the server-rendered
+   CMS cards become shelf cards (photo, country badge, Playfair title under the photo per v9.1 fix 04, mono pillar line, byline). CSS only:
+   every element, class, input name and data attribute stays; nothing is removed. Fix 06 applied: placeholder at 60% in #6B6A72, typed text full
+   size Ink, 2px to 4px underline on focus in 150ms. Kit v2.1 tokens only. */
+.tllsb-bar{background:#F7F1E8 !important;padding:6vh 0 4vh !important;border:0 !important}
+.tllsb-inner{display:block !important;max-width:1320px !important;margin:0 auto !important;padding:0 6vw !important}
+.tllsb-label{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;color:#067A79 !important;text-transform:uppercase !important;margin:0 0 12px !important;width:auto !important;cursor:text}
+.tllsb-form{display:block !important;max-width:none !important;padding:0 !important;background:transparent !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;margin:0 !important}
+.tllsb-form > form{display:flex !important;align-items:flex-end !important;gap:18px !important;border-bottom:3px solid #0A0B14 !important;padding:0 0 12px !important;margin:0 !important;transition:box-shadow 150ms cubic-bezier(.23,1,.32,1)}
+.tllsb-form > form:focus-within{box-shadow:inset 0 -1px 0 #0A0B14}
+.tllsb-input{flex:1 1 auto !important;width:auto !important;min-width:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;outline:0 !important;margin:0 !important;height:auto !important;font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(26px,4.4vw,72px) !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:#0A0B14 !important;padding:0 !important}
+.tllsb-input::placeholder{font-size:.6em !important;color:#6B6A72 !important;opacity:1 !important;font-weight:800;letter-spacing:-.01em}
+.tllsb-btn{height:auto !important;padding:13px 18px !important;background:#F0507A !important;color:#0A0B14 !important;font-family:'JetBrains Mono',monospace !important;font-size:12px !important;letter-spacing:2px !important;font-weight:700 !important;text-transform:uppercase !important;border-radius:0 !important;margin-bottom:2px !important}
+.tllsb-btn:hover{background:#D63859 !important;color:#F7F1E8 !important}
+.tllsb-clear{display:inline-block;margin-top:12px;font-size:11px !important;letter-spacing:1.5px;color:#6B6660 !important;text-transform:uppercase}
+@media(max-width:700px){.tllsb-form > form{gap:12px !important}.tllsb-btn{padding:12px 14px !important}}
+/* Shelf cards on the Cream page */
+.tll-lib-grid{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)) !important;gap:8vh 3vw !important;align-items:start !important}
+.tll-lib-card{display:block !important;background:transparent !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;padding:0 !important;overflow:visible !important;position:relative}
+.tll-lib-card:hover{box-shadow:none !important}
+.tll-lib-img{display:block !important;width:100% !important;aspect-ratio:4/3 !important;height:auto !important;object-fit:cover !important;border-radius:0 !important;background:#0A0B14}
+.tll-lib-grid > :nth-child(odd) .tll-lib-img{transform:rotate(-.8deg)}
+.tll-lib-grid > :nth-child(even) .tll-lib-img{transform:rotate(.9deg)}
+.tll-lib-body{padding:20px 0 0 !important}
+.tll-lib-meta{position:absolute;left:14px;top:12px;z-index:2;font-family:'JetBrains Mono',monospace !important;font-size:10px !important;letter-spacing:2px !important;color:#F7F1E8 !important;background:#0A0B14 !important;padding:5px 9px !important;text-transform:uppercase !important;margin:0 !important;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tll-lib-title{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(22px,2vw,32px) !important;line-height:1.06 !important;letter-spacing:-.01em !important;color:#0A0B14 !important;margin:0 !important;text-wrap:balance;overflow-wrap:anywhere}
+.tll-lib-card:hover .tll-lib-title{text-decoration:underline;text-decoration-color:#F0507A;text-decoration-thickness:3px;text-underline-offset:4px}
+.tll-lib-lede{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:15px !important;line-height:1.5 !important;color:#3a3a3a !important;margin:8px 0 0 !important;max-width:46ch}
+.tll-lib-byline{display:flex !important;align-items:center !important;gap:8px !important;margin:10px 0 0 !important}
+.tll-lib-byline-img{width:24px !important;height:24px !important;border-radius:50% !important;object-fit:cover !important;box-shadow:0 0 0 1.5px #F0507A}
+.tll-lib-byline-name{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:13px !important;font-weight:600 !important;color:#0A0B14 !important;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px}
+.tll-lib-read{font-family:'JetBrains Mono',monospace !important;font-size:10.5px !important;letter-spacing:1.5px !important;color:#6B6660 !important;text-transform:uppercase !important;margin:10px 0 0 !important}
+@media(prefers-reduced-motion:reduce){.tll-lib-grid > * .tll-lib-img{transform:none !important}}
+</style>

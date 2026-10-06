@@ -1,0 +1,17 @@
+<style id="tll-v9-j13-v1">
+/* v9 J13 (6 Oct 2026, 2.0 parity for /stories/{slug}, DRAFT): the hero photo runs full-bleed at 88vh with the 2.0 gradient, the title sits at the
+   bottom of the photo at the page-title scale (Playfair 800 clamp(44px, 6.4vw, 112px) / .9 / -.035em), meta row in mono teal. CSS only: the
+   breadcrumb, meta row, excerpt and author block all stay in place; nothing is removed. Reduced motion: no parallax (site rule). */
+.tll-story-hero{position:relative !important;min-height:min(88vh,980px) !important;background:#0A0B14 !important;display:flex !important;align-items:flex-end !important;overflow:hidden !important;padding:0 !important}
+.tll-story-hero-img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;object-fit:cover !important}
+.tll-story-hero-overlay{position:relative !important;width:100% !important;min-height:min(88vh,980px) !important;display:flex !important;flex-direction:column !important;justify-content:flex-end !important;background-image:linear-gradient(180deg,rgba(10,11,20,.45),rgba(10,11,20,.15) 40%,rgba(10,11,20,.92)) !important}
+.tll-story-hero-content{max-width:1320px !important;width:100% !important;margin:0 auto !important;padding:10vh 6vw 8vh !important;box-sizing:border-box}
+.tll-story-hero [data-tll-breadcrumb]{margin-bottom:14px !important}
+.tll-story-hero .tll-story-meta-row{margin-bottom:12px !important}
+.tll-story-hero [data-tll-hero-caption]{font-family:'JetBrains Mono',monospace !important;font-size:10.5px !important;letter-spacing:1.5px !important;color:#9496AC !important}
+.tll-story-hero .tll-story-meta-row .tll-eyebrow-teal,.tll-story-hero .tll-story-reading-time{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:2px !important;color:#00C9C8 !important;text-transform:uppercase !important}
+.tll-story-hero .tll-story-meta-divider{color:#00C9C8 !important}
+h1.tll-story-title{font-size:clamp(44px,6.4vw,112px) !important;line-height:.9 !important;letter-spacing:-.035em !important;text-wrap:balance;max-width:none !important;color:#fff !important;text-shadow:0 2px 16px rgba(10,11,20,.8) !important;margin:0 0 18px !important}
+.tll-story-excerpt{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:clamp(16px,1.25vw,20px) !important;line-height:1.5 !important;max-width:560px !important;color:#e8e2d8 !important}
+@media(max-width:767px){.tll-story-hero,.tll-story-hero-overlay{min-height:min(76vh,720px) !important}.tll-story-hero-content{padding:12vh 16px 6vh !important}h1.tll-story-title{line-height:.94 !important}}
+</style>
