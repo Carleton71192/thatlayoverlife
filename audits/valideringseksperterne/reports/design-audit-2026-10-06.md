@@ -71,7 +71,11 @@ The single-specialist block (Morten Winsløw, portrait plus four bullets) is now
 
 Roles, bios and the small credential lines were then taken verbatim from Nancy's live-page capture of 6 Oct 2026 (Morten Winsløw, Senior Revalideringsspecialist; Peter Mastrup, Valideringsspecialist; Valeria Meloni, Validerings- og EM-specialist; Raquel Petersen, Projektleder, pharmaudvikling og koordinering). The live page uses the same spelling "Winsløw". One flag: Valeria's live bio opens with "CQV-ingeniør", and the Damgaard copy rules say no "CQV" in AEO copy; it is live wording, left as is for Nancy to decide.
 
-Important: the same capture shows the live page's whole body is newer than this file's base. This audit's fixes stay valid as a pattern, but they must be re-applied onto the live HTML, not shipped from this file. See the site-lab report, "Update 6 Oct 2026".
+## Re-applied onto the live HTML, 6 Oct 2026 (final)
+
+Nancy then supplied the live source, so the fixes were re-applied onto it and the earlier draft was retired. What carried over to the live layout: hover contrast and press states (fix 5), reduced-motion and hover gating with the FAQ marker rotation (fix 7), 12 px micro-labels (fix 8), eyebrow trim to two (fix 3), a header "Book vurdering" button at every width (fix 2, the live header had no CTA at all), image dimensions and local hosting for the four portraits (fix 10), plus a `<main>` landmark and visible focus ring. Not needed on live: fixes 4, 6 and 9 (live has no cards, no form, and already anonymizes clients). Fix 1 was not applied: the live hero is light and its facts row already reads as a strip under the CTAs, so moving it would be a redesign rather than a refinement.
+
+Verification on the merged file: axe 0 violations at 1440, 768 and 375; no overflow; all four portraits decode at 600 px; Impeccable detector down from 8 to 7 on the live layout (remaining: the hero eyebrow kept by approval, the quote's 4 px Steel side border which is live design, two tracking notes on chips and buttons, the uppercase brand line, and the Montserrat false positive).
 
 Still open from the craft floor, not in the approved scope: card radius 10 px (the floor prefers 12 to 16 px for cards, though no cards remain), Montserrat served from Google (legal audit fix D), and the hero lede length.
 

@@ -5,6 +5,16 @@ Date: 30 Sep 2026. Status: DRAFT, offline pass only. Live phases pending network
 
 This is a technical compliance review, not legal advice. Items tagged NEEDS COUNSEL should be confirmed by a qualified lawyer.
 
+## Update 6 Oct 2026: live HTML received, findings re-checked against it
+
+Nancy supplied the live `index.html` (saved as `../index-live-2026-10-06.html`). Against the live file:
+- L01, L02, L16 (CVR, VAT, registered name, seat): absent on live, now in the merged `index.html` footer and JSON-LD.
+- L05 (privacy policy): the live legal links go to https://damgaard-solutions.com/privacy-policy and /cookie-policy, which are real policy URLs, so the "links to the homepage" finding came from the older base and does not apply to live. Still open: confirm those policies name the .dk, Google Fonts and the server logs. Severity drops from Critical to Medium.
+- L06, L07 (contact form, Web3Forms): the live page has no form, only email and phone. Both findings do not apply. The processor list shrinks to Simply (hosting) and Google (fonts).
+- L03 (Google Fonts before consent): still true on live and on the merged file. Fix D still applies.
+- New on live, fixed in the merged file: the four team portraits were loaded from cdn.prod.website-files.com (Webflow's CDN), a third-party request on every page load, undisclosed anywhere. They now ship from `img/` on the same host.
+- L04 (server cookies), F01 (TLS, headers, redirects, Lighthouse): still NOT VERIFIED, the host is still blocked from this environment.
+
 ## What was tested and what was not
 
 Tested (source-based, on the corrected `index.html` built 28 Sep 2026 from the 18 Aug Drive base): company identification in the page, every third-party host referenced in the HTML and JS, the contact form's fields, endpoint and spam guard, cookies or storage set by the page's own JavaScript, presence of a consent banner, image alt text, language attribute, legal page links, claims that need substantiation, and an axe-core run on the local file in headless Chromium at 390px (0 violations, from the 28 Sep site lab).
