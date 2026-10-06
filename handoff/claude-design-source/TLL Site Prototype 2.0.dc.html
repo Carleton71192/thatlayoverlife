@@ -63,36 +63,32 @@
 </div></sc-if>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A0B14"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-weight="800" font-size="64" fill="#F7F1E8">T<tspan fill="#F0507A">L</tspan>L</text></svg></template>
 <!-- PROTOTYPE SCREEN SWITCHER (not part of the site design) -->
-<div style="position:fixed;bottom:14px;left:14px;z-index:9999;background:#0A0B14;border:1px solid #23263c;border-radius:8px;padding:8px 10px;box-shadow:0 6px 24px rgba(0,0,0,.5);max-width:calc(100vw - 28px)">
-  <div onClick="{{ toggleProtoNav }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#4a4d63" role="button" tabIndex="0"><span>PROTOTYPE · ALL SCREENS · {{ protoScreenLabel }}</span><span style="color:#00C9C8">{{ protoToggleLabel }}</span></div>
-  <div style="display:{{ protoNavDisplay }};flex-wrap:wrap;gap:5px;margin-top:6px">
+<div onKeyDown="{{ protoKey }}" style="position:fixed;bottom:16px;right:16px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:8px;max-width:calc(100vw - 32px)">
+  <div id="proto-screens" style="display:{{ protoNavDisplay }};flex-wrap:wrap;justify-content:flex-end;gap:5px;background:#0A0B14;border:1.5px solid #F7F1E8;border-radius:2px;padding:10px;box-shadow:0 6px 24px rgba(0,0,0,.5);max-height:min(60vh,520px);overflow:auto">
     <sc-for list="{{ protoNav }}" as="p" hint-placeholder-count="12">
-      <span onClick="{{ p.go }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;border-radius:5px;background: {{ p.bg }};color: {{ p.color }};white-space:nowrap" role="button" tabIndex="0">{{ p.label }}</span>
+      <span onClick="{{ p.go }}" style="cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;padding:7px 10px;border-radius:2px;background: {{ p.bg }};color: {{ p.color }};white-space:nowrap" role="button" tabIndex="0">{{ p.label }}</span>
     </sc-for>
   </div>
+  <button onClick="{{ toggleProtoNav }}" onFocus="{{ openProtoNav }}" aria-expanded="{{ protoNavOpen }}" aria-controls="proto-screens" style="display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#F7F1E8;background:#0A0B14;border:1.5px solid #F7F1E8;border-radius:2px">Screens<span aria-hidden="true" style="color:#00C9C8">{{ protoToggleLabel }}</span></button>
 </div>
 
-<div ref="{{ ed.cursorRef }}" aria-hidden="true" style="display:{{ ed.cursorD }};position:fixed;left:0;top:0;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:#F7F1E8;mix-blend-mode:difference;pointer-events:none;z-index:9999;transition:width .18s,height .18s,margin .18s"></div>
 <!-- ============ HOME (2.0 · editorial bold) ============ -->
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ ed.true }}"><div data-screen-label="Home 2.0" style="background:#0A0B14;overflow-x:clip">
-<section style="position:relative;height:112vh;min-height:560px;overflow:hidden;background:#0A0B14;color:#F7F1E8">
+<section style="position:relative;height:100vh;min-height:560px;overflow:hidden;background:#0A0B14;color:#F7F1E8">
  <img fetchpriority="high" data-px="0.16" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="Azure water off Curaçao" style="position:absolute;left:0;top:-7%;width:100%;height:120%;object-fit:cover;will-change:transform">
  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.45) 0%,rgba(10,11,20,0) 26%,rgba(10,11,20,.2) 52%,rgba(10,11,20,.94) 100%)"></div>
  <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:screen;background-image:url('data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.85%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix values=%270 0 0 0 .97 0 0 0 0 .95 0 0 0 0 .9 0 0 0 .5 0%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E')"></div>
  <div aria-hidden="true" style="display:{{ ed.stickD }}">
   <div data-drag="1" style="position:absolute;right:3.4vw;top:calc(14vh + 66px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(-9deg);width:128px;height:128px;border-radius:50%;border:2.5px solid #F0507A;box-shadow:inset 0 0 0 6px rgba(10,11,20,.35),inset 0 0 0 7.5px #F0507A;color:#F0507A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-family:'JetBrains Mono',monospace;font-weight:700;background:rgba(10,11,20,.35)"><span style="font-size:10px;letter-spacing:1.5px">CUSTOMS</span><span style="font-size:22px;letter-spacing:2px">CPH</span><span style="font-size:10px;letter-spacing:1.5px">LEFT THE AIRPORT</span></div></div>
   <div data-drag="1" style="display:{{ ed.stickD2 }};position:absolute;right:calc(3.4vw + 222px);top:calc(14vh + 54px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(5deg);width:178px;background:#0A0B14;color:#F7F1E8;border:1.5px solid #C9A961;border-radius:10px;padding:12px 14px;box-shadow:0 14px 30px rgba(0,0,0,.45)"><div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#C9A961;font-weight:700"><span>LOUNGE ACCESS</span><span>GUEST 1</span></div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:21px;line-height:1.02;margin-top:8px">Complimentary <em style="font-style:italic;color:#F0507A">snacks.</em></div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:#9AA3B8;margin-top:8px">VALID UNTIL THE WIFI DIES</div></div></div>
-  <div data-drag="1" style="position:absolute;right:3.4vw;top:calc(14vh + 214px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(3deg);background:#F0507A;color:#0A0B14;padding:8px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-weight:700;box-shadow:0 10px 22px rgba(0,0,0,.35);text-align:center"><div style="font-size:12px;letter-spacing:2px">FRAGILE</div><div style="font-size:10px;letter-spacing:1px;margin-top:2px">CONTAINS OPINIONS</div></div></div>
   <div data-drag="1" style="display:{{ ed.stickD2 }};position:absolute;right:calc(3.4vw + 222px);top:calc(14vh + 196px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(-6deg);width:186px;display:flex;background:#F7F1E8;color:#0A0B14;border-radius:8px;box-shadow:0 14px 30px rgba(0,0,0,.45);overflow:hidden"><div style="flex:1;padding:10px 10px 10px 12px"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#067A79;font-weight:700">PET BOARDING</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:19px;line-height:1;margin-top:6px">Magnus</div><div style="display:flex;gap:10px;margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:#6B6660"><span>SEAT<br><b style="color:#0A0B14;font-size:10px">FLOOR</b></span><span>CLASS<br><b style="color:#0A0B14;font-size:10px">FLOOF</b></span></div></div><div style="width:34px;border-left:1.5px dashed #c9b89a;background:repeating-linear-gradient(0deg,#0A0B14 0 2px,transparent 2px 4px,#0A0B14 4px 5px,transparent 5px 8px);background-size:14px 100%;background-repeat:no-repeat;background-position:center"></div></div></div>
-  <div data-drag="1" style="position:absolute;right:3.4vw;top:calc(14vh + 288px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(-3deg);position:relative;width:162px;background:#F7F1E8;color:#0A0B14;border-radius:8px 8px 8px 38px;padding:12px 12px 11px 28px;box-shadow:0 12px 26px rgba(0,0,0,.4)"><span style="position:absolute;left:11px;top:12px;width:10px;height:10px;border-radius:50%;background:#0A0B14"></span><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#067A79;margin-left:8px">PRIORITY · SEAT 1A</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:17px;line-height:1.05;margin-top:5px">Handle with <em style="font-style:italic;color:#C8325B">opinions.</em></div></div></div>
   <div data-drag="1" style="display:{{ ed.stickD2 }};position:absolute;right:calc(3.4vw + 222px);top:calc(14vh + 330px);z-index:3;cursor:grab;touch-action:none"><div style="transform:rotate(-4deg);border:2px dashed #00C9C8;color:#00C9C8;padding:9px 13px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;font-weight:700;background:rgba(10,11,20,.4)">🐾 PAWS DOWN</div></div>
-  <div style="position:absolute;right:3.4vw;top:calc(14vh + 392px);z-index:3;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#cfcbc4;pointer-events:none">DRAG THE STICKERS. WE WON'T TELL.</div>
+  <div style="position:absolute;right:3.4vw;top:{{ ed.stickHintTop }};z-index:3;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#cfcbc4;pointer-events:none">DRAG THE STICKERS. WE WON'T TELL.</div>
  </div>
- <div style="position:absolute;left:2.2vw;top:16vh;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;color:#F7F1E8">A TRAVEL MAGAZINE FOR PEOPLE WHO GET LOST ON PURPOSE</div>
- <div style="position:absolute;right:3.4vw;top:14vh;text-align:right;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;line-height:1.8;color:#F7F1E8">12.17° N<br>68.99° W<br><span style="color:#00C9C8">CURAÇAO</span></div>
+ <div style="display:{{ ed.stickD }};position:absolute;right:3.4vw;bottom:2.2vh;z-index:2;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#9496AC;white-space:nowrap">12.17° N · 68.99° W · CURAÇAO</div>
  <div style="position:absolute;left:6vw;right:-12vw;bottom:8vh">
-  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#00C9C8;text-transform:uppercase;margin-bottom:2.4vh">Travel stories by people who were there</div><h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,9.6vw,184px);line-height:.88;letter-spacing:-.04em;margin:0;text-wrap:balance;max-width:78vw">Find your next <em style="font-style:italic;color:#F0507A">somewhere.</em></h1>
-  <div style="display:flex;gap:28px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin:4vh 18vw 0 0">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#00C9C8;text-transform:uppercase;margin-bottom:2.4vh">Travel stories by people who were there</div><h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,9.6vw,184px);line-height:.88;letter-spacing:-.04em;margin:0;text-wrap:balance;max-width:min(78vw,900px)">Find your next <em style="font-style:italic;color:#F0507A">somewhere.</em></h1>
+  <div style="display:flex;gap:28px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin:4vh 26vw 0 0">
    <p style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:clamp(15px,1.25vw,20px);line-height:1.5;max-width:520px;margin:0;color:#e8e2d8">Real places, real opinions, real names. Shared by people who went.</p>
    <div style="display:flex;gap:12px;flex-wrap:wrap"><span onClick="{{ goStories }}" role="button" tabIndex="0" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;font-weight:600;padding:14px 24px;cursor:pointer;background:#F0507A;color:#0A0B14;border:0;border-radius:2px">Read the library →</span></div>
   </div>
@@ -105,11 +101,12 @@
   <div style="position:{{ ed.pin.headPos }};left:4.4vw;top:{{ ed.pin.headTop }};pointer-events:none">
    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#067A79;text-transform:uppercase">Chapter 01 · Already on the shelf</div>
    <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(64px,17vw,320px);line-height:.8;letter-spacing:-.045em;margin-top:1.6vh">The shelf.</div>
+   <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6B6660;margin-top:16px;padding-bottom:24px">{{ ed.storyCount }} STORIES · {{ ed.pin.hint }}</div>
   </div>
   <div ref="{{ ed.pinTrack }}" style="position:{{ ed.pin.trackPos }};left:0;top:{{ ed.pin.trackTop }};display:flex;gap:4vw;padding:{{ ed.pin.pad }};overflow-x:{{ ed.pin.ox }};scroll-snap-type:{{ ed.pin.snap }};width:{{ ed.pin.tw }};box-sizing:border-box;will-change:transform">
    <sc-for list="{{ ed.stories }}" as="s" hint-placeholder-count="5"><article onClick="{{ s.open }}" style="cursor:pointer;flex:none;width:{{ ed.pin.cw }};scroll-snap-align:start;position:relative">
     <div style="position:relative;height:{{ ed.pin.ch }};overflow:hidden;background:#0A0B14;transform:rotate({{ s.rot }}deg)"><img src="{{ s.img }}" alt="{{ s.alt }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;left:14px;top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#F7F1E8;background:#0A0B14;padding:5px 9px">{{ s.no }} · {{ s.placeU }}</span></div>
-    <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(20px,2.1vw,36px);line-height:1.04;letter-spacing:-.01em;margin:-3.4vh 0 0 -1.2vw;position:relative;background:#F7F1E8;padding:12px 16px 8px;max-width:94%;text-wrap:balance">{{ s.title }}</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(20px,2.1vw,36px);line-height:1.04;letter-spacing:-.01em;margin:20px 0 0;position:relative;max-width:94%;text-wrap:balance;overflow-wrap:anywhere">{{ s.title }}</h3>
     <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#6B6660;margin-top:6px">{{ s.pillar }} · {{ s.mins }}</div>
     <div onClick="{{ s.goAuthor }}" style="display:flex;align-items:center;flex-wrap:wrap;column-gap:8px;row-gap:2px;margin-top:8px;cursor:pointer" role="button" tabIndex="0"><span style="flex:none;width:24px;height:24px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1.5px #F0507A;background:#1d5e5d"><img loading="lazy" decoding="async" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></span><span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:13px;font-weight:600;color:#0A0B14;white-space:nowrap;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px">{{ s.author }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1px;color:#6B6660;white-space:nowrap">· {{ s.placeU }}</span></div>
    </article></sc-for>
@@ -119,11 +116,10 @@
     <div><span onClick="{{ goStories }}" role="button" tabIndex="0" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;font-weight:600;padding:14px 24px;cursor:pointer;background:#0A0B14;color:#F7F1E8;border:0;border-radius:2px">Read the library →</span></div>
    </div>
   </div>
-  <div style="position:absolute;left:4.4vw;bottom:4vh;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#6B6660;display:{{ ed.pin.hintD }}">{{ ed.storyCount }} STORIES · KEEP SCROLLING, THE SHELF MOVES SIDEWAYS</div>
  </div>
 </section>
 
-<section style="background:#F7F1E8;color:#0A0B14;padding:6vh 6vw 12vh">
+<section ref="{{ ed.libSec }}" style="background:#F7F1E8;color:#0A0B14;padding:6vh 6vw 12vh;transition:opacity .3s cubic-bezier(.23,1,.32,1),transform .3s cubic-bezier(.23,1,.32,1)">
  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#067A79;text-transform:uppercase">The library · search it</div>
  <label style="display:flex;align-items:flex-end;gap:18px;border-bottom:3px solid #0A0B14;padding-bottom:12px;margin-top:2.4vh">
   <input value="{{ ed.sq }}" onChange="{{ ed.setSq }}" placeholder="A country, a train line, a feeling" aria-label="Search the library" style="flex:1;min-width:0;border:0;outline:none;background:transparent;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(26px,5vw,92px);letter-spacing:-.02em;color:#0A0B14;padding:0">
@@ -164,8 +160,9 @@
 <section style="background:#F7F1E8;color:#0A0B14;padding:12vh 6vw 14vh;position:relative;overflow:hidden;min-height:92vh;box-sizing:border-box">
  <sc-for list="{{ ed.teaser }}" as="t" hint-placeholder-count="0"><div data-px="{{ t.px }}" style="position:absolute;left:{{ t.x }};top:{{ t.y }};z-index:0"><div style="transform:rotate({{ t.rot }}deg);width:104px;height:118px;border:2px solid {{ t.ink }};color:{{ t.ink }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-radius:4px;opacity:.9;box-sizing:border-box"><span style="width:42px;height:42px;border-radius:50%;background:#E0DACE center/cover no-repeat;background-image:{{ t.flag }}"></span><span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;letter-spacing:2px">{{ t.iso3 }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px">STAMPED</span></div></div></sc-for>
  <div style="position:relative;z-index:1">
-  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#067A79;text-transform:uppercase">Chapter 03 · The passport · {{ ed.dataLabel }}</div>
-  <div style="display:flex;align-items:flex-start;line-height:.78;margin:3vh 0 0 -1.4vw"><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(120px,30vw,540px);letter-spacing:-.06em">{{ ed.countEl }}</span><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(40px,7vw,128px);color:#C8325B;margin-top:3vh">/193</span></div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;font-weight:600;color:#067A79;text-transform:uppercase">Chapter 03 · The passport</div>
+  <div style="display:flex;align-items:baseline;gap:8px;line-height:.78;margin:3vh 0 0 -1.4vw;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(120px,30vw,540px);letter-spacing:-.06em"><span>{{ ed.countEl }}</span><span style="font-size:.4em;letter-spacing:-.03em;color:#F0507A">/193</span></div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6B6660;margin:12px 0 0 -.2vw">{{ ed.dataLabel }}</div>
   <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(28px,3.6vw,62px);line-height:1.05;margin-top:3vh">Every country, <em style="font-style:italic;color:#F0507A">on the map.</em></div>
   <p style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:17px;line-height:1.55;max-width:520px;color:#3a3a3a;margin:18px 0 26px">Stamp the ones you left the airport for. Look at it two ways: a wall of stamps, or a plain list you can scan in ten seconds.</p>
   <span onClick="{{ goMapPassport }}" role="button" tabIndex="0" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;font-weight:600;padding:14px 24px;cursor:pointer;background:#0A0B14;color:#F7F1E8;border:0;border-radius:2px">Open the passport →</span>
@@ -2530,7 +2527,7 @@
 
 </main>
 <!-- FOOTER -->
-<footer style="background:#0A0B14;border-top:1px solid #16182a;padding:40px 28px 30px">
+<footer style="background:#0A0B14;border-top:1px solid #23263c;padding:40px 28px 76px">
   <div style="max-width:1180px;margin:0 auto">
     <div style="display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:28px">
       <div style="max-width:260px">
@@ -2544,9 +2541,9 @@
         <div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#F0507A;margin-bottom:11px">TLL</div><div style="display:flex;flex-direction:column;gap:7px"><span onClick="{{ goLegalPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Privacy policy</span><span onClick="{{ goLegalPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Terms of service</span><span onClick="{{ goCharter }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Editorial charter</span><span onClick="{{ goColophon }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Colophon</span><span onClick="{{ goStickers }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Sticker passport</span><span onClick="{{ goGuidelines }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Community guidelines</span><span onClick="{{ goCookiesPage }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Cookie preferences</span></div></div>
       </div>
     </div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px"><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4a4d63">GUIDES</span><span onClick="{{ goGuideCph }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Copenhagen stopover</span><span onClick="{{ goGuideEes }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">EES and ETIAS on a layover</span><span onClick="{{ goAwards }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">The Layover Awards</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#4a4d63;margin-left:14px">WORK WITH US</span><span onClick="{{ goForBrands }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">For brands</span><span onClick="{{ goClub }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">The Layover Club</span><span onClick="{{ goCharterPaid }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">How paid work works</span></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid #16182a;flex-wrap:wrap;gap:10px">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#4a4d63">{{ footerStats }}</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap"><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#9496AC">GUIDES</span><span onClick="{{ goGuideCph }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">Copenhagen stopover</span><span onClick="{{ goGuideEes }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">EES and ETIAS on a layover</span><span onClick="{{ goAwards }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">The Layover Awards</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#9496AC;margin-left:14px">WORK WITH US</span><span onClick="{{ goForBrands }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">For brands</span><span onClick="{{ goClub }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">The Layover Club</span><span onClick="{{ goCharterPaid }}" style="font-size:12px;color:#cfcbc4;cursor:pointer" role="button" tabIndex="0">How paid work works</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:18px;border-top:1px solid #23263c;flex-wrap:wrap;gap:10px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#9496AC">{{ footerStats }}</div>
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><a href="mailto:hello@thatlayover.life" style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#00C9C8;text-decoration:none">HELLO@THATLAYOVER.LIFE</a><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#9496AC">© 2026 THAT LAYOVER LIFE</span></div>
     </div>
   </div>
@@ -2759,7 +2756,7 @@ class Component extends DCLogic {
     render() { return React.createElement('span', { ref: this.ref, 'aria-label': String(this.props.value) }, String(this.state.v)); }
   };
   // ---------- 2.0 editorial layer (home + passport). Live build: see handoff notes. ----------
-  edPinSec = React.createRef(); edPinTrack = React.createRef(); edCursor = React.createRef();
+  edPinSec = React.createRef(); edPinTrack = React.createRef(); edLibSec = React.createRef();
   ED_SAMPLE = ['076','276','203','703','040','008','688','100','752','807','348','616','208','704','840','499','288','392','484','152','032','578','246','528','056','250','724','620','380','300','191','705','070','642','826','372','756','233','428','440','504','818','710','404','764','116','360','702','458','608','410','036','554','124','604','170','188','192','470','442','196','356'];
   ED_LIVED = ['208','076','704','840'];
   ED_REGIONS = ['Africa','Americas','Asia','Europe','Oceania'];
@@ -2770,8 +2767,8 @@ class Component extends DCLogic {
     this._edResize = () => this.setState({ ed_w: window.innerWidth });
     this._edScroll = () => { if (this._edRaf) return; this._edRaf = requestAnimationFrame(() => { this._edRaf = 0; this.edOnScroll(); }); };
     window.addEventListener('resize', this._edResize); window.addEventListener('scroll', this._edScroll, { passive: true });
-    this._edMove = e => { const c = this.edCursor.current; if (c) c.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)'; const d = this._drag; if (d) { const x = d.ox + e.clientX - d.sx, y = d.oy + e.clientY - d.sy; d.el.style.transform = 'translate(' + x + 'px,' + y + 'px)'; d.el.dataset.dx = x; d.el.dataset.dy = y; } };
-    this._edOver = e => { const c = this.edCursor.current; if (!c) return; let t = e.target, hot = false; for (let i = 0; i < 5 && t && t !== document.body; i++, t = t.parentElement) { if (getComputedStyle(t).cursor === 'pointer' || (t.dataset && t.dataset.drag)) { hot = true; break; } } const s = hot ? '52px' : '18px'; c.style.width = s; c.style.height = s; c.style.margin = hot ? '-26px 0 0 -26px' : '-9px 0 0 -9px'; };
+    this._edMove = e => { const d = this._drag; if (d) { const x = d.ox + e.clientX - d.sx, y = d.oy + e.clientY - d.sy; d.el.style.transform = 'translate(' + x + 'px,' + y + 'px)'; d.el.dataset.dx = x; d.el.dataset.dy = y; } };
+    this._edOver = () => {}; // v9.1 fix 07: no custom cursor; stickers use the system grab/grabbing cursor
     this._edDown = e => { const el = e.target.closest && e.target.closest('[data-drag]'); if (!el) return; e.preventDefault(); this._drag = { el, sx: e.clientX, sy: e.clientY, ox: +(el.dataset.dx || 0), oy: +(el.dataset.dy || 0) }; el.style.cursor = 'grabbing'; el.style.zIndex = '6'; };
     this._edUp = () => { if (this._drag) { this._drag.el.style.cursor = 'grab'; this._drag = null; } };
     window.addEventListener('pointermove', this._edMove, { passive: true }); window.addEventListener('mouseover', this._edOver, { passive: true });
@@ -2788,7 +2785,16 @@ class Component extends DCLogic {
     document.querySelectorAll('[data-px]').forEach(el => { if (off) { el.style.transform = ''; return; } const sp = parseFloat(el.getAttribute('data-px')) || 0; const r = el.getBoundingClientRect(); el.style.transform = 'translate3d(0,' + (-(r.top + r.height / 2 - vh / 2) * sp).toFixed(1) + 'px,0)'; });
     document.querySelectorAll('[data-draw]').forEach(el => { if (off) { el.style.strokeDashoffset = '0'; return; } const r = el.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (vh * .9 - r.top) / (vh * .7))); el.style.strokeDashoffset = (1 - p).toFixed(3); });
     const sec = this.edPinSec.current, tr = this.edPinTrack.current;
-    if (sec && tr) { if (this.edPinned()) { const top = sec.getBoundingClientRect().top; const p = Math.max(0, Math.min(1, -top / Math.max(1, sec.offsetHeight - vh))); tr.style.transform = 'translate3d(' + (-p * Math.max(0, tr.scrollWidth - window.innerWidth)).toFixed(1) + 'px,0,0)'; } else tr.style.transform = ''; }
+    const lib = this.edLibSec.current;
+    if (sec && tr) { if (this.edPinned()) {
+        // v9.1 fix 05: pin length = sideways travel + 10vh, never more. The pin releases once the last card is fully in view.
+        const travel = Math.max(0, tr.scrollWidth + tr.offsetLeft - window.innerWidth);
+        const want = Math.round(vh + travel + vh * .1) + 'px';
+        if (want !== this._edPinH) { this._edPinH = want; this.setState({ ed_pinH: want }); }
+        const top = sec.getBoundingClientRect().top; const p = Math.max(0, Math.min(1, -top / Math.max(1, sec.offsetHeight - vh)));
+        tr.style.transform = 'translate3d(' + (-p * travel).toFixed(1) + 'px,0,0)';
+        if (lib) { const f = Math.max(0, Math.min(1, (p - .85) / .15)); lib.style.opacity = f.toFixed(3); lib.style.transform = 'translate3d(0,' + ((1 - f) * 8).toFixed(1) + 'px,0)'; }
+      } else { tr.style.transform = ''; if (lib) { lib.style.opacity = ''; lib.style.transform = ''; } } }
   }
   componentDidUpdate() { const k = this.state.screen + '|' + this.state.ed_w; if (k !== this._edKey) { this._edKey = k; setTimeout(() => this.edOnScroll(), 60); } }
   HM_NUM = { rs: '688', bg: '100', al: '008', cl: '152', ar: '032', me: '499', gh: '288', mx: '484' };
@@ -2865,14 +2871,14 @@ class Component extends DCLogic {
     const vs = v.stories || [], ST = this.STORIES || [];
     const stories = ST.slice(0, 8).map((st, i) => ({ title: st.title, author: st.author || 'Contributor', goAuthor: (e) => { if (e) e.stopPropagation(); this.setState({ screen: 'profile' }); window.scrollTo(0, 0); }, placeU: (st.place || '').toUpperCase(), pillar: st.pillar || '', mins: st.mins || '', img: st.img, alt: (st.place || '') + ': ' + st.title, no: String(i + 1).padStart(2, '0'), rot: [-1.2, 1, -0.6, 1.4, -1, 0.8, -0.8, 1.1][i], open: (vs[i] && (vs[i].open || vs[i].go)) || go('stories') }));
     const pin = this.edPinned()
-      ? { h: '330vh', secPad: '0', pos: 'sticky', vh: '100vh', headPos: 'absolute', headTop: '8vh', trackPos: 'absolute', trackTop: '38vh', pad: '0 8vw 0 40vw', ox: 'visible', snap: 'none', tw: 'max-content', cw: '30vw', ch: '44vh', hintD: 'block' }
-      : { h: 'auto', secPad: '9vh 0 0', pos: 'relative', vh: 'auto', headPos: 'relative', headTop: '0', trackPos: 'relative', trackTop: '0', pad: '5vh 6vw 6vh', ox: 'auto', snap: 'x mandatory', tw: '100%', cw: narrow ? '76vw' : '34vw', ch: narrow ? '96vw' : '46vh', hintD: 'none' };
+      ? { h: (s.ed_pinH || '240vh'), secPad: '0', pos: 'sticky', vh: '100vh', headPos: 'absolute', headTop: '6vh', trackPos: 'absolute', trackTop: 'calc(6vh + 15px + clamp(64px,17vw,320px) * .8 + 1.6vh + 16px + 15px + 24px)', pad: '0 8vw 0 4.4vw', ox: 'visible', snap: 'none', tw: 'max-content', cw: '26vw', ch: '36vh', hint: 'KEEP SCROLLING, THE SHELF MOVES SIDEWAYS' }
+      : { h: 'auto', secPad: '9vh 0 0', pos: 'relative', vh: 'auto', headPos: 'relative', headTop: '0', trackPos: 'relative', trackTop: '0', pad: '0 6vw 6vh', ox: 'auto', snap: 'x mandatory', tw: '100%', cw: narrow ? '76vw' : '34vw', ch: narrow ? '96vw' : '46vh', hint: 'SWIPE SIDEWAYS' };
     const sq = (s.ed_sq || '').trim().toLowerCase();
     const sres = sq ? stories.filter(x => (x.title + ' ' + x.placeU + ' ' + x.pillar).toLowerCase().indexOf(sq) > -1) : [];
     const { vis, count } = this.edCounts(); const list = s.ed_list || [];
     const flag = c => "url('https://cdn.jsdelivr.net/gh/HatScripts/circle-flags@gh-pages/flags/" + c + ".svg')";
-    const tset = list.filter(c => vis[c.num]).slice(0, narrow ? 6 : 12);
-    const POS = narrow ? [['62%','3%'],['80%','7%'],['4%','86%'],['30%','88%'],['58%','85%'],['82%','90%']] : [['58%','6%'],['74%','12%'],['88%','5%'],['64%','30%'],['82%','34%'],['92%','52%'],['60%','56%'],['74%','68%'],['88%','80%'],['56%','84%'],['70%','90%'],['46%','92%']];
+    const tset = list.filter(c => vis[c.num]).slice(0, 3);
+    const POS = narrow ? [['58%','4%'],['78%','14%'],['68%','30%']] : [['66%','10%'],['80%','22%'],['70%','40%']];
 const TX = {
       stories: ['LIB','Your couch','The Library','S1','14C','NOW',(ST.length) + ' stories, all first-hand. More landing weekly.','SHELF CHECKED','STANDARD'],
       story: ['RD1','The Library','A story','S2','WINDOW','NOW','Grab a coffee. This one has a pull quote.','READ IN FULL','WINDOW SEAT'],
@@ -2919,13 +2925,13 @@ const TX = {
     const tix = { code: tx[0], from: tx[1], to: tx[2], gate: tx[3], seat: tx[4], boards: tx[5], line: tx[6], stamp: tx[7], cls: tx[8], via: ['RAIL','SEA','AIR','ROAD'][th % 4], rot: String(((th % 9) - 4) * 1.6), ink: th % 2 ? '#C8325B' : '#067A79' };
     const LM = [['doha','Doha','0%','4%','36%','-4','3/2'],['fitzroy','Patagonia','34%','0%','33%','3','3/2'],['ghana','Accra','64%','8%','34%','-2','3/2'],['rio','Rio','6%','50%','36%','2','3/2'],['paris','Paris','46%','54%','34%','-3','3/2']];
     return {
-      pinSec: this.edPinSec, pinTrack: this.edPinTrack, cursorRef: this.edCursor,
-      cursorD: s.screen === 'home' && s.ed_fine && !off ? 'block' : 'none', tixOn: s.screen !== 'home' && s.screen !== 'story', tix, storyWord: (['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'][ST.length] || String(ST.length)), stickD: narrow ? 'none' : 'block', stickD2: w < 1200 ? 'none' : 'block',
+      pinSec: this.edPinSec, pinTrack: this.edPinTrack, libSec: this.edLibSec,
+      tixOn: s.screen !== 'home' && s.screen !== 'story', tix, storyWord: (['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'][ST.length] || String(ST.length)), stickD: narrow ? 'none' : 'block', stickD2: w < 1200 ? 'none' : 'block', stickHintTop: w < 1200 ? 'calc(14vh + 214px)' : 'calc(14vh + 392px)',
       pin, stories, storyCount: String(ST.length).padStart(2, '0'),
       sq: s.ed_sq || '', setSq: e => this.setState({ ed_sq: e.target.value }), sres, sHas: !!sq, sNone: !!sq && !sres.length, sEmpty: !sq,
       sTry: ['Patagonia', 'whale sharks', 'EV'].map(t => ({ label: t, go: () => this.setState({ ed_sq: t }) })),
       tagPos: narrow ? 'relative' : 'absolute', tagMt: narrow ? '6vh' : '0',
-      teaser: tset.map((c, i) => { const h = this.edHash(c.code); return { iso3: c.iso3, flag: flag(c.code), x: POS[i][0], y: POS[i][1], rot: ((h % 11) - 5) * 2.2, ink: h % 2 ? '#C8325B' : '#067A79', px: off ? '0' : String(((h % 5) - 2) * 0.06) }; }),
+      teaser: tset.map((c, i) => { const h = this.edHash(c.code); return { iso3: c.iso3, flag: flag(c.code), x: POS[i][0], y: POS[i][1], rot: ((h % 7) - 3) * 2, ink: h % 2 ? '#C8325B' : '#067A79', px: off ? '0' : String(((h % 5) - 2) * 0.06) }; }),
       dataLabel: s.ed_label || 'SAMPLE DATA', countEl: React.createElement(Component.CountUp, { key: 'cu-home', value: count, off }),
       loungeMini: LM.map(x => ({ img: 'images/' + x[0] + '.jpg', cap: x[1], alt: 'Postcard photo from ' + x[1], x: x[2], y: x[3], w: x[4], rot: x[5], ar: x[6] })),
       email: s.ed_email || '', setEmail: e => this.setState({ ed_email: e.target.value, ed_nlErr: '' }),
@@ -3498,8 +3504,11 @@ const TX = {
       isDestinations: screen === 'destinations',
       loungeTiles: (this.LOUNGE || []).filter(t => t.img).map((t, i) => { const pl = (t.credit.split('·')[1] || '').trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase()); return { ...t, rot: String([-1.6, 1.2, -0.8, 1.8, -1.2, 0.9, -1.9, 1.4][i % 8]), ink: i % 2 ? '#00C9C8' : '#F0507A', place: pl || 'Somewhere good' }; }),
       toggleProtoNav: () => this.setState(s => ({protoNavOpen: !s.protoNavOpen})),
+      openProtoNav: () => { if (!this.state.protoNavOpen) this.setState({protoNavOpen: true}); },
+      protoKey: e => { if (e.key === 'Escape' && this.state.protoNavOpen) { e.preventDefault(); this.setState({protoNavOpen: false}); } },
+      protoNavOpen: !!this.state.protoNavOpen,
       protoNavDisplay: this.state.protoNavOpen ? 'flex' : 'none',
-      protoToggleLabel: this.state.protoNavOpen ? 'HIDE ▾' : 'SCREENS ▴',
+      protoToggleLabel: this.state.protoNavOpen ? '▾' : '▴',
       protoScreenLabel: screen.toUpperCase(),
       protoNav: [
         ['home','Home'],['stories','Stories'],['story','Story'],['destinations','Destinations'],['country','Country'],
