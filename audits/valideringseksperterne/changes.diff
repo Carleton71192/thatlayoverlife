@@ -374,7 +374,7 @@
    .scope-list { list-style: none; margin: 0; padding: 0; }
    .scope-list li {
      font-size: 15px;
-@@ -248,29 +429,27 @@
+@@ -248,29 +429,29 @@
  
    /* process */
    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
@@ -401,8 +401,10 @@
 -  .spec li:last-child { border-bottom: none; }
 +  .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 28px; }
 +  .team-photo { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; box-shadow: var(--shadow); }
-+  .team h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 16px 0 4px; line-height: 1.3; }
-+  .team .role { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
++  .team h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 16px 0 4px; line-height: 1.3; overflow-wrap: anywhere; }
++  .team .role { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel-text); margin: 0 0 10px; line-height: 1.4; }
++  .team .bio { font-size: 14px; color: var(--text-secondary); margin: 0 0 8px; line-height: 1.6; }
++  .team .tags { font-size: 12px; color: var(--neutral-mid); margin: 0; line-height: 1.5; }
  
    /* why cards */
 -  .usp { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--steel); border-radius: 10px; padding: 30px 26px; }
@@ -413,7 +415,7 @@
    .usp h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 0 0 10px; line-height: 1.3; }
    .usp p { font-size: 15px; color: var(--text-secondary); margin: 0; }
  
-@@ -281,10 +460,9 @@
+@@ -281,10 +462,9 @@
    .cta .eyebrow { color: var(--sky); }
    .cta-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
    .cta-contact { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 40px; }
@@ -425,7 +427,7 @@
    .cta-buttons { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; }
  
    /* FAQ */
-@@ -309,10 +487,14 @@
+@@ -309,10 +489,14 @@
      content: "+";
      font-size: 24px;
      font-weight: 400;
@@ -442,7 +444,7 @@
    details.q p { font-size: 15px; color: var(--text-secondary); margin: 16px 0 0; max-width: 74ch; }
  
    /* Footer */
-@@ -326,7 +508,7 @@
+@@ -326,7 +510,7 @@
    .foot-brand .brand-name { font-size: 18px; }
    .foot-brand p { font-size: 13px; color: var(--text-secondary); margin: 12px 0 0; max-width: 42ch; }
    .foot-cols { display: flex; gap: 56px; flex-wrap: wrap; }
@@ -451,7 +453,7 @@
    .foot-col p, .foot-col a { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; display: block; line-height: 1.5; }
    .foot-bottom {
      border-top: 1px solid var(--border);
-@@ -339,35 +521,65 @@
+@@ -339,35 +523,65 @@
      color: var(--neutral-mid);
    }
    .foot-bottom a { color: var(--neutral-mid); }
@@ -487,8 +489,8 @@
 +    .brand-name { font-size: 17px; }
 +    .lang { display: none; }
 +    .facts { grid-template-columns: 1fr; gap: 14px; }
-+    .team { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
-+    .team h3 { font-size: 16px; }
++    .team { grid-template-columns: 1fr; gap: 28px; }
++    .team-photo { max-width: 220px; }
 +  }
 +
 +  ::selection { background: var(--sky); color: var(--white); }
@@ -528,7 +530,7 @@
    .lf-input:focus { outline: none; border-color: var(--sky); background: rgba(255,255,255,0.13); }
    .lf-textarea { resize: vertical; min-height: 88px; }
    .lf-submit { margin-top: 4px; border: none; cursor: pointer; }
-@@ -397,50 +609,37 @@
+@@ -397,50 +611,37 @@
        </nav>
        <div class="lang" aria-label="Sprog / Language">
          <span class="lang-active" aria-current="true">DA</span>
@@ -590,7 +592,7 @@
    </div>
  </div>
  
-@@ -448,24 +647,23 @@
+@@ -448,24 +649,23 @@
  <section id="problem">
    <div class="wrap">
      <div class="section-head">
@@ -623,7 +625,7 @@
    </div>
  </section>
  
-@@ -473,7 +671,6 @@
+@@ -473,7 +673,6 @@
  <section id="omfang">
    <div class="wrap">
      <div class="section-head">
@@ -631,7 +633,7 @@
        <h2>Den fulde, tilbagevendende compliance-pakke.</h2>
        <p class="section-lede">Udstyrsrekvalificering og instrumentkalibrering samlet ét sted, med sporbare certifikater for hvert besøg.</p>
      </div>
-@@ -481,8 +678,8 @@
+@@ -481,8 +680,8 @@
        <div class="scope-col">
          <h3>Udstyrsrekvalificering</h3>
          <ul class="scope-list">
@@ -642,7 +644,7 @@
            <li><span>Lavtemperatur-sterilisatorer</span> <span class="std">ISO 14937</span></li>
            <li><span>Termometrisk performance-testning</span> <span class="std">ISO 17665</span></li>
          </ul>
-@@ -501,7 +698,7 @@
+@@ -501,7 +700,7 @@
          </div>
        </div>
        <div class="scope-col">
@@ -651,7 +653,7 @@
        </div>
      </div>
    </div>
-@@ -511,7 +708,6 @@
+@@ -511,7 +710,6 @@
  <section id="proces">
    <div class="wrap">
      <div class="section-head">
@@ -659,7 +661,7 @@
        <h2>Revalidering som en aftale, ikke en engangsopgave.</h2>
        <p class="section-lede">Fire trin, der binder revalideringen til jeres akkrediteringscyklus, år efter år.</p>
      </div>
-@@ -544,23 +740,31 @@
+@@ -544,23 +742,38 @@
  <section id="specialist">
    <div class="wrap">
      <div class="section-head">
@@ -683,27 +685,34 @@
 -        </ul>
 -      </div>
 -    </div>
++        <p class="bio">30+ års teknisk erfaring og 7+ års praktisk IQ-, OQ- og PQ-arbejde på Belimed-, Steelco- og Miele-anlæg, inkl. fuldautomatiske sterilcentraler med robotter og AGV'er.</p>
 +      </li>
 +      <li>
 +        <img class="team-photo" width="600" height="600" decoding="async" src="img/peter-mastrup.jpg" alt="Peter Mastrup">
 +        <h3>Peter Mastrup</h3>
-+        <p class="role">Senior ingeniør, autoklaver og vaskemaskiner</p>
-+      </li>
-+      <li>
-+        <img class="team-photo" width="600" height="600" decoding="async" src="img/raquel-petersen.jpg" alt="Raquel Petersen">
-+        <h3>Raquel Petersen</h3>
-+        <p class="role">Projektleder</p>
++        <p class="role">Valideringsspecialist</p>
++        <p class="bio">Specialist i vask og sterilisation med 20+ års erfaring inden for vaskemaskiner, autoklaver og CIP/SIP. Har stået for layouttilpasning og teknisk kravspecifikation for store pharmaproducenter.</p>
++        <p class="tags">Arbejder efter FSTA's nationale retningslinjer for revalidering af store dampautoklaver og instrumentvaskemaskiner, EN 285 og DS/EN ISO 15883.</p>
 +      </li>
 +      <li>
 +        <img class="team-photo" width="600" height="600" decoding="async" src="img/valeria-meloni.jpg" alt="Valeria Meloni">
 +        <h3>Valeria Meloni</h3>
-+        <p class="role">[Rolle bekræftes]</p>
++        <p class="role">Validerings- og EM-specialist</p>
++        <p class="bio">CQV-ingeniør og specialist i miljømonitorering. Har været både Engineering Responsible og Operational Responsible på en større API-udvidelse og skriver valideringsdokumentation, der kan holde til et inspektionsbesøg.</p>
++        <p class="tags">IQ-, OQ- og PQ-protokoller, contamination control strategy, HVAC-rekvalificering.</p>
++      </li>
++      <li>
++        <img class="team-photo" width="600" height="600" decoding="async" src="img/raquel-petersen.jpg" alt="Raquel Petersen">
++        <h3>Raquel Petersen</h3>
++        <p class="role">Projektleder, pharmaudvikling og koordinering</p>
++        <p class="bio">Projektleder med praktisk erfaring fra GMP-regulerede pharmamiljøer. Har ledet tekniske pakker, leverandørkoordinering og valideringsaktiviteter, og driver dokumentation, change control og tværfaglig koordinering.</p>
++        <p class="tags">Projektledelse, vask og sterilisation, IQ-, OQ- og PQ, FAT/SAT, change control, GMP.</p>
 +      </li>
 +    </ul>
    </div>
  </section>
  
-@@ -568,23 +772,19 @@
+@@ -568,23 +781,19 @@
  <section id="hvorfor">
    <div class="wrap">
      <div class="section-head">
@@ -729,7 +738,7 @@
          <h3>Fast, forudsigelig pris</h3>
          <p>Pris pr. enhed med årsaftale. Transparente omkostninger, du kan budgettere efter.</p>
        </div>
-@@ -604,13 +804,25 @@
+@@ -604,13 +813,25 @@
            <input type="hidden" name="access_key" value="9eb0a877-817f-48cc-a9b3-9e7d5e960794">
            <input type="hidden" name="subject" value="Ny forespørgsel fra valideringseksperterne.dk">
            <input type="hidden" name="from_name" value="Valideringseksperterne.dk">
@@ -760,7 +769,7 @@
            <button class="btn btn-on-dark-primary lf-submit" type="submit">Send forespørgsel</button>
            <p class="lf-status" id="lfStatus" role="status" aria-live="polite"></p>
            <p class="lf-phone">Eller ring <a href="tel:+4530530793">+45 30 53 07 93</a></p>
-@@ -632,7 +844,6 @@
+@@ -632,7 +853,6 @@
  <section id="faq" class="faq">
    <div class="wrap">
      <div class="section-head">
@@ -768,7 +777,7 @@
        <h2>Ofte stillede spørgsmål.</h2>
      </div>
      <details class="q">
-@@ -641,7 +852,7 @@
+@@ -641,7 +861,7 @@
      </details>
      <details class="q">
        <summary>Hvilke standarder arbejder I efter?</summary>
@@ -777,7 +786,7 @@
      </details>
      <details class="q">
        <summary>Understøtter I flere producenter?</summary>
-@@ -649,7 +860,7 @@
+@@ -649,7 +869,7 @@
      </details>
      <details class="q">
        <summary>Hvad dækker en revalidering?</summary>
@@ -786,7 +795,7 @@
      </details>
      <details class="q">
        <summary>Hvor meget nedetid skal vi regne med?</summary>
-@@ -657,6 +868,7 @@
+@@ -657,6 +877,7 @@
      </details>
    </div>
  </section>
@@ -794,7 +803,7 @@
  
  <!-- FOOTER -->
  <footer class="site">
-@@ -670,14 +882,15 @@
+@@ -670,14 +891,15 @@
        <div class="foot-cols">
          <div class="foot-col">
            <p class="label">Kontakt</p>
@@ -812,7 +821,7 @@
          </div>
          <div class="foot-col">
            <p class="label">Mere</p>
-@@ -687,7 +900,7 @@
+@@ -687,7 +909,7 @@
        </div>
      </div>
      <div class="foot-bottom">

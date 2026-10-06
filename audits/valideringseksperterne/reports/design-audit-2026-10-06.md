@@ -69,12 +69,9 @@ Copy wording is unchanged except one punctuation swap in the facts strip ("ISO 1
 
 The single-specialist block (Morten Winsløw, portrait plus four bullets) is now a four-person roster: photo, name, role. Photos are 600 px JPEGs in `img/` (37 to 43 KB each) instead of inline data, and the scope photo now points at `og-image.jpg`, so `index.html` dropped from 346 KB to 37 KB. Names and surnames come from Nancy's mapping plus the Damgaard SharePoint member list (Morten Winsløv/Winsløw, Peter Mastrup, Raquel Petersen, Valeria Meloni).
 
-Open before upload, marked in the file:
-- Valeria Meloni's role shows "[Rolle bekræftes]"; no source gives it. Replace before upload.
-- Peter Mastrup's role "Senior ingeniør, autoklaver og vaskemaskiner" is a Danish rendering of his Damgaard CV (Senior Engineer, specialist autoclaves and washers). Confirm the wording.
-- Raquel Petersen's role "Projektleder" comes from the Kunderum customer guide ("jeres projektleder, Raquel"). Confirm.
-- Morten's four bullets (30+ år, Belimed/Steelco/Miele, CSSD-automation, languages) left the page with the roster layout. The 30+ år fact survives in the facts strip. Say if any bullet should return as a one-liner under his role.
-- The SharePoint list spells Morten's surname "Winsløv"; the page keeps the existing "Winsløw". Confirm which is right.
+Roles, bios and the small credential lines were then taken verbatim from Nancy's live-page capture of 6 Oct 2026 (Morten Winsløw, Senior Revalideringsspecialist; Peter Mastrup, Valideringsspecialist; Valeria Meloni, Validerings- og EM-specialist; Raquel Petersen, Projektleder, pharmaudvikling og koordinering). The live page uses the same spelling "Winsløw". One flag: Valeria's live bio opens with "CQV-ingeniør", and the Damgaard copy rules say no "CQV" in AEO copy; it is live wording, left as is for Nancy to decide.
+
+Important: the same capture shows the live page's whole body is newer than this file's base. This audit's fixes stay valid as a pattern, but they must be re-applied onto the live HTML, not shipped from this file. See the site-lab report, "Update 6 Oct 2026".
 
 Still open from the craft floor, not in the approved scope: card radius 10 px (the floor prefers 12 to 16 px for cards, though no cards remain), Montserrat served from Google (legal audit fix D), and the hero lede length.
 

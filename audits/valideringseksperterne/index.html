@@ -443,8 +443,10 @@
   /* specialist */
   .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 28px; }
   .team-photo { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; box-shadow: var(--shadow); }
-  .team h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 16px 0 4px; line-height: 1.3; }
-  .team .role { font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+  .team h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin: 16px 0 4px; line-height: 1.3; overflow-wrap: anywhere; }
+  .team .role { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--steel-text); margin: 0 0 10px; line-height: 1.4; }
+  .team .bio { font-size: 14px; color: var(--text-secondary); margin: 0 0 8px; line-height: 1.6; }
+  .team .tags { font-size: 12px; color: var(--neutral-mid); margin: 0; line-height: 1.5; }
 
   /* why cards */
   .usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); }
@@ -546,8 +548,8 @@
     .brand-name { font-size: 17px; }
     .lang { display: none; }
     .facts { grid-template-columns: 1fr; gap: 14px; }
-    .team { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
-    .team h3 { font-size: 16px; }
+    .team { grid-template-columns: 1fr; gap: 28px; }
+    .team-photo { max-width: 220px; }
   }
 
   ::selection { background: var(--sky); color: var(--white); }
@@ -748,21 +750,28 @@
         <img class="team-photo" width="600" height="600" decoding="async" src="img/morten-winslow.jpg" alt="Morten Winsløw">
         <h3>Morten Winsløw</h3>
         <p class="role">Senior Revalideringsspecialist</p>
+        <p class="bio">30+ års teknisk erfaring og 7+ års praktisk IQ-, OQ- og PQ-arbejde på Belimed-, Steelco- og Miele-anlæg, inkl. fuldautomatiske sterilcentraler med robotter og AGV'er.</p>
       </li>
       <li>
         <img class="team-photo" width="600" height="600" decoding="async" src="img/peter-mastrup.jpg" alt="Peter Mastrup">
         <h3>Peter Mastrup</h3>
-        <p class="role">Senior ingeniør, autoklaver og vaskemaskiner</p>
-      </li>
-      <li>
-        <img class="team-photo" width="600" height="600" decoding="async" src="img/raquel-petersen.jpg" alt="Raquel Petersen">
-        <h3>Raquel Petersen</h3>
-        <p class="role">Projektleder</p>
+        <p class="role">Valideringsspecialist</p>
+        <p class="bio">Specialist i vask og sterilisation med 20+ års erfaring inden for vaskemaskiner, autoklaver og CIP/SIP. Har stået for layouttilpasning og teknisk kravspecifikation for store pharmaproducenter.</p>
+        <p class="tags">Arbejder efter FSTA's nationale retningslinjer for revalidering af store dampautoklaver og instrumentvaskemaskiner, EN 285 og DS/EN ISO 15883.</p>
       </li>
       <li>
         <img class="team-photo" width="600" height="600" decoding="async" src="img/valeria-meloni.jpg" alt="Valeria Meloni">
         <h3>Valeria Meloni</h3>
-        <p class="role">[Rolle bekræftes]</p>
+        <p class="role">Validerings- og EM-specialist</p>
+        <p class="bio">CQV-ingeniør og specialist i miljømonitorering. Har været både Engineering Responsible og Operational Responsible på en større API-udvidelse og skriver valideringsdokumentation, der kan holde til et inspektionsbesøg.</p>
+        <p class="tags">IQ-, OQ- og PQ-protokoller, contamination control strategy, HVAC-rekvalificering.</p>
+      </li>
+      <li>
+        <img class="team-photo" width="600" height="600" decoding="async" src="img/raquel-petersen.jpg" alt="Raquel Petersen">
+        <h3>Raquel Petersen</h3>
+        <p class="role">Projektleder, pharmaudvikling og koordinering</p>
+        <p class="bio">Projektleder med praktisk erfaring fra GMP-regulerede pharmamiljøer. Har ledet tekniske pakker, leverandørkoordinering og valideringsaktiviteter, og driver dokumentation, change control og tværfaglig koordinering.</p>
+        <p class="tags">Projektledelse, vask og sterilisation, IQ-, OQ- og PQ, FAT/SAT, change control, GMP.</p>
       </li>
     </ul>
   </div>

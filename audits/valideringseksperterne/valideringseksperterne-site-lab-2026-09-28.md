@@ -2,6 +2,12 @@
 
 Brand: Damgaard Solutions hospital revalidation (Danish). Platform: static index.html on Simply. Mode: live + repo. Fix tier: findings and a finished file for Nancy to upload. Nothing was uploaded.
 
+## Update 6 Oct 2026: the live page is newer than this file's base. Use the transplant route.
+
+Nancy's screen capture of the live page (reports/live-capture-2026-10-06-p1..p3.png) shows body copy that is newer in every section than the 18 Aug base this corrected file was built on: a light hero with the lede "Autoklaver og instrumentvaskemaskiner driver over tid. Vi revaliderer dem efter FSTA's nationale retningslinjer...", a facts row reading "FSTA · EN 285 · DS/EN ISO 15883", an FSTA quote block and three new problem columns, an Omfang section with "Det, de fleste ikke måler" (vandkvalitet og pH, Testplan 4, 5 og 6), four process steps named Planlægning / Forberedelse, Del I / Praktisk test, Del II / Rapport, Del III, a "Kun revalidering" section, four named specialists with roles and bios, six FAQ questions, and no contact form. The footer still has no CVR and the nav has no links or CTA.
+
+So: do not upload this `index.html` whole. The finished live file must be the live HTML with these pieces merged in: `head-block.html`, `contrast-patch.css` and the design fixes adapted to the live layout, the CVR footer (Draft fix A in the legal audit), and the roster photos from `img/`. That merge needs the live HTML source, which this environment cannot fetch: download `/valideringseksperterne.dk/index.html` from the Simply file manager, or save the page from the browser as HTML only, and hand it over.
+
 ## What I could and could not reach
 
 - The live page could not be fetched from this session. The cloud environment's network policy denies valideringseksperterne.dk, and web.archive.org is also blocked, so no live diff was possible. To allow it next time, add valideringseksperterne.dk to the environment's allowed domains (cloud environment menu in the session title bar, then Edit, Network access).
