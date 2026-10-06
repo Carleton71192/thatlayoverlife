@@ -43,9 +43,29 @@ Kit conflict to decide: the kit says "Named clients where approved. 'Novo Nordis
 - Contrast on static text is clean (axe 0 violations), the focus ring is visible, every image has alt text, the form has a honeypot and `autocomplete`.
 - The hero headline is specific to the product and audience. It could not be lifted onto another site unchanged.
 
-## Not changed by this audit
+## Applied 6 Oct 2026 after Nancy approved all ten (fix 9: anonymized, folded into the facts strip)
 
-Copy, section order, URLs, anchor IDs, form field names and the Web3Forms endpoint stay as they are. Nothing was applied; every row above is a proposal waiting for approval.
+All ten fixes are now in the corrected `index.html` (local draft, not uploaded). `changes-design.diff` shows exactly what moved against the previous corrected file.
+
+| Check | Before | After |
+| --- | --- | --- |
+| Impeccable detector findings | 30 | 4 (the two approved eyebrows, the textarea placeholder which measures 7.3:1, and the Montserrat false positive) |
+| axe-core violations | 0 | 0 |
+| Hero bottom edge at 1440 x 900 | 1,070 px (facts row pushed the CTAs past the fold) | 840 px, CTAs inside the first viewport |
+| Mobile nav at 375 | brand lockup and language switch only | brand lockup and "Book vurdering" pill, 355 px right edge, no overflow |
+| Hover contrast | 4.06:1 and 3.3:1 | 6.5:1 and 14.5:1 |
+| Press state | none | `scale(0.97)` at 160 ms ease-out, disabled under reduced motion |
+| Section eyebrows | 7 | 2 |
+| Card boxes | 10 (3 problem, 4 step, 3 USP) | 0; divided lists and rules instead |
+| Form labels | placeholders only | visible labels with `for`/`id`, optional fields marked "(valgfri)" |
+| 10 px labels | 8 | 0 (12 px, endorsement line 11 px) |
+| Image dimensions | none | `width`/`height` plus `height:auto` so the CSS aspect ratio still governs; `decoding="async"`; no `loading="lazy"` (useless on inline data URIs and it left the portrait undecoded in full-page renders) |
+
+Two regressions caught and fixed during verification: adding `width`/`height` to the photos overrode the CSS `aspect-ratio` and stretched both into tall crops (`height: auto` on `.photo-img` restored the 500 and 300 px squares at 1440), and `loading="lazy"` on the inline portrait kept it from decoding in a full-page capture (removed).
+
+Copy wording is unchanged except one punctuation swap in the facts strip ("ISO 17665, EN 285, ISO 15883" instead of middle dots) and the two "(valgfri)" markers on optional form fields. The hero lede is still about 30 words, above the Taste Skill's 20-word guide; shortening it is a copy decision for Nancy, not applied.
+
+Still open from the craft floor, not in the approved scope: card radius 10 px (the floor prefers 12 to 16 px for cards, though no cards remain), Montserrat served from Google (legal audit fix D), and the hero lede length.
 
 ## Evidence
 
