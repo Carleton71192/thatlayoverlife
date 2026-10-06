@@ -1,0 +1,48 @@
+<script id="tll-v91-map-clusters-v1">
+/* v9.1 fix 10 (6 Oct 2026, DRAFT): story-pin clustering on /the-map. Pins closer than 32px on screen become one group pin with a mono count badge
+   (Ink on #00C9C8). Every pin and group gets a 44x44 hit area and an aria-label. A group opens a list of its stories (the map engine has no zoom API
+   this script can call without touching the engine). Enter animation follows fix 09 and is off under reduced motion. Additive: the engine's own
+   circles stay in the DOM, hidden by the group they belong to. */
+(function(){
+  var N='http://www.w3.org/2000/svg',BUILT=false;
+  function ready(cb){var t=0,iv=setInterval(function(){var g=document.getElementById('tll-pins');if(g&&g.querySelectorAll('circle.tll-pin').length){clearInterval(iv);cb(g);}else if(++t>80)clearInterval(iv);},300);}
+  function screenPos(svg,x,y){var p=svg.createSVGPoint();p.x=x;p.y=y;var m=svg.getScreenCTM();return m?p.matrixTransform(m):p;}
+  function name(c){var t=c.getAttribute('aria-label')||c.getAttribute('data-name')||'';if(t)return t;var tip=c.__tllName;return tip||'a story';}
+  function build(g){
+    if(BUILT)return;BUILT=true;
+    var svg=g.ownerSVGElement||g.closest('svg'),pins=[].slice.call(g.querySelectorAll('circle.tll-pin'));
+    pins.forEach(function(c){c.setAttribute('data-tll-raw','1');});
+    var pts=pins.map(function(c){var s=screenPos(svg,+c.getAttribute('cx'),+c.getAttribute('cy'));return{c:c,x:+c.getAttribute('cx'),y:+c.getAttribute('cy'),sx:s.x,sy:s.y,used:false};});
+    var groups=[];
+    pts.forEach(function(p){if(p.used)return;var grp=[p];p.used=true;pts.forEach(function(q){if(q.used)return;if(Math.hypot(q.sx-p.sx,q.sy-p.sy)<32){grp.push(q);q.used=true;}});groups.push(grp);});
+    var layer=document.createElementNS(N,'g');layer.setAttribute('id','tll-pin-groups');g.parentNode.appendChild(layer);
+    var px=1;try{var a=screenPos(svg,0,0),b=screenPos(svg,1,0);px=1/Math.max(1e-6,Math.hypot(b.x-a.x,b.y-a.y));}catch(e){}
+    function label(grp){if(grp.length===1)return name(grp[0].c)+'. Read the story';return grp.length+' stories here';}
+    groups.forEach(function(grp){
+      var cx=grp.reduce(function(s,p){return s+p.x;},0)/grp.length,cy=grp.reduce(function(s,p){return s+p.y;},0)/grp.length;
+      var a=document.createElementNS(N,'a');a.setAttribute('href','#');a.setAttribute('role','button');a.setAttribute('tabindex','0');a.setAttribute('aria-label',label(grp));a.setAttribute('class','tll-pin-group'+(grp.length>1?' is-group':''));
+      var hit=document.createElementNS(N,'circle');hit.setAttribute('cx',cx);hit.setAttribute('cy',cy);hit.setAttribute('r',22*px);hit.setAttribute('fill','transparent');hit.setAttribute('style','cursor:pointer');a.appendChild(hit);
+      var dot=document.createElementNS(N,'circle');dot.setAttribute('cx',cx);dot.setAttribute('cy',cy);dot.setAttribute('r',(grp.length>1?7:4)*px);dot.setAttribute('fill',grp.length>1?'#00C9C8':'#F0507A');dot.setAttribute('stroke',grp.length>1?'#0A0B14':'#fff');dot.setAttribute('stroke-width',1.2*px);a.appendChild(dot);
+      if(grp.length>1){var t=document.createElementNS(N,'text');t.setAttribute('x',cx);t.setAttribute('y',cy);t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','central');t.setAttribute('font-family',"'JetBrains Mono',monospace");t.setAttribute('font-size',(10*px)+'px');t.setAttribute('font-weight','700');t.setAttribute('fill','#0A0B14');t.textContent=String(grp.length);a.appendChild(t);}
+      grp.forEach(function(p){p.c.style.display='none';});
+      if(!window.tllReduced&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){a.style.opacity='0';a.style.transition='opacity 240ms cubic-bezier(.23,1,.32,1)';requestAnimationFrame(function(){requestAnimationFrame(function(){a.style.opacity='1';});});}
+      function act(e){e.preventDefault();if(grp.length===1){grp[0].c.dispatchEvent(new MouseEvent('click',{bubbles:true}));return;}openList(grp,a);}
+      a.addEventListener('click',act);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){act(e);}});
+      a.addEventListener('mouseenter',function(e){grp[0].c.dispatchEvent(new MouseEvent('mouseenter',{clientX:e.clientX,clientY:e.clientY}));});
+      a.addEventListener('mouseleave',function(){grp[0].c.dispatchEvent(new MouseEvent('mouseleave'));});
+      layer.appendChild(a);
+    });
+  }
+  function openList(grp,anchor){
+    var old=document.getElementById('tll-pin-list');if(old)old.remove();
+    var box=document.createElement('div');box.id='tll-pin-list';box.setAttribute('role','dialog');box.setAttribute('aria-label',grp.length+' stories here');
+    box.style.cssText="position:fixed;z-index:99998;background:#0A0B14;color:#F7F1E8;border:1px solid #23263c;border-radius:4px;padding:10px 0;min-width:220px;box-shadow:0 18px 40px rgba(10,11,20,.4);font-family:'IBM Plex Sans Condensed',sans-serif";
+    var r=anchor.getBoundingClientRect();box.style.left=Math.min(window.innerWidth-240,Math.max(8,r.left-100))+'px';box.style.top=Math.min(window.innerHeight-200,r.bottom+8)+'px';
+    grp.forEach(function(p){var c=p.c;var b=document.createElement('button');b.type='button';b.textContent=name(c);b.style.cssText='display:block;width:100%;text-align:left;background:none;border:0;color:#F7F1E8;font:600 15px inherit;padding:10px 16px;min-height:44px;cursor:pointer';b.addEventListener('click',function(){c.dispatchEvent(new MouseEvent('click',{bubbles:true}));});box.appendChild(b);});
+    var x=document.createElement('button');x.type='button';x.textContent='Close';x.setAttribute('aria-label','Close the list');x.style.cssText="display:block;width:100%;text-align:left;background:none;border:0;border-top:1px solid #23263c;color:#9496AC;font:700 11px 'JetBrains Mono',monospace;letter-spacing:2px;padding:10px 16px;min-height:44px;cursor:pointer;margin-top:4px";x.addEventListener('click',function(){box.remove();anchor.focus();});box.appendChild(x);
+    document.body.appendChild(box);box.querySelector('button').focus();
+    document.addEventListener('keydown',function esc(e){if(e.key==='Escape'){box.remove();anchor.focus();document.removeEventListener('keydown',esc);}});
+  }
+  ready(build);
+})();
+</script>

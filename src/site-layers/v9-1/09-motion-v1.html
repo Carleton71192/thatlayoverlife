@@ -1,0 +1,36 @@
+<style id="tll-v91-motion-v1">
+/* v9.1 fix 09 (6 Oct 2026, DRAFT): one motion spec for the whole site. Enter: ease-out cubic-bezier(.23,1,.32,1), 200 to 300ms, opacity + 6 to 12px move,
+   never from scale 0. Exit 150ms. Hover only with a real pointer, color and shadow only, no movement on text links. Press: scale(.97) 100ms.
+   Only transform and opacity animate; every transition names its properties. Reduced motion: no movement, opacity fades of 150ms or less. */
+:root{--tll-ease-out:cubic-bezier(.23,1,.32,1);--tll-ease-in-out:cubic-bezier(.77,0,.175,1);--tll-t-enter:240ms;--tll-t-exit:150ms;--tll-t-hover:150ms;--tll-t-press:100ms}
+/* Buttons: press feedback, no lift on hover (the 28 Jul polish lifted by 1px, which is movement on hover) */
+.tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn{transition:transform var(--tll-t-press) var(--tll-ease-out),background-color var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease,box-shadow var(--tll-t-hover) ease,opacity var(--tll-t-hover) ease !important}
+.tll-btn:hover,.w-button:hover{transform:none !important}
+.tll-btn:active,.w-button:active,button:not(.tllmm-btn):active,.tll-nav-pen-cta:active,.tll-nav-signup:active,.tll-fos-cta:active,.tsh-btn:active{transform:scale(.97) !important}
+/* Cards: hover is shadow and border only, with a real pointer */
+.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition:box-shadow var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease !important}
+.tll-shelf-card:hover,.tll-lib-card:hover{transform:none !important}
+@media(hover:hover) and (pointer:fine){.tll-shelf-card:hover,.tll-lib-card:hover{box-shadow:0 12px 28px rgba(10,11,20,.12)}}
+/* Text links: color only */
+a:not([class]),.tll-nav-link,footer a{transition:color var(--tll-t-hover) ease,text-decoration-color var(--tll-t-hover) ease}
+/* Enter: reveal and stagger hooks used by the flow layer, the shelf and the pins */
+.tll-flow-reveal,[data-tll-reveal],.tll-enter{transition:opacity var(--tll-t-enter) var(--tll-ease-out),transform var(--tll-t-enter) var(--tll-ease-out)}
+.tll-enter{opacity:0;transform:translateY(8px)}.tll-enter.in{opacity:1;transform:none}
+/* Reduced motion: the single global hook. Movement off, opacity fades kept at 150ms or less, pinned sections released. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition-property:opacity,color,background-color,border-color,box-shadow !important;transition-duration:150ms !important;scroll-behavior:auto !important}
+  .tll-enter,.tll-flow-reveal,[data-tll-reveal]{opacity:1 !important;transform:none !important}
+  .tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn,.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition-property:opacity,background-color,border-color,box-shadow !important}
+  .tll-btn:active,.w-button:active,button:active{transform:none !important}
+  [data-tll-parallax]{transform:none !important}
+  .tll-flow-man{height:auto !important}.tll-flow-man .pin{position:static !important;height:auto !important}
+}
+</style>
+<script id="tll-v91-motion-js-v1">
+/* The JS half of the reduced-motion hook: window.tllReduced is true when the OS asks for less motion; scripts that move things check it. */
+(function(){var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');function set(){window.tllReduced=!!(mq&&mq.matches);document.documentElement.classList.toggle('tll-reduced',window.tllReduced);}set();if(mq&&mq.addEventListener)mq.addEventListener('change',set);
+/* Enter animations for anything marked .tll-enter: 30% visible, once */
+function io(){var els=document.querySelectorAll('.tll-enter:not(.in)');if(!els.length)return;if(window.tllReduced||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}
+var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{threshold:.3});els.forEach(function(e){o.observe(e);});}
+if(document.readyState!=='loading')io();else document.addEventListener('DOMContentLoaded',io);window.addEventListener('load',io);})();
+</script>
