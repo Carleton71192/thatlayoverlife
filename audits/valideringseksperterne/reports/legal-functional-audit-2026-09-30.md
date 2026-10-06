@@ -11,7 +11,7 @@ Nancy supplied the live `index.html` (saved as `../index-live-2026-10-06.html`).
 - L01, L02, L16 (CVR, VAT, registered name, seat): absent on live, now in the merged `index.html` footer and JSON-LD.
 - L05 (privacy policy): the live legal links go to https://damgaard-solutions.com/privacy-policy and /cookie-policy, which are real policy URLs, so the "links to the homepage" finding came from the older base and does not apply to live. Still open: confirm those policies name the .dk, Google Fonts and the server logs. Severity drops from Critical to Medium.
 - L06, L07 (contact form, Web3Forms): the live page has no form, only email and phone. Both findings do not apply. The processor list shrinks to Simply (hosting) and Google (fonts).
-- L03 (Google Fonts before consent): still true on live and on the merged file. Fix D still applies.
+- L03 (Google Fonts before consent): true on live, fixed in the merged file on 6 Oct. Montserrat is now self-hosted as one variable WOFF2 (`fonts/montserrat-latin.woff2`, 35 KB, weights 100 to 900, latin range which includes æ, ø and å), preloaded, `font-display: swap`. No request leaves the host for fonts. Fix D is done; the Google preconnect and stylesheet lines are gone.
 - New on live, fixed in the merged file: the four team portraits were loaded from cdn.prod.website-files.com (Webflow's CDN), a third-party request on every page load, undisclosed anywhere. They now ship from `img/` on the same host.
 - L04 (server cookies), F01 (TLS, headers, redirects, Lighthouse): still NOT VERIFIED, the host is still blocked from this environment.
 

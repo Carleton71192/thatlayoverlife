@@ -8,7 +8,7 @@ Nancy's screen capture of the live page (reports/live-capture-2026-10-06-p1..p3.
 
 Resolved the same day: Nancy supplied the live HTML (kept here as `index-live-2026-10-06.html`). `index.html` is now that live file with the fixes merged in, so it IS the upload. `changes.diff` is live versus merged. Body copy is untouched except the hero eyebrow (dropped "· Skandinavien") and six section kickers removed. Added: the head block, `index,follow`, self-canonical, 55-char title, 159-char description, OG set, JSON-LD (WebSite, ProfessionalService, Service), inline favicon, `--steel-text` for every Steel-on-light label, 12 px micro-labels, hover and press states gated for pointer devices, reduced-motion handling, visible focus ring, a "Book vurdering" button in the header at every width, the four portraits served from `img/` instead of the Webflow CDN, and the registered name, CVR, VAT number and Roskilde address in the footer. The earlier draft built on the 18 Aug base is superseded and was removed from this folder; its history is in git.
 
-Still from Google servers: Montserrat (legal audit fix D, needs the font files uploaded). `og-image.jpg` is the technician photo, which no longer appears on the live page; swap it if you want the OG image to match something visible.
+Montserrat is self-hosted too (`fonts/montserrat-latin.woff2`, one variable file for every weight), so the upload set is `index.html`, `og-image.jpg`, `img/` and `fonts/`, all inside `/valideringseksperterne.dk/`. Nothing on the page calls Google any more. `og-image.jpg` is the technician photo, which no longer appears on the live page; swap it if you want the OG image to match something visible.
 
 ## What I could and could not reach
 
