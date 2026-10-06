@@ -1,5 +1,5 @@
 <script id="tll-v9-departures-v1">
-/* v9 J10 (6 Oct 2026): the Departures board, mode-neutral (air, rail, sea, road), inserted at the top of main on every page except
+/* v9 J10 (6 Oct 2026, 6px Cream bottom rule dropped the same day at Nancy's request: it read as a white stripe on dark pages): the Departures board, mode-neutral (air, rail, sea, road), inserted at the top of main on every page except
    home and story pages. Values per page come from the 2.0 prototype's TX table; VIA uses the prototype's hash so each page keeps one mode.
    Additive: nothing moved or removed; the page's own title follows the board. Skipped in embed mode. */
 (function(){
@@ -61,7 +61,7 @@ function build(){
   var V="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:1px;font-weight:700;color:#F7F1E8;margin-top:8px";
   function cell(lab,val,flex,extra){return '<div style="flex:'+flex+';min-width:0;padding:16px 20px 18px 0"><div style="'+L+'">'+lab+'</div><div style="'+V+(extra||'')+'">'+esc(val)+'</div></div>';}
   var b=document.createElement('div');b.id='tll-departures';b.setAttribute('data-tll-departures',key||'default');b.setAttribute('role','region');b.setAttribute('aria-label','Departures');
-  b.style.cssText='background:#0A0B14;color:#F7F1E8;border-bottom:6px solid #F7F1E8';
+  b.style.cssText='background:#0A0B14;color:#F7F1E8;border-bottom:1px solid #23263c';
   b.innerHTML='<div style="padding:0 6vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid #23263c;font-family:\'JetBrains Mono\',monospace;font-size:10.5px;letter-spacing:3px;font-weight:700;color:#9496AC"><span style="padding:14px 0">DEPARTURES · THAT LAYOVER LIFE</span><span style="padding:14px 0">AIR · RAIL · SEA · ROAD</span></div>'
    +'<div style="padding:0 6vw;display:flex;flex-wrap:wrap;column-gap:20px;align-items:flex-end">'
    +cell('ROUTE','TLL '+tx[0],'1 1 120px',';color:#00C9C8;white-space:nowrap')
