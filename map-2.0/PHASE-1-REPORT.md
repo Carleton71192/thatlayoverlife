@@ -1,5 +1,7 @@
 # The Map 2.0, Phase 1: data
 
+> Revised 7 October 2026 after Nancy's decisions, see `overrides.json`. Countries count every code (94). Zion is a park (US parks 18 of 63). 18 UNESCO properties added from landmark and park pins (UNESCO 70, each marked to confirm on whc.unesco.org). Table Mountain ticked. Marathons still need Nancy's race list. Data hosting: static JSON in this repo through jsDelivr.
+
 Date: 7 October 2026. Source: `source/places_been_export.csv` (766 rows, the GeoJSON is the same 766 pins). Built by `build-data.py`; the numbers below are read from `data/_report.json`, not typed.
 
 ## What is in the folder

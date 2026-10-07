@@ -16,6 +16,7 @@ SRC = os.path.join(HERE, 'source', 'places_been_export.csv')
 OUT = os.path.join(HERE, 'data')
 CFG = json.load(open(os.path.join(HERE, 'collections.json'), encoding='utf-8'))
 COLL = {c['id']: c for c in CFG['collections']}
+OVR = json.load(open(os.path.join(HERE, 'overrides.json'), encoding='utf-8'))
 
 # Places Been layer/type -> collection id(s). One pin can feed two collections
 # (a US national park is also in "parks and monuments everywhere").
@@ -85,6 +86,31 @@ def main():
         for c in collections_for(r['layer'], r['type'], r['country_code']):
             layers[c].append(row(r, c))
 
+    # ---- Hand decisions from overrides.json ----
+    def find(layer_rows, name):
+        for d in layer_rows:
+            if d['name'].lower() == name.lower(): return d
+    for mv in OVR.get('copy_to_collections', []):
+        src = find(layers[mv['from']], mv['match_name'])
+        if not src: print('override: no pin named', mv['match_name'], file=sys.stderr); continue
+        for to in mv['to']:
+            if find(layers[to], mv['match_name']): continue
+            layers[to].append(dict(src, collection=to, verb=COLL[to]['verb'], type=mv.get('type', src['type']), source=src['source'] + ' (moved by overrides.json)'))
+    uo = OVR.get('unesco_from_landmarks', {})
+    have_ids = set()
+    for u in uo.get('rows', []):
+        src = find(layers[u.get('from', 'landmarks')], u['match_name'])
+        if not src: print('override: no pin named', u['match_name'], file=sys.stderr); continue
+        if find(layers['unesco'], u['unesco_name']): continue
+        if uo.get('dedupe_by_whc_id') and u.get('whc_id') and u['whc_id'] in have_ids: continue
+        if u.get('whc_id'): have_ids.add(u['whc_id'])
+        layers['unesco'].append(dict(src, name=u['unesco_name'], collection='unesco', verb=COLL['unesco']['verb'],
+            type='UNESCO (from landmark pin)', link=('https://whc.unesco.org/en/list/%d' % u['whc_id']) if u.get('whc_id') else '',
+            note='', confirm=True, source=src['source'] + ' (added by overrides.json)'))
+    # Every UNESCO row gets an official link: the list page search when no id is known.
+    for d in layers['unesco']:
+        if not d['link']: d['link'] = 'https://whc.unesco.org/en/list/?search=' + d['name'].replace(' ', '+')
+
     # Countries: a candidate list derived from pins. The live member map (tllStates) is the
     # real record of depth (lived / stayed / layover). See the report flag.
     seen = {}
@@ -122,7 +148,9 @@ def main():
     rep['rows_total'] = len(rows); rep['been'] = len(been); rep['wishlist'] = len(wish)
     rep['also_wishlist_but_been'] = [r['name'] for r in been if r['also_wishlist'] == 'True']
     rep['counts'] = {c: len(layers[c]) for c in COLL}
+    rep['country_rule'] = OVR.get('country_rule')
     rep['countries_from_pins'] = len(countries)
+    rep['unesco_added_to_confirm'] = [d['name'] for d in layers['unesco'] if d.get('confirm')]
     rep['countries_un_only'] = sum(1 for c in countries if c['un_member_or_observer'])
     rep['territories_in_pins'] = sorted(cc for cc in seen if cc in NOT_A_COUNTRY)
     # same name in two layers

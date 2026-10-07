@@ -1,6 +1,6 @@
 {
  "collection": "us-national-parks",
- "count": 17,
+ "count": 18,
  "generated_from": "places_been_export.csv",
  "rows": [
   {
@@ -239,6 +239,20 @@
    "link": "",
    "depth": "",
    "source": "places_been:186890",
+   "type": "National park"
+  },
+  {
+   "name": "Zion National Park",
+   "collection": "us-national-parks",
+   "latitude": 37.3,
+   "longitude": -113.0,
+   "country": "US",
+   "verb": "walked",
+   "year": "",
+   "note": "",
+   "link": "",
+   "depth": "",
+   "source": "places_been:196230 (moved by overrides.json)",
    "type": "National park"
   }
  ]

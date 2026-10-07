@@ -1,0 +1,35 @@
+{
+ "_about": "Hand decisions layered on top of the Places Been export. build-data.py applies these after reading the CSV so a fresh export never undoes them. Decided by Nancy on 7 October 2026.",
+ "country_rule": "all_codes",
+ "_country_rule_note": "all_codes = every country code in the pins counts, territories and Kosovo included (94). Alternative values: un_only (87).",
+ "copy_to_collections": [
+  {"match_name": "Zion National Park", "from": "landmarks", "to": ["us-national-parks", "parks-everywhere"], "type": "National park",
+   "_why": "Nancy: 'I think of it as a park.' Zion is a designated US national park. The landmark pin stays, like Arches and Yellowstone."}
+ ],
+ "unesco_from_landmarks": {
+  "_about": "Landmark pins that sit inside an inscribed World Heritage property. Each becomes a UNESCO row using the pin's own coordinates. whc_id is the number in the official URL https://whc.unesco.org/en/list/<id>. Every row is marked confirm:true until Nancy checks it on whc.unesco.org; the report lists them.",
+  "rows": [
+   {"match_name": "Eiffel Tower", "unesco_name": "Paris, Banks of the Seine", "whc_id": 600},
+   {"match_name": "Statue of Liberty", "unesco_name": "Statue of Liberty", "whc_id": 307},
+   {"match_name": "Tower of London", "unesco_name": "Tower of London", "whc_id": 488},
+   {"match_name": "Westminster Abbey", "unesco_name": "Palace of Westminster and Westminster Abbey including Saint Margaret's Church", "whc_id": 426},
+   {"match_name": "Edinburgh Castle", "unesco_name": "Old and New Towns of Edinburgh", "whc_id": 728},
+   {"match_name": "Hungarian Parliament Building", "unesco_name": "Budapest, including the Banks of the Danube, the Buda Castle Quarter and Andrássy Avenue", "whc_id": 400},
+   {"match_name": "Leaning Tower of Pisa", "unesco_name": "Piazza del Duomo, Pisa", "whc_id": 395},
+   {"match_name": "Giza Pyramids", "unesco_name": "Memphis and its Necropolis: the Pyramid Fields from Giza to Dahshur", "whc_id": 86},
+   {"match_name": "Chichen Itza", "unesco_name": "Pre-Hispanic City of Chichen-Itza", "whc_id": 483},
+   {"match_name": "Neuschwanstein Castle", "unesco_name": "The Palaces of King Ludwig II of Bavaria: Neuschwanstein, Linderhof, Schachen and Herrenchiemsee", "whc_id": null, "_note": "Inscribed July 2025. Look up the list number on whc.unesco.org."},
+   {"match_name": "Perito Moreno Glacier", "unesco_name": "Los Glaciares National Park", "whc_id": 145},
+   {"match_name": "Victoria Falls", "unesco_name": "Mosi-oa-Tunya / Victoria Falls", "whc_id": 509},
+   {"match_name": "Bay of Kotor", "unesco_name": "Natural and Culturo-Historical Region of Kotor", "whc_id": 125},
+   {"match_name": "Grand Canyon", "unesco_name": "Grand Canyon National Park", "whc_id": 75},
+   {"match_name": "Franz Josef & Fox Glacier", "unesco_name": "Te Wahipounamu – South West New Zealand", "whc_id": 551},
+   {"match_name": "Carlsbad Caverns National Park", "unesco_name": "Carlsbad Caverns National Park", "whc_id": 721, "from": "parks-everywhere"},
+   {"match_name": "Everglades National Park", "unesco_name": "Everglades National Park", "whc_id": 76, "from": "parks-everywhere"},
+   {"match_name": "Olympic National Park", "unesco_name": "Olympic National Park", "whc_id": 151, "from": "parks-everywhere"},
+   {"match_name": "Aoraki/Mount Cook National Park", "unesco_name": "Te Wahipounamu – South West New Zealand", "whc_id": 551, "from": "parks-everywhere", "_note": "Same property as Franz Josef. Counted once; see dedupe rule."},
+   {"match_name": "Angkor Wat", "unesco_name": "Angkor", "whc_id": 668, "_note": "Already in the UNESCO layer as 'Angkor'. Skipped by the dedupe rule."}
+  ],
+  "dedupe_by_whc_id": true
+ }
+}

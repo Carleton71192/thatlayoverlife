@@ -1,6 +1,6 @@
 {
  "collection": "unesco",
- "count": 52,
+ "count": 70,
  "generated_from": "places_been_export.csv",
  "rows": [
   {
@@ -12,10 +12,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Iguazu+National+Park",
    "depth": "",
    "source": "places_been:185725",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Los Glaciares National Park",
+   "collection": "unesco",
+   "latitude": -50.5,
+   "longitude": -73.13333,
+   "country": "AR",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/145",
+   "depth": "",
+   "source": "places_been:196112 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Great Barrier Reef",
@@ -26,7 +41,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Great+Barrier+Reef",
    "depth": "",
    "source": "places_been:185736",
    "type": "UNESCO natural"
@@ -40,7 +55,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Sydney+Opera+House",
    "depth": "",
    "source": "places_been:185737",
    "type": "UNESCO cultural"
@@ -54,7 +69,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Central+Amazon+Conservation+Complex",
    "depth": "",
    "source": "places_been:185805",
    "type": "UNESCO natural"
@@ -68,7 +83,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Discovery+Coast+Atlantic+Forest+Reserves",
    "depth": "",
    "source": "places_been:185802",
    "type": "UNESCO natural"
@@ -82,7 +97,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Historic+Centre+of+Salvador+de+Bahia",
    "depth": "",
    "source": "places_been:185795",
    "type": "UNESCO cultural"
@@ -96,7 +111,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Iguaçu+National+Park",
    "depth": "",
    "source": "places_been:185797",
    "type": "UNESCO natural"
@@ -110,7 +125,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Lençóis+Maranhenses+National+Park",
    "depth": "",
    "source": "places_been:198066",
    "type": "UNESCO natural"
@@ -124,7 +139,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Pantanal+Conservation+Area",
    "depth": "",
    "source": "places_been:185806",
    "type": "UNESCO natural"
@@ -138,7 +153,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Paraty+and+Ilha+Grande+–+Culture+and+Biodiversity",
    "depth": "",
    "source": "places_been:186805",
    "type": "UNESCO mixed"
@@ -152,7 +167,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Rio+de+Janeiro:+Carioca+Landscapes+between+the+Mountain+and+the+Sea",
    "depth": "",
    "source": "places_been:185809",
    "type": "UNESCO cultural"
@@ -166,7 +181,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Belize+Barrier+Reef+Reserve+System",
    "depth": "",
    "source": "places_been:185781",
    "type": "UNESCO natural"
@@ -180,7 +195,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Painted+Churches+in+the+Troodos+Region",
    "depth": "",
    "source": "places_been:185936",
    "type": "UNESCO cultural"
@@ -194,10 +209,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Paphos",
    "depth": "",
    "source": "places_been:185935",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "The Palaces of King Ludwig II of Bavaria: Neuschwanstein, Linderhof, Schachen and Herrenchiemsee",
+   "collection": "unesco",
+   "latitude": 47.55753,
+   "longitude": 10.74952,
+   "country": "DE",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/?search=The+Palaces+of+King+Ludwig+II+of+Bavaria:+Neuschwanstein,+Linderhof,+Schachen+and+Herrenchiemsee",
+   "depth": "",
+   "source": "places_been:196096 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Jelling Mounds, Runic Stones and Church",
@@ -208,7 +238,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Jelling+Mounds,+Runic+Stones+and+Church",
    "depth": "",
    "source": "places_been:185959",
    "type": "UNESCO cultural"
@@ -222,7 +252,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Kronborg+Castle",
    "depth": "",
    "source": "places_been:185958",
    "type": "UNESCO cultural"
@@ -236,7 +266,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Roskilde+Cathedral",
    "depth": "",
    "source": "places_been:185957",
    "type": "UNESCO cultural"
@@ -250,7 +280,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Stevns+Klint",
    "depth": "",
    "source": "places_been:185961",
    "type": "UNESCO natural"
@@ -264,7 +294,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Galápagos+Islands",
    "depth": "",
    "source": "places_been:185968",
    "type": "UNESCO natural"
@@ -278,7 +308,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Ancient+Thebes+with+its+Necropolis",
    "depth": "",
    "source": "places_been:185973",
    "type": "UNESCO cultural"
@@ -292,10 +322,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Historic+Cairo",
    "depth": "",
    "source": "places_been:185975",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Memphis and its Necropolis: the Pyramid Fields from Giza to Dahshur",
+   "collection": "unesco",
+   "latitude": 29.97611,
+   "longitude": 31.13278,
+   "country": "EG",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/86",
+   "depth": "",
+   "source": "places_been:196060 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Nubian Monuments from Abu Simbel to Philae",
@@ -306,7 +351,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Nubian+Monuments+from+Abu+Simbel+to+Philae",
    "depth": "",
    "source": "places_been:185974",
    "type": "UNESCO cultural"
@@ -320,10 +365,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Teide+National+Park",
    "depth": "",
    "source": "places_been:186590",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Paris, Banks of the Seine",
+   "collection": "unesco",
+   "latitude": 48.85822,
+   "longitude": 2.2945,
+   "country": "FR",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/600",
+   "depth": "",
+   "source": "places_been:196067 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "City of Bath",
@@ -334,10 +394,40 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=City+of+Bath",
    "depth": "",
    "source": "places_been:186691",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Old and New Towns of Edinburgh",
+   "collection": "unesco",
+   "latitude": 55.94861,
+   "longitude": -3.20083,
+   "country": "GB",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/728",
+   "depth": "",
+   "source": "places_been:196151 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
+  },
+  {
+   "name": "Palace of Westminster and Westminster Abbey including Saint Margaret's Church",
+   "collection": "unesco",
+   "latitude": 51.49944,
+   "longitude": -0.1275,
+   "country": "GB",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/426",
+   "depth": "",
+   "source": "places_been:196136 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Stonehenge, Avebury and Associated Sites",
@@ -348,10 +438,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Stonehenge,+Avebury+and+Associated+Sites",
    "depth": "",
    "source": "places_been:186685",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Tower of London",
+   "collection": "unesco",
+   "latitude": 51.50806,
+   "longitude": -0.07611,
+   "country": "GB",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/488",
+   "depth": "",
+   "source": "places_been:196130 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Acropolis, Athens",
@@ -362,7 +467,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Acropolis,+Athens",
    "depth": "",
    "source": "places_been:186084",
    "type": "UNESCO cultural"
@@ -376,7 +481,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Tikal+National+Park",
    "depth": "",
    "source": "places_been:186100",
    "type": "UNESCO mixed"
@@ -390,7 +495,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Old+City+of+Dubrovnik",
    "depth": "",
    "source": "places_been:185919",
    "type": "UNESCO cultural"
@@ -404,7 +509,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Plitvice+Lakes+National+Park",
    "depth": "",
    "source": "places_been:185921",
    "type": "UNESCO natural"
@@ -418,7 +523,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=The+Cathedral+of+St+James+in+Šibenik",
    "depth": "",
    "source": "places_been:185924",
    "type": "UNESCO cultural"
@@ -432,10 +537,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=National+History+Park+–+Citadel,+Sans+Souci,+Ramiers",
    "depth": "",
    "source": "places_been:186103",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Budapest, including the Banks of the Danube, the Buda Castle Quarter and Andrássy Avenue",
+   "collection": "unesco",
+   "latitude": 47.50694,
+   "longitude": 19.04556,
+   "country": "HU",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/400",
+   "depth": "",
+   "source": "places_been:196149 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Sceilg Mhichíl",
@@ -446,7 +566,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Sceilg+Mhichíl",
    "depth": "",
    "source": "places_been:186188",
    "type": "UNESCO cultural"
@@ -460,7 +580,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Great+Himalayan+National+Park+Conservation+Area",
    "depth": "",
    "source": "places_been:186146",
    "type": "UNESCO natural"
@@ -474,7 +594,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Taj+Mahal",
    "depth": "",
    "source": "places_been:186130",
    "type": "UNESCO cultural"
@@ -488,7 +608,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Vatnajökull+National+Park+-+dynamic+nature+of+fire+and+ice",
    "depth": "",
    "source": "places_been:186813",
    "type": "UNESCO natural"
@@ -502,7 +622,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Þingvellir+National+Park",
    "depth": "",
    "source": "places_been:186113",
    "type": "UNESCO cultural"
@@ -516,10 +636,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Mount+Etna",
    "depth": "",
    "source": "places_been:186243",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Piazza del Duomo, Pisa",
+   "collection": "unesco",
+   "latitude": 43.72306,
+   "longitude": 10.39639,
+   "country": "IT",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/395",
+   "depth": "",
+   "source": "places_been:196073 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Angkor",
@@ -530,7 +665,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Angkor",
    "depth": "",
    "source": "places_been:185824",
    "type": "UNESCO cultural"
@@ -544,10 +679,40 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Historic+Centre+of+Riga",
    "depth": "",
    "source": "places_been:186288",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Natural and Culturo-Historical Region of Kotor",
+   "collection": "unesco",
+   "latitude": 42.43333,
+   "longitude": 18.63333,
+   "country": "ME",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/125",
+   "depth": "",
+   "source": "places_been:196274 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
+  },
+  {
+   "name": "Pre-Hispanic City of Chichen-Itza",
+   "collection": "unesco",
+   "latitude": 20.68306,
+   "longitude": -88.56861,
+   "country": "MX",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/483",
+   "depth": "",
+   "source": "places_been:196074 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Bryggen",
@@ -558,7 +723,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Bryggen",
    "depth": "",
    "source": "places_been:186401",
    "type": "UNESCO cultural"
@@ -572,10 +737,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Sagarmatha+National+Park",
    "depth": "",
    "source": "places_been:186377",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Te Wahipounamu – South West New Zealand",
+   "collection": "unesco",
+   "latitude": -43.46694,
+   "longitude": 170.19167,
+   "country": "NZ",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/551",
+   "depth": "",
+   "source": "places_been:196302 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "City of Cuzco",
@@ -586,7 +766,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=City+of+Cuzco",
    "depth": "",
    "source": "places_been:186427",
    "type": "UNESCO cultural"
@@ -600,7 +780,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Historic+Sanctuary+of+Machu+Picchu",
    "depth": "",
    "source": "places_been:186428",
    "type": "UNESCO mixed"
@@ -614,7 +794,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Puerto-Princesa+Subterranean+River+National+Park",
    "depth": "",
    "source": "places_been:186439",
    "type": "UNESCO natural"
@@ -628,7 +808,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Singapore+Botanic+Gardens",
    "depth": "",
    "source": "places_been:186535",
    "type": "UNESCO cultural"
@@ -642,10 +822,55 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Kilimanjaro+National+Park",
    "depth": "",
    "source": "places_been:186716",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Carlsbad Caverns National Park",
+   "collection": "unesco",
+   "latitude": 32.17,
+   "longitude": -104.44,
+   "country": "US",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/721",
+   "depth": "",
+   "source": "places_been:186841 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
+  },
+  {
+   "name": "Everglades National Park",
+   "collection": "unesco",
+   "latitude": 25.32,
+   "longitude": -80.93,
+   "country": "US",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/76",
+   "depth": "",
+   "source": "places_been:186849 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
+  },
+  {
+   "name": "Grand Canyon National Park",
+   "collection": "unesco",
+   "latitude": 36.3,
+   "longitude": -112.6,
+   "country": "US",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/75",
+   "depth": "",
+   "source": "places_been:196080 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Mesa Verde National Park",
@@ -656,10 +881,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Mesa+Verde+National+Park",
    "depth": "",
    "source": "places_been:186718",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Olympic National Park",
+   "collection": "unesco",
+   "latitude": 47.97,
+   "longitude": -123.5,
+   "country": "US",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/151",
+   "depth": "",
+   "source": "places_been:186876 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Redwood National and State Parks",
@@ -670,7 +910,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Redwood+National+and+State+Parks",
    "depth": "",
    "source": "places_been:186723",
    "type": "UNESCO natural"
@@ -684,10 +924,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=San+Antonio+Missions",
    "depth": "",
    "source": "places_been:186738",
    "type": "UNESCO cultural"
+  },
+  {
+   "name": "Statue of Liberty",
+   "collection": "unesco",
+   "latitude": 40.68917,
+   "longitude": -74.04444,
+   "country": "US",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/307",
+   "depth": "",
+   "source": "places_been:196071 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   },
   {
    "name": "Yellowstone National Park",
@@ -698,7 +953,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Yellowstone+National+Park",
    "depth": "",
    "source": "places_been:186719",
    "type": "UNESCO natural"
@@ -712,7 +967,7 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Yosemite+National+Park",
    "depth": "",
    "source": "places_been:186730",
    "type": "UNESCO natural"
@@ -726,10 +981,25 @@
    "verb": "ticked",
    "year": "",
    "note": "",
-   "link": "",
+   "link": "https://whc.unesco.org/en/list/?search=Ha+Long+Bay",
    "depth": "",
    "source": "places_been:186749",
    "type": "UNESCO natural"
+  },
+  {
+   "name": "Mosi-oa-Tunya / Victoria Falls",
+   "collection": "unesco",
+   "latitude": -17.92444,
+   "longitude": 25.85667,
+   "country": "ZM",
+   "verb": "ticked",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/509",
+   "depth": "",
+   "source": "places_been:196164 (added by overrides.json)",
+   "type": "UNESCO (from landmark pin)",
+   "confirm": true
   }
  ]
 }
