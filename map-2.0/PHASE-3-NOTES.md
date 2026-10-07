@@ -30,8 +30,9 @@ Date: 7 October 2026. Everything below is rendered from the data files; nothing 
 | 77 | Landmarks | `data/landmarks.json` |
 | 18 of 63 | US national parks | `data/us-national-parks.json` (17 pins plus Zion, moved by `overrides.json`); 63 from `collections.json` |
 | 28 | National parks and monuments everywhere | `data/parks-everywhere.json` |
+| 16 | Marathons | `data/marathons.json`, from Nancy's list of 7 Oct 2026; four race towns without a pin are marked approximate |
 | 14 | Magnus Waffles 🐻‍❄️ | `data/magnus.json`, from the pet's states in the member record |
-| 4 of 7, 6 of 7, 5 of 7, 0 of 7 | New 7 Wonders of the World, Seven Natural Wonders, New 7 Wonders of Nature, Continents marathoned | `done` flags in `collections.json` sets_of_seven, each with its pin named in `source` |
+| 4 of 7, 6 of 7, 5 of 7, 7 of 7 | New 7 Wonders of the World, Seven Natural Wonders, New 7 Wonders of Nature, Continents marathoned | `done` flags in `collections.json` sets_of_seven, each with its pin named in `source` |
 | Tromsø, Rothera Research Station, Suva, Lihue | Furthest north, south, east, west | `data/extremes.json`, computed from cities, airports and ports (places you stood; landmarks and parks are excluded) |
 | 3 of 3 | Lines crossed | same file: Equator, Arctic Circle (Tromsø), Antarctic Circle (Rothera) |
 | 4 of 4 | Hemispheres | same file |

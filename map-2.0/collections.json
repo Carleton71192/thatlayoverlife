@@ -127,6 +127,18 @@
    "caption": "[COPY NEEDED]"
   },
   {
+   "id": "marathons",
+   "name": "Marathons",
+   "shelf": "motion",
+   "default_on": false,
+   "verb": "ran",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "source": "hand",
+   "what_counts": "[COPY NEEDED] 42.195 km, finished. Trail counts, the half that missed the cutoff does not.",
+   "caption": "[COPY NEEDED]"
+  },
+  {
    "id": "magnus",
    "name": "Magnus Waffles 🐻‍❄️",
    "shelf": "human",
@@ -314,38 +326,45 @@
   {
    "id": "continents-marathoned",
    "name": "Continents marathoned",
-   "as_of": "",
-   "_note": "[DATA NEEDED] The ahotu calendar lists upcoming races, not finishes, so it cannot say which marathons Nancy ran. Send the race names and years; ahotu can then supply each race city for the pin.",
+   "as_of": "2026-10-07",
    "items": [
     {
      "name": "Africa",
-     "done": false
+     "done": true,
+     "source": "marathons: Sanlam Cape Town Marathon (2024)"
     },
     {
      "name": "Antarctica",
-     "done": false
+     "done": true,
+     "source": "marathons: Antarctica Marathon (2023)"
     },
     {
      "name": "Asia",
-     "done": false
+     "done": true,
+     "source": "marathons: Vietnam Trail Marathon (2022)"
     },
     {
      "name": "Europe",
-     "done": false
+     "done": true,
+     "source": "marathons: Berlin Marathon (2021)"
     },
     {
      "name": "North America",
-     "done": false
+     "done": true,
+     "source": "marathons: Rock 'n' Roll Marathon, San Diego (2007)"
     },
     {
      "name": "Oceania",
-     "done": false
+     "done": true,
+     "source": "marathons: Buller Gorge Marathon (2024)"
     },
     {
      "name": "South America",
-     "done": false
+     "done": true,
+     "source": "marathons: São Paulo Marathon (2023)"
     }
-   ]
+   ],
+   "_source": "Nancy's marathon list, 7 October 2026; every item points at a row in data/marathons.json"
   }
  ],
  "embeds": {
