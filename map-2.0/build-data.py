@@ -56,6 +56,8 @@ COUNTRY = {
  'UY':('Uruguay','South America'),'VN':('Vietnam','Asia'),'XK':('Kosovo','Europe'),'ZA':('South Africa','Africa'),'ZM':('Zambia','Africa'),
  'ZW':('Zimbabwe','Africa'),
 }
+# ISO 3166-1 alpha-2 -> numeric, as used by the world-atlas country shapes. Kosovo has no number and is matched by name.
+A2N = {"AD":"020","AE":"784","AL":"008","AO":"024","AQ":"010","AR":"032","AT":"040","AU":"036","AW":"533","BA":"070","BE":"056","BG":"100","BO":"068","BR":"076","BW":"072","BZ":"084","CA":"124","CH":"756","CL":"152","CO":"170","CR":"188","CW":"531","CY":"196","CZ":"203","DE":"276","DK":"208","DO":"214","EC":"218","EG":"818","ES":"724","FI":"246","FJ":"242","FO":"234","FR":"250","GB":"826","GH":"288","GR":"300","GT":"320","HK":"344","HN":"340","HR":"191","HT":"332","HU":"348","ID":"360","IE":"372","IN":"356","IS":"352","IT":"380","JM":"388","JP":"392","KH":"116","KZ":"398","LA":"418","LI":"438","LS":"426","LT":"440","LV":"428","MA":"504","MC":"492","ME":"499","MK":"807","MT":"470","MX":"484","MY":"458","NL":"528","NO":"578","NP":"524","NZ":"554","OM":"512","PA":"591","PE":"604","PH":"608","PL":"616","PT":"620","PY":"600","QA":"634","RS":"688","SE":"752","SG":"702","SI":"705","SK":"703","SV":"222","SZ":"748","TH":"764","TR":"792","TW":"158","TZ":"834","US":"840","UY":"858","VN":"704","ZA":"710","ZM":"894","ZW":"716"}
 # Codes that are territories or special regions, not UN member or observer states.
 NOT_A_COUNTRY = {'AQ','AW','CW','FO','HK','TW','XK'}
 
@@ -127,7 +129,7 @@ def main():
             'name': name, 'collection': 'countries', 'latitude': round(lat, 3), 'longitude': round(lng, 3),
             'country': cc, 'verb': COLL['countries']['verb'], 'year': '', 'note': '', 'link': '',
             'depth': '', 'source': 'places_been:derived from %d pins' % len(pins),
-            'continent': cont, 'un_member_or_observer': cc not in NOT_A_COUNTRY,
+            'iso_n3': A2N.get(cc, ''), 'continent': cont, 'un_member_or_observer': cc not in NOT_A_COUNTRY,
             'pin_count': len(pins),
         })
     layers['countries'] = countries
@@ -139,6 +141,8 @@ def main():
         data.sort(key=lambda d: (d['country'], d['name']))
         json.dump({'collection': c, 'count': len(data), 'generated_from': 'places_been_export.csv', 'rows': data},
                   open(os.path.join(OUT, c + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump({'generated_from': 'places_been_export.csv', 'counts': {c: len(layers.get(c, [])) for c in COLL}},
+              open(os.path.join(OUT, 'counts.json'), 'w', encoding='utf-8'), indent=1)
     wishlist = [row(r, 'wishlist') for r in wish]
     json.dump({'collection': 'wishlist', 'count': len(wishlist), 'rows': wishlist},
               open(os.path.join(OUT, 'wishlist.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
