@@ -13,6 +13,9 @@
 <script>
 (function(){
   if(window.__tllMapV4) return; window.__tllMapV4=1;
+  /* 2026-10-07: the hero counter fills from the saved record at once, and again when Memberstack answers, so it never sits on the dash. */
+  function quickCount(){try{var s=JSON.parse(localStorage.getItem("tllStates")||"null");var n=s&&s.v===2&&s.states?Object.keys(s.states).length:0;var c=document.querySelector("#tll-map-counter,.tll-map-counter-num");if(c)c.textContent=/\//.test(c.textContent)?n+" / 195":String(n);var pc=document.querySelector("#tll-map-pct,.tll-map-counter-pct");if(pc)pc.textContent=Math.round(n/195*100)+"%";}catch(e){}}
+  window.__tllQuickCount=quickCount; quickCount();
   var LAND="#FBF7F0", STROKE="#8FA6AE", OLDVIS="#F0507A";
   var PAL=["#F0507A","#00A6A4","#E0A32E","#7C5CBF","#3E7CB1","#C86B3C","#5B8C5A","#B14A8F"];
   var TRIP={lived:"Lived",visited:"Visited",layover:"Layover"};
@@ -64,7 +67,9 @@
     function redrawAll(){var a={},k;for(k in pins)a[k]=1;for(k in data.states)a[k]=1;Object.keys(a).forEach(function(id){drawPin(id);});}
     function count(){return Object.keys(data.states).length;}
     function updateCount(){var n=count();var c=document.querySelector("#tll-map-counter,.tll-map-counter-num");if(c){c.textContent=/\//.test(c.textContent)?n+" / 195":String(n);}var pc=document.querySelector("#tll-map-pct,.tll-map-counter-pct");if(pc)pc.textContent=Math.round(n/195*100)+"%";var h=document.getElementById("tllEmpty");if(h)h.style.display=n?"none":"block";if(btn)btn.textContent=n?"✎  Log or edit countries":"✎  Log a country";}
-    function save(){try{localStorage.setItem("tllStates",JSON.stringify(data));}catch(e){}updateCount();window.__tllPush&&window.__tllPush(data);}
+    /* 2026-10-07: every save is announced, so the share card below re-renders instead of waiting for a reload. */
+    function announce(){try{window.dispatchEvent(new CustomEvent("tll:states",{detail:JSON.parse(JSON.stringify(data))}));}catch(e){}}
+    function save(){try{localStorage.setItem("tllStates",JSON.stringify(data));}catch(e){}updateCount();announce();window.__tllPush&&window.__tllPush(data);}
     var lg=document.createElement("div"); lg.id="tllLegend";
     function ic(kind){var s='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">';if(kind==="lived")s+='<circle cx="8" cy="8" r="6.5" fill="none" stroke="#0D0F1A" stroke-width="1.2"/><circle cx="8" cy="8" r="3.4" fill="#0D0F1A"/>';else if(kind==="visited")s+='<circle cx="8" cy="8" r="3.6" fill="#0D0F1A"/>';else s+='<circle cx="8" cy="8" r="3.2" fill="'+LAND+'" stroke="#0D0F1A" stroke-width="1.6"/>';return s+'</svg>';}
     function rebuildLegend(){ lg.innerHTML=""; data.travelers.forEach(function(t){ var s=document.createElement("span"); var i=document.createElement("i"); i.style.background=t.color; s.appendChild(i); s.appendChild(document.createTextNode((t.pet?"🐾 ":"")+t.name)); lg.appendChild(s); }); var s2=document.createElement("span"); var i2=document.createElement("i"); i2.style.background=LAND; i2.style.boxShadow="0 0 0 1px "+STROKE; s2.appendChild(i2); s2.appendChild(document.createTextNode("Not yet")); lg.appendChild(s2); var dep=document.createElement("span"); dep.id="tllDepth"; dep.innerHTML='<span>'+ic("lived")+'Lived</span><span>'+ic("visited")+'Visited</span><span>'+ic("layover")+'Layover</span>'; lg.appendChild(dep); }
@@ -139,7 +144,7 @@
     }
     function render(f){f=(f||"").toLowerCase();listEl.innerHTML="";items.forEach(function(it){if(f&&it.st.indexOf(f)<0)return;listEl.appendChild(row(it));});}
     function openPanel(f){rebuildTStrip();var qi=panel.querySelector("#tllQ");qi.value=f||"";render(qi.value);pcount();listEl.scrollTop=0;panel.style.transform="translateX(0)";}
-    window.__tllMapApply=function(ns){data=migrate(ns);redrawAll();rebuildLegend();rebuildTStrip();updateCount();if(panel.style.transform==="translateX(0px)"){render(q());pcount();}};
+    window.__tllMapApply=function(ns){data=migrate(ns);redrawAll();rebuildLegend();rebuildTStrip();updateCount();announce();if(panel.style.transform==="translateX(0px)"){render(q());pcount();}};
     panel.querySelector("#tllQ").addEventListener("input",function(e){render(e.target.value);});
     panel.querySelector("#tllX").addEventListener("click",function(){panel.style.transform="translateX(100%)";});
     var sb=panel.querySelector("#tllSave");

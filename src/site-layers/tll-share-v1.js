@@ -161,7 +161,8 @@ function qrSvg(url) {
   } catch (e) { return ''; }
 }
 
-export function createShareUI({ mount, member, states, prefs, onPrefs }) {
+export function createShareUI({ mount, member, states: states0, prefs, onPrefs }) {
+  let states = states0; // replaced by setStates() when the map saves (7 Oct 2026: the card used to go stale until a reload)
   const style = h('style', { id: 'tll-share-css' }, CSS);
   if (!document.getElementById('tll-share-css')) document.head.appendChild(style);
   const root = h('section', { id: 'tllShare', 'aria-label': 'Make a card' });
@@ -355,7 +356,12 @@ export function createShareUI({ mount, member, states, prefs, onPrefs }) {
   );
   mount.appendChild(root);
   renderCard(); paint(); paintPanel();
-  return { root, ui, renderCard };
+  function setStates(next) {
+    states = next;
+    if (ui.step !== 'idle') { ui.step = 'idle'; ui.blob = null; ui.url = null; }
+    renderCard(); paint();
+  }
+  return { root, ui, renderCard, setStates };
 }
 
 /** Boot on /the-map (after the map's own share bar) and on /account (panel host). */
@@ -376,7 +382,11 @@ export async function boot() {
     let n = 0; await new Promise((res) => { const iv = setInterval(() => { const m = document.getElementById('tllShareBar') || document.getElementById('tllLegend'); if (m || ++n > 60) { clearInterval(iv); if (m) { mount = document.createElement('div'); m.parentNode.insertBefore(mount, m.nextSibling); } res(); } }, 400); });
   }
   if (!mount) return;
-  createShareUI({ mount, member, states: raw ? { ...raw, states } : null, prefs, onPrefs });
+  const api = createShareUI({ mount, member, states: raw ? { ...raw, states } : null, prefs, onPrefs });
+  // Live refresh: the map editor announces every save as a tll:states event; another tab shows up as a storage event.
+  const refresh = (next) => { const c = cleanStates(next); api.setStates(next ? { ...next, states: c.states } : null); };
+  window.addEventListener('tll:states', (ev) => refresh((ev && ev.detail) || readStates()));
+  window.addEventListener('storage', (ev) => { if (ev.key === 'tllStates') refresh(readStates()); });
 }
 
 if (typeof document !== 'undefined' && !window.__tllShareNoBoot) {
