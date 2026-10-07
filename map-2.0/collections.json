@@ -137,6 +137,35 @@
    "what_counts": "[COPY NEEDED] Places Magnus Waffles 🐻‍❄️ came along.",
    "caption": "[COPY NEEDED]",
    "pin_shape": "paw"
+  },
+  {
+   "id": "moments",
+   "name": "Human moments",
+   "shelf": "human",
+   "default_on": false,
+   "verb": "happened",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] One line, one place, something a person did or said. No photos, no times.",
+   "caption": "[COPY NEEDED]",
+   "pin_shape": "square",
+   "source": "hand"
+  },
+  {
+   "id": "heat",
+   "name": "Ground covered",
+   "shelf": "motion",
+   "default_on": false,
+   "verb": "covered",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "type": "heat",
+   "what_counts": "[COPY NEEDED] Coarse hexagons, about 25 km across, from run and ride tracks. Never a raw line, never anything near home.",
+   "caption": "[COPY NEEDED]",
+   "pin_shape": "hex",
+   "source": "build-heat.py",
+   "color": "#8A7352",
+   "_color_note": "Kraft, so covered ground reads as earth, not as pins."
   }
  ],
  "sets_of_seven": [
@@ -318,5 +347,24 @@
     }
    ]
   }
- ]
+ ],
+ "embeds": {
+  "_about": "Official third-party embeds in brand frames. Only past trips. Fill `id` (Strava activity id, digits) or `src` (the iframe URL Polarsteps gives under Share, Embed). Leave empty to show the placeholder frame.",
+  "items": [
+   {
+    "id": "strava-1",
+    "type": "strava",
+    "label": "A run, from Strava",
+    "strava_activity_id": "",
+    "note": "[EMBED NEEDED] Paste the activity id from the Strava URL. Only an activity you have made public."
+   },
+   {
+    "id": "polarsteps-1",
+    "type": "polarsteps",
+    "label": "A trip, from Polarsteps",
+    "src": "",
+    "note": "[EMBED NEEDED] In Polarsteps, open the trip, Share, Embed, copy the iframe src. Past trips only."
+   }
+  ]
+ }
 }

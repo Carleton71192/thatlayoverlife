@@ -6,7 +6,7 @@ Everything the map shows comes from the files in `map-2.0/`. No code changes nee
 
 1. Open `data/<collection>.json` (for example `data/landmarks.json`).
 2. Copy any row and change the fields: name, latitude, longitude, country (two-letter code), year, note (one line), link (a story URL or an official page). Leave `verb` as it is; the collection sets it.
-3. Run `python3 map-2.0/build-data.py` only if the pin came from a Places Been export. For a hand-added pin, instead add it to `overrides.json` under `extra_rows` so the next export does not wipe it. (Phase 3 adds that section.)
+3. If the pin came from a Places Been export, run `python3 map-2.0/build-data.py` instead of editing by hand. A hand-added pin in an export-built file is wiped by the next export, so for hand pins use `data/moments.json` (kept by hand) or ask for an `extra_rows` section in `overrides.json`.
 4. Commit, push, and update the commit hash in the Webflow embed.
 
 ## Add a whole new collection
@@ -22,9 +22,24 @@ Everything the map shows comes from the files in `map-2.0/`. No code changes nee
 2. Run `python3 map-2.0/build-data.py`. It rewrites every data file and `counts.json`, re-applies `overrides.json`, and prints the checks (duplicates, same place in two layers, wishlist rows).
 3. Read `data/_report.json` for anything flagged. Commit, push, update the hash.
 
-## Refresh from Strava or a flight log
+## Refresh the Ground covered layer from Strava, Garmin or Google tracks
 
-Not wired yet (Phase 4). The rule stays: tracks and photo points become coarse hexagons or city-level counts before they go anywhere near a published file. Nothing near Copenhagen SV is ever included.
+1. Put the export files in `map-2.0/source/private/tracks/` (GPX, CSV with lat and lon columns, or Google Location History JSON). This folder never goes to GitHub.
+2. Make sure `map-2.0/source/private/exclusions.json` has a circle over home (see the README in that folder). 6 km is a safe default.
+3. Run `python3 map-2.0/build-heat.py`. It prints one line: points read, points kept, hexagons written. Only `data/heat.json` changes, and it holds hexagon centers and a 1 to 5 bucket, nothing else.
+4. Commit `data/heat.json`, push, update the hash.
+
+## Add a human moment
+
+Open `data/moments.json`, copy the `_example` row into `rows`, fill name, latitude, longitude, country and the one-line note. Commit, push, update the hash. The chip turns on by itself once there is a row.
+
+## Fill the Strava and Polarsteps frames
+
+In `collections.json` under `embeds`, paste the Strava activity id (digits only) or the Polarsteps iframe src. Past trips only. Commit, push, update the hash.
+
+## A flight log
+
+Not a layer yet. Airports already come from Places Been. If you want routes drawn between them, that is a new collection and a new conversation: lines on a map are the one thing the privacy rules watch most closely.
 
 ## Change a verb, a denominator or an "as of" date
 

@@ -4,3 +4,5 @@ node_modules/
 dist/
 *.log
 .DS_Store
+map-2.0/source/private/*
+!map-2.0/source/private/README.md

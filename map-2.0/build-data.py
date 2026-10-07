@@ -151,7 +151,14 @@ def main():
     layers['magnus'] = mag
 
     os.makedirs(OUT, exist_ok=True)
+    # Hand-kept and separately built files (moments, heat) are never rewritten here; their counts are read back.
+    own = {c for c in COLL if COLL[c].get('source') in ('hand', 'build-heat.py')}
     for c in COLL:
+        if c in own:
+            fp = os.path.join(OUT, c + '.json')
+            try: layers[c] = json.load(open(fp, encoding='utf-8')).get('rows', [])
+            except (OSError, ValueError): layers[c] = []
+            continue
         data = layers.get(c, [])
         data.sort(key=lambda d: (d['country'], d['name']))
         json.dump({'collection': c, 'count': len(data), 'generated_from': 'places_been_export.csv', 'rows': data},
