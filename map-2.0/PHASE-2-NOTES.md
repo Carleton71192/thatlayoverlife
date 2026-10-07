@@ -28,7 +28,7 @@ Offline, with Playwright at 1440 and 390 wide: every chip on and off, counts on 
 ## Paste-in steps for Webflow (when you are ready; nothing is live yet)
 
 1. Open the /the-map page in the Designer. Add a new Embed element directly below the existing map canvas block (`#tll-map-canvas`). Do not delete anything.
-2. Paste the contents of `embed/tll-map-layers.embed.html`. The three commit tokens are already filled with the Phase 2 commit (40894d3). When a later phase ships, replace them with the new hash. Save.
+2. Paste the contents of `embed/tll-map-layers.embed.html`. The three commit tokens are filled with the latest commit (currently Phase 3). When a later phase ships, replace them with the new hash. Save.
 3. Set the old canvas block (`#tll-map-canvas`) and its legend to Display: None. Keep the OPEN FULL SCREEN link, the counters, the logbook and the share embed exactly where they are.
 4. Preview in the Designer: the new block should show the switcher and the map, with 94 Rose countries.
 5. Publish only after you have looked at it on a phone. Revert is one step: set the old block back to Display: Block and set the new embed to Display: None.
