@@ -137,7 +137,7 @@ def main():
         })
     n3_to_a2 = {v: k for k, v in A2N.items()}; n3_to_a2['XK'] = 'XK'
     for c in countries:
-        st = MS['me'].get(c['iso_n3'] or c['country'])
+        st = MS['me'].get(c['iso_n3'] or c['country']) or OVR.get('depth', {}).get(c['country'])
         c['depth'] = DEPTH.get(st, '')
     layers['countries'] = countries
     # 🐻‍❄️ Magnus Waffles: one pin per country in his record, placed at the centroid of the human pins there.
@@ -159,10 +159,12 @@ def main():
         c['depth_proposed'] = 'Layover only' if kinds <= {'Airports'} else 'Stayed'
     # Published stories by country, from source/stories.json (the live site's list); gives the country card its link.
     st_path = os.path.join(HERE, 'source', 'stories.json')
-    stories = json.load(open(st_path, encoding='utf-8')).get('by_country', {}) if os.path.exists(st_path) else {}
+    stories = json.load(open(st_path, encoding='utf-8')).get('stories', []) if os.path.exists(st_path) else []
     for c in countries:
-        st = stories.get(c['country'])
-        if st: c['link'] = st['url']; c['story'] = st['name']
+        mine = [st for st in stories if c['country'] in st.get('countries', [])]
+        if mine:
+            c['link'] = '/stories/' + mine[0]['slug']; c['story'] = mine[0]['name']; c['stories'] = len(mine)
+            c['story_list'] = [{'name': st['name'], 'url': '/stories/' + st['slug']} for st in mine]
 
     # ---- Computed and hand-listed collections from collections.json ----
     all_pins = []

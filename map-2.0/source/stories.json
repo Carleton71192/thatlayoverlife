@@ -1,21 +1,63 @@
 {
- "_about": "Countries with a published story, as the live /the-map public view lists them (page head code, updated 21 September 2026). The design file names other story countries (BG, SE, BR, DK) that are not in this live list; flagged for Nancy.",
- "by_country": {
-  "GH": {
-   "name": "Ghana",
-   "url": "/stories/ghana-easter-everyone-wears-white"
+ "_about": "Every published story in the Stories collection (read 7 October 2026) mapped to the countries it is filed from, by its byline location. A country can carry several stories; the first is the card link. The Balkans EV story names Kosovo as its destination and is attached there only, until the twelve countries are listed in its route stops.",
+ "read_on": "2026-10-07",
+ "stories": [
+  {
+   "slug": "sort-sol-black-sun-denmark",
+   "name": "Sort Sol",
+   "countries": [
+    "DK"
+   ]
   },
-  "MX": {
-   "name": "Mexico",
-   "url": "/stories/la-paz-mexico-whale-sharks"
+  {
+   "slug": "northern-brazil-sequins-to-sloths",
+   "name": "Northern Brazil",
+   "countries": [
+    "BR"
+   ]
   },
-  "ME": {
+  {
+   "slug": "la-paz-mexico-whale-sharks",
+   "name": "La Paz",
+   "countries": [
+    "MX"
+   ]
+  },
+  {
+   "slug": "patagonia-w-trek-christmas-new-year",
+   "name": "Patagonia",
+   "countries": [
+    "CL",
+    "AR"
+   ]
+  },
+  {
+   "slug": "montenegro-budva-switchback-roads",
    "name": "Montenegro",
-   "url": "/stories/montenegro-budva-switchback-roads"
+   "countries": [
+    "ME"
+   ]
   },
-  "CL": {
-   "name": "Chile",
-   "url": "/stories/patagonia-w-trek-christmas-new-year"
+  {
+   "slug": "ghana-easter-everyone-wears-white",
+   "name": "Ghana",
+   "countries": [
+    "GH"
+   ]
+  },
+  {
+   "slug": "balkans-ev-road-trip-twelve-countries",
+   "name": "Balkans EV road trip",
+   "countries": [
+    "XK"
+   ]
+  },
+  {
+   "slug": "antarctica-marathon",
+   "name": "Antarctica Marathon",
+   "countries": [
+    "AQ"
+   ]
   }
- }
+ ]
 }
