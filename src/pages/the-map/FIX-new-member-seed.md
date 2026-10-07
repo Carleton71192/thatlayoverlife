@@ -36,4 +36,4 @@ storage (or uses a fresh browser), logs in, and starts at 0.
 **Also at risk:** anyone else who signs up before the fix ships gets the same seed. Nancy and Jay are the
 only two members as of 7 Oct 2026 (Memberstack getMembers).
 
-**Status:** proposal only. Nothing changed on the live page. Publish needs Nancy's approval.
+**Status:** applied and published live 7 Oct 2026 evening on Nancy's go (map page head and footer code, both domains plus subdomain). Jay's record reset to an empty map the same evening. The published page code is the record; the change is exactly the two edits above.
