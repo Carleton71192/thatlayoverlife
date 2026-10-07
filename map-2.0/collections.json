@@ -1,0 +1,70 @@
+{
+ "_about": "The only file to edit when adding a collection. Each entry becomes a chip in the layer switcher and a card under the map. The number shown is always counted from data/<id>.json; the denominator is the world total, with its as-of date. Pin shape is set per shelf so color is never the only signal. Captions marked [COPY NEEDED] are placeholders for Nancy's words.",
+ "shelves": [
+  {"id": "places", "name": "Places", "pin_shape": "circle"},
+  {"id": "wonders", "name": "Wonders and heritage", "pin_shape": "diamond"},
+  {"id": "motion", "name": "On foot and in motion", "pin_shape": "triangle"},
+  {"id": "lines", "name": "Lines and extremes", "pin_shape": "dash"},
+  {"id": "human", "name": "The human layer", "pin_shape": "paw"}
+ ],
+ "collections": [
+  {"id": "countries", "name": "Countries", "shelf": "places", "default_on": true,
+   "verb": "logged", "denominator": 195, "denominator_label": "UN members and observer states", "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Left the airport, or lived there. Layover-only countries are counted separately.",
+   "caption": "[COPY NEEDED]", "depth_values": ["Lived", "Stayed", "Layover only"]},
+  {"id": "cities", "name": "Cities", "shelf": "places", "default_on": false,
+   "verb": "logged", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] A town or city with at least one night, or a day on the ground.", "caption": "[COPY NEEDED]"},
+  {"id": "airports", "name": "Airports", "shelf": "places", "default_on": false,
+   "verb": "connected through", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Landed or took off. Transit counts.", "caption": "[COPY NEEDED]"},
+  {"id": "ports", "name": "Ports", "shelf": "places", "default_on": false,
+   "verb": "docked at", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Boarded or left a boat here.", "caption": "[COPY NEEDED]"},
+  {"id": "unesco", "name": "UNESCO World Heritage", "shelf": "wonders", "default_on": false,
+   "verb": "ticked", "denominator": 1273, "denominator_label": "inscribed sites", "as_of": "2025-07",
+   "what_counts": "[COPY NEEDED] Stood inside the inscribed boundary. Each pin links to its official UNESCO page.", "caption": "[COPY NEEDED]",
+   "link_base": "https://whc.unesco.org/en/list/"},
+  {"id": "landmarks", "name": "Landmarks", "shelf": "wonders", "default_on": false,
+   "verb": "seen", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Seen with my own eyes, not from a plane window.", "caption": "[COPY NEEDED]"},
+  {"id": "us-national-parks", "name": "US national parks", "shelf": "motion", "default_on": false,
+   "verb": "walked", "denominator": 63, "denominator_label": "designated national parks", "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Inside the park boundary on foot. Monuments and preserves are in the next collection.", "caption": "[COPY NEEDED]"},
+  {"id": "parks-everywhere", "name": "National parks and monuments everywhere", "shelf": "motion", "default_on": false,
+   "verb": "walked", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Any national park or national monument, any country. Includes the US parks above.", "caption": "[COPY NEEDED]"},
+  {"id": "magnus", "name": "Magnus Waffles 🐻‍❄️", "shelf": "human", "default_on": false,
+   "verb": "was here", "denominator": null, "as_of": "2026-10-07",
+   "what_counts": "[COPY NEEDED] Places Magnus Waffles 🐻‍❄️ came along.", "caption": "[COPY NEEDED]", "pin_shape": "paw"}
+ ],
+ "sets_of_seven": [
+  {"id": "new7wonders", "name": "New 7 Wonders of the World", "as_of": "2007-07-07", "items": [
+   {"name": "Great Wall of China", "country": "CN", "done": false},
+   {"name": "Petra", "country": "JO", "done": false},
+   {"name": "Christ the Redeemer", "country": "BR", "done": true, "source": "places_been:Christ the Redeemer Statue"},
+   {"name": "Machu Picchu", "country": "PE", "done": true, "source": "places_been:Machu Picchu"},
+   {"name": "Chichen Itza", "country": "MX", "done": true, "source": "places_been:Chichen Itza"},
+   {"name": "Colosseum", "country": "IT", "done": false},
+   {"name": "Taj Mahal", "country": "IN", "done": true, "source": "places_been:Taj Mahal"}]},
+  {"id": "seven-natural-wonders", "name": "Seven Natural Wonders", "as_of": "", "_note": "[DECISION NEEDED] Which list: the 1997 CNN list (Grand Canyon, Great Barrier Reef, Harbor of Rio de Janeiro, Mount Everest, Aurora, Parícutin, Victoria Falls) is the usual one. Items left unticked until Nancy confirms.", "items": [
+   {"name": "Grand Canyon", "country": "US", "done": true, "source": "places_been:Grand Canyon"},
+   {"name": "Great Barrier Reef", "country": "AU", "done": true, "source": "places_been:Great Barrier Reef"},
+   {"name": "Harbor of Rio de Janeiro", "country": "BR", "done": true, "source": "places_been:Harbor of Rio de Janeiro"},
+   {"name": "Mount Everest", "country": "NP", "done": true, "source": "places_been:Mount Everest"},
+   {"name": "Aurora", "country": "NO", "done": true, "source": "places_been:Aurora Borealis"},
+   {"name": "Parícutin", "country": "MX", "done": false},
+   {"name": "Victoria Falls", "country": "ZM", "done": true, "source": "places_been:Victoria Falls"}]},
+  {"id": "new7-nature", "name": "New 7 Wonders of Nature", "as_of": "2011-11-11", "items": [
+   {"name": "Amazon rainforest", "country": "BR", "done": true, "source": "places_been:Central Amazon Conservation Complex, Manaus"},
+   {"name": "Hạ Long Bay", "country": "VN", "done": true, "source": "places_been:Hạ Long Bay"},
+   {"name": "Iguazú Falls", "country": "AR", "done": true, "source": "places_been:Iguazu National Park"},
+   {"name": "Jeju Island", "country": "KR", "done": false},
+   {"name": "Komodo Island", "country": "ID", "done": false},
+   {"name": "Puerto Princesa Underground River", "country": "PH", "done": true, "source": "places_been:Puerto-Princesa Subterranean River National Park"},
+   {"name": "Table Mountain", "country": "ZA", "done": false, "_note": "[DECISION NEEDED] Cape Town is in the cities layer; Table Mountain is not a pin. Tick if you went up."}]},
+  {"id": "continents-marathoned", "name": "Continents marathoned", "as_of": "", "_note": "[DATA NEEDED] No race data in the export. Supply a list of marathons (name, city, country, year).", "items": [
+   {"name": "Africa", "done": false}, {"name": "Antarctica", "done": false}, {"name": "Asia", "done": false},
+   {"name": "Europe", "done": false}, {"name": "North America", "done": false}, {"name": "Oceania", "done": false}, {"name": "South America", "done": false}]}
+ ]
+}

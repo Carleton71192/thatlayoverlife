@@ -1,0 +1,572 @@
+{
+ "rows_total": 766,
+ "been": 762,
+ "wishlist": 4,
+ "also_wishlist_but_been": [
+  "Ushuaia",
+  "Saint-Tropez"
+ ],
+ "counts": {
+  "countries": 94,
+  "cities": 470,
+  "airports": 132,
+  "ports": 4,
+  "unesco": 52,
+  "landmarks": 77,
+  "us-national-parks": 17,
+  "parks-everywhere": 27,
+  "magnus": 0
+ },
+ "countries_from_pins": 94,
+ "countries_un_only": 87,
+ "territories_in_pins": [
+  "AQ",
+  "AW",
+  "CW",
+  "FO",
+  "HK",
+  "TW",
+  "XK"
+ ],
+ "same_name_two_layers": {
+  "la paz": [
+   [
+    "Cities",
+    "City",
+    "BO"
+   ],
+   [
+    "Cities",
+    "City",
+    "MX"
+   ],
+   [
+    "Ports",
+    "Port",
+    "MX"
+   ]
+  ],
+  "manaus": [
+   [
+    "Cities",
+    "City",
+    "BR"
+   ],
+   [
+    "Ports",
+    "Port",
+    "BR"
+   ]
+  ],
+  "grand canyon": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "US"
+   ]
+  ],
+  "las vegas": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Landmarks",
+    "Landmark, built",
+    "US"
+   ]
+  ],
+  "yosemite valley": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "US"
+   ]
+  ],
+  "victoria falls": [
+   [
+    "Cities",
+    "City",
+    "ZW"
+   ],
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "ZM"
+   ]
+  ],
+  "sydney opera house": [
+   [
+    "Landmarks",
+    "Landmark, built",
+    "AU"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO cultural",
+    "AU"
+   ]
+  ],
+  "taj mahal": [
+   [
+    "Landmarks",
+    "Landmark, built",
+    "IN"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO cultural",
+    "IN"
+   ]
+  ],
+  "great barrier reef": [
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "AU"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "AU"
+   ]
+  ],
+  "galápagos islands": [
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "EC"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "EC"
+   ]
+  ],
+  "plitvice lakes national park": [
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "HR"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "HR"
+   ]
+  ],
+  "arches national park": [
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "US"
+   ],
+   [
+    "National parks and monuments",
+    "National park",
+    "US"
+   ]
+  ],
+  "yellowstone national park": [
+   [
+    "Landmarks",
+    "Landmark, natural",
+    "US"
+   ],
+   [
+    "National parks and monuments",
+    "National park",
+    "US"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "US"
+   ]
+  ],
+  "teide national park": [
+   [
+    "National parks and monuments",
+    "National park",
+    "ES"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "ES"
+   ]
+  ],
+  "mesa verde national park": [
+   [
+    "National parks and monuments",
+    "National park",
+    "US"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO cultural",
+    "US"
+   ]
+  ],
+  "yosemite national park": [
+   [
+    "National parks and monuments",
+    "National park",
+    "US"
+   ],
+   [
+    "UNESCO World Heritage",
+    "UNESCO natural",
+    "US"
+   ]
+  ]
+ },
+ "same_name_same_layer": {
+  "santa cruz": [
+   [
+    "Cities",
+    "City",
+    "AW"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "vancouver": [
+   [
+    "Cities",
+    "City",
+    "CA"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "toledo": [
+   [
+    "Cities",
+    "City",
+    "ES"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "glasgow": [
+   [
+    "Cities",
+    "City",
+    "GB"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "panama city": [
+   [
+    "Cities",
+    "City",
+    "PA"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "albany": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "ashland": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "dallas": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "lafayette": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "portland": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ],
+  "troy": [
+   [
+    "Cities",
+    "City",
+    "US"
+   ],
+   [
+    "Cities",
+    "City",
+    "US"
+   ]
+  ]
+ },
+ "same_spot_two_layers": [
+  [
+   [
+    "Cities",
+    "Salvador"
+   ],
+   [
+    "Ports",
+    "Salvador de Bahia"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Roskilde"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Roskilde Cathedral"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Luxor"
+   ],
+   [
+    "Landmarks",
+    "Luxor Temple"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Paris"
+   ],
+   [
+    "Landmarks",
+    "Notre-Dame de Paris"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Bath"
+   ],
+   [
+    "UNESCO World Heritage",
+    "City of Bath"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Edinburgh"
+   ],
+   [
+    "Landmarks",
+    "Edinburgh Castle"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Dubrovnik"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Old City of Dubrovnik"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Las Vegas"
+   ],
+   [
+    "Landmarks",
+    "Las Vegas"
+   ]
+  ],
+  [
+   [
+    "Cities",
+    "Washington, D.C."
+   ],
+   [
+    "Landmarks",
+    "White House"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Abu Simbel temples"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Nubian Monuments from Abu Simbel to Philae"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Stonehenge"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Stonehenge, Avebury and Associated Sites"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Acropolis of Athens"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Acropolis, Athens"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Tikal"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Tikal National Park"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Arches National Park"
+   ],
+   [
+    "National parks and monuments",
+    "Arches National Park"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Old Faithful"
+   ],
+   [
+    "UNESCO World Heritage",
+    "Yellowstone National Park"
+   ]
+  ],
+  [
+   [
+    "Landmarks",
+    "Yellowstone National Park"
+   ],
+   [
+    "National parks and monuments",
+    "Yellowstone National Park"
+   ]
+  ]
+ ],
+ "beyond_arctic_circle": [
+  [
+   "Narvik Framnes Airport",
+   68.436897277832
+  ],
+  [
+   "Tromsø",
+   69.6489
+  ],
+  [
+   "Aurora Borealis",
+   69.68278
+  ]
+ ],
+ "beyond_antarctic_circle": [
+  [
+   "Rothera Research Station",
+   -67.56842
+  ]
+ ],
+ "extremes_been": {
+  "north": "Aurora Borealis",
+  "south": "Rothera Research Station",
+  "east": "Suva",
+  "west": "Lihue"
+ },
+ "hemispheres": [
+  "E",
+  "N",
+  "S",
+  "W"
+ ],
+ "continents": [
+  "Africa",
+  "Antarctica",
+  "Asia",
+  "Europe",
+  "North America",
+  "Oceania",
+  "South America"
+ ]
+}
