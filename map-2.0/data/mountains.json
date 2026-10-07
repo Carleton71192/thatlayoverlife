@@ -1,0 +1,55 @@
+{
+ "collection": "mountains",
+ "count": 3,
+ "generated_from": "places_been_export.csv",
+ "rows": [
+  {
+   "name": "Mount Toubkal",
+   "collection": "mountains",
+   "latitude": 31.06,
+   "longitude": -7.915,
+   "country": "MA",
+   "verb": "stood on",
+   "year": "",
+   "note": "",
+   "link": "",
+   "depth": "",
+   "done": true,
+   "code": "TOU",
+   "source": "running log: summit, 4,167 m; coordinates approximate",
+   "confirm": true
+  },
+  {
+   "name": "Mount Langley",
+   "collection": "mountains",
+   "latitude": 36.523,
+   "longitude": -118.239,
+   "country": "US",
+   "verb": "stood on",
+   "year": "",
+   "note": "",
+   "link": "",
+   "depth": "",
+   "done": true,
+   "code": "LAN",
+   "source": "running log: summit, 4,276 m; coordinates approximate",
+   "confirm": true
+  },
+  {
+   "name": "Mount St. Helens",
+   "collection": "mountains",
+   "latitude": 46.191,
+   "longitude": -122.195,
+   "country": "US",
+   "verb": "stood on",
+   "year": "",
+   "note": "",
+   "link": "",
+   "depth": "",
+   "done": true,
+   "code": "STH",
+   "source": "running log: summit, 2,549 m; coordinates approximate",
+   "confirm": true
+  }
+ ]
+}

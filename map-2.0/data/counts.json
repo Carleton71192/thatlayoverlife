@@ -4,14 +4,210 @@
   "countries": 94,
   "cities": 470,
   "airports": 132,
+  "us-national-parks": 18,
+  "parks-everywhere": 28,
   "ports": 4,
   "unesco": 70,
   "landmarks": 77,
-  "us-national-parks": 18,
-  "parks-everywhere": 28,
-  "marathons": 16,
+  "new7": 4,
+  "nat7": 6,
+  "nature7": 5,
+  "volcanoes": 3,
+  "spa": 1,
+  "dkheritage": 4,
+  "vikings": 0,
+  "wine": 0,
+  "marathons": 7,
+  "majors": 1,
+  "superhalfs": 1,
+  "heat": 0,
+  "flights": 0,
+  "trains": 0,
+  "bridges": 0,
+  "metros": 0,
+  "bathing": 0,
+  "mountains": 3,
   "magnus": 14,
   "moments": 0,
-  "heat": 0
+  "auroras": 1,
+  "weddings": 0,
+  "friends": 0,
+  "beds": 0
+ },
+ "vars": {
+  "countries": {
+   "n": 94,
+   "of": 249,
+   "rest": 155,
+   "pct": 37.8,
+   "half": 125,
+   "lived": 5,
+   "stayed": 83,
+   "layover": 6,
+   "notyet": 155,
+   "split": "LIVED 5 \u00b7 STAYED 83 \u00b7 LAYOVER ONLY 6"
+  },
+  "cities": {
+   "n": 470,
+   "US": 201,
+   "split": "US 201 \u00b7 BR 33 \u00b7 DK 27 \u00b7 ES 13 \u00b7 84 MORE CODES"
+  },
+  "airports": {
+   "n": 132,
+   "large": 97,
+   "medium": 32,
+   "small": 3,
+   "split": "97 LARGE \u00b7 32 MEDIUM \u00b7 3 SMALL"
+  },
+  "us-national-parks": {
+   "n": 18,
+   "of": 63,
+   "rest": 45,
+   "pct": 28.6,
+   "half": 32
+  },
+  "parks-everywhere": {
+   "n": 28,
+   "parks": 22,
+   "monuments": 6,
+   "countries": 4,
+   "split": "22 PARKS \u00b7 6 MONUMENTS \u00b7 4 COUNTRIES"
+  },
+  "ports": {
+   "n": 4
+  },
+  "unesco": {
+   "n": 70,
+   "of": 1273,
+   "rest": 1203,
+   "pct": 5.5,
+   "half": 637
+  },
+  "landmarks": {
+   "n": 77,
+   "built": 49,
+   "natural": 28,
+   "split": "49 BUILT \u00b7 28 NATURAL"
+  },
+  "new7": {
+   "n": 4,
+   "of": 7,
+   "rest": 3,
+   "pct": 57.1,
+   "half": 4
+  },
+  "nat7": {
+   "n": 6,
+   "of": 7,
+   "rest": 1,
+   "pct": 85.7,
+   "half": 4
+  },
+  "nature7": {
+   "n": 5,
+   "of": 7,
+   "rest": 2,
+   "pct": 71.4,
+   "half": 4
+  },
+  "volcanoes": {
+   "n": 3,
+   "of": 16,
+   "rest": 13,
+   "pct": 18.8,
+   "half": 8
+  },
+  "spa": {
+   "n": 1,
+   "of": 11,
+   "rest": 10,
+   "pct": 9.1,
+   "half": 6
+  },
+  "dkheritage": {
+   "n": 4
+  },
+  "vikings": {
+   "n": 0,
+   "of": 5,
+   "rest": 5,
+   "pct": 0.0,
+   "half": 3
+  },
+  "wine": {
+   "n": 0,
+   "of": 11,
+   "rest": 11,
+   "pct": 0.0,
+   "half": 6
+  },
+  "marathons": {
+   "n": 7,
+   "of": 7,
+   "rest": 0,
+   "pct": 100.0,
+   "half": 4
+  },
+  "majors": {
+   "n": 1,
+   "of": 7,
+   "rest": 6,
+   "pct": 14.3,
+   "half": 4
+  },
+  "superhalfs": {
+   "n": 1,
+   "of": 6,
+   "rest": 5,
+   "pct": 16.7,
+   "half": 3
+  },
+  "heat": {
+   "n": 0
+  },
+  "flights": {
+   "n": 0
+  },
+  "trains": {
+   "n": 0
+  },
+  "bridges": {
+   "n": 0
+  },
+  "metros": {
+   "n": 0
+  },
+  "bathing": {
+   "n": 0,
+   "of": 5,
+   "rest": 5,
+   "pct": 0.0,
+   "half": 3
+  },
+  "mountains": {
+   "n": 3
+  },
+  "magnus": {
+   "n": 14
+  },
+  "moments": {
+   "n": 0
+  },
+  "auroras": {
+   "n": 1
+  },
+  "weddings": {
+   "n": 0
+  },
+  "friends": {
+   "n": 0
+  },
+  "beds": {
+   "n": 0,
+   "of": 5,
+   "rest": 5,
+   "pct": 0.0,
+   "half": 3
+  }
  }
 }

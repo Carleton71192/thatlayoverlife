@@ -5,14 +5,14 @@ Reads  map-2.0/source/private/tracks/*.gpx, *.csv (lat,lon columns) or *.json (G
        map-2.0/source/private/exclusions.json  (circles that are never published)
 Writes map-2.0/data/heat.json  (hexagon centers and a 1 to 5 bucket; never a point, never a time)
 
-Run:   python3 map-2.0/build-heat.py [--km 25]
+Run:   python3 map-2.0/build-heat.py [--km 400]
 """
 import os, sys, json, math, glob, csv, re, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PRIV = os.path.join(HERE, 'source', 'private')
 OUT = os.path.join(HERE, 'data', 'heat.json')
-KM = 25.0
+KM = 400.0
 if '--km' in sys.argv: KM = float(sys.argv[sys.argv.index('--km') + 1])
 
 def read_points():

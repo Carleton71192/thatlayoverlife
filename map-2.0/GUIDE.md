@@ -41,6 +41,10 @@ In `collections.json` under `embeds`, paste the Strava activity id (digits only)
 
 Not a layer yet. Airports already come from Places Been. If you want routes drawn between them, that is a new collection and a new conversation: lines on a map are the one thing the privacy rules watch most closely.
 
-## Change a verb, a denominator or an "as of" date
+## Change a verb, a denominator, a caption or an "as of" date
 
-Edit `collections.json`. The card and the chip read it live.
+Edit `collections.json`. Each list has three captions from the design's caption bank; the first is on the page, swap the order to change it. Numbers in captions are written as `{n}`, `{of}`, `{rest}`, `{pct}` and the split variables, so they fill themselves from the data.
+
+## Tick an item in a hand list (Marathon Majors, SuperHalfs, Viking ring forts, Mountains)
+
+In `collections.json`, find the list's `items`, set the sixth value to `true` and add a short source as the seventh. Run `build-data.py`. The stamp, the chip count and the card follow.

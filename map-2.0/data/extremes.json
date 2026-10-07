@@ -25,6 +25,10 @@
   "longitude": -159.372
  },
  "equator_crossed": true,
+ "tropic_of_cancer_crossed": true,
+ "tropic_of_capricorn_crossed": true,
+ "prime_meridian_crossed": true,
+ "antimeridian_crossed": true,
  "arctic_circle_crossed": true,
  "antarctic_circle_crossed": true,
  "hemispheres": [
@@ -44,6 +48,13 @@
  ],
  "time_zones": null,
  "time_zones_note": "[PLACEHOLDER] Needs a time-zone boundary dataset to compute from coordinates; not shown as a number until then.",
+ "lines_crossed_count": 7,
+ "lines_total": 7,
  "hemispheres_count": 4,
- "continents_count": 7
+ "continents_count": 7,
+ "rulebooks": {
+  "codes": 94,
+  "un_or_observer": 87,
+  "un_only": 87
+ }
 }

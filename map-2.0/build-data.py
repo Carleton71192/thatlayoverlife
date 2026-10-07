@@ -151,19 +151,85 @@ def main():
     layers['magnus'] = mag
 
     os.makedirs(OUT, exist_ok=True)
+    # Proposed depth (design 1g, "Nancy to confirm"): a logged country whose only pins are airports reads as Layover only;
+    # one with a city pin reads as Stayed. Never overrides a depth from the member record.
+    for c in countries:
+        if c['depth']: continue
+        kinds = {r['layer'] for r in seen[c['country']]}
+        c['depth_proposed'] = 'Layover only' if kinds <= {'Airports'} else 'Stayed'
+    # Published stories by country, from source/stories.json (the live site's list); gives the country card its link.
+    st_path = os.path.join(HERE, 'source', 'stories.json')
+    stories = json.load(open(st_path, encoding='utf-8')).get('by_country', {}) if os.path.exists(st_path) else {}
+    for c in countries:
+        st = stories.get(c['country'])
+        if st: c['link'] = st['url']; c['story'] = st['name']
+
+    # ---- Computed and hand-listed collections from collections.json ----
+    all_pins = []
+    for cid in ('cities', 'airports', 'ports', 'landmarks', 'unesco', 'parks-everywhere'):
+        all_pins += layers.get(cid, [])
+    for c in CFG['collections']:
+        cid = c['id']
+        if c.get('computed') == 'pins_named':
+            rows = [dict(r, collection=cid, verb=c['verb']) for r in all_pins if r['name'] in c.get('match', [])]
+            seen_n = set(); layers[cid] = [r for r in rows if not (r['name'] in seen_n or seen_n.add(r['name']))]
+        elif c.get('computed') == 'unesco_country':
+            layers[cid] = [dict(r, collection=cid, verb=c['verb']) for r in layers.get('unesco', []) if r['country'] in c.get('match', [])]
+        elif c.get('set_of'):
+            st = [x for x in CFG['sets_of_seven'] if x['id'] == c['set_of']][0]
+            items = list(st['items']) + ([st['honorary']] if st.get('honorary') else [])
+            layers[cid] = [{'name': it['name'], 'collection': cid, 'latitude': it.get('latitude'), 'longitude': it.get('longitude'), 'country': it.get('country', ''),
+                            'verb': c['verb'], 'year': '', 'note': '', 'link': '', 'depth': '', 'done': bool(it.get('done')), 'code': it.get('code', ''),
+                            'honorary': it is st.get('honorary'), 'source': it.get('source', 'sets_of_seven')} for it in items]
+        elif isinstance(c.get('items'), list):
+            layers[cid] = [{'name': it[1], 'collection': cid, 'latitude': it[2], 'longitude': it[3], 'country': it[4], 'verb': c['verb'], 'year': '', 'note': '',
+                            'link': '', 'depth': '', 'done': bool(it[5]), 'code': it[0], 'source': it[6] if len(it) > 6 else 'hand',
+                            'confirm': 'approximate' in (it[6] if len(it) > 6 else '')} for it in c['items']]
+
     # Hand-kept and separately built files (moments, heat) are never rewritten here; their counts are read back.
-    own = {c for c in COLL if COLL[c].get('source') in ('hand', 'build-heat.py')}
+    own = {c for c in COLL if COLL[c].get('source') in ('hand', 'build-heat.py') and not isinstance(COLL[c].get('items'), list) and not COLL[c].get('set_of')}
+    own.discard('marathons')
     for c in COLL:
-        if c in own:
+        if c in own or c == 'marathons':
             fp = os.path.join(OUT, c + '.json')
             try: layers[c] = json.load(open(fp, encoding='utf-8')).get('rows', [])
             except (OSError, ValueError): layers[c] = []
             continue
+        if COLL[c].get('computed') in ('extremes', 'crossed', 'placeholder'): continue
         data = layers.get(c, [])
-        data.sort(key=lambda d: (d['country'], d['name']))
+        data.sort(key=lambda d: (str(d.get('country') or ''), d['name']))
         json.dump({'collection': c, 'count': len(data), 'generated_from': 'places_been_export.csv', 'rows': data},
                   open(os.path.join(OUT, c + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    json.dump({'generated_from': 'places_been_export.csv', 'counts': {c: len(layers.get(c, [])) for c in COLL}},
+    def count_of(c):
+        rows = layers.get(c, [])
+        if COLL[c].get('count_from') == 'set' or COLL[c].get('set_of'):
+            st = [x for x in CFG['sets_of_seven'] if x['id'] == COLL[c]['set_of']][0]
+            return sum(1 for it in st['items'] if it.get('done'))
+        if isinstance(COLL[c].get('items'), list): return sum(1 for r in rows if r.get('done') and not r.get('honorary'))
+        if COLL[c].get('computed') in ('extremes', 'crossed', 'placeholder'): return None
+        return len(rows)
+    def vars_of(c):
+        rows = layers.get(c, []); n = count_of(c); of = COLL[c].get('denominator'); v = {'n': n}
+        if of: v.update({'of': of, 'rest': of - n, 'pct': round(n / of * 100, 1), 'half': (of + 1) // 2})
+        kinds = collections.Counter(r.get('type', '') for r in rows); ccs = collections.Counter(r.get('country', '') for r in rows)
+        if c == 'cities':
+            top = ccs.most_common(4); v['US'] = ccs.get('US', 0)
+            v['split'] = ' · '.join('%s %d' % t for t in top) + (' · %d MORE CODES' % (len(ccs) - 4) if len(ccs) > 4 else '')
+        if c == 'airports':
+            v.update({'large': kinds.get('Large airport', 0), 'medium': kinds.get('Medium airport', 0), 'small': kinds.get('Small airport', 0)})
+            v['split'] = '%d LARGE · %d MEDIUM · %d SMALL' % (v['large'], v['medium'], v['small'])
+        if c == 'landmarks':
+            v.update({'built': kinds.get('Landmark, built', 0), 'natural': kinds.get('Landmark, natural', 0)}); v['split'] = '%d BUILT · %d NATURAL' % (v['built'], v['natural'])
+        if c == 'parks-everywhere':
+            v.update({'parks': kinds.get('National park', 0), 'monuments': kinds.get('National monument', 0), 'countries': len(ccs)})
+            v['split'] = '%d PARKS · %d MONUMENTS · %d COUNTRIES' % (v['parks'], v['monuments'], v['countries'])
+        if c == 'countries':
+            d = collections.Counter((r.get('depth') or r.get('depth_proposed') or 'Logged') for r in rows)
+            v.update({'lived': d.get('Lived', 0), 'stayed': d.get('Stayed', 0), 'layover': d.get('Layover only', 0), 'notyet': (of or 0) - n})
+            v['split'] = 'LIVED %d · STAYED %d · LAYOVER ONLY %d' % (v['lived'], v['stayed'], v['layover'])
+        return v
+    json.dump({'generated_from': 'places_been_export.csv', 'counts': {c: count_of(c) for c in COLL if count_of(c) is not None},
+               'vars': {c: vars_of(c) for c in COLL if count_of(c) is not None}},
               open(os.path.join(OUT, 'counts.json'), 'w', encoding='utf-8'), indent=1)
     wishlist = [row(r, 'wishlist') for r in wish]
     json.dump({'collection': 'wishlist', 'count': len(wishlist), 'rows': wishlist},
@@ -178,12 +244,17 @@ def main():
         'north': pt(max(place, key=lambda r: float(r['lat']))), 'south': pt(min(place, key=lambda r: float(r['lat']))),
         'east': pt(max(place, key=lambda r: float(r['lng']))), 'west': pt(min(place, key=lambda r: float(r['lng']))),
         'equator_crossed': min(lats) < 0 < max(lats),
+        'tropic_of_cancer_crossed': min(lats) < 23.4367 < max(lats), 'tropic_of_capricorn_crossed': min(lats) < -23.4367 < max(lats),
+        'prime_meridian_crossed': min(lngs) < 0 < max(lngs), 'antimeridian_crossed': max(lngs) > 150 and min(lngs) < -150,
         'arctic_circle_crossed': max(lats) > 66.5633, 'antarctic_circle_crossed': min(lats) < -66.5633,
         'hemispheres': sorted({'N' if la >= 0 else 'S' for la in lats} | {'E' if lo >= 0 else 'W' for lo in lngs}),
         'continents': sorted({COUNTRY.get(r['country_code'], ('', ''))[1] for r in been} - {''}),
         'time_zones': None, 'time_zones_note': '[PLACEHOLDER] Needs a time-zone boundary dataset to compute from coordinates; not shown as a number until then.',
     }
+    ext['lines_crossed_count'] = sum(1 for k in ('equator_crossed','tropic_of_cancer_crossed','tropic_of_capricorn_crossed','arctic_circle_crossed','antarctic_circle_crossed','prime_meridian_crossed','antimeridian_crossed') if ext[k]); ext['lines_total'] = 7
     ext['hemispheres_count'] = len(ext['hemispheres']); ext['continents_count'] = len(ext['continents'])
+    ext['rulebooks'] = {'codes': len(countries), 'un_or_observer': sum(1 for c in countries if c['un_member_or_observer']),
+                        'un_only': sum(1 for c in countries if c['un_member_or_observer'] and c['country'] not in ('PS', 'VA'))}
     json.dump(ext, open(os.path.join(OUT, 'extremes.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
     # ---- Checks for the report ----
