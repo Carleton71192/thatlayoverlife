@@ -1,0 +1,49 @@
+{
+ "from": "cities, airports and ports in the Places Been export (762 been pins; landmarks and parks are not places you slept)",
+ "north": {
+  "name": "Tromsø",
+  "country": "NO",
+  "latitude": 69.649,
+  "longitude": 18.955
+ },
+ "south": {
+  "name": "Rothera Research Station",
+  "country": "AQ",
+  "latitude": -67.568,
+  "longitude": -68.126
+ },
+ "east": {
+  "name": "Suva",
+  "country": "FJ",
+  "latitude": -18.142,
+  "longitude": 178.441
+ },
+ "west": {
+  "name": "Lihue",
+  "country": "US",
+  "latitude": 21.981,
+  "longitude": -159.372
+ },
+ "equator_crossed": true,
+ "arctic_circle_crossed": true,
+ "antarctic_circle_crossed": true,
+ "hemispheres": [
+  "E",
+  "N",
+  "S",
+  "W"
+ ],
+ "continents": [
+  "Africa",
+  "Antarctica",
+  "Asia",
+  "Europe",
+  "North America",
+  "Oceania",
+  "South America"
+ ],
+ "time_zones": null,
+ "time_zones_note": "[PLACEHOLDER] Needs a time-zone boundary dataset to compute from coordinates; not shown as a number until then.",
+ "hemispheres_count": 4,
+ "continents_count": 7
+}

@@ -15,7 +15,7 @@
   "landmarks": 77,
   "us-national-parks": 18,
   "parks-everywhere": 28,
-  "magnus": 0
+  "magnus": 14
  },
  "country_rule": "all_codes",
  "countries_from_pins": 94,
@@ -575,6 +575,28 @@
   "east": "Suva",
   "west": "Lihue"
  },
+ "depth": {
+  "Stayed": 78,
+  "Lived": 5,
+  "no depth recorded": 9,
+  "Layover only": 2
+ },
+ "in_member_record_not_in_pins": [
+  "442",
+  "540"
+ ],
+ "in_pins_not_in_member_record": [
+  "AO",
+  "AW",
+  "BW",
+  "CW",
+  "FO",
+  "HK",
+  "JP",
+  "LI",
+  "OM"
+ ],
+ "magnus_countries": 14,
  "hemispheres": [
   "E",
   "N",

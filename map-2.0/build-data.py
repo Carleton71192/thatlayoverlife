@@ -17,6 +17,9 @@ OUT = os.path.join(HERE, 'data')
 CFG = json.load(open(os.path.join(HERE, 'collections.json'), encoding='utf-8'))
 COLL = {c['id']: c for c in CFG['collections']}
 OVR = json.load(open(os.path.join(HERE, 'overrides.json'), encoding='utf-8'))
+MS_PATH = os.path.join(HERE, 'source', 'member-states.json')
+MS = json.load(open(MS_PATH, encoding='utf-8')) if os.path.exists(MS_PATH) else {'me': {}, 'magnus': {}}
+DEPTH = {'lived': 'Lived', 'visited': 'Stayed', 'layover': 'Layover only'}
 
 # Places Been layer/type -> collection id(s). One pin can feed two collections
 # (a US national park is also in "parks and monuments everywhere").
@@ -132,8 +135,20 @@ def main():
             'iso_n3': A2N.get(cc, ''), 'continent': cont, 'un_member_or_observer': cc not in NOT_A_COUNTRY,
             'pin_count': len(pins),
         })
+    n3_to_a2 = {v: k for k, v in A2N.items()}; n3_to_a2['XK'] = 'XK'
+    for c in countries:
+        st = MS['me'].get(c['iso_n3'] or c['country'])
+        c['depth'] = DEPTH.get(st, '')
     layers['countries'] = countries
-    layers['magnus'] = []  # 🐻‍❄️ No Magnus pins in the export yet. Add rows by hand or from his own export.
+    # 🐻‍❄️ Magnus Waffles: one pin per country in his record, placed at the centroid of the human pins there.
+    by_a2 = {c['country']: c for c in countries}
+    mag = []
+    for n3, st in MS.get('magnus', {}).items():
+        a2 = n3_to_a2.get(n3); c = by_a2.get(a2)
+        if not c: print('magnus: no pins for', n3, file=sys.stderr); continue
+        mag.append({'name': c['name'], 'collection': 'magnus', 'latitude': c['latitude'], 'longitude': c['longitude'], 'country': a2,
+                    'verb': COLL['magnus']['verb'], 'year': '', 'note': '', 'link': '', 'depth': DEPTH.get(st, ''), 'source': 'member record (tllStates)', 'type': 'Country'})
+    layers['magnus'] = mag
 
     os.makedirs(OUT, exist_ok=True)
     for c in COLL:
@@ -146,6 +161,23 @@ def main():
     wishlist = [row(r, 'wishlist') for r in wish]
     json.dump({'collection': 'wishlist', 'count': len(wishlist), 'rows': wishlist},
               open(os.path.join(OUT, 'wishlist.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+
+    # ---- Lines and extremes, from the pins you stood on (cities, airports, ports) ----
+    place = [r for r in been if r['layer'] in ('Cities', 'Airports', 'Ports')]
+    def pt(r): return {'name': r['name'], 'country': r['country_code'], 'latitude': round(float(r['lat']), 3), 'longitude': round(float(r['lng']), 3)}
+    lats = [float(r['lat']) for r in place]; lngs = [float(r['lng']) for r in place]
+    ext = {
+        'from': 'cities, airports and ports in the Places Been export (762 been pins; landmarks and parks are not places you slept)',
+        'north': pt(max(place, key=lambda r: float(r['lat']))), 'south': pt(min(place, key=lambda r: float(r['lat']))),
+        'east': pt(max(place, key=lambda r: float(r['lng']))), 'west': pt(min(place, key=lambda r: float(r['lng']))),
+        'equator_crossed': min(lats) < 0 < max(lats),
+        'arctic_circle_crossed': max(lats) > 66.5633, 'antarctic_circle_crossed': min(lats) < -66.5633,
+        'hemispheres': sorted({'N' if la >= 0 else 'S' for la in lats} | {'E' if lo >= 0 else 'W' for lo in lngs}),
+        'continents': sorted({COUNTRY.get(r['country_code'], ('', ''))[1] for r in been} - {''}),
+        'time_zones': None, 'time_zones_note': '[PLACEHOLDER] Needs a time-zone boundary dataset to compute from coordinates; not shown as a number until then.',
+    }
+    ext['hemispheres_count'] = len(ext['hemispheres']); ext['continents_count'] = len(ext['continents'])
+    json.dump(ext, open(os.path.join(OUT, 'extremes.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
     # ---- Checks for the report ----
     rep = {}
@@ -174,6 +206,10 @@ def main():
         'east': max(been, key=lambda r: float(r['lng']))['name'],
         'west': min(been, key=lambda r: float(r['lng']))['name'],
     }
+    rep['depth'] = collections.Counter(c['depth'] or 'no depth recorded' for c in countries)
+    rep['in_member_record_not_in_pins'] = sorted(n3_to_a2.get(k, k) for k in MS['me'] if n3_to_a2.get(k) not in by_a2)
+    rep['in_pins_not_in_member_record'] = sorted(c['country'] for c in countries if not c['depth'])
+    rep['magnus_countries'] = len(mag)
     rep['hemispheres'] = sorted({('N' if float(r['lat']) >= 0 else 'S') for r in been} | {('E' if float(r['lng']) >= 0 else 'W') for r in been})
     rep['continents'] = sorted({COUNTRY.get(r['country_code'], ('', ''))[1] for r in been} - {''})
     json.dump(rep, open(os.path.join(OUT, '_report.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
