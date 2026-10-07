@@ -721,10 +721,34 @@
    "verb": "remembered",
    "denominator": null,
    "as_of": "2026-10-07",
-   "what_counts": "One line, one place. A stranger helped here. Worst meal. Missed connection. First conversation in a new language. Something lost.",
+   "what_counts": "One line, one place. Nancy's own categories, below. Each moment needs a city and one sentence before it gets a pin.",
    "caption": "[COPY NEEDED]",
    "pin_shape": "square",
-   "source": "hand"
+   "source": "hand",
+   "prompts": [
+    "souvenir acquired",
+    "code-switching",
+    "danced, because",
+    "idiom confusion",
+    "got a freebie",
+    "upgraded",
+    "found a new travel buddy",
+    "downgraded",
+    "sweating in customs",
+    "lost baggage",
+    "pickpockets",
+    "live music",
+    "street festival",
+    "street food",
+    "coffee shop mug acquired",
+    "tiny spoon",
+    "stray dogs",
+    "so many cats",
+    "collected magnet",
+    "jet lagged",
+    "local drinks"
+   ],
+   "prompts_note": "Categories from Nancy, 2026-10-07. Two edits for on-page copy: 'tiny spoon!' loses its exclamation mark (copy rule), 'Starbucks mug acquired' is written as 'coffee shop mug acquired' so a brand name does not sit in site copy. Use the original wording in data/moments.json rows if preferred; rows carry a `prompt` field matching one of these."
   },
   {
    "id": "auroras",
@@ -1071,7 +1095,7 @@
     "type": "strava",
     "label": "A run, from Strava",
     "strava_activity_id": "",
-    "note": "[EMBED NEEDED] Paste the activity id from the Strava URL. Only an activity you have made public."
+    "note": "[EMBED NEEDED] Strava's embed only takes an activity, not a profile. Nancy's profile share link (strava.app.link, 2026-10-07) is on file but cannot be embedded. Paste the digits from one public activity URL, strava.com/activities/<digits>, from a past trip away from home."
    },
    {
     "id": "polarsteps-1",

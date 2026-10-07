@@ -1,7 +1,7 @@
 {
  "collection": "moments",
  "count": 0,
- "_about": "One line of text each. Add rows by hand; build-data.py keeps this file as it is. Keep names and places real, keep times out, keep nothing you would not say to a stranger.",
+ "_about": "One line of text each. Add rows by hand; build-data.py keeps this file as it is. Keep names and places real, keep times out, keep nothing you would not say to a stranger. Each row's `prompt` is one of the categories listed under moments.prompts in collections.json.",
  "_example": {
   "name": "Sofia",
   "collection": "moments",
@@ -13,7 +13,8 @@
   "note": "[COPY NEEDED] One line.",
   "link": "",
   "depth": "",
-  "source": "hand"
+  "source": "hand",
+  "prompt": "street food"
  },
  "rows": []
 }
