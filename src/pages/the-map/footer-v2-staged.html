@@ -150,6 +150,9 @@
     var sb=panel.querySelector("#tllSave");
     sb.addEventListener("click",function(){save();var o=sb.textContent;sb.textContent="✓ Saved";sb.style.background="#00A39E";setTimeout(function(){sb.textContent=o;sb.style.background="#F0507A";panel.style.transform="translateX(100%)";},650);});
     btn.addEventListener("click",function(){openPanel("");});
+    /* 2026-10-08 (B47): /the-map#edit opens the editor straight away, for the Edit my destinations links on the profile and account pages. */
+    function hashOpen(){if(/^#(edit|log)$/i.test(location.hash)){openPanel("");}}
+    hashOpen(); window.addEventListener("hashchange",hashOpen);
   });
 })();
 </script>
