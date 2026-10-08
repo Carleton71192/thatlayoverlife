@@ -6,3 +6,7 @@ dist/
 .DS_Store
 map-2.0/source/private/*
 !map-2.0/source/private/README.md
+
+# map-2.0 embed code is served from the repo through a CDN, so it must be committed
+!map-2.0/dist/
+!map-2.0/dist/**
