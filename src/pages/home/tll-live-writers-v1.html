@@ -1,0 +1,12 @@
+<script id="tll-live-writers-v1">
+/* Live writer count (8 Oct 2026). The "Doors opening" heading used to be typed: "One writer so far." It now counts the
+   published contributor profiles in /sitemap.xml, the same way the story count works, so no number is hardcoded.
+   Zero profiles leaves the heading alone. Cached once per visit in sessionStorage. */
+(function(){
+var W=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
+function apply(n){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue;if(/^\s*(\w+) writers? so far\./.test(s)){t.nodeValue=s.replace(/^(\s*)(\w+) writers? so far\./,'$1'+(n<W.length?W[n]:String(n))+(n===1?' writer':' writers')+' so far.');}}}
+function run(){var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}
+fetch('/sitemap.xml',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(x){var m=x.match(/<loc>[^<]*\/contributors\/[^<]+<\/loc>/g);var n=m?m.length:0;if(!n)return;try{sessionStorage.setItem('tllWriterN',String(n));}catch(e){}apply(n);}).catch(function(){});}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
