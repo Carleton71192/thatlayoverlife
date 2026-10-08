@@ -1,0 +1,16 @@
+<style id="tll-acct-gate-v2">
+/* 8 Oct 2026 (Nancy: "that funny Shelf page is coming up again when I login"). The signed-out gate card ("Your shelf is behind
+   the sign-in") sits in a data-ms-content="anonymous" block that is visible until Memberstack hides it, so it flashes on every
+   login redirect and stays if Memberstack is slow. Hide it by default; the script below shows it only once Memberstack says
+   there is no member, or after six seconds with no answer so a signed-out visitor is never left with an empty page. */
+html:not(.tll-anon) [data-ms-content="anonymous"]{display:none !important}
+</style>
+<script id="tll-acct-gate-v2-js">
+(function(){
+  var done=false; function anon(){ if(done) return; done=true; document.documentElement.classList.add('tll-anon'); }
+  function check(){ var ms=window.$memberstackDom; if(!ms||!ms.getCurrentMember) return false;
+    ms.getCurrentMember().then(function(r){ if(!r||!r.data) anon(); else done=true; }).catch(function(){ anon(); }); return true; }
+  var n=0, iv=setInterval(function(){ if(check()||++n>20){ clearInterval(iv); if(n>20) anon(); } },300);
+  setTimeout(anon,6000);
+})();
+</script>
