@@ -1,5 +1,5 @@
 /* The Map 2.0 · layer switcher, MapLibre canvas and the receipts. Tokens from the Claude Design file "TLL Map Layers" (7 Oct 2026). Namespaced .tllm- */
-.tllm{--ink:#0A0B14;--card:#12141F;--hair:#232744;--hair2:#2E3352;--cream:#F7F1E8;--rose:#F0507A;--rose-deep:#9C3A5C;--rose-text:#FF7093;--teal:#00C9C8;--teal-ink:#06302f;--muted:#B9C0D0;--muted2:#8890A6;
+.tllm{--ink:#0A0B14;--card:#12141F;--hair:#232744;--hair2:#2E3352;--cream:#F7F1E8;--rose:#F0507A;--rose-deep:#9C3A5C;--stayed:#067A79;--rose-text:#FF7093;--teal:#00C9C8;--teal-ink:#06302f;--muted:#B9C0D0;--muted2:#8890A6;
   --ease:cubic-bezier(.2,.8,.2,1);--ease-out:cubic-bezier(.23,1,.32,1);
   position:relative;overflow:clip;color:var(--cream);background:var(--ink);border-radius:6px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
 .tllm *{box-sizing:border-box}
@@ -23,7 +23,13 @@
 .tllm-bar-btn[aria-expanded=true]{background:var(--cream);color:var(--ink)}
 .tllm-bar-btn i{width:0;height:0;border:5px solid transparent;border-top:6px solid currentColor;border-bottom:0;transition:transform 200ms var(--ease-out)}
 .tllm-bar-btn[aria-expanded=true] i{transform:rotate(180deg)}
-.tllm-bar-hint{width:100%;color:var(--muted);font-size:14px;margin:-4px 0 0;pointer-events:none}
+.tllm-bar-row2{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:-4px}
+.tllm-bar-hint{color:var(--muted);font-size:14px;margin:0;pointer-events:none}
+.tllm-edit{display:inline-flex;align-items:center;gap:6px;font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-ink);background:var(--teal);padding:11px 16px;border-radius:2px;text-decoration:none;transition:transform 160ms cubic-bezier(.2,.8,.2,1),background 160ms}
+.tllm-edit:hover{background:#2FE0DF}.tllm-edit:active{transform:scale(.97)}.tllm-edit:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.tllm-depth-x{font-style:normal;color:var(--muted2);font-size:12px}
+.tllm-depth-note{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.tllm-edit{transition:none}.tllm-edit:active{transform:none}}
 
 /* Chips: default, hover (teal edge), active (Cream, check), empty (dashed, still tappable) */
 .tllm-chip{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px 0 10px;border-radius:17px;border:1px solid var(--hair2);background:transparent;color:var(--cream);cursor:pointer;white-space:nowrap;
@@ -112,7 +118,7 @@
 .tllm-depth-row{display:flex;align-items:center;gap:8px;font-size:13px}
 .tllm-depth-sw{width:14px;height:10px;border-radius:2px;flex:none;border:1px solid transparent}
 .tllm-depth-sw[data-d="Lived"]{background:var(--rose);border-color:var(--cream)}
-.tllm-depth-sw[data-d="Stayed"]{background:var(--rose-deep)}
+.tllm-depth-sw[data-d="Stayed"]{background:var(--stayed)}
 .tllm-depth-sw[data-d="Layover only"]{background:repeating-linear-gradient(45deg,#F0507A 0 2px,#3B1A2A 2px 4.5px)}
 .tllm-depth-sw[data-d="Not yet"]{background:#2E2D33;border-color:var(--hair2)}
 .tllm-depth-l{flex:1 1 auto}

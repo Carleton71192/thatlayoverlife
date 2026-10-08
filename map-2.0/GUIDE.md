@@ -2,6 +2,10 @@
 
 Everything the map shows comes from the files in `map-2.0/`. No code changes needed for new pins or new collections.
 
+## Where the countries come from
+
+The countries layer, the counter and the paw layer read the editor's logged record (Memberstack member JSON, mirrored to the browser), not the data files. Logged-out visitors see `data/owner-record.json`, a copy of the site owner's states; refresh it by re-reading the member JSON into `source/member-states.json` and running the small conversion (see PHASE-5-NOTES). Lived and Stayed make the total; layovers are counted apart. Pins in `data/countries.json` only propose a country until it is logged in the editor.
+
 ## Add a pin
 
 1. Open `data/<collection>.json` (for example `data/landmarks.json`).

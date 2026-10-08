@@ -15,13 +15,13 @@
   var CONFIG = root.getAttribute('data-tll-config') || (DATA.replace(/data\/$/, '') + 'collections.json');
   var ATLAS = root.getAttribute('data-tll-atlas') || 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json';
   var STYLE = root.hasAttribute('data-tll-style') ? root.getAttribute('data-tll-style') : 'https://tiles.openfreemap.org/styles/dark';
-  var LIB = root.getAttribute('data-tll-lib') || 'https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl';
+  var LIB = root.getAttribute('data-tll-lib') || 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl';
   var TOPO = root.getAttribute('data-tll-topojson') || 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js';
   var NOT_YET = root.getAttribute('data-tll-not-yet') === 'full' ? '#E9E1D3' : '#2E2D33'; // design prop "notYet": Cream dimmed (default) or Cream full
   var STREET_ZOOM = 5;
 
   // Tokens (design 1g)
-  var C = { ink: '#0A0B14', card: '#12141F', hair: '#232744', cream: '#F7F1E8', rose: '#F0507A', roseDeep: '#9C3A5C', roseText: '#FF7093', teal: '#00C9C8',
+  var C = { ink: '#0A0B14', card: '#12141F', hair: '#232744', cream: '#F7F1E8', rose: '#F0507A', roseDeep: '#9C3A5C', stayed: '#067A79', roseText: '#FF7093', teal: '#00C9C8',
     sphere: '#10121C', grat: '#1A1D2E', landOff: '#1B1E2E', notYet: NOT_YET, hatchBg: '#3B1A2A', muted: '#B9C0D0' };
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -51,11 +51,106 @@
       srcs = cfg.sources || {}; empty = cfg.empty_copy || {};
       buildUI();
       css(LIB + '.css');
-      return Promise.all([script(LIB + '.js'), script(TOPO)]);
+      REC = recordFromStorage();
+      var owner = getJSON(DATA + 'owner-record.json').then(function (j) { OWNER = normalizeRecord(j, 'owner'); if (!REC) REC = OWNER; }).catch(function () {});
+      return Promise.all([script(LIB + '.js'), script(TOPO), owner]);
     })
     .then(function () { topojson = window.topojson; return initMap(); })
-    .then(function () { colls.forEach(function (c) { if (c.default_on) toggle(c.id, true); }); })
+    .then(function () { colls.forEach(function (c) { if (c.default_on) toggle(c.id, true); }); watchRecord(); })
     .catch(function (e) { fail('The map could not start: ' + e.message); });
+
+  // ---------- the member record ----------
+  // tllStates v2, written by the map editor and mirrored by the page head into localStorage and the Memberstack
+  // member JSON: { v:2, travelers:[{id,name,color,pet}], states:{ '208': { t1:'lived', t2:'visited' } } }.
+  // The first traveler who is not a pet is the member; pets become the paw layer. Logged-out visitors get the
+  // site owner's copy from data/owner-record.json. Counting rule (Nancy, 8 Oct 2026): Lived and Stayed make the
+  // total; layovers are counted on their own line and never in the total; pins from Places Been only propose.
+  var REC = null, OWNER = null, fcCountries = null, DEPTH = { lived: 'Lived', visited: 'Stayed', layover: 'Layover only' };
+  // Places Been pins are the site owner's. They propose countries only on the owner's map: the showcase copy, or a live
+  // record that holds nearly all of the showcase countries (no member id needed to tell).
+  function isOwnerRecord(r) { if (!r) return false; if (r.source === 'owner') return true; if (!OWNER) return false; var k = Object.keys(OWNER.me), hit = 0; k.forEach(function (i) { if (r.me[i]) hit++; }); return k.length > 0 && hit / k.length >= 0.8; }
+  function normalizeRecord(raw, source) {
+    if (!raw || raw.v !== 2 || !raw.states) return null;
+    var me = null, pets = [];
+    (raw.travelers || []).forEach(function (t) { if (!t || !t.id) return; if (t.pet) pets.push({ id: String(t.id), name: String(t.name || 'Pet'), states: {} }); else if (!me) me = String(t.id); });
+    if (!me) me = 't1';
+    var out = { me: {}, pets: pets, source: source };
+    Object.keys(raw.states).forEach(function (k) {
+      var e = raw.states[k] || {}, id = k === 'undefined' ? 'XK' : String(k);
+      if (e[me] && DEPTH[e[me]]) out.me[id] = DEPTH[e[me]];
+      pets.forEach(function (p) { if (e[p.id]) p.states[id] = DEPTH[e[p.id]] || 'Stayed'; });
+    });
+    return out;
+  }
+  function recordFromStorage() { try { return normalizeRecord(JSON.parse(localStorage.getItem('tllStates') || 'null'), 'local'); } catch (e) { return null; } }
+  function recordFromMemberstack() {
+    var ms = window.$memberstackDom; if (!ms || !ms.getCurrentMember) return Promise.resolve(null);
+    return ms.getCurrentMember().then(function (r) {
+      if (!r || !r.data) return null;
+      return ms.getMemberJSON().then(function (mj) { var j = (mj && mj.data) || {}; return normalizeRecord(j.tllStates, 'member'); });
+    }).catch(function () { return null; });
+  }
+  function watchRecord() {
+    var tries = 0, iv = setInterval(function () {
+      if (window.$memberstackDom) { clearInterval(iv); recordFromMemberstack().then(function (r) { if (r) applyRecord(r); }); }
+      else if (++tries > 40) clearInterval(iv);
+    }, 300);
+    window.addEventListener('tll:states', function (e) { var r = normalizeRecord(e.detail, 'local'); if (r) applyRecord(r); });
+    window.addEventListener('storage', function (e) { if (e.key === 'tllStates') { var r = recordFromStorage(); if (r) applyRecord(r); } });
+  }
+  function setDepthProps(f, id, row) {
+    var d = REC ? (REC.me[id] || '') : ((row && row.depth) || '');
+    f.properties.logged = !!d; f.properties.depth = d;
+    f.properties.proposed = !d && !!(row && (row.depth_proposed || row.depth)) && isOwnerRecord(REC);
+  }
+  function countDepths() {
+    var v = { lived: 0, stayed: 0, layover: 0, proposed: 0 };
+    (fcCountries ? fcCountries.features : []).forEach(function (f) { var p = f.properties; if (p.depth === 'Lived') v.lived++; else if (p.depth === 'Stayed') v.stayed++; else if (p.depth === 'Layover only') v.layover++; else if (p.proposed) v.proposed++; });
+    var den = (byId.countries && byId.countries.denominator) || 0;
+    v.n = v.lived + v.stayed; v.of = den; v.notyet = Math.max(0, den - v.lived - v.stayed - v.layover); v.rest = v.notyet;
+    v.pct = den ? Math.round(v.n / den * 1000) / 10 : 0; v.half = Math.ceil(den / 2);
+    v.split = 'LIVED ' + v.lived + ' · STAYED ' + v.stayed + ' · LAYOVER ONLY ' + v.layover;
+    counts.countries = v.n; vars.countries = Object.assign({}, vars.countries || {}, v);
+    return v;
+  }
+  function centroidOf(iso) {
+    var f = fcCountries && fcCountries.features.filter(function (x) { return x.properties.iso === iso; })[0]; if (!f) return null;
+    var polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates, best = null, bestN = 0;
+    polys.forEach(function (p) { if (p[0].length > bestN) { bestN = p[0].length; best = p[0]; } });
+    if (!best) return null; var x = 0, y = 0; best.forEach(function (c) { x += c[0]; y += c[1]; }); return [x / best.length, y / best.length];
+  }
+  function recordRows(states, verb) {
+    var rows = [];
+    Object.keys(states).forEach(function (iso) {
+      var a2 = loggedIso[iso] || (iso === 'XK' ? 'XK' : ''), row = countryRows[a2], c = row && row.latitude != null ? [row.longitude, row.latitude] : centroidOf(iso);
+      if (!c) return;
+      rows.push({ name: row ? row.name : (nameOf(iso) || iso), country: a2 || iso, latitude: c[1], longitude: c[0], verb: verb, year: '', note: '', link: '', depth: states[iso], source: 'member record (tllStates)', type: 'Country' });
+    });
+    return rows;
+  }
+  function nameOf(iso) { var f = fcCountries && fcCountries.features.filter(function (x) { return x.properties.iso === iso; })[0]; return f ? f.properties.name : ''; }
+  function applyPets() {
+    var c = byId.magnus; if (!c || !REC) return;
+    var pet = REC.pets[0]; var rows = pet ? recordRows(pet.states, c.verb || 'sniffed') : [];
+    counts.magnus = pet ? Object.keys(pet.states).length : 0; loaded.magnus = rows;
+    var src = map && map.getSource('tllm-src-magnus'); if (src) src.setData(toGeo(c, rows));
+    if (map && map.getLayer('tllm-magnus-outline')) map.setFilter('tllm-magnus-outline', ['in', ['get', 'a2'], ['literal', rows.map(function (r) { return r.country; })]]);
+    var card = root.querySelector('.tllm-card[data-id="magnus"] .tllm-card-num b'); if (card) { card.textContent = fmt(counts.magnus); card.dataset.count = counts.magnus; }
+  }
+  function applyRecord(rec) {
+    if (!rec) return; REC = rec; if (!fcCountries || !map || !map.getSource('tllm-countries')) return;
+    fcCountries.features.forEach(function (f) { setDepthProps(f, f.properties.iso, countryRows[f.properties.a2]); });
+    map.getSource('tllm-countries').setData(fcCountries);
+    applyPets(); var v = countDepths(); bindCounters(v.n); refreshDrawerCounts(); renderBar(); refreshCountriesCard(v);
+  }
+  function refreshCountriesCard(v) {
+    var card = root.querySelector('.tllm-card[data-id="countries"]'), c = byId.countries; if (!card || !c) return;
+    var b = card.querySelector('.tllm-card-num b'); if (b) { b.textContent = fmt(v.n); b.dataset.count = v.n; }
+    var bar = card.querySelector('.tllm-card-bar i'); if (bar && v.of) bar.style.width = Math.min(100, v.n / v.of * 100).toFixed(2) + '%';
+    var old = card.querySelector('.tllm-depth'); if (old) old.parentNode.replaceChild(depthBlock(v), old);
+    var cap = card.querySelector('.tllm-card-cap'); if (cap) cap.textContent = v.n === 0 ? fill(empty.card_zero || '0 of {of}.', v) : fill(c.caption, v);
+    var sb = card.querySelector('.tllm-card-src'), nb = sourceBadge(c); if (sb && nb) sb.parentNode.replaceChild(nb, sb);
+  }
 
   // ---------- shelf glyphs and colors ----------
   function shapeFor(c) { return c.pin_shape || (shelves[c.shelf] && shelves[c.shelf].pin_shape) || 'circle'; }
@@ -90,7 +185,13 @@
     drawerBtn = el('button', 'tllm-bar-btn'); drawerBtn.type = 'button'; drawerBtn.setAttribute('aria-expanded', 'false'); drawerBtn.setAttribute('aria-controls', 'tllm-drawer');
     drawerBtn.innerHTML = 'Layers <i aria-hidden="true"></i>'; drawerBtn.addEventListener('click', function () { openDrawer(drawerBtn.getAttribute('aria-expanded') !== 'true'); });
     bar.appendChild(drawerBtn);
-    bar.appendChild(el('p', 'tllm-bar-hint', 'Stack as many as you like.'));
+    var row2 = el('div', 'tllm-bar-row2'); row2.appendChild(el('p', 'tllm-bar-hint', 'Stack as many as you like.')); bar.appendChild(row2);
+    var edit = el('a', 'tllm-edit'); edit.href = root.getAttribute('data-tll-editor') || '/the-map#edit'; edit.innerHTML = '<span aria-hidden="true">✎</span> Edit my destinations';
+    edit.addEventListener('click', function (ev) {
+      var u = edit.getAttribute('href'), i = u.indexOf('#'), path = i >= 0 ? u.slice(0, i) : u;
+      if (i >= 0 && path && location.pathname.replace(/\/$/, '') === path.replace(/\/$/, '')) { ev.preventDefault(); var h = u.slice(i + 1); if (location.hash === '#' + h) window.dispatchEvent(new HashChangeEvent('hashchange')); else location.hash = h; }
+    });
+    row2.appendChild(edit);
     root.appendChild(bar);
 
     drawer = el('div', 'tllm-drawer'); drawer.id = 'tllm-drawer'; drawer.dataset.open = '0';
@@ -169,8 +270,13 @@
   function say(t) { status.textContent = t || ''; status.dataset.on = t ? '1' : '0'; }
 
   // ---------- map ----------
+  var globe = false;
   function baseStyle() { return { version: 8, sources: {}, layers: [] }; }
-  function fitWorld(animate) { map.fitBounds([[-168, -56], [179, 72]], { padding: { top: 16, right: 16, bottom: 36, left: 16 }, animate: !!animate && !reduce, duration: 400 }); }
+  function fitWorld(animate) {
+    var opt = { animate: !!animate && !reduce, duration: 400 };
+    if (globe) { var h = map.getContainer().clientHeight || 600, w = map.getContainer().clientWidth || 900; var z = Math.log2(Math.min(h, w) / 290); map.jumpTo({ center: [10, 12], zoom: Math.max(0.3, Math.min(1.6, z)), bearing: 0, pitch: 0 }); return; }
+    map.fitBounds([[-168, -56], [179, 72]], Object.assign({ padding: { top: 16, right: 16, bottom: 36, left: 16 } }, opt));
+  }
   function initMap() {
     return new Promise(function (ok, no) {
       var maplibregl = window.maplibregl; if (!maplibregl) return no(new Error('MapLibre did not load'));
@@ -183,6 +289,8 @@
       map.on('styleimagemissing', function (e) { var m = /^tllm-(\w+)-([0-9a-fA-F]{6})(-nd)?$/.exec(e.id); if (m) addIcon(e.id, m[1], '#' + m[2], !!m[3]); });
       map.once('style.load', function () {
         try { demoteBasemap(); } catch (e) {}
+        // MapLibre 5: globe projection, so Antarctica and the poles draw. Below street zoom the globe hands over to Mercator by itself.
+        try { if (map.setProjection) { map.setProjection({ type: 'globe' }); globe = true; } } catch (e) { globe = false; }
         getJSON(ATLAS).then(function (topo) { return Promise.all([topo, getJSON(DATA + 'countries.json')]); })
           .then(function (r) { addCountries(r[0], r[1]); fitWorld(false); ok(); })
           .catch(function (e) { fail('Country shapes did not load: ' + e.message); ok(); });
@@ -207,6 +315,45 @@
     var polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : [];
     polys.forEach(function (poly) { poly.forEach(function (ring) { var e = false, w = false; ring.forEach(function (c) { if (c[0] > 150) e = true; if (c[0] < -150) w = true; }); if (e && w) ring.forEach(function (c) { if (c[0] < 0) c[0] += 360; }); }); });
   }
+  // Sutherland-Hodgman clip of each outer ring against lon <= 0 and lon >= 0. The pole edge of Antarctica runs from
+  // 180 to -180 along the south; split this way, each half keeps a straight edge on the date line instead of a jump.
+  function halves(geom) {
+    var polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates, out = [];
+    function clip(ring, keepWest) {
+      var res = [], n = ring.length, i, a, b, ina, inb;
+      for (i = 0; i < n; i++) {
+        a = ring[i]; b = ring[(i + 1) % n]; ina = keepWest ? a[0] <= 0 : a[0] >= 0; inb = keepWest ? b[0] <= 0 : b[0] >= 0;
+        if (ina) res.push(a);
+        if (ina !== inb) { var t = (0 - a[0]) / (b[0] - a[0]); res.push([0, a[1] + (b[1] - a[1]) * t]); }
+      }
+      if (res.length) res.push(res[0]);
+      return res.length > 3 ? res : null;
+    }
+    polys.forEach(function (poly) { [true, false].forEach(function (w) { var r = clip(poly[0], w); if (r) out.push([r]); }); });
+    return { type: 'MultiPolygon', coordinates: out };
+  }
+  // world-atlas stores Antarctica as a degenerate ring along the pole with the coast as its hole. Rebuild it as a planar
+  // polygon: the coast, cut at the date line, closed through the pole; then halves() cuts it at the prime meridian.
+  var aqCoast = null;
+  function antarcticaGeom(geom) {
+    var polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates, coast = null, islands = [];
+    polys.forEach(function (poly) {
+      poly.forEach(function (ring) {
+        var lo = 180, hi = -180, pole = 0; ring.forEach(function (c) { if (c[0] < lo) lo = c[0]; if (c[0] > hi) hi = c[0]; if (c[1] <= -89) pole++; });
+        if (pole > ring.length / 2) return;
+        if (hi - lo > 300) { if (!coast || ring.length > coast.length) coast = ring; } else if (ring === poly[0]) islands.push(poly);
+      });
+    });
+    if (!coast) return geom;
+    var r = coast.slice(0, -1), cut = 0, best = 0, i;
+    for (i = 0; i < r.length; i++) { var d = Math.abs(r[(i + 1) % r.length][0] - r[i][0]); if (d > best) { best = d; cut = (i + 1) % r.length; } }
+    var seq = r.slice(cut).concat(r.slice(0, cut));
+    var first = seq[0], last = seq[seq.length - 1];
+    seq.push([last[0] > 0 ? 180 : -180, last[1]], [last[0] > 0 ? 180 : -180, -89.9], [first[0] > 0 ? 180 : -180, -89.9], [first[0] > 0 ? 180 : -180, first[1]], first);
+    aqCoast = seq.slice(0, seq.length - 5);
+    var main = halves({ type: 'Polygon', coordinates: [seq] });
+    return { type: 'MultiPolygon', coordinates: main.coordinates.concat(islands) };
+  }
   function hatchImage() {
     var S = 18, cv = document.createElement('canvas'); cv.width = S; cv.height = S; var g = cv.getContext('2d');
     g.fillStyle = C.hatchBg; g.fillRect(0, 0, S, S); g.strokeStyle = C.rose; g.lineWidth = 4;
@@ -219,15 +366,17 @@
     var rows = cjson.rows || [];
     rows.forEach(function (r) { countryRows[r.country] = r; if (r.iso_n3) loggedIso[r.iso_n3] = r.country; });
     var fc = topojson.feature(topo, topo.objects.countries);
-    fc.features = fc.features.filter(function (f) { return !(f.properties && f.properties.name === 'Antarctica'); });
+    if (!globe) fc.features = fc.features.filter(function (f) { return !(f.properties && f.properties.name === 'Antarctica'); });
+    fc.features = splitTerritories(fc.features);
     fc.features.forEach(function (f) {
-      unwrap(f.geometry);
-      var id = f.id != null ? String(f.id).padStart(3, '0') : ''; var nm = f.properties && f.properties.name || '';
+      var id = f.id != null ? String(f.id).padStart(3, '0') : '';
+      if (id !== '010') unwrap(f.geometry); else f.geometry = antarcticaGeom(f.geometry);
+      var nm = f.properties && f.properties.name || '';
       if (!id && nm === 'Kosovo') id = 'XK';
-      var a2 = loggedIso[id] || (id === 'XK' ? 'XK' : ''); var row = countryRows[a2];
-      f.properties = f.properties || {}; f.properties.iso = id; f.properties.a2 = a2; f.properties.logged = !!row;
-      f.properties.depth = row ? depthOf(row) : ''; f.properties.proposed = !!(row && !row.depth && row.depth_proposed);
+      var a2 = loggedIso[id] || (id === 'XK' ? 'XK' : '') || (f.properties && f.properties.a2hint) || ''; var row = countryRows[a2];
+      f.properties = f.properties || {}; f.properties.iso = id; f.properties.a2 = a2; setDepthProps(f, id, row);
     });
+    fcCountries = fc; var depths = countDepths(); if (REC) applyPets();
     hatchImage();
     var before = firstBasemapLayer();
     map.addLayer({ id: 'tllm-sphere', type: 'background', paint: { 'background-color': C.sphere } }, before);
@@ -237,9 +386,10 @@
     // Rule 1, order: heat, then fills, then Magnus outlines, then pins. Heat layers insert before 'tllm-land'.
     map.addLayer({ id: 'tllm-land', type: 'fill', source: 'tllm-countries', paint: { 'fill-color': landFill(true), 'fill-opacity': ['interpolate', ['linear'], ['zoom'], STREET_ZOOM - 1, 1, STREET_ZOOM + 1, 0.45] } }, before);
     map.addLayer({ id: 'tllm-land-hatch', type: 'fill', source: 'tllm-countries', filter: ['==', ['get', 'depth'], 'Layover only'], paint: { 'fill-pattern': 'tllm-hatch', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], STREET_ZOOM - 1, 1, STREET_ZOOM + 1, 0.45] } }, before);
-    map.addLayer({ id: 'tllm-land-line', type: 'line', source: 'tllm-countries', paint: {
+    map.addLayer({ id: 'tllm-land-line', type: 'line', source: 'tllm-countries', filter: ['!=', ['get', 'iso'], '010'], paint: {
       'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], C.cream, ['==', ['get', 'depth'], 'Lived'], C.cream, C.ink],
       'line-width': ['case', ['boolean', ['feature-state', 'hover'], false], 1.4, ['==', ['get', 'depth'], 'Lived'], 1.1, 0.5] } }, before);
+    if (aqCoast) { map.addSource('tllm-aq-coast', { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: aqCoast } } }); map.addLayer({ id: 'tllm-aq-line', type: 'line', source: 'tllm-aq-coast', paint: { 'line-color': C.ink, 'line-width': 0.5 } }, before); }
     map.addLayer({ id: 'tllm-magnus-outline', type: 'line', source: 'tllm-countries', filter: ['in', ['get', 'a2'], ['literal', []]], layout: { visibility: 'none' }, paint: { 'line-color': C.teal, 'line-width': 1.4, 'line-dasharray': [3, 2] } }, before);
 
     var hovered = null;
@@ -249,7 +399,7 @@
       hovered = f.id; map.setFeatureState({ source: 'tllm-countries', id: hovered }, { hover: true });
       map.getCanvas().style.cursor = 'pointer';
       var row = countryRows[f.properties.a2];
-      tip.innerHTML = '<b>' + esc(row ? row.name : f.properties.name) + '</b><span>' + esc(f.properties.logged ? f.properties.depth + (f.properties.proposed ? ', proposed' : '') : 'Not yet') + '</span>';
+      tip.innerHTML = '<b>' + esc(row ? row.name : f.properties.name) + '</b><span>' + esc(f.properties.logged ? f.properties.depth : (f.properties.proposed ? 'Not yet · pins in Places Been' : 'Not yet')) + '</span>';
       tip.style.transform = 'translate(' + (e.point.x + 14) + 'px,' + (e.point.y - 8) + 'px)'; tip.style.opacity = '1';
     });
     map.on('mouseleave', 'tllm-land', function () { if (hovered !== null) map.setFeatureState({ source: 'tllm-countries', id: hovered }, { hover: false }); hovered = null; tip.style.opacity = '0'; map.getCanvas().style.cursor = ''; });
@@ -257,17 +407,52 @@
       if (!active.countries) return; if (e.originalEvent && e.originalEvent._tllmPin) return;
       var f = e.features && e.features[0]; if (!f) return; var row = countryRows[f.properties.a2];
       var d = f.properties.logged ? f.properties.depth : 'Not yet';
-      var note = !f.properties.logged ? 'Not yet. The cream.' : d === 'Lived' ? 'Lived here. The deepest of the three depths.' : d === 'Layover only' ? (f.properties.proposed ? 'Airport pins only in Places Been. Proposed as layover only, Nancy to confirm.' : 'Never left the terminal. Counted, on a separate shelf.') : (f.properties.proposed ? 'City pins in Places Been. Proposed as stayed, Nancy to confirm.' : 'Left the airport and slept at least one night.');
+      var note = !f.properties.logged ? (f.properties.proposed ? 'Pins in Places Been, nothing logged. Log it in the editor and it counts.' : 'Not yet. The cream.') : d === 'Lived' ? 'Lived here. The deepest of the three depths.' : d === 'Layover only' ? (f.properties.proposed ? 'Airport pins only in Places Been. Proposed as layover only, Nancy to confirm.' : 'Never left the terminal. Counted, on a separate shelf.') : (f.properties.proposed ? 'City pins in Places Been. Proposed as stayed, Nancy to confirm.' : 'Left the airport and slept at least one night.');
       openCard({ _c: 'countries', name: row ? row.name : f.properties.name, country: f.properties.a2, verb: d, year: row && row.year, note: note, link: row && row.link, story: row && row.story, _country: true }, e.lngLat.toArray());
     });
-    antarcticaLabel(rows); bindCounters(rows.length); buildCards(rows); buildRules();
+    antarcticaLabel(rows); bindCounters(depths.n); buildCards(rows); buildRules();
     getJSON(DATA + 'extremes.json').then(function (x) { extremesData = x; buildStrip(x); renderBar(); refreshDrawerCounts(); }).catch(function () { secStrip.remove(); });
   }
   function landFill(on) {
     if (!on) return C.landOff;
-    return ['case', ['!', ['boolean', ['get', 'logged'], false]], C.notYet, ['==', ['get', 'depth'], 'Lived'], C.rose, ['==', ['get', 'depth'], 'Layover only'], C.hatchBg, C.roseDeep];
+    return ['case', ['!', ['boolean', ['get', 'logged'], false]], C.notYet, ['==', ['get', 'depth'], 'Lived'], C.rose, ['==', ['get', 'depth'], 'Layover only'], C.hatchBg, C.stayed];
+  }
+  // Natural Earth folds some territories into the parent shape. Each one here becomes its own feature with its own
+  // ISO code, so it lights only from its own row (Nancy, 8 Oct 2026: territories count apart from the home country).
+  // A polygon moves when the center of its outer ring falls inside a box: [west, south, east, north].
+  var SPLITS = {
+    '250': [['GF', '254', 'French Guiana', [-55, 1.5, -51, 6.5]], ['GP', '312', 'Guadeloupe', [-62, 15.7, -60.8, 16.6]], ['MQ', '474', 'Martinique', [-61.4, 14.3, -60.7, 15]], ['RE', '638', 'Réunion', [55, -21.5, 56, -20.7]], ['YT', '175', 'Mayotte', [44.9, -13.2, 45.4, -12.5]]],
+    '528': [['BQ', '535', 'Caribbean Netherlands', [-69, 11.5, -62.5, 18]]],
+    '578': [['SJ', '744', 'Svalbard and Jan Mayen', [-10, 70.5, -7, 71.5]], ['SJ', '744', 'Svalbard and Jan Mayen', [9, 73.5, 36, 81.5]], ['BV', '074', 'Bouvet Island', [2.5, -55, 4, -54]]],
+    '036': [['CX', '162', 'Christmas Island', [105.3, -10.7, 106, -10.3]], ['CC', '166', 'Cocos (Keeling) Islands', [96.7, -12.3, 97, -11.8]]]
+  };
+  function splitTerritories(features) {
+    // world-atlas gives two features the id 036 (Australia, and Ashmore and Cartier Is.); fold any repeat id into the first
+    // feature so one logged country is counted once.
+    var seen = {}, merged = [];
+    features.forEach(function (f) {
+      var id = f.id != null ? String(f.id).padStart(3, '0') : '';
+      if (id && seen[id]) { var g = seen[id].geometry, add = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates; if (g.type === 'Polygon') { g.type = 'MultiPolygon'; g.coordinates = [g.coordinates]; } g.coordinates = g.coordinates.concat(add); return; }
+      if (id) seen[id] = f; merged.push(f);
+    });
+    features = merged;
+    var out = [];
+    features.forEach(function (f) {
+      var id = f.id != null ? String(f.id).padStart(3, '0') : '', rules = SPLITS[id];
+      if (!rules || !f.geometry || f.geometry.type !== 'MultiPolygon') { out.push(f); return; }
+      var keep = [], moved = {};
+      f.geometry.coordinates.forEach(function (poly) {
+        var ring = poly[0], x = 0, y = 0; ring.forEach(function (c) { x += c[0]; y += c[1]; }); x /= ring.length; y /= ring.length;
+        var hit = null; rules.forEach(function (r) { var b = r[3]; if (!hit && x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3]) hit = r; });
+        if (hit) { (moved[hit[1]] = moved[hit[1]] || { r: hit, polys: [] }).polys.push(poly); } else keep.push(poly);
+      });
+      f.geometry.coordinates = keep; out.push(f);
+      Object.keys(moved).forEach(function (n3) { var m = moved[n3]; out.push({ type: 'Feature', id: n3, properties: { name: m.r[2], a2hint: m.r[0] }, geometry: { type: 'MultiPolygon', coordinates: m.polys } }); });
+    });
+    return out;
   }
   function antarcticaLabel(rows) {
+    if (globe) return;
     var aq = rows.filter(function (r) { return r.country === 'AQ'; })[0]; if (!aq) return;
     var d = el('div', 'tllm-aq'); d.setAttribute('role', 'note'); d.innerHTML = '<b>Antarctica</b><span>' + esc(depthOf(aq) || 'logged') + '</span>';
     new window.maplibregl.Marker({ element: d, anchor: 'top' }).setLngLat([0, -66]).addTo(map);
@@ -306,14 +491,16 @@
     var c = byId[id]; if (!c) return;
     var btns = [].slice.call(root.querySelectorAll('.tllm-chip[data-id="' + id + '"]'));
     if (id === 'countries') {
-      active[id] = on; map.setPaintProperty('tllm-land', 'fill-color', landFill(on)); map.setLayoutProperty('tllm-land-hatch', 'visibility', on ? 'visible' : 'none'); map.setLayoutProperty('tllm-land-line', 'visibility', on ? 'visible' : 'none');
+      active[id] = on; map.setPaintProperty('tllm-land', 'fill-color', landFill(on)); map.setLayoutProperty('tllm-land-hatch', 'visibility', on ? 'visible' : 'none'); map.setLayoutProperty('tllm-land-line', 'visibility', on ? 'visible' : 'none'); if (map.getLayer('tllm-aq-line')) map.setLayoutProperty('tllm-aq-line', 'visibility', on ? 'visible' : 'none');
       finish(); return;
     }
     if (c.computed === 'placeholder') { active[id] = on; say(on ? c.name + ': ' + (empty.list_zero || 'nothing logged yet.') : ''); finish(); return; }
     if (c.computed === 'crossed') { active[id] = on; drawCrossed(on); finish(); return; }
+    if (on && loaded[id] && !map.getSource('tllm-src-' + id) && c.type !== 'heat') addLayer(c); // rows arrived from the record before the layer existed
     if (on && !loaded[id]) {
       btns.forEach(function (b) { b.setAttribute('aria-busy', 'true'); });
       var file = c.computed === 'extremes' ? 'extremes.json' : id + '.json';
+      if (id === 'magnus' && REC && REC.pets.length) { applyPets(); addLayer(c); finish(); return; }
       return getJSON(DATA + file).then(function (j) {
         loaded[id] = c.computed === 'extremes' ? extremesRows(j) : (j.rows || []);
         if (c.type === 'heat') loaded[id].cellKm = j.cell_km || 400;
@@ -456,6 +643,7 @@
   function sourceBadge(c) {
     var s = srcs[c.source]; if (!s || !s.label) return null; // hand lists carry no badge; that is the badge
     var b = el('span', 'tllm-card-src');
+    if ((c.id === 'countries' || c.id === 'magnus') && REC) { b.textContent = (srcs.member && srcs.member.label || 'FROM THE MEMBER RECORD') + (REC.source === 'owner' ? ' · SITE OWNER' : ' · LIVE'); return b; }
     if (s.connected === false) { b.textContent = s.label + ' · NOT CONNECTED'; b.dataset.off = '1'; }
     else b.textContent = s.label + (s.synced ? ' · SYNCED ' + upper(dateLabel(s.synced)) : '');
     return b;
@@ -485,10 +673,11 @@
   }
   function depthBlock(v) {
     var wrap = el('div', 'tllm-depth'); wrap.setAttribute('role', 'list'); wrap.setAttribute('aria-label', 'Depth of visit');
-    [['Lived', v.lived], ['Stayed', v.stayed], ['Layover only', v.layover], ['Not yet', v.notyet]].forEach(function (d) {
+    [['Lived', v.lived], ['Stayed', v.stayed], ['Layover only', v.layover, 'counted apart'], ['Not yet', v.notyet]].forEach(function (d) {
       var li = el('div', 'tllm-depth-row'); li.setAttribute('role', 'listitem');
-      var sw = el('i', 'tllm-depth-sw'); sw.dataset.d = d[0]; li.appendChild(sw); li.appendChild(el('span', 'tllm-depth-l', d[0])); li.appendChild(el('b', 'tllm-depth-n', fmt(d[1] || 0))); wrap.appendChild(li);
+      var sw = el('i', 'tllm-depth-sw'); sw.dataset.d = d[0]; li.appendChild(sw); var l = el('span', 'tllm-depth-l', d[0]); if (d[2]) l.appendChild(el('em', 'tllm-depth-x', ' · ' + d[2])); li.appendChild(l); li.appendChild(el('b', 'tllm-depth-n', fmt(d[1] || 0))); wrap.appendChild(li);
     });
+    if (v.proposed) wrap.appendChild(el('p', 'tllm-depth-note', fmt(v.proposed) + ' more with pins in Places Been and nothing logged. Not counted until you log them.'));
     return wrap;
   }
   function countUp(scope) {
