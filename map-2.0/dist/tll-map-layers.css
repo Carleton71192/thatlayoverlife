@@ -215,3 +215,13 @@
   .tllm-chip,.tllm-bar-btn,.tllm-bar-btn i,.tllm-status,.tllm-tip,.tllm-list summary::before,.tllm-stamp,.tllm-drawer{transition:none}
   .tllm-pop-enter .maplibregl-popup-content{animation:none}
 }
+
+.tllm-pop-edit{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
+.tllm-pop-edit button{font:600 12.5px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.2px;color:var(--ink);background:transparent;border:1px solid #CFC7BA;border-radius:999px;padding:0 12px;min-height:36px;cursor:pointer;transition:background 160ms cubic-bezier(.2,.8,.2,1),border-color 160ms,transform 160ms}
+.tllm-pop-edit button:hover{border-color:#067A79}
+.tllm-pop-edit button:active{transform:scale(.97)}
+.tllm-pop-edit button[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tllm-pop-edit button:focus-visible{outline:2px solid #067A79;outline-offset:2px}
+.tllm-pop-edit .tllm-pop-clear{color:#6B6660;border-style:dashed}
+@media (pointer:coarse){.tllm-pop-edit button{min-height:44px;padding:0 14px}}
+@media (prefers-reduced-motion:reduce){.tllm-pop-edit button{transition:none}.tllm-pop-edit button:active{transform:none}}

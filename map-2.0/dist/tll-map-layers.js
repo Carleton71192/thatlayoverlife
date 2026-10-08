@@ -51,7 +51,7 @@
       srcs = cfg.sources || {}; empty = cfg.empty_copy || {};
       buildUI();
       css(LIB + '.css');
-      REC = recordFromStorage();
+      ownerCheck(); REC = recordFromStorage();
       var owner = getJSON(DATA + 'owner-record.json').then(function (j) { OWNER = normalizeRecord(j, 'owner'); if (!REC) REC = OWNER; }).catch(function () {});
       return Promise.all([script(LIB + '.js'), script(TOPO), owner]);
     })
@@ -71,6 +71,7 @@
   function isOwnerRecord(r) { if (!r) return false; if (r.source === 'owner') return true; if (!OWNER) return false; var k = Object.keys(OWNER.me), hit = 0; k.forEach(function (i) { if (r.me[i]) hit++; }); return k.length > 0 && hit / k.length >= 0.8; }
   function normalizeRecord(raw, source) {
     if (!raw || raw.v !== 2 || !raw.states) return null;
+    if (!raw.travelers) raw.travelers = [];
     var me = null, pets = [];
     (raw.travelers || []).forEach(function (t) { if (!t || !t.id) return; if (t.pet) pets.push({ id: String(t.id), name: String(t.name || 'Pet'), states: {} }); else if (!me) me = String(t.id); });
     if (!me) me = 't1';
@@ -82,18 +83,56 @@
     });
     return out;
   }
+  var member = null; // true once Memberstack reports a logged-in member, false once it reports none or never loads
+  function ownerCheck() { // B42: a browser copy belongs to the member who wrote it
+    try { var mid = localStorage.getItem('_ms-mid') || '', own = localStorage.getItem('tllStatesOwner') || ''; if (mid && own && own !== mid) { localStorage.removeItem('tllStates'); localStorage.removeItem('tllStatesAt'); } if (mid) localStorage.setItem('tllStatesOwner', mid); } catch (e) {}
+  }
+  function canEdit() { return member === true || !!(REC && REC.source === 'local'); }
+  root.tllmState = function () { return { member: member, source: REC && REC.source, canEdit: canEdit() }; };
+  function rawRecord() {
+    var raw = null; try { raw = JSON.parse(localStorage.getItem('tllStates') || 'null'); } catch (e) {}
+    if (!raw || raw.v !== 2 || !raw.states) raw = { v: 2, travelers: [], states: {} };
+    if (!raw.travelers || !raw.travelers.length) raw.travelers = [{ id: 't1', name: 'Me', color: C.rose, pet: false }];
+    return raw;
+  }
+  // Logging from the map (phase 6, 8 Oct 2026). Same tllStates v2 record the editor writes: browser copy first, then the
+  // page's own sync (window.__tllPush on /the-map) or a direct Memberstack member JSON update elsewhere. The old SVG editor,
+  // when present, follows through window.__tllMapApply.
+  var pushTimer, pushLast = '';
+  function pushMemberstack(raw) {
+    var j; try { j = JSON.stringify(raw); } catch (e) { return; } if (j === pushLast) return;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(function () {
+      var ms = window.$memberstackDom; if (!ms) return;
+      ms.getCurrentMember().then(function (r) {
+        if (!r || !r.data) return;
+        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; json.tllStates = JSON.parse(j); json.tllStatesAt = Date.now(); return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; }); });
+      }).catch(function () {});
+    }, 1200);
+  }
+  function writeDepth(iso, key) {
+    var raw = rawRecord(), me = null;
+    raw.travelers.forEach(function (t) { if (!me && t && t.id && !t.pet) me = String(t.id); });
+    if (!me) { raw.travelers.unshift({ id: 't1', name: 'Me', color: C.rose, pet: false }); me = 't1'; }
+    var e = raw.states[iso] || {}; if (key) e[me] = key; else delete e[me];
+    if (Object.keys(e).length) raw.states[iso] = e; else delete raw.states[iso];
+    try { localStorage.setItem('tllStates', JSON.stringify(raw)); localStorage.setItem('tllStatesAt', String(Date.now())); } catch (err) {}
+    if (window.__tllMapApply) { try { window.__tllMapApply(JSON.parse(JSON.stringify(raw))); } catch (err) {} }
+    if (window.__tllPush) window.__tllPush(raw); else pushMemberstack(raw);
+    applyRecord(normalizeRecord(raw, 'local'));
+  }
   function recordFromStorage() { try { return normalizeRecord(JSON.parse(localStorage.getItem('tllStates') || 'null'), 'local'); } catch (e) { return null; } }
   function recordFromMemberstack() {
     var ms = window.$memberstackDom; if (!ms || !ms.getCurrentMember) return Promise.resolve(null);
     return ms.getCurrentMember().then(function (r) {
-      if (!r || !r.data) return null;
-      return ms.getMemberJSON().then(function (mj) { var j = (mj && mj.data) || {}; return normalizeRecord(j.tllStates, 'member'); });
+      member = !!(r && r.data); if (!member) return null;
+      return ms.getMemberJSON().then(function (mj) { var j = (mj && mj.data) || {}; return normalizeRecord(j.tllStates, 'member') || normalizeRecord({ v: 2, travelers: [], states: {} }, 'member'); });
     }).catch(function () { return null; });
   }
   function watchRecord() {
     var tries = 0, iv = setInterval(function () {
       if (window.$memberstackDom) { clearInterval(iv); recordFromMemberstack().then(function (r) { if (r) applyRecord(r); }); }
-      else if (++tries > 40) clearInterval(iv);
+      else if (++tries > 40) { clearInterval(iv); if (member === null) member = false; }
     }, 300);
     window.addEventListener('tll:states', function (e) { var r = normalizeRecord(e.detail, 'local'); if (r) applyRecord(r); });
     window.addEventListener('storage', function (e) { if (e.key === 'tllStates') { var r = recordFromStorage(); if (r) applyRecord(r); } });
@@ -141,8 +180,9 @@
     if (!rec) return; REC = rec; if (!fcCountries || !map || !map.getSource('tllm-countries')) return;
     fcCountries.features.forEach(function (f) { setDepthProps(f, f.properties.iso, countryRows[f.properties.a2]); });
     map.getSource('tllm-countries').setData(fcCountries);
-    applyPets(); var v = countDepths(); bindCounters(v.n); refreshDrawerCounts(); renderBar(); refreshCountriesCard(v);
+    applyPets(); var v = countDepths(); bindCounters(v.n); refreshDrawerCounts(); renderBar(); refreshCountriesCard(v); refreshHint();
   }
+  function refreshHint() { var h = document.getElementById('tllm-hint'); if (h) h.textContent = canEdit() ? 'Tap a country to log it: Lived, Stayed, or Layover only. Stack as many lists as you like.' : 'Stack as many as you like.'; }
   function refreshCountriesCard(v) {
     var card = root.querySelector('.tllm-card[data-id="countries"]'), c = byId.countries; if (!card || !c) return;
     var b = card.querySelector('.tllm-card-num b'); if (b) { b.textContent = fmt(v.n); b.dataset.count = v.n; }
@@ -185,10 +225,11 @@
     drawerBtn = el('button', 'tllm-bar-btn'); drawerBtn.type = 'button'; drawerBtn.setAttribute('aria-expanded', 'false'); drawerBtn.setAttribute('aria-controls', 'tllm-drawer');
     drawerBtn.innerHTML = 'Layers <i aria-hidden="true"></i>'; drawerBtn.addEventListener('click', function () { openDrawer(drawerBtn.getAttribute('aria-expanded') !== 'true'); });
     bar.appendChild(drawerBtn);
-    var row2 = el('div', 'tllm-bar-row2'); row2.appendChild(el('p', 'tllm-bar-hint', 'Stack as many as you like.')); bar.appendChild(row2);
+    var row2 = el('div', 'tllm-bar-row2'); var hint = el('p', 'tllm-bar-hint', 'Stack as many as you like.'); hint.id = 'tllm-hint'; row2.appendChild(hint); bar.appendChild(row2);
     var edit = el('a', 'tllm-edit'); edit.href = root.getAttribute('data-tll-editor') || '/the-map#edit'; edit.innerHTML = '<span aria-hidden="true">✎</span> Edit my destinations';
     edit.addEventListener('click', function (ev) {
       var u = edit.getAttribute('href'), i = u.indexOf('#'), path = i >= 0 ? u.slice(0, i) : u;
+      if (u === 'inline' || u === '#') { ev.preventDefault(); var st = document.getElementById('tllm-stage'); if (st) st.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); say(canEdit() ? 'Tap any country on the map to log it.' : 'Log in to log your own countries.'); return; }
       if (i >= 0 && path && location.pathname.replace(/\/$/, '') === path.replace(/\/$/, '')) { ev.preventDefault(); var h = u.slice(i + 1); if (location.hash === '#' + h) window.dispatchEvent(new HashChangeEvent('hashchange')); else location.hash = h; }
     });
     row2.appendChild(edit);
@@ -399,7 +440,7 @@
       hovered = f.id; map.setFeatureState({ source: 'tllm-countries', id: hovered }, { hover: true });
       map.getCanvas().style.cursor = 'pointer';
       var row = countryRows[f.properties.a2];
-      tip.innerHTML = '<b>' + esc(row ? row.name : f.properties.name) + '</b><span>' + esc(f.properties.logged ? f.properties.depth : (f.properties.proposed ? 'Not yet · pins in Places Been' : 'Not yet')) + '</span>';
+      tip.innerHTML = '<b>' + esc(row ? row.name : f.properties.name) + '</b><span>' + esc(f.properties.logged ? f.properties.depth : (f.properties.proposed ? 'Not yet · pins in Places Been' : 'Not yet')) + (canEdit() && !f.properties.logged ? ' · tap to log' : '') + '</span>';
       tip.style.transform = 'translate(' + (e.point.x + 14) + 'px,' + (e.point.y - 8) + 'px)'; tip.style.opacity = '1';
     });
     map.on('mouseleave', 'tllm-land', function () { if (hovered !== null) map.setFeatureState({ source: 'tllm-countries', id: hovered }, { hover: false }); hovered = null; tip.style.opacity = '0'; map.getCanvas().style.cursor = ''; });
@@ -408,7 +449,7 @@
       var f = e.features && e.features[0]; if (!f) return; var row = countryRows[f.properties.a2];
       var d = f.properties.logged ? f.properties.depth : 'Not yet';
       var note = !f.properties.logged ? (f.properties.proposed ? 'Pins in Places Been, nothing logged. Log it in the editor and it counts.' : 'Not yet. The cream.') : d === 'Lived' ? 'Lived here. The deepest of the three depths.' : d === 'Layover only' ? (f.properties.proposed ? 'Airport pins only in Places Been. Proposed as layover only, Nancy to confirm.' : 'Never left the terminal. Counted, on a separate shelf.') : (f.properties.proposed ? 'City pins in Places Been. Proposed as stayed, Nancy to confirm.' : 'Left the airport and slept at least one night.');
-      openCard({ _c: 'countries', name: row ? row.name : f.properties.name, country: f.properties.a2, verb: d, year: row && row.year, note: note, link: row && row.link, story: row && row.story, _country: true }, e.lngLat.toArray());
+      openCard({ _c: 'countries', name: row ? row.name : f.properties.name, country: f.properties.a2, _iso: f.properties.iso, verb: d, year: row && row.year, note: note, link: row && row.link, story: row && row.story, _country: true }, e.lngLat.toArray());
     });
     antarcticaLabel(rows); bindCounters(depths.n); buildCards(rows); buildRules();
     getJSON(DATA + 'extremes.json').then(function (x) { extremesData = x; buildStrip(x); renderBar(); refreshDrawerCounts(); }).catch(function () { secStrip.remove(); });
@@ -626,8 +667,30 @@
       : (p._country ? '<p class="tllm-pop-c">' + esc(empty.popover_no_story || 'No story filed from here yet.') + '</p>' : '');
     var html = '<div class="tllm-pop-k">' + esc(c.name || p.collection) + '</div><h3 class="tllm-pop-h">' + esc(p.name) + '</h3><p class="tllm-pop-m">' + esc(meta) + '</p>' +
       (note ? '<p class="tllm-pop-n">' + esc(note) + '</p>' : '') + link + (p.confirm === true || p.confirm === 'true' ? '<p class="tllm-pop-c">Listing to confirm.</p>' : '');
+    if (p._country && p.country !== undefined) {
+      var iso = p._iso || '';
+      if (canEdit() && iso) {
+        var cur = REC && REC.me[iso] || '';
+        html += '<div class="tllm-pop-edit" role="group" aria-label="Log ' + esc(p.name) + '">' + [['lived', 'Lived'], ['visited', 'Stayed'], ['layover', 'Layover only']].map(function (d) { return '<button type="button" data-d="' + d[0] + '" aria-pressed="' + (cur === DEPTH[d[0]] ? 'true' : 'false') + '">' + d[1] + '</button>'; }).join('') + (cur ? '<button type="button" data-d="" class="tllm-pop-clear">Clear</button>' : '') + '</div>';
+      } else if (member === false && !(REC && REC.source === 'local')) {
+        html += '<a class="tllm-pop-a" href="' + esc(root.getAttribute('data-tll-login') || '/signup') + '">' + esc(empty.login_to_log || 'Log in to map your own countries →') + '</a>';
+      }
+    }
     popup = new maplibregl.Popup({ className: 'tllm-pop tllm-pop-enter', offset: 14, maxWidth: '320px', focusAfterOpen: true }).setLngLat(coords).setHTML(html).addTo(map);
     popup._tllm = p._c;
+    if (p._country && p._iso) {
+      var ed = popup.getElement() && popup.getElement().querySelector('.tllm-pop-edit');
+      if (ed) ed.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button'); if (!b) return;
+        var key = b.getAttribute('data-d'); writeDepth(p._iso, key);
+        var now = REC && REC.me[p._iso] || '';
+        [].forEach.call(ed.querySelectorAll('button[data-d]'), function (x) { if (x.getAttribute('data-d')) x.setAttribute('aria-pressed', now === DEPTH[x.getAttribute('data-d')] ? 'true' : 'false'); });
+        var cl = ed.querySelector('.tllm-pop-clear'); if (now && !cl) { cl = document.createElement('button'); cl.type = 'button'; cl.className = 'tllm-pop-clear'; cl.setAttribute('data-d', ''); cl.textContent = 'Clear'; ed.appendChild(cl); } else if (!now && cl) cl.remove();
+        var m = popup.getElement().querySelector('.tllm-pop-m'); if (m) m.textContent = upper(now || 'Not yet') + ' · ' + (now ? 'LOGGED JUST NOW' : 'CLEARED');
+        var nn = popup.getElement().querySelector('.tllm-pop-n'); if (nn) nn.textContent = now === 'Lived' ? 'Lived here. The deepest of the three depths.' : now === 'Stayed' ? 'Left the airport and slept at least one night.' : now === 'Layover only' ? 'Never left the terminal. Counted, on a separate shelf.' : 'Not yet. The cream.';
+        say(p.name + ', ' + (now || 'cleared'));
+      });
+    }
     var box = popup.getElement(); if (box) { box.querySelector('.maplibregl-popup-close-button').setAttribute('aria-label', 'Close card'); box.addEventListener('animationend', function () { box.classList.remove('tllm-pop-enter'); }, { once: true }); }
     say(p.name + ', ' + (c.name || ''));
   }

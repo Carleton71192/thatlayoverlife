@@ -28,3 +28,11 @@ Not started. Scope to agree before build:
 - Only me / Public per list, and a public map page per member.
 - Shared pets and travel companions (B44, B46).
 - Memberstack is upgraded, never compromised: new tables and fields only; nothing existing removed.
+
+## Phase 6, step one (8 Oct 2026, same day): log from the map
+
+- A logged-in member taps a country and the card offers Lived, Stayed, Layover only, and Clear. The write goes to the same `tllStates` v2 record the editor uses: browser copy first, then the page's own sync (`window.__tllPush` on /the-map) or a direct Memberstack member JSON update elsewhere, debounced 1.2 s. The old SVG editor, when on the page, follows through `window.__tllMapApply`. The counter, legend, card and map re-render at once.
+- A new member with no record gets one on the first tap (traveler "Me", Rose). The browser copy carries the B42 owner check, so another member on the same browser never inherits it.
+- A logged-out visitor sees "Log in to map your own countries →" on the card (override the link with `data-tll-login`).
+- `data-tll-editor="inline"` turns the bar button into "scroll to the map and tap a country"; the default still goes to /the-map#edit.
+- Checked offline: fresh member logs France as Lived (1 / 249), switches to Layover only (0 / 249, layover line 1), clears, logs Stayed; every write lands in localStorage and in the Memberstack stub in order. Visitor gets the login link and no buttons. Owner and Jay record scenarios and the full regression unchanged. Evidence: `reports/evidence/map-2.0/v5/edit-member-popover.png`.
