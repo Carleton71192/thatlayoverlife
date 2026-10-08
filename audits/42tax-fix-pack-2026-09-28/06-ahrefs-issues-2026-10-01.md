@@ -164,3 +164,25 @@ Recommendation: do it when the developer is already in for the other items; othe
 6. IndexNow key file (optional).
 
 Then request a recrawl in Ahrefs and resubmit the sitemap in Search Console.
+
+## Recrawl of 8 Oct 2026
+
+79 internal URLs crawled. Health score 96, errors 4, warnings 13 (one new), notices 66. The four errors are the same two 404 URLs counted twice (404 page, 4XX page in sitemap), so the two sitemap toggles had not landed when this crawl ran. Two new warnings, both performance:
+
+### Slow page (1, new)
+
+Ahrefs flags a page whose HTML takes more than about three seconds to arrive. In July the homepage loaded in 7.1 seconds with unminified JavaScript and CSS, so this is the same problem resurfacing on one URL. Get the URL from the issue row, then check in this order:
+
+1. **Is the page served from the static cache?** The site uses Statamic static caching (the July cache problem proves it). A page that is excluded from the cache, or whose cache was just cleared, renders fresh on every request. Pages with forms are often excluded because of the CSRF token. In `config/statamic/static_caching.php`, check `exclude` for the URL, and check the strategy: `half` caches in the application, `full` writes HTML files that the web server returns without touching PHP. `full` is the one that makes a Statamic page fast. If the contact page must stay excluded, the form can instead be fetched through Statamic's `{{ nocache }}` tag so the rest of the page is still cached.
+2. **Images.** Any hero or team photo served at its original size. Use Glide in the template, for example `{{ glide:image width="1600" format="webp" }}`, and add `loading="lazy"` below the fold.
+3. **Assets.** Confirm the production build minifies JavaScript and CSS (Vite `npm run build`, not `npm run dev`). This was the July finding and may never have been done.
+4. **Third-party scripts.** Cookie Information and Tag Manager both load in the head. They should load with `defer` or `async` so they do not block the first paint. Cookie Information's script must stay first, but can still be `async`.
+
+### Slow server response for AI crawlers (1, new)
+
+Ahrefs re-requests pages with AI crawler user agents (GPTBot, ClaudeBot, PerplexityBot and others) and flags a slow time to first byte. Almost always the same page as the slow page above. Two things to rule out:
+
+- The static cache serves cached HTML to every user agent. If a bot-detection or rate-limiting rule (Cloudflare, a firewall, or middleware) sends AI user agents to the uncached PHP path, they see the slow version. Check the host's bot settings and `robots.txt`; the AI crawlers should get the same cached page as everyone else.
+- If the page is simply slow for everyone, fixing "Slow page" above clears this row too.
+
+Neither warning needs copy or control panel work. Both go to the developer, with the URL from Ahrefs.
