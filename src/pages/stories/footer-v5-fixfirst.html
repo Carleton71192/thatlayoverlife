@@ -1,0 +1,188 @@
+<script>
+/* TLL story card links v2 (2026-09-21): each CMS card carries its story slug in its id; point the card at /stories/{slug} and drop the false current-page state. */
+(function(){
+  function fix(){[].slice.call(document.querySelectorAll('a.tll-lib-card[id]')).forEach(function(a){if(!/\/stories\/./.test(a.getAttribute('href')||'')){a.setAttribute('href','/stories/'+a.id);a.removeAttribute('aria-current');a.classList.remove('w--current');}});}
+  if(document.readyState!=='loading')fix();else document.addEventListener('DOMContentLoaded',fix);
+})();
+</script>
+<style>
+/* TLL Stories Index v4 (2026-07-29): server-rendered cards replace the v3 JS grid (design s39 STEP 1). Do NOT re-add a client-side card builder; it duplicates the crawlable cards. */
+.tll-library-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;align-items:start}
+.tll-library-grid a[data-tll-card]{transition:box-shadow .2s ease, transform .2s ease}
+.tll-library-grid a[data-tll-card]:hover{box-shadow:0 12px 30px rgba(13,15,26,.12);transform:translateY(-3px)}
+.tll-library-grid a[data-tll-card] h3{font-family:'Syne','Playfair Display',serif;font-weight:800;line-height:1.25}
+.tll-library-grid a[data-tll-card] span{display:block;font-family:'JetBrains Mono',monospace}
+@media(max-width:600px){.tll-library-grid{grid-template-columns:1fr}}
+</style>
+<script id="tll-lib-search-v4">
+/* TLL library search v4 (9 Oct 2026, fix-first item 3). v3 hid cards with an inline style and the chips script, which sorts on load,
+   wrote display back over it, so every card stayed visible under "1 story matching". v4 marks misses with data-tll-q-miss, which CSS hides
+   with !important, so the sort cannot undo it. Matching covers the visible text and the hidden country, region and author blocks.
+   No count line: the cards are the answer. A short note shows only when nothing matches. */
+(function(){
+  var q=new URLSearchParams(location.search).get('q'); if(!q) return; q=q.trim(); if(!q) return;
+  var words=q.toLowerCase().split(/\s+/).filter(Boolean);
+  function norm(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+  function run(){
+    var cards=[].slice.call(document.querySelectorAll('[data-tll-card]')); if(!cards.length) return;
+    var hits=0;
+    cards.forEach(function(c){
+      var item=c.closest('.tll-lib-grid > *')||c, t=norm(c.textContent);
+      var hit=words.every(function(w){return t.indexOf(norm(w))>-1;});
+      if(hit){item.removeAttribute('data-tll-q-miss');hits++;} else item.setAttribute('data-tll-q-miss','1');
+    });
+    var grid=document.querySelector('.tll-lib-grid'); if(!grid) return;
+    var old=document.getElementById('tll-q-note'); if(old) old.remove();
+    if(!hits){
+      cards.forEach(function(c){(c.closest('.tll-lib-grid > *')||c).removeAttribute('data-tll-q-miss');});
+      var n=document.createElement('p'); n.id='tll-q-note'; n.setAttribute('role','status');
+      n.innerHTML='Nothing filed for \u201c<span></span>\u201d yet, so here is the whole shelf. <a href="/stories">Clear the search</a>';
+      n.querySelector('span').textContent=q; grid.parentNode.insertBefore(n,grid);
+    }
+    document.dispatchEvent(new CustomEvent('tll:lib-filtered'));
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
+<script>
+/* TLL library search UI v2 (2026-09-23): the filter bar now carries a visible search field driving the same ?q=
+   the script above reads, so the no-JS page is still the whole crawlable shelf.
+   Webflow puts every form behind Turnstile bot protection, which leaves the submit button disabled. That is right
+   for the newsletter and submission forms and wrong for a search box, which is a GET navigation and collects
+   nothing. Detach this one form from Turnstile and keep its button enabled, then handle submit ourselves in the
+   capture phase so Webflow's form handler never sees it. */
+(function(){
+  function boot(){
+    var i = document.getElementById('tll-lib-q');
+    if (!i || i.__tllWired) return;
+    i.__tllWired = 1;
+    var form = i.form, wrap = form && form.closest('.w-form'), clear = document.getElementById('tll-lib-clear');
+    var q = new URLSearchParams(location.search).get('q') || '';
+    if (q.trim()) { i.value = q; if (clear) clear.style.display = 'inline'; }
+
+    if (form) {
+      form.removeAttribute('data-turnstile-sitekey');
+      if (wrap) wrap.classList.remove('w-form-loading');
+      var btn = form.querySelector('input[type=submit],button[type=submit]');
+      if (btn) {
+        var enable = function(){
+          if (btn.disabled) btn.disabled = false;
+          if (btn.classList.contains('w-form-loading')) btn.classList.remove('w-form-loading');
+          if (wrap && wrap.classList.contains('w-form-loading')) wrap.classList.remove('w-form-loading');
+        };
+        enable();
+        try { new MutationObserver(enable).observe(btn, { attributes: true, attributeFilter: ['disabled','class'] }); } catch (e) {}
+      }
+      document.addEventListener('submit', function(e){
+        if (e.target !== form) return;
+        e.preventDefault(); e.stopPropagation(); submit();
+      }, true);
+    }
+
+    function submit(){
+      var v = (i.value || '').trim();
+      location.href = '/stories' + (v ? '?q=' + encodeURIComponent(v) : '');
+    }
+    i.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+  }
+  if (document.readyState !== 'loading') boot(); else document.addEventListener('DOMContentLoaded', boot);
+  setTimeout(boot, 1200);
+})();
+</script>
+<script id="tll-lib-chips-v1">
+/* TLL Stories chips v1 (2026-09-28, design screen 02): place filter + sort on the server-rendered [data-tll-card] grid.
+   Reads the hidden per-card data blocks (region, reading time, published date, byline location). No-JS = whole shelf.
+   Chips swap tll-shelf-chip (inactive) and tll-filter-chip-on (active); both are single classes on purpose. */
+(function(){
+  function run(){
+    var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');if(!grid||grid.dataset.tllChips)return;grid.dataset.tllChips='1';
+    var items=[].slice.call(grid.children).filter(function(el){return el.hasAttribute('data-tll-card')||el.querySelector('[data-tll-card]');});
+    function d(el,s){var n=el.querySelector('['+s+']');return n?n.textContent.trim():'';}
+    var rows=items.map(function(el,i){return{el:el,i:i,region:d(el,'data-tll-region'),mins:parseFloat(d(el,'data-tll-mins'))||999,date:Date.parse(d(el,'data-tll-date'))||0,country:(d(el,'data-tll-country')||d(el,'data-tll-region')).toLowerCase()};});
+    var place='all',sort='recent';
+    function apply(){
+      var shown=rows.filter(function(r){return place==='all'||r.region===place;});
+      rows.forEach(function(r){r.el.style.display=shown.indexOf(r)>-1?'':'none';});
+      shown.sort(function(a,b){return sort==='az'?a.country.localeCompare(b.country):sort==='time'?a.mins-b.mins:(b.date-a.date)||(a.i-b.i);});
+      shown.forEach(function(r){grid.appendChild(r.el);});
+      var note=document.getElementById('tll-chip-note');
+      if(!shown.length){if(!note){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';grid.parentNode.insertBefore(note,grid);}
+        note.innerHTML='<div style="font-family:\'Playfair Display\',serif;font-weight:800;font-size:18px;margin-bottom:6px;color:#0A0B14">Nothing on the shelf for '+place+' yet.</div><div style="color:#6B6660;margin-bottom:12px">Be the first.</div><a href="/submit" style="display:inline-block;background:#D63859;color:#fff;padding:10px 18px;border-radius:6px;font-weight:700;text-decoration:none">Share your story →</a>';}
+      else if(note)note.remove();
+    }
+    function wire(attr,set){[].forEach.call(document.querySelectorAll('['+attr+']'),function(c){c.addEventListener('click',function(e){e.preventDefault();set(c.getAttribute(attr));
+      [].forEach.call(document.querySelectorAll('['+attr+']'),function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});apply();});});}
+    wire('data-tll-place',function(v){place=v;});wire('data-tll-sort',function(v){sort=v;});
+    var old=document.querySelector('[data-tll-chiprow] span');if(old&&/SORT:/.test(old.textContent))old.style.display='none';
+    if(!grid.id)grid.id='tll-shelf-grid';
+    apply(); /* 9 Oct 2026, fix-first item 2: sort newest first on load; before this the order only changed after a chip click. */
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-lib-chips-css-v1">
+.tll-shelf-chip:focus-visible,.tll-filter-chip-on:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+.tll-shelf-chip:hover{border-color:#0A0B14}
+@media(max-width:820px){.tll-fos-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.tll-filter-label{min-width:100%}}
+</style>
+<style id="tll-lib-fixfirst-v1">
+/* Fix-first item 2 (9 Oct 2026): a story on the first screen. Hero is a strip, the filter band scrolls with the page and keeps only the
+   place chips, the newest visible story becomes the lead card, photos sit straight except the lead. Sources: Nancy's brief and the
+   9 Oct site review, Part 2. */
+[data-tll-q-miss]{display:none !important}
+#tll-q-note{grid-column:1/-1;font-size:15px;line-height:1.5;color:#3a3a3a;margin:0 0 18px}
+#tll-q-note a{color:#0A0B14;text-decoration:underline;text-underline-offset:3px}
+html.tllp-stories .tll-library-hero:has(h1){padding-top:22px !important;padding-bottom:8px !important}
+html.tllp-stories h1.tll-library-title{font-size:clamp(30px,3.4vw,46px) !important;line-height:1.04 !important;letter-spacing:-.02em !important;margin:6px 0 0 !important;max-width:none !important}
+html.tllp-stories .tll-library-filters{position:static !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;background:transparent !important;border-bottom:0 !important;padding:0 !important}
+html.tllp-stories .tll-library-filters .tll-filters-inner{padding-top:6px !important;padding-bottom:6px !important}
+html.tllp-stories .tll-library-filters .tll-chip-row{position:relative;padding-right:40px !important;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
+@media(min-width:900px){html.tllp-stories .tll-library-filters .tll-chip-row{-webkit-mask-image:none;mask-image:none;padding-right:0 !important}}
+html.tllp-stories .tll-library-filters .tll-shelf-chip,html.tllp-stories .tll-library-filters .tll-filter-chip-on{min-height:44px !important;display:inline-flex !important;align-items:center !important;padding:0 16px !important;font-size:12px !important;letter-spacing:1px}
+html.tllp-stories .tllsb-bar{padding:6px 0 10px !important}
+html.tllp-stories .tllsb-label{position:absolute !important;width:1px !important;height:1px !important;overflow:hidden !important;clip:rect(0 0 0 0) !important;white-space:nowrap !important;margin:0 !important}
+html.tllp-stories .tllsb-form > form{border-bottom-width:2px !important;padding:0 0 6px !important;gap:12px !important}
+html.tllp-stories .tllsb-input{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-weight:500 !important;font-size:18px !important;letter-spacing:0 !important;min-height:44px !important}
+html.tllp-stories .tllsb-input::placeholder{font-size:1em !important;font-weight:500 !important}
+html.tllp-stories .tllsb-btn{min-height:44px !important;padding:0 18px !important}
+html.tllp-stories .tll-library-grid-section{padding-top:18px !important}
+html.tllp-stories .tll-filters-inner[data-tll-merged]{gap:8px !important}
+.tll-lib-searchslot{display:flex;align-items:center;gap:14px;min-width:0}
+.tll-lib-searchslot .tllsb-form{flex:1 1 auto;min-width:0}
+html.tllp-stories .tll-lib-searchslot .tllsb-form > form{border-bottom:2px solid #0A0B14 !important;padding:0 0 4px !important;gap:10px !important;align-items:center !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-weight:500 !important;font-size:17px !important;min-height:44px !important;letter-spacing:0 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input::placeholder{font-size:1em !important;font-weight:500 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-btn{min-height:44px !important;padding:0 16px !important;margin:0 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-clear{margin:0 !important;white-space:nowrap}
+@media(min-width:900px){html.tllp-stories .tll-filters-inner[data-tll-merged]{display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:space-between !important}html.tllp-stories .tll-filters-inner[data-tll-merged] .tll-chip-rows{flex:0 1 auto}.tll-lib-searchslot{flex:0 1 420px}html.tllp-stories .tll-filters-inner[data-tll-merged] .tll-chip-row{display:flex !important;align-items:center !important;gap:6px !important}}
+html.tllp-stories .tll-lib-grid > * .tll-lib-img{transform:none !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead]{grid-column:1/-1}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card{display:grid !important;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0 40px;align-items:start}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-img{aspect-ratio:3/2 !important;transform:rotate(-.6deg) !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-body{padding:4px 0 0 !important;position:static}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-meta{position:static !important;display:inline-block;margin:0 0 14px !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-title{font-size:clamp(30px,3.2vw,52px) !important;line-height:1.02 !important;margin:0 0 14px !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-lede{font-size:18px !important;line-height:1.55 !important;color:#3a3a3a !important;max-width:46ch}
+@media(max-width:899px){
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card{grid-template-columns:1fr}
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-body{padding-top:16px !important}
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-title{font-size:clamp(28px,7.4vw,36px) !important}
+  html.tllp-stories .tll-library-hero:has(h1){padding-top:20px !important;padding-bottom:8px !important}
+}
+@media(prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-img{transform:none !important}}
+</style>
+<script id="tll-lib-lead-v1">
+/* Lead story: the first visible card in the grid, re-marked whenever the chips script or search re-orders or filters the grid. */
+(function(){
+  function mark(){var g=document.querySelector('.tll-lib-grid'); if(!g) return; var kids=[].slice.call(g.children), lead=null;
+    kids.forEach(function(k){ if(!lead&&k.offsetParent!==null&&!k.hasAttribute('data-tll-q-miss')&&getComputedStyle(k).display!=='none') lead=k; });
+    kids.forEach(function(k){ if(k===lead) k.setAttribute('data-tll-lead','1'); else k.removeAttribute('data-tll-lead'); });}
+  function merge(){ var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;
+    var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }
+  function run(){ merge(); var g=document.querySelector('.tll-lib-grid'); if(!g) return; mark();
+    var t; new MutationObserver(function(){clearTimeout(t);t=setTimeout(mark,30);}).observe(g,{childList:true,subtree:false,attributes:true,attributeFilter:['style','data-tll-q-miss']});
+    document.addEventListener('tll:lib-filtered',mark); setTimeout(mark,600); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>

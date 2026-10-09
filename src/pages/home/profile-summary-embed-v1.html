@@ -1,0 +1,44 @@
+<section class="tllps" aria-labelledby="tllps-h">
+<style>
+/* Home: what a profile gives you (9 Oct 2026, Nancy: "We need a summary block of what you get in your profile on the homepage, not all of my personal profile embedded there"). Replaces the full Map 2.0 atlas on the home page; the full map stays on /the-map. */
+.tllps{background:#0A0B14;color:#F7F1E8;padding:clamp(56px,9vh,104px) 6vw}
+.tllps *{box-sizing:border-box}
+.tllps-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 64px;align-items:start}
+.tllps-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}
+.tllps h2{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(36px,4.4vw,60px);line-height:1;letter-spacing:-.02em;color:#F7F1E8;margin:0 0 18px}
+.tllps h2 em{color:#F0507A;font-style:italic}
+.tllps-lede{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;color:#cfcbc4;margin:0 0 28px;max-width:44ch}
+.tllps-ctas{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.tllps-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:#D63859;color:#fff;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:background-color .15s ease,transform .1s cubic-bezier(.23,1,.32,1)}
+.tllps-btn:hover{background:#F0507A}
+.tllps-btn:active{transform:scale(.97)}
+.tllps-link{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F7F1E8;text-decoration:none;border-bottom:1.5px solid rgba(247,241,232,.4);padding:6px 0 3px;transition:border-color .15s ease}
+.tllps-link:hover{border-bottom-color:#F7F1E8}
+.tllps a:focus-visible{outline:3px solid #00C9C8;outline-offset:3px}
+.tllps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#23263c;border:1px solid #23263c;border-radius:14px;overflow:hidden}
+.tllps-list li{background:#0A0B14;padding:24px 24px 26px;display:flex;flex-direction:column;gap:8px;min-height:168px}
+.tllps-list li:last-child{grid-column:1/-1;min-height:0}
+.tllps-n{text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:600;letter-spacing:2px;color:#00C9C8}
+.tllps-list h3{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1.15;color:#F7F1E8;margin:0}
+.tllps-list p{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;color:#cfcbc4;margin:0}
+.tllps-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}
+.tllps-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+@media(max-width:899px){.tllps-in{grid-template-columns:1fr}.tllps-list{grid-template-columns:1fr}.tllps-list li{min-height:0}}
+@media(prefers-reduced-motion:reduce){.tllps-btn,.tllps-link{transition:none}.tllps-btn:active{transform:none}}
+</style>
+<div class="tllps-in">
+  <div>
+    <p class="tllps-eb">Your profile</p>
+    <h2 id="tllps-h">Every place you have been, <em>in one spot.</em></h2>
+    <p class="tllps-lede">Joining is free, and it gives you a map, a set of lists and a profile page of your own. You decide what anyone else gets to see.</p>
+    <div class="tllps-ctas"><a class="tllps-btn" href="/signup">Start your map &#8594;</a><a class="tllps-link" href="/the-map">See a finished one</a></div>
+  </div>
+  <ul class="tllps-list">
+    <li><span class="tllps-n">01 &middot; Your map</span><h3>Every country, marked your way.</h3><p>Tap a country and mark it lived, stayed, or layover only. Your total counts the first two and keeps layovers apart.</p><div class="tllps-legend" aria-hidden="true"><span><i style="background:#F0507A"></i>Lived</span><span><i style="background:#00C9C8"></i>Stayed</span><span><i style="background:#9496AC"></i>Layover</span></div></li>
+    <li><span class="tllps-n">02 &middot; Your lists</span><h3>The other things you collect.</h3><p>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites and marathons, each with the year you were there.</p></li>
+    <li><span class="tllps-n">03 &middot; Your pets</span><h3>A passport for the dog, too.</h3><p>Add a pet as a traveler and they get their own stamps and their own Paw Passport page.</p></li>
+    <li><span class="tllps-n">04 &middot; Your page</span><h3>A profile with your byline on it.</h3><p>Your stories, your links and the places you know well, gathered on one public page you can switch on or off.</p></li>
+    <li><span class="tllps-n">05 &middot; Your year</span><h3>Layover Wrapped, when the year runs out.</h3><p>A short recap of where you went, which you can share or keep to yourself.</p></li>
+  </ul>
+</div>
+</section>
