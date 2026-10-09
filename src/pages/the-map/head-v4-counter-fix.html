@@ -1,0 +1,138 @@
+<link rel="canonical" href="https://www.thatlayover.life/the-map">
+<style id="tll-map-tip-v2">
+/* 2026-09-24. Three scripts draw this map: the shared world-map script, the public view below, and the
+   member editor in the footer. The shared script builds its tooltip with d3 .style('cssText', ...), which
+   d3 reads as a CSS property name. No such property exists, so its styles never applied and it rendered
+   unstyled at the foot of the page. Both the public view and the member editor already supply their own
+   correct tooltip, so the shared one is simply surplus: hide it rather than repair it, otherwise two
+   tooltips stack at the cursor. */
+.tll-map-tip{display:none !important}
+.tll-map-tip-pub{position:fixed;pointer-events:none;z-index:99999;background:#0D0F1A;color:#F7F1E8;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:14px;font-weight:600;line-height:1.2;letter-spacing:.03em;padding:8px 12px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.3);white-space:nowrap;opacity:0;transition:opacity .12s}
+</style>
+<script>
+(function(){try{var forcePublic=/[?&]view=public/.test(location.search);var member=!!(localStorage.getItem("_ms-mid")||localStorage.getItem("_ms-mem"));if(forcePublic||!member){window.__tllMapV4=1;window.__tllPublic=1;document.documentElement.classList.add("tll-map-public");}}catch(e){window.__tllMapV4=1;window.__tllPublic=1;document.documentElement.classList.add("tll-map-public");}})();
+</script>
+<script>
+(function(){
+  if(!window.__tllPublic) return;
+  if(window.__tllPublicRan) return; window.__tllPublicRan=1;
+  var LAND="#FBF7F0", STROKE="#8FA6AE", SVGNS="http://www.w3.org/2000/svg";
+  /* Pins = countries with a published story (updated 2026-09-21: old pins pointed at retired placeholder stories) */
+  var STORIES=[{id:288,name:"Ghana",flag:"🇬🇭",url:"/stories/ghana-easter-everyone-wears-white"},{id:484,name:"Mexico",flag:"🇲🇽",url:"/stories/la-paz-mexico-whale-sharks"},{id:499,name:"Montenegro",flag:"🇲🇪",url:"/stories/montenegro-budva-switchback-roads"},{id:152,name:"Chile",flag:"🇨🇱",url:"/stories/patagonia-w-trek-christmas-new-year"}];
+  function pad(id){return String(id).padStart(3,"0");}
+  function getMap(){var s=[].slice.call(document.querySelectorAll("svg"));s.sort(function(a,b){return b.querySelectorAll("path").length-a.querySelectorAll("path").length;});return s[0];}
+  function ready(cb){var t=0,iv=setInterval(function(){var m=getMap();var ps=m?m.querySelectorAll("path"):[];var ok=m&&ps.length>50&&[].some.call(ps,function(p){return p.__data__&&p.__data__.properties&&p.__data__.properties.name;});if(ok){clearInterval(iv);cb(m);}else if(++t>90){clearInterval(iv);}},300);}
+  ready(function(map){
+    var paths=[].slice.call(map.querySelectorAll("path")).filter(function(p){return p.__data__&&p.__data__.properties&&p.__data__.properties.name;});
+    var byId={}; paths.forEach(function(p){byId[pad(p.__data__.id)]=p;});
+    paths.forEach(function(p){p.setAttribute("fill",LAND);p.setAttribute("stroke",STROKE);p.setAttribute("stroke-width","0.5");});
+    var pinLayer=document.createElementNS(SVGNS,"g");pinLayer.setAttribute("id","tll-pins");map.appendChild(pinLayer);
+    var tip=document.createElement("div");tip.className="tll-map-tip-pub";document.body.appendChild(tip);
+    function moveTip(e){tip.style.left=(e.clientX+14)+"px";tip.style.top=(e.clientY-8)+"px";}
+    function centroid(p){var b=p.getBBox();return [b.x+b.width/2,b.y+b.height/2];}
+    var storyById={}; STORIES.forEach(function(s){storyById[pad(s.id)]=s;});
+    STORIES.forEach(function(s){
+      var p=byId[pad(s.id)]; if(!p)return;
+      var c=centroid(p);
+      var el=document.createElementNS(SVGNS,"circle");
+      el.setAttribute("cx",c[0]);el.setAttribute("cy",c[1]);el.setAttribute("r","4");
+      el.setAttribute("fill","#F0507A");el.setAttribute("stroke","#fff");el.setAttribute("stroke-width","1.2");
+      el.setAttribute("class","tll-pin");el.style.cursor="pointer";
+      function go(){window.location.href=s.url;}
+      el.addEventListener("click",go);
+      p.style.cursor="pointer"; p.addEventListener("click",go);
+      el.addEventListener("mouseenter",function(ev){tip.innerHTML=s.flag+" <b>"+s.name+"</b> · Read the story →";tip.style.opacity="1";moveTip(ev);p.setAttribute("stroke","#0D0F1A");p.setAttribute("stroke-width","1");});
+      el.addEventListener("mousemove",moveTip);
+      el.addEventListener("mouseleave",function(){tip.style.opacity="0";p.setAttribute("stroke",STROKE);p.setAttribute("stroke-width","0.5");});
+      pinLayer.appendChild(el);
+    });
+    /* 2026-09-24: hover was wired only to the four countries that have a story, so most of the map said
+       nothing when you pointed at it. Every country now names itself; story countries keep the richer line. */
+    paths.forEach(function(p){
+      if(p.__tllHover) return; p.__tllHover=1;
+      var nm=p.__data__.properties.name, st=storyById[pad(p.__data__.id)];
+      p.style.cursor="pointer";
+      p.addEventListener("mouseenter",function(ev){
+        tip.innerHTML=st?(st.flag+" <b>"+st.name+"</b> · Read the story →"):("<b>"+nm+"</b>");
+        tip.style.opacity="1";moveTip(ev);
+        p.setAttribute("stroke","#0D0F1A");p.setAttribute("stroke-width","1");
+      });
+      p.addEventListener("mousemove",moveTip);
+      p.addEventListener("mouseleave",function(){tip.style.opacity="0";p.setAttribute("stroke",STROKE);p.setAttribute("stroke-width","0.5");});
+    });
+    /* 9 Oct 2026, fix-first item 1: the story count no longer goes into the map counter (see tll-map-invite-v1 below). */
+    var host=(document.querySelector("#tll-map-canvas")||{}).parentNode||map.parentNode;
+    var lg=document.createElement("div"); lg.id="tllLegend";
+    lg.style.cssText="display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin:16px auto 0;font-family:Inter,system-ui,sans-serif;font-size:13px;color:#3a3a3a;";
+    lg.innerHTML='<span style="display:inline-flex;align-items:center;gap:7px;"><i style="width:12px;height:12px;border-radius:50%;display:inline-block;background:#F0507A;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.12);"></i>Countries with a story</span><span style="display:inline-flex;align-items:center;gap:7px;"><i style="width:12px;height:12px;border-radius:50%;display:inline-block;background:'+LAND+';border:2px solid #fff;box-shadow:0 0 0 1px '+STROKE+';"></i>Not yet</span>';
+    host.appendChild(lg);
+    var btn=document.createElement("a"); btn.href="/signup"; btn.textContent="Log in to map your own countries →";
+    btn.style.cssText="display:block;width:max-content;max-width:90%;margin:20px auto 4px;background:#F0507A;color:#fff;text-decoration:none;border-radius:999px;padding:12px 24px;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:14px;box-shadow:0 4px 14px rgba(240,80,122,.35);text-align:center;";
+    host.appendChild(btn);
+  });
+})();
+</script>
+<script>(function(){var iv=setInterval(function(){var lg=document.getElementById("tllLegend"),sv=[].slice.call(document.querySelectorAll("svg")).sort(function(a,b){return b.querySelectorAll("path").length-a.querySelectorAll("path").length})[0];if(lg&&sv){clearInterval(iv);B(lg,sv);}},400);function C(){try{var s=JSON.parse(localStorage.getItem("tllStates")||"{}");if(s&&s.v===2&&s.states)return Object.keys(s.states).length;return Object.keys(s).filter(function(k){return s[k];}).length;}catch(e){return 0;}}function D(sv){var v=sv.viewBox.baseVal,w=v.width,h=v.height,N="http://www.w3.org/2000/svg",c=sv.cloneNode(true);c.setAttribute("xmlns",N);c.setAttribute("width",w);c.setAttribute("height",h);var r=document.createElementNS(N,"rect");r.setAttribute("width",w);r.setAttribute("height",h);r.setAttribute("x",v.x);r.setAttribute("y",v.y);r.setAttribute("fill","#CBDBE1");c.insertBefore(r,c.firstChild);var i=new Image();i.onload=function(){var cv=document.createElement("canvas");cv.width=w*2;cv.height=h*2;cv.getContext("2d").drawImage(i,0,0,w*2,h*2);var a=document.createElement("a");a.download="my-layover-map.png";a.href=cv.toDataURL();a.click();};i.src="data:image/svg+xml;base64,"+btoa(unescape(encodeURIComponent(new XMLSerializer().serializeToString(c))));}function S(){var t="We have mapped "+C()+" countries on That Layover Life.",u="https://thatlayover.life/the-map";navigator.share?navigator.share({text:t,url:u}):window.open("https://twitter.com/intent/tweet?text="+encodeURIComponent(t)+"&url="+encodeURIComponent(u))}function M(t,f){var b=document.createElement("button");b.textContent=t;b.style.cssText="background:#0D0F1A;color:#F7F1E8;border:none;border-radius:999px;padding:10px 18px;font:600 13px Inter,sans-serif;cursor:pointer";b.onclick=f;return b}function B(lg,sv){var b=document.createElement("div");b.id="tllShareBar";b.style.cssText="display:flex;gap:12px;justify-content:center;margin:14px auto 0";b.appendChild(M("Download image",function(){D(sv)}));b.appendChild(M("Share my map",S));lg.parentNode.insertBefore(b,lg.nextSibling)}})();</script>
+<script>
+(function(){
+  if(window.__tllMsSync) return; window.__tllMsSync=1;
+  var KEY="tllStates", AT="tllStatesAt";
+  /* 2026-10-07 (B42): the local copy of the map belongs to the member who wrote it. When a different
+     member logs in on the same browser, the old copy is dropped so nobody inherits someone else's map. */
+  try{var mid=localStorage.getItem("_ms-mid")||"";var own=localStorage.getItem("tllStatesOwner")||"";if(mid&&own&&own!==mid){localStorage.removeItem(KEY);localStorage.removeItem(AT);}if(mid)localStorage.setItem("tllStatesOwner",mid);}catch(e){}
+  function loc(){try{return JSON.parse(localStorage.getItem(KEY)||"null");}catch(e){return null;}}
+  function locAt(){return +(localStorage.getItem(AT)||0);}
+  function setLoc(s,t){try{localStorage.setItem(KEY,JSON.stringify(s));localStorage.setItem(AT,String(t));}catch(e){}}
+  var last="", tm;
+  window.__tllPush=function(s){
+    var j; try{j=JSON.stringify(s);}catch(e){return;}
+    if(j===last) return;
+    try{localStorage.setItem(AT,String(Date.now()));}catch(e){}
+    clearTimeout(tm);
+    tm=setTimeout(function(){
+      var ms=window.$memberstackDom; if(!ms) return;
+      ms.getCurrentMember().then(function(r){
+        if(!r||!r.data) return;
+        return ms.getMemberJSON().then(function(mj){
+          var json=(mj&&mj.data)||{};
+          json.tllStates=JSON.parse(j); json.tllStatesAt=Date.now();
+          return ms.updateMemberJSON({json:json}).then(function(){last=j;});
+        });
+      }).catch(function(){});
+    },1200);
+  };
+  function pull(){
+    var ms=window.$memberstackDom; if(!ms) return false;
+    ms.getCurrentMember().then(function(r){
+      if(!r||!r.data) return;
+      return ms.getMemberJSON().then(function(mj){
+        var json=(mj&&mj.data)||{};
+        var rs=json.tllStates, ra=+(json.tllStatesAt||0);
+        var ls=loc(), la=locAt();
+        if(rs&&(!ls||ra>la)){
+          last=JSON.stringify(rs);
+          setLoc(rs,ra||Date.now());
+          if(window.__tllQuickCount) window.__tllQuickCount(); /* 2026-10-07 (B48): the hero counter follows the record as soon as it arrives */
+          if(window.__tllMapApply) window.__tllMapApply(rs);
+          else{var n2=0,iv2=setInterval(function(){if(window.__tllMapApply){clearInterval(iv2);window.__tllMapApply(JSON.parse(last));}else if(++n2>100){clearInterval(iv2);}},300);}
+        } else if(ls&&(la>ra||!rs)){
+          window.__tllPush(ls);
+        }
+      });
+    }).catch(function(){});
+    return true;
+  }
+  var n=0, iv=setInterval(function(){ if(pull()||++n>60) clearInterval(iv); },300);
+})();
+</script>
+<style id="tll-map-invite-v1">
+/* 9 Oct 2026, fix-first item 1: a signed-out visitor has no count of their own, so the counter is hidden before first paint and an invitation takes its place. Members keep the counter, written once by the editor in the page footer as n / 249. */
+html.tll-map-public .tll-map-hero-counter{display:none !important}
+[data-tll-map-invite]{align-self:flex-end;display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#00C9C8;text-decoration:none;border-bottom:1.5px solid rgba(0,201,200,.45);padding:12px 0 4px;transition:border-color .15s ease}
+[data-tll-map-invite]:hover{border-bottom-color:#00C9C8}
+[data-tll-map-invite]:focus-visible{outline:3px solid #D63859;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){[data-tll-map-invite]{transition:none}}
+</style>
+<script id="tll-map-invite-js-v1">
+(function(){function run(){if(!document.documentElement.classList.contains("tll-map-public"))return;var hc=document.querySelector(".tll-map-hero-counter");if(!hc||document.querySelector("[data-tll-map-invite]"))return;var a=document.createElement("a");a.href="/signup";a.setAttribute("data-tll-map-invite","1");a.textContent="Start your own map \u2192";hc.parentNode.insertBefore(a,hc.nextSibling);}if(document.readyState!=="loading")run();else document.addEventListener("DOMContentLoaded",run);})();
+</script>
