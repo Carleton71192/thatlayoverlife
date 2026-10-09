@@ -1,0 +1,9 @@
+/* Parked 9 Oct 2026, not in Webflow. Option 1 for the /stories card hover:
+   hairline ink underline instead of the 3px pink one from j12 (.tll-lib-card:hover .tll-lib-title).
+   To apply: append inside style tll-lib-fixfirst-v1 in the stories footer. */
+html.tllp-stories .tll-lib-card .tll-lib-title{text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;text-underline-offset:6px;text-decoration-skip-ink:auto;transition:text-decoration-color 150ms ease-out}
+html.tllp-stories .tll-lib-card:hover .tll-lib-title,
+html.tllp-stories .tll-lib-card:focus-visible .tll-lib-title{text-decoration-color:#0A0B14;text-decoration-thickness:1px}
+html.tllp-stories .tll-lib-card:focus-visible{outline:2px solid #0A0B14;outline-offset:4px}
+@media (hover:none){html.tllp-stories .tll-lib-card:hover .tll-lib-title{text-decoration-color:transparent}}
+@media (prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-card .tll-lib-title{transition:none}}
