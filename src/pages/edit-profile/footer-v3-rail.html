@@ -1,0 +1,34 @@
+<script id="tll-edit-rail-v1">
+/* Edit profile v3 rail (9 Oct 2026): live name card, section index with scroll-spy, a Save that submits the Memberstack profile form, and the Countries stat field hidden because the map owns that number. Adds elements only; nothing in the form moves. */
+(function(){
+  if(window.__tllEditRail) return; window.__tllEditRail=1;
+  var wrap=document.querySelector('.tll-edit-container [data-ms-content="members"]'); if(!wrap) return;
+  var form=wrap.querySelector('form[data-ms-form="profile"]'); var formWrap=wrap.querySelector('.tll-edit-form');
+  var SECS=[['ledger','[data-tll-edit="ledger"]','Your map'],['identity','.tll-edit-fieldset:nth-of-type(1)','Identity'],['stats','.tll-edit-fieldset:nth-of-type(2)','Travel stats'],['links','.tll-edit-fieldset:nth-of-type(3)','Where else you exist'],['open','.tll-edit-fieldset:nth-of-type(4)','Open to'],['dir','[data-tll-edit="dir"]','Who you are on TLL'],['desig','[data-tll-edit="desig"]','Designations']];
+  var targets=[];
+  SECS.forEach(function(s,i){ var el=wrap.querySelector(s[1]); if(!el) return; if(!el.id) el.id='tll-edit-'+s[0]; targets.push({id:el.id,el:el,label:s[2],n:('0'+(i+1)).slice(-2)}); });
+  var dirEb=wrap.querySelector('[data-tll-edit="dir-eb"]'), desEb=wrap.querySelector('[data-tll-edit="desig-eb"]');
+  if(dirEb) dirEb.setAttribute('data-tll-n','05'); if(desEb) desEb.setAttribute('data-tll-n','06');
+  var rail=document.createElement('aside'); rail.setAttribute('data-tll-edit-rail','1'); rail.setAttribute('aria-label','Profile editor');
+  rail.innerHTML='<div class="tll-rail-card"><div class="tll-rail-eb">Property of</div><p class="tll-rail-name" data-rail-name></p><p class="tll-rail-ft" data-rail-ft></p><a class="tll-rail-map" href="/the-map">Open your map →</a></div>'
+    +'<nav aria-label="Sections">'+targets.map(function(t){return '<a href="#'+t.id+'"><i>'+t.n+'</i>'+t.label+'</a>';}).join('')+'</nav>'
+    +(form?'<button type="button" class="tll-rail-save" data-rail-save>Save profile</button><p class="tll-rail-status" data-rail-status aria-live="polite"></p>':'');
+  var header=wrap.querySelector('.tll-edit-header'); if(header&&header.nextSibling) wrap.insertBefore(rail,header.nextSibling); else wrap.insertBefore(rail,wrap.firstChild);
+  function val(k){ var el=wrap.querySelector('[data-ms-member="'+k+'"]'); return el?String(el.value||'').trim():''; }
+  function paintName(){ var n=rail.querySelector('[data-rail-name]'), f=rail.querySelector('[data-rail-ft]'); if(n) n.textContent=val('name')||'Your name'; if(f) f.textContent=val('fun-title')||'Your fun title lands here.'; }
+  wrap.addEventListener('input',function(e){ if(e.target&&(e.target.getAttribute('data-ms-member')==='name'||e.target.getAttribute('data-ms-member')==='fun-title')) paintName(); });
+  paintName(); var tries=0, iv=setInterval(function(){ paintName(); if(++tries>24) clearInterval(iv); },500);
+  var cf=wrap.querySelector('[data-ms-member="country-count"]'); if(cf){ var lab=cf.closest('.tll-edit-field'); if(lab){ lab.setAttribute('data-tll-countries-field','1'); var note=document.createElement('p'); note.className='tll-edit-countries-note'; note.textContent='Countries are counted on your map, so there is no box for them here. Lived and Stayed count, layovers are kept apart.'; var grid=lab.closest('.tll-edit-grid-4')||lab; grid.parentNode.insertBefore(note,grid); } }
+  var saveBtn=rail.querySelector('[data-rail-save]'), st=rail.querySelector('[data-rail-status]');
+  function status(t,tone){ if(!st) return; st.textContent=t; if(tone) st.setAttribute('data-tone',tone); else st.removeAttribute('data-tone'); }
+  if(saveBtn&&form){ saveBtn.addEventListener('click',function(){ status('Saving…'); if(form.requestSubmit) form.requestSubmit(); else { var b=form.querySelector('[type="submit"]'); if(b) b.click(); } }); 
+    var done=formWrap&&formWrap.querySelector('.w-form-done'), fail=formWrap&&formWrap.querySelector('.w-form-fail');
+    if(done||fail){ var mo=new MutationObserver(function(){ if(done&&getComputedStyle(done).display!=='none') status('Saved.','ok'); else if(fail&&getComputedStyle(fail).display!=='none') status('That did not save. Try once more.','err'); }); [done,fail].forEach(function(n){ if(n) mo.observe(n,{attributes:true,attributeFilter:['style','class']}); }); }
+    var fb=form.querySelector('.tll-edit-save'); if(fb&&/^submit$/i.test(fb.value||'')) fb.value='Save profile';
+  }
+  var links=[].slice.call(rail.querySelectorAll('nav a'));
+  function spy(){ var y=window.scrollY+140, cur=targets[0]; targets.forEach(function(t){ if(t.el.offsetTop<=y) cur=t; }); links.forEach(function(a){ a.setAttribute('aria-current',a.getAttribute('href')==='#'+cur.id?'true':'false'); }); }
+  if('IntersectionObserver' in window){ var ticking=false; window.addEventListener('scroll',function(){ if(ticking) return; ticking=true; requestAnimationFrame(function(){ spy(); ticking=false; }); },{passive:true}); }
+  spy();
+})();
+</script>
