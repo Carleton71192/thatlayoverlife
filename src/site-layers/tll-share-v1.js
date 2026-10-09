@@ -9,6 +9,8 @@ import { cleanStates, countFor } from '../shareables/count.js';
 import { renderPercentCard } from '../shareables/percent-card.js';
 
 const ORIGIN = 'https://thatlayover.life';
+/** G11: flip to true once /p/{slug} is published. Until then the panel says so instead of handing out a link that 404s. */
+const PUBLIC_PAGE_LIVE = false;
 const CDN = {
   screenshot: 'https://cdn.jsdelivr.net/npm/modern-screenshot@4.7.0/dist/index.js',
   qr: 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js',
@@ -262,7 +264,8 @@ export function createShareUI({ mount, member, states: states0, prefs, onPrefs }
     const link = shareUrlFor(ui.prefs);
     const linkNote = link ? null : h('p', { class: 'tsh-note' }, 'PRIVATE UNTIL YOU SHARE IT. ALWAYS. TURN ON A LINK BELOW TO PUT A QR ON THE CARD.');
     if (ui.step === 'idle') {
-      flow.append(makeBtn, h('p', { class: 'tsh-note' }, 'TAP ONE MAKES IT. TAP TWO SHARES IT. RENDERS THE REAL ', ui.layout === 'master' ? '1080×1920' : '1080×1350', ' CARD IN YOUR BROWSER, NO SERVER.'), linkNote);
+      flow.append(makeBtn, h('p', { class: 'tsh-note' }, 'TAP ONE MAKES IT. TAP TWO SHARES IT. RENDERS THE REAL ', ui.layout === 'master' ? '1080×1920' : '1080×1350', ' CARD IN YOUR BROWSER, NO SERVER.'));
+      if (linkNote) flow.append(linkNote); // 9 Oct 2026: append(null) printed the word "null" under the layout toggle
     } else if (ui.step === 'printing') {
       flow.append(h('p', { class: 'tsh-msg' }, 'Printing your passport.'), h('p', {}, 'Customs is reading it.'));
     } else if (ui.step === 'ready') {
@@ -312,6 +315,7 @@ export function createShareUI({ mount, member, states: states0, prefs, onPrefs }
       if (p.level === 'unlisted') row.append(h('button', { type: 'button', class: 'tsh-mini', onclick: () => { p.slug = randomSlug(); paintPanel(); renderCard(); } }, 'NEW LINK'));
       row.append(h('button', { type: 'button', class: 'tsh-mini', onclick: () => setLevel('off') }, 'REVOKE'));
       panel.append(row);
+      if (!PUBLIC_PAGE_LIVE) panel.append(h('p', { class: 'tsh-note', style: 'margin-top:8px' }, 'THE LINK PAGE IS NOT LIVE YET. YOUR CHOICE IS SAVED AND THE LINK STARTS WORKING THE DAY IT SHIPS.'));
       panel.append(h('p', { class: 'tsh-eyebrow', style: 'margin-top:14px' }, 'What the link shows'));
       const sw = h('div', { class: 'tsh-sw' });
       const items = ITEMS.slice();
