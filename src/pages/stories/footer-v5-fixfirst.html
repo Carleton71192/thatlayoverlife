@@ -174,6 +174,12 @@ html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-lede{font-size:18px !
   html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-title{font-size:clamp(28px,7.4vw,36px) !important}
   html.tllp-stories .tll-library-hero:has(h1){padding-top:20px !important;padding-bottom:8px !important}
 }
+/* 9 Oct 2026, Nancy: the 3px pink hover underline (j12) becomes a hairline ink underline that fades in. Keyboard focus gets the same plus a ring. */
+html.tllp-stories .tll-lib-card .tll-lib-title{text-decoration:underline !important;text-decoration-color:transparent !important;text-decoration-thickness:1px !important;text-underline-offset:6px !important;text-decoration-skip-ink:auto;transition:text-decoration-color 150ms ease-out}
+html.tllp-stories .tll-lib-card:hover .tll-lib-title,html.tllp-stories .tll-lib-card:focus-visible .tll-lib-title{text-decoration-color:#0A0B14 !important}
+html.tllp-stories .tll-lib-card:focus-visible{outline:2px solid #0A0B14;outline-offset:4px}
+@media(hover:none){html.tllp-stories .tll-lib-card:hover .tll-lib-title{text-decoration-color:transparent !important}}
+@media(prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-card .tll-lib-title{transition:none}}
 @media(prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-img{transform:none !important}}
 </style>
 <script id="tll-lib-lead-v1">
