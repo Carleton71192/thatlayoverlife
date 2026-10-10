@@ -1,0 +1,20 @@
+<section class="h3 h3-sec h3-cream" aria-labelledby="h3-c3-t">
+<div class="h3-in">
+<p class="h3-ey">Chapter 03 · The passport</p>
+<p class="h3-c3-num" data-h3-pass><b data-h3-pass-n>0</b><span>/249</span><span class="h3-sr" data-h3-pass-sr>0 of 249 places counted</span></p>
+<h2 id="h3-c3-t" class="h3-title-l">Track how you <em>see your world.</em></h2>
+<p class="h3-lede">Stamp the countries you left the airport for, mark the ones you lived in, and watch your own map fill in. A wall of stamps or a plain list, your call.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-ink" href="/my-passport">Open the passport →</a></div>
+</div>
+</section>
+<script id="h3-pass-js">
+/* Passport counter: 0 for visitors, the member's own total for members. Total = countries the member's own traveler has a
+   stamp in (lived or stayed), layover-only (airside) kept apart, out of 249. Read only; tllStates is written by the map. */
+(function(){var n=document.querySelector('[data-h3-pass-n]'),sr=document.querySelector('[data-h3-pass-sr]');if(!n)return;
+function count(d){if(!d||!d.states)return null;var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1',c=0;
+ Object.keys(d.states).forEach(function(k){if(!/^\d{3}$/.test(k))return;var e=d.states[k],v=e&&typeof e==='object'&&!Array.isArray(e)?e[id]:(typeof e==='string'?e:null);if(v&&v!=='airside')c++;});return c;}
+function show(c){if(c==null)return;n.textContent=String(c);sr.textContent=c+' of 249 places counted';}
+var ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
+var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){if(!r||!r.data)return;
+ if(ls&&ls.states){show(count(ls));return;}return ms.getMemberJSON().then(function(j){show(count(j&&j.data&&j.data.tllStates));});}).catch(function(){});}else if(++k>40)clearInterval(iv);},250);})();
+</script>

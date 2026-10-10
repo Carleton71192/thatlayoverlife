@@ -1,0 +1,67 @@
+<section class="h3 h3-sec h3-dark" aria-labelledby="h3-c4-t" data-h3-map-sec>
+<div class="h3-in">
+<p class="h3-ey">Chapter 04 · The map, with receipts</p>
+<h2 id="h3-c4-t" class="h3-title-l">Every place you have been, <em>in one spot.</em></h2>
+<p class="h3-lede">Countries, cities, airports, parks, marathons, and other evidence that someone has been leaving the house.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-rose" href="/the-map">Build your map →</a></div>
+<div class="h3-toggle" role="group" aria-label="Which map"><button type="button" aria-pressed="true" data-h3-mode="filed">Stories filed</button><button type="button" aria-pressed="false" data-h3-mode="mine">My passport</button></div>
+<div class="h3-c4-grid">
+<div>
+<div class="h3-map" data-h3-map role="img" aria-label="World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map."></div>
+<p class="h3-legend"><span><i></i>A story lives here</span><span><i class="o"></i>Open, be the first</span><span data-h3-ata hidden>Antarctica benched from the drawing, story listed below</span></p>
+</div>
+<aside class="h3-mcard" aria-live="polite" data-h3-mcard hidden><img alt="" data-h3-mc-img loading="lazy"><div class="h3-mcard-b"><p class="h3-mcard-k" data-h3-mc-k></p><p class="h3-mcard-t" data-h3-mc-t></p><div class="h3-mcard-f"><a class="h3-btn h3-btn-ink" data-h3-mc-a href="/stories">Read it →</a><span data-h3-mc-n></span></div></div></aside>
+</div>
+<div class="h3-filed"><ul data-h3-filed><li>Filed from</li></ul><a class="h3-open" href="/submit" data-h3-open></a></div>
+<ul class="h3-gets" aria-label="What a free profile gives you">
+<li><b>01 · Your map</b><span>Every country, marked lived, stayed, or layover only. Layovers are counted apart.</span></li>
+<li><b>02 · Your lists</b><span>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites and marathons.</span></li>
+<li><b>03 · Your pets</b><span>Add a pet as a traveler and they get their own stamps and Paw Passport page.</span></li>
+<li><b>04 · Your page</b><span>Your stories, links and places on one public page you can switch on or off.</span></li>
+<li><b>05 · Your year</b><span>Layover Wrapped, a short recap you can share or keep to yourself.</span></li>
+</ul>
+</div>
+</section>
+<script id="h3-map-js">
+/* Home 3.0 map. Rose = countries with a published story (from the shelf data, so it follows the CMS). "My passport" colours the
+   signed-in member's own countries from tllStates (read only). Libraries load only when the section nears the screen. */
+(function(){var sec=document.querySelector('[data-h3-map-sec]');if(!sec||sec.__h3)return;sec.__h3=1;
+var box=sec.querySelector('[data-h3-map]'),card=sec.querySelector('[data-h3-mcard]'),list=sec.querySelector('[data-h3-filed]'),open=sec.querySelector('[data-h3-open]'),ata=sec.querySelector('[data-h3-ata]');
+var DEN=249,known={},stories=[],byName={},feats=null,svg=null,mode='filed',mine=null;
+var CDN='https://cdn.jsdelivr.net/npm/';
+function names(loc){return (loc||'').split(/\s+and\s+|,\s*/).map(function(s){return s.trim();}).filter(Boolean);}
+function show(i){var s=stories[i];if(!s)return;card.hidden=false;sec.querySelector('[data-h3-mc-img]').src=s.img;sec.querySelector('[data-h3-mc-img]').alt=s.alt;
+ sec.querySelector('[data-h3-mc-k]').textContent='Filed from '+s.loc+(s.mins?' · '+s.mins+' min':'');sec.querySelector('[data-h3-mc-t]').textContent=s.title;
+ sec.querySelector('[data-h3-mc-a]').href=s.href;sec.querySelector('[data-h3-mc-a]').setAttribute('aria-label','Read it: '+s.title);sec.querySelector('[data-h3-mc-n]').textContent='Story '+(i+1)+' of '+stories.length;
+ if(svg){[].forEach.call(svg.querySelectorAll('path.is-on'),function(p){p.classList.remove('is-on');});names(s.loc).forEach(function(n){var p=svg.querySelector('path[data-n="'+n+'"]');if(p)p.classList.add('is-on');});}}
+function build(){stories=(window.tllHomeStories||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});if(!stories.length)return;
+ byName={};var locs=[];stories.forEach(function(s,i){if(locs.indexOf(s.loc)<0)locs.push(s.loc);names(s.loc).forEach(function(n){if(!(n in byName))byName[n]=i;});});
+ [].slice.call(list.querySelectorAll('li+li')).forEach(function(li){li.remove();});
+ locs.forEach(function(l){var li=document.createElement('li'),b=document.createElement('button');b.type='button';b.textContent=l;var i=stories.findIndex(function(s){return s.loc===l;});
+  b.addEventListener('click',function(){show(i);});b.addEventListener('mouseenter',function(){show(i);});b.addEventListener('focus',function(){show(i);});li.appendChild(b);list.appendChild(li);});
+ counts();paint();show(0);}
+function counts(){if(!feats){open.textContent='';return;}var filed=Object.keys(byName).filter(function(n){return known[n];}).length;
+ open.textContent=(DEN-filed)+' countries still open. Claim one →';ata.hidden=!('Antarctica' in byName);}
+function paint(){if(!svg)return;[].forEach.call(svg.querySelectorAll('path'),function(p){var n=p.getAttribute('data-n'),id=p.getAttribute('data-id');
+ p.classList.toggle('is-filed',mode==='filed'&&n in byName);p.classList.toggle('is-mine',mode==='mine'&&!!mine&&!!mine[id]);});
+ var msg=box.querySelector('.h3-map-msg');if(msg)msg.remove();
+ if(mode==='mine'&&!mine){var m=document.createElement('p');m.className='h3-map-msg';m.innerHTML='This is your map once you join. Free to join. <a href="/signup">Start your map →</a>';box.appendChild(m);}}
+function draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;known={};all.forEach(function(f){known[f.properties.name]=1;});feats=all.filter(function(f){return f.id!=='010';});
+ var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj);
+ var ns='http://www.w3.org/2000/svg';svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+ feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-n',f.properties.name);p.setAttribute('data-id',f.id);svg.appendChild(p);});
+ svg.addEventListener('mouseover',function(e){var n=e.target.getAttribute&&e.target.getAttribute('data-n');if(mode==='filed'&&n in byName)show(byName[n]);});
+ svg.addEventListener('click',function(e){var n=e.target.getAttribute&&e.target.getAttribute('data-n');if(mode==='filed'&&n in byName)show(byName[n]);});
+ box.appendChild(svg);counts();paint();}
+function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}
+function boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),
+ fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}
+function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
+ ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(j){var d=j&&j.data&&j.data.tllStates;if(!d||!d.states)return;
+  var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1';mine={};Object.keys(d.states).forEach(function(c){var e=d.states[c],v=e&&typeof e==='object'?e[id]:e;if(v&&v!=='airside')mine[c]=1;});paint();});}).catch(function(){});},250);}
+sec.querySelector('.h3-toggle').addEventListener('click',function(e){var b=e.target.closest('[data-h3-mode]');if(!b)return;mode=b.getAttribute('data-h3-mode');
+ [].forEach.call(sec.querySelectorAll('[data-h3-mode]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});box.setAttribute('aria-label',mode==='mine'?'World map of your own countries, shown in teal.':'World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map.');paint();});
+document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();boot();}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
+})();
+</script>
