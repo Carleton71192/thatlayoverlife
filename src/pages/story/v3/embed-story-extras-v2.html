@@ -1,0 +1,31 @@
+<script id="tll-story-extras-v2">
+/* TLL story extras v2 (Stories 3.0, 10 Oct 2026). Renders "Part of a trip" as the 3.0 ink card from the Trip Bundles list in
+   [data-tll-extras] (data-slugs, data-name). v1 (tll-story-extras-v1) stays on the page for pet notes and shout-out labels;
+   v2 removes only v1's plain "Other perspectives" list. Titles come from each sibling story's h1 (a nested Stories list inside a
+   collection item cannot be set through the API), bylines from the sibling's bound author row. Nothing is typed. */
+(function(){
+var m=location.pathname.match(/^\/stories\/([a-z0-9-]+)\/?$/);if(!m)return;var me=m[1];window.tllExtrasV2=1;
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e;}
+function slugs(n){return (n.getAttribute('data-slugs')||'').split(',').map(function(x){return x.trim();}).filter(function(x){return /^[a-z0-9-]+$/.test(x);});}
+function dropV1(){[].forEach.call(document.querySelectorAll('.tll-x'),function(s){var h=s.querySelector('h2');if(h&&/Other perspectives/i.test(h.textContent))s.parentNode.removeChild(s);});}
+function nameOf(d){var n=d.querySelector('[data-st3-author] .st3-author-name');return n&&!n.classList.contains('w-dyn-bind-empty')?n.textContent.trim():'';}
+function go(){dropV1();if(document.querySelector('[data-st3-trip]'))return;
+var bun=[].filter.call(document.querySelectorAll('[data-tll-bundle]'),function(n){return slugs(n).indexOf(me)>-1;})[0];if(!bun)return;
+var all=slugs(bun).filter(function(x,i,a){return a.indexOf(x)===i;});if(all.length<2)return;
+var s=el('section','st3-trip');s.setAttribute('data-st3-trip','1');s.setAttribute('aria-labelledby','st3-trip-h');
+s.appendChild(el('p','st3-trip-k','Part of a trip · '+all.length+' stories'));
+var nm=(bun.getAttribute('data-name')||'').trim();if(nm){var h=el('h2','st3-trip-h',nm);h.id='st3-trip-h';s.appendChild(h);}else s.setAttribute('aria-label','Part of a trip');
+var ol=el('ol','st3-trip-list');
+all.forEach(function(x,i){var li=el('li','st3-trip-li');li.appendChild(el('span','st3-trip-n',(i<9?'0':'')+(i+1)));
+var by=el('span','st3-trip-by');
+if(x===me){var t=el('span','st3-trip-t st3-trip-me');var h1=document.querySelector('h1');t.textContent=h1?h1.textContent.trim():x.replace(/-/g,' ');t.setAttribute('aria-current','page');li.appendChild(t);by.textContent=nameOf(document);}
+else{var a=el('a','st3-trip-t',x.replace(/-/g,' '));a.href='/stories/'+x;li.appendChild(a);
+fetch('/stories/'+x,{credentials:'same-origin'}).then(function(r){return r.ok?r.text():'';}).then(function(html){if(!html)return;var d=new DOMParser().parseFromString(html,'text/html'),t=d.querySelector('h1');if(t&&t.textContent.trim())a.textContent=t.textContent.trim();by.textContent=nameOf(d);}).catch(function(){});}
+li.appendChild(by);ol.appendChild(li);});
+s.appendChild(ol);
+var L=document.querySelector('[data-tll-ledger]');if(L)L.parentNode.insertBefore(s,L);else{var b=document.querySelector('.tll-story-body');if(b)b.appendChild(s);}}
+function start(){setTimeout(go,30);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+window.addEventListener('load',dropV1);
+})();
+</script>

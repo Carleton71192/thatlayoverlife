@@ -1,0 +1,185 @@
+<style id="tll-st3-story-v1">
+/* TLL Stories 3.0, story page (Stories Template), 10 Oct 2026. Approved proposal rows 1-17 (Nancy, "Go with defaults").
+   One namespaced block, loads after tll-v9-j13-v1 and tll-ledger-v1 (both stay). Restyles only; IDs, data-* hooks, bindings
+   and the .tll-body story rich text are untouched (no new element uses .tll-body). Tokens copied from tll-system.css.
+   Motion: hover/press only, 150ms ease-out, scale(.97) on press, hovers behind (hover:hover), none with reduced motion. */
+:root{--st3-ink:#0A0B14;--st3-ink-2:#12141F;--st3-ink-line:#23263c;--st3-cream:#F7F1E8;--st3-paper:#FDF9F3;--st3-line:#E0DACE;
+--st3-text-2:#3a3a3a;--st3-muted:#6B6660;--st3-teal:#00C9C8;--st3-teal-deep:#067A79;--st3-rose:#F0507A;--st3-rose-text:#C8325B;
+--st3-rose-btn:#D63859;--st3-amber:#D98A2B;--st3-slate:#9496AC;--st3-f-head:'Playfair Display',Georgia,serif;
+--st3-f-body:'IBM Plex Sans Condensed',system-ui,sans-serif;--st3-f-mono:'JetBrains Mono',ui-monospace,monospace;
+--st3-col:680px;--st3-pad:28px;--st3-ease:cubic-bezier(.23,1,.32,1)}
+
+/* 1 Hero: flag + mono teal meta "{BYLINE LOCATION} · {PILLAR} · {N} MIN". Date moves to the author row (row 4). */
+.tll-story-hero .tll-story-meta-row{display:flex !important;align-items:center !important;flex-wrap:wrap;gap:0 11px}
+.tll-story-hero .tll-story-meta-row>:nth-child(5),.tll-story-hero .tll-story-meta-row>:nth-child(6){display:none !important}
+.tll-story-hero .tll-story-meta-row>:not(:first-child) img{display:none !important}
+.tll-story-hero .tll-story-meta-row>:first-child img{width:26px !important;height:26px !important;border-radius:50% !important;border:1.5px solid rgba(247,241,232,.6) !important;box-shadow:none !important;vertical-align:-8px !important;margin-right:11px !important;box-sizing:border-box}
+.tll-story-hero .tll-story-reading-time:not(.w-dyn-bind-empty)::after{content:" min"}
+.tll-story-hero [data-tll-breadcrumb]{font-size:11px}
+
+/* shared column */
+.tll-story-body-section{padding-top:30px !important}
+.tll-story-body-section .tll-reading-column.tll-story-body{max-width:var(--st3-col) !important;margin-left:auto !important;margin-right:auto !important;width:100%}
+[data-tll-sponsored]:not([hidden]),.tll-aftermatter-container>[data-tll-places],.tll-aftermatter-container>.st3-aff:not([hidden]),.tll-aftermatter-container>.st3-tw,.tll-aftermatter-container>.st3-trip,.tll-aftermatter-container>[data-tll-ledger],.tll-aftermatter-container>[data-tll-story-cta],.tll-aftermatter-container>.st3-cc,.tll-aftermatter-container>.tll-story-feedback{box-sizing:border-box;width:100%;max-width:var(--st3-col) !important;margin-left:auto !important;margin-right:auto !important}
+
+/* 2 Route: ink strip, mono ROUTE label, stops joined by teal arrows, note in teal on the right */
+[data-tll-route]{background:var(--st3-ink-2) !important;border-bottom:1px solid #1a1d35;display:flex !important;align-items:center;flex-wrap:wrap;gap:6px 10px;padding:11px max(var(--st3-pad),calc((100% - var(--st3-col)) / 2)) !important;color:var(--st3-cream)}
+[data-tll-route]::before{content:"Route";font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-slate)}
+[data-tll-route] [data-tll-route-stops]{font:600 11px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-cream)}
+[data-tll-route] .tll-route-arrow{color:var(--st3-teal) !important;margin:0 10px !important}
+[data-tll-route] [data-tll-route-note]{margin-left:auto;font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-teal)}
+[data-tll-route] [data-tll-route-note].w-dyn-bind-empty{display:none}
+@media(max-width:767px){[data-tll-route]{padding:11px 16px !important}[data-tll-route] [data-tll-route-note]{margin-left:0;flex-basis:100%}}
+
+/* 3 Sponsored: amber box at the top of the column */
+[data-tll-sponsored]:not([hidden]){display:flex !important;gap:10px;align-items:flex-start;margin-top:30px !important;margin-bottom:0 !important;padding:12px 16px !important;background:rgba(217,138,43,.12) !important;border:1px solid var(--st3-amber) !important;border-radius:4px !important}
+@media(max-width:767px){[data-tll-sponsored]:not([hidden]){width:calc(100% - 32px)}}
+[data-tll-sponsored] .tll-sponsored-badge{flex:none;font:700 10.5px/1.3 var(--st3-f-mono) !important;letter-spacing:1px !important;text-transform:uppercase;color:var(--st3-ink) !important;background:var(--st3-amber) !important;border-radius:4px;padding:3px 8px !important;margin:0 !important}
+[data-tll-sponsored] [data-tll-sponsored-text]{font:400 13.5px/1.5 var(--st3-f-body) !important;color:var(--st3-text-2) !important}
+[data-tll-sponsored] [data-tll-sponsored-text] strong{font-weight:700;color:var(--st3-ink)}
+
+/* 4 Author row (bound twin) */
+.st3-author{display:flex;align-items:center;margin:0 0 26px;padding:0 0 20px;border-bottom:1px solid var(--st3-line)}
+.st3-author-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:inherit !important;text-decoration:none !important;border-radius:4px;transition:transform 150ms ease-out}
+.st3-author-avatar{flex:none;width:40px;height:40px;border-radius:50%;border:2px solid var(--st3-rose);overflow:hidden;background:#1d5e5d;box-sizing:border-box}
+.st3-author-img{display:block;width:100%;height:100%;object-fit:cover}
+.st3-author-name{font:700 14px/1.3 var(--st3-f-body);color:var(--st3-teal-deep)}
+.st3-author-name::after{content:" \2192";content:" \2192" / ""}
+.st3-author-filed{margin-top:2px;font:500 10px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-muted)}
+.st3-author-filed:has([data-st3-loc].w-dyn-bind-empty)>span:first-child{display:none}
+.st3-author-filed [data-st3-loc]:not(.w-dyn-bind-empty)+[data-st3-when]:not(.w-dyn-bind-empty)::before{content:" \00B7 "}
+.st3-author-filed .w-dyn-bind-empty{display:none}
+
+/* 5 Lede (bound to Excerpt) */
+.st3-lede{font:500 18px/1.65 var(--st3-f-body);color:var(--st3-text-2);margin:0 0 18px;max-width:none;text-wrap:pretty}
+.st3-lede.w-dyn-bind-empty{display:none}
+
+/* 6 The short version (stays above the body) */
+.tll-story-body>.tll-aeo-box.tll-aeo-box-teal{background:var(--st3-paper) !important;border:1px solid var(--st3-line) !important;border-radius:4px !important;padding:18px 22px !important;margin:0 0 26px !important;box-shadow:none !important}
+.tll-story-body>.tll-aeo-box .tll-aeo-eyebrow{font:600 10px/1.3 var(--st3-f-mono) !important;letter-spacing:2px !important;text-transform:uppercase !important;color:var(--st3-teal-deep) !important;margin:0 0 10px !important}
+.tll-story-body>.tll-aeo-box.tll-aeo-box-teal .w-richtext{font-size:14px !important;line-height:1.6 !important;color:var(--st3-text-2) !important}
+.tll-story-body>.tll-aeo-box .w-richtext>:last-child{margin-bottom:0}
+
+/* 7 Body: the .tll-body RichText 2da5de32 keeps its class and place */
+.tll-story-body>.w-richtext.tll-body{font-family:var(--st3-f-body);font-size:16px !important;line-height:1.7 !important;color:var(--st3-text-2) !important;margin-bottom:26px}
+.tll-story-body>.w-richtext.tll-body p{font-size:inherit;line-height:inherit;color:inherit}
+.tll-story-body>.w-richtext.tll-body h2,.tll-story-body>.w-richtext.tll-body h3{font-family:var(--st3-f-head);font-weight:800;color:var(--st3-ink);letter-spacing:-.01em;line-height:1.15}
+.tll-story-body>.w-richtext.tll-body a{color:var(--st3-ink);text-decoration:underline;text-decoration-color:var(--st3-teal-deep);text-underline-offset:3px}
+.tll-story-body .tll-inline-photo{margin:2.2em calc(-1 * min(4vw,60px)) !important}
+@media(max-width:767px){.tll-story-body .tll-inline-photo{margin:1.8em -16px !important}}
+
+/* 8 Pull quote: ink box, Playfair 800 italic, curly quotes */
+.tll-story-body>.tll-story-pullquote{background:var(--st3-ink) !important;border:0 !important;border-radius:4px !important;padding:22px 26px !important;margin:0 0 26px !important;font:italic 800 22px/1.3 var(--st3-f-head) !important;color:var(--st3-cream) !important;text-wrap:pretty}
+.tll-story-body>.tll-story-pullquote:not([data-st3-quoted])::before{content:"\201C"}
+.tll-story-body>.tll-story-pullquote:not([data-st3-quoted])::after{content:"\201D"}
+.tll-story-body>.tll-story-pullquote.w-dyn-bind-empty{display:none !important}
+
+/* 9 Quick answers, links card, share: st3 tokens only */
+.tll-story-body>.tll-aeo-box.tll-aeo-box-rose{background:var(--st3-paper) !important;border:1px solid var(--st3-line) !important;border-radius:4px !important;padding:18px 22px !important;margin:0 0 26px !important;box-shadow:none !important}
+.tll-story-body>.tll-aeo-box-rose .tll-aeo-eyebrow{color:var(--st3-rose-text) !important}
+.tll-story-body>.tll-aeo-box-rose .w-richtext{font-size:15px !important;line-height:1.6 !important;color:var(--st3-text-2) !important}
+[data-tll-links-card]{background:#fff !important;border:1px solid var(--st3-line) !important;border-radius:4px !important;padding:18px 22px !important;margin:0 0 26px !important;box-shadow:none !important}
+[data-tll-links-card]>:first-child{font:600 10px/1.3 var(--st3-f-mono) !important;letter-spacing:2px !important;text-transform:uppercase !important;color:var(--st3-teal-deep) !important;margin:0 0 10px !important}
+[data-tll-links-card] .w-richtext{font-size:14px !important;line-height:1.6 !important;color:var(--st3-text-2) !important}
+[data-tll-links-card] .w-richtext a{color:var(--st3-ink);text-decoration:underline;text-decoration-color:var(--st3-teal-deep);text-underline-offset:3px}
+[data-tll-links-card]>:last-child{font:400 12px/1.5 var(--st3-f-body) !important;color:var(--st3-muted) !important;margin-top:10px !important}
+.tll-story-share-row{display:flex !important;flex-wrap:wrap;align-items:center;gap:8px}
+.tll-story-share-row .tll-story-share-label{font:600 10px/1.3 var(--st3-f-mono) !important;letter-spacing:2px;text-transform:uppercase;color:var(--st3-muted) !important;margin-right:4px}
+.tll-story-share-row .tll-story-share-link{display:inline-flex !important;align-items:center;min-height:44px;padding:0 16px !important;border:1.5px solid var(--st3-ink) !important;border-radius:999px !important;background:#fff !important;color:var(--st3-ink) !important;font:700 13px/1 var(--st3-f-body) !important;text-decoration:none !important;box-sizing:border-box;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}
+
+/* 10 Affiliate aside (shown by tll-st3-story-js-v1 only when a labeled affiliate link exists) */
+.st3-aff[hidden]{display:none !important}
+.st3-aff:not([hidden]){display:flex;gap:6px 12px;align-items:baseline;flex-wrap:wrap;margin-bottom:22px !important;padding:12px 16px;border:1px solid var(--st3-line);border-radius:4px;background:var(--st3-paper)}
+.st3-aff-k{font:700 10px/1.4 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-rose-text)}
+.st3-aff-t{font:400 13px/1.5 var(--st3-f-body);color:var(--st3-text-2);flex:1 1 280px}
+
+/* 11 Traveled with (humans + pets), hides when both lists are empty */
+.st3-tw{margin-bottom:26px !important}
+.st3-tw:not(:has(.w-dyn-item)){display:none !important}
+.st3-tw-h{font:600 10px/1.3 var(--st3-f-mono) !important;letter-spacing:2px !important;text-transform:uppercase;color:var(--st3-teal-deep) !important;margin:0 0 10px !important}
+.st3-tw-chips{display:flex;flex-wrap:wrap;gap:8px}
+.st3-tw-chips .w-dyn-list,.st3-tw-chips .w-dyn-items{display:contents}
+.st3-tw-chips .w-dyn-empty{display:none !important}
+.st3-tw-chip{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:6px 16px 6px 8px;border:1px solid var(--st3-ink);border-radius:30px;color:var(--st3-ink) !important;background:#fff;font:700 13.5px/1.2 var(--st3-f-body);text-decoration:none !important;box-sizing:border-box;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}
+.st3-tw-ini{flex:none;width:26px;height:26px;border-radius:50%;background:var(--st3-ink);color:var(--st3-cream);display:inline-flex;align-items:center;justify-content:center;font:600 11px/1 var(--st3-f-mono)}
+.st3-tw-ini:empty{display:none}
+.st3-tw-name [data-st3-emoji]::before{content:" "}
+
+/* 12 {Country}, and you? pills */
+.tll-aftermatter-container>[data-tll-places]{display:flex !important;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:22px !important;padding:0 !important;border:0 !important;background:none !important}
+[data-tll-places] [data-tll-places-label]{font:600 10.5px/1.3 var(--st3-f-mono) !important;letter-spacing:1.5px !important;text-transform:uppercase !important;color:var(--st3-teal-deep) !important;margin:0 !important}
+[data-tll-places] [data-tll-place-toggle]{display:inline-flex !important;align-items:center;min-height:44px;padding:0 16px !important;border:1.5px solid var(--st3-ink) !important;border-radius:22px !important;background:#fff !important;color:var(--st3-ink) !important;font:700 13px/1 var(--st3-f-body) !important;text-decoration:none !important;box-sizing:border-box;cursor:pointer;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}
+[data-tll-places] .tll-place-btn-been-on{background:var(--st3-teal-deep) !important;border-color:var(--st3-teal-deep) !important;color:#fff !important}
+[data-tll-places] .tll-place-btn-want-on{background:var(--st3-rose-btn) !important;border-color:var(--st3-rose-btn) !important;color:#fff !important}
+[data-tll-places] [data-tll-places-note]{font:500 10.5px/1.3 var(--st3-f-mono) !important;letter-spacing:1px;text-transform:uppercase;color:var(--st3-muted) !important}
+
+/* 13 Part of a trip (rendered by tll-story-extras-v2) */
+.st3-trip{margin-bottom:26px !important;background:var(--st3-ink);color:var(--st3-cream);border-radius:4px;padding:20px 22px}
+.st3-trip-k{margin:0;font:500 10px/1.4 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-teal)}
+.st3-trip-h{margin:8px 0 0;font:800 clamp(22px,2.4vw,32px)/1.05 var(--st3-f-head);color:var(--st3-cream);letter-spacing:-.01em;text-wrap:balance}
+.st3-trip-list{list-style:none;margin:14px 0 0;padding:0}
+.st3-trip-li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:8px 0;border-top:1px solid var(--st3-ink-line)}
+.st3-trip-n{font:500 11px/1.4 var(--st3-f-mono);color:var(--st3-teal)}
+.st3-trip-t{font:400 15px/1.4 var(--st3-f-body);color:#cfcbc4}
+a.st3-trip-t{color:#cfcbc4 !important;text-decoration:underline;text-decoration-color:rgba(0,201,200,.5);text-underline-offset:3px;transition:color 150ms ease-out}
+.st3-trip-me{font-weight:700;color:var(--st3-cream)}
+.st3-trip-by{font:500 10px/1.4 var(--st3-f-mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--st3-slate);text-align:right}
+@media(max-width:479px){.st3-trip-li{grid-template-columns:26px minmax(0,1fr)}.st3-trip-by{grid-column:2;text-align:left}}
+
+/* 14 The receipts: two-column mono keys and values */
+.tll-aftermatter-container>[data-tll-ledger]{border:0 !important;border-top:2px solid var(--st3-ink) !important;border-radius:0 !important;background:none !important;padding:14px 0 0 !important;margin-bottom:26px !important;box-shadow:none !important}
+[data-tll-ledger] .tll-sl-title{font:700 10px/1.3 var(--st3-f-mono) !important;letter-spacing:2px !important;text-transform:uppercase;color:var(--st3-ink) !important;margin:0 0 10px !important}
+[data-tll-ledger] .tll-sl-grid{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;gap:0 24px !important}
+[data-tll-ledger] .tll-ledger-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0 !important;border:0 !important;border-bottom:1px solid var(--st3-line) !important;margin:0 !important}
+[data-tll-ledger] .tll-ledger-k{flex:none;font:500 10.5px/1.5 var(--st3-f-mono) !important;letter-spacing:1.5px !important;text-transform:uppercase;color:var(--st3-teal-deep) !important}
+[data-tll-ledger] .tll-ledger-v{font:400 13px/1.5 var(--st3-f-body) !important;color:var(--st3-text-2) !important;text-align:right;min-width:0;overflow-wrap:anywhere}
+[data-tll-ledger] .tll-ledger-v.w-dyn-bind-empty::after{color:var(--st3-muted)}
+[data-tll-ledger] .tll-ledger-note{font:400 12px/1.5 var(--st3-f-body) !important;color:var(--st3-muted) !important;margin:10px 0 0 !important}
+[data-tll-ledger] .tll-ledger-note a{color:var(--st3-ink) !important;text-decoration:underline;text-decoration-color:var(--st3-teal-deep) !important;text-underline-offset:3px}
+
+/* 15 CTA: white on #D63859 (rose for white text, AA) */
+.tll-aftermatter-container>[data-tll-story-cta]{display:flex !important;align-items:center !important;justify-content:space-between !important;flex-wrap:wrap;gap:14px 20px;background:var(--st3-rose-btn) !important;border:0 !important;border-radius:4px !important;padding:20px 24px !important;margin-bottom:40px !important;box-shadow:none !important}
+[data-tll-story-cta]>div:first-child{flex:1 1 260px;min-width:0}
+[data-tll-story-cta]>div:first-child>div:first-child{font:800 19px/1.2 var(--st3-f-head) !important;color:#fff !important;margin:0 !important;letter-spacing:-.005em}
+[data-tll-story-cta]>div:first-child>div:nth-child(2){font:400 13px/1.45 var(--st3-f-body) !important;color:#fff !important;margin:3px 0 0 !important;opacity:1 !important}
+[data-tll-story-cta]>a{flex:none;display:inline-flex !important;align-items:center;min-height:44px;padding:0 20px !important;background:#fff !important;color:var(--st3-rose-btn) !important;border:0 !important;border-radius:2px !important;font:700 13px/1 var(--st3-f-body) !important;text-decoration:none !important;box-sizing:border-box;transition:background-color 150ms ease-out,color 150ms ease-out,transform 150ms ease-out}
+
+/* 16 Contributor card (bound twin), keep reading, Tell the editor */
+.st3-cc{display:flex;gap:18px;align-items:flex-start;padding:22px 0;border-top:1px solid var(--st3-line);border-bottom:1px solid var(--st3-line);margin-bottom:40px !important}
+.st3-cc-avatar{flex:none;width:64px;height:64px;border-radius:50%;border:2px solid var(--st3-rose);overflow:hidden;background:#1d5e5d;box-sizing:border-box}
+.st3-cc-img{display:block;width:100%;height:100%;object-fit:cover}
+.st3-cc-meta{min-width:0;flex:1 1 auto}
+.st3-cc-badge{font:600 10px/1.3 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-rose-text)}
+.st3-cc-badge.w-dyn-bind-empty{display:none}
+.st3-cc-name{font:800 clamp(22px,2.2vw,28px)/1.1 var(--st3-f-head) !important;color:var(--st3-ink) !important;margin:4px 0 6px !important;letter-spacing:-.01em}
+.st3-cc-bio{font:400 14px/1.55 var(--st3-f-body);color:var(--st3-text-2);margin:0 0 8px;max-width:60ch}
+.st3-cc-bio.w-dyn-bind-empty{display:none}
+.st3-cc-count{font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--st3-muted);margin:0 0 6px}
+.st3-cc-count:has(.w-dyn-bind-empty){display:none}
+.st3-cc-link{display:inline-flex;align-items:center;min-height:44px;font:700 14px/1 var(--st3-f-body);color:var(--st3-teal-deep) !important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;border-radius:2px;transition:color 150ms ease-out,transform 150ms ease-out}
+.st3-cc-link::after{content:" \2192";content:" \2192" / ""}
+@media(max-width:479px){.st3-cc{gap:14px}.st3-cc-avatar{width:52px;height:52px}}
+.tll-story-aftermatter .tll-related-header .tll-eyebrow-teal,.tll-story-feedback .tll-eyebrow-teal{font-family:var(--st3-f-mono) !important;color:var(--st3-teal-deep) !important}
+.tll-story-aftermatter .tll-related-header h2{font-family:var(--st3-f-head) !important;font-weight:800 !important}
+.tll-story-feedback p{font-family:var(--st3-f-body);color:var(--st3-text-2)}
+
+/* Focus: 3px rings, ink on light, teal on dark */
+.tll-story-article a:focus-visible,.tll-story-article button:focus-visible,.tll-story-article [role="button"]:focus-visible,.tll-story-article [tabindex]:focus-visible{outline:3px solid var(--st3-ink) !important;outline-offset:2px !important}
+.tll-story-hero a:focus-visible,[data-tll-route] a:focus-visible,.st3-trip a:focus-visible,.tll-story-pullquote a:focus-visible{outline-color:var(--st3-teal) !important}
+[data-tll-story-cta] a:focus-visible{outline-color:#fff !important;outline-offset:3px !important}
+
+/* Motion: hover only on hover-capable pointers, press everywhere */
+@media(hover:hover) and (pointer:fine){
+.st3-author-link:hover .st3-author-name{text-decoration:underline;text-underline-offset:3px}
+.tll-story-share-row .tll-story-share-link:hover,.st3-tw-chip:hover,[data-tll-places] .tll-place-btn:hover{background:var(--st3-ink) !important;color:var(--st3-cream) !important}
+a.st3-trip-t:hover{color:var(--st3-teal) !important}
+[data-tll-story-cta]>a:hover{background:var(--st3-cream) !important;color:var(--st3-ink) !important}
+.st3-cc-link:hover{color:var(--st3-ink) !important}
+}
+.st3-author-link:active,.tll-story-share-row .tll-story-share-link:active,.st3-tw-chip:active,[data-tll-places] [data-tll-place-toggle]:active,[data-tll-story-cta]>a:active,.st3-cc-link:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){
+.st3-author-link,.tll-story-share-row .tll-story-share-link,.st3-tw-chip,[data-tll-places] [data-tll-place-toggle],a.st3-trip-t,[data-tll-story-cta]>a,.st3-cc-link{transition:none !important}
+.st3-author-link:active,.tll-story-share-row .tll-story-share-link:active,.st3-tw-chip:active,[data-tll-places] [data-tll-place-toggle]:active,[data-tll-story-cta]>a:active,.st3-cc-link:active{transform:none !important}
+}
+.tll-story-article ::selection{background:rgba(0,201,200,.28)}
+</style>
