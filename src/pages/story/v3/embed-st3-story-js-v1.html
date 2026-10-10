@@ -1,6 +1,6 @@
 <script id="tll-st3-story-js-v1">
 /* TLL story page 3.0 helpers v1 (10 Oct 2026). Reads only bound CMS output already on the page; types no story copy.
-   - Author row: link to /contributors/{slug}, "FILED FROM {location} · {Month Year}" from Published date.
+   - Author row and contributor card: link to /contributors/{slug}, "FILED FROM {location} · {Month Year}" from Published date.
    - Sponsored box: approved copy with the host name from Disclosure ("Hosted: {name}"), only when the box is shown.
    - Affiliate aside: unhides only when tll-label-js-v1 (or the v1 shout-out label) marked an affiliate link.
    - Traveled with: initials, /contributors/ and /pets/ links, pet emoji after the name, hides when both lists are empty.
@@ -10,8 +10,8 @@ var MON=['January','February','March','April','May','June','July','August','Sept
 function q(s,r){return (r||document).querySelector(s);}function qa(s,r){return [].slice.call((r||document).querySelectorAll(s));}
 function val(n){return n&&!n.classList.contains('w-dyn-bind-empty')?n.textContent.trim():'';}
 function okSlug(s){return /^[a-z0-9-]+$/.test(s||'');}
+function links(){qa('a[data-st3-slug]').forEach(function(a){var s=a.getAttribute('data-st3-slug');if(okSlug(s))a.href=(a.getAttribute('data-st3-base')||'/contributors/')+s;});}
 function author(){var A=q('[data-st3-author]');if(!A||A.dataset.st3Done)return;A.dataset.st3Done='1';
-var l=q('[data-st3-slug]',A);if(l&&okSlug(l.getAttribute('data-st3-slug')))l.href='/contributors/'+l.getAttribute('data-st3-slug');
 var w=q('[data-st3-when]',A),t=val(w);if(!t)return;
 var mo=t.match(/(January|February|March|April|May|June|July|August|September|October|November|December)/i),y=t.match(/\b(19|20)\d{2}\b/);
 if(mo&&y){w.textContent=mo[1].charAt(0).toUpperCase()+mo[1].slice(1).toLowerCase()+' '+y[0];return;}
@@ -25,13 +25,12 @@ function aff(){var A=q('[data-st3-aff]');if(!A||!A.hasAttribute('hidden'))return
 if(qa('.tll-story-body a[data-tll-labeled],[data-tll-links-card] .tll-chip:not(.tll-chip-c)').length)A.removeAttribute('hidden');}
 function cotravel(){var T=q('[data-tll-cotravel]');if(!T||T.dataset.st3Done)return;T.dataset.st3Done='1';
 var items=qa('.w-dyn-item',T);
-items.forEach(function(it){var a=q('[data-st3-slug]',it),n=q('.st3-tw-name',it),i=q('.st3-tw-ini',it),e=q('[data-st3-emoji]',it),name=val(n);
-if(a&&okSlug(a.getAttribute('data-st3-slug')))a.href=(a.getAttribute('data-st3-base')||'/contributors/')+a.getAttribute('data-st3-slug');
+items.forEach(function(it){var n=q('.st3-tw-name',it),i=q('.st3-tw-ini',it),e=q('[data-st3-emoji]',it),name=val(n);
 if(e){var em=val(e);if(!em||name.indexOf(em)>-1)e.parentNode.removeChild(e);}
 if(i&&name)i.textContent=Array.from(name)[0].toUpperCase();});
 if(!items.length)T.style.display='none';}
 function quote(){var p=q('.tll-story-body > .tll-story-pullquote');if(p&&/^\s*["“„'‘«]/.test(p.textContent))p.setAttribute('data-st3-quoted','1');}
-function run(){author();sponsored();cotravel();quote();setTimeout(aff,60);}
+function run(){links();author();sponsored();cotravel();quote();setTimeout(aff,60);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 window.addEventListener('load',function(){sponsored();aff();});
 })();

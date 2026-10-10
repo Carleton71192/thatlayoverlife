@@ -1,3 +1,161 @@
+<script>
+/* TLL FAQ schema v1 (2026-09-23): the Quick answers block is written as question/answer pairs
+   but carried no markup, so answer engines saw prose. This reads the rendered block and emits
+   one FAQPage node. Replaces the old schema-dedupe script, which targeted an attribute that
+   never existed and therefore did nothing; the duplicate Article block is now gone at source. */
+(function(){
+  function build(){
+    var box = document.getElementById('tll-quick-answers');
+    if(!box || box.getAttribute('data-tll-faq')) return;
+    if(box.classList.contains('w-dyn-bind-empty')) return;
+    var qs = box.querySelectorAll('p > strong, h3, h4');
+    var faq = [];
+    Array.prototype.forEach.call(qs, function(q){
+      var question = (q.textContent || '').trim();
+      if(!question) return;
+      var host = q.tagName === 'STRONG' ? q.parentNode : q;
+      var parts = [];
+      var n = host.nextElementSibling;
+      while(n && !n.querySelector('strong') && n.tagName !== 'H3' && n.tagName !== 'H4'){
+        var txt = (n.textContent || '').trim();
+        if(txt) parts.push(txt);
+        n = n.nextElementSibling;
+      }
+      var answer = parts.join(' ').trim();
+      if(question && answer) faq.push({"@type":"Question","name":question,"acceptedAnswer":{"@type":"Answer","text":answer}});
+    });
+    if(!faq.length) return;
+    var node = {"@context":"https://schema.org","@type":"FAQPage","@id":location.href.split('?')[0]+'#faq',"mainEntity":faq};
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.setAttribute('data-tll-faq','1');
+    s.textContent = JSON.stringify(node);
+    document.head.appendChild(s);
+    box.setAttribute('data-tll-faq','1');
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+  else build();
+})();
+</script>
+<script>
+/* TLL story share fix v1: share row anchors, keep-reading grid. Fixes broken javascript: copy-link href, share URLs pointing at homepage, self-card in keep reading. */
+(function(){
+  function fix(){
+    var url = location.href.split('?')[0];
+    var title = document.querySelector('h1') ? document.querySelector('h1').textContent.trim() : document.title;
+    document.querySelectorAll('a').forEach(function(a){
+      var h = a.getAttribute('href') || '';
+      if (h.indexOf('javascript:') !== -1 && h.indexOf('clipboard') !== -1){
+        a.setAttribute('href', '#');
+        a.addEventListener('click', function(e){ e.preventDefault(); navigator.clipboard.writeText(url).then(function(){ var t = a.textContent; a.textContent = 'Copied ✓'; setTimeout(function(){ a.textContent = t; }, 1600); }); });
+      }
+      if (h.indexOf('linkedin.com/sharing') !== -1) a.setAttribute('href', 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url));
+      if (h.indexOf('twitter.com/intent') !== -1) a.setAttribute('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title + ' @thatlayoverlife'));
+      if (h.indexOf('mailto:?') === 0) a.setAttribute('href', 'mailto:?subject=' + encodeURIComponent('From That Layover Life') + '&body=' + encodeURIComponent('Worth a read: ' + title + ': ' + url));
+    });
+    var path = location.pathname.replace(/\/$/, '');
+    document.querySelectorAll('a.tll-related-card[id]').forEach(function(a){ if(!/\/stories\/./.test(a.getAttribute('href')||'')) a.setAttribute('href','/stories/'+a.id); });
+    document.querySelectorAll('a[href*="/stories/"]').forEach(function(a){
+      var ah = (a.getAttribute('href') || '').replace(/\/$/, '');
+      if (ah === path && a.closest && a.querySelector('div, h3, h4')){ a.style.display = 'none'; }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix);
+  else fix();
+})();
+</script>
+<script>
+/* Keep reading fallback (2026-09-21): if the CMS list renders empty, fill three cards from the live library. Card URLs come from the slug bound to each library card's id. */
+(function(){
+  function run(){
+    var wrap=[].filter.call(document.querySelectorAll('.w-dyn-list'),function(w){return /on their way to the shelf/.test(w.textContent);})[0];
+    if(!wrap||wrap.querySelector('.w-dyn-item'))return;
+    var empty=wrap.querySelector('.w-dyn-empty');
+    fetch('/stories',{credentials:'same-origin'}).then(function(r){return r.text();}).then(function(h){
+      var d=new DOMParser().parseFromString(h,'text/html');var here=location.pathname.replace(/\/$/,'');
+      var hr=function(a){return a.id?'/stories/'+a.id:(a.getAttribute('href')||'');};
+      var cards=[].slice.call(d.querySelectorAll('a.tll-lib-card')).filter(function(a){return /\/stories\/./.test(hr(a))&&hr(a).replace(/\/$/,'')!==here;}).slice(0,3);
+      if(!cards.length)return;
+      var grid=document.createElement('div');grid.className='tll-related-grid';
+      cards.forEach(function(c){
+        var img=c.querySelector('img'),t=c.querySelector('.tll-lib-title'),m=c.querySelector('.tll-lib-meta');
+        var a=document.createElement('a');a.className='tll-related-card';a.href=hr(c);
+        a.innerHTML='<div class="tll-related-img-wrap"></div><div class="tll-related-loc"></div><h4 class="tll-related-headline"></h4>';
+        if(img){var i=document.createElement('img');i.className='tll-related-img';i.src=img.getAttribute('src');i.alt=img.getAttribute('alt')||'';i.loading='lazy';a.firstChild.appendChild(i);}
+        a.querySelector('.tll-related-loc').textContent=m?m.textContent:'';
+        a.querySelector('.tll-related-headline').textContent=t?t.textContent:'';
+        grid.appendChild(a);
+      });
+      if(empty)empty.style.display='none';wrap.appendChild(grid);
+    }).catch(function(){});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<script>
+/* TLL story gallery v1 (2026-09-23): Webflow renders a multi-image lightbox as ONE placeholder tile
+   plus a w-json payload. This expands that payload into a real thumbnail grid, each tile opening
+   the native Webflow lightbox at the right image. Hides the section when a story has no gallery. */
+(function(){
+  function altFromUrl(u){
+    try{
+      var f = u.split('/').pop().split('?')[0];
+      f = f.replace(/\.(jpe?g|png|webp|avif|gif)$/i,'');
+      f = f.replace(/^(?:[0-9a-f]{24}_)+/i,'');
+      f = f.replace(/[-_]+/g,' ').trim();
+      if(!f) return '';
+      return f.charAt(0).toUpperCase() + f.slice(1);
+    }catch(e){ return ''; }
+  }
+  function build(){
+    var section = document.querySelector('.tll-story-gallery');
+    if(!section || section.getAttribute('data-tll-gallery-built')) return;
+    var grid = section.querySelector('.tll-gallery-grid');
+    if(!grid) return;
+    var seed = grid.querySelector('a.w-lightbox');
+    if(!seed) return;
+    var payload = seed.querySelector('script.w-json');
+    var items = [];
+    if(payload){
+      try{ items = (JSON.parse(payload.textContent) || {}).items || []; }catch(e){ items = []; }
+    }
+    items = items.filter(function(it){ return it && it.url; });
+    if(!items.length){ section.style.display = 'none'; section.setAttribute('data-tll-gallery-built','1'); return; }
+    var frag = document.createDocumentFragment();
+    items.forEach(function(it){
+      var a = document.createElement('a');
+      a.href = '#';
+      a.className = 'w-inline-block w-lightbox tll-gallery-link';
+      a.setAttribute('aria-label','Open photo');
+      var img = document.createElement('img');
+      img.className = 'tll-gallery-img';
+      img.src = it.url;
+      img.loading = 'lazy';
+      img.alt = altFromUrl(it.url);
+      a.appendChild(img);
+      var s = document.createElement('script');
+      s.type = 'application/json';
+      s.className = 'w-json';
+      s.textContent = JSON.stringify({ group: 'tll-story-gallery', items: [{ url: it.url, type: 'image' }] });
+      a.appendChild(s);
+      frag.appendChild(a);
+    });
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+    section.setAttribute('data-tll-gallery-built','1');
+    try{
+      if(window.Webflow && window.Webflow.require){
+        var lb = window.Webflow.require('lightbox');
+        if(lb && lb.ready) lb.ready();
+      }
+    }catch(e){}
+  }
+  if(window.Webflow && window.Webflow.push){ window.Webflow.push(build); }
+  else if(document.readyState !== 'loading'){ build(); }
+  else { document.addEventListener('DOMContentLoaded', build); }
+  window.addEventListener('load', build);
+})();
+</script>
 <style id="tll-st3-story-v1">
 /* TLL Stories 3.0, story page (Stories Template), 10 Oct 2026. Approved proposal rows 1-17 (Nancy, "Go with defaults").
    One namespaced block, loads after tll-v9-j13-v1 and tll-ledger-v1 (both stay). Restyles only; IDs, data-* hooks, bindings
