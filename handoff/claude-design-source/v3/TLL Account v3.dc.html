@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Your account · That Layover Life</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600;700&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FDF9F3;color:#0A0B14;font-family:'IBM Plex Sans Condensed',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0A0B14;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px}
+a:hover{color:#067A79}
+input,select,textarea,button{font-family:inherit}
+:focus-visible{outline:3px solid #067A79;outline-offset:2px}
+</style>
+</helmet>
+<a href="#acct-main" style="position:absolute;left:-9999px;top:8px;background:#0A0B14;color:#F7F1E8;padding:8px 14px;z-index:99" style-focus="left:8px">Skip to your account</a>
+<header style="background:#0A0B14;color:#F7F1E8;border-bottom:1px solid #23263c">
+  <div style="max-width:1240px;margin:0 auto;padding:14px clamp(16px,4vw,48px);display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <a href="/" aria-label="That Layover Life home" style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#F7F1E8;text-decoration:none"><span style="font-style:italic;opacity:.75">that</span> LAYOVER <span style="color:#F0507A">LIFE.</span></a>
+    <nav aria-label="Main" style="display:flex;gap:22px;flex-wrap:wrap;margin-left:auto;font-size:14px;font-weight:600">
+      <a href="/stories" style="color:#F7F1E8;text-decoration:none">Stories</a>
+      <a href="/countries" style="color:#F7F1E8;text-decoration:none">Destinations</a>
+      <a href="/travelers" style="color:#F7F1E8;text-decoration:none">Travelers</a>
+      <a href="/paw-passport" style="color:#F7F1E8;text-decoration:none">Paw Passport</a>
+      <a href="/about" style="color:#F7F1E8;text-decoration:none">About</a>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="/submit" style="font-size:13px;font-weight:700;color:#fff;background:#D63859;padding:9px 16px;border-radius:4px;text-decoration:none">Share your story</a>
+      <span aria-label="Signed in as Nancy" style="display:flex;align-items:center;gap:8px;border:1px solid #3a3d52;border-radius:24px;padding:4px 12px 4px 4px;font-size:13px;font-weight:600"><span style="width:28px;height:28px;border-radius:50%;background:#26324D center/cover url('images/nancy-green.jpg')"></span>Nancy</span>
+    </div>
+  </div>
+</header>
+
+<section aria-labelledby="acct-hi" style="background:#0A0B14;color:#F7F1E8">
+  <div style="max-width:1240px;margin:0 auto;padding:40px clamp(16px,4vw,48px) 36px;display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+    <span role="img" aria-label="Nancy's profile photo" style="flex:none;width:88px;height:88px;border-radius:50%;border:3px solid #F0507A;background:#26324D center/cover url('images/nancy-green.jpg')"></span>
+    <div style="flex:1 1 320px;min-width:0">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#00C9C8;font-weight:600;margin-bottom:8px">YOUR ACCOUNT</div>
+      <h1 id="acct-hi" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(38px,4.6vw,60px);line-height:1;letter-spacing:-.02em">Hi, <span style="font-style:italic;color:#F0507A">{{ firstName }}.</span></h1>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px">
+        <span style="border:1px solid #3a3d52;border-radius:4px;padding:4px 9px;color:#cfcbc4">thatlayover.life/p/{{ f.handle }}</span>
+        <span style="border:1px solid #3a3d52;border-radius:4px;padding:4px 9px;color:#cfcbc4">PROFILE · {{ visLabel }}</span>
+        <span style="border:1px solid #3a3d52;border-radius:4px;padding:4px 9px;color:#cfcbc4">DIRECTORY · {{ dirLabel }}</span>
+      </div>
+    </div>
+    <div style="flex:0 1 340px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button type="button" onClick="{{ goProfileTab }}" style="font-size:15px;font-weight:700;color:#fff;background:#D63859;border:0;border-radius:4px;padding:13px 22px;cursor:pointer" style-hover="background:#C8325B">Edit profile</button>
+        <a href="/p/nancy-carleton" target="_blank" rel="noopener" style="font-size:15px;font-weight:700;color:#F7F1E8;border:1.5px solid #F7F1E8;border-radius:4px;padding:11px 18px;text-decoration:none">View public profile ↗</a>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:#b8b4ad;margin-bottom:6px"><span>PROFILE {{ doneCount }} OF {{ doneTotal }} DONE</span><button type="button" onClick="{{ goProfileTab }}" style="background:none;border:0;padding:0;color:#00C9C8;font:inherit;letter-spacing:inherit;cursor:pointer">{{ nextTodo }} →</button></div>
+        <div role="progressbar" aria-label="Profile completeness" aria-valuemin="0" aria-valuemax="{{ doneTotal }}" aria-valuenow="{{ doneCount }}" style="height:6px;background:#23263c;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ donePct }};background:#00C9C8"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="max-width:1240px;margin:0 auto;padding:28px clamp(16px,4vw,48px) 96px;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+  <nav aria-label="Account sections" style="flex:{{ asideFlex }};max-width:{{ asideMax }};position:{{ asidePos }};top:16px">
+    <div role="tablist" aria-orientation="{{ navOrient }}" style="display:flex;flex-direction:{{ navDir }};flex-wrap:wrap;gap:4px">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="9">
+        <button type="button" role="tab" id="{{ n.tabId }}" aria-selected="{{ n.sel }}" aria-controls="acct-main" onClick="{{ n.go }}" style="text-align:left;font-size:15px;font-weight:{{ n.weight }};color:{{ n.color }};background:{{ n.bg }};border:0;border-radius:4px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px" style-hover="background:#F0EBE0">{{ n.label }}<span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{{ n.badgeColor }}">{{ n.badge }}</span></button>
+      </sc-for>
+    </div>
+  </nav>
+
+  <main id="acct-main" tabIndex="-1" role="tabpanel" aria-labelledby="{{ tabLabelId }}" style="flex:1 1 560px;min-width:0;outline:none">
+
+    <sc-if value="{{ t.overview }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Overview</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Everything you have logged, written and shared. Tap a number to go to it.</p></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+            <button type="button" onClick="{{ s.go }}" style="text-align:left;background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:4px" style-hover="border-color:#0A0B14">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#067A79;font-weight:600">{{ s.k }}</span>
+              <span style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;line-height:1">{{ s.n }}</span>
+              <span style="font-size:14px;color:#3a3a3a">{{ s.sub }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+          <section aria-labelledby="ov-todo" style="background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:20px 22px">
+            <h3 id="ov-todo" style="margin:0 0 4px;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Finish your profile</h3>
+            <p style="margin:0 0 12px;font-size:14px;color:#6B6660">It shows on your Travelers card and your public page.</p>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+              <sc-for list="{{ todos }}" as="td" hint-placeholder-count="6">
+                <li style="display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #F0EBE0;font-size:15px"><span aria-hidden="true" style="flex:none;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:{{ td.dotBg }};color:{{ td.dotColor }};border:1.5px solid {{ td.dotBorder }}">{{ td.mark }}</span><span style="flex:1;color:{{ td.color }}">{{ td.label }}<span style="position:absolute;left:-9999px">{{ td.sr }}</span></span><button type="button" onClick="{{ goProfileTab }}" style="display:{{ td.btnD }};background:none;border:0;padding:4px 0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;font-weight:700;color:#C8325B;cursor:pointer">ADD →</button></li>
+              </sc-for>
+            </ul>
+          </section>
+          <section aria-labelledby="ov-next" style="background:#0A0B14;color:#F7F1E8;border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px">
+            <h3 id="ov-next" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Closest to done</h3>
+            <sc-for list="{{ closest }}" as="c" hint-placeholder-count="3">
+              <div style="border-top:1px solid #23263c;padding-top:10px">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:15px;font-weight:600"><span>{{ c.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#00C9C8">{{ c.n }} of {{ c.of }}</span></div>
+                <div style="font-size:14px;color:#b8b4ad;margin-top:2px">{{ c.note }}</div>
+              </div>
+            </sc-for>
+            <button type="button" onClick="{{ goMapTab }}" style="align-self:flex-start;margin-top:4px;font-size:14px;font-weight:700;color:#06302f;background:#00C9C8;border:0;border-radius:4px;padding:10px 16px;cursor:pointer">All your lists →</button>
+          </section>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.profile }}" hint-placeholder-val="{{ false }}">
+      <form onSubmit="{{ saveProfile }}" aria-labelledby="pf-h" style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+        <div style="flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
+          <div><h2 id="pf-h" style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Edit profile</h2><p style="margin:0;font-size:16px;color:#3a3a3a">This is the public version of you. Nothing changes publicly until you save.</p></div>
+
+          <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:16px">
+            <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">THE BASICS</legend>
+            <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+              <span aria-hidden="true" style="flex:none;width:72px;height:72px;border-radius:50%;background:#26324D center/cover url('images/nancy-green.jpg')"></span>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-photo" style="font-size:14px;font-weight:700;color:#0A0B14;border:1.5px solid #0A0B14;border-radius:4px;padding:8px 14px;cursor:pointer;align-self:flex-start">Change photo</label><input id="pf-photo" type="file" accept="image/jpeg,image/png,image/heic" style="position:absolute;left:-9999px"><span style="font-size:13px;color:#6B6660">JPEG, PNG or HEIC. Location data is stripped on upload.</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-name" style="font-size:14px;font-weight:700">Display name</label><input id="pf-name" name="name" autoComplete="name" value="{{ f.name }}" onChange="{{ on.name }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14" style-focus="border-color:#0A0B14"></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-handle" style="font-size:14px;font-weight:700">Profile address</label><div style="display:flex;border:1.5px solid #C9C3B8;border-radius:4px;background:#FDF9F3;overflow:hidden"><span style="padding:11px 0 11px 12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#6B6660;align-self:center">/p/</span><input id="pf-handle" name="handle" autoComplete="username" aria-describedby="pf-handle-hint" value="{{ f.handle }}" onChange="{{ on.handle }}" style="flex:1;min-width:0;border:0;padding:11px 12px 11px 2px;font-family:'JetBrains Mono',monospace;font-size:14px;background:transparent;color:#0A0B14;outline:none"></div><span id="pf-handle-hint" style="font-size:13px;color:{{ handleHintColor }}">{{ handleHint }}</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-bio" style="font-size:14px;font-weight:700">Short bio</label><textarea id="pf-bio" name="bio" rows="3" maxLength="240" aria-describedby="pf-bio-count" placeholder="Two lines. Where you have been, what you would go back for." value="{{ f.bio }}" onChange="{{ on.bio }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;line-height:1.45;background:#FDF9F3;color:#0A0B14;resize:vertical" style-focus="border-color:#0A0B14"></textarea><span id="pf-bio-count" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;align-self:flex-end">{{ bioCount }} / 240</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-opinion" style="font-size:14px;font-weight:700">One strong opinion <span style="font-weight:400;color:#6B6660">(optional)</span></label><input id="pf-opinion" name="opinion" value="{{ f.opinion }}" onChange="{{ on.opinion }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14" style-focus="border-color:#0A0B14"></div>
+          </fieldset>
+
+          <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:16px">
+            <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">WHERE YOU KNOW</legend>
+            <p style="margin:0;font-size:14px;color:#6B6660">Where you know, never where you are. No neighborhood, no address, no live check-ins.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-country" style="font-size:14px;font-weight:700">Home base, country</label><select id="pf-country" name="country" autoComplete="country-name" value="{{ f.country }}" onChange="{{ on.country }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 10px;font-size:16px;background:#FDF9F3;color:#0A0B14"><option>Denmark</option><option>Brazil</option><option>Vietnam</option><option>United States</option><option>Portugal</option></select></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-city" style="font-size:14px;font-weight:700">City <span style="font-weight:400;color:#6B6660">(optional)</span></label><input id="pf-city" name="city" autoComplete="address-level2" placeholder="Leave blank to show the country only" value="{{ f.city }}" onChange="{{ on.city }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14"></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-known" style="font-size:14px;font-weight:700">Also know well</label><input id="pf-known" name="known" value="{{ f.known }}" onChange="{{ on.known }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14"></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-langs" style="font-size:14px;font-weight:700">Languages</label><input id="pf-langs" name="languages" value="{{ f.langs }}" onChange="{{ on.langs }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="pf-since" style="font-size:14px;font-weight:700">Living abroad since</label><input id="pf-since" name="abroadSince" inputMode="numeric" value="{{ f.since }}" onChange="{{ on.since }}" style="max-width:140px;border:1.5px solid #C9C3B8;border-radius:4px;padding:11px 12px;font-size:16px;background:#FDF9F3;color:#0A0B14"></div>
+          </fieldset>
+
+          <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:4px">
+            <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">TRAVELER DIRECTORY · OPT IN</legend>
+            <p style="margin:0 0 8px;font-size:14px;color:#6B6660">Shuffled order, never ranked, never paid. Switch one off and it disappears everywhere at once.</p>
+            <sc-for list="{{ dirRows }}" as="d" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid #F0EBE0">
+                <div style="flex:1;min-width:0"><div id="{{ d.id }}" style="font-size:16px;font-weight:700">{{ d.label }} <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#6B6660">{{ d.path }}</span></div><div style="font-size:14px;color:#3a3a3a;line-height:1.45">{{ d.desc }}</div><div style="display:{{ d.noteD }};font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.5px;color:#067A79;margin-top:4px">{{ d.note }}</div></div>
+                <button type="button" role="switch" aria-checked="{{ d.on }}" aria-labelledby="{{ d.id }}" onClick="{{ d.toggle }}" style="flex:none;width:52px;height:30px;border-radius:15px;border:0;background:{{ d.bg }};position:relative;cursor:pointer;padding:0"><span style="position:absolute;top:4px;left:{{ d.x }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2)"></span></button>
+              </div>
+            </sc-for>
+          </fieldset>
+
+          <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:10px">
+            <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">YOUR LINKS</legend>
+            <p style="margin:0 0 4px;font-size:14px;color:#6B6660">Shown on your profile only when switched on. Shown links also tell search engines these accounts are yours.</p>
+            <sc-for list="{{ linkRows }}" as="l" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                <label for="{{ l.id }}" style="width:110px;flex:none;font-size:15px;font-weight:700">{{ l.label }}</label>
+                <input id="{{ l.id }}" type="url" inputMode="url" value="{{ l.url }}" onChange="{{ l.set }}" placeholder="{{ l.ph }}" style="flex:1;min-width:180px;border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3;color:#0A0B14">
+                <button type="button" role="switch" aria-checked="{{ l.on }}" aria-label="{{ l.aria }}" onClick="{{ l.toggle }}" style="flex:none;min-width:92px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;font-weight:700;color:{{ l.fg }};background:{{ l.bg }};border:1.5px solid {{ l.bd }};border-radius:4px;padding:8px 10px;cursor:pointer">{{ l.state }}</button>
+              </div>
+            </sc-for>
+          </fieldset>
+
+          <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:20px 22px;margin:0;display:flex;flex-direction:column;gap:10px">
+            <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">HOW PEOPLE REACH YOU</legend>
+            <sc-for list="{{ reachRows }}" as="r" hint-placeholder-count="3">
+              <label style="display:flex;gap:12px;padding:12px 14px;border:1.5px solid {{ r.bd }};border-radius:6px;cursor:pointer;background:#FDF9F3"><input type="radio" name="reach" checked="{{ r.on }}" onChange="{{ r.pick }}" style="margin-top:3px;accent-color:#D63859;width:18px;height:18px"><span><span style="display:block;font-size:15px;font-weight:700">{{ r.label }}</span><span style="display:block;font-size:14px;color:#3a3a3a;line-height:1.45">{{ r.desc }}</span></span></label>
+            </sc-for>
+            <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.5px;color:#6B6660">No phone number or email address is ever shown on your profile.</p>
+          </fieldset>
+
+          <div style="position:sticky;bottom:12px;z-index:5;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:{{ barBg }};color:{{ barFg }};border:1px solid #0A0B14;border-radius:6px;padding:12px 14px;box-shadow:0 8px 24px rgba(10,11,20,.18)">
+            <span role="status" aria-live="polite" style="flex:1;min-width:180px;font-size:15px;font-weight:600">{{ saveMsg }}</span>
+            <button type="button" onClick="{{ discard }}" disabled="{{ notDirty }}" style="font-size:14px;font-weight:700;color:inherit;background:none;border:1.5px solid currentColor;border-radius:4px;padding:9px 14px;cursor:pointer;opacity:{{ dimOp }}">Discard</button>
+            <button type="submit" disabled="{{ notDirty }}" style="font-size:14px;font-weight:700;color:#fff;background:#D63859;border:0;border-radius:4px;padding:11px 20px;cursor:pointer;opacity:{{ dimOp }}">Save profile</button>
+          </div>
+        </div>
+
+        <aside aria-label="Live preview of your Travelers card" style="display:{{ previewD }};flex:1 1 260px;position:sticky;top:16px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#6B6660;margin-bottom:8px">LIVE PREVIEW · TRAVELERS CARD</div>
+          <div style="background:#0A0B14;color:#F7F1E8;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:12px;align-items:center"><span style="flex:none;width:52px;height:52px;border-radius:50%;border:2px solid #F0507A;background:#26324D center/cover url('images/nancy-green.jpg')"></span><div style="min-width:0"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;line-height:1.1">{{ f.name }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#b8b4ad">{{ homeLine }}</div></div></div>
+            <div style="font-size:14px;color:#cfcbc4;line-height:1.5">{{ bioPreview }}</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ previewChips }}" as="pc" hint-placeholder-count="3"><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;color:#06302f;background:#00C9C8;padding:3px 8px;border-radius:4px">{{ pc }}</span></sc-for></div>
+            <div style="font-size:13px;color:#b8b4ad;border-top:1px solid #23263c;padding-top:10px">Speaks {{ f.langs }} · abroad since {{ f.since }}</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ previewLinks }}" as="pl" hint-placeholder-count="2"><span style="font-size:12px;font-weight:600;border:1px solid #3a3d52;border-radius:12px;padding:3px 10px">{{ pl }}</span></sc-for></div>
+          </div>
+        </aside>
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ t.map }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Map and lists</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Counted by hand, list by list. The full map lives on its own page.</p></div><a href="/map" style="font-size:14px;font-weight:700;color:#06302f;background:#00C9C8;border-radius:4px;padding:11px 18px;text-decoration:none">Open your map →</a></div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:16px 18px">
+          <div style="flex:1 1 220px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:40px;line-height:1">{{ rule.n }} <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:400;color:#6B6660">of {{ rule.of }}</span></div><div style="font-size:14px;color:#3a3a3a">countries · {{ rule.desc }}</div></div>
+          <div style="display:flex;flex-direction:column;gap:6px;flex:0 1 280px"><label for="mp-rule" style="font-size:14px;font-weight:700">Count countries by</label><select id="mp-rule" value="{{ ruleKey }}" onChange="{{ setRule }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px;font-size:15px;background:#FDF9F3"><option value="un2">UN members plus two observers</option><option value="un">UN members only</option><option value="iso">ISO codes plus Kosovo</option></select></div>
+        </div>
+        <form onSubmit="{{ logPlace }}" aria-labelledby="lp-h" style="background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+          <h3 id="lp-h" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:20px">Log a place</h3>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+            <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 160px"><label for="lp-list" style="font-size:14px;font-weight:700">List</label><select id="lp-list" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px;font-size:15px;background:#FDF9F3"><option>Countries</option><option>Cities</option><option>Airports</option><option>Parks</option><option>UNESCO sites</option><option>Landmarks</option><option>Marathons</option></select></div>
+            <div style="display:flex;flex-direction:column;gap:6px;flex:3 1 240px"><label for="lp-place" style="font-size:14px;font-weight:700">Place</label><input id="lp-place" value="{{ lpPlace }}" onChange="{{ setLpPlace }}" placeholder="Keflavík, Golden Gate, Chartres" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"></div>
+            <div style="display:flex;flex-direction:column;gap:6px;flex:0 0 96px"><label for="lp-year" style="font-size:14px;font-weight:700">Year</label><input id="lp-year" inputMode="numeric" placeholder="2024" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"></div>
+            <button type="submit" style="font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border:0;border-radius:4px;padding:12px 20px;cursor:pointer">Add</button>
+          </div>
+          <span role="status" aria-live="polite" style="font-size:14px;color:#067A79;font-weight:600">{{ lpMsg }}</span>
+        </form>
+        <div style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="Filter lists">
+          <sc-for list="{{ filterChips }}" as="fc" hint-placeholder-count="3"><button type="button" aria-pressed="{{ fc.on }}" onClick="{{ fc.go }}" style="font-size:14px;font-weight:700;color:{{ fc.fg }};background:{{ fc.bg }};border:1.5px solid #0A0B14;border-radius:20px;padding:7px 14px;cursor:pointer">{{ fc.label }}</button></sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E0DACE;border-radius:6px;overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:15px;min-width:560px">
+            <caption style="position:absolute;left:-9999px">Your lists, one row per list</caption>
+            <thead><tr style="text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660"><th scope="col" style="padding:12px 16px;font-weight:600">LIST</th><th scope="col" style="padding:12px 8px;font-weight:600">COUNT</th><th scope="col" style="padding:12px 8px;font-weight:600;width:30%">PROGRESS</th><th scope="col" style="padding:12px 16px;font-weight:600">WHAT COUNTS</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ listRows }}" as="lr" hint-placeholder-count="10">
+                <tr style="border-top:1px solid #F0EBE0">
+                  <th scope="row" style="text-align:left;padding:12px 16px;font-weight:700">{{ lr.name }}</th>
+                  <td style="padding:12px 8px;white-space:nowrap"><span style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px">{{ lr.n }}</span> <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6B6660">{{ lr.ofLabel }}</span></td>
+                  <td style="padding:12px 8px"><div style="display:{{ lr.barD }};height:6px;background:#F0EBE0;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ lr.pct }};background:#D63859"></div></div></td>
+                  <td style="padding:12px 16px;font-size:14px;color:#3a3a3a">{{ lr.rule }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.stories }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap"><div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Your stories</h2><p style="margin:0;font-size:16px;color:#3a3a3a">0 drafts · 0 in review · 9 published</p></div><a href="/submit" style="font-size:14px;font-weight:700;color:#fff;background:#D63859;border-radius:4px;padding:11px 18px;text-decoration:none">Share another story</a></div>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">
+          <sc-for list="{{ stories }}" as="st" hint-placeholder-count="9">
+            <li style="background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px"><span style="color:#6B6660">{{ st.place }}</span><span style="color:#067A79;font-weight:700">PUBLISHED</span></div>
+              <a href="{{ st.href }}" style="font-family:'Playfair Display',serif;font-weight:800;font-size:18px;line-height:1.2;color:#0A0B14;text-decoration:none">{{ st.title }}</a>
+              <div style="display:flex;gap:14px;margin-top:auto;padding-top:6px;font-size:13px;font-weight:700"><a href="{{ st.href }}">View</a><a href="{{ st.edit }}">Suggest an edit</a></div>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.pets }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Pets</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Each pet gets a Paw Passport. Your pet inherits your profile's privacy setting.</p></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+          <article style="background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:#067A79;font-weight:600">PAW PASSPORT</div>
+            <h3 style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:26px">Magnus</h3>
+            <div style="font-size:15px;color:#3a3a3a">Samoyed · 35 kg · 13 countries, zero complaints filed</div>
+            <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap"><a href="/pets/magnus" style="font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border-radius:4px;padding:9px 14px;text-decoration:none">Edit Magnus</a><a href="/pets/magnus" style="font-size:14px;font-weight:700;padding:9px 0">View passport</a></div>
+          </article>
+          <button type="button" style="border:2px dashed #C9C3B8;border-radius:6px;background:transparent;padding:18px;font-size:16px;font-weight:700;color:#0A0B14;cursor:pointer;min-height:150px" style-hover="border-color:#0A0B14">+ Add a pet</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.saved }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Saved stories</h2>
+        <div style="background:#fff;border:1.5px dashed #C9C3B8;border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;max-width:560px">
+          <h3 style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Nothing saved yet.</h3>
+          <p style="margin:0;font-size:16px;color:#3a3a3a">Tap Save on any story and it waits here, like a bookmark that does not fall out.</p>
+          <a href="/stories" style="font-size:14px;font-weight:700;color:#fff;background:#D63859;border-radius:4px;padding:10px 16px;text-decoration:none">Browse the library</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.card }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:720px">
+        <div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Share card</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Two taps. Then everyone knows. The card is made in your browser and respects your privacy settings.</p></div>
+        <div style="background:#fff;border:1px solid #E0DACE;border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:14px">
+          <fieldset style="border:0;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap"><legend style="font-size:14px;font-weight:700;margin-bottom:8px">Format</legend>
+            <sc-for list="{{ cardFormats }}" as="cf" hint-placeholder-count="2"><button type="button" aria-pressed="{{ cf.on }}" onClick="{{ cf.go }}" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;font-weight:700;color:{{ cf.fg }};background:{{ cf.bg }};border:1.5px solid #0A0B14;border-radius:20px;padding:8px 14px;cursor:pointer">{{ cf.label }}</button></sc-for>
+          </fieldset>
+          <button type="button" style="align-self:flex-start;font-size:15px;font-weight:700;color:#fff;background:#D63859;border:0;border-radius:4px;padding:12px 20px;cursor:pointer">Make my card</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.privacy }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:760px">
+        <div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Privacy and data</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Everything starts off. You switch on what you want seen.</p></div>
+        <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;margin:0;display:flex;flex-direction:column;gap:10px">
+          <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">WHO SEES YOUR PROFILE</legend>
+          <sc-for list="{{ visRows }}" as="v" hint-placeholder-count="3">
+            <label style="display:flex;gap:12px;padding:12px 14px;border:1.5px solid {{ v.bd }};border-radius:6px;cursor:pointer;background:#FDF9F3"><input type="radio" name="vis" checked="{{ v.on }}" onChange="{{ v.pick }}" style="margin-top:3px;accent-color:#D63859;width:18px;height:18px"><span><span style="display:block;font-size:15px;font-weight:700">{{ v.label }}</span><span style="display:block;font-size:14px;color:#3a3a3a">{{ v.desc }}</span></span></label>
+          </sc-for>
+        </fieldset>
+        <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;margin:0;display:flex;flex-direction:column;gap:2px">
+          <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">WHAT YOUR PUBLIC PAGE SHOWS</legend>
+          <sc-for list="{{ showRows }}" as="sh" hint-placeholder-count="5">
+            <label style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #F0EBE0;cursor:pointer"><input type="checkbox" checked="{{ sh.on }}" onChange="{{ sh.toggle }}" style="accent-color:#0A0B14;width:20px;height:20px;flex:none"><span><span style="display:block;font-size:15px;font-weight:700">{{ sh.label }}</span><span style="display:block;font-size:14px;color:#3a3a3a">{{ sh.desc }}</span></span></label>
+          </sc-for>
+          <p style="margin:8px 0 0;font-size:14px;color:#6B6660;line-height:1.5">Never shown, whatever you pick: dates, your current city, "currently in". Stamps show years only.</p>
+        </fieldset>
+        <section aria-labelledby="dt-h" style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+          <h3 id="dt-h" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Download your data</h3>
+          <p style="margin:0;font-size:15px;color:#3a3a3a">Stories, lists, pins, pets and settings as JSON plus Markdown. Ready in a minute, right here.</p>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button type="button" onClick="{{ doExport }}" disabled="{{ exportBusy }}" style="font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border:0;border-radius:4px;padding:11px 18px;cursor:pointer">{{ exportBtn }}</button><span role="status" aria-live="polite" style="font-size:14px;color:#067A79;font-weight:600">{{ exportMsg }}</span></div>
+        </section>
+        <section aria-labelledby="del-h" style="border:1.5px solid #E7B3C1;border-radius:6px;background:#FBEFF2;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+          <h3 id="del-h" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Delete your account</h3>
+          <p style="margin:0;font-size:15px;color:#3a3a3a">Removes your profile, lists and pets. Published stories stay up with the credit you choose below, or come down entirely.</p>
+          <div style="display:flex;flex-direction:column;gap:6px"><label for="del-credit" style="font-size:14px;font-weight:700">Your published stories</label><select id="del-credit" style="max-width:360px;border:1.5px solid #C9C3B8;border-radius:4px;padding:10px;font-size:15px;background:#fff"><option>Keep them, credit me by name</option><option>Keep them, credit me anonymously</option><option>Take them down</option></select></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><label for="del-confirm" style="font-size:14px;font-weight:700">Type <span style="font-family:'JetBrains Mono',monospace">delete my account</span> to confirm</label><input id="del-confirm" autoComplete="off" value="{{ delText }}" onChange="{{ setDel }}" style="max-width:360px;border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#fff"></div>
+          <button type="button" disabled="{{ delLocked }}" onClick="{{ doDelete }}" style="align-self:flex-start;font-size:14px;font-weight:700;color:#fff;background:#B02A4C;border:0;border-radius:4px;padding:11px 18px;cursor:pointer;opacity:{{ delOp }}">Delete my account</button>
+          <span role="status" aria-live="polite" style="font-size:14px;font-weight:600;color:#B02A4C">{{ delMsg }}</span>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ t.settings }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:760px">
+        <div><h2 style="margin:0 0 6px;font-family:'Playfair Display',serif;font-weight:800;font-size:34px;letter-spacing:-.015em">Login and email</h2><p style="margin:0;font-size:16px;color:#3a3a3a">Change it here. No form to email, no waiting on a person.</p></div>
+
+        <form onSubmit="{{ submitEmail }}" aria-labelledby="em-h" style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+          <h3 id="em-h" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Email address</h3>
+          <p style="margin:0;font-size:15px;color:#3a3a3a">Currently <span style="font-family:'JetBrains Mono',monospace">{{ maskedEmail }}</span>. Only you see this.</p>
+          <sc-if value="{{ emStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="em-new" style="font-size:14px;font-weight:700">New email</label><input id="em-new" type="email" autoComplete="email" required="{{ true }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"></div>
+              <div style="display:flex;flex-direction:column;gap:6px"><label for="em-pw" style="font-size:14px;font-weight:700">Current password</label><input id="em-pw" type="password" autoComplete="current-password" required="{{ true }}" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"></div>
+            </div>
+            <button type="submit" style="align-self:flex-start;font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border:0;border-radius:4px;padding:11px 18px;cursor:pointer">Send a code to the new address</button>
+          </sc-if>
+          <sc-if value="{{ emStep2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="em-code" style="font-size:14px;font-weight:700">6-digit code from your new inbox</label><input id="em-code" inputMode="numeric" autoComplete="one-time-code" maxLength="6" style="max-width:180px;border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:4px;background:#FDF9F3"></div>
+            <button type="submit" style="align-self:flex-start;font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border:0;border-radius:4px;padding:11px 18px;cursor:pointer">Confirm new email</button>
+          </sc-if>
+          <span role="status" aria-live="polite" style="font-size:14px;color:#067A79;font-weight:600">{{ emMsg }}</span>
+        </form>
+
+        <form onSubmit="{{ submitPw }}" aria-labelledby="pw-h" style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;display:flex;flex-direction:column;gap:12px">
+          <h3 id="pw-h" style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Password</h3>
+          <input type="text" autoComplete="username" value="{{ f.handle }}" readOnly="{{ true }}" aria-hidden="true" tabIndex="-1" style="position:absolute;left:-9999px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="pw-cur" style="font-size:14px;font-weight:700">Current password</label><input id="pw-cur" type="password" autoComplete="current-password" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"></div>
+            <div style="display:flex;flex-direction:column;gap:6px"><label for="pw-new" style="font-size:14px;font-weight:700">New password</label><input id="pw-new" type="password" autoComplete="new-password" minLength="12" aria-describedby="pw-hint" style="border:1.5px solid #C9C3B8;border-radius:4px;padding:10px 12px;font-size:15px;background:#FDF9F3"><span id="pw-hint" style="font-size:13px;color:#6B6660">12 characters or more. A sentence works.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><button type="submit" style="font-size:14px;font-weight:700;color:#F7F1E8;background:#0A0B14;border:0;border-radius:4px;padding:11px 18px;cursor:pointer">Update password</button><button type="button" onClick="{{ sendReset }}" style="background:none;border:0;padding:0;font-size:14px;font-weight:700;color:#0A0B14;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px;cursor:pointer">Forgot it? Send a reset link</button></div>
+          <span role="status" aria-live="polite" style="font-size:14px;color:#067A79;font-weight:600">{{ pwMsg }}</span>
+        </form>
+
+        <section aria-labelledby="si-h" style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;display:flex;flex-direction:column;gap:2px">
+          <h3 id="si-h" style="margin:0 0 8px;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Sign-in methods</h3>
+          <sc-for list="{{ signins }}" as="sg" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #F0EBE0"><span style="flex:1;font-size:15px;font-weight:700">{{ sg.label }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:{{ sg.stColor }}">{{ sg.status }}</span><button type="button" onClick="{{ sg.toggle }}" style="font-size:13px;font-weight:700;color:#0A0B14;background:none;border:1.5px solid #0A0B14;border-radius:4px;padding:7px 12px;cursor:pointer;min-width:96px">{{ sg.action }}</button></div>
+          </sc-for>
+        </section>
+
+        <fieldset style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;margin:0;display:flex;flex-direction:column;gap:2px">
+          <legend style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;color:#067A79;padding:0 6px">EMAIL ME WHEN</legend>
+          <sc-for list="{{ notifyRows }}" as="nt" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px solid #F0EBE0"><div style="flex:1"><div id="{{ nt.id }}" style="font-size:15px;font-weight:700">{{ nt.label }}</div><div style="font-size:14px;color:#3a3a3a">{{ nt.desc }}</div></div><button type="button" role="switch" aria-checked="{{ nt.on }}" aria-labelledby="{{ nt.id }}" onClick="{{ nt.toggle }}" style="flex:none;width:52px;height:30px;border-radius:15px;border:0;background:{{ nt.bg }};position:relative;cursor:pointer;padding:0"><span style="position:absolute;top:4px;left:{{ nt.x }};width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2)"></span></button></div>
+          </sc-for>
+          <span role="status" aria-live="polite" style="font-size:13px;color:#067A79;font-weight:600;margin-top:6px">{{ notifyMsg }}</span>
+        </fieldset>
+
+        <section aria-labelledby="so-h" style="border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:18px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px"><h3 id="so-h" style="margin:0 0 2px;font-family:'Playfair Display',serif;font-weight:800;font-size:22px">Sign out</h3><p style="margin:0;font-size:15px;color:#3a3a3a">See you on the road. Your stuff stays here until you are back.</p></div>
+          <button type="button" style="font-size:14px;font-weight:700;color:#0A0B14;background:none;border:1.5px solid #0A0B14;border-radius:4px;padding:10px 16px;cursor:pointer">Sign out of this device</button>
+          <button type="button" style="font-size:14px;font-weight:700;color:#0A0B14;background:none;border:0;padding:10px 0;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px">Sign out everywhere</button>
+        </section>
+      </div>
+    </sc-if>
+  </main>
+</div>
+
+<footer style="background:#0A0B14;color:#b8b4ad">
+  <div style="max-width:1240px;margin:0 auto;padding:28px clamp(16px,4vw,48px);display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px">
+    <span style="font-family:'Syne',sans-serif;font-weight:800;color:#F7F1E8">that LAYOVER <span style="color:#F0507A">LIFE</span></span>
+    <span>Every byline a real person.</span>
+    <nav aria-label="Footer" style="margin-left:auto;display:flex;gap:18px;flex-wrap:wrap"><a href="/privacy" style="color:#F7F1E8">Privacy policy</a><a href="/terms" style="color:#F7F1E8">Terms</a><a href="/editorial-charter" style="color:#F7F1E8">Editorial charter</a><a href="/support" style="color:#F7F1E8">Help</a></nav>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;overview&quot;,&quot;profile&quot;,&quot;map&quot;,&quot;stories&quot;,&quot;pets&quot;,&quot;saved&quot;,&quot;card&quot;,&quot;privacy&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;overview&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showPreview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const FIELDS0 = { name:'Nancy Carleton', handle:'nancy-carleton', bio:'', opinion:'Layovers are not dead time. They are the cheapest country you will ever visit.', country:'Denmark', city:'Copenhagen', known:'Brazil, Vietnam', langs:'English, Danish, Portuguese', since:'2018' };
+const LINKS0 = [
+  {k:'ig',label:'Instagram',url:'https://instagram.com/nancycarleton',ph:'https://instagram.com/…',on:true},
+  {k:'yt',label:'YouTube',url:'https://youtube.com/@nancycarleton',ph:'https://youtube.com/@…',on:true},
+  {k:'blog',label:'Blog or site',url:'',ph:'https://…',on:false},
+  {k:'li',label:'LinkedIn',url:'',ph:'https://linkedin.com/in/…',on:false},
+  {k:'nl',label:'Newsletter',url:'',ph:'https://…',on:false}];
+const DIR0 = {expats:true, creators:false, press:false};
+const TABS = [['overview','Overview'],['profile','Edit profile'],['map','Map and lists'],['stories','Stories'],['pets','Pets'],['saved','Saved'],['card','Share card'],['privacy','Privacy and data'],['settings','Login and email']];
+const LISTS = [
+  ['Countries',null,null,'Set foot outside the airport. Layovers count separately.'],
+  ['Cities',470,null,'One night, or the center on foot.'],
+  ['Airports',132,null,'Connected through or flew from.'],
+  ['UNESCO sites',70,1273,'Stood inside the listed property.'],
+  ['Landmarks',77,null,'Saw it in person.'],
+  ['US national parks',18,63,'Walked a trail inside the boundary.'],
+  ['Parks, everywhere',28,null,'Boots inside the boundary.'],
+  ['Ports',4,null,'Boarded or left a boat here.'],
+  ['New 7 Wonders',4,7,'Stood at the site.'],
+  ['Seven Natural Wonders',6,7,'Witnessed it in person.'],
+  ['New 7 Wonders of Nature',5,7,'Stood at the site.'],
+  ['Decade Volcanoes',3,16,'Stood on or at the foot of one.'],
+  ['Continents run',7,7,'42.195 km, finished.'],
+  ['Marathon Majors',1,7,'Finished one of the seven.'],
+  ['SuperHalfs',1,6,'Finished one of the six.'],
+  ['Great Spa Towns',1,11,'Walked the town.'],
+  ['Danish heritage',4,null,'UNESCO sites in Denmark.'],
+  ['Mountains',3,null,'Summits reached on foot.'],
+  ['Auroras and eclipses',1,null,'Stood under it.'],
+  ['Viking ring forts',0,5,'Walked the rampart.'],
+  ['Wine capitals',0,11,'Tasted in one.'],
+  ['Bathing traditions',0,5,'Sauna, onsen, hammam, banya, sento.'],
+  ['Beds by type',0,5,'Hostel bunk, sleeper train, tent, ferry, airport floor.']];
+const RULES = { un2:{n:87,of:195,desc:'UN members plus two observers'}, un:{n:87,of:193,desc:'UN members only'}, iso:{n:94,of:249,desc:'ISO codes plus Kosovo'} };
+const STORIES = [
+  ['PORTO JOFRE, BRAZIL','Glimmers in the Wild: 120 Wooden Bridges, One Jaguar, and No Guide'],
+  ['RUDBØL, DENMARK','I Drove Across Denmark to Watch a Million Birds Go to Bed'],
+  ['SALVADOR, BRAZIL','From Sequins to Sloths: Northern Brazil for the Chronically Curious'],
+  ['LA PAZ, MEXICO','La Paz, whale sharks, and a sea lion who chose chaos'],
+  ['CHILE AND ARGENTINA','Patagonia, measured in Camp Italianos'],
+  ['MONTENEGRO','The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender'],
+  ['GHANA','Ghana asked us to wear all white. We complied. Eventually.'],
+  ['BALKANS','Fourteen days, twelve countries, one EV, and a gal who cannot be historically trusted to charge her own phone'],
+  ['KING GEORGE ISLAND, ANTARCTICA','Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon']];
+const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);
+const sw = on => ({bg: on?'#067A79':'#C9C3B8', x: on?'26px':'4px', on: on?'true':'false'});
+
+class Component extends DCLogic {
+  state = { tab:'overview', f:{...FIELDS0}, saved:{...FIELDS0}, links:LINKS0.map(l=>({...l})), savedLinks:LINKS0.map(l=>({...l})), dir:{...DIR0}, savedDir:{...DIR0}, reach:'platform', savedReach:'platform', savedAt:'',
+    narrow:false, rule:'un2', filter:'all', lpPlace:'', lpMsg:'', vis:'public', show:{count:true,pct:false,map:true,pet:true,ranges:true},
+    exp:'idle', delText:'', delMsg:'', emStep:1, emMsg:'', pwMsg:'', google:true, apple:false, notify:{review:true,lounge:true,club:false,product:false}, notifyMsg:'', fmt:'story' };
+  componentDidMount(){
+    const h=(location.hash||'').replace('#',''); const start=this.props.startTab;
+    const tab = TABS.some(t=>t[0]===h) ? h : (TABS.some(t=>t[0]===start)?start:'overview');
+    this.onR=()=>{const w=(document.getElementById('acct-main')||{}).parentElement; const cw=w?w.clientWidth:window.innerWidth; this.setState({narrow: cw<830});}; this.onR(); window.addEventListener('resize',this.onR);
+    this.onH=()=>{const k=(location.hash||'').replace('#',''); if(TABS.some(t=>t[0]===k)) this.setState({tab:k});}; window.addEventListener('hashchange',this.onH);
+    this.setState({tab});
+  }
+  componentWillUnmount(){ window.removeEventListener('resize',this.onR); window.removeEventListener('hashchange',this.onH); }
+  go = k => () => { this.setState({tab:k}); try{history.replaceState(null,'','#'+k);}catch(e){} window.scrollTo({top:0}); const m=document.getElementById('acct-main'); m&&m.focus({preventScroll:true}); };
+  setF = k => e => { const v=e.target.value; this.setState(s=>({f:{...s.f,[k]:k==='handle'?v.toLowerCase().replace(/[^a-z0-9-]/g,''):v}})); };
+
+  renderVals(){
+    const s=this.state, f=s.f;
+    const dirty = JSON.stringify([f,s.links,s.dir,s.reach]) !== JSON.stringify([s.saved,s.savedLinks,s.savedDir,s.savedReach]);
+    const todosRaw = [['Photo',true],['Display name',!!f.name.trim()],['Short bio',!!f.bio.trim()],['Home base',!!f.country],['Languages',!!f.langs.trim()],['At least one link switched on',s.links.some(l=>l.on&&l.url)],['A directory opt-in',Object.values(s.dir).some(Boolean)]];
+    const doneCount=todosRaw.filter(t=>t[1]).length, next=todosRaw.find(t=>!t[1]);
+    const ruleObj=RULES[s.rule];
+    const rows = LISTS.map(([name,n,of,rule])=>{ if(name==='Countries'){n=ruleObj.n;of=ruleObj.of;}
+      return {name,n,ofLabel:of?('of '+of.toLocaleString('en-GB')):'',pct:of?Math.max(2,Math.round(n/of*100))+'%':'0%',barD:of?'block':'none',rule,started:n>0}; });
+    const filtered = rows.filter(r=> s.filter==='all' || (s.filter==='started'?r.started:!r.started));
+    const counts = {all:rows.length, started:rows.filter(r=>r.started).length, none:rows.filter(r=>!r.started).length};
+    const chip=(on)=>({fg:on?'#F7F1E8':'#0A0B14',bg:on?'#0A0B14':'transparent',on:on?'true':'false'});
+    const badges={stories:'9',pets:'1',map:String(ruleObj.n),profile: doneCount<todosRaw.length?(doneCount+'/'+todosRaw.length):''};
+    const visMap={me:'JUST YOU',link:'LINK ONLY',public:'PUBLIC'};
+    const dirOn=Object.entries(s.dir).filter(([,v])=>v).map(([k])=>'/'+k);
+    return {
+      firstName: (f.name.split(' ')[0]||'there'),
+      f, visLabel: visMap[s.vis], dirLabel: dirOn.length?dirOn.join(' ').toUpperCase():'OFF',
+      doneCount, doneTotal: todosRaw.length, donePct: Math.round(doneCount/todosRaw.length*100)+'%', nextTodo: next?('Add: '+next[0].toLowerCase()):'All done',
+      goProfileTab: this.go('profile'), goMapTab: this.go('map'),
+      asideMax: s.narrow?'none':'230px', asideFlex: s.narrow?'1 1 100%':'0 0 220px', asidePos: s.narrow?'static':'sticky', navDir: s.narrow?'row':'column', navOrient: s.narrow?'horizontal':'vertical',
+      tabLabelId: 'tab-'+s.tab,
+      navItems: TABS.map(([k,label])=>({label, tabId:'tab-'+k, go:this.go(k), sel:s.tab===k?'true':'false', bg:s.tab===k?'#0A0B14':'transparent', color:s.tab===k?'#F7F1E8':'#0A0B14', weight:s.tab===k?700:600, badge:badges[k]||'', badgeColor:s.tab===k?'#00C9C8':'#6B6660'})),
+      t: Object.fromEntries(TABS.map(([k])=>[k,s.tab===k])),
+      stats: [
+        {k:'COUNTRIES',n:ruleObj.n,sub:'of '+ruleObj.of+' · '+ruleObj.desc,go:this.go('map')},
+        {k:'STORIES',n:9,sub:'published, 0 in review',go:this.go('stories')},
+        {k:'PETS',n:1,sub:'Magnus, 13 countries',go:this.go('pets')},
+        {k:'LOUNGE PHOTOS',n:0,sub:'The Layover Lounge is missing your shot',go:()=>{location.href='/the-layover-lounge';}}],
+      todos: todosRaw.map(([label,done])=>({label,mark:done?'✓':'',dotBg:done?'#067A79':'#fff',dotColor:'#fff',dotBorder:done?'#067A79':'#C9C3B8',color:done?'#6B6660':'#0A0B14',btnD:done?'none':'inline',sr:done?' (done)':' (to do)'})),
+      closest: [{name:'Seven Natural Wonders',n:6,of:7,note:'Parícutin is a volcano in a Mexican cornfield. It is waiting.'},{name:'New 7 Wonders of Nature',n:5,of:7,note:'Jeju and Komodo left.'},{name:'New 7 Wonders',n:4,of:7,note:'Great Wall, Petra, Colosseum. Giza does not count but outranks them all.'}],
+      on: Object.fromEntries(Object.keys(FIELDS0).map(k=>[k,this.setF(k)])),
+      handleHint: f.handle.length<3?'At least 3 letters, numbers or hyphens.':'thatlayover.life/p/'+f.handle+' · changing it keeps the old address redirecting',
+      handleHintColor: f.handle.length<3?'#B02A4C':'#6B6660',
+      bioCount: f.bio.length,
+      dirRows: [
+        {k:'expats',label:'I am an expat',path:'/expats',desc:'Adds you to /expats and to the country pages you know.',note:'LISTED UNDER '+(f.country||'').toUpperCase()},
+        {k:'creators',label:'I am a creator',path:'/creators',desc:'Bloggers, photographers, video makers, podcasters.',note:''},
+        {k:'press',label:'I am press',path:'/press',desc:'Verified with 2+ published pieces, a press card, an editor or outlet reference, or a portfolio.',note:'YOU QUALIFY · 9 PUBLISHED PIECES'}
+      ].map(d=>({...d,id:'dir-'+d.k,...sw(s.dir[d.k]),noteD:d.note?'block':'none',toggle:()=>this.setState(st=>({dir:{...st.dir,[d.k]:!st.dir[d.k]}}))})),
+      linkRows: s.links.map((l,i)=>({id:'ln-'+l.k,label:l.label,url:l.url,ph:l.ph,on:l.on?'true':'false',state:l.on?'SHOWN':'HIDDEN',aria:'Show '+l.label+' on profile',fg:l.on?'#fff':'#3a3a3a',bg:l.on?'#067A79':'#F0EBE0',bd:l.on?'#067A79':'#C9C3B8',
+        set:e=>{const v=e.target.value;this.setState(st=>({links:st.links.map((x,j)=>j===i?{...x,url:v}:x)}));},
+        toggle:()=>this.setState(st=>({links:st.links.map((x,j)=>j===i?{...x,on:!x.on}:x)}))})),
+      reachRows: [['none','Not accepting contact','Your profile shows your stories and channels only.'],['platform','On a platform I already use','Instagram DMs, or a WhatsApp Business short link (never your number).'],['relay','Through a TLL contact form','Messages are forwarded to you. Your address stays hidden, replies come from you.']]
+        .map(([k,label,desc])=>({label,desc,on:s.reach===k,bd:s.reach===k?'#D63859':'#E0DACE',pick:()=>this.setState({reach:k})})),
+      saveMsg: dirty?'You have unsaved changes.':(s.savedAt?('Saved '+s.savedAt+'. Your public profile is updated.'):'All changes saved.'),
+      notDirty: !dirty, dimOp: dirty?1:.45, barBg: dirty?'#0A0B14':'#fff', barFg: dirty?'#F7F1E8':'#0A0B14',
+      saveProfile: e=>{e.preventDefault(); if(f.handle.length<3) return; const d=new Date(); const t=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}); this.setState(st=>({saved:{...st.f},savedLinks:st.links.map(l=>({...l})),savedDir:{...st.dir},savedReach:st.reach,savedAt:'at '+t}));},
+      discard: ()=>this.setState(st=>({f:{...st.saved},links:st.savedLinks.map(l=>({...l})),dir:{...st.savedDir},reach:st.savedReach})),
+      previewD: (this.props.showPreview===false)?'none':'block',
+      homeLine: (f.city?f.city+', ':'')+f.country,
+      bioPreview: f.bio.trim()||'No bio yet. Two lines does it.',
+      previewChips: Object.entries(s.dir).filter(([,v])=>v).map(([k])=>k.toUpperCase()),
+      previewLinks: s.links.filter(l=>l.on&&l.url).map(l=>l.label),
+      rule: ruleObj, ruleKey: s.rule, setRule: e=>this.setState({rule:e.target.value}),
+      lpPlace: s.lpPlace, setLpPlace: e=>this.setState({lpPlace:e.target.value}), lpMsg: s.lpMsg,
+      logPlace: e=>{e.preventDefault(); const p=s.lpPlace.trim(); this.setState({lpMsg: p?('Logged '+p+'. It shows on your map now.'):'Add a place name first.', lpPlace: p?'':s.lpPlace});},
+      filterChips: [['all','All · '+counts.all],['started','Started · '+counts.started],['none','Not yet · '+counts.none]].map(([k,label])=>({label,...chip(s.filter===k),go:()=>this.setState({filter:k})})),
+      listRows: filtered,
+      stories: STORIES.map(([place,title])=>({place,title,href:'/stories/'+slug(title),edit:'/submit?edit='+slug(title)})),
+      cardFormats: [['story','STORY 1080×1920'],['grid','GRID 1080×1350']].map(([k,label])=>({label,...chip(s.fmt===k),go:()=>this.setState({fmt:k})})),
+      visRows: [['me','Just me','No public page. You can still download your own card.'],['link','Anyone with the link','A random link, not indexed by search engines. Revoke it any time.'],['public','Public','Your handle address. Search engines can find it.']]
+        .map(([k,label,desc])=>({label,desc,on:s.vis===k,bd:s.vis===k?'#D63859':'#E0DACE',pick:()=>this.setState({vis:k})})),
+      showRows: [['count','Country count','The big number.'],['pct','Percent of the world','The arguable one.'],['map','Map','Rose and blank.'],['pet','Magnus','Your pet follows this setting.'],['ranges','Show ranges, not exact numbers','62 becomes 60+.']]
+        .map(([k,label,desc])=>({label,desc,on:!!s.show[k],toggle:()=>this.setState(st=>({show:{...st.show,[k]:!st.show[k]}}))})),
+      doExport: ()=>{ this.setState({exp:'busy'}); setTimeout(()=>this.setState({exp:'ready'}),1400); },
+      exportBusy: s.exp==='busy', exportBtn: s.exp==='busy'?'Preparing…':(s.exp==='ready'?'Download again':'Download my data'),
+      exportMsg: s.exp==='ready'?'tll-nancy-carleton-9-october-2026.zip is downloading.':'',
+      delText: s.delText, setDel: e=>this.setState({delText:e.target.value}), delLocked: s.delText.trim().toLowerCase()!=='delete my account', delOp: s.delText.trim().toLowerCase()==='delete my account'?1:.45,
+      doDelete: ()=>this.setState({delMsg:'Prototype only. In production this signs you out and confirms by email.'}), delMsg: s.delMsg,
+      maskedEmail: 'n•••••@gmail.com', emStep1: s.emStep===1, emStep2: s.emStep===2, emMsg: s.emMsg,
+      submitEmail: e=>{e.preventDefault(); if(s.emStep===1) this.setState({emStep:2,emMsg:'Code sent. It expires in 15 minutes.'}); else this.setState({emStep:1,emMsg:'Email updated. We sent a heads-up to the old address too.'});},
+      submitPw: e=>{e.preventDefault(); this.setState({pwMsg:'Password updated. Other devices stay signed in until you sign out everywhere.'});},
+      sendReset: ()=>this.setState({pwMsg:'Reset link sent to your email.'}), pwMsg: s.pwMsg,
+      signins: [['Email and password',true,null],['Google',s.google,'google'],['Apple',s.apple,'apple']].map(([label,on,k])=>({label,status:on?'CONNECTED':'NOT CONNECTED',stColor:on?'#067A79':'#6B6660',action:k?(on?'Disconnect':'Connect'):'Primary',toggle:k?()=>this.setState(st=>({[k]:!st[k]})):()=>{}})),
+      notifyRows: [['review','A story I sent is reviewed','Yes or not yet, with the editor note.'],['lounge','My Lounge photo is featured','With the credit it ran under.'],['club','Layover Club news','Only if you join. Price still to be confirmed.'],['product','New account features','Rare. Maybe twice a year.']]
+        .map(([k,label,desc])=>({id:'nt-'+k,label,desc,...sw(s.notify[k]),toggle:()=>this.setState(st=>({notify:{...st.notify,[k]:!st.notify[k]},notifyMsg:'Saved.'}))})),
+      notifyMsg: s.notifyMsg
+    };
+  }
+}
+</script>
+</body>
+</html>
