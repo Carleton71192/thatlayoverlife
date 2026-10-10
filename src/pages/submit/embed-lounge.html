@@ -1,0 +1,74 @@
+<fieldset class="tll-pen-fieldset" data-tll-step="3" data-tll-lounge>
+<h3 class="tll-pen-legend">The Layover Lounge</h3>
+<p class="tll-pen-help">Got one photo you love more than the rest? Send it to the Lounge too, where readers browse photos by place.</p>
+<label class="tll-pen-checkbox"><input type="checkbox" name="lounge-photo" value="yes" data-tll-lounge-on><span>Also submit my favorite photo to the Lounge</span></label>
+<div data-tll-lounge-more hidden>
+<label class="tll-pen-field"><span class="tll-pen-label">Which photo?</span><select class="tll-pen-input" name="lounge-photo-pick"><option>My hero photo</option><option>One of my gallery photos</option></select><span class="tll-pen-helptext">For a gallery photo, say which one in the caption, for example "the third one".</span></label>
+<label class="tll-pen-field"><span class="tll-pen-label">Where was it taken?</span><input class="tll-pen-input" type="text" name="lounge-photo-place" maxlength="120" placeholder="City, country"></label>
+<label class="tll-pen-field"><span class="tll-pen-label">Caption</span><input class="tll-pen-input" type="text" name="lounge-caption" maxlength="200"><span class="tll-pen-helptext">Same rights as your other photos: yours to share, and fine to show in the Lounge with your name.</span></label>
+</div>
+</fieldset>
+<style id="tll-story-extras-v1">
+.tll-persp-note{background:#E8F4F3;border-left:3px solid #067A79;padding:10px 14px;border-radius:8px;font-size:14px;line-height:1.5;color:#0A0B14;margin:0 0 14px}
+.tll-persp-invite{margin:4px 0 0}
+.tll-persp-row{display:flex;gap:8px;align-items:stretch;margin:6px 0}
+.tll-persp-row input{flex:1;min-width:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px}
+.tll-persp-copy,.tll-shout-add{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.5px;font-weight:600;text-transform:uppercase;border-radius:999px;padding:0 18px;min-height:44px;cursor:pointer;background:transparent;color:#0A0B14;border:1px solid #0A0B14;transition:background .15s ease,color .15s ease,transform .1s ease}
+.tll-persp-copy:hover,.tll-shout-add:hover{background:#0A0B14;color:#F7F1E8}
+.tll-persp-copy:active,.tll-shout-add:active{transform:scale(.97)}
+.tll-persp-copy:focus-visible,.tll-shout-add:focus-visible{outline:2px solid #067A79;outline-offset:2px}
+.tll-shout-row{border-top:1px solid #EDE6DA;padding:16px 0 4px;margin-top:8px}
+.tll-shout-n{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#067A79;font-weight:600;margin:0 0 8px}
+.tll-shout-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.tll-shout-2{grid-template-columns:1fr}}
+.tll-shout-add{margin:10px 0 6px;min-height:40px}
+.tll-shout-why{display:block;margin-top:10px}
+[data-tll-step] [hidden]{display:none !important}
+.tll-invite-done{margin-top:12px;padding-top:12px;border-top:1px solid rgba(10,11,20,.12);font-size:14px;line-height:1.5}
+.tll-invite-done code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;word-break:break-all;background:transparent}
+@media(prefers-reduced-motion:reduce){.tll-persp-copy,.tll-shout-add{transition:none}.tll-persp-copy:active,.tll-shout-add:active{transform:none}}
+</style>
+<script id="tll-story-extras-js-v1">
+/* Story form extras v1 (10 Oct 2026, Nancy: other perspectives, pet notes, shout-outs, Lounge photo). Adds fields only; every existing input name is unchanged. */
+(function(){
+function $(s,r){return (r||document).querySelector(s);}
+function init(){
+var f=$('form[data-tll-form="submit-story"]');if(!f||f.__tllExtras)return;f.__tllExtras=1;
+var q=new URLSearchParams(location.search),ORIGIN='https://www.thatlayover.life';
+/* Trip code: from ?trip=, else from the saved draft, else new. */
+var code=$('[data-tll-trip-code]',f),inv=$('[data-tll-invite]',f),note=$('[data-tll-persp-note]',f),same=f.querySelector('[name="same-trip-as"]');
+var c=(q.get('trip')||'').replace(/[^A-Za-z0-9-]/g,'').slice(0,16);
+if(!c){try{var d=JSON.parse(localStorage.getItem('tllStoryDraft')||'null');if(d&&d['trip-code'])c=String(d['trip-code']).replace(/[^A-Za-z0-9-]/g,'').slice(0,16);}catch(e){}}
+if(!c)c='T'+Math.random().toString(36).slice(2,6).toUpperCase()+Date.now().toString(36).slice(-4).toUpperCase();
+if(code)code.value=c;
+var w=(q.get('with')||'').toLowerCase().replace(/[^a-z0-9-]/g,'');
+if(w&&same&&!same.value)same.value=ORIGIN+'/stories/'+w;
+if((q.get('trip')||w)&&note)note.hidden=false;
+var link=ORIGIN+'/submit?trip='+encodeURIComponent(c);if(inv)inv.value=link;
+var cp=$('[data-tll-invite-copy]',f),msg=$('[data-tll-invite-msg]',f);
+if(cp)cp.addEventListener('click',function(){var done=function(){if(msg)msg.textContent='Copied. Paste it into a message to your co-travelers.';};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(link).then(done,function(){inv.select();});else{inv.select();try{document.execCommand('copy');done();}catch(e){}}});
+/* Pet notes show once a pet is tagged. */
+var pets=f.querySelector('[name="pets-along"]'),pn=$('[data-tll-pet-notes]',f);
+/* Shout-outs and Lounge reveal. */
+var son=$('[data-tll-shout-on]',f),sl=$('[data-tll-shout-list]',f),add=$('[data-tll-shout-add]',f);
+var lon=$('[data-tll-lounge-on]',f),lm=$('[data-tll-lounge-more]',f);
+function rows(){return [].slice.call(f.querySelectorAll('[data-tll-shout-row]'));}
+function sync(){
+  if(pn&&pets){var on=!!pets.value.trim()||!!(pn.querySelector('textarea').value.trim());pn.hidden=!on;}
+  if(son&&sl)sl.hidden=!son.checked;
+  if(lon&&lm)lm.hidden=!lon.checked;
+  rows().forEach(function(r,i){if(i===0)return;var used=[].some.call(r.querySelectorAll('input[type=text],select'),function(x){return x.value;});if(used)r.hidden=false;});
+  if(add)add.hidden=rows().every(function(r){return !r.hidden;});}
+if(add)add.addEventListener('click',function(){var r=rows().filter(function(x){return x.hidden;})[0];if(r){r.hidden=false;var i=r.querySelector('input');if(i)i.focus();}sync();});
+f.addEventListener('input',sync);f.addEventListener('change',sync);
+sync();setTimeout(sync,800);setTimeout(sync,2500);
+/* Links: add https:// when it is missing. On success, show the invite link again. */
+f.addEventListener('submit',function(){
+  [].forEach.call(f.querySelectorAll('[name$="-link"]'),function(u){if(u.value&&!/^https?:\/\//i.test(u.value))u.value='https://'+u.value;});
+  var box=f.parentNode&&f.parentNode.querySelector('.w-form-done');if(!box||box.querySelector('.tll-invite-done'))return;
+  var p=document.createElement('p');p.className='tll-invite-done';p.innerHTML='Traveled with someone? Send them this link so they can add their version of the trip: <code></code>';p.querySelector('code').textContent=link;box.appendChild(p);});
+}
+if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
