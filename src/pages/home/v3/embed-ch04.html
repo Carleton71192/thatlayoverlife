@@ -46,7 +46,7 @@ function paint(){if(!svg)return;[].forEach.call(svg.querySelectorAll('path'),fun
  p.classList.toggle('is-filed',mode==='filed'&&n in byName);p.classList.toggle('is-mine',mode==='mine'&&!!mine&&!!mine[id]);});
  var msg=box.querySelector('.h3-map-msg');if(msg)msg.remove();
  if(mode==='mine'&&!mine){var m=document.createElement('p');m.className='h3-map-msg';m.innerHTML='This is your map once you join. Free to join. <a href="/signup">Start your map →</a>';box.appendChild(m);}}
-function draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;known={};all.forEach(function(f){known[f.properties.name]=1;});feats=all.filter(function(f){return f.id!=='010';});
+function draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;known={};all.forEach(function(f){known[f.properties.name]=1;});var FIXID={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};all.forEach(function(f){if(f.id==null&&FIXID[f.properties.name])f.id=FIXID[f.properties.name];});feats=all.filter(function(f){return f.id!=='010';});
  var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj);
  var ns='http://www.w3.org/2000/svg';svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
  feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-n',f.properties.name);p.setAttribute('data-id',f.id);svg.appendChild(p);});
@@ -58,7 +58,7 @@ function boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').the
  fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}
 function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
  ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(j){var d=j&&j.data&&j.data.tllStates;if(!d||!d.states)return;
-  var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1';mine={};Object.keys(d.states).forEach(function(c){var e=d.states[c],v=e&&typeof e==='object'?e[id]:e;if(v&&v!=='airside')mine[c]=1;});paint();});}).catch(function(){});},250);}
+  var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1';mine={};Object.keys(d.states).forEach(function(c){var e=d.states[c],v=e&&typeof e==='object'?e[id]:e;if(v&&v!=='airside')mine[c==='undefined'?'900':c]=1;});paint();});}).catch(function(){});},250);}
 sec.querySelector('.h3-toggle').addEventListener('click',function(e){var b=e.target.closest('[data-h3-mode]');if(!b)return;mode=b.getAttribute('data-h3-mode');
  [].forEach.call(sec.querySelectorAll('[data-h3-mode]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});box.setAttribute('aria-label',mode==='mine'?'World map of your own countries, shown in teal.':'World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map.');paint();});
 document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();
