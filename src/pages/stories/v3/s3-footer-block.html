@@ -1,0 +1,137 @@
+<style id="tll-s3-stories-v1">
+/* TLL Stories 3.0 (10 Oct 2026). Source: TLL Site Prototype 3.0, screen "stories", and the approved proposal
+   reports/stories-3.0/2026-10-10-proposed-changes.md (rows 1 to 9, Nancy: "Go with defaults", plus her open-point answers).
+   Loads after footer v5 fix-first and only restyles. Every element, id, data-* attribute, form name, input name and CMS
+   binding stays. New hooks are attributes only: [data-s3-kicker] [data-s3-pillar] [data-s3-mins] [data-s3-place]
+   [data-tll-disclosure], plus .s3-* nodes made by tll-s3-stories-js-v1. Tokens from tll-system.css v1.
+   Overrides tll-v9-j12-v1 and tll-flow-v1 where they clash; both stay until Nancy retires them. */
+html.tllp-stories{--s3-ink:#0A0B14;--s3-cream:#F7F1E8;--s3-paper:#FDF9F3;--s3-line:#E0DACE;--s3-line2:#C9C3B8;--s3-text2:#3a3a3a;--s3-muted:#6B6660;--s3-teal-d:#067A79;--s3-rose:#F0507A;--s3-rose-t:#C8325B;--s3-rose-b:#D63859;--s3-amber:#D98A2B;--s3-head:'Playfair Display',Georgia,serif;--s3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;--s3-mono:'JetBrains Mono',ui-monospace,monospace;--s3-ease:cubic-bezier(.23,1,.32,1)}
+
+/* Row 1. Hero: eyebrow in teal, Playfair 800 title with the rose italic accent. Prototype size only from 900px;
+   phones keep the fix-first strip size so the first story stays on the first screen (open point 2). */
+html.tllp-stories .tll-library-hero .tll-eyebrow-rose{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;text-transform:uppercase !important;color:var(--s3-teal-d) !important;background:none !important;padding:0 !important}
+html.tllp-stories .tll-library-hero h1.tll-library-title{font-family:var(--s3-head) !important;font-weight:800 !important;color:var(--s3-ink) !important;text-wrap:balance}
+html.tllp-stories .tll-library-hero h1.tll-library-title em{font-style:italic !important;color:var(--s3-rose) !important}
+@media(min-width:900px){
+  html.tllp-stories .tll-library-hero:has(h1){padding-top:clamp(28px,6vh,72px) !important;padding-bottom:6px !important}
+  html.tllp-stories .tll-library-hero h1.tll-library-title{font-size:clamp(44px,6.4vw,112px) !important;line-height:.92 !important;letter-spacing:-.035em !important;margin:10px 0 0 !important;padding-bottom:.04em}
+}
+
+/* Row 2. Search sits under the hero, above the place chips: big underlined input, 3px ink rule, rose Search button.
+   Clear shows only while a search runs (S21: the search UI script sets it inline). Focus keeps the S21 rose underline. */
+html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged]{display:flex !important;flex-direction:column !important;align-items:stretch !important;justify-content:flex-start !important;gap:14px !important}
+html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged] > .tll-lib-searchslot{order:-1;flex:0 0 auto !important;width:100%;min-width:0 !important;max-width:none;gap:12px;align-items:flex-end}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form{border-bottom:3px solid var(--s3-ink) !important;padding:0 0 10px !important;gap:14px !important;align-items:flex-end !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form:focus-within{border-bottom-color:var(--s3-rose-b) !important;box-shadow:none !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input{font-family:var(--s3-head) !important;font-weight:800 !important;font-size:24px !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:var(--s3-ink) !important;min-width:0 !important;min-height:44px !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input::placeholder{font-family:var(--s3-body) !important;font-weight:500 !important;font-size:15px !important;letter-spacing:0 !important;color:var(--s3-muted) !important;opacity:1 !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{font-family:var(--s3-mono) !important;font-size:12px !important;font-weight:700 !important;letter-spacing:1.5px !important;text-transform:uppercase !important;background:var(--s3-rose) !important;color:var(--s3-ink) !important;border:0 !important;border-radius:0 !important;min-height:44px !important;padding:0 14px !important;margin:0 !important;white-space:nowrap;cursor:pointer;transition:background-color 150ms ease-out,color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:active{transform:scale(.97)}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:3px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover{background:var(--s3-ink) !important;color:var(--s3-cream) !important}}
+@media(hover:none){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover{background:var(--s3-rose) !important;color:var(--s3-ink) !important}}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600;letter-spacing:1.5px !important;text-transform:uppercase !important;color:var(--s3-muted) !important;text-decoration:none !important;min-height:44px;align-items:center;padding:0 4px !important;flex:none;transition:color 150ms ease-out}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear[style*="inline"]{display:inline-flex !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear::before{content:"\2715\00a0";font-weight:400}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear:focus-visible{outline:3px solid var(--s3-ink);outline-offset:2px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear:hover{color:var(--s3-ink) !important}}
+@media(max-width:899px){
+  html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged] > .tll-lib-searchslot{flex-wrap:wrap;row-gap:0}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form{flex:1 1 100% !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form{gap:10px !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{padding:0 12px !important;letter-spacing:1px !important}
+}
+@media(min-width:900px){
+  html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged]{gap:20px !important;padding-top:clamp(16px,4vh,40px) !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input{font-size:clamp(26px,4.4vw,72px) !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input::placeholder{font-family:var(--s3-head) !important;font-weight:800 !important;font-size:.6em !important;letter-spacing:-.01em !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{padding:0 18px !important;letter-spacing:2px !important;margin-bottom:4px !important}
+}
+
+/* Row 3. No-results note (copy set by tll-s3-stories-js-v1; the whole shelf still shows under it). */
+html.tllp-stories #tll-q-note{font-family:var(--s3-head);font-weight:800;font-size:clamp(20px,2.2vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--s3-ink);margin:0 0 28px;max-width:40ch}
+html.tllp-stories #tll-q-note .s3-q-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:14px;font-family:var(--s3-body);font-size:15px;font-weight:700;letter-spacing:0;line-height:1.2}
+html.tllp-stories #tll-q-note a.s3-q-share{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;background:var(--s3-rose-b);color:#fff !important;text-decoration:none !important;transition:background-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories #tll-q-note a.s3-q-share:active{transform:scale(.97)}
+@media(hover:hover){html.tllp-stories #tll-q-note a.s3-q-share:hover{background:#B82C4B}}
+html.tllp-stories #tll-q-note a.s3-q-clear{display:inline-flex;align-items:center;min-height:44px;color:var(--s3-ink) !important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+html.tllp-stories #tll-q-note a:focus-visible{outline:3px solid var(--s3-ink);outline-offset:3px}
+
+/* Row 4. Place row: mono label, pill chips, 44px targets, 150ms color, press scale. Row 5 (pillar, sort) and
+   row 6 (front of the shelf) stay hidden in the Designer; nothing here shows them. */
+html.tllp-stories .tll-library-filters .tll-filter-label{font-family:var(--s3-mono) !important;font-size:10.5px !important;font-weight:600 !important;letter-spacing:1.5px !important;text-transform:uppercase !important;color:var(--s3-muted) !important;min-width:64px}
+html.tllp-stories .tll-library-filters .tll-shelf-chip,html.tllp-stories .tll-library-filters .tll-filter-chip-on{font-family:var(--s3-body) !important;font-size:13px !important;letter-spacing:0 !important;text-transform:none !important;border-radius:999px !important;border:1px solid var(--s3-line2) !important;background:transparent !important;color:var(--s3-text2) !important;text-decoration:none !important;cursor:pointer;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-filters .tll-filter-chip-on{background:var(--s3-ink) !important;border-color:var(--s3-ink) !important;color:var(--s3-cream) !important;font-weight:600 !important}
+html.tllp-stories .tll-library-filters .tll-shelf-chip:active,html.tllp-stories .tll-library-filters .tll-filter-chip-on:active{transform:scale(.97)}
+html.tllp-stories .tll-library-filters .tll-shelf-chip:focus-visible,html.tllp-stories .tll-library-filters .tll-filter-chip-on:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:2px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-shelf-chip:hover{border-color:var(--s3-ink) !important;color:var(--s3-ink) !important}}
+@media(hover:none){html.tllp-stories .tll-library-filters .tll-shelf-chip:hover{border-color:var(--s3-line2) !important}}
+
+/* Row 7. Story cards: 4:3 photo with the ink badge (Byline location), title on a cream tab over the photo,
+   SPONSORED chip only for "Hosted:" disclosures, mono pillar and minutes, excerpt, byline with the card's own
+   contributor photo. The lead card (9 Oct) keeps its own layout; the 1px ink hairline hover stays as fix-first set it. */
+html.tllp-stories .tll-lib-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)) !important;gap:8vh 3vw !important}
+html.tllp-stories .tll-lib-grid > :not([data-tll-lead]) .tll-lib-body{padding-top:0 !important}
+html.tllp-stories .tll-lib-grid > :not([data-tll-lead]) .tll-lib-card .tll-lib-title{position:relative;z-index:1;margin:-30px 0 0 -10px !important;padding:12px 16px 8px !important;max-width:92%;background:var(--s3-cream)}
+html.tllp-stories .tll-lib-card .s3-sponsored{display:block;width:fit-content;max-width:100%;margin:10px 0 0;padding:3px 8px;background:var(--s3-amber);color:var(--s3-ink);font-family:var(--s3-mono);font-size:10.5px;font-weight:700;letter-spacing:1px;line-height:1.4;text-transform:uppercase}
+html.tllp-stories .tll-lib-card [data-s3-kicker]{display:block;margin:8px 0 0;font-family:var(--s3-mono);font-size:10px;font-weight:600;letter-spacing:1.5px;line-height:1.4;text-transform:uppercase;color:var(--s3-muted)}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card [data-s3-kicker]{margin:0 0 12px}
+html.tllp-stories .tll-lib-card [data-s3-kicker] > div{display:inline}
+html.tllp-stories .tll-lib-card [data-s3-mins]::after{content:"\00a0min"}
+html.tllp-stories .tll-lib-card [data-s3-pillar]:not(:empty):not(.w-dyn-bind-empty) + [data-s3-mins]:not(:empty):not(.w-dyn-bind-empty)::before{content:"\00a0\00b7\00a0"}
+html.tllp-stories .tll-lib-card [data-s3-kicker] > :empty,html.tllp-stories .tll-lib-card [data-s3-kicker] > .w-dyn-bind-empty{display:none}
+html.tllp-stories .tll-lib-card .tll-lib-byline{flex-wrap:wrap;column-gap:8px !important;row-gap:2px !important}
+html.tllp-stories .tll-lib-card .tll-lib-byline-img.w-dyn-bind-empty,html.tllp-stories .tll-lib-card .tll-lib-byline-img:not([src]),html.tllp-stories .tll-lib-card .tll-lib-byline-img[src=""]{display:none !important}
+html.tllp-stories .tll-lib-card .tll-lib-byline-name{white-space:nowrap}
+html.tllp-stories .tll-lib-card [data-s3-place]{font-family:var(--s3-mono);font-size:10.5px;letter-spacing:1px;line-height:1.4;text-transform:uppercase;color:var(--s3-muted);min-width:0;overflow-wrap:anywhere}
+html.tllp-stories .tll-lib-card [data-s3-place]::before{content:"\00b7\00a0"}
+html.tllp-stories .tll-lib-card [data-s3-place]:empty,html.tllp-stories .tll-lib-card [data-s3-place].w-dyn-bind-empty{display:none}
+html.tllp-stories .tll-lib-card .tll-lib-read{color:var(--s3-muted) !important}
+html.tllp-stories .tll-lib-card:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:4px}
+@media(min-width:900px){html.tllp-stories .tll-library-grid-section{padding-top:clamp(24px,5vh,56px) !important}}
+
+/* Row 8. Below the grid: kept, type tokens only. */
+html.tllp-stories .tll-library-empty-cta .tll-eyebrow-teal{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;color:var(--s3-teal-d) !important}
+html.tllp-stories .tll-library-empty-title,html.tllp-stories .tll-library-newsletter h3{font-family:var(--s3-head) !important;font-weight:800 !important;letter-spacing:-.02em !important;text-wrap:balance}
+html.tllp-stories .tll-library-empty-title em,html.tllp-stories .tll-library-newsletter h3 em{font-style:italic;color:var(--s3-rose) !important}
+html.tllp-stories .tll-library-empty-copy,html.tllp-stories .tll-library-news-sub,html.tllp-stories .tll-library-news-fineprint{font-family:var(--s3-body) !important}
+html.tllp-stories .tll-library-newsletter .tll-eyebrow-rose{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;color:var(--s3-rose-t) !important}
+html.tllp-stories .tll-library-empty-actions a,html.tllp-stories .tll-library-news-submit{min-height:44px;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-empty-actions a:active,html.tllp-stories .tll-library-news-submit:active{transform:scale(.97)}
+html.tllp-stories .tll-library-empty-actions a:focus-visible,html.tllp-stories .tll-library-news-submit:focus-visible,html.tllp-stories .tll-library-news-input:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:2px}
+
+/* Row 9. Clashes: tll-flow-v1 reveal motion is off on this page (hover and press only). */
+html.tllp-stories .tll-flow-reveal{opacity:1 !important;transform:none !important;transition:none !important}
+
+@media(prefers-reduced-motion:reduce){
+  html.tllp-stories .tll-lib-searchslot .tllsb-btn,html.tllp-stories .tll-lib-searchslot .tllsb-clear,html.tllp-stories .tll-shelf-chip,html.tllp-stories .tll-filter-chip-on,html.tllp-stories #tll-q-note a,html.tllp-stories .tll-library-empty-actions a,html.tllp-stories .tll-library-news-submit,html.tllp-stories .tll-lib-card .tll-lib-title{transition:none !important}
+  html.tllp-stories .tll-lib-searchslot .tllsb-btn:active,html.tllp-stories .tll-shelf-chip:active,html.tllp-stories .tll-filter-chip-on:active,html.tllp-stories #tll-q-note a:active,html.tllp-stories .tll-library-empty-actions a:active,html.tllp-stories .tll-library-news-submit:active{transform:none !important}
+}
+</style>
+<script id="tll-s3-stories-js-v1">
+/* TLL Stories 3.0 companion (10 Oct 2026). Copy only, no layout: (1) the approved no-results note, (2) the
+   SPONSORED chip on cards whose bound Disclosure starts with "Hosted:", (3) the prototype placeholder on the
+   search input when it has none (the Data API cannot set it on this input). Runs after search v4 and chips v1. */
+(function(){
+  function ph(){var i=document.getElementById('tll-lib-q');if(i&&!i.getAttribute('placeholder'))i.setAttribute('placeholder','A country, a train line, a feeling');}
+  function note(){
+    var n=document.getElementById('tll-q-note');if(!n||n.getAttribute('data-s3'))return;
+    var s=n.querySelector('span'),q=s?s.textContent:((new URLSearchParams(location.search).get('q'))||'').trim();
+    n.setAttribute('data-s3','1');
+    n.innerHTML='Nothing on the shelf for “<span class="s3-q-term"></span>” yet. <span class="s3-q-actions"><a class="s3-q-share" href="/submit">Share your story →</a><a class="s3-q-clear" href="/stories">Clear the search</a></span>';
+    n.querySelector('.s3-q-term').textContent=q;
+  }
+  function chips(){
+    [].forEach.call(document.querySelectorAll('[data-tll-disclosure]'),function(d){
+      var card=d.closest('[data-tll-card]');if(!card||card.querySelector('.s3-sponsored'))return;
+      var m=/^\s*Hosted:\s*(.*)$/.exec(d.textContent||'');if(!m)return;
+      var name=m[1].trim(),c=document.createElement('span');c.className='s3-sponsored';
+      c.textContent=name?'Sponsored · by '+name:'Sponsored';
+      var t=card.querySelector('.tll-lib-title');if(t)t.insertAdjacentElement('afterend',c);
+    });
+  }
+  function run(){ph();note();chips();}
+  document.addEventListener('tll:lib-filtered',note);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
