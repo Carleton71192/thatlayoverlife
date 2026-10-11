@@ -1,5 +1,5 @@
 /* TLL public traveler profile 3.0 (pf3, 11 Oct 2026). Approved proposal reports/profile-map-3.0/2026-10-10-proposed-changes.md,
-   rows P1 to P13, Nancy: "Go with defaults". Loads last in the template footer and only restyles. Every element, id, data-*
+   rows P1 to P13, Nancy: "Go with defaults". Loads last in the template head and only restyles. Every element, id, data-*
    attribute and CMS binding stays; tll-prof-v2, tll-prof-dir-v1 and the J14 tag stay and are overridden here by load order.
    Display is never forced with !important on nodes that scripts hide inline (stats, voice cards, link rows, empty states).
    Tokens: ink #0A0B14, cream #F7F1E8, paper #FDF9F3, line #E0DACE, muted #6B6660, teal #067A79 (light) / #00C9C8 (on ink),
@@ -108,13 +108,13 @@
 .tll-traveler-profile a:focus-visible,.tll-traveler-profile [data-tll-link]:focus-visible,.tll-traveler-profile .tll-prof-story:focus-visible{outline:3px solid var(--pf3-ink) !important;outline-offset:2px !important;border-radius:4px}
 .tll-traveler-profile [data-tll-prof="dir-contact-btn"]:focus-visible{outline:3px solid var(--pf3-ink) !important;outline-offset:3px !important;border-radius:999px !important}
 
-/* Motion: hover only on fine pointers, press everywhere, 150ms ease-out. */
+/* Motion: hover and press only on fine pointers (hover:hover), 150ms ease-out; none under reduced motion. */
 @media (hover:hover) and (pointer:fine){
   .tll-traveler-profile [data-tll-link]:hover,.tll-traveler-profile .tll-prof-story:hover{border-color:var(--pf3-teal) !important}
   .tll-traveler-profile [data-tll-prof="dir-contact-btn"]:hover{background:#23263c !important}
   .tll-traveler-profile [data-tll-prof="dir-report"]:hover{color:var(--pf3-rose-t) !important;text-decoration-color:currentColor !important}
+  .tll-traveler-profile [data-tll-link]:active,.tll-traveler-profile .tll-prof-story:active,.tll-traveler-profile [data-tll-prof="dir-contact-btn"]:active{transform:scale(.97)}
 }
-.tll-traveler-profile [data-tll-link]:active,.tll-traveler-profile .tll-prof-story:active,.tll-traveler-profile [data-tll-prof="dir-contact-btn"]:active{transform:scale(.97)}
 
 /* Responsive. */
 @media (max-width:700px){
