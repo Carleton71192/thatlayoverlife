@@ -1,3 +1,13 @@
 <p class="h3 h3-hero-side" aria-hidden="true">A travel magazine for people who get lost on purpose</p>
-<p class="h3 h3-hero-coords"><span class="h3-sr">Hero photo taken at </span>12.17° N<br>68.99° W<br><b>Curaçao</b></p>
+<p class="h3 h3-hero-coords"><span class="h3-sr">Hero photo taken at </span><span class="h3-co">12.17° N</span> <span class="h3-co">68.99° W</span> <b>Curaçao</b></p>
 <p class="h3 h3-hero-scroll" aria-hidden="true">Scroll · the world is long</p>
+<style id="h3-hero-coords-v2">
+/* 11 Oct 2026, Nancy: the coordinates overlapped "Build your map" on phones. Desktop keeps the stacked block; under 900px it is one line under the buttons, with room reserved. */
+.h3-hero-coords .h3-co,.h3-hero-coords b{display:block}
+@media(max-width:899px){
+[data-h3-hero] .h3-hero-cta{margin-bottom:44px}
+.h3-hero-coords{left:var(--h3-g,16px);right:var(--h3-g,16px);bottom:14px;text-align:left;font-size:10px;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h3-hero-coords .h3-co,.h3-hero-coords b{display:inline}
+.h3-hero-coords b::before{content:"· ";color:rgba(247,241,232,.85);font-weight:400}
+}
+</style>
