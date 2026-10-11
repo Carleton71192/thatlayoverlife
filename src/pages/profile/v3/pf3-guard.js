@@ -1,0 +1,1 @@
+/* TLL profile 3.0 P5 guard (11 Oct 2026): switches off the old footer stats binder on /contributors/*, which wrote the viewer's own tllStates count onto other people's profiles. The binder exits on its first line when this flag is set. */window.__tllProfStats=1;

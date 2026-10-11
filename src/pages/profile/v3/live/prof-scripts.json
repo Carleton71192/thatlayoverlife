@@ -1,0 +1,10 @@
+{
+ "label": "prof-scripts",
+ "action": "get_page_scripts",
+ "error": {
+  "name": "Error",
+  "message": "NotFoundError\nStatus code: 404\nBody: {\n  \"message\": \"Requested resource not found: Custom code block not found\",\n  \"code\": \"resource_not_found\",\n  \"details\": []\n}",
+  "status": 404,
+  "code": "resource_not_found"
+ }
+}

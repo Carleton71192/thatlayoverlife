@@ -1,0 +1,47 @@
+/* TLL /profile 3.0 (pr3, 11 Oct 2026). Approved proposal rows R1 to R5. Restyle only: Memberstack sections (data-ms-content),
+   the Sign out link (data-ms-action) and every element stay as they are; display is never forced on Memberstack-toggled nodes.
+   Tokens: ink #0A0B14, cream #F7F1E8, paper #FDF9F3, line #E0DACE, muted #6B6660, teal #067A79, rose text #C8325B, rose CTA #D63859. */
+main.tll-profile-page{--pr3-ink:#0A0B14;--pr3-cream:#F7F1E8;--pr3-paper:#FDF9F3;--pr3-line:#E0DACE;--pr3-muted:#6B6660;--pr3-text2:#3a3a3a;--pr3-teal:#067A79;--pr3-rose:#F0507A;--pr3-rose-t:#C8325B;--pr3-rose-b:#D63859;--pr3-head:'Playfair Display',Georgia,serif;--pr3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;--pr3-mono:'JetBrains Mono',ui-monospace,monospace;background:var(--pr3-paper)}
+main.tll-profile-page .tll-profile-hero{background-image:none;background-color:var(--pr3-paper)}
+main.tll-profile-page .tll-profile-title{font-family:var(--pr3-head) !important;font-weight:800 !important;color:var(--pr3-ink);letter-spacing:-.025em;text-wrap:balance}
+main.tll-profile-page .tll-profile-title em,main.tll-profile-page .tll-profile-secondary-card h3 em{font-style:italic;color:var(--pr3-rose)}
+main.tll-profile-page .tll-profile-lede{font-family:var(--pr3-body);color:var(--pr3-text2);text-wrap:pretty}
+
+/* Eyebrows: JetBrains Mono, teal on light; the rose ones use the small-text rose. */
+main.tll-profile-page .tll-eyebrow-teal,main.tll-profile-page .tll-eyebrow-rose{font-family:var(--pr3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:.18em !important;text-transform:uppercase}
+main.tll-profile-page .tll-eyebrow-teal{color:var(--pr3-teal) !important}
+main.tll-profile-page .tll-eyebrow-rose{color:var(--pr3-rose-t) !important}
+
+/* Tiles and cards on cream, 1px line, Playfair 800 titles. */
+main.tll-profile-page .tll-profile-tile,main.tll-profile-page .tll-profile-secondary-card{background-color:var(--pr3-cream);border:1px solid var(--pr3-line);border-radius:4px;color:var(--pr3-ink)}
+main.tll-profile-page .tll-profile-tile{transition:border-color 150ms ease-out,transform 150ms ease-out}
+main.tll-profile-page .tll-profile-tile-icon{border-radius:4px;background-color:var(--pr3-paper);border:1px solid var(--pr3-line)}
+main.tll-profile-page .tll-profile-tile-title,main.tll-profile-page .tll-profile-secondary-card h3{font-family:var(--pr3-head) !important;font-weight:800 !important;font-style:normal;font-size:22px;line-height:1.15;color:var(--pr3-ink);text-wrap:balance}
+main.tll-profile-page .tll-profile-tile-copy,main.tll-profile-page .tll-profile-secondary-card p{font-family:var(--pr3-body);font-size:15px;line-height:1.55;color:var(--pr3-text2)}
+main.tll-profile-page .tll-profile-tile-route{font-family:var(--pr3-mono);font-size:11px;letter-spacing:.14em;color:var(--pr3-rose-t);border-top-color:var(--pr3-line)}
+/* R1: the three placeholder blocks are hidden in the Designer; their now-empty holders collapse. */
+main.tll-profile-page .tll-profile-tile-icon:empty,main.tll-profile-page .tll-profile-tile > .tll-eyebrow-teal:empty,main.tll-profile-page .tll-profile-tile-route:empty{display:none}
+main.tll-profile-page .tll-profile-url-frag{font-family:var(--pr3-mono);font-size:13px;background:var(--pr3-paper);border-color:var(--pr3-line);overflow-wrap:anywhere}
+main.tll-profile-page .tll-profile-secondary-card p a{color:var(--pr3-ink);text-decoration:underline;text-decoration-color:var(--pr3-teal);text-underline-offset:3px}
+
+/* Buttons: 44px targets. Rose CTA on #D63859 with white; teal CTA keeps its teal with cream text. */
+main.tll-profile-page .tll-cta-rose,main.tll-profile-page .tll-cta-ghost-dark{display:inline-flex;align-items:center;justify-content:center;min-height:44px;box-sizing:border-box;transition:background-color 150ms ease-out,transform 150ms ease-out}
+main.tll-profile-page .tll-cta-rose{background-color:var(--pr3-rose-b);color:#fff}
+main.tll-profile-page .tll-profile-logout-link{display:inline-flex;align-items:center;min-height:44px;color:var(--pr3-muted);font-family:var(--pr3-mono);transition:color 150ms ease-out}
+
+/* Focus: 3px ink ring. */
+main.tll-profile-page a:focus-visible{outline:3px solid var(--pr3-ink) !important;outline-offset:3px !important}
+main.tll-profile-page .tll-profile-tile:focus-visible,main.tll-profile-page .tll-profile-secondary-card a:focus-visible{border-radius:4px}
+main.tll-profile-page .tll-cta-rose:focus-visible,main.tll-profile-page .tll-cta-ghost-dark:focus-visible{border-radius:999px}
+
+/* Motion: hover on fine pointers only, press everywhere. */
+@media (hover:hover) and (pointer:fine){
+  main.tll-profile-page .tll-profile-tile:hover{border-color:var(--pr3-teal)}
+  main.tll-profile-page .tll-cta-rose:hover{background-color:#C02E4E}
+  main.tll-profile-page .tll-profile-logout-link:hover{color:var(--pr3-rose-t)}
+}
+main.tll-profile-page .tll-profile-tile:active,main.tll-profile-page .tll-cta-rose:active,main.tll-profile-page .tll-cta-ghost-dark:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){
+  main.tll-profile-page .tll-profile-tile,main.tll-profile-page .tll-cta-rose,main.tll-profile-page .tll-cta-ghost-dark,main.tll-profile-page .tll-profile-logout-link{transition:none}
+  main.tll-profile-page .tll-profile-tile:active,main.tll-profile-page .tll-cta-rose:active,main.tll-profile-page .tll-cta-ghost-dark:active{transform:none}
+}

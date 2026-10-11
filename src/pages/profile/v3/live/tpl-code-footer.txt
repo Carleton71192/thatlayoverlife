@@ -1,0 +1,104 @@
+<!-- TLL traveler profile · live stats binder (same contract as /account: number-then-label, labels 'countries'/'continents'/'pets') -->
+<script>
+(function(){
+  if(window.__tllProfStats) return; window.__tllProfStats=1;
+  var CONT={AF:"012 024 072 108 120 132 140 148 174 178 180 204 226 231 232 262 266 270 288 324 384 404 426 430 434 450 454 466 478 480 504 508 516 562 566 624 638 646 678 686 690 694 706 710 716 728 729 732 748 768 788 800 818 834 854 894",AS:"004 031 048 050 051 064 096 104 116 144 156 158 196 275 344 356 360 364 368 376 392 398 400 408 410 414 417 418 422 446 458 462 496 512 524 586 608 626 634 682 702 704 760 762 764 784 792 795 860 887",EU:"008 020 040 056 070 100 112 191 203 208 233 234 246 248 250 276 292 300 348 352 372 380 428 438 440 442 470 492 498 499 528 578 616 620 642 643 674 688 703 705 724 752 756 804 807 826",NA:"028 044 052 060 084 124 188 192 212 214 222 304 308 320 332 340 388 484 531 533 558 591 630 659 660 662 670 780 840",SA:"032 068 076 152 170 218 238 254 328 600 604 740 858 862",OC:"016 036 090 184 242 258 296 520 540 548 554 570 583 584 585 598 772 776 798 882",AN:"010"};
+  var C2K={}; Object.keys(CONT).forEach(function(k){CONT[k].split(" ").forEach(function(c){C2K[c]=k;});});
+  function setStat(label,val){
+    var els=[].slice.call(document.querySelectorAll("div,span,p")).filter(function(e){return e.children.length===0&&e.textContent.trim().toLowerCase()===label;});
+    els.forEach(function(e){var n=e.previousElementSibling;if(n&&/^\d+$/.test(n.textContent.trim()))n.textContent=String(val);});
+  }
+  function apply(d){
+    if(!d||d.v!==2||!d.states) return;
+    var codes=Object.keys(d.states);
+    var conts={}; codes.forEach(function(c){var k=C2K[c]; if(k)conts[k]=1;});
+    setStat("countries",codes.length);
+    setStat("continents",Object.keys(conts).length);
+  }
+  function boot(){
+    var ls=null; try{ls=JSON.parse(localStorage.getItem("tllStates")||"null");}catch(e){}
+    if(ls&&ls.v===2){apply(ls);return;}
+    var n=0,iv=setInterval(function(){
+      var ms=window.$memberstackDom;
+      if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){
+        if(!r||!r.data)return;
+        return ms.getMemberJSON().then(function(mj){apply(mj&&mj.data&&mj.data.tllStates);});
+      }).catch(function(){});}
+      else if(++n>40){clearInterval(iv);}
+    },250);
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+  setTimeout(boot,1500);
+})();
+</script>
+<script id="tll-prof-v2-js">
+/* TLL public profile v2 (2026-09-29, screen 11). Link rows come from the CMS; the href is copied from the bound URL line so no row ever points at "#".
+   Stories are read from the live /stories shelf by byline name, never typed. Counts on this page are counted, not written. */
+(function(){
+function q(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+function first(n){return (n||'').trim().split(/\s+/)[0]||'';}
+function run(){
+var nameEl=document.querySelector('[data-tll-prof="name"]');var name=nameEl?nameEl.textContent.trim():'';var fn=first(name);
+q('[data-tll-prof="badges"] > *').forEach(function(b){if(!b.textContent.trim())b.style.display='none';});
+q('[data-tll-prof="meta"],[data-tll-prof="home"],[data-tll-prof="pronouns"]').forEach(function(e){if(!e.textContent.trim())e.style.display='none';});
+var since=document.querySelector('[data-tll-prof="n-since"]');if(since){var d=new Date(since.textContent.trim());if(!isNaN(d.getTime()))since.textContent=String(d.getFullYear());else if(!since.textContent.trim())since.closest('[data-tll-prof="stat"]').style.display='none';}
+q('[data-tll-prof="n-countries"],[data-tll-prof="n-continents"]').forEach(function(e){if(!e.textContent.trim())e.closest('[data-tll-prof="stat"]').style.display='none';});
+q('[data-tll-prof="voice-card"]').forEach(function(c){var t=c.querySelector('[data-tll-prof="trust"],[data-tll-prof="opinion"]');if(!t||!t.textContent.trim())c.style.display='none';});
+if(!q('[data-tll-prof="voice-card"]').some(function(c){return c.style.display!=='none';})){var vs=document.querySelector('[data-tll-prof="voice"]');if(vs)vs.style.display='none';}
+var lt=document.querySelector('[data-tll-prof="links-title"]');if(lt&&fn)lt.textContent='Find '+fn+' elsewhere';
+var live=0;q('[data-tll-link]').forEach(function(a){var u=a.querySelector('[data-tll-prof="link-url"]');var href=u?u.textContent.trim():'';if(!/^https?:\/\//i.test(href)){a.style.display='none';return;}a.setAttribute('href',href);u.textContent=href.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,'');live++;});
+var le=document.querySelector('[data-tll-prof="links-empty"]');if(le)le.style.display=live?'none':'';
+var ft=document.querySelector('[data-tll-prof="filed-title"]');if(ft&&fn)ft.textContent='Filed by '+fn;
+var list=document.querySelector('[data-tll-prof="filed-list"]'),fe=document.querySelector('[data-tll-prof="filed-empty"]'),ns=document.querySelector('[data-tll-prof="n-stories"]');
+if(!list||!name)return;
+fetch('/stories').then(function(r){return r.text();}).then(function(h){
+var doc=new DOMParser().parseFromString(h,'text/html');var cards=q('a.tll-lib-card,[data-tll-card]',doc).filter(function(c){var img=c.querySelector('.tll-lib-byline-img');var by=(img&&img.getAttribute('alt'))||'';var txt=c.textContent||'';return by.trim().toLowerCase()===name.toLowerCase()||txt.toLowerCase().indexOf(name.toLowerCase())>-1;});
+var seen={};cards=cards.filter(function(c){var h=c.getAttribute('href')||c.id;if(!h||seen[h])return false;seen[h]=1;return true;});
+if(ns)ns.textContent=String(cards.length);
+if(!cards.length){if(fe)fe.style.display='';return;}
+if(fe)fe.style.display='none';
+cards.slice(0,6).forEach(function(c){var href=c.getAttribute('href')||('/stories/'+c.id);if(href&&!/^\/stories\//.test(href)&&c.id)href='/stories/'+c.id;var title=(c.querySelector('h3,h2,.tll-lib-title')||{}).textContent||'';var meta=(c.querySelector('.tll-lib-meta')||{}).textContent||'';
+var a=document.createElement('a');a.href=href;a.className='tll-prof-story';a.innerHTML='<span class="tll-prof-story-meta"></span><span class="tll-prof-story-title"></span>';a.querySelector('.tll-prof-story-meta').textContent=meta.trim().replace(/\s+/g,' ');a.querySelector('.tll-prof-story-title').textContent=title.trim();list.appendChild(a);});
+}).catch(function(){if(fe)fe.style.display='';});
+}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
+<script id="tll-prof-dir-js-v1">
+/* Directory layer on the public profile (board D2, 30 Sep 2026). Finds this member's Directory item by profile slug. Renders only switched-on links (rel noopener nofollow ugc, new tab). Contact goes to Instagram, a WhatsApp Business short link or the relay; never a number or an email. */
+(function(){
+  var slug=(location.pathname.match(/\/contributors\/([^\/?#]+)/)||[])[1]||''; if(!slug) return; slug=decodeURIComponent(slug).toLowerCase();
+  var node=[].slice.call(document.querySelectorAll('[data-tll-dir]')).filter(function(n){return (n.dataset.slug||'').toLowerCase()===slug;})[0]; if(!node) return;
+  var d=node.dataset, esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var flags=(d.flags||'').split(/\s+/), links=[]; try{links=JSON.parse(d.links||'[]')}catch(e){}
+  var name=(document.querySelector('[data-tll-prof="name"]')||{}).textContent||d.name||''; name=name.trim();
+  var badges=document.querySelector('[data-tll-prof="badges"]');
+  if(badges){['expat','creator','press'].forEach(function(k){if(flags.indexOf(k)>-1){var b=document.createElement('div');b.setAttribute('data-tll-prof','badge-dir');b.textContent=k==='press'&&flags.indexOf('verified')>-1?'Verified press':k;badges.appendChild(b);}});}
+  var hero=document.querySelector('[data-tll-prof="dir-hero"]');
+  if(hero&&flags.indexOf('expat')>-1&&d.lives){
+    var lv=hero.querySelector('[data-tll-prof="dir-lives"]'); if(lv) lv.textContent='Lives in '+d.lives+(d.since?' since '+d.since:'')+(d.knows?' · Knows '+d.knows:'');
+    var tags=(d.tags||'').split(',').map(function(t){return t.trim()}).filter(Boolean);
+    var tw=hero.querySelector('[data-tll-prof="dir-tags"]'), tl=hero.querySelector('[data-tll-prof="dir-tags-label"]');
+    if(tw) tw.innerHTML=tags.map(function(t){return '<span>'+esc(t)+'</span>'}).join('');
+    if(tl) tl.style.display=tags.length?'':'none';
+    hero.removeAttribute('hidden');
+  }
+  var LABEL={website:'Blog or website',newsletter:'Newsletter',instagram:'Instagram',tiktok:'TikTok',youtube:'YouTube',strava:'Strava',other:'Everything else'};
+  var box=document.querySelector('[data-tll-prof="dir-links"]');
+  if(box&&links.length){
+    var hrefs={};
+    box.innerHTML=links.filter(function(l){return /^https?:\/\//i.test(l.url||'')}).map(function(l){hrefs[l.url.replace(/\/$/,'').toLowerCase()]=1;return '<a class="tll-link-row" data-tll-link="dir-'+esc(l.type)+'" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow ugc"><span data-tll-prof="link-platform">'+esc(LABEL[l.type]||l.type)+'</span><span data-tll-prof="link-url">'+esc(l.url.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,''))+'</span></a>'}).join('');
+    if(box.children.length){ box.removeAttribute('hidden'); var le=document.querySelector('[data-tll-prof="links-empty"]'); if(le) le.style.display='none';
+      [].forEach.call(document.querySelectorAll('[data-tll-prof="links-list"] [data-tll-link]'),function(a){var h=(a.getAttribute('href')||'').replace(/\/$/,'').toLowerCase(); if(hrefs[h]) a.style.display='none';}); }
+  }
+  var cb=document.querySelector('[data-tll-prof="dir-contact"]');
+  if(cb){
+    var cm=(d.cmode||'').toLowerCase(), href='';
+    if(cm!=='none'){ if(d.ig) href='https://www.instagram.com/'+encodeURIComponent(d.ig.replace(/^@/,'')); else if(d.wa&&/^https:\/\/wa\.me\/message\//i.test(d.wa)) href=d.wa; else if(flags.indexOf('relay')>-1) href='/contact?relay='+encodeURIComponent(slug); }
+    var btn=cb.querySelector('[data-tll-prof="dir-contact-btn"]'), note=cb.querySelector('[data-tll-prof="dir-contact-note"]');
+    if(btn){ if(href){ btn.setAttribute('href',href); if(/^https?:/.test(href)){btn.setAttribute('target','_blank');btn.setAttribute('rel','noopener nofollow ugc');} } else { btn.setAttribute('hidden',''); if(note) note.textContent='Not accepting contact right now.'; } }
+    var rep=cb.querySelector('[data-tll-prof="dir-report"]'); if(rep) rep.setAttribute('href','mailto:hello@thatlayover.life?subject='+encodeURIComponent('REPORT · '+name+' · /contributors/'+slug));
+    cb.removeAttribute('hidden');
+  }
+})();
+</script>

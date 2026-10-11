@@ -1,0 +1,16 @@
+/* TLL /profile 3.0 (pr3, 11 Oct 2026). R3 and R4 copy, set on screen only because both sentences share a paragraph with a
+   live link (R3: the mailto, R4: the data-ms-member slug), which a Designer text edit would remove. R4 slug: the same read-only
+   Memberstack call the existing footer script makes; the data-ms-member element is only filled when it still shows "your-slug". */
+(function(){
+  function swap(root,from,to){if(!root)return;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(t.nodeValue.indexOf(from)>-1){t.nodeValue=t.nodeValue.replace(from,to);return;}}}
+  function run(){
+    var main=document.querySelector('main.tll-profile-page');if(!main)return;
+    swap(main,'Twelve answered questions, six routed help cards. Story corrections, takedowns, account deletion, appeals. Real human at ','Answers, and help for story corrections, takedowns, account deletion and appeals. A real human at ');
+    swap(main,'Your public profile is at ','Your public profile lives at ');
+    swap(main,'. Linktree-style for sharing, dashboard-style for managing. Share it everywhere.',', and it works like a Linktree page you can hand to anyone.');
+    var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++n>40)clearInterval(iv);return;}clearInterval(iv);
+      ms.getCurrentMember().then(function(r){var s=r&&r.data&&r.data.customFields&&r.data.customFields['custom-slug'];if(!s)return;
+        var el=main.querySelector('.tll-profile-url-frag [data-ms-member="custom-slug"]');if(el&&el.textContent.trim()==='your-slug')el.textContent=s;}).catch(function(){});},250);
+  }
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();

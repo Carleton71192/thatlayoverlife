@@ -1,0 +1,7 @@
+<script>
+/* Profile: point "View public profile" at the member's own contributor page (2026-09-21). Server fallback is /travelers. */
+(function(){
+function fix(slug){if(!slug)return;[].forEach.call(document.querySelectorAll('a.tll-cta-ghost-dark[href="/travelers"]'),function(a){if(/public profile/i.test(a.textContent))a.setAttribute('href','/contributors/'+encodeURIComponent(slug));});}
+var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){var s=r&&r.data&&r.data.customFields&&r.data.customFields['custom-slug'];fix(s);}).catch(function(){});}else if(++n>40)clearInterval(iv);},250);
+})();
+</script>
