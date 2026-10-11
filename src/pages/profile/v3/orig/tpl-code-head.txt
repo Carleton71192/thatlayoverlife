@@ -1,0 +1,83 @@
+<meta property="og:image" content="{{wf {"path":"avatar","type":"ImageRef"} }}">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfilePage","url":"https://www.thatlayover.life/contributors/{{wf {"path":"slug","type":"PlainText"} }}","name":"{{wf {"path":"name","type":"PlainText"} }} · That Layover Life","mainEntity":{"@type":"Person","name":"{{wf {"path":"name","type":"PlainText"} }}","url":"https://www.thatlayover.life/contributors/{{wf {"path":"slug","type":"PlainText"} }}","description":"{{wf {"path":"bio-short","type":"PlainText"} }}","image":"{{wf {"path":"avatar","type":"ImageRef"} }}","jobTitle":"{{wf {"path":"fun-title","type":"PlainText"} }}","homeLocation":{"@type":"Place","name":"{{wf {"path":"home-base","type":"PlainText"} }}"}},"inLanguage":"en"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Travelers","item":"https://www.thatlayover.life/travelers"},{"@type":"ListItem","position":3,"name":"{{wf {"path":"name","type":"PlainText"} }}","item":"https://www.thatlayover.life/contributors/{{wf {"path":"slug","type":"PlainText"} }}"}]}]}</script>
+<link rel="canonical" href="https://www.thatlayover.life/contributors/{{wf {"path":"slug","type":"PlainText"} }}">
+<style id="tll-prof-v2">
+/* Public profile v2 (2026-09-29, screen 11). Tokens: Midnight #0A0B14, cream #F7F1E8, Deep Maldives #067A79 on light, #00C9C8 on dark, rose #F0507A (#C8325B as text on light), border #E0DACE, muted #6B6660. */
+[data-tll-prof="hero"]{padding:72px 0 56px}
+[data-tll-prof="hero-grid"]{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+[data-tll-prof="avatar-img"]{width:160px;height:160px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px #F0507A;flex:none;background:#16182a}
+[data-tll-prof="hero-id"]{flex:1;min-width:260px}
+[data-tll-prof="badges"]{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+[data-tll-prof="badges"] > div{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:#0A0B14;background:#00C9C8;padding:5px 10px;border-radius:4px}
+[data-tll-prof="badges"] > [data-tll-prof="badge-fun"]{background:transparent;color:#F7F1E8;border:1px solid rgba(247,241,232,.35)}
+[data-tll-prof="name"]{color:#F7F1E8;margin:0 0 10px}
+[data-tll-prof="meta"],[data-tll-prof="home"],[data-tll-prof="pronouns"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#cfcbc4;margin-top:6px}
+[data-tll-prof="stats"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px;border-top:1px solid rgba(247,241,232,.15);padding-top:24px}
+[data-tll-prof="stat"] > :first-child{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:38px;line-height:1;color:#F7F1E8;margin:0}
+[data-tll-prof="stat-label"]{font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:10px !important;letter-spacing:2px;text-transform:uppercase;color:#00C9C8;font-weight:600 !important;margin:8px 0 0}
+[data-tll-prof="voice"]{background:#FDF9F3}
+[data-tll-prof="voice-grid"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+[data-tll-prof="voice-card"]{background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:24px 26px}
+[data-tll-prof="voice-label"]{font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:11px !important;letter-spacing:2.5px;text-transform:uppercase;color:#067A79;font-weight:600 !important;margin:0 0 12px;line-height:1.4 !important}
+[data-tll-prof="trust"],[data-tll-prof="opinion"]{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1.3;color:#0A0B14}
+[data-tll-prof="links"]{background:#F7F1E8}
+[data-tll-prof="links-title"],[data-tll-prof="filed-title"]{font-size:clamp(28px,3.4vw,40px) !important;margin:0 0 20px;color:#0A0B14}
+[data-tll-prof="links-list"]{display:flex;flex-direction:column;gap:10px;max-width:640px}
+[data-tll-link]{display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:1px solid #E0DACE;border-radius:10px;padding:14px 18px;text-decoration:none;color:#0A0B14;transition:border-color .15s ease,transform .15s ease}
+[data-tll-link]:hover{border-color:#0A0B14;transform:translateY(-1px)}
+[data-tll-prof="link-platform"]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-weight:700 !important;font-size:16px !important;margin:0}
+[data-tll-prof="link-url"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#6B6660;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%}
+[data-tll-prof="links-empty"],[data-tll-prof="filed-empty"]{border:2px dashed #c9b89a;border-radius:10px;padding:22px;text-align:center;color:#6B6660;max-width:640px;margin:0}
+[data-tll-prof="filed"]{background:#FDF9F3}
+[data-tll-prof="filed-list"]{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.tll-prof-story{display:block;background:#fff;border:1px solid #E0DACE;border-radius:12px;padding:18px 20px;text-decoration:none;color:#0A0B14;transition:transform .15s ease,box-shadow .15s ease}
+.tll-prof-story:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,11,20,.10)}
+.tll-prof-story-meta{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin-bottom:8px}
+.tll-prof-story-title{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:19px;line-height:1.25}
+[data-tll-prof="disclosure"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#6B6660;margin:22px 0 0;line-height:1.7}
+@media(max-width:700px){[data-tll-prof="hero"]{padding:48px 0 40px}[data-tll-prof="avatar-img"]{width:112px;height:112px}[data-tll-prof="stats"]{grid-template-columns:repeat(2,minmax(0,1fr))}[data-tll-prof="stat"] > :first-child{font-size:30px}[data-tll-prof="voice-grid"]{grid-template-columns:1fr}[data-tll-prof="link-url"]{max-width:50%}}
+</style>
+<style id="tll-prof-dir-v1">
+/* Directory layer on the public profile (board D2, 30 Sep 2026). Reads the member's Directory item; renders only switched-on links; contact never shows a number or an email. */
+[data-tll-prof="dir-src"]{display:none}
+[data-tll-prof="dir-hero"][hidden],[data-tll-prof="dir-links"][hidden],[data-tll-prof="dir-contact"][hidden]{display:none}
+[data-tll-prof="dir-hero"]{margin-top:14px}
+[data-tll-prof="dir-lives"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#cfcbc4}
+[data-tll-prof="dir-tags-label"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#00C9C8;font-weight:600;margin:16px 0 8px}
+[data-tll-prof="dir-tags"]{display:flex;gap:6px;flex-wrap:wrap}
+[data-tll-prof="dir-tags"] span{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(247,241,232,.35);color:#F7F1E8;border-radius:999px;padding:6px 10px}
+[data-tll-prof="badges"] > [data-tll-prof="badge-dir"]{background:#F0507A;color:#fff}
+[data-tll-prof="dir-links"]{display:flex;flex-direction:column;gap:10px;max-width:640px;margin-bottom:10px}
+[data-tll-prof="dir-contact"]{max-width:640px;margin-top:22px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+[data-tll-prof="dir-contact-btn"]{display:inline-block;background:#0A0B14;color:#F7F1E8;text-decoration:none;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;border-radius:999px}
+[data-tll-prof="dir-contact-btn"][hidden]{display:none}
+[data-tll-prof="dir-contact-note"]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#6B6660;line-height:1.7;margin:0}
+[data-tll-prof="dir-report"]{font:600 10px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6B6660;text-decoration:none;margin-top:8px}
+[data-tll-prof="dir-report"]:hover{color:#C8325B}
+</style>
+<style id="tll-v9-j14-profile-v1">
+/* v9 J14 profile header (6 Oct 2026, DRAFT): the public profile hero becomes the horizontal luggage tag from DESIGN-SPEC-v9 (corners cut on the
+   left at 26px, grommet 24px in and vertically centred, dashed stitch at 58px, PROPERTY OF · TLL TRAVELER row). Cream tag on the Ink hero, so the
+   text inside flips to Ink and the teal badge to #067A79. CSS plus a 6-line wrapper script (the drop shadow needs a wrapper because clip-path eats
+   box-shadow). Nothing removed: avatar, badges, name, meta, home, pronouns, directory block and stats all stay. */
+.tll-prof-tagwrap{display:block;filter:drop-shadow(0 14px 26px rgba(10,11,20,.35));transform:rotate(-.6deg);transform-origin:50% 50%;margin:0 0 8px}
+[data-tll-prof="hero-grid"]{position:relative;background:#F7F1E8;color:#0A0B14;clip-path:polygon(26px 0,100% 0,100% 100%,26px 100%,0 calc(100% - 26px),0 26px);padding:46px 32px 30px 92px !important;gap:24px !important;align-items:center !important;background-image:repeating-linear-gradient(180deg,#c9b89a 0 6px,transparent 6px 12px);background-size:1px 100%;background-repeat:no-repeat;background-position:58px 0}
+[data-tll-prof="hero-grid"]::before{content:"";position:absolute;left:24px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;background:#0A0B14;box-shadow:inset 0 0 0 4px #c9b89a}
+[data-tll-prof="hero-grid"]::after{content:"PROPERTY OF \00b7  TLL TRAVELER";position:absolute;left:92px;top:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:#6B6660;font-weight:600}
+[data-tll-prof="avatar-img"]{box-shadow:0 0 0 3px #F0507A !important}
+[data-tll-prof="name"]{color:#0A0B14 !important;font-size:clamp(34px,4.4vw,72px) !important;line-height:.95 !important;letter-spacing:-.03em !important}
+[data-tll-prof="meta"],[data-tll-prof="home"],[data-tll-prof="pronouns"],[data-tll-prof="dir-lives"]{color:#6B6660 !important}
+[data-tll-prof="badges"] > div{background:#067A79 !important;color:#F7F1E8 !important}
+[data-tll-prof="badges"] > [data-tll-prof="badge-fun"]{background:transparent !important;color:#0A0B14 !important;border:1px solid #0A0B14 !important}
+[data-tll-prof="badges"] > [data-tll-prof="badge-dir"]{background:#C8325B !important;color:#fff !important}
+[data-tll-prof="dir-tags-label"]{color:#067A79 !important}
+[data-tll-prof="dir-tags"] span{border-color:#0A0B14 !important;color:#0A0B14 !important}
+[data-tll-prof="stats"]{margin-top:40px !important}
+@media(max-width:700px){[data-tll-prof="hero-grid"]{padding:44px 20px 24px 64px !important;background-position:44px 0;clip-path:polygon(20px 0,100% 0,100% 100%,20px 100%,0 calc(100% - 20px),0 20px)}[data-tll-prof="hero-grid"]::before{left:14px}[data-tll-prof="hero-grid"]::after{left:64px;top:14px}}
+@media(prefers-reduced-motion:reduce){.tll-prof-tagwrap{transform:none}}
+</style>
+<script id="tll-v9-j14-profile-js-v1">
+/* Wraps the hero grid once so the drop shadow survives the clip-path. Additive: the grid and every child keep their ids and attributes. */
+(function(){function w(){var g=document.querySelector('[data-tll-prof="hero-grid"]');if(!g||g.closest('.tll-prof-tagwrap'))return;var d=document.createElement('div');d.className='tll-prof-tagwrap';g.parentNode.insertBefore(d,g);d.appendChild(g);}
+if(document.readyState!=='loading')w();else document.addEventListener('DOMContentLoaded',w);})();
+</script>

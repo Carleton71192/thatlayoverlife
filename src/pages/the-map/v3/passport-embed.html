@@ -1,0 +1,144 @@
+<!-- tll-mp3-passport-v1 (Map 3.0, rows M4 to M12, built 10 Oct 2026 from reports/profile-map-3.0/2026-10-10-proposed-changes.md). Reads tllStates only, never writes it. A stamp or a Depth button opens the existing footer editor on that country. Styles live in the page footer block tll-mp3-map-v1. Source: src/pages/the-map/v3/. -->
+<section id="tll-passport" class="mp3-pp" aria-labelledby="tll-passport-h">
+<div class="mp3-ink"><div class="mp3-in">
+<div data-mp3-member>
+<p class="mp3-eye">Your passport</p>
+<p class="mp3-big"><span class="mp3-n" data-mp3="total">0</span><span class="mp3-of">/249</span></p>
+<p class="mp3-sub">Countries and territories · <span data-mp3="togo">249</span> to go · <span data-mp3="lived">0</span> lived in · <span data-mp3="lay">0</span> <span data-mp3="layw">layovers</span>, counted apart</p>
+</div>
+<h2 id="tll-passport-h" class="mp3-h2">Stamp it, <em>or list it.</em></h2>
+<p class="mp3-lede" data-mp3-member>The map above stays how you know it. Down here are the same countries as a wall of stamps, or a plain list you can scan.</p>
+<div data-mp3-visitor hidden><p class="mp3-lede">Sign in and your countries show up here as stamps or a list.</p><a class="mp3-cta" href="/signup">Start your own map →</a></div>
+<ul class="mp3-tiles" data-mp3-member aria-label="Countries stamped by region"></ul>
+</div></div>
+<div data-mp3-member>
+<div class="mp3-bar" id="mp3-bar">
+<div class="mp3-grp mp3-views" role="group" aria-label="View"><button type="button" data-v="stamps" aria-pressed="true">Stamps</button><button type="button" data-v="list" aria-pressed="false">List</button></div>
+<div class="mp3-find"><label for="mp3-q">Find a country</label><input id="mp3-q" type="search" placeholder="Country or ISO code" autocomplete="off" spellcheck="false"></div>
+<div class="mp3-grp mp3-chips" role="group" aria-label="Region" data-g="reg"></div>
+<div class="mp3-grp mp3-chips mp3-st" role="group" aria-label="Show" data-g="st"></div>
+<span class="mp3-shown" role="status" aria-live="polite" id="mp3-shown"></span>
+</div>
+<p class="mp3-msg" id="mp3-load" role="status">Unpacking 249 countries and territories…</p>
+<p class="mp3-msg" id="mp3-err" role="alert"></p>
+<p class="mp3-msg" id="mp3-none" role="status" hidden>No country matches that. Check the spelling, <em>or the filters.</em></p>
+<div class="mp3-view" id="mp3-view"></div>
+</div>
+</section>
+<script id="tll-mp3-passport-js-v1">
+(function(){
+if(window.__mp3pp)return;window.__mp3pp=1;
+var sec=document.getElementById('tll-passport');if(!sec)return;
+var pub=document.documentElement.classList.contains('tll-map-public');
+[].forEach.call(sec.querySelectorAll('[data-mp3-member]'),function(e){e.hidden=pub;});
+[].forEach.call(sec.querySelectorAll('[data-mp3-visitor]'),function(e){e.hidden=!pub;});
+var D="020ADANDEAndorra|784AEAREAUnited Arab Emirates|004AFAFGAAfghanistan|028AGATGMAntigua and Barbuda|660AIAIAMAnguilla|008ALALBEAlbania|051AMARMAArmenia|024AOAGOFAngola|010AQATANAntarctica|032ARARGMArgentina|016ASASMOAmerican Samoa|040ATAUTEAustria|036AUAUSOAustralia|533AWABWMAruba|248AXALAEÅland Islands|031AZAZEAAzerbaijan|070BABIHEBosnia and Herzegovina|052BBBRBMBarbados|050BDBGDABangladesh|056BEBELEBelgium|854BFBFAFBurkina Faso|100BGBGREBulgaria|048BHBHRABahrain|108BIBDIFBurundi|204BJBENFBenin|652BLBLMMSaint Barthélemy|060BMBMUMBermuda|096BNBRNABrunei|068BOBOLMBolivia|535BQBESMCaribbean Netherlands|076BRBRAMBrazil|044BSBHSMBahamas|064BTBTNABhutan|074BVBVTNBouvet Island|072BWBWAFBotswana|112BYBLREBelarus|084BZBLZMBelize|124CACANMCanada|166CCCCKOCocos (Keeling) Islands|180CDCODFDR Congo|140CFCAFFCentral African Republic|178CGCOGFCongo|756CHCHEESwitzerland|384CICIVFCôte d'Ivoire|184CKCOKOCook Islands|152CLCHLMChile|120CMCMRFCameroon|156CNCHNAChina|170COCOLMColombia|188CRCRIMCosta Rica|192CUCUBMCuba|132CVCPVFCape Verde|531CWCUWMCuraçao|162CXCXROChristmas Island|196CYCYPECyprus|203CZCZEECzechia|276DEDEUEGermany|262DJDJIFDjibouti|208DKDNKEDenmark|212DMDMAMDominica|214DODOMMDominican Republic|012DZDZAFAlgeria|218ECECUMEcuador|233EEESTEEstonia|818EGEGYFEgypt|732EHESHFWestern Sahara|232ERERIFEritrea|724ESESPESpain|231ETETHFEthiopia|246FIFINEFinland|242FJFJIOFiji|238FKFLKMFalkland Islands|583FMFSMOMicronesia|234FOFROEFaroe Islands|250FRFRAEFrance|266GAGABFGabon|826GBGBREUnited Kingdom|308GDGRDMGrenada|268GEGEOAGeorgia|254GFGUFMFrench Guiana|831GGGGYEGuernsey|288GHGHAFGhana|292GIGIBEGibraltar|304GLGRLMGreenland|270GMGMBFGambia|324GNGINFGuinea|312GPGLPMGuadeloupe|226GQGNQFEquatorial Guinea|300GRGRCEGreece|239GSSGSNSouth Georgia and the South Sandwich Islands|320GTGTMMGuatemala|316GUGUMOGuam|624GWGNBFGuinea-Bissau|328GYGUYMGuyana|344HKHKGAHong Kong|334HMHMDNHeard Island and McDonald Islands|340HNHNDMHonduras|191HRHRVECroatia|332HTHTIMHaiti|348HUHUNEHungary|360IDIDNAIndonesia|372IEIRLEIreland|376ILISRAIsrael|833IMIMNEIsle of Man|356ININDAIndia|086IOIOTFBritish Indian Ocean Territory|368IQIRQAIraq|364IRIRNAIran|352ISISLEIceland|380ITITAEItaly|832JEJEYEJersey|388JMJAMMJamaica|400JOJORAJordan|392JPJPNAJapan|404KEKENFKenya|417KGKGZAKyrgyzstan|116KHKHMACambodia|296KIKIROKiribati|174KMCOMFComoros|659KNKNAMSaint Kitts and Nevis|408KPPRKANorth Korea|410KRKORASouth Korea|414KWKWTAKuwait|136KYCYMMCayman Islands|398KZKAZAKazakhstan|418LALAOALaos|422LBLBNALebanon|662LCLCAMSaint Lucia|438LILIEELiechtenstein|144LKLKAASri Lanka|430LRLBRFLiberia|426LSLSOFLesotho|440LTLTUELithuania|442LULUXELuxembourg|428LVLVAELatvia|434LYLBYFLibya|504MAMARFMorocco|492MCMCOEMonaco|498MDMDAEMoldova|499MEMNEEMontenegro|663MFMAFMSaint Martin|450MGMDGFMadagascar|584MHMHLOMarshall Islands|807MKMKDENorth Macedonia|466MLMLIFMali|104MMMMRAMyanmar|496MNMNGAMongolia|446MOMACAMacao|580MPMNPONorthern Mariana Islands|474MQMTQMMartinique|478MRMRTFMauritania|500MSMSRMMontserrat|470MTMLTEMalta|480MUMUSFMauritius|462MVMDVAMaldives|454MWMWIFMalawi|484MXMEXMMexico|458MYMYSAMalaysia|508MZMOZFMozambique|516NANAMFNamibia|540NCNCLONew Caledonia|562NENERFNiger|574NFNFKONorfolk Island|566NGNGAFNigeria|558NINICMNicaragua|528NLNLDENetherlands|578NONORENorway|524NPNPLANepal|520NRNRUONauru|570NUNIUONiue|554NZNZLONew Zealand|512OMOMNAOman|591PAPANMPanama|604PEPERMPeru|258PFPYFOFrench Polynesia|598PGPNGOPapua New Guinea|608PHPHLAPhilippines|586PKPAKAPakistan|616PLPOLEPoland|666PMSPMMSaint Pierre and Miquelon|612PNPCNOPitcairn Islands|630PRPRIMPuerto Rico|275PSPSEAPalestine|620PTPRTEPortugal|585PWPLWOPalau|600PYPRYMParaguay|634QAQATAQatar|638REREUFRéunion|642ROROUERomania|688RSSRBESerbia|643RURUSERussia|646RWRWAFRwanda|682SASAUASaudi Arabia|090SBSLBOSolomon Islands|690SCSYCFSeychelles|729SDSDNFSudan|752SESWEESweden|702SGSGPASingapore|654SHSHNFSaint Helena, Ascension and Tristan da Cunha|705SISVNESlovenia|744SJSJMESvalbard and Jan Mayen|703SKSVKESlovakia|694SLSLEFSierra Leone|674SMSMRESan Marino|686SNSENFSenegal|706SOSOMFSomalia|740SRSURMSuriname|728SSSSDFSouth Sudan|678STSTPFSão Tomé and Príncipe|222SVSLVMEl Salvador|534SXSXMMSint Maarten|760SYSYRASyria|748SZSWZFEswatini|796TCTCAMTurks and Caicos Islands|148TDTCDFChad|260TFATFNFrench Southern Territories|768TGTGOFTogo|764THTHAAThailand|762TJTJKATajikistan|772TKTKLOTokelau|626TLTLSATimor-Leste|795TMTKMATurkmenistan|788TNTUNFTunisia|776TOTONOTonga|792TRTURATürkiye|780TTTTOMTrinidad and Tobago|798TVTUVOTuvalu|158TWTWNATaiwan|834TZTZAFTanzania|804UAUKREUkraine|800UGUGAFUganda|581UMUMIOU.S. Minor Outlying Islands|840USUSAMUnited States|858UYURYMUruguay|860UZUZBAUzbekistan|336VAVATEVatican City|670VCVCTMSaint Vincent and the Grenadines|862VEVENMVenezuela|092VGVGBMBritish Virgin Islands|850VIVIRMU.S. Virgin Islands|704VNVNMAVietnam|548VUVUTOVanuatu|876WFWLFOWallis and Futuna|882WSWSMOSamoa|887YEYEMAYemen|175YTMYTFMayotte|710ZAZAFFSouth Africa|894ZMZMBFZambia|716ZWZWEFZimbabwe|900XKXKXEKosovo";
+var RO=['F','M','A','E','O','N'],RN={F:'Africa',M:'Americas',A:'Asia',E:'Europe',O:'Oceania',N:'Antarctica'};
+var XT={'901':['','','E','Northern Cyprus'],'902':['','','F','Somaliland']};
+var AL={'826':'uk britain great britain england scotland wales northern ireland','840':'usa us america','528':'holland','104':'burma','384':'ivory coast','784':'uae emirates','410':'korea','203':'czech republic','748':'swaziland','132':'cabo verde','626':'east timor','807':'macedonia','792':'turkey turkiye','336':'holy see','180':'drc','900':'kosova'};
+var DW=['Not yet','Layover','Stayed','Lived'],DT=['+ Stamp it','Layover','Stamped ✓','Lived ★'],DC=['is-not','is-lay','is-stay','is-lived'];
+function pad(k){return String(k).padStart(3,'0');}
+function fold(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function flag(a){return a&&a.length===2?a.replace(/./g,function(c){return String.fromCodePoint(127397+c.charCodeAt(0));}):'';}
+var C=[];
+D.split('|').forEach(function(s){C.push(mk(s.slice(0,3),s.slice(3,5),s.slice(5,8),s[8],s.slice(9)));});
+function mk(id,a2,a3,r,n){return {id:id,a2:a2,a3:a3,r:r,n:n,f:fold(n),al:AL[id]||''};}
+var S={v:'stamps',q:'',reg:'all',st:'all'},dep={},tot=0,liv=0,lay=0,lastId=null;
+function rec(){try{var s=JSON.parse(localStorage.getItem('tllStates')||'null');return s&&s.v===2&&s.states?s:null;}catch(e){return null;}}
+/* One counting rule, the same as the editor's tllOwnN: the member's own (non-pet) travelers; Lived + Stayed make the total; layovers apart. */
+function read(){
+  var d=rec(),hum={},any=0,R={lived:3,visited:2,layover:1};dep={};tot=0;liv=0;lay=0;
+  if(!d)return;
+  (d.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=1;}});
+  Object.keys(d.states).forEach(function(k){var row=d.states[k]||{},b=0;Object.keys(row).forEach(function(id){if(any&&!hum[id])return;b=Math.max(b,R[row[id]]||0);});dep[pad(k)]=b;if(b>=2)tot++;if(b===3)liv++;if(b===1)lay++;});
+}
+function list(){var a=C.slice();Object.keys(XT).forEach(function(k){if(dep[k]){var x=XT[k];a.push(mk(k,x[0],x[1],x[2],x[3]));}});return a;}
+function d(c){return dep[c.id]||0;}
+function hit(c){
+  var q=S.q;if(S.reg!=='all'&&c.r!==S.reg)return false;
+  var b=d(c);if(S.st==='been'&&b<2||S.st==='lay'&&b!==1||S.st==='not'&&b!==0)return false;
+  if(!q)return true;
+  if(q.length<=3&&(fold(c.a2)===q||fold(c.a3)===q))return true;
+  return q.length<=3?(c.f.indexOf(q)===0||(' '+c.al).indexOf(' '+q)>-1):(c.f.indexOf(q)>-1||c.al.indexOf(q)>-1);
+}
+function $(s){return sec.querySelector(s);}
+function setT(k,v){[].forEach.call(document.querySelectorAll('[data-mp3="'+k+'"]'),function(e){e.textContent=v;});}
+function chips(){
+  var r=$('[data-g=reg]'),t=$('[data-g=st]');
+  r.innerHTML=[['all','All regions']].concat(RO.map(function(k){return [k,RN[k]];})).map(function(x){return '<button type="button" data-reg="'+x[0]+'" aria-pressed="'+(S.reg===x[0])+'">'+x[1]+'</button>';}).join('');
+  t.innerHTML=[['all','All'],['been','Been'],['lay','Layover'],['not','Not yet']].map(function(x){return '<button type="button" data-st="'+x[0]+'" aria-pressed="'+(S.st===x[0])+'">'+x[1]+'</button>';}).join('');
+}
+function lbl(c){return 'Log or change '+c.n+', '+DW[d(c)].toLowerCase();}
+function stamp(c,i){var b=d(c);return '<button type="button" class="mp3-stamp '+DC[b]+'" data-id="'+c.id+'" data-n="'+esc(c.n)+'" aria-label="'+esc(lbl(c))+'" style="--r:'+(((i*7)%5)-2)*0.7+'deg"><span class="mp3-flag" aria-hidden="true">'+flag(c.a2)+'</span><span class="mp3-iso">'+esc(c.a3)+'</span><span class="mp3-nm">'+esc(c.n)+'</span><span class="mp3-tag">'+DT[b]+'</span></button>';}
+function render(){
+  try{
+    read();var all=list(),shown=all.filter(hit),v=$('#mp3-view'),h='';
+    setT('total',tot);setT('togo',Math.max(0,249-tot));setT('lived',liv);setT('lay',lay);setT('layw',lay===1?'layover':'layovers');
+    $('.mp3-tiles').innerHTML=RO.map(function(k){var a=all.filter(function(c){return c.r===k;}),n=a.filter(function(c){return d(c)>=2;}).length;return '<li><span class="mp3-tn">'+RN[k]+'</span><span class="mp3-tv"><b>'+n+'</b> / '+a.length+'</span><span class="mp3-tb" aria-hidden="true"><i style="width:'+(a.length?n/a.length*100:0).toFixed(1)+'%"></i></span></li>';}).join('');
+    if(S.v==='stamps'){
+      RO.forEach(function(k){var a=shown.filter(function(c){return c.r===k;});if(!a.length)return;var t=all.filter(function(c){return c.r===k;}),n=t.filter(function(c){return d(c)>=2;}).length;
+        h+='<section class="mp3-reg" aria-labelledby="mp3-r-'+k+'"><div class="mp3-rh"><h3 id="mp3-r-'+k+'">'+RN[k]+'</h3><p class="mp3-rn">'+n+' / '+t.length+' stamped</p><span class="mp3-tb" aria-hidden="true"><i style="width:'+(n/t.length*100).toFixed(1)+'%"></i></span></div><div class="mp3-stamps">'+a.map(stamp).join('')+'</div></section>';});
+    }else if(shown.length){
+      var by={};shown.slice().sort(function(a,b){return a.f.localeCompare(b.f);}).forEach(function(c){var L=c.f.charAt(0).toUpperCase();(by[L]=by[L]||[]).push(c);});
+      h='<table class="mp3-table"><caption>Countries and territories, A to Z, with how deep you went in each</caption><thead><tr><th scope="col">Country</th><th scope="col">Region</th><th scope="col">Depth</th></tr></thead>'+Object.keys(by).map(function(L){return '<tbody><tr class="mp3-lt"><th scope="rowgroup" colspan="3">'+L+'</th></tr>'+by[L].map(function(c){var b=d(c);return '<tr><th scope="row"><span class="mp3-flag" aria-hidden="true">'+flag(c.a2)+'</span>'+esc(c.n)+'</th><td>'+RN[c.r]+'</td><td><button type="button" class="mp3-dep '+DC[b]+'" data-id="'+c.id+'" data-n="'+esc(c.n)+'" aria-label="'+esc(lbl(c))+'">'+DW[b]+'</button></td></tr>';}).join('')+'</tbody>';}).join('')+'</table>';
+    }
+    v.innerHTML=h;$('#mp3-none').hidden=!!shown.length;$('#mp3-load').hidden=true;
+    $('#mp3-shown').textContent=shown.length+' shown';
+    explain();
+  }catch(e){$('#mp3-load').hidden=true;$('#mp3-err').textContent="Couldn't load the atlas. Refresh and it usually behaves.";}
+}
+/* M10: the two typed explainer numbers become the member's own; visitors never see those two cards (hidden in CSS). */
+function explain(){
+  var g=document.querySelector('.tll-map-explainer-grid');if(!g)return;
+  var cs=[].filter.call(g.children,function(e){return e.classList.contains('tll-map-explainer-card');});
+  cs.forEach(function(c){var l=c.querySelector('.tll-map-explainer-label');if(l&&!l.querySelector('h2')){var h2=document.createElement('h2');h2.className='mp3-xh';while(l.firstChild)h2.appendChild(l.firstChild);l.appendChild(h2);}});
+  if(!pub&&cs[1]){
+    [[cs[0],tot,'Every country painted rose is a trip that happened.'],[cs[1],Math.max(0,249-tot),'The cream ones. Every one is a conversation at 9am in someone\'s kitchen that has not happened yet.']].forEach(function(x){var n=x[0].querySelector('.tll-map-explainer-num'),b=x[0].querySelector('.tll-map-explainer-body');if(n){n.textContent=x[1];n.setAttribute('data-mp3-set','1');}if(b)b.textContent=x[2];});
+  }
+  var w=cs[2];if(w&&!w.querySelector('.mp3-src')){var p=document.createElement('p');p.className='mp3-src';p.innerHTML='As of July 2026. Source: <a href="https://whc.unesco.org/en/list/" target="_blank" rel="noopener">UNESCO World Heritage List<span class="mp3-sr"> (opens in a new tab)</span></a>';var bd=w.querySelector('.tll-map-explainer-body');if(bd)bd.parentNode.insertBefore(p,bd.nextSibling);else w.appendChild(p);}
+}
+/* Opening the editor: never a write. Click the country's own shape (the footer opens the editor on it), else open the editor and search. */
+function big(){var s=[].slice.call(document.querySelectorAll('svg'));s.sort(function(a,b){return b.querySelectorAll('path').length-a.querySelectorAll('path').length;});return s[0];}
+function edBtn(){return [].filter.call(document.querySelectorAll('button'),function(b){return /Log (a country|or edit countries)/.test(b.textContent);})[0];}
+function term(n){var w=fold(n).replace(/[^a-z ]/g,' ').split(/\s+/).filter(function(x){return x.length>2&&!/^(and|the|saint|island|islands|republic|north|south)$/.test(x);});w.sort(function(a,b){return b.length-a.length;});return w[0]||fold(n);}
+function openEd(id,n){
+  lastId=id;var m=big(),p=null;
+  if(m)[].some.call(m.querySelectorAll('path'),function(x){var q=x.__data__;if(q&&q.properties&&q.id!=null&&pad(q.id)===id){p=x;return true;}});
+  if(p&&document.getElementById('tllX')===null)p=null;
+  if(p)p.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+  else{var b=edBtn();if(b){b.click();var q=document.getElementById('tllQ');if(q){q.value=term(n);q.dispatchEvent(new Event('input',{bubbles:true}));}}else{location.hash='#edit';}}
+  setTimeout(function(){var q=document.getElementById('tllQ');if(q)q.focus({preventScroll:true});},80);
+}
+function back(){if(!lastId)return;var id=lastId;lastId=null;setTimeout(function(){var b=sec.querySelector('[data-id="'+id+'"]');if(b)b.focus({preventScroll:false});},700);}
+sec.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b||!sec.contains(b))return;
+  if(b.dataset.v){S.v=b.dataset.v;[].forEach.call(sec.querySelectorAll('[data-v]'),function(x){x.setAttribute('aria-pressed',x===b);});render();}
+  else if(b.dataset.reg){S.reg=b.dataset.reg;chips();render();}
+  else if(b.dataset.st){S.st=b.dataset.st;chips();render();}
+  else if(b.dataset.id){openEd(b.dataset.id,b.dataset.n);}
+});
+$('#mp3-q').addEventListener('input',function(e){S.q=fold(e.target.value.trim());render();});
+/* M11: the editor's close control becomes a real control, and its depth word reads Stayed (the stored value stays "visited"). */
+function relabel(el){if(!el)return;var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),t;while((t=w.nextNode()))if(t.nodeValue==='Visited')t.nodeValue='Stayed';}
+function ed(){
+  var x=document.getElementById('tllX');if(!x||x.__mp3)return !!x;x.__mp3=1;
+  x.setAttribute('role','button');x.tabIndex=0;x.setAttribute('aria-label','Close');
+  x.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();x.click();}});
+  x.addEventListener('click',back);var sv=document.getElementById('tllSave');if(sv)sv.addEventListener('click',back);
+  var q=document.getElementById('tllQ');if(q&&!q.getAttribute('aria-label'))q.setAttribute('aria-label','Search countries');
+  ['tllL','tllLegend'].forEach(function(i){var el=document.getElementById(i);if(!el)return;relabel(el);new MutationObserver(function(){relabel(el);}).observe(el,{childList:true,subtree:true});});
+  return true;
+}
+function top(){var t=0;[].forEach.call(document.querySelectorAll('body > *, body > * > nav, body > * > header, body > * > div'),function(el){if(el===sec||el.contains(sec))return;var c=getComputedStyle(el);if((c.position==='fixed'||c.position==='sticky')&&el.getBoundingClientRect().top<=1&&el.offsetHeight<140)t=Math.max(t,el.offsetHeight);});sec.style.setProperty('--mp3-top',t+'px');var b=$('#mp3-bar');if(b)sec.style.setProperty('--mp3-bh',b.offsetHeight+'px');}
+function go(){
+  var h=document.querySelector('.tll-map-section-inner');if(h&&!h.querySelector('.mp3-maph')){var m=document.createElement('h2');m.className='mp3-maph mp3-sr';m.textContent='The map';h.insertBefore(m,h.firstChild);}
+  if(pub){explain();return;}
+  chips();render();top();addEventListener('resize',top);
+  addEventListener('tll:states',render);addEventListener('storage',function(e){if(e.key==='tllStates')render();});
+  addEventListener('load',function(){render();top();});
+  var n=0,iv=setInterval(function(){if(ed()||++n>100)clearInterval(iv);},300);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+</script>

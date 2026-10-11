@@ -1,0 +1,141 @@
+<style id="tll-mp3-map-v1">
+/* Map 3.0 (10 Oct 2026, rows M1 to M13 of reports/profile-map-3.0/2026-10-10-proposed-changes.md). Loads after tll-map-redesign so its rules win by order. Restyles only: the editor's logic and every id stay as they are. Source: src/pages/the-map/v3/mp3-style.html */
+.mp3-pp{--ink:#0A0B14;--cream:#F7F1E8;--paper:#FDF9F3;--line:#E0DACE;--rose:#F0507A;--rosei:#C8325B;--teal:#00C9C8;--teali:#067A79;--mute:#6B6660;--muted:#9496AC;--track:#26324D;--edge:#8F8473;--gut:28px;--mp3-top:0px;--mp3-bh:72px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--cream);scroll-margin-top:var(--mp3-top)}
+.mp3-pp [hidden]{display:none!important}
+.mp3-pp *,.mp3-pp *::before,.mp3-pp *::after{box-sizing:border-box}
+.mp3-in{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.mp3-ink{background:var(--ink);color:var(--cream);padding:clamp(64px,10vh,120px) 0 clamp(48px,7vh,84px);border-top:1px solid var(--track)}
+.mp3-eye{margin:0;font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:3px;text-transform:uppercase;color:var(--teal)}
+.mp3-big{display:flex;align-items:flex-end;flex-wrap:wrap;gap:4px 20px;margin:20px 0 0;line-height:.8}
+.mp3-n{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(96px,17vw,280px);letter-spacing:-.04em;font-variant-numeric:lining-nums tabular-nums}
+.mp3-of{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(34px,5vw,88px);color:var(--rose);padding-bottom:.12em}
+.mp3-sub{margin:16px 0 0;font:600 11px/1.6 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--muted);max-width:62ch}
+.mp3-pp .mp3-h2{margin:clamp(36px,6vh,64px) 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:800;color:var(--cream);line-height:1.02!important;padding-bottom:.06em}
+.mp3-h2 em{font-style:italic;color:var(--rose)}
+.mp3-lede{margin:14px 0 0;font-size:17px;line-height:1.55;color:#cfcbc4;max-width:62ch}
+.mp3-cta{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;font:600 12px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--teal);text-decoration:none;border-bottom:1.5px solid rgba(0,201,200,.45);transition:border-color 150ms ease-out,color 150ms ease-out}
+.mp3-tiles{list-style:none;margin:clamp(32px,5vh,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.mp3-tiles li{border:1px solid var(--track);border-radius:4px;padding:12px 14px 14px;min-width:0}
+.mp3-tn{display:block;font:600 10.5px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.mp3-tv{display:block;margin-top:6px;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:16px;color:var(--muted)}
+.mp3-tv b{font-size:28px;color:var(--cream);font-variant-numeric:tabular-nums}
+.mp3-tb{display:block;height:3px;margin-top:8px;background:var(--track)}
+.mp3-tb i{display:block;height:100%;background:var(--rose)}
+/* M6 control bar */
+.mp3-bar{position:sticky;top:var(--mp3-top);z-index:20;background:var(--paper);border-bottom:1px solid var(--line);padding:12px max(var(--gut),calc((100% - 1280px)/2 + var(--gut)));display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.mp3-grp{display:flex;gap:6px}
+.mp3-pp button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mp3-views{gap:0;border:1.5px solid var(--ink);border-radius:24px;overflow:hidden;flex:none}
+.mp3-views button,.mp3-chips button{min-height:44px;padding:0 16px;font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;background:transparent;color:var(--ink);border:0;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}
+.mp3-views button[aria-pressed=true],.mp3-chips button[aria-pressed=true]{background:var(--ink);color:var(--cream)}
+.mp3-chips{flex-wrap:wrap}
+.mp3-chips button{padding:0 14px;border:1px solid var(--edge);border-radius:22px;letter-spacing:1px;white-space:nowrap}
+.mp3-st button{border-style:dashed}
+.mp3-chips button[aria-pressed=true]{border-color:var(--ink);border-style:solid}
+.mp3-find{display:flex;align-items:center;gap:10px;flex:1 1 240px;min-width:0;max-width:360px}
+.mp3-find label{flex:none;font:600 10.5px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
+.mp3-find input{flex:1;min-width:0;height:44px;margin:0;padding:0 16px;border:1px solid var(--edge);border-radius:22px;background:#fff;color:var(--ink);font:400 16px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;-webkit-appearance:none;appearance:none}
+.mp3-find input::placeholder{color:var(--mute);opacity:1}
+.mp3-shown{margin-left:auto;font:600 10.5px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute)}
+/* M8b messages */
+.mp3-msg{max-width:1280px;margin:0 auto;padding:clamp(40px,8vh,80px) var(--gut);font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(22px,2.4vw,28px);line-height:1.2;color:var(--ink)}
+.mp3-msg:empty{display:none}
+.mp3-msg em{font-style:italic;color:var(--rosei)}
+/* M7 stamps */
+.mp3-view{max-width:1280px;margin:0 auto;padding:0 var(--gut) clamp(64px,10vh,120px)}
+.mp3-reg{display:grid;grid-template-columns:minmax(200px,1fr) 3fr;gap:3vw;padding:clamp(40px,7vh,72px) 0 8px;align-items:start}
+.mp3-rh{position:sticky;top:calc(var(--mp3-top) + var(--mp3-bh) + 20px)}
+.mp3-rh h3{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(36px,3.8vw,68px);line-height:.92;letter-spacing:-.03em;color:var(--ink);overflow-wrap:normal;hyphens:manual}
+.mp3-rn{margin:14px 0 0;font:600 11px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--teali)}
+.mp3-rh .mp3-tb{height:4px;max-width:220px;background:var(--line)}
+.mp3-rh .mp3-tb i{background:var(--rosei)}
+.mp3-stamps{display:grid;grid-template-columns:repeat(auto-fill,116px);gap:16px 12px}
+.mp3-stamp{width:116px;height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 6px;background:var(--paper);color:var(--ink);border:2px solid var(--teali);border-radius:4px;transform:rotate(var(--r,0deg));transition:transform 150ms ease-out,background-color 150ms ease-out,border-color 150ms ease-out}
+.mp3-flag{font-size:30px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+.mp3-iso{font:700 15px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px}
+.mp3-nm{font:600 10.5px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.5px;text-transform:uppercase;text-align:center;max-width:100%;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mp3-tag{font:700 10.5px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase}
+.mp3-stamp.is-lived{border:4px double var(--rosei);color:var(--rosei)}
+.mp3-stamp.is-lived .mp3-nm,.mp3-stamp.is-lived .mp3-iso{color:var(--ink)}
+.mp3-stamp.is-stay{color:var(--teali)}
+.mp3-stamp.is-stay .mp3-nm,.mp3-stamp.is-stay .mp3-iso{color:var(--ink)}
+.mp3-stamp.is-lay{border-style:dashed;color:var(--teali)}
+.mp3-stamp.is-lay .mp3-nm,.mp3-stamp.is-lay .mp3-iso{color:var(--ink)}
+.mp3-stamp.is-not{border:2px dashed #c9bfae;color:var(--mute)}
+/* M8 list */
+.mp3-table{width:100%;max-width:980px;border-collapse:collapse;margin-top:clamp(28px,5vh,48px);font-size:16px}
+.mp3-table caption{text-align:left;padding-bottom:12px;font:600 10.5px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.8px;text-transform:uppercase;color:var(--mute)}
+.mp3-table thead th{text-align:left;padding:10px 12px 10px 0;border-bottom:1.5px solid var(--ink);font:600 10.5px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.8px;text-transform:uppercase;color:var(--mute)}
+.mp3-table thead th:last-child,.mp3-table td:last-child{text-align:right;padding-right:0}
+.mp3-lt th{text-align:left;padding:24px 0 4px;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:30px;line-height:1;color:var(--rosei)}
+.mp3-table tbody tr:not(.mp3-lt) th,.mp3-table td{padding:4px 12px 4px 0;border-bottom:1px solid #EDE7DC;text-align:left;font-weight:600;vertical-align:middle}
+.mp3-table tbody tr:not(.mp3-lt) th .mp3-flag{font-size:18px;margin-right:10px;vertical-align:-2px}
+.mp3-table td:nth-child(2){font:600 10.5px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+.mp3-dep{min-height:44px;min-width:96px;padding:0 12px;border:2px solid var(--teali);border-radius:4px;background:var(--paper);color:var(--teali);font:700 10.5px/1 'JetBrains Mono',ui-monospace,monospace!important;letter-spacing:1.2px;text-transform:uppercase;transition:background-color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}
+.mp3-dep.is-lived{border:4px double var(--rosei);color:var(--rosei)}
+.mp3-dep.is-lay{border-style:dashed}
+.mp3-dep.is-not{border:2px dashed #c9bfae;color:var(--mute)}
+/* Focus, hover, press (Emil: hover only on fine pointers, 150ms ease-out, press scale .97) */
+.mp3-pp :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.mp3-ink :focus-visible{outline-color:var(--teal)}
+.mp3-find input:focus-visible{outline-offset:1px}
+@media (hover:hover) and (pointer:fine){
+.mp3-stamp:hover,.mp3-dep:hover{background:#fff;border-color:var(--ink)}
+.mp3-stamp.is-lived:hover,.mp3-dep.is-lived:hover{border-color:var(--rosei)}
+.mp3-chips button:hover{border-color:var(--ink)}
+.mp3-views button[aria-pressed=false]:hover,.mp3-chips button[aria-pressed=false]:hover{background:var(--line)}
+.mp3-cta:hover{border-bottom-color:var(--teal)}
+}
+.mp3-stamp:active{transform:rotate(var(--r,0deg)) scale(.97)}
+.mp3-dep:active,.mp3-chips button:active,.mp3-views button:active{transform:scale(.97)}
+.mp3-sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (max-width:991px){.mp3-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:759px){
+.mp3-bar{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:8px}
+.mp3-bar>*{min-width:0;max-width:100%}
+.mp3-find{max-width:none;flex-basis:auto}
+.mp3-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:24px}
+.mp3-chips::-webkit-scrollbar{display:none}
+.mp3-views{align-self:flex-start}
+.mp3-shown{margin-left:0}
+.mp3-reg{grid-template-columns:1fr;gap:18px}
+.mp3-rh{position:static}
+.mp3-stamps{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:14px 10px}
+.mp3-stamp{width:auto}
+.mp3-table td:nth-child(2),.mp3-table thead th:nth-child(2){display:none}
+}
+@media (max-width:479px){.mp3-pp{--gut:16px}.mp3-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.mp3-bar{position:static}}
+/* M10 explainer: visitors do not see the two member numbers; members never see the typed ones */
+html.tll-map-public .tll-map-explainer-grid>.tll-map-explainer-card:nth-child(-n+2){display:none!important}
+.tll-map-explainer-grid>.tll-map-explainer-card:nth-child(-n+2) .tll-map-explainer-num:not([data-mp3-set]){visibility:hidden}
+.mp3-xh{margin:0;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;line-height:inherit}
+.mp3-src{margin:10px 0 0;font:600 11px/1.5 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:var(--mute,#6B6660)}
+.mp3-src a{color:#067A79;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:12px 0}
+.mp3-src a:focus-visible{outline:3px solid #0A0B14;outline-offset:2px}
+/* M1 hero type: mono teal eyebrow on Ink; the H1 already takes the J11 scale from the site head */
+.tll-map-hero .tll-map-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#00C9C8}
+/* M11 editor panel: Cream with Ink text, Plex Condensed, 44px targets, 3px rings. Inline styles on the panel need !important. */
+body>div:has(#tllX){background:#F7F1E8!important;color:#0A0B14!important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif!important;box-shadow:-8px 0 34px rgba(10,11,20,.22)!important}
+body>div:has(#tllX)>div{border-color:#E0DACE!important}
+body>div:has(#tllX) strong{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px!important}
+#tllX{display:inline-flex!important;align-items:center;justify-content:center;min-width:44px;min-height:44px;opacity:1!important;color:#0A0B14;border-radius:4px}
+#tllT>span{background:#fff!important;color:#0A0B14;min-height:44px;padding:4px 12px!important}
+#tllT>span>span:last-child{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:32px;opacity:1!important}
+#tllT>button{min-height:44px;color:#3a3a3a!important;border-color:rgba(10,11,20,.4)!important;font-size:13px!important}
+#tllQ{background:#fff!important;color:#0A0B14!important;border:1px solid #8F8473!important;min-height:44px;font-size:16px!important}
+#tllQ::placeholder{color:#6B6660;opacity:1}
+#tllC{color:#067A79!important;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600;letter-spacing:1.5px!important}
+#tllL>div{border-bottom-color:rgba(10,11,20,.1)!important;font-size:15px!important}
+#tllL>div>span{font-weight:600}
+#tllL>div>div>span{color:#4A4640!important;font-size:12.5px!important}
+#tllL button{min-height:44px;padding:0 14px!important;font-size:12px!important;font-weight:600}
+#tllL button[style*="transparent"]{color:#3a3a3a!important;border-color:rgba(10,11,20,.35)!important}
+#tllSave{color:#0A0B14!important;min-height:48px;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif!important}
+body>div:has(#tllX) :focus-visible,#tllQ:focus-visible{outline:3px solid #0A0B14!important;outline-offset:2px}
+#tllLegend,#tllEmpty{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif}
+@media (hover:hover) and (pointer:fine){#tllT>button:hover,#tllL button[style*="transparent"]:hover{border-color:#0A0B14!important}}
+@media (prefers-reduced-motion:reduce){
+.mp3-pp *,.mp3-pp *::before,.mp3-pp *::after,.mp3-cta,body>div:has(#tllX){transition:none!important}
+.mp3-pp{--r:0deg}.mp3-stamp{transform:none!important}
+}
+</style>
