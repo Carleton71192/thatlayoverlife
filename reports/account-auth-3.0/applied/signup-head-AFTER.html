@@ -1,0 +1,81 @@
+<link rel="canonical" href="https://www.thatlayover.life/signup">
+<style id="tll-au3-auth-v1">
+/* tll-au3-auth-v1 · Sign-in 3.0 for /login, /signup and /forgot-password (approved by Nancy 12 Oct 2026, "Go with defaults").
+   Every rule is scoped to .tll-auth-section or .tll-forgot-section. Restyle only: Memberstack forms, inputs and attributes are untouched.
+   Contrast-corrected prototype values: labels #CFCBC4, secondary #9496AC, links #00C9C8, Rose and Teal buttons with Ink text. */
+.tll-auth-section,.tll-forgot-section{background:#0A0B14!important;color:#F7F1E8;min-height:70vh!important;box-sizing:border-box}
+.tll-auth-section{display:flex;justify-content:center;align-items:flex-start;padding:48px 16px 64px}
+.tll-auth-section .tll-auth-split{display:block!important;width:100%;max-width:420px;min-height:0!important;margin:0 auto}
+.tll-auth-section .tll-auth-brand-col,.tll-auth-section .tll-auth-form-col{display:block!important;min-height:0!important;padding:0!important;background:transparent!important;overflow:visible!important}
+.tll-auth-section .tll-auth-brand-inner{max-width:420px;margin:0 auto 24px;text-align:center}
+.tll-auth-section .tll-auth-eyebrow{margin:0 0 12px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:3px!important;font-weight:600!important;color:#00C9C8!important;text-transform:uppercase}
+.tll-auth-section .tll-auth-headline{margin:0 0 12px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-size:clamp(28px,6vw,40px)!important;line-height:1.05!important;letter-spacing:-.02em;color:#F7F1E8!important}
+.tll-auth-section .tll-auth-em{color:#F0507A!important;font-style:italic}
+.tll-auth-section .tll-auth-sub{margin:0!important;font-size:16px!important;line-height:1.5;color:#9496AC!important;opacity:1!important}
+.tll-auth-section .tll-auth-card{max-width:420px!important;margin:0 auto;padding:26px!important;box-sizing:border-box;background:#12141F!important;border:1px solid #232744!important;border-radius:4px!important;box-shadow:none!important;color:#F7F1E8}
+.tll-auth-section .tll-auth-card-eyebrow{margin:0 0 8px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:2px!important;font-weight:600!important;color:#FF7093!important;text-transform:uppercase}
+.tll-auth-section .tll-auth-card-title{margin:0 0 20px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-style:normal!important;font-size:24px!important;line-height:1.15!important;color:#F7F1E8!important}
+.tll-auth-section .tll-auth-card-title em{color:#FF7093!important}
+.tll-auth-section .tll-btn-google{display:flex!important;align-items:center;justify-content:center;gap:10px;width:100%;min-height:44px;box-sizing:border-box;margin:0 0 18px!important;padding:0 16px!important;background:transparent!important;border:1px solid #2b2f52!important;border-radius:4px!important;color:#F7F1E8!important;font-size:15px!important;font-weight:600;text-decoration:none;box-shadow:none!important;transition:border-color .15s ease-out,transform .15s ease-out!important}
+.tll-auth-section .tll-google-mark{color:#F7F1E8}
+.tll-auth-section .tll-auth-divider{margin:0 0 16px!important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9496AC!important}
+.tll-auth-section .tll-auth-divider span{color:#9496AC!important;background:transparent!important}
+.tll-auth-section .tll-auth-form,.tll-forgot-section .tll-auth-form{margin:0}
+.tll-auth-section form,.tll-forgot-section form{display:flex;flex-direction:column;gap:14px}
+.tll-auth-section .tll-auth-field label,.tll-forgot-section .tll-auth-field label{margin:0 0 6px;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:2px;font-weight:600;text-transform:uppercase;color:#CFCBC4!important}
+.tll-auth-section .tll-auth-input,.tll-forgot-section .tll-auth-input{display:block;width:100%;height:44px;box-sizing:border-box;margin:0;padding:0 12px!important;background:#0A0B14!important;border:1px solid #3a3d55!important;border-radius:4px!important;color:#F7F1E8!important;font-size:16px!important;outline:none;transition:border-color .15s ease-out!important}
+.tll-auth-section .tll-auth-input::placeholder,.tll-forgot-section .tll-auth-input::placeholder{color:#9496AC;opacity:1}
+.tll-auth-section .tll-auth-input:focus-visible,.tll-forgot-section .tll-auth-input:focus-visible,.tll-auth-section .tll-auth-input:focus,.tll-forgot-section .tll-auth-input:focus{border-color:#00C9C8!important;box-shadow:0 0 0 3px #00C9C8!important}
+.tll-auth-section [aria-invalid=true],.tll-forgot-section [aria-invalid=true]{border-color:#FF7093!important}
+.tll-auth-section input[type=checkbox][aria-invalid=true],.tll-forgot-section input[type=checkbox][aria-invalid=true]{outline:2px solid #FF7093;outline-offset:2px}
+.au3-err-msg{margin:6px 0 0;font-size:13px;line-height:1.4;color:#FF7093}
+.au3-pw-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+.au3-hint{font-size:13px;color:#9496AC}
+.au3-eye{appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 2px;border:0;background:transparent;color:#00C9C8;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1px;font-weight:700;text-transform:uppercase;cursor:pointer}
+.tll-auth-section .tll-auth-row{display:flex;justify-content:flex-end;margin:-6px 0 0!important}
+.tll-auth-section .tll-auth-row a{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.tll-auth-section .tll-auth-submit,.tll-forgot-section .tll-auth-submit{display:block;width:100%!important;min-height:48px;margin:6px 0 0!important;padding:0 16px!important;border:0!important;border-radius:4px!important;background:#F0507A!important;color:#0A0B14!important;font-size:15px!important;font-weight:700!important;letter-spacing:.3px;cursor:pointer;transition:background-color .15s ease-out,transform .15s ease-out!important}
+.tll-forgot-section .tll-auth-submit{background:#00C9C8!important}
+.tll-auth-section .w-form-done,.tll-auth-section .w-form-fail,.tll-forgot-section .w-form-done,.tll-forgot-section .w-form-fail{margin:12px 0 0;padding:12px 14px;border-radius:4px;font-size:14px;line-height:1.45;text-align:left}
+.tll-auth-section .w-form-done,.tll-forgot-section .w-form-done{background:#0A0B14;border:1px solid #00C9C8;color:#F7F1E8}
+.tll-auth-section .w-form-fail,.tll-forgot-section .w-form-fail{background:#2a0f18;border:1px solid #FF7093;color:#F7F1E8}
+.tll-auth-section .tll-auth-alt{margin:22px 0 0!important;padding:18px 0 0!important;border-top:1px solid #232744!important;text-align:center;font-size:14px;color:#9496AC!important}
+.tll-auth-section .tll-auth-alt a,.tll-auth-section .tll-auth-link{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* Signup consent box (U5) */
+.tll-auth-section .tll-auth-charter-check,.tll-auth-section .tll-auth-charter-check~div{margin:0!important;padding:13px!important;background:#0A0B14;color:#F7F1E8;font-size:12px!important;line-height:1.5}
+.tll-auth-section .tll-auth-charter-check{display:flex!important;align-items:flex-start;gap:10px;border-radius:4px 4px 0 0;margin-top:4px!important;padding-bottom:6px!important}
+.tll-auth-section .tll-auth-charter-check~div{border-radius:0;padding-top:6px!important;padding-bottom:6px!important}
+.tll-auth-section .tll-auth-charter-check~div:last-of-type{border-radius:0 0 4px 4px;padding-bottom:13px!important;color:#CFCBC4}
+.tll-auth-section .tll-auth-charter-check~div label{display:flex!important;align-items:flex-start;gap:10px;margin:0;font-size:12px;color:#F7F1E8;cursor:pointer}
+.tll-auth-section .tll-auth-charter-check a,.tll-auth-section .tll-auth-charter-check~div a{color:#00C9C8!important;text-decoration:underline!important;text-underline-offset:2px;border:0!important}
+.tll-auth-section .tll-auth-charter-check .w-checkbox,.tll-auth-section .tll-auth-charter-check~div .w-checkbox{display:flex;align-items:center;justify-content:center;flex:none;min-width:44px;min-height:44px;margin:-12px -6px -12px -12px;padding:0}
+.tll-auth-section input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:#00C9C8;cursor:pointer}
+.tll-auth-section input[type=checkbox]:focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
+.tll-auth-section .tll-auth-charter-check>span,.tll-auth-section .tll-auth-charter-check~div label>span{padding-top:1px}
+/* Forgot password (R1-R5) */
+.tll-forgot-section{display:flex!important;align-items:center;padding:48px 16px!important}
+.tll-forgot-section .tll-forgot-inner{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px;max-width:720px!important;width:100%;margin:0 auto;text-align:left}
+.tll-forgot-section .tll-forgot-card{flex:0 1 400px;max-width:400px;width:100%;box-sizing:border-box;padding:30px!important;background:#12141F!important;border:1px solid #23263c!important;border-radius:4px!important;box-shadow:none!important;color:#F7F1E8}
+.tll-forgot-section .tll-forgot-eyebrow{margin:0 0 10px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:3px!important;font-weight:600!important;color:#00C9C8!important;text-transform:uppercase}
+.tll-forgot-section .tll-forgot-title{margin:0 0 12px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-size:clamp(28px,6vw,40px)!important;line-height:1.05;color:#F7F1E8!important}
+.tll-forgot-section .tll-forgot-em{color:#F0507A!important;font-style:italic}
+.tll-forgot-section .tll-forgot-sub{margin:0 0 20px!important;font-size:16px!important;line-height:1.5;color:#9496AC!important}
+.tll-forgot-section .tll-forgot-form{margin:0 0 20px!important}
+.tll-forgot-section .tll-forgot-divider{height:1px;margin:0 0 8px!important;background:#23263c!important}
+.tll-forgot-section .tll-forgot-alt-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px}
+.tll-forgot-section .tll-forgot-alt-row a,.tll-forgot-section .tll-auth-link{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.tll-forgot-section .tll-forgot-ephemera{flex:0 0 auto;margin:0!important}
+@media (max-width:767px){.tll-forgot-section .tll-forgot-ephemera{flex-basis:100%;justify-content:center}}
+.tll-auth-section a:focus-visible,.tll-auth-section button:focus-visible,.tll-auth-section input[type=submit]:focus-visible,.tll-forgot-section a:focus-visible,.tll-forgot-section button:focus-visible,.tll-forgot-section input[type=submit]:focus-visible{outline:3px solid #00C9C8!important;outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+  .tll-auth-section .tll-btn-google:hover{border-color:#00C9C8!important}
+  .tll-auth-section .tll-auth-submit:hover{background:#FF7093!important}
+  .tll-forgot-section .tll-auth-submit:hover{background:#33d6d5!important}
+  .tll-auth-section .tll-auth-input:hover,.tll-forgot-section .tll-auth-input:hover{border-color:#6b6f8f!important}
+}
+.tll-auth-section .tll-btn-google:active,.tll-auth-section .tll-auth-submit:active,.tll-forgot-section .tll-auth-submit:active,.au3-eye:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){
+  .tll-auth-section .tll-btn-google,.tll-auth-section .tll-auth-submit,.tll-forgot-section .tll-auth-submit,.tll-auth-section .tll-auth-input,.tll-forgot-section .tll-auth-input{transition:none!important}
+  .tll-auth-section .tll-btn-google:active,.tll-auth-section .tll-auth-submit:active,.tll-forgot-section .tll-auth-submit:active,.au3-eye:active{transform:none}
+}
+</style>
