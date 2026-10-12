@@ -3,11 +3,11 @@
 /* D1 hero */
 .tlldx-hero{padding-top:min(10vh,96px) !important;padding-bottom:min(6vh,56px) !important}
 .tlldx-hero .tlldx-eyebrow{font-size:11px !important;letter-spacing:3px !important;margin:0 0 14px}
-.tlldx-h1{font-family:var(--ds3-serif) !important;font-weight:800 !important;font-size:clamp(40px,6.2vw,84px) !important;line-height:1.02 !important;letter-spacing:-.02em;max-width:14ch;margin:0 0 18px}
+.tlldx-h1{font-family:var(--ds3-serif) !important;font-weight:800 !important;max-width:14ch;margin:0 0 18px}
 .tlldx-sub{font-family:var(--ds3-body);font-size:16px !important;line-height:1.55;color:var(--ds3-muted) !important;max-width:60ch;margin:0}
 .tlldx-sub a{color:var(--ds3-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 /* D4 shelf heading */
-.tlldx-h2{font-family:var(--ds3-serif) !important;font-weight:800 !important;font-size:clamp(28px,3.4vw,44px) !important;line-height:1.1 !important;margin:0 0 22px}
+.tlldx-h2{font-family:var(--ds3-serif) !important;font-weight:800 !important;margin:0 0 22px}
 .tlldx-h2 em,.tlldx-accent,.tlldx-accent2{color:var(--ds3-rose) !important;font-style:italic !important}
 /* D3 story shelf (Collection List) */
 [data-ds3=shelf]{margin:0 0 24px}

@@ -22,3 +22,8 @@
 - SKIPPED via API: open card ...b70b custom attribute href=/share ("href" is reserved). JS sets it to /submit at runtime; Designer step needed.
 - DONE head: set_page_freeform_code head = orig + guard + style + js. Verified: starts with orig bytes, equals head-new.html (API decoded \u escapes into literal chars, same behavior). Footer untouched (byte-identical). Live copy: head-live-after-ds3.html (20794 chars).
 - NEXT: page SEO/OG + JSON-LD (D9, OP14), /countries schema (OP20), redirects file (OP7).
+- DONE page settings: SEO desc + OG desc per OP14 (titles unchanged, OG image unchanged). JSON-LD: CollectionPage description count-free, typed ItemList and mainEntity removed, BreadcrumbList kept. Originals in orig/page-settings-orig.json.
+- OP20: /countries JSON-LD has no numbers today (already cleared by someone); not edited.
+- DONE: reports/country-destinations-3.0/redirects-301.md (8 rows, targets verified).
+- Stray partial card 82ba7446-41ec-2db9-714c-b26c25d00257 (from failed first builder call, 'width' reserved) hidden + data-ds3=stray. Original ids all present (tree-after.json).
+- DONE head v2 (12 Oct): removed .tlldx-h1/.tlldx-h2 font-size/line-height overrides so the site J11 type scale applies (proposal D1 "h1 at the J11 scale"). Re-verified: head == head-new.html (escapes decoded), starts with original bytes, footer byte-identical. Live copy refreshed: head-live-after-ds3.html.
