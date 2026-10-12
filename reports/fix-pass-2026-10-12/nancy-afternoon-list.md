@@ -25,5 +25,8 @@ Running list. Everything I changed is an unpublished edit; you publish. Updated 
 ## Needs your click (accounts, services, Google)
 - (to come: Search Console verification, GA4 property merge)
 
+## Staged outside the fix pass
+- La Tomatina hero is now your after-fight photo of the three of you outside the Trocadero (the same frame was already in the gallery as tll-tomatina-three-after, so no duplicate upload). The old hero, the bow of the boat, moved into the gallery after the blue-door selfie, so the gallery stays at its 25-photo cap and nothing was dropped. Hero caption: "Buñol, after. The town got cleaner than we did." (was "Ibiza, the calm before the tomatoes."). The photo is portrait and the hero is a wide crop, so check the faces sit in frame after publish; if not, a 16:9 crop of the original is the fix.
+
 ## Publish
 - Nothing has been published since your fix-pass prompt. When you're ready, one site publish covers every staged change.
