@@ -13,3 +13,6 @@ Started 2026-10-12. Template page id (from proposal): 6a8afbda8e907b41c4da10a1
 - [DONE] publish_collection_items on those 6 items: no errors.
 - [DONE] Created hero Image e1e1be5d-c8dd-d315-41c5-06536bf91a4b (prepend in hero fe23acf8), attrs data-ct3=hero-img fetchpriority=high aria-hidden=true. Binding: PENDING
 - [DONE] hero Image bound assetId -> Story Ref:Hero image (ce80...:::0332...), altText static ''. Ref field id format: <storyref>:::<storyfield>
+- [DONE] Created helper DOM div 5068a4a6-2fd9-a58c-2190-1d8a6ddd70fa (append in hero wrap f08ba2cf) data-ct3=src hidden aria-hidden. Attribute bindings: PENDING
+- [DONE] helper 5068a4a6 attribute bindings: data-name, data-iso, data-checked, data-adv-url, data-adv-checked, data-fcdo-url, data-fcdo-rev, data-oneword, data-s-name, data-s-slug, data-s-pillar, data-s-rt, data-s-pub (data-ok switch cannot bind to attribute)
+- [DONE] Created span 950d5665-1ef1-143f-6861-6293c7dda125 data-ct3=dataok inside helper. Visibility binding to Data OK: PENDING (429)

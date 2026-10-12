@@ -8,3 +8,4 @@
 - Saved ds3-destinations.css, mapids.txt.
 - DONE: shelf list settings verified: filters status equals Published(40fb85...), filterMatch all, sort published-date descending, limit 100, offset 0, no pagination. DynamoList ...ea689, DynamoItem ...ea68a, DynamoEmpty ...ea68b (block ...ea68c "No items found.").
 - Saved ds3-destinations.js (ASCII only).
+- DONE: card built in DynamoItem: Link[data-ds3=card] 37e35a86-a5b1-0ba2-1c7f-3cfd758054f6; media f8690341-4d41-f2e6-2a32-b3a1134da7c2; img 620df326-6974-adf6-36e5-7865ae037b4c; flag 14a534ef-43c3-0ea2-6e0d-6bfaa645a348; body 1268e9f0-6bc9-d6b3-001b-5fdfe5e4de76; place e0b0599e-38e8-f4b6-26a7-e55d8b29ed89; meta c1cb5576-c205-5e53-efc5-7b2eca79670b; title 392a850e-a501-306e-3999-d2ae1eab62e8; read 13a5c9e4-0477-111d-6e82-2fd180ba9f9e; data af7c3a8f-e72d-94a6-2a75-fed78d0e92e3; mins 6aab35a2-dba6-ae17-8c0a-25c9b27035bd; cname 797ccf8b-71c3-8786-c5d4-2ad27904803d. Texts still placeholders, bindings pending.
