@@ -43,7 +43,7 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 6. **Photo alt text (optional, improves accessibility):** Stories Template, add a hidden collection list bound to the story's Photo gallery with attribute `data-tll-photo-alts`, each item an Image with alt from the field. The script already uses it if it's there. The API can't bind multi-image fields.
 
 ## Needs you present (shared components: nav, footer, "Tell the editor")
-- **Footer counts:** add `data-tll-count="owner-countries"` to the footer's "87" and `data-tll-count="owner-pets"` to its "1", so one script fills them from the source you pick in decision 6. Until then the 87 stays typed (and two scripts that overwrote it with the visitor's own count are being removed).
+- **Footer counts: done and live (12 Oct, Nancy present).** Nancy picked "countries with a story": the footer embed (tll-live-counts-v2) now counts every country named in a live story byline on /stories, read the same way as the card flags (47 today across 42 live stories; Balkans counts its 12). Stories still come from the sitemap (42, correct), pets from the sitemap. The old embed counted the five hidden 2.0 cards on /destinations, hence "5". No data-tll-count attributes needed for the footer any more; decision 6 only still matters for the sign-up strip and profiles.
 - Banned words in the nav and footer: none found.
 
 ## Needs your click (accounts, services, Google)
@@ -58,5 +58,4 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 - **Pantanal:** jaguars plural (title, excerpt, opening line); "São Paulo" with the tilde in its search description.
 
 ## Publish
-- **Account and sign-in 3.0 is staged** (the /account tab rail, the dark log-in, sign-up and forgot-password cards, labels on the sign-in fields). Plus: "doing the math" on the home page. One full publish makes them live; then check /account logged in (LOGGED number, Wrapped stats, every tab), and a sign-in on your phone.
-- Nothing has been published since your fix-pass prompt. When you're ready, one full site publish covers every staged change (the sitemap changes need a full publish).
+- **Published 12 Oct at Nancy's word** (two full site publishes, about 16:35 and 16:52 UTC): every staged edit above is live, including account and sign-in 3.0, "doing the math", photo placement, Pantanal, the flags and the footer count. Nancy: check /account logged in (LOGGED number, Wrapped stats, every tab), a sign-in on your phone, and La Tomatina, Morocco and Pantanal photo placement.
