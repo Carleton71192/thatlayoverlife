@@ -1,0 +1,133 @@
+<script id="tll-ct3-country-js-v1">
+/* TLL country page 3.0 (ct3, 12 Oct 2026). Approved proposal reports/country-destinations-3.0/2026-10-11-proposed-changes.md,
+   rows C1 to C15, Nancy: "Go with defaults". Last in the template footer, after tll-ctry-v2-js and tll-cx-expats-js-v1; it only adds.
+   Reads: the bound helper [data-ct3="src"], the bound Story Ref Quick answers [data-ct3="qa-src"], the bound images, and for a
+   signed-in member their own tllStates (read only, never written here). Been here / Want to go stay in tll-ctry-v2-js and keep
+   writing tllPlaces. No count is typed and nothing is sample data: every value comes from the CMS or the member's own map. */
+(function(){
+  var D=document,BASE='https://www.thatlayover.life';
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  /* ISO2 to the map's numeric id, from the map engine's table (src/iso-numeric.js); Kosovo 900, N. Cyprus 901, Somaliland 902 (S32). */
+  var IDS='AD020AE784AF004AG028AI660AL008AM051AO024AQ010AR032AS016AT040AU036AW533AX248AZ031BA070BB052BD050BE056BF854BG100BH048BI108BJ204BM060BN096BO068BR076BS044BT064BW072BY112BZ084CA124CD180CF140CG178CH756CI384CK184CL152CM120CN156CO170CR188CU192CV132CW531CY196CZ203DE276DJ262DK208DM212DO214DZ012EC218EE233EG818EH732ER232ES724ET231FI246FJ242FK238FM583FO234FR250GA266GB826GD308GE268GF254GH288GI292GL304GM270GN324GQ226GR300GT320GW624GY328HK344HN340HR191HT332HU348ID360IE372IL376IN356IQ368IR364IS352IT380JM388JO400JP392KE404KG417KH116KI296KM174KN659KP408KR410KW414KZ398LA418LB422LC662LI438LK144LR430LS426LT440LU442LV428LY434MA504MC492MD498ME499MG450MH584MK807ML466MM104MN496MO446MR478MT470MU480MV462MW454MX484MY458MZ508NA516NC540NE562NG566NI558NL528NO578NP524NR520NU570NZ554OM512PA591PE604PF258PG598PH608PK586PL616PR630PS275PT620PW585PY600QA634RE638RO642RS688RU643RW646SA682SB090SC690SD729SE752SG702SI705SK703SL694SM674SN686SO706SR740SS728ST678SV222SY760SZ748TD148TG768TH764TJ762TK772TL626TM795TN788TO776TR792TT780TV798TW158TZ834UA804UG800US840UY858UZ860VC670VE862VN704VU548WS882YE887ZA710ZM894ZW716XK900',MAP={};
+  for(var i=0;i+5<=IDS.length;i+=5)MAP[IDS.substr(i,2)]=IDS.substr(i+2,3);
+  function one(s,r){return (r||D).querySelector(s);}
+  function all(s,r){return [].slice.call((r||D).querySelectorAll(s));}
+  function clean(v){v=String(v||'').trim();return v.indexOf('{{')>-1?'':v;}
+  function esc(t){var d=D.createElement('div');d.textContent=t||'';return d.innerHTML;}
+  function bound(el){return !!el&&!el.classList.contains('w-dyn-bind-empty')&&!!el.textContent.trim();}
+  function heading(el){if(el){el.setAttribute('role','heading');el.setAttribute('aria-level','2');}}
+  function fdate(s){s=clean(s);if(!s)return '';var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s);
+    if(m)return (+m[3])+' '+MONTHS[+m[2]-1]+' '+m[1];var d=new Date(s);return isNaN(d)?'':d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear();}
+  function iso8601(s){s=clean(s);if(!s)return '';var d=new Date(/^\d{4}-\d{2}-\d{2} \d/.test(s)?s.replace(' ','T')+'Z':s);return isNaN(d)?'':d.toISOString();}
+  function ready(fn){if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',fn);else fn();}
+
+  ready(function(){
+    var S=one('[data-ct3="src"]');function g(k){return S?clean(S.getAttribute('data-'+k)):'';}
+    var h1=one('.tllcx-hero h1');
+    var name=g('name')||(h1?h1.textContent.trim():'');
+    var iso=g('iso').toUpperCase(),mapId=MAP[iso]||'';
+    var slug=decodeURIComponent((location.pathname.match(/\/countries\/([^\/?#]+)/)||[])[1]||'').toLowerCase();
+    var can=one('link[rel="canonical"]'),url=can&&/\/countries\/[^\/?#{}]+$/.test(can.href)?can.href:BASE+'/countries/'+slug;
+    var sSlug=g('s-slug'),sName=g('s-name'),storyUrl=sSlug?BASE+'/stories/'+sSlug:'';
+    var okEl=one('[data-ct3="dataok"]'),dataOk=!!okEl&&!okEl.classList.contains('w-condition-invisible')&&getComputedStyle(okEl).display!=='none';
+    if(!name)return;
+
+    /* C1. Hero photo from the referenced story; a failed load falls back to the plain Ink band. Circle flag from ISO2 (S06 source). */
+    var hero=one('.tllcx-hero'),img=one('img[data-ct3="hero-img"]');
+    if(hero&&img){var src=img.getAttribute('src')||'';
+      if(img.classList.contains('w-dyn-bind-empty')||!src||/placeholder/i.test(src))hero.classList.add('ct3-nophoto');
+      else{img.alt='';img.decoding='async';if(img.complete&&!img.naturalWidth)hero.classList.add('ct3-nophoto');img.addEventListener('error',function(){hero.classList.add('ct3-nophoto');});}}
+    var fl=one('.tllcx-hero .tllcx-flag');
+    if(fl&&/^[A-Z]{2}$/.test(iso)){var f=D.createElement('img');f.src='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/'+iso.toLowerCase()+'.svg';
+      f.width=38;f.height=38;f.alt='';f.setAttribute('aria-hidden','true');f.decoding='async';
+      f.addEventListener('load',function(){fl.classList.add('ct3-flagged');});f.addEventListener('error',function(){if(f.parentNode)f.parentNode.removeChild(f);});fl.appendChild(f);}
+
+    /* C3. Read-only "On your map" line for a signed-in member, from their own tllStates (non-pet travelers, deepest state wins). */
+    var W=one('[data-tll-places]');
+    if(W){var line=D.createElement('div');line.setAttribute('data-ct3','onmap');line.hidden=true;W.appendChild(line);
+      var LBL={lived:'Lived',visited:'Stayed',layover:'Layover'},RANK={lived:3,visited:2,layover:1};
+      var show=function(st){var depth='';
+        if(st&&st.v===2&&st.states&&mapId){var hum={},any=0;(st.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=1;}});
+          var row=st.states[mapId]||{};Object.keys(row).forEach(function(id){if(any&&!hum[id])return;var v=row[id];if(RANK[v]&&(!depth||RANK[v]>RANK[depth]))depth=v;});}
+        line.innerHTML='<span>On your map: <b>'+(depth?LBL[depth]:'Not logged yet')+'</b></span><a href="'+(mapId?'/the-map?add='+mapId:'/the-map#edit')+'">Log it on your map →</a>';
+        line.hidden=false;};
+      var tries=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++tries>40)clearInterval(iv);return;}clearInterval(iv);
+        ms.getCurrentMember().then(function(r){var id=r&&r.data&&r.data.id;if(!id)return;var ls=null;
+          try{if(localStorage.getItem('tllStatesOwner')===id)ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
+          if(ls&&ls.v===2)show(ls);
+          return ms.getMemberJSON().then(function(j){var st=j&&j.data&&j.data.tllStates;if(st&&st.v===2)show(st);else if(!(ls&&ls.v===2))show(null);});
+        }).catch(function(){});},250);}
+
+    /* C4. Quick answers: the referenced story's own question and answer pairs, attributed and dated. */
+    var qa=one('[data-tll-ctry-qa]'),pairs=[];
+    if(qa){var qh=one('h2',qa);if(qh)qh.textContent='What do travelers say about '+name+'?';
+      var srcQa=one('[data-ct3="qa-src"]');
+      if(srcQa&&bound(srcQa)&&sSlug){var cur=null;
+        all(':scope > *',srcQa).forEach(function(n){var t=n.textContent.replace(/\s+/g,' ').trim();if(!t)return;
+          var b=n.tagName==='P'&&n.children.length===1&&/^(STRONG|B)$/.test(n.children[0].tagName)&&n.children[0].textContent.trim()===t;
+          if(/^H[1-6]$/.test(n.tagName)||b){cur={q:t,nodes:[]};pairs.push(cur);}
+          else if(cur&&/^(P|UL|OL|BLOCKQUOTE)$/.test(n.tagName))cur.nodes.push(n);});
+        pairs=pairs.filter(function(p){return p.nodes.length;});}
+      if(pairs.length){qa.classList.add('ct3-qa-on');var body=one('[data-tll-t="qa-body"]',qa);if(body)body.style.display='none';
+        var list=D.createElement('div');list.setAttribute('data-ct3','qa-list');
+        pairs.forEach(function(p){var it=D.createElement('div');it.className='ct3-qa';var h=D.createElement('h3');h.textContent=p.q;it.appendChild(h);
+          var a=D.createElement('div');a.className='ct3-qa-a';p.nodes.forEach(function(n){a.appendChild(n.cloneNode(true));});it.appendChild(a);
+          p.a=a.textContent.replace(/\s+/g,' ').trim();list.appendChild(it);});
+        qa.appendChild(list);
+        var from=D.createElement('p');from.setAttribute('data-ct3','qa-from');var pub=fdate(g('s-pub'));
+        from.innerHTML='From <a href="/stories/'+encodeURIComponent(sSlug)+'">'+esc(sName||'the story')+'</a>'+(pub?', '+esc(pub):'')+'.';
+        qa.appendChild(from);}}
+
+    /* C5. Quick facts: h2 "{Country} at a glance" and an honest check note (open point 9). Hidden when no fact has a value. */
+    var feb=one('.tllcx-body .tllcx-wrap > .tllcx-eb'),facts=one('.tllcx-body .tllcx-facts');
+    if(feb&&facts){var shown=all('.tllcx-fact',facts).filter(function(x){return !x.querySelector('.w-dyn-bind-empty')&&getComputedStyle(x).display!=='none';});
+      if(!shown.length){feb.style.display='none';facts.style.display='none';}
+      else{feb.textContent=name+' at a glance';heading(feb);var note=D.createElement('p');note.setAttribute('data-ct3','facts-note');
+        var ck=fdate(g('checked'));note.textContent=dataOk?'Checked against public data'+(ck?' on '+ck:''):'Reference facts, not yet checked by TLL';
+        feb.parentNode.insertBefore(note,facts);}}
+
+    /* C6. One word to know: the whole block hides when the item has no word. */
+    var word=one('.tllcx-word'),big=word&&one('.tllcx-big',word),hasWord=bound(big);
+    if(word){if(!hasWord)word.style.display='none';else{var wl=one('.tllcx-eb',word);if(wl){wl.textContent='One word to know in '+name;heading(wl);}}}
+
+    /* C7. Filed from {Country}: heading, plus pillar and reading time on the story card. */
+    var fe=one('#tll-filed .tllcx-filed-eyebrow');heading(fe);
+    if(fe&&(window.TLL_FILED_N||0)>0)fe.textContent='Filed from '+name;
+    var card=one('#tll-filed-link'),ttl=one('#tll-filed-title');
+    if(card&&ttl&&sSlug){var parts=[],pil=g('s-pillar'),rt=g('s-rt');if(pil)parts.push(pil);if(/^\d+$/.test(rt)&&+rt>0)parts.push(rt+' min');
+      if(parts.length){var k=D.createElement('div');k.setAttribute('data-ct3','filed-kicker');k.textContent=parts.join(' · ');card.insertBefore(k,ttl);}
+      var fi=one('[data-ct3="filed-img"]',card);if(fi){fi.alt='';fi.decoding='async';var gone=function(){fi.classList.add('w-dyn-bind-empty');};if(fi.complete&&!fi.naturalWidth&&fi.getAttribute('src'))gone();fi.addEventListener('error',gone);}}
+
+    /* C8, C9, C13. Section labels read as headings. */
+    heading(one('[data-tll-ctry-wire-label]'));heading(one('[data-tll-ctry-subs-label]'));
+
+    /* C10. "Log it" opens the map editor on this country (open point 13). */
+    var logIt=one('.tllcx-cta a.tll-btn-primary');if(logIt)logIt.setAttribute('href',mapId?'/the-map?add='+mapId:'/the-map#edit');
+
+    /* C12. Sources with their own checked and reviewed dates. */
+    var old=one('.tllcx-body .tllcx-wrap > p.tllcx-src');
+    if(old){var items=[],adv=g('adv-url'),fc=g('fcdo-url');
+      if(/^https?:\/\//.test(adv)){var ad=fdate(g('adv-checked'));items.push('<a href="'+esc(adv)+'" target="_blank" rel="noopener">Government of Canada travel advice</a>'+(ad?', checked '+esc(ad):''));}
+      if(/^https?:\/\//.test(fc)){var fd=fdate(g('fcdo-rev'));items.push('<a href="'+esc(fc)+'" target="_blank" rel="noopener">UK Foreign Office travel advice</a>'+(fd?', reviewed '+esc(fd):''));}
+      var ck2=fdate(g('checked'));items.push(dataOk?'Facts checked'+(ck2?' '+esc(ck2):' against public data'):'Reference facts from public sources, not yet checked by TLL');
+      if(pairs.length)items.push('Quick answers from <a href="/stories/'+encodeURIComponent(sSlug)+'">'+esc(sName||'the story')+'</a>');
+      var box=D.createElement('div');box.setAttribute('data-ct3','sources');
+      box.innerHTML='<p class="ct3-src-h">Sources</p><ul><li>'+items.join('</li><li>')+'</li></ul><p>Check the official advice before you book.</p>';
+      old.parentNode.insertBefore(box,old.nextSibling);old.style.display='none';}
+
+    /* C14. WebPage node, and FAQPage only when the quick answers above rendered, with exactly those questions and answers. */
+    var graph=[{'@type':'WebPage','@id':url+'#webpage','url':url,'name':D.title,'about':{'@id':url+'#country'},'breadcrumb':{'@id':url+'#breadcrumb'},
+      'isPartOf':{'@type':'WebSite','@id':BASE+'/#website','url':BASE+'/','name':'That Layover Life'}}];
+    var dm=iso8601(g('checked'));if(dataOk&&dm)graph[0].dateModified=dm;
+    var cites=[g('adv-url'),g('fcdo-url')].filter(function(u){return /^https?:\/\//.test(u);});if(cites.length)graph[0].citation=cites;
+    if(pairs.length)graph.push({'@type':'FAQPage','@id':url+'#faq','isPartOf':{'@id':url+'#webpage'},'mainEntity':pairs.map(function(p){
+      return {'@type':'Question','name':p.q,'acceptedAnswer':{'@type':'Answer','text':p.a,'url':storyUrl,'citation':storyUrl}};})});
+    var ld=D.createElement('script');ld.type='application/ld+json';ld.id='tll-ct3-ld';ld.textContent=JSON.stringify({'@context':'https://schema.org','@graph':graph});
+    D.head.appendChild(ld);
+
+    /* Open point 4: a page with no story, no expat card and no One word asks not to be indexed; it comes off by itself when one appears. */
+    var expat=!!one('[data-tll-cx-grid] .tlldir-card');
+    if(!sSlug&&!expat&&!hasWord&&!one('meta[name="robots"]')){var rb=D.createElement('meta');rb.name='robots';rb.content='noindex, follow';D.head.appendChild(rb);}
+  });
+})();
+</script>
