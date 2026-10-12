@@ -11,9 +11,8 @@
 .tll-account-hero .tll-account-sub{color:#cfcbc4;font-size:17px;line-height:1.5;max-width:62ch;margin:14px 0 0;opacity:1}
 .a3-status{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0;padding:0;list-style:none;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1px}
 .a3-status li{border:1px solid #3a3d52;border-radius:4px;padding:4px 9px;color:#cfcbc4}
-.a3-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.a3-btn-edit,.tll-account-hero [data-tll-acct-signout]{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 18px;margin:0;border-radius:4px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:14px;font-weight:700;letter-spacing:.2px;text-transform:none;text-decoration:none;cursor:pointer;transition:border-color .15s ease-out,background-color .15s ease-out,color .15s ease-out,transform .15s ease-out}
-.a3-btn-edit{color:#F7F1E8;border:1.5px solid #F7F1E8;background:transparent}
+.a3-btn-edit,.tll-account-hero [data-tll-acct-signout]{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 18px;margin:18px 0 0;border-radius:4px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:14px;font-weight:700;letter-spacing:.2px;text-transform:none;text-decoration:none;cursor:pointer;transition:border-color .15s ease-out,background-color .15s ease-out,color .15s ease-out,transform .15s ease-out}
+.a3-btn-edit{margin-right:10px;color:#F7F1E8;border:1.5px solid #F7F1E8;background:transparent}
 .tll-account-hero [data-tll-acct-signout]{color:#F7F1E8;border:1.5px solid #3a3d55;background:transparent}
 html.tll-anon .tll-account-hero [data-tll-acct-signout]{display:none}
 .tll-account-hero :focus-visible,.tll-account-hero [data-tll-acct-signout]:focus-visible{outline:3px solid #00C9C8!important;outline-offset:3px}
