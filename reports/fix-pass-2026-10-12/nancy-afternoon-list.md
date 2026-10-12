@@ -19,7 +19,7 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 6. **EXIF, option A (re-encode in the browser):** before I build it, please send one test photo through /share-photos and tell me if it arrives anywhere. I think the current form never delivers the file, so option A also needs a real upload target (Webflow's File Upload element on a paid form plan, or the Worker).
 7. **Guides:** check each answer against its source and send me the "last checked" date (you said OK).
 8. **Banned words left for you** (35 other lines are already changed; full list in `applied/banned-words-log.md`):
-   - **Blocked code edits:** the /stories "Nothing on the shelf for…" notes and the story page line "More stories are on their way to the shelf." Ready-to-paste versions are in `applied/`. The write was blocked by this session's permission check: say "apply the shelf code" and I'll do it, or paste them in the Designer.
+   - ~~Blocked code edits~~: applied after your OK (the /stories "no stories" notes and the story page "More stories are on their way.").
    - **/terms** (legal): "The byline is human or it doesn't ship." → "…or it doesn't run."?
    - **/login and /signup** success messages (Memberstack forms, yours to edit): "Taking you to your shelf." → "Taking you to your account."; "come find your shelf" → "come find your corner of the library."
    - **Your bio:** "a Google Sheet that Jay calls the Trip Ledger": keep (it's Jay's name for it) or change?

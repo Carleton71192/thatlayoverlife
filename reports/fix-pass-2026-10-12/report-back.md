@@ -28,7 +28,7 @@ Outside the 18 but asked today: Photo placement Plan B (S47), Pantanal jaguars p
 
 - Already fixed: Fitz Roy duplicate og:image (S40); /for-expats "Example text" and labels; /profile out of the sitemap; GA4 loads once and only after consent; /edit-profile already said "Home base"; La Paz never showed the hosted line (Disclosure empty).
 - Could not fix by API, needs you in the Designer: hosted box conditional visibility (Stories is at its 60-field cap, so no Hosted switch can be added); pillar list filter "Pillar = Current Pillar"; hero images Load: Eager (no API setting); template-level sitemap off for Destinations and Collections; photo alt list (multi-image binding); the /submit Memberstack gate and Required flags.
-- Blocked: three "shelf" messages in the /stories footer code and the Stories Template "on their way to the shelf" line with its matcher. The write was blocked by this session's permission check. Ready-to-paste blocks: `applied/*PROPOSED-AFTER.NOT-APPLIED.html`. Say the word and I'll apply them, or paste them in the Designer.
+- Shelf code: applied after Nancy's OK (S54): /stories footer notes, Stories Template matcher and line.
 - Skipped by rule: "shelf" in the /login and /signup Memberstack success messages (data-ms forms are yours); /terms "doesn't ship" (legal); your bio's "Trip Ledger" (your words); site-wide footer `ledger()` strings (site code, proposal only).
 - Waits on you: count rule and map fixes, Ko-fi links, newsletter name, /faq line, /submit restructure, EXIF option A upload target, guide answers, measurement clicks (GA Admin, Search Console).
 
