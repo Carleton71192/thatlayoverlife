@@ -1,0 +1,165 @@
+<!-- TLL /travelers roster v3 · roster chip filter + spotlight expertise filter + spotlight category badges · keep data-tll-chip / data-tll-group hooks -->
+<script>
+(function(){
+  var chips=document.querySelectorAll('[data-tll-chip]');
+  var groups=document.querySelectorAll('[data-tll-group]');
+  if(chips.length&&groups.length){
+    var apply=function(f){
+      chips.forEach(function(c){
+        var on=c.getAttribute('data-tll-chip')===f;
+        c.style.background=on?'#0D0F1A':'transparent';
+        c.style.color=on?'#ffffff':'#3a3a3a';
+        c.style.borderColor=on?'#0D0F1A':'#d8d2c6';
+      });
+      groups.forEach(function(g){
+        g.style.display=(f==='all'||g.getAttribute('data-tll-group')===f)?'':'none';
+      });
+    };
+    chips.forEach(function(c){
+      c.addEventListener('click',function(){apply(c.getAttribute('data-tll-chip'));});
+    });
+  }
+  var LABELS=['All experts','Food','Pet travel','Train + rail','Cultural pattern','Endurance + outdoor','EV routing'];
+  var ALIAS={'Endurance + outdoor':['Endurance','Marathon'],'Train + rail':['Train + rail','rail'],'Cultural pattern':['Cultural pattern'],'Pet travel':['Pet travel'],'Food':['Food'],'EV routing':['EV routing']};
+  function labelOf(a){var t=(a.textContent||'').replace(/[^A-Za-z+ ]/g,' ').replace(/\s+/g,' ').trim();
+    for(var i=0;i<LABELS.length;i++)if(t.toLowerCase()===LABELS[i].toLowerCase())return LABELS[i];return null;}
+  var spotChips=[];
+  document.querySelectorAll('a[href="#"]').forEach(function(a){if(labelOf(a))spotChips.push(a);});
+  var cards=document.querySelectorAll('[class*="tll-spot-card"]');
+  if(spotChips.length){
+    function paint(sel){spotChips.forEach(function(c){var on=labelOf(c)===sel;
+      c.style.background=on?'#0D0F1A':'';c.style.color=on?'#ffffff':'';c.style.borderColor=on?'#0D0F1A':'';});}
+    function applySpot(sel){
+      cards.forEach(function(card){
+        if(sel==='All experts'){card.style.display='';return;}
+        var terms=ALIAS[sel]||[sel];var txt=card.textContent||'';var hit=false;
+        for(var i=0;i<terms.length;i++)if(txt.toLowerCase().indexOf(terms[i].toLowerCase())>-1){hit=true;break;}
+        card.style.display=hit?'':'none';
+      });}
+    spotChips.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();
+      paint(labelOf(c));applySpot(labelOf(c));});});
+    paint('All experts');
+  }
+  /* Category badges on spotlight cards (Nancy, 2026-07-03): expat/nomad/press chip per card */
+  var CAT=[['Copenhagen','EXPAT'],['Lisbon','EXPAT'],['Berlin','EXPAT'],['Singapore','EXPAT'],['Tokyo','EXPAT'],['Mexico City','EXPAT'],['Press','PRESS'],['Nomad','NOMAD']];
+  cards.forEach(function(card){
+    if(card.getAttribute('data-tll-cat-badge'))return;
+    var txt=card.textContent||'';var cat=null;
+    for(var i=0;i<CAT.length;i++)if(txt.indexOf(CAT[i][0])>-1){cat=CAT[i][1];break;}
+    if(!cat)return;card.setAttribute('data-tll-cat-badge',cat);
+    var b=document.createElement('span');b.textContent=cat;
+    b.style.cssText="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:#0a8f8e;border:1px solid #0a8f8e;border-radius:999px;padding:4px 10px;display:inline-block;margin:0 0 10px";
+    card.insertBefore(b,card.firstChild);
+  });
+  /* TLL copy fix H5 (audit 2026-08-22): "Where the Travelers lives" → "live". Remove once fixed in Designer. */
+  var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),tn;
+  while((tn=tw.nextNode())){if(tn.nodeValue&&tn.nodeValue.indexOf('Travelers lives')>-1){tn.nodeValue=tn.nodeValue.replace(/Travelers lives/g,'Travelers live');}}
+})();
+</script>
+<script id="tll-trav-v2-js">
+/* TLL Travelers v2 (2026-09-28, design screen 04): Everyone / Founder / Location Experts / Press / Travel companions chips show and hide the four groups.
+   The v3 roster and Spotlight blocks above stay in the DOM, hidden (handoff contract). */
+(function(){
+  function run(){
+    var S=document.querySelector('[data-tll-travelers="v2"]');if(!S||S.dataset.tllDone)return;S.dataset.tllDone='1';
+    var chips=[].slice.call(S.querySelectorAll('[data-tll-trav-filter]')),groups=[].slice.call(S.querySelectorAll('[data-tll-trav-group]'));
+    chips.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();var f=c.getAttribute('data-tll-trav-filter');
+      chips.forEach(function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});
+      groups.forEach(function(g){g.style.display=(f==='all'||g.getAttribute('data-tll-trav-group')===f)?'':'none';});});});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-trav-v2-css">
+.tll-trav-card-dark:hover{box-shadow:0 12px 30px rgba(10,11,20,.18)}
+.tll-trav-card-dark:focus-visible,.tll-fos-cta:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+[data-tll-travelers="v2"] h2.tll-display-m{color:#0A0B14;margin:0 0 8px}
+@media(max-width:600px){.tll-trav-grid{grid-template-columns:1fr}}
+</style>
+<style id="tll-trav-dir-css">
+[data-tll-trav-dirsrc]{display:none}
+.tll-trav-linkchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tll-trav-linkchips span{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 9.5px 'JetBrains Mono',ui-monospace,monospace;background:#0A0B14;color:#F7F1E8;cursor:pointer}
+.tll-trav-linkchips span[data-t="instagram"]{background:#F0507A;color:#fff}.tll-trav-linkchips span[data-t="tiktok"]{background:#0A0B14;color:#00C9C8}.tll-trav-linkchips span[data-t="youtube"]{background:#C8425E;color:#fff}.tll-trav-linkchips span[data-t="strava"]{background:#D98A2B;color:#0A0B14}
+.tll-trav-card-dark .tll-trav-linkchips span{background:#F7F1E8;color:#0A0B14}.tll-trav-card-dark .tll-trav-linkchips span[data-t="instagram"]{background:#F0507A;color:#fff}.tll-trav-card-dark .tll-trav-linkchips span[data-t="youtube"]{background:#C8425E;color:#fff}
+.tll-trav-linkchips span:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+</style>
+<script id="tll-trav-dir-js">
+/* C15 (30 Sep 2026): up to 4 opt-in link chips on each Travelers card, read from the member's Directory item (switched-on links only). Cards are links themselves, so chips are keyboard-focusable spans that open the URL in a new tab with noopener. */
+(function(){
+  function run(){
+    var nodes=[].slice.call(document.querySelectorAll('[data-tll-dir]')); if(!nodes.length) return;
+    var BADGE={instagram:'IG',tiktok:'TT',youtube:'YT',strava:'SS',newsletter:'NL',website:'WEB',blog:'WEB',other:'LINK'};
+    var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+    function go(e){var t=e.target.closest('[data-u]'); if(!t) return; e.preventDefault(); e.stopPropagation(); window.open(t.getAttribute('data-u'),'_blank','noopener');}
+    nodes.forEach(function(n){
+      var slug=(n.dataset.slug||'').toLowerCase(); if(!slug) return; var links=[]; try{links=JSON.parse(n.dataset.links||'[]')}catch(e){}
+      links=links.filter(function(l){return /^https?:\/\//i.test(l.url||'')}).slice(0,4); if(!links.length) return;
+      [].forEach.call(document.querySelectorAll('[data-tll-travelers="v2"] a[href*="/contributors/'+slug+'"]'),function(card){
+        if(card.querySelector('.tll-trav-linkchips')) return;
+        var row=document.createElement('div'); row.className='tll-trav-linkchips';
+        row.innerHTML=links.map(function(l){return '<span role="link" tabindex="0" data-t="'+esc(l.type)+'" data-u="'+esc(l.url)+'" aria-label="'+esc(l.type)+', opens in a new tab">'+(BADGE[l.type]||'LINK')+'</span>'}).join('');
+        row.addEventListener('click',go); row.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e);});
+        card.appendChild(row);
+      });
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-trav-search-css">
+/* Travelers search (9 Oct 2026, Nancy: "there has to be a way to search, filter, and find people and pets"). Works with the chips: chips pick a group, the box narrows the cards. */
+[data-tll-trav-search-wrap]{max-width:560px;margin:0 0 18px}
+[data-tll-trav-search-wrap] label{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;margin:0 0 8px}
+input[data-tll-trav-search]{width:100%;box-sizing:border-box;height:48px;padding:0 16px 0 44px;border:1.5px solid #c9b89a;border-radius:999px;background:#FDF9F3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230A0B14' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") 16px 50% no-repeat;color:#0A0B14;font:500 16px/1 'Inter',system-ui,sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .15s ease,box-shadow .15s ease}
+input[data-tll-trav-search]::placeholder{color:#8a8378}
+input[data-tll-trav-search]:hover{border-color:#0A0B14}
+input[data-tll-trav-search]:focus{outline:none;border-color:#0A0B14;box-shadow:0 0 0 3px rgba(214,56,89,.35)}
+input[data-tll-trav-search]:focus-visible{outline:3px solid #D63859;outline-offset:2px;box-shadow:none}
+input[data-tll-trav-search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;width:14px;height:14px;cursor:pointer;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0B14' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center/contain no-repeat}
+[data-tll-trav-search-note]{margin:8px 0 0;font-size:14px;line-height:1.5;color:#6B6660;min-height:1.5em}
+[data-tll-trav-search-note] a{color:#0A0B14;text-decoration:underline;text-underline-offset:3px}
+[data-tll-trav-search-note] a:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+[data-tll-trav-search-note][hidden]{display:none}
+.tll-trav-q-hide{display:none !important}
+@media(prefers-reduced-motion:reduce){input[data-tll-trav-search]{transition:none}}
+</style>
+<script id="tll-trav-search-js">
+/* Travelers search: filters every card in [data-tll-travelers="v2"] by its text (name, city, country, breed, expertise). Open slots are invites, not people, so they hide while a query is typed. Groups with no match hide; a note with a signup link appears when nobody matches. The chip filter still owns group visibility. */
+(function(){
+  function run(){
+    var S=document.querySelector('[data-tll-travelers="v2"]'),q=document.querySelector('input[data-tll-trav-search]');if(!S||!q||q.dataset.tllDone)return;q.dataset.tllDone='1';
+    var note=document.querySelector('[data-tll-trav-search-note]');
+    var groups=[].slice.call(S.querySelectorAll('[data-tll-trav-group]'));
+    function cards(g){return [].slice.call(g.querySelectorAll('.tll-trav-grid > *'));}
+    function isOpen(c){return c.classList.contains('tll-fos-card-open')||!!c.querySelector('.tll-fos-card-open')||c.getAttribute('data-tag')==='open';}
+    function text(c){return (c.getAttribute('aria-label')||'')+' '+(c.textContent||'');}
+    var t;
+    function apply(){
+      var v=q.value.trim().toLowerCase(),words=v.split(/\s+/).filter(Boolean),shown=0;
+      groups.forEach(function(g){
+        var n=0;
+        cards(g).forEach(function(c){
+          var hit;
+          if(!words.length)hit=true;
+          else if(isOpen(c))hit=false;
+          else{var s=text(c).toLowerCase();hit=words.every(function(w){return s.indexOf(w)>-1;});}
+          c.classList.toggle('tll-trav-q-hide',!hit);if(hit)n++;
+        });
+        g.classList.toggle('tll-trav-q-hide',words.length>0&&n===0);
+        if(g.style.display!=='none')shown+=n;
+      });
+      if(!note)return;
+      if(!words.length){note.hidden=true;note.textContent='';}
+      else if(shown===0){note.hidden=false;note.innerHTML='Nobody by that name yet. If you know them, <a href="/signup">send them the signup link</a>.';}
+      else{note.hidden=false;note.textContent=shown===1?'1 match.':shown+' matches.';}
+    }
+    q.addEventListener('input',function(){clearTimeout(t);t=setTimeout(apply,120);});
+    q.addEventListener('search',apply);
+    [].forEach.call(S.querySelectorAll('[data-tll-trav-filter]'),function(c){c.addEventListener('click',function(){setTimeout(apply,0);});});
+    if(note){note.setAttribute('aria-live','polite');note.hidden=true;}
+    if(q.value)apply();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>

@@ -1,0 +1,17 @@
+<script id="tll-px-counts-v1">
+/* Pets index (29 Sep 2026): roster and country counts come from the live pet passport pages, not typed numbers. */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.tllpx-card:not(.tllpx-card-open)'));
+  var petsEl=document.querySelector('[data-tll-px="pets"]'); if(petsEl) petsEl.textContent=cards.length+(cards.length===1?' PET':' PETS')+' ON THE ROSTER';
+  var metas=[].slice.call(document.querySelectorAll('[data-tll-px="meta"][data-tll-pet]'));
+  var total=0, done=0;
+  function finish(){ var c=document.querySelector('[data-tll-px="countries"]'); if(c) c.textContent=total+(total===1?' COUNTRY':' COUNTRIES')+' SUPERVISED'; }
+  if(!metas.length){ finish(); return; }
+  metas.forEach(function(m){
+    fetch('/pets/'+m.getAttribute('data-tll-pet'),{credentials:'same-origin'}).then(function(r){return r.text();}).then(function(h){
+      var x=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/); var n=x?x[1].split(',').map(function(s){return s.trim();}).filter(Boolean).length:0;
+      if(n){ total+=n; m.textContent=m.textContent.replace(/\s*·\s*\d+ COUNTR(Y|IES)\s*$/,'')+' · '+n+(n===1?' COUNTRY':' COUNTRIES'); }
+    }).catch(function(){}).then(function(){ if(++done===metas.length) finish(); });
+  });
+})();
+</script>

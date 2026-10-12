@@ -1,0 +1,83 @@
+<script id="tll-expats-js-v1">
+/* v1.1 (30 Sep 2026): the result panel's groups and resources columns now read the Expat Groups and Resources collections (Live items only) from hidden lists on this page, matched on the country name. Nothing is listed that a human has not checked. */
+(function(){
+  var CODES="AD,AE,AF,AG,AL,AM,AO,AR,AT,AU,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BN,BO,BR,BS,BT,BW,BY,BZ,CA,CD,CF,CG,CH,CI,CL,CM,CN,CO,CR,CU,CV,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,ER,ES,ET,FI,FJ,FM,FR,GA,GB,GD,GE,GH,GM,GN,GQ,GR,GT,GW,GY,HN,HR,HT,HU,ID,IE,IL,IN,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MG,MH,MK,ML,MM,MN,MR,MT,MU,MV,MW,MX,MY,MZ,NA,NE,NG,NI,NL,NO,NP,NR,NZ,OM,PA,PE,PG,PH,PK,PL,PS,PT,PW,PY,QA,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SI,SK,SL,SM,SN,SO,SR,SS,ST,SV,SY,SZ,TD,TG,TH,TJ,TL,TM,TN,TO,TR,TT,TV,TZ,UA,UG,US,UY,UZ,VA,VC,VE,VN,VU,WS,YE,ZA,ZM,ZW".split(",");
+  var SLUG={TR:"turkiye",MM:"myanmar",PS:"palestine",CD:"dr-congo",CG:"republic-of-the-congo",CI:"ivory-coast",CV:"cape-verde",FM:"micronesia",SZ:"eswatini",GB:"united-kingdom",US:"united-states",VA:"vatican-city",ST:"sao-tome-and-principe",TL:"timor-leste",KN:"saint-kitts-and-nevis",LC:"saint-lucia",VC:"saint-vincent-and-the-grenadines",AE:"united-arab-emirates",BA:"bosnia-and-herzegovina",TT:"trinidad-and-tobago",GW:"guinea-bissau",GQ:"equatorial-guinea",KP:"north-korea",KR:"south-korea",MK:"north-macedonia",CZ:"czechia",LA:"laos",SY:"syria",VN:"vietnam",RU:"russia",IR:"iran",BO:"bolivia",BN:"brunei",MD:"moldova",TZ:"tanzania"};
+  var ALIAS={uk:"GB","great britain":"GB",england:"GB",usa:"US",america:"US","united states of america":"US",holland:"NL",turkey:"TR",burma:"MM","czech republic":"CZ","ivory coast":"CI",swaziland:"SZ","south korea":"KR",korea:"KR",macedonia:"MK","east timor":"TL",uae:"AE",emirates:"AE",dubai:"AE",congo:"CD","cabo verde":"CV"};
+  var dn; try{dn=new Intl.DisplayNames(["en"],{type:"region"});}catch(e){}
+  function name(c){ try{return dn?dn.of(c):c;}catch(e){return c;} }
+  function norm(s){ return (s||"").normalize("NFKD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim(); }
+  function slugOf(c){ return SLUG[c]||norm(name(c)).replace(/ /g,"-"); }
+  function flag(c){ return c.replace(/./g,function(ch){return String.fromCodePoint(127397+ch.charCodeAt(0));}); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m];}); }
+  var RES=[].slice.call(document.querySelectorAll('[data-tll-res]')).map(function(n){var d=n.dataset;return {name:d.name||'',type:d.type||'',url:d.url||'',host:d.host||'',note:d.note||'',country:d.country||''};}).filter(function(r){return r.name&&r.url;});
+  var GRP=[].slice.call(document.querySelectorAll('[data-tll-group]')).map(function(n){var d=n.dataset;return {name:d.name||'',city:d.city||'',link:d.link||'',country:d.country||''};}).filter(function(g){return g.name;});
+  var $=function(k){ return document.querySelector('[data-tll-x="'+k+'"]'); };
+  var input=$("finder-input"), go=$("finder-go"), list=$("finder-list"), quick=$("finder-quick"), err=$("finder-error"), out=$("finder-result");
+  if(input) input.placeholder="Where did you move? Try Denmark, Portugal, Japan";
+  if(list){ list.id="tll-country-list"; list.innerHTML=CODES.map(function(c){return '<option value="'+esc(name(c))+'">';}).join(""); }
+  var apply=$("apply"); if(apply) apply.id="tll-expert-apply";
+  var groups=$("groups"); if(groups) groups.id="tll-groups";
+  function resolve(q){
+    var n=norm(q); if(!n) return null;
+    if(ALIAS[n]) return ALIAS[n];
+    var exact=null, starts=null;
+    CODES.forEach(function(c){ var cn=norm(name(c)); if(cn===n||norm(slugOf(c).replace(/-/g," "))===n) exact=exact||c; else if(!starts&&cn.indexOf(n)===0&&n.length>=3) starts=c; });
+    return exact||starts;
+  }
+  var travelers=null;
+  function loadTravelers(){
+    if(travelers) return Promise.resolve(travelers);
+    return fetch("/travelers",{credentials:"same-origin"}).then(function(r){return r.text();}).then(function(h){
+      var d=new DOMParser().parseFromString(h,"text/html"); var arr=[];
+      d.querySelectorAll('a.tll-spot-card[href^="/contributors/"]').forEach(function(a){
+        var base=(a.querySelector(".tll-spot-card-base")||{}).textContent||""; var m=base.match(/,\s*([A-Z]{2})\s*$/);
+        var img=a.querySelector("img");
+        arr.push({href:a.getAttribute("href"),name:(a.querySelector(".tll-spot-card-name")||{}).textContent||"",base:base.trim(),code:m?m[1]:"",banner:(a.querySelector(".tll-spot-card-banner")||{}).textContent||"",bio:(a.querySelector(".tll-spot-card-bio")||{}).textContent||"",img:img?img.currentSrc||img.src:""});
+      });
+      travelers=arr; return arr;
+    }).catch(function(){ return []; });
+  }
+  function render(code,list){
+    var nm=name(code), slug=slugOf(code), experts=list.filter(function(t){return t.code===code;});
+    var cn=norm(nm);
+    var gr=GRP.filter(function(g){return norm(g.country)===cn;});
+    var rs=RES.filter(function(r){return norm(r.country)===cn;});
+    var expertHtml=experts.length?experts.map(function(t){
+      return '<a class="tllx-expert" href="'+esc(t.href)+'">'+(t.img?'<img src="'+esc(t.img)+'" alt="">':"")+'<span><b>'+esc(t.name)+'</b><small>'+esc((t.base+" · "+t.banner).toUpperCase())+'</small></span></a>';
+    }).join("")+'<div class="tllx-note">Questions go through TLL first. <a href="/support">Ask the expert</a>.</div>'
+    :'<div class="tllx-empty">No expert in '+esc(nm)+' yet. Live there? The desk is yours to claim. A human reviews within 48 hours.<br><a href="#tll-expert-apply">CLAIM THE '+esc(nm.toUpperCase())+' DESK →</a></div>';
+    var groupHtml=gr.length?gr.map(function(g){
+      var inner='<span><b>'+esc(g.name)+'</b><small>'+esc(g.city.toUpperCase())+'</small></span>';
+      return g.link?'<a class="tllx-expert" href="'+esc(g.link)+'" target="_blank" rel="noopener nofollow">'+inner+'</a>':'<div class="tllx-expert">'+inner+'</div>';
+    }).join("")+'<div class="tllx-note">Run one that is missing? <a href="#tll-groups">List it</a>.</div>'
+    :'<div class="tllx-empty">None listed yet. Run one? <a href="#tll-groups">LIST IT →</a></div>';
+    var mail='mailto:hello@thatlayover.life?subject='+encodeURIComponent('RESOURCE · '+nm);
+    var resHtml=rs.length?rs.map(function(r){
+      return '<a class="tllx-expert tllx-res" href="'+esc(r.url)+'" target="_blank" rel="noopener nofollow"><span><b>'+esc(r.name)+'<span class="tllx-type">'+esc(r.type)+'</span></b>'+(r.note?'<span class="tllx-note">'+esc(r.note)+'</span>':'')+(r.host?'<small>'+esc(r.host.toUpperCase())+' ↗</small>':'')+'</span></a>';
+    }).join("")+'<p class="tllx-foot">External sites. We don\'t run them, we just think they\'re useful.<br><a href="'+mail+'">SUGGEST A RESOURCE →</a></p>'
+    :'<div class="tllx-empty">Nothing checked for '+esc(nm)+' yet. We only list what a human has actually looked at.<br><a href="'+mail+'">SUGGEST A RESOURCE →</a></div>';
+    out.innerHTML='<div class="tllx-head"><span class="tllx-flag" aria-hidden="true">'+flag(code)+'</span><div><h3>Expats in '+esc(nm)+'</h3><small>'+(experts.length?experts.length+(experts.length===1?" LOCATION EXPERT":" LOCATION EXPERTS"):"DESK OPEN")+'</small></div><a href="/countries/'+esc(slug)+'">COUNTRY PAGE →</a></div>'
+      +'<div class="tllx-cols"><div class="tllx-col"><h4>LOCATION EXPERT</h4>'+expertHtml+'</div>'
+      +'<div class="tllx-col"><h4>EXPAT GROUPS LISTED ON TLL</h4>'+groupHtml+'</div>'
+      +'<div class="tllx-col"><h4>OTHER RESOURCES · CHECKED BY A HUMAN</h4>'+resHtml+'</div></div>';
+    out.hidden=false; err.hidden=true;
+  }
+  function run(q){
+    var code=resolve(q);
+    if(!code){ out.hidden=true; err.textContent='We could not match "'+q+'" to a country. Try the English name, like Denmark or Czechia.'; err.hidden=false; return; }
+    loadTravelers().then(function(l){ render(code,l); });
+  }
+  if(go){ go.addEventListener("click",function(e){ e.preventDefault(); run(input.value); }); }
+  if(input){ input.addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); run(input.value); } }); }
+  var q0=new URLSearchParams(location.search).get("country"); if(q0&&input){ input.value=q0; run(q0); }
+  loadTravelers().then(function(l){
+    var seen={}; l.forEach(function(t){ if(t.code&&!seen[t.code]){ seen[t.code]=1; if(quick){ var b=document.createElement("button"); b.type="button"; b.innerHTML='<span aria-hidden="true">'+flag(t.code)+'</span>'+esc(name(t.code)); b.addEventListener("click",function(){ input.value=name(t.code); run(name(t.code)); }); quick.insertBefore(b,quick.firstChild); } } });
+    var grid=$("dir-experts"), h2=$("dir-h2");
+    if(grid&&l.length){
+      grid.innerHTML=l.map(function(t){ return '<a class="tllx-card" href="'+esc(t.href)+'">'+(t.img?'<img src="'+esc(t.img)+'" alt="">':"")+'<small>'+esc(t.base.toUpperCase())+'</small><h3>'+esc(t.name)+'</h3><p>'+esc(t.bio)+'</p><span class="tllx-go">PROFILE →</span></a>'; }).join("");
+      if(h2){ var n=l.length; h2.innerHTML=esc(n===1?"One expert so far.":n+" experts so far.")+' <em>Plenty of desks.</em>'; }
+    }
+  });
+})();
+</script>
