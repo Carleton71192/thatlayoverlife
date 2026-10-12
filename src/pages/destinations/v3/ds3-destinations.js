@@ -30,7 +30,7 @@
       var f=card.querySelector('[data-ds3=flag]');
       if(f&&!f.firstChild){var cs=isosFromByline(place?place.textContent:''),c0=txt(card,'[data-ds3=iso]').toLowerCase();if(c0&&cs.indexOf(c0)<0)cs.unshift(c0);
         var MAX=4,shown=0;cs.forEach(function(c,k){if(k>=MAX)return;var i=img(c,26);if(i){f.appendChild(i);shown++;}});
-        if(cs.length>MAX){var more=document.createElement('span');more.setAttribute('data-ds3','flagmore');more.textContent='+'+(cs.length-MAX);f.appendChild(more);}
+        if(cs.length>MAX){var more=document.createElement('span');more.setAttribute('data-ds3','flagmore');var nm=cs.length-MAX;more.textContent='+'+nm+(nm>1?' countries':' country');f.appendChild(more);}
         if(!shown)f.hidden=true;else if(cs.length>1)f.setAttribute('data-ds3-n',String(Math.min(cs.length,MAX+1)));}
     });
     return cards.length;
