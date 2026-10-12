@@ -86,7 +86,10 @@
       m.innerHTML='<span class="ds3-sr">On your map: </span>'+W[b];});
   }
 
-  function boot(){
+  /* Collection links: the Data API can only store a static link to the template page (/detail_stories, /detail_countries). Each card and tile carries its own CMS slug, so point it at its own page. Leaves any real link alone. */
+function links(){$$('[data-ds3=card][data-ds3-slug],[data-ds3=tile][data-ds3-slug]').forEach(function(a){var sl=(a.getAttribute('data-ds3-slug')||'').trim(),h=a.getAttribute('href')||'';if(!sl||(h&&h!=='#'&&h.indexOf('/detail_')<0))return;a.setAttribute('href',(a.getAttribute('data-ds3')==='card'?'/stories/':'/countries/')+encodeURIComponent(sl));});}
+function boot(){
+try{links();}catch(e){}
     try{var oc=document.querySelector('.tlldx-card-open');if(oc&&oc.getAttribute('href')==='/share')oc.setAttribute('href','/submit');}catch(e){}
     try{var n=shelf();var a=atlas();if(a){counts(n,a);mine(a);}}catch(e){if(window.console)console.warn('ds3',e);}
   }

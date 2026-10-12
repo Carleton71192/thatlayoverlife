@@ -120,7 +120,9 @@ if(!b){if(m)m.remove();return;}
 if(!m){m=document.createElement('small');m.setAttribute('data-ds3','tmine');var tm=t.querySelector('[data-ds3=tmeta]');tm.parentNode.insertBefore(m,tm.nextSibling);}
 m.innerHTML='<span class="ds3-sr">On your map: </span>'+W[b];});
 }
+function links(){$$('[data-ds3=card][data-ds3-slug],[data-ds3=tile][data-ds3-slug]').forEach(function(a){var sl=(a.getAttribute('data-ds3-slug')||'').trim(),h=a.getAttribute('href')||'';if(!sl||(h&&h!=='#'&&h.indexOf('/detail_')<0))return;a.setAttribute('href',(a.getAttribute('data-ds3')==='card'?'/stories/':'/countries/')+encodeURIComponent(sl));});}
 function boot(){
+try{links();}catch(e){}
 try{var oc=document.querySelector('.tlldx-card-open');if(oc&&oc.getAttribute('href')==='/share')oc.setAttribute('href','/submit');}catch(e){}
 try{var n=shelf();var a=atlas();if(a){counts(n,a);mine(a);}}catch(e){if(window.console)console.warn('ds3',e);}
 }
