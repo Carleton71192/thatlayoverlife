@@ -1,0 +1,9 @@
+# Country page and Destinations 3.0: proposed changes (DRAFT IN PROGRESS)
+
+Progress notes (will be replaced by the final proposal):
+- Prototype screens read: `country` (Bulgaria, cc='bg', ctryBeen/ctryWant pills, ctryToggleCount "1 + been", Quick answers 3 sample cards, sample quote "NANCY C. · MAY 2026", Filed from Bulgaria card, On the wire (WIRE country BULGARIA), Reader submissions empty, closing Ink CTA) and `destinations` (THE ATLAS, "Every story starts somewhere.", atlasStoryCount from STORY_COUNTRIES (10 codes), COUNTRY_DATA 194 entries, 4-col story cards "1 STORY FILED", flag grid "1 STORY · READ IT" / "BE THE FIRST", "Empty country? Be the first to tell us about it →").
+- Board D6 (expat block on country page) also read.
+- STATUS rows read: B10, B40, C07, C08, D03, S01, S06, S11, S20, S32, S36.
+- Next: live Webflow reads.
+- Pages: /destinations 6a47adad7a97f26b91c7d78e (SEO title "Destinations · Stories and Layover Notes by Country · TLL"); /countries 6a8b07db18f836c65f4a3dfe (forwards to /destinations); Countries Template 6a8afbda8e907b41c4da10a1 (/countries/{slug}, collection Countries 6a8afbd98e907b41c4da109b, 52 custom fields + Name, Slug, 195 items; no Kosovo, N. Cyprus, Somaliland, Taiwan, Antarctica items); legacy Destinations Template 6a0b29c702602326705dcfcf (/destinations/{slug}, collection Destinations 6a0b29c702602326705dcfb1 = the id the brief called "Countries", 14 custom fields, 198 items, 8 published: tanzania, japan, united-states, denmark, ghana, sweden, montenegro, bulgaria; OG desc "One country, three travelers, six layover guides" invented; helpText "Nancy's 88-and-counting board").
+- Bulgaria Countries item: tier Been, visit-years 2026, verdict set, story-ref set, body empty, one-word empty, advisory Canada + FCDO URLs, data-checked 2026-09-01.
