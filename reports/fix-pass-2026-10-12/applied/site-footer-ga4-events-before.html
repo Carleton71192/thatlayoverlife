@@ -1,0 +1,221 @@
+<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script>
+  window.addEventListener('load',function(){
+    CookieConsent.run({
+      guiOptions:{consentModal:{layout:'box',position:'bottom left'},preferencesModal:{layout:'box'}},
+      categories:{necessary:{enabled:true,readOnly:true},analytics:{}},
+      language:{default:'en',translations:{en:{
+        consentModal:{title:'We use cookies',description:'We use necessary cookies to run the site, and optional analytics cookies to understand traffic and improve. You choose what to allow.',acceptAllBtn:'Accept all',acceptNecessaryBtn:'Reject all',showPreferencesBtn:'Manage preferences'},
+        preferencesModal:{title:'Cookie preferences',acceptAllBtn:'Accept all',acceptNecessaryBtn:'Reject all',savePreferencesBtn:'Save preferences',closeIconLabel:'Close',sections:[
+          {title:'Necessary',description:'Required for the site to function. Always on.',linkedCategory:'necessary'},
+          {title:'Analytics',description:'Helps us understand how visitors use the site (Google Analytics).',linkedCategory:'analytics'}
+        ]}
+      }}}
+    });
+  });
+</script>
+<script>
+(function(){
+  function wire(){
+    [].slice.call(document.querySelectorAll('[data-tll-cookie-prefs], a[href^="javascript:"]')).forEach(function(a){
+      if(!a.hasAttribute('data-tll-cookie-prefs')&&!/cookie/i.test(a.textContent))return;
+      a.setAttribute('href','#');
+      a.addEventListener('click',function(e){e.preventDefault();
+        if(window.CookieConsent&&CookieConsent.showPreferences)CookieConsent.showPreferences();});
+    });
+  }
+  if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
+  window.addEventListener('load',wire);
+})();
+</script>
+<script>
+/* TLL story share fixes (2026-07-30): wire the broken 'Copy link' button to the clipboard, and point LinkedIn/X share at the current story URL instead of the generic domain. */
+(function(){
+  function wire(){
+    [].slice.call(document.querySelectorAll('a[href^="https://javascript:"],a[href^="javascript:"]')).forEach(function(a){
+      if(!/copy/i.test(a.textContent))return;
+      a.setAttribute('href','#');a.setAttribute('role','button');
+      if(a.__tllCopy)return;a.__tllCopy=1;
+      a.addEventListener('click',function(e){e.preventDefault();
+        try{navigator.clipboard.writeText(location.href);var o=a.textContent;a.textContent='Link copied';setTimeout(function(){a.textContent=o;},1500);}catch(err){}});
+    });
+    var u=encodeURIComponent(location.href);
+    [].slice.call(document.querySelectorAll('a[href*="linkedin.com/sharing"],a[href*="linkedin.com/shareArticle"]')).forEach(function(a){a.setAttribute('href','https://www.linkedin.com/sharing/share-offsite/?url='+u);a.setAttribute('target','_blank');a.setAttribute('rel','noopener');});
+    [].slice.call(document.querySelectorAll('a[href*="twitter.com/intent"],a[href*="x.com/intent"]')).forEach(function(a){a.setAttribute('href','https://twitter.com/intent/tweet?url='+u+'&text='+encodeURIComponent(document.title));a.setAttribute('target','_blank');a.setAttribute('rel','noopener');});
+  }
+  if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
+  window.addEventListener('load',wire);
+})();
+</script>
+<style id="tll-pass-a">
+/* PASS A (2026-07-29): site-wide contrast + form cleanup */
+.tll-mypets-stat-num{color:#00857F !important;}
+.tll-bg-paper .tll-card .tll-text-bone,.tll-bg-blush .tll-card .tll-text-bone{color:#0D0F1A !important;}
+fieldset.tll-pen-fieldset{border:1px solid rgba(13,15,26,.08) !important;border-radius:14px;box-shadow:0 1px 3px rgba(13,15,26,.05);padding:24px !important;}
+.tll-pen-legend{float:left;width:100%;padding:0;margin:0 0 6px;border:0;}
+.tll-pen-legend + *{clear:both;}
+input[type=checkbox],input[type=radio]{accent-color:#F0507A;width:18px;height:18px;}
+.tll-pen-input.w-select,select.tll-pen-input,.tll-pen-fieldset select{min-height:50px !important;height:auto !important;line-height:1.4 !important;padding:13px 16px !important;background-color:#FBF7F0;}
+.tll-pen-checkbox,.tll-pen-radio{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
+.tll-pen-checkbox .w-checkbox,.tll-pen-radio .w-radio{width:auto !important;min-height:0;display:inline-flex;align-items:center;margin:0;padding-left:0;flex:0 0 auto;}
+.tll-pen-checkbox .w-checkbox-input,.tll-pen-radio .w-radio-input{margin:0 8px 0 0 !important;float:none;}
+.tll-pen-checkbox,.tll-pen-checkbox span,.tll-pen-checkbox label,.tll-pen-radio,.tll-pen-radio span,.tll-pen-radio label,.tll-pen-fieldset .w-form-label,.tll-pen-fieldset .w-checkbox span{color:#3a3a3a !important;}
+.tll-pen-checkbox a,.tll-pen-radio a,.tll-pen-fieldset .w-checkbox a{color:#F0507A !important;}
+</style>
+<style id="tll-core-v2-css">
+/* Ported from retired perf polish v7: member/anonymous blocks never flash, logo stays legible, 44px touch targets */
+[data-ms-content="members"]{display:none}
+html.ms-loaded [data-ms-content="anonymous"]{display:none}
+html.ms-loaded [data-ms-content="members"]{display:block}
+.tll-nav-logo,.tll-nav-logo *{color:#F7F4EE}
+.tll-nav-link,.tll-footer-link{min-height:44px}
+html,body{overflow-x:clip}
+</style>
+<style id="tll-forms-v2">
+/* TLL form system v2 (2026-09-25). The forms had drifted into four separate input families with three
+   border widths, three corner radii and two fonts that are not brand fonts, while checkboxes, radios,
+   selects and file inputs were still rendering as stock Webflow controls. That is what read as the old
+   design. One spec here, using the Claude Design tokens declared in the head. This is the last style
+   block in the document, so it wins the cascade without fighting anything upstream.
+   The two search bars and the pen-form checkbox layout are deliberately excluded; they are re-asserted
+   at the end of this block. */
+
+/* Text fields, textareas and selects */
+.tll-pen-input,.tll-auth-input,.tll-edit-input,
+.w-input:not(.tllsb-input):not(.tll-library-news-input):not([name="Search-the-library"]),
+textarea.w-input,select.w-select{
+  background-color:var(--tll-paper,#FDF9F3) !important;
+  color:var(--tll-ink,#0A0B14) !important;
+  border:1.5px solid rgba(10,11,20,.22) !important;
+  border-radius:10px !important;
+  padding:13px 16px !important;
+  font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;
+  font-size:16px !important;
+  line-height:1.45 !important;
+  width:100%;
+  box-shadow:none;
+}
+/* 16px above is deliberate: anything smaller makes iOS Safari zoom the page on focus. */
+.w-input:not(textarea):not(.tllsb-input):not([name="Search-the-library"]){min-height:48px !important}
+textarea.w-input,.tll-pen-textarea,.tll-edit-textarea{min-height:120px !important;resize:vertical}
+::placeholder{color:#8B857C !important;opacity:1}
+
+/* Native select keeps the OS chevron, which never matches. Draw the brand one instead. */
+select.w-select,select.tll-pen-input,select.tll-cc-in{
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%230A0B14' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat !important;
+  background-position:right 16px center !important;
+  background-size:13px 8px !important;
+  padding-right:44px !important;
+}
+
+/* Checkboxes and radios. Webflow hides the real input (opacity 0, z-index -1) and paints a div in its
+   place, so the accent-color rule in PASS A never reached the control anyone can actually see. */
+.w-checkbox-input,.w-radio-input{
+  width:18px !important;height:18px !important;
+  border:1.5px solid rgba(10,11,20,.38) !important;
+  background-color:#fff !important;
+  transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.w-checkbox-input{border-radius:5px !important}
+.w-radio-input{border-radius:50% !important}
+.w-checkbox-input.w--redirected-checked,.w-radio-input.w--redirected-checked{
+  background-color:var(--tll-teal-l,#067A79) !important;
+  border-color:var(--tll-teal-l,#067A79) !important;
+}
+.w-checkbox-input.w--redirected-checked{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5.2l3.6 3.4L11 1.4' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-size:11px 9px !important;background-position:center !important;background-repeat:no-repeat !important;
+}
+.w-radio-input.w--redirected-checked{box-shadow:inset 0 0 0 3.5px #fff !important}
+.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{
+  box-shadow:0 0 0 3px rgba(240,80,122,.28) !important;
+  border-color:var(--tll-rose,#F0507A) !important;
+}
+.w-checkbox .w-form-label,.w-radio .w-form-label{
+  font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;
+  font-size:15px;line-height:1.5;color:#3a3a3a;cursor:pointer;
+}
+
+/* File inputs: the stock grey Choose file button is the most dated control on the site. */
+input[type=file]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-size:14px;color:#3a3a3a}
+input[type=file]::file-selector-button{
+  background:var(--tll-ink,#0A0B14);color:#fff;border:0;border-radius:8px;
+  padding:10px 16px;margin-right:12px;cursor:pointer;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-weight:600;font-size:13px;
+  transition:background .15s ease;
+}
+input[type=file]::file-selector-button:hover{background:#1B1F33}
+
+/* Success and failure states ship as Webflow green and red boxes that belong to no brand. */
+.w-form-done{
+  background:rgba(6,122,121,.07) !important;border:1.5px solid var(--tll-teal-l,#067A79) !important;
+  border-radius:12px !important;padding:18px 20px !important;color:var(--tll-ink,#0A0B14) !important;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;
+}
+.w-form-fail{
+  background:rgba(214,56,89,.07) !important;border:1.5px solid var(--tll-rose-d,#D63859) !important;
+  border-radius:12px !important;padding:18px 20px !important;color:var(--tll-ink,#0A0B14) !important;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;
+}
+
+/* Submit controls. Shape is left to the existing tll-btn classes; only size and type are unified. */
+form input[type=submit].w-button{
+  min-height:48px;padding:13px 26px;font-size:16px;cursor:pointer;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-weight:700;
+}
+/* Teal on a light surface is #067A79. #00C9C8 is the dark-surface value and does not carry contrast here. */
+form.tll-home-search input[type=submit]{background:var(--tll-teal-l,#067A79) !important;color:#fff !important}
+form.tll-home-search input[type=submit]:hover{background:#05605F !important}
+
+input:disabled,textarea:disabled,select:disabled,.w-button:disabled{opacity:.55;cursor:not-allowed}
+
+/* Re-assert what this block must not disturb. */
+.tll-pen-checkbox .w-checkbox-input,.tll-pen-radio .w-radio-input{margin:0 8px 0 0 !important;float:none !important}
+form.tll-home-search input[type=text],.tllsb-input{border:0 !important;background:transparent !important;min-height:0 !important;border-radius:0 !important;padding:0 !important}
+
+@media(max-width:600px){
+  form input[type=submit].w-button{width:100%}
+}
+</style>
+<script id="tll-core-v2">
+/* TLL core v2 (2026-09-21). Replaces 11 retired registered scripts with only the behavior the site still needs:
+   lazy images, member-page H1 cleanup, founder avatar, Trip Ledger on /edit-profile, signed-in redirect off /login,
+   microchip fields hidden on pet forms. Copy fixes now live in the page source, not here. */
+(function(){
+  var P=location.pathname.replace(/\/$/,'')||'/';
+  function lazy(){[].forEach.call(document.querySelectorAll('img:not([loading])'),function(i,n){if(n>2){i.setAttribute('loading','lazy');i.setAttribute('decoding','async');}});}
+  function memberH1s(){if(!/^\/(account|profile|my-passport|my-pets|edit-profile|share|support)/.test(P))return;var h=document.querySelectorAll('h1');for(var i=1;i<h.length;i++){var x=document.createElement('h2');x.innerHTML=h[i].innerHTML;[].forEach.call(h[i].attributes,function(a){x.setAttribute(a.name,a.value);});h[i].parentNode.replaceChild(x,h[i]);}}
+  var AV='https://lh3.googleusercontent.com/d/1sbjvhecBGFMGuRblUoyI0BTN_h51p83J=w800';
+  function founderAvatar(){[].forEach.call(document.querySelectorAll('img[src*="F0507A"]'),function(img){if(img.dataset.tllAv)return;img.dataset.tllAv='1';img.src=AV;img.removeAttribute('srcset');img.style.objectFit='cover';if(!img.alt)img.alt='Nancy Carleton, founder of That Layover Life';});}
+  function petForms(){if(!/^\/(my-pets|edit-profile)/.test(P))return;[].forEach.call(document.querySelectorAll('input[name*="microchip" i],input[id*="microchip" i],input[placeholder*="microchip" i]'),function(inp){var w=inp.closest('.w-form-group,.tll-pen-field,div')||inp;w.style.display='none';});}
+  function loginRedirect(){if(P!=='/login'||!window.$memberstackDom)return;window.$memberstackDom.getCurrentMember().then(function(r){if(r&&r.data&&!sessionStorage.getItem('tllRedir')){sessionStorage.setItem('tllRedir','1');location.href='/account';}}).catch(function(){});}
+  var CONT=['Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];
+  function ledger(){
+    if(P!=='/edit-profile'||document.querySelector('.tll-cc-block'))return;var form=document.querySelector('form');if(!form)return;
+    var st=document.createElement('style');st.textContent='.tll-cc{margin:32px 0;padding:24px;background:#F7F1E8;border-radius:14px;border:1px solid rgba(13,15,26,.08)}.tll-cc h3{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:22px;color:#0A0B14;margin:0 0 8px}.tll-cc p{font-size:14px;color:#3a3a3a;margin:0 0 16px}.tll-cc-types{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tll-cc-type{padding:8px 16px;border:1px solid rgba(13,15,26,.15);border-radius:999px;cursor:pointer;font-size:13px;background:#fff;color:#0A0B14}.tll-cc-type.active{background:#0A0B14;color:#F7F1E8;border-color:#0A0B14}.tll-cc-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}.tll-cc-col{flex:1;min-width:180px}.tll-cc-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#067A79;display:block;margin-bottom:4px}.tll-cc-in{width:100%;padding:10px 14px;border:1px solid rgba(13,15,26,.15);border-radius:8px;font-size:15px;background:#fff;color:#0A0B14}.tll-cc-add{background:#D63859;color:#fff;border:0;padding:12px 24px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px}.tll-cc-add:hover{background:#F0507A}.tll-cc-msg{margin-top:12px;font-size:13px}.tll-cc-list{margin-top:16px;padding-top:16px;border-top:1px solid rgba(13,15,26,.08);font-size:13px;color:#3a3a3a}';document.head.appendChild(st);
+    var c=document.createElement('div');c.className='tll-cc tll-cc-block';
+    c.innerHTML='<h3>Log a place to your Trip Ledger</h3><p>Add a country, continent, region, or anywhere else worth logging. Saves to your account.</p><div class="tll-cc-types"><span class="tll-cc-type active" data-t="country">Country</span><span class="tll-cc-type" data-t="continent">Continent</span><span class="tll-cc-type" data-t="region">Region</span><span class="tll-cc-type" data-t="other">Other</span></div><div class="tll-cc-row" id="tllPlaceRow"></div><button type="button" class="tll-cc-add" id="tllAdd">Add to ledger →</button><div class="tll-cc-msg" id="tllMsg" role="status"></div><div class="tll-cc-list" id="tllList"></div><a href="/my-passport#my-map" style="display:inline-block;margin-top:16px;font-weight:600;color:#D63859">See your map →</a>';
+    form.parentNode.insertBefore(c,form);var cur='country';
+    function row(){var r=document.getElementById('tllPlaceRow');if(cur==='country')r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">Country</label><input class="tll-cc-in" id="tllName" placeholder="Bulgaria, Montenegro, Ghana"></div><div class="tll-cc-col"><label class="tll-cc-lbl" for="tllCity">City (optional)</label><input class="tll-cc-in" id="tllCity" placeholder="Sofia, Kotor, Accra"></div>';else if(cur==='continent')r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">Continent</label><select class="tll-cc-in" id="tllName"><option value="">Pick one</option>'+CONT.map(function(x){return'<option>'+x+'</option>';}).join('')+'</select></div>';else r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">'+(cur==='region'?'Region or territory':'Place')+'</label><input class="tll-cc-in" id="tllName" placeholder="'+(cur==='region'?'Hong Kong SAR, Greenland, Faroe Islands':'Somewhere unlisted')+'"></div>';}
+    row();[].forEach.call(c.querySelectorAll('.tll-cc-type'),function(b){b.onclick=function(){cur=b.getAttribute('data-t');[].forEach.call(c.querySelectorAll('.tll-cc-type'),function(x){x.classList.remove('active');});b.classList.add('active');row();};});
+    function list(pl){var l=document.getElementById('tllList');if(!pl||!pl.length){l.innerHTML='<em>No places logged yet.</em>';return;}var g={};pl.forEach(function(p){var t=p.type||'country';(g[t]=g[t]||[]).push(p);});var h='';['country','continent','region','other'].forEach(function(t){if(!g[t])return;h+='<div style="margin-top:12px"><strong style="text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:#6B6660">'+({country:'Countries',continent:'Continents',region:'Regions',other:'Other'})[t]+' · '+g[t].length+'</strong></div>';g[t].forEach(function(p){var d=document.createElement('div');d.textContent=(p.name||'?')+(p.city?' · '+p.city:'');h+='<div>'+d.innerHTML+'</div>';});});l.innerHTML=h;}
+    var ms=window.$memberstackDom;if(ms)ms.getCurrentMember().then(function(r){if(r&&r.data)list((r.data.metaData||{}).places||[]);});
+    document.getElementById('tllAdd').onclick=function(){var n=((document.getElementById('tllName')||{}).value||'').trim(),ci=((document.getElementById('tllCity')||{}).value||'').trim(),m=document.getElementById('tllMsg');if(!n){m.textContent='Pick a place before saving.';return;}var ms=window.$memberstackDom;if(!ms){m.textContent='Still loading. Try again in a moment.';return;}m.textContent='Saving…';ms.getCurrentMember().then(function(r){if(!r||!r.data){m.textContent='Sign in to save your places.';return;}var pl=((r.data.metaData||{}).places||[]).concat([{type:cur,name:n,country:cur==='country'?n:null,city:ci||null,added:new Date().toISOString()}]);return ms.updateMember({metaData:{places:pl}}).then(function(){m.textContent='Logged. '+pl.length+' place'+(pl.length===1?'':'s')+' on your ledger.';var a=document.getElementById('tllName');if(a)a.value='';var b=document.getElementById('tllCity');if(b)b.value='';list(pl);});}).catch(function(e){m.textContent='Could not save: '+((e&&e.message)||e);});};
+  }
+  function run(){lazy();memberH1s();founderAvatar();petForms();ledger();}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',function(){lazy();founderAvatar();petForms();});
+  var n=0,iv=setInterval(function(){if(window.$memberstackDom){clearInterval(iv);loginRedirect();ledger();}else if(++n>40)clearInterval(iv);},250);
+  var mo=new MutationObserver(function(){clearTimeout(window.__tllAvT);window.__tllAvT=setTimeout(founderAvatar,200);});if(document.body)mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect();},8000);
+})();
+</script>
+<script id="tll-a11y-motion-v1">
+/* Accessibility + motion (2026-09-28): 3px focus ring and a Skip to content link; WCAG AA contrast repair for brand accent text (after load, never over photos); 44px buttons and 24px links on touch screens; subtle hero parallax on desktop only, off when reduced motion is set. */
+!function(){var t=document.createElement("style");function e(){if(!document.querySelector(".tll-skip")){var t=document.querySelector("main")||(document.querySelector("h1")||{}).closest&&document.querySelector("h1").closest("section,header,div");if(t){t.id||(t.id="tll-main"),t.hasAttribute("tabindex")||t.setAttribute("tabindex","-1");var e=document.createElement("a");e.className="tll-skip",e.href="#"+t.id,e.textContent="Skip to content",document.body.insertBefore(e,document.body.firstChild)}}}t.id="tll-a11y-focus-v1",t.textContent='a:focus-visible,button:focus-visible,[role=button]:focus-visible,summary:focus-visible,.w-button:focus-visible,.tll-btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:not([tabindex="-1"]):focus-visible{outline:3px solid #F0507A!important;outline-offset:2px!important}.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{outline:3px solid #F0507A!important;outline-offset:2px!important}.tll-skip{position:absolute;left:8px;top:-80px;z-index:100000;background:#0A0B14;color:#F7F1E8!important;padding:12px 18px;border-radius:6px;font:700 15px/1.2 "IBM Plex Sans Condensed",system-ui,sans-serif;text-decoration:none}.tll-skip:focus{top:8px}',document.head.appendChild(t),"loading"!==document.readyState?e():document.addEventListener("DOMContentLoaded",e)}();
+!function(){var t=document,r=function(r,n){return[].slice.call((n||t).querySelectorAll(r))};function n(t){var r=t&&t.match(/rgba?\(([^)]+)\)/);if(!r)return null;var n=r[1].split(",").map(parseFloat);return{r:n[0],g:n[1],b:n[2],a:n.length>3?n[3]:1}}function e(t){function r(t){return(t/=255)<=.03928?t/12.92:Math.pow((t+.055)/1.055,2.4)}return.2126*r(t.r)+.7152*r(t.g)+.0722*r(t.b)}window.tllCx={Q:r,C:n,L:e,R:function(t,r){var n=e(t),o=e(r);return(Math.max(n,o)+.05)/(Math.min(n,o)+.05)},B:function(t){for(var r=t;r&&1==r.nodeType;r=r.parentElement){var e=getComputedStyle(r);if("none"!=e.backgroundImage)return null;var o=n(e.backgroundColor);if(o&&o.a>.6)return{c:o,e:r}}return{c:{r:255,g:255,b:255}}},I:function(n){var e=n.getBoundingClientRect(),o=e.left+e.width/2,u=e.top+e.height/2;return r("img,video,picture",n.closest("section,header,article,footer")||t.body).some(function(t){var r=t.getBoundingClientRect();return r.width>200&&o>=r.left&&o<=r.right&&u>=r.top&&u<=r.bottom})},F:function(t){return t.g>t.r+40&&t.b>t.r+40?"t":t.r>t.g+60&&t.r>t.b+20?t.g>t.b+20?"a":"r":""}}}();
+!function(){var t=document,e=window.tllCx;if(e){var o=e.Q,i=e.C,r=e.L,a=e.R,n=e.B,l=e.I,f=e.F,c={t:"6,122,121",r:"200,50,91",a:"138,90,18","":"26,26,26"},s={t:"0,201,200",r:"255,112,147",a:"217,138,43","":"247,241,232"};"complete"==t.readyState?setTimeout(u,300):addEventListener("load",function(){setTimeout(u,300)})}function d(){var t=0;o("h1,h2,h3,h4,p,li,a,span,div,label,strong,button").forEach(function(e){if(!(t++>4e3)){for(var o=0,d=e.firstChild;d;d=d.nextSibling)if(3==d.nodeType&&d.nodeValue.trim()){o=1;break}if(o){var u=getComputedStyle(e);if("none"!=u.display&&"hidden"!=u.visibility&&0!=+u.opacity){var p=i(u.color),y=n(e);if(p&&y&&!(p.a<.4)){var m=parseFloat(u.fontSize),v=m>=24||u.fontWeight>=700&&m>=18.66?3:4.5;if(!(a(p,y.c)>=v||l(e))){if(y.e&&"r"==f(y.c)&&r(p)>.5)y.e.style.setProperty("background-color","#D63859","important"),e.style.setProperty("color","#fff","important");else{var b=r(y.c)>.4,h="rgb("+(b?c:s)[f(p)]+")";a(i(h),y.c)<v&&(h=b?"#1A1A1A":"#F7F1E8"),e.style.setProperty("color",h,"important")}e.dataset.tc=1}}}}}})}function u(){(window.requestIdleCallback||setTimeout)(d,{timeout:1500})}}();
+!function(){if(window.matchMedia&&matchMedia("(pointer: coarse)").matches){var t=/btn|button|cta|chip|pill|filter|tab/i;"complete"===document.readyState?e():addEventListener("load",function(){e(),setTimeout(e,2e3)})}function e(){[].forEach.call(document.querySelectorAll("a[href],button,input[type=submit],input[type=button],[role=button],select,summary"),function(e){if(!e.dataset.tllTap&&!e.closest("p,.w-richtext,figcaption,nav,.tll-nav-v1,[data-ms-content] nav")){var a=e.getBoundingClientRect();if(a.width&&a.height){var i=getComputedStyle(e);if("absolute"!==i.position&&"fixed"!==i.position){var n=/^(BUTTON|INPUT|SELECT|SUMMARY)$/.test(e.tagName)||t.test(e.className)||i.backgroundColor&&!/rgba\(0, 0, 0, 0\)|transparent/.test(i.backgroundColor)?44:24;if(a.height<n){"inline"===i.display&&(e.style.display="inline-block");var o=(n-a.height)/2;e.style.paddingTop=parseFloat(i.paddingTop)+o+"px",e.style.paddingBottom=parseFloat(i.paddingBottom)+o+"px"}if(a.width<n){"inline"===i.display&&(e.style.display="inline-block");var l=(n-a.width)/2;e.style.paddingLeft=parseFloat(i.paddingLeft)+l+"px",e.style.paddingRight=parseFloat(i.paddingRight)+l+"px"}e.dataset.tllTap=1}}}})}}();
+!function(){var e=window.matchMedia;if(e&&!e("(prefers-reduced-motion: reduce)").matches&&e("(min-width: 768px)").matches){var t=[].slice.call(document.querySelectorAll("[data-tll-parallax]"));if(t.length){t.forEach(function(e){var t=e.parentElement;t&&"visible"===getComputedStyle(t).overflow&&(t.style.overflow="hidden"),e.style.willChange="transform"});var n=!1;addEventListener("scroll",i,{passive:!0}),addEventListener("resize",i),a()}}function a(){n=!1;var e=innerHeight;t.forEach(function(t){var n=(t.parentElement||t).getBoundingClientRect();if(!(n.bottom<0||n.top>e)){var a=Math.max(-.06,Math.min(.06,.2*-n.top/(n.height||1)))*n.height;t.style.transform="translate3d(0,"+a.toFixed(1)+"px,0) scale(1.13)"}})}function i(){n||(n=!0,requestAnimationFrame(a))}}();
+</script>

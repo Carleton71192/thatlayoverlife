@@ -2,31 +2,30 @@
 
 Running list. Everything I changed is an unpublished edit; you publish. Full check of the 18 items: `verification.md`. What changed: `report-back.md`.
 
-## Decisions still open (answer in one message, any order)
-1. **Paw Passport checkout:** Ko-fi or Gumroad, and the product URL. Until then the buy button, the "coming soon" line, the €9 price, the price meta line and the "everyone who bought it" note are hidden (unpublished).
-2. **TLL Ko-fi page URL** (account hello@thatlayover.life). Until then the two /support Ko-fi buttons, "Coming soon", "Price TBC" and the Ko-fi cancel note are hidden. (Correction: the earlier list said these were already removed. They weren't; they are now.)
-3. **/faq paid-tier line.** Your proposed line mentions the Ko-fi button, which is hidden until you send the URL. Pick one:
-   - A (works today): "Membership is free and stays free. Every published story stays free to read."
-   - B (once Ko-fi is live): "Membership is free and stays free. If you want to buy us a coffee, the Ko-fi button is there. It unlocks nothing except our gratitude."
-4. **Newsletter name:** "The Layover Letter" everywhere? Yes or no.
-5. **Country count rule.** Your map counts Lived + Stayed, which makes you **85**. The site says **87**, which only works if your two layover-only countries (Taiwan, Dominican Republic) count. Magnus is **14** on the map (Denmark marked lived) and **13** in his CMS list. Pick: 85 or 87, and Magnus 13 or 14.
-6. **Where logged-out pages read the count from:** the map's own published copy of your record (needs a re-export when you log a country) or the CMS fields (Contributors "Country count", Magnus's list), kept in step with the map.
-7. **Home free line under the headline:** A "Free, forever. No card, no paywall." (from the brief) or B "Free to join. We're not a gym. No card, no paywall." (keeps your protected line, which is currently nowhere on the site word for word).
-8. **Rename "The shelf." on the home page:** Option 1 "Just filed." (eyebrow "Chapter 01 · Fresh from the road", caption "Just filed · Brazil") or Option 2 "The reading list." (eyebrow "Chapter 01 · Start reading", caption "On the reading list · Brazil").
-9. **/submit restructure** (write first, sign up at the end, three steps, five required fields, everything else under "More options"). It moves your Memberstack gate, so I'll bring a change log first. Two questions now: OK to draft it? And do the sign-up inputs count toward the "7 or fewer"? (Google sign-up is 5 + 1 click; email sign-up adds 4.)
-10. **Measurement events** (story submitted, sign-up, newsletter, Ko-fi click, guide checkout click, affiliate click), consent-gated: add them to the existing site footer code block, or as one new script? And Google Consent Mode: yes or no (no keeps today's "nothing before consent").
-11. **EXIF on /share-photos.** Nothing strips location data today. The page's "We strip EXIF" promises are removed (unpublished). Pick: A re-encode in the browser, B Uploadcare, C upload through the Worker with metadata removed, or D you strip location before anything is published. Note: the form probably doesn't deliver the photo files at all (plain Webflow form, not the File Upload element). One test submission from you would confirm.
-12. **/pillars pages:** noindex all five, or only the four thin ones (1, 1, 0, 0 stories)?
-13. **"Currently in Copenhagen, Denmark · filing weekly"** (your Contributors CMS line): it is now out of the page HTML. Clear the field too?
-14. **Guides /copenhagen-stopover and /ees-etias-layover:** please check each answer against its source and give me the "last checked" date. Then I remove the DRAFT boxes, noindex and "THE LEDGER", drop "€9." and turn draft off.
-15. **Photo placement defaults I used** (change any): Kilimanjaro Uhuru sign stays in the gallery; Sort Sol beach and lighthouse under "Sunday"; Sort Sol carved sign under "Finding the birds"; Paraguay neon sign under "The country across the bridge"; Morocco souk photos at the first afternoon.
-16. **Pantanal title** now reads "Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide". If you'd rather name the number ("Two Jaguars", "Three Jaguars"), tell me how many.
+## Still open after your answers
+1. **Ko-fi URLs.** You picked Ko-fi for the Paw Passport and said OK to the TLL Ko-fi page. I still need both links: the TLL Ko-fi page, and the Paw Passport product on Ko-fi. The buttons stay hidden until then, and your /faq line B goes in at the same time (it points at the Ko-fi button).
+2. **Newsletter name**, three options:
+   - **Gate Change.** "Your inbox deserves better than deals. Gate Change lands when a story earns it." Travel-literate and a little dramatic.
+   - **Window Seat.** Calm, everyone's favorite seat, reads well in a subject line ("Window Seat: Sort Sol").
+   - **Long Way Round.** Matches the brand's "get lost on purpose" line.
+3. **Your 87.** Your sheet and the map both say 87, but not the same 87. Please fix the map in the map editor (only the map writes your record):
+   - On your sheet, not on the map: **Aruba, Botswana, Curaçao, Faroe Islands, Liechtenstein** (add as Visited or Lived).
+   - On the map, not on your sheet: **Luxembourg** (your Not Yet Visited tab says Booked: remove until you go), **Antarctica** and **New Caledonia** (count them or not?), **Taiwan** and **Dominican Republic** (marked Layover, so they don't count; that matches "airports don't count").
+   - If Antarctica and New Caledonia count, you are at 89, not 87.
+   - Magnus: your sheet says 11, his CMS list 13, the map 14 (Austria, Hungary, Sweden and Denmark differ). Which is right?
+   Once the map is right, I re-export its public copy and wire the footer, home and profile counts to it (footer step needs you present).
+4. **Jaguars:** you said yes to naming the number. How many did you see?
+5. **/submit change log:** `submit-change-log.md`. Approve rows 1 to 9, and tell me whether the email sign-up inputs count toward the 7 (I recommend counting story inputs only and leading with Google).
+6. **EXIF, option A (re-encode in the browser):** before I build it, please send one test photo through /share-photos and tell me if it arrives anywhere. I think the current form never delivers the file, so option A also needs a real upload target (Webflow's File Upload element on a paid form plan, or the Worker).
+7. **Guides:** check each answer against its source and send me the "last checked" date (you said OK).
+8. **Legal and story wording** with banned words: list to come from the sweep.
 
 ## Decided (12 Oct)
 - Footer guides: build short pages now; footer links stay as they are.
 - La Paz: not hosted. Its Disclosure field is empty, so the hosted line never shows.
 - Passport total: 249.
-- Photo placement: Plan B (the "Photo placements" collection). Built and staged.
+- Photo placement: Plan B (the "Photo placements" collection). Built and staged. Your defaults confirmed.
+- Free line B on the home page, "The reading list." rename, /faq line B (waits on Ko-fi), clear "Currently in" (done), pillar recommendation: keep Stories From the Road and Paw Passport in search, take the three thin pillars out until each has 3 stories (done, unpublished), events in the existing site footer without Consent Mode (in progress), public count source = the map's published copy.
 
 ## Needs you in the Designer (2 minutes each)
 1. ~~/destinations links~~: done by API (all three links now "current item"). Just check after publish that Denmark, Brazil and France open their own pages.

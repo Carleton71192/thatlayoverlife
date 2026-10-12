@@ -1,0 +1,32 @@
+<script>
+/* tll-pillar-shelf-v2 */
+(function(){
+  function wire(id,prefix){
+    var w=document.getElementById(id);
+    if(!w){return;}
+    Array.prototype.forEach.call(w.querySelectorAll('a.tllpr-card'),function(a){
+      if(a.id){a.setAttribute('href',prefix+a.id);}
+    });
+  }
+  wire('tllpr-stories','/stories/');
+  wire('tllpr-layovers','/layovers/');
+  wire('tllpr-diary','/paw-passport/');
+  var m=location.pathname.match(/\/pillars\/([^\/?#]+)/);
+  if(!m){return;}
+  var slug=decodeURIComponent(m[1]).toLowerCase(),n=0;
+  var sw=document.getElementById('tllpr-stories');
+  if(sw){
+    Array.prototype.forEach.call(sw.querySelectorAll('.w-dyn-item'),function(it){
+      var f=it.querySelector('.tllpr-pflag');
+      var v=f?f.textContent.trim().toLowerCase():'';
+      if(v===slug){n++;}else{it.style.display='none';}
+    });
+    if(n===0){sw.style.display='none';}
+  }
+  var ex=null;
+  if(slug==='layover-guides'){ex=document.getElementById('tllpr-layovers');}
+  if(slug==='paw-passport'){ex=document.getElementById('tllpr-diary');}
+  if(ex){ex.style.display='block';n+=ex.querySelectorAll('.w-dyn-item').length;}
+  if(n===0){var e=document.querySelector('.tllpr-none');if(e){e.style.display='block';}}
+})();
+</script>
