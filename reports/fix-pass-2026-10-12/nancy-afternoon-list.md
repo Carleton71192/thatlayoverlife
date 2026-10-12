@@ -58,4 +58,5 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 - **Pantanal:** jaguars plural (title, excerpt, opening line); "São Paulo" with the tilde in its search description.
 
 ## Publish
+- **Account and sign-in 3.0 is staged** (the /account tab rail, the dark log-in, sign-up and forgot-password cards, labels on the sign-in fields). Plus: "doing the math" on the home page. One full publish makes them live; then check /account logged in (LOGGED number, Wrapped stats, every tab), and a sign-in on your phone.
 - Nothing has been published since your fix-pass prompt. When you're ready, one full site publish covers every staged change (the sitemap changes need a full publish).

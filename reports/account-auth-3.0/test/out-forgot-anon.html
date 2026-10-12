@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>forgot</title><link rel="stylesheet" href="/site.css"><style>body{margin:0;font-family:system-ui,sans-serif;background:#FDF9F3;color:#0A0B14}.w-form-done,.w-form-fail{display:none}.tll-container{max-width:1200px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+.tll-section-dark{background:#0A0B14;color:#F7F1E8}.mock-nav{padding:14px 16px;background:#fff;border-bottom:1px solid #ddd}.mock-footer{padding:40px 16px;background:#0A0B14;color:#fff}
+.tll-stamp{border:2px solid #C8325B;padding:10px;transform:rotate(-4deg);color:#C8325B;text-align:center}img{max-width:100%}*{box-sizing:border-box}input{font:inherit}</style><script>/* Memberstack mock for offline tests. Mode anon. Records every write call so the test can prove the a3/au3 code never writes. */
+/* Simulates the hosted page script that is expected to define window.tllOwn: the live tll-acct-lists v1.3 calls tllOwn(),
+   which is only declared inside the __tllAcctStats closure. Without it, cardCounts() and wrapped() throw (pre-existing, see build log). */
+if(!/noshim/.test(location.search)) window.tllOwn=function(d){var hum={},any=0;(d&&d.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=1;}});var n=0,l=0,lv=0;Object.keys(d&&d.states||{}).forEach(function(k){var row=d.states[k]||{},best='';Object.keys(row).forEach(function(id){if(any&&!hum[id])return;var v=row[id];if(v==='lived'){best='lived';}else if(v==='visited'){if(best!=='lived')best='visited';}else if(v==='layover'&&!best)best='layover';});if(best==='lived'){n++;lv++;}else if(best==='visited')n++;else if(best==='layover')l++;});return{n:n,lived:lv,stayed:n-lv,layover:l};};
+(function(){
+  var mode='anon'; window.__msWrites=[];
+  var states={v:2,travelers:[{id:'t1',name:'Me'},{id:'p1',name:'Magnus',pet:true}],states:{'208':{t1:'lived',p1:'visited'},'076':{t1:'visited'},'250':{t1:'layover'},'704':{t1:'visited',p1:'visited'}}};
+  var member=mode==='member'?{id:'mem_test',profileImage:'',customFields:{'first-name':'Test','bio-short':'','lives-country':'Denmark','languages':'English','link-website':'https://example.com','link-website-on':'true','is-expat':'true','share-level':'unlisted'}}
+    :mode==='member-empty'?{id:'mem_new',customFields:{}}:null;
+  var json=mode==='member'?{tllStates:states,tllLists:{airports:[{name:'Keflavik',year:'2024',at:'2026-10-01'}]},tllPlaces:{BR:'want'}}:{};
+  window.$memberstackDom={
+    getCurrentMember:function(){return Promise.resolve({data:member});},
+    getMemberJSON:function(){return Promise.resolve({data:json});},
+    updateMember:function(x){window.__msWrites.push(['updateMember',x]);return Promise.resolve({data:member});},
+    updateMemberJSON:function(x){window.__msWrites.push(['updateMemberJSON',x]);return Promise.resolve({});}
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var rm=member?'[data-ms-content="anonymous"]':'[data-ms-content="members"]';
+    [].slice.call(document.querySelectorAll(rm)).forEach(function(e){e.parentNode.removeChild(e);});
+    if(!member) document.documentElement.classList.add('tll-anon');
+  });
+})();
+</script><meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.thatlayover.life/forgot-password">
+<script id="tll-forgot-ph-v1">document.addEventListener('DOMContentLoaded',function(){var i=document.querySelector('form[data-ms-form="forgot-password"] input[type="email"]');if(i&&!i.placeholder)i.placeholder='you@somewhere.com';});</script>
+<style id="tll-au3-auth-v1">
+/* tll-au3-auth-v1 · Sign-in 3.0 for /login, /signup and /forgot-password (approved by Nancy 12 Oct 2026, "Go with defaults").
+   Every rule is scoped to .tll-auth-section or .tll-forgot-section. Restyle only: Memberstack forms, inputs and attributes are untouched.
+   Contrast-corrected prototype values: labels #CFCBC4, secondary #9496AC, links #00C9C8, Rose and Teal buttons with Ink text. */
+.tll-auth-section,.tll-forgot-section{background:#0A0B14!important;color:#F7F1E8;min-height:70vh!important;box-sizing:border-box}
+.tll-auth-section{display:flex;justify-content:center;align-items:flex-start;padding:48px 16px 64px}
+.tll-auth-section .tll-auth-split{display:block!important;width:100%;max-width:420px;min-height:0!important;margin:0 auto}
+.tll-auth-section .tll-auth-brand-col,.tll-auth-section .tll-auth-form-col{display:block!important;min-height:0!important;padding:0!important;background:transparent!important;overflow:visible!important}
+.tll-auth-section .tll-auth-brand-inner{max-width:420px;margin:0 auto 24px;text-align:center}
+.tll-auth-section .tll-auth-eyebrow{margin:0 0 12px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:3px!important;font-weight:600!important;color:#00C9C8!important;text-transform:uppercase}
+.tll-auth-section .tll-auth-headline{margin:0 0 12px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-size:clamp(28px,6vw,40px)!important;line-height:1.05!important;letter-spacing:-.02em;color:#F7F1E8!important}
+.tll-auth-section .tll-auth-em{color:#F0507A!important;font-style:italic}
+.tll-auth-section .tll-auth-sub{margin:0!important;font-size:16px!important;line-height:1.5;color:#9496AC!important;opacity:1!important}
+.tll-auth-section .tll-auth-card{max-width:420px!important;margin:0 auto;padding:26px!important;box-sizing:border-box;background:#12141F!important;border:1px solid #232744!important;border-radius:4px!important;box-shadow:none!important;color:#F7F1E8}
+.tll-auth-section .tll-auth-card-eyebrow{margin:0 0 8px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:2px!important;font-weight:600!important;color:#FF7093!important;text-transform:uppercase}
+.tll-auth-section .tll-auth-card-title{margin:0 0 20px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-style:normal!important;font-size:24px!important;line-height:1.15!important;color:#F7F1E8!important}
+.tll-auth-section .tll-auth-card-title em{color:#FF7093!important}
+.tll-auth-section .tll-btn-google{display:flex!important;align-items:center;justify-content:center;gap:10px;width:100%;min-height:44px;box-sizing:border-box;margin:0 0 18px!important;padding:0 16px!important;background:transparent!important;border:1px solid #2b2f52!important;border-radius:4px!important;color:#F7F1E8!important;font-size:15px!important;font-weight:600;text-decoration:none;box-shadow:none!important;transition:border-color .15s ease-out,transform .15s ease-out!important}
+.tll-auth-section .tll-google-mark{color:#F7F1E8}
+.tll-auth-section .tll-auth-divider{margin:0 0 16px!important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9496AC!important}
+.tll-auth-section .tll-auth-divider span{color:#9496AC!important;background:transparent!important}
+.tll-auth-section .tll-auth-form,.tll-forgot-section .tll-auth-form{margin:0}
+.tll-auth-section form,.tll-forgot-section form{display:flex;flex-direction:column;gap:14px}
+.tll-auth-section .tll-auth-field label,.tll-forgot-section .tll-auth-field label{margin:0 0 6px;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:2px;font-weight:600;text-transform:uppercase;color:#CFCBC4!important}
+.tll-auth-section .tll-auth-input,.tll-forgot-section .tll-auth-input{display:block;width:100%;height:44px;box-sizing:border-box;margin:0;padding:0 12px!important;background:#0A0B14!important;border:1px solid #3a3d55!important;border-radius:4px!important;color:#F7F1E8!important;font-size:16px!important;outline:none;transition:border-color .15s ease-out!important}
+.tll-auth-section .tll-auth-input::placeholder,.tll-forgot-section .tll-auth-input::placeholder{color:#9496AC;opacity:1}
+.tll-auth-section .tll-auth-input:focus-visible,.tll-forgot-section .tll-auth-input:focus-visible,.tll-auth-section .tll-auth-input:focus,.tll-forgot-section .tll-auth-input:focus{border-color:#00C9C8!important;box-shadow:0 0 0 3px #00C9C8!important}
+.tll-auth-section [aria-invalid=true],.tll-forgot-section [aria-invalid=true]{border-color:#FF7093!important}
+.tll-auth-section input[type=checkbox][aria-invalid=true],.tll-forgot-section input[type=checkbox][aria-invalid=true]{outline:2px solid #FF7093;outline-offset:2px}
+.au3-err-msg{margin:6px 0 0;font-size:13px;line-height:1.4;color:#FF7093}
+.au3-pw-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+.au3-hint{font-size:13px;color:#9496AC}
+.au3-eye{appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;min-height:44px;margin:0;padding:0 2px;border:0;background:transparent;color:#00C9C8;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1px;font-weight:700;text-transform:uppercase;cursor:pointer}
+.tll-auth-section .tll-auth-row{display:flex;justify-content:flex-end;margin:-6px 0 0!important}
+.tll-auth-section .tll-auth-row a{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.tll-auth-section .tll-auth-submit,.tll-forgot-section .tll-auth-submit{display:block;width:100%!important;min-height:48px;margin:6px 0 0!important;padding:0 16px!important;border:0!important;border-radius:4px!important;background:#F0507A!important;color:#0A0B14!important;font-size:15px!important;font-weight:700!important;letter-spacing:.3px;cursor:pointer;transition:background-color .15s ease-out,transform .15s ease-out!important}
+.tll-forgot-section .tll-auth-submit{background:#00C9C8!important}
+.tll-auth-section .w-form-done,.tll-auth-section .w-form-fail,.tll-forgot-section .w-form-done,.tll-forgot-section .w-form-fail{margin:12px 0 0;padding:12px 14px;border-radius:4px;font-size:14px;line-height:1.45;text-align:left}
+.tll-auth-section .w-form-done,.tll-forgot-section .w-form-done{background:#0A0B14;border:1px solid #00C9C8;color:#F7F1E8}
+.tll-auth-section .w-form-fail,.tll-forgot-section .w-form-fail{background:#2a0f18;border:1px solid #FF7093;color:#F7F1E8}
+.tll-auth-section .tll-auth-alt{margin:22px 0 0!important;padding:18px 0 0!important;border-top:1px solid #232744!important;text-align:center;font-size:14px;color:#9496AC!important}
+.tll-auth-section .tll-auth-alt a,.tll-auth-section .tll-auth-link{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* Signup consent box (U5) */
+.tll-auth-section .tll-auth-charter-check,.tll-auth-section .tll-auth-charter-check~div{margin:0!important;padding:13px!important;background:#0A0B14;color:#F7F1E8;font-size:12px!important;line-height:1.5}
+.tll-auth-section .tll-auth-charter-check{display:flex!important;align-items:flex-start;gap:10px;border-radius:4px 4px 0 0;margin-top:4px!important;padding-bottom:6px!important}
+.tll-auth-section .tll-auth-charter-check~div{margin-top:-14px!important;border-radius:0;padding-top:6px!important;padding-bottom:6px!important}
+.tll-auth-section .tll-auth-charter-check~div:last-of-type{border-radius:0 0 4px 4px;padding-bottom:13px!important;color:#CFCBC4}
+.tll-auth-section .tll-auth-charter-check~div label{display:flex!important;align-items:flex-start;gap:10px;margin:0;font-size:12px;color:#F7F1E8;cursor:pointer}
+.tll-auth-section .tll-auth-charter-check a,.tll-auth-section .tll-auth-charter-check~div a{color:#00C9C8!important;text-decoration:underline!important;text-underline-offset:2px;border:0!important}
+.tll-auth-section .tll-auth-charter-check .w-checkbox,.tll-auth-section .tll-auth-charter-check~div .w-checkbox{display:flex;align-items:center;justify-content:center;flex:none;min-width:44px;min-height:44px;margin:-12px -6px -12px -12px;padding:0}
+.tll-auth-section input[type=checkbox]{width:20px;height:20px;margin:0;accent-color:#00C9C8;cursor:pointer}
+.tll-auth-section input[type=checkbox]:focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
+.tll-auth-section .tll-auth-charter-check>span,.tll-auth-section .tll-auth-charter-check~div label>span{padding-top:1px}
+/* Forgot password (R1-R5) */
+.tll-forgot-section{display:flex!important;align-items:center;padding:48px 16px!important}
+.tll-forgot-section .tll-forgot-inner{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:28px;max-width:720px!important;width:100%;margin:0 auto;text-align:left}
+.tll-forgot-section .tll-forgot-card{flex:0 1 400px;max-width:400px;width:100%;box-sizing:border-box;padding:30px!important;background:#12141F!important;border:1px solid #23263c!important;border-radius:4px!important;box-shadow:none!important;color:#F7F1E8}
+.tll-forgot-section .tll-forgot-eyebrow{margin:0 0 10px!important;font-family:'JetBrains Mono',ui-monospace,monospace!important;font-size:11px!important;letter-spacing:3px!important;font-weight:600!important;color:#00C9C8!important;text-transform:uppercase}
+.tll-forgot-section .tll-forgot-title{margin:0 0 12px!important;font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-size:clamp(28px,6vw,40px)!important;line-height:1.05;color:#F7F1E8!important}
+.tll-forgot-section .tll-forgot-em{color:#F0507A!important;font-style:italic}
+.tll-forgot-section .tll-forgot-sub{margin:0 0 20px!important;font-size:16px!important;line-height:1.5;color:#9496AC!important}
+.tll-forgot-section .tll-forgot-form{margin:0 0 20px!important}
+.tll-forgot-section .tll-forgot-divider{height:1px;margin:0 0 8px!important;background:#23263c!important}
+.tll-forgot-section .tll-forgot-alt-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px}
+.tll-forgot-section .tll-forgot-alt-row a,.tll-forgot-section .tll-auth-link{display:inline-flex;align-items:center;min-height:44px;color:#00C9C8!important;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.tll-forgot-section .tll-forgot-ephemera{flex:0 0 auto;margin:0!important}
+@media (max-width:767px){.tll-forgot-section .tll-forgot-ephemera{flex-basis:100%;justify-content:center}}
+.tll-auth-section a:focus-visible,.tll-auth-section button:focus-visible,.tll-auth-section input[type=submit]:focus-visible,.tll-forgot-section a:focus-visible,.tll-forgot-section button:focus-visible,.tll-forgot-section input[type=submit]:focus-visible{outline:3px solid #00C9C8!important;outline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+  .tll-auth-section .tll-btn-google:hover{border-color:#00C9C8!important}
+  .tll-auth-section .tll-auth-submit:hover{background:#FF7093!important}
+  .tll-forgot-section .tll-auth-submit:hover{background:#33d6d5!important}
+  .tll-auth-section .tll-auth-input:hover,.tll-forgot-section .tll-auth-input:hover{border-color:#6b6f8f!important}
+}
+.tll-auth-section .tll-btn-google:active,.tll-auth-section .tll-auth-submit:active,.tll-forgot-section .tll-auth-submit:active,.au3-eye:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){
+  .tll-auth-section .tll-btn-google,.tll-auth-section .tll-auth-submit,.tll-forgot-section .tll-auth-submit,.tll-auth-section .tll-auth-input,.tll-forgot-section .tll-auth-input{transition:none!important}
+  .tll-auth-section .tll-btn-google:active,.tll-auth-section .tll-auth-submit:active,.tll-forgot-section .tll-auth-submit:active,.au3-eye:active{transform:none}
+}
+</style></head><body><div class="mock-nav"><a href="/">That Layover Life</a></div>
+<section class="tll-section tll-bg-paper tll-forgot-section"><div class="tll-container tll-forgot-inner"><div class="tll-forgot-card">
+<div class="tll-eyebrow-rose tll-forgot-eyebrow">RESET PASSWORD</div><h1 class="tll-display-l tll-text-midnight tll-forgot-title">Lost the <em class="tll-text-rose tll-forgot-em">thread.</em></h1>
+<p class="tll-body-l tll-text-mid tll-forgot-sub">Drop your email and we will send a reset email to get you back on the road.</p>
+<div class="tll-auth-form tll-forgot-form w-form"><form data-ms-form="forgot-password"><div class="tll-auth-field"><label class="tll-micro tll-text-mid">Your email</label><input class="tll-auth-input w-input" id="field" data-ms-member="email" type="email" name="email" required></div><input type="submit" class="tll-btn tll-btn-primary tll-auth-submit w-button" value="Send reset email"></form>
+<div class="w-form-done"><div>Sent. Check your inbox for the reset email, and if nothing lands in a few minutes, look in spam before you try again.</div></div><div class="w-form-fail"><div>That did not send. Check the address and try again, or write to hello@thatlayover.life.</div></div></div>
+<div class="tll-forgot-divider"></div><div class="tll-forgot-alt-row"><a class="tll-text-rose tll-auth-link" href="/login">← Back to log in</a><a class="tll-text-rose tll-auth-link" href="/signup">Join the Travelers →</a></div></div>
+<div class="tll-forgot-ephemera"><div class="tll-stamp tll-stamp-hotel"><div class="tll-stamp-text">Lost &amp; Found</div><div class="tll-stamp-text-large">CDG</div><div class="tll-stamp-text-small">Recovered with patience</div></div></div></div></section>
+<footer class="mock-footer"><p>Site footer</p></footer><script id="tll-au3-auth-js-v1">
+/* tll-au3-auth-js-v1 · Sign-in 3.0 for /login, /signup and /forgot-password (approved by Nancy 12 Oct 2026, open point 1 default: yes, at run time only).
+   Adds role="alert" to the Webflow error blocks, ties each visible label to its Memberstack input with aria-labelledby, adds autocomplete,
+   a Show password button and the "8 characters or more." hint, and a text message for an invalid field (never color alone).
+   It never changes or removes id, name, the Designer type, required, minlength or any data-ms-* attribute, and never submits anything itself. */
+(function(){
+  if(window.__tllAu3) return; window.__tllAu3=1;
+  var d=document;
+  var sec=d.querySelector('.tll-auth-section')||d.querySelector('.tll-forgot-section'); if(!sec) return;
+  function el(tag,attrs,txt){var e=d.createElement(tag); if(attrs){for(var k in attrs){e.setAttribute(k,attrs[k]);}} if(txt!=null) e.textContent=txt; return e;}
+  function after(ref,node){ ref.parentNode.insertBefore(node,ref.nextSibling); }
+  function addRef(inp,attr,id){ var v=(inp.getAttribute(attr)||'').split(/\s+/).filter(Boolean); if(v.indexOf(id)<0){ v.push(id); inp.setAttribute(attr,v.join(' ')); } }
+  function dropRef(inp,attr,id){ var v=(inp.getAttribute(attr)||'').split(/\s+/).filter(function(x){return x&&x!==id;}); if(v.length) inp.setAttribute(attr,v.join(' ')); else inp.removeAttribute(attr); }
+
+  [].slice.call(sec.querySelectorAll('.w-form-fail')).forEach(function(e){ e.setAttribute('role','alert'); });
+
+  var n=0;
+  [].slice.call(sec.querySelectorAll('form')).forEach(function(form){
+    var kind=(form.closest('[data-ms-form]')||form).getAttribute('data-ms-form')||'';
+    [].slice.call(form.querySelectorAll('.tll-auth-field')).forEach(function(field){
+      var lab=field.querySelector('label'), inp=field.querySelector('input');
+      if(!lab||!inp) return; n++;
+      var nm=inp.getAttribute('name')||('f'+n), key=nm.replace(/[^a-z0-9-]/gi,'').toLowerCase()||('f'+n);
+      if(!lab.id) lab.id='au3-l-'+key;
+      inp.setAttribute('aria-labelledby',lab.id);
+      lab.addEventListener('click',function(){ inp.focus(); });
+      var t=(inp.getAttribute('type')||'').toLowerCase();
+      if(!inp.getAttribute('autocomplete')){
+        if(t==='email'||nm==='email') inp.setAttribute('autocomplete','email');
+        else if(t==='password') inp.setAttribute('autocomplete',kind==='signup'?'new-password':'current-password');
+        else if(nm==='first-name') inp.setAttribute('autocomplete','given-name');
+      }
+      if(t==='password'){
+        var row=el('div',{'class':'au3-pw-row'});
+        var eye=el('button',{type:'button','class':'au3-eye','aria-pressed':'false'},'Show password');
+        row.appendChild(eye);
+        if(kind==='signup'&&inp.getAttribute('minlength')){
+          var hint=el('span',{'class':'au3-hint',id:'au3-h-'+key},inp.getAttribute('minlength')+' characters or more.');
+          row.appendChild(hint); addRef(inp,'aria-describedby',hint.id);
+        }
+        after(inp,row); inp.__au3row=row;
+        eye.addEventListener('click',function(){
+          var show=inp.getAttribute('type')==='password';
+          inp.setAttribute('type',show?'text':'password');
+          eye.setAttribute('aria-pressed',show?'true':'false');
+          eye.textContent=show?'Hide password':'Show password';
+        });
+        form.addEventListener('submit',function(){ if(inp.getAttribute('type')!=='password'){ inp.setAttribute('type','password'); eye.setAttribute('aria-pressed','false'); eye.textContent='Show password'; } },true);
+      }
+    });
+    /* Consent checkboxes: name them by their visible sentence. */
+    [].slice.call(form.querySelectorAll('input[type=checkbox]')).forEach(function(cb,i){
+      var host=cb.closest('.tll-auth-charter-check')||(cb.closest('.w-checkbox')&&cb.closest('.w-checkbox').parentNode);
+      if(!host) return;
+      var span=[].filter.call(host.children,function(c){ return c.tagName==='SPAN'&&c.textContent.trim(); })[0];
+      if(span){ if(!span.id) span.id='au3-c-'+i; cb.setAttribute('aria-labelledby',span.id); }
+    });
+  });
+
+  /* Invalid fields: a Rose border plus a sentence, tied with aria-describedby. */
+  var MSG={email:{missing:'Enter your email address.',type:'That email address is missing something. Check it and try again.'},password:{missing:'Enter your password.',short:'Your password needs 8 characters or more.'},'first-name':{missing:'Enter your first name.'},Checkbox:{missing:'Tick this box to agree before you join.'},'age-16':{missing:'Tick this box to confirm you are 16 or older.'}};
+  function msgFor(inp){
+    var m=MSG[inp.name]||{}, v=inp.validity||{};
+    if(v.valueMissing) return m.missing||inp.validationMessage;
+    if(v.typeMismatch) return m.type||inp.validationMessage;
+    if(v.tooShort) return (m.short||inp.validationMessage);
+    return inp.validationMessage||'Check this field and try again.';
+  }
+  function hostOf(inp){ if(inp.type==='checkbox') return inp.closest('.tll-auth-charter-check')||inp.closest('label')||inp; return inp.__au3row||inp; }
+  d.addEventListener('invalid',function(e){
+    var inp=e.target; if(!inp||!sec.contains(inp)||inp.tagName!=='INPUT') return;
+    var id='au3-e-'+(inp.name||'f').replace(/[^a-z0-9-]/gi,'').toLowerCase();
+    var p=d.getElementById(id);
+    if(!p){ p=el('p',{'class':'au3-err-msg',id:id}); after(hostOf(inp),p); }
+    p.textContent=msgFor(inp);
+    inp.setAttribute('aria-invalid','true'); addRef(inp,'aria-describedby',id);
+  },true);
+  function clear(e){
+    var inp=e.target; if(!inp||inp.tagName!=='INPUT'||!sec.contains(inp)||inp.getAttribute('aria-invalid')!=='true') return;
+    if(inp.validity&&!inp.validity.valid) return;
+    var id='au3-e-'+(inp.name||'f').replace(/[^a-z0-9-]/gi,'').toLowerCase(), p=d.getElementById(id);
+    if(p) p.parentNode.removeChild(p);
+    inp.removeAttribute('aria-invalid'); dropRef(inp,'aria-describedby',id);
+  }
+  d.addEventListener('input',clear,true); d.addEventListener('change',clear,true);
+})();
+</script></body></html>

@@ -1,0 +1,148 @@
+PASS account 1280: no horizontal scroll :: 1280
+PASS account 1280: seven tabs, Overview selected :: [["overview","true",0],["map","false",-1],["stories","false",-1],["pets","false",-1],["card","false",-1],["privacy","false",-1],["settings","false",-1]]
+PASS account 1280: html.a3-on and rail visible
+PASS account 1280: rail is a nav with tablist
+PASS account 1280: arrow moves to Map and lists, aria-selected follows, hash #map :: ["a3-tab-map","true","false","#map"]
+PASS account 1280: Map tab shows map and lists only :: [true,true,false,false,true]
+PASS account 1280: End goes to last tab :: a3-tab-settings
+PASS account 1280: Home goes to first tab :: a3-tab-overview
+PASS account 1280: arrow wraps from first to last :: a3-tab-settings
+PASS account 1280: one tab in the tab order (roving tabindex)
+PASS account 1280: click focuses the panel heading :: ["a3-ph-pets","Pets"]
+PASS account 1280: Pets panel labelled by its tab
+PASS account 1280: Privacy shows the data block, focuses "Your data stays yours." :: ["Your data stays yours.",true,0]
+PASS account 1280: privacy note jumps to Share card tab
+PASS account 1280: status line from share-level and directory flags :: ["PROFILE · LINK ONLY","DIRECTORY · /EXPATS"]
+PASS account 1280: progress 5 of 7, next is photo :: PROFILE 5 OF 7 DONEAdd: photo →
+PASS account 1280: Edit profile and Sign out side by side, logout attribute intact
+PASS account 1280: Finish your profile lists 7 checks with done/to do text :: ["Photo (to do)ADD →","✓Display name (done)","Short bio (to do)ADD →","✓Home base (done)","✓Languages (done)","✓At least one link switched on (done)","✓A directory opt-in (done)"]
+PASS account 1280: LOGGED shows computed total with "of 249"; badges mirror live counts :: {"badge":"3","pets":"1","count":"3","after":"\" of 249\""}
+PASS account 1280: list rule line for Countries :: WHAT COUNTSSet foot outside the airport. Layovers count separately.
+PASS account 1280: rule line follows the list tab
+PASS account 1280: no rule line where the design has none
+PASS account 1280: Log a place sits above the sheet, under the chips
+PASS account 1280: chips 32px with 44px hit area :: [32,"-6px","-6px"]
+PASS account 1280: new controls are 44px tall or more :: []
+PASS account 1280: no "transition: all" on restyled controls :: []
+PASS account 1280: a3 made no Memberstack writes
+PASS account 1280: no console errors
+PASS account 375: no horizontal scroll :: 375
+PASS account 375: seven tabs, Overview selected :: [["overview","true",0],["map","false",-1],["stories","false",-1],["pets","false",-1],["card","false",-1],["privacy","false",-1],["settings","false",-1]]
+PASS account 375: html.a3-on and rail visible
+PASS account 375: rail is a nav with tablist
+PASS account 375: arrow moves to Map and lists, aria-selected follows, hash #map :: ["a3-tab-map","true","false","#map"]
+PASS account 375: Map tab shows map and lists only :: [true,true,false,false,true]
+PASS account 375: End goes to last tab :: a3-tab-settings
+PASS account 375: Home goes to first tab :: a3-tab-overview
+PASS account 375: arrow wraps from first to last :: a3-tab-settings
+PASS account 375: one tab in the tab order (roving tabindex)
+PASS account 375: click focuses the panel heading :: ["a3-ph-pets","Pets"]
+PASS account 375: Pets panel labelled by its tab
+PASS account 375: Privacy shows the data block, focuses "Your data stays yours." :: ["Your data stays yours.",true,0]
+PASS account 375: privacy note jumps to Share card tab
+PASS account 375: status line from share-level and directory flags :: ["PROFILE · LINK ONLY","DIRECTORY · /EXPATS"]
+PASS account 375: progress 5 of 7, next is photo :: PROFILE 5 OF 7 DONEAdd: photo →
+PASS account 375: Edit profile and Sign out side by side, logout attribute intact
+PASS account 375: Finish your profile lists 7 checks with done/to do text :: ["Photo (to do)ADD →","✓Display name (done)","Short bio (to do)ADD →","✓Home base (done)","✓Languages (done)","✓At least one link switched on (done)","✓A directory opt-in (done)"]
+PASS account 375: LOGGED shows computed total with "of 249"; badges mirror live counts :: {"badge":"3","pets":"1","count":"3","after":"\" of 249\""}
+PASS account 375: list rule line for Countries :: WHAT COUNTSSet foot outside the airport. Layovers count separately.
+PASS account 375: rule line follows the list tab
+PASS account 375: no rule line where the design has none
+PASS account 375: Log a place sits above the sheet, under the chips
+PASS account 375: chips 32px with 44px hit area :: [32,"-6px","-6px"]
+PASS account 375: new controls are 44px tall or more :: []
+PASS account 375: no "transition: all" on restyled controls :: []
+PASS account 375: a3 made no Memberstack writes
+PASS account 375: no console errors
+PASS account: #stories opens the Stories tab
+PASS account: reload keeps the tab from the hash
+PASS account hash run: no console errors
+PASS account: reduced motion turns transitions off :: []
+PASS account: transitions present without reduced motion (150ms) :: 0.15s, 0.15s, 0.15s
+PASS account (new member): 0 of 7, JUST YOU, DIRECTORY OFF, no badge number :: {"prog":"PROFILE 0 OF 7 DONEAdd: photo →","status":["PROFILE · JUST YOU","DIRECTORY · OFF"],"badge":""}
+PASS account (new member): pets empty state no longer names Magnus
+PASS account (new member): no console errors
+PASS account anon 1280: gate shows three lines and Back to the stories, no rail :: {"anon":true,"rail":false,"lines":["Your map, counted out of 249.","Your lists and your Layover Wrapped.","Your share card, and who gets to see it."],"back":"/stories","h2":"Your account is behind the sign-in."}
+PASS account anon 1280: no horizontal scroll
+PASS account anon 1280: no console errors
+PASS account anon 375: gate shows three lines and Back to the stories, no rail :: {"anon":true,"rail":false,"lines":["Your map, counted out of 249.","Your lists and your Layover Wrapped.","Your share card, and who gets to see it."],"back":"/stories","h2":"Your account is behind the sign-in."}
+PASS account anon 375: no horizontal scroll
+PASS account anon 375: no console errors
+PASS account JS off: no rail, every section stacked :: {"rail":0,"cards":true,"map":true,"settings":true}
+PASS login 1280: no horizontal scroll :: 1280
+PASS login 1280: every input labelled by its visible label and has autocomplete :: [{"name":"email","id":"field","ac":"email","lab":"Email","req":true,"ms":"email","type":"email","min":null},{"name":"password","id":"field","ac":"current-password","lab":"Password","req":true,"ms":"password","type":"password","min":null}]
+PASS login 1280: Memberstack attributes, id, name, required untouched
+PASS login 1280: every data-ms-* attribute identical after the script
+PASS login 1280: error block has role=alert
+PASS login 1280: Show password switches the field and the button state :: text|true|Hide password
+PASS login 1280: password goes back to hidden on submit :: password
+PASS login 1280: empty submit marks fields invalid with a sentence and a Rose border :: [["email","Enter your email address.","rgb(9, 179, 182)"],["password","Enter your password.","rgb(224, 104, 137)"]]
+PASS login 1280: fixing the field clears its message
+PASS login 1280: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS login 1280: section is Ink :: rgb(10, 11, 20)
+PASS login 1280: no console errors
+PASS login 375: no horizontal scroll :: 375
+PASS login 375: every input labelled by its visible label and has autocomplete :: [{"name":"email","id":"field","ac":"email","lab":"Email","req":true,"ms":"email","type":"email","min":null},{"name":"password","id":"field","ac":"current-password","lab":"Password","req":true,"ms":"password","type":"password","min":null}]
+PASS login 375: Memberstack attributes, id, name, required untouched
+PASS login 375: every data-ms-* attribute identical after the script
+PASS login 375: error block has role=alert
+PASS login 375: Show password switches the field and the button state :: text|true|Hide password
+PASS login 375: password goes back to hidden on submit :: password
+PASS login 375: empty submit marks fields invalid with a sentence and a Rose border :: [["email","Enter your email address.","rgb(9, 179, 182)"],["password","Enter your password.","rgb(224, 104, 137)"]]
+PASS login 375: fixing the field clears its message
+PASS login 375: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS login 375: section is Ink :: rgb(10, 11, 20)
+PASS login 375: no console errors
+PASS signup 1280: no horizontal scroll :: 1280
+PASS signup 1280: every input labelled by its visible label and has autocomplete :: [{"name":"first-name","id":"field","ac":"given-name","lab":"First name","req":true,"ms":"first-name","type":"text","min":null},{"name":"email","id":"field","ac":"email","lab":"Email","req":true,"ms":"email","type":"email","min":null},{"name":"password","id":"field","ac":"new-password","lab":"Password","req":true,"ms":"password","type":"password","min":"8"}]
+PASS signup 1280: Memberstack attributes, id, name, required untouched
+PASS signup 1280: every data-ms-* attribute identical after the script
+PASS signup 1280: error block has role=alert
+PASS signup 1280: Show password switches the field and the button state :: text|true|Hide password
+PASS signup 1280: password goes back to hidden on submit :: password
+PASS signup 1280: password hint "8 characters or more." tied with aria-describedby :: 8 characters or more.
+PASS signup 1280: both checkboxes named by their sentences :: ["I have read and agree to the Terms of Service, the Editorial Charter and the Privacy Policy.","I am 16 or older."]
+PASS signup 1280: lede ends with the protected line :: Check your travel stats. Register your pet. Share your story and your photos. Free to join. We're not a gym.
+PASS signup 1280: empty submit marks fields invalid with a sentence and a Rose border :: [["first-name","Enter your first name.","rgb(9, 179, 182)"],["email","Enter your email address.","rgb(224, 104, 137)"],["password","Enter your password.","rgb(224, 104, 137)"],["Checkbox","Tick this box to agree before you join.","rgb(0, 0, 0)"],["age-16","Tick this box to confirm you are 16 or older.","rgb(0, 0, 0)"]]
+PASS signup 1280: fixing the field clears its message
+PASS signup 1280: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS signup 1280: section is Ink :: rgb(10, 11, 20)
+PASS signup 1280: no console errors
+PASS signup 375: no horizontal scroll :: 375
+PASS signup 375: every input labelled by its visible label and has autocomplete :: [{"name":"first-name","id":"field","ac":"given-name","lab":"First name","req":true,"ms":"first-name","type":"text","min":null},{"name":"email","id":"field","ac":"email","lab":"Email","req":true,"ms":"email","type":"email","min":null},{"name":"password","id":"field","ac":"new-password","lab":"Password","req":true,"ms":"password","type":"password","min":"8"}]
+PASS signup 375: Memberstack attributes, id, name, required untouched
+PASS signup 375: every data-ms-* attribute identical after the script
+PASS signup 375: error block has role=alert
+PASS signup 375: Show password switches the field and the button state :: text|true|Hide password
+PASS signup 375: password goes back to hidden on submit :: password
+PASS signup 375: password hint "8 characters or more." tied with aria-describedby :: 8 characters or more.
+PASS signup 375: both checkboxes named by their sentences :: ["I have read and agree to the Terms of Service, the Editorial Charter and the Privacy Policy.","I am 16 or older."]
+PASS signup 375: lede ends with the protected line :: Check your travel stats. Register your pet. Share your story and your photos. Free to join. We're not a gym.
+PASS signup 375: empty submit marks fields invalid with a sentence and a Rose border :: [["first-name","Enter your first name.","rgb(9, 179, 182)"],["email","Enter your email address.","rgb(224, 104, 137)"],["password","Enter your password.","rgb(224, 104, 137)"],["Checkbox","Tick this box to agree before you join.","rgb(0, 0, 0)"],["age-16","Tick this box to confirm you are 16 or older.","rgb(0, 0, 0)"]]
+PASS signup 375: fixing the field clears its message
+PASS signup 375: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS signup 375: section is Ink :: rgb(10, 11, 20)
+PASS signup 375: no console errors
+PASS forgot 1280: no horizontal scroll :: 1280
+PASS forgot 1280: every input labelled by its visible label and has autocomplete :: [{"name":"email","id":"field","ac":"email","lab":"Your email","req":true,"ms":"email","type":"email","min":null}]
+PASS forgot 1280: Memberstack attributes, id, name, required untouched
+PASS forgot 1280: every data-ms-* attribute identical after the script
+PASS forgot 1280: error block has role=alert
+PASS forgot 1280: empty submit marks fields invalid with a sentence and a Rose border :: [["email","Enter your email address.","rgb(9, 179, 182)"]]
+PASS forgot 1280: fixing the field clears its message
+PASS forgot 1280: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS forgot 1280: section is Ink :: rgb(10, 11, 20)
+PASS forgot 1280: no console errors
+PASS forgot 375: no horizontal scroll :: 375
+PASS forgot 375: every input labelled by its visible label and has autocomplete :: [{"name":"email","id":"field","ac":"email","lab":"Your email","req":true,"ms":"email","type":"email","min":null}]
+PASS forgot 375: Memberstack attributes, id, name, required untouched
+PASS forgot 375: every data-ms-* attribute identical after the script
+PASS forgot 375: error block has role=alert
+PASS forgot 375: empty submit marks fields invalid with a sentence and a Rose border :: [["email","Enter your email address.","rgb(9, 179, 182)"]]
+PASS forgot 375: fixing the field clears its message
+PASS forgot 375: links and buttons in the card are 44px tall or more (inline links inside the consent sentence are exempt, WCAG 2.5.8 inline exception) :: []
+PASS forgot 375: section is Ink :: rgb(10, 11, 20)
+PASS forgot 375: no console errors
+PASS login: reduced motion turns transitions off :: []
+PASS signup: reduced motion turns transitions off :: []
+PASS forgot: reduced motion turns transitions off :: []

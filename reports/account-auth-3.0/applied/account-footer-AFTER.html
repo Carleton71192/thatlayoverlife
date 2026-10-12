@@ -192,7 +192,7 @@
   rail.appendChild(list);
   TABS.forEach(function(t){
     byKey[t.k]=t;
-    var b=el('button',{type:'button',role:'tab',id:'a3-tab-'+t.k,'aria-selected':'false',tabindex:'-1','data-a3-tab':t.k});
+    var b=el('button',{type:'button','class':'a3-tab',role:'tab',id:'a3-tab-'+t.k,'aria-selected':'false',tabindex:'-1','data-a3-tab':t.k});
     b.appendChild(el('span',null,t.label));
     var badge=el('span',{'class':'a3-badge','data-a3-badge':t.k}); b.appendChild(badge);
     list.appendChild(b); t.btn=b; t.badge=badge;
