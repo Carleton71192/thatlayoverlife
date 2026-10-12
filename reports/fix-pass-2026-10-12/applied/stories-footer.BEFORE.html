@@ -1,0 +1,335 @@
+<script>
+/* TLL story card links v2 (2026-09-21): each CMS card carries its story slug in its id; point the card at /stories/{slug} and drop the false current-page state. */
+(function(){
+  function fix(){[].slice.call(document.querySelectorAll('a.tll-lib-card[id]')).forEach(function(a){if(!/\/stories\/./.test(a.getAttribute('href')||'')){a.setAttribute('href','/stories/'+a.id);a.removeAttribute('aria-current');a.classList.remove('w--current');}});}
+  if(document.readyState!=='loading')fix();else document.addEventListener('DOMContentLoaded',fix);
+})();
+</script>
+<style>
+/* TLL Stories Index v4 (2026-07-29): server-rendered cards replace the v3 JS grid (design s39 STEP 1). Do NOT re-add a client-side card builder; it duplicates the crawlable cards. */
+.tll-library-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;align-items:start}
+.tll-library-grid a[data-tll-card]{transition:box-shadow .2s ease, transform .2s ease}
+.tll-library-grid a[data-tll-card]:hover{box-shadow:0 12px 30px rgba(13,15,26,.12);transform:translateY(-3px)}
+.tll-library-grid a[data-tll-card] h3{font-family:'Syne','Playfair Display',serif;font-weight:800;line-height:1.25}
+.tll-library-grid a[data-tll-card] span{display:block;font-family:'JetBrains Mono',monospace}
+@media(max-width:600px){.tll-library-grid{grid-template-columns:1fr}}
+</style>
+<script id="tll-lib-search-v4">
+/* TLL library search v4 (9 Oct 2026, fix-first item 3). v3 hid cards with an inline style and the chips script, which sorts on load,
+   wrote display back over it, so every card stayed visible under "1 story matching". v4 marks misses with data-tll-q-miss, which CSS hides
+   with !important, so the sort cannot undo it. Matching covers the visible text and the hidden country, region and author blocks.
+   No count line: the cards are the answer. A short note shows only when nothing matches. */
+(function(){
+  var q=new URLSearchParams(location.search).get('q'); if(!q) return; q=q.trim(); if(!q) return;
+  var words=q.toLowerCase().split(/\s+/).filter(Boolean);
+  function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
+  function run(){
+    var cards=[].slice.call(document.querySelectorAll('[data-tll-card]')); if(!cards.length) return;
+    var hits=0;
+    cards.forEach(function(c){
+      var item=c.closest('.tll-lib-grid > *')||c, t=norm(c.textContent);
+      var hit=words.every(function(w){return t.indexOf(norm(w))>-1;});
+      if(hit){item.removeAttribute('data-tll-q-miss');hits++;} else item.setAttribute('data-tll-q-miss','1');
+    });
+    var grid=document.querySelector('.tll-lib-grid'); if(!grid) return;
+    var old=document.getElementById('tll-q-note'); if(old) old.remove();
+    if(!hits){
+      cards.forEach(function(c){(c.closest('.tll-lib-grid > *')||c).removeAttribute('data-tll-q-miss');});
+      var n=document.createElement('p'); n.id='tll-q-note'; n.setAttribute('role','status');
+      n.innerHTML='Nothing filed for “<span></span>” yet, so here is the whole shelf. <a href="/stories">Clear the search</a>';
+      n.querySelector('span').textContent=q; grid.parentNode.insertBefore(n,grid);
+    }
+    document.dispatchEvent(new CustomEvent('tll:lib-filtered'));
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
+<script>
+/* TLL library search UI v2 (2026-09-23): the filter bar now carries a visible search field driving the same ?q=
+   the script above reads, so the no-JS page is still the whole crawlable shelf.
+   Webflow puts every form behind Turnstile bot protection, which leaves the submit button disabled. That is right
+   for the newsletter and submission forms and wrong for a search box, which is a GET navigation and collects
+   nothing. Detach this one form from Turnstile and keep its button enabled, then handle submit ourselves in the
+   capture phase so Webflow's form handler never sees it. */
+(function(){
+  function boot(){
+    var i = document.getElementById('tll-lib-q');
+    if (!i || i.__tllWired) return;
+    i.__tllWired = 1;
+    var form = i.form, wrap = form && form.closest('.w-form'), clear = document.getElementById('tll-lib-clear');
+    var q = new URLSearchParams(location.search).get('q') || '';
+    if (q.trim()) { i.value = q; if (clear) clear.style.display = 'inline'; }
+
+    if (form) {
+      form.removeAttribute('data-turnstile-sitekey');
+      if (wrap) wrap.classList.remove('w-form-loading');
+      var btn = form.querySelector('input[type=submit],button[type=submit]');
+      if (btn) {
+        var enable = function(){
+          if (btn.disabled) btn.disabled = false;
+          if (btn.classList.contains('w-form-loading')) btn.classList.remove('w-form-loading');
+          if (wrap && wrap.classList.contains('w-form-loading')) wrap.classList.remove('w-form-loading');
+        };
+        enable();
+        try { new MutationObserver(enable).observe(btn, { attributes: true, attributeFilter: ['disabled','class'] }); } catch (e) {}
+      }
+      document.addEventListener('submit', function(e){
+        if (e.target !== form) return;
+        e.preventDefault(); e.stopPropagation(); submit();
+      }, true);
+    }
+
+    function submit(){
+      var v = (i.value || '').trim();
+      location.href = '/stories' + (v ? '?q=' + encodeURIComponent(v) : '');
+    }
+    i.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+  }
+  if (document.readyState !== 'loading') boot(); else document.addEventListener('DOMContentLoaded', boot);
+  setTimeout(boot, 1200);
+})();
+</script>
+<script id="tll-lib-chips-v1">
+/* TLL Stories chips v1 (2026-09-28, design screen 02): place filter + sort on the server-rendered [data-tll-card] grid.
+   Reads the hidden per-card data blocks (region, reading time, published date, byline location). No-JS = whole shelf.
+   Chips swap tll-shelf-chip (inactive) and tll-filter-chip-on (active); both are single classes on purpose. */
+(function(){
+  function run(){
+    var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');if(!grid||grid.dataset.tllChips)return;grid.dataset.tllChips='1';
+    var items=[].slice.call(grid.children).filter(function(el){return el.hasAttribute('data-tll-card')||el.querySelector('[data-tll-card]');});
+    function d(el,s){var n=el.querySelector('['+s+']');return n?n.textContent.trim():'';}
+    var rows=items.map(function(el,i){return{el:el,i:i,region:d(el,'data-tll-region'),mins:parseFloat(d(el,'data-tll-mins'))||999,date:Date.parse(d(el,'data-tll-date'))||0,country:(d(el,'data-tll-country')||d(el,'data-tll-region')).toLowerCase()};});
+    var place='all',sort='recent';
+    function apply(){
+      var shown=rows.filter(function(r){return place==='all'||r.region===place;});
+      rows.forEach(function(r){r.el.style.display=shown.indexOf(r)>-1?'':'none';});
+      shown.sort(function(a,b){return sort==='az'?a.country.localeCompare(b.country):sort==='time'?a.mins-b.mins:(b.date-a.date)||(a.i-b.i);});
+      shown.forEach(function(r){grid.appendChild(r.el);});
+      var note=document.getElementById('tll-chip-note');
+      if(!shown.length){if(!note){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';grid.parentNode.insertBefore(note,grid);}
+        note.innerHTML='<div style="font-family:\'Playfair Display\',serif;font-weight:800;font-size:18px;margin-bottom:6px;color:#0A0B14">Nothing on the shelf for '+place+' yet.</div><div style="color:#6B6660;margin-bottom:12px">Be the first.</div><a href="/submit" style="display:inline-block;background:#D63859;color:#fff;padding:10px 18px;border-radius:6px;font-weight:700;text-decoration:none">Share your story →</a>';}
+      else if(note)note.remove();
+    }
+    function wire(attr,set){[].forEach.call(document.querySelectorAll('['+attr+']'),function(c){c.addEventListener('click',function(e){e.preventDefault();set(c.getAttribute(attr));
+      [].forEach.call(document.querySelectorAll('['+attr+']'),function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});apply();});});}
+    wire('data-tll-place',function(v){place=v;});wire('data-tll-sort',function(v){sort=v;});
+    var old=document.querySelector('[data-tll-chiprow] span');if(old&&/SORT:/.test(old.textContent))old.style.display='none';
+    if(!grid.id)grid.id='tll-shelf-grid';
+    apply(); /* 9 Oct 2026, fix-first item 2: sort newest first on load; before this the order only changed after a chip click. */
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-lib-chips-css-v1">
+.tll-shelf-chip:focus-visible,.tll-filter-chip-on:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+.tll-shelf-chip:hover{border-color:#0A0B14}
+@media(max-width:820px){.tll-fos-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.tll-filter-label{min-width:100%}}
+</style>
+<style id="tll-lib-fixfirst-v1">
+/* Fix-first item 2 (9 Oct 2026): a story on the first screen. Hero is a strip, the filter band scrolls with the page and keeps only the
+   place chips, the newest visible story becomes the lead card, photos sit straight except the lead. Sources: Nancy's brief and the
+   9 Oct site review, Part 2. */
+[data-tll-q-miss]{display:none !important}
+#tll-q-note{grid-column:1/-1;font-size:15px;line-height:1.5;color:#3a3a3a;margin:0 0 18px}
+#tll-q-note a{color:#0A0B14;text-decoration:underline;text-underline-offset:3px}
+html.tllp-stories .tll-library-hero:has(h1){padding-top:22px !important;padding-bottom:8px !important}
+html.tllp-stories h1.tll-library-title{font-size:clamp(30px,3.4vw,46px) !important;line-height:1.04 !important;letter-spacing:-.02em !important;margin:6px 0 0 !important;max-width:none !important}
+html.tllp-stories .tll-library-filters{position:static !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;background:transparent !important;border-bottom:0 !important;padding:0 !important}
+html.tllp-stories .tll-library-filters .tll-filters-inner{padding-top:6px !important;padding-bottom:6px !important}
+html.tllp-stories .tll-library-filters .tll-chip-row{position:relative;padding-right:40px !important;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
+@media(min-width:900px){html.tllp-stories .tll-library-filters .tll-chip-row{-webkit-mask-image:none;mask-image:none;padding-right:0 !important}}
+html.tllp-stories .tll-library-filters .tll-shelf-chip,html.tllp-stories .tll-library-filters .tll-filter-chip-on{min-height:44px !important;display:inline-flex !important;align-items:center !important;padding:0 16px !important;font-size:12px !important;letter-spacing:1px}
+html.tllp-stories .tllsb-bar{padding:6px 0 10px !important}
+html.tllp-stories .tllsb-label{position:absolute !important;width:1px !important;height:1px !important;overflow:hidden !important;clip:rect(0 0 0 0) !important;white-space:nowrap !important;margin:0 !important}
+html.tllp-stories .tllsb-form > form{border-bottom-width:2px !important;padding:0 0 6px !important;gap:12px !important}
+html.tllp-stories .tllsb-input{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-weight:500 !important;font-size:18px !important;letter-spacing:0 !important;min-height:44px !important}
+html.tllp-stories .tllsb-input::placeholder{font-size:1em !important;font-weight:500 !important}
+html.tllp-stories .tllsb-btn{min-height:44px !important;padding:0 18px !important}
+html.tllp-stories .tll-library-grid-section{padding-top:18px !important}
+html.tllp-stories .tll-filters-inner[data-tll-merged]{gap:8px !important}
+.tll-lib-searchslot{display:flex;align-items:center;gap:14px;min-width:0}
+.tll-lib-searchslot .tllsb-form{flex:1 1 auto;min-width:0}
+html.tllp-stories .tll-lib-searchslot .tllsb-form > form{border-bottom:2px solid #0A0B14 !important;padding:0 0 4px !important;gap:10px !important;align-items:center !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-weight:500 !important;font-size:17px !important;min-height:44px !important;letter-spacing:0 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input::placeholder{font-size:1em !important;font-weight:500 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-btn{min-height:44px !important;padding:0 16px !important;margin:0 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-clear{margin:0 !important;white-space:nowrap;display:none}
+html.tllp-stories .tll-lib-searchslot .tllsb-form,html.tllp-stories .tll-lib-searchslot .tllsb-form > form{width:100% !important;max-width:none !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input{flex:1 1 auto !important;width:auto !important;min-width:200px !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-input:focus,html.tllp-stories .tll-lib-searchslot .tllsb-input:focus-visible{border:0 !important;box-shadow:none !important;outline:0 !important}
+html.tllp-stories .tll-lib-searchslot .tllsb-form > form:focus-within{border-bottom-color:#D63859 !important;box-shadow:inset 0 -2px 0 #D63859 !important}
+@media(min-width:900px){html.tllp-stories .tll-filters-inner[data-tll-merged]{display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:space-between !important}html.tllp-stories .tll-filters-inner[data-tll-merged] .tll-chip-rows{flex:0 1 auto}.tll-lib-searchslot{flex:0 1 520px;min-width:360px}html.tllp-stories .tll-filters-inner[data-tll-merged] .tll-chip-row{display:flex !important;align-items:center !important;gap:6px !important}}
+html.tllp-stories .tll-lib-grid > * .tll-lib-img{transform:none !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead]{grid-column:1/-1}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card{display:grid !important;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0 40px;align-items:start}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-img{aspect-ratio:3/2 !important;transform:rotate(-.6deg) !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-body{padding:4px 0 0 !important;position:static}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-meta{position:static !important;display:inline-block;margin:0 0 14px !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-title{font-size:clamp(30px,3.2vw,52px) !important;line-height:1.02 !important;margin:0 0 14px !important}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-lede{font-size:18px !important;line-height:1.55 !important;color:#3a3a3a !important;max-width:46ch}
+@media(max-width:899px){
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card{grid-template-columns:1fr}
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-body{padding-top:16px !important}
+  html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-title{font-size:clamp(28px,7.4vw,36px) !important}
+  html.tllp-stories .tll-library-hero:has(h1){padding-top:20px !important;padding-bottom:8px !important}
+}
+/* 9 Oct 2026, Nancy: the 3px pink hover underline (j12) becomes a hairline ink underline that fades in. Keyboard focus gets the same plus a ring. */
+html.tllp-stories .tll-lib-card .tll-lib-title{text-decoration:underline !important;text-decoration-color:transparent !important;text-decoration-thickness:1px !important;text-underline-offset:6px !important;text-decoration-skip-ink:auto;transition:text-decoration-color 150ms ease-out}
+html.tllp-stories .tll-lib-card:hover .tll-lib-title,html.tllp-stories .tll-lib-card:focus-visible .tll-lib-title{text-decoration-color:#0A0B14 !important}
+html.tllp-stories .tll-lib-card:focus-visible{outline:2px solid #0A0B14;outline-offset:4px}
+@media(hover:none){html.tllp-stories .tll-lib-card:hover .tll-lib-title{text-decoration-color:transparent !important}}
+@media(prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-card .tll-lib-title{transition:none}}
+@media(prefers-reduced-motion:reduce){html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-img{transform:none !important}}
+</style>
+<script id="tll-lib-lead-v1">
+/* Lead story: the first visible card in the grid, re-marked whenever the chips script or search re-orders or filters the grid. */
+(function(){
+  function mark(){var g=document.querySelector('.tll-lib-grid'); if(!g) return; var kids=[].slice.call(g.children), lead=null;
+    kids.forEach(function(k){ if(!lead&&k.offsetParent!==null&&!k.hasAttribute('data-tll-q-miss')&&getComputedStyle(k).display!=='none') lead=k; });
+    kids.forEach(function(k){ if(k===lead) k.setAttribute('data-tll-lead','1'); else k.removeAttribute('data-tll-lead'); });}
+  function merge(){ var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;
+    var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }
+  function run(){ merge(); var g=document.querySelector('.tll-lib-grid'); if(!g) return; mark();
+    var t; new MutationObserver(function(){clearTimeout(t);t=setTimeout(mark,30);}).observe(g,{childList:true,subtree:false,attributes:true,attributeFilter:['style','data-tll-q-miss']});
+    document.addEventListener('tll:lib-filtered',mark); setTimeout(mark,600); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
+<style id="tll-s3-stories-v1">
+/* TLL Stories 3.0 (10 Oct 2026). Source: TLL Site Prototype 3.0, screen "stories", and the approved proposal
+   reports/stories-3.0/2026-10-10-proposed-changes.md (rows 1 to 9, Nancy: "Go with defaults", plus her open-point answers).
+   Loads after footer v5 fix-first and only restyles. Every element, id, data-* attribute, form name, input name and CMS
+   binding stays. New hooks are attributes only: [data-s3-kicker] [data-s3-pillar] [data-s3-mins] [data-s3-place]
+   [data-tll-disclosure], plus .s3-* nodes made by tll-s3-stories-js-v1. Tokens from tll-system.css v1.
+   Overrides tll-v9-j12-v1 and tll-flow-v1 where they clash; both stay until Nancy retires them. */
+html.tllp-stories{--s3-ink:#0A0B14;--s3-cream:#F7F1E8;--s3-paper:#FDF9F3;--s3-line:#E0DACE;--s3-line2:#C9C3B8;--s3-text2:#3a3a3a;--s3-muted:#6B6660;--s3-teal-d:#067A79;--s3-rose:#F0507A;--s3-rose-t:#C8325B;--s3-rose-b:#D63859;--s3-amber:#D98A2B;--s3-head:'Playfair Display',Georgia,serif;--s3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;--s3-mono:'JetBrains Mono',ui-monospace,monospace;--s3-ease:cubic-bezier(.23,1,.32,1)}
+
+/* Row 1. Hero: eyebrow in teal, Playfair 800 title with the rose italic accent. Prototype size only from 900px;
+   phones keep the fix-first strip size so the first story stays on the first screen (open point 2). */
+html.tllp-stories .tll-library-hero .tll-eyebrow-rose{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;text-transform:uppercase !important;color:var(--s3-teal-d) !important;background:none !important;padding:0 !important}
+html.tllp-stories .tll-library-hero h1.tll-library-title{font-family:var(--s3-head) !important;font-weight:800 !important;color:var(--s3-ink) !important;text-wrap:balance}
+html.tllp-stories .tll-library-hero h1.tll-library-title em{font-style:italic !important;color:var(--s3-rose) !important}
+@media(min-width:900px){
+  html.tllp-stories .tll-library-hero:has(h1){padding-top:clamp(28px,6vh,72px) !important;padding-bottom:6px !important}
+  html.tllp-stories .tll-library-hero h1.tll-library-title{font-size:clamp(44px,6.4vw,112px) !important;line-height:.92 !important;letter-spacing:-.035em !important;margin:10px 0 0 !important;padding-bottom:.04em}
+}
+
+/* Row 2. Search sits under the hero, above the place chips: big underlined input, 3px ink rule, rose Search button.
+   Clear shows only while a search runs (S21: the search UI script sets it inline). Focus keeps the S21 rose underline. */
+html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged]{display:flex !important;flex-direction:column !important;align-items:stretch !important;justify-content:flex-start !important;gap:14px !important}
+html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged] > .tll-lib-searchslot{order:-1;flex:0 0 auto !important;width:100%;min-width:0 !important;max-width:none;gap:12px;align-items:flex-end}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form{border-bottom:3px solid var(--s3-ink) !important;padding:0 0 10px !important;gap:14px !important;align-items:flex-end !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form:focus-within{border-bottom-color:var(--s3-rose-b) !important;box-shadow:none !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input{font-family:var(--s3-head) !important;font-weight:800 !important;font-size:24px !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:var(--s3-ink) !important;min-width:0 !important;min-height:44px !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input::placeholder{font-family:var(--s3-body) !important;font-weight:500 !important;font-size:15px !important;letter-spacing:0 !important;color:var(--s3-muted) !important;opacity:1 !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{font-family:var(--s3-mono) !important;font-size:12px !important;font-weight:700 !important;letter-spacing:1.5px !important;text-transform:uppercase !important;background:var(--s3-rose) !important;color:var(--s3-ink) !important;border:0 !important;border-radius:0 !important;min-height:44px !important;padding:0 14px !important;margin:0 !important;white-space:nowrap;cursor:pointer;transition:background-color 150ms ease-out,color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:active{transform:scale(.97)}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:3px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover{background:var(--s3-ink) !important;color:var(--s3-cream) !important}}
+@media(hover:none){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover{background:var(--s3-rose) !important;color:var(--s3-ink) !important}}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600;letter-spacing:1.5px !important;text-transform:uppercase !important;color:var(--s3-muted) !important;text-decoration:none !important;min-height:44px;align-items:center;padding:0 4px !important;flex:none;transition:color 150ms ease-out}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear[style*="inline"]{display:inline-flex !important}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear::before{content:"\2715\00a0";font-weight:400}
+html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear:focus-visible{outline:3px solid var(--s3-ink);outline-offset:2px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-clear:hover{color:var(--s3-ink) !important}}
+@media(max-width:899px){
+  html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged] > .tll-lib-searchslot{flex-wrap:wrap;row-gap:0}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form{flex:1 1 100% !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-form > form{gap:10px !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{padding:0 12px !important;letter-spacing:1px !important}
+}
+@media(min-width:900px){
+  html.tllp-stories .tll-library-filters .tll-filters-inner[data-tll-merged]{gap:20px !important;padding-top:clamp(16px,4vh,40px) !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input{font-size:clamp(26px,4.4vw,72px) !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-input::placeholder{font-family:var(--s3-head) !important;font-weight:800 !important;font-size:.6em !important;letter-spacing:-.01em !important}
+  html.tllp-stories .tll-library-filters .tll-lib-searchslot .tllsb-btn{padding:0 18px !important;letter-spacing:2px !important;margin-bottom:4px !important}
+}
+
+/* Row 3. No-results note (copy set by tll-s3-stories-js-v1; the whole shelf still shows under it). */
+html.tllp-stories #tll-q-note{font-family:var(--s3-head);font-weight:800;font-size:clamp(20px,2.2vw,28px);line-height:1.2;letter-spacing:-.01em;color:var(--s3-ink);margin:0 0 28px;max-width:40ch}
+html.tllp-stories #tll-q-note .s3-q-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:14px;font-family:var(--s3-body);font-size:15px;font-weight:700;letter-spacing:0;line-height:1.2}
+html.tllp-stories #tll-q-note a.s3-q-share{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;background:var(--s3-rose-b);color:#fff !important;text-decoration:none !important;transition:background-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories #tll-q-note a.s3-q-share:active{transform:scale(.97)}
+@media(hover:hover){html.tllp-stories #tll-q-note a.s3-q-share:hover{background:#B82C4B}}
+html.tllp-stories #tll-q-note a.s3-q-clear{display:inline-flex;align-items:center;min-height:44px;color:var(--s3-ink) !important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+html.tllp-stories #tll-q-note a:focus-visible{outline:3px solid var(--s3-ink);outline-offset:3px}
+
+/* Row 4. Place row: mono label, pill chips, 44px targets, 150ms color, press scale. Row 5 (pillar, sort) and
+   row 6 (front of the shelf) stay hidden in the Designer; nothing here shows them. */
+html.tllp-stories .tll-library-filters .tll-filter-label{font-family:var(--s3-mono) !important;font-size:10.5px !important;font-weight:600 !important;letter-spacing:1.5px !important;text-transform:uppercase !important;color:var(--s3-muted) !important;min-width:64px}
+html.tllp-stories .tll-library-filters .tll-shelf-chip,html.tllp-stories .tll-library-filters .tll-filter-chip-on{font-family:var(--s3-body) !important;font-size:13px !important;letter-spacing:0 !important;text-transform:none !important;border-radius:999px !important;border:1px solid var(--s3-line2) !important;background:transparent !important;color:var(--s3-text2) !important;text-decoration:none !important;cursor:pointer;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-filters .tll-filter-chip-on{background:var(--s3-ink) !important;border-color:var(--s3-ink) !important;color:var(--s3-cream) !important;font-weight:600 !important}
+html.tllp-stories .tll-library-filters .tll-shelf-chip:active,html.tllp-stories .tll-library-filters .tll-filter-chip-on:active{transform:scale(.97)}
+html.tllp-stories .tll-library-filters .tll-shelf-chip:focus-visible,html.tllp-stories .tll-library-filters .tll-filter-chip-on:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:2px}
+@media(hover:hover){html.tllp-stories .tll-library-filters .tll-shelf-chip:hover{border-color:var(--s3-ink) !important;color:var(--s3-ink) !important}}
+@media(hover:none){html.tllp-stories .tll-library-filters .tll-shelf-chip:hover{border-color:var(--s3-line2) !important}}
+
+/* Row 7. Story cards: 4:3 photo with the ink badge (Byline location), title on a cream tab over the photo,
+   SPONSORED chip only for "Hosted:" disclosures, mono pillar and minutes, excerpt, byline with the card's own
+   contributor photo. The lead card (9 Oct) keeps its own layout; the 1px ink hairline hover stays as fix-first set it. */
+html.tllp-stories .tll-lib-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)) !important;gap:8vh 3vw !important}
+html.tllp-stories .tll-lib-grid > :not([data-tll-lead]) .tll-lib-body{padding-top:0 !important}
+html.tllp-stories .tll-lib-grid > :not([data-tll-lead]) .tll-lib-card .tll-lib-title{position:relative;z-index:1;margin:-30px 0 0 -10px !important;padding:12px 16px 8px !important;max-width:92%;background:var(--s3-cream)}
+html.tllp-stories .tll-lib-card .s3-sponsored{display:block;width:fit-content;max-width:100%;margin:10px 0 0;padding:3px 8px;background:var(--s3-amber);color:var(--s3-ink);font-family:var(--s3-mono);font-size:10.5px;font-weight:700;letter-spacing:1px;line-height:1.4;text-transform:uppercase}
+html.tllp-stories .tll-lib-card [data-s3-kicker]{display:block;margin:8px 0 0;font-family:var(--s3-mono);font-size:10px;font-weight:600;letter-spacing:1.5px;line-height:1.4;text-transform:uppercase;color:var(--s3-muted)}
+html.tllp-stories .tll-lib-grid > [data-tll-lead] .tll-lib-card [data-s3-kicker]{margin:0 0 12px}
+html.tllp-stories .tll-lib-card [data-s3-kicker] > div{display:inline}
+html.tllp-stories .tll-lib-card [data-s3-mins]::after{content:"\00a0min"}
+html.tllp-stories .tll-lib-card [data-s3-pillar]:not(:empty):not(.w-dyn-bind-empty) + [data-s3-mins]:not(:empty):not(.w-dyn-bind-empty)::before{content:"\00a0\00b7\00a0"}
+html.tllp-stories .tll-lib-card [data-s3-kicker] > :empty,html.tllp-stories .tll-lib-card [data-s3-kicker] > .w-dyn-bind-empty{display:none}
+html.tllp-stories .tll-lib-card .tll-lib-byline{flex-wrap:wrap;column-gap:8px !important;row-gap:2px !important}
+html.tllp-stories .tll-lib-card .tll-lib-byline-img.w-dyn-bind-empty,html.tllp-stories .tll-lib-card .tll-lib-byline-img:not([src]),html.tllp-stories .tll-lib-card .tll-lib-byline-img[src=""]{display:none !important}
+html.tllp-stories .tll-lib-card .tll-lib-byline-name{white-space:nowrap}
+html.tllp-stories .tll-lib-card [data-s3-place]{font-family:var(--s3-mono);font-size:10.5px;letter-spacing:1px;line-height:1.4;text-transform:uppercase;color:var(--s3-muted);min-width:0;overflow-wrap:anywhere}
+html.tllp-stories .tll-lib-card [data-s3-place]::before{content:"\00b7\00a0"}
+html.tllp-stories .tll-lib-card [data-s3-place]:empty,html.tllp-stories .tll-lib-card [data-s3-place].w-dyn-bind-empty{display:none}
+html.tllp-stories .tll-lib-card .tll-lib-read{color:var(--s3-muted) !important}
+html.tllp-stories .tll-lib-card:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:4px}
+@media(min-width:900px){html.tllp-stories .tll-library-grid-section{padding-top:clamp(24px,5vh,56px) !important}}
+
+/* Row 8. Below the grid: kept, type tokens only. */
+html.tllp-stories .tll-library-empty-cta .tll-eyebrow-teal{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;color:var(--s3-teal-d) !important}
+html.tllp-stories .tll-library-empty-title,html.tllp-stories .tll-library-newsletter h3{font-family:var(--s3-head) !important;font-weight:800 !important;letter-spacing:-.02em !important;text-wrap:balance}
+html.tllp-stories .tll-library-empty-title em,html.tllp-stories .tll-library-newsletter h3 em{font-style:italic;color:var(--s3-rose) !important}
+html.tllp-stories .tll-library-empty-copy,html.tllp-stories .tll-library-news-sub,html.tllp-stories .tll-library-news-fineprint{font-family:var(--s3-body) !important}
+html.tllp-stories .tll-library-newsletter .tll-eyebrow-rose{font-family:var(--s3-mono) !important;font-size:11px !important;font-weight:600 !important;letter-spacing:3px !important;color:var(--s3-rose-t) !important}
+html.tllp-stories .tll-library-empty-actions a,html.tllp-stories .tll-library-news-submit{min-height:44px;transition:background-color 150ms ease-out,color 150ms ease-out,border-color 150ms ease-out,transform 100ms var(--s3-ease)}
+html.tllp-stories .tll-library-empty-actions a:active,html.tllp-stories .tll-library-news-submit:active{transform:scale(.97)}
+html.tllp-stories .tll-library-empty-actions a:focus-visible,html.tllp-stories .tll-library-news-submit:focus-visible,html.tllp-stories .tll-library-news-input:focus-visible{outline:3px solid var(--s3-ink) !important;outline-offset:2px}
+
+/* Row 9. Clashes: tll-flow-v1 reveal motion is off on this page (hover and press only). */
+html.tllp-stories .tll-flow-reveal{opacity:1 !important;transform:none !important;transition:none !important}
+
+@media(prefers-reduced-motion:reduce){
+  html.tllp-stories .tll-lib-searchslot .tllsb-btn,html.tllp-stories .tll-lib-searchslot .tllsb-clear,html.tllp-stories .tll-shelf-chip,html.tllp-stories .tll-filter-chip-on,html.tllp-stories #tll-q-note a,html.tllp-stories .tll-library-empty-actions a,html.tllp-stories .tll-library-news-submit,html.tllp-stories .tll-lib-card .tll-lib-title{transition:none !important}
+  html.tllp-stories .tll-lib-searchslot .tllsb-btn:active,html.tllp-stories .tll-shelf-chip:active,html.tllp-stories .tll-filter-chip-on:active,html.tllp-stories #tll-q-note a:active,html.tllp-stories .tll-library-empty-actions a:active,html.tllp-stories .tll-library-news-submit:active{transform:none !important}
+}
+</style>
+<script id="tll-s3-stories-js-v1">
+/* TLL Stories 3.0 companion (10 Oct 2026). Copy only, no layout: (1) the approved no-results note, (2) the
+   SPONSORED chip on cards whose bound Disclosure starts with "Hosted:", (3) the prototype placeholder on the
+   search input when it has none (the Data API cannot set it on this input). Runs after search v4 and chips v1. */
+(function(){
+  function ph(){var i=document.getElementById('tll-lib-q');if(i&&!i.getAttribute('placeholder'))i.setAttribute('placeholder','A country, a train line, a feeling');}
+  function note(){
+    var n=document.getElementById('tll-q-note');if(!n||n.getAttribute('data-s3'))return;
+    var s=n.querySelector('span'),q=s?s.textContent:((new URLSearchParams(location.search).get('q'))||'').trim();
+    n.setAttribute('data-s3','1');
+    n.innerHTML='Nothing on the shelf for “<span class="s3-q-term"></span>” yet. <span class="s3-q-actions"><a class="s3-q-share" href="/submit">Share your story →</a><a class="s3-q-clear" href="/stories">Clear the search</a></span>';
+    n.querySelector('.s3-q-term').textContent=q;
+  }
+  function chips(){
+    [].forEach.call(document.querySelectorAll('[data-tll-disclosure]'),function(d){
+      var card=d.closest('[data-tll-card]');if(!card||card.querySelector('.s3-sponsored'))return;
+      var m=/^\s*Hosted:\s*(.*)$/.exec(d.textContent||'');if(!m)return;
+      var name=m[1].trim(),c=document.createElement('span');c.className='s3-sponsored';
+      c.textContent=name?'Sponsored · by '+name:'Sponsored';
+      var t=card.querySelector('.tll-lib-title');if(t)t.insertAdjacentElement('afterend',c);
+    });
+  }
+  function run(){ph();note();chips();}
+  document.addEventListener('tll:lib-filtered',note);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
