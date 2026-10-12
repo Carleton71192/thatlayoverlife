@@ -1,0 +1,1984 @@
+{
+ "label": "tree",
+ "action": "get_all_elements",
+ "result": [
+  {
+   "status": "success",
+   "message": "Elements tree loaded",
+   "data": {
+    "id": {
+     "component": "6a47adad7a97f26b91c7d78e",
+     "element": "6a47adad7a97f26b91c7d797"
+    },
+    "type": "Body",
+    "children": [
+     {
+      "id": {
+       "component": "6a47adad7a97f26b91c7d78e",
+       "element": "459d5c6d-2f81-d2b9-8af3-810e76a6ba47"
+      },
+      "type": "ComponentInstance",
+      "instanceDetails": {
+       "type": "ComponentInstance",
+       "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+       "name": "TLL Nav v1",
+       "props": [],
+       "slots": []
+      }
+     },
+     {
+      "id": {
+       "component": "6a47adad7a97f26b91c7d78e",
+       "element": "6212315d-879a-3e1e-779a-ff8cced0b71f"
+      },
+      "type": "Block",
+      "styleNames": [
+       "tlldx-page"
+      ],
+      "settings": {
+       "tag": "div",
+       "visibility": true,
+       "block": {
+        "tag": "div"
+       }
+      },
+      "children": [
+       {
+        "id": {
+         "component": "6a47adad7a97f26b91c7d78e",
+         "element": "6212315d-879a-3e1e-779a-ff8cced0b6cd"
+        },
+        "type": "Section",
+        "styleNames": [
+         "tlldx-hero"
+        ],
+        "settings": {
+         "tag": "section",
+         "visibility": true
+        },
+        "children": [
+         {
+          "id": {
+           "component": "6a47adad7a97f26b91c7d78e",
+           "element": "6212315d-879a-3e1e-779a-ff8cced0b6cc"
+          },
+          "type": "Block",
+          "styleNames": [
+           "tlldx-hero-inner"
+          ],
+          "settings": {
+           "tag": "div",
+           "visibility": true,
+           "block": {
+            "tag": "div"
+           }
+          },
+          "children": [
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b6b9"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-eyebrow"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6b8"
+              },
+              "type": "String",
+              "textContent": "\u00b7 THE ATLAS \u00b7"
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b6be"
+            },
+            "type": "Heading",
+            "styleNames": [
+             "tlldx-h1"
+            ],
+            "settings": {
+             "tag": "h1",
+             "visibility": true,
+             "headingLevel": 1
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6ba"
+              },
+              "type": "String",
+              "textContent": "Every story starts "
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6bc"
+              },
+              "type": "Emphasized",
+              "styleNames": [
+               "tlldx-accent"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6bb"
+                },
+                "type": "String",
+                "textContent": "somewhere"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6bd"
+              },
+              "type": "String",
+              "textContent": "."
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b6c0"
+            },
+            "type": "Paragraph",
+            "styleNames": [
+             "tlldx-sub"
+            ],
+            "settings": {
+             "visibility": true
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "fea58b35-e47d-0fa5-606c-7c115f5f881e"
+              },
+              "type": "String",
+              "textContent": "Five countries have published stories so far. The map tracks the rest. No padding, no placeholder countries, no cities we did not actually walk."
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b6cb"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-statrow"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "d01ec6db-4cb7-f6d5-438b-e677f524163b"
+              },
+              "type": "Span",
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "d01ec6db-4cb7-f6d5-438b-e677f524163a"
+                },
+                "type": "String",
+                "textContent": "5 COUNTRIES COVERED"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6c4"
+              },
+              "type": "Span",
+              "styleNames": [
+               "tlldx-dot"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6c3"
+                },
+                "type": "String",
+                "textContent": "\u00b7"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "d27ca8fe-6e88-0041-640f-f4ce35b0c58d"
+              },
+              "type": "Span",
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "d27ca8fe-6e88-0041-640f-f4ce35b0c58c"
+                },
+                "type": "String",
+                "textContent": "4 CONTINENTS"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6c8"
+              },
+              "type": "Span",
+              "styleNames": [
+               "tlldx-dot"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6c7"
+                },
+                "type": "String",
+                "textContent": "\u00b7"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6ca"
+              },
+              "type": "Span",
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6c9"
+                },
+                "type": "String",
+                "textContent": "MORE FILED EVERY WEEK"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "id": {
+         "component": "6a47adad7a97f26b91c7d78e",
+         "element": "6212315d-879a-3e1e-779a-ff8cced0b70e"
+        },
+        "type": "Section",
+        "styleNames": [
+         "tlldx-main"
+        ],
+        "settings": {
+         "tag": "section",
+         "visibility": true
+        },
+        "children": [
+         {
+          "id": {
+           "component": "6a47adad7a97f26b91c7d78e",
+           "element": "6212315d-879a-3e1e-779a-ff8cced0b70d"
+          },
+          "type": "Block",
+          "styleNames": [
+           "tlldx-main-inner"
+          ],
+          "settings": {
+           "tag": "div",
+           "visibility": true,
+           "block": {
+            "tag": "div"
+           }
+          },
+          "children": [
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b6cf"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-kicker"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6ce"
+              },
+              "type": "String",
+              "textContent": "COVERED SO FAR"
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "123073d6-a0ff-60fb-c542-413be9635913"
+            },
+            "type": "Heading",
+            "styleNames": [
+             "tlldx-h2"
+            ],
+            "settings": {
+             "tag": "h2",
+             "visibility": true,
+             "headingLevel": 2
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "123073d6-a0ff-60fb-c542-413be963590f"
+              },
+              "type": "String",
+              "textContent": "Five countries, five "
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "123073d6-a0ff-60fb-c542-413be9635911"
+              },
+              "type": "Emphasized",
+              "styleNames": [
+               "tlldx-accent2"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "123073d6-a0ff-60fb-c542-413be9635910"
+                },
+                "type": "String",
+                "textContent": "stories"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "123073d6-a0ff-60fb-c542-413be9635912"
+              },
+              "type": "String",
+              "textContent": "."
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b70c"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-grid"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6df"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card"
+              ],
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories/balkans-ev-road-trip-twelve-countries"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6d6"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6d5"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\udde7\ud83c\uddec"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6d8"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6d7"
+                  },
+                  "type": "String",
+                  "textContent": "Bulgaria"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6da"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6d9"
+                  },
+                  "type": "String",
+                  "textContent": "EUROPE \u00b7 BALKANS ROAD TRIP"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6dc"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6db"
+                  },
+                  "type": "String",
+                  "textContent": "Banitsa in Sofia, one stop on a fourteen-day, twelve-country EV road trip with a Samoyed."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6de"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6dd"
+                  },
+                  "type": "String",
+                  "textContent": "Read the story \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6ea"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card"
+              ],
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories/patagonia-w-trek-christmas-new-year"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6e1"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6e0"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\udde8\ud83c\uddf1"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6e3"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6e2"
+                  },
+                  "type": "String",
+                  "textContent": "Chile"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6e5"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6e4"
+                  },
+                  "type": "String",
+                  "textContent": "SOUTH AMERICA \u00b7 W TREK"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6e7"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6e6"
+                  },
+                  "type": "String",
+                  "textContent": "Christmas on the W Trek in Torres del Paine, measured in Camp Italianos."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6e9"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6e8"
+                  },
+                  "type": "String",
+                  "textContent": "Read the story \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b6f5"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card"
+              ],
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories/ghana-easter-everyone-wears-white"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6ec"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6eb"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddec\ud83c\udded"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6ee"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6ed"
+                  },
+                  "type": "String",
+                  "textContent": "Ghana"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6f0"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6ef"
+                  },
+                  "type": "String",
+                  "textContent": "AFRICA \u00b7 EASTER"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6f2"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6f1"
+                  },
+                  "type": "String",
+                  "textContent": "Easter in Accra, where the whole country wears white. We did not get the memo."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6f4"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6f3"
+                  },
+                  "type": "String",
+                  "textContent": "Read the story \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b700"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card"
+              ],
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories/montenegro-budva-switchback-roads"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6f7"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6f6"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddf2\ud83c\uddea"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6f9"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6f8"
+                  },
+                  "type": "String",
+                  "textContent": "Montenegro"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6fb"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6fa"
+                  },
+                  "type": "String",
+                  "textContent": "EUROPE \u00b7 WORK TRIP"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6fd"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6fc"
+                  },
+                  "type": "String",
+                  "textContent": "Switchbacks out of Podgorica, semi-trucks in reverse, and fresh fish in Budva."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b6ff"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b6fe"
+                  },
+                  "type": "String",
+                  "textContent": "Read the story \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a3a"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card"
+              ],
+              "attributes": {
+               "href": "/stories/la-paz-mexico-whale-sharks"
+              },
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories/la-paz-mexico-whale-sharks"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a31"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a30"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddf2\ud83c\uddfd"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a33"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a32"
+                  },
+                  "type": "String",
+                  "textContent": "Mexico"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a35"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a34"
+                  },
+                  "type": "String",
+                  "textContent": "NORTH AMERICA \u00b7 LA PAZ"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a37"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a36"
+                  },
+                  "type": "String",
+                  "textContent": "Whale sharks, sea lions who chose chaos, and marine biology students who made it better."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a39"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c116c2dc-d6a8-d97d-97e9-8d3ff3850a38"
+                  },
+                  "type": "String",
+                  "textContent": "Read the story \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b70b"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-card",
+               "tlldx-card-open"
+              ],
+              "attributes": {
+               "href": "/share"
+              },
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/submit"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b702"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-flag"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b701"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83d\uddfa"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b704"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-country"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b703"
+                  },
+                  "type": "String",
+                  "textContent": "Your country here"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b706"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-meta"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b705"
+                  },
+                  "type": "String",
+                  "textContent": "OPEN SLOT \u00b7 ANY COUNTRY"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b708"
+                },
+                "type": "Paragraph",
+                "styleNames": [
+                 "tlldx-desc"
+                ],
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "ae02211f-40c8-0362-72c1-60c9fb1851c0"
+                  },
+                  "type": "String",
+                  "textContent": "File a story and put a pin in it. A human reviews it within 48 hours, edited lightly."
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b70a"
+                },
+                "type": "Block",
+                "styleNames": [
+                 "tlldx-read"
+                ],
+                "settings": {
+                 "tag": "div",
+                 "visibility": true,
+                 "block": {
+                  "tag": "div"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "6212315d-879a-3e1e-779a-ff8cced0b709"
+                  },
+                  "type": "String",
+                  "textContent": "Share your story \u2192"
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "c87bbdc0-f347-e1f8-1747-7a8839e3359e"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-guides"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358a"
+              },
+              "type": "Block",
+              "styleNames": [
+               "tlldx-kicker"
+              ],
+              "settings": {
+               "tag": "div",
+               "visibility": true,
+               "block": {
+                "tag": "div"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33589"
+                },
+                "type": "String",
+                "textContent": "COUNTRY GUIDES \u00b7 BY FLAG"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "c87bbdc0-f347-e1f8-1747-7a8839e33599"
+              },
+              "type": "Block",
+              "styleNames": [
+               "tlldx-guides-row"
+              ],
+              "settings": {
+               "tag": "div",
+               "visibility": true,
+               "block": {
+                "tag": "div"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358c"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/bulgaria"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/bulgaria"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358b"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\udde7\ud83c\uddec Bulgaria"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358e"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/denmark"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/denmark"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358d"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\udde9\ud83c\uddf0 Denmark"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33590"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/ghana"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/ghana"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e3358f"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddec\ud83c\udded Ghana"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33592"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/montenegro"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/montenegro"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e33591"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddf2\ud83c\uddea Montenegro"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33594"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/japan"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/japan"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e33593"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddef\ud83c\uddf5 Japan"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33596"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide"
+                ],
+                "attributes": {
+                 "href": "/countries/chad"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries/chad"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e33595"
+                  },
+                  "type": "String",
+                  "textContent": "\ud83c\uddf9\ud83c\udde9 Chad"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e33598"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guide",
+                 "tlldx-guide-all"
+                ],
+                "attributes": {
+                 "href": "/countries"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/countries"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e33597"
+                  },
+                  "type": "String",
+                  "textContent": "All countries \u2192"
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "ad577967-6128-74cf-5cdc-7c0ef5b070bf"
+              },
+              "type": "Block",
+              "attributes": {
+               "id": "atlas-all",
+               "data-tll-anchor": "atlas-all",
+               "data-tll-atlas": "all"
+              },
+              "settings": {
+               "tag": "div",
+               "visibility": true,
+               "block": {
+                "tag": "div"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "ad577967-6128-74cf-5cdc-7c0ef5b070bd"
+                },
+                "type": "Paragraph",
+                "attributes": {
+                 "data-tll-atlas": "kicker"
+                },
+                "settings": {
+                 "visibility": true
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "ad577967-6128-74cf-5cdc-7c0ef5b070bc"
+                  },
+                  "type": "String",
+                  "textContent": "EVERY COUNTRY \u00b7 BY FLAG"
+                 }
+                ]
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "ad577967-6128-74cf-5cdc-7c0ef5b070be"
+                },
+                "type": "List",
+                "attributes": {
+                 "aria-label": "Every country by flag",
+                 "data-tll-atlas": "grid"
+                },
+                "settings": {
+                 "tag": "ul",
+                 "visibility": true
+                }
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "c87bbdc0-f347-e1f8-1747-7a8839e3359d"
+              },
+              "type": "Paragraph",
+              "styleNames": [
+               "tlldx-guides-note"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e3359a"
+                },
+                "type": "String",
+                "textContent": "Empty country? "
+               },
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "c87bbdc0-f347-e1f8-1747-7a8839e3359c"
+                },
+                "type": "Link",
+                "styleNames": [
+                 "tlldx-guides-link"
+                ],
+                "attributes": {
+                 "href": "/submit"
+                },
+                "settings": {
+                 "visibility": true,
+                 "link": {
+                  "linkType": "url",
+                  "href": "/submit"
+                 }
+                },
+                "children": [
+                 {
+                  "id": {
+                   "component": "6a47adad7a97f26b91c7d78e",
+                   "element": "c87bbdc0-f347-e1f8-1747-7a8839e3359b"
+                  },
+                  "type": "String",
+                  "textContent": "Be the first to tell us about it \u2192"
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "id": {
+         "component": "6a47adad7a97f26b91c7d78e",
+         "element": "6212315d-879a-3e1e-779a-ff8cced0b71e"
+        },
+        "type": "Section",
+        "styleNames": [
+         "tlldx-cta"
+        ],
+        "settings": {
+         "tag": "section",
+         "visibility": true
+        },
+        "children": [
+         {
+          "id": {
+           "component": "6a47adad7a97f26b91c7d78e",
+           "element": "6212315d-879a-3e1e-779a-ff8cced0b71d"
+          },
+          "type": "Block",
+          "styleNames": [
+           "tlldx-cta-inner"
+          ],
+          "settings": {
+           "tag": "div",
+           "visibility": true,
+           "block": {
+            "tag": "div"
+           }
+          },
+          "children": [
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b710"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-eyebrow"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b70f"
+              },
+              "type": "String",
+              "textContent": "THE LIFER CHASE"
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b715"
+            },
+            "type": "Heading",
+            "styleNames": [
+             "tlldx-ctah2"
+            ],
+            "settings": {
+             "tag": "h2",
+             "visibility": true,
+             "headingLevel": 2
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b711"
+              },
+              "type": "String",
+              "textContent": "See where the pins "
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b713"
+              },
+              "type": "Emphasized",
+              "styleNames": [
+               "tlldx-accent"
+              ],
+              "settings": {
+               "visibility": true
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b712"
+                },
+                "type": "String",
+                "textContent": "drop"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b714"
+              },
+              "type": "String",
+              "textContent": "."
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b717"
+            },
+            "type": "Paragraph",
+            "styleNames": [
+             "tlldx-ctacopy"
+            ],
+            "settings": {
+             "visibility": true
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b716"
+              },
+              "type": "String",
+              "textContent": "Every country the founder has been to, on the map, with the story behind the pin."
+             }
+            ]
+           },
+           {
+            "id": {
+             "component": "6a47adad7a97f26b91c7d78e",
+             "element": "6212315d-879a-3e1e-779a-ff8cced0b71c"
+            },
+            "type": "Block",
+            "styleNames": [
+             "tlldx-btnrow"
+            ],
+            "settings": {
+             "tag": "div",
+             "visibility": true,
+             "block": {
+              "tag": "div"
+             }
+            },
+            "children": [
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b719"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-btn-primary"
+              ],
+              "attributes": {
+               "href": "/the-map"
+              },
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/the-map"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b718"
+                },
+                "type": "String",
+                "textContent": "Open the map"
+               }
+              ]
+             },
+             {
+              "id": {
+               "component": "6a47adad7a97f26b91c7d78e",
+               "element": "6212315d-879a-3e1e-779a-ff8cced0b71b"
+              },
+              "type": "Link",
+              "styleNames": [
+               "tlldx-btn-ghost"
+              ],
+              "attributes": {
+               "href": "/stories"
+              },
+              "settings": {
+               "visibility": true,
+               "link": {
+                "linkType": "url",
+                "href": "/stories"
+               }
+              },
+              "children": [
+               {
+                "id": {
+                 "component": "6a47adad7a97f26b91c7d78e",
+                 "element": "6212315d-879a-3e1e-779a-ff8cced0b71a"
+                },
+                "type": "String",
+                "textContent": "All stories"
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": {
+       "component": "6a47adad7a97f26b91c7d78e",
+       "element": "d265dcd4-5f05-3486-b70d-8cc2575724c8"
+      },
+      "type": "ComponentInstance",
+      "instanceDetails": {
+       "type": "ComponentInstance",
+       "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+       "name": "TLL Site Footer",
+       "props": [],
+       "slots": []
+      }
+     }
+    ]
+   }
+  }
+ ]
+}
