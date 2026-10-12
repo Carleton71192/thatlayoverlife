@@ -18,7 +18,14 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 5. **/submit change log:** `submit-change-log.md`. Approve rows 1 to 9, and tell me whether the email sign-up inputs count toward the 7 (I recommend counting story inputs only and leading with Google).
 6. **EXIF, option A (re-encode in the browser):** before I build it, please send one test photo through /share-photos and tell me if it arrives anywhere. I think the current form never delivers the file, so option A also needs a real upload target (Webflow's File Upload element on a paid form plan, or the Worker).
 7. **Guides:** check each answer against its source and send me the "last checked" date (you said OK).
-8. **Legal and story wording** with banned words: list to come from the sweep.
+8. **Banned words left for you** (35 other lines are already changed; full list in `applied/banned-words-log.md`):
+   - **Blocked code edits:** the /stories "Nothing on the shelf for…" notes and the story page line "More stories are on their way to the shelf." Ready-to-paste versions are in `applied/`. The write was blocked by this session's permission check: say "apply the shelf code" and I'll do it, or paste them in the Designer.
+   - **/terms** (legal): "The byline is human or it doesn't ship." → "…or it doesn't run."?
+   - **/login and /signup** success messages (Memberstack forms, yours to edit): "Taking you to your shelf." → "Taking you to your account."; "come find your shelf" → "come find your corner of the library."
+   - **Your bio:** "a Google Sheet that Jay calls the Trip Ledger": keep (it's Jay's name for it) or change?
+   - **/edit-profile "Log a place to your Trip Ledger"** comes from site-wide code: OK to change to "Log a place"?
+   - **Draft stories** with "ledger" (Country #88 on the ledger, #TravelLedger, "the full ledger") need your rewrite before they go live. "Ship" in Aruba, Antarctica and the cruise draft means a boat, so I left it.
+9. **Outside the list:** the Seven Continents marathon story may show a false "Reklame" label (its Disclosure reads "Paid for by the travelers"); /for-brands links to charter rule 08, which was removed.
 
 ## Decided (12 Oct)
 - Footer guides: build short pages now; footer links stay as they are.
@@ -37,7 +44,7 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 
 ## Needs you present (shared components: nav, footer, "Tell the editor")
 - **Footer counts:** add `data-tll-count="owner-countries"` to the footer's "87" and `data-tll-count="owner-pets"` to its "1", so one script fills them from the source you pick in decision 6. Until then the 87 stays typed (and two scripts that overwrote it with the visitor's own count are being removed).
-- Banned words in the nav or footer, if the sweep finds any (to come).
+- Banned words in the nav and footer: none found.
 
 ## Needs your click (accounts, services, Google)
 - **Google Analytics Admin:** two properties are named That Layover Life; the site sends to G-T1K83PRL1R only. Find the other one (grouped under Lub Bub) and archive or rename it.
