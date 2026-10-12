@@ -27,6 +27,10 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
    - **Draft stories** with "ledger" (Country #88 on the ledger, #TravelLedger, "the full ledger") need your rewrite before they go live. "Ship" in Aruba, Antarctica and the cruise draft means a boat, so I left it.
 9. **Outside the list:** the Seven Continents marathon story may show a false "Reklame" label (its Disclosure reads "Paid for by the travelers"); /for-brands links to charter rule 08, which was removed.
 
+## Proposals waiting for you (nothing changed yet)
+- **/share-photos** ("way too complicated"): `reports/page-simplify-2026-10-12/share-photos.md`. One Paper column, four groups, a real file list, two story inputs, credit row, three promise cards, one button. City, year, trip type, pets and the three opt-ins fold under two collapsed disclosures. Your calls: the upload target (the form is a plain GET today, so photos most likely never arrive), year optional, the review and withdrawal wording, the opt-ins, numbered or plain labels. Defaults in brackets in section 6.
+- **/edit-profile** ("a mess"): `reports/page-simplify-2026-10-12/edit-profile.md`. One column, THE BASICS first with two required fields (Name, The place you know best), chips for OPEN TO, one link stack, one sticky Save, the typed country boxes gone, the Log a place card hidden here. Your calls: where Log a place lives, which link stack is canonical, clearing typed country counts, one Save or two, dropping the 48h promise. Defaults in brackets in section 6.
+
 ## Decided (12 Oct)
 - Footer guides: build short pages now; footer links stay as they are.
 - La Paz: not hosted. Its Disclosure field is empty, so the hosted line never shows.
