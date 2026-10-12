@@ -1,4 +1,4 @@
-# For Nancy this afternoon (fix pass, 12 Oct 2026)
+# For Nancy (fix pass and after, 12 Oct 2026, evening)
 
 Running list. Everything I changed is an unpublished edit; you publish. Full check of the 18 items: `verification.md`. What changed: `report-back.md`.
 
@@ -21,7 +21,7 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 8. **Banned words left for you** (35 other lines are already changed; full list in `applied/banned-words-log.md`):
    - ~~Blocked code edits~~: applied after your OK (the /stories "no stories" notes and the story page "More stories are on their way.").
    - **/terms** (legal): "The byline is human or it doesn't ship." → "…or it doesn't run."?
-   - **/login and /signup** success messages (Memberstack forms, yours to edit): "Taking you to your shelf." → "Taking you to your account."; "come find your shelf" → "come find your corner of the library."
+   - ~~/login and /signup success messages~~: done by the account 3.0 build ("Taking you to your account.", "come find your corner of the library.").
    - **Your bio:** "a Google Sheet that Jay calls the Trip Ledger": keep (it's Jay's name for it) or change?
    - **/edit-profile "Log a place to your Trip Ledger"** comes from site-wide code: OK to change to "Log a place"?
    - **Draft stories** with "ledger" (Country #88 on the ledger, #TravelLedger, "the full ledger") need your rewrite before they go live. "Ship" in Aruba, Antarctica and the cruise draft means a boat, so I left it.
