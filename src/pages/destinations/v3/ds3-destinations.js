@@ -79,6 +79,7 @@
   }
 
   function boot(){
+    try{var oc=document.querySelector('.tlldx-card-open');if(oc&&oc.getAttribute('href')==='/share')oc.setAttribute('href','/submit');}catch(e){}
     try{var n=shelf();var a=atlas();if(a){counts(n,a);mine(a);}}catch(e){if(window.console)console.warn('ds3',e);}
   }
   if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);
