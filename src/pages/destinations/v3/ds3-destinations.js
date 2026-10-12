@@ -75,7 +75,7 @@
     a.tiles.forEach(function(t){var id=mapId(t.getAttribute('data-ds3-iso')),b=id?dep[id]||0:0,m=t.querySelector('[data-ds3=tmine]');
       if(!b){if(m)m.remove();return;}
       if(!m){m=document.createElement('small');m.setAttribute('data-ds3','tmine');var tm=t.querySelector('[data-ds3=tmeta]');tm.parentNode.insertBefore(m,tm.nextSibling);}
-      m.textContent='YOUR MAP \u00b7 '+W[b];});
+      m.innerHTML='<span class="ds3-sr">On your map: </span>'+W[b];});
   }
 
   function boot(){

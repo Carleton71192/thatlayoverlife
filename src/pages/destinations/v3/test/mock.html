@@ -1,0 +1,174 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{margin:0;font-family:sans-serif;background:#F7F1E8} .tlldx-main-inner,.tlldx-hero-inner{max-width:1200px;margin:0 auto;padding:0 16px} .tlldx-main{background:#F7F1E8;padding:24px 0}</style>
+<link rel="canonical" href="https://www.thatlayover.life/destinations">
+<style>
+/* tll-atlas-v1 : every country by flag (screen 40). Attribute-scoped. */
+[data-tll-atlas=all]{margin:22px 0 18px;scroll-margin-top:90px}
+[data-tll-atlas=kicker]{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:#067A79;font-weight:600;margin:0 0 12px}
+[data-tll-atlas=grid]{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+[data-tll-atlas=grid] a{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E0DACE;border-radius:9px;padding:8px 10px;text-decoration:none;color:#0A0B14;min-height:44px}
+[data-tll-atlas=grid] a:hover{border-color:#0A0B14}
+[data-tll-atlas=grid] a[data-tll-filed]{border-color:#067A79;background:#FDF9F3}
+[data-tll-atlas=grid] i{font-style:normal;font-size:18px;line-height:1;flex:none}
+[data-tll-atlas=grid] b{display:block;font-size:12.5px;font-weight:700;line-height:1.2}
+[data-tll-atlas=grid] small{display:block;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1px;color:#6B6660;margin-top:2px}
+[data-tll-atlas=grid] a[data-tll-filed] small{color:#067A79}
+[data-tll-atlas=jump]{color:#0A0B14;text-decoration:underline;font-weight:700}
+</style>
+<style id="tll-v9-b-destinations-v1">
+/* v9 (6 Oct 2026, 2.0 parity for /destinations, DRAFT): screen 04 opens on a Cream hero (eyebrow THE ATLAS in #067A79, Ink title with the rose
+   italic, muted lede with the jump link), not the Ink hero. The country cards get the shelf-card treatment: no box, photo with the Ink badge,
+   Playfair title under it. CSS only; every card, link and attribute stays. Text floor 10px on the atlas grid. */
+.tlldx-hero{background:#F7F1E8 !important;color:#0A0B14 !important;padding-top:10vh !important;padding-bottom:6vh !important}
+.tlldx-eyebrow{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;color:#067A79 !important;text-transform:uppercase !important}
+.tlldx-h1{color:#0A0B14 !important;max-width:14ch}
+.tlldx-accent{color:#F0507A !important;font-style:italic !important}
+.tlldx-sub{color:#6B6660 !important;font-size:15px !important;max-width:64ch}
+.tlldx-statrow{font-family:'JetBrains Mono',monospace !important;font-size:10.5px !important;letter-spacing:2px !important;color:#6B6660 !important;text-transform:uppercase !important}
+.tlldx-statrow .tlldx-dot{color:#F0507A !important}
+.tlldx-kicker{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;color:#067A79 !important;text-transform:uppercase !important}
+.tlldx-h2{color:#0A0B14 !important}
+.tlldx-accent2{color:#F0507A !important;font-style:italic !important}
+.tlldx-grid{gap:6vh 3vw !important}
+.tlldx-card{background:transparent !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;padding:0 !important;overflow:visible !important}
+.tlldx-card:hover{transform:none !important;box-shadow:none !important}
+.tlldx-card img{border-radius:0 !important;aspect-ratio:4/3;object-fit:cover;width:100%}
+.tlldx-card-open{background:#FDF9F3 !important;outline:2px dashed #c9b89a;outline-offset:-12px;padding:28px 24px !important}
+[data-tll-atlas=grid] small{font-size:10px !important}
+</style>
+<script id="tll-d3-atlas-guard-v1">window.__tllAtlas=1</script>
+<style id="tll-ds3-destinations-v1">
+/* tll-ds3-destinations-v1 (Destinations 3.0, rows D1 to D10, approved 12 Oct 2026). Scoped to [data-ds3] parts and the tlldx- classes on this page only. Loads after tll-v9-b-destinations-v1, so equal !important rules win by order. */
+:root{--ds3-ink:#0A0B14;--ds3-cream:#F7F1E8;--ds3-paper:#FDF9F3;--ds3-line:#E0DACE;--ds3-teal:#067A79;--ds3-teal-d:#00C9C8;--ds3-rose:#F0507A;--ds3-rose-s:#C8325B;--ds3-muted:#6B6660;--ds3-mono:'JetBrains Mono',ui-monospace,monospace;--ds3-serif:'Playfair Display',Georgia,serif;--ds3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif}.tlldx-hero{padding-top:min(10vh,96px) !important;padding-bottom:min(6vh,56px) !important}.tlldx-hero .tlldx-eyebrow{font-size:11px !important;letter-spacing:3px !important;margin:0 0 14px}.tlldx-h1{font-family:var(--ds3-serif) !important;font-weight:800 !important;font-size:clamp(40px,6.2vw,84px) !important;line-height:1.02 !important;letter-spacing:-.02em;max-width:14ch;margin:0 0 18px}.tlldx-sub{font-family:var(--ds3-body);font-size:16px !important;line-height:1.55;color:var(--ds3-muted) !important;max-width:60ch;margin:0}.tlldx-sub a{color:var(--ds3-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}.tlldx-h2{font-family:var(--ds3-serif) !important;font-weight:800 !important;font-size:clamp(28px,3.4vw,44px) !important;line-height:1.1 !important;margin:0 0 22px}.tlldx-h2 em,.tlldx-accent,.tlldx-accent2{color:var(--ds3-rose) !important;font-style:italic !important}[data-ds3=shelf]{margin:0 0 24px}[data-ds3=shelf] .w-dyn-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}@media(max-width:899px){[data-ds3=shelf] .w-dyn-items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:479px){[data-ds3=shelf] .w-dyn-items{grid-template-columns:1fr}}[data-ds3=card]{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--ds3-line);border-radius:4px;overflow:hidden;color:var(--ds3-ink);text-decoration:none;transition:border-color 150ms ease-out,transform 150ms ease-out}[data-ds3=media]{position:relative;height:110px;background:var(--ds3-ink)}[data-ds3=img]{display:block;width:100%;height:110px;object-fit:cover}[data-ds3=flag]{position:absolute;left:10px;bottom:-13px;width:26px;height:26px;border-radius:50%;box-shadow:0 0 0 2px #fff;background:#fff}[data-ds3=flag]:empty,[data-ds3=flag][hidden]{display:none}[data-ds3=flag] img{display:block;width:26px;height:26px;border-radius:50%}[data-ds3=body]{display:flex;flex-direction:column;gap:6px;padding:20px 14px 14px;flex:1}[data-ds3=place]{font-family:var(--ds3-serif);font-weight:800;font-size:18px;line-height:1.2;margin:0}[data-ds3=meta]{font-family:var(--ds3-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ds3-teal);margin:0}[data-ds3=title]{font-family:var(--ds3-body);font-size:14px;line-height:1.45;color:var(--ds3-ink);margin:0}[data-ds3=read]{margin-top:auto;padding-top:6px;font-family:var(--ds3-body);font-size:14px;font-weight:700;color:var(--ds3-rose-s)}[data-ds3=data]{display:none !important}[data-ds3=empty]{font-family:var(--ds3-body);font-size:15px;color:var(--ds3-muted);padding:16px 0}.tlldx-grid{display:block !important;margin:0 0 32px}.tlldx-card-open{display:flex !important;flex-wrap:wrap;align-items:baseline;gap:6px 14px;background:var(--ds3-paper) !important;outline:0 !important;border:1.5px dashed #c9b89a !important;border-radius:4px !important;padding:18px 20px !important;min-height:44px;color:var(--ds3-ink);text-decoration:none;transition:border-color 150ms ease-out,transform 150ms ease-out}.tlldx-card-open .tlldx-flag{font-size:20px;line-height:1}.tlldx-card-open .tlldx-country{font-family:var(--ds3-serif);font-weight:800;font-size:18px}.tlldx-card-open .tlldx-meta{font-family:var(--ds3-mono);font-size:10px;letter-spacing:1.5px;color:#8A5A12}.tlldx-card-open .tlldx-desc{flex-basis:100%;margin:0;font-size:14px;color:var(--ds3-ink)}.tlldx-card-open .tlldx-read{font-weight:700;color:var(--ds3-rose-s)}[data-tll-atlas=all]{margin:8px 0 18px}[data-tll-atlas=kicker]{font-size:11px !important;letter-spacing:3px !important;color:var(--ds3-teal) !important}[data-tll-atlas=grid].ds3-on{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}[data-tll-atlas=grid] [data-ds3=tile]{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 10px;background:#fff;border:1px solid var(--ds3-line);border-radius:4px;color:var(--ds3-ink);text-decoration:none;transition:border-color 150ms ease-out,transform 150ms ease-out}[data-ds3=tile] [data-ds3=tflag]{flex:none;width:24px;height:24px;border-radius:50%;background:var(--ds3-line);overflow:hidden}[data-ds3=tflag] img{display:block;width:24px;height:24px;border-radius:50%}[data-ds3=tile] [data-ds3=tname]{display:block;font-family:var(--ds3-body);font-size:12.5px;font-weight:700;line-height:1.2}[data-ds3=tile] [data-ds3=tmeta]{display:block;margin-top:2px;font-family:var(--ds3-mono);font-size:10px;letter-spacing:1px;color:var(--ds3-muted)}[data-ds3=tile] [data-ds3=tmine]{display:block;margin-top:2px;font-family:var(--ds3-mono);font-size:10px;letter-spacing:1px;color:var(--ds3-teal)}[data-ds3=tile][data-ds3-filed]{background:var(--ds3-ink);border-color:var(--ds3-ink);color:var(--ds3-cream)}[data-ds3=tile][data-ds3-filed] [data-ds3=tmeta]{color:var(--ds3-teal-d)}[data-ds3=tile][data-ds3-filed] [data-ds3=tmine]{color:var(--ds3-cream)}[data-ds3=atlas] .w-dyn-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}[data-ds3=atlas]+[data-ds3=atlas]{margin-top:8px}[data-ds3=atlas].ds3-moved{display:none}.tlldx-guides-note{font-family:var(--ds3-body);font-size:15px;color:var(--ds3-ink);margin:16px 0 0}.tlldx-guides-link{color:var(--ds3-rose-s) !important;font-weight:700;text-decoration:underline;text-underline-offset:3px;display:inline-block;min-height:44px;line-height:44px}.tlldx-cta{background:var(--ds3-cream) !important;padding:0 16px 64px !important}.tlldx-cta-inner{background:var(--ds3-ink) !important;color:var(--ds3-cream) !important;border-radius:4px !important;padding:clamp(28px,4vw,48px) !important;max-width:1000px;margin:0 auto}.tlldx-cta .tlldx-eyebrow{color:var(--ds3-teal-d) !important;font-family:var(--ds3-mono) !important;font-size:11px !important;letter-spacing:3px !important}.tlldx-ctah2{font-family:var(--ds3-serif) !important;font-weight:800 !important;color:var(--ds3-cream) !important;font-size:clamp(26px,3vw,40px) !important;line-height:1.1 !important}.tlldx-cta .tlldx-accent{color:var(--ds3-rose) !important}.tlldx-ctacopy{color:#9496AC !important;font-size:16px !important;max-width:56ch}.tlldx-btn-primary,.tlldx-btn-ghost{display:inline-flex !important;align-items:center;min-height:44px;padding:0 20px !important;border-radius:4px !important;font-weight:700;text-decoration:none;transition:background-color 150ms ease-out,border-color 150ms ease-out,transform 150ms ease-out}.tlldx-btn-primary{background:var(--ds3-teal-d) !important;color:#06302f !important;border:1.5px solid var(--ds3-teal-d) !important}.tlldx-btn-ghost{background:transparent !important;color:var(--ds3-cream) !important;border:1.5px solid #3a3d55 !important}[data-ds3=card]:focus-visible,[data-ds3=tile]:focus-visible,.tlldx-card-open:focus-visible,.tlldx-sub a:focus-visible,.tlldx-guides-link:focus-visible{outline:3px solid var(--ds3-ink) !important;outline-offset:3px}[data-ds3=tile][data-ds3-filed]:focus-visible{outline-color:var(--ds3-teal) !important}.tlldx-cta a:focus-visible{outline:3px solid var(--ds3-teal-d) !important;outline-offset:3px}@media(hover:hover) and (pointer:fine){[data-ds3=card]:hover,.tlldx-card-open:hover{border-color:var(--ds3-ink) !important}[data-ds3=tile]:hover{border-color:var(--ds3-ink)}[data-ds3=tile][data-ds3-filed]:hover{border-color:var(--ds3-teal-d)}.tlldx-btn-ghost:hover{border-color:var(--ds3-cream) !important}.tlldx-btn-primary:hover{background:#7fe4e3 !important;border-color:#7fe4e3 !important}[data-ds3=card]:active,[data-ds3=tile]:active,.tlldx-card-open:active,.tlldx-btn-primary:active,.tlldx-btn-ghost:active{transform:scale(.97)}}@media(prefers-reduced-motion:reduce){[data-ds3=card],[data-ds3=tile],.tlldx-card-open,.tlldx-btn-primary,.tlldx-btn-ghost{transition:none !important}[data-ds3=card]:active,[data-ds3=tile]:active,.tlldx-card-open:active,.tlldx-btn-primary:active,.tlldx-btn-ghost:active{transform:none !important}}[data-ds3=tstory]{display:none !important}.ds3-sr{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+<script id="tll-ds3-destinations-js-v1">
+/* tll-ds3-destinations-js-v1 (Destinations 3.0, rows D3, D4, D6, D9, D10; approved 12 Oct 2026). Every number is counted from what rendered on this page: stories from the Stories list, filed countries from the Countries tiles whose Story Ref is set. Nothing typed. Reads tllStates (never writes it) for the signed-in member's own tile marks. */
+(function(){
+var B='https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/',J='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
+var HOST={mx:'6aba209779fdd6acfa9a5b57_flag-mx',cl:'6aba2096310af94e01eb9a06_flag-cl',ar:'6aba209d0b20448acd7ab45d_flag-ar',me:'6aba2098bc9469648f2dd31d_flag-me',gh:'6aba20853c5a2a7f5f712e62_flag-gh',aq:'6aba209b6b8ff3588d0d3677_flag-aq',bg:'6aba2095d472a995a4b681fe_flag-bg',dk:'6abaabea6aa280006821dd68_flag-dk'};
+var ALIAS={usa:'us','united states':'us',oregon:'us',uk:'gb',dubai:'ae','sao paulo':'br','ho chi minh city':'vn',copenhagen:'dk'};
+var MAPID='AD020AE784AF004AG028AI660AL008AM051AO024AQ010AR032AS016AT040AU036AW533AX248AZ031BA070BB052BD050BE056BF854BG100BH048BI108BJ204BL652BM060BN096BO068BQ535BR076BS044BT064BV074BW072BY112BZ084CA124CC166CD180CF140CG178CH756CI384CK184CL152CM120CN156CO170CR188CU192CV132CW531CX162CY196CZ203DE276DJ262DK208DM212DO214DZ012EC218EE233EG818EH732ER232ES724ET231FI246FJ242FK238FM583FO234FR250GA266GB826GD308GE268GF254GG831GH288GI292GL304GM270GN324GP312GQ226GR300GS239GT320GU316GW624GY328HK344HM334HN340HR191HT332HU348ID360IE372IL376IM833IN356IO086IQ368IR364IS352IT380JE832JM388JO400JP392KE404KG417KH116KI296KM174KN659KP408KR410KW414KY136KZ398LA418LB422LC662LI438LK144LR430LS426LT440LU442LV428LY434MA504MC492MD498ME499MF663MG450MH584MK807ML466MM104MN496MO446MP580MQ474MR478MS500MT470MU480MV462MW454MX484MY458MZ508NA516NC540NE562NF574NG566NI558NL528NO578NP524NR520NU570NZ554OM512PA591PE604PF258PG598PH608PK586PL616PM666PN612PR630PS275PT620PW585PY600QA634RE638RO642RS688RU643RW646SA682SB090SC690SD729SE752SG702SH654SI705SJ744SK703SL694SM674SN686SO706SR740SS728ST678SV222SX534SY760SZ748TC796TD148TF260TG768TH764TJ762TK772TL626TM795TN788TO776TR792TT780TV798TW158TZ834UA804UG800UM581US840UY858UZ860VA336VC670VE862VG092VI850VN704VU548WF876WS882YE887YT175ZA710ZM894ZW716XK900';
+var IDX=null;
+function nz(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
+function idx(){if(IDX)return IDX;IDX={};try{var d=new Intl.DisplayNames(['en'],{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=d.of(c);if(n&&n!==c)IDX[nz(n)]=c.toLowerCase();}}catch(e){}return IDX;}
+function isoFromByline(t){var segs=String(t||'').split(','),s=nz(segs[segs.length-1]);if(!s||/ and | or |\//.test(' '+s+' '))return '';return ALIAS[s]||idx()[s]||'';}
+function src(c){c=String(c||'').trim().toLowerCase();if(!/^[a-z]{2}$/.test(c))return '';return HOST[c]?B+HOST[c]+'.svg':J+c+'.svg';}
+function img(c,size){var s=src(c);if(!s)return null;var i=document.createElement('img');i.src=s;i.alt='';i.width=size;i.height=size;i.loading='lazy';i.decoding='async';i.onerror=function(){var p=i.parentNode;i.remove();if(p&&p.getAttribute('data-ds3')==='flag')p.hidden=true;};return i;}
+function txt(root,sel){var e=root.querySelector(sel);return e?e.textContent.replace(/\s+/g,' ').trim():'';}
+function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+function pad(k){return String(k).padStart(3,'0');}
+function mapId(iso){iso=String(iso||'').toUpperCase();var i=MAPID.indexOf(iso);while(i>-1&&i%5!==0)i=MAPID.indexOf(iso,i+1);return i>-1?MAPID.substr(i+2,3):'';}
+function shelf(){
+var cards=$$('[data-ds3=shelf] [data-ds3=card]');
+cards.forEach(function(card){
+var place=card.querySelector('[data-ds3=place]');
+if(place&&!place.textContent.trim()){var cn=txt(card,'[data-ds3=cname]');if(cn)place.textContent=cn;}
+var meta=card.querySelector('[data-ds3=meta]'),mins=parseInt(txt(card,'[data-ds3=mins]'),10);
+if(meta&&mins>0&&!meta.__ds3){meta.__ds3=1;meta.appendChild(document.createTextNode(' \u00b7 '+mins+' MIN'));}
+var f=card.querySelector('[data-ds3=flag]');
+if(f&&!f.firstChild){var c=txt(card,'[data-ds3=iso]')||isoFromByline(place?place.textContent:'');var i=img(c,26);if(i)f.appendChild(i);else f.hidden=true;}
+});
+return cards.length;
+}
+function atlas(){
+var ul=document.querySelector('[data-tll-atlas=grid]'),tiles=$$('[data-ds3=atlas] [data-ds3=tile]'),filed=[];
+if(!tiles.length)return null;
+tiles.forEach(function(t){
+var iso=(t.getAttribute('data-ds3-iso')||'').trim(),story=txt(t,'[data-ds3=tstory]');
+var fl=t.querySelector('[data-ds3=tflag]');if(fl&&!fl.firstChild){var i=img(iso,24);if(i)fl.appendChild(i);}
+var m=t.querySelector('[data-ds3=tmeta]');if(!m){m=document.createElement('small');m.setAttribute('data-ds3','tmeta');var nm=t.querySelector('[data-ds3=tname]');(nm?nm.parentNode:t).appendChild(m);}
+if(story){t.setAttribute('data-ds3-filed','');m.textContent='STORY FILED';filed.push({n:txt(t,'[data-ds3=tname]'),u:t.href});}else m.textContent='OPEN';
+});
+if(ul){
+ul.innerHTML='';ul.classList.add('ds3-on');
+tiles.forEach(function(t){var li=document.createElement('li');li.appendChild(t);ul.appendChild(li);});
+$$('[data-ds3=atlas]').forEach(function(w){w.classList.add('ds3-moved');w.setAttribute('aria-hidden','true');});
+}
+return {total:tiles.length,filed:filed,tiles:tiles};
+}
+function words(n,one,many){return n+' '+(n===1?one:many);}
+function counts(nStories,a){
+var k=document.querySelector('[data-tll-atlas=kicker]');if(k)k.textContent='EVERY COUNTRY \u00b7 BY FLAG \u00b7 '+a.total;
+var nF=a.filed.length,rest=a.total-nF;
+var sub=document.querySelector('.tlldx-sub');
+if(sub){sub.textContent='';sub.appendChild(document.createTextNode('Countries with a published story: '+nF+'. The other '+rest+' are open until someone files. '));var j=document.createElement('a');j.href='#atlas-all';j.setAttribute('data-tll-atlas','jump');j.textContent='Jump to every country by flag';sub.appendChild(j);sub.appendChild(document.createTextNode('.'));}
+var h2=document.querySelector('.tlldx-h2');
+if(h2&&nStories){var em=h2.querySelector('em');var cls=em?em.className:'tlldx-accent2';h2.textContent='';h2.appendChild(document.createTextNode(words(nF,'country','countries')+', '+nStories+' '));var e2=document.createElement('em');e2.className=cls;e2.textContent=nStories===1?'story':'stories';h2.appendChild(e2);h2.appendChild(document.createTextNode('.'));}
+if(nF&&!document.getElementById('tll-ds3-itemlist')){
+var ld={'@context':'https://schema.org','@type':'ItemList','@id':'https://www.thatlayover.life/destinations#countries-with-stories','name':'Countries with a published story on That Layover Life','numberOfItems':nF,'itemListElement':a.filed.map(function(f,i){return {'@type':'ListItem','position':i+1,'name':f.n,'url':f.u};})};
+var s=document.createElement('script');s.type='application/ld+json';s.id='tll-ds3-itemlist';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
+}
+}
+function mine(a){
+var tries=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++tries>40)clearInterval(iv);return;}clearInterval(iv);
+ms.getCurrentMember().then(function(r){var id=r&&r.data&&r.data.id;if(!id)return;
+var ls=null;try{if(localStorage.getItem('tllStatesOwner')===id)ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
+if(ls&&ls.v===2&&ls.states)mark(a,ls);
+return ms.getMemberJSON().then(function(mj){var st=mj&&mj.data&&mj.data.tllStates;if(st&&st.v===2&&st.states)mark(a,st);});
+}).catch(function(){});},250);
+}
+function mark(a,d){
+var hum={},any=0,R={lived:3,visited:2,layover:1},W={3:'LIVED',2:'STAYED',1:'LAYOVER'},dep={};
+(d.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=1;}});
+Object.keys(d.states).forEach(function(k){var row=d.states[k]||{},b=0;Object.keys(row).forEach(function(id){if(any&&!hum[id])return;b=Math.max(b,R[row[id]]||0);});dep[pad(k)]=b;});
+a.tiles.forEach(function(t){var id=mapId(t.getAttribute('data-ds3-iso')),b=id?dep[id]||0:0,m=t.querySelector('[data-ds3=tmine]');
+if(!b){if(m)m.remove();return;}
+if(!m){m=document.createElement('small');m.setAttribute('data-ds3','tmine');var tm=t.querySelector('[data-ds3=tmeta]');tm.parentNode.insertBefore(m,tm.nextSibling);}
+m.innerHTML='<span class="ds3-sr">On your map: </span>'+W[b];});
+}
+function boot(){
+try{var oc=document.querySelector('.tlldx-card-open');if(oc&&oc.getAttribute('href')==='/share')oc.setAttribute('href','/submit');}catch(e){}
+try{var n=shelf();var a=atlas();if(a){counts(n,a);mine(a);}}catch(e){if(window.console)console.warn('ds3',e);}
+}
+if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);
+})();
+</script></head><body>
+<nav style="height:60px;background:#0A0B14;color:#fff">NAV</nav>
+<div class="tlldx-page">
+<section class="tlldx-hero"><div class="tlldx-hero-inner"><div class="tlldx-eyebrow">THE ATLAS</div><h1 class="tlldx-h1">Every story starts <em class="tlldx-accent">somewhere</em>.</h1><p class="tlldx-sub">Every country with a story on TLL, and every country still waiting for one.</p></div></section>
+<section class="tlldx-main"><div class="tlldx-main-inner">
+<h2 class="tlldx-h2">Every country, every <em class="tlldx-accent2">story</em>.</h2>
+<div data-ds3="shelf" class="w-dyn-list"><div role="list" class="w-dyn-items"><div role="listitem" class="w-dyn-item"><a data-ds3="card" href="/stories/balkans-ev" class="w-inline-block"><div data-ds3="media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='110'%3E%3Crect width='400' height='110' fill='%23556'/%3E%3C/svg%3E" loading="lazy" alt="" data-ds3="img"><div data-ds3="flag" aria-hidden="true"></div></div><div data-ds3="body"><div data-ds3="place" class="">Balkans</div><div data-ds3="meta">Europe</div><div data-ds3="title">Balkans EV road trip, twelve countries</div><div data-ds3="read">Read the story →</div></div><div data-ds3="data" aria-hidden="true"><div data-ds3="mins">14</div><div data-ds3="cname"></div><div data-ds3="iso"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="card" href="/stories/ghana-easter" class="w-inline-block"><div data-ds3="media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='110'%3E%3Crect width='400' height='110' fill='%23556'/%3E%3C/svg%3E" loading="lazy" alt="" data-ds3="img"><div data-ds3="flag" aria-hidden="true"></div></div><div data-ds3="body"><div data-ds3="place" class="">Accra, Ghana</div><div data-ds3="meta">Africa</div><div data-ds3="title">Easter in Accra, where everyone wears white</div><div data-ds3="read">Read the story →</div></div><div data-ds3="data" aria-hidden="true"><div data-ds3="mins">9</div><div data-ds3="cname"></div><div data-ds3="iso">GH</div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="card" href="/stories/pantanal" class="w-inline-block"><div data-ds3="media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='110'%3E%3Crect width='400' height='110' fill='%23556'/%3E%3C/svg%3E" loading="lazy" alt="" data-ds3="img"><div data-ds3="flag" aria-hidden="true"></div></div><div data-ds3="body"><div data-ds3="place" class="">Pantanal, Brazil</div><div data-ds3="meta">Americas</div><div data-ds3="title">Jaguars of the Pantanal</div><div data-ds3="read">Read the story →</div></div><div data-ds3="data" aria-hidden="true"><div data-ds3="mins">11</div><div data-ds3="cname"></div><div data-ds3="iso"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="card" href="/stories/antarctica" class="w-inline-block"><div data-ds3="media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='110'%3E%3Crect width='400' height='110' fill='%23556'/%3E%3C/svg%3E" loading="lazy" alt="" data-ds3="img"><div data-ds3="flag" aria-hidden="true"></div></div><div data-ds3="body"><div data-ds3="place" class="w-dyn-bind-empty"></div><div data-ds3="meta">Antarctica</div><div data-ds3="title">Seven continents, one marathon</div><div data-ds3="read">Read the story →</div></div><div data-ds3="data" aria-hidden="true"><div data-ds3="mins">8</div><div data-ds3="cname">Antarctica</div><div data-ds3="iso">AQ</div></div></a></div></div></div>
+<div class="tlldx-grid"><a href="/share" class="tlldx-card tlldx-card-open w-inline-block"><div class="tlldx-flag">🗺</div><div class="tlldx-country">Your country here</div><div class="tlldx-meta">OPEN SLOT · ANY COUNTRY</div><p class="tlldx-desc">File a story and put a pin in it. A human reviews it within 48 hours, edited lightly.</p><div class="tlldx-read">Share your story →</div></a></div>
+<div class="tlldx-guides">
+<div id="atlas-all" data-tll-anchor="atlas-all" data-tll-atlas="all"><p data-tll-atlas="kicker">EVERY COUNTRY · BY FLAG</p><ul aria-label="Every country by flag" data-tll-atlas="grid"></ul>
+<div data-ds3="atlas" data-ds3-part="1" class="w-dyn-list"><div role="list" class="w-dyn-items"><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="AQ" href="/countries/antarctica" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Antarctica</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="BR" href="/countries/brazil" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Brazil</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="BG" href="/countries/bulgaria" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Bulgaria</div><div data-ds3="tstory" aria-hidden="true" class="">Balkans EV road trip</div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="TD" href="/countries/chad" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Chad</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="DK" href="/countries/denmark" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Denmark</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div></div></div>
+<div data-ds3="atlas" data-ds3-part="2" class="w-dyn-list"><div role="list" class="w-dyn-items"><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="GH" href="/countries/ghana" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Ghana</div><div data-ds3="tstory" aria-hidden="true" class="">Easter in Accra</div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="" href="/countries/kosovo" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Kosovo</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div><div role="listitem" class="w-dyn-item"><a data-ds3="tile" data-ds3-iso="VC" href="/countries/saint-vincent-and-the-grenadines" class="w-inline-block"><div data-ds3="tflag" aria-hidden="true"></div><div data-ds3="ttext"><div data-ds3="tname">Saint Vincent and the Grenadines</div><div data-ds3="tstory" aria-hidden="true" class="w-dyn-bind-empty"></div></div></a></div></div></div>
+</div>
+<p class="tlldx-guides-note">Empty country? <a href="/submit" class="tlldx-guides-link">Be the first to tell us about it →</a></p>
+</div></div></section>
+<section class="tlldx-cta"><div class="tlldx-cta-inner"><div class="tlldx-eyebrow">THE MAP</div><h2 class="tlldx-ctah2">See where the pins <em class="tlldx-accent">drop</em>.</h2><p class="tlldx-ctacopy">Every country the founder has been to, on the map, with the story behind the pin.</p><div class="tlldx-btnrow"><a href="/the-map" class="tlldx-btn-primary">Open the map</a> <a href="/stories" class="tlldx-btn-ghost">All stories</a></div></div></section>
+</div>
+<footer style="height:80px;background:#0A0B14"></footer>
+<script>
+/* mock memberstack */
+localStorage.setItem('tllStatesOwner','mem_1');
+localStorage.setItem('tllStates',JSON.stringify({v:2,travelers:[{id:'t1'},{id:'p1',pet:true}],states:{'100':{t1:'lived'},'24':{p1:'visited'},'208':{t1:'layover'},'76':{t1:'visited'}}}));
+window.$memberstackDom={getCurrentMember:function(){return Promise.resolve({data:{id:'mem_1'}});},getMemberJSON:function(){return Promise.resolve({data:{}});}};
+</script>
+<script>
+/* tll-atlas-v1 (2026-09-29, screen 40): renders every country by flag from the ISO list behind the Countries collection (names via Intl.DisplayNames, slugs via the same alias table as the expats finder), marks the countries that have a story card on this page as STORY FILED, and rewrites the lede and the section heading with computed counts. Nothing hardcoded. */
+(function(){
+  if(window.__tllAtlas) return; window.__tllAtlas=1;
+  var CODES="AD,AE,AF,AG,AL,AM,AO,AR,AT,AU,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BN,BO,BR,BS,BT,BW,BY,BZ,CA,CD,CF,CG,CH,CI,CL,CM,CN,CO,CR,CU,CV,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,ER,ES,ET,FI,FJ,FM,FR,GA,GB,GD,GE,GH,GM,GN,GQ,GR,GT,GW,GY,HN,HR,HT,HU,ID,IE,IL,IN,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MG,MH,MK,ML,MM,MN,MR,MT,MU,MV,MW,MX,MY,MZ,NA,NE,NG,NI,NL,NO,NP,NR,NZ,OM,PA,PE,PG,PH,PK,PL,PS,PT,PW,PY,QA,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SI,SK,SL,SM,SN,SO,SR,SS,ST,SV,SY,SZ,TD,TG,TH,TJ,TL,TM,TN,TO,TR,TT,TV,TZ,UA,UG,US,UY,UZ,VA,VC,VE,VN,VU,WS,YE,ZA,ZM,ZW".split(",");
+  var SLUG={TR:"turkiye",MM:"myanmar",PS:"palestine",CD:"dr-congo",CG:"republic-of-the-congo",CI:"ivory-coast",CV:"cape-verde",FM:"micronesia",SZ:"eswatini",GB:"united-kingdom",US:"united-states",VA:"vatican-city",ST:"sao-tome-and-principe",TL:"timor-leste",KN:"saint-kitts-and-nevis",LC:"saint-lucia",VC:"saint-vincent-and-the-grenadines",AE:"united-arab-emirates",BA:"bosnia-and-herzegovina",TT:"trinidad-and-tobago",GW:"guinea-bissau",GQ:"equatorial-guinea",KP:"north-korea",KR:"south-korea",MK:"north-macedonia",CZ:"czechia",LA:"laos",SY:"syria",VN:"vietnam",RU:"russia",IR:"iran",BO:"bolivia",BN:"brunei",MD:"moldova",TZ:"tanzania"};
+  var dn; try{dn=new Intl.DisplayNames(["en"],{type:"region"});}catch(e){}
+  function name(c){ try{ var n=dn&&dn.of(c); if(n&&n!==c) return n; }catch(e){} return c; }
+  function norm(s){ return String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,' ').trim(); }
+  function slugOf(c){ return SLUG[c]||norm(name(c)).replace(/ /g,'-'); }
+  function flag(c){ return c.replace(/./g,function(ch){return String.fromCodePoint(127397+ch.charCodeAt(0));}); }
+  function unflag(s){ var m=String(s||'').match(/[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/); if(!m) return ''; var cps=Array.from(m[0]).map(function(ch){return ch.codePointAt(0)-127397;}); return String.fromCharCode(cps[0],cps[1]); }
+  function boot(){
+    var cards=[].slice.call(document.querySelectorAll('.tlldx-card:not(.tlldx-card-open)'));
+    var filed={}; cards.forEach(function(c){ var f=c.querySelector('.tlldx-flag'); var code=unflag(f&&f.textContent); if(code) filed[code]=1; });
+    var nStories=cards.length, nFiled=Object.keys(filed).length, total=CODES.length, rest=total-nFiled;
+    var grid=document.querySelector('[data-tll-atlas=grid]');
+    if(grid){ grid.innerHTML=''; CODES.map(function(c){return {c:c,n:name(c)};}).sort(function(a,b){return a.n.localeCompare(b.n);}).forEach(function(it){ var li=document.createElement('li'); var a=document.createElement('a'); a.href='/countries/'+slugOf(it.c); if(filed[it.c]) a.setAttribute('data-tll-filed','1'); var i=document.createElement('i'); i.textContent=flag(it.c); i.setAttribute('aria-hidden','true'); var d=document.createElement('div'); var b=document.createElement('b'); b.textContent=it.n; var s=document.createElement('small'); s.textContent=filed[it.c]?'STORY FILED':'OPEN'; d.appendChild(b); d.appendChild(s); a.appendChild(i); a.appendChild(d); li.appendChild(a); grid.appendChild(li); }); }
+    var k=document.querySelector('[data-tll-atlas=kicker]'); if(k) k.textContent='EVERY COUNTRY · BY FLAG · '+total;
+    var sub=document.querySelector('.tlldx-sub'); if(sub){ sub.textContent=''; sub.appendChild(document.createTextNode('Countries with a published story: '+nFiled+'. The other '+rest+' are open until someone files. ')); var j=document.createElement('a'); j.href='#atlas-all'; j.setAttribute('data-tll-atlas','jump'); j.textContent='Jump to every country by flag'; sub.appendChild(j); sub.appendChild(document.createTextNode('.')); }
+    var h2=document.querySelector('.tlldx-h2'); if(h2&&nFiled){ var em=h2.querySelector('em'); h2.textContent=''; h2.appendChild(document.createTextNode(nFiled+(nFiled===1?' country, ':' countries, ')+nStories+' ')); var e2=document.createElement('em'); e2.className=em?em.className:'tlldx-accent2'; e2.textContent=nStories===1?'story':'stories'; h2.appendChild(e2); h2.appendChild(document.createTextNode('.')); }
+  }
+  if(document.readyState!=='loading') boot(); else document.addEventListener('DOMContentLoaded',boot);
+})();
+</script>
+</body></html>

@@ -16,3 +16,9 @@
 - DONE atlas list 2: DynamoWrapper def2282e-6e57-5bb4-abcc-75a8ca8ae542 [data-ds3=atlas][part=2]; Countries, sort name asc, limit 100, offset 100 (verified). item ...ae544; tile d363da1c-9c97-91b4-bbed-037bddd021ef (link detail_countries, data-ds3-iso=ISO2), tflag 6b61a69f-0185-d8ac-07a2-748c52aa08e5, ttext 2eb1fd2d-d827-ee2b-e1be-94e56a89fb2e, tname d2461464-dddb-116c-3f52-3b1028e3658a, tstory ceafcf3e-860b-42c3-e764-3e9308cf6353.
 - DONE: atlas empty states hidden: a634b5e3-...3970, def2282e-...ae545.
 - NEXT: hides D2/D3/D4/D5, text D1/D8, href D7, then head code, page settings, /countries schema, redirects file, test.
+- JS/CSS: member mark now 'LIVED/STAYED/LAYOVER' + sr-only 'On your map:'; mock test passes 1280/375 (no errors, no h-scroll, one h1).
+- DONE hides (visibility false): statrow ...b6cb; typed cards ...b6df ...b6ea ...b6f5 ...b700 c116c2dc...0a3a; kicker ...b6cf; guides kicker c87bbdc0...358a; guides row ...3599.
+- DONE text (String nodes, ids kept): eyebrow ...b6b8 "THE ATLAS"; lede fea58b35... "Every country with a story on TLL, and every country still waiting for one."; h2 strings ...590f "Every country, every " + em ...5910 "story"; CTA eyebrow ...b70f "THE MAP".
+- SKIPPED via API: open card ...b70b custom attribute href=/share ("href" is reserved). JS sets it to /submit at runtime; Designer step needed.
+- DONE head: set_page_freeform_code head = orig + guard + style + js. Verified: starts with orig bytes, equals head-new.html (API decoded \u escapes into literal chars, same behavior). Footer untouched (byte-identical). Live copy: head-live-after-ds3.html (20794 chars).
+- NEXT: page SEO/OG + JSON-LD (D9, OP14), /countries schema (OP20), redirects file (OP7).

@@ -81,3 +81,4 @@
   [data-ds3=card]:active,[data-ds3=tile]:active,.tlldx-card-open:active,.tlldx-btn-primary:active,.tlldx-btn-ghost:active{transform:none !important}
 }
 [data-ds3=tstory]{display:none !important}
+.ds3-sr{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
