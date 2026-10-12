@@ -8,7 +8,7 @@
   function nz(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
   function idx(){if(IDX)return IDX;IDX={};try{var d=new Intl.DisplayNames(['en'],{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=d.of(c);if(n&&n!==c)IDX[nz(n)]=c.toLowerCase();}}catch(e){}return IDX;}
   /* Region bylines that name no single country. Balkans: the twelve countries the story itself names (route Copenhagen to Kosovo and back), pending Nancy's check. */
-  var REGION={balkans:['dk','pl','cz','sk','at','hu','si','rs','xk','al','mk','bg']};
+  var REGION={balkans:['dk','pl','cz','sk','at','hu','si','rs','xk','al','mk','bg'],'seven continents':['us','br','aq','ie','dk','vn','nz','za']};
   function one(s){s=nz(s);return s?(ALIAS[s]||idx()[s]||''):'';}
   function isoFromByline(t){var segs=String(t||'').split(','),s=nz(segs[segs.length-1]);if(!s||/ and | or |\//.test(' '+s+' '))return '';return ALIAS[s]||idx()[s]||'';}
   /* Every country a byline names: 'Chile and Argentina', 'Denmark, Sweden and Norway', a region from REGION, or the last segment of 'City, Country'. */
