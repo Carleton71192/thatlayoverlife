@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Artboards</title>
+<meta name="description" content="Growth build DESIGN stage: home page at 1440 x 900 and 390 x 844, three pillars, latest stories, map, Write for TLL, Paw Passport, newsletter.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=JetBrains+Mono:wght@600;700&family=Playfair+Display:ital,wght@0,800;1,800&family=Syne:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ===== TLL growth build artboards: shared styles (brand tokens from tll-system.css v1 + DESIGN-SPEC v9) ===== */
+:root{
+  --ink:#0A0B14; --ink-2:#16182a; --ink-line:#23263c; --ink-muted:#9496AC;
+  --cream:#F7F1E8; --paper:#FDF9F3; --sand:#F0EBE0; --line:#E0DACE; --line-2:#C9C3B8; --kraft:#c9b89a;
+  --text-2:#3a3a3a; --muted:#6B6660;
+  --teal:#00C9C8; --teal-deep:#067A79;
+  --rose:#F0507A; --rose-text:#C8325B; --rose-btn:#D63859;
+  --f-head:'Playfair Display',Georgia,serif; --f-body:'IBM Plex Sans Condensed',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace; --f-mark:'Syne',sans-serif;
+  /* review chrome only (not site UI) */
+  --doc-bg:#E7E3DB; --anno:#4B3FD9; --anno-bg:#EEEBFF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--doc-bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+
+/* ---------- review chrome ---------- */
+.doc{max-width:1500px;margin:0 auto;padding:28px 16px 80px}
+.doc-head{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.doc-head h1{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1;margin:6px 0 8px;letter-spacing:-.02em}
+.doc-eyebrow{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.doc-sub{max-width:72ch;margin:0;color:var(--text-2)}
+.doc-tools{display:flex;gap:10px;flex-wrap:wrap}
+.doc-tools button{font:700 13px/1 var(--f-mono);letter-spacing:1px;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer}
+.doc-tools button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.doc-tools button:focus-visible,.doc a:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--text-2);margin:0 0 24px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.board{margin:0 0 56px}
+.board-title{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 0 12px}
+.board-title h2{font-family:var(--f-head);font-weight:800;font-size:26px;margin:0;letter-spacing:-.01em}
+.board-title .doc-eyebrow{color:var(--anno)}
+.boards-row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.viewport{flex:1 1 640px;min-width:0;max-width:100%;overflow:hidden;border-radius:8px;box-shadow:0 18px 40px rgba(10,11,20,.18);background:var(--paper)}
+.viewport.is-phone{flex:0 0 auto;width:min(410px,100%);border-radius:28px;border:10px solid var(--ink);box-shadow:0 18px 40px rgba(10,11,20,.25)}
+.frame{position:relative;width:var(--w,1440px);container-type:inline-size;background:var(--paper);overflow:hidden}
+.frame-label{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.notes{flex:1 1 300px;margin:0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--anno);border-radius:6px;font-size:14.5px;color:var(--text-2)}
+.notes li{margin:0 0 8px}
+.notes li::marker{font-family:var(--f-mono);font-weight:700;color:var(--anno)}
+.notes h3{font-family:var(--f-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;color:var(--anno)}
+.notes ol{margin:0;padding-left:24px}
+.pin{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--anno);color:#fff;font:700 11px/1 var(--f-mono);vertical-align:middle;margin:0 6px;box-shadow:0 0 0 2px #fff;position:relative;z-index:3;font-style:normal;letter-spacing:0;align-self:flex-start;flex:none}
+.pin-abs{position:absolute;top:10px;right:10px;margin:0}
+.fold{position:absolute;left:0;right:0;height:0;border-top:2px dashed var(--anno);z-index:6;pointer-events:none}
+.fold span{position:absolute;right:8px;top:-22px;background:var(--anno);color:#fff;font:700 10.5px/1 var(--f-mono);letter-spacing:1px;padding:5px 7px;border-radius:3px}
+.anno-hidden{position:relative}
+.anno-hidden::after{content:attr(data-anno);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:repeating-linear-gradient(135deg,rgba(75,63,217,.94) 0 12px,rgba(75,63,217,.86) 12px 24px);color:#fff;font:700 12px/1.4 var(--f-mono);letter-spacing:1px;text-transform:uppercase;border-radius:inherit;z-index:4}
+.bind{font-family:var(--f-mono);font-weight:700;font-style:normal;background:var(--anno-bg);color:var(--anno);border-bottom:2px dotted var(--anno);padding:0 3px;border-radius:2px;letter-spacing:0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dark .bind{background:rgba(238,235,255,.14);color:#C9C3FF;border-bottom-color:#C9C3FF}
+body.notes-off .pin,body.notes-off .fold,body.notes-off .notes{display:none}
+body.notes-off .anno-hidden::after{display:none}
+body.notes-off .bind{background:none;border-bottom:0;color:inherit;font-family:inherit;padding:0}
+
+/* ---------- site UI (inside frames) ---------- */
+.frame :where(a){color:inherit}
+.frame :focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.dark{background:var(--ink);color:var(--cream)}
+.cream{background:var(--cream)} .paper{background:var(--paper)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:clamp(16px,4cqi,48px);padding-right:clamp(16px,4cqi,48px)}
+.sec{padding-top:clamp(48px,7cqi,96px);padding-bottom:clamp(48px,7cqi,96px)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:3px;font-weight:600;text-transform:uppercase;color:var(--teal-deep);margin:0 0 12px}
+.dark .eyebrow{color:var(--teal)}
+.h1,.h2,.h3{font-family:var(--f-head);font-weight:800;margin:0;text-wrap:balance}
+.h1{font-size:clamp(46px,9.6cqi,150px);line-height:.88;letter-spacing:-.04em}
+.h2{font-size:clamp(32px,4.4cqi,64px);line-height:1;letter-spacing:-.03em}
+.h3{font-size:clamp(21px,1.8cqi,26px);line-height:1.15;letter-spacing:-.01em}
+.em{font-style:italic;color:var(--rose)}
+.lede{font-size:clamp(17px,1.35cqi,20px);color:var(--text-2);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+.dark .lede{color:#cfcbc4}
+.body{font-size:16px;color:var(--text-2);margin:0;text-wrap:pretty}
+.dark .body{color:#cfcbc4}
+.small{font-size:14px;color:var(--muted);margin:0}
+.dark .small{color:var(--ink-muted)}
+.meta{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.dark .meta{color:var(--ink-muted)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:4px;border:1.5px solid transparent;font:700 16px/1 var(--f-body);text-decoration:none;cursor:pointer;transition:background-color .15s ease-out,border-color .15s ease-out,transform .1s ease-out}
+.btn:active{transform:scale(.97)}
+.btn--primary{background:var(--rose-btn);color:#fff}
+.btn--primary:hover{background:var(--rose-text)}
+.btn--ink{background:var(--ink);color:var(--cream)}
+.btn--ghost{background:transparent;border-color:currentColor;color:inherit}
+.btn--link{min-height:44px;padding:0;background:none;border:0;font:700 16px/1.2 var(--f-body);color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--teal-deep);text-underline-offset:4px;font-weight:700}
+.dark .btn--link{text-decoration-color:var(--teal)}
+.chip{flex:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 14px/1 var(--f-body)}
+.chip.on{background:var(--ink);color:var(--cream)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:1px;font-weight:700;text-transform:uppercase;padding:4px 8px;border-radius:3px;background:var(--sand);color:var(--text-2)}
+.tag--rose{background:var(--rose-btn);color:#fff} .tag--ink{background:var(--ink);color:var(--cream)} .tag--teal{background:var(--teal);color:#06302f}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.label{font-size:15px;font-weight:700}
+.label small{font-weight:400;color:var(--muted);font-size:inherit}
+.input,.select,.textarea{width:100%;min-height:48px;border:1.5px solid var(--line-2);border-radius:4px;padding:10px 12px;font:16px/1.4 var(--f-body);background:#fff;color:var(--ink)}
+.textarea{min-height:220px;resize:vertical}
+.hint{font-size:14px;color:var(--muted)}
+.dark .input{background:var(--ink-2);border-color:#3a3d52;color:var(--cream)}
+.photo{background:var(--sand) center/cover no-repeat;position:relative}
+.photo-cap{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--cream);text-shadow:0 1px 6px rgba(0,0,0,.55)}
+
+/* nav (TLL Nav v1, shown unchanged) */
+.nav{display:flex;align-items:center;gap:20px;min-height:64px;padding:0 clamp(16px,4cqi,48px);background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink-line)}
+.wordmark{font-family:var(--f-mark);font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none}
+.wordmark b{color:var(--rose)}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:15px}
+.nav-links a{text-decoration:none}
+.nav-menu{display:none;margin-left:auto;font:700 12px/1 var(--f-mono);letter-spacing:2px;border:1.5px solid var(--cream);padding:0 16px;min-height:44px;align-items:center;border-radius:2px}
+@container (max-width:900px){.nav-links{display:none}.nav-menu{display:inline-flex}}
+
+/* story card (postcard) */
+.card-story{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+.card-story .photo{aspect-ratio:3/2;border-radius:6px}
+.card-story .t{font-family:var(--f-head);font-weight:800;font-size:clamp(19px,1.5cqi,22px);line-height:1.18;margin:0}
+.card-story:hover .t{text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.hero{position:relative;min-height:min(60cqi,640px);display:flex;align-items:flex-end;color:var(--cream);background:#1b1d2b}
+.hero .photo{position:absolute;inset:0;background-position:center 40%}
+.hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.15) 0%,rgba(10,11,20,.35) 40%,rgba(10,11,20,.86) 100%)}
+.hero-in{position:relative;z-index:1;width:100%;padding:0 clamp(16px,4cqi,48px) clamp(28px,4cqi,64px)}
+.hero .eyebrow{color:var(--cream);opacity:.9}
+.hero .h1{color:var(--cream)}
+.tagline{font-family:var(--f-head);font-style:italic;font-weight:800;font-size:clamp(22px,2.4cqi,34px);line-height:1.1;margin:14px 0 0;color:var(--cream)}
+.freeline{display:flex;align-items:center;gap:10px;margin:18px 0 0;font-size:clamp(16px,1.3cqi,19px);font-weight:600;color:var(--cream)}
+.freeline::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--rose)}
+.hero .row{margin-top:22px}
+.hero .btn--ghost{color:var(--cream)}
+.coords{position:absolute;right:clamp(16px,4cqi,48px);bottom:clamp(28px,4cqi,64px);z-index:1;font:600 11px/1.6 var(--f-mono);letter-spacing:2px;color:var(--cream);opacity:.8;text-align:right}
+@container (max-width:700px){.hero{min-height:600px}.coords{display:none}.hero .row .btn{flex:1 1 100%}}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.pillar{display:flex;flex-direction:column;gap:10px;padding:22px 22px 18px;border:1px solid var(--line);border-top:6px solid var(--ink);background:#fff;border-radius:4px;text-decoration:none;color:inherit;transition:border-color .15s ease-out,transform .15s ease-out}
+.pillar:hover{border-color:var(--ink);transform:translateY(-2px)}
+.pillar .k{font:700 11px/1 var(--f-mono);letter-spacing:2.5px;text-transform:uppercase;color:var(--rose-text)}
+.pillar .go{margin-top:auto;font-weight:700;text-decoration:underline;text-decoration-color:var(--teal-deep);text-underline-offset:4px}
+.strip-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+@container (max-width:700px){.pillars{grid-template-columns:1fr;gap:10px}.pillar{padding:14px 16px 12px;border-top-width:4px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px}.pillar .body{grid-column:1/-1;font-size:15px}.pillar .go{grid-column:2;grid-row:1;margin:0}.pillar .h3{font-size:20px}.pillar .k{display:none}}
+
+.stories{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:28px}
+@container (max-width:700px){.stories{grid-template-columns:1fr;gap:28px}.stories>:nth-child(n+3){display:none}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+@container (max-width:700px){.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}}
+
+.split{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4cqi,64px);align-items:start}
+@container (max-width:900px){.split{grid-template-columns:1fr}}
+.mapbox{position:relative;aspect-ratio:16/10;border-radius:6px;background:
+  radial-gradient(circle at 22% 38%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 30% 62%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 51% 30%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 54% 36%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 57% 52%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 77% 46%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle at 35% 86%,var(--rose) 0 5px,transparent 6px),
+  radial-gradient(circle,#2c3050 1.3px,transparent 1.6px) 0 0/12px 12px,var(--ink-2);border:1px solid var(--ink-line)}
+.mapbox .cap{position:absolute;left:14px;bottom:12px;right:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font:600 11px/1.4 var(--f-mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-muted)}
+.stat{display:flex;gap:28px;flex-wrap:wrap;margin:22px 0}
+.stat b{display:block;font:800 clamp(40px,4cqi,56px)/1 var(--f-head);color:var(--cream)}
+.stat>div>span{font:600 11px/1.4 var(--f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--ink-muted)}
+.feat{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.feat li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding-top:10px;border-top:1px solid var(--ink-line);color:#cfcbc4;font-size:15px}
+.feat li b{font:700 12px/1.6 var(--f-mono);color:var(--teal)}
+
+.prompt{background:var(--ink);color:var(--cream);border-radius:6px;padding:clamp(22px,2.6cqi,36px);position:relative;overflow:hidden}
+.prompt::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--rose)}
+.prompt .when{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.prompt .h3{font-size:clamp(28px,3cqi,40px);margin:10px 0 8px}
+.prompt .row{margin-top:20px}
+.prompt .btn--ghost{color:var(--cream)}
+
+.guide{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px;border:1px solid var(--line);border-radius:6px;background:#fff;margin-top:22px}
+.guide .cover{width:84px;aspect-ratio:3/4;border-radius:3px;background:var(--ink);color:var(--cream);display:flex;align-items:flex-end;padding:8px;font:800 13px/1.05 var(--f-head)}
+.guide .cover em{color:var(--rose)}
+@container (max-width:700px){.guide{grid-template-columns:64px 1fr}.guide .cover{width:64px;font-size:11px}}
+.mag{aspect-ratio:4/5;border-radius:6px;background-position:center 35%}
+
+.nl{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4cqi,64px);align-items:end}
+@container (max-width:900px){.nl{grid-template-columns:1fr}}
+.nl form{display:flex;gap:10px;flex-wrap:wrap}
+.nl .input{flex:1 1 240px}
+.interlude{height:clamp(220px,28cqi,420px);background-position:center 30%}
+.lounge{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:22px}
+.lounge .photo{aspect-ratio:4/5;border-radius:4px}
+@container (max-width:700px){.lounge{grid-template-columns:repeat(5,64%);overflow-x:auto}}
+.foot{padding:40px clamp(16px,4cqi,48px);font-size:14px;color:var(--ink-muted)}
+.foot .cols{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:flex-start;justify-content:space-between}
+.foot .support{margin-top:18px;padding-top:14px;border-top:1px solid var(--ink-line);color:var(--cream)}
+
+</style>
+</head>
+<body>
+
+
+<div class="doc">
+  <header class="doc-head">
+    <div>
+      <p class="doc-eyebrow">Growth build · DESIGN stage · Artboard 1 of 5 · 12 October 2026</p>
+      <h1>Home: the three pillars on one screen</h1>
+      <p class="doc-sub">Proposal only. Nothing here is on the Webflow site. The same markup renders in both frames; the phone frame uses the layout rules a 390 px screen would get. Photos are stand-ins taken from the prototype folder; the live hero photo and story images stay.</p>
+    </div>
+    <div class="doc-tools"><button type="button" id="toggle-notes" aria-pressed="true">Hide review notes</button></div>
+  </header>
+  <p class="legend"><span><i class="pin">1</i> review note, listed beside the frame</span><span><b class="bind">N</b> bound value, never typed (source named in the note)</span><span><span class="pin" style="border-radius:2px">┄</span> dashed line = fold (900 / 844 px) and one scroll</span><span>Striped overlay = built but hidden until its content exists</span></p>
+
+  <template id="tpl-home">
+    <nav class="nav" aria-label="Main"><a class="wordmark" href="#">That Layover <b>Life</b></a><span class="nav-links"><a href="#">Stories</a><a href="#">Destinations</a><a href="#">Travelers</a><a href="#">Paw Passport</a><a href="#">Get In →</a></span><span class="nav-menu">MENU</span><i class="pin">1</i></nav>
+
+    <header class="hero">
+      <div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/fitzroy.jpg)" role="img" aria-label="Stand-in for the live hero photo"></div>
+      <div class="hero-in">
+        <p class="eyebrow">A travel magazine for people who get lost on purpose</p>
+        <h1 class="h1">Find your next <span class="em">somewhere.</span></h1>
+        <p class="tagline">Trips that can’t wait for payday.<i class="pin">2</i></p>
+        <p class="freeline">Free to join. We’re not a gym. No card, no paywall.<i class="pin">3</i></p>
+        <div class="row"><a class="btn btn--primary" href="#">Read the stories →</a><a class="btn btn--ghost" href="#">Build your free map</a><i class="pin">4</i></div>
+      </div>
+      <p class="coords">12.17° N<br>68.99° W<br>Curaçao</p>
+    </header>
+
+    <section class="paper" aria-labelledby="p-h" style="padding:clamp(28px,4cqi,56px) 0">
+      <div class="wrap">
+        <div class="strip-head"><h2 id="p-h" class="eyebrow" style="margin:0">What you get, free<i class="pin">5</i></h2><p class="small">No paywall now, no paywall later.</p></div>
+        <div class="pillars">
+          <a class="pillar" href="#"><span class="k">01 · Read</span><span class="h3">Stories</span><p class="body">Trips told by the people who took them, in their own photos and under their own bylines.</p><span class="go">Start reading →</span></a>
+          <a class="pillar" href="#"><span class="k">02 · Track</span><span class="h3">Your map and passport</span><p class="body">Mark where you stayed and where you lived. Airport-only stops count apart, and your pets get a passport too.</p><span class="go">Build your map →</span></a>
+          <a class="pillar anno-hidden" data-anno="Hidden until the Copenhagen hub is live (Phase 4)" href="#"><span class="k">03 · Live abroad</span><span class="h3">Expat guides</span><p class="body">Copenhagen first: the admin checklist, the groups worth joining, and the people who live there, every line dated.</p><span class="go">Open the Copenhagen guide →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cream sec" aria-labelledby="s-h" style="padding-top:clamp(36px,5cqi,72px)">
+      <div class="wrap">
+        <p class="eyebrow">Chapter 01 · Start reading</p>
+        <h2 id="s-h" class="h2">The reading list.<i class="pin">6</i></h2>
+        <p class="lede">Read about the places people actually went, then make a plan that begins with one open tab and ends with a national park, a layover, a dog, or a marathon entry you will defend to your accountant.</p>
+        <div class="chips" role="group" aria-label="Filter the stories by pillar"><button class="chip on" aria-pressed="true">All</button><button class="chip" aria-pressed="false">Stories From the Road</button><button class="chip" aria-pressed="false">Paw Passport</button><button class="chip" aria-pressed="false">Marathon Diaries</button><button class="chip" aria-pressed="false">Cultural Intelligence</button></div>
+        <div class="stories">
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/denmark.jpg)"></div><span class="meta">Denmark · 8 min</span><p class="t">I Drove Across Denmark to Watch a Million Birds Go to Bed</p><span class="small">Nancy Carleton</span></a>
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/rio.jpg)"></div><span class="meta">Brazil · 6 min</span><p class="t">From Sequins to Sloths: Northern Brazil for the Chronically Curious</p><span class="small">Nancy Carleton</span></a>
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/montenegro.jpg)"></div><span class="meta">Montenegro · 3 min</span><p class="t">The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender</p><span class="small">Nancy Carleton</span></a>
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/ghana.jpg)"></div><span class="meta">Ghana · 3 min</span><p class="t">Ghana asked us to wear all white. We complied. Eventually.</p><span class="small">Nancy Carleton</span></a>
+        </div>
+        <div class="row" style="margin-top:22px"><a class="btn btn--ink" href="#">All stories →</a><i class="pin">7</i></div>
+      </div>
+    </section>
+
+    <div class="interlude photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/coast2.jpg);background-position:center 35%"><span class="photo-cap">On the map · Montenegro</span></div>
+
+    <section class="dark sec" aria-labelledby="m-h">
+      <div class="wrap split">
+        <div>
+          <div class="mapbox"><div class="cap"><span>Example: the editor’s map</span><span>Lived · Stayed · Layover only</span></div><i class="pin pin-abs">8</i></div>
+        </div>
+        <div>
+          <p class="eyebrow">Chapter 02 · The map, with receipts</p>
+          <h2 id="m-h" class="h2">Every place you have been, in one spot.</h2>
+          <p class="lede">Countries, cities, airports, parks, marathons, and other evidence that someone has been leaving the house.</p>
+          <div class="stat"><div><b><span class="bind">N</span></b><span>of 249 · Nancy</span></div><div><b><span class="bind">N</span></b><span>Magnus Waffles 🐻‍❄️</span></div><i class="pin">9</i></div>
+          <a class="btn btn--primary" href="#">Build your free map</a>
+          <ul class="feat"><li><b>01</b>Every country, marked lived, stayed, or layover only.</li><li><b>02</b>Airports, cities, parks, UNESCO sites and marathons.</li><li><b>03</b>Pets get their own stamps and Paw Passport page.</li><li><b>04</b>One public page you can switch on or off.</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper sec" aria-labelledby="w-h">
+      <div class="wrap split" style="grid-template-columns:.9fr 1.1fr">
+        <div>
+          <p class="eyebrow">Chapter 03 · Write for TLL<i class="pin">10</i></p>
+          <h2 id="w-h" class="h2">You went. Write it down.</h2>
+          <p class="lede">Send us the trip you keep telling people about, the layover that became a second holiday, or the dog whose itinerary was better than yours. We edit lightly, keep your byline, and review it within 48 hours, before the dog eats the paperwork.</p>
+          <p class="small" style="margin-top:14px">No account needed to start. You sign in at the end, with Google or your email.</p>
+        </div>
+        <div class="prompt" aria-labelledby="pr-h">
+          <div class="when"><span class="tag tag--rose">This month’s prompt</span><span class="meta" style="color:var(--ink-muted)">Closes <span class="bind">30 November 2026</span></span><i class="pin">11</i></div>
+          <h3 id="pr-h" class="h3"><span class="bind">Layover Confessions</span></h3>
+          <p class="body"><span class="bind">The layover that went sideways, and what it taught you. 400 to 800 words, your photos, your byline.</span></p>
+          <div class="row"><a class="btn btn--primary" href="#">Write it here</a><a class="btn btn--ghost" href="#">Link a story you already published</a></div>
+          <p class="small" style="margin-top:14px">Have a photo instead? <a href="#" class="btn--link" style="min-height:0">Send a photo</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cream sec" aria-labelledby="pp-h">
+      <div class="wrap split" style="grid-template-columns:.8fr 1.2fr">
+        <div class="photo mag" style="background-image:url(../../../handoff/claude-design-source/v3/images/magnus-holi-side.jpg)" role="img" aria-label="Magnus the Samoyed"></div>
+        <div>
+          <p class="eyebrow">Chapter 04 · Paw Passport</p>
+          <h2 id="pp-h" class="h2">Traveling with your bestie, whatever the species.</h2>
+          <p class="lede">They get a passport, a country count, and veto power over the hotel. Magnus was simply first: <span class="bind">N</span> countries, paws down.</p>
+          <a class="btn btn--ink" href="#" style="margin-top:20px">Open the Paw Passport →</a>
+          <div class="guide anno-hidden" data-anno="Hidden until Nancy sends the Ko-fi product URL"><div class="cover">The Paw <em>Passport</em> guide</div><div><p class="h3" style="font-size:20px">The Paw Passport guide</p><p class="body" style="font-size:15px;margin:4px 0 10px">The EU rules for crossing borders with a dog, in the order you need them, with the stories of the times we got it wrong.</p><a class="btn btn--primary" href="#">Get the guide on Ko-fi →</a></div><i class="pin pin-abs">12</i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper sec" aria-labelledby="l-h" style="padding-top:clamp(36px,5cqi,64px);padding-bottom:clamp(36px,5cqi,64px)">
+      <div class="wrap">
+        <p class="eyebrow">Chapter 05 · The Layover Lounge<i class="pin">13</i></p>
+        <h2 id="l-h" class="h2" style="font-size:clamp(28px,3.2cqi,44px)">The photos that made the next trip look affordable.</h2>
+        <div class="lounge"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/doha.jpg)"></div><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/fitzroy.jpg)"></div><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/ghana.jpg)"></div><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/germany.jpg)"></div><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/antarctica.jpg)"></div></div>
+        <div class="row" style="margin-top:18px"><a class="btn btn--ghost" href="#">See the Lounge →</a><a class="btn--link" href="#">Send a photo</a></div>
+      </div>
+    </section>
+
+    <section class="dark sec" aria-labelledby="n-h">
+      <div class="wrap nl">
+        <div><p class="eyebrow">Chapter 06 · <span class="bind">[Newsletter name]</span><i class="pin">14</i></p><h2 id="n-h" class="h2">Your inbox deserves better than <span class="em">deals.</span></h2></div>
+        <div><form onsubmit="return false"><label style="position:absolute;left:-9999px" for="nl-e">Email</label><input class="input" id="nl-e" type="email" placeholder="you@example.com" autocomplete="email"><button class="btn btn--primary" type="submit">Send It →</button></form><p class="small" style="margin-top:10px">No newsletter bribe. Unsubscribe anywhere.</p></div>
+      </div>
+    </section>
+
+    <footer class="dark foot" style="border-top:1px solid var(--ink-line)">
+      <div class="cols"><span class="wordmark" style="color:var(--cream)">That Layover <b>Life</b></span><span><span class="bind">N</span> stories · <span class="bind">N</span> countries · <span class="bind">N</span> pet<i class="pin">15</i></span></div>
+      <p class="support anno-hidden" data-anno="Footer proposal: needs Nancy present and the Ko-fi URL">Keep TLL free. <a href="#" class="btn--link" style="min-height:0">Buy Magnus a treat on Ko-fi</a></p>
+    </footer>
+  </template>
+
+  <section class="board" aria-labelledby="b1">
+    <div class="board-title"><h2 id="b1">Desktop · 1440 × 900</h2><span class="doc-eyebrow">Acceptance: free line, both hero buttons and the first story row within one scroll</span></div>
+    <div class="viewport" style="max-width:1440px"><div class="frame" data-w="1440" data-tpl="tpl-home" data-folds="900,1800s"></div></div>
+  </section>
+
+  <section class="board" aria-labelledby="b2">
+    <div class="board-title"><h2 id="b2">Phone · 390 × 844, and the notes</h2></div>
+    <div class="boards-row">
+      <div class="viewport is-phone"><div class="frame" data-w="390" data-tpl="tpl-home" data-folds="844,1688s"></div></div>
+      <div class="notes"><h3>Review notes</h3><ol>
+        <li><b>Nav (TLL Nav v1) unchanged.</b> Shown for context only. Any nav change is a proposal for when you are present (see Questions).</li>
+        <li><b>Tagline moves into the hero</b> under the H1. It replaces the hero lede "Real places and real opinions, shared by the people who went." (Kit v2.1: "real" belongs in the H1 only). The reading list chapter stops using the tagline as its heading.</li>
+        <li><b>Free line</b> is your choice B, already staged and live: "Free to join. We’re not a gym. No card, no paywall." Kept verbatim. The prompt’s "Free, forever." version is not used.</li>
+        <li><b>Two hero buttons</b> (live since 12 October): "Read the stories →" and "Build your free map". Contribution actions live in Chapter 03.</li>
+        <li><b>New "What you get, free" strip</b> directly under the hero. Three link cards, each to a populated page: /stories, /the-map, and the Copenhagen hub. The third card is built hidden and appears in Phase 4. On phones the cards collapse to compact rows so the first story row stays within one scroll.</li>
+        <li><b>Latest stories, newest first, fixed order.</b> Today the row is typed cards inside an embed (9 cards, and more than 20 stories are now live). Proposal: a native Stories collection list (Status = Published, sort Published date newest first, limit 4 desktop, 2 shown on phones), so new stories appear without code. The daily rotation stops. Card meta: country, reading time; "Hosted" chip from the Disclosure field (no new Stories field).</li>
+        <li><b>"All stories →"</b> to /stories. The pillar chips keep filtering, now on the native list.</li>
+        <li><b>Map chapter merges the passport (old Chapter 03) into the map (old Chapter 04).</b> The existing Map 2.0 embed shows your public record as the example, captioned "Example: the editor’s map". One chapter instead of two, and the visitor’s "0/249" counter goes away.</li>
+        <li><b>Counts bind to the map’s published copy</b> (owner-record.json, your decision 6). Nancy: countries out of 249 by the counting rule. Magnus: from the same record (or his pet page, as the live Chapter 05 script does today). Nothing typed.</li>
+        <li><b>Write for TLL</b> keeps "You went. Write it down." and the contributor paragraph (one triad trimmed). New line: no account needed to start.</li>
+        <li><b>Monthly prompt module</b> bound to a new "Prompts" collection: theme, one-line brief, close date. Shows the open prompt whose close date is in the future; hides itself when none is open. "Layover Confessions" and its brief are placeholders until you approve them. Two buttons per the prompt: "Write it here" and "Link a story you already published".</li>
+        <li><b>Guide card</b> sits in the Paw Passport chapter and stays hidden until the Ko-fi product URL exists. No price shows until then.</li>
+        <li><b>Layover Lounge</b> kept as a short strip (the prompt’s order leaves it out; see Questions). "Send a photo" lives here and in the prompt card.</li>
+        <li><b>Newsletter name</b> stays a placeholder until you pick Gate Change, Window Seat or Long Way Round. Protected lines verbatim; same form the site uses now.</li>
+        <li><b>Footer (TLL Site Footer)</b>: counts filled from the same record via data-tll-count, plus a one-line supporter link. Both need you present and the Ko-fi URL.</li>
+      </ol></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-tpl]').forEach(function(f){var t=document.getElementById(f.getAttribute('data-tpl'));if(t)f.insertBefore(t.content.cloneNode(true),f.firstChild);});
+  document.querySelectorAll('.frame[data-folds]').forEach(function(f){f.getAttribute('data-folds').split(',').forEach(function(p){var y=parseInt(p,10);if(!y)return;var d=document.createElement('div');d.className='fold';d.style.top=y+'px';d.innerHTML='<span>'+(p.indexOf('s')>-1?'one scroll · ':'fold · ')+y+' px</span>';f.appendChild(d);});});
+  function fit(){document.querySelectorAll('.viewport').forEach(function(v){var f=v.querySelector('.frame');if(!f)return;var w=parseFloat(f.getAttribute('data-w'))||1440;f.style.width=w+'px';var z=Math.min(1,v.clientWidth/w);f.style.zoom=z;});}
+  fit();window.addEventListener('resize',fit);
+  var b=document.getElementById('toggle-notes');if(b)b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');document.body.classList.toggle('notes-off',on);b.textContent=on?'Show review notes':'Hide review notes';});
+})();
+</script>
+</body>
+</html>

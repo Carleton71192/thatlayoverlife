@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile Badges Artboards</title>
+<meta name="description" content="Growth build DESIGN stage: First Story, 10 Countries and Featured badges on profiles, directory tags and the account page, with no leaderboard.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=JetBrains+Mono:wght@600;700&family=Playfair+Display:ital,wght@0,800;1,800&family=Syne:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ===== TLL growth build artboards: shared styles (brand tokens from tll-system.css v1 + DESIGN-SPEC v9) ===== */
+:root{
+  --ink:#0A0B14; --ink-2:#16182a; --ink-line:#23263c; --ink-muted:#9496AC;
+  --cream:#F7F1E8; --paper:#FDF9F3; --sand:#F0EBE0; --line:#E0DACE; --line-2:#C9C3B8; --kraft:#c9b89a;
+  --text-2:#3a3a3a; --muted:#6B6660;
+  --teal:#00C9C8; --teal-deep:#067A79;
+  --rose:#F0507A; --rose-text:#C8325B; --rose-btn:#D63859;
+  --f-head:'Playfair Display',Georgia,serif; --f-body:'IBM Plex Sans Condensed',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace; --f-mark:'Syne',sans-serif;
+  /* review chrome only (not site UI) */
+  --doc-bg:#E7E3DB; --anno:#4B3FD9; --anno-bg:#EEEBFF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--doc-bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+
+/* ---------- review chrome ---------- */
+.doc{max-width:1500px;margin:0 auto;padding:28px 16px 80px}
+.doc-head{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.doc-head h1{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1;margin:6px 0 8px;letter-spacing:-.02em}
+.doc-eyebrow{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.doc-sub{max-width:72ch;margin:0;color:var(--text-2)}
+.doc-tools{display:flex;gap:10px;flex-wrap:wrap}
+.doc-tools button{font:700 13px/1 var(--f-mono);letter-spacing:1px;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer}
+.doc-tools button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.doc-tools button:focus-visible,.doc a:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--text-2);margin:0 0 24px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.board{margin:0 0 56px}
+.board-title{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 0 12px}
+.board-title h2{font-family:var(--f-head);font-weight:800;font-size:26px;margin:0;letter-spacing:-.01em}
+.board-title .doc-eyebrow{color:var(--anno)}
+.boards-row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.viewport{flex:1 1 640px;min-width:0;max-width:100%;overflow:hidden;border-radius:8px;box-shadow:0 18px 40px rgba(10,11,20,.18);background:var(--paper)}
+.viewport.is-phone{flex:0 0 auto;width:min(410px,100%);border-radius:28px;border:10px solid var(--ink);box-shadow:0 18px 40px rgba(10,11,20,.25)}
+.frame{position:relative;width:var(--w,1440px);container-type:inline-size;background:var(--paper);overflow:hidden}
+.frame-label{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.notes{flex:1 1 300px;margin:0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--anno);border-radius:6px;font-size:14.5px;color:var(--text-2)}
+.notes li{margin:0 0 8px}
+.notes li::marker{font-family:var(--f-mono);font-weight:700;color:var(--anno)}
+.notes h3{font-family:var(--f-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;color:var(--anno)}
+.notes ol{margin:0;padding-left:24px}
+.pin{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--anno);color:#fff;font:700 11px/1 var(--f-mono);vertical-align:middle;margin:0 6px;box-shadow:0 0 0 2px #fff;position:relative;z-index:3;font-style:normal;letter-spacing:0;align-self:flex-start;flex:none}
+.pin-abs{position:absolute;top:10px;right:10px;margin:0}
+.fold{position:absolute;left:0;right:0;height:0;border-top:2px dashed var(--anno);z-index:6;pointer-events:none}
+.fold span{position:absolute;right:8px;top:-22px;background:var(--anno);color:#fff;font:700 10.5px/1 var(--f-mono);letter-spacing:1px;padding:5px 7px;border-radius:3px}
+.anno-hidden{position:relative}
+.anno-hidden::after{content:attr(data-anno);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:repeating-linear-gradient(135deg,rgba(75,63,217,.94) 0 12px,rgba(75,63,217,.86) 12px 24px);color:#fff;font:700 12px/1.4 var(--f-mono);letter-spacing:1px;text-transform:uppercase;border-radius:inherit;z-index:4}
+.bind{font-family:var(--f-mono);font-weight:700;font-style:normal;background:var(--anno-bg);color:var(--anno);border-bottom:2px dotted var(--anno);padding:0 3px;border-radius:2px;letter-spacing:0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dark .bind{background:rgba(238,235,255,.14);color:#C9C3FF;border-bottom-color:#C9C3FF}
+body.notes-off .pin,body.notes-off .fold,body.notes-off .notes{display:none}
+body.notes-off .anno-hidden::after{display:none}
+body.notes-off .bind{background:none;border-bottom:0;color:inherit;font-family:inherit;padding:0}
+
+/* ---------- site UI (inside frames) ---------- */
+.frame :where(a){color:inherit}
+.frame :focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.dark{background:var(--ink);color:var(--cream)}
+.cream{background:var(--cream)} .paper{background:var(--paper)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:clamp(16px,4cqi,48px);padding-right:clamp(16px,4cqi,48px)}
+.sec{padding-top:clamp(48px,7cqi,96px);padding-bottom:clamp(48px,7cqi,96px)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:3px;font-weight:600;text-transform:uppercase;color:var(--teal-deep);margin:0 0 12px}
+.dark .eyebrow{color:var(--teal)}
+.h1,.h2,.h3{font-family:var(--f-head);font-weight:800;margin:0;text-wrap:balance}
+.h1{font-size:clamp(46px,9.6cqi,150px);line-height:.88;letter-spacing:-.04em}
+.h2{font-size:clamp(32px,4.4cqi,64px);line-height:1;letter-spacing:-.03em}
+.h3{font-size:clamp(21px,1.8cqi,26px);line-height:1.15;letter-spacing:-.01em}
+.em{font-style:italic;color:var(--rose)}
+.lede{font-size:clamp(17px,1.35cqi,20px);color:var(--text-2);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+.dark .lede{color:#cfcbc4}
+.body{font-size:16px;color:var(--text-2);margin:0;text-wrap:pretty}
+.dark .body{color:#cfcbc4}
+.small{font-size:14px;color:var(--muted);margin:0}
+.dark .small{color:var(--ink-muted)}
+.meta{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.dark .meta{color:var(--ink-muted)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:4px;border:1.5px solid transparent;font:700 16px/1 var(--f-body);text-decoration:none;cursor:pointer;transition:background-color .15s ease-out,border-color .15s ease-out,transform .1s ease-out}
+.btn:active{transform:scale(.97)}
+.btn--primary{background:var(--rose-btn);color:#fff}
+.btn--primary:hover{background:var(--rose-text)}
+.btn--ink{background:var(--ink);color:var(--cream)}
+.btn--ghost{background:transparent;border-color:currentColor;color:inherit}
+.btn--link{min-height:44px;padding:0;background:none;border:0;font:700 16px/1.2 var(--f-body);color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--teal-deep);text-underline-offset:4px;font-weight:700}
+.dark .btn--link{text-decoration-color:var(--teal)}
+.chip{flex:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 14px/1 var(--f-body)}
+.chip.on{background:var(--ink);color:var(--cream)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:1px;font-weight:700;text-transform:uppercase;padding:4px 8px;border-radius:3px;background:var(--sand);color:var(--text-2)}
+.tag--rose{background:var(--rose-btn);color:#fff} .tag--ink{background:var(--ink);color:var(--cream)} .tag--teal{background:var(--teal);color:#06302f}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.label{font-size:15px;font-weight:700}
+.label small{font-weight:400;color:var(--muted);font-size:inherit}
+.input,.select,.textarea{width:100%;min-height:48px;border:1.5px solid var(--line-2);border-radius:4px;padding:10px 12px;font:16px/1.4 var(--f-body);background:#fff;color:var(--ink)}
+.textarea{min-height:220px;resize:vertical}
+.hint{font-size:14px;color:var(--muted)}
+.dark .input{background:var(--ink-2);border-color:#3a3d52;color:var(--cream)}
+.photo{background:var(--sand) center/cover no-repeat;position:relative}
+.photo-cap{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--cream);text-shadow:0 1px 6px rgba(0,0,0,.55)}
+
+/* nav (TLL Nav v1, shown unchanged) */
+.nav{display:flex;align-items:center;gap:20px;min-height:64px;padding:0 clamp(16px,4cqi,48px);background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink-line)}
+.wordmark{font-family:var(--f-mark);font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none}
+.wordmark b{color:var(--rose)}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:15px}
+.nav-links a{text-decoration:none}
+.nav-menu{display:none;margin-left:auto;font:700 12px/1 var(--f-mono);letter-spacing:2px;border:1.5px solid var(--cream);padding:0 16px;min-height:44px;align-items:center;border-radius:2px}
+@container (max-width:900px){.nav-links{display:none}.nav-menu{display:inline-flex}}
+
+/* story card (postcard) */
+.card-story{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+.card-story .photo{aspect-ratio:3/2;border-radius:6px}
+.card-story .t{font-family:var(--f-head);font-weight:800;font-size:clamp(19px,1.5cqi,22px);line-height:1.18;margin:0}
+.card-story:hover .t{text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.ph{position:relative;margin:28px clamp(16px,4cqi,48px);padding:28px 28px 28px 92px;background:var(--ink);color:var(--cream);clip-path:polygon(26px 0,100% 0,100% 100%,26px 100%,0 calc(100% - 26px),0 26px)}
+.ph::before{content:"";position:absolute;left:24px;top:50%;width:20px;height:20px;margin-top:-10px;border-radius:50%;background:var(--cream);box-shadow:inset 0 0 0 4px var(--kraft)}
+.ph::after{content:"";position:absolute;left:58px;top:14px;bottom:14px;border-left:1px dashed #3a3d52}
+.ph-grid{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center}
+@container (max-width:760px){.ph{padding:24px 18px 22px 70px}.ph::after{left:50px}.ph::before{left:16px}.ph-grid{grid-template-columns:1fr}}
+.avl{width:120px;height:120px;border-radius:50%;border:3px solid var(--rose);background:var(--ink-2) center/cover}
+@container (max-width:760px){.avl{width:84px;height:84px}}
+.ph .nm{font:800 clamp(34px,4cqi,56px)/1 var(--f-head)}
+.ph .ln{font:600 10.5px/1.7 var(--f-mono);letter-spacing:1.5px;color:var(--ink-muted);margin-top:8px}
+.ph .knows{display:inline-block;margin-top:10px;font:700 11px/1 var(--f-mono);letter-spacing:2px;color:var(--teal)}
+.stats{display:flex;gap:28px}
+.stats b{display:block;font:800 44px/1 var(--f-head)}
+.stats>div>span{font:600 10.5px/1.4 var(--f-mono);letter-spacing:2px;color:var(--ink-muted);text-transform:uppercase}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.badge{position:relative;display:inline-flex;flex-direction:column;gap:3px;padding:9px 14px 9px 30px;min-height:44px;border-radius:3px;background:var(--cream);color:var(--ink);text-decoration:none}
+.badge::before{content:"";position:absolute;left:10px;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--kraft)}
+.badge b{font:700 12px/1 var(--f-mono);letter-spacing:2px;text-transform:uppercase}
+.badge span{font:600 10px/1 var(--f-mono);letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+.badge span.bind{color:var(--anno)}
+.badge.feat{background:var(--rose-btn);color:#fff}.badge.feat span{color:#ffe3ea}.badge.feat::before{background:#fff;box-shadow:0 0 0 3px #f7a7b9}
+.light .badge{background:#fff;border:1.5px solid var(--ink)}
+.spec{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:0 clamp(16px,4cqi,48px) 32px}
+@container (max-width:900px){.spec{grid-template-columns:1fr}}
+.spec article{padding:18px;border:1px solid var(--line);border-radius:6px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.spec dl{margin:0;display:grid;grid-template-columns:84px 1fr;gap:6px 10px;font-size:14px}
+.spec dt{font:700 10.5px/1.5 var(--f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.spec dd{margin:0;color:var(--text-2)}
+.dirtag{position:relative;width:260px;padding:84px 20px 22px;background:var(--paper);border:1px solid var(--line);clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%,0 24px);transform:rotate(.6deg)}
+.dirtag::before{content:"";position:absolute;top:18px;left:50%;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:var(--cream);box-shadow:inset 0 0 0 4px var(--kraft)}
+.dirtag .prop{position:absolute;top:50px;left:20px;right:20px;border-top:1px dashed var(--kraft);padding-top:6px;font:600 10px/1 var(--f-mono);letter-spacing:2px;color:var(--muted);display:flex;justify-content:space-between}
+.dirtag .nm{font:800 24px/1.05 var(--f-head)}
+.mini-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.acct{margin:0 clamp(16px,4cqi,48px) 32px;padding:20px;border-radius:6px;background:#fff;border:1px solid var(--line)}
+.meter{height:8px;border-radius:4px;background:var(--sand);overflow:hidden;margin:10px 0 6px}
+.meter span{display:block;height:100%;width:70%;background:var(--teal-deep)}
+
+</style>
+</head>
+<body>
+
+
+<div class="doc">
+  <header class="doc-head">
+    <div>
+      <p class="doc-eyebrow">Growth build · DESIGN stage · Artboard 5 of 5 · 12 October 2026</p>
+      <h1>Profile badges: three, earned, never ranked</h1>
+      <p class="doc-sub">Proposal only. First Story, 10 Countries and Featured. Badges are luggage labels, so they do not borrow the passport stamp (stamps mean countries) or the sticker (stickers are for the passport page and the home hero). No leaderboard anywhere, and a badge never moves anyone up a list.</p>
+    </div>
+    <div class="doc-tools"><button type="button" id="toggle-notes" aria-pressed="true">Hide review notes</button></div>
+  </header>
+  <p class="legend"><span><i class="pin">1</i> review note</span><span><b class="bind">N</b> bound or computed, never typed</span></p>
+
+  <template id="tpl-prof">
+    <div class="ph" role="group" aria-label="Traveler profile">
+      <div class="ph-grid">
+        <div class="avl" style="background-image:url(../../../handoff/claude-design-source/v3/images/nancy-green.jpg)" role="img" aria-label="Nancy Carleton"></div>
+        <div>
+          <p class="meta" style="color:var(--ink-muted)">PROPERTY OF · TLL TRAVELER</p>
+          <h1 class="nm">Nancy Carleton</h1>
+          <p class="ln">AMERICAN · ABROAD SINCE 2018 · LIVES IN DENMARK · SPEAKS ENGLISH, DANISH, PORTUGUESE</p>
+          <span class="knows">KNOWS COPENHAGEN</span>
+          <div class="badges" role="list" aria-label="Badges"><i class="pin">1</i>
+            <a class="badge" role="listitem" href="#" title="Filed a first story on TLL"><b>First Story</b><span>Since <span class="bind">[date of first published story]</span></span></a>
+            <a class="badge" role="listitem" href="#" title="Ten countries stayed in or lived in, on the map"><b>10 Countries</b><span>From the map</span></a>
+            <a class="badge feat" role="listitem" href="#" title="Picked by the editor"><b>Featured</b><span>Since <span class="bind">[featured date]</span></span></a>
+          </div>
+        </div>
+        <div class="stats"><div><b><span class="bind">N</span></b><span>of 249 countries</span></div><div><b><span class="bind">N</span></b><span>stories</span></div><i class="pin">2</i></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <article><span class="badge" style="align-self:flex-start;border:1.5px solid var(--ink)"><b>First Story</b><span>Since <span class="bind">[date]</span></span></span><p class="body">Filed a first story on TLL.</p><dl><dt>Earned</dt><dd>When a published story names this profile as its contributor.</dd><dt>Source</dt><dd>Stories collection, read on the profile page. Nothing new on Stories.</dd><dt>Date</dt><dd>Published date of the earliest story.</dd></dl><i class="pin">3</i></article>
+      <article><span class="badge" style="align-self:flex-start;border:1.5px solid var(--ink)"><b>10 Countries</b><span>From the map</span></span><p class="body">Ten countries stayed in or lived in. Layover-only stops count apart, as everywhere on the site.</p><dl><dt>Earned</dt><dd>At 10 by the counting rule, out of 249.</dd><dt>Source</dt><dd>The member’s map record. Never the hand-typed Country count field.</dd><dt>Shows</dt><dd>Where a computed count exists (see note 4).</dd></dl><i class="pin">4</i></article>
+      <article><span class="badge feat" style="align-self:flex-start"><b>Featured</b><span>Since <span class="bind">[date]</span></span></span><p class="body">Picked by the editor for a story worth reading twice.</p><dl><dt>Earned</dt><dd>You switch it on.</dd><dt>Source</dt><dd>Two new Contributors fields: Featured writer (switch) and Featured on (date).</dd><dt>Never</dt><dd>Bought, ranked or used to sort a list.</dd></dl><i class="pin">5</i></article>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;padding:0 clamp(16px,4cqi,48px) 32px">
+      <div><p class="frame-label">On /travelers and hub cards</p>
+        <div class="dirtag"><div class="prop"><span>PROPERTY OF</span><span>TLL TRAVELER</span></div><div class="nm"><span class="bind">Member name</span></div><p class="small" style="margin-top:6px">KNOWS <span class="bind">CITY</span></p><div class="mini-badges"><span class="tag tag--teal">First Story</span><span class="tag tag--rose">Featured</span></div><i class="pin">6</i></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0"><p class="frame-label">On /account, visible only to the member</p>
+        <div class="acct" style="margin:0"><p class="eyebrow" style="margin:0">Your badges</p><p class="body" style="margin-top:8px"><b>10 Countries</b>: you are at <span class="bind">7</span> of 10.</p><div class="meter" role="img" aria-label="7 of 10 countries"><span></span></div><p class="small">Stamp the countries on your map and it updates itself.</p><p class="body" style="margin-top:14px"><b>First Story</b>: not yet. <a href="#" class="btn--link" style="min-height:0">Write it here</a></p><i class="pin">7</i></div>
+      </div>
+    </div>
+  </template>
+
+  <section class="board" aria-labelledby="b1">
+    <div class="board-title"><h2 id="b1">Desktop · 1440</h2></div>
+    <div class="viewport" style="max-width:1440px"><div class="frame" data-w="1440" data-tpl="tpl-prof"></div></div>
+  </section>
+
+  <section class="board" aria-labelledby="b2">
+    <div class="board-title"><h2 id="b2">Phone · 390, and the notes</h2></div>
+    <div class="boards-row">
+      <div class="viewport is-phone"><div class="frame" data-w="390" data-tpl="tpl-prof"></div></div>
+      <div class="notes"><h3>Review notes</h3><ol>
+        <li><b>Badge row</b> sits under the name on the public profile (Contributors Template). Only earned badges render; there are no empty or greyed-out slots on a public page. Each badge is a 44 px tall link to a short "What the badges mean" note.</li>
+        <li><b>Stats</b>: countries from the map record by the counting rule, out of 249; stories counted from the published Stories list on the page. The hand-typed Country count and Published count fields are no longer shown.</li>
+        <li><b>First Story</b>: built natively. A hidden Stories list on the profile (contributor = current profile, published, oldest first, limit 1) holds the badge itself, so it only renders when a story exists, and its date is that story’s date. No script.</li>
+        <li><b>10 Countries</b>: the count lives in each member’s map record, and only your record has a public copy today (owner-record.json). So the badge shows on your profile now, on a member’s own view of their profile, and on everyone else’s public profile once the public map store from S03 exists. It reads the same count the existing profile script (tll-pf3-profile-js-v1) already computes; that script gets a few lines, no new script.</li>
+        <li><b>Featured</b>: two new Contributors fields (the collection has 54 of 60 custom fields today, so there is room). The existing "Is featured" switch keeps its job (the one home slot), and the existing "Badge" option (Founder, Editor) stays a role label, not an earned badge.</li>
+        <li><b>Directory and hub cards</b> show the same badges small, after the "knows" line. Order on /travelers stays shuffled per visit; badges never sort.</li>
+        <li><b>Progress is private.</b> The research says badges pull effort near a threshold, so the "7 of 10" nudge appears only on the member’s own /account, never on a public page. This is a small addition to the account 3.0 Overview tab, inside the members block, without touching any data-ms element.</li>
+      </ol></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-tpl]').forEach(function(f){var t=document.getElementById(f.getAttribute('data-tpl'));if(t)f.insertBefore(t.content.cloneNode(true),f.firstChild);});
+  document.querySelectorAll('.frame[data-folds]').forEach(function(f){f.getAttribute('data-folds').split(',').forEach(function(p){var y=parseInt(p,10);if(!y)return;var d=document.createElement('div');d.className='fold';d.style.top=y+'px';d.innerHTML='<span>'+(p.indexOf('s')>-1?'one scroll · ':'fold · ')+y+' px</span>';f.appendChild(d);});});
+  function fit(){document.querySelectorAll('.viewport').forEach(function(v){var f=v.querySelector('.frame');if(!f)return;var w=parseFloat(f.getAttribute('data-w'))||1440;f.style.width=w+'px';var z=Math.min(1,v.clientWidth/w);f.style.zoom=z;});}
+  fit();window.addEventListener('resize',fit);
+  var b=document.getElementById('toggle-notes');if(b)b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');document.body.classList.toggle('notes-off',on);b.textContent=on?'Show review notes':'Hide review notes';});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story End Artboards</title>
+<meta name="description" content="Growth build DESIGN stage: the end of a story page with Trip kit, newsletter, supporter line, Report this story, and the hosted label.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600;700&family=JetBrains+Mono:wght@600;700&family=Playfair+Display:ital,wght@0,800;1,800&family=Syne:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ===== TLL growth build artboards: shared styles (brand tokens from tll-system.css v1 + DESIGN-SPEC v9) ===== */
+:root{
+  --ink:#0A0B14; --ink-2:#16182a; --ink-line:#23263c; --ink-muted:#9496AC;
+  --cream:#F7F1E8; --paper:#FDF9F3; --sand:#F0EBE0; --line:#E0DACE; --line-2:#C9C3B8; --kraft:#c9b89a;
+  --text-2:#3a3a3a; --muted:#6B6660;
+  --teal:#00C9C8; --teal-deep:#067A79;
+  --rose:#F0507A; --rose-text:#C8325B; --rose-btn:#D63859;
+  --f-head:'Playfair Display',Georgia,serif; --f-body:'IBM Plex Sans Condensed',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace; --f-mark:'Syne',sans-serif;
+  /* review chrome only (not site UI) */
+  --doc-bg:#E7E3DB; --anno:#4B3FD9; --anno-bg:#EEEBFF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--doc-bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+
+/* ---------- review chrome ---------- */
+.doc{max-width:1500px;margin:0 auto;padding:28px 16px 80px}
+.doc-head{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.doc-head h1{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1;margin:6px 0 8px;letter-spacing:-.02em}
+.doc-eyebrow{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.doc-sub{max-width:72ch;margin:0;color:var(--text-2)}
+.doc-tools{display:flex;gap:10px;flex-wrap:wrap}
+.doc-tools button{font:700 13px/1 var(--f-mono);letter-spacing:1px;min-height:44px;padding:0 16px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer}
+.doc-tools button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.doc-tools button:focus-visible,.doc a:focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--text-2);margin:0 0 24px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.board{margin:0 0 56px}
+.board-title{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 0 12px}
+.board-title h2{font-family:var(--f-head);font-weight:800;font-size:26px;margin:0;letter-spacing:-.01em}
+.board-title .doc-eyebrow{color:var(--anno)}
+.boards-row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.viewport{flex:1 1 640px;min-width:0;max-width:100%;overflow:hidden;border-radius:8px;box-shadow:0 18px 40px rgba(10,11,20,.18);background:var(--paper)}
+.viewport.is-phone{flex:0 0 auto;width:min(410px,100%);border-radius:28px;border:10px solid var(--ink);box-shadow:0 18px 40px rgba(10,11,20,.25)}
+.frame{position:relative;width:var(--w,1440px);container-type:inline-size;background:var(--paper);overflow:hidden}
+.frame-label{font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.notes{flex:1 1 300px;margin:0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--anno);border-radius:6px;font-size:14.5px;color:var(--text-2)}
+.notes li{margin:0 0 8px}
+.notes li::marker{font-family:var(--f-mono);font-weight:700;color:var(--anno)}
+.notes h3{font-family:var(--f-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;color:var(--anno)}
+.notes ol{margin:0;padding-left:24px}
+.pin{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--anno);color:#fff;font:700 11px/1 var(--f-mono);vertical-align:middle;margin:0 6px;box-shadow:0 0 0 2px #fff;position:relative;z-index:3;font-style:normal;letter-spacing:0;align-self:flex-start;flex:none}
+.pin-abs{position:absolute;top:10px;right:10px;margin:0}
+.fold{position:absolute;left:0;right:0;height:0;border-top:2px dashed var(--anno);z-index:6;pointer-events:none}
+.fold span{position:absolute;right:8px;top:-22px;background:var(--anno);color:#fff;font:700 10.5px/1 var(--f-mono);letter-spacing:1px;padding:5px 7px;border-radius:3px}
+.anno-hidden{position:relative}
+.anno-hidden::after{content:attr(data-anno);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;background:repeating-linear-gradient(135deg,rgba(75,63,217,.94) 0 12px,rgba(75,63,217,.86) 12px 24px);color:#fff;font:700 12px/1.4 var(--f-mono);letter-spacing:1px;text-transform:uppercase;border-radius:inherit;z-index:4}
+.bind{font-family:var(--f-mono);font-weight:700;font-style:normal;background:var(--anno-bg);color:var(--anno);border-bottom:2px dotted var(--anno);padding:0 3px;border-radius:2px;letter-spacing:0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dark .bind{background:rgba(238,235,255,.14);color:#C9C3FF;border-bottom-color:#C9C3FF}
+body.notes-off .pin,body.notes-off .fold,body.notes-off .notes{display:none}
+body.notes-off .anno-hidden::after{display:none}
+body.notes-off .bind{background:none;border-bottom:0;color:inherit;font-family:inherit;padding:0}
+
+/* ---------- site UI (inside frames) ---------- */
+.frame :where(a){color:inherit}
+.frame :focus-visible{outline:3px solid var(--ink);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.dark{background:var(--ink);color:var(--cream)}
+.cream{background:var(--cream)} .paper{background:var(--paper)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:clamp(16px,4cqi,48px);padding-right:clamp(16px,4cqi,48px)}
+.sec{padding-top:clamp(48px,7cqi,96px);padding-bottom:clamp(48px,7cqi,96px)}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:3px;font-weight:600;text-transform:uppercase;color:var(--teal-deep);margin:0 0 12px}
+.dark .eyebrow{color:var(--teal)}
+.h1,.h2,.h3{font-family:var(--f-head);font-weight:800;margin:0;text-wrap:balance}
+.h1{font-size:clamp(46px,9.6cqi,150px);line-height:.88;letter-spacing:-.04em}
+.h2{font-size:clamp(32px,4.4cqi,64px);line-height:1;letter-spacing:-.03em}
+.h3{font-size:clamp(21px,1.8cqi,26px);line-height:1.15;letter-spacing:-.01em}
+.em{font-style:italic;color:var(--rose)}
+.lede{font-size:clamp(17px,1.35cqi,20px);color:var(--text-2);max-width:60ch;margin:14px 0 0;text-wrap:pretty}
+.dark .lede{color:#cfcbc4}
+.body{font-size:16px;color:var(--text-2);margin:0;text-wrap:pretty}
+.dark .body{color:#cfcbc4}
+.small{font-size:14px;color:var(--muted);margin:0}
+.dark .small{color:var(--ink-muted)}
+.meta{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.dark .meta{color:var(--ink-muted)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:4px;border:1.5px solid transparent;font:700 16px/1 var(--f-body);text-decoration:none;cursor:pointer;transition:background-color .15s ease-out,border-color .15s ease-out,transform .1s ease-out}
+.btn:active{transform:scale(.97)}
+.btn--primary{background:var(--rose-btn);color:#fff}
+.btn--primary:hover{background:var(--rose-text)}
+.btn--ink{background:var(--ink);color:var(--cream)}
+.btn--ghost{background:transparent;border-color:currentColor;color:inherit}
+.btn--link{min-height:44px;padding:0;background:none;border:0;font:700 16px/1.2 var(--f-body);color:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--teal-deep);text-underline-offset:4px;font-weight:700}
+.dark .btn--link{text-decoration-color:var(--teal)}
+.chip{flex:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 14px/1 var(--f-body)}
+.chip.on{background:var(--ink);color:var(--cream)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:1px;font-weight:700;text-transform:uppercase;padding:4px 8px;border-radius:3px;background:var(--sand);color:var(--text-2)}
+.tag--rose{background:var(--rose-btn);color:#fff} .tag--ink{background:var(--ink);color:var(--cream)} .tag--teal{background:var(--teal);color:#06302f}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.label{font-size:15px;font-weight:700}
+.label small{font-weight:400;color:var(--muted);font-size:inherit}
+.input,.select,.textarea{width:100%;min-height:48px;border:1.5px solid var(--line-2);border-radius:4px;padding:10px 12px;font:16px/1.4 var(--f-body);background:#fff;color:var(--ink)}
+.textarea{min-height:220px;resize:vertical}
+.hint{font-size:14px;color:var(--muted)}
+.dark .input{background:var(--ink-2);border-color:#3a3d52;color:var(--cream)}
+.photo{background:var(--sand) center/cover no-repeat;position:relative}
+.photo-cap{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--cream);text-shadow:0 1px 6px rgba(0,0,0,.55)}
+
+/* nav (TLL Nav v1, shown unchanged) */
+.nav{display:flex;align-items:center;gap:20px;min-height:64px;padding:0 clamp(16px,4cqi,48px);background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink-line)}
+.wordmark{font-family:var(--f-mark);font-weight:800;font-size:18px;letter-spacing:-.01em;text-decoration:none}
+.wordmark b{color:var(--rose)}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:15px}
+.nav-links a{text-decoration:none}
+.nav-menu{display:none;margin-left:auto;font:700 12px/1 var(--f-mono);letter-spacing:2px;border:1.5px solid var(--cream);padding:0 16px;min-height:44px;align-items:center;border-radius:2px}
+@container (max-width:900px){.nav-links{display:none}.nav-menu{display:inline-flex}}
+
+/* story card (postcard) */
+.card-story{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+.card-story .photo{aspect-ratio:3/2;border-radius:6px}
+.card-story .t{font-family:var(--f-head);font-weight:800;font-size:clamp(19px,1.5cqi,22px);line-height:1.18;margin:0}
+.card-story:hover .t{text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:4px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+.art{max-width:720px;margin:0 auto;padding:40px clamp(16px,4cqi,48px) 8px}
+.sk{height:14px;border-radius:7px;background:var(--line);margin:0 0 12px}
+.sk.s{width:62%}
+.signoff{font-family:var(--f-head);font-style:italic;font-weight:800;font-size:22px;margin:22px 0 0}
+.by{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
+.av{width:64px;height:64px;border-radius:50%;border:2px solid var(--rose);background:var(--ink-2) center/cover}
+.by .name{font-family:var(--f-head);font-weight:800;font-size:20px}
+.report{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.report a{font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.kit{margin-top:36px;border:1px solid var(--line);border-radius:6px;background:#fff;overflow:hidden}
+.kit-head{padding:18px 20px 14px;border-bottom:1px solid var(--line)}
+.kit-head .h3{margin-top:4px}
+.kit-disc{display:flex;gap:10px;align-items:flex-start;margin:10px 0 0;font-size:14px;color:var(--text-2)}
+.kit-disc::before{content:"i";flex:none;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--cream);font:700 12px/20px var(--f-mono);text-align:center}
+.kit ul{list-style:none;margin:0;padding:0}
+.kit li{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;padding:14px 20px;border-top:1px solid var(--sand)}
+.kit li:first-child{border-top:0}
+.kit .cat{font:700 10.5px/1.3 var(--f-mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-deep)}
+.kit .what{min-width:0}.kit .what b{display:block;font-size:16px}
+.kit .what span{font-size:14px;color:var(--muted)}
+.kit .go{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.kit .go a{min-height:44px;display:inline-flex;align-items:center;font-weight:700;text-decoration:underline;text-decoration-color:var(--teal-deep);text-underline-offset:4px}
+@container (max-width:600px){.kit li{grid-template-columns:1fr auto;gap:4px 12px}.kit .cat{grid-column:1/-1}}
+.guidecard{display:grid;grid-template-columns:84px 1fr;gap:16px;align-items:center;margin-top:20px;padding:18px;border-radius:6px;background:var(--cream);border:1px solid var(--line)}
+.guidecard .cover{aspect-ratio:3/4;border-radius:3px;background:var(--ink);color:var(--cream);display:flex;align-items:flex-end;padding:8px;font:800 13px/1.05 var(--f-head)}
+.guidecard .cover em{color:var(--rose)}
+.nlb{margin-top:36px;padding:26px clamp(18px,3cqi,32px);border-radius:6px}
+.nlb form{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.nlb .input{flex:1 1 220px}
+.support{margin:22px 0 0;font-size:15px;color:var(--text-2);display:flex;gap:10px;align-items:flex-start}
+.support::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--rose);margin-top:7px}
+.more{margin-top:40px;padding-top:24px;border-top:6px solid var(--ink)}
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:16px}
+@container (max-width:600px){.more-grid{grid-template-columns:1fr}.more-grid>:nth-child(n+3){display:none}}
+.top{max-width:720px;margin:0 auto;padding:28px clamp(16px,4cqi,48px)}
+.hosted{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:6px;background:var(--ink);color:var(--cream);font-size:15px}
+.cardmini{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;margin-top:16px}
+.cardmini .photo{aspect-ratio:3/2;border-radius:4px}
+
+</style>
+</head>
+<body>
+
+
+<div class="doc">
+  <header class="doc-head">
+    <div>
+      <p class="doc-eyebrow">Growth build · DESIGN stage · Artboard 3 of 5 · 12 October 2026</p>
+      <h1>Story end: Trip kit, newsletter, one quiet ask</h1>
+      <p class="doc-sub">Proposal only. The story body is drawn as grey lines so no story text is invented; everything after the sign-off is the proposal. Trip kit rows and the guide card are bound to new CMS collections and hide when empty.</p>
+    </div>
+    <div class="doc-tools"><button type="button" id="toggle-notes" aria-pressed="true">Hide review notes</button></div>
+  </header>
+  <p class="legend"><span><i class="pin">1</i> review note</span><span><b class="bind">N</b> bound to CMS, never typed</span><span>Striped overlay = built but hidden until its content or URL exists</span></p>
+
+  <template id="tpl-end">
+    <article class="art paper">
+      <p class="frame-label" style="margin:0 0 14px">End of the story body (as live)</p>
+      <div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk s"></div>
+      <p class="signoff"><span class="bind">Sign-off from the CMS</span></p>
+
+      <div class="by"><div class="av" style="background-image:url(../../../handoff/claude-design-source/v3/images/nancy-green.jpg)"></div><div><span class="meta">Words and photos</span><div class="name"><span class="bind">Nancy Carleton</span></div><span class="small">Profile, stories and map →</span></div></div>
+      <div class="report"><span class="meta">Filed <span class="bind">19 September 2026</span> · Trip <span class="bind">November 2025</span><i class="pin">1</i></span><a href="#">Report this story<i class="pin">2</i></a></div>
+
+      <section class="kit" aria-labelledby="kit-h">
+        <div class="kit-head">
+          <p class="eyebrow" style="margin:0">Trip kit<i class="pin">3</i></p>
+          <h2 id="kit-h" class="h3">For a trip like this one</h2>
+          <p class="kit-disc">We earn a commission if you book through these links. It never changes what we recommend.</p>
+        </div>
+        <ul>
+          <li><span class="cat">eSIM</span><span class="what"><b><span class="bind">Airalo</span></b><span><span class="bind">Data from the minute you land, set up before you fly.</span></span></span><span class="go"><span class="tag">Reklamelink</span><a href="#" rel="sponsored noopener">Get an eSIM</a></span></li>
+          <li><span class="cat">Insurance</span><span class="what"><b><span class="bind">SafetyWing</span></b><span><span class="bind">Travel medical cover for long trips and people who live abroad.</span></span></span><span class="go"><span class="tag">Reklamelink</span><a href="#" rel="sponsored noopener">See the cover</a></span></li>
+          <li><span class="cat">Tours</span><span class="what"><b><span class="bind">Viator</span></b><span><span class="bind">The tour from this story, if you would rather not drive it yourself.</span></span></span><span class="go"><span class="tag">Reklamelink</span><a href="#" rel="sponsored noopener">See the tour</a></span></li>
+        </ul>
+      </section>
+      <div class="guidecard anno-hidden" data-anno="Only on Paw Passport and Magnus stories · hidden until the Ko-fi URL exists"><div class="cover">The Paw <em>Passport</em> guide</div><div><p class="h3" style="font-size:19px">Taking a dog across a border?</p><p class="body" style="font-size:15px;margin:4px 0 10px">Our guide puts the EU rules in the order you need them, with the times we got it wrong.</p><a class="btn btn--primary" href="#">Get the guide on Ko-fi →</a></div><i class="pin pin-abs">4</i></div>
+
+      <section class="nlb dark" aria-labelledby="nl-h">
+        <p class="eyebrow"><span class="bind">[Newsletter name]</span><i class="pin">5</i></p>
+        <h2 id="nl-h" class="h2" style="font-size:clamp(28px,3cqi,40px)">Your inbox deserves better than <span class="em">deals.</span></h2>
+        <p class="body" style="margin-top:10px">The next story like this one, when it is ready. Twice a month at most.</p>
+        <form onsubmit="return false"><label style="position:absolute;left:-9999px">Email</label><input class="input" type="email" placeholder="you@example.com" autocomplete="email"><button class="btn btn--primary" type="submit">Send It →</button></form>
+        <p class="small" style="margin-top:10px">No newsletter bribe. Unsubscribe anywhere.</p>
+      </section>
+
+      <p class="support anno-hidden" data-anno="Hidden until the TLL Ko-fi URL exists"><span>Keep TLL free. <a href="#" class="btn--link" style="min-height:0;font-size:15px">Buy Magnus a treat on Ko-fi</a>. It unlocks nothing except our gratitude.<i class="pin">6</i></span></p>
+
+      <section class="more" aria-labelledby="mo-h">
+        <h2 id="mo-h" class="eyebrow">More stories</h2>
+        <div class="more-grid">
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/denmark.jpg)"></div><span class="meta">Denmark · 8 min</span><p class="t">I Drove Across Denmark to Watch a Million Birds Go to Bed</p></a>
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/fitzroy.jpg)"></div><span class="meta">Chile and Argentina · 6 min</span><p class="t">Patagonia, measured in Camp Italianos</p></a>
+          <a class="card-story" href="#"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/montenegro.jpg)"></div><span class="meta">Montenegro · 3 min</span><p class="t">The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender</p></a>
+        </div>
+      </section>
+      <div style="height:40px"></div>
+    </article>
+  </template>
+
+  <section class="board" aria-labelledby="b1">
+    <div class="board-title"><h2 id="b1">Desktop · 1440 and phone · 390</h2></div>
+    <div class="boards-row">
+      <div class="viewport" style="max-width:1000px"><div class="frame" data-w="1000" data-tpl="tpl-end"></div></div>
+      <div class="viewport is-phone"><div class="frame" data-w="390" data-tpl="tpl-end"></div></div>
+    </div>
+    <p class="small" style="margin-top:10px">Desktop frame cropped to 1000 px: the story column is 720 px wide at every desktop size.</p>
+  </section>
+
+  <section class="board" aria-labelledby="b2">
+    <div class="board-title"><h2 id="b2">Top of a hosted or sponsored story, and its card</h2></div>
+    <div class="boards-row">
+      <div class="viewport" style="max-width:780px"><div class="frame" data-w="780">
+        <div class="top paper">
+          <p class="eyebrow">Stories From the Road · <span class="bind">Country</span></p>
+          <h1 class="h2" style="font-size:44px"><span class="bind">Story title</span></h1>
+          <div class="hosted" style="margin-top:18px" role="note"><span class="tag tag--rose">Reklame · Hosted</span><span><span class="bind">Text of the Disclosure field, for example: "This trip was hosted by [host]. They did not review this story."</span></span><i class="pin">7</i></div>
+          <p class="small" style="margin-top:12px">Shown only when the Disclosure field is set. No disclosure, no box.</p>
+          <div class="cardmini"><div class="photo" style="background-image:url(../../../handoff/claude-design-source/v3/images/doha.jpg)"></div><div><span class="meta"><span class="tag tag--ink" style="font-size:9.5px">Hosted</span> <span class="bind">Country</span> · <span class="bind">N</span> min</span><p class="h3" style="font-size:19px;margin-top:6px"><span class="bind">Story title</span></p><span class="small">Card on /stories, home and /destinations<i class="pin">8</i></span></div></div>
+        </div>
+      </div></div>
+      <div class="notes"><h3>Review notes</h3><ol>
+        <li><b>Trip date row</b> shows "Trip [month year]" from the existing trip-when field, or the row is hidden. No blank "Trip" or "Last updated" rows.</li>
+        <li><b>Report this story</b>: a small link at the end of every story (DSA notice route). It opens the existing editor contact with the reason "Report this story" and the story address filled in. Which form receives it is a question for you; "Tell the editor" is a shared component, so wiring it needs you present.</li>
+        <li><b>Trip kit</b>: one component, rows from a new "Trip kit" collection (category, partner, one-line note, link, the stories, guides and hubs it appears on). Stories stays at 60 fields because the link sits on the Trip kit side. Every row carries "Reklamelink" beside the link and rel="sponsored noopener"; the plain disclosure sits above the links, as the prompt words it. Hidden when a story has no rows. No pixels or scripts: plain links, so nothing loads before consent. The consent-gated affiliate_click event already exists. Never Telgea.</li>
+        <li><b>Guide card</b>: a Trip kit row of category "Our guide", attached to Paw Passport and Magnus stories. Hidden until the Ko-fi product URL exists.</li>
+        <li><b>Newsletter at the end of every story</b>: the same form and protected lines as the home page. Name stays a placeholder until you choose. "Twice a month at most" matches the go-to-market plan’s cadence; change it if you want a different promise.</li>
+        <li><b>Supporter line</b>: one quiet sentence, never a pop-up. Uses your /faq line B wording. Hidden until the TLL Ko-fi URL exists.</li>
+        <li><b>Hosted and sponsored label at the top</b>, driven by the existing Disclosure field (no new Stories field). This needs the Designer step already on your list: conditional visibility "Disclosure is set" on the hosted box. Label text: "Reklame · Hosted" or "Reklame · Sponsored", then the Disclosure text. The Seven Continents story’s "Paid for by the travelers" wording should not trigger it; that is checked in EDIT.</li>
+        <li><b>Card chip</b>: the same Disclosure value puts a "Hosted" chip on the story card everywhere cards appear (the /stories chip already exists).</li>
+      </ol></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-tpl]').forEach(function(f){var t=document.getElementById(f.getAttribute('data-tpl'));if(t)f.insertBefore(t.content.cloneNode(true),f.firstChild);});
+  document.querySelectorAll('.frame[data-folds]').forEach(function(f){f.getAttribute('data-folds').split(',').forEach(function(p){var y=parseInt(p,10);if(!y)return;var d=document.createElement('div');d.className='fold';d.style.top=y+'px';d.innerHTML='<span>'+(p.indexOf('s')>-1?'one scroll · ':'fold · ')+y+' px</span>';f.appendChild(d);});});
+  function fit(){document.querySelectorAll('.viewport').forEach(function(v){var f=v.querySelector('.frame');if(!f)return;var w=parseFloat(f.getAttribute('data-w'))||1440;f.style.width=w+'px';var z=Math.min(1,v.clientWidth/w);f.style.zoom=z;});}
+  fit();window.addEventListener('resize',fit);
+  var b=document.getElementById('toggle-notes');if(b)b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';b.setAttribute('aria-pressed',on?'false':'true');document.body.classList.toggle('notes-off',on);b.textContent=on?'Show review notes':'Hide review notes';});
+})();
+</script>
+</body>
+</html>
