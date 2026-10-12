@@ -36,11 +36,13 @@
     return cards.length;
   }
 
+  /* Nancy, 12 Oct: every country with a posted story counts, not only the ones with a Story Ref. The set comes from the live story cards' bylines, read the same way as the card flags. */
+  function filedSet(){var have={};$$('[data-ds3=shelf] [data-ds3=card]').forEach(function(card){var place=card.querySelector('[data-ds3=place]');isosFromByline(place?place.textContent:'').forEach(function(c){have[c.toUpperCase()]=1;});var c0=txt(card,'[data-ds3=iso]').toUpperCase();if(c0)have[c0]=1;});return have;}
   function atlas(){
-    var ul=document.querySelector('[data-tll-atlas=grid]'),tiles=$$('[data-ds3=atlas] [data-ds3=tile]'),filed=[];
+    var ul=document.querySelector('[data-tll-atlas=grid]'),tiles=$$('[data-ds3=atlas] [data-ds3=tile]'),filed=[],have=filedSet();
     if(!tiles.length)return null;
     tiles.forEach(function(t){
-      var iso=(t.getAttribute('data-ds3-iso')||'').trim(),story=txt(t,'[data-ds3=tstory]');
+      var iso=(t.getAttribute('data-ds3-iso')||'').trim(),story=txt(t,'[data-ds3=tstory]')||(have[iso.toUpperCase()]?'byline':'');
       var fl=t.querySelector('[data-ds3=tflag]');if(fl&&!fl.firstChild){var i=img(iso,24);if(i)fl.appendChild(i);}
       var m=t.querySelector('[data-ds3=tmeta]');if(!m){m=document.createElement('small');m.setAttribute('data-ds3','tmeta');var nm=t.querySelector('[data-ds3=tname]');(nm?nm.parentNode:t).appendChild(m);}
       if(story){t.setAttribute('data-ds3-filed','');m.textContent='STORY FILED';filed.push({n:txt(t,'[data-ds3=tname]'),u:t.href});}else m.textContent='OPEN';
