@@ -7,9 +7,14 @@
   var IDX=null;
   function nz(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
   function idx(){if(IDX)return IDX;IDX={};try{var d=new Intl.DisplayNames(['en'],{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=d.of(c);if(n&&n!==c)IDX[nz(n)]=c.toLowerCase();}}catch(e){}return IDX;}
+  /* Region bylines that name no single country. Balkans: the twelve countries the story itself names (route Copenhagen to Kosovo and back), pending Nancy's check. */
+  var REGION={balkans:['dk','pl','cz','sk','at','hu','si','rs','xk','al','mk','bg']};
+  function one(s){s=nz(s);return s?(ALIAS[s]||idx()[s]||''):'';}
   function isoFromByline(t){var segs=String(t||'').split(','),s=nz(segs[segs.length-1]);if(!s||/ and | or |\//.test(' '+s+' '))return '';return ALIAS[s]||idx()[s]||'';}
+  /* Every country a byline names: 'Chile and Argentina', 'Denmark, Sweden and Norway', a region from REGION, or the last segment of 'City, Country'. */
+  function isosFromByline(t){var r=REGION[nz(t)];if(r)return r.slice();var parts=String(t||'').split(/,|\s+and\s+|\s+&\s+|\//i),out=[],all=true;parts.forEach(function(p){if(!nz(p))return;var c=one(p);if(c){if(out.indexOf(c)<0)out.push(c);}else all=false;});if(all&&out.length)return out;var l=one(parts[parts.length-1]);return l?[l]:[];}
   function src(c){c=String(c||'').trim().toLowerCase();if(!/^[a-z]{2}$/.test(c))return '';return HOST[c]?B+HOST[c]+'.svg':J+c+'.svg';}
-  function img(c,size){var s=src(c);if(!s)return null;var i=document.createElement('img');i.src=s;i.alt='';i.width=size;i.height=size;i.loading='lazy';i.decoding='async';i.onerror=function(){var p=i.parentNode;i.remove();if(p&&p.getAttribute('data-ds3')==='flag')p.hidden=true;};return i;}
+  function img(c,size){var s=src(c);if(!s)return null;var i=document.createElement('img');i.src=s;i.alt='';i.width=size;i.height=size;i.loading='lazy';i.decoding='async';i.onerror=function(){var p=i.parentNode;i.remove();if(p&&p.getAttribute('data-ds3')==='flag'&&!p.querySelector('img'))p.hidden=true;};return i;}
   function txt(root,sel){var e=root.querySelector(sel);return e?e.textContent.replace(/\s+/g,' ').trim():'';}
   function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
   function pad(k){return String(k).padStart(3,'0');}
@@ -23,7 +28,10 @@
       var meta=card.querySelector('[data-ds3=meta]'),mins=parseInt(txt(card,'[data-ds3=mins]'),10);
       if(meta&&mins>0&&!meta.__ds3){meta.__ds3=1;meta.appendChild(document.createTextNode(' \u00b7 '+mins+' MIN'));}
       var f=card.querySelector('[data-ds3=flag]');
-      if(f&&!f.firstChild){var c=txt(card,'[data-ds3=iso]')||isoFromByline(place?place.textContent:'');var i=img(c,26);if(i)f.appendChild(i);else f.hidden=true;}
+      if(f&&!f.firstChild){var cs=isosFromByline(place?place.textContent:''),c0=txt(card,'[data-ds3=iso]').toLowerCase();if(c0&&cs.indexOf(c0)<0)cs.unshift(c0);
+        var MAX=4,shown=0;cs.forEach(function(c,k){if(k>=MAX)return;var i=img(c,26);if(i){f.appendChild(i);shown++;}});
+        if(cs.length>MAX){var more=document.createElement('span');more.setAttribute('data-ds3','flagmore');more.textContent='+'+(cs.length-MAX);f.appendChild(more);}
+        if(!shown)f.hidden=true;else if(cs.length>1)f.setAttribute('data-ds3-n',String(Math.min(cs.length,MAX+1)));}
     });
     return cards.length;
   }

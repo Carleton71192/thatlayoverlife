@@ -13,7 +13,7 @@ for (const w of [1280, 375]) {
     lis: [...document.querySelectorAll('[data-tll-atlas=grid] > li')].map(l => l.innerText.replace(/\n/g,' | ')),
     metas: [...document.querySelectorAll('[data-ds3=meta]')].map(m=>m.textContent),
     places: [...document.querySelectorAll('[data-ds3=place]')].map(m=>m.textContent),
-    flags: [...document.querySelectorAll('[data-ds3=flag]')].map(f=>f.hidden?'hidden':(f.querySelector('img')||{}).src||'none'),
+    flags: [...document.querySelectorAll('[data-ds3=flag]')].map(f=>f.hidden?'hidden':[...f.children].map(c=>c.src?c.src.split('/').pop():c.textContent).join(' ')),
     ld: (document.getElementById('tll-ds3-itemlist')||{}).textContent,
     open: document.querySelector('.tlldx-card-open').getAttribute('href'),
     atlasHidden: [...document.querySelectorAll('[data-ds3=atlas]')].map(a=>getComputedStyle(a).display),
