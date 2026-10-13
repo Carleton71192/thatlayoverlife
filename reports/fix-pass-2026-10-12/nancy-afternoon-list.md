@@ -62,6 +62,7 @@ Running list. Everything I changed is an unpublished edit; you publish. Full che
 - **Pantanal:** jaguars plural (title, excerpt, opening line); "São Paulo" with the tilde in its search description.
 
 ## Evening fixes, live (12 Oct, third publish 17:48 UTC)
+- **Home chapter 01** (S67, 13 Oct): "The library." replaces "The reading list."; the Rio interlude caption now reads "In the library · Brazil". The saved-stories block on /account still says "Your reading list." Say the word and it becomes "Your library."
 - **/account counters** (S61): LOGGED, the Map and lists badge and Layover Wrapped now agree (the lists block could not reach the count function, so Wrapped stayed on "0 countries, 100% couch"). The footer under /account now counts stories from the sitemap (42), not the typed 6. Check /account logged in, Overview tab.
 - **/destinations** (S62): every country named in a posted story counts as filed (47 with the footer's reading), not only the nine tiles with a Story Ref. Check the lede number and the dark STORY FILED tiles.
 - **Nature heroes** (S66, 13 Oct): Monkeys in Sweaters now opens on the monkey in the tree; From Portland to Mayfield Heights on the sunset mirrored in still water beside the lift bridge. Jay and Dad are in the galleries. Alternatives if either misses: Monkeys, the Ha Long Bay limestone, the Ba Ho boulders, the Phu Quoc sunset; Maine, the Champlain summit signpost in fog, the forest waterfall, the waterfall under the stone bridge at dusk.
