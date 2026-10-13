@@ -1,0 +1,36 @@
+{
+"_source": "mcp__Webflow__data_forms_tool get_form, captured 2026-10-13",
+"forms": [
+ {"id":"6a0dfd649a488acac67dd773","displayName":"Html Form","siteDomainId":"6a0de97be677e4daf81431cc","pageId":"6a0dfca3f9fa5b751d154257","formElementId":"c09ceb51-0ee9-0a93-6196-eee626758710","createdOn":"2026-05-20T18:28:52.108Z","lastUpdated":"2026-10-13T05:47:06.622Z","responseSettings":{"redirectUrl":null,"redirectMethod":"GET","redirectAction":null,"sendEmailConfirmation":false},
+  "fields":[
+   {"id":"6acdc5da8e62a4329e0bf9eb","displayName":"photos","type":"Plain","placeholder":"Example text"},
+   {"id":"6acdc5da8e62a4329e0bf9ec","displayName":"country","type":"Plain","placeholder":"Bulgaria · Deutschland · your way"},
+   {"id":"6acdc5da8e62a4329e0bf9ed","displayName":"city","type":"Plain","placeholder":"Sofia, Doha, between flights"},
+   {"id":"6acdc5da8e62a4329e0bf9ee","displayName":"year","type":"Number","placeholder":"2026"},
+   {"id":"6acdc5da8e62a4329e0bf9ef","displayName":"trip-type","type":"Select","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f0","displayName":"caption","type":"Plain","placeholder":"The Atlantic at 6pm in Ipanema is its own currency."},
+   {"id":"6acdc5da8e62a4329e0bf9f1","displayName":"pets-along","type":"Plain","placeholder":"Magnus 🐻‍❄️ or leave blank"},
+   {"id":"6acdc5da8e62a4329e0bf9f2","displayName":"credit-mode","type":"Radio","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f3","displayName":"syndication-social","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f4","displayName":"syndication-rotation","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f5","displayName":"syndication-press","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f6","displayName":"agree-rights","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f7","displayName":"agree-licence","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf9f8","displayName":"agree-people","type":"Checkbox","placeholder":null}]},
+ {"id":"6a0dfd639a488acac67dd65d","displayName":"Html Form","siteDomainId":"6a0de979e677e4daf8143190","pageId":"6a0dfca3f9fa5b751d154257","formElementId":"c09ceb51-0ee9-0a93-6196-eee626758710","createdOn":"2026-05-20T18:28:51.930Z","lastUpdated":"2026-10-13T05:47:06.211Z","responseSettings":{"redirectUrl":null,"redirectMethod":"GET","redirectAction":null,"sendEmailConfirmation":false},
+  "fields":[
+   {"id":"6acdc5da8e62a4329e0bf85d","displayName":"photos","type":"Plain","placeholder":"Example text"},
+   {"id":"6acdc5da8e62a4329e0bf85e","displayName":"country","type":"Plain","placeholder":"Bulgaria · Deutschland · your way"},
+   {"id":"6acdc5da8e62a4329e0bf85f","displayName":"city","type":"Plain","placeholder":"Sofia, Doha, between flights"},
+   {"id":"6acdc5da8e62a4329e0bf860","displayName":"year","type":"Number","placeholder":"2026"},
+   {"id":"6acdc5da8e62a4329e0bf861","displayName":"trip-type","type":"Select","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf862","displayName":"caption","type":"Plain","placeholder":"The Atlantic at 6pm in Ipanema is its own currency."},
+   {"id":"6acdc5da8e62a4329e0bf863","displayName":"pets-along","type":"Plain","placeholder":"Magnus 🐻‍❄️ or leave blank"},
+   {"id":"6acdc5da8e62a4329e0bf864","displayName":"credit-mode","type":"Radio","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf865","displayName":"syndication-social","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf866","displayName":"syndication-rotation","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf867","displayName":"syndication-press","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf868","displayName":"agree-rights","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf869","displayName":"agree-licence","type":"Checkbox","placeholder":null},
+   {"id":"6acdc5da8e62a4329e0bf86a","displayName":"agree-people","type":"Checkbox","placeholder":null}]}
+]}

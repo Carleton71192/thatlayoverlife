@@ -1,0 +1,15 @@
+{
+"stage":"read","captured":"2026-10-13","site_id":"69d6145cf421c777840c1e25","page_id":"6a0dfca3f9fa5b751d154257","page_slug":"share-photos",
+"files":{
+ "tree.json":"full element tree, get_all_elements depth -1, raw API result (173 nodes)",
+ "element-map.json":"suffix / full-id / input:<name> / role:<name> keys -> {id,type,tag,classes,text,attributes,settings(+resolved)}",
+ "resolved-settings.json":"all_resolved_settings per input, label, form, button, messages, gate blocks",
+ "forms.json":"form schema for both form records (fields, placeholders, response settings)",
+ "page-head.html":"page freeform head (46 bytes)",
+ "page-footer.html":"page freeform footer (1525 bytes, entirely <style id=tll-form-fix>)",
+ "site-head.html":"site freeform head (40437 bytes, 16 id'd blocks)",
+ "site-footer.html":"site freeform footer (30111 bytes, 6 id'd blocks + cookieconsent, gtag, ahrefs)",
+ "page-scripts.json":"applied page scripts",
+ "site-scripts.json":"applied site scripts (15)",
+ "registered-scripts.json":"registered scripts, first 100 of 150 (tool has no offset)"
+}}

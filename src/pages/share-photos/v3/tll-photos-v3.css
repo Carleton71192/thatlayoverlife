@@ -1,0 +1,211 @@
+/* tll-photos-v3 (13 Oct 2026). Page block for /share-photos, replaces <style id="tll-form-fix">. Draft only, never published by this stage.
+   Every rule is scoped to .tll-photos-hero (section …8679), .tll-photos-section (section …8718), [data-tll-form=share-photos] (form …8710),
+   .tll-photos-form (the FormWrapper …870f: counter reset, the .is-plain switch and the two Webflow boxes it holds) or, for row 30,
+   [data-ms-content=anonymous] .tll-container (the signed-out gate). The class and id contract lives in contract.md next to this file.
+   Tokens (proposal section 8): Paper #FDF9F3 page and inputs. Ink #0A0B14 text. Line #E0DACE borders. Cream #F7F1E8 dragover fill.
+   Note tint #F0EBE0 success box. Rose text #C8325B title word, links, errors. Rose button #D63859 with white text, hover #C8325B.
+   Teal #067A79 labels and checked states. Teal #00C9C8 focus halo. Drop-zone dash #A08A60. Glyph kraft #c9b89a. Muted #6B6660. Radius 4px everywhere.
+   !important appears only where a site block already uses it on the same property (each one is listed in the build record). */
+
+/* 1. One column: the hero loses its dark band, both sections lose their padding, the containers carry it. */
+section.tll-section-dark.tll-photos-hero{background-color:#FDF9F3;background-image:none;color:#0A0B14;padding:0 !important}
+section.tll-section.tll-photos-section{background-color:#FDF9F3;padding:0}
+section.tll-photos-hero .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:9vh 28px 0}
+section.tll-photos-section .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:0 28px 12vh}
+.tll-photos-hero[data-tll-reveal],.tll-photos-section[data-tll-reveal]{transition-delay:0s}
+.tll-photos-hero .tll-text-bone{color:#0A0B14}
+
+/* 2. Hero type: back link, eyebrow, title, lede. */
+.tll-photos-hero a.tll-eyebrow-teal{display:inline-block;min-height:24px;margin:0 0 16px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px !important;text-transform:uppercase;text-decoration:none;text-underline-offset:3px}
+.tll-photos-hero a.tll-eyebrow-teal:focus-visible{text-decoration:underline}
+.tll-photos-hero div.tll-photos-eyebrow{margin:0 0 10px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:3px;text-transform:uppercase}
+.tll-photos-hero h1.tll-photos-title{max-width:none;margin:0 0 14px;padding:0 0 4px;color:#0A0B14;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(34px,4.2vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+.tll-photos-hero h1.tll-photos-title em{color:#C8325B;font-style:italic}
+.tll-photos-hero p.tll-photos-sub{max-width:56ch;margin:0 0 26px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px !important;font-weight:400;line-height:1.55}
+
+/* 3. The form: body type, counter, fieldset reset, group labels. */
+.tll-photos-section .tll-photos-form{display:block;width:100%;margin:0}
+.tll-photos-form form,[data-tll-form=share-photos]{counter-reset:tll-step;margin:0;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55}
+[data-tll-form=share-photos] [hidden]{display:none}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset{min-width:0;margin:0 0 18px;padding:0 !important;border:0 !important;border-radius:0;background:transparent;box-shadow:none}
+[data-tll-form=share-photos] .tll-pen-legend{float:none;display:block;width:auto;margin:0 0 8px;padding:0;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase}
+[data-tll-form=share-photos] .tll-pen-legend + *{clear:none}
+[data-tll-form=share-photos] > fieldset > legend.tll-pen-legend::before,
+[data-tll-form=share-photos] .tll-pen-promises > .tll-pen-legend::before,
+[data-tll-form=share-photos] > fieldset > div.tll-pen-legend::before,
+[data-tll-form=share-photos] > div.tll-pen-legend::before{counter-increment:tll-step;content:counter(tll-step,decimal-leading-zero) " · "}
+[data-tll-form=share-photos].is-plain .tll-pen-legend::before,.tll-photos-form.is-plain .tll-pen-legend::before{content:none;counter-increment:none}
+[data-tll-form=share-photos] .tll-pen-help{margin:0 0 8px;padding:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;font-style:normal;line-height:1.5}
+[data-tll-form=share-photos] .tll-pen-helptext{display:block;margin:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;font-style:normal;line-height:1.5}
+
+/* 4. Drop zone (label …8688) and the hidden file input (…8687). */
+[data-tll-form=share-photos] label.tll-photos-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;margin:0;padding:30px;border:2px dashed #A08A60;border-radius:4px;background-color:#fff;background-image:none;color:#6B6660;text-align:center;cursor:pointer;transition:border-color 150ms ease,background-color 150ms ease}
+[data-tll-form=share-photos] label.tll-photos-drop.is-dragover{border-color:#067A79;background-color:#F7F1E8}
+[data-tll-form=share-photos] label.tll-photos-drop.is-invalid,[data-tll-form=share-photos] label.tll-photos-drop:has(> input[aria-invalid=true]){border-color:#C8325B}
+[data-tll-form=share-photos] .tll-photos-drop-icon{margin:0 0 8px;color:#c9b89a;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:26px;font-weight:300;line-height:1}
+[data-tll-form=share-photos] .tll-photos-drop-headline{margin:0 0 6px;color:#6B6660;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase}
+[data-tll-form=share-photos] .tll-photos-drop-sub{max-width:400px;margin:0 0 6px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] .tll-photos-drop-hint{margin:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;font-style:normal;line-height:1.5}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop input.tll-photos-drop-input{position:absolute;width:1px;height:1px;min-height:0 !important;margin:-1px;padding:0 !important;border:0 !important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[data-tll-form=share-photos] .tll-photos-vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* 5. File list, count line, per-file errors (script-built, row 13). Rows enter with a 180ms rise and a 40ms stagger; removal is instant. */
+[data-tll-form=share-photos] ul.tll-photos-list{display:grid;gap:6px;list-style:none;margin:10px 0 0;padding:0}
+[data-tll-form=share-photos] li.tll-photos-item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:66px;margin:0;padding:0 4px 0 0;border:1px solid #E0DACE;border-radius:4px;background:#fff;animation:tll-photos-row-in 180ms cubic-bezier(.23,1,.32,1) both;animation-delay:calc(var(--tll-i,0) * 40ms)}
+@keyframes tll-photos-row-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+[data-tll-form=share-photos] .tll-photos-thumb{display:block;width:64px;height:64px;object-fit:cover;border-radius:3px 0 0 3px;background:#F7F1E8}
+[data-tll-form=share-photos] .tll-photos-thumb.is-blank{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;color:#6B6660;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.2;letter-spacing:1px;text-transform:uppercase;text-align:center}
+[data-tll-form=share-photos] .tll-photos-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+[data-tll-form=share-photos] .tll-photos-name{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#0A0B14;font-size:15px;font-weight:600;line-height:1.3}
+[data-tll-form=share-photos] .tll-photos-size{color:#6B6660;font-size:13px;line-height:1.3}
+[data-tll-form=share-photos] button.tll-photos-remove{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin:0;padding:0 12px;border:0;border-radius:4px;background:transparent;color:#C8325B;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1;letter-spacing:0;text-transform:none;cursor:pointer;-webkit-appearance:none;appearance:none}
+[data-tll-form=share-photos] button.tll-photos-remove:focus-visible{text-decoration:underline}
+[data-tll-form=share-photos] p.tll-photos-count{margin:8px 0 0;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] .tll-photos-file-errors{margin:0;padding:0}
+[data-tll-form=share-photos] p.tll-photos-file-error{margin:6px 0 0;color:#C8325B;font-size:13px;line-height:1.5}
+
+/* 6. Fields: label above, 6px gap, Paper input with a Line edge, 4px radius, 48px tall, 16px type (16px stops iOS zooming on focus). */
+[data-tll-form=share-photos] .tll-pen-grid-2{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:0 0 16px}
+[data-tll-form=share-photos] label.tll-pen-field{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0 0 16px;padding:0;border:0;font-size:15px;line-height:1.55}
+[data-tll-form=share-photos] .tll-pen-grid-2 > label.tll-pen-field{margin:0}
+[data-tll-form=share-photos] .tll-pen-label{display:block;margin:0;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none}
+/* tll-forms-v2 reaches the inputs through .w-input:not(…):not(…):not(…), specificity (0,4,0) with !important, so these selectors carry (0,4,2) and more. */
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input{display:block;width:100%;min-height:48px !important;margin:0;border:1px solid #E0DACE !important;border-radius:4px !important;background-color:#FDF9F3 !important;color:#0A0B14 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:16px !important;line-height:1.45 !important;box-shadow:none;transition:none}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field select.tll-pen-input{height:auto !important;min-height:48px !important;line-height:1.45 !important;background-color:#FDF9F3 !important;padding-right:44px !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input:focus{border-color:#E0DACE !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input[aria-invalid=true]{border:1.5px solid #C8325B !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field input[name=year].tll-pen-input{width:160px;max-width:100%}
+[data-tll-form=share-photos] .tll-photos-panel .tll-pen-legend{margin:0 0 6px;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none}
+[data-tll-form=share-photos] .tll-photos-panel .tll-pen-legend::before{content:none;counter-increment:none}
+[data-tll-form=share-photos] .tll-photos-panel fieldset.tll-pen-fieldset{margin:0}
+[data-tll-form=share-photos] .tll-photos-panel .tll-pen-help{margin:0 0 10px}
+
+/* 7. Inline errors (row 23): a Rose line right after the wrapping label, a Rose edge on the control or its card. */
+[data-tll-form=share-photos] span.tll-err{display:block;margin:-10px 0 16px;color:#C8325B;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] span.tll-err:empty{display:none}
+[data-tll-form=share-photos] .tll-pen-grid-2 > label.tll-pen-field + span.tll-err{margin:-10px 0 0}
+[data-tll-form=share-photos] label.tll-photos-drop + span.tll-err{margin:8px 0 0}
+[data-tll-form=share-photos] label.tll-pen-field-inline + span.tll-err{margin:-2px 0 10px}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field.is-invalid .tll-pen-input{border:1.5px solid #C8325B !important}
+
+/* 8. Credit radios (row 19): three cards in a row, Ink edge on the checked one, credited-as line under the row. */
+[data-tll-form=share-photos] .tll-pen-radios{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-radio{display:flex;flex-direction:row;align-items:center;gap:10px;min-height:48px;margin:0;padding:0 14px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.3;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-radio:has(input:checked){border-color:#0A0B14}
+[data-tll-form=share-photos] label.tll-pen-radio > span{margin:0;font-size:15px;line-height:1.3}
+[data-tll-form=share-photos] p.tll-credited-as{margin:-8px 0 16px;color:#6B6660;font-size:13px;line-height:1.5}
+
+/* 9. Checkboxes and radios, native or Webflow custom: 20px, teal when checked, no halo on a mouse click. */
+[data-tll-form=share-photos] input[type=checkbox],[data-tll-form=share-photos] input[type=radio]{flex:none;width:20px !important;height:20px !important;min-width:20px;margin:0;accent-color:#067A79;cursor:pointer}
+[data-tll-form=share-photos] input[type=radio]{border-radius:50%}
+[data-tll-form=share-photos] input[type=checkbox]{border-radius:4px}
+[data-tll-form=share-photos] .w-checkbox-input,[data-tll-form=share-photos] .w-radio-input{float:none;flex:none;width:20px !important;height:20px !important;margin:0 !important;border:1.5px solid rgba(10,11,20,.38) !important;background-color:#fff !important;transition:none}
+[data-tll-form=share-photos] .w-checkbox-input{border-radius:4px !important}
+[data-tll-form=share-photos] .w-checkbox-input.w--redirected-checked,[data-tll-form=share-photos] .w-radio-input.w--redirected-checked{background-color:#067A79 !important;border-color:#067A79 !important}
+[data-tll-form=share-photos] .w-checkbox-input.w--redirected-focus,[data-tll-form=share-photos] .w-radio-input.w--redirected-focus{border-color:#0A0B14 !important;box-shadow:0 0 0 6px #00C9C8 !important}
+[data-tll-form=share-photos] input[type=checkbox]:focus:not(:focus-visible),[data-tll-form=share-photos] input[type=radio]:focus:not(:focus-visible),[data-tll-form=share-photos] input.tll-pen-submit:focus:not(:focus-visible){box-shadow:none !important;outline:none}
+
+/* 10. Disclosures (rows 15 and 20): a text button with a CSS chevron, a grid-row panel that opens over 200ms and closes in 150ms. */
+[data-tll-form=share-photos] button.tll-photos-disclosure{display:inline-flex;align-items:center;gap:9px;min-height:44px;margin:0;padding:0 2px;border:0;border-radius:4px;background:transparent;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none}
+[data-tll-form=share-photos] .tll-photos-chevron{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-1px) rotate(-45deg);transform-origin:50% 50%;transition:transform 150ms cubic-bezier(.23,1,.32,1)}
+[data-tll-form=share-photos] button.tll-photos-disclosure[aria-expanded=true] .tll-photos-chevron{transform:translateY(-2px) rotate(45deg);transition-duration:200ms}
+[data-tll-form=share-photos] p.tll-photos-disclosure-help{margin:0 0 8px;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] .tll-photos-panel{display:grid;grid-template-rows:0fr;visibility:hidden;opacity:0;margin:0;transition:grid-template-rows 150ms cubic-bezier(.23,1,.32,1),opacity 150ms cubic-bezier(.23,1,.32,1),visibility 0s linear 200ms}
+[data-tll-form=share-photos] .tll-photos-panel.is-open{grid-template-rows:1fr;visibility:visible;opacity:1;transition:grid-template-rows 200ms cubic-bezier(.23,1,.32,1),opacity 200ms cubic-bezier(.23,1,.32,1),visibility 0s}
+[data-tll-form=share-photos] .tll-photos-panel-inner{min-height:0;overflow:hidden}
+[data-tll-form=share-photos] .tll-photos-panel-inner > :first-child{margin-top:14px}
+
+/* 11. Where else it may appear (row 20): the old Syndication label becomes the help line, each row 44px with one label, second spans hidden. */
+[data-tll-form=share-photos] label.tll-pen-field:has(> .tll-pen-checkboxes) > .tll-pen-label,[data-tll-form=share-photos] .tll-photos-panel > .tll-photos-panel-inner > label.tll-pen-field > .tll-pen-label{color:#6B6660;font-size:13px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field:has(> .tll-pen-checkboxes){gap:4px;margin:0;cursor:default}
+[data-tll-form=share-photos] .tll-pen-checkboxes{display:flex;flex-direction:column;gap:0;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-checkbox{display:flex;flex-direction:row;align-items:center;gap:0;min-height:44px;margin:0;padding:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox{display:flex;flex-direction:row;align-items:center;gap:11px;width:auto !important;min-height:44px;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox::before,[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox::after{display:none}
+[data-tll-form=share-photos] label.tll-pen-checkbox .w-form-label{margin:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-checkbox > span:not(.w-form-label){display:none}
+
+/* 12. Three promises (row 21): each row one Paper card, box top-aligned, bold first line, 13px explanation, Rose links. */
+[data-tll-form=share-photos] .tll-pen-promises{margin:0;padding:0}
+[data-tll-form=share-photos] p.tll-photos-summary{margin:0 0 10px;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field-inline{display:flex;flex-direction:column;align-items:stretch;gap:4px;min-height:44px;margin:0 0 8px;padding:12px 14px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-field-inline.is-invalid,[data-tll-form=share-photos] label.tll-pen-field-inline:has(input[aria-invalid=true]){border-color:#C8325B}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox{display:flex;flex-direction:row;align-items:flex-start;gap:11px;width:auto;min-height:0;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox::before,[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox::after{display:none}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox > input,[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox > .w-checkbox-input{margin-top:1px !important}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox .w-form-label{display:block;margin:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-field-inline > span{display:block;margin:0 0 0 31px;color:#3a3a3a;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field-inline a{color:#C8325B;text-decoration:underline;text-underline-offset:2px}
+
+/* 13. Send (row 24), footnote (row 25), the two Webflow boxes (rows 26 and 27). */
+[data-tll-form=share-photos] .tll-pen-actions{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:0}
+[data-tll-form=share-photos] input.tll-pen-submit{display:block;width:100%;min-height:48px;margin:20px 0 0;padding:13px 20px;border:0;border-radius:4px;background-color:#D63859;color:#fff;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:0;text-align:center;cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease,opacity 150ms ease !important}
+[data-tll-form=share-photos] input.tll-pen-submit:active{transform:scale(.97) !important}
+[data-tll-form=share-photos].is-sending input.tll-pen-submit{opacity:.7;cursor:wait}
+[data-tll-form=share-photos] .tll-pen-status{display:block;margin:12px 0 0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;font-style:normal;line-height:1.5;text-align:center}
+[data-tll-form=share-photos] .tll-pen-status.is-error{color:#C8325B}
+.tll-photos-form .w-form-done{margin:0;padding:16px !important;border:0 !important;border-radius:4px !important;background:#F0EBE0 !important;color:#0A0B14 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:15px !important;line-height:1.55;text-align:left;opacity:1;transition:opacity 200ms cubic-bezier(.23,1,.32,1)}
+@starting-style{.tll-photos-form .w-form-done{opacity:0}}
+.tll-photos-form .w-form-done:focus{outline:none}
+.tll-photos-form .w-form-fail{margin:16px 0 0;padding:16px !important;border:1px solid #C8325B !important;border-radius:4px !important;background:transparent !important;color:#C8325B !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:15px !important;line-height:1.55;text-align:left}
+
+/* 14. Hover, only with a real pointer. */
+@media (hover:hover) and (pointer:fine){
+  .tll-photos-hero a.tll-eyebrow-teal:hover{text-decoration:underline}
+  [data-tll-form=share-photos] label.tll-photos-drop:hover{border-color:#0A0B14}
+  [data-tll-form=share-photos] button.tll-photos-remove:hover{text-decoration:underline}
+  [data-tll-form=share-photos] input.tll-pen-submit:hover{background-color:#C8325B;transform:none}
+  [data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-primary:hover{background-color:#C8325B;color:#fff}
+  [data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-ghost:hover{background-color:#F7F1E8}
+}
+
+/* 15. Focus (row 28): Ink outline, teal halo. !important on outline-color only, to beat the ring the site a11y script injects into the head. */
+.tll-photos-hero a:focus-visible,
+[data-tll-form=share-photos] a:focus-visible,
+[data-tll-form=share-photos] button:focus-visible,
+[data-tll-form=share-photos] input:focus-visible,
+[data-tll-form=share-photos] select:focus-visible,
+[data-tll-form=share-photos] label.tll-photos-drop:focus-within,
+[data-ms-content=anonymous] .tll-container a:focus-visible{outline:3px solid #0A0B14;outline-color:#0A0B14 !important;outline-offset:2px;box-shadow:0 0 0 6px #00C9C8}
+/* tll-craft-polish paints a 3px rose halo on .w-input:focus with !important; on text inputs and selects the teal halo needs the same weight. */
+[data-tll-form=share-photos] input:focus-visible,[data-tll-form=share-photos] select:focus-visible{box-shadow:0 0 0 6px #00C9C8 !important}
+
+/* 16. Signed-out gate (row 30): the same column, scale and buttons; three preview rows, the member line, the age line. */
+[data-ms-content=anonymous] > section.tll-section{background-color:#FDF9F3;padding:0}
+[data-ms-content=anonymous] > section.tll-section > .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:9vh 28px 12vh;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-eyebrow-rose{margin:0 0 10px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:3px;text-transform:uppercase}
+/* The site h2 rule carries seven :not() parts and !important; the repeated class is the only way to the title scale without touching site code. */
+[data-ms-content=anonymous] .tll-container h2.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l{max-width:none;margin:0 0 14px;padding:0 0 4px;color:#0A0B14;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(34px,4.2vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+[data-ms-content=anonymous] .tll-container h2 em{color:#C8325B;font-style:italic}
+[data-ms-content=anonymous] .tll-container p.tll-lede{max-width:56ch;margin:0 0 22px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview{display:grid;gap:12px;margin:0 0 22px;padding:18px 0 0;border-top:1px solid #E0DACE}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-row{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:14px;align-items:baseline;margin:0}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-word{margin:0;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:600;line-height:1.5;letter-spacing:1.5px;text-transform:uppercase}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-text{margin:0;color:#0A0B14;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-photos-public-line{max-width:56ch;margin:0 0 24px;color:#0A0B14;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .inline-div-0,[data-ms-content=anonymous] .tll-container > div:has(> a.tll-btn){display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:0}
+[data-ms-content=anonymous] .tll-container a.tll-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin:0;padding:12px 22px;border-radius:4px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:0;text-decoration:none}
+[data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-primary{border:0;background-color:#D63859;color:#fff}
+[data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-ghost{border:1.5px solid #0A0B14;background-color:transparent;color:#0A0B14}
+[data-ms-content=anonymous] .tll-container .tll-photos-age{margin:14px 0 0;color:#6B6660;font-size:12px;line-height:1.5}
+
+/* 17. Phone: 16px gutters, 48px top, one column of radios, stacked gate buttons. */
+@media (max-width:480px){
+  section.tll-photos-hero .tll-container{padding:48px 16px 0}
+  section.tll-photos-section .tll-container{padding:0 16px 64px}
+  [data-tll-form=share-photos] .tll-pen-radios{grid-template-columns:minmax(0,1fr)}
+  [data-ms-content=anonymous] > section.tll-section > .tll-container{padding:48px 16px 64px}
+  [data-ms-content=anonymous] .tll-container .inline-div-0,[data-ms-content=anonymous] .tll-container > div:has(> a.tll-btn){flex-direction:column;align-items:stretch}
+  [data-ms-content=anonymous] .tll-container a.tll-btn{width:100%}
+}
+
+/* 18. Reduced motion: no transform anywhere, panels and chevron instant, the fades that remain at 150ms or less. */
+@media (prefers-reduced-motion:reduce){
+  [data-tll-form=share-photos] label.tll-photos-drop{transition:border-color 150ms ease,background-color 150ms ease}
+  [data-tll-form=share-photos] li.tll-photos-item{animation:none}
+  [data-tll-form=share-photos] .tll-photos-chevron,[data-tll-form=share-photos] button.tll-photos-disclosure[aria-expanded=true] .tll-photos-chevron{transition:none}
+  [data-tll-form=share-photos] .tll-photos-panel,[data-tll-form=share-photos] .tll-photos-panel.is-open{transition-duration:0s !important;transition-delay:0s !important}
+  [data-tll-form=share-photos] input.tll-pen-submit{transition:background-color 150ms ease,opacity 150ms ease !important}
+  [data-tll-form=share-photos] input.tll-pen-submit:active{transform:none !important}
+  .tll-photos-form .w-form-done{transition:opacity 150ms ease}
+}

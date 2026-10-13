@@ -1,0 +1,5051 @@
+{
+ "page_id": "6a0dfca3f9fa5b751d154257",
+ "site_id": "69d6145cf421c777840c1e25",
+ "captured": "2026-10-13",
+ "key_convention": "4-char keys are the last four hex of id.element; full ids as given; input:<name> and role:<name> are alternative keys",
+ "node_count": 173,
+ "duplicate_suffixes_in_tree": {},
+ "unresolved": [],
+ "elements": {
+  "8679": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758679"
+   },
+   "type": "Section",
+   "tag": "section",
+   "classes": [
+    "tll-section-dark",
+    "tll-photos-hero"
+   ],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {
+    "data-tll-reveal": "true"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "path": [
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758678"
+   ]
+  },
+  "8678": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "tll-photos-hero-inner"
+   ],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758679"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "b350f0fb-1a42-ec2e-bca4-3ca37ebc0460",
+    "c09ceb51-0ee9-0a93-6196-eee626758670",
+    "c09ceb51-0ee9-0a93-6196-eee626758675",
+    "c09ceb51-0ee9-0a93-6196-eee626758677"
+   ]
+  },
+  "b350f0fb-1a42-ec2e-bca4-3ca37ebc0460": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b350f0fb-1a42-ec2e-bca4-3ca37ebc0460"
+   },
+   "type": "Link",
+   "tag": "a",
+   "classes": [
+    "tll-eyebrow-teal"
+   ],
+   "text": "← The Layover Lounge",
+   "attributes": {
+    "data-tll-back": "lounge"
+   },
+   "settings": {
+    "visibility": true,
+    "link": {
+     "linkType": "url",
+     "href": "/gallery"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "a5247d37-9e98-4d60-2b92-18dcb15d7a42"
+   ]
+  },
+  "8670": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758670"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-eyebrow-teal",
+    "tll-photos-eyebrow"
+   ],
+   "text": "· The Layover Lounge · Member-gated ·",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675866f"
+   ]
+  },
+  "8675": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758675"
+   },
+   "type": "Heading",
+   "tag": "h1",
+   "classes": [
+    "tll-display-xl",
+    "tll-text-bone",
+    "tll-photos-title"
+   ],
+   "text": "Submit your shot.",
+   "attributes": {},
+   "settings": {
+    "tag": "h1",
+    "visibility": true,
+    "headingLevel": 1
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758671",
+    "c09ceb51-0ee9-0a93-6196-eee626758673",
+    "c09ceb51-0ee9-0a93-6196-eee626758674"
+   ]
+  },
+  "8677": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758677"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-lede",
+    "tll-text-bone",
+    "tll-photos-sub"
+   ],
+   "text": "Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758676"
+   ]
+  },
+  "8718": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758718"
+   },
+   "type": "Section",
+   "tag": "section",
+   "classes": [
+    "tll-section",
+    "tll-bg-paper",
+    "tll-photos-section"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {
+    "data-tll-reveal": "true"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "path": [
+    1,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758717"
+   ]
+  },
+  "8717": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758717"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "tll-photos-container"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758718"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   ]
+  },
+  "870f": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "type": "FormWrapper",
+   "tag": "div",
+   "classes": [
+    "tll-photos-form"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "form": {
+     "name": "Html Form",
+     "formSettings": {
+      "action": "",
+      "method": "get",
+      "name": "Html Form",
+      "redirect": "",
+      "state": "normal"
+     }
+    },
+    "resolved": {
+     "domId": "",
+     "action": "",
+     "method": "get",
+     "redirect": "",
+     "state": "normal",
+     "name": "Html Form",
+     "attributes": [
+      {
+       "name": "data-tll-form",
+       "value": "share-photos"
+      },
+      {
+       "name": "data-ms-member-bound",
+       "value": "true"
+      },
+      {
+       "name": "enctype",
+       "value": "multipart/form-data"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758717"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758710",
+    "c09ceb51-0ee9-0a93-6196-eee626758711",
+    "c09ceb51-0ee9-0a93-6196-eee626758714"
+   ]
+  },
+  "868a": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675867c",
+    "c09ceb51-0ee9-0a93-6196-eee62675867e",
+    "c09ceb51-0ee9-0a93-6196-eee626758688"
+   ]
+  },
+  "86bd": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868d",
+    "c09ceb51-0ee9-0a93-6196-eee62675868f",
+    "c09ceb51-0ee9-0a93-6196-eee6267586b5",
+    "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   ]
+  },
+  "8709": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586cb",
+    "c09ceb51-0ee9-0a93-6196-eee6267586cd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586dd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fd",
+    "455964ef-6e78-0828-ec2c-424e20792f04",
+    "c09ceb51-0ee9-0a93-6196-eee626758707",
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c65",
+    "b9a53739-8caf-1642-ee38-bb1977503e94"
+   ]
+  },
+  "867c": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675867c"
+   },
+   "type": "DOM",
+   "tag": "legend",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "01 · Your photos",
+   "attributes": {
+    "class": "tll-pen-legend"
+   },
+   "settings": {
+    "tag": "legend",
+    "visibility": true,
+    "dom": {
+     "tag": "legend"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675867a"
+   ]
+  },
+  "868d": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868d"
+   },
+   "type": "DOM",
+   "tag": "legend",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "02 · Where and when",
+   "attributes": {
+    "class": "tll-pen-legend"
+   },
+   "settings": {
+    "tag": "legend",
+    "visibility": true,
+    "dom": {
+     "tag": "legend"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868b"
+   ]
+  },
+  "86cb": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586cb"
+   },
+   "type": "DOM",
+   "tag": "legend",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "04 · Your credit",
+   "attributes": {
+    "class": "tll-pen-legend"
+   },
+   "settings": {
+    "tag": "legend",
+    "visibility": true,
+    "dom": {
+     "tag": "legend"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586c9"
+   ]
+  },
+  "455964ef-6e78-0828-ec2c-424e20792f04": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "455964ef-6e78-0828-ec2c-424e20792f04"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "05 · Three promises · ticked separately, never pre-ticked",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    4
+   ],
+   "children": [
+    "455964ef-6e78-0828-ec2c-424e20792f03"
+   ]
+  },
+  "867e": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675867e"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-pen-help"
+   ],
+   "text": "Up to 12 at a time. JPG or WebP.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675867d"
+   ]
+  },
+  "8688": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-photos-drop"
+   ],
+   "text": "+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758680",
+    "c09ceb51-0ee9-0a93-6196-eee626758682",
+    "c09ceb51-0ee9-0a93-6196-eee626758684",
+    "c09ceb51-0ee9-0a93-6196-eee626758686",
+    "c09ceb51-0ee9-0a93-6196-eee626758687"
+   ]
+  },
+  "8680": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758680"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-photos-drop-icon"
+   ],
+   "text": "+",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675867f"
+   ]
+  },
+  "8682": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758682"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-photos-drop-headline"
+   ],
+   "text": "Drag photos here",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758681"
+   ]
+  },
+  "8684": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758684"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-photos-drop-sub"
+   ],
+   "text": "or click to choose from your computer",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758683"
+   ]
+  },
+  "8686": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758686"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-photos-drop-hint"
+   ],
+   "text": "Phone-shot is fine. We crop to fit.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758685"
+   ]
+  },
+  "8687": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758687"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-photos-drop-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "photos-upload",
+    "accept": "image/*",
+    "multiple": ""
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "photos",
+     "inputType": "file"
+    },
+    "resolved": {
+     "domId": "photos-upload",
+     "name": "photos",
+     "required": false,
+     "type": "file",
+     "attributes": [
+      {
+       "name": "accept",
+       "value": "image/*"
+      },
+      {
+       "name": "multiple",
+       "value": ""
+      }
+     ],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Example text"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    4
+   ],
+   "children": []
+  },
+  "868f": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868f"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-pen-help"
+   ],
+   "text": "Photos without context disappear. A country and a year is enough.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868e"
+   ]
+  },
+  "86b5": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-grid-2"
+   ],
+   "text": "CountryCity or layover (optional)When (year)Trip type (optional)",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758693",
+    "c09ceb51-0ee9-0a93-6196-eee626758697",
+    "c09ceb51-0ee9-0a93-6196-eee62675869b",
+    "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   ]
+  },
+  "8693": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758693"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "Country",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "Country"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758691",
+    "c09ceb51-0ee9-0a93-6196-eee626758692"
+   ]
+  },
+  "8692": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758692"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "country",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "country",
+     "required": true,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Bulgaria · Deutschland · your way"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758693"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "children": []
+  },
+  "86bb": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586b7",
+    "c09ceb51-0ee9-0a93-6196-eee6267586b8",
+    "c09ceb51-0ee9-0a93-6196-eee6267586ba"
+   ]
+  },
+  "86b8": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b8"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "caption",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "caption",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "The Atlantic at 6pm in Ipanema is its own currency."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    3,
+    1
+   ],
+   "children": []
+  },
+  "86ba": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ba"
+   },
+   "type": "Span",
+   "tag": "span",
+   "classes": [
+    "tll-pen-helptext"
+   ],
+   "text": "Renders below the photo in the gallery. Optional but earns the like.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    3,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586b9"
+   ]
+  },
+  "8697": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758697"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "City or layover (optional)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "City or layover (optional)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758695",
+    "c09ceb51-0ee9-0a93-6196-eee626758696"
+   ]
+  },
+  "8696": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758696"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "city",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "city",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Sofia, Doha, between flights"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758697"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    1,
+    1
+   ],
+   "children": []
+  },
+  "869b": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869b"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "When (year)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "When (year)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758699",
+    "c09ceb51-0ee9-0a93-6196-eee62675869a"
+   ]
+  },
+  "869a": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869a"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field",
+    "min": "1990",
+    "max": "2030"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "year",
+     "inputType": "number"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "year",
+     "required": true,
+     "type": "number",
+     "attributes": [
+      {
+       "name": "min",
+       "value": "1990"
+      },
+      {
+       "name": "max",
+       "value": "2030"
+      }
+     ],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "2026"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869b"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    2,
+    1
+   ],
+   "children": []
+  },
+  "86b4": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "Trip type (optional)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "Trip type (optional)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675869d",
+    "b7cc9567-f70c-ef36-2a9b-ddb0f4f085ec"
+   ]
+  },
+  "b7cc9567-f70c-ef36-2a9b-ddb0f4f085ec": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b7cc9567-f70c-ef36-2a9b-ddb0f4f085ec"
+   },
+   "type": "FormSelect",
+   "tag": "select",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "photos-trip-type"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "trip-type"
+    },
+    "resolved": {
+     "domId": "photos-trip-type",
+     "name": "trip-type",
+     "required": false,
+     "attributes": [],
+     "options": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": null
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3,
+    1
+   ],
+   "children": []
+  },
+  "86c8": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c8"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586c0",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c2",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   ]
+  },
+  "86c0": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c0"
+   },
+   "type": "DOM",
+   "tag": "legend",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "03 · Tag the bestie (optional)",
+   "attributes": {
+    "class": "tll-pen-legend"
+   },
+   "settings": {
+    "tag": "legend",
+    "visibility": true,
+    "dom": {
+     "tag": "legend"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c8"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586be"
+   ]
+  },
+  "86c2": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c2"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-pen-help"
+   ],
+   "text": "If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c8"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586c1"
+   ]
+  },
+  "86c6": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "Pet along",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "Pet along"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c8"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586c4",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c5"
+   ]
+  },
+  "86c5": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c5"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "pets-along",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "pets-along",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Magnus 🐻‍❄️ or leave blank"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    2,
+    1
+   ],
+   "children": []
+  },
+  "86cd": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586cd"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-pen-help"
+   ],
+   "text": "Each photo gets the same credit + syndication rules unless you submit separately.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586cc"
+   ]
+  },
+  "86dd": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586dd"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586cf",
+    "c09ceb51-0ee9-0a93-6196-eee6267586dc"
+   ]
+  },
+  "86d0": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d0"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio",
+    "checked": ""
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "named",
+     "attributes": [
+      {
+       "name": "checked",
+       "value": ""
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d3"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "86d4": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d4"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "pen-name",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d7"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    1,
+    0
+   ],
+   "children": []
+  },
+  "86d8": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d8"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "anonymous",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586db"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    2,
+    0
+   ],
+   "children": []
+  },
+  "86fd": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fd"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586df",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fc"
+   ]
+  },
+  "86fc": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fc"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-checkboxes"
+   ],
+   "text": "TLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586ed",
+    "c09ceb51-0ee9-0a93-6196-eee6267586f4",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fb"
+   ]
+  },
+  "86e7": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e7"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-social"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-social",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e8"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "86ee": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ee"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-rotation"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-rotation",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ef"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    1,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "86f5": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f5"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-press"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-press",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f6"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    2,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "8707": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758707"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "This is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "This is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    5
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586ff",
+    "c09ceb51-0ee9-0a93-6196-eee626758706"
+   ]
+  },
+  "912e62a0-8170-13ca-1a16-9abcb1ea0c65": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "912e62a0-8170-13ca-1a16-9abcb1ea0c65"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    6
+   ],
+   "children": [
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c60",
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c64"
+   ]
+  },
+  "b9a53739-8caf-1642-ee38-bb1977503e94": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b9a53739-8caf-1642-ee38-bb1977503e94"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    7
+   ],
+   "children": [
+    "b9a53739-8caf-1642-ee38-bb1977503e8f",
+    "b9a53739-8caf-1642-ee38-bb1977503e93"
+   ]
+  },
+  "8710": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "type": "FormForm",
+   "tag": "form",
+   "classes": [],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.",
+   "attributes": {
+    "data-tll-form": "share-photos",
+    "data-ms-member-bound": "true",
+    "enctype": "multipart/form-data"
+   },
+   "settings": {
+    "visibility": true,
+    "form": {
+     "name": "Html Form",
+     "formSettings": {
+      "action": "",
+      "method": "get",
+      "name": "Html Form",
+      "redirect": "",
+      "state": "normal"
+     }
+    },
+    "resolved": {
+     "domId": "",
+     "action": "",
+     "method": "get",
+     "redirect": "",
+     "state": "normal",
+     "name": "Html Form",
+     "attributes": [
+      {
+       "name": "data-tll-form",
+       "value": "share-photos"
+      },
+      {
+       "name": "data-ms-member-bound",
+       "value": "true"
+      },
+      {
+       "name": "enctype",
+       "value": "multipart/form-data"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868a",
+    "c09ceb51-0ee9-0a93-6196-eee6267586bd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c8",
+    "c09ceb51-0ee9-0a93-6196-eee626758709",
+    "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   ]
+  },
+  "870b": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870b"
+   },
+   "type": "FormButton",
+   "tag": "input",
+   "classes": [
+    "tll-btn",
+    "tll-btn-primary",
+    "tll-pen-submit"
+   ],
+   "text": "",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "buttonText": "Send it to the Lounge →",
+     "loadingText": "Sending…",
+     "type": "submit",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    4,
+    0
+   ],
+   "children": []
+  },
+  "870d": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870d"
+   },
+   "type": "Span",
+   "tag": "span",
+   "classes": [
+    "tll-pen-status"
+   ],
+   "text": "A human reviews every photo before it goes up.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    4,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675870c"
+   ]
+  },
+  "8711": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758711"
+   },
+   "type": "FormSuccessMessage",
+   "tag": "div",
+   "classes": [],
+   "text": "Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758712"
+   ]
+  },
+  "8714": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758714"
+   },
+   "type": "FormErrorMessage",
+   "tag": "div",
+   "classes": [],
+   "text": "That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758715"
+   ]
+  },
+  "8719": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {
+    "data-ms-content": "members"
+   },
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    },
+    "resolved": {
+     "domId": "",
+     "tag": "div",
+     "attributes": [
+      {
+       "name": "data-ms-content",
+       "value": "members"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872b"
+   },
+   "path": [
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758679",
+    "c09ceb51-0ee9-0a93-6196-eee626758718"
+   ]
+  },
+  "872a": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872a"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [],
+   "text": "· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {
+    "data-ms-content": "anonymous"
+   },
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    },
+    "resolved": {
+     "domId": "",
+     "tag": "div",
+     "attributes": [
+      {
+       "name": "data-ms-content",
+       "value": "anonymous"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872b"
+   },
+   "path": [
+    1,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758729"
+   ]
+  },
+  "871b": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675871b"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-eyebrow-rose"
+   ],
+   "text": "· The Lounge ·",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871a"
+   ]
+  },
+  "8720": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758720"
+   },
+   "type": "Heading",
+   "tag": "h2",
+   "classes": [
+    "tll-display-l",
+    "tll-text-midnight"
+   ],
+   "text": "Sign in to drop your photos.",
+   "attributes": {},
+   "settings": {
+    "tag": "h2",
+    "visibility": true,
+    "headingLevel": 2
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871c",
+    "c09ceb51-0ee9-0a93-6196-eee62675871e",
+    "c09ceb51-0ee9-0a93-6196-eee62675871f"
+   ]
+  },
+  "8722": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758722"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-lede",
+    "tll-text-mid"
+   ],
+   "text": "Photos that don't need a full story. Free to share forever.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758721"
+   ]
+  },
+  "8727": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "inline-div-0"
+   ],
+   "text": "Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758724",
+    "c09ceb51-0ee9-0a93-6196-eee626758726"
+   ]
+  },
+  "8728": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "inline-div-1"
+   ],
+   "text": "· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758729"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871b",
+    "c09ceb51-0ee9-0a93-6196-eee626758720",
+    "c09ceb51-0ee9-0a93-6196-eee626758722",
+    "c09ceb51-0ee9-0a93-6196-eee626758727"
+   ]
+  },
+  "input:photos": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758687"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-photos-drop-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "photos-upload",
+    "accept": "image/*",
+    "multiple": ""
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "photos",
+     "inputType": "file"
+    },
+    "resolved": {
+     "domId": "photos-upload",
+     "name": "photos",
+     "required": false,
+     "type": "file",
+     "attributes": [
+      {
+       "name": "accept",
+       "value": "image/*"
+      },
+      {
+       "name": "multiple",
+       "value": ""
+      }
+     ],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Example text"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    4
+   ],
+   "children": []
+  },
+  "input:country": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758692"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "country",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "country",
+     "required": true,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Bulgaria · Deutschland · your way"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758693"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "children": []
+  },
+  "input:city": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758696"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "city",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "city",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Sofia, Doha, between flights"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758697"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    1,
+    1
+   ],
+   "children": []
+  },
+  "input:year": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869a"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field",
+    "min": "1990",
+    "max": "2030"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "year",
+     "inputType": "number"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "year",
+     "required": true,
+     "type": "number",
+     "attributes": [
+      {
+       "name": "min",
+       "value": "1990"
+      },
+      {
+       "name": "max",
+       "value": "2030"
+      }
+     ],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "2026"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869b"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    2,
+    1
+   ],
+   "children": []
+  },
+  "input:trip-type": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b7cc9567-f70c-ef36-2a9b-ddb0f4f085ec"
+   },
+   "type": "FormSelect",
+   "tag": "select",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "photos-trip-type"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "trip-type"
+    },
+    "resolved": {
+     "domId": "photos-trip-type",
+     "name": "trip-type",
+     "required": false,
+     "attributes": [],
+     "options": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": null
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3,
+    1
+   ],
+   "children": []
+  },
+  "input:caption": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b8"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "caption",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "caption",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "The Atlantic at 6pm in Ipanema is its own currency."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    3,
+    1
+   ],
+   "children": []
+  },
+  "input:pets-along": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c5"
+   },
+   "type": "FormTextInput",
+   "tag": "input",
+   "classes": [
+    "tll-pen-input"
+   ],
+   "text": "",
+   "attributes": {
+    "id": "field"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "pets-along",
+     "inputType": "text"
+    },
+    "resolved": {
+     "domId": "field",
+     "name": "pets-along",
+     "required": false,
+     "type": "text",
+     "attributes": [],
+     "placeholder": "NOT_EXPOSED_BY_ELEMENT_API",
+     "placeholder_from_form_schema": "Magnus 🐻‍❄️ or leave blank"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    2,
+    1
+   ],
+   "children": []
+  },
+  "input:syndication-social": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e7"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-social"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-social",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e8"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:syndication-rotation": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ee"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-rotation"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-rotation",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ef"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    1,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:syndication-press": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f5"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "syndication-press"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "syndication-press",
+     "required": false,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f6"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1,
+    2,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:agree-rights": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fe"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "checkbox"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "agree-rights"
+    },
+    "resolved": {
+     "domId": "checkbox",
+     "name": "agree-rights",
+     "required": true,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ff"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    5,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:agree-licence": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "912e62a0-8170-13ca-1a16-9abcb1ea0c5f"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "agree-licence"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "agree-licence"
+    },
+    "resolved": {
+     "domId": "agree-licence",
+     "name": "agree-licence",
+     "required": true,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "912e62a0-8170-13ca-1a16-9abcb1ea0c60"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    6,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:agree-people": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b9a53739-8caf-1642-ee38-bb1977503e8e"
+   },
+   "type": "FormCheckboxInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "agree-people"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "isRequired": true,
+     "inputName": "agree-people"
+    },
+    "resolved": {
+     "domId": "agree-people",
+     "name": "agree-people",
+     "required": true,
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b9a53739-8caf-1642-ee38-bb1977503e8f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    7,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:credit-mode=named": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d0"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio",
+    "checked": ""
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "named",
+     "attributes": [
+      {
+       "name": "checked",
+       "value": ""
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d3"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    0,
+    0
+   ],
+   "children": []
+  },
+  "input:credit-mode=pen-name": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d4"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "pen-name",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d7"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    1,
+    0
+   ],
+   "children": []
+  },
+  "input:credit-mode=anonymous": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d8"
+   },
+   "type": "FormRadioInput",
+   "tag": "input",
+   "classes": [],
+   "text": "",
+   "attributes": {
+    "id": "radio"
+   },
+   "settings": {
+    "visibility": true,
+    "input": {
+     "inputName": "credit-mode"
+    },
+    "resolved": {
+     "domId": "radio",
+     "required": false,
+     "groupName": "credit-mode",
+     "value": "anonymous",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586db"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1,
+    2,
+    0
+   ],
+   "children": []
+  },
+  "role:form": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "type": "FormForm",
+   "tag": "form",
+   "classes": [],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.",
+   "attributes": {
+    "data-tll-form": "share-photos",
+    "data-ms-member-bound": "true",
+    "enctype": "multipart/form-data"
+   },
+   "settings": {
+    "visibility": true,
+    "form": {
+     "name": "Html Form",
+     "formSettings": {
+      "action": "",
+      "method": "get",
+      "name": "Html Form",
+      "redirect": "",
+      "state": "normal"
+     }
+    },
+    "resolved": {
+     "domId": "",
+     "action": "",
+     "method": "get",
+     "redirect": "",
+     "state": "normal",
+     "name": "Html Form",
+     "attributes": [
+      {
+       "name": "data-tll-form",
+       "value": "share-photos"
+      },
+      {
+       "name": "data-ms-member-bound",
+       "value": "true"
+      },
+      {
+       "name": "enctype",
+       "value": "multipart/form-data"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868a",
+    "c09ceb51-0ee9-0a93-6196-eee6267586bd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c8",
+    "c09ceb51-0ee9-0a93-6196-eee626758709",
+    "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   ]
+  },
+  "role:form-wrapper": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "type": "FormWrapper",
+   "tag": "div",
+   "classes": [
+    "tll-photos-form"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "form": {
+     "name": "Html Form",
+     "formSettings": {
+      "action": "",
+      "method": "get",
+      "name": "Html Form",
+      "redirect": "",
+      "state": "normal"
+     }
+    },
+    "resolved": {
+     "domId": "",
+     "action": "",
+     "method": "get",
+     "redirect": "",
+     "state": "normal",
+     "name": "Html Form",
+     "attributes": [
+      {
+       "name": "data-tll-form",
+       "value": "share-photos"
+      },
+      {
+       "name": "data-ms-member-bound",
+       "value": "true"
+      },
+      {
+       "name": "enctype",
+       "value": "multipart/form-data"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758717"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758710",
+    "c09ceb51-0ee9-0a93-6196-eee626758711",
+    "c09ceb51-0ee9-0a93-6196-eee626758714"
+   ]
+  },
+  "role:success": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758711"
+   },
+   "type": "FormSuccessMessage",
+   "tag": "div",
+   "classes": [],
+   "text": "Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758712"
+   ]
+  },
+  "role:error": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758714"
+   },
+   "type": "FormErrorMessage",
+   "tag": "div",
+   "classes": [],
+   "text": "That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758715"
+   ]
+  },
+  "role:submit": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870b"
+   },
+   "type": "FormButton",
+   "tag": "input",
+   "classes": [
+    "tll-btn",
+    "tll-btn-primary",
+    "tll-pen-submit"
+   ],
+   "text": "",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "buttonText": "Send it to the Lounge →",
+     "loadingText": "Sending…",
+     "type": "submit",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    4,
+    0
+   ],
+   "children": []
+  },
+  "role:status": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870d"
+   },
+   "type": "Span",
+   "tag": "span",
+   "classes": [
+    "tll-pen-status"
+   ],
+   "text": "A human reviews every photo before it goes up.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": []
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    4,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675870c"
+   ]
+  },
+  "role:actions-row": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870e"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-actions"
+   ],
+   "text": "A human reviews every photo before it goes up.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    4
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675870b",
+    "c09ceb51-0ee9-0a93-6196-eee62675870d"
+   ]
+  },
+  "role:hero-section": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758679"
+   },
+   "type": "Section",
+   "tag": "section",
+   "classes": [
+    "tll-section-dark",
+    "tll-photos-hero"
+   ],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {
+    "data-tll-reveal": "true"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "path": [
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758678"
+   ]
+  },
+  "role:hero-container": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "tll-photos-hero-inner"
+   ],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758679"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "b350f0fb-1a42-ec2e-bca4-3ca37ebc0460",
+    "c09ceb51-0ee9-0a93-6196-eee626758670",
+    "c09ceb51-0ee9-0a93-6196-eee626758675",
+    "c09ceb51-0ee9-0a93-6196-eee626758677"
+   ]
+  },
+  "role:back-link": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b350f0fb-1a42-ec2e-bca4-3ca37ebc0460"
+   },
+   "type": "Link",
+   "tag": "a",
+   "classes": [
+    "tll-eyebrow-teal"
+   ],
+   "text": "← The Layover Lounge",
+   "attributes": {
+    "data-tll-back": "lounge"
+   },
+   "settings": {
+    "visibility": true,
+    "link": {
+     "linkType": "url",
+     "href": "/gallery"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "a5247d37-9e98-4d60-2b92-18dcb15d7a42"
+   ]
+  },
+  "role:eyebrow": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758670"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-eyebrow-teal",
+    "tll-photos-eyebrow"
+   ],
+   "text": "· The Layover Lounge · Member-gated ·",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675866f"
+   ]
+  },
+  "role:title": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758675"
+   },
+   "type": "Heading",
+   "tag": "h1",
+   "classes": [
+    "tll-display-xl",
+    "tll-text-bone",
+    "tll-photos-title"
+   ],
+   "text": "Submit your shot.",
+   "attributes": {},
+   "settings": {
+    "tag": "h1",
+    "visibility": true,
+    "headingLevel": 1
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758671",
+    "c09ceb51-0ee9-0a93-6196-eee626758673",
+    "c09ceb51-0ee9-0a93-6196-eee626758674"
+   ]
+  },
+  "role:lede": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758677"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-lede",
+    "tll-text-bone",
+    "tll-photos-sub"
+   ],
+   "text": "Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758678"
+   },
+   "path": [
+    1,
+    0,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758676"
+   ]
+  },
+  "role:form-section": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758718"
+   },
+   "type": "Section",
+   "tag": "section",
+   "classes": [
+    "tll-section",
+    "tll-bg-paper",
+    "tll-photos-section"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {
+    "data-tll-reveal": "true"
+   },
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "path": [
+    1,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758717"
+   ]
+  },
+  "role:form-container": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758717"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "tll-photos-container"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758718"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675870f"
+   ]
+  },
+  "role:main": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872b"
+   },
+   "type": "Block",
+   "tag": "main",
+   "classes": [],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "main",
+    "visibility": true,
+    "block": {
+     "tag": "main"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "6a0dfca3f9fa5b751d15425d"
+   },
+   "path": [
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758719",
+    "c09ceb51-0ee9-0a93-6196-eee62675872a"
+   ]
+  },
+  "role:members-block": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758719"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [],
+   "text": "← The Layover Lounge· The Layover Lounge · Member-gated ·Submit your shot.Real photos from real places. No filters, no stock, no staging. If you were there, it counts.01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.A human reviews every photo before it goes up.Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "attributes": {
+    "data-ms-content": "members"
+   },
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    },
+    "resolved": {
+     "domId": "",
+     "tag": "div",
+     "attributes": [
+      {
+       "name": "data-ms-content",
+       "value": "members"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872b"
+   },
+   "path": [
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758679",
+    "c09ceb51-0ee9-0a93-6196-eee626758718"
+   ]
+  },
+  "role:anonymous-block": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872a"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [],
+   "text": "· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {
+    "data-ms-content": "anonymous"
+   },
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    },
+    "resolved": {
+     "domId": "",
+     "tag": "div",
+     "attributes": [
+      {
+       "name": "data-ms-content",
+       "value": "anonymous"
+      }
+     ]
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872b"
+   },
+   "path": [
+    1,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758729"
+   ]
+  },
+  "role:anonymous-section": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758729"
+   },
+   "type": "Section",
+   "tag": "section",
+   "classes": [
+    "tll-section",
+    "tll-bg-paper"
+   ],
+   "text": "· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "section",
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675872a"
+   },
+   "path": [
+    1,
+    1,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758728"
+   ]
+  },
+  "role:anonymous-container": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-container",
+    "inline-div-1"
+   ],
+   "text": "· The Lounge ·Sign in to drop your photos.Photos that don't need a full story. Free to share forever.Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758729"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871b",
+    "c09ceb51-0ee9-0a93-6196-eee626758720",
+    "c09ceb51-0ee9-0a93-6196-eee626758722",
+    "c09ceb51-0ee9-0a93-6196-eee626758727"
+   ]
+  },
+  "role:anonymous-eyebrow": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675871b"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-eyebrow-rose"
+   ],
+   "text": "· The Lounge ·",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871a"
+   ]
+  },
+  "role:anonymous-headline": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758720"
+   },
+   "type": "Heading",
+   "tag": "h2",
+   "classes": [
+    "tll-display-l",
+    "tll-text-midnight"
+   ],
+   "text": "Sign in to drop your photos.",
+   "attributes": {},
+   "settings": {
+    "tag": "h2",
+    "visibility": true,
+    "headingLevel": 2
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871c",
+    "c09ceb51-0ee9-0a93-6196-eee62675871e",
+    "c09ceb51-0ee9-0a93-6196-eee62675871f"
+   ]
+  },
+  "role:anonymous-lede": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758722"
+   },
+   "type": "Paragraph",
+   "tag": "p",
+   "classes": [
+    "tll-lede",
+    "tll-text-mid"
+   ],
+   "text": "Photos that don't need a full story. Free to share forever.",
+   "attributes": {},
+   "settings": {
+    "visibility": true
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758721"
+   ]
+  },
+  "role:anonymous-buttons": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "inline-div-0"
+   ],
+   "text": "Log inJoin the Travelers",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758728"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758724",
+    "c09ceb51-0ee9-0a93-6196-eee626758726"
+   ]
+  },
+  "role:anonymous-login": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758724"
+   },
+   "type": "Link",
+   "tag": "a",
+   "classes": [
+    "tll-btn",
+    "tll-btn-primary"
+   ],
+   "text": "Log in",
+   "attributes": {
+    "href": "/login"
+   },
+   "settings": {
+    "visibility": true,
+    "link": {
+     "linkType": "url",
+     "href": "/login"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    3,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758723"
+   ]
+  },
+  "role:anonymous-signup": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758726"
+   },
+   "type": "Link",
+   "tag": "a",
+   "classes": [
+    "tll-btn",
+    "tll-btn-ghost"
+   ],
+   "text": "Join the Travelers",
+   "attributes": {
+    "href": "/signup"
+   },
+   "settings": {
+    "visibility": true,
+    "link": {
+     "linkType": "url",
+     "href": "/signup"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+   },
+   "path": [
+    1,
+    1,
+    0,
+    0,
+    3,
+    1
+   ],
+   "children": [
+    "6bc1a9c4-2694-e43f-57db-19315bd7faa0"
+   ]
+  },
+  "role:fieldset-photos": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "01 · Your photosUp to 12 at a time. JPG or WebP.+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675867c",
+    "c09ceb51-0ee9-0a93-6196-eee62675867e",
+    "c09ceb51-0ee9-0a93-6196-eee626758688"
+   ]
+  },
+  "role:fieldset-story": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "02 · Where and whenPhotos without context disappear. A country and a year is enough.CountryCity or layover (optional)When (year)Trip type (optional)Caption (one sentence)Renders below the photo in the gallery. Optional but earns the like.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee62675868d",
+    "c09ceb51-0ee9-0a93-6196-eee62675868f",
+    "c09ceb51-0ee9-0a93-6196-eee6267586b5",
+    "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   ]
+  },
+  "role:fieldset-pet": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c8"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "03 · Tag the bestie (optional)If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.Pet along",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586c0",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c2",
+    "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   ]
+  },
+  "role:fieldset-credit": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "type": "DOM",
+   "tag": "fieldset",
+   "classes": [
+    "tll-pen-fieldset"
+   ],
+   "text": "04 · Your creditEach photo gets the same credit + syndication rules unless you submit separately.CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)05 · Three promises · ticked separately, never pre-tickedThis is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.",
+   "attributes": {
+    "class": "tll-pen-fieldset"
+   },
+   "settings": {
+    "tag": "fieldset",
+    "visibility": true,
+    "dom": {
+     "tag": "fieldset"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758710"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586cb",
+    "c09ceb51-0ee9-0a93-6196-eee6267586cd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586dd",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fd",
+    "455964ef-6e78-0828-ec2c-424e20792f04",
+    "c09ceb51-0ee9-0a93-6196-eee626758707",
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c65",
+    "b9a53739-8caf-1642-ee38-bb1977503e94"
+   ]
+  },
+  "role:promises-label": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "455964ef-6e78-0828-ec2c-424e20792f04"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-legend"
+   ],
+   "text": "05 · Three promises · ticked separately, never pre-ticked",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    4
+   ],
+   "children": [
+    "455964ef-6e78-0828-ec2c-424e20792f03"
+   ]
+  },
+  "role:promise-1": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758707"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "This is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "This is my photograph.I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the Community Guidelines."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    5
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586ff",
+    "c09ceb51-0ee9-0a93-6196-eee626758706"
+   ]
+  },
+  "role:promise-2": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "912e62a0-8170-13ca-1a16-9abcb1ea0c65"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "I have read the license and I agree.I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    6
+   ],
+   "children": [
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c60",
+    "912e62a0-8170-13ca-1a16-9abcb1ea0c64"
+   ]
+  },
+  "role:promise-3": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "b9a53739-8caf-1642-ee38-bb1977503e94"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field",
+    "tll-pen-field-inline"
+   ],
+   "text": "If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "If a person is the clear subject, they are fine with it being published.Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    7
+   ],
+   "children": [
+    "b9a53739-8caf-1642-ee38-bb1977503e8f",
+    "b9a53739-8caf-1642-ee38-bb1977503e93"
+   ]
+  },
+  "role:drop-zone": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758688"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-photos-drop"
+   ],
+   "text": "+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit.",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "+Drag photos hereor click to choose from your computerPhone-shot is fine. We crop to fit."
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868a"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758680",
+    "c09ceb51-0ee9-0a93-6196-eee626758682",
+    "c09ceb51-0ee9-0a93-6196-eee626758684",
+    "c09ceb51-0ee9-0a93-6196-eee626758686",
+    "c09ceb51-0ee9-0a93-6196-eee626758687"
+   ]
+  },
+  "role:story-grid": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b5"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-grid-2"
+   ],
+   "text": "CountryCity or layover (optional)When (year)Trip type (optional)",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee626758693",
+    "c09ceb51-0ee9-0a93-6196-eee626758697",
+    "c09ceb51-0ee9-0a93-6196-eee62675869b",
+    "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   ]
+  },
+  "role:credit-label": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586dd"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "CreditNamed (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586cf",
+    "c09ceb51-0ee9-0a93-6196-eee6267586dc"
+   ]
+  },
+  "role:radios-row": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586dc"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-radios"
+   ],
+   "text": "Named (my name + avatar in the byline)Pen name onlyAnonymous Traveler (no name, off the map)",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586dd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    2,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586d3",
+    "c09ceb51-0ee9-0a93-6196-eee6267586d7",
+    "c09ceb51-0ee9-0a93-6196-eee6267586db"
+   ]
+  },
+  "role:syndication-label": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fd"
+   },
+   "type": "FormBlockLabel",
+   "tag": "label",
+   "classes": [
+    "tll-pen-field"
+   ],
+   "text": "SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)",
+   "attributes": {},
+   "settings": {
+    "visibility": true,
+    "resolved": {
+     "domId": "",
+     "attributes": [],
+     "innerText": "SyndicationTLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758709"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586df",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fc"
+   ]
+  },
+  "role:checkboxes-row": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fc"
+   },
+   "type": "Block",
+   "tag": "div",
+   "classes": [
+    "tll-pen-checkboxes"
+   ],
+   "text": "TLL Instagram and LinkedInOK to post on TLL socialHomepage rotationOK to include in the Home rotation galleryPress and partner featuresOK for press to license this photo (we'll ask first)",
+   "attributes": {},
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fd"
+   },
+   "path": [
+    1,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    1
+   ],
+   "children": [
+    "c09ceb51-0ee9-0a93-6196-eee6267586ed",
+    "c09ceb51-0ee9-0a93-6196-eee6267586f4",
+    "c09ceb51-0ee9-0a93-6196-eee6267586fb"
+   ]
+  },
+  "role:nav-instance": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "15e68853-eb99-83f4-99b6-17ff57426d10"
+   },
+   "type": "ComponentInstance",
+   "tag": null,
+   "classes": [],
+   "text": "",
+   "attributes": {},
+   "settings": {},
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+    "name": "TLL Nav v1",
+    "props": [],
+    "slots": []
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "6a0dfca3f9fa5b751d15425d"
+   },
+   "path": [
+    0
+   ],
+   "children": []
+  },
+  "role:footer-instance": {
+   "id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "dde4d172-8ff0-ac13-4be0-648d1b2cfbca"
+   },
+   "type": "ComponentInstance",
+   "tag": null,
+   "classes": [],
+   "text": "",
+   "attributes": {},
+   "settings": {},
+   "instanceDetails": {
+    "type": "ComponentInstance",
+    "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+    "name": "TLL Site Footer",
+    "props": [],
+    "slots": []
+   },
+   "parent": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "6a0dfca3f9fa5b751d15425d"
+   },
+   "path": [
+    2
+   ],
+   "children": []
+  }
+ },
+ "form_records": [
+  {
+   "id": "6a0dfd649a488acac67dd773",
+   "siteDomainId": "6a0de97be677e4daf81431cc",
+   "lastUpdated": "2026-10-13T05:47:06.622Z"
+  },
+  {
+   "id": "6a0dfd639a488acac67dd65d",
+   "siteDomainId": "6a0de979e677e4daf8143190",
+   "lastUpdated": "2026-10-13T05:47:06.211Z"
+  }
+ ],
+ "page_code": {
+  "head": "page-head.html",
+  "footer": "page-footer.html",
+  "tll_form_fix_byte_range": [
+   0,
+   1525
+  ],
+  "footer_total_bytes": 1525,
+  "page_scripts": [
+   "tllgateflashv1@1.0.0 header"
+  ]
+ }
+}
