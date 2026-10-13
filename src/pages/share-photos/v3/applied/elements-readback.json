@@ -1,0 +1,584 @@
+{
+ "page_id": "6a0dfca3f9fa5b751d154257",
+ "site_id": "69d6145cf421c777840c1e25",
+ "read_at": "2026-10-13",
+ "source": "Webflow MCP readback after all staged writes: get_all_elements depth -1, query_elements, get_attributes, get_settings query_settings / all_resolved_settings, get_page_freeform_code, get_page_scripts. Nothing published.",
+ "text_ops": [
+  {
+   "op": 2,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758670",
+   "type": "Block",
+   "before": "· The Layover Lounge · Member-gated ·",
+   "expected": "The Layover Lounge",
+   "readback": "The Layover Lounge",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 3,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675867c",
+   "type": "DOM",
+   "before": "01 · Your photos",
+   "expected": "Your photos",
+   "readback": "Your photos",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 4,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675868d",
+   "type": "DOM",
+   "before": "02 · Where and when",
+   "expected": "The story",
+   "readback": "The story",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 5,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586cb",
+   "type": "DOM",
+   "before": "04 · Your credit",
+   "expected": "Your credit",
+   "readback": "Your credit",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 6,
+   "element": "455964ef-6e78-0828-ec2c-424e20792f04",
+   "type": "Block",
+   "before": "05 · Three promises · ticked separately, never pre-ticked",
+   "expected": "Three promises · ticked separately, never pre-ticked",
+   "readback": "Three promises · ticked separately, never pre-ticked",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 7,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675867e",
+   "type": "Paragraph",
+   "before": "Up to 12 at a time. JPG or WebP.",
+   "expected": "Up to 12 at a time. JPG or WebP, 25MB each at most.",
+   "readback": "Up to 12 at a time. JPG or WebP, 25MB each at most.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 8,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758680",
+   "type": "Block",
+   "before": "+",
+   "expected": "↑",
+   "readback": "↑",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 9,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758682",
+   "type": "Block",
+   "before": "Drag photos here",
+   "expected": "Drag photos here or tap to choose",
+   "readback": "Drag photos here or tap to choose",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 10,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758684",
+   "type": "Block",
+   "before": "or click to choose from your computer",
+   "expected": "Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram.",
+   "readback": "Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram.",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 11,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675868f",
+   "type": "Paragraph",
+   "before": "Photos without context disappear. A country and a year is enough.",
+   "expected": "Photos without a place disappear. A country is enough, a city is better.",
+   "readback": "Photos without a place disappear. A country is enough, a city is better.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 12,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758691",
+   "type": "Span",
+   "before": "Country",
+   "expected": "Where is this?",
+   "readback": "Where is this?",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 13,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586b7",
+   "type": "Span",
+   "before": "Caption (one sentence)",
+   "expected": "What was happening?",
+   "readback": "What was happening?",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 14,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586ba",
+   "type": "Span",
+   "before": "Renders below the photo in the gallery. Optional but earns the like.",
+   "expected": "One line is plenty. It is the first thing people read, and the funny ones do well.",
+   "readback": "One line is plenty. It is the first thing people read, and the funny ones do well.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 15,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758695",
+   "type": "Span",
+   "before": "City or layover (optional)",
+   "expected": "City or layover",
+   "readback": "City or layover",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 16,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758699",
+   "type": "Span",
+   "before": "When (year)",
+   "expected": "Year",
+   "readback": "Year",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 17,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675869d",
+   "type": "Span",
+   "before": "Trip type (optional)",
+   "expected": "Trip type",
+   "readback": "Trip type",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 18,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586c0",
+   "type": "DOM",
+   "before": "03 · Tag the bestie (optional)",
+   "expected": "Pet in the shot?",
+   "readback": "Pet in the shot?",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 19,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586c2",
+   "type": "Paragraph",
+   "before": "If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.",
+   "expected": "Tag them and the photo lands on their Paw Passport too.",
+   "readback": "Tag them and the photo lands on their Paw Passport too.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 20,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586c4",
+   "type": "Span",
+   "before": "Pet along",
+   "expected": "Their name",
+   "readback": "Their name",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 21,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586cd",
+   "type": "Paragraph",
+   "before": "Each photo gets the same credit + syndication rules unless you submit separately.",
+   "expected": "One credit for the whole batch. Want different credits? Send them as separate batches.",
+   "readback": "One credit for the whole batch. Want different credits? Send them as separate batches.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 22,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586d2",
+   "type": "Span",
+   "before": "Named (my name + avatar in the byline)",
+   "expected": "My name",
+   "readback": "My name",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 23,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586da",
+   "type": "Span",
+   "before": "Anonymous Traveler (no name, off the map)",
+   "expected": "Anonymous Traveler",
+   "readback": "Anonymous Traveler",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 24,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586df",
+   "type": "Span",
+   "before": "Syndication",
+   "expected": "Unticked means the Lounge only. Say yes to any of these.",
+   "readback": "Unticked means the Lounge only. Say yes to any of these.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 25,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586e9",
+   "type": "FormInlineLabel",
+   "before": "TLL Instagram and LinkedIn",
+   "expected": "On our Instagram and LinkedIn, with the same credit line",
+   "readback": "On our Instagram and LinkedIn, with the same credit line",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 26,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586f0",
+   "type": "FormInlineLabel",
+   "before": "Homepage rotation",
+   "expected": "On the homepage, in the rotating set",
+   "readback": "On the homepage, in the rotating set",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 27,
+   "element": "c09ceb51-0ee9-0a93-6196-eee6267586f7",
+   "type": "FormInlineLabel",
+   "before": "Press and partner features",
+   "expected": "Offered to press and partners. We ask you first, every time.",
+   "readback": "Offered to press and partners. We ask you first, every time.",
+   "match": true,
+   "route": "set_settings key text (plan primary)"
+  },
+  {
+   "op": 28,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675870d",
+   "type": "Span",
+   "before": "A human reviews every photo before it goes up.",
+   "expected": "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.",
+   "readback": "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  },
+  {
+   "op": 29,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758712",
+   "type": "Block",
+   "before": "Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.",
+   "expected": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+   "readback": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 30,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758715",
+   "type": "Block",
+   "before": "That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "expected": "That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand.",
+   "readback": "That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand.",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 31,
+   "element": "c09ceb51-0ee9-0a93-6196-eee62675871b",
+   "type": "Block",
+   "before": "· The Lounge ·",
+   "expected": "The Layover Lounge",
+   "readback": "The Layover Lounge",
+   "match": true,
+   "route": "set_text refused ('This element doesn't support text'); plan alternate set_settings key text applied"
+  },
+  {
+   "op": 32,
+   "element": "c09ceb51-0ee9-0a93-6196-eee626758722",
+   "type": "Paragraph",
+   "before": "Photos that don't need a full story. Free to share forever.",
+   "expected": "A photo, not an essay. Three short steps, and a human on the other end.",
+   "readback": "A photo, not an essay. Three short steps, and a human on the other end.",
+   "match": true,
+   "route": "set_text (plan primary)"
+  }
+ ],
+ "input_settings": {
+  "c09ceb51-0ee9-0a93-6196-eee626758687": {
+   "name": "photos",
+   "type": "file",
+   "domId": "photos-upload",
+   "required": true,
+   "required_before": false,
+   "attributes": {
+    "accept": "image/*",
+    "multiple": ""
+   },
+   "placeholder_setting_exposed": false,
+   "accept_setting_exposed": false,
+   "ops": [
+    33,
+    40,
+    41
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee62675869a": {
+   "name": "year",
+   "type": "number",
+   "domId": "field",
+   "required": false,
+   "required_before": true,
+   "attributes": {
+    "min": "1990",
+    "max": "2030"
+   },
+   "placeholder_setting_exposed": false,
+   "ops": [
+    36,
+    39
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee626758692": {
+   "name": "country",
+   "type": "text",
+   "domId": "field",
+   "required": true,
+   "placeholder_setting_exposed": false,
+   "ops": [
+    34
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee626758696": {
+   "name": "city",
+   "type": "text",
+   "domId": "field",
+   "required": false,
+   "placeholder_setting_exposed": false,
+   "ops": [
+    35
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee6267586b8": {
+   "name": "caption",
+   "type": "text",
+   "domId": "field",
+   "required": false,
+   "placeholder_setting_exposed": false,
+   "ops": [
+    37
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee6267586c5": {
+   "name": "pets-along",
+   "type": "text",
+   "domId": "field",
+   "required": false,
+   "placeholder_setting_exposed": false,
+   "ops": [
+    38
+   ]
+  }
+ },
+ "form": {
+  "c09ceb51-0ee9-0a93-6196-eee626758710": {
+   "name": "Html Form",
+   "method": "get",
+   "action": "",
+   "redirect": "",
+   "state": "normal",
+   "attributes": {
+    "data-tll-form": "share-photos",
+    "data-ms-member-bound": "true",
+    "enctype": "multipart/form-data"
+   },
+   "unchanged": true
+  }
+ },
+ "gate_blocks": {
+  "c09ceb51-0ee9-0a93-6196-eee62675872a": {
+   "data-ms-content": "anonymous"
+  },
+  "c09ceb51-0ee9-0a93-6196-eee626758719": {
+   "data-ms-content": "members"
+  },
+  "c09ceb51-0ee9-0a93-6196-eee626758728": {
+   "children_in_order": [
+    "c09ceb51-0ee9-0a93-6196-eee62675871b",
+    "c09ceb51-0ee9-0a93-6196-eee626758720",
+    "c09ceb51-0ee9-0a93-6196-eee626758722",
+    "9dca8b83-be4e-9cb3-b47c-bf75993d332f",
+    "c09ceb51-0ee9-0a93-6196-eee626758727",
+    "df5c25f8-a40d-f5e9-28a1-972caede8b16"
+   ]
+  },
+  "c09ceb51-0ee9-0a93-6196-eee626758727": {
+   "children": [
+    {
+     "id": "c09ceb51-0ee9-0a93-6196-eee626758724",
+     "text": "Log in",
+     "href": "/login"
+    },
+    {
+     "id": "c09ceb51-0ee9-0a93-6196-eee626758726",
+     "text": "Join the Travelers",
+     "href": "/signup"
+    }
+   ],
+   "unchanged": true
+  }
+ },
+ "new_elements": {
+  "op42": {
+   "id": "9dca8b83-be4e-9cb3-b47c-bf75993d332f",
+   "type": "Block",
+   "styleNames": [
+    "tll-photos-preview"
+   ],
+   "position": "after c09ceb51-0ee9-0a93-6196-eee626758722",
+   "children": [
+    {
+     "id": "c51b3609-1628-6af4-e589-9f85aec54197",
+     "styleNames": [
+      "tll-photos-preview-row"
+     ],
+     "children": [
+      {
+       "id": "e817ae92-1712-e8ab-28d0-b9faba795499",
+       "type": "Block (TextBlock)",
+       "styleNames": [
+        "tll-photos-preview-word"
+       ],
+       "text": "Drop"
+      },
+      {
+       "id": "53b3cdf8-3cfe-3f3b-e40f-5130b2748d4f",
+       "type": "Paragraph",
+       "styleNames": [
+        "tll-photos-preview-text"
+       ],
+       "text": "Up to 12 photos, straight from your camera roll."
+      }
+     ]
+    },
+    {
+     "id": "a3ed32e5-e094-bd50-6dd9-d9eda4e049c1",
+     "styleNames": [
+      "tll-photos-preview-row"
+     ],
+     "children": [
+      {
+       "id": "dd708eba-8d73-50fd-0991-b132f61b1903",
+       "type": "Block (TextBlock)",
+       "styleNames": [
+        "tll-photos-preview-word"
+       ],
+       "text": "Where"
+      },
+      {
+       "id": "01142e0c-16bc-a82f-3df3-1db5d355f7bd",
+       "type": "Paragraph",
+       "styleNames": [
+        "tll-photos-preview-text"
+       ],
+       "text": "A country is enough. Add a caption if you feel like it."
+      }
+     ]
+    },
+    {
+     "id": "9c23d5b1-9886-84d8-15b1-869e575158f0",
+     "styleNames": [
+      "tll-photos-preview-row"
+     ],
+     "children": [
+      {
+       "id": "07e61a6d-eae6-34eb-8453-87f4f7a402fe",
+       "type": "Block (TextBlock)",
+       "styleNames": [
+        "tll-photos-preview-word"
+       ],
+       "text": "Send"
+      },
+      {
+       "id": "61a58c85-f44b-57c3-74a3-431417fee985",
+       "type": "Paragraph",
+       "styleNames": [
+        "tll-photos-preview-text"
+       ],
+       "text": "Three promises about rights, your credit the way you want it, and a human looks at it before it goes up."
+      }
+     ]
+    },
+    {
+     "id": "0ef4e58b-b777-b955-d99a-bca3cd650215",
+     "type": "Paragraph",
+     "styleNames": [
+      "tll-photos-public-line"
+     ],
+     "text": "Every photo in the Lounge was taken by a member and sent with their permission."
+    }
+   ]
+  },
+  "op43": {
+   "id": "df5c25f8-a40d-f5e9-28a1-972caede8b16",
+   "type": "Block (TextBlock)",
+   "styleNames": [
+    "tll-photos-age"
+   ],
+   "position": "after c09ceb51-0ee9-0a93-6196-eee626758727",
+   "text": "Free. Travelers are 16 and older."
+  }
+ },
+ "styles_created": {
+  "tll-photos-preview": "ddbc64c0-3279-99cb-7c63-1d7db7378105",
+  "tll-photos-preview-row": "8c6e26d4-2f53-8030-49b4-dfd822aed752",
+  "tll-photos-preview-word": "690d1303-56a1-59f1-93a9-35c2c31b1edf",
+  "tll-photos-preview-text": "8697f4a8-b61a-ca2f-c5a5-a8588aaeb45c",
+  "tll-photos-public-line": "d3d563df-19f8-0b30-7011-24f8305a364a",
+  "tll-photos-age": "8aeb2848-2de8-0ea2-726b-62a2d51bed77",
+  "note": "empty global classes (no properties); all styling comes from the page footer block tll-photos-v3"
+ },
+ "page_code": {
+  "footer": {
+   "readback_file": "applied/page-footer-readback.html",
+   "bytes": 48180,
+   "sha256": "464d1b35c90c614d7881de6ef9a3e1d67864962e261c70970545fc8aae785520",
+   "identical_to_sent": true
+  },
+  "head": {
+   "content": "<meta name=\"robots\" content=\"noindex, follow\">",
+   "unchanged": true
+  },
+  "page_scripts": {
+   "applied": [
+    "tllgateflashv1 1.0.0 header"
+   ],
+   "lastUpdated": "2026-09-28T07:39:01.617Z",
+   "unchanged": true
+  }
+ },
+ "protected_lines_seen_verbatim": [
+  "Submit your shot.",
+  "Real photos from real places. No filters, no stock, no staging. If you were there, it counts.",
+  "Phone-shot is fine. We crop to fit.",
+  "This is my photograph.",
+  "I have read the license and I agree.",
+  "If a person is the clear subject, they are fine with it being published.",
+  "Sign in to drop your photos.",
+  "Log in",
+  "Join the Travelers",
+  "← The Layover Lounge (href /gallery)"
+ ],
+ "all_text_matches_plan": true
+}

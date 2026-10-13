@@ -1,0 +1,1018 @@
+{
+"84f7180f-55ed-58aa-e3a0-fb2372350238": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<style id=\"tll-home3-v1\">\n/* TLL Home 3.0 (10 Oct 2026, from TLL Site Prototype 3.0 + Nancy's 9 Oct feedback). Tokens from tll-system.css v1.\n   Every class starts with h3-. Old home sections are hidden in the Designer, not deleted. Heading classes contain \"-title\"\n   so the site-wide h2 size rule leaves them alone. */\n:root{--h3-ink:#0A0B14;--h3-ink2:#16182a;--h3-line-d:#23263c;--h3-cream:#F7F1E8;--h3-paper:#FDF9F3;--h3-line:#E0DACE;--h3-text2:#3a3a3a;--h3-muted:#6B6660;--h3-teal:#00C9C8;--h3-teal-d:#067A79;--h3-rose:#F0507A;--h3-rose-t:#C8325B;--h3-rose-b:#D63859;--h3-head:'Playfair Display',Georgia,serif;--h3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;--h3-mono:'JetBrains Mono',ui-monospace,monospace;--h3-g:clamp(20px,5vw,72px);--h3-ease:cubic-bezier(.23,1,.32,1)}\n.h3 *,.h3 *::before,.h3 *::after{box-sizing:border-box}\n.h3{font-family:var(--h3-body);color:var(--h3-ink);-webkit-font-smoothing:antialiased}\n.h3-in{max-width:1240px;margin:0 auto}\n.h3-sec{padding:clamp(72px,12vh,144px) var(--h3-g)}\n.h3-dark{background:var(--h3-ink);color:var(--h3-cream)}\n.h3-cream{background:var(--h3-cream)}\n.h3-ey{font-family:var(--h3-mono);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--h3-teal-d);margin:0 0 18px}\n.h3-dark .h3-ey{color:var(--h3-teal)}\n.h3 [class*=\"h3-title\"]{font-family:var(--h3-head)!important;font-weight:800!important;letter-spacing:-.03em;margin:0;text-wrap:balance}\n.h3 [class*=\"h3-title\"] em{font-style:italic;color:var(--h3-rose)}\n.h3-title-xl{font-size:clamp(44px,7vw,112px)!important;line-height:.95!important}\n.h3-title-l{font-size:clamp(36px,5.2vw,80px)!important;line-height:.98!important}\n.h3-title-m{font-size:clamp(28px,3.4vw,48px)!important;line-height:1.04!important}\n.h3-lede{font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--h3-text2);max-width:46ch;margin:22px 0 0}\n.h3-dark .h3-lede{color:#cfcbc4}\n.h3-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}\n.h3-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1.5px solid transparent;font-family:var(--h3-body);font-size:16px;font-weight:700;letter-spacing:0;text-decoration:none!important;white-space:nowrap;cursor:pointer;transition:background-color 150ms ease,color 150ms ease,border-color 150ms ease,transform 100ms var(--h3-ease)}\n.h3-btn:active{transform:scale(.97)}\n.h3-btn-rose{background:var(--h3-rose-b);color:#fff!important}\n.h3-btn-rose:hover{background:#B82C4B}\n.h3-btn-ink{background:var(--h3-ink);color:var(--h3-cream)!important}\n.h3-btn-ink:hover{background:#23263c}\n.h3-btn-line{border-color:currentColor;color:var(--h3-cream)!important;background:transparent}\n.h3-btn-line:hover{background:rgba(247,241,232,.1)}\n.h3-btn-line.h3-on-light{color:var(--h3-ink)!important}\n.h3-btn-line.h3-on-light:hover{background:rgba(10,11,20,.06)}\n.h3-note{font-family:var(--h3-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9496AC}\n.h3 a:focus-visible,.h3 button:focus-visible,.h3 input:focus-visible{outline:3px solid var(--h3-ink)!important;outline-offset:2px!important;box-shadow:0 0 0 6px var(--h3-teal)!important}\n.h3-dark a:focus-visible,.h3-dark button:focus-visible{outline-color:var(--h3-cream)!important}\n.h3-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}\n\n/* Hero: the live hero keeps its photo, eyebrow, h1 and sub line. Four actions, side line, coordinates, scroll cue. */\n[data-h3-hero]{position:relative}\n[data-h3-hero] .h3-hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;position:relative;z-index:3}\n.h3-hero-side{position:absolute;left:clamp(10px,1.6vw,22px);top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--h3-mono);font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(247,241,232,.72);z-index:3;pointer-events:none;white-space:nowrap}\n.h3-hero-coords{position:absolute;right:var(--h3-g);top:clamp(88px,12vh,140px);text-align:right;font-family:var(--h3-mono);font-size:11px;line-height:1.7;letter-spacing:.2em;color:rgba(247,241,232,.85);z-index:3;margin:0}\n.h3-hero-coords b{color:var(--h3-teal);font-weight:600}\n.h3-hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--h3-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,241,232,.72);z-index:3;margin:0;white-space:nowrap}\n@media(max-width:899px){.h3-hero-side,.h3-hero-scroll{display:none}.h3-hero-coords{top:auto;bottom:16px;font-size:10px}[data-h3-hero] .h3-hero-cta .h3-btn{flex:1 1 calc(50% - 6px);padding:0 12px;font-size:15px}}\n\n/* Chapter 01: intro, chips, pinned sideways shelf */\n.h3-intro{padding-bottom:clamp(32px,5vh,56px)}\n.h3-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}\n@media(max-width:599px){.h3-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:calc(-1*var(--h3-g));margin-right:calc(-1*var(--h3-g));padding:0 var(--h3-g) 4px}.h3-chips::-webkit-scrollbar{display:none}.h3-chip{flex:0 0 auto}}\n.h3-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--h3-ink);background:transparent;color:var(--h3-ink);font-family:var(--h3-mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background-color 150ms ease,color 150ms ease}\n.h3-chip:hover{background:rgba(10,11,20,.06)}\n.h3-chip[aria-pressed=\"true\"]{background:var(--h3-ink);color:var(--h3-cream)}\n.h3-shelf{position:relative;background:var(--h3-cream)}\n.h3-shelf-pin{padding:0 0 clamp(48px,8vh,96px)}\n.h3-shelf-head{padding:0 var(--h3-g)}\n.h3-title-shelf{font-size:clamp(64px,13vw,220px)!important;line-height:.86!important;letter-spacing:-.05em!important}\n.h3-shelf-row{display:flex;align-items:flex-start;gap:clamp(24px,4vw,64px);margin-top:clamp(24px,4vh,48px);padding-left:var(--h3-g)}\n.h3-shelf-note{flex:0 0 clamp(150px,16vw,240px);font-family:var(--h3-mono);font-size:10.5px;line-height:1.7;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-muted);padding-top:12px}\n.h3-track{display:flex;gap:clamp(20px,2.6vw,40px);padding-right:var(--h3-g);will-change:transform}\n.h3-card{flex:0 0 clamp(260px,26vw,380px);display:block;color:var(--h3-ink)!important;text-decoration:none!important}\n.h3-card[hidden]{display:none}\n.h3-card-ph{position:relative;aspect-ratio:4/5;background:var(--h3-ink);overflow:hidden}\n.h3-card:nth-child(odd) .h3-card-ph{transform:rotate(-.8deg)}\n.h3-card:nth-child(even) .h3-card-ph{transform:rotate(.9deg)}\n.h3-card-ph img{width:100%;height:100%;object-fit:cover;display:block}\n.h3-card-tag{position:absolute;left:12px;top:12px;background:var(--h3-ink);color:var(--h3-cream);font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n.h3-card-title{font-family:var(--h3-head);font-weight:800;font-size:clamp(21px,1.8vw,28px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 0;text-wrap:balance;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;text-underline-offset:6px;transition:text-decoration-color 150ms ease-out}\n@media(hover:hover){.h3-card:hover .h3-card-title{text-decoration-color:var(--h3-ink)}}\n.h3-card:focus-visible .h3-card-title{text-decoration-color:var(--h3-ink)}\n.h3-card-meta{font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-muted);margin:10px 0 0}\n.h3-card-by{display:flex;align-items:center;gap:8px;margin:10px 0 0;font-size:14px;color:var(--h3-muted)}\n.h3-card-by img{width:26px;height:26px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1.5px var(--h3-rose)}\n.h3-card-by b{color:var(--h3-ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--h3-teal-d);text-underline-offset:3px}\n.h3-shelf-empty{font-family:var(--h3-head);font-weight:800;font-size:24px;padding:40px 0}\n.h3-shelf-all{display:inline-block;margin:28px var(--h3-g) 0;font-family:var(--h3-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal-d)!important}\n/* pinned mode, set by script on wide screens with motion allowed */\n.h3-shelf.is-pinned .h3-shelf-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-bottom:0}\n.h3-shelf.is-pinned .h3-shelf-all{display:none}\n/* narrow or reduced motion: a swipeable row */\n.h3-shelf:not(.is-pinned) .h3-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:12px}\n.h3-shelf:not(.is-pinned) .h3-card{scroll-snap-align:start}\n@media(max-width:899px){.h3-shelf-row{flex-direction:column;gap:16px}.h3-shelf-note{flex:none;padding-top:0}.h3-track{width:100%}.h3-card{flex-basis:78vw}}\n\n/* Search it (the live form, restyled) */\n[data-h3=\"search\"]{background:var(--h3-cream)!important;padding:clamp(56px,9vh,112px) var(--h3-g)!important}\n[data-h3=\"search\"] > div{max-width:1240px!important;margin:0 auto!important;padding:0!important}\n.h3-search-head p:not(.h3-ey){font-size:17px;line-height:1.55;color:var(--h3-text2);max-width:52ch;margin:0 0 18px}\n[data-h3=\"search\"] .w-form:has(#Search-the-library){margin:0!important;max-width:none!important;width:100%!important}\n[data-h3=\"search\"] form:has(#Search-the-library){display:flex!important;align-items:flex-end!important;gap:16px!important;background:transparent!important;border:0!important;border-bottom:3px solid var(--h3-ink)!important;border-radius:0!important;padding:0 0 12px!important;max-width:none!important;box-shadow:none!important}\n[data-h3=\"search\"] #Search-the-library{flex:1 1 auto!important;width:auto!important;min-width:0!important;height:auto!important;border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;margin:0!important;font-family:var(--h3-head)!important;font-weight:800!important;font-size:clamp(28px,4.6vw,72px)!important;line-height:1.1!important;letter-spacing:-.02em!important;color:var(--h3-ink)!important}\n[data-h3=\"search\"] #Search-the-library::placeholder{color:#6B6A72!important;font-size:.82em!important}\n[data-h3=\"search\"] #Search-the-library:focus{outline:0!important;box-shadow:none!important}\n[data-h3=\"search\"] form:has(#Search-the-library):focus-within{box-shadow:inset 0 -2px 0 var(--h3-ink)!important}\n[data-h3=\"search\"] form:has(#Search-the-library) input[type=submit]{flex:0 0 auto!important;width:auto!important;height:auto!important;min-height:44px!important;line-height:1!important;padding:14px 18px!important;border-radius:0!important;background:var(--h3-rose)!important;color:var(--h3-ink)!important;font-family:var(--h3-mono)!important;font-size:12px!important;font-weight:700!important;letter-spacing:.18em!important;text-transform:uppercase!important;margin:0 0 4px!important}\n[data-h3=\"search\"] form:has(#Search-the-library) input[type=submit]:hover{background:var(--h3-rose-b)!important;color:#fff!important}\n.h3-try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px}\n.h3-try span{font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-muted);margin-right:4px}\n.h3-try a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1.5px solid var(--h3-ink);border-radius:999px;font-family:var(--h3-mono);font-size:11px;color:var(--h3-ink)!important;text-decoration:none!important}\n.h3-try a:hover{background:var(--h3-ink);color:var(--h3-cream)!important}\n@media(max-width:600px){[data-h3=\"search\"] form:has(#Search-the-library){flex-wrap:wrap!important}[data-h3=\"search\"] form:has(#Search-the-library) input[type=submit]{width:100%!important}}\n\n/* Chapter 02: contributors */\n.h3-c2{position:relative;overflow:hidden}\n.h3-c2 .h3-title-xl{font-size:clamp(56px,10vw,168px)!important;line-height:.9!important}\n.h3-c2-sub{font-family:var(--h3-head);font-weight:800;font-size:clamp(26px,3vw,40px);line-height:1.12;letter-spacing:-.01em;margin:clamp(36px,6vh,64px) 0 0;max-width:20ch}\n.h3-c2-sub em{color:var(--h3-teal);font-style:italic}\n.h3-tag{position:absolute;right:var(--h3-g);top:clamp(56px,9vh,96px);width:clamp(200px,20vw,260px);background:var(--h3-cream);color:var(--h3-ink);padding:18px 20px 16px 22px;border-radius:6px 16px 16px 6px;transform:rotate(8deg);box-shadow:0 18px 40px rgba(0,0,0,.35)}\n.h3-tag::before{content:\"\";position:absolute;left:12px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--h3-ink)}\n.h3-tag-k{font-family:var(--h3-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--h3-teal-d);margin:0 0 8px 16px}\n.h3-tag-r{font-family:var(--h3-head);font-weight:800;font-size:28px;line-height:1;margin:0}\n.h3-tag-r em{display:block;color:var(--h3-rose-t);font-style:italic;font-family:'Playfair Display',Georgia,serif}\n.h3-tag-d{font-family:var(--h3-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-muted);margin:10px 0 0}\n@media(max-width:899px){.h3-tag{position:relative;right:auto;top:auto;margin:0 0 32px auto;transform:rotate(4deg)}}\n\n/* Chapter 03: passport */\n.h3-c3-num{display:flex;align-items:flex-start;gap:6px;font-family:var(--h3-head);font-weight:800;line-height:.82;margin:0 0 24px}\n.h3-c3-num b{font-size:clamp(140px,22vw,320px);letter-spacing:-.06em;color:var(--h3-ink)}\n.h3-c3-num span{font-size:clamp(40px,5vw,76px);color:var(--h3-rose-t);margin-top:.3em;letter-spacing:-.03em}\n\n/* Chapter 04: the map */\n.h3-c4-grid > *{min-width:0}\n.h3-c4-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:20px;margin-top:40px}\n.h3-map{position:relative;background:var(--h3-ink2);aspect-ratio:96/47;min-width:0}\n.h3-map svg{display:block;width:100%;height:100%}\n.h3-map path{fill:#2a2d45;stroke:#0A0B14;stroke-width:.5;transition:fill 150ms ease}\n.h3-map path.is-filed{fill:var(--h3-rose);cursor:pointer}\n.h3-map path.is-filed:hover,.h3-map path.is-on{fill:var(--h3-cream)}\n.h3-map path.is-mine{fill:var(--h3-teal)}\n.h3-map-msg{position:absolute;inset:auto 16px 16px 16px;margin:0;font-size:15px;color:var(--h3-cream);background:rgba(10,11,20,.86);padding:12px 14px}\n.h3-map-msg a{color:var(--h3-teal)!important}\n.h3-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-family:var(--h3-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#cfcbc4}\n.h3-legend i{display:inline-block;width:14px;height:10px;margin-right:8px;vertical-align:middle;background:var(--h3-rose)}\n.h3-legend i.o{background:#2a2d45;outline:1px solid #4a4d63}\n.h3-legend i.m{background:var(--h3-teal)}\n.h3-toggle{display:inline-flex;gap:4px;padding:4px;background:var(--h3-ink2);border-radius:999px;margin-top:28px}\n.h3-toggle button{min-height:40px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:#cfcbc4;font-family:var(--h3-mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}\n.h3-toggle button[aria-pressed=\"true\"]{background:var(--h3-rose);color:var(--h3-ink)}\n.h3-mcard{background:var(--h3-cream);color:var(--h3-ink);display:flex;flex-direction:column;align-self:start}\n.h3-mcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}\n.h3-mcard-b{padding:16px 18px 18px}\n.h3-mcard-k{font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal-d);margin:0 0 8px}\n.h3-mcard-t{font-family:var(--h3-head);font-weight:800;font-size:21px;line-height:1.12;margin:0 0 14px}\n.h3-mcard-f{display:flex;align-items:center;justify-content:space-between;gap:12px}\n.h3-mcard-f span{font-family:var(--h3-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--h3-muted)}\n.h3-filed{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:28px;padding-top:18px;border-top:1px solid var(--h3-line-d)}\n.h3-filed ul{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;margin:0;padding:0;align-items:center}\n.h3-filed li:first-child{font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#9496AC}\n.h3-filed button{background:none;border:0;padding:6px 0;color:var(--h3-cream);font:inherit;font-size:15px;text-decoration:underline;text-decoration-color:var(--h3-teal);text-underline-offset:4px;cursor:pointer}\n.h3-open{color:var(--h3-rose)!important;font-size:16px;text-decoration:none!important}\n.h3-open:hover{text-decoration:underline!important}\n.h3-gets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin:56px 0 0;padding:0;list-style:none;border-top:1px solid var(--h3-line-d)}\n.h3-gets li{padding-top:18px}\n.h3-gets b{display:block;font-family:var(--h3-mono);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal);margin-bottom:8px}\n.h3-gets span{font-size:15px;line-height:1.45;color:#cfcbc4}\n@media(max-width:899px){.h3-c4-grid{grid-template-columns:1fr}.h3-gets{grid-template-columns:1fr 1fr}}\n@media(max-width:520px){.h3-gets{grid-template-columns:1fr}}\n\n/* Chapter 05: Paw Passport */\n.h3-c5{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--h3-ink);min-height:min(92vh,880px)}\n.h3-c5-ph{position:relative;margin:0;overflow:hidden;background:#1a1d30}\n.h3-c5-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}\n.h3-c5-ph figcaption{position:absolute;left:16px;bottom:16px;font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-cream);background:rgba(10,11,20,.72);padding:6px 10px}\n.h3-c5-panel{background:var(--h3-rose);color:var(--h3-ink);display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,8vw,112px) clamp(28px,6vw,96px)}\n.h3-c5-panel .h3-ey{color:var(--h3-ink)}\n.h3 .h3-c5-panel [class*=\"h3-title\"] em{color:var(--h3-ink);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px}\n.h3-c5-panel p.h3-lede{color:var(--h3-ink)}\n@media(max-width:899px){.h3-c5{grid-template-columns:1fr}.h3-c5-ph{aspect-ratio:4/5}}\n\n/* Chapter 06: Layover Lounge */\n.h3-c6-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center}\n.h3-c6-sub{font-family:var(--h3-head);font-weight:800;font-size:clamp(24px,2.4vw,32px);line-height:1.12;margin:26px 0 0;max-width:22ch}\n.h3-c6-sub em{color:var(--h3-rose);font-style:italic}\n.h3-cards{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}\n.h3-pc{grid-column:span 2;position:relative;background:var(--h3-cream);padding:8px;box-shadow:0 14px 30px rgba(0,0,0,.4);color:var(--h3-ink);text-decoration:none!important;display:block}\n.h3-pc:nth-child(4){grid-column:2 / span 2}\n.h3-pc:nth-child(1){transform:rotate(-4deg)}.h3-pc:nth-child(2){transform:rotate(3deg) translateY(-14px)}.h3-pc:nth-child(3){transform:rotate(-2deg) translateY(10px)}.h3-pc:nth-child(4){transform:rotate(2deg)}.h3-pc:nth-child(5){transform:rotate(-3deg) translateY(6px)}\n.h3-pc img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}\n.h3-pc span{position:absolute;left:16px;bottom:14px;color:#fff;font-family:var(--h3-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.8)}\n.h3-pc span b{display:block;font-family:var(--h3-head);font-style:italic;font-weight:800;font-size:16px;letter-spacing:0;text-transform:none}\n.h3-pc::after{content:\"TLL\";position:absolute;right:14px;top:14px;width:26px;height:30px;display:flex;align-items:center;justify-content:center;background:var(--h3-rose);color:var(--h3-ink);font-family:var(--h3-mono);font-size:8px;font-weight:700;outline:2px dashed var(--h3-cream);outline-offset:-4px}\n@media(max-width:899px){.h3-c6-grid{grid-template-columns:1fr}.h3-cards{grid-template-columns:repeat(2,1fr)}.h3-pc,.h3-pc:nth-child(4){grid-column:auto}.h3-pc:nth-child(5){display:none}}\n\n/* Chapter 07: newsletter */\n.h3-c7{background:var(--h3-rose);color:var(--h3-ink)}\n.h3-c7 .h3-ey{color:var(--h3-ink)}\n.h3 .h3-c7 [class*=\"h3-title\"] em{color:var(--h3-cream)}\n.h3-c7-note{font-family:var(--h3-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:14px 0 0}\n\n@media(prefers-reduced-motion:reduce){.h3-card .h3-card-ph,.h3-pc,.h3-tag{transform:none!important}.h3-btn:active{transform:none}}\n\n/* Chapter 07: the native Webflow newsletter form (Webflow form submissions, same as the /stories form) */\n[data-h3=\"news\"]{background:var(--h3-rose);color:var(--h3-ink);padding:clamp(72px,12vh,144px) var(--h3-g)}\n[data-h3=\"news-in\"]{max-width:1240px;margin:0 auto}\n[data-h3=\"news\"] .w-form{margin:clamp(28px,5vh,48px) 0 0}\n[data-h3=\"news-form\"]{display:flex;align-items:flex-end;gap:18px;border-bottom:3px solid var(--h3-ink);padding-bottom:10px;max-width:900px}\n[data-h3=\"news-label\"]{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}\n[data-h3=\"news\"] #h3-news-email{flex:1 1 auto;min-width:0;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;font-family:var(--h3-head)!important;font-weight:800!important;font-size:clamp(28px,4.4vw,64px)!important;line-height:1.1!important;letter-spacing:-.02em!important;color:var(--h3-ink)!important}\n[data-h3=\"news\"] #h3-news-email::placeholder{color:rgba(10,11,20,.55)!important}\n[data-h3=\"news\"] #h3-news-email:focus{outline:0!important;box-shadow:none!important}\n[data-h3=\"news-form\"]:focus-within{box-shadow:inset 0 -2px 0 var(--h3-ink)}\n[data-h3=\"news-form\"] input[type=submit]{flex:0 0 auto;min-height:52px!important;width:auto!important;padding:0 26px!important;border:0!important;border-radius:0!important;background:var(--h3-ink)!important;color:var(--h3-cream)!important;font-family:var(--h3-body)!important;font-size:17px!important;font-weight:700!important;cursor:pointer;margin:0 0 6px!important}\n[data-h3=\"news-form\"] input[type=submit]:hover{background:#23263c!important}\n[data-h3=\"news\"] .w-form-done,[data-h3=\"news\"] .w-form-fail{max-width:900px;margin-top:16px}\n@media(max-width:600px){[data-h3=\"news-form\"]{flex-wrap:wrap}[data-h3=\"news-form\"] input[type=submit]{width:100%!important}}\n</style>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"2a95bf83-46fd-a265-7610-7f13b2eb4e29": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a115e2be857613f33b48a9d"
+},
+{
+"key": "altText",
+"value": "Azure water and a quiet boat, shot by someone who actually went"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "data-tll-parallax",
+"value": "hero"
+},
+{
+"name": "loading",
+"value": "eager"
+},
+{
+"name": "fetchpriority",
+"value": "high"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"13326a8e-ee2a-0bbe-668e-17503f7c5d9b": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<style>.h3-hero-free{margin:0 0 16px;font:600 15px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:inherit;letter-spacing:.01em}@media(max-width:479px){.h3-hero-free{font-size:14px;margin-bottom:14px}}</style>\n<p class=\"h3 h3-hero-free\">Free to join. We're not a gym. No card, no paywall.</p>\n<div class=\"h3 h3-hero-cta\">\n<a class=\"h3-btn h3-btn-rose\" href=\"/stories\">Read the stories →</a>\n<a class=\"h3-btn h3-btn-line\" href=\"/the-map\">Build your free map</a>\n</div>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"de5cdec9-8d8c-cd54-c07e-049b45632a9e": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<p class=\"h3 h3-hero-side\" aria-hidden=\"true\">A travel magazine for people who get lost on purpose</p>\n<p class=\"h3 h3-hero-coords\"><span class=\"h3-sr\">Hero photo taken at </span><span class=\"h3-co\">12.17° N</span> <span class=\"h3-co\">68.99° W</span> <b>Curaçao</b></p>\n<p class=\"h3 h3-hero-scroll\" aria-hidden=\"true\">Scroll · the world is long</p>\n<style id=\"h3-hero-coords-v2\">\n/* 11 Oct 2026, Nancy: the coordinates overlapped \"Build your map\" on phones. Desktop keeps the stacked block; under 900px it is one line under the buttons, with room reserved. */\n.h3-hero-coords .h3-co,.h3-hero-coords b{display:block}\n@media(max-width:899px){\n[data-h3-hero] .h3-hero-cta{margin-bottom:44px}\n.h3-hero-coords{left:var(--h3-g,16px);right:var(--h3-g,16px);bottom:14px;text-align:left;font-size:10px;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.h3-hero-coords .h3-co,.h3-hero-coords b{display:inline}\n.h3-hero-coords b::before{content:\"· \";color:rgba(247,241,232,.85);font-weight:400}\n}\n</style>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"94ce12c0-56fc-4b10-fa9f-14da000634c7": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-sec h3-cream h3-intro\" aria-labelledby=\"h3-klarna\">\n<div class=\"h3-in\">\n<h2 id=\"h3-klarna\" class=\"h3-title-xl\">Trips that can’t wait for <em>payday.</em></h2>\n<p class=\"h3-lede\">Read about the places people actually went, then make a plan that begins with one open tab and ends with a national park, a layover, a dog, or a marathon entry you will defend to your accountant.</p>\n<div class=\"h3-chips\" role=\"group\" aria-label=\"Filter the stories by pillar\" data-h3-chips><button type=\"button\" class=\"h3-chip\" aria-pressed=\"true\" data-p=\"\">All</button></div>\n</div>\n</section>\n<section class=\"h3 h3-shelf\" aria-labelledby=\"h3-shelf-t\" data-h3-shelf>\n<div class=\"h3-shelf-pin\">\n<div class=\"h3-shelf-head\"><p class=\"h3-ey\">Chapter 01 · Start reading</p><h2 id=\"h3-shelf-t\" class=\"h3-title-shelf\">The library.</h2></div>\n<div class=\"h3-shelf-row\">\n<p class=\"h3-shelf-note\" aria-live=\"polite\"><span data-h3-n></span> stories · <span data-h3-hint>Keep scrolling, the stories move sideways</span></p>\n<div class=\"h3-track\" data-h3-track>\n<a class=\"h3-card\" href=\"/stories/pantanal-glimmers-in-the-wild\" data-slug=\"pantanal-glimmers-in-the-wild\" data-pillar=\"Stories From the Road\" data-date=\"2026-10-09\" data-loc=\"Brazil\" data-mins=\"7\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg\" alt=\"A jaguar swimming the Cuiaba River with only its head and shoulders above the green water, looking straight at the camera\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Brazil</span></div><h3 class=\"h3-card-title\">Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</h3><p class=\"h3-card-meta\">Stories From the Road · 7 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Brazil</p></a>\n<a class=\"h3-card\" href=\"/stories/northern-brazil-sequins-to-sloths\" data-slug=\"northern-brazil-sequins-to-sloths\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-30\" data-loc=\"Brazil\" data-mins=\"6\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6abccf813c37a815d4c03dde_6abcce087012c0cb94fe18b3_brazil-hero-riverboats-at-sunset-rio-negro.jpeg\" alt=\"Two wooden riverboats on the still Rio Negro at sunset, sky and water washed gold and pink\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Brazil</span></div><h3 class=\"h3-card-title\">From Sequins to Sloths: Northern Brazil for the Chronically Curious</h3><p class=\"h3-card-meta\">Stories From the Road · 6 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Brazil</p></a>\n<a class=\"h3-card\" href=\"/stories/sort-sol-black-sun-denmark\" data-slug=\"sort-sol-black-sun-denmark\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-29\" data-loc=\"Denmark\" data-mins=\"8\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg\" alt=\"A vast flock of starlings streaming across an orange sunset sky above wind turbines, with a line of parked cars and watchers along the marsh road below\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Denmark</span></div><h3 class=\"h3-card-title\">I Drove Across Denmark to Watch a Million Birds Go to Bed</h3><p class=\"h3-card-meta\">Stories From the Road · 8 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Denmark</p></a>\n<a class=\"h3-card\" href=\"/stories/antarctica-marathon\" data-slug=\"antarctica-marathon\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-23\" data-loc=\"Antarctica\" data-mins=\"12\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg\" alt=\"Sun bursting over a snow peak on King George Island, the ship at anchor in the bay and a line of people walking ashore across the snow\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Antarctica</span></div><h3 class=\"h3-card-title\">Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon</h3><p class=\"h3-card-meta\">Stories From the Road · 12 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Antarctica</p></a>\n<a class=\"h3-card\" href=\"/stories/la-paz-mexico-whale-sharks\" data-slug=\"la-paz-mexico-whale-sharks\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-19\" data-loc=\"Mexico\" data-mins=\"3\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg\" alt=\"La Paz, Baja California Sur, Mexico\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Mexico</span></div><h3 class=\"h3-card-title\">La Paz, whale sharks, and a sea lion who chose chaos</h3><p class=\"h3-card-meta\">Stories From the Road · 3 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Mexico</p></a>\n<a class=\"h3-card\" href=\"/stories/patagonia-w-trek-christmas-new-year\" data-slug=\"patagonia-w-trek-christmas-new-year\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-19\" data-loc=\"Chile and Argentina\" data-mins=\"6\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg\" alt=\"Fitz Roy, Patagonia\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Chile and Argentina</span></div><h3 class=\"h3-card-title\">Patagonia, measured in Camp Italianos</h3><p class=\"h3-card-meta\">Stories From the Road · 6 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Chile and Argentina</p></a>\n<a class=\"h3-card\" href=\"/stories/montenegro-budva-switchback-roads\" data-slug=\"montenegro-budva-switchback-roads\" data-pillar=\"Stories From the Road\" data-date=\"2026-09-19\" data-loc=\"Montenegro\" data-mins=\"3\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg\" alt=\"The Montenegro coast near Budva\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Montenegro</span></div><h3 class=\"h3-card-title\">The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender</h3><p class=\"h3-card-meta\">Stories From the Road · 3 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Montenegro</p></a>\n<a class=\"h3-card\" href=\"/stories/ghana-easter-everyone-wears-white\" data-slug=\"ghana-easter-everyone-wears-white\" data-pillar=\"Cultural Intelligence\" data-date=\"2026-09-19\" data-loc=\"Ghana\" data-mins=\"3\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg\" alt=\"Kids in Ghana at Easter\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Ghana</span></div><h3 class=\"h3-card-title\">Ghana asked us to wear all white. We complied. Eventually.</h3><p class=\"h3-card-meta\">Cultural Intelligence · 3 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Ghana</p></a>\n<a class=\"h3-card\" href=\"/stories/balkans-ev-road-trip-twelve-countries\" data-slug=\"balkans-ev-road-trip-twelve-countries\" data-pillar=\"Travel Logistics\" data-date=\"2026-09-19\" data-loc=\"Balkans\" data-mins=\"9\"><div class=\"h3-card-ph\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg\" alt=\"Bulgaria, on the Balkans EV road trip\" loading=\"lazy\" decoding=\"async\" width=\"380\" height=\"475\"><span class=\"h3-card-tag\">Balkans</span></div><h3 class=\"h3-card-title\">Fourteen days, twelve countries, one EV, and a gal who cannot be historically trusted to charge her own phone</h3><p class=\"h3-card-meta\">Travel Logistics · 9 min</p><p class=\"h3-card-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" alt=\"\" width=\"26\" height=\"26\" loading=\"lazy\"><b>Nancy Carleton</b> · Balkans</p></a>\n</div>\n</div>\n</div>\n<a class=\"h3-shelf-all\" href=\"/stories\">See every story →</a>\n</section>\n<script id=\"h3-shelf-js\">\n/* Home 3.0 shelf. The cards above are written from the Stories CMS (crawlable, no-JS safe). This script adds any newer story\n   found on /stories, sorts newest first, starts the shelf at a different story each day, shows eight, wires the pillar chips,\n   and pins the row so it moves sideways on wide screens (off for reduced motion and narrow screens). */\n(function(){\nvar sec=document.querySelector('[data-h3-shelf]');if(!sec||sec.__h3)return;sec.__h3=1;\nvar track=sec.querySelector('[data-h3-track]'),chipsBox=document.querySelector('[data-h3-chips]'),nEl=sec.querySelector('[data-h3-n]'),hint=sec.querySelector('[data-h3-hint]');\nvar ORDER=['Layover Guides','Paw Passport','Travel Logistics','Cultural Intelligence','Stories From the Road'],SHOW=8,pill='';\nvar mq=window.matchMedia('(min-width: 900px)'),rm=window.matchMedia('(prefers-reduced-motion: reduce)');\nfunction cards(){return [].slice.call(track.querySelectorAll('.h3-card'));}\nfunction pad(n){return (n<10?'0':'')+n;}\nfunction data(){return cards().map(function(c){return{href:c.getAttribute('href'),title:c.querySelector('.h3-card-title').textContent,img:(c.querySelector('.h3-card-ph img')||{}).src||'',alt:(c.querySelector('.h3-card-ph img')||{}).alt||'',loc:c.getAttribute('data-loc')||'',mins:c.getAttribute('data-mins')||'',pillar:c.getAttribute('data-pillar')||'',date:c.getAttribute('data-date')||''};});}\nfunction chips(){var have={};cards().forEach(function(c){var p=c.getAttribute('data-pillar');if(p)have[p]=1;});\n  [].slice.call(chipsBox.querySelectorAll('[data-p]:not([data-p=\"\"])')).forEach(function(b){b.remove();});\n  ORDER.forEach(function(p){if(!have[p])return;var b=document.createElement('button');b.type='button';b.className='h3-chip';b.setAttribute('aria-pressed','false');b.setAttribute('data-p',p);b.textContent=p;chipsBox.appendChild(b);});}\nfunction render(){\n  var all=cards().sort(function(a,b){return (b.getAttribute('data-date')||'').localeCompare(a.getAttribute('data-date')||'');});\n  var start=all.length?Math.floor(Date.now()/864e5)%all.length:0,rot=all.slice(start).concat(all.slice(0,start));\n  var list=rot.filter(function(c){return !pill||c.getAttribute('data-pillar')===pill;}).slice(0,SHOW);\n  rot.forEach(function(c){track.appendChild(c);c.hidden=list.indexOf(c)<0;});\n  list.forEach(function(c,i){track.insertBefore(c,track.children[i]||null);var t=c.querySelector('.h3-card-tag');t.textContent=pad(i+1)+' · '+(c.getAttribute('data-loc')||'');});\n  nEl.textContent=pad(list.length);sec.style.setProperty('--h3-n',list.length);size();\n  window.tllHomeStories=data();document.dispatchEvent(new CustomEvent('h3:stories'));}\nchipsBox.addEventListener('click',function(e){var b=e.target.closest('[data-p]');if(!b)return;pill=b.getAttribute('data-p');\n  [].forEach.call(chipsBox.querySelectorAll('[data-p]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});render();});\nvar over=0;\nfunction size(){var pin=mq.matches&&!rm.matches;sec.classList.toggle('is-pinned',pin);track.style.transform='';\n  if(!pin){sec.style.height='';hint.textContent='Swipe, the stories move sideways';return;}\n  hint.textContent='Keep scrolling, the stories move sideways';\n  over=Math.max(0,track.scrollWidth-(track.parentNode.clientWidth-track.offsetLeft));sec.style.height=(window.innerHeight+over)+'px';move();}\nfunction move(){if(!sec.classList.contains('is-pinned'))return;var r=sec.getBoundingClientRect(),span=sec.offsetHeight-window.innerHeight;\n  var p=span>0?Math.min(1,Math.max(0,-r.top/span)):0;track.style.transform='translate3d('+(-p*over).toFixed(1)+'px,0,0)';}\nvar t=0;window.addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(function(){t=0;move();});},{passive:true});\nwindow.addEventListener('resize',function(){clearTimeout(sec.__rz);sec.__rz=setTimeout(size,120);});\nif(mq.addEventListener){mq.addEventListener('change',size);rm.addEventListener('change',size);}\n/* keyboard: keep a focused card on screen while pinned */\ntrack.addEventListener('focusin',function(e){var c=e.target.closest('.h3-card');if(!c||!sec.classList.contains('is-pinned'))return;\n  var idx=cards().filter(function(x){return !x.hidden;}).indexOf(c),vis=cards().filter(function(x){return !x.hidden;}).length;if(vis<2)return;\n  var span=sec.offsetHeight-window.innerHeight,y=sec.getBoundingClientRect().top+window.scrollY+span*(idx/(vis-1));window.scrollTo(0,y);});\n/* newer stories than the CMS snapshot above */\nfunction fresh(){fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';}).then(function(h){if(!h)return;\n  var d=new DOMParser().parseFromString(h,'text/html'),have={},added=0;cards().forEach(function(c){have[c.getAttribute('data-slug')]=1;});\n  [].forEach.call(d.querySelectorAll('a[data-tll-card]'),function(a){var href=a.getAttribute('href')||'',slug=(href.match(/\\/stories\\/([^/?#]+)/)||[])[1]||a.id;if(!slug||have[slug])return;\n    var q=function(s){var n=a.querySelector(s)||(a.parentNode&&a.parentNode.querySelector(s));return n?n.textContent.trim():'';};\n    var img=a.querySelector('img.tll-lib-img'),title=q('.tll-lib-title');if(!title)return;var loc=q('[data-tll-country]')||q('[data-tll-region]');\n    var c=document.createElement('a');c.className='h3-card';c.href='/stories/'+slug;c.setAttribute('data-slug',slug);c.setAttribute('data-pillar','');\n    var dt=Date.parse(q('[data-tll-date]'));c.setAttribute('data-date',isNaN(dt)?new Date().toISOString().slice(0,10):new Date(dt).toISOString().slice(0,10));\n    c.setAttribute('data-loc',loc);c.setAttribute('data-mins',(q('[data-tll-mins]').match(/\\d+/)||[''])[0]);\n    c.innerHTML='<div class=\"h3-card-ph\"><img loading=\"lazy\" decoding=\"async\" alt=\"\"><span class=\"h3-card-tag\"></span></div><h3 class=\"h3-card-title\"></h3><p class=\"h3-card-meta\"></p><p class=\"h3-card-by\"></p>';\n    var im=c.querySelector('img');if(img){im.src=img.currentSrc||img.getAttribute('src');im.alt=img.getAttribute('alt')||title;}\n    c.querySelector('.h3-card-title').textContent=title;c.querySelector('.h3-card-meta').textContent=(c.getAttribute('data-mins')?c.getAttribute('data-mins')+' min':'');\n    var by=q('.tll-lib-byline-name');c.querySelector('.h3-card-by').textContent=by?by+(loc?' · '+loc:''):loc;\n    track.appendChild(c);have[slug]=1;added++;});\n  if(added){chips();render();}}).catch(function(){});}\nchips();render();\nif('requestIdleCallback' in window)requestIdleCallback(fresh,{timeout:3000});else setTimeout(fresh,1500);\n})();\n</script>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"8d306efc-d927-7aa8-0a61-dda177a79aae": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<style>.h3-il{position:relative;margin:0;height:52vh;min-height:320px;overflow:hidden;background:#0A0B14}.h3-il img{display:block;width:100%;height:100%;object-fit:cover}.h3-il figcaption{position:absolute;left:var(--h3-g,6vw);bottom:24px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#F7F1E8;background:rgba(10,11,20,.72);padding:8px 12px}.h3-il-tall{height:60vh}.h3-il-mid{height:56vh}</style>\n<figure class=\"h3 h3-il\" data-h3-il=\"rio\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aca0cd50438a825ff4351af_tll-interlude-rio-brazil.jpg\" alt=\"Rio de Janeiro from above at dusk, the beach lit along the bay\" loading=\"lazy\" decoding=\"async\" width=\"2000\" height=\"1500\" style=\"object-position:center 30%\"><figcaption>In the library · Brazil</figcaption></figure>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"cd17db29-e34a-8909-36d3-0fb4d2bd6ef6": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<style>.tll-shelf-grid[data-tll-rotate] .tll-shelf-card:nth-child(n+4){display:none}.tll-shelf-photo{position:relative}.tll-shelf-flag{position:absolute;top:12px;left:12px;width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.9)}.tll-shelf-time{position:absolute;top:12px;right:12px;background:rgba(10,11,20,.72);color:#F7F1E8;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;padding:6px 9px;border-radius:999px}.tll-shelf-by{display:flex;align-items:center;gap:8px;margin-top:12px;font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660}.tll-shelf-by img{width:24px;height:24px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px #E0DACE}</style>\n<div class=\"tll-shelf-grid\" data-tll-rotate=\"3\">\n<a class=\"tll-shelf-card\" aria-label=\"Fourteen days, twelve countries, one EV\" href=\"/stories/balkans-ev-road-trip-twelve-countries\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2095d472a995a4b681fe_flag-bg.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">9 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Balkans</div><h3 class=\"tll-shelf-title\">Fourteen days, twelve countries, one EV</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n<a class=\"tll-shelf-card\" aria-label=\"Ghana asked us to wear all white. We complied. Eventually.\" href=\"/stories/ghana-easter-everyone-wears-white\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba20853c5a2a7f5f712e62_flag-gh.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">3 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Ghana</div><h3 class=\"tll-shelf-title\">Ghana asked us to wear all white. We complied. Eventually.</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n<a class=\"tll-shelf-card\" aria-label=\"Patagonia, measured in Camp Italianos\" href=\"/stories/patagonia-w-trek-christmas-new-year\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2096310af94e01eb9a06_flag-cl.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">6 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Chile and Argentina</div><h3 class=\"tll-shelf-title\">Patagonia, measured in Camp Italianos</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n<a class=\"tll-shelf-card\" aria-label=\"La Paz, whale sharks, and a sea lion who chose chaos\" href=\"/stories/la-paz-mexico-whale-sharks\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba209779fdd6acfa9a5b57_flag-mx.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">3 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Mexico</div><h3 class=\"tll-shelf-title\">La Paz, whale sharks, and a sea lion who chose chaos</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n<a class=\"tll-shelf-card\" aria-label=\"A Mangalitsa fillet and a switchback road in a blender\" href=\"/stories/montenegro-budva-switchback-roads\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2098bc9469648f2dd31d_flag-me.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">3 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Montenegro</div><h3 class=\"tll-shelf-title\">A Mangalitsa fillet and a switchback road in a blender</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n<a class=\"tll-shelf-card\" aria-label=\"Whiskey on 10,000-year-old ice: the Antarctica Marathon\" href=\"/stories/antarctica-marathon\"><div class=\"tll-shelf-photo\" style=\"background-image:url('https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg')\"><img class=\"tll-shelf-flag\" src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba209b6b8ff3588d0d3677_flag-aq.svg\" width=\"22\" height=\"22\" alt=\"\" loading=\"lazy\"><span class=\"tll-shelf-time\">12 min</span></div><div class=\"tll-shelf-body\"><div class=\"tll-shelf-eyebrow\">Antarctica</div><h3 class=\"tll-shelf-title\">Whiskey on 10,000-year-old ice: the Antarctica Marathon</h3><div class=\"tll-shelf-by\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg\" width=\"24\" height=\"24\" alt=\"\" loading=\"lazy\">Nancy Carleton</div></div></a>\n</div>\n<script>/* Rotate the shelf: shuffle all live stories, show three per visit. No-JS shows the first three. */(function(){var g=document.currentScript&&document.currentScript.previousElementSibling;if(!g||!g.hasAttribute('data-tll-rotate'))return;var c=[].slice.call(g.children);for(var i=c.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=c[i];c[i]=c[j];c[j]=t;}c.forEach(function(x){g.appendChild(x);});})();</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"d3ac79f6-5c4d-c695-f759-aa94ad81cf69": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<div class=\"h3 h3-search-head\"><p class=\"h3-ey\" id=\"h3-search-t\">Search it</p><p>Find the country, layover, dog problem, or question your current itinerary has created.</p></div>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"c618aa80-c5fc-05d8-1a40-9ccfa36c9fee": {
+"type": "all_resolved_settings",
+"total_matches": 6,
+"matches": [
+{
+"key": "domId",
+"value": "Search-the-library"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "name",
+"value": "Search the library"
+},
+{
+"key": "required",
+"value": false
+},
+{
+"key": "type",
+"value": "text"
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "aria-label",
+"value": "Search stories"
+}
+]
+}
+]
+},
+"c618aa80-c5fc-05d8-1a40-9ccfa36c9ff0": {
+"type": "all_resolved_settings",
+"total_matches": 6,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "buttonText",
+"value": "Search"
+},
+{
+"key": "loadingText",
+"value": "Searching…"
+},
+{
+"key": "type",
+"value": "submit"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"f17a91f2-85b5-36b5-b63f-e82003ed497f": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<p class=\"h3 h3-try\"><span>Try</span><a href=\"/stories?q=Patagonia\">Patagonia</a><a href=\"/stories?q=whale%20sharks\">whale sharks</a><a href=\"/stories?q=EV\">EV</a></p>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"9461d417-a616-d1af-2562-03eb2351372a": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a115ea686f678134db92154"
+},
+{
+"key": "altText",
+"value": "Doha at night, photographed on a long layover"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"1a61aefd-2ca9-7f5e-c4dd-671c53fcc0fe": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": false
+},
+{
+"key": "code",
+"value": "<style>.h3-band{position:relative;margin:0;background:#0A0B14}.h3-band a{display:block;color:#F7F1E8!important;text-decoration:none!important}.h3-band img{display:block;width:100%;height:clamp(320px,62vh,720px);object-fit:cover}.h3-band figcaption{position:absolute;left:var(--h3-g,24px);bottom:22px;right:var(--h3-g,24px);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.85)}.h3-band figcaption b{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:800;font-size:clamp(20px,2.4vw,32px);letter-spacing:0;text-transform:none}.h3-band::after{content:\"\";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(10,11,20,0),rgba(10,11,20,.75));pointer-events:none}.h3-band figcaption{z-index:1}.h3-band a:hover b,.h3-band a:focus-visible b{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}</style>\n<figure class=\"h3 h3-band\"><a href=\"/stories/pantanal-glimmers-in-the-wild\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg\" alt=\"A jaguar swimming the Cuiaba River with only its head and shoulders above the green water, looking straight at the camera\" loading=\"lazy\" decoding=\"async\" width=\"2400\" height=\"1350\"><figcaption><span>Porto Jofre, Brazil</span><b>Glimmers in the Wild →</b></figcaption></a></figure>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"25942203-a173-d2ba-1b9b-85449bc2bd05": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<figure class=\"h3 h3-il\" data-h3-il=\"denmark\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aca0cd3691f530acb426aeb_tll-interlude-coast-denmark.jpg\" alt=\"Nyhavn in Copenhagen in winter, the canal frozen below the colored houses\" loading=\"lazy\" decoding=\"async\" width=\"2000\" height=\"1500\" style=\"object-position:center 30%\"><figcaption>Home base · Denmark</figcaption></figure>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-sec h3-dark h3-c2\" aria-labelledby=\"h3-c2-t\">\n<div class=\"h3-in\">\n<div class=\"h3-tag\" aria-hidden=\"true\"><p class=\"h3-tag-k\">Luggage tag · TLL</p><p class=\"h3-tag-r\">CPH →<em>anywhere</em></p><p class=\"h3-tag-d\">Destination: your call</p></div>\n<p class=\"h3-ey\">Chapter 02 · The community engine</p>\n<h2 id=\"h3-c2-t\" class=\"h3-title-xl\">You went.<br><em>Write it down.</em></h2>\n<p class=\"h3-c2-sub\">The library gets better when more people add their <em>questionable decisions.</em></p>\n<p class=\"h3-lede\">Send us the trip you keep telling people about, the national park you drove six hours to reach, the layover that became a second holiday, or the dog whose itinerary was better than yours. We edit lightly, keep your byline, and review it within 48 hours, before the dog eats the paperwork.</p>\n<div class=\"h3-ctas\"><a class=\"h3-btn h3-btn-rose\" href=\"/submit\">Send your trip →</a><a class=\"h3-btn h3-btn-line\" href=\"/share-photos\">Send a photo</a><span class=\"h3-note\">Free to join</span></div>\n</div>\n</section>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"00ae1ff6-7167-9fc1-f5e5-1ae683d1d129": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<figure class=\"h3 h3-il h3-il-tall\" data-h3-il=\"montenegro\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aca0cd3519070a60785d35d_tll-interlude-coast-montenegro.jpg\" alt=\"Clear turquoise water, rocks and a cliff-backed beach on the coast of Montenegro\" loading=\"lazy\" decoding=\"async\" width=\"2000\" height=\"1333\" style=\"object-position:center 35%\"><figcaption>On the map · Montenegro</figcaption></figure>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"438ddfc8-370c-4158-a39c-c1c3fc3e992b": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-sec h3-cream\" aria-labelledby=\"h3-c3-t\">\n<div class=\"h3-in h3-c3-grid\"><div>\n<p class=\"h3-ey\">Chapter 03 · The passport</p>\n<p class=\"h3-c3-num\" data-h3-pass role=\"img\" aria-label=\"0 of 249 places counted\"><b data-h3-pass-n>0</b><span>/249</span></p>\n<h2 id=\"h3-c3-t\" class=\"h3-title-l\">Track how you <em>see your world.</em></h2>\n<p class=\"h3-lede\">Stamp the countries you left the airport for, mark the ones you lived in, and watch your own map fill in. A wall of stamps or a plain list, your call.</p>\n<div class=\"h3-ctas\"><a class=\"h3-btn h3-btn-ink\" href=\"/my-passport\">Open the passport →</a></div>\n</div>\n<div class=\"h3-snaps\" aria-hidden=\"true\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg\" alt=\"\" loading=\"lazy\" width=\"600\" height=\"450\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg\" alt=\"\" loading=\"lazy\" width=\"600\" height=\"450\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg\" alt=\"\" loading=\"lazy\" width=\"600\" height=\"450\"></div>\n</div>\n</section>\n<style>.h3-c3-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;align-items:center}.h3-snaps{position:relative;min-height:clamp(320px,34vw,480px)}.h3-snaps img{position:absolute;width:66%;aspect-ratio:4/3;object-fit:cover;border:8px solid #FDF9F3;box-shadow:0 16px 34px rgba(10,11,20,.22)}.h3-snaps img:nth-child(1){left:0;top:4%;transform:rotate(-5deg)}.h3-snaps img:nth-child(2){right:0;top:28%;transform:rotate(4deg)}.h3-snaps img:nth-child(3){left:14%;bottom:0;transform:rotate(-1.5deg)}@media(max-width:899px){.h3-c3-grid{grid-template-columns:1fr}.h3-snaps{min-height:300px}}@media(prefers-reduced-motion:reduce){.h3-snaps img{transform:none!important}}</style>\n<script id=\"h3-pass-js\">\n/* Passport counter: 0 for visitors, the member's own total for members. Total = countries the member's own traveler has a\n   stamp in (lived or stayed), layover-only (airside) kept apart, out of 249. Read only; tllStates is written by the map. */\n(function(){var n=document.querySelector('[data-h3-pass-n]'),sr=document.querySelector('[data-h3-pass]');if(!n)return;\nfunction count(d){if(!d||!d.states)return null;var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1',c=0;\n Object.keys(d.states).forEach(function(k){if(!/^\\d{3}$/.test(k))return;var e=d.states[k],v=e&&typeof e==='object'&&!Array.isArray(e)?e[id]:(typeof e==='string'?e:null);if(v&&v!=='airside')c++;});return c;}\nfunction show(c){if(c==null)return;n.textContent=String(c);if(sr)sr.setAttribute('aria-label',c+' of 249 places counted');}\nvar ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}\nvar k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){if(!r||!r.data)return;\n if(ls&&ls.states){show(count(ls));return;}return ms.getMemberJSON().then(function(j){show(count(j&&j.data&&j.data.tllStates));});}).catch(function(){});}else if(++k>40)clearInterval(iv);},250);})();\n</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"61b09da1-6a8c-03d1-dfcd-074478161a51": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": false
+},
+{
+"key": "code",
+"value": "<div style=\"position:relative;width:100%;max-width:900px;margin:0 auto;aspect-ratio:2/1;border-radius:14px;overflow:hidden;background:#CBDBE1\"><iframe src=\"/the-map?embed=1\" title=\"Map of the 87 countries visited\" loading=\"lazy\" style=\"position:absolute;inset:0;width:100%;height:100%;border:0\"></iframe></div>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"4b170d8b-d0df-77cd-b27b-505062b05e5a": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<!-- The Map 2.0 on the home page (9 Oct 2026). Replaces the iframe of the old SVG map (hidden, not removed). Public view shows the editor's own record; members see their own. Pinned to commit 6a1098ab4f3c8d1f0f42a7dcd9bab6e5fbf0e4e9 on jsDelivr with a statically.io fallback. -->\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@6a1098ab4f3c8d1f0f42a7dcd9bab6e5fbf0e4e9/map-2.0/dist/tll-map-layers.css\">\n<p id=\"tllm-boot\" style=\"margin:0 0 10px;font:600 12px/1.4 'JetBrains Mono',monospace;letter-spacing:1px;color:#B9C0D0\" aria-live=\"polite\">LOADING THE MAP CODE</p>\n<div id=\"tll-map-layers\" data-tll-version=\"6a1098ab4f3c8d1f0f42a7dcd9bab6e5fbf0e4e9\" data-tll-style=\"https://tiles.openfreemap.org/styles/dark\" data-tll-editor=\"/the-map#edit\" aria-label=\"The Map: every layer of where we have been\"><noscript><p>The map needs JavaScript. The list of places is on the map page.</p></noscript></div>\n<script>(function(){var V='6a1098ab4f3c8d1f0f42a7dcd9bab6e5fbf0e4e9',R='carleton71192/thatlayoverlife',J='https://cdn.jsdelivr.net/gh/'+R+'@'+V+'/map-2.0/',S='https://cdn.statically.io/gh/'+R+'/'+V+'/map-2.0/';var st=document.getElementById('tllm-boot'),root=document.getElementById('tll-map-layers');function say(t){if(st){st.textContent=t;st.style.display=t?'':'none';}}function css(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l);}function load(base,alt,label){var s=document.createElement('script');s.src=base+'dist/tll-map-layers.js';s.onload=function(){say('CODE LOADED FROM '+label+', STARTING');var n=0,iv=setInterval(function(){if(root&&root.querySelector('.tllm-bar')){clearInterval(iv);say('');}else if(++n>30){clearInterval(iv);say('CODE LOADED FROM '+label+' BUT THE MAP DID NOT START'+(window.__tllLastErr?': '+window.__tllLastErr:''));}},300);};s.onerror=function(){if(alt){say('JSDELIVR DID NOT ANSWER, TRYING STATICALLY');root.setAttribute('data-tll-data',alt+'data/');root.setAttribute('data-tll-config',alt+'collections.json');css(alt+'dist/tll-map-layers.css');load(alt,null,'STATICALLY');}else say('THE MAP CODE DID NOT LOAD FROM EITHER HOST');};document.head.appendChild(s);}window.addEventListener('error',function(e){if(/tll-map-layers|maplibre|topojson/.test(e.filename||''))say('MAP ERROR: '+e.message);});load(J,S,'JSDELIVR');})();</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"cba11681-7983-1833-d706-eabcc99b9588": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": false
+},
+{
+"key": "code",
+"value": "<section class=\"tllps\" aria-labelledby=\"tllps-h\">\n<style>\n/* Home: what a profile gives you (9 Oct 2026, Nancy: \"We need a summary block of what you get in your profile on the homepage, not all of my personal profile embedded there\"). Replaces the full Map 2.0 atlas on the home page; the full map stays on /the-map. */\n.tllps{background:#0A0B14;color:#F7F1E8;padding:clamp(56px,9vh,104px) 6vw}\n.tllps *{box-sizing:border-box}\n.tllps-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 64px;align-items:start}\n.tllps-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}\n.tllps h2{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(36px,4.4vw,60px);line-height:1;letter-spacing:-.02em;color:#F7F1E8;margin:0 0 18px}\n.tllps h2 em{color:#F0507A;font-style:italic}\n.tllps-lede{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;color:#cfcbc4;margin:0 0 28px;max-width:44ch}\n.tllps-ctas{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}\n.tllps-btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:#D63859;color:#fff;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:background-color .15s ease,transform .1s cubic-bezier(.23,1,.32,1)}\n.tllps-btn:hover{background:#F0507A}\n.tllps-btn:active{transform:scale(.97)}\n.tllps-link{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F7F1E8;text-decoration:none;border-bottom:1.5px solid rgba(247,241,232,.4);padding:6px 0 3px;transition:border-color .15s ease}\n.tllps-link:hover{border-bottom-color:#F7F1E8}\n.tllps a:focus-visible{outline:3px solid #00C9C8;outline-offset:3px}\n.tllps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#23263c;border:1px solid #23263c;border-radius:14px;overflow:hidden}\n.tllps-list li{background:#0A0B14;padding:24px 24px 26px;display:flex;flex-direction:column;gap:8px;min-height:168px}\n.tllps-list li:last-child{grid-column:1/-1;min-height:0}\n.tllps-n{text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:600;letter-spacing:2px;color:#00C9C8}\n.tllps-list h3{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1.15;color:#F7F1E8;margin:0}\n.tllps-list p{font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;color:#cfcbc4;margin:0}\n.tllps-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}\n.tllps-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}\n@media(max-width:899px){.tllps-in{grid-template-columns:1fr}.tllps-list{grid-template-columns:1fr}.tllps-list li{min-height:0}}\n@media(prefers-reduced-motion:reduce){.tllps-btn,.tllps-link{transition:none}.tllps-btn:active{transform:none}}\n</style>\n<div class=\"tllps-in\">\n  <div>\n    <p class=\"tllps-eb\">Your profile</p>\n    <h2 id=\"tllps-h\">Every place you have been, <em>in one spot.</em></h2>\n    <p class=\"tllps-lede\">Joining is free, and it gives you a map, a set of lists and a profile page of your own. You decide what anyone else gets to see.</p>\n    <div class=\"tllps-ctas\"><a class=\"tllps-btn\" href=\"/signup\">Start your map &#8594;</a><a class=\"tllps-link\" href=\"/the-map\">See a finished one</a></div>\n  </div>\n  <ul class=\"tllps-list\">\n    <li><span class=\"tllps-n\">01 &middot; Your map</span><h3>Every country, marked your way.</h3><p>Tap a country and mark it lived, stayed, or layover only. Your total counts the first two and keeps layovers apart.</p><div class=\"tllps-legend\" aria-hidden=\"true\"><span><i style=\"background:#F0507A\"></i>Lived</span><span><i style=\"background:#00C9C8\"></i>Stayed</span><span><i style=\"background:#9496AC\"></i>Layover</span></div></li>\n    <li><span class=\"tllps-n\">02 &middot; Your lists</span><h3>The other things you collect.</h3><p>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites and marathons, each with the year you were there.</p></li>\n    <li><span class=\"tllps-n\">03 &middot; Your pets</span><h3>A passport for the dog, too.</h3><p>Add a pet as a traveler and they get their own stamps and their own Paw Passport page.</p></li>\n    <li><span class=\"tllps-n\">04 &middot; Your page</span><h3>A profile with your byline on it.</h3><p>Your stories, your links and the places you know well, gathered on one public page you can switch on or off.</p></li>\n    <li><span class=\"tllps-n\">05 &middot; Your year</span><h3>Layover Wrapped, when the year runs out.</h3><p>A short recap of where you went, which you can share or keep to yourself.</p></li>\n  </ul>\n</div>\n</section>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"405baa84-b88f-64fd-3fcd-a1c81d3ac553": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-sec h3-dark\" aria-labelledby=\"h3-c4-t\" data-h3-map-sec>\n<div class=\"h3-in\">\n<p class=\"h3-ey\">Chapter 04 · The map, with receipts</p>\n<h2 id=\"h3-c4-t\" class=\"h3-title-l\">Every place you have been, <em>in one spot.</em></h2>\n<p class=\"h3-lede\">Countries, cities, airports, parks, marathons, and other evidence that someone has been leaving the house.</p>\n<div class=\"h3-ctas\"><a class=\"h3-btn h3-btn-rose\" href=\"/the-map\">Build your map →</a></div>\n<div class=\"h3-toggle\" role=\"group\" aria-label=\"Which map\"><button type=\"button\" aria-pressed=\"true\" data-h3-mode=\"filed\">Stories filed</button><button type=\"button\" aria-pressed=\"false\" data-h3-mode=\"mine\">My passport</button></div>\n<div class=\"h3-c4-grid\">\n<div>\n<div class=\"h3-map\" data-h3-map role=\"img\" aria-label=\"World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map.\"></div>\n<p class=\"h3-legend\"><span><i></i>A story lives here</span><span><i class=\"o\"></i>Open, be the first</span><span data-h3-ata hidden>Antarctica benched from the drawing, story listed below</span></p>\n</div>\n<aside class=\"h3-mcard\" aria-live=\"polite\" data-h3-mcard hidden><img alt=\"\" data-h3-mc-img loading=\"lazy\"><div class=\"h3-mcard-b\"><p class=\"h3-mcard-k\" data-h3-mc-k></p><p class=\"h3-mcard-t\" data-h3-mc-t></p><div class=\"h3-mcard-f\"><a class=\"h3-btn h3-btn-ink\" data-h3-mc-a href=\"/stories\">Read it →</a><span data-h3-mc-n></span></div></div></aside>\n</div>\n<div class=\"h3-filed\"><ul data-h3-filed><li>Filed from</li></ul><a class=\"h3-open\" href=\"/submit\" data-h3-open></a></div>\n<ul class=\"h3-gets\" aria-label=\"What a free profile gives you\">\n<li><b>01 · Your map</b><span>Every country, marked lived, stayed, or layover only. Layovers are counted apart.</span></li>\n<li><b>02 · Your lists</b><span>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites and marathons.</span></li>\n<li><b>03 · Your pets</b><span>Add a pet as a traveler and they get their own stamps and Paw Passport page.</span></li>\n<li><b>04 · Your page</b><span>Your stories, links and places on one public page you can switch on or off.</span></li>\n<li><b>05 · Your year</b><span>Layover Wrapped, a short recap you can share or keep to yourself.</span></li>\n</ul>\n</div>\n</section>\n<script id=\"h3-map-js\">\n/* Home 3.0 map. Rose = countries with a published story (from the shelf data, so it follows the CMS). \"My passport\" colours the\n   signed-in member's own countries from tllStates (read only). Libraries load only when the section nears the screen. */\n(function(){var sec=document.querySelector('[data-h3-map-sec]');if(!sec||sec.__h3)return;sec.__h3=1;\nvar box=sec.querySelector('[data-h3-map]'),card=sec.querySelector('[data-h3-mcard]'),list=sec.querySelector('[data-h3-filed]'),open=sec.querySelector('[data-h3-open]'),ata=sec.querySelector('[data-h3-ata]');\nvar DEN=249,known={},stories=[],byName={},feats=null,svg=null,mode='filed',mine=null;\nvar CDN='https://cdn.jsdelivr.net/npm/';\nfunction names(loc){return (loc||'').split(/\\s+and\\s+|,\\s*/).map(function(s){return s.trim();}).filter(Boolean);}\nfunction show(i){var s=stories[i];if(!s)return;card.hidden=false;sec.querySelector('[data-h3-mc-img]').src=s.img;sec.querySelector('[data-h3-mc-img]').alt=s.alt;\n sec.querySelector('[data-h3-mc-k]').textContent='Filed from '+s.loc+(s.mins?' · '+s.mins+' min':'');sec.querySelector('[data-h3-mc-t]').textContent=s.title;\n sec.querySelector('[data-h3-mc-a]').href=s.href;sec.querySelector('[data-h3-mc-a]').setAttribute('aria-label','Read it: '+s.title);sec.querySelector('[data-h3-mc-n]').textContent='Story '+(i+1)+' of '+stories.length;\n if(svg){[].forEach.call(svg.querySelectorAll('path.is-on'),function(p){p.classList.remove('is-on');});names(s.loc).forEach(function(n){var p=svg.querySelector('path[data-n=\"'+n+'\"]');if(p)p.classList.add('is-on');});}}\nfunction build(){stories=(window.tllHomeStories||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});if(!stories.length)return;\n byName={};var locs=[];stories.forEach(function(s,i){if(locs.indexOf(s.loc)<0)locs.push(s.loc);names(s.loc).forEach(function(n){if(!(n in byName))byName[n]=i;});});\n [].slice.call(list.querySelectorAll('li+li')).forEach(function(li){li.remove();});\n locs.forEach(function(l){var li=document.createElement('li'),b=document.createElement('button');b.type='button';b.textContent=l;var i=stories.findIndex(function(s){return s.loc===l;});\n  b.addEventListener('click',function(){show(i);});b.addEventListener('mouseenter',function(){show(i);});b.addEventListener('focus',function(){show(i);});li.appendChild(b);list.appendChild(li);});\n counts();paint();show(0);}\nfunction counts(){if(!feats){open.textContent='';return;}var filed=Object.keys(byName).filter(function(n){return known[n];}).length;\n open.textContent=(DEN-filed)+' countries still open. Claim one →';ata.hidden=!('Antarctica' in byName);}\nfunction paint(){if(!svg)return;[].forEach.call(svg.querySelectorAll('path'),function(p){var n=p.getAttribute('data-n'),id=p.getAttribute('data-id');\n p.classList.toggle('is-filed',mode==='filed'&&n in byName);p.classList.toggle('is-mine',mode==='mine'&&!!mine&&!!mine[id]);});\n var msg=box.querySelector('.h3-map-msg');if(msg)msg.remove();\n if(mode==='mine'&&!mine){var m=document.createElement('p');m.className='h3-map-msg';m.innerHTML='This is your map once you join. Free to join. <a href=\"/signup\">Start your map →</a>';box.appendChild(m);}}\nfunction draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;known={};all.forEach(function(f){known[f.properties.name]=1;});var FIXID={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};all.forEach(function(f){if(f.id==null&&FIXID[f.properties.name])f.id=FIXID[f.properties.name];});feats=all.filter(function(f){return f.id!=='010';});\n var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj);\n var ns='http://www.w3.org/2000/svg';svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');\n feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-n',f.properties.name);p.setAttribute('data-id',f.id);svg.appendChild(p);});\n svg.addEventListener('mouseover',function(e){var n=e.target.getAttribute&&e.target.getAttribute('data-n');if(mode==='filed'&&n in byName)show(byName[n]);});\n svg.addEventListener('click',function(e){var n=e.target.getAttribute&&e.target.getAttribute('data-n');if(mode==='filed'&&n in byName)show(byName[n]);});\n box.appendChild(svg);counts();paint();}\nfunction load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}\nfunction boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),\n fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}\nfunction member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);\n ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(j){var d=j&&j.data&&j.data.tllStates;if(!d||!d.states)return;\n  var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1';mine={};Object.keys(d.states).forEach(function(c){var e=d.states[c],v=e&&typeof e==='object'?e[id]:e;if(v&&v!=='airside')mine[c==='undefined'?'900':c]=1;});paint();});}).catch(function(){});},250);}\nsec.querySelector('.h3-toggle').addEventListener('click',function(e){var b=e.target.closest('[data-h3-mode]');if(!b)return;mode=b.getAttribute('data-h3-mode');\n [].forEach.call(sec.querySelectorAll('[data-h3-mode]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});box.setAttribute('aria-label',mode==='mine'?'World map of your own countries, shown in teal.':'World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map.');paint();});\ndocument.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();\nif('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();boot();}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();\n})();\n</script>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"939ad0b0-f6a0-e769-9411-7d450a93853b": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": false
+},
+{
+"key": "code",
+"value": "<style>.h3-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1.2vw,16px);padding:clamp(40px,7vh,80px) var(--h3-g,24px);background:#0A0B14;margin:0}.h3-strip a{position:relative;display:block;color:#F7F1E8!important;text-decoration:none!important;overflow:hidden}.h3-strip img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}.h3-strip a:nth-child(2){transform:translateY(clamp(12px,3vw,40px))}.h3-strip span{position:absolute;left:12px;bottom:12px;background:rgba(10,11,20,.78);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px}.h3-strip a:hover span,.h3-strip a:focus-visible span{background:#D63859}@media(max-width:600px){.h3-strip{grid-template-columns:1fr 1fr}.h3-strip a:nth-child(3){display:none}.h3-strip a:nth-child(2){transform:none}}@media(prefers-reduced-motion:reduce){.h3-strip a:nth-child(2){transform:none}}</style>\n<div class=\"h3 h3-strip\" role=\"list\" aria-label=\"More from the shelf\">\n<a role=\"listitem\" href=\"/stories/sort-sol-black-sun-denmark\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg\" alt=\"Starlings streaming across an orange sunset sky above wind turbines in Denmark\" loading=\"lazy\" decoding=\"async\" width=\"800\" height=\"1000\"><span>Rudbøl, Denmark</span></a>\n<a role=\"listitem\" href=\"/stories/balkans-ev-road-trip-twelve-countries\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg\" alt=\"Bulgaria, on the Balkans EV road trip\" loading=\"lazy\" decoding=\"async\" width=\"800\" height=\"1000\"><span>Bulgaria, by EV</span></a>\n<a role=\"listitem\" href=\"/stories/la-paz-mexico-whale-sharks\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg\" alt=\"La Paz, Baja California Sur, Mexico\" loading=\"lazy\" decoding=\"async\" width=\"800\" height=\"1000\"><span>La Paz, Mexico</span></a>\n</div>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-c5\" aria-labelledby=\"h3-c5-t\">\n<figure class=\"h3-c5-ph\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg\" alt=\"Magnus the Samoyed grinning in a cloud of orange and blue Holi powder\" loading=\"lazy\" decoding=\"async\" width=\"1082\" height=\"1624\"><figcaption>Magnus Waffles 🐻‍❄️ · Samoyed · 35 kg</figcaption></figure>\n<div class=\"h3-c5-panel\">\n<p class=\"h3-ey\">Chapter 05 · Paw Passport</p>\n<h2 id=\"h3-c5-t\" class=\"h3-title-l\">Traveling with your bestie, <em>whatever the species.</em></h2>\n<p class=\"h3-lede\">They get a passport, a country count, and veto power over the hotel. Magnus was simply first: <span data-h3-mag>13</span> countries, paws down.</p>\n<div class=\"h3-ctas\"><a class=\"h3-btn h3-btn-ink\" href=\"/the-paw-passport\">Open the Paw Passport →</a></div>\n</div>\n</section>\n<script id=\"h3-mag-js\">\n/* Magnus's country count, read from his pet page (the same source tllfactsv1 uses), so it is never typed. */\n(function(){var el=document.querySelector('[data-h3-mag]');if(!el)return;fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){\nvar m=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!m)return;var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(n)el.textContent=String(n);}).catch(function(){});})();\n</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"fcd56c7f-c5e2-beea-03a8-09625e83e2db": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a115ea686f678134db92154"
+},
+{
+"key": "altText",
+"value": "Doha layover"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"bcd942b1-bc9f-7a13-4eff-df75849d69ef": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e02265e2392e5fc632431"
+},
+{
+"key": "altText",
+"value": "Montenegro coast"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"19130e6d-ecc9-4fe2-43ab-ddf060d3a7d4": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e0224fb0e0ee3c092ec01"
+},
+{
+"key": "altText",
+"value": "Accra, Ghana"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"9dde3bee-e87b-4d97-7aef-1f8e7076b7bd": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e02257422651f60ae30bd"
+},
+{
+"key": "altText",
+"value": "Rio de Janeiro"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"ebe1cc00-288f-2fae-d617-92822382a52d": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e0227a8a057dc93c81813"
+},
+{
+"key": "altText",
+"value": "Germany"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"09b839ce-1e72-3978-51e3-728a7fe91250": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e022587e5a98acb19fe9d"
+},
+{
+"key": "altText",
+"value": "Antarctica"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"9880cca2-1227-5433-bcb6-d027a25c5fab": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a1183262f8a632aeff43aed"
+},
+{
+"key": "altText",
+"value": "Sofia, Bulgaria"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"eb4be319-2f38-4df4-e19d-326c43ce37f8": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a0e02257957fd335eff3224"
+},
+{
+"key": "altText",
+"value": "Ubatuba, Brazil"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "loading",
+"value": "lazy"
+},
+{
+"name": "decoding",
+"value": "async"
+}
+]
+}
+]
+},
+"66b42ff4-1aaa-0c16-2286-32040813b975": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<section class=\"h3 h3-sec h3-dark\" aria-labelledby=\"h3-c6-t\">\n<div class=\"h3-in h3-c6-grid\">\n<div>\n<p class=\"h3-ey\">Chapter 06 · The Layover Lounge</p>\n<h2 id=\"h3-c6-t\" class=\"h3-title-l\">The Layover <em>Lounge.</em></h2>\n<p class=\"h3-c6-sub\">The photos that made the next trip look <em>affordable.</em></p>\n<p class=\"h3-lede\">Send the view that made you open another tab, check flight prices, and start doing the math for a trip you said was not happening this year. We credit every frame.</p>\n<div class=\"h3-ctas\"><a class=\"h3-btn h3-btn-rose\" href=\"/gallery\">See the Lounge →</a><a class=\"h3-btn h3-btn-line\" href=\"/share-photos\">Send a photo</a></div>\n</div>\n<div class=\"h3-cards\" aria-label=\"Postcards from the Lounge\">\n<a class=\"h3-pc\" href=\"/gallery\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115ea686f678134db92154_Doha-p-800.jpg\" alt=\"Doha at night, photographed on a long layover\" loading=\"lazy\" width=\"800\" height=\"600\"><span>Greetings from<b>Doha</b></span></a>\n<a class=\"h3-pc\" href=\"/gallery\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg\" alt=\"Fitz Roy, Patagonia\" loading=\"lazy\" width=\"800\" height=\"600\"><span>Greetings from<b>Patagonia</b></span></a>\n<a class=\"h3-pc\" href=\"/gallery\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg\" alt=\"Kids in Ghana at Easter\" loading=\"lazy\" width=\"800\" height=\"600\"><span>Greetings from<b>Ghana</b></span></a>\n<a class=\"h3-pc\" href=\"/gallery\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6abccf813c37a815d4c03dde_6abcce087012c0cb94fe18b3_brazil-hero-riverboats-at-sunset-rio-negro.jpeg\" alt=\"Two wooden riverboats on the still Rio Negro at sunset\" loading=\"lazy\" width=\"800\" height=\"600\"><span>Greetings from<b>Rio Negro</b></span></a>\n<a class=\"h3-pc\" href=\"/gallery\"><img src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg\" alt=\"Sun over a snow peak on King George Island, Antarctica\" loading=\"lazy\" width=\"800\" height=\"600\"><span>Greetings from<b>Antarctica</b></span></a>\n</div>\n</div>\n</section>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"7c5c6fc9-e810-a38e-6d0d-1dc9969467ba": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<figure class=\"h3 h3-il h3-il-mid\" data-h3-il=\"antarctica\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aca0cd424d261ed6f914aec_tll-interlude-ice-antarctica.jpg\" alt=\"Snow mountains reflected in still, ice-flecked water in Antarctica\" loading=\"lazy\" decoding=\"async\" width=\"2000\" height=\"1500\" style=\"object-position:center 26%\"><figcaption>The Layover Lounge · Antarctica</figcaption></figure>\n"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"c0c4bf75-0fdb-330c-a8a7-c2a3bc47bf94": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<div class=\"h3\"><p class=\"h3-ey\" style=\"color:#0A0B14\">Chapter 07 · The newsletter</p><h2 class=\"h3-title-xl\" id=\"h3-c7-t\">Your inbox deserves <em style=\"color:#F7F1E8\">better than deals.</em></h2></div>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"3ab123c7-422b-4e6a-d361-a79ad928fa6e": {
+"type": "all_resolved_settings",
+"total_matches": 6,
+"matches": [
+{
+"key": "domId",
+"value": "h3-news-email"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "name",
+"value": "email"
+},
+{
+"key": "required",
+"value": true
+},
+{
+"key": "type",
+"value": "email"
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "autocomplete",
+"value": "email"
+}
+]
+}
+]
+},
+"3ab123c7-422b-4e6a-d361-a79ad928fa6f": {
+"type": "all_resolved_settings",
+"total_matches": 6,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "buttonText",
+"value": "Send It →"
+},
+{
+"key": "loadingText",
+"value": "Please wait..."
+},
+{
+"key": "type",
+"value": "submit"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"247bbb06-e3df-212e-5360-3e8cdee3e09b": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<p class=\"h3 h3-c7-note\">No newsletter bribe. Unsubscribe anywhere.</p>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"81aad1d1-60de-9d15-b2bf-263de891af9c": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": false
+},
+{
+"key": "code",
+"value": "<script id=\"tll-flow-js-v1\">\n/* TLL long-scroll layer v1 (30 Sep 2026). Everything is additive and derived from what is on the page; the country list is the list of countries, nothing invented. */\n(function(){\n  if(window.__tllFlow)return;window.__tllFlow=1;\n  var NAMES=\"Afghanistan|Albania|Algeria|Andorra|Angola|Antigua and Barbuda|Argentina|Armenia|Australia|Austria|Azerbaijan|Bahamas|Bahrain|Bangladesh|Barbados|Belarus|Belgium|Belize|Benin|Bhutan|Bolivia|Bosnia and Herzegovina|Botswana|Brazil|Brunei|Bulgaria|Burkina Faso|Burundi|Cabo Verde|Cambodia|Cameroon|Canada|Central African Republic|Chad|Chile|China|Colombia|Comoros|Congo|DR Congo|Costa Rica|Ivory Coast|Croatia|Cuba|Cyprus|Czechia|Denmark|Djibouti|Dominica|Dominican Republic|Ecuador|Egypt|El Salvador|Equatorial Guinea|Eritrea|Estonia|Eswatini|Ethiopia|Fiji|Finland|France|Gabon|Gambia|Georgia|Germany|Ghana|Greece|Grenada|Guatemala|Guinea|Guinea-Bissau|Guyana|Haiti|Honduras|Hungary|Iceland|India|Indonesia|Iran|Iraq|Ireland|Israel|Italy|Jamaica|Japan|Jordan|Kazakhstan|Kenya|Kiribati|Kuwait|Kyrgyzstan|Laos|Latvia|Lebanon|Lesotho|Liberia|Libya|Liechtenstein|Lithuania|Luxembourg|Madagascar|Malawi|Malaysia|Maldives|Mali|Malta|Marshall Islands|Mauritania|Mauritius|Mexico|Micronesia|Moldova|Monaco|Mongolia|Montenegro|Morocco|Mozambique|Myanmar|Namibia|Nauru|Nepal|Netherlands|New Zealand|Nicaragua|Niger|Nigeria|North Macedonia|Norway|Oman|Pakistan|Palau|Panama|Papua New Guinea|Paraguay|Peru|Philippines|Poland|Portugal|Qatar|Romania|Russia|Rwanda|Saint Kitts and Nevis|Saint Lucia|Saint Vincent|Samoa|San Marino|Sao Tome and Principe|Saudi Arabia|Senegal|Serbia|Seychelles|Sierra Leone|Singapore|Slovakia|Slovenia|Solomon Islands|Somalia|South Africa|South Korea|South Sudan|Spain|Sri Lanka|Sudan|Suriname|Sweden|Switzerland|Syria|Tajikistan|Tanzania|Thailand|Timor-Leste|Togo|Tonga|Trinidad and Tobago|Tunisia|Turkiye|Turkmenistan|Tuvalu|Uganda|Ukraine|United Arab Emirates|United Kingdom|United States|Uruguay|Uzbekistan|Vanuatu|Vatican City|Venezuela|Vietnam|Yemen|Zambia|Zimbabwe|Antarctica\".split('|');\n  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n  function nice(s){s=(s||'').split(',')[0].trim();return s.toLowerCase().replace(/(^|[\\s-])([a-zà-ÿ])/g,function(m,a,b){return a+b.toUpperCase();});}\n  function storyCountries(root){var has={};if(!root)return has;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),t;\n    while(t=w.nextNode()){var s=t.nodeValue||'';if(s.indexOf('·')<0&&!/min/i.test(s))continue;var first=s.split('·')[0];first.split(/,| and /i).forEach(function(p){var n=nice(p);if(n&&NAMES.indexOf(n)>-1)has[n]=1;});}\n    return has;}\n  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});\n  function reveal(sel,root){[].slice.call((root||document).querySelectorAll(sel)).forEach(function(el){if(!el.classList.contains('tll-flow-reveal')){el.classList.add('tll-flow-reveal');io.observe(el);}});}\n  window.tllAtlas=function(anchor,has,opts){opts=opts||{};if(!anchor||document.querySelector('.tll-atlas'))return;\n    var n=Object.keys(has).length;var sec=document.createElement('section');sec.className='tll-atlas';sec.setAttribute('data-tll-atlas','1');\n    sec.innerHTML='<div class=\"in\"><div class=\"e\">Every country · by name</div><h2>'+NAMES.length+' countries. '+(n||'None')+' with a story'+(n?'':' yet')+'. The rest are open.</h2><p>This list does not end. It loops, because the map is not finished and neither are you. A rose name has a story. Everything else is waiting for someone who went.</p><div class=\"list\"></div><div class=\"more\" role=\"status\">Loading the next stretch of the map…</div></div>';\n    anchor.parentNode.insertBefore(sec,opts.before?anchor:anchor.nextSibling);\n    var list=sec.querySelector('.list'),more=sec.querySelector('.more'),idx=0,lap=0;\n    function batch(){var f=document.createDocumentFragment();for(var k=0;k<40;k++){var c=NAMES[idx%NAMES.length];idx++;if(idx%NAMES.length===0)lap++;var a=document.createElement('a');var h=!!has[c];a.className='k'+(h?' has':'');\n        a.href=h?'/stories?q='+encodeURIComponent(c):'/submit?country='+encodeURIComponent(c);a.innerHTML='<span class=\"n\"></span><span class=\"s\">'+(h?'Has a story':'Open · be the first')+'</span>';a.firstChild.textContent=c;f.appendChild(a);}\n      list.appendChild(f);more.textContent=lap?'Lap '+(lap+1)+' of the map. Still open.':'Loading the next stretch of the map…';reveal('.tll-atlas .k:not(.tll-flow-reveal)',sec);}\n    batch();batch();var sio=new IntersectionObserver(function(e){if(e[0].isIntersecting)batch();},{rootMargin:'600px'});sio.observe(more);};\n  window.tllReveal=reveal;window.tllStoryCountries=storyCountries;\n  function home(){\n    var h1=document.querySelector('main h1,h1');if(!h1)return;var hero=h1.closest('div,section');while(hero&&!hero.querySelector('img')&&hero.parentNode!==document.body)hero=hero.parentNode;\n    if(hero&&hero!==document.body)hero.setAttribute('data-tll-flow','hero');\n    var secs=[].slice.call(document.querySelectorAll('#tll-shelf,[data-tll-library-search],.tll-comm,.tll-map,#paw-passport,#layover-lounge'));\n    secs.forEach(function(s){s.setAttribute('data-tll-flow','section');reveal('h2,h3,p,a.w-button,.tll-btn,[class*=\"card\"]',s);});\n    /* ticker: the five pillars, from the browse chips already on the page (falls back to nothing, never invents) */\n    var chips=[].slice.call(document.querySelectorAll('a[href^=\"/pillars/\"]')).map(function(a){return a.textContent.trim();}).filter(Boolean);\n    if(chips.length&&hero&&!reduce){var tk=document.createElement('div');tk.className='tll-flow-ticker';tk.setAttribute('aria-hidden','true');var items=chips.map(function(c){return '<span>'+c+'</span>';}).join('')+'<span>Counted by hand</span>';tk.innerHTML='<div class=\"t\">'+items+items+'</div>';hero.parentNode.insertBefore(tk,hero.nextSibling);}\n    /* manifesto: the hero lede, one line at a time */\n    var lede=hero&&hero.querySelector('p');var parts=lede?lede.textContent.split(/\\.\\s+|\\.$/).map(function(x){return x.trim();}).filter(Boolean):[];\n    if(parts.length>=3){var man=document.createElement('section');man.className='tll-flow-man';man.setAttribute('aria-label','What TLL is');var html='<div class=\"pin\"><div class=\"c\">01 / 0'+parts.length+'</div>';\n      parts.forEach(function(p){var w=p.split(' ');var last=w.pop();html+='<h2 class=\"l\">'+w.join(' ')+' <em>'+last+'</em>.</h2>';});man.innerHTML=html+'</div>';\n      var after=document.querySelector('.tll-flow-ticker')||hero;after.parentNode.insertBefore(man,after.nextSibling);\n      var lines=man.querySelectorAll('.l'),mc=man.querySelector('.c');\n      function step(){if(reduce||window.innerWidth<900){[].forEach.call(lines,function(l){l.classList.add('on');});return;}var r=man.getBoundingClientRect();var p=Math.min(.999,Math.max(0,-r.top/(r.height-window.innerHeight)));var i=Math.floor(p*lines.length);[].forEach.call(lines,function(l,k){l.classList.toggle('on',k===i);});mc.textContent='0'+(i+1)+' / 0'+lines.length;}\n      window.addEventListener('scroll',function(){requestAnimationFrame(step);},{passive:true});step();}\n    /* rail */\n    var stops=[['#tll-shelf','The shelf'],['[data-tll-library-search]','Browse'],['.tll-comm','Doors opening'],['.tll-map','The Map'],['#paw-passport','Paw Passport'],['#layover-lounge','The Lounge'],['[data-tll-atlas]','Every country']];\n    var rail=document.createElement('nav');rail.className='tll-flow-rail';rail.setAttribute('aria-label','Sections');\n    /* endless atlas after the Lounge, countries with a story read from the shelf */\n    var lounge=document.getElementById('layover-lounge');if(lounge)window.tllAtlas(lounge,storyCountries(document.getElementById('tll-shelf')));\n    stops.forEach(function(s){var el=document.querySelector(s[0]);if(!el)return;if(!el.id)el.id='tll-flow-'+s[1].toLowerCase().replace(/[^a-z]+/g,'-');var a=document.createElement('a');a.href='#'+el.id;a.innerHTML='<span>'+s[1]+'</span>';a.__el=el;rail.appendChild(a);});\n    if(rail.children.length){document.body.appendChild(rail);var links=[].slice.call(rail.children);function upd(){var y=window.scrollY+window.innerHeight*.4,cur=-1;links.forEach(function(a,i){if(a.__el.offsetTop<=y)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}\n      window.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});upd();}\n  }\n  function stories(){var grid=document.querySelector('.tll-library-grid,.tll-lib-grid');if(!grid)return;reveal('[data-tll-card],a.tll-lib-card',grid);window.tllAtlas(grid,storyCountries(grid));}\n  function run(){if(location.pathname==='/'||location.pathname==='')home();else if(/^\\/stories\\/?$/.test(location.pathname))stories();}\n  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n})();\n</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+}
+}

@@ -1,0 +1,78 @@
+[
+ {
+  "label": "form-attrs",
+  "action": "get_attributes",
+  "result": [
+   {
+    "status": "success",
+    "message": "Attributes loaded",
+    "data": [
+     {
+      "name": "data-tll-form",
+      "value": "share-photos"
+     },
+     {
+      "name": "data-ms-member-bound",
+      "value": "true"
+     },
+     {
+      "name": "enctype",
+      "value": "multipart/form-data"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "anon-attrs",
+  "action": "get_attributes",
+  "result": [
+   {
+    "status": "success",
+    "message": "Attributes loaded",
+    "data": [
+     {
+      "name": "data-ms-content",
+      "value": "anonymous"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "members-attrs",
+  "action": "get_attributes",
+  "result": [
+   {
+    "status": "success",
+    "message": "Attributes loaded",
+    "data": [
+     {
+      "name": "data-ms-content",
+      "value": "members"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "photos-attrs",
+  "action": "get_attributes",
+  "result": [
+   {
+    "status": "success",
+    "message": "Attributes loaded",
+    "data": [
+     {
+      "name": "accept",
+      "value": "image/*"
+     },
+     {
+      "name": "multiple",
+      "value": ""
+     }
+    ]
+   }
+  ]
+ }
+]

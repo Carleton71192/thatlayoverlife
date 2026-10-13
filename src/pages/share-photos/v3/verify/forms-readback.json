@@ -1,0 +1,222 @@
+[
+ {
+  "label": "f1",
+  "action": "get_form",
+  "result": {
+   "displayName": "Html Form",
+   "createdOn": "2026-05-20T18:28:52.108Z",
+   "lastUpdated": "2026-10-13T07:42:50.460Z",
+   "fields": {
+    "6acde0fa48855f4c94afde6f": {
+     "displayName": "photos",
+     "type": "Plain",
+     "placeholder": "Example text",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde70": {
+     "displayName": "country",
+     "type": "Plain",
+     "placeholder": "Bulgaria · Deutschland · your way",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde71": {
+     "displayName": "city",
+     "type": "Plain",
+     "placeholder": "Sofia, Doha, between flights",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde72": {
+     "displayName": "year",
+     "type": "Number",
+     "placeholder": "2026",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde73": {
+     "displayName": "trip-type",
+     "type": "Select",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde74": {
+     "displayName": "caption",
+     "type": "Plain",
+     "placeholder": "The Atlantic at 6pm in Ipanema is its own currency.",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde75": {
+     "displayName": "pets-along",
+     "type": "Plain",
+     "placeholder": "Magnus 🐻‍❄️ or leave blank",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde76": {
+     "displayName": "credit-mode",
+     "type": "Radio",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde77": {
+     "displayName": "syndication-social",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde78": {
+     "displayName": "syndication-rotation",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde79": {
+     "displayName": "syndication-press",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde7a": {
+     "displayName": "agree-rights",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde7b": {
+     "displayName": "agree-licence",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afde7c": {
+     "displayName": "agree-people",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    }
+   },
+   "responseSettings": {
+    "redirectUrl": null,
+    "redirectMethod": "GET",
+    "redirectAction": null,
+    "sendEmailConfirmation": false
+   },
+   "id": "6a0dfd649a488acac67dd773",
+   "siteId": "69d6145cf421c777840c1e25",
+   "siteDomainId": "6a0de97be677e4daf81431cc",
+   "pageId": "6a0dfca3f9fa5b751d154257",
+   "formElementId": "c09ceb51-0ee9-0a93-6196-eee626758710",
+   "pageName": "Share photos · That Layover Life",
+   "workspaceId": "64f0e3b3a8835639b62f6d74",
+   "componentId": null,
+   "componentElementId": null
+  }
+ },
+ {
+  "label": "f2",
+  "action": "get_form",
+  "result": {
+   "displayName": "Html Form",
+   "createdOn": "2026-05-20T18:28:51.930Z",
+   "lastUpdated": "2026-10-13T07:42:50.188Z",
+   "fields": {
+    "6acde0fa48855f4c94afdce1": {
+     "displayName": "photos",
+     "type": "Plain",
+     "placeholder": "Example text",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce2": {
+     "displayName": "country",
+     "type": "Plain",
+     "placeholder": "Bulgaria · Deutschland · your way",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce3": {
+     "displayName": "city",
+     "type": "Plain",
+     "placeholder": "Sofia, Doha, between flights",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce4": {
+     "displayName": "year",
+     "type": "Number",
+     "placeholder": "2026",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce5": {
+     "displayName": "trip-type",
+     "type": "Select",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce6": {
+     "displayName": "caption",
+     "type": "Plain",
+     "placeholder": "The Atlantic at 6pm in Ipanema is its own currency.",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce7": {
+     "displayName": "pets-along",
+     "type": "Plain",
+     "placeholder": "Magnus 🐻‍❄️ or leave blank",
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce8": {
+     "displayName": "credit-mode",
+     "type": "Radio",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdce9": {
+     "displayName": "syndication-social",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdcea": {
+     "displayName": "syndication-rotation",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdceb": {
+     "displayName": "syndication-press",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdcec": {
+     "displayName": "agree-rights",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdced": {
+     "displayName": "agree-licence",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    },
+    "6acde0fa48855f4c94afdcee": {
+     "displayName": "agree-people",
+     "type": "Checkbox",
+     "placeholder": null,
+     "userVisible": true
+    }
+   },
+   "responseSettings": {
+    "redirectUrl": null,
+    "redirectMethod": "GET",
+    "redirectAction": null,
+    "sendEmailConfirmation": false
+   },
+   "id": "6a0dfd639a488acac67dd65d",
+   "siteId": "69d6145cf421c777840c1e25",
+   "siteDomainId": "6a0de979e677e4daf8143190",
+   "pageId": "6a0dfca3f9fa5b751d154257",
+   "formElementId": "c09ceb51-0ee9-0a93-6196-eee626758710",
+   "pageName": "Share photos · That Layover Life",
+   "workspaceId": "64f0e3b3a8835639b62f6d74",
+   "componentId": null,
+   "componentElementId": null
+  }
+ }
+]

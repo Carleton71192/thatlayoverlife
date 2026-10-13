@@ -1,0 +1,690 @@
+{
+ "id": "6a0b29eddc14f1444e935760",
+ "displayName": "Stories",
+ "singularName": "Story",
+ "slug": "stories",
+ "createdOn": "2026-05-18T15:02:05.922Z",
+ "lastUpdated": "2026-10-09T04:31:19.817Z",
+ "fields": [
+  {
+   "id": "0332657b2c0f1268b574f20644569d13",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image",
+   "helpText": "16:9 full-bleed, 2400x1350 min."
+  },
+  {
+   "id": "c652c368d7ac464727fac634d6bdd94b",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "excerpt",
+   "displayName": "Excerpt",
+   "helpText": "<=240 chars. Card and OG fallback."
+  },
+  {
+   "id": "5d0e26fad53831da93bdbe00f41e4a30",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "body",
+   "displayName": "Body",
+   "helpText": "The long-form. In voice, no em dashes."
+  },
+  {
+   "id": "53474e4a1b7b99cf27f8b95b7cf5e929",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "contributor",
+   "displayName": "Contributor",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "8f6ed788ea896e681936ca963f79ded2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "sensory-anchors",
+   "displayName": "Sensory anchors",
+   "helpText": "Comma-separated: dish, animal, weather/sound. Three minimum."
+  },
+  {
+   "id": "c242dd2779f7713dbfb52584a6c31988",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pull-quote",
+   "displayName": "Pull quote",
+   "helpText": "1 to 3, line-break separated. Used as Syne italic on Rose."
+  },
+  {
+   "id": "bc71257394862b6c17644a37fae9b107",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "sign-off",
+   "displayName": "Sign-off",
+   "helpText": "Mood + name. Canonical pattern."
+  },
+  {
+   "id": "293bf203f72a4ff47cba31681825684a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "hashtag-set",
+   "displayName": "Hashtag set",
+   "helpText": "5 to 10 hashtags, 2 to 3 unhinged. Comma-separated."
+  },
+  {
+   "id": "c6b482649fcab5934b0b9d1ecde2426d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "reader-question",
+   "displayName": "Reader question",
+   "helpText": "The closing prompt that invites reply."
+  },
+  {
+   "id": "20b28fc29dc04a2ae07fb100a0190e2f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "reading-time",
+   "displayName": "Reading time",
+   "helpText": "Minutes. Manual or computed from word count / 200.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "cc90c46f948ffb874d49f89061fb53ce",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "VideoLink",
+   "slug": "video-url",
+   "displayName": "Video URL",
+   "helpText": "YouTube or Vimeo embed URL."
+  },
+  {
+   "id": "48a1ae1806123262ff9b2e55ced91da9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "related-stories",
+   "displayName": "Related stories",
+   "helpText": "Manual overrides up to 3. Otherwise auto by pillar + country.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "2a3d856ecdbe0c2cbffcf6bd60cf423f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "d062ed622a0c59893b12a245124882b9",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "98d1297632714897d64406cd7a13562d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "og-image",
+   "displayName": "OG image",
+   "helpText": "1200x630 override. Falls back to Hero image."
+  },
+  {
+   "id": "67b64a15075c9b3a0f97030485fbbd8d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "published-date",
+   "displayName": "Published date",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "fd080df599f96163fa32a991c3d8c44e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "byline-location",
+   "displayName": "Byline location",
+   "helpText": "Free-text card meta override (e.g. BRAZIL, COLOMBIA, ICELAND). Falls back to Country.name if blank."
+  },
+  {
+   "id": "e993155563a0afae0174de567b701608",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "weekend-read",
+   "displayName": "Weekend Read",
+   "helpText": "Flags one Story per week as the editorial headline. Drives the Home page Weekend Read slot (Nat Geo-style)."
+  },
+  {
+   "id": "7a6cb8ab31f4ad61d52d498cc56f8791",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "audio-version-url",
+   "displayName": "Audio version URL",
+   "helpText": "Audio narration link (Substack audio, Spotify, or self-hosted)."
+  },
+  {
+   "id": "9b93855a642b8fdc4155263738f16795",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "region",
+   "displayName": "Region",
+   "helpText": "Continent. Drives the Stories feed filter.",
+   "validations": {
+    "options": [
+     {
+      "name": "Africa",
+      "id": "b26135c02cc190fdaa35f3ad21155d6c"
+     },
+     {
+      "name": "Americas",
+      "id": "b88f7cae88de6d134d2001cf4d834a8c"
+     },
+     {
+      "name": "Asia",
+      "id": "a1e06f7a3091709d901b9be349d2beef"
+     },
+     {
+      "name": "Europe",
+      "id": "147a690dc0bb9b392de8f76e596b8618"
+     },
+     {
+      "name": "Middle East",
+      "id": "2e0e976094dd2b15d1722227f4bd2bcc"
+     },
+     {
+      "name": "Oceania",
+      "id": "2d61f02c72f97e50d2e47529e1df47e5"
+     },
+     {
+      "name": "Antarctica",
+      "id": "237262f269ed78e2c26130a142667c73"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4b1d9bb2e6c46b5ec21822fae0d4cc38",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "helpText": "Editorial workflow gate. Only Published renders on the live site.",
+   "validations": {
+    "options": [
+     {
+      "name": "Draft",
+      "id": "e5f337170dd328dc56f98bf773c34aad"
+     },
+     {
+      "name": "In Review",
+      "id": "c63cc532cbf4f9e4752ec46d3316348a"
+     },
+     {
+      "name": "Published",
+      "id": "40fb8550c58a86ae03f3dfb83bf691e3"
+     }
+    ]
+   }
+  },
+  {
+   "id": "a24cbb546c9541af6bc35115483f50d3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "theme",
+   "displayName": "Theme",
+   "helpText": "Tag with one or more themes. Drives Stories feed filter.",
+   "validations": {
+    "collectionId": "6a0c7e883607a3b091e1ae20"
+   }
+  },
+  {
+   "id": "654c7d5d8ad725c5a929ee35527c638b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "country-2",
+   "displayName": "Country",
+   "helpText": "Optional. Used by the Places Been profile feature and country-level SEO. Region option still required for feed filter.",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "bc52b191a90b2886d99b95fce8ab8d2e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "photo-gallery",
+   "displayName": "Photo gallery",
+   "helpText": "Optional. Additional contributor photos beyond Hero image. Renders as a gallery block inside Single Story."
+  },
+  {
+   "id": "3d08d131edeff1508dc256b47aa25914",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "submitted-at",
+   "displayName": "Submitted at",
+   "helpText": "When the contributor hit Submit. Distinct from Published date (which the editor sets at publish time).",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "fb56724be10a9ca820ab68c60fc992fa",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "notes-to-editor",
+   "displayName": "Notes to editor",
+   "helpText": "Optional. Contributor's message to the editor on submission. Internal-only."
+  },
+  {
+   "id": "dd68df078830abbd199d4314043decc4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "view-count",
+   "displayName": "View count",
+   "helpText": "Display counter, incremented by analytics webhook. Default 0.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "c01857a26f61a360a383b014e990b543",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "reaction-count",
+   "displayName": "Reaction count",
+   "helpText": "Display counter, incremented when a member taps a reaction. Default 0.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "b6d860bc3581e7b68bfdfcd0c0c194ac",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "bookmark-count",
+   "displayName": "Bookmark count",
+   "helpText": "Display counter, incremented when a member bookmarks. Default 0.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "ecb23a516e5eb31fce24accc5600e277",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "comment-count",
+   "displayName": "Comment count",
+   "helpText": "Display counter for approved comments only. Default 0.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "1f72e4a3b9ca6b578c42fb4425759363",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "ai-review",
+   "displayName": "AI review",
+   "helpText": "Internal-only. Claude API editorial assessment captured on submission: voice score, em-dash count, banned words, missing flag emoji, suggested rewrites, recommendation. Editor sees this side-by-side with the draft."
+  },
+  {
+   "id": "2d31152d37f2a6f3904f672ba8cf4e1d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "human-co-travelers",
+   "displayName": "Human co-travelers",
+   "helpText": "Other humans who appeared in this trip beyond the author. Tag their Traveler profiles so the story surfaces on theirs too.",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "42a3c21bdb5b3ec0896181f2e53a374e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "pet-co-travelers",
+   "displayName": "Pet co-travelers",
+   "helpText": "Pets along for this trip. Tag their Pet profiles so the story surfaces on their Paw Passport page.",
+   "validations": {
+    "collectionId": "6a0be8194ccc05a63fbdcfa3"
+   }
+  },
+  {
+   "id": "17a30a350c759e4152e231c38b8190a1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "ai-editor-notes",
+   "displayName": "AI editor notes",
+   "helpText": "Auto-populated by the AI editor on submission. Voice flags, banned-word catches, SEO suggestions, pull-quote candidates. Editor reviews and accepts before publish. AI suggests, never rewrites."
+  },
+  {
+   "id": "4aea5e15aaf3bdb4cbac4a634e821ce0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "ai-seo-score",
+   "displayName": "AI SEO score",
+   "helpText": "0 to 100. AI's score on SEO health: title length, meta description, slug, keyword density on country plus theme, reading time. Sub-70 means editor should review SEO fields before publish.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "ef0e2fb719fde03dc7e59b5b3b7a89b1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "ai-pull-quote-candidates",
+   "displayName": "AI pull-quote candidates",
+   "helpText": "Top 3 pull-quote candidates ranked by stickiness. Editor selects one or writes their own. Never auto-applied."
+  },
+  {
+   "id": "c09e6e75fee44628488d16ba6ec59ed7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "ai-banned-word-flags",
+   "displayName": "AI banned-word flags",
+   "helpText": "Comma-separated list of banned words detected in the body. Empty when clean. Editor must clear before publish."
+  },
+  {
+   "id": "f6adb782364bf2ac2fd517e2c5c35f17",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "ai-suggested-themes",
+   "displayName": "AI suggested themes",
+   "helpText": "AI's recommendation for which mood themes match. Editor reviews and binds to Theme field manually.",
+   "validations": {
+    "collectionId": "6a0c7e883607a3b091e1ae20"
+   }
+  },
+  {
+   "id": "b3d54098c162886523d26f1405979e75",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "featured-pull-quote",
+   "displayName": "Featured Pull Quote",
+   "helpText": "Short pull-quote (max 240 chars) shown on Featured Read card. Falls back to lede if empty."
+  },
+  {
+   "id": "88e003bf5320bcfcfdd369080b586b9f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "featured-in-gallery",
+   "displayName": "Featured in Gallery",
+   "helpText": "Tick to include this story's hero image in the Home rotation gallery."
+  },
+  {
+   "id": "e6053102687631e24bc21aad71a8f4ee",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "short-version",
+   "displayName": "Short version",
+   "helpText": "AEO citation box. 3 to 4 plain-answer sentences a chatbot can lift whole, byline attached. Maps to Article schema. In voice, no em dashes."
+  },
+  {
+   "id": "4546da3cae73c59b5a0f5246ead6e2c1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "quick-answers",
+   "displayName": "Quick answers",
+   "helpText": "AEO FAQ block. Question and plain-answer pairs. Maps to FAQPage schema. The text answer engines quote."
+  },
+  {
+   "id": "1a9065649bb0794daac42e529adf564e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pillar-name",
+   "displayName": "Pillar name",
+   "helpText": "Display name of the editorial pillar, e.g. Cultural Intelligence. Shown in the story eyebrow."
+  },
+  {
+   "id": "d72bad9b232c653326ea73dc5ec7f40c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pillar-slug",
+   "displayName": "Pillar slug",
+   "helpText": "Slug of the pillar, e.g. cultural-intelligence. Used for the /pillars/ link."
+  },
+  {
+   "id": "05d39d1a059637ceebedacac09603056",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "country-number",
+   "displayName": "Country number",
+   "helpText": "The story's own ledger number, e.g. 88 for Bulgaria. Leave blank if unknown; the eyebrow hides it.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "627d9d566395497a673ba09b225bba94",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "links-and-mentions",
+   "displayName": "Links and mentions",
+   "helpText": "Citation block. Internal and outbound links named in the story. Affiliate links labeled, never hidden."
+  },
+  {
+   "id": "6cb4a9004f958b7d5a6b6035d18728e3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "hero-caption",
+   "displayName": "Hero caption",
+   "helpText": "One italic sensory line over the hero photo. Optional."
+  },
+  {
+   "id": "dbca3b64daf70aaddf8e3c73c521942c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "pillar-2",
+   "displayName": "Pillar",
+   "helpText": "The editorial pillar this story is filed under. Drives the list on the pillar page. One pillar per story.",
+   "validations": {
+    "collectionId": "6a0b29c6d081332e921900ff"
+   }
+  },
+  {
+   "id": "8ee5db9c4d888820ee9cc17c162592b7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "trip-when",
+   "displayName": "Trip when",
+   "helpText": "Story ledger. When the trip happened, e.g. December 2025. Empty renders 'Contributor to add'."
+  },
+  {
+   "id": "d2c50a39ace6f3c06b522f341367269e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "cost-summary",
+   "displayName": "Cost summary",
+   "helpText": "Story ledger. What it cost, 80 characters max. Empty renders 'Contributor to add'."
+  },
+  {
+   "id": "6660498e37d86b90127ccfd45f3d5283",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "sources",
+   "displayName": "Sources",
+   "helpText": "Story ledger. Default: First-hand."
+  },
+  {
+   "id": "226dc4574dedafd3e85c539d4c7450cd",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "edited-by",
+   "displayName": "Edited by",
+   "helpText": "Story ledger. Default: Nancy Carleton."
+  },
+  {
+   "id": "c73bf21710e60d7a83b22483ae2de28a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "route-stops",
+   "displayName": "Route stops",
+   "helpText": "Route strip under the hero. Comma-separated IATA or place codes, e.g. CPH, SOF, TGD. Strip hides when empty."
+  },
+  {
+   "id": "fd29a160b2df46883eb445adc3c7dead",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "route-note",
+   "displayName": "Route note",
+   "helpText": "Route strip. Short note shown right of the stops, e.g. 12 countries, 14 days, one EV."
+  },
+  {
+   "id": "d53eb828334c7f7193210aa048ae9cf7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "disclosure",
+   "displayName": "Disclosure",
+   "helpText": "Story ledger. Who paid, e.g. 'Paid for by the traveler' or 'Hosted: Visit Sofia'. Sponsored stories also need Reklame above the headline. Empty renders 'Contributor to add'."
+  },
+  {
+   "id": "ea723a032fc11d660ab2c30622c87ee9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "last-updated",
+   "displayName": "Last updated",
+   "helpText": "Story ledger. Set this when a correction or update goes in. Empty shows the published date.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "dc6cd7ddb6a54011e0cbbb2556df3b33",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "show-posted-date",
+   "displayName": "Show posted date",
+   "helpText": "Contributor opt-in. Shows the published date in the story ledger."
+  },
+  {
+   "id": "baad69bb436a3215474cc927c6a8bdfc",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "show-traveled-date",
+   "displayName": "Show traveled date",
+   "helpText": "Contributor opt-in. Shows the Trip when text in the story ledger."
+  },
+  {
+   "id": "098cc3adef6589739df4e9b9870e7431",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "show-edited-date",
+   "displayName": "Show edited date",
+   "helpText": "Contributor opt-in. Shows the last-updated date in the story ledger."
+  },
+  {
+   "id": "ddee2f7b1abbb366f0d46a57fb0e0ca6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "external-url",
+   "displayName": "External URL",
+   "helpText": "Link-out story. When set, the card says Opens on {platform} and opens this URL in a new tab. TLL points to the work, it never copies it."
+  },
+  {
+   "id": "4f8f9a69191510bd511fd2fe03a504af",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "d4a7d554aa019bec407651fa5cf642a7",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

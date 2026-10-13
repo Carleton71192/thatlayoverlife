@@ -1,0 +1,238 @@
+{
+ "id": "6a0b29cdafd5d6fd115e3d24",
+ "displayName": "Layovers",
+ "singularName": "Layover",
+ "slug": "layovers",
+ "createdOn": "2026-05-18T15:01:33.504Z",
+ "lastUpdated": "2026-06-14T09:13:51.116Z",
+ "fields": [
+  {
+   "id": "2c4571142f0ef13881ec7f4efb16497e",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "city",
+   "displayName": "City"
+  },
+  {
+   "id": "39aa8dbef0e294bafe45bcd378bf0654",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "airport-code",
+   "displayName": "Airport code",
+   "helpText": "IATA three-letter code (e.g. DOH, IST, KEF)."
+  },
+  {
+   "id": "04fc585ffbfac3ea48a97a0cab686531",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "c5da4c748c8bca2f3ce7f2ba41fd63a9",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "time-window",
+   "displayName": "Time window",
+   "validations": {
+    "options": [
+     {
+      "name": "3h",
+      "id": "633102dc6d25728ae2f2aa43a5e0f698"
+     },
+     {
+      "name": "6h",
+      "id": "fd532eea28aef8ab737d425db36d1845"
+     },
+     {
+      "name": "9h",
+      "id": "6827e586e14c5e449f314db85fd9ad1b"
+     },
+     {
+      "name": "12h+",
+      "id": "9aa8d4488d5e6643d75611de9a4974e6"
+     }
+    ]
+   }
+  },
+  {
+   "id": "310a00262ab9b30c2bcee7603efbbdac",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image"
+  },
+  {
+   "id": "46b4c4df992f69f0364355d68577c061",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "quick-answers",
+   "displayName": "Quick answers",
+   "helpText": "Best 3 things in N hours. Line-break separated."
+  },
+  {
+   "id": "5b916967d197ae4976123a5e17be7f4c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "cab-cost",
+   "displayName": "Cab cost",
+   "helpText": "One-line, with year stamp (e.g. ~$25 each way, 2026)."
+  },
+  {
+   "id": "46189406fe761f5c41d734d346a79ad6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "metro-option",
+   "displayName": "Metro option",
+   "helpText": "If applicable, one line."
+  },
+  {
+   "id": "5ec06518c82bff083d4c86f410ee25ee",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "best-in-airport-food",
+   "displayName": "Best in-airport food"
+  },
+  {
+   "id": "e98e083ea304edf758a53623e80d8c5a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "walk-through",
+   "displayName": "Walk-through",
+   "helpText": "The hour-by-hour."
+  },
+  {
+   "id": "baf599c1d36f9d700fa0bdef479b8d46",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "practical",
+   "displayName": "Practical",
+   "helpText": "Visa, wifi, power, storage, showers."
+  },
+  {
+   "id": "29f825e8522764758acb549809508edd",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "map-url",
+   "displayName": "Map URL"
+  },
+  {
+   "id": "b439fde57913d663716935ab9086e01c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "last-updated",
+   "displayName": "Last updated",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "751a5b2846a6905a177c5cf3d049827d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "author",
+   "displayName": "Author",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "a79a5e7e1e9199ea9e5aaf77e91e90a1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "de535ef67bb7079643fd990a3f6ebc47",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "f57cf72227ed9b0f35fec783ec7cdfff",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "difficulty",
+   "displayName": "Difficulty",
+   "helpText": "Voice-led difficulty tier. Mirrors Much Better Adventures levels, in TLL voice.",
+   "validations": {
+    "options": [
+     {
+      "name": "Lounge mode",
+      "id": "9116c85d1f83427c6c5804df9285e9af"
+     },
+     {
+      "name": "Brisk wander",
+      "id": "6bcb6815772ae50f69246ebbf45a950b"
+     },
+     {
+      "name": "Run the city",
+      "id": "20744d5698b7482eda9c089152316f3e"
+     },
+     {
+      "name": "Hardcore connection",
+      "id": "26729bae494cff9eff973bc1aa99bf63"
+     }
+    ]
+   }
+  },
+  {
+   "id": "4a9449b238cc887a7e7bd3c42e13df5e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "photo-gallery",
+   "displayName": "Photo gallery",
+   "helpText": "Optional. Photos from the layover (food, transit, the actual cafe). Renders below the walk-through."
+  },
+  {
+   "id": "2b32273be730780dc6d651fa93d65c32",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "7175e17328156bf22162175511ac4d1a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

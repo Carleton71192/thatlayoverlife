@@ -1,0 +1,105 @@
+{
+ "id": "6a0be81801ee7eff1010907a",
+ "displayName": "Collections",
+ "singularName": "Collection",
+ "slug": "collections",
+ "createdOn": "2026-05-19T04:33:28.440Z",
+ "lastUpdated": "2026-06-14T09:13:51.794Z",
+ "fields": [
+  {
+   "id": "274fbde8c20d6a6e522d3d503e77cede",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "tagline",
+   "displayName": "Tagline",
+   "helpText": "Short voice-led tagline."
+  },
+  {
+   "id": "ea9670ad7a2fe3276b04e51f8a5dcc90",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "description",
+   "displayName": "Description",
+   "helpText": "Long-form vibe description for the hub page."
+  },
+  {
+   "id": "52c8e6cf0e365b040b819c891766150e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image",
+   "helpText": "Full-bleed image that carries the vibe."
+  },
+  {
+   "id": "e93ba3ba4ad4f64955ba65be253e4ad2",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "accent-color",
+   "displayName": "Accent color",
+   "validations": {
+    "options": [
+     {
+      "name": "Teal",
+      "id": "b8b356a4e1661d4acd15c41f32a8ceca"
+     },
+     {
+      "name": "Rose",
+      "id": "2de6612f1e84a0fce5e697f39815e51b"
+     },
+     {
+      "name": "Marigold",
+      "id": "41d5bb982cf32ef208bb7151b3d012a8"
+     },
+     {
+      "name": "Midnight",
+      "id": "7aee483fd587e63eb72ee5022f65bae7"
+     },
+     {
+      "name": "Blush",
+      "id": "fb0d68e7fc79a4b11bba0acbe117aaa4"
+     }
+    ]
+   }
+  },
+  {
+   "id": "b214cb5b3b507249dbad2d4c882b0f56",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "featured-in-nav",
+   "displayName": "Featured in nav",
+   "helpText": "Show the chip in the global nav top bar."
+  },
+  {
+   "id": "884910a0f82bd85bc3c33e2cbfdd3a2e",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "55a680d30047585b33680ffdbc680716",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

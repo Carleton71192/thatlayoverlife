@@ -1,0 +1,233 @@
+{
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef86d": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "link",
+    "value": {
+     "mode": "url",
+     "to": "#"
+    }
+   },
+   {
+    "key": "text",
+    "value": {
+     "innerText": "GContinue with Google"
+    }
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-auth-provider",
+      "value": "google"
+     },
+     {
+      "name": "data-ms-plan:add",
+      "value": "pln_traveler-l97086o"
+     }
+    ]
+   }
+  ]
+ },
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef873": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "first-name"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-member",
+      "value": "first-name"
+     }
+    ]
+   }
+  ]
+ },
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef877": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "email"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "email"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-member",
+      "value": "email"
+     }
+    ]
+   }
+  ]
+ },
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef87b": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "password"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "password"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "minlength",
+      "value": "8"
+     },
+     {
+      "name": "data-ms-member",
+      "value": "password"
+     }
+    ]
+   }
+  ]
+ },
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef87d": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "Checkbox"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "368b8b38-3976-ba85-7815-ec8db9334dcc": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox-2"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "age-16"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "d8aa44e7-c49a-d2c7-7ab8-f5d9fb2ef888": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Create my account →"
+   },
+   {
+    "key": "loadingText",
+    "value": "Welcoming you in..."
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

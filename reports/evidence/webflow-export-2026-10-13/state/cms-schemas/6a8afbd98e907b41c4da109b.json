@@ -1,0 +1,531 @@
+{
+ "id": "6a8afbd98e907b41c4da109b",
+ "displayName": "Countries",
+ "singularName": "Country",
+ "slug": "countries",
+ "createdOn": "2026-08-23T13:55:37.962Z",
+ "lastUpdated": "2026-08-23T13:58:32.819Z",
+ "fields": [
+  {
+   "id": "d6aa42be6c32866d238415f0fde4005f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "iso2",
+   "displayName": "ISO2"
+  },
+  {
+   "id": "cd8cfaaa887c632ed6a23fb0216cf9b1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "iso3",
+   "displayName": "ISO3"
+  },
+  {
+   "id": "855ed1e3dcd9a2afa69ffb9392c9653b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "capital",
+   "displayName": "Capital"
+  },
+  {
+   "id": "d125e5a14d5d72fd5d4c4da0d7130c11",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "region",
+   "displayName": "Region"
+  },
+  {
+   "id": "3b37296b83becba8b33a3bead8318d72",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "subregion",
+   "displayName": "Subregion"
+  },
+  {
+   "id": "4170b716f7acf2d84c2e7a189c6c09c0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "official-languages",
+   "displayName": "Official Languages"
+  },
+  {
+   "id": "67bd170d38a1b4115f926abd5152420d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "currency-code",
+   "displayName": "Currency Code"
+  },
+  {
+   "id": "25a7c56e042688940ba29f3c5d6e9dac",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "currency-name",
+   "displayName": "Currency Name"
+  },
+  {
+   "id": "13098f05a2c33dadd0b651ca497b852d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "calling-code",
+   "displayName": "Calling Code"
+  },
+  {
+   "id": "fd84d6a24861b455308986d905ffecde",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "tld",
+   "displayName": "TLD"
+  },
+  {
+   "id": "4416f6bffc86e26153442e44bc1c3f94",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "neighbors",
+   "displayName": "Neighbors"
+  },
+  {
+   "id": "6f76c70559de3ae03812f559afe04071",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "flag-emoji",
+   "displayName": "Flag Emoji"
+  },
+  {
+   "id": "442a504280eed664b8ecdf9d7a024454",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "population",
+   "displayName": "Population",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "88eb7ac1a78ce070834608405725c916",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "population-year",
+   "displayName": "Population Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "1fac2efdba839bc8b1ae662414d2ec14",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "gdp-per-capita",
+   "displayName": "GDP Per Capita",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "4b4a806c4fcbe6d183ffa00e35e042ae",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "gdp-per-capita-year",
+   "displayName": "GDP Per Capita Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "5ed07f03580b57e33893c8845c7129e6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "life-expectancy-year",
+   "displayName": "Life Expectancy Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "fbf19c9b90f08cce91ed2317cda1098d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "urban-pct-year",
+   "displayName": "Urban Pct Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "c9b1c756146f7c2b0a15347d1b6c5106",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "internet-pct-year",
+   "displayName": "Internet Pct Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "8958c8ec593ab627407882a497f5076f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "surface-km2",
+   "displayName": "Surface Km2",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "c9cea939d375b46637d4b8771273fb37",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "surface-km2-year",
+   "displayName": "Surface Km2 Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "70d1409f1e63f05c496fce8af9131d21",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fx-code",
+   "displayName": "FX Code"
+  },
+  {
+   "id": "51f0d5b04d753c096536775235f6f642",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fx-checked",
+   "displayName": "FX Checked"
+  },
+  {
+   "id": "1f10a09e9efc98ed7cb5d3d0e04aa51c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "advisory-level",
+   "displayName": "Advisory Level",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "a71fede1fb4941629bb532e3c85ae3a5",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "advisory-text",
+   "displayName": "Advisory Text"
+  },
+  {
+   "id": "542e645e968551baee7274c29f630e36",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "advisory-regional",
+   "displayName": "Advisory Regional"
+  },
+  {
+   "id": "595a090c755ee6bc1bf692bfb34008e8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "advisory-checked",
+   "displayName": "Advisory Checked"
+  },
+  {
+   "id": "a11ee45aaef052c8a51a40222d3d36c4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "advisory-url",
+   "displayName": "Advisory URL"
+  },
+  {
+   "id": "c325a3538dc0af5b8dc1710784b98e3f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fcdo-alert",
+   "displayName": "FCDO Alert"
+  },
+  {
+   "id": "63ef3c28aaa83442abdf9e448e8b963b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fcdo-reviewed",
+   "displayName": "FCDO Reviewed"
+  },
+  {
+   "id": "e1776c7d1a3dd324d8d9e5482fb7394d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "fcdo-url",
+   "displayName": "FCDO URL"
+  },
+  {
+   "id": "172a1389dd33cfea0d4ae441a6362c8c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "data-checked",
+   "displayName": "Data Checked"
+  },
+  {
+   "id": "b947223e1a3222185f9135c63288d4e3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "data-flags",
+   "displayName": "Data Flags"
+  },
+  {
+   "id": "b20aa0c76cb28a3566a9282605e425cf",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "data-ok",
+   "displayName": "Data OK"
+  },
+  {
+   "id": "6d18304199d988084dd60f5285642a6a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "tier",
+   "displayName": "Tier",
+   "validations": {
+    "options": [
+     {
+      "name": "Lived",
+      "id": "d57e996985e3f06336ce9df8d44e856d"
+     },
+     {
+      "name": "Been",
+      "id": "1be45373022b7bc20b739bca2bd55712"
+     },
+     {
+      "name": "Not yet",
+      "id": "eaa026c328a954d590d9f9ab9bdb1804"
+     },
+     {
+      "name": "Earned",
+      "id": "333ea0d0508b511243166fae94b4d81a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "f548e302f341b419e234ef793b72ac47",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "visit-years",
+   "displayName": "Visit Years"
+  },
+  {
+   "id": "dfd023e31edfd809b9bc57bdf3f9d8de",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word",
+   "displayName": "One Word"
+  },
+  {
+   "id": "12b4fe81123fd4a75b2828935dabdbea",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-ipa",
+   "displayName": "One Word IPA"
+  },
+  {
+   "id": "b4db6d9d0945da89bfcd94e142da3efc",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-lang",
+   "displayName": "One Word Lang"
+  },
+  {
+   "id": "a3eb42c00082e96f9d1df0c7e557355a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-pos",
+   "displayName": "One Word POS"
+  },
+  {
+   "id": "da26c0a6934b895aff1cebed75abd2ce",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-gloss",
+   "displayName": "One Word Gloss"
+  },
+  {
+   "id": "ce6d5a843fdb1d5575765c39b74ac4c8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-note",
+   "displayName": "One Word Note"
+  },
+  {
+   "id": "cf269b1fe3e024a582728db11fd9fada",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-source",
+   "displayName": "One Word Source"
+  },
+  {
+   "id": "f1040f372ef536d7a74e060158e8bb0f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-checked-by",
+   "displayName": "One Word Checked By"
+  },
+  {
+   "id": "c2044fcb73624d16194bc1fcb4928160",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "one-word-heard",
+   "displayName": "One Word Heard"
+  },
+  {
+   "id": "b30153c92d1cf51640086cf21a001438",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "verdict",
+   "displayName": "Verdict"
+  },
+  {
+   "id": "5cc537e829159bbd6288711b719972fb",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "body",
+   "displayName": "Body"
+  },
+  {
+   "id": "ce8015d8524d6e2bf03485d6f8799eb2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "story-ref",
+   "displayName": "Story Ref",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "c663b1251c8d9ddb8a8d8e173d2b1f1e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fx-per-usd-2",
+   "displayName": "FX Per USD",
+   "helpText": "Decimal as text, worker-formatted (integer rounding loses fx precision)"
+  },
+  {
+   "id": "dd78ffa7febdb092d1a3db1fbcecd3f9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "life-expectancy-2",
+   "displayName": "Life Expectancy",
+   "helpText": "Decimal as text, worker-formatted"
+  },
+  {
+   "id": "db7d003728507ea8c7eddc463f351a91",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "urban-pct-2",
+   "displayName": "Urban Pct",
+   "helpText": "Decimal as text, worker-formatted"
+  },
+  {
+   "id": "d162518cbf800e4f4819f7ebf3fffa32",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "internet-pct-2",
+   "displayName": "Internet Pct",
+   "helpText": "Decimal as text, worker-formatted"
+  },
+  {
+   "id": "3642b94a9eac66e89f9aa1968d945136",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "c4c09b0645d48e534a525a2c72bcc11f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

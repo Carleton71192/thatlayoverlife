@@ -1,0 +1,206 @@
+{
+ "id": "6ab3c56941a6e822128ef4c2",
+ "displayName": "Submissions",
+ "singularName": "Submission",
+ "slug": "submissions",
+ "createdOn": "2026-09-23T12:26:17.189Z",
+ "lastUpdated": "2026-09-23T12:26:41.507Z",
+ "fields": [
+  {
+   "id": "5c851f3e7e0b5ef8cd815eeaf86ef5ae",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "working-title",
+   "displayName": "Working title",
+   "helpText": "The pitch in a few words. Keep it non identifying."
+  },
+  {
+   "id": "375093637d3d431e688de495fe82072a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "country",
+   "displayName": "Country"
+  },
+  {
+   "id": "4cd6453d5311b7bb04c12a602bc237e5",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "received",
+   "displayName": "Received",
+   "helpText": "The day it landed. This drives the waiting count on the desk.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "4b8db1114d1b2df54568d756fbb805fa",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "stage-changed",
+   "displayName": "Stage changed",
+   "helpText": "Update when you move it to a new stage.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "a62e2a201a1bf2cf9d9bc2eda9a9c3e9",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "stage",
+   "displayName": "Stage",
+   "helpText": "Where it is right now. Received, Reading and With the writer count as open.",
+   "validations": {
+    "options": [
+     {
+      "name": "Received",
+      "id": "4ce0a55bbbe3f7b50ca784395f856c12"
+     },
+     {
+      "name": "Reading",
+      "id": "31742f29854b9d84988a7015b1677e31"
+     },
+     {
+      "name": "With the writer",
+      "id": "f1a8a406dffc5b33734bdf4c9ea754c6"
+     },
+     {
+      "name": "Scheduled",
+      "id": "761e158dde4aca12b8104acc975cd73e"
+     },
+     {
+      "name": "Published",
+      "id": "6bf97477ab4eaa92fb7dff92b427f7d6"
+     },
+     {
+      "name": "Not this time",
+      "id": "61deeb9ba5e9ffb077c074b4b5395a63"
+     }
+    ]
+   }
+  },
+  {
+   "id": "9e18a57ba3924d5791eadf1009da6f30",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "format",
+   "displayName": "Format",
+   "validations": {
+    "options": [
+     {
+      "name": "Essay",
+      "id": "99984c9c49d3ddde99e0d1e785b8cfe5"
+     },
+     {
+      "name": "Layover",
+      "id": "a31ad5a3a23c2c43b854fb1a26b7797d"
+     },
+     {
+      "name": "Diary",
+      "id": "109abc53fbf8355743da6585d80c8d03"
+     },
+     {
+      "name": "Guide",
+      "id": "ce556635740a29fa50c314ab17a9dc88"
+     },
+     {
+      "name": "Photo",
+      "id": "ee7336eede67d40905386c19953df96b"
+     },
+     {
+      "name": "Other",
+      "id": "4ebc20249e8178ba04dd6d794cbdef16"
+     }
+    ]
+   }
+  },
+  {
+   "id": "f05f2480d1321b39eafd5ed4161c3191",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "came-in-via",
+   "displayName": "Came in via",
+   "validations": {
+    "options": [
+     {
+      "name": "Share form",
+      "id": "e17b29df4db37b3f69c83e2b25b86e84"
+     },
+     {
+      "name": "Email",
+      "id": "3535183c3e25070ecd351f6a5c674d44"
+     },
+     {
+      "name": "Press desk",
+      "id": "b537ac8088a4e99658939f2edf380e06"
+     },
+     {
+      "name": "Expert desk",
+      "id": "3d2b911de662db3d509b8a99f27f8228"
+     },
+     {
+      "name": "Asked for",
+      "id": "297b3f80e2040c21b8b05592d5354601"
+     }
+    ]
+   }
+  },
+  {
+   "id": "812cdb94594e571eb4c1eed6dc9c2d28",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "note-to-self",
+   "displayName": "Note to self",
+   "helpText": "Short working note. Nothing a contributor would not want read back to them."
+  },
+  {
+   "id": "ddbdf9fc6abef328c73462786828f430",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "published-story",
+   "displayName": "Published story",
+   "helpText": "Link it here once it runs.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "2ca6df41f0e727e35d0f43898b282bed",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Reference code",
+   "helpText": "Short code you quote in the reply email, for example TLL-0007. No names or emails anywhere in this collection.",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "a6cccb2847ec44a5539943aaeb97fea1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

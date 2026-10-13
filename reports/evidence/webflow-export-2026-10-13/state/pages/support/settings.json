@@ -1,0 +1,82 @@
+{
+ "0744a87c-eb66-1948-6b65-9af97b63293c": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "link",
+    "value": {
+     "mode": "url",
+     "to": "#"
+    }
+   },
+   {
+    "key": "text",
+    "value": {
+     "innerText": "Join on Ko-fi"
+    }
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-tll-club",
+      "value": "join"
+     },
+     {
+      "name": "aria-disabled",
+      "value": "true"
+     }
+    ]
+   }
+  ]
+ },
+ "d46a4f20-be52-207e-7487-7fcc898cf6f4": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "link",
+    "value": {
+     "mode": "url",
+     "to": "#"
+    }
+   },
+   {
+    "key": "text",
+    "value": {
+     "innerText": "Or just leave a tip"
+    }
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-tll-club",
+      "value": "tip"
+     },
+     {
+      "name": "aria-disabled",
+      "value": "true"
+     }
+    ]
+   }
+  ]
+ }
+}

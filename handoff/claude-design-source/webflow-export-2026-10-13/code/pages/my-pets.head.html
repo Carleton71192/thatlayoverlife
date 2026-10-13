@@ -1,0 +1,34 @@
+<meta name="robots" content="noindex, follow">
+<style id="tll-pet-extras-css-v1">[data-tll-pet-extras] h6{font:inherit;margin:0;color:inherit;letter-spacing:inherit;text-transform:inherit;display:block}[data-tll-pet-extras] .tll-pen-helptext h6{font:inherit}</style>
+<script id="tll-pet-extras-v1">
+/* Pet extras v1 (29 Sep 2026): carries countries and own-account handles from the add-pet form into the member's pet record saved by the pet editor. Adds nothing else; the editor keeps owning the record. */
+(function(){
+  var CODES="AD,AE,AF,AG,AL,AM,AO,AR,AT,AU,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BN,BO,BR,BS,BT,BW,BY,BZ,CA,CD,CF,CG,CH,CI,CL,CM,CN,CO,CR,CU,CV,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,ER,ES,ET,FI,FJ,FM,FR,GA,GB,GD,GE,GH,GM,GN,GQ,GR,GT,GW,GY,HN,HR,HT,HU,ID,IE,IL,IN,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MG,MH,MK,ML,MM,MN,MR,MT,MU,MV,MW,MX,MY,MZ,NA,NE,NG,NI,NL,NO,NP,NR,NZ,OM,PA,PE,PG,PH,PK,PL,PS,PT,PW,PY,QA,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SI,SK,SL,SM,SN,SO,SR,SS,ST,SV,SY,SZ,TD,TG,TH,TJ,TL,TM,TN,TO,TR,TT,TV,TZ,UA,UG,US,UY,UZ,VA,VC,VE,VN,VU,WS,YE,ZA,ZM,ZW".split(",");
+  function ready(fn){ if(document.readyState!=="loading") fn(); else document.addEventListener("DOMContentLoaded",fn); }
+  ready(function(){
+    var f=document.querySelector('form[data-tll-form="add-pet"]'); if(!f) return;
+    var dl=document.createElement("datalist"); dl.id="tll-country-list";
+    try{ var dn=new Intl.DisplayNames(["en"],{type:"region"}); dl.innerHTML=CODES.map(function(c){return '<option value="'+dn.of(c).replace(/"/g,"&quot;")+'">';}).join(""); }catch(e){}
+    f.appendChild(dl);
+    var extras=null;
+    f.addEventListener("submit",function(){
+      var g=function(n){ var el=f.querySelector('[name="'+n+'"]'); return el?el.value.trim():""; };
+      extras={name:g("name"),countries:g("pet-countries").split(",").map(function(s){return s.trim();}).filter(Boolean),instagram:g("pet-instagram").replace(/^@/,""),tiktok:g("pet-tiktok").replace(/^@/,""),strava:g("pet-strava")};
+      if(!extras.name||(!extras.countries.length&&!extras.instagram&&!extras.tiktok&&!extras.strava)){ extras=null; return; }
+      var tries=0, t=setInterval(function(){
+        var ms=window.$memberstackDom; if(!ms||++tries>40){ if(tries>40) clearInterval(t); return; }
+        ms.getMemberJSON().then(function(j){
+          var json=(j&&j.data)||{}, pets=Array.isArray(json.pets)?json.pets:[];
+          var p=null; for(var i=pets.length-1;i>=0;i--){ if(pets[i].name===extras.name&&!pets[i].extrasApplied){ p=pets[i]; break; } }
+          if(!p) return;
+          clearInterval(t);
+          if(extras.countries.length) p.countries=extras.countries;
+          if(extras.instagram) p.instagram=extras.instagram; if(extras.tiktok) p.tiktok=extras.tiktok; if(extras.strava) p.strava=extras.strava;
+          p.extrasApplied=true; json.pets=pets;
+          return ms.updateMemberJSON({json:json});
+        }).catch(function(){});
+      },500);
+    },true);
+  });
+})();
+</script>

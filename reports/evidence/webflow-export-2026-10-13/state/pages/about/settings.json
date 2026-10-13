@@ -1,0 +1,94 @@
+{
+"714a8d43-bfe5-98c3-12db-c8e9410c8c89": {
+"type": "all_resolved_settings",
+"total_matches": 3,
+"matches": [
+{
+"key": "domId",
+"value": null
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"c024f6d7-b983-b4a6-fd71-f07cd9e9044d": {
+"type": "all_resolved_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "code",
+"value": "<style>@media(max-width:600px){.tll-about-final-title{font-size:38px;letter-spacing:-.5px}.tll-about-final-hero{padding-top:52px;padding-bottom:40px}.tll-about-final-intro{font-size:18px}.tll-about-final-section{padding-top:36px;padding-bottom:26px}.tll-about-final-h2{font-size:29px}.tll-about-final-p,.tll-about-final-li{font-size:17px}.tll-about-final-quote{font-size:21px}}</style><script>(function(){\nfunction get(path){return fetch(path,{cache:'no-cache'}).then(function(r){if(!r.ok)throw Error('Unavailable');return r.text();}).then(function(h){return new DOMParser().parseFromString(h,'text/html');});}\nfunction run(){\nget('/contributors/nancy-carleton').then(function(d){\nvar e=d.querySelector('[data-tll-prof=\"n-countries\"]'),s=e&&e.textContent.trim();\nif(!/^\\d+$/.test(s||''))return;var n=Number(s),total=249;if(n>total)return;\nvar t=document.querySelector('[data-tll-about-count=\"nancy\"]');\nif(t)t.textContent='The country count stands at '+n+', which is about '+Math.round(n/total*100)+' percent of the world and leaves me '+(total-n)+' excellent reasons to keep going.';\n}).catch(function(){});\nget('/pets/magnus-waffles').then(function(d){\nvar scripts=Array.from(d.querySelectorAll('script')),match;\nscripts.some(function(s){if(s.textContent.indexOf('window.TLL_PET=')<0)return false;match=s.textContent.match(/countries:\\s*(\"(?:\\\\.|[^\"\\\\])*\")/);return !!match;});\nif(!match)return;var list=JSON.parse(match[1]).split(',').map(function(s){return s.trim().toLowerCase();}).filter(Boolean);\nvar n=new Set(list).size,t=document.querySelector('[data-tll-about-count=\"magnus\"]');\nif(t)t.textContent='He has crossed into '+n+' countries.';\n}).catch(function(){});\n}\nif(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n})();</script>"
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"4e69e400-ce58-1464-d078-4955651a6eb8": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6a115e9ceb37217428cb4b38"
+},
+{
+"key": "altText",
+"value": "Nancy Carleton"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"acdc9fbd-f509-6587-b3a4-07457ce39857": {
+"type": "all_resolved_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "assetId",
+"value": "6ab138a38f9516858fcc83de"
+},
+{
+"key": "altText",
+"value": "Magnus Waffles, Samoyed"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+}
+}

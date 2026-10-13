@@ -1,0 +1,298 @@
+{
+ "id": "6abcd638b10dc7b4930f6410",
+ "displayName": "Directory",
+ "singularName": "Directory Member",
+ "slug": "directory",
+ "createdOn": "2026-09-30T09:28:24.334Z",
+ "lastUpdated": "2026-09-30T13:22:20.217Z",
+ "fields": [
+  {
+   "id": "4e307aa953239a75e734d8dd85f15e11",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "member-id",
+   "displayName": "Member ID",
+   "helpText": "Memberstack member id. Sync key; never rendered."
+  },
+  {
+   "id": "4325c88bb6723d9c1c429cb609c75e4e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "profile-slug",
+   "displayName": "Profile slug",
+   "helpText": "Matching Contributors item slug, if any"
+  },
+  {
+   "id": "f8da73bd320983b95a22bb8efdfaf338",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-expat",
+   "displayName": "Is expat"
+  },
+  {
+   "id": "af0865ce9d369e91dcf912796c684db2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-creator",
+   "displayName": "Is creator"
+  },
+  {
+   "id": "9f1f0fe8724cb70c2bd04f187d421f92",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-press",
+   "displayName": "Is press"
+  },
+  {
+   "id": "8ebb1ff1178487a3012b1c4ee5f7c839",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "press-verified",
+   "displayName": "Press verified",
+   "helpText": "Set by Nancy only, after seeing 2+ published pieces, a press card, an editor reference or a portfolio site"
+  },
+  {
+   "id": "83d6c3158350b67be1708e061120ae5e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "lives-in",
+   "displayName": "Lives in",
+   "validations": {
+    "collectionId": "6a8afbd98e907b41c4da109b"
+   }
+  },
+  {
+   "id": "a7149c9d0f125a9d788a0258b1ff1d77",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "city",
+   "displayName": "City",
+   "helpText": "Optional. Never a neighborhood or address."
+  },
+  {
+   "id": "c2f3be962f79d8afed7c1d0bfa966fcc",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "abroad-since",
+   "displayName": "Abroad since",
+   "helpText": "Year. Years abroad is computed from this.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "d88e4146fecd365864f89644abed36e9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "knows",
+   "displayName": "Knows",
+   "validations": {
+    "collectionId": "6a8afbd98e907b41c4da109b"
+   }
+  },
+  {
+   "id": "5497b05a5b5db942bcc49e58ed8b0f76",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "tags",
+   "displayName": "Tags",
+   "helpText": "Max 5",
+   "validations": {
+    "collectionId": "6abcd6371aa0f0654773a59e"
+   }
+  },
+  {
+   "id": "29dabca78bff4b4e77da6ac7aca11ae7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "languages",
+   "displayName": "Languages",
+   "helpText": "Comma separated"
+  },
+  {
+   "id": "c20c80e203c3b6bdb2edf806c5857621",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "roles",
+   "displayName": "Roles"
+  },
+  {
+   "id": "1cb8a1265c3602e10eb899461516e74c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "affiliation",
+   "displayName": "Affiliation"
+  },
+  {
+   "id": "d884b5dd3328afcc41423737881e9f49",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "regions",
+   "displayName": "Regions"
+  },
+  {
+   "id": "ff71acf00c556b85ab16468ed4d547b5",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "monetization",
+   "displayName": "Monetization",
+   "helpText": "affiliates / hosted trips / sponsors"
+  },
+  {
+   "id": "16f169e0f10f438f478c4b12077d5d35",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "links-json",
+   "displayName": "Links JSON",
+   "helpText": "Only links whose switch is on. JSON array of {type,url}."
+  },
+  {
+   "id": "aa301f0c952810b8a7ce1873498d9d0e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "contact-mode",
+   "displayName": "Contact mode",
+   "validations": {
+    "options": [
+     {
+      "name": "None",
+      "id": "8f978203131baa23e7237f9a7ff49617"
+     },
+     {
+      "name": "Platforms",
+      "id": "d630433321cba2d6fce1d9759a96e163"
+     }
+    ]
+   }
+  },
+  {
+   "id": "9a5d0d65a6993237f00936e4eef8c5f9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "contact-instagram",
+   "displayName": "Contact Instagram",
+   "helpText": "Handle only"
+  },
+  {
+   "id": "8b6eb7e0a9bc59bdadacf584cc37c077",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "contact-whatsapp",
+   "displayName": "Contact WhatsApp",
+   "helpText": "wa.me/message/\u2026 short link only. Never wa.me/{number}."
+  },
+  {
+   "id": "ddf3a8d59a5a1e74803f970ec2d4d68a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "relay-form-on",
+   "displayName": "Relay form on"
+  },
+  {
+   "id": "0b29c2e595a36d1546dc2f065377c26a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "photo",
+   "displayName": "Photo"
+  },
+  {
+   "id": "80c56631635015982e1a7cb937236e74",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "synced-on",
+   "displayName": "Synced on",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "887bc9c7b5b3e96c56d9748e31978dc7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "lives-in-name",
+   "displayName": "Lives in name",
+   "helpText": "Written by the sync from Lives in. Rendered on cards."
+  },
+  {
+   "id": "56f5abf52dc10f461ce57715eda6dc93",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "knows-text",
+   "displayName": "Knows text",
+   "helpText": "Written by the sync from Knows, comma separated. Rendered on cards."
+  },
+  {
+   "id": "92d0e3177e6aae3cdbc178f0b1e126fe",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "tags-text",
+   "displayName": "Tags text",
+   "helpText": "Written by the sync from Tags, comma separated. Rendered on cards."
+  },
+  {
+   "id": "a303358389caa0353aebb809dbdce5f2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "flags",
+   "displayName": "Flags",
+   "helpText": "Space separated tokens written by the sync: expat creator press verified relay. Cards read this."
+  },
+  {
+   "id": "cf63ba2ac9a44ea13ffd4afc9361b62f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "a8b2830131d064ddcad0c4ba2af5febc",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

@@ -1,0 +1,160 @@
+{
+ "id": "6abcd637bff19cda8e2426c5",
+ "displayName": "Resources",
+ "singularName": "Resource",
+ "slug": "resources",
+ "createdOn": "2026-09-30T09:28:23.058Z",
+ "lastUpdated": "2026-09-30T13:43:34.201Z",
+ "fields": [
+  {
+   "id": "a8e0ddff4c940ece66da3029c4561a1d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "type",
+   "displayName": "Type",
+   "validations": {
+    "options": [
+     {
+      "name": "Official",
+      "id": "acce74bc587776af7a31791b1926df18"
+     },
+     {
+      "name": "Facebook group",
+      "id": "5146e5088189fe033f21a0b1df36ff13"
+     },
+     {
+      "name": "Guide",
+      "id": "0f7262c84a977e86f33186ce5cc39f6f"
+     },
+     {
+      "name": "Events",
+      "id": "03ff5e71df22de24bf4e801c5c9dd810"
+     },
+     {
+      "name": "Other",
+      "id": "4136cabf8b8539fae73f2717af9419ad"
+     }
+    ]
+   }
+  },
+  {
+   "id": "b4e5420ecdaf51a8e2fd8457d8907ee2",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Link",
+   "slug": "url",
+   "displayName": "URL"
+  },
+  {
+   "id": "49b71729736117ecab19fc0dd8f3fbe1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "host",
+   "displayName": "Host",
+   "helpText": "Host domain shown on the card, e.g. ihcph.kk.dk"
+  },
+  {
+   "id": "2624675d463baf4826935ed52d56860b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "note",
+   "displayName": "Note",
+   "helpText": "One line, 140 characters max. TLL voice rules apply."
+  },
+  {
+   "id": "936622b1b5f273e8995a2f32932a234d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "validations": {
+    "collectionId": "6a8afbd98e907b41c4da109b"
+   }
+  },
+  {
+   "id": "7f3dd66fa788544ed203577bb74db6ce",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "checked-on",
+   "displayName": "Checked on",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "1bde5fa2d818ef3be2fc8fd32075b385",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "checked-by",
+   "displayName": "Checked by"
+  },
+  {
+   "id": "cda3ab2ac0a4ab182ffd4784929ac784",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "helpText": "Only Live items render. Suggested resources start In review.",
+   "validations": {
+    "options": [
+     {
+      "name": "In review",
+      "id": "7fc776ed65f62d43e36a03788a5bfdb8"
+     },
+     {
+      "name": "Live",
+      "id": "90944567f8b4221e176b69160b0a844a"
+     },
+     {
+      "name": "Declined",
+      "id": "0de6fa81f7d3122162b5384babc3c767"
+     }
+    ]
+   }
+  },
+  {
+   "id": "33ad61beda0bb8c7fd1a1570350b1d54",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "country-name",
+   "displayName": "Country name",
+   "helpText": "Plain-text copy of Country, used by the country page block. Keep in step with the Country reference."
+  },
+  {
+   "id": "08227cf0bae969e5eedb723cc48d542b",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "f6b76cc67358f8e196818befb77b33ff",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

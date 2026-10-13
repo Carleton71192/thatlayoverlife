@@ -1,0 +1,84 @@
+{
+ "6260e2bb-c556-b7da-1e71-23673769e377": {
+  "type": "all_resolved_settings",
+  "total_matches": 4,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "code",
+    "value": "<div style=\"position:relative;overflow:hidden;text-align:center;padding:0 24px\"><div aria-hidden=\"true\" style=\"position:absolute;top:-120px;left:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,#00C9C8,transparent 70%);opacity:.14\"></div><div style=\"position:relative;max-width:680px;margin:0 auto\"><div class=\"tll-eyebrow-teal\">The dispatch</div><h1 style=\"color:#F7F1E8;margin:14px 0 16px\">The dispatch is <em>coming.</em></h1><p style=\"color:#cfcbc4;margin:0 auto 8px;max-width:560px\">One email from Denmark when there is something worth sending: layover intel, race-week notes, EU pet paperwork, and Magnus in the back seat. Leave your address and you get the first one.</p></div></div>"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "b2abd845-ca41-bfa2-6529-f8c88e749b3c": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "email"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "Email"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "email"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "b2abd845-ca41-bfa2-6529-f8c88e749b3d": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Send me the first one"
+   },
+   {
+    "key": "loadingText",
+    "value": "Adding you…"
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

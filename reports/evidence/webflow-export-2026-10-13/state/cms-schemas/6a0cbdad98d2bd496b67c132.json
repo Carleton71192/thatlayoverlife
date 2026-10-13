@@ -1,0 +1,112 @@
+{
+ "id": "6a0cbdad98d2bd496b67c132",
+ "displayName": "Comments",
+ "singularName": "Comment",
+ "slug": "comments",
+ "createdOn": "2026-05-19T19:44:45.940Z",
+ "lastUpdated": "2026-06-14T09:13:52.369Z",
+ "fields": [
+  {
+   "id": "af338f3ba24237632418ec8bb78dd0e4",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "contributor",
+   "displayName": "Contributor",
+   "helpText": "The Traveler who posted this comment.",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "490384ca9031f2e20fe795221f06944d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "story",
+   "displayName": "Story",
+   "helpText": "The Story this comment is on.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "e1b4d412b7d5bb7ae22d374438b03da4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "parent-comment",
+   "displayName": "Parent comment",
+   "helpText": "Optional. Set when this comment is a reply, enables threading.",
+   "validations": {
+    "collectionId": "6a0cbdad98d2bd496b67c132"
+   }
+  },
+  {
+   "id": "bff2b5365112ca17900f0f6d8fb5e390",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "body",
+   "displayName": "Body",
+   "helpText": "Comment text. Plain text only for MVP, no rich formatting."
+  },
+  {
+   "id": "cc6603359982a756fa66d20a2fe0fb9c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "posted-at",
+   "displayName": "Posted at",
+   "helpText": "Timestamp of submission.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "536fd4f88b0485c264e354ff6913b0fe",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-approved",
+   "displayName": "Is approved",
+   "helpText": "Off by default. Editor toggles on to make the comment visible publicly."
+  },
+  {
+   "id": "024e2abe71c2d71f266c8ec4487fe9d0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-flagged",
+   "displayName": "Is flagged",
+   "helpText": "Set on by community report or editor flag. Hides comment pending review."
+  },
+  {
+   "id": "a58dc2cab996826c7a7d9510529c3225",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "1c35684409278e9df7df268e1332dd72",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

@@ -1,0 +1,507 @@
+{
+ "c09ceb51-0ee9-0a93-6196-eee626758687": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "photos-upload"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "photos"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "file"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "accept",
+      "value": "image/*"
+     },
+     {
+      "name": "multiple",
+      "value": ""
+     }
+    ]
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee626758692": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "country"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee626758696": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "city"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee62675869a": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "year"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "number"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "min",
+      "value": "1990"
+     },
+     {
+      "name": "max",
+      "value": "2030"
+     }
+    ]
+   }
+  ]
+ },
+ "b7cc9567-f70c-ef36-2a9b-ddb0f4f085ec": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "photos-trip-type"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "trip-type"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586b8": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "caption"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586c5": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "pets-along"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586d0": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "radio"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "groupName",
+    "value": "credit-mode"
+   },
+   {
+    "key": "value",
+    "value": "named"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "checked",
+      "value": ""
+     }
+    ]
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586d4": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "radio"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "groupName",
+    "value": "credit-mode"
+   },
+   {
+    "key": "value",
+    "value": "pen-name"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586d8": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "radio"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "groupName",
+    "value": "credit-mode"
+   },
+   {
+    "key": "value",
+    "value": "anonymous"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586e7": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "syndication-social"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586ee": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "syndication-rotation"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586f5": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "syndication-press"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee6267586fe": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "agree-rights"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "912e62a0-8170-13ca-1a16-9abcb1ea0c5f": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "agree-licence"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "agree-licence"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "b9a53739-8caf-1642-ee38-bb1977503e8e": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "agree-people"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "agree-people"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "c09ceb51-0ee9-0a93-6196-eee62675870b": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Send it to the Lounge →"
+   },
+   {
+    "key": "loadingText",
+    "value": "Sending…"
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

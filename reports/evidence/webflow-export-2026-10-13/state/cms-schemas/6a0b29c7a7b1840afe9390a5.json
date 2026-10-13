@@ -1,0 +1,684 @@
+{
+ "id": "6a0b29c7a7b1840afe9390a5",
+ "displayName": "Contributors",
+ "singularName": "Contributor",
+ "slug": "contributors",
+ "createdOn": "2026-05-18T15:01:27.879Z",
+ "lastUpdated": "2026-07-03T10:13:26.088Z",
+ "fields": [
+  {
+   "id": "af056701c8511e1cf3ea859478f7913d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "avatar",
+   "displayName": "Photo",
+   "helpText": "Square headshot 600x600. Shown on Traveler profile and as byline avatar on Story cards."
+  },
+  {
+   "id": "703bf7e8a8e0bb3864fce67e90f1d842",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "bio-short",
+   "displayName": "Bio short",
+   "helpText": "<=160 chars, the card line."
+  },
+  {
+   "id": "3800c136c881ca08932477bcb6cc6832",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "bio-long",
+   "displayName": "Bio long",
+   "helpText": "Profile page bio."
+  },
+  {
+   "id": "e5980a87474ca6f1d8700f67d932474f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Number",
+   "slug": "country-count",
+   "displayName": "Country count",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "1ad2e73892af12dcd94603d66b567339",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "home-base",
+   "displayName": "Location",
+   "helpText": "Home base. City, Country (e.g. Copenhagen, Denmark)."
+  },
+  {
+   "id": "e8ebed32220cc875b4a436f93be19ac1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "badge",
+   "displayName": "Badge",
+   "validations": {
+    "options": [
+     {
+      "name": "Contributor",
+      "id": "ab7ef16d027983c24537c49b36fb5070"
+     },
+     {
+      "name": "Frequent",
+      "id": "b7d3dd359a8309a74ae015ce5a7fb2bb"
+     },
+     {
+      "name": "Editor",
+      "id": "2c55a9352d81176a388900af4ce62012"
+     },
+     {
+      "name": "Founder",
+      "id": "b11d2f3f0a45d910e90369e828c64fc2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "1f7948e9a72947b24aabe4613f05fa7c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "member-since",
+   "displayName": "Member since",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "01fe2637b79ef9f24387c5d58cce937f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "instagram-url",
+   "displayName": "Instagram URL"
+  },
+  {
+   "id": "b0ad89e1e375aab7495492d0a0067b6e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "website-url",
+   "displayName": "Personal site URL",
+   "helpText": "Optional. Linked from the Traveler profile."
+  },
+  {
+   "id": "0e31a3918bff0a6e57466d2057b616b3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "memberstack-id",
+   "displayName": "Member ID",
+   "helpText": "Memberstack sync key. Auto-populated when the Traveler signs up."
+  },
+  {
+   "id": "8364d1862716a5926ad8cd0185a2c28d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-countries",
+   "displayName": "Visited countries",
+   "helpText": "The Places Been map. Multi-select every country this traveler has visited. Used to render the profile's country grid and stat strip.",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "3982d452816b9d03f45755d7d11923c6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Email",
+   "slug": "email",
+   "displayName": "Email",
+   "helpText": "Memberstack-synced. Internal-only, not rendered on the public profile."
+  },
+  {
+   "id": "508d66c09ace2abc815f626116343481",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "tagline",
+   "displayName": "Tagline",
+   "helpText": "<=80 chars. One-line traveler self-description shown under the avatar on Profile."
+  },
+  {
+   "id": "96e8694c65dc18adbf432cc8c6610ba6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pronouns",
+   "displayName": "Pronouns",
+   "helpText": "Optional. e.g. she/her, they/them."
+  },
+  {
+   "id": "92263b5bd4287a02f2b99c2517038d92",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-featured",
+   "displayName": "Is featured",
+   "helpText": "Drives the Home page Featured Traveler slot. Toggle on one Contributor at a time."
+  },
+  {
+   "id": "a6d2d0b050082eaedf232f2be490e3aa",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "published-count",
+   "displayName": "Published count",
+   "helpText": "Number of Stories this Contributor has published. Updated by editor or webhook on publish.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "d3bc6f70df1a33eae9e8b8b6ee734e7f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "profile-header-image",
+   "displayName": "Profile header image",
+   "helpText": "Optional 16:9 banner shown above the avatar on Profile."
+  },
+  {
+   "id": "c268603f1ddb1f33cd964be69768f0f0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "subscription-tier",
+   "displayName": "Subscription tier",
+   "helpText": "Memberstack-synced. Free is default. Patron and Founder unlock contributor features.",
+   "validations": {
+    "options": [
+     {
+      "name": "Free",
+      "id": "b184591e4540a46075612fd42f1a1b42"
+     },
+     {
+      "name": "Patron",
+      "id": "e7e97503bf2e875db44f30e94a591f50"
+     },
+     {
+      "name": "Founder",
+      "id": "9d6a2b82455da8c2dc0f82be9b7842e2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "74132ffb259093bcd7bf6ee8e4d5bd4a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "account-status",
+   "displayName": "Account status",
+   "helpText": "Active is default. Suspended hides public profile. Deactivated removes from member directory.",
+   "validations": {
+    "options": [
+     {
+      "name": "Active",
+      "id": "09256f07c729f15ba90370ac285b4a8c"
+     },
+     {
+      "name": "Suspended",
+      "id": "67761aace9e67a937ebf58d7938791dd"
+     },
+     {
+      "name": "Deactivated",
+      "id": "8391cd4cff961a245d300b1480f45cef"
+     }
+    ]
+   }
+  },
+  {
+   "id": "534369cda861deea5d8f68487d5dd48f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "last-login",
+   "displayName": "Last login",
+   "helpText": "Auto-updated by Memberstack login webhook. Used for activity sorting in Contributors index.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "ed327582f64611c2f81d2860f49963c6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "accepts-newsletter",
+   "displayName": "Accepts newsletter",
+   "helpText": "Off by default. Synced from Memberstack signup checkbox or Substack opt-in."
+  },
+  {
+   "id": "dd2137903cdb1c9201352251869fb748",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "accepts-comment-notifications",
+   "displayName": "Accepts comment notifications",
+   "helpText": "On by default for contributors. Sends email when someone replies to their Story or comment."
+  },
+  {
+   "id": "113ac2f654c31741b0143434532ea1fb",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "profile-visibility",
+   "displayName": "Profile visibility",
+   "helpText": "Public shows the contributor in the public directory. Members-only requires login. Private hides entirely.",
+   "validations": {
+    "options": [
+     {
+      "name": "Public",
+      "id": "c2db6630515c6d1d3bd5d3959e5d74cd"
+     },
+     {
+      "name": "Members-only",
+      "id": "05a3d0db52275d23b474a01ca444dc3d"
+     },
+     {
+      "name": "Private",
+      "id": "cc3861b7b8ea5186644ccb492ecd98ac"
+     }
+    ]
+   }
+  },
+  {
+   "id": "aba61aa32e8cc7c305f9e275a481fdc4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "headline",
+   "displayName": "Headline",
+   "helpText": "Short tagline above the bio. Like a magazine subtitle. ~80 chars. Example: 'Copenhagen-based, 88 countries deep, travels with a Samoyed.'"
+  },
+  {
+   "id": "da24a377a6e7c9a805ed07f4bf364716",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "linkedin-url-2",
+   "displayName": "LinkedIn URL",
+   "helpText": "Optional. Linked from the public Linktree-style link stack on the profile."
+  },
+  {
+   "id": "0c50220566b38456600a4a529c6de569",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "substack-url-2",
+   "displayName": "Substack URL",
+   "helpText": "Optional. Your newsletter or publication."
+  },
+  {
+   "id": "88c535344affcdd066309e55d7a50957",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "strava-url-2",
+   "displayName": "Strava URL",
+   "helpText": "Optional. For marathon travelers and the running-curious."
+  },
+  {
+   "id": "fd5896c03eb2f2bc8dfc68433fe98b2e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "tiktok-url",
+   "displayName": "TikTok URL"
+  },
+  {
+   "id": "06372d4ad0b2d31b691855cb6048bbbe",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "youtube-url",
+   "displayName": "YouTube URL"
+  },
+  {
+   "id": "c367492234655353d753ccfbd4752ca3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "x-url",
+   "displayName": "X URL"
+  },
+  {
+   "id": "b5065decde8dc0abd23590eca4fa8151",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "threads-url",
+   "displayName": "Threads URL"
+  },
+  {
+   "id": "c613baf6b66b754e61a75268b19b9b63",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "available-for-press",
+   "displayName": "Available for press",
+   "helpText": "Public Available-For badge on profile. Triggers media inquiry CTA."
+  },
+  {
+   "id": "5b37c6619d6bdc54a2b8fb240510a5a5",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "available-for-partnerships",
+   "displayName": "Available for partnerships",
+   "helpText": "Tourism boards, hotels, gear brands. Triggers brand partnership CTA."
+  },
+  {
+   "id": "9e95de3d03fe5f4641395a7f546b27d6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "available-for-sponsored-stories",
+   "displayName": "Available for sponsored stories",
+   "helpText": "Open to paid editorial. Triggers sponsored story inquiry CTA."
+  },
+  {
+   "id": "43995e8f8a5ec248fc9f4c2c0ce96b0c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "available-for-collabs",
+   "displayName": "Available for collabs",
+   "helpText": "Open to co-authored stories with other Travelers. Triggers collab inquiry CTA."
+  },
+  {
+   "id": "891f4facae01617dd5fffe5a7d6d9f4b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "press-kit-url",
+   "displayName": "Press kit URL",
+   "helpText": "Link to your downloadable press kit (PDF or web page). Optional."
+  },
+  {
+   "id": "b3d9786fb4b04d9166ada0f4da4cfcda",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Email",
+   "slug": "inquiry-email",
+   "displayName": "Inquiry email",
+   "helpText": "Separate from your Memberstack login email. Public-facing for press, sponsor, and partnership inquiries."
+  },
+  {
+   "id": "8879585ffbe885ae40b9195c0682ceee",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "traveler-category",
+   "displayName": "Traveler Category",
+   "helpText": "Groups traveler on Home into Nomads to follow, Expats we recommend, or Press travelers.",
+   "validations": {
+    "options": [
+     {
+      "name": "Nomad",
+      "id": "060c3ea88ab3bea328a6d8c5622da838"
+     },
+     {
+      "name": "Expat",
+      "id": "ad328ad280a646e74f6f522e0f11419b"
+     },
+     {
+      "name": "Press",
+      "id": "ccd5efe5cc1dbabfd17b6af38f583241"
+     },
+     {
+      "name": "Friend",
+      "id": "73835883d28c300a37e9423e10980b80"
+     },
+     {
+      "name": "Founder",
+      "id": "9d1216215b14602b54db4a3b361a682d"
+     }
+    ]
+   }
+  },
+  {
+   "id": "f42ef4b388e0b122b04e58f2ff71ead8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "fun-title",
+   "displayName": "Fun Title",
+   "helpText": "Brand-voice display label shown on profile and Crew section (e.g. 'The Lifer', 'Layover Lover', 'Hand-Luggage Only Forever'). The underlying serious category lives in Traveler Category field for filtering."
+  },
+  {
+   "id": "7701cd44ddf2efb8c5ae7a13322bbcc4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "cities-count",
+   "displayName": "Cities Count",
+   "helpText": "Number of distinct cities visited. Displayed on traveler profile + Crew card.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "3acb7f9fb72120d74406770d9b21cbf8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "states-count",
+   "displayName": "States Count",
+   "helpText": "US states or equivalent regional units visited. Displayed on traveler profile.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "1e668ce732f100fb21613404f3f9d36d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "national-parks-count",
+   "displayName": "National Parks Count",
+   "helpText": "Number of national parks visited. The 63-park lifer chase. Displayed on Paw Passport + traveler profile.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "9af18ead9f47bd651527c51fc358141e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "continents-marathoned",
+   "displayName": "Continents Marathoned",
+   "helpText": "Count out of 7. The Marathon Continent badge unlocks at 7/7.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "c2bc627ebf1910564d0719c5ecd4ed8c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "vimeo-url",
+   "displayName": "Vimeo URL",
+   "helpText": "Full Vimeo profile URL. For travel filmmakers and Press travelers."
+  },
+  {
+   "id": "93e800a6c0c75a4b6ae54a0a0dd98900",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "profile-gallery",
+   "displayName": "Profile Gallery",
+   "helpText": "3 to 5 photos of the traveler. Not a full album. Shown as a small gallery row on the public profile. Square crops preferred."
+  },
+  {
+   "id": "5b9e083234d36801aac50b28febd7701",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "outreach-status",
+   "displayName": "Outreach Status",
+   "helpText": "Track Expats to Follow / Nomads / Press outreach workflow. Ghost profiles are pre-populated, traveler claims later.",
+   "validations": {
+    "options": [
+     {
+      "name": "Not Contacted",
+      "id": "7eab924e16089a2ccad54708a346c579"
+     },
+     {
+      "name": "Ghost Profile",
+      "id": "6e929597bc572c16ceb2f5298e44691b"
+     },
+     {
+      "name": "Invitation Sent",
+      "id": "5c807d95d495523b93302991812ba3d9"
+     },
+     {
+      "name": "Claimed",
+      "id": "9a568648a626c4a6ef078c6861595607"
+     },
+     {
+      "name": "Declined",
+      "id": "bdb81b3b84eba1822b76aea9b8e32296"
+     },
+     {
+      "name": "Already Member",
+      "id": "5a4f28b4a6870437975282633f8654d8"
+     }
+    ]
+   }
+  },
+  {
+   "id": "66739aa172da1b36920be3f88415f106",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "outreach-notes",
+   "displayName": "Outreach Notes",
+   "helpText": "Internal notes about this traveler's outreach status. Who reached out, when, what was said. Not shown publicly."
+  },
+  {
+   "id": "9e28ac268fe762ff9fec905b53eaa0a6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "source-list",
+   "displayName": "Source List",
+   "helpText": "Which curated TLL list this traveler is included in. Example: Expats to Follow 2026 / Nomads to Watch / Press Travelers Q2."
+  },
+  {
+   "id": "e634184ef6dad823c3d43e267f7f4892",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-states",
+   "displayName": "Visited states",
+   "helpText": "US states and territories visited. Drives the State map check-off and states-count on the profile.",
+   "validations": {
+    "collectionId": "6a0e97318d3078942dca2fbe"
+   }
+  },
+  {
+   "id": "d341ee12548e75d44760e0054e81d310",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-national-parks",
+   "displayName": "Visited national parks",
+   "helpText": "US National Parks visited. Drives the 63-park lifer chase badge and parks-count on the profile.",
+   "validations": {
+    "collectionId": "6a0e97318d3078942dca2fed"
+   }
+  },
+  {
+   "id": "668ec51c5105b77525e854de81d19a42",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-subdivisions",
+   "displayName": "Visited subdivisions",
+   "helpText": "Provinces, regions, prefectures, Lander, cantons, etc. visited (non-US). Pairs with visited-states for the US.",
+   "validations": {
+    "collectionId": "6a0e99580823cd9907aea28d"
+   }
+  },
+  {
+   "id": "e0f41d4bc24e96bfbdf6e611a5c89201",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "currently-in",
+   "displayName": "Currently In",
+   "helpText": "Live location line under the name, e.g. 'Currently in Sofia, Bulgaria \u00b7 filing weekly'. Public profile."
+  },
+  {
+   "id": "6d19f17da3ae5d2083b8a10a5867d964",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "trust-me-quote",
+   "displayName": "Trust Me Quote",
+   "helpText": "Answer to 'Trust me with a flight delay because\u2026'. One or two sentences, first person, quotes rendered by the template."
+  },
+  {
+   "id": "0a218f48edeff27d35003a9e2a9d8aa7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "strong-opinion",
+   "displayName": "Strong Opinion",
+   "helpText": "One strong opinion. A position, not a bio line. Rendered as a pull quote on the public profile."
+  },
+  {
+   "id": "088d522a5121ff994cda679e963f5b43",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "92c1e56dca553d1e4571067de54b86ae",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

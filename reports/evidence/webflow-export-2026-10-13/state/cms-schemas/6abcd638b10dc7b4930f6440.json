@@ -1,0 +1,138 @@
+{
+ "id": "6abcd638b10dc7b4930f6440",
+ "displayName": "Press Trips",
+ "singularName": "Press Trip",
+ "slug": "press-trips",
+ "createdOn": "2026-09-30T09:28:24.802Z",
+ "lastUpdated": "2026-09-30T09:29:09.164Z",
+ "fields": [
+  {
+   "id": "92278cb63902671fee83d3775bffecb8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "destination-country",
+   "displayName": "Destination country",
+   "validations": {
+    "collectionId": "6a8afbd98e907b41c4da109b"
+   }
+  },
+  {
+   "id": "b1380e05812d4fb7e64216a2894cebab",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "destination",
+   "displayName": "Destination",
+   "helpText": "City or region as shown on the card"
+  },
+  {
+   "id": "a1f396247d46dd4af82c6ebc12b4296e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "dates",
+   "displayName": "Dates",
+   "helpText": "As shown on the card, e.g. 12 to 15 March 2027"
+  },
+  {
+   "id": "4bb1b9dea17aa4cc2d8a2140674fbf50",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "covered",
+   "displayName": "Covered",
+   "helpText": "What the host pays for"
+  },
+  {
+   "id": "9d19dd8d2486603d4b3e0fad41e90658",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "wants",
+   "displayName": "Wants",
+   "helpText": "What the host expects in return"
+  },
+  {
+   "id": "71eb6585d34a5a320529e821dc9e5e21",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "host",
+   "displayName": "Host",
+   "helpText": "Company name. Rendered as \"Reklame for {Host}\" per Danish disclosure."
+  },
+  {
+   "id": "51fc237963b7d4730a9b189436947d08",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "deadline",
+   "displayName": "Deadline",
+   "helpText": "Trip hides after this date",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "6299f2887318c3d30c1e2be45a8d24ab",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "apply-url",
+   "displayName": "Apply URL"
+  },
+  {
+   "id": "8bc812118315bb13fca63f495e0c0db3",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "validations": {
+    "options": [
+     {
+      "name": "In review",
+      "id": "5648db820d6e978e115cd447e7b9a32e"
+     },
+     {
+      "name": "Live",
+      "id": "d95dea8a3c34323b452cbdc35c5e5b23"
+     },
+     {
+      "name": "Closed",
+      "id": "12df33d5fde2cd28c4fcf5ff61c8aefc"
+     }
+    ]
+   }
+  },
+  {
+   "id": "0eca5de82cb52ed464d129187c2d6493",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "8e6a1fb8427f48dfa5bc1e1bf8107b6b",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

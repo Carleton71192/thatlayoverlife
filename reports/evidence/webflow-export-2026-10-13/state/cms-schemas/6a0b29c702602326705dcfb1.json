@@ -1,0 +1,198 @@
+{
+ "id": "6a0b29c702602326705dcfb1",
+ "displayName": "Destinations",
+ "singularName": "Destination",
+ "slug": "destinations",
+ "createdOn": "2026-05-18T15:01:27.444Z",
+ "lastUpdated": "2026-06-19T11:14:58.812Z",
+ "fields": [
+  {
+   "id": "562139bdf62d0460de54953cc1b41a1f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "country-code",
+   "displayName": "Country code",
+   "helpText": "ISO 3166-1 alpha-2 (e.g. BG, US, JP)."
+  },
+  {
+   "id": "b419327ef58dabbbb4a21467d045d393",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "flag-emoji",
+   "displayName": "Flag emoji",
+   "helpText": "Unicode flag emoji."
+  },
+  {
+   "id": "4547138c6913af969c55adcb6a6596f3",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "continent",
+   "displayName": "Continent",
+   "validations": {
+    "options": [
+     {
+      "name": "Africa",
+      "id": "0c979d5de2d719e14841f0552bc5bf4a"
+     },
+     {
+      "name": "Antarctica",
+      "id": "67e20835286d148b1609b50583f75be1"
+     },
+     {
+      "name": "Asia",
+      "id": "3f989e328d1f3e6f3899810ea7ad8ccb"
+     },
+     {
+      "name": "Europe",
+      "id": "3b8f9a8a890ac0d3d6e494a8d58bbf0f"
+     },
+     {
+      "name": "North America",
+      "id": "18c47d8e946704d41f74e292f702cec5"
+     },
+     {
+      "name": "Oceania",
+      "id": "d85aca189ab7dcea4d222ee7c7f6aaeb"
+     },
+     {
+      "name": "South America",
+      "id": "e0b133903ef85f423070d70986efc5d4"
+     }
+    ]
+   }
+  },
+  {
+   "id": "33e955b6b351fd9b4b11dcaf8f2d5b1c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "region",
+   "displayName": "Region",
+   "helpText": "Sub-continental region (e.g. Balkans, Nordics)."
+  },
+  {
+   "id": "8ee872e8991c07132997babd4174a48a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image",
+   "helpText": "16:9 country hero, 2400x1350 min."
+  },
+  {
+   "id": "910d811a3ddc77af878bd4f94c066851",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "country-brief",
+   "displayName": "Country brief",
+   "helpText": "<=280 words, in voice."
+  },
+  {
+   "id": "f0504f95de16cbe0bbd36a3576e6ec93",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "marathon-notes",
+   "displayName": "Marathon notes",
+   "helpText": "Race-specific notes for the destination."
+  },
+  {
+   "id": "08275571a51662029c6b4e657253589a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "paw-passport-notes",
+   "displayName": "Paw Passport notes",
+   "helpText": "Dog-travel logistics for the destination."
+  },
+  {
+   "id": "eac2b8d7c2f6c3f7b893f4a114a3bde8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "visited-by-founder",
+   "displayName": "Visited by founder",
+   "helpText": "True for countries on Nancy's 88-and-counting board."
+  },
+  {
+   "id": "effcb3f6f2a236f60887234c77852229",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "country-number",
+   "displayName": "Country number",
+   "helpText": "Order visited (e.g. Bulgaria = 88).",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "6eade2d7ead7b723fdeeeee42f680cae",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "cbbddaea1dc2c34ac4a3f7efbf2d5581",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "497f4ef43b2584dab6dbb815a2351b5a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "alternative-names",
+   "displayName": "Alternative Names",
+   "helpText": "Comma-separated alternative names this country goes by in other languages or common variations. Example for Germany: Deutschland, Allemagne, Tyskland, Niemcy. Powers the passport country picker fuzzy match."
+  },
+  {
+   "id": "88412a0925d67ddcf01c03b6db537317",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "map-coordinates",
+   "displayName": "Map coordinates",
+   "helpText": "Decimal degrees as lat,lng (e.g. 42.6977,23.3219). Drives the interactive Map pins (spec section 08). Single field so coordinates keep full decimal precision."
+  },
+  {
+   "id": "0deaeb36205ed025224e191ca2df76d4",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "4e638f38eb3f6ee6489788a9367220d8",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

@@ -1,0 +1,135 @@
+{
+ "id": "6a0b29eb1d3d56780b257014",
+ "displayName": "Magnus Diary",
+ "singularName": "Magnus Diary Entry",
+ "slug": "paw-passport",
+ "createdOn": "2026-05-18T15:02:03.860Z",
+ "lastUpdated": "2026-08-19T17:15:16.078Z",
+ "fields": [
+  {
+   "id": "1768ab2c11bf7ec4187e1540bd21323a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "aa24565b58ecb7b843ae4af5204b9ef1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image",
+   "helpText": "Magnus in frame."
+  },
+  {
+   "id": "bc3d44cacd8f1d04357fef5a80f0d61c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "body",
+   "displayName": "Body",
+   "helpText": "From the dog's POV when natural."
+  },
+  {
+   "id": "b3bc838ce5172aa4e690c69771e492ec",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "logistics-block",
+   "displayName": "Logistics block",
+   "helpText": "Border, AHC, hotel intel under the persona."
+  },
+  {
+   "id": "272dbf5dc79852cfac77f17d1e5b8d32",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Number",
+   "slug": "magnus-rating",
+   "displayName": "Magnus rating",
+   "helpText": "1 to 5 paws.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "6c33777baa547fe254aa7897d3353662",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "reader-question",
+   "displayName": "Reader question"
+  },
+  {
+   "id": "b830776765f1872965dda16d90b54877",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "637661935d7bbce27eb17aa648ecc998",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "3585ff3954e2416c6efea7027b794c9f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "photo-gallery",
+   "displayName": "Photo gallery",
+   "helpText": "Optional. Additional dog photos for the entry. Renders as a gallery block."
+  },
+  {
+   "id": "5dac21eccb4b0734312d90766a655c8a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "entry-date",
+   "displayName": "Entry date",
+   "helpText": "Date the crossing or stay happened. Feeds datePublished in structured data. Backfill existing entries.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "d12c2f435562a4fa79b2bd89aab2d16e",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "3d631500d58ae8baf6ffd2e32b9c7c42",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

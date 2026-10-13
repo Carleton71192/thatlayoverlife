@@ -1,0 +1,80 @@
+{
+ "id": "6a0b29ee116b2fe274ef96c6",
+ "displayName": "Press Mentions",
+ "singularName": "Press Mention",
+ "slug": "press-mentions",
+ "createdOn": "2026-05-18T15:02:06.579Z",
+ "lastUpdated": "2026-06-14T09:13:51.423Z",
+ "fields": [
+  {
+   "id": "731bfe53af694f81ff16ffe30f09553a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "publication",
+   "displayName": "Publication"
+  },
+  {
+   "id": "d3383c48d27cab077240bb2c58fcb013",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "logo",
+   "displayName": "Logo"
+  },
+  {
+   "id": "954d1b307e3dfb57e607dd62825c2fc4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pull-quote",
+   "displayName": "Pull quote"
+  },
+  {
+   "id": "61fc9670cbdc7cfd82575ac55ace34a4",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Link",
+   "slug": "link",
+   "displayName": "Link"
+  },
+  {
+   "id": "864fadb0a0f40a069a09650ecb34f9f3",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "date",
+   "displayName": "Date",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "b720d7092e573fa7cba95875c6f8a471",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "036e80ad98a215f04f9e851dcf976a90",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

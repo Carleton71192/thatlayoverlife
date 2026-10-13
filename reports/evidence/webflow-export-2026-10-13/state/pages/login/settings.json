@@ -1,0 +1,138 @@
+{
+ "3c16a77a-1fef-8a9d-3984-ec13fe40ffad": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "link",
+    "value": {
+     "mode": "url",
+     "to": "#"
+    }
+   },
+   {
+    "key": "text",
+    "value": {
+     "innerText": "GContinue with Google"
+    }
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-auth-provider",
+      "value": "google"
+     }
+    ]
+   }
+  ]
+ },
+ "3c16a77a-1fef-8a9d-3984-ec13fe40ffb3": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "email"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "email"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-member",
+      "value": "email"
+     }
+    ]
+   }
+  ]
+ },
+ "3c16a77a-1fef-8a9d-3984-ec13fe40ffb7": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "password"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "password"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-ms-member",
+      "value": "password"
+     }
+    ]
+   }
+  ]
+ },
+ "3c16a77a-1fef-8a9d-3984-ec13fe40ffbd": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Log in →"
+   },
+   {
+    "key": "loadingText",
+    "value": "Finding your shelf…"
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

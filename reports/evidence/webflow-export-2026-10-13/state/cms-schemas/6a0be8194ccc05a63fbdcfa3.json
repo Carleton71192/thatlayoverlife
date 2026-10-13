@@ -1,0 +1,404 @@
+{
+ "id": "6a0be8194ccc05a63fbdcfa3",
+ "displayName": "Pets",
+ "singularName": "Pet",
+ "slug": "pets",
+ "createdOn": "2026-05-19T04:33:29.839Z",
+ "lastUpdated": "2026-09-23T16:03:02.742Z",
+ "fields": [
+  {
+   "id": "def0f7d72f06770cca3aced0aba86e7f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "owner",
+   "displayName": "Owner",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "12ab94f05c3dc9bcda3e726efb485d9d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "breed",
+   "displayName": "Breed"
+  },
+  {
+   "id": "42d2907629d271cd1c26c2461254edb6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "age-years",
+   "displayName": "Age years",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "d18388aedf7f498a3c9742d9292b9418",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Number",
+   "slug": "countries-visited",
+   "displayName": "Countries visited",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "8f9549db8d6220940e736022046de53d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "bio",
+   "displayName": "Bio",
+   "helpText": "One-line bio in voice."
+  },
+  {
+   "id": "1962390d84d79dbf79a4b44f382f3ae8",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "avatar",
+   "displayName": "Avatar"
+  },
+  {
+   "id": "800cbfd06a0c72a0a577a5634bdd901c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "emoji",
+   "displayName": "Emoji",
+   "helpText": "Canonical emoji for this pet (e.g. \ud83d\udc3b\u200d\u2744\ufe0f for Magnus)."
+  },
+  {
+   "id": "2a85a9f64bcc1514d4357cc0434a5570",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "featured",
+   "displayName": "Featured"
+  },
+  {
+   "id": "f909afbffae2b32eb625e82a1fcade85",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-countries",
+   "displayName": "Visited countries",
+   "helpText": "The pet's country log. Independent of owner's visited-countries so a pet can be added later in their travel history.",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "f6f40156d59b52ca9b1014427ecef9be",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "favorite-place",
+   "displayName": "Favorite place",
+   "helpText": "Optional. The pet's favorite country to visit.",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "c2af533908dbe43fa24c4bb96cedbfe2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-public",
+   "displayName": "Is public",
+   "helpText": "Off by default. Toggle on to publish the pet profile to /paw-passport directory with photos and travel stats."
+  },
+  {
+   "id": "5112bff9da2ec5f768e825343227449d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "pet-type",
+   "displayName": "Pet type",
+   "helpText": "Used for filtering the public Pet directory.",
+   "validations": {
+    "options": [
+     {
+      "name": "Dog",
+      "id": "16f58961c2636900ef1275bf774c9d3f"
+     },
+     {
+      "name": "Cat",
+      "id": "dcd2a3b457d71bb990574b1f639fd1d2"
+     },
+     {
+      "name": "Bird",
+      "id": "e4f92866b5654470b0b8dbb392906999"
+     },
+     {
+      "name": "Reptile",
+      "id": "15230cbe001a2c07380b5fd8db67bf5d"
+     },
+     {
+      "name": "Small mammal",
+      "id": "f303bca0f761f84b164221c1827211ba"
+     },
+     {
+      "name": "Other",
+      "id": "e6f6e7627ecb31f21a857a63d6dc7e63"
+     }
+    ]
+   }
+  },
+  {
+   "id": "232374e02baabffa67d1e2954aa56ea2",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "size",
+   "displayName": "Size",
+   "helpText": "For travel-logistics filtering (cabin vs cargo, large-breed considerations).",
+   "validations": {
+    "options": [
+     {
+      "name": "Small (<7kg)",
+      "id": "110b5c68078b31f5f365eccd71af5439"
+     },
+     {
+      "name": "Medium (7-20kg)",
+      "id": "7498a323edf72ea082dcff8824116d3d"
+     },
+     {
+      "name": "Large (20-40kg)",
+      "id": "ab91541fa2491e8290f3e25191e9a9d0"
+     },
+     {
+      "name": "Extra Large (>40kg)",
+      "id": "cad0c52e8df7c383e904add7f2683549"
+     }
+    ]
+   }
+  },
+  {
+   "id": "20a8f52827f5384808116f456cbf461a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "date-of-birth",
+   "displayName": "Date of birth",
+   "helpText": "Computes age dynamically. Display: age-years field still usable as override.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "2e73cad6afe056062bda62fa4471bb36",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "ahc-issued-date",
+   "displayName": "AHC issued date",
+   "helpText": "Animal Health Certificate issue date. Required for EU pet travel. Valid 4 months for non-EU travel.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "90c7c4f56a5bae32041c06c93fe58edf",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "ahc-expires-date",
+   "displayName": "AHC expires date",
+   "helpText": "Computed reminder field. Show alert on profile when within 14 days of expiry.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "510742092488e1de91d0bbccb0a5e92e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "rabies-vaccine-date",
+   "displayName": "Rabies vaccine date",
+   "helpText": "Most recent rabies vaccination. Required for international pet travel. Boost reminder at 11-month mark.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "4847496ea5f30eef8f5f73a3ec5850ed",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "microchip-number",
+   "displayName": "Microchip number",
+   "helpText": "Internal-only. Never rendered publicly. Used to display partial chip (last 4 digits) on Owner profile for verification."
+  },
+  {
+   "id": "f3e1ec65e680d310a48b202f49853df3",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "passport-photo",
+   "displayName": "Passport photo",
+   "helpText": "The actual passport-style photo. Different from Avatar (which is the friendly social photo)."
+  },
+  {
+   "id": "faec1bfff3230dd1c86027800ce18e44",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "header-image",
+   "displayName": "Header image",
+   "helpText": "Optional 16:9 banner shown above the pet profile page when Is Public is on."
+  },
+  {
+   "id": "480a4b8f62416eaa377e3df50ab366ca",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "bio-long",
+   "displayName": "Bio long",
+   "helpText": "Extended pet bio for the public profile page. Can be written in pet POV."
+  },
+  {
+   "id": "529dd17b299cd1d531af87aca91bdbeb",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "favorite-snack",
+   "displayName": "Favorite snack",
+   "helpText": "Fun field. Shown on public profile."
+  },
+  {
+   "id": "84761a0cd564fc07038b800898093488",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "favn-titer",
+   "displayName": "FAVN titer",
+   "helpText": "Rabies antibody titer in IU/mL. Required for non-EU re-entry. Format: '4.56 IU/mL'. Display partial on public profile for verification only."
+  },
+  {
+   "id": "eed6fbecd85f7b7d4a3da4b9544ce983",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "eu-pet-passport-number",
+   "displayName": "EU pet passport number",
+   "helpText": "EU pet passport identifier. Internal-only field, never rendered publicly. Used for verification."
+  },
+  {
+   "id": "7eb3437708a472b487525d19494445e5",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "pet-gallery",
+   "displayName": "Pet Gallery",
+   "helpText": "3 to 5 photos of the pet. Not a full album. Shown as a small gallery row on the Paw Passport pet page."
+  },
+  {
+   "id": "4724ef5edc3a7ba55662519dcbd2421a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-states",
+   "displayName": "Visited states",
+   "helpText": "US states the pet has visited. Magnus \ud83d\udc3b\u200d\u2744\ufe0f Waffles can claim his own state count.",
+   "validations": {
+    "collectionId": "6a0e97318d3078942dca2fbe"
+   }
+  },
+  {
+   "id": "4db33036fc7acb716bfee4073d6372aa",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-national-parks",
+   "displayName": "Visited national parks",
+   "helpText": "US National Parks the pet has visited. Some parks are dog-friendly (check before booking).",
+   "validations": {
+    "collectionId": "6a0e97318d3078942dca2fed"
+   }
+  },
+  {
+   "id": "81bb41a30b0e49344077be3692fa1012",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "visited-subdivisions",
+   "displayName": "Visited subdivisions",
+   "helpText": "Non-US first-level admin divisions the pet has visited. Magnus \ud83d\udc3b\u200d\u2744\ufe0f Waffles can claim his own count.",
+   "validations": {
+    "collectionId": "6a0e99580823cd9907aea28d"
+   }
+  },
+  {
+   "id": "0850549b0a4dd6d20ded1e62ef2deb61",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "countries-list",
+   "displayName": "Countries list",
+   "helpText": "Comma-separated country names the pet has visited. Drives the public passport chips and count."
+  },
+  {
+   "id": "99cc835fa56bb3feb1efa6165f399181",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "weight-kg",
+   "displayName": "Weight kg",
+   "helpText": "Current weight in kilograms, shown on the public passport.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "afcfb3d462e97aa66fd106a4972961ec",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "quote",
+   "displayName": "Quote",
+   "helpText": "One line in the pet's own voice, shown on their passport page. Optional."
+  },
+  {
+   "id": "147dcb2a2525535f8f19274afda7bdf9",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "e3bf96f8b2bb660f9494c0e12921df3a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

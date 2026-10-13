@@ -1,0 +1,292 @@
+{
+ "152582f5-e04c-ffa4-dc94-4a8cb930ca8e": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "name"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930caad": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "pet-species"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "species"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930cab1": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "breed"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930cab5": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "age"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "number"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "min",
+      "value": "0"
+     },
+     {
+      "name": "max",
+      "value": "30"
+     },
+     {
+      "name": "step",
+      "value": "0.1"
+     }
+    ]
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930caba": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "bio"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "rows",
+      "value": "3"
+     }
+    ]
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930cac9": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "checkbox"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "has-eu-passport"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930cae0": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "avatar"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "file"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "accept",
+      "value": "image/*"
+     }
+    ]
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930cae6": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "pet-gallery"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "file"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "accept",
+      "value": "image/*"
+     },
+     {
+      "name": "multiple",
+      "value": ""
+     }
+    ]
+   }
+  ]
+ },
+ "152582f5-e04c-ffa4-dc94-4a8cb930caed": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Create passport →"
+   },
+   {
+    "key": "loadingText",
+    "value": "Issuing…"
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

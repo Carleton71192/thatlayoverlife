@@ -1,0 +1,108 @@
+{
+ "id": "6a0e97318d3078942dca2fbe",
+ "displayName": "States",
+ "singularName": "State",
+ "slug": "states",
+ "createdOn": "2026-05-21T05:25:05.356Z",
+ "lastUpdated": "2026-06-14T09:13:52.438Z",
+ "fields": [
+  {
+   "id": "b777936f37aded8b907cdbdcf97daec1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "state-code",
+   "displayName": "State code",
+   "helpText": "Two-letter postal code (e.g. CA, NY, PR)."
+  },
+  {
+   "id": "3a8c06c338f1584fe4005fff3b100e78",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "region",
+   "displayName": "Region",
+   "helpText": "Census region or territory designation.",
+   "validations": {
+    "options": [
+     {
+      "name": "Northeast",
+      "id": "115de5004cef6eb13ace030c4629634a"
+     },
+     {
+      "name": "Midwest",
+      "id": "27a044f3b5c6e25e0f2b3805a7017348"
+     },
+     {
+      "name": "South",
+      "id": "6661fe42b1706be1e9584b4539b31d1a"
+     },
+     {
+      "name": "West",
+      "id": "8b50e3cfd2890ef3283d992d7090453b"
+     },
+     {
+      "name": "DC",
+      "id": "6e383fe25da8b6cc878dd3e16768cc86"
+     },
+     {
+      "name": "Territory",
+      "id": "401f45bb640d92eafb279f0f19acb4c2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "d0d6c099c6d371506db01f1b9fe93d0d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "visited-by-founder",
+   "displayName": "Visited by founder",
+   "helpText": "True if Nancy has visited this state."
+  },
+  {
+   "id": "1d5ea54b4498bb0ae56b5be689affe3c",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "cd736351c7f52cd7a887d87f498da22a",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "548f6478a0a5e62d966b7cc35b296991",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "733dce0c6223a2039892c33beea7bb6b",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

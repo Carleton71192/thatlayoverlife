@@ -1,0 +1,118 @@
+{
+ "id": "6a0b29ee116b2fe274ef9714",
+ "displayName": "Partners",
+ "singularName": "Partner",
+ "slug": "partners",
+ "createdOn": "2026-05-18T15:02:06.923Z",
+ "lastUpdated": "2026-06-14T09:13:51.712Z",
+ "fields": [
+  {
+   "id": "837d73fda4778e3f6bc9c74b19b5556d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "type",
+   "displayName": "Type",
+   "validations": {
+    "options": [
+     {
+      "name": "Tourism Board",
+      "id": "f43b084ada41affaf2c3870af06fb90a"
+     },
+     {
+      "name": "Airline",
+      "id": "20c6b86e19733da55d8b4e429bcb169d"
+     },
+     {
+      "name": "EV / Auto",
+      "id": "63888e5742eb585af27ecb817b7cd4dd"
+     },
+     {
+      "name": "Hotel",
+      "id": "1be3f938a3eb9e3dd1fb813d74e09c61"
+     },
+     {
+      "name": "Gear",
+      "id": "b6878e22ce9583bcc4dd65572594d95a"
+     },
+     {
+      "name": "Other",
+      "id": "a329d8c7f6314b76e5e8fc23526f4402"
+     }
+    ]
+   }
+  },
+  {
+   "id": "5d771012bdc00be81b59d9fcbc6dcbd1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "validations": {
+    "options": [
+     {
+      "name": "Prospect",
+      "id": "40c805de28f13469c25463b8b23569a4"
+     },
+     {
+      "name": "Active",
+      "id": "ec60606a8137c87ef4bef40e663110f8"
+     },
+     {
+      "name": "Completed",
+      "id": "d9e7a171c1476296b1a1c056fad110e5"
+     },
+     {
+      "name": "Paused",
+      "id": "a17565721e9c9cf149250a408082f740"
+     }
+    ]
+   }
+  },
+  {
+   "id": "f0ce9ad816d6c033248fd9f4bc80fe9d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "logo",
+   "displayName": "Logo"
+  },
+  {
+   "id": "f5243c845f244da45c22eca5326d06da",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "disclosure-terms",
+   "displayName": "Disclosure terms",
+   "helpText": "Internal-only notes on what was accepted and what was not."
+  },
+  {
+   "id": "11da8802a32bbe57085ddda0b1d7eff0",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "0ee2d9f9f7704dc42c0e1fd42a86cced",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

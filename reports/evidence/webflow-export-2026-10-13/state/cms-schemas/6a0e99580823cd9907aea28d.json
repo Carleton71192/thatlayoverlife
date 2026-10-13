@@ -1,0 +1,167 @@
+{
+ "id": "6a0e99580823cd9907aea28d",
+ "displayName": "Subdivisions",
+ "singularName": "Subdivision",
+ "slug": "subdivisions",
+ "createdOn": "2026-05-21T05:34:16.887Z",
+ "lastUpdated": "2026-06-14T09:13:52.492Z",
+ "fields": [
+  {
+   "id": "3d623dc373220af05c5fc75caa9c88a7",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "helpText": "Parent country (Destination item).",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "83630ae16605ad8b914516fcfb000d79",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "subdivision-type",
+   "displayName": "Subdivision type",
+   "helpText": "What the local name for this first-level admin division actually is.",
+   "validations": {
+    "options": [
+     {
+      "name": "Province",
+      "id": "50ec5771ff2d78b981fe9d5f6690fb19"
+     },
+     {
+      "name": "State",
+      "id": "f8080815a5b2dd1f6488eb2d060279c7"
+     },
+     {
+      "name": "Region",
+      "id": "b5eb7ea98ec8c64338133c0e84444d67"
+     },
+     {
+      "name": "Prefecture",
+      "id": "e1e6ad6d8c0d21f5c9692e9179822f32"
+     },
+     {
+      "name": "County",
+      "id": "d6db60b08cb5a9cdac8791b5c728ae45"
+     },
+     {
+      "name": "Oblast",
+      "id": "1cc2ee425f91fd751c316c7e278323d3"
+     },
+     {
+      "name": "Governorate",
+      "id": "cbcea43a44f88f7288f82e495d15bad6"
+     },
+     {
+      "name": "Department",
+      "id": "abf1e3f3b0c941a5c24da418a71f880d"
+     },
+     {
+      "name": "Canton",
+      "id": "4c7a88527f722b89d9ec6eea6fbac2eb"
+     },
+     {
+      "name": "Land",
+      "id": "c9f67dd942ce4b86c5de5fe57d903b54"
+     },
+     {
+      "name": "Voivodeship",
+      "id": "7e64b3b8733e075a028088f09e57faaf"
+     },
+     {
+      "name": "Autonomous Community",
+      "id": "f58cfba3041ef301ca4d36023fbfb196"
+     },
+     {
+      "name": "Autonomous Region",
+      "id": "f5c007ee214b71d4d3630cf357387aa9"
+     },
+     {
+      "name": "Constituent Country",
+      "id": "0414edceb3e3809d68e4409114eb5e47"
+     },
+     {
+      "name": "Federal District",
+      "id": "7d445c7e0eff6ccfb606ee0a10563b18"
+     },
+     {
+      "name": "Municipality",
+      "id": "fc04ca93e80155a537da1cd952fde870"
+     },
+     {
+      "name": "Territory",
+      "id": "c1bb2f0bb0bddb383d4dfafd78d434f5"
+     },
+     {
+      "name": "Other",
+      "id": "5206b85b24deae98e2d63e7bd55d773b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "68d2e54ba50154667986f7ee5a7a5586",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "code",
+   "displayName": "Code",
+   "helpText": "ISO 3166-2 suffix (e.g. CA-ON for Ontario)."
+  },
+  {
+   "id": "ee2b20716bf76dbdffffe1f1ba6e285e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "visited-by-founder",
+   "displayName": "Visited by founder"
+  },
+  {
+   "id": "9c9a4e350baff6346307a634b4bfa7bf",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "seo-title",
+   "displayName": "SEO title"
+  },
+  {
+   "id": "cc905def8f3bf899730c4a4143d954c1",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "seo-description",
+   "displayName": "SEO description"
+  },
+  {
+   "id": "ccd5174dcd3e9d3a02780440020a552f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "a68387cc0f1323969dbcf98bc86d97a1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

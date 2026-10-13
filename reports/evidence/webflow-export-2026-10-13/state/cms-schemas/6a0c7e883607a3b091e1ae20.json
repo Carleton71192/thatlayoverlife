@@ -1,0 +1,75 @@
+{
+ "id": "6a0c7e883607a3b091e1ae20",
+ "displayName": "Themes",
+ "singularName": "Theme",
+ "slug": "themes",
+ "createdOn": "2026-05-19T15:15:20.734Z",
+ "lastUpdated": "2026-06-14T09:13:52.069Z",
+ "fields": [
+  {
+   "id": "c03cfc77656fc3dcbd646ac849aca770",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "description",
+   "displayName": "Description",
+   "helpText": "Short voice-led description shown on Theme hub pages and filter chips on hover."
+  },
+  {
+   "id": "40853e9df358afeb12019478b6f124e9",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "accent-color",
+   "displayName": "Accent color",
+   "helpText": "Drives the Theme chip color across cards and filters. Defaults to Rose if unset.",
+   "validations": {
+    "options": [
+     {
+      "name": "Rose",
+      "id": "dc27ea262b66092b5cba8fe4c000e187"
+     },
+     {
+      "name": "Teal",
+      "id": "6dc9915f2d524ae9ff09baa07537b8dc"
+     },
+     {
+      "name": "Marigold",
+      "id": "d6335f352afe85fe951fb02687b0d682"
+     },
+     {
+      "name": "Midnight",
+      "id": "6d3fc4e848e2e768101373f749c036b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "63e52d8263d923f53b096c8c70f0e0eb",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "a84295903ab2e7def845f8e18f10436d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

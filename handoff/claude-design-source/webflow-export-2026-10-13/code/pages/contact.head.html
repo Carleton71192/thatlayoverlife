@@ -1,0 +1,40 @@
+<link rel="canonical" href="https://www.thatlayover.life/contact">
+<style id="tll-relay-v1">
+/* Relay form (C13, 30 Sep 2026): contact without exposure. Shown only when a profile links here with ?relay={slug}. Rate limit: three an hour per browser here; the server-side limit lives with the form webhook. */
+[data-tll-relay][hidden]{display:none}
+[data-tll-relay]{background:#0A0B14;color:#F7F1E8;padding:56px 0}
+[data-tll-relay-wrap]{max-width:680px;margin:0 auto;padding:0 20px}
+[data-tll-relay-eb]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:#00C9C8;margin:0 0 10px}
+[data-tll-relay-h]{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(26px,4vw,38px);line-height:1.1;margin:0 0 10px;color:#F7F1E8}
+[data-tll-relay-p]{font-size:14px;line-height:1.55;color:#cfcbc4;margin:0 0 20px}
+[data-tll-relay-field]{display:flex;flex-direction:column;gap:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#cfcbc4;font-weight:600;margin:0 0 14px}
+[data-tll-relay-field] input,[data-tll-relay-field] textarea{font:400 15px/1.45 'Inter',system-ui,sans-serif;text-transform:none;letter-spacing:0;background:#16182a;border:1px solid #2a2c3e;border-radius:8px;color:#F7F1E8;padding:12px 14px;width:100%;box-sizing:border-box}
+[data-tll-relay-field] input:focus,[data-tll-relay-field] textarea:focus{outline:2px solid #00C9C8;border-color:#00C9C8}
+[data-tll-relay-hp]{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+[data-tll-relay-note]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.5px;color:#cfcbc4;line-height:1.7;margin:0 0 14px}
+[data-tll-relay-limit]{color:#F0507A;font-size:14px;margin:12px 0 0}
+[data-tll-relay-limit][hidden]{display:none}
+[data-tll-relay] input[type="submit"],[data-tll-relay] .w-button{background:#D63859;color:#fff;border:0;border-radius:999px;padding:14px 24px;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+[data-tll-relay] .w-form-done,[data-tll-relay] .w-form-fail{margin-top:14px;padding:14px 16px;border-radius:10px;font-size:14px;line-height:1.5;background:#16182a;color:#F7F1E8}
+[data-tll-relay] .w-form-done{border:1px solid #00C9C8}
+[data-tll-relay] .w-form-fail{border:1px solid #F0507A}
+</style>
+<script id="tll-relay-js-v1">
+(function(){
+  function init(){
+    var S=document.querySelector('[data-tll-relay]'); if(!S) return;
+    var slug=new URLSearchParams(location.search).get('relay')||''; slug=slug.replace(/[^a-z0-9-]/gi,'').toLowerCase(); if(!slug) return;
+    var name=slug.split('-').map(function(w){return w.charAt(0).toUpperCase()+w.slice(1)}).join(' ');
+    var n=S.querySelector('[data-tll-relay-name]'); if(n) n.textContent=name;
+    var to=S.querySelector('[data-tll-relay-to]'); if(to) to.value=slug;
+    var f=S.querySelector('form'), lim=S.querySelector('[data-tll-relay-limit]'), KEY='tllRelaySent';
+    function stamps(){ try{ return (JSON.parse(localStorage.getItem(KEY)||'[]')||[]).filter(function(t){return Date.now()-t<3600000}); }catch(e){ return []; } }
+    function blocked(){ return stamps().length>=3; }
+    function paint(){ if(blocked()){ if(f) f.style.display='none'; if(lim) lim.removeAttribute('hidden'); } }
+    if(f){ f.addEventListener('submit',function(e){ var hp=f.querySelector('[data-tll-relay-hp]'); if((hp&&hp.value)||blocked()){ e.preventDefault(); e.stopImmediatePropagation(); paint(); return; } var s=stamps(); s.push(Date.now()); try{localStorage.setItem(KEY,JSON.stringify(s));}catch(x){} }, true); }
+    paint(); S.removeAttribute('hidden');
+    if(location.hash!=='#top') S.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>

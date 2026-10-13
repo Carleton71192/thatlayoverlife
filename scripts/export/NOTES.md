@@ -104,8 +104,8 @@ set_settings schema); none were present in the nav or footer definitions.
 - `get_page_scripts` returns
   `{"scripts":[{"id":"tllgateflashv1","displayName":"tllgateflashv1","version":"1.0.0","location":"header","attributes":{}}],"lastUpdated":"...","createdOn":"..."}`.
   These are stored under `pageScripts` in meta.json. The registered script sources are in
-  `state/registered-scripts-first100.json`; the converter does not inline them because the
-  live site loads them by id.
+  `state/registered-scripts-first100.json` and `state/registered-scripts-extra.json`; the
+  converter emits a script tag for each applied script from its `hostedLocation` (see below).
 
 ## Styles map (`state/styles/styles-base.json`)
 
@@ -119,9 +119,7 @@ and a combo `.tll-newsletter-input._w-input`); the converter prefers the non-com
 
 - Select options (`FormSelect`), so the export writes one placeholder option and a comment.
 - Placeholder text on inputs (no `placeholder` key came back).
-- The collection a `DynamoList` is bound to is not in the tree or the per-node settings of
-  the DynamoList element on edit-profile (none were fetched for it). The converter accepts a
-  binding in raw-settings.json if a later fetch adds one.
+- Select option labels on a form select are not exposed (see above).
 
 ## Component definitions (`state/components/`, captured 13 Oct 2026)
 
@@ -152,3 +150,71 @@ Observed shapes:
   `OPERATION_FAILED: An internal error occurred` for every component. `includeVariants` on its
   own works and returns `variants: [{"id":"base","name":"Base","isSelected":true}]`. The
   variants list is stored under `variants` in each component file.
+
+## Collection lists, attribute bindings and option labels (added 13 Oct 2026)
+
+- The collection binding sits on the `DynamoWrapper`, not the `DynamoList`. Raw settings of
+  the wrapper on edit-profile: `source: {"collectionId":"6abcd6371aa0f0654773a59e"}`,
+  `queryMode: "dynamic"`, `filters: []`, `filterMatch: "all"`, `sort: []`, `limit: 100`,
+  `offset: 0`, `pagination: null`, `curatedItemIds: []`. Resolved settings of the wrapper and
+  both raw and resolved settings of the `DynamoList` hold only domId, tag, visibility and
+  attributes. These entries are now in edit-profile settings.json and raw-settings.json.
+  The converter repeats the `DynamoItem` once per sample item (slice by offset and limit).
+  Filters and sort are not applied to the sample; a list that has them gets
+  `data-cms-note`.
+- Custom attributes can be bound to CMS fields. Raw settings of the tag element inside the
+  edit-profile list hold
+  `attributes: [{"name":"data-slug","value":{"sourceType":"cms",...,"fieldType":"plainText"}}, ...]`.
+  The resolved value of a bound attribute is `null`. The converter fills the attribute from
+  the sample item and lists the field slugs in `data-cms-field`.
+- `cms/<id>.json` has no field validations. `get_collection_details` returns them, so they
+  are saved in `state/cms-schemas/<collection id>.json` (all 29 collections). Option fields
+  carry `validations.options: [{id, name}]`; reference fields carry
+  `validations.collectionId`. The converter prints the option name and the referenced item
+  name. A value it cannot resolve keeps the Designer text and gets
+  `data-cms-unresolved="<reason>"` (for example `option-label-unknown`,
+  `reference-not-captured`, `switch-not-text`, `empty-in-sample`, `field-not-in-schema`).
+
+## Registered scripts in the export (added 13 Oct 2026)
+
+- `registered-scripts-first100.json` holds 100 of 150 registered scripts. Two applied site
+  scripts were outside that page (`tll_memberstack_skin_v1`, `tll_world_map_v1`). Their
+  records came from `get_registered_script` and are saved in
+  `state/registered-scripts-extra.json`. The converter reads every
+  `registered-scripts*.json` file and matches applied scripts by id and version.
+- Each page now loads the applied site scripts (`site-scripts.json`) and page scripts
+  (`meta.pageScripts`) from their `hostedLocation`, in the header or footer as applied,
+  plus the standard Webflow jQuery file. A script with no captured source becomes an HTML
+  comment and is listed in `out.meta.json` under `scripts.unresolved`.
+- `webflow.js` (the Webflow runtime for nav, dropdowns, tabs, sliders and the form
+  handler) is a site-specific file. Its URL is not exposed by the API and was not captured,
+  so the export leaves a comment where it belongs. The `<html>` tag carries
+  `data-wf-page` and `data-wf-site` as on the live site.
+
+## Converter behavior worth knowing
+
+- Text bound to a component prop is resolved in this order: the instance override, the
+  resolved `text.innerText` of the definition, then the prop `defaultValue`. The element gets
+  `data-wf-prop="<prop name>"`. When converting a component definition as a page, pass its
+  props in `meta.componentProps`.
+- Page links use `publishedPath` from pages.json (a collection template page links to
+  `/stories`, not `/detail_stories`). An unknown page id gives `href="#"` with
+  `data-wf-missing="page"`. Phone links get `tel:`, email links get `mailto:` when missing.
+  `pageSection` links resolve an element id to its DOM id. `collectionPage` links use the
+  collection slug.
+- A link with no target in the tree falls back to the resolved `link` in settings.json,
+  then to `attributes.href`. A link with no target at all gets `data-wf-missing`.
+  Links that open in a new tab get `rel="noopener"`.
+- Grid, Row and Column get `w-layout-grid`, `w-row` and `w-col`.
+- A style name missing from the styles map becomes a class the way Webflow builds one:
+  lowercase, with every run of characters outside a-z, 0-9, underscore and hyphen turned
+  into one hyphen. Tag styles (selector `p` or `.rich-text h1`) are never used as classes.
+- Attribute names with spaces, quotes or other characters HTML does not allow are dropped
+  and listed under `droppedAttributes` in `out.meta.json`.
+- An error envelope saved in settings.json counts as missing settings, so the
+  `data-wf-missing` marker still appears.
+- The export keeps invalid nesting from the Designer as it is (a label inside a label,
+  repeated ids such as `field` and `checkbox` on edit-profile) and lists it under
+  `warnings` and `duplicateIds` in `out.meta.json`.
+- Slots passed to a component instance are not rendered yet (no slot data was seen on the
+  site). The converter leaves a comment and a warning when an instance has slots.

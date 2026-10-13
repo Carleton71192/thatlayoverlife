@@ -1,0 +1,147 @@
+{
+ "id": "6aba75215f29fa631c175c45",
+ "displayName": "Award Nominations",
+ "singularName": "Award Nomination",
+ "slug": "award-nominations",
+ "createdOn": "2026-09-28T14:09:37.611Z",
+ "lastUpdated": "2026-09-28T14:09:54.650Z",
+ "fields": [
+  {
+   "id": "7671ff04a8fbd2b47e4216034952cba5",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "category",
+   "displayName": "Category",
+   "validations": {
+    "options": [
+     {
+      "name": "Best layover airport",
+      "id": "9dc889edbf40deb515644c4c2e21b204"
+     },
+     {
+      "name": "Best stopover city",
+      "id": "fae19cd9a8b809760c9a1e5c54c5a593"
+     },
+     {
+      "name": "Most pet-friendly hub",
+      "id": "39e9c1e6e06bfedae8e3e93ad7400d94"
+     },
+     {
+      "name": "Best airport to sleep in",
+      "id": "af0f993331d0878c563f8a35fd7465db"
+     },
+     {
+      "name": "Worst gate to be stuck at",
+      "id": "392b44c2b1f86b520c9873f734a9391b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "95eda89423458901e94ede15c2f5a9f0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "place",
+   "displayName": "Place",
+   "helpText": "Airport, city or gate as the member typed it."
+  },
+  {
+   "id": "6b014c735710b1a1e6abf9db168cdda8",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "why",
+   "displayName": "Why",
+   "helpText": "The member's reason, 140 characters max."
+  },
+  {
+   "id": "4c5db0e7166299bc4f01c3a3ee56930d",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "member-id",
+   "displayName": "Member ID",
+   "helpText": "Private. Memberstack mem_ id. Never rendered on a public page."
+  },
+  {
+   "id": "c16c2daa9145e828c518f705e2103416",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "logged-flag",
+   "displayName": "Logged flag",
+   "helpText": "Set during review."
+  },
+  {
+   "id": "f721e4480e195ec21c45d1a25012fd20",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "validations": {
+    "options": [
+     {
+      "name": "In review",
+      "id": "9a39439190c3ac7e558e4321fbd042c7"
+     },
+     {
+      "name": "Shortlisted",
+      "id": "63a7053855a8b51f2b4ca6c27043da56"
+     },
+     {
+      "name": "Winner",
+      "id": "ad4882e9ccf795d7d9bc27f6c5f7f701"
+     },
+     {
+      "name": "Declined",
+      "id": "e5c95970d678d6ed21ec580d109accd5"
+     }
+    ]
+   }
+  },
+  {
+   "id": "1919693d8c82a6427e1974cb7962bd47",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "year",
+   "displayName": "Year",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "295be43cbc5b71c40f2ae6e5282a1efe",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "b6f27297287b25e6cd223cfcc1ebffe7",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

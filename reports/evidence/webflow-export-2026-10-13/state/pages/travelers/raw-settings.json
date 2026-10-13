@@ -1,0 +1,146 @@
+{
+"69ecb6a8-266a-dcd5-3b78-9f730cc92320": {
+"type": "all_raw_settings",
+"total_matches": 13,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "tag",
+"value": "div"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "data-tll-trav-dirsrc",
+"value": "1"
+}
+]
+},
+{
+"key": "source",
+"value": {
+"collectionId": "6abcd638b10dc7b4930f6410"
+}
+},
+{
+"key": "queryMode",
+"value": "dynamic"
+},
+{
+"key": "filters",
+"value": []
+},
+{
+"key": "filterMatch",
+"value": "all"
+},
+{
+"key": "sort",
+"value": []
+},
+{
+"key": "limit",
+"value": 100
+},
+{
+"key": "offset",
+"value": 0
+},
+{
+"key": "pagination",
+"value": null
+},
+{
+"key": "curatedItemIds",
+"value": []
+}
+]
+},
+"69ecb6a8-266a-dcd5-3b78-9f730cc92321": {
+"type": "all_raw_settings",
+"total_matches": 4,
+"matches": [
+{
+"key": "domId",
+"value": ""
+},
+{
+"key": "tag",
+"value": "div"
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": []
+}
+]
+},
+"353f80da-976f-d8c4-e9b1-59d3748a476b": {
+"type": "all_raw_settings",
+"total_matches": 5,
+"matches": [
+{
+"key": "domId",
+"value": null
+},
+{
+"key": "tag",
+"value": "div"
+},
+{
+"key": "text",
+"value": {
+"innerText": ""
+}
+},
+{
+"key": "visibility",
+"value": true
+},
+{
+"key": "attributes",
+"value": [
+{
+"name": "data-tll-dir",
+"value": "1"
+},
+{
+"name": "data-slug",
+"value": {
+"sourceType": "cms",
+"collectionId": "6abcd638b10dc7b4930f6410",
+"collectionName": "Directory",
+"fieldId": "4325c88bb6723d9c1c429cb609c75e4e",
+"fieldName": "Profile slug",
+"fieldGroup": null,
+"fieldType": "plainText"
+}
+},
+{
+"name": "data-links",
+"value": {
+"sourceType": "cms",
+"collectionId": "6abcd638b10dc7b4930f6410",
+"collectionName": "Directory",
+"fieldId": "16f169e0f10f438f478c4b12077d5d35",
+"fieldName": "Links JSON",
+"fieldGroup": null,
+"fieldType": "plainText"
+}
+}
+]
+}
+]
+}
+}

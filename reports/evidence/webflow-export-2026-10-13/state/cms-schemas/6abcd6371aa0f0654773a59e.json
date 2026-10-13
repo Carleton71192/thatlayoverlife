@@ -1,0 +1,97 @@
+{
+ "id": "6abcd6371aa0f0654773a59e",
+ "displayName": "Interest Tags",
+ "singularName": "Interest Tag",
+ "slug": "interest-tags",
+ "createdOn": "2026-09-30T09:28:23.949Z",
+ "lastUpdated": "2026-09-30T09:29:05.447Z",
+ "fields": [
+  {
+   "id": "c40f0e35f2b2767bf4734b79aa85a5a0",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "group",
+   "displayName": "Group",
+   "validations": {
+    "options": [
+     {
+      "name": "Daily life",
+      "id": "e4828c1899258ef399a6fd179050a164"
+     },
+     {
+      "name": "Family",
+      "id": "f683c39518cc53cbebea2f5a7ee52d37"
+     },
+     {
+      "name": "Work + money",
+      "id": "ebb45f1700061b3006c8829cee812037"
+     },
+     {
+      "name": "Health",
+      "id": "49433d539a0788850101c409d1678c12"
+     },
+     {
+      "name": "Hobbies",
+      "id": "cee9d196052bf05f7f1224a63f08b9d9"
+     },
+     {
+      "name": "Identity + community",
+      "id": "08eec0678c7b365f312f25c3039731e1"
+     }
+    ]
+   }
+  },
+  {
+   "id": "7196748a4b94e5e3b5244f4deccf367f",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "order",
+   "displayName": "Order",
+   "helpText": "Sort order inside the group",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "5c912093d64ed6f6828b2a6a360bf149",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "provisional",
+   "displayName": "Provisional",
+   "helpText": "On until the taxonomy research confirms or replaces this tag"
+  },
+  {
+   "id": "ae80ba6412ce9bcf78f42bf450796e24",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "44f8cea9e8628cb1bdfa777a67df6a20",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

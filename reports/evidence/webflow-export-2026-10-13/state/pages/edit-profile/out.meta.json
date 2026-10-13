@@ -263,7 +263,7 @@
   "Newsletter",
   "LinkedIn"
  ],
- "nodeCount": 389,
+ "nodeCount": 393,
  "embeds": 1,
  "images": 0,
  "unsupportedTypes": [],
@@ -272,5 +272,50 @@
   "TLL Nav v1",
   "TLL Site Footer"
  ],
- "cmsBound": []
+ "cmsBound": [
+  "attr data-slug:slug",
+  "attr data-name:name",
+  "attr data-group:group",
+  "attr data-order:order",
+  "attr data-slug:slug",
+  "attr data-name:name",
+  "attr data-group:group",
+  "attr data-order:order",
+  "attr data-slug:slug",
+  "attr data-name:name",
+  "attr data-group:group",
+  "attr data-order:order"
+ ],
+ "cmsUnresolved": [],
+ "propBound": [],
+ "droppedAttributes": [],
+ "warnings": [
+  "a label is nested inside another label (invalid HTML, kept as in the Designer)",
+  "duplicate id values from the Designer: field x18, checkbox x5"
+ ],
+ "scripts": {
+  "emitted": [
+   "site:tll_memberstack_init_v2@2.0.0",
+   "site:tllformcontrolsv3@1.0.0",
+   "page:tllgateflashv1@1.0.0",
+   "site:tll_memberstack_skin_v1@1.0.0",
+   "site:tll_world_map_v1@1.0.0",
+   "site:tllfactsv1@1.0.0",
+   "site:tllreveal@1.1.0",
+   "site:tll_ledger_sync@1.0.0",
+   "site:tll_save_story@1.0.0",
+   "site:tll_saved_shelf@1.0.0",
+   "site:tll_reader_notes@1.0.0",
+   "site:tll_reader_notes_form@1.0.0",
+   "site:tllformlabelsv1@1.0.0",
+   "site:tllavatarv1@1.0.0",
+   "site:tllmapv3@1.0.0",
+   "site:tllfbkplacev1@1.1.0"
+  ],
+  "unresolved": []
+ },
+ "duplicateIds": {
+  "field": 18,
+  "checkbox": 5
+ }
 }

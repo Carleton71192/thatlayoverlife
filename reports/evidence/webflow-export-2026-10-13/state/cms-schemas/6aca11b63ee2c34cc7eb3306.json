@@ -1,0 +1,86 @@
+{
+ "id": "6aca11b63ee2c34cc7eb3306",
+ "displayName": "Pet Notes",
+ "singularName": "Pet Note",
+ "slug": "pet-notes",
+ "createdOn": "2026-10-10T10:21:42.037Z",
+ "lastUpdated": "2026-10-10T10:21:56.944Z",
+ "fields": [
+  {
+   "id": "ab4bf865a8ef81b8683121cf6c3e071d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "story-slug",
+   "displayName": "Story slug",
+   "helpText": "The story this note belongs to, exactly as in its URL, e.g. antarctica-marathon."
+  },
+  {
+   "id": "6fe2c86c3eaf1ae7d6bea6bfe931d2d8",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "pet-name",
+   "displayName": "Pet name",
+   "helpText": "As it should read on the story. Magnus is always Magnus Waffles \ud83d\udc3b\u200d\u2744\ufe0f."
+  },
+  {
+   "id": "808f1c4b024e635759e41a30f18eba11",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "pet-slug",
+   "displayName": "Pet slug",
+   "helpText": "The pet's Paw Passport slug, e.g. magnus-waffles. Links the note to /pets/<slug>. Leave blank if the pet has no profile."
+  },
+  {
+   "id": "eef9121a3a6f20ac34d683a7c6499783",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "note",
+   "displayName": "Note",
+   "helpText": "The contributor's pet-friendly notes from the story form (pet-notes), lightly edited. No em dashes."
+  },
+  {
+   "id": "721b8245a6f71d45108e9fdb5bff9cda",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "pet",
+   "displayName": "Pet",
+   "helpText": "Optional link to the Pet profile.",
+   "validations": {
+    "collectionId": "6a0be8194ccc05a63fbdcfa3"
+   }
+  },
+  {
+   "id": "894dd98202b926196e7f6e641d50f8b2",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "7f9986331c3176516154577e05334bb6",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

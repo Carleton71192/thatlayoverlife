@@ -1,0 +1,220 @@
+{
+ "id": "6a0b29e90328ffc0e30375ac",
+ "displayName": "Marathons",
+ "singularName": "Marathon",
+ "slug": "marathon-diaries",
+ "createdOn": "2026-05-18T15:02:01.540Z",
+ "lastUpdated": "2026-09-23T15:24:43.530Z",
+ "fields": [
+  {
+   "id": "b95983ffa36abed7b55038791aeb19d1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "race-type",
+   "displayName": "Race type",
+   "validations": {
+    "options": [
+     {
+      "name": "Marathon",
+      "id": "5dab28967f76f17420621c73fa756f3a"
+     },
+     {
+      "name": "Ironman",
+      "id": "1535556899f254692a149d69d43bbf22"
+     },
+     {
+      "name": "Ultra",
+      "id": "3301b83e3fa00c23f61097e7bac45d02"
+     },
+     {
+      "name": "Half",
+      "id": "cdecd007ee6b43c09371340930b8a1c7"
+     },
+     {
+      "name": "Other",
+      "id": "a8b66cf45d2d035986a3bc7056ee98f4"
+     }
+    ]
+   }
+  },
+  {
+   "id": "d7e136fff14b31cd6148cd79174f3b98",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "continent",
+   "displayName": "Continent",
+   "validations": {
+    "options": [
+     {
+      "name": "Africa",
+      "id": "372a8b68d36a71059a1c5e752914012a"
+     },
+     {
+      "name": "Antarctica",
+      "id": "30f6c1d9caa3643f1164bcd3c718294a"
+     },
+     {
+      "name": "Asia",
+      "id": "3d9d02ae67a3be82460398727e235d89"
+     },
+     {
+      "name": "Europe",
+      "id": "4754c994e67522ac7f978571deedb1e5"
+     },
+     {
+      "name": "North America",
+      "id": "f0373b1c6874aca3259736bfec600861"
+     },
+     {
+      "name": "Oceania",
+      "id": "bcb88ab49c8016fb150681813b26fa62"
+     },
+     {
+      "name": "South America",
+      "id": "a77f5a8697da0db64c818812620c48ad"
+     }
+    ]
+   }
+  },
+  {
+   "id": "e3a35f138cd77be1a811863bdc57f216",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "2f1eea36398dccfb5f92e4bcb4ab3dd5",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "city",
+   "displayName": "City"
+  },
+  {
+   "id": "96a98c4c653b0d60c1745c10b60b6bd4",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "date",
+   "displayName": "Date",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "28f5d051671e40245218b133e69ae95e",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "validations": {
+    "options": [
+     {
+      "name": "Upcoming",
+      "id": "612a820aa80c9f8713002fa5bfb93318"
+     },
+     {
+      "name": "Completed",
+      "id": "880773f0711e0e181334dfc27d4763da"
+     }
+    ]
+   }
+  },
+  {
+   "id": "91e06db2264b7ecdcb68c167b54e8585",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "race-time",
+   "displayName": "Race time",
+   "helpText": "Finish time (e.g. 4:21:08). Optional for upcoming."
+  },
+  {
+   "id": "fb793e9cfa53c6f4350edd7d988c62cc",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "hero-image",
+   "displayName": "Hero image"
+  },
+  {
+   "id": "651a5818f7d9be2b696cedc27fc1eb49",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "recap-body",
+   "displayName": "Recap body",
+   "helpText": "Post-race recap (required when status = Completed)."
+  },
+  {
+   "id": "1d1d7f79557bde10aaf2c6a61ab186a0",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "RichText",
+   "slug": "pre-race-city-guide",
+   "displayName": "Pre-race city guide",
+   "helpText": "Where to stay, eat, walk before, recover. The marathon-traveler asset."
+  },
+  {
+   "id": "c3a788edba153d333d1a7b47def0f4a7",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "strava-activity-url",
+   "displayName": "Strava activity URL"
+  },
+  {
+   "id": "2f0fce831c39e45b8db7c8c3ce8c6e0c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "one-line-take",
+   "displayName": "One-line take",
+   "helpText": "<=100 chars."
+  },
+  {
+   "id": "c4f13b07748b525a74a9d89e269bbeda",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiImage",
+   "slug": "photo-gallery",
+   "displayName": "Photo gallery",
+   "helpText": "Optional. Race photos and pre-race city shots. Renders in the recap block when status is Completed."
+  },
+  {
+   "id": "053fd8dc5379f08ca9ba39ecafc21a0d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "d81fe47ad989777f8ca53205f1f06a44",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

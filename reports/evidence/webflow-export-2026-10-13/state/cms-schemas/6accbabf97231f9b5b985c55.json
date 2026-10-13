@@ -1,0 +1,59 @@
+{
+ "id": "6accbabf97231f9b5b985c55",
+ "displayName": "Photo placements",
+ "singularName": "Photo placement",
+ "slug": "photo-placements",
+ "createdOn": "2026-10-12T10:47:27.426Z",
+ "lastUpdated": "2026-10-12T10:47:33.995Z",
+ "fields": [
+  {
+   "id": "cee9961dcf873955d6f9c5d1d4c27e9e",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "story",
+   "displayName": "Story",
+   "helpText": "The story these placements belong to. The page matches rows by Name, which must equal the story slug.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "4c71cdac4ee678e80f3523652fe63a72",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "photo-placement",
+   "displayName": "Photo placement",
+   "helpText": "One line per inline photo: Section heading | photo filename slug. Example: The crown jewel | tll-morocco-toubkal-summit-marker. Photos not listed stay in the end gallery."
+  },
+  {
+   "id": "fdb9abe54b5886f2f8cebb425c5f1821",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "b5229e02e27c34096fc6872875dbee76",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

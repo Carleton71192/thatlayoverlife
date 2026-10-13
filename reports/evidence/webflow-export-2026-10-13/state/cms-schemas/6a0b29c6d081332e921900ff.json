@@ -1,0 +1,84 @@
+{
+ "id": "6a0b29c6d081332e921900ff",
+ "displayName": "Pillars",
+ "singularName": "Pillar",
+ "slug": "pillars",
+ "createdOn": "2026-05-18T15:01:26.791Z",
+ "lastUpdated": "2026-06-14T09:13:50.844Z",
+ "fields": [
+  {
+   "id": "c4d4ac956057c23cea1b1d090e223104",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "color-accent",
+   "displayName": "Color accent",
+   "helpText": "Brand color accent for the pillar card eyebrow.",
+   "validations": {
+    "options": [
+     {
+      "name": "Teal",
+      "id": "664655edf3d630e93d796101702d4c05"
+     },
+     {
+      "name": "Rose",
+      "id": "add6989ad743ef82b701407b697865c2"
+     },
+     {
+      "name": "Marigold",
+      "id": "83007822f173be62787cfd06479dc76c"
+     },
+     {
+      "name": "Midnight",
+      "id": "0bc99cba58c3ed846100b92d65ccdb1a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "a534329074aba4af94f07cd3a33e8f6e",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Image",
+   "slug": "icon",
+   "displayName": "Icon",
+   "helpText": "SVG icon (Phosphor) representing the pillar."
+  },
+  {
+   "id": "a725e82a676d12daf891f52f0e579377",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "one-line-description",
+   "displayName": "One-line description",
+   "helpText": "Short pillar description for hover and SEO."
+  },
+  {
+   "id": "81657b5b15e424d2a08f6ec498ff7286",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "b78b6b0b71b5885824dac672bec44a6f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

@@ -1,0 +1,82 @@
+{
+ "id": "6a0cbdad8dfcb5ee54bdf739",
+ "displayName": "Bookmarks",
+ "singularName": "Bookmark",
+ "slug": "bookmarks",
+ "createdOn": "2026-05-19T19:44:45.419Z",
+ "lastUpdated": "2026-06-14T09:13:52.298Z",
+ "fields": [
+  {
+   "id": "6f9ab351d82881d8ed4429213f2077dd",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "contributor",
+   "displayName": "Contributor",
+   "helpText": "The Traveler who saved this Story.",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "3a6eb1bda0135c9ce9a9df30c25d25f5",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "story",
+   "displayName": "Story",
+   "helpText": "The Story being bookmarked.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "c1f6db0e28254c1d0223dd7f51b72a5c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "saved-at",
+   "displayName": "Saved at",
+   "helpText": "When the bookmark was created.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "e31e0809fb86549baa195e41dd8502b4",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "private-notes",
+   "displayName": "Private notes",
+   "helpText": "Optional. Only visible to the member who bookmarked."
+  },
+  {
+   "id": "13f53ddac9040524020585537ce38e4f",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "a2fa2b3547f0a6b9605c52f77130a927",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

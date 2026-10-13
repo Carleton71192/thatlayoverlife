@@ -1,0 +1,201 @@
+{
+ "a6a41b6f-1ac5-f12d-21cd-12383f853524": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "field"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "a6a41b6f-1ac5-f12d-21cd-12383f853527": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "email"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "type",
+    "value": "email"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ },
+ "a6a41b6f-1ac5-f12d-21cd-12383f85352a": {
+  "type": "all_resolved_settings",
+  "total_matches": 5,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "message"
+   },
+   {
+    "key": "required",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "rows",
+      "value": "6"
+     }
+    ]
+   }
+  ]
+ },
+ "a6a41b6f-1ac5-f12d-21cd-12383f85352c": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "website-url"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "text"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-tll-relay-hp",
+      "value": ""
+     },
+     {
+      "name": "autocomplete",
+      "value": "off"
+     },
+     {
+      "name": "tabindex",
+      "value": "-1"
+     }
+    ]
+   }
+  ]
+ },
+ "a6a41b6f-1ac5-f12d-21cd-12383f85352d": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": "field"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "name",
+    "value": "relay-to"
+   },
+   {
+    "key": "required",
+    "value": false
+   },
+   {
+    "key": "type",
+    "value": "hidden"
+   },
+   {
+    "key": "attributes",
+    "value": [
+     {
+      "name": "data-tll-relay-to",
+      "value": ""
+     }
+    ]
+   }
+  ]
+ },
+ "740cb8b5-b89b-9732-b4b0-3856c5d2360b": {
+  "type": "all_resolved_settings",
+  "total_matches": 6,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "buttonText",
+    "value": "Send through TLL →"
+   },
+   {
+    "key": "loadingText",
+    "value": "Sending…"
+   },
+   {
+    "key": "type",
+    "value": "submit"
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
+ }
+}

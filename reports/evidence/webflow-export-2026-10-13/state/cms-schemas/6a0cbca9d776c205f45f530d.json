@@ -1,0 +1,147 @@
+{
+ "id": "6a0cbca9d776c205f45f530d",
+ "displayName": "Visits",
+ "singularName": "Visit",
+ "slug": "visits",
+ "createdOn": "2026-05-19T19:40:25.649Z",
+ "lastUpdated": "2026-06-14T09:13:52.186Z",
+ "fields": [
+  {
+   "id": "298d13d5adbaa45e4247158096bb21e6",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "contributor",
+   "displayName": "Contributor",
+   "helpText": "The Traveler logging this visit.",
+   "validations": {
+    "collectionId": "6a0b29c7a7b1840afe9390a5"
+   }
+  },
+  {
+   "id": "1e99c2503cac2ef70861275a13a7e121",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "helpText": "The Destination this visit belongs to.",
+   "validations": {
+    "collectionId": "6a0b29c702602326705dcfb1"
+   }
+  },
+  {
+   "id": "4bf84e4800c9f73afc62aeb301f355cc",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "linked-story",
+   "displayName": "Linked Story",
+   "helpText": "Optional. If this visit became a published Story, link it here.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "09d280536ebab47a794e9363d4bb7ac0",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "DateTime",
+   "slug": "visit-date",
+   "displayName": "Visit date",
+   "helpText": "Start date of the visit.",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "3d6278a54b0ae5276f6ff8f919088b50",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Number",
+   "slug": "duration-days",
+   "displayName": "Duration days",
+   "helpText": "Optional. How many days the visit lasted.",
+   "validations": {
+    "format": "integer",
+    "allowNegative": true,
+    "precision": 1
+   }
+  },
+  {
+   "id": "959a85221e1f081d7bb4175c340d8097",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "city",
+   "displayName": "City",
+   "helpText": "Optional. City within the country (e.g. Sofia, Kotor, Accra)."
+  },
+  {
+   "id": "ea50b0e6057d8d55e126c2f5fc24d00b",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "RichText",
+   "slug": "notes",
+   "displayName": "Notes",
+   "helpText": "Optional traveler journal. Public if Is Private is off."
+  },
+  {
+   "id": "6bca6e901d9c8482deaa0b72d6dbf703",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Image",
+   "slug": "photo",
+   "displayName": "Photo",
+   "helpText": "Optional. One signature photo. Renders on the Places Been timeline card."
+  },
+  {
+   "id": "79cc50fe227b1d565fd8d6c18177d7fa",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "is-private",
+   "displayName": "Is private",
+   "helpText": "Off by default. Toggle on to keep the visit visible only to the contributor."
+  },
+  {
+   "id": "c279bb5fa3d442b42b727f254b21ae49",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "pets-along",
+   "displayName": "Pets along",
+   "helpText": "Which of the contributor's pets came on this visit. Auto-syncs to Pet.visited-countries on save.",
+   "validations": {
+    "collectionId": "6a0be8194ccc05a63fbdcfa3"
+   }
+  },
+  {
+   "id": "44b3a42aa0688f573b6f1ad9d58196b1",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "ecbe7d0415096a65f64383ed93a3116d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

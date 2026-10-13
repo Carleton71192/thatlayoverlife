@@ -1,0 +1,35 @@
+{
+ "page": {
+  "id": "6a0df6db0940a815072a3e04",
+  "slug": "my-passport",
+  "title": "Your passport · That Layover Life",
+  "draft": false,
+  "collectionId": null,
+  "publishedPath": "/my-passport",
+  "lastUpdated": "2026-10-09T04:20:36.374Z",
+  "seo": {
+   "title": "Your passport · That Layover Life",
+   "description": "Every country, every city, every visit logged. The receipts of where you've been. Linked to The Map and your traveler profile."
+  },
+  "openGraph": {
+   "title": "Your passport · The receipts of where you have been",
+   "titleCopied": false,
+   "description": "Every country, every city, every visit logged.",
+   "descriptionCopied": false,
+   "imageUrl": null,
+   "imageAssetId": "6ac86b3f3f0c2ec07fbdc53e"
+  }
+ },
+ "headCode": "<meta name=\"robots\" content=\"noindex, follow\">\n<!-- 2026-09-25: the passport map and The Map merged into one page. /my-passport now forwards to /the-map, which is filled, pinned and editable in one place. Remove this block to bring the page back; a real 301 in Webflow site settings should replace it. -->\n<script>(function(){try{location.replace(\"/the-map\"+(location.search||\"\"));}catch(e){location.href=\"/the-map\";}})();</script>",
+ "footerCode": "<script>\n(function(){\n  if(window.__tllLiveCounts)return;window.__tllLiveCounts=1;\n  function withData(cb){var ls=null;try{ls=JSON.parse(localStorage.getItem(\"tllStates\")||\"null\");}catch(e){}\n    if(ls&&ls.v===2&&ls.states)return cb(ls);\n    var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;\n      if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(mj){var d=mj&&mj.data&&mj.data.tllStates;if(d&&d.v===2&&d.states)cb(d);});}).catch(function(){});}\n      else if(++n>40)clearInterval(iv);},250);}\n  function texts(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),out=[],x;while(x=w.nextNode())out.push(x);return out;}\n  function apply(d){\n    var n=Object.keys(d.states).length,pct=Math.round(n/195*100),togo=195-n;\n    texts(document.body).forEach(function(t){var s=t.nodeValue;if(!s)return;var o=s;\n      s=s.replace(/\\b\\d+(?= countries, counted by hand)/,n);\n      s=s.replace(/\\b\\d+(?= countries, visualized)/,n);\n      s=s.replace(/\\b\\d+(?= countries on )/,n);\n      s=s.replace(/\\b\\d+ of 195 · \\d+ to go/,n+\" of 195 · \"+togo+\" to go\");\n      s=s.replace(/(View all )\\d+( visits)/,\"$1\"+n+\"$2\");\n      if(s!==o)t.nodeValue=s;});\n    var c=document.getElementById(\"tll-map-counter\");if(c)c.textContent=n+\" / 195\";\n    var p=document.getElementById(\"tll-map-pct\");if(p)p.textContent=pct+\"%\";\n    [].slice.call(document.querySelectorAll(\".tll-passport-lifer-fill\")).forEach(function(f){f.style.width=pct+\"%\";});\n    [].slice.call(document.querySelectorAll(\"div,span,p\")).forEach(function(e){\n      if(e.children.length===0&&/^countries$/i.test(e.textContent.trim())){\n        var q=e.previousElementSibling;\n        if(q&&/^\\d+$/.test(q.textContent.trim()))q.textContent=String(n);\n      }\n      if(e.children.length===0&&/^the lifer progress$/i.test(e.textContent.trim())){\n        var s2=e.nextElementSibling;if(s2&&/^\\d+%$/.test(s2.textContent.trim()))s2.textContent=pct+\"%\";\n      }\n    });\n  }\n  function boot(){withData(apply);}\n  if(document.readyState===\"loading\")document.addEventListener(\"DOMContentLoaded\",boot);else boot();\n  setTimeout(boot,1600);setTimeout(boot,4000);\n})();\n</script>",
+ "pageScripts": {
+  "scripts": [],
+  "apiError": {
+   "status": 404,
+   "code": "resource_not_found",
+   "message": "Requested resource not found: Custom code block not found"
+  }
+ },
+ "unpublished": false,
+ "capturedAt": "2026-10-13"
+}

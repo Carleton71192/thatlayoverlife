@@ -1,0 +1,68 @@
+{
+ "id": "6aca11b69e57978135e4c248",
+ "displayName": "Trip Bundles",
+ "singularName": "Trip Bundle",
+ "slug": "trip-bundles",
+ "createdOn": "2026-10-10T10:21:42.552Z",
+ "lastUpdated": "2026-10-10T10:21:58.569Z",
+ "fields": [
+  {
+   "id": "e62be2f5b3ae954b90515eabaf93c1a0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "trip-code",
+   "displayName": "Trip code",
+   "helpText": "The trip-code from the story form submissions, e.g. T4K2Q9XA. Every perspective on the trip carries the same code."
+  },
+  {
+   "id": "4bc8b489f7fc557cf70486f3f17e8ff7",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "story-slugs",
+   "displayName": "Story slugs",
+   "helpText": "Comma-separated slugs of every published story in this bundle, e.g. antarctica-marathon, antarctica-from-the-back-of-the-pack."
+  },
+  {
+   "id": "b097738c50eaa7b9645be4ecad349e99",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "MultiReference",
+   "slug": "stories",
+   "displayName": "Stories",
+   "helpText": "The same stories as Story slugs, for the editor's view.",
+   "validations": {
+    "collectionId": "6a0b29eddc14f1444e935760"
+   }
+  },
+  {
+   "id": "94bb8d98526006a9b39c538978d17253",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "502f5b74c0c477c5ba8779074f73639a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

@@ -1,0 +1,130 @@
+{
+ "id": "6abcd6371aa0f0654773a56e",
+ "displayName": "Expat Groups",
+ "singularName": "Expat Group",
+ "slug": "expat-groups",
+ "createdOn": "2026-09-30T09:28:23.550Z",
+ "lastUpdated": "2026-09-30T13:53:22.073Z",
+ "fields": [
+  {
+   "id": "c3949861b0513bbb0748ff5c9bdaa649",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "city",
+   "displayName": "City",
+   "helpText": "City or area"
+  },
+  {
+   "id": "d03635527d3ed5f98775fb99633d2002",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Reference",
+   "slug": "country",
+   "displayName": "Country",
+   "validations": {
+    "collectionId": "6a8afbd98e907b41c4da109b"
+   }
+  },
+  {
+   "id": "58d43285adca02b2a4bea4217863a076",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Link",
+   "slug": "link",
+   "displayName": "Link",
+   "helpText": "Where the group lives"
+  },
+  {
+   "id": "0cbbacc9782275549d60e9710c95f3eb",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Email",
+   "slug": "contact-email",
+   "displayName": "Contact email",
+   "helpText": "PRIVATE. Never bind this field to any public element."
+  },
+  {
+   "id": "350e8271e817e2c1be1e32e0e6cd20c6",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "Switch",
+   "slug": "runs-group",
+   "displayName": "Runs group",
+   "helpText": "Submitter runs or co-runs this group and it is open to new members"
+  },
+  {
+   "id": "8ea3f1b31079f4c19fafc50c6c47f07d",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "Option",
+   "slug": "status",
+   "displayName": "Status",
+   "helpText": "Every submission starts In review. Only Live items render.",
+   "validations": {
+    "options": [
+     {
+      "name": "In review",
+      "id": "7c0e78895ebe523884637a27d366d1eb"
+     },
+     {
+      "name": "Live",
+      "id": "95ffed0a87987a59238c4536a87f50e2"
+     },
+     {
+      "name": "Declined",
+      "id": "69939926e53a59bda717f20b6875e759"
+     }
+    ]
+   }
+  },
+  {
+   "id": "30f31f5f6ec23b18003140d2aa288634",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "DateTime",
+   "slug": "submitted-on",
+   "displayName": "Submitted on",
+   "validations": {
+    "format": "date-time"
+   }
+  },
+  {
+   "id": "664dd0b6cc6dfd06510c67f99e66aaf0",
+   "isEditable": true,
+   "isRequired": false,
+   "type": "PlainText",
+   "slug": "country-name",
+   "displayName": "Country name",
+   "helpText": "Plain-text copy of Country, used by the finder and country pages. Keep in step with the Country reference."
+  },
+  {
+   "id": "045a9ff10644520c6d3d9f6845bec33a",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "name",
+   "displayName": "Name",
+   "validations": {
+    "maxLength": 256
+   }
+  },
+  {
+   "id": "ee798549b38c925a4f80326f785e565c",
+   "isEditable": true,
+   "isRequired": true,
+   "type": "PlainText",
+   "slug": "slug",
+   "displayName": "Slug",
+   "validations": {
+    "maxLength": 256,
+    "pattern": {},
+    "messages": {
+     "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+     "maxLength": "Must be less than 256 characters"
+    }
+   }
+  }
+ ],
+ "fieldGroups": []
+}

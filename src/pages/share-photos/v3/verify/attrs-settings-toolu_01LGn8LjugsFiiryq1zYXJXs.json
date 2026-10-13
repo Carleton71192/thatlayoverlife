@@ -1,0 +1,161 @@
+[
+ {
+  "label": "form-settings",
+  "action": "get_settings",
+  "result": [
+   {
+    "status": "success",
+    "message": "Settings retrieved",
+    "data": {
+     "type": "all_resolved_settings",
+     "total_matches": 8,
+     "matches": [
+      {
+       "key": "domId",
+       "value": ""
+      },
+      {
+       "key": "visibility",
+       "value": true
+      },
+      {
+       "key": "action",
+       "value": ""
+      },
+      {
+       "key": "method",
+       "value": "get"
+      },
+      {
+       "key": "redirect",
+       "value": ""
+      },
+      {
+       "key": "state",
+       "value": "normal"
+      },
+      {
+       "key": "name",
+       "value": "Html Form"
+      },
+      {
+       "key": "attributes",
+       "value": [
+        {
+         "name": "data-tll-form",
+         "value": "share-photos"
+        },
+        {
+         "name": "data-ms-member-bound",
+         "value": "true"
+        },
+        {
+         "name": "enctype",
+         "value": "multipart/form-data"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "label": "photos-settings",
+  "action": "get_settings",
+  "result": [
+   {
+    "status": "success",
+    "message": "Settings retrieved",
+    "data": {
+     "type": "all_resolved_settings",
+     "total_matches": 6,
+     "matches": [
+      {
+       "key": "domId",
+       "value": "photos-upload"
+      },
+      {
+       "key": "visibility",
+       "value": true
+      },
+      {
+       "key": "name",
+       "value": "photos"
+      },
+      {
+       "key": "required",
+       "value": true
+      },
+      {
+       "key": "type",
+       "value": "file"
+      },
+      {
+       "key": "attributes",
+       "value": [
+        {
+         "name": "accept",
+         "value": "image/*"
+        },
+        {
+         "name": "multiple",
+         "value": ""
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "label": "year-settings",
+  "action": "get_settings",
+  "result": [
+   {
+    "status": "success",
+    "message": "Settings retrieved",
+    "data": {
+     "type": "all_resolved_settings",
+     "total_matches": 6,
+     "matches": [
+      {
+       "key": "domId",
+       "value": "field"
+      },
+      {
+       "key": "visibility",
+       "value": true
+      },
+      {
+       "key": "name",
+       "value": "year"
+      },
+      {
+       "key": "required",
+       "value": false
+      },
+      {
+       "key": "type",
+       "value": "number"
+      },
+      {
+       "key": "attributes",
+       "value": [
+        {
+         "name": "min",
+         "value": "1990"
+        },
+        {
+         "name": "max",
+         "value": "2030"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ]
+ }
+]
