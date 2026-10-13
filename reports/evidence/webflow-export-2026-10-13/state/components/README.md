@@ -27,6 +27,15 @@ fetched for every embed, image, form field, form button and every link whose tre
 href, plus the prop-bound text blocks. `props` and `variants` come from `get_component`.
 Every component has only the Base variant.
 
+Re-check on 13 October 2026 (later the same day): all eleven trees were read again at depth
+-1, every saved settings entry was read again in both modes, and `get_all_components` was
+read again with props and instance counts. Ten trees, all settings, props, groups,
+descriptions and instance counts matched the earlier capture. The one change is in the
+template Navigation component: its NavbarMenu (`66253382-85ae-9472-e456-fbcb01ac0b1b`) now
+sits inside the `nav_left` Block instead of directly under the NavbarWrapper. The node set
+and order are the same. That file now holds the live tree and a `recheckNote` key; every
+file carries `recheckedAt`.
+
 Shapes are documented in `scripts/export/NOTES.md`. The assembler is
 `scripts/export/components-build.py`.
 

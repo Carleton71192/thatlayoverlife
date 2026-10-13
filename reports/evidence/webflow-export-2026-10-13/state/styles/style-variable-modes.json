@@ -1,0 +1,42 @@
+{
+ "fetchedAt": "2026-10-13",
+ "source": "data_style_tool get_style_variable_modes (read only)",
+ "note": "Body applies Typography and Sizes modes at medium, small and tiny. The Slider collection mode 'Gap Small' was not on slider, slider_mask, slider_slide or gap-small; styles-full.json shows it on the combo .slider_mask.is-slide-gap (---mode-- property). styles2css.mjs reads the ---mode-- properties straight from styles-full.json; this file is a cross-check.",
+ "styles": {
+  "body": {
+   "styleId": "default-body",
+   "main": {},
+   "xxl": {},
+   "xl": {},
+   "large": {},
+   "medium": {
+    "collection-fb6f7631-7e5b-0854-bd12-fc10c1d0b59c": "mode-dcfd1db1-7409-bcc7-6d58-de50ec2b02d3",
+    "collection-51fbbefb-2f34-ea68-eabc-fe2781d1a663": "mode-cc41dd36-2dc8-2002-00f3-cd107a951830"
+   },
+   "small": {
+    "collection-fb6f7631-7e5b-0854-bd12-fc10c1d0b59c": "mode-4275a80c-b639-3705-1310-d01fd3f133a7",
+    "collection-51fbbefb-2f34-ea68-eabc-fe2781d1a663": "mode-e52db4ec-ac93-69e5-6a28-aa4ee8165f69"
+   },
+   "tiny": {
+    "collection-fb6f7631-7e5b-0854-bd12-fc10c1d0b59c": "mode-cda26757-2ce7-4b67-954f-30f4628740e3",
+    "collection-51fbbefb-2f34-ea68-eabc-fe2781d1a663": "mode-4c07d597-e4a4-be34-60b5-caedbcdcb5dc"
+   }
+  },
+  "slider": {
+   "styleId": "a618a94d-d10f-39aa-0f7e-edfa7826a783",
+   "main": {}
+  },
+  "slider_mask": {
+   "styleId": "a618a94d-d10f-39aa-0f7e-edfa7826a772",
+   "main": {}
+  },
+  "slider_slide": {
+   "styleId": "a618a94d-d10f-39aa-0f7e-edfa7826a792",
+   "main": {}
+  },
+  "gap-small": {
+   "styleId": "a618a94d-d10f-39aa-0f7e-edfa7826aa6e",
+   "main": {}
+  }
+ }
+}

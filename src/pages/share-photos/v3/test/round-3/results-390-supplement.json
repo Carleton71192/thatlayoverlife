@@ -1,0 +1,44 @@
+[
+ {
+  "check": 11,
+  "name": "in 390: members block visible, anonymous hidden in the signed-in run",
+  "pass": true,
+  "evidence": "{\"members\":\"block\",\"anon\":\"none\"}"
+ },
+ {
+  "check": 4,
+  "name": "in 390: disclosures closed on load, open and close on click, buttons >= 44px",
+  "pass": true,
+  "evidence": "{\"d0\":[[\"false\",\"hidden\",44],[\"false\",\"hidden\",44]],\"d1\":[[\"true\",\"visible\",44],[\"true\",\"visible\",44]],\"d2\":[[\"false\",\"hidden\",44],[\"false\",\"hidden\",44]]}"
+ },
+ {
+  "check": 6,
+  "name": "in 390: empty submit blocked, five errors, focus on photos input, \"5 things to fix above.\"",
+  "pass": true,
+  "evidence": "{\"status\":\"5 things to fix above.\",\"inv\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"wf\":0,\"ae\":\"photos-upload\",\"url\":\"http://tll.test/mock-in.html\",\"errs\":[\"Add at least one photo.\",\"Tell us the country, at least.\",\"Tick this one to send.\",\"Tick this one to send.\",\"Tick this one to send.\"]}"
+ },
+ {
+  "check": 5,
+  "name": "in 390: three rows, \"3 of 12 chosen.\", photos error cleared, summary \"3 photos from Portugal.\", no overflow with rows",
+  "pass": true,
+  "evidence": "{\"rows\":3,\"count\":\"3 of 12 chosen.\",\"err\":true,\"sum\":\"3 photos from Portugal.\",\"status\":\"3 things to fix above.\",\"sw\":390,\"cw\":390,\"removeH\":44}"
+ },
+ {
+  "check": 8,
+  "name": "in 390: credited-as line and hide on Anonymous",
+  "pass": true,
+  "evidence": "{\"c\":\"Credited as Nancy Carleton, from your account.\",\"ch\":true}"
+ },
+ {
+  "check": 10,
+  "name": "in 390: success box takes focus",
+  "pass": true,
+  "evidence": "true"
+ },
+ {
+  "check": 1,
+  "name": "in 390 (interaction run): no errors or rejections",
+  "pass": true,
+  "evidence": "{\"errors\":[],\"rej\":[]}"
+ }
+]

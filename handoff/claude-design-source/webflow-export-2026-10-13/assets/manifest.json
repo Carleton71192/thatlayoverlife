@@ -2,15 +2,18 @@
  "note": "Image files are not included in this bundle because the Webflow CDN is not reachable from the build container. Every src in the pages points at the hosted URL listed here, so the pages render from Webflow hosting as they are. This manifest is the full asset list for the site, sorted by displayName, taken read-only from the Webflow Data API on 2026-10-13.",
  "generatedOn": "2026-10-13",
  "siteId": "69d6145cf421c777840c1e25",
- "source": "Webflow Data API via data_assets_tool: list_assets (12 pages of 100) and list_asset_folders (1 page). Read only.",
+ "source": "Webflow Data API via data_assets_tool: list_assets (12 pages of up to 100) and list_asset_folders (1 page of up to 100). Read only.",
  "srcCheck": {
   "pageFilesScanned": 1,
-  "assetHostReferences": 0,
-  "matchedToHostedUrl": 0,
+  "assetHostReferences": 1,
+  "matchedToHostedUrl": 1,
   "unmatched": 0,
-  "hosts": {},
+  "unmatchedSample": [],
+  "hosts": {
+   "cdn.prod.website-files.com": 1
+  },
   "scannedAt": "2026-10-13, while the page files were still being written",
-  "result": "At scan time the bundle held one page (edit-profile.html) with no image elements, so there was nothing to match. The bundle convention is that every image src points at the hostedUrl in this manifest. Re-run the scan once all pages are in place."
+  "result": "The one asset reference in the page files matches a hostedUrl in this manifest. Only 1 page file(s) are in the bundle so far; re-run the scan once all pages are in place."
  },
  "counts": {
   "assets": 1125,
@@ -20,6 +23,7 @@
   "assetsWithoutAltText": 334,
   "assetsInFolders": 25,
   "assetsAtRoot": 1100,
+  "assetsWithResponsiveVariants": 131,
   "byContentType": {
    "image/jpeg": 1038,
    "image/png": 51,
@@ -32,9 +36,17 @@
  },
  "caveats": [
   "size is the value the API returns. It is 0 for most assets, so treat bytesTotalReported as a lower bound.",
-  "width and height are not returned by the list endpoint for this site, so they are absent.",
-  "hostedUrl is the canonical Webflow S3 URL. Published pages may serve the same file from a cdn.prod.website-files.com host; the path after the site id is the same."
+  "width and height are not returned on the asset itself by the list endpoint for this site, so they are absent. Where Webflow made responsive variants, each variant lists its width (height is null in the API).",
+  "hostedUrl is the canonical Webflow S3 URL. Published pages may serve the same file from a cdn.prod.website-files.com host; the path after the site id is the same.",
+  "Some display names are used by more than one asset (see duplicateDisplayNames). Use the asset id, not the name, as the key."
  ],
+ "duplicateDisplayNames": {
+  "Bulgaria.jpg": 2,
+  "Doha.jpg": 2,
+  "Spain.jpg": 3,
+  "tll-webclip.png": 3,
+  "tll-favicon-light.png": 2
+ },
  "tasksStillToComplete": {
   "sessionTasks": [
    {
@@ -171,7 +183,33 @@
    "displayName": "487863974_10104273809658280_4081212308346765994_n.jpg",
    "contentType": "image/jpeg",
    "size": 304689,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da3cc5714116b8ac6ef_487863974_10104273809658280_4081212308346765994_n-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da3cc5714116b8ac6ef_487863974_10104273809658280_4081212308346765994_n-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da3cc5714116b8ac6ef_487863974_10104273809658280_4081212308346765994_n-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da3cc5714116b8ac6ef_487863974_10104273809658280_4081212308346765994_n-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a22994f",
@@ -189,7 +227,27 @@
    "displayName": "504807507_10104382649357650_1299508553563616679_n.jpg",
    "contentType": "image/jpeg",
    "size": 231733,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9ceb37217428cb4b38_504807507_10104382649357650_1299508553563616679_n-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a2299ab",
@@ -207,7 +265,21 @@
    "displayName": "609100942_10104801169794340_4820679448361737955_n.jpg",
    "contentType": "image/jpeg",
    "size": 97330,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dab562485b39b7b7389_609100942_10104801169794340_4820679448361737955_n-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dab562485b39b7b7389_609100942_10104801169794340_4820679448361737955_n-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a229953",
@@ -252,7 +324,27 @@
    "displayName": "African Sunset.jpg",
    "contentType": "image/jpeg",
    "size": 217621,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21252550526235fbb7_African%20Sunset-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21252550526235fbb7_African%20Sunset-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21252550526235fbb7_African%20Sunset-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115d2149ee86588280514f",
@@ -261,7 +353,21 @@
    "displayName": "African woman.jpg",
    "contentType": "image/jpeg",
    "size": 123643,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d2149ee86588280514f_African%20woman-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d2149ee86588280514f_African%20woman-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accbae3a4cfa06c22db18e5",
@@ -378,7 +484,15 @@
    "displayName": "antarctica-after-the-polar-plunge-on-the-ice.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d831aedbf6274965abe9_antarctica-after-the-polar-plunge-on-the-ice-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6d0a067f5b66772e7b1",
@@ -387,7 +501,21 @@
    "displayName": "antarctica-black-tie-on-the-ice-with-penguins.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d0a067f5b66772e7b1_antarctica-black-tie-on-the-ice-with-penguins-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d0a067f5b66772e7b1_antarctica-black-tie-on-the-ice-with-penguins-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6cec53f88b0a916e193",
@@ -396,7 +524,15 @@
    "displayName": "antarctica-buenos-aires-tango-show.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec53f88b0a916e193_antarctica-buenos-aires-tango-show-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a9ead141bd5cbcccfd",
@@ -405,7 +541,15 @@
    "displayName": "antarctica-champagne-in-the-ships-lounge.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a9ead141bd5cbcccfd_antarctica-champagne-in-the-ships-lounge-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e784d6c1557046f9059c",
@@ -414,7 +558,15 @@
    "displayName": "antarctica-chinstrap-penguin-on-a-snowy-rock.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e784d6c1557046f9059c_antarctica-chinstrap-penguin-on-a-snowy-rock-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6aa7a966bc36839312e",
@@ -423,7 +575,21 @@
    "displayName": "antarctica-deception-island-red-cliffs.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa7a966bc36839312e_antarctica-deception-island-red-cliffs-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa7a966bc36839312e_antarctica-deception-island-red-cliffs-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a971c87db87f001dfb",
@@ -432,7 +598,21 @@
    "displayName": "antarctica-drake-passage-rough-water.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a971c87db87f001dfb_antarctica-drake-passage-rough-water-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a971c87db87f001dfb_antarctica-drake-passage-rough-water-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92bb2b1015ed44d9cf0",
@@ -441,7 +621,21 @@
    "displayName": "antarctica-finisher-medal-and-antarctica-beer.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92bb2b1015ed44d9cf0_antarctica-finisher-medal-and-antarctica-beer-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92bb2b1015ed44d9cf0_antarctica-finisher-medal-and-antarctica-beer-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e785fdfa61f173cca3da",
@@ -450,7 +644,21 @@
    "displayName": "antarctica-fur-seal-among-the-penguins.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e785fdfa61f173cca3da_antarctica-fur-seal-among-the-penguins-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e785fdfa61f173cca3da_antarctica-fur-seal-among-the-penguins-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d831e2239c9ec7f89cde",
@@ -459,7 +667,21 @@
    "displayName": "antarctica-fur-seal-below-the-glacier.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d831e2239c9ec7f89cde_antarctica-fur-seal-below-the-glacier-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d831e2239c9ec7f89cde_antarctica-fur-seal-below-the-glacier-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e785871d54b1122129b1",
@@ -468,7 +690,15 @@
    "displayName": "antarctica-fur-seal-calling-on-the-gravel.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e785871d54b1122129b1_antarctica-fur-seal-calling-on-the-gravel-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e784e451cce9e6a0e398",
@@ -477,7 +707,15 @@
    "displayName": "antarctica-gentoo-on-the-black-shingle.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e784e451cce9e6a0e398_antarctica-gentoo-on-the-black-shingle-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e784bd96ffd1da3e23e1",
@@ -486,7 +724,15 @@
    "displayName": "antarctica-gentoo-on-the-cobbles.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e784bd96ffd1da3e23e1_antarctica-gentoo-on-the-cobbles-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d83106cd780a1e91195f",
@@ -495,7 +741,15 @@
    "displayName": "antarctica-gentoo-penguin-on-the-shingle.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d83106cd780a1e91195f_antarctica-gentoo-penguin-on-the-shingle-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6d0cac4ae0593fc5a45",
@@ -504,7 +758,21 @@
    "displayName": "antarctica-glacier-wall-dusk.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d0cac4ae0593fc5a45_antarctica-glacier-wall-dusk-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d0cac4ae0593fc5a45_antarctica-glacier-wall-dusk-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a82f4bc5dffbd1ba7f",
@@ -513,7 +781,15 @@
    "displayName": "antarctica-golden-hour-before-the-ship.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a82f4bc5dffbd1ba7f_antarctica-golden-hour-before-the-ship-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d9295c183888afabcab9",
@@ -522,7 +798,27 @@
    "displayName": "antarctica-hero-landing-in-the-sun.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6cec18e4b8271e17ec7",
@@ -531,7 +827,39 @@
    "displayName": "antarctica-hero-ushuaia-fin-del-mundo.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec18e4b8271e17ec7_antarctica-hero-ushuaia-fin-del-mundo-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec18e4b8271e17ec7_antarctica-hero-ushuaia-fin-del-mundo-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec18e4b8271e17ec7_antarctica-hero-ushuaia-fin-del-mundo-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec18e4b8271e17ec7_antarctica-hero-ushuaia-fin-del-mundo-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cec18e4b8271e17ec7_antarctica-hero-ushuaia-fin-del-mundo-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a969cbf7c6da4f365b",
@@ -540,7 +868,21 @@
    "displayName": "antarctica-iceberg-and-penguin-colony-shoreline.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a969cbf7c6da4f365b_antarctica-iceberg-and-penguin-colony-shoreline-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a969cbf7c6da4f365b_antarctica-iceberg-and-penguin-colony-shoreline-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6aa69cbf7c6da4f36cb",
@@ -549,7 +891,21 @@
    "displayName": "antarctica-iceberg-on-dark-water.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa69cbf7c6da4f36cb_antarctica-iceberg-on-dark-water-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa69cbf7c6da4f36cb_antarctica-iceberg-on-dark-water-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e782e12179d01ecafe08",
@@ -558,7 +914,21 @@
    "displayName": "antarctica-icebergs-under-a-grey-sky.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e782e12179d01ecafe08_antarctica-icebergs-under-a-grey-sky-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e782e12179d01ecafe08_antarctica-icebergs-under-a-grey-sky-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e786fdfa61f173cca402",
@@ -567,7 +937,21 @@
    "displayName": "antarctica-jay-no-pity-scarf-on-the-snow.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e786fdfa61f173cca402_antarctica-jay-no-pity-scarf-on-the-snow-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e786fdfa61f173cca402_antarctica-jay-no-pity-scarf-on-the-snow-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6ce4cc7dfbc6dd57c2a",
@@ -576,7 +960,21 @@
    "displayName": "antarctica-lifejacket-drill-ocean-victory.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6ce4cc7dfbc6dd57c2a_antarctica-lifejacket-drill-ocean-victory-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6ce4cc7dfbc6dd57c2a_antarctica-lifejacket-drill-ocean-victory-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9a5a3035eff54216f7ea",
@@ -594,7 +992,15 @@
    "displayName": "antarctica-marathon-banner-buenos-aires.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6ce81280660c4817a15_antarctica-marathon-banner-buenos-aires-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9881b874ba892a416db8",
@@ -630,7 +1036,21 @@
    "displayName": "antarctica-mossy-shoreline-and-glacier.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e784ead141bd5cbd27f5_antarctica-mossy-shoreline-and-glacier-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e784ead141bd5cbd27f5_antarctica-mossy-shoreline-and-glacier-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6cfa067f5b66772e68f",
@@ -639,7 +1059,21 @@
    "displayName": "antarctica-nancy-and-jay-on-deck.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cfa067f5b66772e68f_antarctica-nancy-and-jay-on-deck-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cfa067f5b66772e68f_antarctica-nancy-and-jay-on-deck-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92b06cd780a1e919048",
@@ -648,7 +1082,21 @@
    "displayName": "antarctica-nancy-and-jay-on-the-course.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92b06cd780a1e919048_antarctica-nancy-and-jay-on-the-course-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92b06cd780a1e919048_antarctica-nancy-and-jay-on-the-course-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e7861d4a75f083f44a74",
@@ -657,7 +1105,21 @@
    "displayName": "antarctica-nancy-beside-the-ship-after-the-race.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7861d4a75f083f44a74_antarctica-nancy-beside-the-ship-after-the-race-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7861d4a75f083f44a74_antarctica-nancy-beside-the-ship-after-the-race-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92b758c8b4e7d86d0c6",
@@ -666,7 +1128,21 @@
    "displayName": "antarctica-nancy-running-the-course.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92b758c8b4e7d86d0c6_antarctica-nancy-running-the-course-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92b758c8b4e7d86d0c6_antarctica-nancy-running-the-course-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d83155edd2a3b58fe65a",
@@ -675,7 +1151,21 @@
    "displayName": "antarctica-no-pity-scarf-with-penguin-colony.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d83155edd2a3b58fe65a_antarctica-no-pity-scarf-with-penguin-colony-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d83155edd2a3b58fe65a_antarctica-no-pity-scarf-with-penguin-colony-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d8309ac592eeeff814ca",
@@ -684,7 +1174,21 @@
    "displayName": "antarctica-ocean-victory-at-anchor-golden-hour.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8309ac592eeeff814ca_antarctica-ocean-victory-at-anchor-golden-hour-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8309ac592eeeff814ca_antarctica-ocean-victory-at-anchor-golden-hour-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6ceac00dd9a0603c5d7",
@@ -693,7 +1197,21 @@
    "displayName": "antarctica-ocean-victory-deck-drake-passage.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6ceac00dd9a0603c5d7_antarctica-ocean-victory-deck-drake-passage-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6ceac00dd9a0603c5d7_antarctica-ocean-victory-deck-drake-passage-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e785e451cce9e6a0e403",
@@ -702,7 +1220,15 @@
    "displayName": "antarctica-penguin-colony-on-the-snow-hill.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e785e451cce9e6a0e403_antarctica-penguin-colony-on-the-snow-hill-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e7857fb434819d35690b",
@@ -711,7 +1237,15 @@
    "displayName": "antarctica-penguin-pair-with-chick.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7857fb434819d35690b_antarctica-penguin-pair-with-chick-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6aa69cbf7c6da4f3691",
@@ -720,7 +1254,21 @@
    "displayName": "antarctica-penguins-on-snowy-rocks-at-dusk.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa69cbf7c6da4f3691_antarctica-penguins-on-snowy-rocks-at-dusk-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa69cbf7c6da4f3691_antarctica-penguins-on-snowy-rocks-at-dusk-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a981d82f7680c28285",
@@ -729,7 +1277,27 @@
    "displayName": "antarctica-photographing-from-the-rail.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a981d82f7680c28285_antarctica-photographing-from-the-rail-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a981d82f7680c28285_antarctica-photographing-from-the-rail-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a981d82f7680c28285_antarctica-photographing-from-the-rail-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9a5aa0ca3be2b7306692",
@@ -747,7 +1315,21 @@
    "displayName": "antarctica-polar-plunge-in-costume.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d831dc4c1a4d7fcc283d_antarctica-polar-plunge-in-costume-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d831dc4c1a4d7fcc283d_antarctica-polar-plunge-in-costume-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e786263631a6ade9d101",
@@ -756,7 +1338,15 @@
    "displayName": "antarctica-polar-plunge-parasol-and-penguin.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e786263631a6ade9d101_antarctica-polar-plunge-parasol-and-penguin-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e786263631a6ade9d131",
@@ -765,7 +1355,15 @@
    "displayName": "antarctica-polar-plunge-run-to-the-water.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e786263631a6ade9d131_antarctica-polar-plunge-run-to-the-water-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92984c7988a3b856715",
@@ -774,7 +1372,21 @@
    "displayName": "antarctica-rainbow-over-ushuaia-harbor.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92984c7988a3b856715_antarctica-rainbow-over-ushuaia-harbor-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92984c7988a3b856715_antarctica-rainbow-over-ushuaia-harbor-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6ab871d54b11220bc2a",
@@ -783,7 +1395,33 @@
    "displayName": "antarctica-research-base-panorama-king-george-island.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6ab871d54b11220bc2a_antarctica-research-base-panorama-king-george-island-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6ab871d54b11220bc2a_antarctica-research-base-panorama-king-george-island-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6ab871d54b11220bc2a_antarctica-research-base-panorama-king-george-island-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6ab871d54b11220bc2a_antarctica-research-base-panorama-king-george-island-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d8319ac592eeeff814df",
@@ -792,7 +1430,21 @@
    "displayName": "antarctica-rhino-costume-runner-save-the-rhino.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8319ac592eeeff814df_antarctica-rhino-costume-runner-save-the-rhino-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8319ac592eeeff814df_antarctica-rhino-costume-runner-save-the-rhino-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6aa81d82f7680c282c4",
@@ -801,7 +1453,21 @@
    "displayName": "antarctica-rock-arch-above-green-water.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa81d82f7680c282c4_antarctica-rock-arch-above-green-water-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aa81d82f7680c282c4_antarctica-rock-arch-above-green-water-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e7847a966bc368399939",
@@ -810,7 +1476,33 @@
    "displayName": "antarctica-snow-island-panorama-across-the-bay.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7847a966bc368399939_antarctica-snow-island-panorama-across-the-bay-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7847a966bc368399939_antarctica-snow-island-panorama-across-the-bay-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7847a966bc368399939_antarctica-snow-island-panorama-across-the-bay-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7847a966bc368399939_antarctica-snow-island-panorama-across-the-bay-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6d049b6030701095929",
@@ -819,7 +1511,21 @@
    "displayName": "antarctica-snow-on-deck-at-night.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d049b6030701095929_antarctica-snow-on-deck-at-night-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d049b6030701095929_antarctica-snow-on-deck-at-night-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6cfcac4ae0593fc59cc",
@@ -828,7 +1534,21 @@
    "displayName": "antarctica-snow-peak-antarctic-peninsula.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cfcac4ae0593fc59cc_antarctica-snow-peak-antarctic-peninsula-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cfcac4ae0593fc59cc_antarctica-snow-peak-antarctic-peninsula-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e7837fb434819d35675e",
@@ -837,7 +1557,21 @@
    "displayName": "antarctica-snow-peak-reflected-in-still-water.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7837fb434819d35675e_antarctica-snow-peak-reflected-in-still-water-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e7837fb434819d35675e_antarctica-snow-peak-reflected-in-still-water-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92bb8624e7787adcdc3",
@@ -846,7 +1580,21 @@
    "displayName": "antarctica-south-african-swimmers-before-the-plunge.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92bb8624e7787adcdc3_antarctica-south-african-swimmers-before-the-plunge-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92bb8624e7787adcdc3_antarctica-south-african-swimmers-before-the-plunge-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6cffec56de2a6d91a6b",
@@ -855,7 +1603,21 @@
    "displayName": "antarctica-south-shetlands-first-sight.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cffec56de2a6d91a6b_antarctica-south-shetlands-first-sight-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6cffec56de2a6d91a6b_antarctica-south-shetlands-first-sight-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d9299ac592eeeff857c1",
@@ -864,7 +1626,15 @@
    "displayName": "antarctica-start-line-banner-with-penguin.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d9299ac592eeeff857c1_antarctica-start-line-banner-with-penguin-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e783fdfa61f173cc9e4f",
@@ -873,7 +1643,15 @@
    "displayName": "antarctica-sun-behind-the-peak-on-wet-sand.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e783fdfa61f173cc9e4f_antarctica-sun-behind-the-peak-on-wet-sand-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a9871d54b11220bb16",
@@ -882,7 +1660,21 @@
    "displayName": "antarctica-sun-rays-over-the-southern-ocean.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a9871d54b11220bb16_antarctica-sun-rays-over-the-southern-ocean-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a9871d54b11220bb16_antarctica-sun-rays-over-the-southern-ocean-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d6d00f55667118a5b280",
@@ -891,7 +1683,27 @@
    "displayName": "antarctica-sunset-from-the-ship.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d00f55667118a5b280_antarctica-sunset-from-the-ship-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d00f55667118a5b280_antarctica-sunset-from-the-ship-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d6d00f55667118a5b280_antarctica-sunset-from-the-ship-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a971c87db87f001de5",
@@ -900,7 +1712,21 @@
    "displayName": "antarctica-sunset-over-ushuaia-harbor.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a971c87db87f001de5_antarctica-sunset-over-ushuaia-harbor-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a971c87db87f001de5_antarctica-sunset-over-ushuaia-harbor-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a82f4bc5dffbd1ba6a",
@@ -909,7 +1735,21 @@
    "displayName": "antarctica-tango-dancers-buenos-aires.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a82f4bc5dffbd1ba6a_antarctica-tango-dancers-buenos-aires-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a82f4bc5dffbd1ba6a_antarctica-tango-dancers-buenos-aires-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92baedbf627496602c4",
@@ -918,7 +1758,27 @@
    "displayName": "antarctica-three-gentoo-penguins.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92baedbf627496602c4_antarctica-three-gentoo-penguins-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92baedbf627496602c4_antarctica-three-gentoo-penguins-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92baedbf627496602c4_antarctica-three-gentoo-penguins-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a8bf5dff80ee8c10c8",
@@ -927,7 +1787,15 @@
    "displayName": "antarctica-ushuaia-fin-del-mundo-welcome-sign.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a8bf5dff80ee8c10c8_antarctica-ushuaia-fin-del-mundo-welcome-sign-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a9b1fc9fde7b36c028",
@@ -936,7 +1804,15 @@
    "displayName": "antarctica-ushuaia-road-sign-buenos-aires-3094.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a9b1fc9fde7b36c028_antarctica-ushuaia-road-sign-buenos-aires-3094-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6a8bc458ce409f109a4",
@@ -945,7 +1821,21 @@
    "displayName": "antarctica-ushuaia-town-and-mountains.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a8bc458ce409f109a4_antarctica-ushuaia-town-and-mountains-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6a8bc458ce409f109a4_antarctica-ushuaia-town-and-mountains-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d92caedbf627496602d9",
@@ -954,7 +1844,21 @@
    "displayName": "antarctica-watching-from-the-deck-in-the-drake.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92caedbf627496602d9_antarctica-watching-from-the-deck-in-the-drake-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d92caedbf627496602d9_antarctica-watching-from-the-deck-in-the-drake-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3e6aaacdcb7d50dbbcd82",
@@ -963,7 +1867,15 @@
    "displayName": "antarctica-whalers-tank-and-elephant-seals.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3e6aaacdcb7d50dbbcd82_antarctica-whalers-tank-and-elephant-seals-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab3d8314e46211564f74124",
@@ -972,7 +1884,21 @@
    "displayName": "antarctica-zodiac-cruise-nancy-and-jay.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8314e46211564f74124_antarctica-zodiac-cruise-nancy-and-jay-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab3d8314e46211564f74124_antarctica-zodiac-cruise-nancy-and-jay-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9cdfaf9f3b9bad64b4d0",
@@ -1179,7 +2105,33 @@
    "displayName": "Aruba.jpg",
    "contentType": "image/jpeg",
    "size": 464433,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e379c01125a75bec3b5_Aruba-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e379c01125a75bec3b5_Aruba-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e379c01125a75bec3b5_Aruba-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e379c01125a75bec3b5_Aruba-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a229990",
@@ -1206,7 +2158,33 @@
    "displayName": "Baby Hyena.jpg",
    "contentType": "image/jpeg",
    "size": 418475,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21e857613f33b45fcf_Baby%20Hyena-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21e857613f33b45fcf_Baby%20Hyena-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21e857613f33b45fcf_Baby%20Hyena-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d21e857613f33b45fcf_Baby%20Hyena-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accd45d77e172392253a18a",
@@ -1665,7 +2643,39 @@
    "displayName": "Bulgaria.jpg",
    "contentType": "image/jpeg",
    "size": 936588,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022510ba58aad74fea12_Bulgaria-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022510ba58aad74fea12_Bulgaria-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022510ba58aad74fea12_Bulgaria-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022510ba58aad74fea12_Bulgaria-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022510ba58aad74fea12_Bulgaria-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a1183262f8a632aeff43aed",
@@ -1674,7 +2684,27 @@
    "displayName": "Bulgaria.jpg",
    "contentType": "image/jpeg",
    "size": 799437,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a1183262f8a632aeff43aed_Bulgaria-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a1183262f8a632aeff43aed_Bulgaria-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a1183262f8a632aeff43aed_Bulgaria-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acca1275e3eb038347c82d5",
@@ -1854,7 +2884,21 @@
    "displayName": "Capetown Marathon.jpg",
    "contentType": "image/jpeg",
    "size": 148605,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d79d6d952f141e820fc_Capetown%20Marathon-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d79d6d952f141e820fc_Capetown%20Marathon-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115ce845457fc67c9d09e4",
@@ -1863,7 +2907,27 @@
    "displayName": "Carnaval.jpg",
    "contentType": "image/jpeg",
    "size": 587400,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce845457fc67c9d09e4_Carnaval-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce845457fc67c9d09e4_Carnaval-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce845457fc67c9d09e4_Carnaval-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9a5aa0ca3be2b73066b8",
@@ -2655,7 +3719,33 @@
    "displayName": "Curacao.jpg",
    "contentType": "image/jpeg",
    "size": 326166,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a229997",
@@ -2673,7 +3763,39 @@
    "displayName": "Denmark Ice.jpg",
    "contentType": "image/jpeg",
    "size": 686547,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc988184d1be6654787fff",
@@ -2808,7 +3930,51 @@
    "displayName": "Doha.jpg",
    "contentType": "image/jpeg",
    "size": 3805133,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-2600.jpg",
+     "width": 2600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02285e283bd8eed666ff_Doha-p-3200.jpg",
+     "width": 3200,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115ea686f678134db92154",
@@ -2817,7 +3983,33 @@
    "displayName": "Doha.jpg",
    "contentType": "image/jpeg",
    "size": 322785,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ea686f678134db92154_Doha-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ea686f678134db92154_Doha-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ea686f678134db92154_Doha-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ea686f678134db92154_Doha-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a229957",
@@ -3078,7 +4270,27 @@
    "displayName": "El Salvador.jpg",
    "contentType": "image/jpeg",
    "size": 255762,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e65719c90f36a0524dd_El%20Salvador-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e65719c90f36a0524dd_El%20Salvador-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e65719c90f36a0524dd_El%20Salvador-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acca87ef082a506107562ad",
@@ -3168,7 +4380,33 @@
    "displayName": "Everglades.jpg",
    "contentType": "image/jpeg",
    "size": 198334,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9149ee865882808019_Everglades-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9149ee865882808019_Everglades-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9149ee865882808019_Everglades-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e9149ee865882808019_Everglades-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "69d614b7b84a76328a22998d",
@@ -3231,7 +4469,39 @@
    "displayName": "Fitz Roy.jpg",
    "contentType": "image/jpeg",
    "size": 1068192,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6aba209b6b8ff3588d0d3677",
@@ -3330,7 +4600,51 @@
    "displayName": "Germany.jpg",
    "contentType": "image/jpeg",
    "size": 3542970,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-2600.jpg",
+     "width": 2600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0227a8a057dc93c81813_Germany-p-3200.jpg",
+     "width": 3200,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e0224fb0e0ee3c092ec01",
@@ -3339,7 +4653,39 @@
    "displayName": "Ghana kids.JPG",
    "contentType": "image/jpeg",
    "size": 543667,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0224fb0e0ee3c092ec01_Ghana%20kids-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0224fb0e0ee3c092ec01_Ghana%20kids-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0224fb0e0ee3c092ec01_Ghana%20kids-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0224fb0e0ee3c092ec01_Ghana%20kids-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0224fb0e0ee3c092ec01_Ghana%20kids-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115e6f04965e459434c367",
@@ -3348,7 +4694,33 @@
    "displayName": "Hiking.jpg",
    "contentType": "image/jpeg",
    "size": 254440,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e6f04965e459434c367_Hiking-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e6f04965e459434c367_Hiking-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e6f04965e459434c367_Hiking-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e6f04965e459434c367_Hiking-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115da33852dedd1ad02022",
@@ -3357,7 +4729,33 @@
    "displayName": "Ibiza.jpg",
    "contentType": "image/jpeg",
    "size": 417087,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da33852dedd1ad02022_Ibiza-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da33852dedd1ad02022_Ibiza-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da33852dedd1ad02022_Ibiza-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115da33852dedd1ad02022_Ibiza-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0f0152e36381a95805b418",
@@ -3366,7 +4764,51 @@
    "displayName": "IMG_2204.jpg",
    "contentType": "image/jpeg",
    "size": 2586666,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-2600.jpg",
+     "width": 2600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0f0152e36381a95805b418_IMG_2204-p-3200.jpg",
+     "width": 3200,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acd2244783f9208704a6e76",
@@ -3456,7 +4898,39 @@
    "displayName": "Kazak.jpg",
    "contentType": "image/jpeg",
    "size": 266484,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115de75b4e7aeea2ccade7_Kazak-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115de75b4e7aeea2ccade7_Kazak-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115de75b4e7aeea2ccade7_Kazak-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115de75b4e7aeea2ccade7_Kazak-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115de75b4e7aeea2ccade7_Kazak-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e02269e19ec5062a07ea8",
@@ -3465,7 +4939,51 @@
    "displayName": "Kazakstan.JPG",
    "contentType": "image/jpeg",
    "size": 2097285,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-2600.jpg",
+     "width": 2600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02269e19ec5062a07ea8_Kazakstan-p-3200.jpg",
+     "width": 3200,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115dabeb37217428cb31b0",
@@ -3474,7 +4992,39 @@
    "displayName": "Kilamanjaro.jpg",
    "contentType": "image/jpeg",
    "size": 585894,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabeb37217428cb31b0_Kilamanjaro-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabeb37217428cb31b0_Kilamanjaro-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabeb37217428cb31b0_Kilamanjaro-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabeb37217428cb31b0_Kilamanjaro-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabeb37217428cb31b0_Kilamanjaro-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e022469c0ce59398ce287",
@@ -3483,7 +5033,27 @@
    "displayName": "La Paz Mexico.jpg",
    "contentType": "image/jpeg",
    "size": 133280,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022469c0ce59398ce287_La%20Paz%20Mexico-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022469c0ce59398ce287_La%20Paz%20Mexico-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022469c0ce59398ce287_La%20Paz%20Mexico-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115ce8f0a6cff862663e80",
@@ -3492,7 +5062,39 @@
    "displayName": "Lencois Marahenses.jpg",
    "contentType": "image/jpeg",
    "size": 312953,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce8f0a6cff862663e80_Lencois%20Marahenses-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce8f0a6cff862663e80_Lencois%20Marahenses-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce8f0a6cff862663e80_Lencois%20Marahenses-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce8f0a6cff862663e80_Lencois%20Marahenses-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce8f0a6cff862663e80_Lencois%20Marahenses-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115e45b1112b07709551f0",
@@ -3501,7 +5103,27 @@
    "displayName": "Lions.jpg",
    "contentType": "image/jpeg",
    "size": 130796,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e45b1112b07709551f0_Lions-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e45b1112b07709551f0_Lions-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e45b1112b07709551f0_Lions-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accd4b0ace43547a97c2d14",
@@ -3861,7 +5483,15 @@
    "displayName": "Macaw.jpg",
    "contentType": "image/jpeg",
    "size": 93640,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce719cc8b97ac39849a_Macaw-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e022486157e60bbf8ce14",
@@ -3897,7 +5527,39 @@
    "displayName": "Mallorca.jpg",
    "contentType": "image/jpeg",
    "size": 1496259,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115c6eace0e68e14e64213_Mallorca-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115c6eace0e68e14e64213_Mallorca-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115c6eace0e68e14e64213_Mallorca-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115c6eace0e68e14e64213_Mallorca-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115c6eace0e68e14e64213_Mallorca-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accbe52d01222e40d41f7da",
@@ -4050,7 +5712,27 @@
    "displayName": "Miami.jpg",
    "contentType": "image/jpeg",
    "size": 208012,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e86ace0e68e14e6943d_Miami-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e86ace0e68e14e6943d_Miami-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e86ace0e68e14e6943d_Miami-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e02265e2392e5fc632431",
@@ -4059,7 +5741,39 @@
    "displayName": "Montenegro coast.jpg",
    "contentType": "image/jpeg",
    "size": 1208547,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115e0cc652b2bcd579e96d",
@@ -4068,7 +5782,39 @@
    "displayName": "Mount Toubkal.jpg",
    "contentType": "image/jpeg",
    "size": 588370,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e0cc652b2bcd579e96d_Mount%20Toubkal-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e0cc652b2bcd579e96d_Mount%20Toubkal-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e0cc652b2bcd579e96d_Mount%20Toubkal-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e0cc652b2bcd579e96d_Mount%20Toubkal-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e0cc652b2bcd579e96d_Mount%20Toubkal-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accbe0344d69f68f1efde38",
@@ -4113,7 +5859,15 @@
    "displayName": "nancy-carleton-avatar.jpg.jpg",
    "contentType": "image/jpeg",
    "size": 159547,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9880e1689fd9b4cd944c",
@@ -4131,7 +5885,39 @@
    "displayName": "Nature.jpg",
    "contentType": "image/jpeg",
    "size": 492591,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115df28dabce041e34114f_Nature-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115df28dabce041e34114f_Nature-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115df28dabce041e34114f_Nature-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115df28dabce041e34114f_Nature-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115df28dabce041e34114f_Nature-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accb2a49cd3f94473f6603d",
@@ -4932,7 +6718,39 @@
    "displayName": "Pantanal Jag.JPG",
    "contentType": "image/jpeg",
    "size": 414207,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226da672af053dab2f2_Pantanal%20Jag-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226da672af053dab2f2_Pantanal%20Jag-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226da672af053dab2f2_Pantanal%20Jag-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226da672af053dab2f2_Pantanal%20Jag-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226da672af053dab2f2_Pantanal%20Jag-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ac86a350c288fec074fb062",
@@ -5274,7 +7092,33 @@
    "displayName": "Parrots.jpg",
    "contentType": "image/jpeg",
    "size": 1058500,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d22772c7e9a2af52f8f_Parrots-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d22772c7e9a2af52f8f_Parrots-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d22772c7e9a2af52f8f_Parrots-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d22772c7e9a2af52f8f_Parrots-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accbdd694de1d4e7fa9b77e",
@@ -5337,7 +7181,21 @@
    "displayName": "Portugal.JPG",
    "contentType": "image/jpeg",
    "size": 220867,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226bbf615391e4cfc0b_Portugal-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0226bbf615391e4cfc0b_Portugal-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115ce7f0a6cff862663e67",
@@ -5346,7 +7204,15 @@
    "displayName": "Portugal.jpg",
    "contentType": "image/jpeg",
    "size": 187805,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce7f0a6cff862663e67_Portugal-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc98830a62fcb46f29b1a0",
@@ -5382,7 +7248,33 @@
    "displayName": "Rhino.jpg",
    "contentType": "image/jpeg",
    "size": 303425,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e4e2b90b09311d5dad6_Rhino-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e4e2b90b09311d5dad6_Rhino-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e4e2b90b09311d5dad6_Rhino-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e4e2b90b09311d5dad6_Rhino-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e02257422651f60ae30bd",
@@ -5391,7 +7283,39 @@
    "displayName": "Rio DJ.jpg",
    "contentType": "image/jpeg",
    "size": 774536,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257422651f60ae30bd_Rio%20DJ-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257422651f60ae30bd_Rio%20DJ-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257422651f60ae30bd_Rio%20DJ-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257422651f60ae30bd_Rio%20DJ-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257422651f60ae30bd_Rio%20DJ-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accd6b904992530265acf48",
@@ -5607,7 +7531,45 @@
    "displayName": "Santiago del compostela Spain.jpeg",
    "contentType": "image/jpeg",
    "size": 1900532,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-500.jpeg",
+     "width": 500,
+     "height": null,
+     "format": "jpeg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-800.jpeg",
+     "width": 800,
+     "height": null,
+     "format": "jpeg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-1080.jpeg",
+     "width": 1080,
+     "height": null,
+     "format": "jpeg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-1600.jpeg",
+     "width": 1600,
+     "height": null,
+     "format": "jpeg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-2000.jpeg",
+     "width": 2000,
+     "height": null,
+     "format": "jpeg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02253d361802e4b74396_Santiago%20del%20compostela%20Spain-p-2600.jpeg",
+     "width": 2600,
+     "height": null,
+     "format": "jpeg"
+    }
+   ]
   },
   {
    "id": "6acc9439d3b88933076d23d6",
@@ -5742,7 +7704,33 @@
    "displayName": "scandinavia-dala-horse-haga-gothenburg.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2ff06ec12477fea33_scandinavia-dala-horse-haga-gothenburg-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2ff06ec12477fea33_scandinavia-dala-horse-haga-gothenburg-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2ff06ec12477fea33_scandinavia-dala-horse-haga-gothenburg-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2ff06ec12477fea33_scandinavia-dala-horse-haga-gothenburg-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a2fe90ec94291fd5fe",
@@ -5751,7 +7739,39 @@
    "displayName": "scandinavia-hero-hardanger-glacier.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2fe90ec94291fd5fe_scandinavia-hero-hardanger-glacier-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2fe90ec94291fd5fe_scandinavia-hero-hardanger-glacier-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2fe90ec94291fd5fe_scandinavia-hero-hardanger-glacier-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2fe90ec94291fd5fe_scandinavia-hero-hardanger-glacier-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a2fe90ec94291fd5fe_scandinavia-hero-hardanger-glacier-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a391f9fc4ac0b228ab",
@@ -5760,7 +7780,27 @@
    "displayName": "scandinavia-kong-hans-pastry.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a391f9fc4ac0b228ab_scandinavia-kong-hans-pastry-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a391f9fc4ac0b228ab_scandinavia-kong-hans-pastry-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a391f9fc4ac0b228ab_scandinavia-kong-hans-pastry-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a38f9516858fcc83de",
@@ -5769,7 +7809,33 @@
    "displayName": "scandinavia-magnus-waffles.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a38f9516858fcc83de_scandinavia-magnus-waffles-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a38f9516858fcc83de_scandinavia-magnus-waffles-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a38f9516858fcc83de_scandinavia-magnus-waffles-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a38f9516858fcc83de_scandinavia-magnus-waffles-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a3df71a062156c1cea",
@@ -5778,7 +7844,33 @@
    "displayName": "scandinavia-melinda-jaden-rosenborg.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a3df71a062156c1cea_scandinavia-melinda-jaden-rosenborg-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a3df71a062156c1cea_scandinavia-melinda-jaden-rosenborg-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a3df71a062156c1cea_scandinavia-melinda-jaden-rosenborg-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a3df71a062156c1cea_scandinavia-melinda-jaden-rosenborg-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a462440a373f631f1e",
@@ -5787,7 +7879,27 @@
    "displayName": "scandinavia-melinda-jaden-sheep-bog.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a462440a373f631f1e_scandinavia-melinda-jaden-sheep-bog-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a462440a373f631f1e_scandinavia-melinda-jaden-sheep-bog-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a462440a373f631f1e_scandinavia-melinda-jaden-sheep-bog-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a69c02c6723aaf0c73",
@@ -5796,7 +7908,27 @@
    "displayName": "scandinavia-moose-safari-sweden.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a69c02c6723aaf0c73_scandinavia-moose-safari-sweden-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a69c02c6723aaf0c73_scandinavia-moose-safari-sweden-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a69c02c6723aaf0c73_scandinavia-moose-safari-sweden-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a64dea057a1c7a8ecf",
@@ -5805,7 +7937,33 @@
    "displayName": "scandinavia-orestad-10k-danish-flag-kids.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a64dea057a1c7a8ecf_scandinavia-orestad-10k-danish-flag-kids-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a64dea057a1c7a8ecf_scandinavia-orestad-10k-danish-flag-kids-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a64dea057a1c7a8ecf_scandinavia-orestad-10k-danish-flag-kids-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a64dea057a1c7a8ecf_scandinavia-orestad-10k-danish-flag-kids-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a6b9442ddb49488e7e",
@@ -5814,7 +7972,33 @@
    "displayName": "scandinavia-ptarmigan-hardanger.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a6b9442ddb49488e7e_scandinavia-ptarmigan-hardanger-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a6b9442ddb49488e7e_scandinavia-ptarmigan-hardanger-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a6b9442ddb49488e7e_scandinavia-ptarmigan-hardanger-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a6b9442ddb49488e7e_scandinavia-ptarmigan-hardanger-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6ab138a7d3204dd9e1156722",
@@ -5823,7 +8007,33 @@
    "displayName": "scandinavia-smorrebrod.jpg",
    "contentType": "image/jpeg",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a7d3204dd9e1156722_scandinavia-smorrebrod-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a7d3204dd9e1156722_scandinavia-smorrebrod-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a7d3204dd9e1156722_scandinavia-smorrebrod-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6ab138a7d3204dd9e1156722_scandinavia-smorrebrod-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc92d1b692dcaf2b00ef3e",
@@ -5859,7 +8069,27 @@
    "displayName": "Sloth.jpg",
    "contentType": "image/jpeg",
    "size": 87295,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce7a4b44b5af56ca025_Sloth-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce7a4b44b5af56ca025_Sloth-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ce7a4b44b5af56ca025_Sloth-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e022587e5a98acb19fe9d",
@@ -5868,7 +8098,39 @@
    "displayName": "Snowy glacier Antartica.jpg",
    "contentType": "image/jpeg",
    "size": 775895,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022587e5a98acb19fe9d_Snowy%20glacier%20Antartica-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022587e5a98acb19fe9d_Snowy%20glacier%20Antartica-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022587e5a98acb19fe9d_Snowy%20glacier%20Antartica-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022587e5a98acb19fe9d_Snowy%20glacier%20Antartica-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e022587e5a98acb19fe9d_Snowy%20glacier%20Antartica-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6aba3cbfa8602b2328918a84",
@@ -5967,7 +8229,33 @@
    "displayName": "South Africa.jpg",
    "contentType": "image/jpeg",
    "size": 364289,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115db5a7facef73559de0c_South%20Africa-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115db5a7facef73559de0c_South%20Africa-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115db5a7facef73559de0c_South%20Africa-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115db5a7facef73559de0c_South%20Africa-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115d7aee0c1a83122696bb",
@@ -5976,7 +8264,27 @@
    "displayName": "Spain- us.jpg",
    "contentType": "image/jpeg",
    "size": 447268,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7aee0c1a83122696bb_Spain-%20us-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7aee0c1a83122696bb_Spain-%20us-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7aee0c1a83122696bb_Spain-%20us-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115d7ac213f44863f4842d",
@@ -5985,7 +8293,33 @@
    "displayName": "Spain.jpg",
    "contentType": "image/jpeg",
    "size": 607080,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7ac213f44863f4842d_Spain-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7ac213f44863f4842d_Spain-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7ac213f44863f4842d_Spain-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115d7ac213f44863f4842d_Spain-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115dabe03b5355136c2606",
@@ -5994,7 +8328,33 @@
    "displayName": "Spain.jpg",
    "contentType": "image/jpeg",
    "size": 389558,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabe03b5355136c2606_Spain-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabe03b5355136c2606_Spain-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabe03b5355136c2606_Spain-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dabe03b5355136c2606_Spain-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115dc63a2d9d72aab3d12f",
@@ -6003,7 +8363,33 @@
    "displayName": "Spain.jpg",
    "contentType": "image/jpeg",
    "size": 494019,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dc63a2d9d72aab3d12f_Spain-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dc63a2d9d72aab3d12f_Spain-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dc63a2d9d72aab3d12f_Spain-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115dc63a2d9d72aab3d12f_Spain-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a47a898c65a8c3c0b7cdc96",
@@ -6012,7 +8398,51 @@
    "displayName": "su-san-lee-E_eWwM29wfU-unsplash.jpg",
    "contentType": "image/jpeg",
    "size": 3328074,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-2600.jpg",
+     "width": 2600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a47a898c65a8c3c0b7cdc96_su-san-lee-E_eWwM29wfU-unsplash-p-3200.jpg",
+     "width": 3200,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e0225f2d4d7204ffe783a",
@@ -6021,7 +8451,39 @@
    "displayName": "Tanzania .JPG",
    "contentType": "image/jpeg",
    "size": 350133,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225f2d4d7204ffe783a_Tanzania%20-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225f2d4d7204ffe783a_Tanzania%20-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225f2d4d7204ffe783a_Tanzania%20-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225f2d4d7204ffe783a_Tanzania%20-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e0225f2d4d7204ffe783a_Tanzania%20-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acca989df051fd2983feb81",
@@ -6939,7 +9401,27 @@
    "displayName": "tll-hero-halong-bay-test.mp4",
    "contentType": "video/mp4",
    "size": 0,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0fff9baa4f90837beb47b4_tll-hero-halong-bay-test-poster-00001.jpg",
+     "width": null,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0fff9baa4f90837beb47b4_tll-hero-halong-bay-test-transcode.webm",
+     "width": null,
+     "height": null,
+     "format": "webm"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0fff9baa4f90837beb47b4_tll-hero-halong-bay-test-transcode.mp4",
+     "width": null,
+     "height": null,
+     "format": "mp4"
+    }
+   ]
   },
   {
    "id": "6acd1b189fbe3afb71893aea",
@@ -9873,7 +12355,15 @@
    "displayName": "tll-webclip.png",
    "contentType": "image/png",
    "size": 8431,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0dea106bf47c697c1967c3_tll-webclip-p-500.png",
+     "width": 500,
+     "height": null,
+     "format": "png"
+    }
+   ]
   },
   {
    "id": "6a0dea10c87d2f73c806be41",
@@ -9900,7 +12390,39 @@
    "displayName": "Toubkal.jpg",
    "contentType": "image/jpeg",
    "size": 1101891,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e1c2525505262362528_Toubkal-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e1c2525505262362528_Toubkal-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e1c2525505262362528_Toubkal-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e1c2525505262362528_Toubkal-p-1600.jpg",
+     "width": 1600,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115e1c2525505262362528_Toubkal-p-2000.jpg",
+     "width": 2000,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a0e02257957fd335eff3224",
@@ -9909,7 +12431,21 @@
    "displayName": "Ubatuba Brazil.JPG",
    "contentType": "image/jpeg",
    "size": 492283,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257957fd335eff3224_Ubatuba%20Brazil-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a0e02257957fd335eff3224_Ubatuba%20Brazil-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6accbe054ae0e9477c534db7",
@@ -10179,7 +12715,27 @@
    "displayName": "Vietnam fammily.jpg",
    "contentType": "image/jpeg",
    "size": 133624,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ecd19cc8b97ac39c928_Vietnam%20fammily-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ecd19cc8b97ac39c928_Vietnam%20fammily-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ecd19cc8b97ac39c928_Vietnam%20fammily-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6a115eb4e03b5355136c454c",
@@ -10188,7 +12744,27 @@
    "displayName": "Vietnam Laterns.jpg",
    "contentType": "image/jpeg",
    "size": 144007,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115eb4e03b5355136c454c_Vietnam%20Laterns-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115eb4e03b5355136c454c_Vietnam%20Laterns-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115eb4e03b5355136c454c_Vietnam%20Laterns-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   },
   {
    "id": "6acc9a5b37b47d99f14059b3",
@@ -10224,7 +12800,27 @@
    "displayName": "Vietnam.jpg",
    "contentType": "image/jpeg",
    "size": 150052,
-   "folderId": null
+   "folderId": null,
+   "variants": [
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ec0bd9cebc720a43d27_Vietnam-p-500.jpg",
+     "width": 500,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ec0bd9cebc720a43d27_Vietnam-p-800.jpg",
+     "width": 800,
+     "height": null,
+     "format": "jpg"
+    },
+    {
+     "hostedUrl": "https://s3.amazonaws.com/webflow-prod-assets/69d6145cf421c777840c1e25/6a115ec0bd9cebc720a43d27_Vietnam-p-1080.jpg",
+     "width": 1080,
+     "height": null,
+     "format": "jpg"
+    }
+   ]
   }
  ]
 }

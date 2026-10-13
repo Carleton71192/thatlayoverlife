@@ -1,0 +1,24 @@
+{
+ "capturedAt": "2026-10-13",
+ "source": "data_scripts_tool get_registered_script (read-only), for applied site scripts missing from registered-scripts-first100.json",
+ "registeredScripts": [
+  {
+   "id": "tll_memberstack_skin_v1",
+   "canCopy": true,
+   "displayName": "TLL Memberstack Skin v1",
+   "hostedLocation": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6a0f1698412bcbee70ae27b4%2Ftll_memberstack_skin_v1-1.0.0.js",
+   "integrityHash": null,
+   "createdOn": "2026-05-21T14:28:40.737Z",
+   "version": "1.0.0"
+  },
+  {
+   "id": "tll_world_map_v1",
+   "canCopy": true,
+   "displayName": "TLL World Map v1",
+   "hostedLocation": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6a0df83eefd9c9fb58e69e1e%2Ftll_world_map_v1-1.0.0.js",
+   "integrityHash": null,
+   "createdOn": "2026-05-20T18:06:54.279Z",
+   "version": "1.0.0"
+  }
+ ]
+}

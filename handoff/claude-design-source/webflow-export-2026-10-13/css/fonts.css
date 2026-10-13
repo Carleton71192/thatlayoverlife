@@ -1,0 +1,34 @@
+/*
+ * fonts.css
+ * That Layover Life, Webflow site 69d6145cf421c777840c1e25. Export of 13 October 2026.
+ *
+ * Google-hosted families named in font-family values in the style dump (styles-full.json),
+ * the variables (variables.json) and the site head code (site-head.html).
+ *
+ *   Playfair Display         400 700 800, roman and italic (head link loads 800; styles use 700, 800, italic and the default 400)
+ *   IBM Plex Sans Condensed  400 500 600 700 (Body Font and Button Font variables; body text in the head code)
+ *   JetBrains Mono           400 600 (head link; styles also ask for 500 and 700, which the live site renders from these files)
+ *   Dancing Script           700 (the "that" in the wordmark)
+ *   Teko                     400 700 (Heading Font variable; styles use 700. The head code forces h1, h2 to Playfair Display)
+ *   IBM Plex Sans            400 (two styles name it first; the head code also lists it as a fallback)
+ *
+ * Not imported on purpose:
+ *   DM Sans, Inter, Syne, DM Serif Display, Recoleta and Druk are aliases. The site head code declares
+ *   @font-face rules that point these names at IBM Plex Sans Condensed and Playfair Display files on
+ *   fonts.gstatic.com. The exported pages carry that head code, so importing the real families here
+ *   would change how the pages render.
+ *   Archivo Black and Bowlby One appear only as fallbacks after "Druk Wide Web Heavy"; the live site
+ *   does not load them.
+ *   Georgia, Arial, Courier New and the system stacks are local fonts.
+ *
+ * Custom fonts: fonts.json (data_fonts_tool list_fonts) lists none, so there are no @font-face rules for
+ * uploaded fonts below.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap');
+
+/* Custom fonts from fonts.json: none (total 0). */

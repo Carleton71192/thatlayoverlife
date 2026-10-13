@@ -841,5 +841,87 @@
     "value": []
    }
   ]
+ },
+ "6d945762-451b-2ee3-4652-dc4e8331ad0d": {
+  "type": "all_raw_settings",
+  "total_matches": 13,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "tag",
+    "value": "div"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   },
+   {
+    "key": "source",
+    "value": {
+     "collectionId": "6abcd6371aa0f0654773a59e"
+    }
+   },
+   {
+    "key": "queryMode",
+    "value": "dynamic"
+   },
+   {
+    "key": "filters",
+    "value": []
+   },
+   {
+    "key": "filterMatch",
+    "value": "all"
+   },
+   {
+    "key": "sort",
+    "value": []
+   },
+   {
+    "key": "limit",
+    "value": 100
+   },
+   {
+    "key": "offset",
+    "value": 0
+   },
+   {
+    "key": "pagination",
+    "value": null
+   },
+   {
+    "key": "curatedItemIds",
+    "value": []
+   }
+  ]
+ },
+ "6d945762-451b-2ee3-4652-dc4e8331ad0e": {
+  "type": "all_raw_settings",
+  "total_matches": 4,
+  "matches": [
+   {
+    "key": "domId",
+    "value": ""
+   },
+   {
+    "key": "tag",
+    "value": "div"
+   },
+   {
+    "key": "visibility",
+    "value": true
+   },
+   {
+    "key": "attributes",
+    "value": []
+   }
+  ]
  }
 }
