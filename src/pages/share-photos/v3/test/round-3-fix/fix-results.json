@@ -1,0 +1,362 @@
+{
+ "passed": true,
+ "results": [
+  {
+   "check": "F1",
+   "name": "in 1280: four previews (300x900, 1200x300, 1600x1200, 96x64) each paint exactly inside the 64x64 tile; name and size sit clear of the image",
+   "pass": true,
+   "evidence": [
+    {
+     "name": "tall.jpg",
+     "natural": [
+      300,
+      900
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "wide.jpg",
+     "natural": [
+      1200,
+      300
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "big.jpg",
+     "natural": [
+      1600,
+      1200
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "small.jpg",
+     "natural": [
+      96,
+      64
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    }
+   ]
+  },
+  {
+   "check": "F1",
+   "name": "in 1280: no page errors",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "check": "F1",
+   "name": "in 390: four previews (300x900, 1200x300, 1600x1200, 96x64) each paint exactly inside the 64x64 tile; name and size sit clear of the image",
+   "pass": true,
+   "evidence": [
+    {
+     "name": "tall.jpg",
+     "natural": [
+      300,
+      900
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "wide.jpg",
+     "natural": [
+      1200,
+      300
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "big.jpg",
+     "natural": [
+      1600,
+      1200
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    },
+    {
+     "name": "small.jpg",
+     "natural": [
+      96,
+      64
+     ],
+     "tile": [
+      64,
+      64
+     ],
+     "img": [
+      64,
+      64
+     ],
+     "imgEqualsTile": true,
+     "imgInsideRow": true,
+     "rowH": 66,
+     "thumbOverflow": "hidden",
+     "objectFit": "cover",
+     "imgDisplay": "block",
+     "textClearOfImg": true,
+     "nameVisible": true
+    }
+   ]
+  },
+  {
+   "check": "F1",
+   "name": "in 390: no page errors",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "check": "F2",
+   "name": "in 1280: year 99 inside the closed panel plus five other failures: the panel opens, the year error is visible and reachable, the count matches the visible errors, focus stays on the first failure (photos)",
+   "pass": true,
+   "evidence": {
+    "before": {
+     "expanded": "false",
+     "yearValue": "99"
+    },
+    "after": {
+     "expanded": "true",
+     "panelOpen": true,
+     "panelVisibility": "visible",
+     "yearErr": "A four-digit year. Guessing is allowed.",
+     "yearErrVisible": true,
+     "yearInvalid": "true",
+     "status": "6 things to fix above.",
+     "visibleErrors": [
+      "tll-err-photos",
+      "tll-err-country",
+      "tll-err-year",
+      "tll-err-rights",
+      "tll-err-license",
+      "tll-err-people"
+     ],
+     "focusedFirst": "photos",
+     "yearReachable": true,
+     "session": "{\"detail\":true,\"share\":false}"
+    }
+   }
+  },
+  {
+   "check": "F2",
+   "name": "in 1280: year as the only failure (panel closed before submit): panel opens, \"One thing to fix above.\", focus on the year, no post",
+   "pass": true,
+   "evidence": {
+    "expanded": "true",
+    "status": "One thing to fix above.",
+    "focus": "year",
+    "wfRuns": 0
+   }
+  },
+  {
+   "check": "F2",
+   "name": "in 1280: no page errors",
+   "pass": true,
+   "evidence": []
+  },
+  {
+   "check": "F3",
+   "name": "in 1280: after an empty submit, a dropped JPEG clears \"Add at least one photo.\", aria-invalid, aria-describedby and .is-invalid; the status drops to \"4 things to fix above.\"",
+   "pass": true,
+   "evidence": {
+    "afterEmptySubmit": {
+     "errHidden": false,
+     "errText": "Add at least one photo.",
+     "invalid": "true",
+     "describedBy": "tll-err-photos",
+     "zoneInvalid": true,
+     "dragover": false,
+     "files": 0,
+     "count": "",
+     "listHidden": true,
+     "rows": 0,
+     "status": "5 things to fix above."
+    },
+    "afterDrop": {
+     "errHidden": true,
+     "errText": "",
+     "invalid": null,
+     "describedBy": null,
+     "zoneInvalid": false,
+     "dragover": false,
+     "files": 1,
+     "count": "1 of 12 chosen.",
+     "listHidden": false,
+     "rows": 1,
+     "status": "4 things to fix above."
+    }
+   }
+  },
+  {
+   "check": "F3",
+   "name": "in 1280: Remove empties the list without inventing an error (errors appear on submit only); the next submit shows it again; the next drop clears it again",
+   "pass": true,
+   "evidence": {
+    "afterRemove": {
+     "errHidden": true,
+     "errText": "",
+     "invalid": null,
+     "describedBy": null,
+     "zoneInvalid": false,
+     "dragover": false,
+     "files": 0,
+     "count": "",
+     "listHidden": true,
+     "rows": 0,
+     "status": "4 things to fix above."
+    },
+    "afterSecondSubmit": {
+     "errHidden": false,
+     "errText": "Add at least one photo.",
+     "invalid": "true",
+     "describedBy": "tll-err-photos",
+     "zoneInvalid": true,
+     "dragover": false,
+     "files": 0,
+     "count": "",
+     "listHidden": true,
+     "rows": 0,
+     "status": "5 things to fix above."
+    },
+    "afterSecondDrop": {
+     "errHidden": true,
+     "errText": "",
+     "invalid": null,
+     "describedBy": null,
+     "zoneInvalid": false,
+     "dragover": false,
+     "files": 1,
+     "count": "1 of 12 chosen.",
+     "listHidden": false,
+     "rows": 1,
+     "status": "4 things to fix above."
+    }
+   }
+  },
+  {
+   "check": "F3",
+   "name": "in 1280: the picker path after a failed submit: 12 kept, photos error cleared, \"4 things to fix above.\", the over-12 line kept",
+   "pass": true,
+   "evidence": {
+    "files": 12,
+    "errHidden": true,
+    "status": "4 things to fix above.",
+    "fileErrs": [
+     "That's more than 12. We kept the first 12 and left the rest for next time."
+    ],
+    "count": "12 of 12 chosen."
+   }
+  },
+  {
+   "check": "F3",
+   "name": "in 1280: no page errors",
+   "pass": true,
+   "evidence": []
+  }
+ ]
+}

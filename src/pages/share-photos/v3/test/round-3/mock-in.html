@@ -1,0 +1,1133 @@
+<!doctype html><html lang="en" class="w-mod-js ms-loaded" data-mock-mode="in"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Share photos (mock, in)</title>
+<style id="mock-webflow-base">/* mock: the slice of webflow.css the page relies on */
+*{box-sizing:border-box}html{font-family:sans-serif;-webkit-text-size-adjust:100%}body{margin:0;min-height:100%;background-color:#fff;font-family:Arial,sans-serif;font-size:14px;line-height:20px;color:#333}
+h1{font-size:38px;line-height:44px;margin:20px 0 10px;font-weight:bold}h2{font-size:32px;line-height:36px;margin:20px 0 10px;font-weight:bold}p{margin:0 0 10px}a{background-color:transparent}
+fieldset{margin:0 2px;padding:.35em .625em .75em;border:1px solid silver}legend{padding:0;border:0}button,input,select{font:inherit;margin:0}button,select{text-transform:none}
+.w-form{margin:0 0 15px}.w-form-done{display:none;padding:20px;text-align:center;background-color:#ddd}.w-form-fail{display:none;margin-top:10px;padding:10px;background-color:#ffdede}
+label{display:block;margin-bottom:5px;font-weight:bold}.w-input,.w-select{display:block;width:100%;height:38px;padding:8px 12px;margin-bottom:10px;font-size:14px;line-height:1.42857143;color:#333;vertical-align:middle;background-color:#fff;border:1px solid #ccc}
+.w-input:focus,.w-select:focus{border-color:#3898EC;outline:0}.w-checkbox{display:block;margin-bottom:5px;padding-left:20px}.w-checkbox::before,.w-checkbox::after{content:" ";display:table}.w-checkbox::after{clear:both}
+.w-checkbox-input{float:left;margin:4px 0 0 -20px;line-height:normal}.w-form-formradioinput{margin:4px 0 0}.w-form-label{display:inline-block;cursor:pointer;font-weight:normal;margin-bottom:0}
+.w-button{display:inline-block;padding:9px 15px;background-color:#3898EC;color:#fff;border:0;line-height:inherit;text-decoration:none;cursor:pointer;border-radius:0}
+.mock-nav{padding:14px 16px;background:#0A0B14;color:#fff}.mock-nav a{color:#fff;margin-right:12px}.mock-footer{padding:40px 16px;background:#0A0B14;color:#fff}
+</style>
+<link rel="stylesheet" href="/site-styles.css">
+<script id="mock-memberstack">/* mock: Memberstack DOM package, read-only; records every write */
+(function(){
+  var q=location.search;
+  if(/noms/.test(q)) return;                         /* ?noms: no Memberstack at all (fallback check) */
+  window.__msWrites=[]; window.__msReads=0;
+  var member={id:'mem_test',customFields:{'first-name':'Nancy','last-name':'Carleton'}};
+  function noop(){ return Promise.resolve({data:null}); }
+  window.$memberstackDom={
+    getCurrentMember:function(){ window.__msReads++; return Promise.resolve({data:member}); },
+    getMemberJSON:function(){ return Promise.resolve({data:{}}); },
+    updateMember:function(x){ window.__msWrites.push(['updateMember',x]); return Promise.resolve({data:member}); },
+    updateMemberJSON:function(x){ window.__msWrites.push(['updateMemberJSON',x]); return Promise.resolve({}); },
+    loginMemberEmailPassword:noop, logout:noop, openModal:noop, hideModal:noop, onAuthChange:function(){}, getApp:noop
+  };
+})();
+</script><script id="mock-webflow-forms">/* mock: stands in for Webflow's jQuery form handler (bubble phase). Counts runs; never posts. */
+window.__wfHandlerRuns=0;
+document.addEventListener('DOMContentLoaded',function(){
+  var f=document.querySelector('form[data-tll-form="share-photos"]');
+  if(f) f.addEventListener('submit',function(ev){ window.__wfHandlerRuns++; ev.preventDefault(); });
+});
+</script>
+<!-- site head -->
+<style id="tll-embed-mode">
+.tll-embed body > *:not(main){display:none !important;}
+.tll-embed nav,.tll-embed .tll-nav-v1,.tll-embed footer,.tll-embed .tll-footer-v1{display:none !important;}
+.tll-embed main > section:not(.tll-map-section){display:none !important;}
+.tll-embed .tll-map-section,.tll-embed .tll-map-section-inner{padding:0 !important;margin:0 !important;max-width:none !important;background:#CBDBE1 !important;}
+.tll-embed #tllLegend,.tll-embed .tllLegend,.tll-embed #tllShareBar,.tll-embed .tllShareBar,.tll-embed .tll-map-section-inner > button,.tll-embed .tll-map-legend{display:none !important;}
+.tll-embed html,.tll-embed body{background:#CBDBE1 !important;overflow:hidden !important;margin:0 !important;}
+</style>
+<script>if(/[?&]embed=1/.test(location.search)){document.documentElement.classList.add('tll-embed');}</script>
+<!-- Mobile pass 1 (2026-09-28): the cookie banner only opens after window load, so its stylesheet no longer blocks first paint. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css"></noscript>
+<style>
+#cc-main{
+  --cc-bg:#0D0F1A; --cc-primary-color:#F7F1E8; --cc-secondary-color:#00C9C8;
+  --cc-btn-primary-bg:#D63859; --cc-btn-primary-color:#fff; --cc-btn-primary-hover-bg:#F0507A;
+  --cc-btn-secondary-bg:rgba(255,255,255,.10); --cc-btn-secondary-color:#F7F1E8; --cc-btn-secondary-hover-bg:rgba(255,255,255,.18);
+  --cc-toggle-on-bg:#00C9C8; --cc-cookie-category-block-bg:rgba(255,255,255,.05); --cc-overlay-bg:rgba(13,15,26,.6);
+  font-family:'Syne',sans-serif;
+}
+</style>
+<style id="tll-shelf-fix">
+.tll-shelf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;}
+.tll-shelf-card{display:flex;flex-direction:column;text-decoration:none;background:#FFFFFF;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(13,15,26,.10);transition:transform .25s ease,box-shadow .25s ease;}
+.tll-shelf-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(13,15,26,.16);}
+.tll-shelf-photo{width:100%;aspect-ratio:16/10;background-size:cover;background-position:center;}
+.tll-shelf-body{padding:20px 22px 26px;}
+.tll-shelf-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8425E;margin-bottom:10px;}
+.tll-shelf-title{font-family:"Recoleta","Playfair Display",Georgia,serif;font-weight:500;font-size:21px;line-height:1.22;letter-spacing:-0.01em;color:#0D0F1A;margin:0;}
+@media(max-width:991px){.tll-shelf-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.tll-shelf-grid{grid-template-columns:1fr;}}
+</style>
+<style id="tll-craft-polish">
+/* TLL craft polish (2026-07-28): form focus rings, button feel, a11y focus, mobile form hardening */
+.w-input,.w-select,input[type="text"],input[type="email"],input[type="password"],input[type="search"],input[type="tel"],input[type="url"],input[type="number"],textarea,select{transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease;}
+.w-input:focus,.w-select:focus,input:focus,textarea:focus,select:focus{border-color:#F0507A !important;box-shadow:0 0 0 3px rgba(240,80,122,.18) !important;outline:none;}
+::placeholder{color:#9a958c;opacity:1;}
+.tll-btn,.w-button,button{transition:transform .12s ease, box-shadow .18s ease, background-color .15s ease, opacity .15s ease;}
+.tll-btn:hover,.w-button:hover{transform:translateY(-1px);}
+.tll-btn:active,.w-button:active{transform:translateY(0);}
+a:focus-visible,button:focus-visible,.tll-btn:focus-visible,.w-input:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #F0507A;outline-offset:2px;border-radius:6px;}
+@media(max-width:600px){.w-input,.w-select,textarea,select{width:100% !important;box-sizing:border-box;}.tll-btn,.w-button{min-height:44px;}}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style id="tll-proto-type-v1">
+/* Prototype parity (2026-09-20, Claude Design handoff): Playfair Display 800 headlines, Plex Condensed body, story hero contrast */
+h1,h2,h1 *,h2 *,[class*=tll-display],[class*=tll-display] *,.tll-shelf-title,.tll-story-body .w-richtext h2,.tll-story-body .w-richtext h3{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;}
+.tll-story-title{font-size:clamp(34px,4.2vw,56px) !important;line-height:1.05 !important;text-shadow:0 2px 16px rgba(10,11,20,.8);}
+.tll-story-hero-overlay{background-image:linear-gradient(180deg,rgba(10,11,20,.45),rgba(10,11,20,.35) 35%,rgba(10,11,20,.92)) !important;}
+.tll-story-body .w-richtext p,.tll-story-body .w-richtext li{font-size:17px !important;line-height:1.7 !important;color:#3a3a3a;margin:0 0 1.1em;}
+.tll-story-body .w-richtext h2{font-size:30px !important;line-height:1.15 !important;margin:1.8em 0 .6em !important;color:#1A1A1A;}
+.tll-aeo-box:has(.w-dyn-bind-empty){display:none !important;}
+</style>
+<style id="tll-consistency-v1">
+/* One page shell site-wide, matched to the Claude Design prototype (2026-09-20) */
+:root{--tll-ink:#0A0B14;--tll-rose:#F0507A;--tll-rose-d:#D63859;--tll-teal:#00C9C8;--tll-teal-l:#067A79;--tll-cream:#F7F1E8;--tll-paper:#FDF9F3;--tll-border:#E0DACE;--tll-muted:#6B6660}
+h1:not(.tll-story-title){font-size:clamp(38px,4.6vw,60px) !important;line-height:1.03 !important;letter-spacing:-.01em !important;}
+h1 em{color:var(--tll-rose);font-style:italic}
+[class*=eyebrow],:is(section,header) div:has(+ h1):not(:has(*)){font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;text-transform:uppercase !important;line-height:1.4 !important;}
+[class*=eyebrow]{color:var(--tll-teal-l) !important}
+:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-support-hero,.tll-auth-section,footer,.tll-story-hero) [class*=eyebrow]{color:var(--tll-teal) !important}
+:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-library-hero,.tll-support-hero,.tll-contact-hero,.tll-legal-hero):has(h1){padding-top:88px !important;padding-bottom:72px !important}
+h1:not(.tll-story-title) + p,h1:not(.tll-story-title) + div:not(:has(*)){font-size:17px !important;line-height:1.6 !important}
+@media(max-width:767px){:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-library-hero,.tll-support-hero,.tll-contact-hero,.tll-legal-hero):has(h1){padding-top:56px !important;padding-bottom:48px !important}h1:not(.tll-story-title) + p{font-size:16px !important}}
+.tll-lib-card{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.tll-lib-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,11,20,.10);border-color:#cfc6b6}
+.tll-lib-img{object-fit:cover}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+</style>
+<script id="tll-live-stories-v1">
+/* Live story count from the sitemap (no hardcoded counts) + prototype search placeholder. Member dashboards (/account, /profile) show the member's own count instead.
+   Mobile pass 1 (2026-09-28): the count is fetched once per visit and kept in sessionStorage, instead of downloading the whole sitemap on every page. */
+(function(){
+function ph(){[].forEach.call(document.querySelectorAll('input[placeholder^="Search the library"],input[placeholder^="Search a country"]'),function(i){i.setAttribute('placeholder','Search a country, a layover, a feeling…');});}
+function apply(n){
+[].forEach.call(document.querySelectorAll('div,span,p,strong'),function(e){if(e.children.length)return;var t=e.textContent.trim().toLowerCase();if(/^stor(y|ies)( filed| published| on the shelf)?$/.test(t)){var q=e.previousElementSibling||(e.parentElement&&e.parentElement.previousElementSibling);if(q&&/^\d+$/.test(q.textContent.trim()))q.textContent=String(n);}});
+var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue,o=s;s=s.replace(/\b\d+(?= stories, growing weekly)/,n).replace(/\b\d+(?= stories filed)/,n);if(s!==o)t.nodeValue=s;}
+[].forEach.call(document.querySelectorAll('strong'),function(st){var nx=st.nextSibling;if(nx&&nx.nodeType===3&&/^\s*stor(y|ies)\b/i.test(nx.nodeValue)&&/^\d+$/.test(st.textContent.trim()))st.textContent=String(n);});
+}
+function count(){if(/^\/(account|profile)/.test(location.pathname))return;var c=0;try{c=+sessionStorage.getItem('tllStoryN')||0;}catch(e){}
+if(c){apply(c);return;}
+fetch('/sitemap.xml').then(function(r){return r.text();}).then(function(x){var m=x.match(/<loc>[^<]*\/stories\/[^<]+<\/loc>/g);if(!m)return;var n=m.length;try{sessionStorage.setItem('tllStoryN',String(n));}catch(e){}apply(n);}).catch(function(){});}
+function run(){ph();count();}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+setTimeout(ph,1500);
+})();
+</script>
+<style id="tll-mobile-nav-v1">
+.tllmm-btn{display:none;align-items:center;gap:8px;background:transparent;border:1px solid rgba(247,241,232,.35);color:#F7F1E8;border-radius:999px;padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:600;text-transform:uppercase;cursor:pointer;min-height:40px}
+.tllmm-share{display:none}
+@media(max-width:767px){
+.tll-nav-inner{flex-wrap:wrap}
+.tllmm-btn{display:inline-flex}
+.tll-nav-v1.tllmm-open .tll-nav-links-row{display:flex !important;flex-direction:column;align-items:stretch;width:100%;order:10;padding:8px 0 18px;gap:0}
+.tll-nav-v1.tllmm-open .tll-nav-links-row a{display:block;padding:14px 4px;font-size:18px;border-bottom:1px solid rgba(247,241,232,.08)}
+.tll-nav-v1.tllmm-open .tllmm-share{display:block;color:#F0507A !important;font-weight:600}
+/* v2 (2026-09-21): logo, Sign up and Menu/Close stay on one row, open or closed; slimmer bar */
+.tll-nav-v1 .tll-nav-inner{column-gap:8px;row-gap:0}
+.tll-nav-v1 .tll-nav-cta-row{margin-left:auto;gap:8px}
+.tllmm-btn{min-width:76px;justify-content:center}
+.tll-nav-v1 .tll-nav-main{padding:6px 0}
+}
+@media(max-width:359px){
+.tll-nav-v1 .tll-nav-anon a{padding-left:10px !important;padding-right:10px !important}
+.tll-nav-v1 .tll-nav-cta-row{gap:6px}
+.tll-nav-v1 .tll-nav-inner{column-gap:4px}
+.tllmm-btn{min-width:62px;padding:9px 8px;letter-spacing:1px}
+}
+</style>
+<script id="tll-mobile-nav-js-v1">
+/* Mobile nav (2026-09-20): the nav had no menu under 768px, so phone readers could not reach Stories, Destinations or Travelers. */
+(function(){
+function init(){[].forEach.call(document.querySelectorAll('.tll-nav-v1'),function(nav){
+if(nav.__tllmm)return;nav.__tllmm=1;var row=nav.querySelector('.tll-nav-links-row'),cta=nav.querySelector('.tll-nav-cta-row');if(!row||!cta)return;
+if(!row.id)row.id='tll-nav-links';
+var s=document.createElement('a');s.href='/submit';s.className='tll-nav-link tllmm-share';s.textContent='Share your story';row.appendChild(s);
+var b=document.createElement('button');b.type='button';b.className='tllmm-btn';b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',row.id);b.textContent='Menu';
+cta.appendChild(b);
+b.addEventListener('click',function(){var o=nav.classList.toggle('tllmm-open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Close':'Menu';});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('tllmm-open')){nav.classList.remove('tllmm-open');b.setAttribute('aria-expanded','false');b.textContent='Menu';b.focus();}});
+});}
+if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<script type="text/plain" data-category="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-T1K83PRL1R"></script>
+<script type="text/plain" data-category="analytics">
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-T1K83PRL1R');
+</script>
+<!-- Ahrefs Web Analytics -->
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="hbUjDXMWTy6UXwJhDa47gw" async></script>
+<style id="tll-proto-parity-v1">
+/* Prototype parity layer v1 (2026-09-21). Font aliases so legacy families render in brand fonts, nav lockup, public placeholders hidden. */
+@font-face{font-family:'DM Sans';font-weight:100 500;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:600;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY527LvspYY.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:700 900;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:100 900;font-style:italic;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8nN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYas-KzLgA.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:100 500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600 900;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'Syne';font-weight:100 500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'Syne';font-weight:600 900;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'Recoleta';font-weight:100 900;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+@font-face{font-family:'Recoleta';font-weight:100 900;font-style:italic;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_iiUXtHA-Q.woff2) format('woff2')}
+@font-face{font-family:'DM Serif Display';font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+@font-face{font-family:'Druk';font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+body,footer a,footer p,footer span,.tll-lede,.tll-body-l,.tllpx-sub{font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif}
+:root{--_typography---font--heading-font:'Playfair Display',Georgia,serif}
+.heading-8{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important}
+/* Nav lockup: Playfair wordmark, rose LIFE., solid rose Share button, sentence case */
+.tll-nav-logo-block{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;letter-spacing:.01em !important}
+.tll-nav-v1 .tll-nav-logo .tll-nav-logo-life{color:#F0507A !important}
+.tll-nav-v1 .tll-nav-pen-cta{background:#F0507A !important;border-color:#F0507A !important;color:#fff !important;text-transform:none !important;letter-spacing:0 !important;border-radius:6px !important;font-weight:700 !important;white-space:nowrap}
+.tll-nav-v1 .tll-nav-pen-cta:hover{background:#D63859 !important;border-color:#D63859 !important}
+.tll-nav-v1 .tll-nav-signup{border-radius:6px !important;white-space:nowrap}
+.tll-nav-v1 .tll-nav-signin{white-space:nowrap}
+@media(min-width:768px) and (max-width:1199px){.tll-nav-v1 .tll-nav-links-row{gap:10px !important}.tll-nav-v1 .tll-nav-link{white-space:nowrap;font-size:13px !important;padding-left:6px !important;padding-right:6px !important}.tll-nav-v1 .tll-nav-pen-cta,.tll-nav-v1 .tll-nav-signup,.tll-nav-v1 .tll-nav-signin{font-size:13px !important;padding:8px 12px !important}.tll-nav-v1 .tll-nav-logo{white-space:nowrap;flex:none}.tll-nav-v1 .tll-nav-inner{column-gap:14px}}
+/* Placeholders that must not show publicly */
+.tll-share-wrap{min-height:0 !important}
+#tll-ad-slot-story,#tll-ad-slot-home{display:none !important}
+[data-tll-links-card]:has(.w-richtext.w-dyn-bind-empty){display:none !important}
+.tll-story-meta-row .w-dyn-bind-empty,.tll-story-meta-row .w-dyn-bind-empty + .tll-story-meta-divider{display:none !important}
+[data-tll-crumb="title"]{display:none !important}
+.tllcx-word:has(.tllcx-big.w-dyn-bind-empty){display:none !important}
+.tll-contributor-name{color:#0A0B14 !important}
+.tll-story-feedback p{color:#3a3a3a !important}
+[data-tll-loc] > span{color:#F7F1E8 !important;background:rgba(10,11,20,.72) !important;padding:3px 8px !important;border-radius:4px !important}
+.tll-pet-title,.tll-pet-countries-title,.tll-pet-stories-title,.tll-pet-humans h3,.tll-support-title,.tll-support-secondary-card h3,.tll-contact-faq-card h3,.tll-li-availability h3,.tll-li-skills h3,.tll-li-platforms h3{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important}
+/* Home library search: one pill, inline teal button (prototype) */
+form.tll-home-search{display:flex !important;align-items:center;gap:6px;background:#fff;border:1.5px solid #0A0B14;border-radius:32px;padding:6px 6px 6px 20px;max-width:640px;margin:0 auto}
+form.tll-home-search input[type=text]{flex:1;min-width:0;border:0 !important;box-shadow:none !important;background:transparent !important;font-size:16px;height:44px;margin:0;padding:0;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#1A1A1A}
+form.tll-home-search input[type=submit]{background:#00C9C8 !important;color:#06302f !important;border:0;border-radius:26px;padding:0 22px;height:44px;font-weight:700;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;margin:0}
+</style>
+<script>(function(){var p=(location.pathname.replace(/^\/|\/$/g,'')||'home').split('/')[0];document.documentElement.classList.add('tllp-'+p.replace(/[^a-z0-9-]/gi,''));})();</script>
+<script id="tll-proto-parity-js-v1">
+/* Prototype parity layer v1 (2026-09-21): contrast repair, nav wordmark, consent defaults, copy fixes, fabricated-content cleanup.
+   Mobile pass 1 (2026-09-28): the contrast repair runs once, in idle time after load, instead of twice on a timer, so it no longer competes with the first taps on a phone. */
+(function(){
+  var P=location.pathname.replace(/\/$/,'')||'/';
+  function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+  function rgb(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var p=m[1].split(',').map(parseFloat);return{r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
+  function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+  function ratio(a,b){var x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
+  function bg(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e);if(cs.backgroundImage&&cs.backgroundImage!=='none')return null;var c=rgb(cs.backgroundColor);if(c&&c.a>.6)return c;}return{r:255,g:255,b:255,a:1};}
+  function overImage(el){var r=el.getBoundingClientRect();if(!r.width)return true;var cx=r.left+r.width/2,cy=r.top+r.height/2;var s=el.closest('section,header,article,footer')||document.body;return $$('img,video,picture',s).some(function(i){var q=i.getBoundingClientRect();return q.width>200&&cx>=q.left&&cx<=q.right&&cy>=q.top&&cy<=q.bottom;});}
+  function contrast(){var n=0;$$('h1,h2,h3,h4,h5,h6,p,li,a,span,div,label,strong,em,blockquote,dt,dd').forEach(function(el){if(n>5000)return;n++;var t=false;for(var c=el.firstChild;c;c=c.nextSibling){if(c.nodeType===3&&c.nodeValue.trim()){t=true;break;}}if(!t||!/[A-Za-z0-9]/.test(el.textContent))return;var cs=getComputedStyle(el);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity===0)return;var fg=rgb(cs.color),b=bg(el);if(!fg||!b||fg.a<.4)return;if(ratio(fg,b)>=1.8)return;if(overImage(el))return;el.style.setProperty('color',L(b)>.4?'#1A1A1A':'#F7F1E8','important');el.setAttribute('data-tll-contrast','1');});}
+  function wordmark(){$$('.tll-nav-logo-block').forEach(function(b){if(b.dataset.tllWm)return;b.dataset.tllWm='1';var t=b.textContent.trim();if(/^LAYOVER LIFE\.?$/i.test(t))b.innerHTML='LAYOVER <span class="tll-nav-logo-life">LIFE.</span>';});}
+  function navOut(){var navs=$$('nav.tll-nav-v1');if(!navs.length)return;if(navs.some(function(n){return !n.closest('[data-ms-content]');}))return;var n=navs[0],w=n.closest('[data-ms-content]');w.parentNode.insertBefore(n,w);}
+  function consent(){$$('input[type=checkbox][name^="syndication"]').forEach(function(i){if(i.dataset.tllOptin)return;i.dataset.tllOptin='1';i.checked=false;i.removeAttribute('checked');var v=i.previousElementSibling;if(v&&v.classList.contains('w-checkbox-input--inputType-custom'))v.classList.remove('w--redirected-checked');});}
+  var COPY=[
+    [/^Live in 48 hours, free, your byline stays yours\.$/,'Reviewed by a human within 48 hours. Free, and your byline stays yours.'],
+    [/^Published in 48 hours, edited lightly\.$/,'Reviewed within 48 hours, edited lightly.'],
+    [/^Editorial review for first 3 submissions\. After that, photos go live immediately\.$/,'A human reviews every photo before it goes up.'],
+    [/the twelve questions first-time visitors send us/,'the questions first-time visitors send us'],
+    [/the twelve things people actually ask/,'the things people actually ask']
+  ];
+  function copy(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var v=t.nodeValue,o=v;COPY.forEach(function(c){var s=v.trim();if(c[0].test(s))v=v.replace(s,s.replace(c[0],c[1]));});if(v!==o)t.nodeValue=v;}
+    if(P==='/support'){var em=document.querySelector('.tll-support-title em');if(em&&em.textContent.trim()==='Three doors')em.textContent='Six doors';}}
+  function homeSearch(){var i=document.querySelector('input[name="Search-the-library"]');if(i&&i.form){i.form.classList.add('tll-home-search');var s=i.form.querySelector('input[type=submit]');if(s&&s.value==='Submit')s.value='Search';}}
+  function placeholders(){
+    /* Profile: rows still pointing at "#" are unfilled placeholders */
+    if(/^\/contributors\//.test(P)){$$('a[href="#"],a[href$="/in/profile"]').forEach(function(a){if(a.closest('nav,footer'))return;var row=a.closest('.tll-link-row')||a;row.style.display='none';});}
+    /* Travelers: the persona roster and duplicate spotlight block are invented people; hide until real travelers exist */
+    if(P==='/travelers'){$$('.tll-spotlight-section,#full-crew').forEach(function(s){s.style.display='none';});}
+    /* Map: invented "recently lit" counts and continent totals */
+    if(P==='/the-map'){$$('section').forEach(function(s){if(/Recently lit/.test(s.textContent)&&/By continent/.test(s.textContent))s.style.display='none';});
+      /* 9 Oct 2026, fix-first item 1: the fetch-and-reset of #tll-map-counter and #tll-map-pct was removed here; it pasted the static dash back over the real count five times. The map page owns the counter. */}
+    if(P==='/spotlight')spotlight();
+  }
+  function spotlight(){
+    var f=document.querySelector('a.inline-a-0-1');if(f&&!f.dataset.tllSp){f.dataset.tllSp='1';f.href='/contributors/nancy-carleton';f.style.padding='0';f.style.background='transparent';f.style.minHeight='0';f.style.boxShadow='none';
+      f.innerHTML='<div style="display:grid;grid-template-columns:minmax(0,340px) 1fr;background:#0A0B14;border-radius:14px;overflow:hidden;color:#F7F1E8" class="tllsp-feat"><div style="background:#16182a url(https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice.jpg) center/cover;min-height:300px;display:flex;align-items:flex-end;padding:22px" role="img" aria-label="Copenhagen, Denmark"><span style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);box-shadow:0 0 0 3px #F0507A;display:flex;align-items:center;justify-content:center;font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:28px;color:#0A0B14">NC</span></div><div style="padding:32px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:2px;color:#D98A2B;font-weight:600">★ TRAVELER OF THE WEEK</div><div style="font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:30px;line-height:1.1">Nancy Carleton</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:1.5px;color:#9a9cb3">THE FOUNDER · EXPAT · LIFER · COPENHAGEN</div><p style="margin:0;color:#cfcbc4;font-size:16px;line-height:1.55">American expat in Copenhagen. Travels with Magnus 🐻‍❄️ Waffles, a Samoyed of strong opinions.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><span style="background:#F0507A;color:#fff;border-radius:6px;padding:10px 18px;font-weight:700">Full profile →</span><span data-href="/stories" class="tllsp-stories" style="border:1.5px solid rgba(247,241,232,.4);border-radius:6px;padding:10px 18px;font-weight:600">Read the stories</span></div></div></div>';
+      var rs=f.querySelector('.tllsp-stories');if(rs)rs.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();location.href='/stories';});}
+    var slots=[['COMING SOON','Spotlight slot','Lisbon, Portugal. Slow travel + food culture. Reach out if this is you.','#c9b89a',null],['COMING SOON','Spotlight slot','Berlin, Germany. Night trains + border towns. Could be you.','#c9b89a',null],['OPEN SLOT','Your name here.','One story gets you the feature.','#F0507A','/submit']];
+    ['a.inline-a-1-1','a.inline-a-2-1','a.inline-a-3'].forEach(function(s,i){var a=document.querySelector(s);if(!a||a.dataset.tllSp)return;a.dataset.tllSp='1';var d=slots[i];a.href=d[4]||'/contact';a.setAttribute('style','display:block;border:2px dashed '+d[3]+';border-radius:12px;padding:26px 22px;text-align:center;background:#fff;text-decoration:none;color:#1A1A1A;'+(d[4]?'':'opacity:.85'));a.innerHTML='<div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:2px;font-weight:600;color:'+(d[4]?'#D63859':'#8a5a14')+';margin-bottom:10px">'+d[0]+'</div><div style="font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:22px;margin-bottom:8px">'+d[1]+'</div><p style="margin:0 0 '+(d[4]?'16px':'0')+';color:#3a3a3a;font-size:15px;line-height:1.5">'+d[2]+'</p>'+(d[4]?'<span style="display:inline-block;background:#F0507A;color:#fff;border-radius:6px;padding:10px 18px;font-weight:700">Share your story →</span>':'');});
+  }
+  /* Founder avatar: the CMS avatar is a colour swatch and the Drive photo is private, so show the prototype's NC monogram until a public headshot is uploaded. */
+  function monogram(){$$('img[src*="F0507A"],img[src*="1sbjvhecBGFMGuRblUoyI0BTN_h51p83J"]').forEach(function(img){var w=img.clientWidth||(img.parentElement&&img.parentElement.clientWidth)||56;var s=document.createElement('span');s.className='tll-nc-av';s.setAttribute('role','img');s.setAttribute('aria-label','Nancy Carleton, founder of That Layover Life');s.textContent='NC';s.style.cssText='display:flex;align-items:center;justify-content:center;width:100%;height:100%;aspect-ratio:1/1;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);box-shadow:inset 0 0 0 3px #F0507A;color:#0A0B14;font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:'+Math.max(12,Math.round(w*.34))+'px;line-height:1';img.parentNode.replaceChild(s,img);});}
+  function run(){monogram();wordmark();navOut();consent();copy();homeSearch();placeholders();}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',function(){monogram();setTimeout(monogram,1200);consent();copy();setTimeout(function(){(window.requestIdleCallback||function(f){setTimeout(f,0);})(contrast,{timeout:2000});},1500);});
+})();
+</script>
+<style>@media(max-width:767px){.tllsp-feat{grid-template-columns:1fr !important}}</style>
+<style id="tll-v9-chrome-v1">
+/* v9 chrome (5 Oct 2026): J03 focus ring, J04 skip link, J05 muted greys, J06 text and tap floors, J07 MENU under 900px. Additive: overrides the 28 Sep a11y block, touches no Memberstack element. */
+a:focus-visible,button:focus-visible,[role=button]:focus-visible,summary:focus-visible,.w-button:focus-visible,.tll-btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:not([tabindex="-1"]):focus-visible,.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{outline:3px solid #0A0B14 !important;outline-offset:2px !important;box-shadow:0 0 0 6px #00C9C8 !important;border-radius:2px}
+.tll-skip,.tll-skip:focus{left:-9999px;top:8px;background:#F0507A !important;color:#0A0B14 !important;font-family:'JetBrains Mono',monospace !important;font-size:12px !important;font-weight:700 !important;letter-spacing:1.5px;padding:12px 18px;border-radius:2px;text-transform:uppercase}
+.tll-skip:focus{left:12px}
+[style*="font-size:8px"],[style*="font-size: 8px"],[style*="font-size:9px"],[style*="font-size: 9px"],[style*="font-size:9.5px"]{font-size:10px !important}
+.tllmm-btn{border-radius:2px !important;border:1.5px solid #F7F1E8 !important;font-size:12px !important;font-weight:700 !important;letter-spacing:2px !important;padding:12px 16px !important;min-height:44px !important}
+@media(max-width:899px){
+.tll-nav-v1{position:relative}
+.tll-nav-v1 .tll-nav-inner{flex-wrap:wrap}
+.tllmm-btn{display:inline-flex}
+.tll-nav-v1 .tll-nav-links-row{display:none}
+.tll-nav-v1.tllmm-open .tll-nav-links-row{display:flex !important;flex-direction:column;align-items:stretch;position:absolute;left:0;right:0;top:100%;width:100%;background:#0A0B14;padding:22px 28px 30px;border-top:1px solid #23263c;gap:22px;z-index:60;box-shadow:0 24px 40px rgba(10,11,20,.35)}
+.tll-nav-v1.tllmm-open .tll-nav-links-row a{display:block;padding:0;font-size:18px;border-bottom:0;min-height:44px;line-height:44px}
+.tll-nav-v1.tllmm-open .tllmm-share{display:block;color:#F0507A !important;font-weight:600}
+.tll-nav-v1 .tll-nav-cta-row{margin-left:auto;gap:8px}
+}
+@media(pointer:coarse){.tll-nav-v1 a,.w-button,.tll-btn,button:not(.tllmm-btn){min-height:44px}}
+</style>
+<script id="tll-v9-chrome-js-v1">
+/* v9 chrome script: landmarks (header, nav aria-label Main, main#main, footer), SKIP TO CONTENT, MENU / CLOSE ✕ labels and close-on-pick, retired grey repair (#7d7f96 #9a958d #4a4d63 → #9496AC on dark, #6B6660 on light), keyboard activation for role=button. */
+(function(){
+var RET=/#(7d7f96|9a958d|4a4d63)/i;
+function landmarks(){
+  var main=document.querySelector('main');
+  if(main){ if(!main.id||main.id==='tll-main'){ if(!document.getElementById('main')) main.id='main'; } if(!main.hasAttribute('tabindex')) main.setAttribute('tabindex','-1'); }
+  var nav=document.querySelector('.tll-nav-v1');
+  if(nav){ var n=nav.matches('nav')?nav:(nav.querySelector('nav')||nav.querySelector('.tll-nav-links-row')); if(n&&!n.getAttribute('aria-label')){ if(!n.matches('nav')) n.setAttribute('role','navigation'); n.setAttribute('aria-label','Main'); } if(!nav.matches('header')&&!nav.closest('header')&&!nav.getAttribute('role')) nav.setAttribute('role','banner'); }
+  var foot=document.querySelector('.tll-footer-v1,footer'); if(foot&&!foot.matches('footer')&&!foot.getAttribute('role')) foot.setAttribute('role','contentinfo');
+  var skip=document.querySelector('.tll-skip'); if(skip){ skip.textContent='SKIP TO CONTENT'; if(main&&main.id) skip.href='#'+main.id; }
+}
+function menu(){
+  var nav=document.querySelector('.tll-nav-v1'), b=nav&&nav.querySelector('.tllmm-btn'); if(!nav||!b||b.__v9) return; b.__v9=1;
+  function lab(){ b.textContent=nav.classList.contains('tllmm-open')?'CLOSE ✕':'MENU'; }
+  lab(); b.addEventListener('click',function(){ setTimeout(lab,0); });
+  document.addEventListener('keydown',function(){ setTimeout(lab,0); });
+  var row=nav.querySelector('.tll-nav-links-row'); if(row) row.addEventListener('click',function(e){ if(e.target.closest('a')){ nav.classList.remove('tllmm-open'); b.setAttribute('aria-expanded','false'); lab(); } });
+}
+function keys(){
+  [].forEach.call(document.querySelectorAll('[role=button]:not(button):not(a):not(input):not(summary)'),function(el){
+    if(el.__v9k) return; el.__v9k=1; if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){ e.preventDefault(); el.click(); } });
+  });
+}
+function greys(){
+  var cx=window.tllCx; [].forEach.call(document.querySelectorAll('[style*="7d7f96"],[style*="9a958d"],[style*="4a4d63"],[style*="7D7F96"],[style*="9A958D"],[style*="4A4D63"]'),function(el){
+    if(!RET.test(el.getAttribute('style')||'')) return; var dark=true;
+    try{ if(cx&&cx.B){ var bg=cx.B(el); bg=bg&&bg.c?bg.c:bg; if(bg&&bg.r!=null) dark=cx.L(bg)<.35; } }catch(e){}
+    el.style.setProperty('color',dark?'#9496AC':'#6B6660','important');
+  });
+}
+function run(){ try{landmarks();}catch(e){} try{menu();}catch(e){} try{keys();}catch(e){} try{greys();}catch(e){ window.__tllV9err=String(e); } }
+if(document.readyState!=='loading') run(); else document.addEventListener('DOMContentLoaded',run);
+window.addEventListener('load',function(){ run(); setTimeout(run,1500); setTimeout(greys,2800); });
+})();
+</script>
+
+<style id="tll-v9-type-v1">
+/* v9 J11 (6 Oct 2026): the 2.0 type scale. Home hero 148px / .94 (186px collided with the eyebrow, Nancy 6 Oct). Story titles keep their own rules. */
+h1:not(.tll-story-title){font-size:clamp(44px,6.4vw,112px) !important;line-height:.9 !important;letter-spacing:-.035em !important;text-wrap:balance}
+.tllp-home h1:not(.tll-story-title){font-size:clamp(46px,7.6vw,148px) !important;line-height:.94 !important;letter-spacing:-.035em !important;margin-top:18px !important;padding-top:.06em;max-width:min(78vw,1100px) !important}
+.tllp-home [class*=eyebrow]{margin-bottom:14px !important}
+h2:not(.w-richtext h2):not(.tll-story-body h2):not([class*="card"] h2):not([class*="-title"]):not(.tll-shelf-title):not(.tll-lib-title):not(.tll-related-headline){font-size:clamp(34px,5vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+h1:not(.tll-story-title) + p,h1:not(.tll-story-title) + div:not(:has(*)){font-size:17px !important;line-height:1.55 !important}
+@media(max-width:767px){h1:not(.tll-story-title){line-height:.92 !important}}
+</style>
+<style id="tll-v91-hero-scrim-v1">
+/* v9.1 fix 02 (6 Oct 2026, DRAFT): bottom scrim on the home hero photo so the teal eyebrow clears 4.5:1, and the eyebrow at 12px / 0.18em.
+   Remove the scrim once photo-safe zones exist. */
+.tllp-home :has(> img[data-tll-parallax="hero"]){position:relative}
+.tllp-home :has(> img[data-tll-parallax="hero"])::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(10,11,20,0) 40%,rgba(10,11,20,.72) 100%)}
+.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *,.tllp-home :has(> img[data-tll-parallax="hero"]) > :not(img):not(:empty){position:relative;z-index:2}
+/* 6 Oct: the empty overlay div stays absolute (as relative it became a full-width flex sibling and pushed the copy right) */
+.tllp-home :has(> img[data-tll-parallax="hero"]) > div:empty{position:absolute !important;inset:0;z-index:1}
+.tllp-home [class*=eyebrow]{font-size:12px !important;letter-spacing:.18em !important;color:#00C9C8 !important}
+</style>
+<style id="tll-v91-motion-v1">
+/* v9.1 fix 09 (6 Oct 2026, DRAFT): one motion spec for the whole site. Enter: ease-out cubic-bezier(.23,1,.32,1), 200 to 300ms, opacity + 6 to 12px move,
+   never from scale 0. Exit 150ms. Hover only with a real pointer, color and shadow only, no movement on text links. Press: scale(.97) 100ms.
+   Only transform and opacity animate; every transition names its properties. Reduced motion: no movement, opacity fades of 150ms or less. */
+:root{--tll-ease-out:cubic-bezier(.23,1,.32,1);--tll-ease-in-out:cubic-bezier(.77,0,.175,1);--tll-t-enter:240ms;--tll-t-exit:150ms;--tll-t-hover:150ms;--tll-t-press:100ms}
+/* Buttons: press feedback, no lift on hover (the 28 Jul polish lifted by 1px, which is movement on hover) */
+.tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn{transition:transform var(--tll-t-press) var(--tll-ease-out),background-color var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease,box-shadow var(--tll-t-hover) ease,opacity var(--tll-t-hover) ease !important}
+.tll-btn:hover,.w-button:hover{transform:none !important}
+.tll-btn:active,.w-button:active,button:not(.tllmm-btn):active,.tll-nav-pen-cta:active,.tll-nav-signup:active,.tll-fos-cta:active,.tsh-btn:active{transform:scale(.97) !important}
+/* Cards: hover is shadow and border only, with a real pointer */
+.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition:box-shadow var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease !important}
+.tll-shelf-card:hover,.tll-lib-card:hover{transform:none !important}
+@media(hover:hover) and (pointer:fine){.tll-shelf-card:hover,.tll-lib-card:hover{box-shadow:0 12px 28px rgba(10,11,20,.12)}}
+/* Text links: color only */
+a:not([class]),.tll-nav-link,footer a{transition:color var(--tll-t-hover) ease,text-decoration-color var(--tll-t-hover) ease}
+/* Enter: reveal and stagger hooks used by the flow layer, the shelf and the pins */
+.tll-flow-reveal,[data-tll-reveal],.tll-enter{transition:opacity var(--tll-t-enter) var(--tll-ease-out),transform var(--tll-t-enter) var(--tll-ease-out)}
+.tll-enter{opacity:0;transform:translateY(8px)}.tll-enter.in{opacity:1;transform:none}
+/* Reduced motion: the single global hook. Movement off, opacity fades kept at 150ms or less, pinned sections released. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition-property:opacity,color,background-color,border-color,box-shadow !important;transition-duration:150ms !important;scroll-behavior:auto !important}
+  .tll-enter,.tll-flow-reveal,[data-tll-reveal]{opacity:1 !important;transform:none !important}
+  .tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn,.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition-property:opacity,background-color,border-color,box-shadow !important}
+  .tll-btn:active,.w-button:active,button:active{transform:none !important}
+  [data-tll-parallax]{transform:none !important}
+  .tll-flow-man{height:auto !important}.tll-flow-man .pin{position:static !important;height:auto !important}
+}
+</style>
+<script id="tll-v91-motion-js-v1">
+/* The JS half of the reduced-motion hook: window.tllReduced is true when the OS asks for less motion; scripts that move things check it. */
+(function(){var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');function set(){window.tllReduced=!!(mq&&mq.matches);document.documentElement.classList.toggle('tll-reduced',window.tllReduced);}set();if(mq&&mq.addEventListener)mq.addEventListener('change',set);
+/* Enter animations for anything marked .tll-enter: 30% visible, once */
+function io(){var els=document.querySelectorAll('.tll-enter:not(.in)');if(!els.length)return;if(window.tllReduced||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}
+var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{threshold:.3});els.forEach(function(e){o.observe(e);});}
+if(document.readyState!=='loading')io();else document.addEventListener('DOMContentLoaded',io);window.addEventListener('load',io);})();
+</script>
+<!-- page head -->
+<meta name="robots" content="noindex, follow">
+</head><body class="body">
+<div class="mock-nav" data-mock="nav" role="banner"><a href="/">That Layover Life</a> <a href="/stories">Stories</a> <a href="/gallery">Lounge</a></div><main><div data-ms-content="members"><section class="tll-section-dark tll-photos-hero" data-tll-reveal="true"><div class="tll-container tll-photos-hero-inner"><a class="tll-eyebrow-teal" data-tll-back="lounge" href="/gallery">← The Layover Lounge</a><div class="tll-eyebrow-teal tll-photos-eyebrow">The Layover Lounge</div><h1 class="tll-display-xl tll-text-bone tll-photos-title">Submit your <em class="tll-text-rose">shot</em>.</h1><p class="tll-lede tll-text-bone tll-photos-sub">Real photos from real places. No filters, no stock, no staging. If you were there, it counts.</p></div></section><section class="tll-section tll-bg-paper tll-photos-section" data-tll-reveal="true"><div class="tll-container tll-photos-container"><div class="tll-photos-form w-form"><form data-tll-form="share-photos" data-ms-member-bound="true" enctype="multipart/form-data" id="wf-form-Html-Form" name="wf-form-Html-Form" data-name="Html Form" method="get" data-wf-page-id="6a0dfca3f9fa5b751d154257" data-wf-element-id="c09ceb51-0ee9-0a93-6196-eee626758710"><fieldset class="tll-pen-fieldset"><legend class="tll-pen-legend">Your photos</legend><p class="tll-pen-help">Up to 12 at a time. JPG or WebP, 25MB each at most.</p><label class="tll-photos-drop"><div class="tll-photos-drop-icon">↑</div><div class="tll-photos-drop-headline">Drag photos here or tap to choose</div><div class="tll-photos-drop-sub">Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram.</div><div class="tll-photos-drop-hint">Phone-shot is fine. We crop to fit.</div><input class="tll-photos-drop-input w-input" id="photos-upload" accept="image/jpeg,image/webp" multiple type="file" name="photos" data-name="photos" required></label></fieldset><fieldset class="tll-pen-fieldset"><legend class="tll-pen-legend">The story</legend><p class="tll-pen-help">Photos without a place disappear. A country is enough, a city is better.</p><div class="tll-pen-grid-2"><label class="tll-pen-field"><span class="tll-pen-label">Where is this?</span><input class="tll-pen-input w-input" id="field" type="text" name="country" data-name="country" maxlength="256" required></label><label class="tll-pen-field"><span class="tll-pen-label">City or layover</span><input class="tll-pen-input w-input" id="field" type="text" name="city" data-name="city" maxlength="256"></label><label class="tll-pen-field"><span class="tll-pen-label">Year</span><input class="tll-pen-input w-input" id="field" min="1990" max="2030" type="number" name="year" data-name="year"></label><label class="tll-pen-field"><span class="tll-pen-label">Trip type</span><select class="tll-pen-input w-select" id="photos-trip-type" name="trip-type" data-name="trip-type"><option value="">Select one...</option><option value="layover">Layover</option><option value="trip">Trip</option><option value="living">Living there</option><option value="expat">Expat life</option></select></label></div><label class="tll-pen-field"><span class="tll-pen-label">What was happening?</span><input class="tll-pen-input w-input" id="field" type="text" name="caption" data-name="caption" maxlength="256"><span class="tll-pen-helptext">One line is plenty. It is the first thing people read, and the funny ones do well.</span></label></fieldset><fieldset class="tll-pen-fieldset"><legend class="tll-pen-legend">Pet in the shot?</legend><p class="tll-pen-help">Tag them and the photo lands on their Paw Passport too.</p><label class="tll-pen-field"><span class="tll-pen-label">Their name</span><input class="tll-pen-input w-input" id="field" type="text" name="pets-along" data-name="pets-along" maxlength="256"></label></fieldset><fieldset class="tll-pen-fieldset"><legend class="tll-pen-legend">Your credit</legend><p class="tll-pen-help">One credit for the whole batch. Want different credits? Send them as separate batches.</p><label class="tll-pen-field"><span class="tll-pen-label">Credit</span><div class="tll-pen-radios"><label class="tll-pen-radio"><input class="w-form-formradioinput w-radio-input" id="radio" checked type="radio" name="credit-mode" data-name="credit-mode" value="named"><span>My name</span></label><label class="tll-pen-radio"><input class="w-form-formradioinput w-radio-input" id="radio" type="radio" name="credit-mode" data-name="credit-mode" value="pen-name"><span>Pen name only</span></label><label class="tll-pen-radio"><input class="w-form-formradioinput w-radio-input" id="radio" type="radio" name="credit-mode" data-name="credit-mode" value="anonymous"><span>Anonymous Traveler</span></label></div></label><label class="tll-pen-field"><span class="tll-pen-label">Unticked means the Lounge only. Say yes to any of these.</span><div class="tll-pen-checkboxes"><label class="tll-pen-checkbox"><label class="w-checkbox"><input class="w-checkbox-input" id="checkbox" type="checkbox" name="syndication-social" data-name="syndication-social"><span class="w-form-label">On our Instagram and LinkedIn, with the same credit line</span></label><span>OK to post on TLL social</span></label><label class="tll-pen-checkbox"><label class="w-checkbox"><input class="w-checkbox-input" id="checkbox" type="checkbox" name="syndication-rotation" data-name="syndication-rotation"><span class="w-form-label">On the homepage, in the rotating set</span></label><span>OK to include in the Home rotation gallery</span></label><label class="tll-pen-checkbox"><label class="w-checkbox"><input class="w-checkbox-input" id="checkbox" type="checkbox" name="syndication-press" data-name="syndication-press"><span class="w-form-label">Offered to press and partners. We ask you first, every time.</span></label><span>OK for press to license this photo (we&#x27;ll ask first)</span></label></div></label><div class="tll-pen-legend">Three promises · ticked separately, never pre-ticked</div><label class="tll-pen-field tll-pen-field-inline"><label class="w-checkbox"><input class="w-checkbox-input" id="checkbox" type="checkbox" name="agree-rights" data-name="agree-rights" required><span class="w-form-label">This is my photograph.</span></label><span>I took it. It is a real photograph, not AI-generated and not substantially altered by AI tools, and it follows the <a class="tll-text-rose" href="/community-guidelines">Community Guidelines</a>.</span></label><label class="tll-pen-field tll-pen-field-inline"><label class="w-checkbox"><input class="w-checkbox-input" id="agree-licence" type="checkbox" name="agree-licence" data-name="agree-licence" required><span class="w-form-label">I have read the license and I agree.</span></label><span class="w-form-label">I keep my copyright. TLL can publish it with my name, never sells it, never passes it on, never feeds it to an AI.</span></label><label class="tll-pen-field tll-pen-field-inline"><label class="w-checkbox"><input class="w-checkbox-input" id="agree-people" type="checkbox" name="agree-people" data-name="agree-people" required><span class="w-form-label">If a person is the clear subject, they are fine with it being published.</span></label><span class="w-form-label">Crowd and street scenes where nobody is the focus are fine. If a child is the subject and not yours, please do not send it.</span></label></fieldset><div class="tll-pen-actions"><input class="tll-btn tll-btn-primary tll-pen-submit w-button" type="submit" data-wait="Sending…" value="Send it to the Lounge →"><span class="tll-pen-status">A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.</span></div></form><div class="w-form-done" tabindex="-1" role="region" aria-label="Html Form success"><div>Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.</div></div><div class="w-form-fail" tabindex="-1" role="region" aria-label="Html Form failure"><div>That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand.</div></div></div></div></section></div><div data-ms-content="anonymous"><section class="tll-section tll-bg-paper"><div class="tll-container inline-div-1"><div class="tll-eyebrow-rose">The Layover Lounge</div><h2 class="tll-display-l tll-text-midnight">Sign in to <em class="tll-text-rose">drop your photos</em>.</h2><p class="tll-lede tll-text-mid">A photo, not an essay. Three short steps, and a human on the other end.</p><div class="tll-photos-preview"><div class="tll-photos-preview-row"><div class="tll-photos-preview-word">Drop</div><p class="tll-photos-preview-text">Up to 12 photos, straight from your camera roll.</p></div><div class="tll-photos-preview-row"><div class="tll-photos-preview-word">Where</div><p class="tll-photos-preview-text">A country is enough. Add a caption if you feel like it.</p></div><div class="tll-photos-preview-row"><div class="tll-photos-preview-word">Send</div><p class="tll-photos-preview-text">Three promises about rights, your credit the way you want it, and a human looks at it before it goes up.</p></div><p class="tll-photos-public-line">Every photo in the Lounge was taken by a member and sent with their permission.</p></div><div class="inline-div-0"><a class="tll-btn tll-btn-primary" href="/login">Log in</a><a class="tll-btn tll-btn-ghost" href="/signup">Join the Travelers</a></div><div class="tll-photos-age">Free. Travelers are 16 and older.</div></div></section></div></main><footer class="mock-footer" data-mock="footer"><p>TLL Site Footer (component placeholder)</p></footer>
+<!-- site footer -->
+<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script>
+<script>
+  window.addEventListener('load',function(){
+    CookieConsent.run({
+      guiOptions:{consentModal:{layout:'box',position:'bottom left'},preferencesModal:{layout:'box'}},
+      categories:{necessary:{enabled:true,readOnly:true},analytics:{}},
+      language:{default:'en',translations:{en:{
+        consentModal:{title:'We use cookies',description:'We use necessary cookies to run the site, and optional analytics cookies to understand traffic and improve. You choose what to allow.',acceptAllBtn:'Accept all',acceptNecessaryBtn:'Reject all',showPreferencesBtn:'Manage preferences'},
+        preferencesModal:{title:'Cookie preferences',acceptAllBtn:'Accept all',acceptNecessaryBtn:'Reject all',savePreferencesBtn:'Save preferences',closeIconLabel:'Close',sections:[
+          {title:'Necessary',description:'Required for the site to function. Always on.',linkedCategory:'necessary'},
+          {title:'Analytics',description:'Helps us understand how visitors use the site (Google Analytics).',linkedCategory:'analytics'}
+        ]}
+      }}}
+    });
+  });
+</script>
+<script>
+(function(){
+  function wire(){
+    [].slice.call(document.querySelectorAll('[data-tll-cookie-prefs], a[href^="javascript:"]')).forEach(function(a){
+      if(!a.hasAttribute('data-tll-cookie-prefs')&&!/cookie/i.test(a.textContent))return;
+      a.setAttribute('href','#');
+      a.addEventListener('click',function(e){e.preventDefault();
+        if(window.CookieConsent&&CookieConsent.showPreferences)CookieConsent.showPreferences();});
+    });
+  }
+  if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
+  window.addEventListener('load',wire);
+})();
+</script>
+<script>
+/* TLL story share fixes (2026-07-30): wire the broken 'Copy link' button to the clipboard, and point LinkedIn/X share at the current story URL instead of the generic domain. */
+(function(){
+  function wire(){
+    [].slice.call(document.querySelectorAll('a[href^="https://javascript:"],a[href^="javascript:"]')).forEach(function(a){
+      if(!/copy/i.test(a.textContent))return;
+      a.setAttribute('href','#');a.setAttribute('role','button');
+      if(a.__tllCopy)return;a.__tllCopy=1;
+      a.addEventListener('click',function(e){e.preventDefault();
+        try{navigator.clipboard.writeText(location.href);var o=a.textContent;a.textContent='Link copied';setTimeout(function(){a.textContent=o;},1500);}catch(err){}});
+    });
+    var u=encodeURIComponent(location.href);
+    [].slice.call(document.querySelectorAll('a[href*="linkedin.com/sharing"],a[href*="linkedin.com/shareArticle"]')).forEach(function(a){a.setAttribute('href','https://www.linkedin.com/sharing/share-offsite/?url='+u);a.setAttribute('target','_blank');a.setAttribute('rel','noopener');});
+    [].slice.call(document.querySelectorAll('a[href*="twitter.com/intent"],a[href*="x.com/intent"]')).forEach(function(a){a.setAttribute('href','https://twitter.com/intent/tweet?url='+u+'&text='+encodeURIComponent(document.title));a.setAttribute('target','_blank');a.setAttribute('rel','noopener');});
+  }
+  if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
+  window.addEventListener('load',wire);
+})();
+</script>
+<style id="tll-pass-a">
+/* PASS A (2026-07-29): site-wide contrast + form cleanup */
+.tll-mypets-stat-num{color:#00857F !important;}
+.tll-bg-paper .tll-card .tll-text-bone,.tll-bg-blush .tll-card .tll-text-bone{color:#0D0F1A !important;}
+fieldset.tll-pen-fieldset{border:1px solid rgba(13,15,26,.08) !important;border-radius:14px;box-shadow:0 1px 3px rgba(13,15,26,.05);padding:24px !important;}
+.tll-pen-legend{float:left;width:100%;padding:0;margin:0 0 6px;border:0;}
+.tll-pen-legend + *{clear:both;}
+input[type=checkbox],input[type=radio]{accent-color:#F0507A;width:18px;height:18px;}
+.tll-pen-input.w-select,select.tll-pen-input,.tll-pen-fieldset select{min-height:50px !important;height:auto !important;line-height:1.4 !important;padding:13px 16px !important;background-color:#FBF7F0;}
+.tll-pen-checkbox,.tll-pen-radio{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
+.tll-pen-checkbox .w-checkbox,.tll-pen-radio .w-radio{width:auto !important;min-height:0;display:inline-flex;align-items:center;margin:0;padding-left:0;flex:0 0 auto;}
+.tll-pen-checkbox .w-checkbox-input,.tll-pen-radio .w-radio-input{margin:0 8px 0 0 !important;float:none;}
+.tll-pen-checkbox,.tll-pen-checkbox span,.tll-pen-checkbox label,.tll-pen-radio,.tll-pen-radio span,.tll-pen-radio label,.tll-pen-fieldset .w-form-label,.tll-pen-fieldset .w-checkbox span{color:#3a3a3a !important;}
+.tll-pen-checkbox a,.tll-pen-radio a,.tll-pen-fieldset .w-checkbox a{color:#F0507A !important;}
+</style>
+<style id="tll-core-v2-css">
+/* Ported from retired perf polish v7: member/anonymous blocks never flash, logo stays legible, 44px touch targets */
+[data-ms-content="members"]{display:none}
+html.ms-loaded [data-ms-content="anonymous"]{display:none}
+html.ms-loaded [data-ms-content="members"]{display:block}
+.tll-nav-logo,.tll-nav-logo *{color:#F7F4EE}
+.tll-nav-link,.tll-footer-link{min-height:44px}
+html,body{overflow-x:clip}
+</style>
+<style id="tll-forms-v2">
+/* TLL form system v2 (2026-09-25). The forms had drifted into four separate input families with three
+   border widths, three corner radii and two fonts that are not brand fonts, while checkboxes, radios,
+   selects and file inputs were still rendering as stock Webflow controls. That is what read as the old
+   design. One spec here, using the Claude Design tokens declared in the head. This is the last style
+   block in the document, so it wins the cascade without fighting anything upstream.
+   The two search bars and the pen-form checkbox layout are deliberately excluded; they are re-asserted
+   at the end of this block. */
+
+/* Text fields, textareas and selects */
+.tll-pen-input,.tll-auth-input,.tll-edit-input,
+.w-input:not(.tllsb-input):not(.tll-library-news-input):not([name="Search-the-library"]),
+textarea.w-input,select.w-select{
+  background-color:var(--tll-paper,#FDF9F3) !important;
+  color:var(--tll-ink,#0A0B14) !important;
+  border:1.5px solid rgba(10,11,20,.22) !important;
+  border-radius:10px !important;
+  padding:13px 16px !important;
+  font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;
+  font-size:16px !important;
+  line-height:1.45 !important;
+  width:100%;
+  box-shadow:none;
+}
+/* 16px above is deliberate: anything smaller makes iOS Safari zoom the page on focus. */
+.w-input:not(textarea):not(.tllsb-input):not([name="Search-the-library"]){min-height:48px !important}
+textarea.w-input,.tll-pen-textarea,.tll-edit-textarea{min-height:120px !important;resize:vertical}
+::placeholder{color:#8B857C !important;opacity:1}
+
+/* Native select keeps the OS chevron, which never matches. Draw the brand one instead. */
+select.w-select,select.tll-pen-input,select.tll-cc-in{
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%230A0B14' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat !important;
+  background-position:right 16px center !important;
+  background-size:13px 8px !important;
+  padding-right:44px !important;
+}
+
+/* Checkboxes and radios. Webflow hides the real input (opacity 0, z-index -1) and paints a div in its
+   place, so the accent-color rule in PASS A never reached the control anyone can actually see. */
+.w-checkbox-input,.w-radio-input{
+  width:18px !important;height:18px !important;
+  border:1.5px solid rgba(10,11,20,.38) !important;
+  background-color:#fff !important;
+  transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.w-checkbox-input{border-radius:5px !important}
+.w-radio-input{border-radius:50% !important}
+.w-checkbox-input.w--redirected-checked,.w-radio-input.w--redirected-checked{
+  background-color:var(--tll-teal-l,#067A79) !important;
+  border-color:var(--tll-teal-l,#067A79) !important;
+}
+.w-checkbox-input.w--redirected-checked{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5.2l3.6 3.4L11 1.4' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-size:11px 9px !important;background-position:center !important;background-repeat:no-repeat !important;
+}
+.w-radio-input.w--redirected-checked{box-shadow:inset 0 0 0 3.5px #fff !important}
+.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{
+  box-shadow:0 0 0 3px rgba(240,80,122,.28) !important;
+  border-color:var(--tll-rose,#F0507A) !important;
+}
+.w-checkbox .w-form-label,.w-radio .w-form-label{
+  font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;
+  font-size:15px;line-height:1.5;color:#3a3a3a;cursor:pointer;
+}
+
+/* File inputs: the stock grey Choose file button is the most dated control on the site. */
+input[type=file]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-size:14px;color:#3a3a3a}
+input[type=file]::file-selector-button{
+  background:var(--tll-ink,#0A0B14);color:#fff;border:0;border-radius:8px;
+  padding:10px 16px;margin-right:12px;cursor:pointer;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-weight:600;font-size:13px;
+  transition:background .15s ease;
+}
+input[type=file]::file-selector-button:hover{background:#1B1F33}
+
+/* Success and failure states ship as Webflow green and red boxes that belong to no brand. */
+.w-form-done{
+  background:rgba(6,122,121,.07) !important;border:1.5px solid var(--tll-teal-l,#067A79) !important;
+  border-radius:12px !important;padding:18px 20px !important;color:var(--tll-ink,#0A0B14) !important;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;
+}
+.w-form-fail{
+  background:rgba(214,56,89,.07) !important;border:1.5px solid var(--tll-rose-d,#D63859) !important;
+  border-radius:12px !important;padding:18px 20px !important;color:var(--tll-ink,#0A0B14) !important;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;
+}
+
+/* Submit controls. Shape is left to the existing tll-btn classes; only size and type are unified. */
+form input[type=submit].w-button{
+  min-height:48px;padding:13px 26px;font-size:16px;cursor:pointer;
+  font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;font-weight:700;
+}
+/* Teal on a light surface is #067A79. #00C9C8 is the dark-surface value and does not carry contrast here. */
+form.tll-home-search input[type=submit]{background:var(--tll-teal-l,#067A79) !important;color:#fff !important}
+form.tll-home-search input[type=submit]:hover{background:#05605F !important}
+
+input:disabled,textarea:disabled,select:disabled,.w-button:disabled{opacity:.55;cursor:not-allowed}
+
+/* Re-assert what this block must not disturb. */
+.tll-pen-checkbox .w-checkbox-input,.tll-pen-radio .w-radio-input{margin:0 8px 0 0 !important;float:none !important}
+form.tll-home-search input[type=text],.tllsb-input{border:0 !important;background:transparent !important;min-height:0 !important;border-radius:0 !important;padding:0 !important}
+
+@media(max-width:600px){
+  form input[type=submit].w-button{width:100%}
+}
+</style>
+<script id="tll-core-v2">
+/* TLL core v2 (2026-09-21). Replaces 11 retired registered scripts with only the behavior the site still needs:
+   lazy images, member-page H1 cleanup, founder avatar, Trip Ledger on /edit-profile, signed-in redirect off /login,
+   microchip fields hidden on pet forms. Copy fixes now live in the page source, not here. */
+(function(){
+  var P=location.pathname.replace(/\/$/,'')||'/';
+  function lazy(){[].forEach.call(document.querySelectorAll('img:not([loading])'),function(i,n){if(n>2){i.setAttribute('loading','lazy');i.setAttribute('decoding','async');}});}
+  function memberH1s(){if(!/^\/(account|profile|my-passport|my-pets|edit-profile|share|support)/.test(P))return;var h=document.querySelectorAll('h1');for(var i=1;i<h.length;i++){var x=document.createElement('h2');x.innerHTML=h[i].innerHTML;[].forEach.call(h[i].attributes,function(a){x.setAttribute(a.name,a.value);});h[i].parentNode.replaceChild(x,h[i]);}}
+  var AV='https://lh3.googleusercontent.com/d/1sbjvhecBGFMGuRblUoyI0BTN_h51p83J=w800';
+  function founderAvatar(){[].forEach.call(document.querySelectorAll('img[src*="F0507A"]'),function(img){if(img.dataset.tllAv)return;img.dataset.tllAv='1';img.src=AV;img.removeAttribute('srcset');img.style.objectFit='cover';if(!img.alt)img.alt='Nancy Carleton, founder of That Layover Life';});}
+  function petForms(){if(!/^\/(my-pets|edit-profile)/.test(P))return;[].forEach.call(document.querySelectorAll('input[name*="microchip" i],input[id*="microchip" i],input[placeholder*="microchip" i]'),function(inp){var w=inp.closest('.w-form-group,.tll-pen-field,div')||inp;w.style.display='none';});}
+  function loginRedirect(){if(P!=='/login'||!window.$memberstackDom)return;window.$memberstackDom.getCurrentMember().then(function(r){if(r&&r.data&&!sessionStorage.getItem('tllRedir')){sessionStorage.setItem('tllRedir','1');location.href='/account';}}).catch(function(){});}
+  var CONT=['Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];
+  function ledger(){
+    if(P!=='/edit-profile'||document.querySelector('.tll-cc-block'))return;var form=document.querySelector('form');if(!form)return;
+    var st=document.createElement('style');st.textContent='.tll-cc{margin:32px 0;padding:24px;background:#F7F1E8;border-radius:14px;border:1px solid rgba(13,15,26,.08)}.tll-cc h3{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:22px;color:#0A0B14;margin:0 0 8px}.tll-cc p{font-size:14px;color:#3a3a3a;margin:0 0 16px}.tll-cc-types{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tll-cc-type{padding:8px 16px;border:1px solid rgba(13,15,26,.15);border-radius:999px;cursor:pointer;font-size:13px;background:#fff;color:#0A0B14}.tll-cc-type.active{background:#0A0B14;color:#F7F1E8;border-color:#0A0B14}.tll-cc-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}.tll-cc-col{flex:1;min-width:180px}.tll-cc-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#067A79;display:block;margin-bottom:4px}.tll-cc-in{width:100%;padding:10px 14px;border:1px solid rgba(13,15,26,.15);border-radius:8px;font-size:15px;background:#fff;color:#0A0B14}.tll-cc-add{background:#D63859;color:#fff;border:0;padding:12px 24px;border-radius:999px;cursor:pointer;font-weight:600;font-size:14px}.tll-cc-add:hover{background:#F0507A}.tll-cc-msg{margin-top:12px;font-size:13px}.tll-cc-list{margin-top:16px;padding-top:16px;border-top:1px solid rgba(13,15,26,.08);font-size:13px;color:#3a3a3a}';document.head.appendChild(st);
+    var c=document.createElement('div');c.className='tll-cc tll-cc-block';
+    c.innerHTML='<h3>Log a place to your Trip Ledger</h3><p>Add a country, continent, region, or anywhere else worth logging. Saves to your account.</p><div class="tll-cc-types"><span class="tll-cc-type active" data-t="country">Country</span><span class="tll-cc-type" data-t="continent">Continent</span><span class="tll-cc-type" data-t="region">Region</span><span class="tll-cc-type" data-t="other">Other</span></div><div class="tll-cc-row" id="tllPlaceRow"></div><button type="button" class="tll-cc-add" id="tllAdd">Add to ledger →</button><div class="tll-cc-msg" id="tllMsg" role="status"></div><div class="tll-cc-list" id="tllList"></div><a href="/my-passport#my-map" style="display:inline-block;margin-top:16px;font-weight:600;color:#D63859">See your map →</a>';
+    form.parentNode.insertBefore(c,form);var cur='country';
+    function row(){var r=document.getElementById('tllPlaceRow');if(cur==='country')r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">Country</label><input class="tll-cc-in" id="tllName" placeholder="Bulgaria, Montenegro, Ghana"></div><div class="tll-cc-col"><label class="tll-cc-lbl" for="tllCity">City (optional)</label><input class="tll-cc-in" id="tllCity" placeholder="Sofia, Kotor, Accra"></div>';else if(cur==='continent')r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">Continent</label><select class="tll-cc-in" id="tllName"><option value="">Pick one</option>'+CONT.map(function(x){return'<option>'+x+'</option>';}).join('')+'</select></div>';else r.innerHTML='<div class="tll-cc-col"><label class="tll-cc-lbl" for="tllName">'+(cur==='region'?'Region or territory':'Place')+'</label><input class="tll-cc-in" id="tllName" placeholder="'+(cur==='region'?'Hong Kong SAR, Greenland, Faroe Islands':'Somewhere unlisted')+'"></div>';}
+    row();[].forEach.call(c.querySelectorAll('.tll-cc-type'),function(b){b.onclick=function(){cur=b.getAttribute('data-t');[].forEach.call(c.querySelectorAll('.tll-cc-type'),function(x){x.classList.remove('active');});b.classList.add('active');row();};});
+    function list(pl){var l=document.getElementById('tllList');if(!pl||!pl.length){l.innerHTML='<em>No places logged yet.</em>';return;}var g={};pl.forEach(function(p){var t=p.type||'country';(g[t]=g[t]||[]).push(p);});var h='';['country','continent','region','other'].forEach(function(t){if(!g[t])return;h+='<div style="margin-top:12px"><strong style="text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:#6B6660">'+({country:'Countries',continent:'Continents',region:'Regions',other:'Other'})[t]+' · '+g[t].length+'</strong></div>';g[t].forEach(function(p){var d=document.createElement('div');d.textContent=(p.name||'?')+(p.city?' · '+p.city:'');h+='<div>'+d.innerHTML+'</div>';});});l.innerHTML=h;}
+    var ms=window.$memberstackDom;if(ms)ms.getCurrentMember().then(function(r){if(r&&r.data)list((r.data.metaData||{}).places||[]);});
+    document.getElementById('tllAdd').onclick=function(){var n=((document.getElementById('tllName')||{}).value||'').trim(),ci=((document.getElementById('tllCity')||{}).value||'').trim(),m=document.getElementById('tllMsg');if(!n){m.textContent='Pick a place before saving.';return;}var ms=window.$memberstackDom;if(!ms){m.textContent='Still loading. Try again in a moment.';return;}m.textContent='Saving…';ms.getCurrentMember().then(function(r){if(!r||!r.data){m.textContent='Sign in to save your places.';return;}var pl=((r.data.metaData||{}).places||[]).concat([{type:cur,name:n,country:cur==='country'?n:null,city:ci||null,added:new Date().toISOString()}]);return ms.updateMember({metaData:{places:pl}}).then(function(){m.textContent='Logged. '+pl.length+' place'+(pl.length===1?'':'s')+' on your ledger.';var a=document.getElementById('tllName');if(a)a.value='';var b=document.getElementById('tllCity');if(b)b.value='';list(pl);});}).catch(function(e){m.textContent='Could not save: '+((e&&e.message)||e);});};
+  }
+  function run(){lazy();memberH1s();founderAvatar();petForms();ledger();}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',function(){lazy();founderAvatar();petForms();});
+  var n=0,iv=setInterval(function(){if(window.$memberstackDom){clearInterval(iv);loginRedirect();ledger();}else if(++n>40)clearInterval(iv);},250);
+  var mo=new MutationObserver(function(){clearTimeout(window.__tllAvT);window.__tllAvT=setTimeout(founderAvatar,200);});if(document.body)mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect();},8000);
+})();
+</script>
+<script id="tll-a11y-motion-v1">
+/* Accessibility + motion (2026-09-28): 3px focus ring and a Skip to content link; WCAG AA contrast repair for brand accent text (after load, never over photos); 44px buttons and 24px links on touch screens; subtle hero parallax on desktop only, off when reduced motion is set. */
+!function(){var t=document.createElement("style");function e(){if(!document.querySelector(".tll-skip")){var t=document.querySelector("main")||(document.querySelector("h1")||{}).closest&&document.querySelector("h1").closest("section,header,div");if(t){t.id||(t.id="tll-main"),t.hasAttribute("tabindex")||t.setAttribute("tabindex","-1");var e=document.createElement("a");e.className="tll-skip",e.href="#"+t.id,e.textContent="Skip to content",document.body.insertBefore(e,document.body.firstChild)}}}t.id="tll-a11y-focus-v1",t.textContent='a:focus-visible,button:focus-visible,[role=button]:focus-visible,summary:focus-visible,.w-button:focus-visible,.tll-btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:not([tabindex="-1"]):focus-visible{outline:3px solid #F0507A!important;outline-offset:2px!important}.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{outline:3px solid #F0507A!important;outline-offset:2px!important}.tll-skip{position:absolute;left:8px;top:-80px;z-index:100000;background:#0A0B14;color:#F7F1E8!important;padding:12px 18px;border-radius:6px;font:700 15px/1.2 "IBM Plex Sans Condensed",system-ui,sans-serif;text-decoration:none}.tll-skip:focus{top:8px}',document.head.appendChild(t),"loading"!==document.readyState?e():document.addEventListener("DOMContentLoaded",e)}();
+!function(){var t=document,r=function(r,n){return[].slice.call((n||t).querySelectorAll(r))};function n(t){var r=t&&t.match(/rgba?\(([^)]+)\)/);if(!r)return null;var n=r[1].split(",").map(parseFloat);return{r:n[0],g:n[1],b:n[2],a:n.length>3?n[3]:1}}function e(t){function r(t){return(t/=255)<=.03928?t/12.92:Math.pow((t+.055)/1.055,2.4)}return.2126*r(t.r)+.7152*r(t.g)+.0722*r(t.b)}window.tllCx={Q:r,C:n,L:e,R:function(t,r){var n=e(t),o=e(r);return(Math.max(n,o)+.05)/(Math.min(n,o)+.05)},B:function(t){for(var r=t;r&&1==r.nodeType;r=r.parentElement){var e=getComputedStyle(r);if("none"!=e.backgroundImage)return null;var o=n(e.backgroundColor);if(o&&o.a>.6)return{c:o,e:r}}return{c:{r:255,g:255,b:255}}},I:function(n){var e=n.getBoundingClientRect(),o=e.left+e.width/2,u=e.top+e.height/2;return r("img,video,picture",n.closest("section,header,article,footer")||t.body).some(function(t){var r=t.getBoundingClientRect();return r.width>200&&o>=r.left&&o<=r.right&&u>=r.top&&u<=r.bottom})},F:function(t){return t.g>t.r+40&&t.b>t.r+40?"t":t.r>t.g+60&&t.r>t.b+20?t.g>t.b+20?"a":"r":""}}}();
+!function(){var t=document,e=window.tllCx;if(e){var o=e.Q,i=e.C,r=e.L,a=e.R,n=e.B,l=e.I,f=e.F,c={t:"6,122,121",r:"200,50,91",a:"138,90,18","":"26,26,26"},s={t:"0,201,200",r:"255,112,147",a:"217,138,43","":"247,241,232"};"complete"==t.readyState?setTimeout(u,300):addEventListener("load",function(){setTimeout(u,300)})}function d(){var t=0;o("h1,h2,h3,h4,p,li,a,span,div,label,strong,button").forEach(function(e){if(!(t++>4e3)){for(var o=0,d=e.firstChild;d;d=d.nextSibling)if(3==d.nodeType&&d.nodeValue.trim()){o=1;break}if(o){var u=getComputedStyle(e);if("none"!=u.display&&"hidden"!=u.visibility&&0!=+u.opacity){var p=i(u.color),y=n(e);if(p&&y&&!(p.a<.4)){var m=parseFloat(u.fontSize),v=m>=24||u.fontWeight>=700&&m>=18.66?3:4.5;if(!(a(p,y.c)>=v||l(e))){if(y.e&&"r"==f(y.c)&&r(p)>.5)y.e.style.setProperty("background-color","#D63859","important"),e.style.setProperty("color","#fff","important");else{var b=r(y.c)>.4,h="rgb("+(b?c:s)[f(p)]+")";a(i(h),y.c)<v&&(h=b?"#1A1A1A":"#F7F1E8"),e.style.setProperty("color",h,"important")}e.dataset.tc=1}}}}}})}function u(){(window.requestIdleCallback||setTimeout)(d,{timeout:1500})}}();
+!function(){if(window.matchMedia&&matchMedia("(pointer: coarse)").matches){var t=/btn|button|cta|chip|pill|filter|tab/i;"complete"===document.readyState?e():addEventListener("load",function(){e(),setTimeout(e,2e3)})}function e(){[].forEach.call(document.querySelectorAll("a[href],button,input[type=submit],input[type=button],[role=button],select,summary"),function(e){if(!e.dataset.tllTap&&!e.closest("p,.w-richtext,figcaption,nav,.tll-nav-v1,[data-ms-content] nav")){var a=e.getBoundingClientRect();if(a.width&&a.height){var i=getComputedStyle(e);if("absolute"!==i.position&&"fixed"!==i.position){var n=/^(BUTTON|INPUT|SELECT|SUMMARY)$/.test(e.tagName)||t.test(e.className)||i.backgroundColor&&!/rgba\(0, 0, 0, 0\)|transparent/.test(i.backgroundColor)?44:24;if(a.height<n){"inline"===i.display&&(e.style.display="inline-block");var o=(n-a.height)/2;e.style.paddingTop=parseFloat(i.paddingTop)+o+"px",e.style.paddingBottom=parseFloat(i.paddingBottom)+o+"px"}if(a.width<n){"inline"===i.display&&(e.style.display="inline-block");var l=(n-a.width)/2;e.style.paddingLeft=parseFloat(i.paddingLeft)+l+"px",e.style.paddingRight=parseFloat(i.paddingRight)+l+"px"}e.dataset.tllTap=1}}}})}}();
+!function(){var e=window.matchMedia;if(e&&!e("(prefers-reduced-motion: reduce)").matches&&e("(min-width: 768px)").matches){var t=[].slice.call(document.querySelectorAll("[data-tll-parallax]"));if(t.length){t.forEach(function(e){var t=e.parentElement;t&&"visible"===getComputedStyle(t).overflow&&(t.style.overflow="hidden"),e.style.willChange="transform"});var n=!1;addEventListener("scroll",i,{passive:!0}),addEventListener("resize",i),a()}}function a(){n=!1;var e=innerHeight;t.forEach(function(t){var n=(t.parentElement||t).getBoundingClientRect();if(!(n.bottom<0||n.top>e)){var a=Math.max(-.06,Math.min(.06,.2*-n.top/(n.height||1)))*n.height;t.style.transform="translate3d(0,"+a.toFixed(1)+"px,0) scale(1.13)"}})}function i(){n||(n=!0,requestAnimationFrame(a))}}();
+</script>
+<script id="tll-ga4-events-v1">
+/* TLL GA4 events v1 (2026-10-12, approved by Nancy). Consent-gated: tllEv() sends nothing unless gtag exists AND CookieConsent reports the analytics category accepted. Events: story_submitted, newsletter_signup, sign_up, kofi_click, guide_checkout_click, affiliate_click. Only window.tllEv is global. Never sends full URLs or query strings. Memberstack is read only (onAuthChange); no data-ms-* or form markup is touched. */
+(function(){
+  function tllEv(n,p){try{if(window.gtag&&window.CookieConsent&&CookieConsent.acceptedCategory&&CookieConsent.acceptedCategory('analytics'))gtag('event',n,p||{});}catch(e){}}
+  try{window.tllEv=tllEv;}catch(e){}
+  function path(){try{return location.pathname.replace(/\/+$/,'')||'/';}catch(e){return '';}}
+  function up(el,test){try{for(var x=el;x&&x.nodeType===1;x=x.parentNode){if(test(x))return x;}}catch(e){}return null;}
+  function hasCls(x,c){return (' '+(x.className||'')+' ').indexOf(' '+c+' ')>-1;}
+  function vis(el){try{if(!el)return false;if(el.offsetParent!==null)return true;return window.getComputedStyle(el).display!=='none';}catch(e){return false;}}
+  function watchDone(form,name,params){
+    try{
+      var wrap=up(form,function(x){return hasCls(x,'w-form');});if(!wrap)return;
+      var done=wrap.querySelector('.w-form-done');if(!done||!window.MutationObserver)return;
+      var was=vis(done),fired=false;
+      var mo=new MutationObserver(function(){try{var now=vis(done);if(now&&!was&&!fired){fired=true;mo.disconnect();tllEv(name,params);}was=now;}catch(e){}});
+      mo.observe(done,{attributes:true,attributeFilter:['style']});
+    }catch(e){}
+  }
+  function isLinkOut(f){try{var w=up(f,function(x){return hasCls(x,'w-form');});return f.getAttribute('data-name')==='Link-out story'||f.getAttribute('name')==='Link-out story'||(w&&w.getAttribute('data-name')==='Link-out story')||!!f.querySelector('input[name="external-url"]');}catch(e){return false;}}
+  function forms(){
+    try{
+      var P=path(),fs=document.querySelectorAll('form');
+      for(var i=0;i<fs.length;i++){(function(f){
+        try{
+          var t=f.getAttribute('data-tll-form')||'';
+          var ms=!!up(f,function(x){return x.hasAttribute&&x.hasAttribute('data-ms-form');});
+          if(t==='submit-story'){if(P==='/submit')watchDone(f,'story_submitted',{type:'write'});return;}
+          if(isLinkOut(f)){if(P==='/submit')watchDone(f,'story_submitted',{type:'link_out'});return;}
+          if(t==='share-photos'||ms)return;
+          if(f.querySelector('#Search-the-library'))return;
+          var w=up(f,function(x){return hasCls(x,'w-form');});
+          if(w&&w.querySelector('input[type="email"]'))watchDone(f,'newsletter_signup',{location:location.pathname});
+        }catch(e){}
+      })(fs[i]);}
+    }catch(e){}
+  }
+  function signUp(){
+    try{
+      if(path()!=='/signup')return;
+      var k=0,iv=setInterval(function(){try{
+        var d=window.$memberstackDom;
+        if(d&&typeof d.onAuthChange==='function'){clearInterval(iv);
+          d.onAuthChange(function(m){try{
+            var mem=(m&&typeof m==='object'&&'data' in m)?m.data:m;
+            if(!mem||path()!=='/signup'||sessionStorage.getItem('tllSignupEv'))return;
+            sessionStorage.setItem('tllSignupEv','1');tllEv('sign_up',{method:'memberstack'});
+          }catch(e){}});
+        }else if(++k>40)clearInterval(iv);
+      }catch(e){clearInterval(iv);}},250);
+    }catch(e){}
+  }
+  function host(a){try{return /^https?:$/.test(a.protocol)?String(a.hostname||'').toLowerCase():'';}catch(e){return '';}}
+  function clicks(){
+    try{document.addEventListener('click',function(ev){try{
+      var a=up(ev.target,function(x){return x.tagName==='A'&&x.hasAttribute('href');});if(!a)return;
+      var href=a.getAttribute('href')||'',h=host(a);
+      if(href.indexOf('ko-fi.com')>-1)tllEv('kofi_click',{link_domain:'ko-fi.com'});
+      if(h&&a.host!==location.host&&up(a,function(x){return x.id==='guide'||(x.hasAttribute&&x.hasAttribute('data-tll-paw-guide'));}))tllEv('guide_checkout_click',{link_domain:h});
+      if(/(^|\s)sponsored(\s|$)/i.test(a.getAttribute('rel')||'')||a.hasAttribute('data-tll-affiliate'))tllEv('affiliate_click',{link_domain:h,story:location.pathname});
+    }catch(e){}},true);}catch(e){}
+  }
+  function setup(){forms();signUp();clicks();}
+  try{if(document.readyState!=='loading')setup();else document.addEventListener('DOMContentLoaded',setup);}catch(e){}
+})();
+</script>
+<!-- page footer (new) -->
+<style id="tll-photos-v3">/* tll-photos-v3 (13 Oct 2026). Page block for /share-photos, replaces <style id="tll-form-fix">. Draft only, never published by this stage.
+   Every rule is scoped to .tll-photos-hero (section …8679), .tll-photos-section (section …8718), [data-tll-form=share-photos] (form …8710),
+   .tll-photos-form (the FormWrapper …870f: counter reset, the .is-plain switch and the two Webflow boxes it holds) or, for row 30,
+   [data-ms-content=anonymous] .tll-container (the signed-out gate). The class and id contract lives in contract.md next to this file.
+   Tokens (proposal section 8): Paper #FDF9F3 page and inputs. Ink #0A0B14 text. Line #E0DACE borders. Cream #F7F1E8 dragover fill.
+   Note tint #F0EBE0 success box. Rose text #C8325B title word, links, errors. Rose button #D63859 with white text, hover #C8325B.
+   Teal #067A79 labels and checked states. Teal #00C9C8 focus halo. Drop-zone dash #A08A60. Glyph kraft #c9b89a. Muted #6B6660. Radius 4px everywhere.
+   !important appears only where a site block already uses it on the same property (each one is listed in the build record). */
+
+/* 1. One column: the hero loses its dark band, both sections lose their padding, the containers carry it. */
+section.tll-section-dark.tll-photos-hero{background-color:#FDF9F3;background-image:none;color:#0A0B14;padding:0 !important}
+section.tll-section.tll-photos-section{background-color:#FDF9F3;padding:0}
+section.tll-photos-hero .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:9vh 28px 0}
+section.tll-photos-section .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:0 28px 12vh}
+.tll-photos-hero[data-tll-reveal],.tll-photos-section[data-tll-reveal]{transition-delay:0s}
+.tll-photos-hero .tll-text-bone{color:#0A0B14}
+
+/* 2. Hero type: back link, eyebrow, title, lede. */
+.tll-photos-hero a.tll-eyebrow-teal{display:inline-block;min-height:24px;margin:0 0 16px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px !important;text-transform:uppercase;text-decoration:none;text-underline-offset:3px}
+.tll-photos-hero a.tll-eyebrow-teal:focus-visible{text-decoration:underline}
+.tll-photos-hero div.tll-photos-eyebrow{margin:0 0 10px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:3px;text-transform:uppercase}
+.tll-photos-hero h1.tll-photos-title{max-width:none;margin:0 0 14px;padding:0 0 4px;color:#0A0B14;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(34px,4.2vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+.tll-photos-hero h1.tll-photos-title em{color:#C8325B;font-style:italic}
+.tll-photos-hero p.tll-photos-sub{max-width:56ch;margin:0 0 26px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px !important;font-weight:400;line-height:1.55}
+
+/* 3. The form: body type, counter, fieldset reset, group labels. */
+.tll-photos-section .tll-photos-form{display:block;width:100%;margin:0}
+.tll-photos-form form,[data-tll-form=share-photos]{counter-reset:tll-step;margin:0;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55}
+[data-tll-form=share-photos] [hidden],[data-tll-form=share-photos] span.tll-pen-error[hidden],[data-tll-form=share-photos] ul.tll-photos-list[hidden]{display:none}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset{min-width:0;margin:0 0 18px;padding:0 !important;border:0 !important;border-radius:0;background:transparent;box-shadow:none}
+[data-tll-form=share-photos] .tll-pen-legend{float:none;display:block;width:auto;margin:0 0 8px;padding:0;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase}
+[data-tll-form=share-photos] .tll-pen-legend + *{clear:none}
+[data-tll-form=share-photos] > fieldset > legend.tll-pen-legend::before,
+[data-tll-form=share-photos] .tll-pen-promises > .tll-pen-legend::before,
+[data-tll-form=share-photos] > fieldset > div.tll-pen-legend::before,
+[data-tll-form=share-photos] > div.tll-pen-legend::before{counter-increment:tll-step;content:counter(tll-step,decimal-leading-zero) " · "}
+[data-tll-form=share-photos].is-plain .tll-pen-legend::before,.tll-photos-form.is-plain .tll-pen-legend::before{content:none;counter-increment:none}
+[data-tll-form=share-photos] .tll-pen-help{margin:0 0 8px;padding:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;font-style:normal;line-height:1.5}
+[data-tll-form=share-photos] .tll-pen-helptext{display:block;margin:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;font-style:normal;line-height:1.5}
+
+/* 4. Drop zone (label …8688) and the hidden file input (…8687). */
+[data-tll-form=share-photos] label.tll-photos-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;margin:0;padding:30px;border:2px dashed #A08A60;border-radius:4px;background-color:#fff;background-image:none;color:#6B6660;text-align:center;cursor:pointer;transition:border-color 150ms ease,background-color 150ms ease}
+[data-tll-form=share-photos] label.tll-photos-drop.is-dragover{border-color:#067A79;background-color:#F7F1E8}
+[data-tll-form=share-photos] label.tll-photos-drop.is-invalid,[data-tll-form=share-photos] label.tll-photos-drop:has(> input[aria-invalid=true]){border-color:#C8325B}
+[data-tll-form=share-photos] .tll-photos-drop-icon{margin:0 0 8px;color:#c9b89a;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:26px;font-weight:300;line-height:1}
+[data-tll-form=share-photos] .tll-photos-drop-headline{margin:0 0 6px;color:#6B6660;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase}
+[data-tll-form=share-photos] .tll-photos-drop-sub{max-width:400px;margin:0 0 6px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] .tll-photos-drop-hint{margin:0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;font-style:normal;line-height:1.5}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop input.tll-photos-drop-input{position:absolute;width:1px;height:1px;min-height:0 !important;margin:-1px;padding:0 !important;border:0 !important;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[data-tll-form=share-photos] .tll-photos-vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* 5. File list, count line, per-file errors (script-built, row 13). Rows enter with a 180ms rise and a 40ms stagger; removal is instant. The preview img fills the 64px tile (object-fit cover) and the tile clips it; without these two rules the img paints at its natural size. */
+[data-tll-form=share-photos] ul.tll-photos-list{display:grid;gap:6px;list-style:none;margin:10px 0 0;padding:0}
+[data-tll-form=share-photos] li.tll-photos-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:66px;margin:0;padding:0 4px 0 0;border:1px solid #E0DACE;border-radius:4px;background:#fff;animation:tll-photos-row-in 180ms cubic-bezier(.23,1,.32,1) both;animation-delay:calc(var(--tll-i,0) * 40ms)}
+@keyframes tll-photos-row-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+[data-tll-form=share-photos] .tll-photos-thumb{display:block;width:64px;height:64px;overflow:hidden;border-radius:3px 0 0 3px;background:#F7F1E8}
+[data-tll-form=share-photos] .tll-photos-thumb > img{display:block;width:100%;height:100%;object-fit:cover}
+[data-tll-form=share-photos] .tll-photos-thumb.is-blank{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;color:#6B6660;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.2;letter-spacing:1px;text-transform:uppercase;text-align:center}
+[data-tll-form=share-photos] .tll-photos-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+[data-tll-form=share-photos] .tll-photos-name{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#0A0B14;font-size:15px;font-weight:600;line-height:1.3}
+[data-tll-form=share-photos] .tll-photos-size{color:#6B6660;font-size:13px;line-height:1.3}
+[data-tll-form=share-photos] button.tll-photos-remove{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin:0;padding:0 12px;border:0;border-radius:4px;background:transparent;color:#C8325B;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:600;line-height:1;letter-spacing:0;text-transform:none;cursor:pointer;-webkit-appearance:none;appearance:none}
+[data-tll-form=share-photos] button.tll-photos-remove:focus-visible{text-decoration:underline}
+[data-tll-form=share-photos] p.tll-photos-count{margin:8px 0 0;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] .tll-photos-file-errors{margin:0;padding:0}
+[data-tll-form=share-photos] p.tll-photos-file-error{margin:6px 0 0;color:#C8325B;font-size:13px;line-height:1.5}
+
+/* 6. Fields: label above, 6px gap, Paper input with a Line edge, 4px radius, 48px tall, 16px type (16px stops iOS zooming on focus). */
+[data-tll-form=share-photos] .tll-pen-grid-2{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:0 0 16px}
+[data-tll-form=share-photos] label.tll-pen-field{display:flex;flex-direction:column;align-items:stretch;gap:6px;margin:0 0 16px;padding:0;border:0;font-size:15px;line-height:1.55}
+[data-tll-form=share-photos] .tll-pen-grid-2 > label.tll-pen-field{margin:0}
+[data-tll-form=share-photos] .tll-pen-label{display:block;margin:0;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none}
+/* tll-forms-v2 reaches the inputs through .w-input:not(…):not(…):not(…), specificity (0,4,0) with !important, so these selectors carry (0,4,2) and more. */
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input{display:block;width:100%;min-height:48px !important;margin:0;border:1px solid #E0DACE !important;border-radius:4px !important;background-color:#FDF9F3 !important;color:#0A0B14 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:16px !important;line-height:1.45 !important;box-shadow:none;transition:none}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field select.tll-pen-input{height:auto !important;min-height:48px !important;line-height:1.45 !important;background-color:#FDF9F3 !important;padding-right:44px !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input:focus{border-color:#E0DACE !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field .tll-pen-input[aria-invalid=true]{border:1.5px solid #C8325B !important}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field input[name=year].tll-pen-input{width:160px;max-width:100%}
+[data-tll-form=share-photos] .tll-pen-panel .tll-pen-legend{margin:0 0 6px;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;letter-spacing:0;text-transform:none}
+[data-tll-form=share-photos] .tll-pen-panel .tll-pen-legend::before{content:none;counter-increment:none}
+[data-tll-form=share-photos] .tll-pen-panel fieldset.tll-pen-fieldset{margin:0}
+[data-tll-form=share-photos] .tll-pen-panel .tll-pen-help{margin:0 0 10px}
+
+/* 7. Inline errors (row 23): a Rose line right after the wrapping label, a Rose edge on the control or its card. */
+[data-tll-form=share-photos] span.tll-pen-error{display:block;margin:-10px 0 16px;color:#C8325B;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] span.tll-pen-error:empty{display:none}
+[data-tll-form=share-photos] .tll-pen-grid-2 > label.tll-pen-field + span.tll-pen-error{margin:-10px 0 0}
+[data-tll-form=share-photos] label.tll-photos-drop + span.tll-pen-error{margin:8px 0 0}
+[data-tll-form=share-photos] label.tll-pen-field-inline + span.tll-pen-error{margin:-2px 0 10px}
+[data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-pen-field.is-invalid .tll-pen-input{border:1.5px solid #C8325B !important}
+
+/* 8. Credit radios (row 19): three cards in a row, Ink edge on the checked one, credited-as line under the row. */
+[data-tll-form=share-photos] .tll-pen-radios{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-radio{display:flex;flex-direction:row;align-items:center;gap:10px;min-height:48px;margin:0;padding:0 14px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.3;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-radio:has(input:checked){border-color:#0A0B14}
+[data-tll-form=share-photos] label.tll-pen-radio > span{margin:0;font-size:15px;line-height:1.3}
+[data-tll-form=share-photos] p.tll-credited-as{margin:-8px 0 16px;color:#6B6660;font-size:13px;line-height:1.5}
+
+/* 9. Checkboxes and radios, native or Webflow custom: 20px, teal when checked, no halo on a mouse click. */
+[data-tll-form=share-photos] input[type=checkbox],[data-tll-form=share-photos] input[type=radio]{flex:none;width:20px !important;height:20px !important;min-width:20px;margin:0;accent-color:#067A79;cursor:pointer}
+[data-tll-form=share-photos] input[type=radio]{border-radius:50%}
+[data-tll-form=share-photos] input[type=checkbox]{border-radius:4px}
+[data-tll-form=share-photos] .w-checkbox-input,[data-tll-form=share-photos] .w-radio-input{float:none;flex:none;width:20px !important;height:20px !important;margin:0 !important;border:1.5px solid rgba(10,11,20,.38) !important;background-color:#fff !important;transition:none}
+[data-tll-form=share-photos] .w-checkbox-input{border-radius:4px !important}
+[data-tll-form=share-photos] .w-checkbox-input.w--redirected-checked,[data-tll-form=share-photos] .w-radio-input.w--redirected-checked{background-color:#067A79 !important;border-color:#067A79 !important}
+[data-tll-form=share-photos] .w-checkbox-input.w--redirected-focus,[data-tll-form=share-photos] .w-radio-input.w--redirected-focus{border-color:#0A0B14 !important;box-shadow:0 0 0 6px #00C9C8 !important}
+[data-tll-form=share-photos] input[type=checkbox]:focus:not(:focus-visible),[data-tll-form=share-photos] input[type=radio]:focus:not(:focus-visible),[data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit:focus:not(:focus-visible){box-shadow:none !important;outline:none}
+
+/* 10. Disclosures (rows 15 and 20): a text button with a ::after chevron (the script inserts no chevron element), a grid-row panel that opens over 200ms and closes in 150ms. */
+[data-tll-form=share-photos] button.tll-pen-disclosure{display:inline-flex;align-items:center;gap:9px;min-height:44px;margin:0;padding:0 2px;border:0;border-radius:4px;background:transparent;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:1.5px;text-transform:uppercase;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none}
+[data-tll-form=share-photos] button.tll-pen-disclosure::after{content:"";display:block;flex:none;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-1px) rotate(-45deg);transform-origin:50% 50%;transition:transform 150ms cubic-bezier(.23,1,.32,1)}
+[data-tll-form=share-photos] button.tll-pen-disclosure[aria-expanded=true]::after{transform:translateY(-2px) rotate(45deg);transition-duration:200ms}
+[data-tll-form=share-photos] p.tll-pen-disclosure-help{margin:0 0 8px;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] .tll-pen-panel{display:grid;grid-template-rows:0fr;visibility:hidden;opacity:0;margin:0;transition:grid-template-rows 150ms cubic-bezier(.23,1,.32,1),opacity 150ms cubic-bezier(.23,1,.32,1),visibility 0s linear 200ms}
+[data-tll-form=share-photos] .tll-pen-panel.is-open{grid-template-rows:1fr;visibility:visible;opacity:1;transition:grid-template-rows 200ms cubic-bezier(.23,1,.32,1),opacity 200ms cubic-bezier(.23,1,.32,1),visibility 0s}
+[data-tll-form=share-photos] .tll-pen-panel-inner{min-height:0;overflow:hidden}
+[data-tll-form=share-photos] .tll-pen-panel-inner > :first-child{margin-top:14px}
+
+/* 11. Where else it may appear (row 20): the old Syndication label becomes the help line, each row 44px with one label, second spans hidden. tll-pass-a gives .w-checkbox flex:0 0 auto, so the page lets it shrink (flex:1 1 auto, min-width:0) and the sentence wraps inside the column. */
+[data-tll-form=share-photos] label.tll-pen-field:has(> .tll-pen-checkboxes) > .tll-pen-label,[data-tll-form=share-photos] .tll-pen-panel > .tll-pen-panel-inner > label.tll-pen-field > .tll-pen-label{color:#6B6660;font-size:13px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field:has(> .tll-pen-checkboxes){gap:4px;margin:0 0 16px;cursor:default}
+[data-tll-form=share-photos] .tll-pen-checkboxes{display:flex;flex-direction:column;gap:0;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-checkbox{display:flex;flex-direction:row;align-items:center;gap:0;min-height:44px;margin:0;padding:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox{display:flex;flex-direction:row;align-items:center;gap:11px;flex:1 1 auto;min-width:0;width:auto !important;min-height:44px;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox::before,[data-tll-form=share-photos] label.tll-pen-checkbox > .w-checkbox::after{display:none}
+[data-tll-form=share-photos] label.tll-pen-checkbox .w-form-label{min-width:0;margin:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-checkbox > span:not(.w-form-label){display:none}
+
+/* 12. Three promises (row 21): each row one Paper card, box top-aligned, bold first line, 13px explanation, Rose links. */
+[data-tll-form=share-photos] .tll-pen-promises{margin:14px 0 0;padding:0}
+[data-tll-form=share-photos] p.tll-photos-summary{margin:0 0 10px;color:#6B6660;font-size:13px;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field-inline{display:flex;flex-direction:column;align-items:stretch;gap:4px;min-height:44px;margin:0 0 8px;padding:12px 14px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-field-inline.is-invalid,[data-tll-form=share-photos] label.tll-pen-field-inline:has(input[aria-invalid=true]){border-color:#C8325B}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox{display:flex;flex-direction:row;align-items:flex-start;gap:11px;width:auto;min-height:0;margin:0;padding:0}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox::before,[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox::after{display:none}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox > input,[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox > .w-checkbox-input{margin-top:1px !important}
+[data-tll-form=share-photos] label.tll-pen-field-inline > .w-checkbox .w-form-label{display:block;margin:0;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:600;line-height:1.4;cursor:pointer}
+[data-tll-form=share-photos] label.tll-pen-field-inline > span{display:block;margin:0 0 0 31px;color:#3a3a3a;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;line-height:1.5}
+[data-tll-form=share-photos] label.tll-pen-field-inline a{color:#C8325B;text-decoration:underline;text-underline-offset:2px}
+
+/* 13. Send (row 24), footnote (row 25), the two Webflow boxes (rows 26 and 27). tll-forms-v2 sizes the button through form input[type=submit].w-button, (0,2,2), so the page selector carries (0,3,1). */
+[data-tll-form=share-photos] .tll-pen-actions{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:0}
+[data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit{display:block;width:100%;min-height:48px;margin:20px 0 0;padding:13px 20px;border:0;border-radius:4px;background-color:#D63859;color:#fff;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:700;line-height:1.3;letter-spacing:0;text-align:center;cursor:pointer;-webkit-appearance:none;appearance:none;transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease,opacity 150ms ease !important}
+[data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit:active{transform:scale(.97) !important}
+[data-tll-form=share-photos].is-sending .tll-pen-actions input.tll-pen-submit{opacity:.7;cursor:wait}
+[data-tll-form=share-photos] .tll-pen-status{display:block;margin:12px 0 0;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:12px;font-weight:400;font-style:normal;line-height:1.5;text-align:center}
+[data-tll-form=share-photos] .tll-pen-status.is-error{color:#C8325B}
+.tll-photos-form .w-form-done{margin:0;padding:16px !important;border:0 !important;border-radius:4px !important;background:#F0EBE0 !important;color:#0A0B14 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:15px !important;line-height:1.55;text-align:left;opacity:1;transition:opacity 200ms cubic-bezier(.23,1,.32,1)}
+@starting-style{.tll-photos-form .w-form-done{opacity:0}}
+.tll-photos-form .w-form-done:focus{outline:none}
+.tll-photos-form .w-form-fail{margin:16px 0 0;padding:16px !important;border:1px solid #C8325B !important;border-radius:4px !important;background:transparent !important;color:#C8325B !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important;font-size:15px !important;line-height:1.55;text-align:left}
+
+/* 14. Hover, only with a real pointer. */
+@media (hover:hover) and (pointer:fine){
+  .tll-photos-hero a.tll-eyebrow-teal:hover{text-decoration:underline}
+  [data-tll-form=share-photos] label.tll-photos-drop:hover{border-color:#0A0B14}
+  [data-tll-form=share-photos] button.tll-photos-remove:hover{text-decoration:underline}
+  [data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit:hover{background-color:#C8325B;transform:none}
+  [data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-primary:hover{background-color:#C8325B;color:#fff}
+  [data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-ghost:hover{background-color:#F7F1E8}
+}
+
+/* 15. Focus (row 28): Ink outline, teal halo. !important on outline-color only, to beat the ring the site a11y script injects into the head. */
+.tll-photos-hero a:focus-visible,
+[data-tll-form=share-photos] a:focus-visible,
+[data-tll-form=share-photos] button:focus-visible,
+[data-tll-form=share-photos] input:focus-visible,
+[data-tll-form=share-photos] select:focus-visible,
+[data-tll-form=share-photos] label.tll-photos-drop:focus-within,
+[data-ms-content=anonymous] .tll-container a:focus-visible{outline:3px solid #0A0B14;outline-color:#0A0B14 !important;outline-offset:2px;box-shadow:0 0 0 6px #00C9C8}
+/* tll-craft-polish paints a 3px rose halo on .w-input:focus with !important; on text inputs and selects the teal halo needs the same weight. */
+[data-tll-form=share-photos] input:focus-visible,[data-tll-form=share-photos] select:focus-visible{box-shadow:0 0 0 6px #00C9C8 !important}
+
+/* 16. Signed-out gate (row 30): the same column, scale and buttons, start-aligned like the signed-in column (the Designer classes inline-div-1 and inline-div-0 center it); three preview rows, the member line, the age line. */
+[data-ms-content=anonymous] > section.tll-section{background-color:#FDF9F3;padding:0}
+[data-ms-content=anonymous] > section.tll-section > .tll-container{display:flow-root;width:100%;max-width:640px;margin:0 auto;padding:9vh 28px 12vh;text-align:start;color:#0A0B14;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-eyebrow-rose{margin:0 0 10px;padding:0;color:#067A79 !important;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:3px;text-transform:uppercase}
+/* The site h2 rule carries seven :not() parts and !important; the repeated class is the only way to the title scale without touching site code. */
+[data-ms-content=anonymous] .tll-container h2.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l.tll-display-l{max-width:none;margin:0 0 14px;padding:0 0 4px;color:#0A0B14;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(34px,4.2vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+[data-ms-content=anonymous] .tll-container h2 em{color:#C8325B;font-style:italic}
+[data-ms-content=anonymous] .tll-container p.tll-lede{max-width:56ch;margin:0 0 22px;color:#6B6660;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:400;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview{display:grid;gap:12px;margin:0 0 22px;padding:18px 0 0;border-top:1px solid #E0DACE}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-row{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:14px;align-items:baseline;margin:0}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-word{margin:0;color:#067A79;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;font-weight:600;line-height:1.5;letter-spacing:1.5px;text-transform:uppercase}
+[data-ms-content=anonymous] .tll-container .tll-photos-preview-text{margin:0;color:#0A0B14;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .tll-photos-public-line{max-width:56ch;margin:0 0 24px;color:#0A0B14;font-size:15px;line-height:1.55}
+[data-ms-content=anonymous] .tll-container .inline-div-0,[data-ms-content=anonymous] .tll-container > div:has(> a.tll-btn){display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:stretch;gap:10px;margin:0}
+[data-ms-content=anonymous] .tll-container a.tll-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin:0;padding:12px 22px;border-radius:4px;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:0;text-decoration:none}
+[data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-primary{border:0;background-color:#D63859;color:#fff}
+[data-ms-content=anonymous] .tll-container a.tll-btn.tll-btn-ghost{border:1.5px solid #0A0B14;background-color:transparent;color:#0A0B14}
+[data-ms-content=anonymous] .tll-container .tll-photos-age{margin:14px 0 0;color:#6B6660;font-size:12px;line-height:1.5}
+
+/* 17. Phone: 16px gutters, 48px top, one column of radios, stacked gate buttons. */
+@media (max-width:480px){
+  section.tll-photos-hero .tll-container{padding:48px 16px 0}
+  section.tll-photos-section .tll-container{padding:0 16px 64px}
+  [data-tll-form=share-photos] .tll-pen-radios{grid-template-columns:minmax(0,1fr)}
+  [data-ms-content=anonymous] > section.tll-section > .tll-container{padding:48px 16px 64px}
+  [data-ms-content=anonymous] .tll-container .inline-div-0,[data-ms-content=anonymous] .tll-container > div:has(> a.tll-btn){flex-direction:column;align-items:stretch}
+  [data-ms-content=anonymous] .tll-container a.tll-btn{width:100%}
+}
+
+/* 18. Reduced motion: no transform anywhere, panels and chevron instant, the fades that remain at 150ms or less. */
+@media (prefers-reduced-motion:reduce){
+  [data-tll-form=share-photos] label.tll-photos-drop{transition:border-color 150ms ease,background-color 150ms ease}
+  [data-tll-form=share-photos] li.tll-photos-row{animation:none}
+  [data-tll-form=share-photos] button.tll-pen-disclosure::after,[data-tll-form=share-photos] button.tll-pen-disclosure[aria-expanded=true]::after{transition:none}
+  [data-tll-form=share-photos] .tll-pen-panel,[data-tll-form=share-photos] .tll-pen-panel.is-open{transition-duration:0s !important;transition-delay:0s !important}
+  [data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit{transition:background-color 150ms ease,opacity 150ms ease !important}
+  [data-tll-form=share-photos] .tll-pen-actions input.tll-pen-submit:active{transform:none !important}
+  .tll-photos-form .w-form-done{transition:opacity 150ms ease}
+}
+</style>
+<script id="tll-photos-form-v1">/* tll-photos-form-v1 · /share-photos (proposal approved by Nancy 13 Oct 2026, "go with defaults").
+   One progressive script for the Lounge upload form. Every step below is its own try block and is numbered after the
+   script order in section 8 of the proposal; the row numbers are the change log in section 3. Every structural change is a
+   runtime reorder of existing nodes (appendChild, insertBefore): no input, label, id, name, data-ms-* attribute or form
+   attribute is removed, renamed or re-bound. Selection is by input name, data attribute and the unique ids only; the
+   duplicated "field", "radio" and "checkbox" ids are never used. Memberstack is read once with getCurrentMember and never
+   written. Without the script the page is the full form in Designer order with native validation. */
+(function(){
+  if(window.__tllPhotosForm) return; window.__tllPhotosForm='v1';
+  var d=document;
+  function el(tag,attrs,txt){var e=d.createElement(tag); if(attrs){for(var k in attrs){e.setAttribute(k,attrs[k]);}} if(txt!=null) e.textContent=txt; return e;}
+  function after(ref,node){ ref.parentNode.insertBefore(node,ref.nextSibling); }
+  /* the child of container that holds node (the label around an input, the row around a radio) */
+  function topIn(node,container){ var n=node; while(n&&n.parentNode!==container) n=n.parentNode; return n; }
+  function addRef(inp,attr,id){ var v=(inp.getAttribute(attr)||'').split(/\s+/).filter(Boolean); if(v.indexOf(id)<0){ v.push(id); inp.setAttribute(attr,v.join(' ')); } }
+  function dropRef(inp,attr,id){ var v=(inp.getAttribute(attr)||'').split(/\s+/).filter(function(x){return x&&x!==id;}); if(v.length) inp.setAttribute(attr,v.join(' ')); else inp.removeAttribute(attr); }
+  function val(i){ return i&&i.value ? i.value.trim() : ''; }
+
+  function run(){
+    var form=d.querySelector('form[data-tll-form="share-photos"]'); if(!form) return;
+    function byName(n){ return form.querySelector('[name="'+n+'"]'); }
+
+    /* refs, all anchored on input names */
+    var photos=byName('photos'), country=byName('country'), city=byName('city'), year=byName('year'), trip=byName('trip-type'),
+        caption=byName('caption'), pets=byName('pets-along'), named=form.querySelector('input[name="credit-mode"][value="named"]'),
+        social=byName('syndication-social'), rotation=byName('syndication-rotation'), press=byName('syndication-press'),
+        rights=byName('agree-rights'), licence=byName('agree-licence'), people=byName('agree-people'),
+        submit=form.querySelector('input[type="submit"]');
+    var photosFs=photos&&photos.closest('fieldset'), storyFs=country&&country.closest('fieldset'), petFs=pets&&pets.closest('fieldset'),
+        creditFs=named&&named.closest('fieldset');
+    var dropZone=photos&&topIn(photos,photosFs);                                  /* …8688, the label around the file input */
+    var grid=country&&topIn(country,storyFs);                                     /* …86b5 */
+    var countryLabel=grid&&topIn(country,grid), cityLabel=grid&&topIn(city,grid), yearLabel=grid&&topIn(year,grid), tripLabel=grid&&topIn(trip,grid);
+    var captionLabel=caption&&topIn(caption,storyFs);                             /* …86bb */
+    var creditLabel=named&&topIn(named,creditFs), radiosRow=creditLabel&&topIn(named,creditLabel);      /* …86dd, …86dc */
+    var shareLabel=social&&topIn(social,creditFs), checksRow=shareLabel&&topIn(social,shareLabel);     /* …86fd, …86fc */
+    var rightsLabel=rights&&topIn(rights,creditFs), licenceLabel=licence&&topIn(licence,creditFs), peopleLabel=people&&topIn(people,creditFs);
+    var promisesLabel=rightsLabel&&rightsLabel.previousElementSibling;           /* 455964ef-…2f04 */
+    if(promisesLabel&&promisesLabel.tagName!=='DIV') promisesLabel=null;
+    var status=submit&&submit.nextElementSibling; if(!status||status.tagName!=='SPAN') status=form.querySelector('.tll-pen-status');
+    var foot=status?status.textContent:'';
+    var detail, share, sum, errs={}, kept=[];
+
+    /* 1 · row 18: placeholders go; the label and the help line carry the guidance */
+    try{ [photos,country,city,year,caption,pets].forEach(function(i){ if(i) i.removeAttribute('placeholder'); }); }catch(e){}
+
+    /* 2 · rows 12 and 17: the photo input is required and asks for JPG or WebP; the year is optional and numeric on phones */
+    try{ photos.required=true; photos.setAttribute('accept','image/jpeg,image/webp'); if(year){ year.required=false; year.setAttribute('inputmode','numeric'); } }catch(e){}
+
+    /* 3 · rows 19 and 20: a click on the heading text of the credit and syndication labels must not tick the first control */
+    try{
+      var guard=function(label,row){ label.addEventListener('click',function(ev){ if(!row.contains(ev.target)) ev.preventDefault(); }); };
+      guard(creditLabel,radiosRow); guard(shareLabel,checksRow);
+    }catch(e){}
+
+    /* 4 · row 14: the caption block sits directly under "Where is this?" */
+    try{ grid.insertBefore(captionLabel,countryLabel.nextSibling); }catch(e){}
+
+    function disclosure(id,btnId,text){
+      var btn=el('button',{type:'button',id:btnId,'class':'tll-pen-disclosure','aria-expanded':'false','aria-controls':id},text);
+      var panel=el('div',{id:id,'class':'tll-pen-panel'}), inner=el('div',{'class':'tll-pen-panel-inner'}); panel.appendChild(inner);
+      var o={btn:btn,panel:panel,inner:inner,on:false,open:function(v){ o.on=!!v; btn.setAttribute('aria-expanded',o.on?'true':'false'); panel.classList.toggle('is-open',o.on); }};
+      btn.addEventListener('click',function(){ o.open(!o.on); remember(); });
+      return o;
+    }
+    function remember(){ try{ sessionStorage.setItem('tllPhotosPanels',JSON.stringify({detail:!!(detail&&detail.on),share:!!(share&&share.on)})); }catch(e){} }
+
+    /* 5 · rows 15 to 17: "More detail (optional)" holds city, year, trip type and the whole pet fieldset; the pet label span gets .tll-photos-vh */
+    try{
+      detail=disclosure('tll-more-detail','tll-more-detail-btn','More detail (optional)');
+      storyFs.appendChild(detail.btn);
+      storyFs.appendChild(el('p',{'class':'tll-pen-disclosure-help'},'City, year, trip type and a pet in the shot. None of it is required.'));
+      storyFs.appendChild(detail.panel);
+      [cityLabel,yearLabel,tripLabel,petFs].forEach(function(n){ if(n) detail.inner.appendChild(n); });
+      var petLabel=pets&&pets.closest('label'), petSpan=petLabel&&petLabel.querySelector('.tll-pen-label');   /* row 16: the legend carries the question; the span (…86c4) is visually hidden, the label (…86c6) stays connected */
+      if(petSpan) petSpan.classList.add('tll-photos-vh');
+    }catch(e){}
+
+    /* 6 · row 20: "Where else it may appear (optional)" holds the syndication label with its three rows */
+    try{
+      share=disclosure('tll-more-share','tll-more-share-btn','Where else it may appear (optional)');
+      after(creditLabel,share.btn); after(share.btn,share.panel);
+      share.inner.appendChild(shareLabel);
+    }catch(e){}
+
+    /* 7 · row 21: the promises become a named group. The label and the three rows live inside the credit fieldset in the
+       Designer tree, so the group is reordered to form level, right after that fieldset, where section 8 numbers it */
+    try{
+      promisesLabel.id='tll-promises-label';
+      var wrap=el('div',{'class':'tll-pen-promises',role:'group','aria-labelledby':'tll-promises-label'});
+      form.insertBefore(wrap,creditFs.nextSibling);
+      [promisesLabel,rightsLabel,licenceLabel,peopleLabel].forEach(function(n){ wrap.appendChild(n); });
+    }catch(e){}
+
+    /* 8 · row 25: the footnote span is the live region for the validation count */
+    try{ status.setAttribute('role','status'); status.setAttribute('aria-live','polite'); }catch(e){}
+
+    /* 9 · row 19: credited-as line under the credit row, from one read-only getCurrentMember call; the fallback shows first */
+    var credited;
+    try{
+      credited=el('p',{id:'tll-credited-as','class':'tll-credited-as'},'Credited with the name on your account.');
+      after(creditLabel,credited);
+      showCredited();
+      var tries=0;
+      (function tick(){
+        var ms=window.$memberstackDom;
+        if(ms&&typeof ms.getCurrentMember==='function'){
+          try{ ms.getCurrentMember().then(function(r){
+            var cf=(r&&r.data&&r.data.customFields)||{}, name=(String(cf['first-name']||'')+' '+String(cf['last-name']||'')).trim();
+            if(name) credited.textContent='Credited as '+name+', from your account.';
+          }).catch(function(){}); }catch(e){}
+        } else if(++tries<40) setTimeout(tick,250);
+      })();
+    }catch(e){}
+    function showCredited(){ if(credited) credited.hidden=!named.checked; }
+
+    /* 10 · rows 11 to 13: drop zone state, count, size and type checks, the file list, the file error lines */
+    var MAX=12, MAXB=25*1024*1024, OK={'image/jpeg':1,'image/webp':1};
+    var fileErrs, list, count, canDT=false;
+    try{ canDT=!!new DataTransfer().items; }catch(e){}
+    try{
+      fileErrs=el('div',{id:'tll-photos-file-errors','class':'tll-photos-file-errors','aria-live':'polite'});
+      list=el('ul',{id:'tll-photos-list','class':'tll-photos-list',role:'list',hidden:''});
+      count=el('p',{id:'tll-photos-count','class':'tll-photos-count',role:'status',hidden:''});
+      after(dropZone,fileErrs); after(fileErrs,list); after(list,count);
+      var depth=0;
+      dropZone.addEventListener('dragenter',function(ev){ ev.preventDefault(); depth++; dropZone.classList.add('is-dragover'); });
+      dropZone.addEventListener('dragover',function(ev){ ev.preventDefault(); });
+      dropZone.addEventListener('dragleave',function(){ if(--depth<=0){ depth=0; dropZone.classList.remove('is-dragover'); } });
+      dropZone.addEventListener('drop',function(ev){
+        ev.preventDefault(); depth=0; dropZone.classList.remove('is-dragover');
+        var fl=ev.dataTransfer&&ev.dataTransfer.files; if(!fl||!fl.length) return;
+        if(canDT) addFiles(fl); else { try{ photos.files=fl; }catch(e){} addFiles(photos.files); }
+      });
+      photos.addEventListener('change',function(){ addFiles(photos.files); });
+      if(photos.files&&photos.files.length) addFiles(photos.files);
+    }catch(e){}
+    function ext(n){ var m=/\.([a-z0-9]+)$/i.exec(n); return m?m[1].toUpperCase():''; }
+    function mb(n){ return Math.max(0.1,Math.round(n/104857.6)/10)+' MB'; }
+    function okType(f){ return !!OK[f.type]||(!f.type&&/\.(jpe?g|webp)$/i.test(f.name)); }
+    function dup(f){ return kept.some(function(k){ var o=k.file; return o.name===f.name&&o.size===f.size&&o.lastModified===f.lastModified; }); }
+    function sync(){ if(!canDT) return false; try{ var dt=new DataTransfer(); kept.forEach(function(k){ dt.items.add(k.file); }); photos.files=dt.files; return true; }catch(e){ return false; } }
+    function row(k,i){
+      var li=el('li',{'class':'tll-photos-row'}); li.style.setProperty('--tll-i',i);
+      var th=el('div',{'class':'tll-photos-thumb'});
+      if(window.URL&&URL.createObjectURL){
+        k.url=URL.createObjectURL(k.file); var img=el('img',{alt:'',src:k.url,decoding:'async'});
+        img.onerror=function(){ th.removeChild(img); th.classList.add('is-blank'); th.textContent=ext(k.file.name); }; th.appendChild(img);
+      } else { th.classList.add('is-blank'); th.textContent=ext(k.file.name); }
+      var meta=el('div',{'class':'tll-photos-meta'}); meta.appendChild(el('span',{'class':'tll-photos-name'},k.file.name)); meta.appendChild(el('span',{'class':'tll-photos-size'},mb(k.file.size)));
+      var rm=el('button',{type:'button','class':'tll-photos-remove','aria-label':'Remove '+k.file.name},'Remove');
+      rm.addEventListener('click',function(){ remove(k); });
+      li.appendChild(th); li.appendChild(meta); li.appendChild(rm); k.li=li; return li;
+    }
+    function drop(k){ if(k.url) URL.revokeObjectURL(k.url); if(k.li&&k.li.parentNode) k.li.parentNode.removeChild(k.li); }
+    function clearRows(){ kept.forEach(drop); kept=[]; }
+    function setCount(msg){ var n=kept.length; count.textContent=msg||(n?n+' of '+MAX+' chosen.':''); count.hidden=!count.textContent; list.hidden=!n; }
+    function addFiles(fl){
+      var msgs=[], added=[], over=false;
+      while(fileErrs.firstChild) fileErrs.removeChild(fileErrs.firstChild);
+      if(!canDT) clearRows();                     /* no rebuild possible: the input holds the new pick alone, so the list mirrors it */
+      for(var i=0;i<fl.length;i++){ var f=fl[i];
+        if(!okType(f)){ msgs.push(f.name+' is not a JPG or WebP. Try the original from your Photos app.'); continue; }
+        if(f.size>MAXB){ msgs.push(f.name+' is over 25MB. Export a smaller copy and try again.'); continue; }
+        if(dup(f)) continue;
+        if(kept.length+added.length>=MAX){ over=true; continue; }
+        added.push({file:f});
+      }
+      if(over) msgs.push("That's more than 12. We kept the first 12 and left the rest for next time.");
+      msgs.forEach(function(m){ fileErrs.appendChild(el('p',{'class':'tll-photos-file-error'},m)); });
+      if(!canDT&&msgs.length){ photos.value=''; setCount('Choose your photos again.'); summary(); return; }
+      added.forEach(function(k,i){ kept.push(k); list.appendChild(row(k,i)); });
+      if(canDT&&!sync()) startOver(); else setCount();
+      settled();
+    }
+    function startOver(){ clearRows(); photos.value=''; setCount('Choose your photos again.'); }   /* row 13 fallback: no FileList rebuild */
+    function remove(k){
+      var i=kept.indexOf(k); if(i<0) return; kept.splice(i,1); drop(k);
+      if(sync()) setCount(); else startOver();
+      settled();
+    }
+    /* a drop or a Remove changes the input without a change event, so the photos error clears here as it would in onEdit */
+    function settled(){ if(photos.files&&photos.files.length&&clearErr('photos')) live(); summary(); }
+
+    /* 11 · row 22: the summary line at the top of the promises group, computed from the live inputs */
+    try{
+      sum=el('p',{id:'tll-photos-summary','class':'tll-photos-summary',hidden:''});
+      after(promisesLabel,sum);
+    }catch(e){}
+    function summary(){
+      if(!sum) return;
+      var n=kept.length, w=val(country), c=val(city), y=val(year);
+      if(!n||!w){ sum.hidden=true; sum.textContent=''; return; }
+      sum.textContent=n+' '+(n===1?'photo':'photos')+' from '+(c?c+', '+w:w)+(/^\d{4}$/.test(y)?', '+y:'')+'.'; sum.hidden=false;
+    }
+
+    /* 12 · rows 17, 23 and 25: inline errors with stable ids, the check in the capture phase, focus to the first failure,
+       the count in the live region, errors cleared on input. noValidate only once the check is installed */
+    try{
+      var mkErr=function(key,input,label){ if(!input||!label) return; var s=el('span',{id:'tll-err-'+key,'class':'tll-pen-error',hidden:''}); after(label,s); errs[key]={s:s,i:input,l:label}; };
+      mkErr('photos',photos,dropZone); mkErr('country',country,countryLabel); mkErr('year',year,yearLabel);
+      mkErr('rights',rights,rightsLabel); mkErr('license',licence,licenceLabel); mkErr('people',people,peopleLabel);
+      form.addEventListener('submit',function(ev){
+        var fails=check(); live();
+        if(!fails.length) return;
+        ev.preventDefault(); ev.stopImmediatePropagation();
+        var k=fails[0]; if(fails.indexOf('year')>=0&&detail){ detail.open(true); remember(); }   /* the year error sits inside the panel: open it whenever the year fails, wherever it falls in the list */
+        try{ errs[k].i.focus(); }catch(e){}
+      },true);
+      form.addEventListener('input',onEdit); form.addEventListener('change',onEdit);
+      form.noValidate=true;
+    }catch(e){}
+    function setErr(k,msg){ var e=errs[k]; if(!e) return false; e.s.textContent=msg; e.s.hidden=false; e.i.setAttribute('aria-invalid','true'); addRef(e.i,'aria-describedby',e.s.id); e.l.classList.add('is-invalid'); return true; }
+    function clearErr(k){ var e=errs[k]; if(!e||e.s.hidden) return false; e.s.hidden=true; e.s.textContent=''; e.i.removeAttribute('aria-invalid'); dropRef(e.i,'aria-describedby',e.s.id); e.l.classList.remove('is-invalid'); return true; }
+    function check(){
+      var fails=[];
+      function test(k,bad,msg){ if(!errs[k]) return; if(bad()){ setErr(k,msg); fails.push(k); } else clearErr(k); }
+      test('photos',function(){ return !(photos.files&&photos.files.length); },'Add at least one photo.');
+      test('country',function(){ return !val(country); },'Tell us the country, at least.');
+      test('year',function(){ var y=val(year), lo=+year.getAttribute('min')||1990, hi=+year.getAttribute('max')||2030;
+        return !!(year.validity&&year.validity.badInput)||(y&&!(/^\d{4}$/.test(y)&&+y>=lo&&+y<=hi)); },'A four-digit year. Guessing is allowed.');
+      var tick='Tick this one to send.';
+      test('rights',function(){ return !rights.checked; },tick); test('license',function(){ return !licence.checked; },tick); test('people',function(){ return !people.checked; },tick);
+      return fails;
+    }
+    function live(){ if(!status) return; var n=0; for(var k in errs){ if(!errs[k].s.hidden) n++; } status.textContent=n?(n===1?'One thing to fix above.':n+' things to fix above.'):foot; }
+    function onEdit(ev){
+      var t=ev.target, cleared=false;
+      for(var k in errs){ if(errs[k].i===t&&clearErr(k)) cleared=true; }
+      if(cleared) live();
+      if(t&&t.name==='credit-mode') showCredited();
+      summary();
+    }
+
+    /* 13 · row 26: focus lands on the success box when Webflow shows it */
+    try{
+      var done=form.parentNode.querySelector('.w-form-done');
+      done.setAttribute('tabindex','-1');
+      var mo=new MutationObserver(function(){ if(getComputedStyle(done).display!=='none'){ mo.disconnect(); try{ done.focus(); }catch(e){} } });
+      mo.observe(done,{attributes:true,attributeFilter:['style']});
+    }catch(e){}
+
+    /* 14 · rows 15 and 20: panels remembered for the session, and opened when a field inside already holds a value */
+    try{
+      var saved={}; try{ saved=JSON.parse(sessionStorage.getItem('tllPhotosPanels')||'{}')||{}; }catch(e){}
+      var hasDetail=[city,year,pets].some(val)||!!(trip&&trip.selectedIndex>0&&trip.value);
+      var hasShare=[social,rotation,press].some(function(i){ return i&&i.checked; });
+      if(detail) detail.open(saved.detail||hasDetail);
+      if(share) share.open(saved.share||hasShare);
+    }catch(e){}
+  }
+
+  if(d.readyState==='loading') d.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
+</body></html>

@@ -1,0 +1,74 @@
+{
+  "id": "6a0cbdad98d2bd496b67c132",
+  "displayName": "Comments",
+  "slug": "comments",
+  "singularName": "Comment",
+  "schema": {
+    "fields": [
+      {
+        "id": "af338f3ba24237632418ec8bb78dd0e4",
+        "slug": "contributor",
+        "displayName": "Contributor",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "490384ca9031f2e20fe795221f06944d",
+        "slug": "story",
+        "displayName": "Story",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "e1b4d412b7d5bb7ae22d374438b03da4",
+        "slug": "parent-comment",
+        "displayName": "Parent comment",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "bff2b5365112ca17900f0f6d8fb5e390",
+        "slug": "body",
+        "displayName": "Body",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "cc6603359982a756fa66d20a2fe0fb9c",
+        "slug": "posted-at",
+        "displayName": "Posted at",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "536fd4f88b0485c264e354ff6913b0fe",
+        "slug": "is-approved",
+        "displayName": "Is approved",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "024e2abe71c2d71f266c8ec4487fe9d0",
+        "slug": "is-flagged",
+        "displayName": "Is flagged",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "a58dc2cab996826c7a7d9510529c3225",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "1c35684409278e9df7df268e1332dd72",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

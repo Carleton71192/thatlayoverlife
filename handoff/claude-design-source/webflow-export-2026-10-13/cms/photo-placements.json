@@ -1,0 +1,73 @@
+{
+  "id": "6accbabf97231f9b5b985c55",
+  "displayName": "Photo placements",
+  "slug": "photo-placements",
+  "singularName": "Photo placement",
+  "schema": {
+    "fields": [
+      {
+        "id": "cee9961dcf873955d6f9c5d1d4c27e9e",
+        "slug": "story",
+        "displayName": "Story",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "4c71cdac4ee678e80f3523652fe63a72",
+        "slug": "photo-placement",
+        "displayName": "Photo placement",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "fdb9abe54b5886f2f8cebb425c5f1821",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b5229e02e27c34096fc6872875dbee76",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6accbae9792549e0ba147e82",
+      "slug": "northern-brazil-sequins-to-sloths",
+      "lastPublished": "2026-10-12T13:39:59.785Z",
+      "fieldData": {
+        "story": "6ab3fd224172c39c5a9bb87c",
+        "photo-placement": "Salvador: the math does not work, and it happens anyway | brazil-carnaval-drummer-on-the-trio-eletrico\nSalvador: the math does not work, and it happens anyway | brazil-carnaval-baiana-in-white-and-yellow\nLençóis Maranhenses: the desert that fills up | brazil-lencois-maranhenses-lagoon-in-the-dunes\nLençóis Maranhenses: the desert that fills up | brazil-lencois-maranhenses-walking-the-dune-ridge\nAnavilhanas: six days of the jungle not caring about your inbox | brazil-sloth-swimming-across-the-rio-negro\nAnavilhanas: six days of the jungle not caring about your inbox | brazil-pink-river-dolphin-rio-negro\nWhat I would tell you | brazil-rio-negro-fisherman-at-dusk",
+        "name": "northern-brazil-sequins-to-sloths",
+        "slug": "northern-brazil-sequins-to-sloths"
+      }
+    },
+    {
+      "id": "6accbae9792549e0ba147e7c",
+      "slug": "kilimanjaro-someone-was-already-awake",
+      "lastPublished": "2026-10-12T13:39:59.772Z",
+      "fieldData": {
+        "story": "6aca68363e10fde58370d9a5",
+        "photo-placement": "We did not conquer anything | tll-kili-morning-mugs\nWe did not conquer anything | tll-kili-mess-tent-cook\nHow it actually went | tll-kili-colobus-foliage\nHow it actually went | tll-kili-barranco-wall\nSummit night | tll-kili-kibo-at-night\nSummit night | tll-kili-summit-sunrise\nTo the people who made it possible | tll-kili-full-team-and-crew",
+        "name": "kilimanjaro-someone-was-already-awake",
+        "slug": "kilimanjaro-someone-was-already-awake"
+      }
+    },
+    {
+      "id": "6accbae9792549e0ba147e7e",
+      "slug": "pantanal-glimmers-in-the-wild",
+      "lastPublished": "2026-10-12T13:39:59.770Z",
+      "fieldData": {
+        "story": "6ac869cbead7f028cee5bcba",
+        "photo-placement": "Day one: red lightning and the long nothing | pantanal-rhea-in-morning-mist\nThe road that ends on purpose | pantanal-driving-the-transpantaneira\nKilometer 42 | pantanal-jabiru-following-the-man-with-the-bucket\nKilometer 42 | pantanal-capybara-portrait\nWhy the jaguars let you watch | pantanal-jaguar-asleep-on-the-bank\nWhy the jaguars let you watch | pantanal-jaguar-charging-through-the-shallows\nThe stork, concluded | pantanal-jabiru-stork-in-the-marsh\nChapada, and down | pantanal-chapada-dos-guimaraes-cliffs\nWhat I would tell you | pantanal-nancy-and-sami-in-the-safari-boat",
+        "name": "pantanal-glimmers-in-the-wild",
+        "slug": "pantanal-glimmers-in-the-wild"
+      }
+    }
+  ]
+}

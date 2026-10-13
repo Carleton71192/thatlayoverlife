@@ -1,0 +1,83 @@
+{
+  "id": "6abcd6371aa0f0654773a59e",
+  "displayName": "Interest Tags",
+  "slug": "interest-tags",
+  "singularName": "Interest Tag",
+  "schema": {
+    "fields": [
+      {
+        "id": "c40f0e35f2b2767bf4734b79aa85a5a0",
+        "slug": "group",
+        "displayName": "Group",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "7196748a4b94e5e3b5244f4deccf367f",
+        "slug": "order",
+        "displayName": "Order",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "5c912093d64ed6f6828b2a6a360bf149",
+        "slug": "provisional",
+        "displayName": "Provisional",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "ae80ba6412ce9bcf78f42bf450796e24",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "44f8cea9e8628cb1bdfa777a67df6a20",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6abcd6a090ec31e18ad7e61e",
+      "slug": "making-friends",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "group": "08eec0678c7b365f312f25c3039731e1",
+        "order": 5,
+        "provisional": true,
+        "name": "Making friends",
+        "slug": "making-friends"
+      }
+    },
+    {
+      "id": "6abcd6a090ec31e18ad7e61c",
+      "slug": "retirees",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "group": "08eec0678c7b365f312f25c3039731e1",
+        "order": 4,
+        "provisional": true,
+        "name": "Retirees",
+        "slug": "retirees"
+      }
+    },
+    {
+      "id": "6abcd6a090ec31e18ad7e61a",
+      "slug": "faith-communities",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "group": "08eec0678c7b365f312f25c3039731e1",
+        "order": 3,
+        "provisional": true,
+        "name": "Faith communities",
+        "slug": "faith-communities"
+      }
+    }
+  ]
+}

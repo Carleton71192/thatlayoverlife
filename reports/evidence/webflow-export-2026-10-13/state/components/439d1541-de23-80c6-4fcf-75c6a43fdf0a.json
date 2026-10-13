@@ -1,0 +1,41 @@
+{
+ "id": "439d1541-de23-80c6-4fcf-75c6a43fdf0a",
+ "name": "TLL Reader Question v1",
+ "group": "TLL Editorial",
+ "description": "End-of-story reader prompt on blush card. Label plus question text (prop). Drives comments and engagement.",
+ "instanceCount": 1,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 1,
+ "nodeTypes": {
+  "Block": 1
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"439d1541-de23-80c6-4fcf-75c6a43fdf0a\" tree loaded",
+  "data": {
+   "id": {
+    "component": "439d1541-de23-80c6-4fcf-75c6a43fdf0a",
+    "element": "439d1541-de23-80c6-4fcf-75c6a43fdf0a"
+   },
+   "type": "Block",
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   }
+  }
+ },
+ "settings": {},
+ "rawSettings": {},
+ "props": [],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

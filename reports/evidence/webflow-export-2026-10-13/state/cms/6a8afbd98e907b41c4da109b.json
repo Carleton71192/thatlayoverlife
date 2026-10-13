@@ -1,0 +1,573 @@
+{
+  "id": "6a8afbd98e907b41c4da109b",
+  "displayName": "Countries",
+  "slug": "countries",
+  "singularName": "Country",
+  "schema": {
+    "fields": [
+      {
+        "id": "d6aa42be6c32866d238415f0fde4005f",
+        "slug": "iso2",
+        "displayName": "ISO2",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cd8cfaaa887c632ed6a23fb0216cf9b1",
+        "slug": "iso3",
+        "displayName": "ISO3",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "855ed1e3dcd9a2afa69ffb9392c9653b",
+        "slug": "capital",
+        "displayName": "Capital",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d125e5a14d5d72fd5d4c4da0d7130c11",
+        "slug": "region",
+        "displayName": "Region",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "3b37296b83becba8b33a3bead8318d72",
+        "slug": "subregion",
+        "displayName": "Subregion",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4170b716f7acf2d84c2e7a189c6c09c0",
+        "slug": "official-languages",
+        "displayName": "Official Languages",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "67bd170d38a1b4115f926abd5152420d",
+        "slug": "currency-code",
+        "displayName": "Currency Code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "25a7c56e042688940ba29f3c5d6e9dac",
+        "slug": "currency-name",
+        "displayName": "Currency Name",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "13098f05a2c33dadd0b651ca497b852d",
+        "slug": "calling-code",
+        "displayName": "Calling Code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "fd84d6a24861b455308986d905ffecde",
+        "slug": "tld",
+        "displayName": "TLD",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4416f6bffc86e26153442e44bc1c3f94",
+        "slug": "neighbors",
+        "displayName": "Neighbors",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "6f76c70559de3ae03812f559afe04071",
+        "slug": "flag-emoji",
+        "displayName": "Flag Emoji",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "442a504280eed664b8ecdf9d7a024454",
+        "slug": "population",
+        "displayName": "Population",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "88eb7ac1a78ce070834608405725c916",
+        "slug": "population-year",
+        "displayName": "Population Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "1fac2efdba839bc8b1ae662414d2ec14",
+        "slug": "gdp-per-capita",
+        "displayName": "GDP Per Capita",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "4b4a806c4fcbe6d183ffa00e35e042ae",
+        "slug": "gdp-per-capita-year",
+        "displayName": "GDP Per Capita Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "5ed07f03580b57e33893c8845c7129e6",
+        "slug": "life-expectancy-year",
+        "displayName": "Life Expectancy Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "fbf19c9b90f08cce91ed2317cda1098d",
+        "slug": "urban-pct-year",
+        "displayName": "Urban Pct Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "c9b1c756146f7c2b0a15347d1b6c5106",
+        "slug": "internet-pct-year",
+        "displayName": "Internet Pct Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "8958c8ec593ab627407882a497f5076f",
+        "slug": "surface-km2",
+        "displayName": "Surface Km2",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "c9cea939d375b46637d4b8771273fb37",
+        "slug": "surface-km2-year",
+        "displayName": "Surface Km2 Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "70d1409f1e63f05c496fce8af9131d21",
+        "slug": "fx-code",
+        "displayName": "FX Code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "51f0d5b04d753c096536775235f6f642",
+        "slug": "fx-checked",
+        "displayName": "FX Checked",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "1f10a09e9efc98ed7cb5d3d0e04aa51c",
+        "slug": "advisory-level",
+        "displayName": "Advisory Level",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "a71fede1fb4941629bb532e3c85ae3a5",
+        "slug": "advisory-text",
+        "displayName": "Advisory Text",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "542e645e968551baee7274c29f630e36",
+        "slug": "advisory-regional",
+        "displayName": "Advisory Regional",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "595a090c755ee6bc1bf692bfb34008e8",
+        "slug": "advisory-checked",
+        "displayName": "Advisory Checked",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "a11ee45aaef052c8a51a40222d3d36c4",
+        "slug": "advisory-url",
+        "displayName": "Advisory URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "c325a3538dc0af5b8dc1710784b98e3f",
+        "slug": "fcdo-alert",
+        "displayName": "FCDO Alert",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "63ef3c28aaa83442abdf9e448e8b963b",
+        "slug": "fcdo-reviewed",
+        "displayName": "FCDO Reviewed",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "e1776c7d1a3dd324d8d9e5482fb7394d",
+        "slug": "fcdo-url",
+        "displayName": "FCDO URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "172a1389dd33cfea0d4ae441a6362c8c",
+        "slug": "data-checked",
+        "displayName": "Data Checked",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "b947223e1a3222185f9135c63288d4e3",
+        "slug": "data-flags",
+        "displayName": "Data Flags",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "b20aa0c76cb28a3566a9282605e425cf",
+        "slug": "data-ok",
+        "displayName": "Data OK",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "6d18304199d988084dd60f5285642a6a",
+        "slug": "tier",
+        "displayName": "Tier",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "f548e302f341b419e234ef793b72ac47",
+        "slug": "visit-years",
+        "displayName": "Visit Years",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "dfd023e31edfd809b9bc57bdf3f9d8de",
+        "slug": "one-word",
+        "displayName": "One Word",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "12b4fe81123fd4a75b2828935dabdbea",
+        "slug": "one-word-ipa",
+        "displayName": "One Word IPA",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "b4db6d9d0945da89bfcd94e142da3efc",
+        "slug": "one-word-lang",
+        "displayName": "One Word Lang",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "a3eb42c00082e96f9d1df0c7e557355a",
+        "slug": "one-word-pos",
+        "displayName": "One Word POS",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "da26c0a6934b895aff1cebed75abd2ce",
+        "slug": "one-word-gloss",
+        "displayName": "One Word Gloss",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ce6d5a843fdb1d5575765c39b74ac4c8",
+        "slug": "one-word-note",
+        "displayName": "One Word Note",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cf269b1fe3e024a582728db11fd9fada",
+        "slug": "one-word-source",
+        "displayName": "One Word Source",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "f1040f372ef536d7a74e060158e8bb0f",
+        "slug": "one-word-checked-by",
+        "displayName": "One Word Checked By",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c2044fcb73624d16194bc1fcb4928160",
+        "slug": "one-word-heard",
+        "displayName": "One Word Heard",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "b30153c92d1cf51640086cf21a001438",
+        "slug": "verdict",
+        "displayName": "Verdict",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "5cc537e829159bbd6288711b719972fb",
+        "slug": "body",
+        "displayName": "Body",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "ce8015d8524d6e2bf03485d6f8799eb2",
+        "slug": "story-ref",
+        "displayName": "Story Ref",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "c663b1251c8d9ddb8a8d8e173d2b1f1e",
+        "slug": "fx-per-usd-2",
+        "displayName": "FX Per USD",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "dd78ffa7febdb092d1a3db1fbcecd3f9",
+        "slug": "life-expectancy-2",
+        "displayName": "Life Expectancy",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "db7d003728507ea8c7eddc463f351a91",
+        "slug": "urban-pct-2",
+        "displayName": "Urban Pct",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d162518cbf800e4f4819f7ebf3fffa32",
+        "slug": "internet-pct-2",
+        "displayName": "Internet Pct",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "3642b94a9eac66e89f9aa1968d945136",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "c4c09b0645d48e534a525a2c72bcc11f",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6acc7f63b1f5d5ade0799e0a",
+      "slug": "antarctica",
+      "lastPublished": "2026-10-12T06:52:20.986Z",
+      "fieldData": {
+        "iso2": "AQ",
+        "iso3": "ATA",
+        "capital": null,
+        "region": "Antarctic",
+        "subregion": null,
+        "official-languages": null,
+        "currency-code": null,
+        "currency-name": null,
+        "calling-code": null,
+        "tld": null,
+        "neighbors": null,
+        "flag-emoji": "🇦🇶",
+        "population": null,
+        "population-year": null,
+        "gdp-per-capita": null,
+        "gdp-per-capita-year": null,
+        "life-expectancy-year": null,
+        "urban-pct-year": null,
+        "internet-pct-year": null,
+        "surface-km2": null,
+        "surface-km2-year": null,
+        "fx-code": null,
+        "fx-checked": null,
+        "advisory-level": null,
+        "advisory-text": null,
+        "advisory-regional": false,
+        "advisory-checked": null,
+        "advisory-url": null,
+        "fcdo-alert": null,
+        "fcdo-reviewed": null,
+        "fcdo-url": null,
+        "data-checked": null,
+        "data-flags": "Reference data: entered by hand. Antarctica is a continent governed under the Antarctic Treaty System, not a country; it has no capital, currency or population of its own. Not yet through the TLL fact check.",
+        "data-ok": false,
+        "tier": null,
+        "visit-years": null,
+        "one-word": null,
+        "one-word-ipa": null,
+        "one-word-lang": null,
+        "one-word-pos": null,
+        "one-word-gloss": null,
+        "one-word-note": null,
+        "one-word-source": null,
+        "one-word-checked-by": null,
+        "one-word-heard": null,
+        "verdict": "One TLL story is filed from Antarctica so far, a marathon linked below. The full verdict waits for more travelers to write it up.",
+        "body": null,
+        "story-ref": "6a3503d2b838e59a94bfab88",
+        "fx-per-usd-2": null,
+        "life-expectancy-2": null,
+        "urban-pct-2": null,
+        "internet-pct-2": null,
+        "name": "Antarctica",
+        "slug": "antarctica"
+      }
+    },
+    {
+      "id": "6acc76bd3a9cce2ac9c52ca1",
+      "slug": "kosovo",
+      "lastPublished": "2026-10-12T06:52:20.986Z",
+      "fieldData": {
+        "iso2": "XK",
+        "iso3": null,
+        "capital": "Pristina",
+        "region": "Europe",
+        "subregion": "Southeast Europe",
+        "official-languages": "Albanian, Serbian",
+        "currency-code": "EUR",
+        "currency-name": "Euro",
+        "calling-code": "+383",
+        "tld": null,
+        "neighbors": "Albania, Montenegro, North Macedonia, Serbia",
+        "flag-emoji": "🇽🇰",
+        "population": null,
+        "population-year": null,
+        "gdp-per-capita": null,
+        "gdp-per-capita-year": null,
+        "life-expectancy-year": null,
+        "urban-pct-year": null,
+        "internet-pct-year": null,
+        "surface-km2": null,
+        "surface-km2-year": null,
+        "fx-code": null,
+        "fx-checked": null,
+        "advisory-level": null,
+        "advisory-text": null,
+        "advisory-regional": false,
+        "advisory-checked": null,
+        "advisory-url": null,
+        "fcdo-alert": null,
+        "fcdo-reviewed": null,
+        "fcdo-url": null,
+        "data-checked": null,
+        "data-flags": "Reference data: entered by hand, not from world-countries. XK is a user-assigned code, not ISO 3166-1. Not yet through the TLL fact check.",
+        "data-ok": false,
+        "tier": null,
+        "visit-years": null,
+        "one-word": null,
+        "one-word-ipa": null,
+        "one-word-lang": null,
+        "one-word-pos": null,
+        "one-word-gloss": null,
+        "one-word-note": null,
+        "one-word-source": null,
+        "one-word-checked-by": null,
+        "one-word-heard": null,
+        "verdict": "No TLL story is filed for Kosovo on its own yet. The reference facts below come from public sources and are not yet checked by TLL; the verdict waits for a traveler to write it up.",
+        "body": null,
+        "story-ref": null,
+        "fx-per-usd-2": null,
+        "life-expectancy-2": null,
+        "urban-pct-2": null,
+        "internet-pct-2": null,
+        "name": "Kosovo",
+        "slug": "kosovo"
+      }
+    },
+    {
+      "id": "6ab64ec594788ceb9c9732f1",
+      "slug": "tanzania",
+      "lastPublished": "2026-10-12T06:52:20.986Z",
+      "fieldData": {
+        "iso2": "TZ",
+        "iso3": "TZA",
+        "capital": "Dodoma",
+        "region": "Africa",
+        "subregion": "Eastern Africa",
+        "official-languages": "English, Swahili",
+        "currency-code": "TZS",
+        "currency-name": "Tanzanian shilling",
+        "calling-code": "+255",
+        "tld": ".tz",
+        "neighbors": "Burundi, DR Congo, Kenya, Malawi, Mozambique, Rwanda, Uganda, Zambia",
+        "flag-emoji": "🇹🇿",
+        "population": null,
+        "population-year": null,
+        "gdp-per-capita": null,
+        "gdp-per-capita-year": null,
+        "life-expectancy-year": null,
+        "urban-pct-year": null,
+        "internet-pct-year": null,
+        "surface-km2": null,
+        "surface-km2-year": null,
+        "fx-code": null,
+        "fx-checked": null,
+        "advisory-level": null,
+        "advisory-text": null,
+        "advisory-regional": false,
+        "advisory-checked": null,
+        "advisory-url": null,
+        "fcdo-alert": null,
+        "fcdo-reviewed": null,
+        "fcdo-url": null,
+        "data-checked": null,
+        "data-flags": "Reference data: world-countries v5.1.0 (ISO 3166-1). Not yet through the TLL fact check.",
+        "data-ok": false,
+        "tier": "eaa026c328a954d590d9f9ab9bdb1804",
+        "visit-years": null,
+        "one-word": null,
+        "one-word-ipa": null,
+        "one-word-lang": null,
+        "one-word-pos": null,
+        "one-word-gloss": null,
+        "one-word-note": null,
+        "one-word-source": null,
+        "one-word-checked-by": null,
+        "one-word-heard": null,
+        "verdict": "One TLL story is filed from Tanzania so far, linked below. The full verdict waits for more travelers to write it up.",
+        "body": null,
+        "story-ref": "6aca68363e10fde58370d9a5",
+        "fx-per-usd-2": null,
+        "life-expectancy-2": null,
+        "urban-pct-2": null,
+        "internet-pct-2": null,
+        "name": "Tanzania",
+        "slug": "tanzania"
+      }
+    }
+  ]
+}

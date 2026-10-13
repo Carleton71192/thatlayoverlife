@@ -1,0 +1,67 @@
+{
+  "id": "6a0e99580823cd9907aea28d",
+  "displayName": "Subdivisions",
+  "slug": "subdivisions",
+  "singularName": "Subdivision",
+  "schema": {
+    "fields": [
+      {
+        "id": "3d623dc373220af05c5fc75caa9c88a7",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "83630ae16605ad8b914516fcfb000d79",
+        "slug": "subdivision-type",
+        "displayName": "Subdivision type",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "68d2e54ba50154667986f7ee5a7a5586",
+        "slug": "code",
+        "displayName": "Code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ee2b20716bf76dbdffffe1f1ba6e285e",
+        "slug": "visited-by-founder",
+        "displayName": "Visited by founder",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "9c9a4e350baff6346307a634b4bfa7bf",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cc905def8f3bf899730c4a4143d954c1",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ccd5174dcd3e9d3a02780440020a552f",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a68387cc0f1323969dbcf98bc86d97a1",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

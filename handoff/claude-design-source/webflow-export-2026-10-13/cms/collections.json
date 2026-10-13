@@ -1,0 +1,115 @@
+{
+  "id": "6a0be81801ee7eff1010907a",
+  "displayName": "Collections",
+  "slug": "collections",
+  "singularName": "Collection",
+  "schema": {
+    "fields": [
+      {
+        "id": "274fbde8c20d6a6e522d3d503e77cede",
+        "slug": "tagline",
+        "displayName": "Tagline",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "ea9670ad7a2fe3276b04e51f8a5dcc90",
+        "slug": "description",
+        "displayName": "Description",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "52c8e6cf0e365b040b819c891766150e",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "e93ba3ba4ad4f64955ba65be253e4ad2",
+        "slug": "accent-color",
+        "displayName": "Accent color",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "b214cb5b3b507249dbad2d4c882b0f56",
+        "slug": "featured-in-nav",
+        "displayName": "Featured in nav",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "884910a0f82bd85bc3c33e2cbfdd3a2e",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "55a680d30047585b33680ffdbc680716",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0be887a0693535d34871a8",
+      "slug": "sunset-mist",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "tagline": "Soft hour, soft focus. Coastal cities, blue hour, the second drink.",
+        "description": "<p>Cities at their best hour. The terrace at 8pm. The waiter who has stopped asking. The second drink that turned into the only night that mattered on that trip.</p>",
+        "hero-image": {
+          "fileId": "6a3e79b1f2ea14b30d7a5e1f",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e1f_6a0e02257422651f60ae30bd_Rio%2520DJ.jpeg",
+          "alt": "Rio de Janeiro at golden hour"
+        },
+        "accent-color": "2de6612f1e84a0fce5e697f39815e51b",
+        "featured-in-nav": true,
+        "name": "Sunset Mist",
+        "slug": "sunset-mist"
+      }
+    },
+    {
+      "id": "6a0be887a0693535d34871a5",
+      "slug": "desert-glow",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "tagline": "Dry heat, big quiet. Dunes, oasis towns, and what the light does at 6pm.",
+        "description": "<p>The kind of silence cities forgot existed. Stories from the dry world. Dates that taste different at the source. The hour the light decides everything.</p>",
+        "hero-image": {
+          "fileId": "6a3e79b1f2ea14b30d7a5ded",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5ded_6a115ea686f678134db92154_Doha.jpeg",
+          "alt": "Doha skyline at dusk"
+        },
+        "accent-color": "41d5bb982cf32ef208bb7151b3d012a8",
+        "featured-in-nav": true,
+        "name": "Desert Glow",
+        "slug": "desert-glow"
+      }
+    },
+    {
+      "id": "6a0be887a0693535d34871a2",
+      "slug": "alpine-escape",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "tagline": "Cold air, hot soup. Mountain stories from people who pack the right base layer.",
+        "description": "<p>Altitude does things to a person. Stories from above 1,500m. The hut where the goulash arrives without ordering. The route where the weather changed and we were grown enough to turn around.</p>",
+        "hero-image": {
+          "fileId": "6a3e79b1f2ea14b30d7a5e0f",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg",
+          "alt": "Mount Fitz Roy, Patagonia"
+        },
+        "accent-color": "b8b356a4e1661d4acd15c41f32a8ceca",
+        "featured-in-nav": true,
+        "name": "Alpine Escape",
+        "slug": "alpine-escape"
+      }
+    }
+  ]
+}

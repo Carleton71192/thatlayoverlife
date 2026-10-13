@@ -1,0 +1,88 @@
+{
+  "id": "6ab3c56941a6e822128ef4c2",
+  "displayName": "Submissions",
+  "slug": "submissions",
+  "singularName": "Submission",
+  "schema": {
+    "fields": [
+      {
+        "id": "5c851f3e7e0b5ef8cd815eeaf86ef5ae",
+        "slug": "working-title",
+        "displayName": "Working title",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "375093637d3d431e688de495fe82072a",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4cd6453d5311b7bb04c12a602bc237e5",
+        "slug": "received",
+        "displayName": "Received",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "4b8db1114d1b2df54568d756fbb805fa",
+        "slug": "stage-changed",
+        "displayName": "Stage changed",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "a62e2a201a1bf2cf9d9bc2eda9a9c3e9",
+        "slug": "stage",
+        "displayName": "Stage",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "9e18a57ba3924d5791eadf1009da6f30",
+        "slug": "format",
+        "displayName": "Format",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "f05f2480d1321b39eafd5ed4161c3191",
+        "slug": "came-in-via",
+        "displayName": "Came in via",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "812cdb94594e571eb4c1eed6dc9c2d28",
+        "slug": "note-to-self",
+        "displayName": "Note to self",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ddbdf9fc6abef328c73462786828f430",
+        "slug": "published-story",
+        "displayName": "Published story",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "2ca6df41f0e727e35d0f43898b282bed",
+        "slug": "name",
+        "displayName": "Reference code",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a6cccb2847ec44a5539943aaeb97fea1",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

@@ -1,0 +1,143 @@
+{
+  "id": "6abcd637bff19cda8e2426c5",
+  "displayName": "Resources",
+  "slug": "resources",
+  "singularName": "Resource",
+  "schema": {
+    "fields": [
+      {
+        "id": "a8e0ddff4c940ece66da3029c4561a1d",
+        "slug": "type",
+        "displayName": "Type",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "b4e5420ecdaf51a8e2fd8457d8907ee2",
+        "slug": "url",
+        "displayName": "URL",
+        "type": "Link",
+        "isRequired": true
+      },
+      {
+        "id": "49b71729736117ecab19fc0dd8f3fbe1",
+        "slug": "host",
+        "displayName": "Host",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "2624675d463baf4826935ed52d56860b",
+        "slug": "note",
+        "displayName": "Note",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "936622b1b5f273e8995a2f32932a234d",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "7f3dd66fa788544ed203577bb74db6ce",
+        "slug": "checked-on",
+        "displayName": "Checked on",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "1bde5fa2d818ef3be2fc8fd32075b385",
+        "slug": "checked-by",
+        "displayName": "Checked by",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cda3ab2ac0a4ab182ffd4784929ac784",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "33ad61beda0bb8c7fd1a1570350b1d54",
+        "slug": "country-name",
+        "displayName": "Country name",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "08227cf0bae969e5eedb723cc48d542b",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "f6b76cc67358f8e196818befb77b33ff",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6abcd68c6a3eb87c45d5998d",
+      "slug": "internations",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "type": "03ff5e71df22de24bf4e801c5c9dd810",
+        "url": "https://www.internations.org/",
+        "host": "internations.org",
+        "note": "Networking and social events, active Copenhagen calendar.",
+        "country": "6a8afc5dbbe4ec84f69815fe",
+        "checked-on": "2026-09-28T00:00:00.000Z",
+        "checked-by": "Nancy",
+        "status": "90944567f8b4221e176b69160b0a844a",
+        "country-name": "Denmark",
+        "name": "InterNations",
+        "slug": "internations"
+      }
+    },
+    {
+      "id": "6abcd68c6a3eb87c45d5998b",
+      "slug": "copenhagen-expats",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "type": "0f7262c84a977e86f33186ce5cc39f6f",
+        "url": "https://copenhagenexpats.com/",
+        "host": "copenhagenexpats.com",
+        "note": "Step by step: lease, CPR, the International House appointment.",
+        "country": "6a8afc5dbbe4ec84f69815fe",
+        "checked-on": "2026-09-28T00:00:00.000Z",
+        "checked-by": "Nancy",
+        "status": "90944567f8b4221e176b69160b0a844a",
+        "country-name": "Denmark",
+        "name": "Copenhagen Expats",
+        "slug": "copenhagen-expats"
+      }
+    },
+    {
+      "id": "6abcd68c6a3eb87c45d59989",
+      "slug": "expats-in-copenhagen",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "type": "5146e5088189fe033f21a0b1df36ff13",
+        "url": "https://www.facebook.com/ExpatsInCopenhagen",
+        "host": "facebook.com",
+        "note": "Where the newbie questions go.",
+        "country": "6a8afc5dbbe4ec84f69815fe",
+        "checked-on": "2026-09-28T00:00:00.000Z",
+        "checked-by": "Nancy",
+        "status": "90944567f8b4221e176b69160b0a844a",
+        "country-name": "Denmark",
+        "name": "Expats in Copenhagen",
+        "slug": "expats-in-copenhagen"
+      }
+    }
+  ]
+}

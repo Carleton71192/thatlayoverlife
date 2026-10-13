@@ -1,0 +1,53 @@
+{
+  "id": "6a0cbdad8dfcb5ee54bdf739",
+  "displayName": "Bookmarks",
+  "slug": "bookmarks",
+  "singularName": "Bookmark",
+  "schema": {
+    "fields": [
+      {
+        "id": "6f9ab351d82881d8ed4429213f2077dd",
+        "slug": "contributor",
+        "displayName": "Contributor",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "3a6eb1bda0135c9ce9a9df30c25d25f5",
+        "slug": "story",
+        "displayName": "Story",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "c1f6db0e28254c1d0223dd7f51b72a5c",
+        "slug": "saved-at",
+        "displayName": "Saved at",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "e31e0809fb86549baa195e41dd8502b4",
+        "slug": "private-notes",
+        "displayName": "Private notes",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "13f53ddac9040524020585537ce38e4f",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a2fa2b3547f0a6b9605c52f77130a927",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

@@ -1,0 +1,1466 @@
+{
+ "id": "69d61481769462c4e6caa137",
+ "name": "Footer",
+ "group": null,
+ "description": null,
+ "instanceCount": 0,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 62,
+ "nodeTypes": {
+  "Block": 21,
+  "DOM": 2,
+  "FormBlockLabel": 1,
+  "FormButton": 1,
+  "FormErrorMessage": 1,
+  "FormForm": 1,
+  "FormSuccessMessage": 1,
+  "FormTextInput": 1,
+  "FormWrapper": 1,
+  "Grid": 1,
+  "Link": 5,
+  "List": 1,
+  "ListItem": 3,
+  "Paragraph": 2,
+  "Section": 1,
+  "String": 19
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"69d61481769462c4e6caa137\" tree loaded",
+  "data": {
+   "id": {
+    "component": "69d61481769462c4e6caa137",
+    "element": "69d61481769462c4e6caa137"
+   },
+   "type": "Section",
+   "styleNames": [
+    "footer"
+   ],
+   "settings": {
+    "tag": "footer",
+    "visibility": true
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d61481769462c4e6caa137",
+      "element": "66253382-85ae-9472-e456-fbcb01ac0b67"
+     },
+     "type": "Block",
+     "styleNames": [
+      "container"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa137",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b5e"
+       },
+       "type": "Grid",
+       "styleNames": [
+        "grid_2-col",
+        "mobile-l-1-col",
+        "gap-medium"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa137",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b3f"
+         },
+         "type": "Block",
+         "styleNames": [
+          "flex_vertical",
+          "is_space-between",
+          "gap-medium"
+         ],
+         "attributes": {
+          "id": "w-node-eb280a5f-22b8-2fbd-d63f-a45e5168e138-5168e135"
+         },
+         "settings": {
+          "tag": "nav",
+          "visibility": true,
+          "block": {
+           "tag": "nav"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b37"
+           },
+           "type": "List",
+           "styleNames": [
+            "margin-bottom_small",
+            "ix-content-block"
+           ],
+           "attributes": {
+            "role": "list"
+           },
+           "settings": {
+            "tag": "ul",
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b2e"
+             },
+             "type": "ListItem",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b2d"
+               },
+               "type": "Link",
+               "styleNames": [
+                "footer_link"
+               ],
+               "attributes": {
+                "href": "#"
+               },
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b2c"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b2b"
+                   },
+                   "type": "String",
+                   "textContent": "hello@thatlayoverlife.com"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b32"
+             },
+             "type": "ListItem",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b31"
+               },
+               "type": "Link",
+               "styleNames": [
+                "footer_link"
+               ],
+               "attributes": {
+                "href": "#"
+               },
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b30"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b2f"
+                   },
+                   "type": "String",
+                   "textContent": "Instagram"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b36"
+             },
+             "type": "ListItem",
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b35"
+               },
+               "type": "Link",
+               "styleNames": [
+                "footer_link"
+               ],
+               "attributes": {
+                "href": "#"
+               },
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b34"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b33"
+                   },
+                   "type": "String",
+                   "textContent": "Twitter"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b3e"
+           },
+           "type": "Block",
+           "styleNames": [
+            "ix-link-wrapper"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b3d"
+             },
+             "type": "Link",
+             "styleNames": [
+              "logo-link"
+             ],
+             "attributes": {
+              "href": "#"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b3a"
+               },
+               "type": "Block",
+               "styleNames": [
+                "nav_logo-icon"
+               ],
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b39"
+                 },
+                 "type": "DOM",
+                 "attributes": {
+                  "width": "100%",
+                  "height": "100%",
+                  "viewBox": "0 0 33 33",
+                  "preserveAspectRatio": "xMidYMid meet"
+                 },
+                 "settings": {
+                  "tag": "svg",
+                  "visibility": true,
+                  "dom": {
+                   "tag": "svg"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b38"
+                   },
+                   "type": "DOM",
+                   "attributes": {
+                    "d": "M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z",
+                    "fill": "currentColor"
+                   },
+                   "settings": {
+                    "tag": "path",
+                    "visibility": true,
+                    "dom": {
+                     "tag": "path"
+                    }
+                   }
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b3c"
+               },
+               "type": "Block",
+               "styleNames": [
+                "paragraph_xlarge",
+                "margin-bottom_none",
+                "text_all-caps"
+               ],
+               "attributes": {
+                "data-brand-name": "true"
+               },
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b3b"
+                 },
+                 "type": "String",
+                 "textContent": "That Layover Life"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa137",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b5d"
+         },
+         "type": "Block",
+         "styleNames": [
+          "flex_vertical"
+         ],
+         "attributes": {
+          "id": "w-node-eb280a5f-22b8-2fbd-d63f-a45e5168e14a-5168e135"
+         },
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b44"
+           },
+           "type": "Block",
+           "styleNames": [
+            "ix-content-block"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b41"
+             },
+             "type": "Block",
+             "styleNames": [
+              "paragraph_xxlarge",
+              "margin-bottom_none"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b40"
+               },
+               "type": "String",
+               "textContent": "Stay in the loop"
+              }
+             ]
+            },
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b43"
+             },
+             "type": "Paragraph",
+             "styleNames": [
+              "margin-bottom_xsmall"
+             ],
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b42"
+               },
+               "type": "String",
+               "textContent": "Subscribe for travel stories, tips, and updates from our global community."
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b5c"
+           },
+           "type": "Block",
+           "styleNames": [
+            "margin_top-auto"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b5b"
+             },
+             "type": "FormWrapper",
+             "styleNames": [
+              "form_block"
+             ],
+             "settings": {
+              "visibility": true,
+              "form": {
+               "name": "Subscribe",
+               "formSettings": {
+                "action": "",
+                "method": "get",
+                "name": "Subscribe",
+                "redirect": "",
+                "state": "normal"
+               }
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b4b"
+               },
+               "type": "FormForm",
+               "styleNames": [
+                "flex_horizontal",
+                "gap-xxsmall",
+                "flex_vertical_mobile-l"
+               ],
+               "attributes": {
+                "id": "wf-form-Subscribe",
+                "data-wf-page-id": "",
+                "data-wf-element-id": "164e03ab-817b-58de-158d-074138098815"
+               },
+               "settings": {
+                "visibility": true,
+                "form": {
+                 "name": "Subscribe",
+                 "formSettings": {
+                  "action": "",
+                  "method": "get",
+                  "name": "Subscribe",
+                  "redirect": "",
+                  "state": "normal"
+                 }
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b48"
+                 },
+                 "type": "Block",
+                 "styleNames": [
+                  "form_item",
+                  "margin-bottom_none",
+                  "width_100percent"
+                 ],
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b46"
+                   },
+                   "type": "FormBlockLabel",
+                   "styleNames": [
+                    "input_label",
+                    "screen-reader"
+                   ],
+                   "settings": {
+                    "visibility": true
+                   },
+                   "children": [
+                    {
+                     "id": {
+                      "component": "69d61481769462c4e6caa137",
+                      "element": "66253382-85ae-9472-e456-fbcb01ac0b45"
+                     },
+                     "type": "String",
+                     "textContent": "Your email"
+                    }
+                   ]
+                  },
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b47"
+                   },
+                   "type": "FormTextInput",
+                   "styleNames": [
+                    "input_field"
+                   ],
+                   "attributes": {
+                    "id": "subscribe-email"
+                   },
+                   "settings": {
+                    "visibility": true,
+                    "input": {
+                     "isRequired": true,
+                     "inputName": "Email 2",
+                     "inputType": "email"
+                    }
+                   }
+                  }
+                 ]
+                },
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b4a"
+                 },
+                 "type": "Block",
+                 "styleNames": [
+                  "ix-link-wrapper"
+                 ],
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b49"
+                   },
+                   "type": "FormButton",
+                   "styleNames": [
+                    "button"
+                   ],
+                   "attributes": {
+                    "role": "button"
+                   },
+                   "settings": {
+                    "visibility": true
+                   }
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b50"
+               },
+               "type": "Paragraph",
+               "styleNames": [
+                "paragraph_small",
+                "margin-top_xsmall",
+                "margin-bottom_none"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b4c"
+                 },
+                 "type": "String",
+                 "textContent": "View our "
+                },
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b4e"
+                 },
+                 "type": "Link",
+                 "styleNames": [
+                  "text-link",
+                  "is-secondary",
+                  "text-span_padding"
+                 ],
+                 "attributes": {
+                  "href": "#"
+                 },
+                 "settings": {
+                  "visibility": true
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b4d"
+                   },
+                   "type": "String",
+                   "textContent": "privacy policy"
+                  }
+                 ]
+                },
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b4f"
+                 },
+                 "type": "String",
+                 "textContent": " for details."
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b55"
+               },
+               "type": "FormSuccessMessage",
+               "styleNames": [
+                "footer_form_success-message"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b54"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b51"
+                   },
+                   "type": "String",
+                   "textContent": "You"
+                  },
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b52"
+                   },
+                   "type": "String",
+                   "textContent": "’"
+                  },
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b53"
+                   },
+                   "type": "String",
+                   "textContent": "re in! Welcome to the journey."
+                  }
+                 ]
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa137",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b5a"
+               },
+               "type": "FormErrorMessage",
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa137",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b59"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b56"
+                   },
+                   "type": "String",
+                   "textContent": "Sorry, we couldn"
+                  },
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b57"
+                   },
+                   "type": "String",
+                   "textContent": "’"
+                  },
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa137",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b58"
+                   },
+                   "type": "String",
+                   "textContent": "t process your request."
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa137",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b5f"
+       },
+       "type": "Block",
+       "styleNames": [
+        "divider",
+        "margin-top_small",
+        "margin-bottom_small"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       }
+      },
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa137",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b66"
+       },
+       "type": "Block",
+       "styleNames": [
+        "ix-content-block"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa137",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b65"
+         },
+         "type": "Block",
+         "styleNames": [
+          "footer_bottom"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b62"
+           },
+           "type": "Block",
+           "styleNames": [
+            "text-color_secondary"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b60"
+             },
+             "type": "String",
+             "textContent": "©"
+            },
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b61"
+             },
+             "type": "String",
+             "textContent": " 2025 That Layover Life"
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa137",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b64"
+           },
+           "type": "Block",
+           "styleNames": [
+            "text-color_secondary"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa137",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b63"
+             },
+             "type": "String",
+             "textContent": "Crafted by Taylor Brooks"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "settings": {
+  "66253382-85ae-9472-e456-fbcb01ac0b2d": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "hello@thatlayoverlife.com"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b31": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Instagram"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b35": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Twitter"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b3d": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "That Layover Life"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b4e": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "privacy policy"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b47": {
+   "type": "all_resolved_settings",
+   "total_matches": 6,
+   "matches": [
+    {
+     "key": "domId",
+     "value": "subscribe-email"
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "name",
+     "value": "Email 2"
+    },
+    {
+     "key": "required",
+     "value": true
+    },
+    {
+     "key": "type",
+     "value": "email"
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b49": {
+   "type": "all_resolved_settings",
+   "total_matches": 6,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "buttonText",
+     "value": "Subscribe"
+    },
+    {
+     "key": "loadingText",
+     "value": "Please wait..."
+    },
+    {
+     "key": "type",
+     "value": "submit"
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "role",
+       "value": "button"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "rawSettings": {
+  "66253382-85ae-9472-e456-fbcb01ac0b2d": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "hello@thatlayoverlife.com"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b31": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Instagram"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b35": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Twitter"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b3d": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "That Layover Life"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b4e": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "privacy policy"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b47": {
+   "type": "all_raw_settings",
+   "total_matches": 6,
+   "matches": [
+    {
+     "key": "domId",
+     "value": "subscribe-email"
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "name",
+     "value": "Email 2"
+    },
+    {
+     "key": "required",
+     "value": true
+    },
+    {
+     "key": "type",
+     "value": "email"
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b49": {
+   "type": "all_raw_settings",
+   "total_matches": 6,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "buttonText",
+     "value": "Subscribe"
+    },
+    {
+     "key": "loadingText",
+     "value": "Please wait..."
+    },
+    {
+     "key": "type",
+     "value": "submit"
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "role",
+       "value": "button"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "props": [],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

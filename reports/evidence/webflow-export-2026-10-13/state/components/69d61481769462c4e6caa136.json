@@ -1,0 +1,4356 @@
+{
+ "id": "69d61481769462c4e6caa136",
+ "name": "Navigation",
+ "group": null,
+ "description": null,
+ "instanceCount": 0,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 194,
+ "nodeTypes": {
+  "Block": 74,
+  "DOM": 27,
+  "DropdownList": 2,
+  "DropdownToggle": 2,
+  "DropdownWrapper": 2,
+  "Grid": 1,
+  "Icon": 2,
+  "Link": 16,
+  "List": 6,
+  "ListItem": 17,
+  "NavbarButton": 1,
+  "NavbarMenu": 1,
+  "NavbarWrapper": 1,
+  "Paragraph": 1,
+  "String": 32,
+  "Strong": 9
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"69d61481769462c4e6caa136\" tree loaded",
+  "data": {
+   "id": {
+    "component": "69d61481769462c4e6caa136",
+    "element": "69d61481769462c4e6caa136"
+   },
+   "type": "Block",
+   "styleNames": [
+    "nav",
+    "is-accent-primary"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "69d61481769462c4e6caa136",
+      "element": "66253382-85ae-9472-e456-fbcb01ac0b29"
+     },
+     "type": "NavbarWrapper",
+     "styleNames": [
+      "nav_container"
+     ],
+     "attributes": {
+      "data-animation": "default",
+      "data-easing2": "ease",
+      "data-easing": "ease",
+      "data-collapse": "medium",
+      "role": "banner",
+      "data-no-scroll": "1",
+      "data-duration": "400"
+     },
+     "settings": {
+      "visibility": true
+     },
+     "children": [
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa136",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b1c"
+       },
+       "type": "Block",
+       "styleNames": [
+        "nav_left"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa136",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0a6e"
+         },
+         "type": "Link",
+         "styleNames": [
+          "nav_logo"
+         ],
+         "attributes": {
+          "href": "#"
+         },
+         "settings": {
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0a6b"
+           },
+           "type": "Block",
+           "styleNames": [
+            "nav_logo-icon"
+           ],
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0a6a"
+             },
+             "type": "DOM",
+             "attributes": {
+              "width": "100%",
+              "height": "100%",
+              "viewBox": "0 0 33 33",
+              "preserveAspectRatio": "xMidYMid meet"
+             },
+             "settings": {
+              "tag": "svg",
+              "visibility": true,
+              "dom": {
+               "tag": "svg"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0a69"
+               },
+               "type": "DOM",
+               "attributes": {
+                "d": "M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z",
+                "fill": "currentColor"
+               },
+               "settings": {
+                "tag": "path",
+                "visibility": true,
+                "dom": {
+                 "tag": "path"
+                }
+               }
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0a6d"
+           },
+           "type": "Block",
+           "styleNames": [
+            "paragraph_large",
+            "margin-bottom_none"
+           ],
+           "attributes": {
+            "data-brand-name": "true"
+           },
+           "settings": {
+            "tag": "div",
+            "visibility": true,
+            "block": {
+             "tag": "div"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0a6c"
+             },
+             "type": "String",
+             "textContent": "That Layover Life"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa136",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b1b"
+       },
+       "type": "NavbarMenu",
+       "styleNames": [
+        "nav_menu"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa136",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b1a"
+         },
+         "type": "List",
+         "styleNames": [
+          "nav_menu-list"
+         ],
+         "attributes": {
+          "role": "list"
+         },
+         "settings": {
+          "tag": "ul",
+          "visibility": true
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b00"
+           },
+           "type": "ListItem",
+           "styleNames": [
+            "nav_menu-list-item"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0aff"
+             },
+             "type": "DropdownWrapper",
+             "styleNames": [
+              "nav_dropdown-menu"
+             ],
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0a72"
+               },
+               "type": "DropdownToggle",
+               "styleNames": [
+                "nav_link",
+                "on-accent-primary"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0a70"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa136",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0a6f"
+                   },
+                   "type": "String",
+                   "textContent": "Explore"
+                  }
+                 ]
+                },
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0a71"
+                 },
+                 "type": "Icon",
+                 "styleNames": [
+                  "nav_caret"
+                 ],
+                 "settings": {
+                  "visibility": true
+                 }
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0afe"
+               },
+               "type": "DropdownList",
+               "styleNames": [
+                "mega-nav_dropdown-list"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0afd"
+                 },
+                 "type": "Block",
+                 "styleNames": [
+                  "mega-nav_dropdown-list-wrapper"
+                 ],
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa136",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0afc"
+                   },
+                   "type": "List",
+                   "styleNames": [
+                    "grid_3-col",
+                    "tablet-1-col-1",
+                    "gap-medium",
+                    "margin-bottom_none"
+                   ],
+                   "attributes": {
+                    "role": "list"
+                   },
+                   "settings": {
+                    "tag": "ul",
+                    "visibility": true
+                   },
+                   "children": [
+                    {
+                     "id": {
+                      "component": "69d61481769462c4e6caa136",
+                      "element": "66253382-85ae-9472-e456-fbcb01ac0aec"
+                     },
+                     "type": "ListItem",
+                     "styleNames": [
+                      "grid-item-manual"
+                     ],
+                     "attributes": {
+                      "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc0fc-4d562d54"
+                     },
+                     "settings": {
+                      "visibility": true
+                     },
+                     "children": [
+                      {
+                       "id": {
+                        "component": "69d61481769462c4e6caa136",
+                        "element": "66253382-85ae-9472-e456-fbcb01ac0aeb"
+                       },
+                       "type": "Grid",
+                       "styleNames": [
+                        "grid_3-col",
+                        "tablet-1-col-1",
+                        "gap-small"
+                       ],
+                       "settings": {
+                        "visibility": true
+                       },
+                       "children": [
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0a9a"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "grid-item-manual"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0a74"
+                           },
+                           "type": "Block",
+                           "styleNames": [
+                            "eyebrow"
+                           ],
+                           "settings": {
+                            "tag": "div",
+                            "visibility": true,
+                            "block": {
+                             "tag": "div"
+                            }
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0a73"
+                             },
+                             "type": "String",
+                             "textContent": "Popular guides"
+                            }
+                           ]
+                          },
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0a99"
+                           },
+                           "type": "List",
+                           "styleNames": [
+                            "mega-nav_list"
+                           ],
+                           "attributes": {
+                            "role": "list"
+                           },
+                           "settings": {
+                            "tag": "ul",
+                            "visibility": true
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0a80"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0a7f"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a77"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a76"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a75"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a7e"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc107-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a7a"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a79"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a78"
+                                       },
+                                       "type": "String",
+                                       "textContent": "City stopovers"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a7d"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a7c"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a7b"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Discover the best layover cities, from hidden gems to iconic skylines."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0a8c"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0a8b"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a83"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a82"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a81"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a8a"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc113-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a86"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a85"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a84"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Airport essentials"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a89"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a88"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a87"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Tips, hacks, and must-knows for every major airport."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0a98"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0a97"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a8f"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a8e"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a8d"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a96"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc11f-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a92"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a91"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a90"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Quick escapes"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a95"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a94"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0a93"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Short adventures for your next long layover."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        },
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0ac2"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "grid-item-manual"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0a9c"
+                           },
+                           "type": "Block",
+                           "styleNames": [
+                            "eyebrow"
+                           ],
+                           "settings": {
+                            "tag": "div",
+                            "visibility": true,
+                            "block": {
+                             "tag": "div"
+                            }
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0a9b"
+                             },
+                             "type": "String",
+                             "textContent": "Community picks"
+                            }
+                           ]
+                          },
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0ac1"
+                           },
+                           "type": "List",
+                           "styleNames": [
+                            "mega-nav_list"
+                           ],
+                           "attributes": {
+                            "role": "list"
+                           },
+                           "settings": {
+                            "tag": "ul",
+                            "visibility": true
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0aa8"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0aa7"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0a9f"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0a9e"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0a9d"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0aa6"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc12f-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aa2"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0aa1"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0aa0"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Traveler favorites"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aa5"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0aa4"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0aa3"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Curated stories and tips from our global community."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0ab4"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0ab3"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0aab"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aaa"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0aa9"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ab2"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc13b-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aae"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0aad"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0aac"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Hidden gems"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ab1"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ab0"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0aaf"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Uncover offbeat spots and secret finds."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0ac0"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0abf"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ab7"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ab6"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ab5"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0abe"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc147-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aba"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ab9"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ab8"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Pet-friendly stops"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0abd"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0abc"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0abb"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Where your furry friends are always welcome."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        },
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0aea"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "grid-item-manual"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0ac4"
+                           },
+                           "type": "Block",
+                           "styleNames": [
+                            "eyebrow"
+                           ],
+                           "settings": {
+                            "tag": "div",
+                            "visibility": true,
+                            "block": {
+                             "tag": "div"
+                            }
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0ac3"
+                             },
+                             "type": "String",
+                             "textContent": "Plan your trip"
+                            }
+                           ]
+                          },
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0ae9"
+                           },
+                           "type": "List",
+                           "styleNames": [
+                            "mega-nav_list"
+                           ],
+                           "attributes": {
+                            "role": "list"
+                           },
+                           "settings": {
+                            "tag": "ul",
+                            "visibility": true
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0ad0"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0acf"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ac7"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ac6"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ac5"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ace"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc157-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0aca"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ac9"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ac8"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Layover tools"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0acd"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0acc"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0acb"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Smart tools to plan, track, and share your journeys."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0adc"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0adb"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ad3"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ad2"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ad1"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ada"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc163-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ad6"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ad5"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ad4"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Packing lists"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ad9"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ad8"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ad7"
+                                       },
+                                       "type": "String",
+                                       "textContent": "What to bring for every kind of adventure."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            },
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0ae8"
+                             },
+                             "type": "ListItem",
+                             "settings": {
+                              "visibility": true
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0ae7"
+                               },
+                               "type": "Link",
+                               "styleNames": [
+                                "mega-nav_link-item"
+                               ],
+                               "attributes": {
+                                "href": "#"
+                               },
+                               "settings": {
+                                "visibility": true
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0adf"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "nav_icon",
+                                  "is-medium"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ade"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 32 32",
+                                    "fill": "currentColor"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0add"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0ae6"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "content-block"
+                                 ],
+                                 "attributes": {
+                                  "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc16f-4d562d54"
+                                 },
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ae2"
+                                   },
+                                   "type": "Block",
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ae1"
+                                     },
+                                     "type": "Strong",
+                                     "settings": {
+                                      "visibility": true
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ae0"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Travel library"
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  },
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0ae5"
+                                   },
+                                   "type": "Block",
+                                   "styleNames": [
+                                    "text-color_primary"
+                                   ],
+                                   "settings": {
+                                    "tag": "div",
+                                    "visibility": true,
+                                    "block": {
+                                     "tag": "div"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0ae4"
+                                     },
+                                     "type": "Block",
+                                     "styleNames": [
+                                      "paragraph_small",
+                                      "text-color_secondary"
+                                     ],
+                                     "settings": {
+                                      "tag": "div",
+                                      "visibility": true,
+                                      "block": {
+                                       "tag": "div"
+                                      }
+                                     },
+                                     "children": [
+                                      {
+                                       "id": {
+                                        "component": "69d61481769462c4e6caa136",
+                                        "element": "66253382-85ae-9472-e456-fbcb01ac0ae3"
+                                       },
+                                       "type": "String",
+                                       "textContent": "Browse our ever-growing collection of travel wisdom."
+                                      }
+                                     ]
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    },
+                    {
+                     "id": {
+                      "component": "69d61481769462c4e6caa136",
+                      "element": "66253382-85ae-9472-e456-fbcb01ac0afb"
+                     },
+                     "type": "ListItem",
+                     "styleNames": [
+                      "grid-item-manual"
+                     ],
+                     "attributes": {
+                      "id": "w-node-_79ea5404-da65-bca7-0d45-4bb38bebc176-4d562d54"
+                     },
+                     "settings": {
+                      "visibility": true
+                     },
+                     "children": [
+                      {
+                       "id": {
+                        "component": "69d61481769462c4e6caa136",
+                        "element": "66253382-85ae-9472-e456-fbcb01ac0afa"
+                       },
+                       "type": "Link",
+                       "styleNames": [
+                        "card-link",
+                        "is-inverse",
+                        "on-accent-primary"
+                       ],
+                       "attributes": {
+                        "href": "#"
+                       },
+                       "settings": {
+                        "visibility": true
+                       },
+                       "children": [
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0af9"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "card_body"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0aee"
+                           },
+                           "type": "Block",
+                           "styleNames": [
+                            "heading_tertiary"
+                           ],
+                           "settings": {
+                            "tag": "div",
+                            "visibility": true,
+                            "block": {
+                             "tag": "div"
+                            }
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0aed"
+                             },
+                             "type": "String",
+                             "textContent": "The world is your layover"
+                            }
+                           ]
+                          },
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0af0"
+                           },
+                           "type": "Paragraph",
+                           "styleNames": [
+                            "paragraph_small",
+                            "text-color_inverse-secondary"
+                           ],
+                           "settings": {
+                            "visibility": true
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0aef"
+                             },
+                             "type": "String",
+                             "textContent": "Join a global community of travelers, storytellers, and explorers. Find your next adventure, share your story, and connect with kindred spirits."
+                            }
+                           ]
+                          },
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0af8"
+                           },
+                           "type": "Block",
+                           "styleNames": [
+                            "margin_top-auto"
+                           ],
+                           "settings": {
+                            "tag": "div",
+                            "visibility": true,
+                            "block": {
+                             "tag": "div"
+                            }
+                           },
+                           "children": [
+                            {
+                             "id": {
+                              "component": "69d61481769462c4e6caa136",
+                              "element": "66253382-85ae-9472-e456-fbcb01ac0af7"
+                             },
+                             "type": "Block",
+                             "styleNames": [
+                              "button-group"
+                             ],
+                             "settings": {
+                              "tag": "div",
+                              "visibility": true,
+                              "block": {
+                               "tag": "div"
+                              }
+                             },
+                             "children": [
+                              {
+                               "id": {
+                                "component": "69d61481769462c4e6caa136",
+                                "element": "66253382-85ae-9472-e456-fbcb01ac0af6"
+                               },
+                               "type": "Block",
+                               "styleNames": [
+                                "text-button",
+                                "is-secondary",
+                                "on-accent-primary"
+                               ],
+                               "settings": {
+                                "tag": "div",
+                                "visibility": true,
+                                "block": {
+                                 "tag": "div"
+                                }
+                               },
+                               "children": [
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0af2"
+                                 },
+                                 "type": "Block",
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0af1"
+                                   },
+                                   "type": "String",
+                                   "textContent": "Join now"
+                                  }
+                                 ]
+                                },
+                                {
+                                 "id": {
+                                  "component": "69d61481769462c4e6caa136",
+                                  "element": "66253382-85ae-9472-e456-fbcb01ac0af5"
+                                 },
+                                 "type": "Block",
+                                 "styleNames": [
+                                  "button_icon"
+                                 ],
+                                 "settings": {
+                                  "tag": "div",
+                                  "visibility": true,
+                                  "block": {
+                                   "tag": "div"
+                                  }
+                                 },
+                                 "children": [
+                                  {
+                                   "id": {
+                                    "component": "69d61481769462c4e6caa136",
+                                    "element": "66253382-85ae-9472-e456-fbcb01ac0af4"
+                                   },
+                                   "type": "DOM",
+                                   "attributes": {
+                                    "xmlns": "http://www.w3.org/2000/svg",
+                                    "width": "100%",
+                                    "height": "100%",
+                                    "viewBox": "0 0 16 16",
+                                    "fill": "none"
+                                   },
+                                   "settings": {
+                                    "tag": "svg",
+                                    "visibility": true,
+                                    "dom": {
+                                     "tag": "svg"
+                                    }
+                                   },
+                                   "children": [
+                                    {
+                                     "id": {
+                                      "component": "69d61481769462c4e6caa136",
+                                      "element": "66253382-85ae-9472-e456-fbcb01ac0af3"
+                                     },
+                                     "type": "DOM",
+                                     "attributes": {
+                                      "d": "M2 8H14.5M14.5 8L8.5 2M14.5 8L8.5 14",
+                                      "stroke": "currentColor",
+                                      "stroke-width": "2",
+                                      "stroke-linejoin": "round"
+                                     },
+                                     "settings": {
+                                      "tag": "path",
+                                      "visibility": true,
+                                      "dom": {
+                                       "tag": "path"
+                                      }
+                                     }
+                                    }
+                                   ]
+                                  }
+                                 ]
+                                }
+                               ]
+                              }
+                             ]
+                            }
+                           ]
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b04"
+           },
+           "type": "ListItem",
+           "styleNames": [
+            "nav_menu-list-item"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b03"
+             },
+             "type": "Link",
+             "styleNames": [
+              "nav_link",
+              "on-accent-primary"
+             ],
+             "attributes": {
+              "href": "#"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b02"
+               },
+               "type": "Block",
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b01"
+                 },
+                 "type": "String",
+                 "textContent": "About"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b08"
+           },
+           "type": "ListItem",
+           "styleNames": [
+            "nav_menu-list-item"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b07"
+             },
+             "type": "Link",
+             "styleNames": [
+              "nav_link",
+              "on-accent-primary"
+             ],
+             "attributes": {
+              "href": "#"
+             },
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b06"
+               },
+               "type": "Block",
+               "settings": {
+                "tag": "div",
+                "visibility": true,
+                "block": {
+                 "tag": "div"
+                }
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b05"
+                 },
+                 "type": "String",
+                 "textContent": "Stories"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b19"
+           },
+           "type": "ListItem",
+           "styleNames": [
+            "nav_menu-list-item"
+           ],
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b18"
+             },
+             "type": "DropdownWrapper",
+             "styleNames": [
+              "nav_dropdown-menu"
+             ],
+             "settings": {
+              "visibility": true
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b0c"
+               },
+               "type": "DropdownToggle",
+               "styleNames": [
+                "nav_link",
+                "on-accent-primary"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b0a"
+                 },
+                 "type": "Block",
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa136",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b09"
+                   },
+                   "type": "String",
+                   "textContent": "Help"
+                  }
+                 ]
+                },
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b0b"
+                 },
+                 "type": "Icon",
+                 "styleNames": [
+                  "nav_caret"
+                 ],
+                 "settings": {
+                  "visibility": true
+                 }
+                }
+               ]
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b17"
+               },
+               "type": "DropdownList",
+               "styleNames": [
+                "nav_dropdown-list-1"
+               ],
+               "settings": {
+                "visibility": true
+               },
+               "children": [
+                {
+                 "id": {
+                  "component": "69d61481769462c4e6caa136",
+                  "element": "66253382-85ae-9472-e456-fbcb01ac0b16"
+                 },
+                 "type": "Block",
+                 "styleNames": [
+                  "nav-menu_dropdown-list-wrapper"
+                 ],
+                 "settings": {
+                  "tag": "div",
+                  "visibility": true,
+                  "block": {
+                   "tag": "div"
+                  }
+                 },
+                 "children": [
+                  {
+                   "id": {
+                    "component": "69d61481769462c4e6caa136",
+                    "element": "66253382-85ae-9472-e456-fbcb01ac0b15"
+                   },
+                   "type": "List",
+                   "styleNames": [
+                    "flex_vertical",
+                    "margin-bottom_none"
+                   ],
+                   "attributes": {
+                    "role": "list"
+                   },
+                   "settings": {
+                    "tag": "ul",
+                    "visibility": true
+                   },
+                   "children": [
+                    {
+                     "id": {
+                      "component": "69d61481769462c4e6caa136",
+                      "element": "66253382-85ae-9472-e456-fbcb01ac0b10"
+                     },
+                     "type": "ListItem",
+                     "styleNames": [
+                      "margin-bottom_none"
+                     ],
+                     "settings": {
+                      "visibility": true
+                     },
+                     "children": [
+                      {
+                       "id": {
+                        "component": "69d61481769462c4e6caa136",
+                        "element": "66253382-85ae-9472-e456-fbcb01ac0b0f"
+                       },
+                       "type": "Link",
+                       "styleNames": [
+                        "nav_dropdown-link"
+                       ],
+                       "attributes": {
+                        "href": "#"
+                       },
+                       "settings": {
+                        "visibility": true
+                       },
+                       "children": [
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0b0e"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "button_label"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0b0d"
+                           },
+                           "type": "String",
+                           "textContent": "FAQs"
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    },
+                    {
+                     "id": {
+                      "component": "69d61481769462c4e6caa136",
+                      "element": "66253382-85ae-9472-e456-fbcb01ac0b14"
+                     },
+                     "type": "ListItem",
+                     "styleNames": [
+                      "margin-bottom_none"
+                     ],
+                     "settings": {
+                      "visibility": true
+                     },
+                     "children": [
+                      {
+                       "id": {
+                        "component": "69d61481769462c4e6caa136",
+                        "element": "66253382-85ae-9472-e456-fbcb01ac0b13"
+                       },
+                       "type": "Link",
+                       "styleNames": [
+                        "nav_dropdown-link"
+                       ],
+                       "attributes": {
+                        "href": "#"
+                       },
+                       "settings": {
+                        "visibility": true
+                       },
+                       "children": [
+                        {
+                         "id": {
+                          "component": "69d61481769462c4e6caa136",
+                          "element": "66253382-85ae-9472-e456-fbcb01ac0b12"
+                         },
+                         "type": "Block",
+                         "styleNames": [
+                          "button_label"
+                         ],
+                         "settings": {
+                          "tag": "div",
+                          "visibility": true,
+                          "block": {
+                           "tag": "div"
+                          }
+                         },
+                         "children": [
+                          {
+                           "id": {
+                            "component": "69d61481769462c4e6caa136",
+                            "element": "66253382-85ae-9472-e456-fbcb01ac0b11"
+                           },
+                           "type": "String",
+                           "textContent": "Contact"
+                          }
+                         ]
+                        }
+                       ]
+                      }
+                     ]
+                    }
+                   ]
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa136",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b21"
+       },
+       "type": "Block",
+       "styleNames": [
+        "nav_right"
+       ],
+       "settings": {
+        "tag": "div",
+        "visibility": true,
+        "block": {
+         "tag": "div"
+        }
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa136",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b20"
+         },
+         "type": "Block",
+         "styleNames": [
+          "button-group",
+          "margin-top_none"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b1f"
+           },
+           "type": "Link",
+           "styleNames": [
+            "button",
+            "on-accent-primary"
+           ],
+           "attributes": {
+            "href": "#"
+           },
+           "settings": {
+            "visibility": true
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b1e"
+             },
+             "type": "Block",
+             "styleNames": [
+              "button_label"
+             ],
+             "settings": {
+              "tag": "div",
+              "visibility": true,
+              "block": {
+               "tag": "div"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b1d"
+               },
+               "type": "String",
+               "textContent": "Get in"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": {
+        "component": "69d61481769462c4e6caa136",
+        "element": "66253382-85ae-9472-e456-fbcb01ac0b28"
+       },
+       "type": "NavbarButton",
+       "styleNames": [
+        "nav_mobile-menu-button"
+       ],
+       "settings": {
+        "visibility": true
+       },
+       "children": [
+        {
+         "id": {
+          "component": "69d61481769462c4e6caa136",
+          "element": "66253382-85ae-9472-e456-fbcb01ac0b27"
+         },
+         "type": "Block",
+         "styleNames": [
+          "icon",
+          "on-accent-primary"
+         ],
+         "settings": {
+          "tag": "div",
+          "visibility": true,
+          "block": {
+           "tag": "div"
+          }
+         },
+         "children": [
+          {
+           "id": {
+            "component": "69d61481769462c4e6caa136",
+            "element": "66253382-85ae-9472-e456-fbcb01ac0b26"
+           },
+           "type": "DOM",
+           "attributes": {
+            "xmlns": "http://www.w3.org/2000/svg",
+            "width": "24",
+            "height": "24",
+            "viewBox": "0 0 24 24"
+           },
+           "settings": {
+            "tag": "svg",
+            "visibility": true,
+            "dom": {
+             "tag": "svg"
+            }
+           },
+           "children": [
+            {
+             "id": {
+              "component": "69d61481769462c4e6caa136",
+              "element": "66253382-85ae-9472-e456-fbcb01ac0b25"
+             },
+             "type": "DOM",
+             "attributes": {
+              "class": "nc-icon-wrapper",
+              "stroke-linecap": "square",
+              "stroke-linejoin": "miter",
+              "stroke-width": "1.5",
+              "fill": "none",
+              "stroke": "currentColor",
+              "stroke-miterlimit": "10"
+             },
+             "settings": {
+              "tag": "g",
+              "visibility": true,
+              "dom": {
+               "tag": "g"
+              }
+             },
+             "children": [
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b22"
+               },
+               "type": "DOM",
+               "attributes": {
+                "x1": "1",
+                "y1": "12",
+                "x2": "23",
+                "y2": "12",
+                "stroke": "currentColor"
+               },
+               "settings": {
+                "tag": "line",
+                "visibility": true,
+                "dom": {
+                 "tag": "line"
+                }
+               }
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b23"
+               },
+               "type": "DOM",
+               "attributes": {
+                "x1": "1",
+                "y1": "5",
+                "x2": "23",
+                "y2": "5"
+               },
+               "settings": {
+                "tag": "line",
+                "visibility": true,
+                "dom": {
+                 "tag": "line"
+                }
+               }
+              },
+              {
+               "id": {
+                "component": "69d61481769462c4e6caa136",
+                "element": "66253382-85ae-9472-e456-fbcb01ac0b24"
+               },
+               "type": "DOM",
+               "attributes": {
+                "x1": "1",
+                "y1": "19",
+                "x2": "23",
+                "y2": "19"
+               },
+               "settings": {
+                "tag": "line",
+                "visibility": true,
+                "dom": {
+                 "tag": "line"
+                }
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "settings": {
+  "66253382-85ae-9472-e456-fbcb01ac0a6e": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "That Layover Life"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a7f": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "City stopoversDiscover the best layover cities, from hidden gems to iconic skylines."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a8b": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Airport essentialsTips, hacks, and must-knows for every major airport."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a97": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Quick escapesShort adventures for your next long layover."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0aa7": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Traveler favoritesCurated stories and tips from our global community."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0ab3": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Hidden gemsUncover offbeat spots and secret finds."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0abf": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Pet-friendly stopsWhere your furry friends are always welcome."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0acf": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Layover toolsSmart tools to plan, track, and share your journeys."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0adb": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Packing listsWhat to bring for every kind of adventure."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0ae7": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Travel libraryBrowse our ever-growing collection of travel wisdom."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0afa": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "The world is your layoverJoin a global community of travelers, storytellers, and explorers. Find your next adventure, share your story, and connect with kindred spirits.Join now"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b03": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "About"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b07": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Stories"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b0f": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "FAQs"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b13": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Contact"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b1f": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Get in"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "rawSettings": {
+  "66253382-85ae-9472-e456-fbcb01ac0a6e": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "That Layover Life"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a7f": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "City stopoversDiscover the best layover cities, from hidden gems to iconic skylines."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a8b": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Airport essentialsTips, hacks, and must-knows for every major airport."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0a97": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Quick escapesShort adventures for your next long layover."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0aa7": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Traveler favoritesCurated stories and tips from our global community."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0ab3": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Hidden gemsUncover offbeat spots and secret finds."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0abf": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Pet-friendly stopsWhere your furry friends are always welcome."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0acf": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Layover toolsSmart tools to plan, track, and share your journeys."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0adb": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Packing listsWhat to bring for every kind of adventure."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0ae7": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Travel libraryBrowse our ever-growing collection of travel wisdom."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0afa": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "The world is your layoverJoin a global community of travelers, storytellers, and explorers. Find your next adventure, share your story, and connect with kindred spirits.Join now"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b03": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "About"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b07": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Stories"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b0f": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "FAQs"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b13": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Contact"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  },
+  "66253382-85ae-9472-e456-fbcb01ac0b1f": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "link",
+     "value": {
+      "mode": "url"
+     }
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Get in"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": [
+      {
+       "name": "href",
+       "value": "#"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "props": [],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

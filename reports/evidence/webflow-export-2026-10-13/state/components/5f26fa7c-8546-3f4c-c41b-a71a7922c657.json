@@ -1,0 +1,260 @@
+{
+ "id": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+ "name": "TLL Sign-Off v1",
+ "group": "TLL Editorial",
+ "description": "Signed story closer. Required on every published story per brand voice. Rule line plus signature line (writer name, byline location). Reuses tll text-color utilities.",
+ "instanceCount": 1,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 6,
+ "nodeTypes": {
+  "Block": 5,
+  "String": 1
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"5f26fa7c-8546-3f4c-c41b-a71a7922c657\" tree loaded",
+  "data": {
+   "id": {
+    "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+    "element": "5f26fa7c-8546-3f4c-c41b-a71a7922c657"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-signoff"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+      "element": "b33a05ff-a7d7-d762-b8a3-9d11fed29a6d"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-signoff-rule"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     }
+    },
+    {
+     "id": {
+      "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+      "element": "c4c19389-4379-dcba-dc68-91d95eacf599"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-signoff-label"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     },
+     "children": [
+      {
+       "id": {
+        "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+        "element": "658bf400-2995-9dc9-64b8-6c38a812f391"
+       },
+       "type": "String",
+       "textContent": "Signed,"
+      }
+     ]
+    },
+    {
+     "id": {
+      "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+      "element": "629c8d0c-c1ff-4d44-2360-1d0de26c6ae4"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-signoff-name"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     }
+    },
+    {
+     "id": {
+      "component": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+      "element": "9f377df4-e4be-b007-5d4b-e884f62d255e"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-signoff-loc"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "settings": {
+  "629c8d0c-c1ff-4d44-2360-1d0de26c6ae4": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Nancy Carleton"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  },
+  "9f377df4-e4be-b007-5d4b-e884f62d255e": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "Reported from Sofia, Bulgaria."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  }
+ },
+ "rawSettings": {
+  "629c8d0c-c1ff-4d44-2360-1d0de26c6ae4": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "sourceType": "prop",
+      "propId": "4c3c205d-1a29-30bb-fec6-21134f3e6e3b",
+      "propName": "Signature name",
+      "propGroup": "Sign-Off"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  },
+  "9f377df4-e4be-b007-5d4b-e884f62d255e": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "sourceType": "prop",
+      "propId": "93c2dcf3-9f57-239a-7b15-0d0009626a9e",
+      "propName": "Byline location",
+      "propGroup": "Sign-Off"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  }
+ },
+ "props": [
+  {
+   "id": "4c3c205d-1a29-30bb-fec6-21134f3e6e3b",
+   "type": "textContent",
+   "name": "Signature name",
+   "group": "Sign-Off",
+   "defaultValue": "Nancy Carleton"
+  },
+  {
+   "id": "93c2dcf3-9f57-239a-7b15-0d0009626a9e",
+   "type": "textContent",
+   "name": "Byline location",
+   "group": "Sign-Off",
+   "defaultValue": "Reported from Sofia, Bulgaria."
+  }
+ ],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+[
+ {
+  "id": "69d61481769462c4e6caa136",
+  "name": "Navigation",
+  "group": null,
+  "description": null,
+  "instanceCount": 0,
+  "nodeCount": 194,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "69d61481769462c4e6caa137",
+  "name": "Footer",
+  "group": null,
+  "description": null,
+  "instanceCount": 0,
+  "nodeCount": 62,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "8484ce87-193e-8ab5-fff8-590bb198f8a8",
+  "name": "TLL Nav v1",
+  "group": "TLL Globals",
+  "description": "Sticky top nav with TLL wordmark, primary links, theme pill strip, Memberstack-aware auth state (anonymous shows Log in + Sign up, members show avatar + account link). Used on every public page.",
+  "instanceCount": 63,
+  "nodeCount": 33,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "8e19d1be-00d9-83c5-6d77-245b384524e0",
+  "name": "TLL Footer v1",
+  "group": "TLL Globals",
+  "description": "Global site footer. TLL wordmark, tagline, four link columns (Read, Contribute, About, Legal), Substack newsletter strip, Magnus 🐻‍❄️ sign-off, and meta row. Used on every public page.",
+  "instanceCount": 3,
+  "nodeCount": 1,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "5f26fa7c-8546-3f4c-c41b-a71a7922c657",
+  "name": "TLL Sign-Off v1",
+  "group": "TLL Editorial",
+  "description": "Signed story closer. Required on every published story per brand voice. Rule line plus signature line (writer name, byline location). Reuses tll text-color utilities.",
+  "instanceCount": 1,
+  "nodeCount": 6,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "61fd1e77-9157-2ddc-7139-28cd4ec5ad33",
+  "name": "TLL Pull Quote v1",
+  "group": "TLL Editorial",
+  "description": "Large serif pull quote with marigold left rule. Drops into story bodies. Quote text is a prop. Reuses brand display stack and palette tokens.",
+  "instanceCount": 0,
+  "nodeCount": 2,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "439d1541-de23-80c6-4fcf-75c6a43fdf0a",
+  "name": "TLL Reader Question v1",
+  "group": "TLL Editorial",
+  "description": "End-of-story reader prompt on blush card. Label plus question text (prop). Drives comments and engagement.",
+  "instanceCount": 1,
+  "nodeCount": 1,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "1080a25e-7a36-1129-6d69-e0316321a68a",
+  "name": "TLL Hashtag Set v1",
+  "group": "TLL Editorial",
+  "description": "Row of story hashtags (prop) in teal. Closes stories and feeds social/SEO long-tail.",
+  "instanceCount": 1,
+  "nodeCount": 1,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "db11b276-3c28-5e59-6f49-4c79d6092d9e",
+  "name": "TLL Magnus Moment v1",
+  "group": "TLL Editorial",
+  "description": "Highlighted aside about Magnus the polar-bear dog. Midnight card, teal rule, bone text. Moment text is a prop. Magnus always rendered with polar bear emoji.",
+  "instanceCount": 0,
+  "nodeCount": 1,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "b25b24db-a356-968b-ed9c-0a0e2c6dd79a",
+  "name": "TLL Sponsor Disclosure v1",
+  "group": "TLL Editorial",
+  "description": "FTC-style sponsored-content disclosure line. Muted bone card. Disclosure text is a prop.",
+  "instanceCount": 0,
+  "nodeCount": 1,
+  "embeds": 0,
+  "images": 0
+ },
+ {
+  "id": "710ff458-c06e-d602-a663-e5e88ca1456b",
+  "name": "TLL Site Footer",
+  "group": null,
+  "description": "Canonical section-12 footer (brand, Navigate/Discover/Contribute/TLL columns, cookie prefs link, social). Used site-wide.",
+  "instanceCount": 63,
+  "nodeCount": 117,
+  "embeds": 1,
+  "images": 0
+ }
+]

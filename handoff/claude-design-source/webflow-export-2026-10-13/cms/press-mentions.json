@@ -1,0 +1,60 @@
+{
+  "id": "6a0b29ee116b2fe274ef96c6",
+  "displayName": "Press Mentions",
+  "slug": "press-mentions",
+  "singularName": "Press Mention",
+  "schema": {
+    "fields": [
+      {
+        "id": "731bfe53af694f81ff16ffe30f09553a",
+        "slug": "publication",
+        "displayName": "Publication",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "d3383c48d27cab077240bb2c58fcb013",
+        "slug": "logo",
+        "displayName": "Logo",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "954d1b307e3dfb57e607dd62825c2fc4",
+        "slug": "pull-quote",
+        "displayName": "Pull quote",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "61fc9670cbdc7cfd82575ac55ace34a4",
+        "slug": "link",
+        "displayName": "Link",
+        "type": "Link",
+        "isRequired": true
+      },
+      {
+        "id": "864fadb0a0f40a069a09650ecb34f9f3",
+        "slug": "date",
+        "displayName": "Date",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "b720d7092e573fa7cba95875c6f8a471",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "036e80ad98a215f04f9e851dcf976a90",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

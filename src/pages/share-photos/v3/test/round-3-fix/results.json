@@ -1,0 +1,257 @@
+{
+ "passed": true,
+ "results": [
+  {
+   "check": 1,
+   "name": "in 1280: no pageerror, console error or unhandled rejection after 4s",
+   "pass": true,
+   "evidence": "{\"errors\":[],\"rej\":[]}"
+  },
+  {
+   "check": 2,
+   "name": "in 1280: first screen order and content (section 2)",
+   "pass": true,
+   "evidence": "{\"foldLimit\":800,\"ordered\":true,\"backText\":\"← The Layover Lounge\",\"eyebrowText\":\"The Layover Lounge\",\"eyebrowUpper\":\"uppercase\",\"titleText\":\"Submit your shot.\",\"emText\":\"shot\",\"emItalic\":\"italic\",\"ledeText\":\"Real photos from real places. No filters, no stock, no staging. If you were there, it counts.\",\"legendBefore\":\"counter(tll-step, decimal-leading-zero) \\\" · \\\"\",\"legendText\":\"Your photos\",\"legendUpper\":\"uppercase\",\"helpText\":\"Up to 12 at a time. JPG or WebP, 25MB each at most.\",\"dropTop\":391,\"dropBottom\":570,\"dropVisible\":true,\"whereLabel\":true,\"captionLabel\":\"What was happening?\",\"directlyAfter\":true,\"between\":[\"tll-err-country\"],\"placeholders\":[],\"scrollY\":0,\"vh\":900,\"ariaGroups\":[\"Your photos\",\"The story\",\"Your credit\",\"Three promises · ticked separately, never pre-ticked\"],\"counterWidths\":{\"labels\":[\"Your photos\",\"The story\",\"Your credit\",\"Three promises · ticked separately, never pre-ticked\"],\"withCounter\":[41,41,41,41],\"plain\":[0,0,0,0],\"nestedLegendBefore\":\"none\"},\"counterRendered\":true}"
+  },
+  {
+   "check": 3,
+   "name": "in 1280: exactly five required controls, accept image/jpeg,image/webp, year optional",
+   "pass": true,
+   "evidence": "{\"reqAttr\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"reqProp\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"accept\":\"image/jpeg,image/webp\",\"yearRequired\":false,\"yearInputmode\":\"numeric\"}"
+  },
+  {
+   "check": 12,
+   "name": "in 1280: computed styles (title, inputs 16px, 4px radius, focus ring, button color)",
+   "pass": true,
+   "evidence": "{\"fontFamily\":\"\\\"Playfair Display\\\", Georgia, serif\",\"fontWeight\":\"800\",\"inputs\":[[\"country\",\"16px\",\"4px\"],[\"city\",\"16px\",\"4px\"],[\"year\",\"16px\",\"4px\"],[\"caption\",\"16px\",\"4px\"],[\"pets-along\",\"16px\",\"4px\"],[\"trip-type\",\"16px\",\"4px\"]],\"dropRadius\":\"4px\",\"radioRadius\":\"4px\",\"promiseRadius\":\"4px\",\"btnRadius\":\"4px\",\"doneRadius\":\"4px\",\"btnBg\":\"rgb(214, 56, 89)\",\"focus\":{\"focused\":true,\"fv\":true,\"outline\":\"3px solid rgb(10, 11, 20)\",\"offset\":\"2px\",\"shadow\":\"rgb(0, 201, 200) 0px 0px 0px 6px\"}}"
+  },
+  {
+   "check": 13,
+   "name": "in 1280: no horizontal overflow, every interactive element 44px tall or in a 44px row (back link 24px)",
+   "pass": true,
+   "evidence": "{\"scrollWidth\":1280,\"clientWidth\":1280,\"small\":[],\"count\":24}"
+  },
+  {
+   "check": 1,
+   "name": "in 390: no pageerror, console error or unhandled rejection after 4s",
+   "pass": true,
+   "evidence": "{\"errors\":[],\"rej\":[]}"
+  },
+  {
+   "check": 2,
+   "name": "in 390: first screen order and content (section 2)",
+   "pass": true,
+   "evidence": "{\"foldLimit\":844,\"ordered\":true,\"backText\":\"← The Layover Lounge\",\"eyebrowText\":\"The Layover Lounge\",\"eyebrowUpper\":\"uppercase\",\"titleText\":\"Submit your shot.\",\"emText\":\"shot\",\"emItalic\":\"italic\",\"ledeText\":\"Real photos from real places. No filters, no stock, no staging. If you were there, it counts.\",\"legendBefore\":\"counter(tll-step, decimal-leading-zero) \\\" · \\\"\",\"legendText\":\"Your photos\",\"legendUpper\":\"uppercase\",\"helpText\":\"Up to 12 at a time. JPG or WebP, 25MB each at most.\",\"dropTop\":339,\"dropBottom\":536,\"dropVisible\":true,\"whereLabel\":true,\"captionLabel\":\"What was happening?\",\"directlyAfter\":true,\"between\":[\"tll-err-country\"],\"placeholders\":[],\"scrollY\":0,\"vh\":844,\"ariaGroups\":[\"Your photos\",\"The story\",\"Your credit\",\"Three promises · ticked separately, never pre-ticked\"],\"counterWidths\":{\"labels\":[\"Your photos\",\"The story\",\"Your credit\",\"Three promises · ticked separately, never pre-ticked\"],\"withCounter\":[41,41,41,41],\"plain\":[0,0,0,0],\"nestedLegendBefore\":\"none\"},\"counterRendered\":true}"
+  },
+  {
+   "check": 3,
+   "name": "in 390: exactly five required controls, accept image/jpeg,image/webp, year optional",
+   "pass": true,
+   "evidence": "{\"reqAttr\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"reqProp\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"accept\":\"image/jpeg,image/webp\",\"yearRequired\":false,\"yearInputmode\":\"numeric\"}"
+  },
+  {
+   "check": 12,
+   "name": "in 390: computed styles (title, inputs 16px, 4px radius, focus ring, button color)",
+   "pass": true,
+   "evidence": "{\"fontFamily\":\"\\\"Playfair Display\\\", Georgia, serif\",\"fontWeight\":\"800\",\"inputs\":[[\"country\",\"16px\",\"4px\"],[\"city\",\"16px\",\"4px\"],[\"year\",\"16px\",\"4px\"],[\"caption\",\"16px\",\"4px\"],[\"pets-along\",\"16px\",\"4px\"],[\"trip-type\",\"16px\",\"4px\"]],\"dropRadius\":\"4px\",\"radioRadius\":\"4px\",\"promiseRadius\":\"4px\",\"btnRadius\":\"4px\",\"doneRadius\":\"4px\",\"btnBg\":\"rgb(214, 56, 89)\",\"focus\":{\"focused\":true,\"fv\":true,\"outline\":\"3px solid rgb(10, 11, 20)\",\"offset\":\"2px\",\"shadow\":\"rgb(0, 201, 200) 0px 0px 0px 6px\"}}"
+  },
+  {
+   "check": 13,
+   "name": "in 390: no horizontal overflow, every interactive element 44px tall or in a 44px row (back link 24px)",
+   "pass": true,
+   "evidence": "{\"scrollWidth\":390,\"clientWidth\":390,\"small\":[],\"count\":24}"
+  },
+  {
+   "check": 4,
+   "name": "in 1280: both disclosures closed on load (aria-expanded=false, visibility hidden, nothing tabbable)",
+   "pass": true,
+   "evidence": "{\"tll-more-detail\":{\"expanded\":\"false\",\"controls\":\"tll-more-detail\",\"btnText\":\"More detail (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel\",\"isOpen\":false,\"visibility\":\"hidden\",\"rows\":\"0px\",\"display\":\"grid\",\"height\":0,\"tabbable\":[],\"focusables\":4},\"tll-more-share\":{\"expanded\":\"false\",\"controls\":\"tll-more-share\",\"btnText\":\"Where else it may appear (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel\",\"isOpen\":false,\"visibility\":\"hidden\",\"rows\":\"0px\",\"display\":\"grid\",\"height\":0,\"tabbable\":[],\"focusables\":3},\"help\":\"City, year, trip type and a pet in the shot. None of it is required.\",\"session\":null}"
+  },
+  {
+   "check": 4,
+   "name": "in 1280: toggling opens and closes both panels",
+   "pass": true,
+   "evidence": "{\"afterOpenDetail\":{\"expanded\":\"true\",\"controls\":\"tll-more-detail\",\"btnText\":\"More detail (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel is-open\",\"isOpen\":true,\"visibility\":\"visible\",\"rows\":\"406.188px\",\"display\":\"grid\",\"height\":406,\"tabbable\":[\"city\",\"year\",\"trip-type\",\"pets-along\"],\"focusables\":4},\"afterOpenShare\":{\"expanded\":\"true\",\"controls\":\"tll-more-share\",\"btnText\":\"Where else it may appear (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel is-open\",\"isOpen\":true,\"visibility\":\"visible\",\"rows\":\"171.5px\",\"display\":\"grid\",\"height\":172,\"tabbable\":[\"syndication-social\",\"syndication-rotation\",\"syndication-press\"],\"focusables\":3},\"afterClose\":{\"tll-more-detail\":{\"expanded\":\"false\",\"controls\":\"tll-more-detail\",\"btnText\":\"More detail (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel\",\"isOpen\":false,\"visibility\":\"hidden\",\"rows\":\"0px\",\"display\":\"grid\",\"height\":0,\"tabbable\":[],\"focusables\":4},\"tll-more-share\":{\"expanded\":\"false\",\"controls\":\"tll-more-share\",\"btnText\":\"Where else it may appear (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel\",\"isOpen\":false,\"visibility\":\"hidden\",\"rows\":\"0px\",\"display\":\"grid\",\"height\":0,\"tabbable\":[],\"focusables\":3},\"help\":\"City, year, trip type and a pet in the shot. None of it is required.\",\"session\":\"{\\\"detail\\\":false,\\\"share\\\":false}\"}}"
+  },
+  {
+   "check": 4,
+   "name": "in 1280: sessionStorage remembers an open panel across reload",
+   "pass": true,
+   "evidence": "{\"sessBeforeReload\":\"{\\\"detail\\\":false,\\\"share\\\":true}\",\"afterReload\":{\"tll-more-detail\":{\"expanded\":\"false\",\"controls\":\"tll-more-detail\",\"btnText\":\"More detail (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel\",\"isOpen\":false,\"visibility\":\"hidden\",\"rows\":\"0px\",\"display\":\"grid\",\"height\":0,\"tabbable\":[],\"focusables\":4},\"tll-more-share\":{\"expanded\":\"true\",\"controls\":\"tll-more-share\",\"btnText\":\"Where else it may appear (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel is-open\",\"isOpen\":true,\"visibility\":\"visible\",\"rows\":\"171.5px\",\"display\":\"grid\",\"height\":172,\"tabbable\":[\"syndication-social\",\"syndication-rotation\",\"syndication-press\"],\"focusables\":3},\"help\":\"City, year, trip type and a pet in the shot. None of it is required.\",\"session\":\"{\\\"detail\\\":false,\\\"share\\\":true}\"}}"
+  },
+  {
+   "check": 4,
+   "name": "in 1280: a value in City plus a reload opens More detail",
+   "pass": true,
+   "evidence": "{\"sessBeforeReload\":\"{\\\"detail\\\":false,\\\"share\\\":false}\",\"restored\":\"Lisbon\",\"how\":\"value re-applied before DOMContentLoaded (init script), since Chromium did not restore the field on reload\",\"afterReload\":{\"expanded\":\"true\",\"controls\":\"tll-more-detail\",\"btnText\":\"More detail (optional)\",\"btnClass\":\"tll-pen-disclosure\",\"panelClass\":\"tll-pen-panel is-open\",\"isOpen\":true,\"visibility\":\"visible\",\"rows\":\"406.188px\",\"display\":\"grid\",\"height\":406,\"tabbable\":[\"city\",\"year\",\"trip-type\",\"pets-along\"],\"focusables\":4}}"
+  },
+  {
+   "check": 5,
+   "name": "in 1280: three JPEGs render three rows with thumbnail, name, size, Remove (aria-label) and \"3 of 12 chosen.\"",
+   "pass": true,
+   "evidence": "{\"listHidden\":false,\"listDisplay\":\"grid\",\"rows\":[{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-1.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-1.jpg\",\"h\":66},{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-2.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-2.jpg\",\"h\":66},{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-3.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-3.jpg\",\"h\":66}],\"count\":\"3 of 12 chosen.\",\"countHidden\":false,\"files\":3,\"fileErrs\":[]}"
+  },
+  {
+   "check": 5,
+   "name": "in 1280: Remove rebuilds the FileList (2 files, 2 rows, \"2 of 12 chosen.\")",
+   "pass": true,
+   "evidence": "{\"listHidden\":false,\"listDisplay\":\"grid\",\"rows\":[{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-2.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-2.jpg\",\"h\":66},{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-3.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-3.jpg\",\"h\":66}],\"count\":\"2 of 12 chosen.\",\"countHidden\":false,\"files\":2,\"fileErrs\":[]}"
+  },
+  {
+   "check": 5,
+   "name": "in 1280: a .png is rejected with the exact message and the kept files stay",
+   "pass": true,
+   "evidence": "{\"listHidden\":false,\"listDisplay\":\"grid\",\"rows\":[{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-2.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-2.jpg\",\"h\":66},{\"cls\":\"tll-photos-row\",\"thumb\":true,\"img\":96,\"blob\":\"blob:\",\"name\":\"photo-3.jpg\",\"size\":\"0.1 MB\",\"remove\":\"Remove\",\"aria\":\"Remove photo-3.jpg\",\"h\":66}],\"count\":\"2 of 12 chosen.\",\"countHidden\":false,\"files\":2,\"fileErrs\":[\"not-a-photo.png is not a JPG or WebP. Try the original from your Photos app.\"]}"
+  },
+  {
+   "check": 5,
+   "name": "in 1280: a 13-file set keeps 12 and shows the exact message",
+   "pass": true,
+   "evidence": "{\"files\":12,\"rows\":12,\"count\":\"12 of 12 chosen.\",\"fileErrs\":[\"That's more than 12. We kept the first 12 and left the rest for next time.\"],\"lastRow\":\"batch-12.jpg\"}"
+  },
+  {
+   "check": 1,
+   "name": "in 1280 (file list run): no page errors",
+   "pass": true,
+   "evidence": "[]"
+  },
+  {
+   "check": 6,
+   "name": "in 1280: empty submit is blocked in the capture phase (no navigation, no Webflow handler, no request)",
+   "pass": true,
+   "evidence": "{\"url\":\"http://tll.test/mock-in.html\",\"navsAfter\":[],\"netAfter\":[],\"wfRuns\":0}"
+  },
+  {
+   "check": 6,
+   "name": "in 1280: inline errors with the exact strings, aria-invalid on the controls, focus on the drop zone input, status count",
+   "pass": true,
+   "evidence": "{\"shown\":[\"photos\",\"country\",\"rights\",\"license\",\"people\"],\"expectedStatus\":\"5 things to fix above. (year is optional, so five, not six)\",\"errs\":{\"photos\":{\"text\":\"Add at least one photo.\",\"hidden\":false,\"display\":\"block\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"},\"country\":{\"text\":\"Tell us the country, at least.\",\"hidden\":false,\"display\":\"block\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"},\"year\":{\"text\":\"\",\"hidden\":true,\"display\":\"none\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"},\"rights\":{\"text\":\"Tick this one to send.\",\"hidden\":false,\"display\":\"block\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"},\"license\":{\"text\":\"Tick this one to send.\",\"hidden\":false,\"display\":\"block\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"},\"people\":{\"text\":\"Tick this one to send.\",\"hidden\":false,\"display\":\"block\",\"color\":\"rgb(200, 50, 91)\",\"cls\":\"tll-pen-error\"}},\"invalid\":[\"photos\",\"country\",\"agree-rights\",\"agree-licence\",\"agree-people\"],\"invalidLabels\":[\"tll-photos-drop.is-invalid\",\"tll-pen-field.is-invalid\",\"tll-pen-field.tll-pen-field-inline\",\"tll-pen-field.tll-pen-field-inline\",\"tll-pen-field.tll-pen-field-inline\"],\"focus\":\"INPUT#photos-upload.tll-photos-drop-input\",\"focusIsDrop\":true,\"status\":\"5 things to fix above.\",\"statusRole\":\"status\",\"wfRuns\":0,\"noValidate\":true,\"describedBy\":\"tll-err-country\"}"
+  },
+  {
+   "check": 6,
+   "name": "in 1280: a bad year adds its exact error (\"6 things to fix above.\"); fixing the country clears its error and the count",
+   "pass": true,
+   "evidence": "{\"afterBadYear\":{\"year\":\"A four-digit year. Guessing is allowed.\",\"yearHidden\":false,\"status\":\"6 things to fix above.\",\"yearInvalid\":\"true\"},\"afterCountryFix\":{\"country\":true,\"text\":\"\",\"invalid\":null,\"labelInvalid\":false,\"status\":\"5 things to fix above.\"}}"
+  },
+  {
+   "check": 6,
+   "name": "in 1280: singular \"One thing to fix above.\", focus on the failing promise; the footnote returns when the last error clears",
+   "pass": true,
+   "evidence": "{\"s6d\":{\"status\":\"One thing to fix above.\",\"focus\":\"agree-people\",\"wfRuns\":0},\"s6e\":{\"status\":\"A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.\"}}"
+  },
+  {
+   "check": 6,
+   "name": "in 1280: a valid form reaches the Webflow handler (mock) once",
+   "pass": true,
+   "evidence": "{\"url\":\"http://tll.test/mock-in.html\",\"wfRuns\":1,\"status\":\"A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.\",\"invalid\":0}"
+  },
+  {
+   "check": 1,
+   "name": "in 1280 (submit run): no page errors",
+   "pass": true,
+   "evidence": "[]"
+  },
+  {
+   "check": 7,
+   "name": "in 1280: summary appears only with a photo and a country, exact singular and plural wording",
+   "pass": true,
+   "evidence": "{\"a\":{\"hidden\":true,\"text\":\"\",\"display\":\"none\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"b\":{\"hidden\":true,\"text\":\"\",\"display\":\"none\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"c\":{\"hidden\":false,\"text\":\"1 photo from Portugal.\",\"display\":\"block\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"d\":{\"hidden\":false,\"text\":\"2 photos from Portugal.\",\"display\":\"block\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"e\":{\"hidden\":false,\"text\":\"2 photos from Lisbon, Portugal.\",\"display\":\"block\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"f\":{\"hidden\":false,\"text\":\"2 photos from Lisbon, Portugal, 2024.\",\"display\":\"block\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"g\":{\"hidden\":false,\"text\":\"1 photo from Lisbon, Portugal, 2024.\",\"display\":\"block\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"},\"h\":{\"hidden\":true,\"text\":\"\",\"display\":\"none\",\"prev\":\"tll-promises-label\",\"parent\":\"tll-pen-promises\"}}"
+  },
+  {
+   "check": 8,
+   "name": "in 1280: \"Credited as Nancy Carleton, from your account.\" while My name is checked; hidden for the other two; one read-only Memberstack call",
+   "pass": true,
+   "evidence": "{\"c0\":{\"text\":\"Credited as Nancy Carleton, from your account.\",\"hidden\":false,\"display\":\"block\",\"prevIsCreditLabel\":true,\"reads\":1,\"writes\":[]},\"c1\":{\"text\":\"Credited as Nancy Carleton, from your account.\",\"hidden\":true,\"display\":\"none\",\"prevIsCreditLabel\":true,\"reads\":1,\"writes\":[]},\"c2\":{\"text\":\"Credited as Nancy Carleton, from your account.\",\"hidden\":true,\"display\":\"none\",\"prevIsCreditLabel\":true,\"reads\":1,\"writes\":[]},\"c3\":{\"text\":\"Credited as Nancy Carleton, from your account.\",\"hidden\":false,\"display\":\"block\",\"prevIsCreditLabel\":true,\"reads\":1,\"writes\":[]}}"
+  },
+  {
+   "check": 9,
+   "name": "in 1280: clicking the credit heading and the syndication heading text ticks nothing; a row click still works",
+   "pass": true,
+   "evidence": "{\"n1\":{\"named\":false,\"pen\":true,\"heading\":\"Credit\"},\"n2\":{\"checked\":[false,false,false],\"heading\":\"Unticked means the Lounge only. Say yes to any of these.\",\"rows\":[\"On our Instagram and LinkedIn, with the same credit line\",\"On the homepage, in the rotating set\",\"Offered to press and partners. We ask you first, every time.\"]},\"n3\":true}"
+  },
+  {
+   "check": 8,
+   "name": "in 1280 (?noms): with $memberstackDom undefined the line reads the fallback",
+   "pass": true,
+   "evidence": "{\"ms\":\"undefined\",\"text\":\"Credited with the name on your account.\",\"hidden\":false}"
+  },
+  {
+   "check": 1,
+   "name": "in 1280 (?noms): no page errors",
+   "pass": true,
+   "evidence": "[]"
+  },
+  {
+   "check": 10,
+   "name": "in 1280: showing .w-form-done (style display:block) moves focus to it",
+   "pass": true,
+   "evidence": "{\"before\":{\"tabindex\":\"-1\",\"display\":\"none\",\"text\":\"Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.\"},\"focused\":true,\"active\":\"w-form-done\",\"display\":\"block\",\"bg\":\"rgb(240, 235, 224)\",\"radius\":\"4px\",\"outline\":\"none\"}"
+  },
+  {
+   "check": 1,
+   "name": "out 1280: no pageerror, console error or unhandled rejection after 4s",
+   "pass": true,
+   "evidence": "{\"errors\":[],\"rej\":[]}"
+  },
+  {
+   "check": 11,
+   "name": "out 1280: gate order, copy, buttons, age line; members block hidden; same column as signed in",
+   "pass": true,
+   "evidence": "{\"signedInColumn\":{\"width\":640,\"left\":320,\"pad\":\"28px\",\"inner\":584},\"ordered\":true,\"memDisplay\":\"none\",\"anonDisplay\":\"block\",\"eyebrow\":\"The Layover Lounge\",\"h2\":\"Sign in to drop your photos.\",\"em\":\"drop your photos\",\"lede\":\"A photo, not an essay. Three short steps, and a human on the other end.\",\"rows\":[[2,\"Drop\",\"Up to 12 photos, straight from your camera roll.\",\"DIV\",\"P\"],[2,\"Where\",\"A country is enough. Add a caption if you feel like it.\",\"DIV\",\"P\"],[2,\"Send\",\"Three promises about rights, your credit the way you want it, and a human looks at it before it goes up.\",\"DIV\",\"P\"]],\"line\":\"Every photo in the Lounge was taken by a member and sent with their permission.\",\"btns\":[\"Log in\",\"Join the Travelers\"],\"hrefs\":[\"/login\",\"/signup\"],\"age\":\"Free. Travelers are 16 and older.\",\"col\":{\"width\":640,\"left\":320,\"pad\":\"28px\",\"inner\":584},\"btnH\":[48,48],\"sideBySide\":true,\"stacked\":false,\"loginBg\":\"rgb(214, 56, 89)\",\"ghostBorder\":\"rgb(10, 11, 20)\",\"h2Font\":\"\\\"Playfair Display\\\", Georgia, serif\",\"h2Size\":\"53.76px\",\"h1SizeExpected\":null,\"scrollWidth\":1280,\"clientWidth\":1280,\"ageSize\":\"12px\",\"wordSize\":\"10px\"}"
+  },
+  {
+   "check": 1,
+   "name": "out 390: no pageerror, console error or unhandled rejection after 4s",
+   "pass": true,
+   "evidence": "{\"errors\":[],\"rej\":[]}"
+  },
+  {
+   "check": 11,
+   "name": "out 390: gate order, copy, buttons, age line; members block hidden; same column as signed in",
+   "pass": true,
+   "evidence": "{\"signedInColumn\":{\"width\":390,\"left\":0,\"pad\":\"16px\",\"inner\":358},\"ordered\":true,\"memDisplay\":\"none\",\"anonDisplay\":\"block\",\"eyebrow\":\"The Layover Lounge\",\"h2\":\"Sign in to drop your photos.\",\"em\":\"drop your photos\",\"lede\":\"A photo, not an essay. Three short steps, and a human on the other end.\",\"rows\":[[2,\"Drop\",\"Up to 12 photos, straight from your camera roll.\",\"DIV\",\"P\"],[2,\"Where\",\"A country is enough. Add a caption if you feel like it.\",\"DIV\",\"P\"],[2,\"Send\",\"Three promises about rights, your credit the way you want it, and a human looks at it before it goes up.\",\"DIV\",\"P\"]],\"line\":\"Every photo in the Lounge was taken by a member and sent with their permission.\",\"btns\":[\"Log in\",\"Join the Travelers\"],\"hrefs\":[\"/login\",\"/signup\"],\"age\":\"Free. Travelers are 16 and older.\",\"col\":{\"width\":390,\"left\":0,\"pad\":\"16px\",\"inner\":358},\"btnH\":[48,48],\"sideBySide\":false,\"stacked\":true,\"loginBg\":\"rgb(214, 56, 89)\",\"ghostBorder\":\"rgb(10, 11, 20)\",\"h2Font\":\"\\\"Playfair Display\\\", Georgia, serif\",\"h2Size\":\"34px\",\"h1SizeExpected\":null,\"scrollWidth\":390,\"clientWidth\":390,\"ageSize\":\"12px\",\"wordSize\":\"10px\"}"
+  },
+  {
+   "check": 12,
+   "name": "in 1280 (reduced motion): no transform transition on the button, rows or panels",
+   "pass": true,
+   "evidence": "{\"matches\":true,\"button\":{\"transition\":\"background-color, opacity\",\"dur\":\"0.15s, 0.15s\",\"anim\":\"none\",\"transform\":\"none\"},\"row\":{\"transition\":\"opacity, color, background-color, border-color, box-shadow\",\"dur\":\"0.15s\",\"anim\":\"none\",\"transform\":\"none\"},\"panel\":{\"transition\":\"opacity, color, background-color, border-color, box-shadow\",\"dur\":\"0s\",\"anim\":\"none\",\"transform\":\"none\"},\"panelInner\":{\"transition\":\"opacity, color, background-color, border-color, box-shadow\",\"dur\":\"0.15s\",\"anim\":\"none\",\"transform\":\"none\"},\"drop\":{\"transition\":\"opacity, color, background-color, border-color, box-shadow\",\"dur\":\"0.15s\",\"anim\":\"none\",\"transform\":\"none\"}}"
+  },
+  {
+   "check": 4,
+   "name": "contract: every class the script creates has a rule in tll-photos-v3",
+   "pass": true,
+   "evidence": "{\"unstyled\":[],\"created\":{\"tll-pen-panel\":{\"inDom\":true,\"domClass\":\"tll-pen-panel\",\"styledInCss\":true},\"tll-pen-panel-inner\":{\"inDom\":true,\"domClass\":\"tll-pen-panel-inner\",\"styledInCss\":true},\"tll-pen-disclosure\":{\"inDom\":true,\"domClass\":\"tll-pen-disclosure\",\"styledInCss\":true},\"tll-pen-disclosure-help\":{\"inDom\":true,\"domClass\":\"tll-pen-disclosure-help\",\"styledInCss\":true},\"tll-pen-error\":{\"inDom\":true,\"domClass\":\"tll-pen-error\",\"styledInCss\":true},\"tll-photos-row\":{\"inDom\":false,\"domClass\":null,\"styledInCss\":true},\"tll-photos-thumb\":{\"inDom\":false,\"domClass\":null,\"styledInCss\":true},\"tll-photos-remove\":{\"inDom\":false,\"domClass\":null,\"styledInCss\":true},\"tll-photos-count\":{\"inDom\":true,\"domClass\":\"tll-photos-count\",\"styledInCss\":true},\"tll-credited-as\":{\"inDom\":true,\"domClass\":\"tll-credited-as\",\"styledInCss\":true},\"tll-photos-summary\":{\"inDom\":true,\"domClass\":\"tll-photos-summary\",\"styledInCss\":true},\"tll-pen-promises\":{\"inDom\":true,\"domClass\":\"tll-pen-promises\",\"styledInCss\":true}},\"cssSelectorsWithNoElement\":[[\"tll-photos-panel\",false],[\"tll-photos-panel-inner\",false],[\"tll-photos-disclosure\",false],[\"tll-photos-disclosure-help\",false],[\"tll-photos-chevron\",false],[\"tll-photos-item\",false],[\"tll-err\",false],[\"tll-photos-vh\",true]],\"disclosureButton\":{\"font\":\"\\\"JetBrains Mono\\\", ui-monospace, monospace\",\"color\":\"rgb(6, 122, 121)\",\"size\":\"11px\",\"h\":44,\"chevron\":false,\"before\":\"none\",\"after\":\"\\\"\\\"\"},\"errColor\":\"rgb(200, 50, 91)\",\"petLabelVisible\":{\"text\":\"Their name\",\"w\":1,\"cls\":\"tll-pen-label tll-photos-vh\"}}"
+  },
+  {
+   "check": 13,
+   "name": "in 390: the three opt-in row labels fit inside the column (not clipped)",
+   "pass": true,
+   "evidence": "{\"rows\":[{\"text\":\"On our Instagram and LinkedIn, with the same credit line\",\"right\":374,\"containerRight\":374,\"overflow\":-16,\"whiteSpace\":\"normal\",\"parentWhiteSpace\":\"normal\",\"rowH\":44},{\"text\":\"On the homepage, in the rotating set\",\"right\":327,\"containerRight\":374,\"overflow\":-63,\"whiteSpace\":\"normal\",\"parentWhiteSpace\":\"normal\",\"rowH\":44},{\"text\":\"Offered to press and partners. We ask you first, every time.\",\"right\":374,\"containerRight\":374,\"overflow\":-16,\"whiteSpace\":\"normal\",\"parentWhiteSpace\":\"normal\",\"rowH\":44}],\"chain\":[{\"el\":\"SPAN.w-form-label\",\"w\":327,\"display\":\"block\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"327px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"LABEL.w-checkbox\",\"w\":358,\"display\":\"flex\",\"flex\":\"1 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"LABEL.tll-pen-checkbox\",\"w\":358,\"display\":\"flex\",\"flex\":\"0 1 auto\",\"minWidth\":\"auto\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"DIV.tll-pen-checkboxes\",\"w\":358,\"display\":\"flex\",\"flex\":\"0 1 auto\",\"minWidth\":\"auto\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"LABEL.tll-pen-field\",\"w\":358,\"display\":\"flex\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"DIV.tll-pen-panel-inner\",\"w\":358,\"display\":\"block\",\"flex\":\"0 1 auto\",\"minWidth\":\"auto\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"hidden\",\"flexWrap\":\"nowrap\"},{\"el\":\"DIV.tll-pen-panel.is-open\",\"w\":358,\"display\":\"grid\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"FIELDSET.tll-pen-fieldset\",\"w\":358,\"display\":\"block\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"FORM.\",\"w\":358,\"display\":\"block\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"},{\"el\":\"DIV.tll-photos-form.w-form\",\"w\":358,\"display\":\"block\",\"flex\":\"0 1 auto\",\"minWidth\":\"0px\",\"width\":\"358px\",\"whiteSpace\":\"normal\",\"overflow\":\"visible\",\"flexWrap\":\"nowrap\"}],\"flexRulesOnWCheckbox\":[{\"sheet\":\"tll-pass-a\",\"sel\":\".tll-pen-checkbox .w-checkbox, .tll-pen-radio .w-radio\",\"val\":\"0 0 auto\",\"important\":\"\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-tll-form=\\\"share-photos\\\"] label.tll-pen-checkbox > .w-checkbox\",\"val\":\"1 1 auto\",\"important\":\"\"},{\"sheet\":\"tll-pass-a\",\"sel\":\".tll-pen-checkbox .w-checkbox, .tll-pen-radio .w-radio\",\"val\":\"0\",\"important\":\"\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-tll-form=\\\"share-photos\\\"] label.tll-pen-checkbox > .w-checkbox\",\"val\":\"1\",\"important\":\"\"},{\"sheet\":\"tll-pass-a\",\"sel\":\".tll-pen-checkbox .w-checkbox, .tll-pen-radio .w-radio\",\"val\":\"auto\",\"important\":\"\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-tll-form=\\\"share-photos\\\"] label.tll-pen-checkbox > .w-checkbox\",\"val\":\"auto\",\"important\":\"\"},{\"sheet\":\"tll-pass-a\",\"sel\":\".tll-pen-checkbox .w-checkbox, .tll-pen-radio .w-radio\",\"val\":\"auto\",\"important\":\"important\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-tll-form=\\\"share-photos\\\"] label.tll-pen-checkbox > .w-checkbox\",\"val\":\"auto\",\"important\":\"important\"}],\"panelHasRule\":false,\"whiteSpaceRules\":[],\"docScroll\":390,\"overflowRules\":[]}"
+  },
+  {
+   "check": 11,
+   "name": "out 1280: gate column text is left-aligned like the signed-in column",
+   "pass": true,
+   "evidence": "{\"containerAlign\":\"start\",\"rowAlign\":\"start\",\"ledeAlign\":\"start\",\"rules\":[{\"sheet\":\"http://tll.test/site-styles.css\",\"sel\":\".tll-container.inline-div-1\",\"val\":\"center\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-ms-content=\\\"anonymous\\\"] > section.tll-section > .tll-container\",\"val\":\"start\"},{\"sheet\":\"http://tll.test/site-styles.css\",\"sel\":\".inline-div-0\",\"val\":\"center\"},{\"sheet\":\"tll-photos-v3\",\"sel\":\"[data-ms-content=\\\"anonymous\\\"] .tll-container .inline-div-0, [data-ms-content=\\\"anonymous\\\"] .tll-container > div:has(> a.tll-btn)\",\"val\":\"flex-start\"}],\"signedInAlign\":\"start\"}"
+  },
+  {
+   "check": 14,
+   "name": "node --check on the script; CSS braces balanced; the browser accepted every rule; footer file equals the two blocks",
+   "pass": true,
+   "evidence": "{\"nodeCheck\":\"ok\",\"opens\":156,\"closes\":156,\"minDepth\":0,\"parsed\":{\"rules\":151,\"groups\":5,\"topLevel\":134},\"srcRules\":151,\"cssInHtml\":true,\"jsInHtml\":true,\"footerOk\":true,\"stylelint\":\"not installed\"}"
+  }
+ ],
+ "screenshots": [
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/in-1280-fold.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/in-1280-full.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/in-390-fold.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/in-390-full.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/out-1280-fold.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/out-1280-full.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/out-390-fold.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/out-390-full.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/thumbs-1280.png",
+  "/home/user/thatlayoverlife/src/pages/share-photos/v3/test/round-3-fix/thumbs-390.png"
+ ]
+}

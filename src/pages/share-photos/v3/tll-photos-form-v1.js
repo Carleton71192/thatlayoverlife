@@ -65,13 +65,15 @@
     }
     function remember(){ try{ sessionStorage.setItem('tllPhotosPanels',JSON.stringify({detail:!!(detail&&detail.on),share:!!(share&&share.on)})); }catch(e){} }
 
-    /* 5 · rows 15 to 17: "More detail (optional)" holds city, year, trip type and the whole pet fieldset */
+    /* 5 · rows 15 to 17: "More detail (optional)" holds city, year, trip type and the whole pet fieldset; the pet label span gets .tll-photos-vh */
     try{
       detail=disclosure('tll-more-detail','tll-more-detail-btn','More detail (optional)');
       storyFs.appendChild(detail.btn);
       storyFs.appendChild(el('p',{'class':'tll-pen-disclosure-help'},'City, year, trip type and a pet in the shot. None of it is required.'));
       storyFs.appendChild(detail.panel);
       [cityLabel,yearLabel,tripLabel,petFs].forEach(function(n){ if(n) detail.inner.appendChild(n); });
+      var petLabel=pets&&pets.closest('label'), petSpan=petLabel&&petLabel.querySelector('.tll-pen-label');   /* row 16: the legend carries the question; the span (…86c4) is visually hidden, the label (…86c6) stays connected */
+      if(petSpan) petSpan.classList.add('tll-photos-vh');
     }catch(e){}
 
     /* 6 · row 20: "Where else it may appear (optional)" holds the syndication label with its three rows */
@@ -169,14 +171,16 @@
       if(!canDT&&msgs.length){ photos.value=''; setCount('Choose your photos again.'); summary(); return; }
       added.forEach(function(k,i){ kept.push(k); list.appendChild(row(k,i)); });
       if(canDT&&!sync()) startOver(); else setCount();
-      summary();
+      settled();
     }
     function startOver(){ clearRows(); photos.value=''; setCount('Choose your photos again.'); }   /* row 13 fallback: no FileList rebuild */
     function remove(k){
       var i=kept.indexOf(k); if(i<0) return; kept.splice(i,1); drop(k);
       if(sync()) setCount(); else startOver();
-      summary();
+      settled();
     }
+    /* a drop or a Remove changes the input without a change event, so the photos error clears here as it would in onEdit */
+    function settled(){ if(photos.files&&photos.files.length&&clearErr('photos')) live(); summary(); }
 
     /* 11 · row 22: the summary line at the top of the promises group, computed from the live inputs */
     try{
@@ -200,7 +204,7 @@
         var fails=check(); live();
         if(!fails.length) return;
         ev.preventDefault(); ev.stopImmediatePropagation();
-        var k=fails[0]; if(k==='year'&&detail){ detail.open(true); remember(); }
+        var k=fails[0]; if(fails.indexOf('year')>=0&&detail){ detail.open(true); remember(); }   /* the year error sits inside the panel: open it whenever the year fails, wherever it falls in the list */
         try{ errs[k].i.focus(); }catch(e){}
       },true);
       form.addEventListener('input',onEdit); form.addEventListener('change',onEdit);

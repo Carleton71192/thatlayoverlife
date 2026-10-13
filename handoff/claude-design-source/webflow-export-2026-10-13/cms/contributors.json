@@ -1,0 +1,479 @@
+{
+  "id": "6a0b29c7a7b1840afe9390a5",
+  "displayName": "Contributors",
+  "slug": "contributors",
+  "singularName": "Contributor",
+  "schema": {
+    "fields": [
+      {
+        "id": "af056701c8511e1cf3ea859478f7913d",
+        "slug": "avatar",
+        "displayName": "Photo",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "703bf7e8a8e0bb3864fce67e90f1d842",
+        "slug": "bio-short",
+        "displayName": "Bio short",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "3800c136c881ca08932477bcb6cc6832",
+        "slug": "bio-long",
+        "displayName": "Bio long",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "e5980a87474ca6f1d8700f67d932474f",
+        "slug": "country-count",
+        "displayName": "Country count",
+        "type": "Number",
+        "isRequired": true
+      },
+      {
+        "id": "1ad2e73892af12dcd94603d66b567339",
+        "slug": "home-base",
+        "displayName": "Location",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "e8ebed32220cc875b4a436f93be19ac1",
+        "slug": "badge",
+        "displayName": "Badge",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "1f7948e9a72947b24aabe4613f05fa7c",
+        "slug": "member-since",
+        "displayName": "Member since",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "01fe2637b79ef9f24387c5d58cce937f",
+        "slug": "instagram-url",
+        "displayName": "Instagram URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "b0ad89e1e375aab7495492d0a0067b6e",
+        "slug": "website-url",
+        "displayName": "Personal site URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "0e31a3918bff0a6e57466d2057b616b3",
+        "slug": "memberstack-id",
+        "displayName": "Member ID",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "8364d1862716a5926ad8cd0185a2c28d",
+        "slug": "visited-countries",
+        "displayName": "Visited countries",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "3982d452816b9d03f45755d7d11923c6",
+        "slug": "email",
+        "displayName": "Email",
+        "type": "Email",
+        "isRequired": false
+      },
+      {
+        "id": "508d66c09ace2abc815f626116343481",
+        "slug": "tagline",
+        "displayName": "Tagline",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "96e8694c65dc18adbf432cc8c6610ba6",
+        "slug": "pronouns",
+        "displayName": "Pronouns",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "92263b5bd4287a02f2b99c2517038d92",
+        "slug": "is-featured",
+        "displayName": "Is featured",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "a6d2d0b050082eaedf232f2be490e3aa",
+        "slug": "published-count",
+        "displayName": "Published count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "d3bc6f70df1a33eae9e8b8b6ee734e7f",
+        "slug": "profile-header-image",
+        "displayName": "Profile header image",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "c268603f1ddb1f33cd964be69768f0f0",
+        "slug": "subscription-tier",
+        "displayName": "Subscription tier",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "74132ffb259093bcd7bf6ee8e4d5bd4a",
+        "slug": "account-status",
+        "displayName": "Account status",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "534369cda861deea5d8f68487d5dd48f",
+        "slug": "last-login",
+        "displayName": "Last login",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "ed327582f64611c2f81d2860f49963c6",
+        "slug": "accepts-newsletter",
+        "displayName": "Accepts newsletter",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "dd2137903cdb1c9201352251869fb748",
+        "slug": "accepts-comment-notifications",
+        "displayName": "Accepts comment notifications",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "113ac2f654c31741b0143434532ea1fb",
+        "slug": "profile-visibility",
+        "displayName": "Profile visibility",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "aba61aa32e8cc7c305f9e275a481fdc4",
+        "slug": "headline",
+        "displayName": "Headline",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "da24a377a6e7c9a805ed07f4bf364716",
+        "slug": "linkedin-url-2",
+        "displayName": "LinkedIn URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "0c50220566b38456600a4a529c6de569",
+        "slug": "substack-url-2",
+        "displayName": "Substack URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "88c535344affcdd066309e55d7a50957",
+        "slug": "strava-url-2",
+        "displayName": "Strava URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "fd5896c03eb2f2bc8dfc68433fe98b2e",
+        "slug": "tiktok-url",
+        "displayName": "TikTok URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "06372d4ad0b2d31b691855cb6048bbbe",
+        "slug": "youtube-url",
+        "displayName": "YouTube URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "c367492234655353d753ccfbd4752ca3",
+        "slug": "x-url",
+        "displayName": "X URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "b5065decde8dc0abd23590eca4fa8151",
+        "slug": "threads-url",
+        "displayName": "Threads URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "c613baf6b66b754e61a75268b19b9b63",
+        "slug": "available-for-press",
+        "displayName": "Available for press",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "5b37c6619d6bdc54a2b8fb240510a5a5",
+        "slug": "available-for-partnerships",
+        "displayName": "Available for partnerships",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "9e95de3d03fe5f4641395a7f546b27d6",
+        "slug": "available-for-sponsored-stories",
+        "displayName": "Available for sponsored stories",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "43995e8f8a5ec248fc9f4c2c0ce96b0c",
+        "slug": "available-for-collabs",
+        "displayName": "Available for collabs",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "891f4facae01617dd5fffe5a7d6d9f4b",
+        "slug": "press-kit-url",
+        "displayName": "Press kit URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "b3d9786fb4b04d9166ada0f4da4cfcda",
+        "slug": "inquiry-email",
+        "displayName": "Inquiry email",
+        "type": "Email",
+        "isRequired": false
+      },
+      {
+        "id": "8879585ffbe885ae40b9195c0682ceee",
+        "slug": "traveler-category",
+        "displayName": "Traveler Category",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "f42ef4b388e0b122b04e58f2ff71ead8",
+        "slug": "fun-title",
+        "displayName": "Fun Title",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "7701cd44ddf2efb8c5ae7a13322bbcc4",
+        "slug": "cities-count",
+        "displayName": "Cities Count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "3acb7f9fb72120d74406770d9b21cbf8",
+        "slug": "states-count",
+        "displayName": "States Count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "1e668ce732f100fb21613404f3f9d36d",
+        "slug": "national-parks-count",
+        "displayName": "National Parks Count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "9af18ead9f47bd651527c51fc358141e",
+        "slug": "continents-marathoned",
+        "displayName": "Continents Marathoned",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "c2bc627ebf1910564d0719c5ecd4ed8c",
+        "slug": "vimeo-url",
+        "displayName": "Vimeo URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "93e800a6c0c75a4b6ae54a0a0dd98900",
+        "slug": "profile-gallery",
+        "displayName": "Profile Gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "5b9e083234d36801aac50b28febd7701",
+        "slug": "outreach-status",
+        "displayName": "Outreach Status",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "66739aa172da1b36920be3f88415f106",
+        "slug": "outreach-notes",
+        "displayName": "Outreach Notes",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "9e28ac268fe762ff9fec905b53eaa0a6",
+        "slug": "source-list",
+        "displayName": "Source List",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "e634184ef6dad823c3d43e267f7f4892",
+        "slug": "visited-states",
+        "displayName": "Visited states",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "d341ee12548e75d44760e0054e81d310",
+        "slug": "visited-national-parks",
+        "displayName": "Visited national parks",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "668ec51c5105b77525e854de81d19a42",
+        "slug": "visited-subdivisions",
+        "displayName": "Visited subdivisions",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "e0f41d4bc24e96bfbdf6e611a5c89201",
+        "slug": "currently-in",
+        "displayName": "Currently In",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "6d19f17da3ae5d2083b8a10a5867d964",
+        "slug": "trust-me-quote",
+        "displayName": "Trust Me Quote",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "0a218f48edeff27d35003a9e2a9d8aa7",
+        "slug": "strong-opinion",
+        "displayName": "Strong Opinion",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "088d522a5121ff994cda679e963f5b43",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "92c1e56dca553d1e4571067de54b86ae",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0be79e01ee7eff10102ce9",
+      "slug": "nancy-carleton",
+      "lastPublished": "2026-10-12T13:40:01.464Z",
+      "fieldData": {
+        "avatar": {
+          "fileId": "6aba20632eb7673deeca212a",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aba20632eb7673deeca212a_6aba2059525e130282e72224_nancy-carleton-avatar.jpeg",
+          "alt": "Nancy Carleton"
+        },
+        "bio-short": "Founder of That Layover Life. 87 countries, 7 continents marathoned. Copenhagen-based American expat. Travels with a Samoyed named Magnus 🐻‍❄️.",
+        "bio-long": "<p>Founder of That Layover Life. American expat in Copenhagen since the spreadsheet hit 30 rows and never stopped.</p><p>87 countries on the board. 7 continents marathoned. 464 cities. 212 states. 97 large airports. On a Google Sheet that Jay calls the Trip Ledger.</p><p>Husband Jay, who carries the water. Samoyed Magnus 🐻‍❄️, who supervises. Tokyo Marathon and a first Ironman in Tallinn next year. Romania at Halloween. The Nordic Alpine Club next decade.</p><p>The platform is the people.</p>",
+        "country-count": 87,
+        "home-base": "Copenhagen, Denmark",
+        "badge": "b11d2f3f0a45d910e90369e828c64fc2",
+        "member-since": "2026-05-19T00:00:00.000Z",
+        "instagram-url": null,
+        "website-url": null,
+        "memberstack-id": "[withheld]",
+        "visited-countries": [
+          "6a0be79c05052e49dc6c9036",
+          "6a0be79c05052e49dc6c9039",
+          "6a0be79c05052e49dc6c903c",
+          "6a0be79c05052e49dc6c903f",
+          "6a0be79c05052e49dc6c9042",
+          "6a0be79c05052e49dc6c9045",
+          "6a0be79c05052e49dc6c9048"
+        ],
+        "email": null,
+        "tagline": null,
+        "pronouns": null,
+        "is-featured": false,
+        "published-count": 5,
+        "profile-header-image": null,
+        "subscription-tier": null,
+        "account-status": null,
+        "last-login": null,
+        "accepts-newsletter": false,
+        "accepts-comment-notifications": false,
+        "profile-visibility": null,
+        "headline": null,
+        "linkedin-url-2": null,
+        "substack-url-2": null,
+        "strava-url-2": null,
+        "tiktok-url": null,
+        "youtube-url": null,
+        "x-url": null,
+        "threads-url": null,
+        "available-for-press": false,
+        "available-for-partnerships": false,
+        "available-for-sponsored-stories": false,
+        "available-for-collabs": false,
+        "press-kit-url": null,
+        "inquiry-email": null,
+        "traveler-category": "9d1216215b14602b54db4a3b361a682d",
+        "fun-title": "87-and-counting",
+        "cities-count": 464,
+        "states-count": 212,
+        "national-parks-count": null,
+        "continents-marathoned": 7,
+        "vimeo-url": null,
+        "profile-gallery": null,
+        "outreach-status": null,
+        "outreach-notes": null,
+        "source-list": null,
+        "visited-states": null,
+        "visited-national-parks": null,
+        "visited-subdivisions": null,
+        "currently-in": null,
+        "trust-me-quote": "Apparently, when adventure relies on a charged battery, I become someone who plans.",
+        "strong-opinion": "Budget travel evangelism is the new timeshare pitch. Go fewer places. Stay longer. Spend what it costs.",
+        "name": "Nancy Carleton",
+        "slug": "nancy-carleton"
+      }
+    }
+  ]
+}

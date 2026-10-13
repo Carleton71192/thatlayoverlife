@@ -1,0 +1,41 @@
+{
+ "id": "1080a25e-7a36-1129-6d69-e0316321a68a",
+ "name": "TLL Hashtag Set v1",
+ "group": "TLL Editorial",
+ "description": "Row of story hashtags (prop) in teal. Closes stories and feeds social/SEO long-tail.",
+ "instanceCount": 1,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 1,
+ "nodeTypes": {
+  "Block": 1
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"1080a25e-7a36-1129-6d69-e0316321a68a\" tree loaded",
+  "data": {
+   "id": {
+    "component": "1080a25e-7a36-1129-6d69-e0316321a68a",
+    "element": "1080a25e-7a36-1129-6d69-e0316321a68a"
+   },
+   "type": "Block",
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   }
+  }
+ },
+ "settings": {},
+ "rawSettings": {},
+ "props": [],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

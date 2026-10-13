@@ -1,0 +1,913 @@
+{
+  "id": "6a0b29eddc14f1444e935760",
+  "displayName": "Stories",
+  "slug": "stories",
+  "singularName": "Story",
+  "schema": {
+    "fields": [
+      {
+        "id": "0332657b2c0f1268b574f20644569d13",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "c652c368d7ac464727fac634d6bdd94b",
+        "slug": "excerpt",
+        "displayName": "Excerpt",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "5d0e26fad53831da93bdbe00f41e4a30",
+        "slug": "body",
+        "displayName": "Body",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "53474e4a1b7b99cf27f8b95b7cf5e929",
+        "slug": "contributor",
+        "displayName": "Contributor",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "8f6ed788ea896e681936ca963f79ded2",
+        "slug": "sensory-anchors",
+        "displayName": "Sensory anchors",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c242dd2779f7713dbfb52584a6c31988",
+        "slug": "pull-quote",
+        "displayName": "Pull quote",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "bc71257394862b6c17644a37fae9b107",
+        "slug": "sign-off",
+        "displayName": "Sign-off",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "293bf203f72a4ff47cba31681825684a",
+        "slug": "hashtag-set",
+        "displayName": "Hashtag set",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "c6b482649fcab5934b0b9d1ecde2426d",
+        "slug": "reader-question",
+        "displayName": "Reader question",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "20b28fc29dc04a2ae07fb100a0190e2f",
+        "slug": "reading-time",
+        "displayName": "Reading time",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "cc90c46f948ffb874d49f89061fb53ce",
+        "slug": "video-url",
+        "displayName": "Video URL",
+        "type": "VideoLink",
+        "isRequired": false
+      },
+      {
+        "id": "48a1ae1806123262ff9b2e55ced91da9",
+        "slug": "related-stories",
+        "displayName": "Related stories",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "2a3d856ecdbe0c2cbffcf6bd60cf423f",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "d062ed622a0c59893b12a245124882b9",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "98d1297632714897d64406cd7a13562d",
+        "slug": "og-image",
+        "displayName": "OG image",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "67b64a15075c9b3a0f97030485fbbd8d",
+        "slug": "published-date",
+        "displayName": "Published date",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "fd080df599f96163fa32a991c3d8c44e",
+        "slug": "byline-location",
+        "displayName": "Byline location",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "e993155563a0afae0174de567b701608",
+        "slug": "weekend-read",
+        "displayName": "Weekend Read",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "7a6cb8ab31f4ad61d52d498cc56f8791",
+        "slug": "audio-version-url",
+        "displayName": "Audio version URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "9b93855a642b8fdc4155263738f16795",
+        "slug": "region",
+        "displayName": "Region",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "4b1d9bb2e6c46b5ec21822fae0d4cc38",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "a24cbb546c9541af6bc35115483f50d3",
+        "slug": "theme",
+        "displayName": "Theme",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "654c7d5d8ad725c5a929ee35527c638b",
+        "slug": "country-2",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "bc52b191a90b2886d99b95fce8ab8d2e",
+        "slug": "photo-gallery",
+        "displayName": "Photo gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "3d08d131edeff1508dc256b47aa25914",
+        "slug": "submitted-at",
+        "displayName": "Submitted at",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "fb56724be10a9ca820ab68c60fc992fa",
+        "slug": "notes-to-editor",
+        "displayName": "Notes to editor",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "dd68df078830abbd199d4314043decc4",
+        "slug": "view-count",
+        "displayName": "View count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "c01857a26f61a360a383b014e990b543",
+        "slug": "reaction-count",
+        "displayName": "Reaction count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "b6d860bc3581e7b68bfdfcd0c0c194ac",
+        "slug": "bookmark-count",
+        "displayName": "Bookmark count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "ecb23a516e5eb31fce24accc5600e277",
+        "slug": "comment-count",
+        "displayName": "Comment count",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "1f72e4a3b9ca6b578c42fb4425759363",
+        "slug": "ai-review",
+        "displayName": "AI review",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "2d31152d37f2a6f3904f672ba8cf4e1d",
+        "slug": "human-co-travelers",
+        "displayName": "Human co-travelers",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "42a3c21bdb5b3ec0896181f2e53a374e",
+        "slug": "pet-co-travelers",
+        "displayName": "Pet co-travelers",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "17a30a350c759e4152e231c38b8190a1",
+        "slug": "ai-editor-notes",
+        "displayName": "AI editor notes",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "4aea5e15aaf3bdb4cbac4a634e821ce0",
+        "slug": "ai-seo-score",
+        "displayName": "AI SEO score",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "ef0e2fb719fde03dc7e59b5b3b7a89b1",
+        "slug": "ai-pull-quote-candidates",
+        "displayName": "AI pull-quote candidates",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "c09e6e75fee44628488d16ba6ec59ed7",
+        "slug": "ai-banned-word-flags",
+        "displayName": "AI banned-word flags",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "f6adb782364bf2ac2fd517e2c5c35f17",
+        "slug": "ai-suggested-themes",
+        "displayName": "AI suggested themes",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "b3d54098c162886523d26f1405979e75",
+        "slug": "featured-pull-quote",
+        "displayName": "Featured Pull Quote",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "88e003bf5320bcfcfdd369080b586b9f",
+        "slug": "featured-in-gallery",
+        "displayName": "Featured in Gallery",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "e6053102687631e24bc21aad71a8f4ee",
+        "slug": "short-version",
+        "displayName": "Short version",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "4546da3cae73c59b5a0f5246ead6e2c1",
+        "slug": "quick-answers",
+        "displayName": "Quick answers",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "1a9065649bb0794daac42e529adf564e",
+        "slug": "pillar-name",
+        "displayName": "Pillar name",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d72bad9b232c653326ea73dc5ec7f40c",
+        "slug": "pillar-slug",
+        "displayName": "Pillar slug",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "05d39d1a059637ceebedacac09603056",
+        "slug": "country-number",
+        "displayName": "Country number",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "627d9d566395497a673ba09b225bba94",
+        "slug": "links-and-mentions",
+        "displayName": "Links and mentions",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "6cb4a9004f958b7d5a6b6035d18728e3",
+        "slug": "hero-caption",
+        "displayName": "Hero caption",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "dbca3b64daf70aaddf8e3c73c521942c",
+        "slug": "pillar-2",
+        "displayName": "Pillar",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "8ee5db9c4d888820ee9cc17c162592b7",
+        "slug": "trip-when",
+        "displayName": "Trip when",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d2c50a39ace6f3c06b522f341367269e",
+        "slug": "cost-summary",
+        "displayName": "Cost summary",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "6660498e37d86b90127ccfd45f3d5283",
+        "slug": "sources",
+        "displayName": "Sources",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "226dc4574dedafd3e85c539d4c7450cd",
+        "slug": "edited-by",
+        "displayName": "Edited by",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c73bf21710e60d7a83b22483ae2de28a",
+        "slug": "route-stops",
+        "displayName": "Route stops",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "fd29a160b2df46883eb445adc3c7dead",
+        "slug": "route-note",
+        "displayName": "Route note",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d53eb828334c7f7193210aa048ae9cf7",
+        "slug": "disclosure",
+        "displayName": "Disclosure",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ea723a032fc11d660ab2c30622c87ee9",
+        "slug": "last-updated",
+        "displayName": "Last updated",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "dc6cd7ddb6a54011e0cbbb2556df3b33",
+        "slug": "show-posted-date",
+        "displayName": "Show posted date",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "baad69bb436a3215474cc927c6a8bdfc",
+        "slug": "show-traveled-date",
+        "displayName": "Show traveled date",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "098cc3adef6589739df4e9b9870e7431",
+        "slug": "show-edited-date",
+        "displayName": "Show edited date",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "ddee2f7b1abbb366f0d46a57fb0e0ca6",
+        "slug": "external-url",
+        "displayName": "External URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "4f8f9a69191510bd511fd2fe03a504af",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "d4a7d554aa019bec407651fa5cf642a7",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6acd22bca172d6041e178f6b",
+      "slug": "istanbul-me-and-my-champagne-vacay",
+      "lastPublished": "2026-10-13T05:47:08.891Z",
+      "fieldData": {
+        "hero-image": {
+          "fileId": "6acd22bca172d6041e178f43",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f43_6acd2245c069c95705bd59f0_istanbul-hero-galata-bridge.jpeg",
+          "alt": "The Galata Bridge in Istanbul lined with fishermen above the restaurants on its lower level, the New Mosque across the water"
+        },
+        "excerpt": "I bought a suitcase in Paris for one bottle of champagne. Then a check-in counter in Istanbul turned my three-hour layover into four days.",
+        "body": "<p>I bought a suitcase in Paris for exactly one passenger.</p>\n<h2>A suitcase for one</h2>\n<p>It was the end of a month-long jaunt around the world, and somewhere in Champagne, France, I bought a spendy little bottle of wine that I was quite excited to save. Not drink. Save. For something.</p>\n<p>A bottle of champagne cannot ride in your carry-on (more on that below), so I scoured the streets of Paris for a cheap suitcase whose entire job was to get that bottle home to Vietnam. One bottle. One suitcase. A perfectly reasonable plan.</p>\n<h2>Two hours and change</h2>\n<p>My layover in Istanbul was three hours, and I had to recheck the suitcase, which meant getting it to the counter two hours before my flight home. I landed with two and a half hours to go. I got to the counter with over two hours to spare.</p>\n<p>The kid behind the counter would not check it. He said it was at the two-hour mark.</p>\n<p>So I went to the customer service counter, still with time to spare, and the woman there, also Turkish Airlines, came over to his counter. They got into a screaming match.</p>\n<p>The screaming match took long enough that I no longer had two hours to check my luggage. So me and my champagne were rebooked, complimentary, on the next flight home to Vietnam. Which, unfortunately, was four days later.</p>\n<h2>The 3:00 a.m. call</h2>\n<p>Normally I am all for an impulsive layover. Ask anyone. But it had been weeks since I was home.</p>\n<p>So at 3:00 a.m. Istanbul time, I called my husband. Jay took the nutty call with the patience of a man who has been married to me for a while. Even Jay knew this one was unintentional.</p>\n<h2>How a bottle of champagne flies</h2>\n<p>The whole mess traces back to a rule most of us follow without thinking about why.</p>\n<p><strong>The bottle can't sit with you.</strong> In August 2006, British police announced arrests in a plot to bring down transatlantic flights with liquid explosives disguised as drinks. Within months, Europe adopted the rule we all live with now: liquids in your carry-on only in containers of 100 ml or less, all inside one clear, resealable bag of no more than a liter. A 750 ml bottle of champagne fails that test by 650 ml. If you want it home, it goes in the hold. Hence the suitcase.</p>\n<p><strong>The bottle is already under more pressure than the plane will ever put on it.</strong> Champagne gets its bubbles from a second fermentation inside the sealed bottle. The carbon dioxide has nowhere to go, so it dissolves into the wine and pushes on the glass at roughly 5 to 6 bar, well over twice the pressure in a car tire. That is why champagne bottles are so much heavier than ordinary wine bottles, with a punt in the bottom and a wire cage over the cork: the glass is a pressure vessel.</p>\n<p><strong>The hold is not outer space.</strong> The baggage hold of a modern jet sits inside the same pressurized fuselage as the cabin. US certification rules require the cabin to be held at a pressure altitude of no more than 8,000 feet in normal operation, so at cruise your suitcase is breathing roughly the air of a mountain town, not the stratosphere. Going from sea level to 8,000 feet drops the pressure outside the bottle by about a quarter of a bar. For glass built to hold back five or six, that is a rounding error. It doesn't freeze down there either: an Air Canada captain writes that their Boeing 767 keeps its baggage hold above 7°C.</p>\n<p>So the bottle was never in danger from the airplane. Its only real enemy was the counter.</p>\n<h2>Four days I did not plan</h2>\n<p>This was my first trip to Istanbul. I booked a hotel and wandered into the fish market, where I was offered \"a good time\" if I joined for some fish. I did not.</p>\n<p>What I did do was walk. The Blue Mosque and Hagia Sophia face each other across Sultanahmet, and on a bright April day there were kids kicking a ball on the grass in front of one and families posing at the fountain in front of the other. In the Grand Bazaar, everyone was still in masks.</p>\n<p>In a carpet shop, a man unrolled a blue runner stitched with rows of little colored squares and held it up for me. I did not need a rug. I came home with a rug guy instead. He took photos of me around Istanbul, he is just a nice dude, and he still checks in every holiday to remind me he exists.</p>\n<p>Down by the water, fishermen lined the rail of the Galata Bridge with their rods out over the Golden Horn, right above the fish restaurants on the lower level. Up the hill, rainbow-painted stairs climbed under a canopy of hanging wicker lanterns. Street carts sold roasted chestnuts split and charred on top, corn on the cob, and fresh juice from pyramids of oranges, grapefruit and halved pomegranates. And an ice cream man in a fez did the thing they do, offering a cone and snatching it back while his customer laughed and reached for it.</p>\n<p>Four days is not enough for Istanbul. It was, however, exactly enough for me to stop being mad about it.</p>\n<h2>If you go</h2>\n<ul>\n<li><strong>Recheck time is the trap.</strong> If your connection means collecting and rechecking a bag, the clock that matters is the counter's cutoff, not your departure time, and the agent at the counter decides when that clock has run out. Turkish Airlines recommends arriving three hours ahead for international flights. On a connection with a recheck, treat every minute as spoken for.</li>\n<li><strong>Check the visa rules for your passport.</strong> US citizens can currently visit Türkiye visa-free for up to 90 days in any 180-day period. Rules shift, so check Türkiye's official visa site before you go.</li>\n<li><strong>Champagne in a checked bag is fine.</strong> Wrap it in clothes, put it in the middle of the bag away from the walls, and remember the risk is a dropped suitcase, not the altitude.</li>\n<li><strong>Do not leave the bottle's fate to a counter.</strong> If you are carrying something you love, build in more time than you think you need.</li>\n</ul>\n<h2>Proof</h2>\n<p>I was saving that bottle for a special occasion. It made it home to Vietnam, and I shared it with my husband as proof of what had happened. The special occasion, it turns out, was four days in Istanbul.</p>",
+        "contributor": "6a0be79e01ee7eff10102ce9",
+        "sensory-anchors": "roasted chestnuts, fishing lines off the Galata Bridge, a screaming match at the check-in counter",
+        "pull-quote": "So the bottle was never in danger from the airplane. Its only real enemy was the counter.",
+        "sign-off": "Mood: a cheap Paris suitcase carrying one bottle. Nancy",
+        "hashtag-set": "#NoRugNeeded, #FlightDelays, #MeAndMyChampagne, #Istanbul, #LayoverGoneLong, #ThatLayoverLife",
+        "reader-question": "What is the most you have ever done to get one souvenir home?",
+        "reading-time": 6,
+        "video-url": null,
+        "related-stories": [
+          "6accb04d158b115c416603c2",
+          "6accbf37ef7f287503353915"
+        ],
+        "seo-title": "Me and My Champagne Vacay in Istanbul: A 3-Hour Layover Turned 4 Days",
+        "seo-description": "A three-hour Istanbul layover turned into four days over one checked bottle of champagne. Why champagne survives the hold, and how to avoid the recheck trap.",
+        "og-image": null,
+        "published-date": "2022-04-16T12:00:00.000Z",
+        "byline-location": "ISTANBUL, TÜRKIYE",
+        "weekend-read": false,
+        "audio-version-url": null,
+        "region": "147a690dc0bb9b392de8f76e596b8618",
+        "status": "40fb8550c58a86ae03f3dfb83bf691e3",
+        "theme": null,
+        "country-2": "6a0e967e1439561374cc8184",
+        "photo-gallery": [
+          {
+            "fileId": "6acd22bca172d6041e178f5f",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f5f_6acd22450f2f7a580bc947d7_istanbul-galata-bridge-fishermen.jpeg",
+            "alt": "Fishermen with rods along the rail of the Galata Bridge over the Golden Horn, with the New Mosque on the far shore"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f3f",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f3f_6acd22452f79b5d09f3b5e26_istanbul-view-nusretiye-old-city.jpeg",
+            "alt": "View over the Nusretiye Mosque across the water to Istanbul's old city, with Topkapı Palace, Hagia Sophia and the Blue Mosque on the skyline"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f5c",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f5c_6acd2244783f9208704a6e76_istanbul-blue-mosque.jpeg",
+            "alt": "The Blue Mosque in Istanbul under a bright spring sky, its domes and minarets behind bare trees, one minaret wrapped in scaffolding"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f52",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f52_6acd22459b46fd1694ebbad7_istanbul-carpet-shop-runner.jpeg",
+            "alt": "A blue runner rug patterned with rows of small colored squares held up in an Istanbul carpet shop, rolled rugs stacked behind it"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f59",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f59_6acd22459960a435434e1136_istanbul-rainbow-stairs-lanterns.jpeg",
+            "alt": "Rainbow-painted stairs in Istanbul climbing under a canopy of hanging wicker lanterns"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f56",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f56_6acd22450f2f7a580bc947c2_istanbul-chestnuts-corn-cart.jpeg",
+            "alt": "Roasted chestnuts split and charred on top next to a row of corn on the cob at an Istanbul street cart"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f4e",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f4e_6acd22450d5033586fe2ad8e_istanbul-juice-stand.jpeg",
+            "alt": "An Istanbul juice stand stacked with halved oranges, grapefruit and pomegranates"
+          },
+          {
+            "fileId": "6acd22bca172d6041e178f4b",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22bca172d6041e178f4b_6acd2245ca99857cb329c3a1_istanbul-taksim-mosque-sunset.jpeg",
+            "alt": "The Taksim Mosque in Istanbul at sunset, with strings of red Turkish flags across the square"
+          }
+        ],
+        "submitted-at": null,
+        "notes-to-editor": null,
+        "view-count": null,
+        "reaction-count": null,
+        "bookmark-count": null,
+        "comment-count": null,
+        "ai-review": null,
+        "human-co-travelers": null,
+        "pet-co-travelers": null,
+        "ai-editor-notes": null,
+        "ai-seo-score": null,
+        "ai-pull-quote-candidates": null,
+        "ai-banned-word-flags": null,
+        "ai-suggested-themes": null,
+        "featured-pull-quote": "I bought a suitcase in Paris for exactly one passenger.",
+        "featured-in-gallery": false,
+        "short-version": "<p>Nancy Carleton's three-hour Istanbul layover in April 2022 turned into four days because she had to recheck a suitcase holding one bottle of champagne, and the counter ran out the clock. A full-size bottle has to travel in checked luggage, because EU security limits carry-on liquids to containers of 100 ml or less. It is safe there: champagne already holds about 5 to 6 bar of pressure, and airliner holds are pressurized to no more than an 8,000-foot cabin altitude. The bottle made it home to Vietnam.</p>",
+        "quick-answers": "<h3>Can I bring a bottle of champagne in my carry-on?</h3><p>Not through standard EU airport security. Carry-on liquids must be in containers of 100 ml or less inside one clear 1-liter bag, so a 750 ml bottle has to go in checked luggage.</p><h3>Will champagne explode in checked luggage?</h3><p>No. A champagne bottle is built to hold about 5 to 6 bar of internal pressure, and an airliner's baggage hold is pressurized to a cabin altitude of no more than 8,000 feet, which lowers the outside pressure by only about a quarter of a bar.</p><h3>Is the baggage hold of a plane pressurized?</h3><p>Yes. On modern airliners the hold sits inside the same pressurized fuselage as the cabin, and it is kept above freezing.</p><h3>How early should I get to the Turkish Airlines counter?</h3><p>Turkish Airlines recommends arriving three hours before international flights. If you are rechecking a bag on a connection, the counter's cutoff is the deadline that matters.</p><h3>Do Americans need a visa for Türkiye?</h3><p>Not since the end of 2023, for stays of up to 90 days in any 180-day period. Check Türkiye's official visa site before you travel.</p>",
+        "pillar-name": "Stories From the Road",
+        "pillar-slug": "stories-from-the-road",
+        "country-number": null,
+        "links-and-mentions": "<ul><li><a href=\"https://www.businesstravelnewseurope.com/Air-Travel/Restrictions-on-liquids-in-hand-luggage-to-stay-says-EU\">Business Travel News Europe: liquids restrictions in hand luggage</a></li><li><a href=\"https://champagner.com/en/glossary/bottle-printing/\">Champagne bottle pressure (champagner.com glossary)</a></li><li><a href=\"https://www.law.cornell.edu/cfr/text/14/25.841\">14 CFR § 25.841, pressurized cabins</a></li><li><a href=\"https://enroute.aircanada.com/en/article/what-temperature-is-it-in-the-baggage-hold\">Air Canada enRoute: what temperature is it in the baggage hold?</a></li><li><a href=\"https://turkishairlines.com/en-at/any-questions/check-in\">Turkish Airlines: check-in</a></li><li><a href=\"https://www.travelagentcentral.com/europe-asia/turkiye-removes-visa-requirement-americans\">Travel Agent Central: Türkiye removes visa requirement for Americans</a></li></ul>",
+        "hero-caption": "Fishermen on the Galata Bridge, somewhere inside a three-hour layover.",
+        "pillar-2": "6a0be74918c878ae030c30e8",
+        "trip-when": "April 2022",
+        "cost-summary": null,
+        "sources": "First-hand",
+        "edited-by": "Nancy Carleton",
+        "route-stops": null,
+        "route-note": null,
+        "disclosure": null,
+        "last-updated": null,
+        "show-posted-date": true,
+        "show-traveled-date": true,
+        "show-edited-date": false,
+        "external-url": null,
+        "name": "Me and My Champagne Vacay in Istanbul",
+        "slug": "istanbul-me-and-my-champagne-vacay"
+      }
+    },
+    {
+      "id": "6acd22b5f326c53d1e26e56d",
+      "slug": "champagne-reims-patience-grasshopper",
+      "lastPublished": "2026-10-13T05:47:08.891Z",
+      "fieldData": {
+        "hero-image": {
+          "fileId": "6acd22b4f326c53d1e26e4dd",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4dd_6acd222c7cca16fc59550166_champagne-reims-hero-cellar-bottles.jpeg",
+          "alt": "Dusty champagne bottles rest neck-down under crown caps in wooden crates stenciled 2017, in a Reims cellar."
+        },
+        "excerpt": "Our champagne guide was the Grasshopper from Kung Fu. He compared my vineyard sprint to Carrie Ingalls, our shower was too hot, and Dom Pérignon never drank the stars.",
+        "body": "<p>Our guide through the Champagne region had once been the Grasshopper.</p><h2>Patience, young Grasshopper</h2><p>If you grew up within shouting distance of a television in the 1970s, you know the name. In <em>Kung Fu</em>, blind Master Po called young Kwai Chang Caine \"Grasshopper,\" and the boy who played him was Radames Pera. Half a century later he is based in Reims, guiding visitors through the vineyards, and one April weekend in 2022 he guided Yvonne, Tori and me.</p><p>He was also, it turns out, on <em>Little House on the Prairie</em>, in a recurring role as John Jr. It is right there on his IMDb page. I mention this because of what happened in a vineyard.</p><h2>The Carrie Ingalls incident</h2><p>At some point on the tour, for reasons I cannot fully defend, I broke into a random, goofy, childlike sprint down the vineyard.</p><p>I thought nothing of it. Then, on our last night, Yvonne told me what Radames had said about it: that my sprint looked exactly like Carrie Ingalls in the opening credits of <em>Little House</em>.</p><p>If you have seen those credits, you know the shot. The littlest Ingalls girl races down a hill through the grass toward her family, and halfway down she goes over. That tumble was a real accident, and the producers kept it.</p><p>Being compared to a television toddler by a man who actually worked on that show is a very specific honor. It had us both in stitches.</p><h2>Robes, three floors down</h2><p>The rest of the weekend kept the same energy. There were breakout dances. There were culinary delicacies. Tori and I took in French sunsets from a balconied windowsill, and all of us learned just enough French expressions to embarrass ourselves on the regular.</p><p>And our shower was too hot. Too hot to use, which left Yvonne and me one sensible option: sprint through the hotel in our robes to the alternate shower three floors down.</p><p>I would like to tell you that was the only sprinting I did that weekend. You already know it was not.</p><h2>The bubbles everybody gets wrong</h2><p>Then there was the champagne. The best bubbles.</p><p>Sooner or later every visitor to Champagne hears the story: a monk named Dom Pérignon tasted the first sparkling wine and called out that he was drinking the stars. It is a lovely line. It is also, as far as historians can tell, made up.</p><p>Dom Pierre Pérignon was real. He ran the cellars at the Abbey of Hautvillers from 1668 until his death in 1715, and he did a great deal to improve the region's wine. But the wine he was improving was still. In his day, bubbles were a fault: wine that stopped fermenting in the cold of winter could start again in the bottle when spring came, and the pressure blew bottles apart. The idea that he invented sparkling champagne traces back to a later cellar master at the same abbey, Dom Grossard, writing about a century after Pérignon died. The stars line arrived later still, by way of advertising. Meanwhile, in 1662, an English physician named Christopher Merret had already described to the Royal Society in London how wine coopers added sugar to wine to make it sparkle.</p><p>So nobody tasted the stars. What actually puts the bubbles in the glass is a second fermentation, done on purpose:</p><ol><li><strong>Still wine first.</strong> The grapes are pressed and fermented into ordinary still base wines, which are then blended.</li><li><strong>Bottle it with a snack.</strong> The blend is bottled with the <em>liqueur de tirage</em>, a dose of sugar and yeast, and sealed with a cap.</li><li><strong>Trap the gas.</strong> Inside the sealed bottle the yeast eats the sugar and makes carbon dioxide, which has nowhere to go and dissolves into the wine. The French call this the <em>prise de mousse</em>, the taking of the foam. A finished bottle holds about 6 bar of pressure, which is why the cork wears a wire cage.</li><li><strong>Wait.</strong> The bottles rest on the spent yeast for at least 15 months for a non-vintage champagne and at least 36 for a vintage.</li><li><strong>Evict the yeast.</strong> The bottles are slowly tipped neck-down (riddling) until the sediment collects in the neck, then opened so the pressure shoots it out (disgorging). A final top-up of wine and sugar, the <em>dosage</em>, sets how dry it tastes. Then comes the cork.</li></ol><p>The waiting is where Reims comes in. Under the hill of Saint-Nicaise, on the edge of the city, are the <em>crayères</em>: chalk quarries first dug in the Gallo-Roman era and worked for centuries to build the city above them. From the late 18th century the champagne houses moved in and turned the empty quarries into cellars, because chalk gives you what aging wine wants: a steady temperature, no vibration and the right humidity. Some of the chambers are more than 30 meters high. UNESCO added them to the World Heritage List in 2015 as part of the Champagne Hillsides, Houses and Cellars.</p><p>Which means Reims was built out of the holes its wine now sleeps in.</p><h2>Sparkling crowns, rolling fields</h2><p>And sparkling crowns. Ours were rhinestone tiaras, worn by all three of us out in the vineyards, which felt correct in a region that used to crown actual kings. And sunshine on rolling fields. And art. And cathedrals.</p><p>Reims has history with crowns. In the cathedral, 25 kings of France were crowned. The ritual reached back to Saint Remi, the bishop who baptized Clovis, the Frankish king, and the anointing oil was kept in the Holy Ampulla at the Abbey of Saint-Remi across town. The French Revolution smashed the ampulla, and the coronations were revived only once more, for Charles X in 1825. The cathedral was badly damaged in the First World War and restored, and some of its windows are now by Marc Chagall.</p><h2>If you go</h2><ul><li><strong>Getting there:</strong> Reims is about 45 minutes from Paris by high-speed train.</li><li><strong>Let someone else drive.</strong> The vineyards are hard to reach without a car, and you will be tasting. Many guided tours leave from the tourist office in front of Reims station; small groups tend to include family growers as well as the big houses.</li><li><strong>Bring a layer.</strong> The chalk cellars hold a cool, steady temperature all year, around 11 to 12°C (low 50s°F), whatever it is doing outside.</li><li><strong>See the cathedral from the west</strong> first, for the full facade. Look for the Smiling Angel by the north portal and the Chagall windows in the axial chapel at the far end. The Palace of Tau next door holds the coronation treasures.</li><li><strong>Hautvillers</strong>, in the hills near Épernay, is where Dom Pérignon is buried, in the old abbey church.</li><li><strong>Check the hotel shower before you unpack.</strong> Know where the backup is. Pack a robe you are willing to run in.</li></ul><h2>Fifteen months in the dark</h2><p>Every glass we drank that weekend had sat in the dark for at least fifteen months, waiting. That is the whole trick. Champagne is patience with a cork in it.</p><p>Paris got a cameo, too, by the Seine under the Eiffel Tower. Then I headed out humbled by my life, my friendships and that wondrous weekend. And somewhere along the way it occurred to me that the Grasshopper's entire education was a lesson in patience, delivered to a boy who kept wanting to skip ahead.</p><p>Nobody sprinted in those cellars. I am still working on that part.</p>",
+        "contributor": "6a0be79e01ee7eff10102ce9",
+        "sensory-anchors": "champagne bubbles, a too-hot hotel shower, sunset from a balconied windowsill",
+        "pull-quote": "Being compared to a television toddler by a man who actually worked on that show is a very specific honor.",
+        "sign-off": "Mood: a hotel robe at full sprint, three floors down. Nancy",
+        "hashtag-set": "#UnderTheEiffelTower, #AuBonheur, #Bubbles, #Crowns, #Champagne, #Reims, #ThatLayoverLife",
+        "reader-question": "Who is the most unexpected person who has ever shown you around a place?",
+        "reading-time": 6,
+        "video-url": null,
+        "related-stories": [
+          "6acc98e1c7559918515f22d0",
+          "6accd51ec1ee4abbfe7955a1"
+        ],
+        "seo-title": "Champagne tour from Reims: the Grasshopper, a robe sprint, and real bubbles",
+        "seo-description": "A weekend in Reims and the Champagne vineyards with Kung Fu's Grasshopper as our guide, plus how champagne really gets its bubbles and why Dom Pérignon never drank the stars.",
+        "og-image": null,
+        "published-date": "2022-04-11T12:00:00.000Z",
+        "byline-location": "REIMS, CHAMPAGNE, FRANCE",
+        "weekend-read": false,
+        "audio-version-url": null,
+        "region": "147a690dc0bb9b392de8f76e596b8618",
+        "status": "40fb8550c58a86ae03f3dfb83bf691e3",
+        "theme": null,
+        "country-2": "6a0e96d8203708db7794e2a7",
+        "photo-gallery": [
+          {
+            "fileId": "6acd22b4f326c53d1e26e4e6",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4e6_6acd222c8295885d9484c43e_champagne-reims-vineyard-tiaras.jpeg",
+            "alt": "Nancy and two friends in rhinestone tiaras on a Champagne vineyard slope, the Verzenay windmill on the hill behind them under a storm sky."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4f5",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4f5_6acd222d147279865e0ab9c6_champagne-reims-verzenay-windmill.jpeg",
+            "alt": "The Verzenay windmill on its hilltop above rows of bare spring vines, a dark rain cloud behind it."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4fb",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4fb_6acd222d5cdddbc751602ca8_champagne-reims-rapeseed-tiara.jpeg",
+            "alt": "Nancy in a rhinestone tiara grins in a selfie in a field of yellow rapeseed."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4f8",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4f8_6acd222dc1908e2eac448eb0_champagne-reims-giant-red-bench.jpeg",
+            "alt": "Three friends in tiaras sit on an oversized red bench on a lawn in front of turreted brick and blue-and-white buildings."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4f0",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4f0_6acd222dc1908e2eac448ec5_champagne-reims-veuve-clicquot-barrel.jpeg",
+            "alt": "A tasting glass of champagne on the head of a Veuve Clicquot barrel stamped Reims France."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4da",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4da_6acd222d7cca16fc595501b6_champagne-reims-chalk-cellar-barrels.jpeg",
+            "alt": "Oak barrels stacked beside a carved chalk wall in a lit underground champagne cellar tunnel."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e4e9",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e4e9_6acd222d7cca16fc595501d9_champagne-reims-ice-bucket.jpeg",
+            "alt": "An open bottle of champagne chilling in a silver ice bucket in a busy restaurant."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e52d",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e52d_6acd224b8295885d9484d165_champagne-reims-asparagus-lunch.jpeg",
+            "alt": "Green asparagus, a poached egg and a triangle of pastry in cream sauce, topped with an edible yellow flower."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e520",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e520_6acd224c3c1b0924065dd9d3_champagne-reims-rose-berries-tulips.jpeg",
+            "alt": "A glass of rosé champagne beside a cup of red berries and two tulips on a woven placemat."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e51d",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e51d_6acd224ce41161b6b5448422_champagne-reims-rose-pour-dessert.jpeg",
+            "alt": "Nancy laughs across the table as rosé is poured, a cup of berries and cream in the foreground."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e529",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e529_6acd224c8295885d9484d1af_champagne-reims-graffiti-wall.jpeg",
+            "alt": "Two friends in sunglasses stand in front of a bright graffiti-covered shutter."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e53d",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e53d_6acd224ce41161b6b5448477_champagne-reims-cathedral-sunset.jpeg",
+            "alt": "The west facade of Reims Cathedral glowing pink at sunset, framed by blossoming trees."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e543",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e543_6acd224c3c1b0924065ddb21_champagne-reims-cathedral-stained-glass.jpeg",
+            "alt": "Sunlight falls through tall stained-glass windows and a rose window inside Reims Cathedral."
+          },
+          {
+            "fileId": "6acd22b4f326c53d1e26e537",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd22b4f326c53d1e26e537_6acd224c3c1b0924065ddb3d_champagne-paris-eiffel-tower-seine.jpeg",
+            "alt": "The Eiffel Tower across the Seine in Paris, with a tour boat on the river."
+          }
+        ],
+        "submitted-at": null,
+        "notes-to-editor": "<p>Published 12 Oct 2026 from Nancy's Facebook post of 11 Apr 2022 (trip April 2022). Title \"Patience, Grasshopper\" chosen by Claude from the options offered; Nancy said publish without picking, so swap if she prefers another. Hero is a wine shot at Nancy's request (2048px crop, below 2400px target). Defaults applied on publish: Tori and Radames named; graffiti photo alt text does not name the two friends; nave photo with a small child held out. Tour company unknown, so disclosure blank. Paris line is Claude's, built from her photo. Lounge tile prepared: NC · FRANCE, Europe, asset 6acd224c382125aa117860d5.</p>",
+        "view-count": null,
+        "reaction-count": null,
+        "bookmark-count": null,
+        "comment-count": null,
+        "ai-review": null,
+        "human-co-travelers": null,
+        "pet-co-travelers": null,
+        "ai-editor-notes": null,
+        "ai-seo-score": null,
+        "ai-pull-quote-candidates": null,
+        "ai-banned-word-flags": null,
+        "ai-suggested-themes": null,
+        "featured-pull-quote": "Reims was built out of the holes its wine now sleeps in.",
+        "featured-in-gallery": false,
+        "short-version": "<p>Champagne gets its bubbles from a deliberate second fermentation in the bottle: still base wine is bottled with sugar and yeast, sealed, and the trapped carbon dioxide dissolves into the wine at about 6 bar. Non-vintage champagne must age at least 15 months and vintage at least 36. In Reims, much of that aging happens in the crayères, Gallo-Roman chalk quarries turned cellars, listed by UNESCO in 2015. The Dom Pérignon \"drinking the stars\" story is a later legend. Nancy Carleton toured the region from Reims in April 2022. Reported first-hand for That Layover Life.</p>",
+        "quick-answers": "<h3>Did Dom Pérignon invent champagne?</h3><p>No. He was cellar master at Hautvillers from 1668 to 1715 and improved the region's still wines. The legend dates to a later monk, Dom Grossard, about a century after his death.</p><h3>Did Dom Pérignon say \"I am drinking the stars\"?</h3><p>There is no evidence he did. The line appears to come from much later promotion of champagne.</p><h3>How does champagne get its bubbles?</h3><p>A second fermentation in the sealed bottle. Sugar and yeast are added to still wine, and the carbon dioxide they make dissolves into the wine.</p><h3>How long is champagne aged?</h3><p>At least 15 months for non-vintage and 36 months for vintage, according to the Comité Champagne.</p><h3>What are the crayères in Reims?</h3><p>Ancient chalk quarries under the Saint-Nicaise hill, used as champagne cellars since the late 18th century and part of a UNESCO World Heritage site since 2015.</p><h3>How many kings were crowned at Reims Cathedral?</h3><p>Twenty-five, according to UNESCO. The last was Charles X in 1825.</p><h3>How far is Reims from Paris?</h3><p>About 45 minutes by high-speed train.</p>",
+        "pillar-name": "Stories From the Road",
+        "pillar-slug": "stories-from-the-road",
+        "country-number": null,
+        "links-and-mentions": "<p>Sources used in reporting this story:</p><ul><li><a href=\"https://whc.unesco.org/en/decisions/6374\">Champagne Hillsides, Houses and Cellars</a>, UNESCO World Heritage Centre</li><li><a href=\"https://whc.unesco.org/en/list/601\">Cathedral of Notre-Dame, Former Abbey of Saint-Rémi and Palace of Tau, Reims</a>, UNESCO World Heritage Centre</li><li><a href=\"https://champagne-patrimoinemondial.org/en/decouvrir/underground-cathedrals\">Underground cathedrals: the crayères</a>, Mission Coteaux, Maisons et Caves de Champagne</li><li><a href=\"https://maisons-champagne.com/en/houses/heritage/rheims-and-surrounding-area/article/the-crayeres-of-the-hill-of-st-nicaise\">The Crayères of the Hill of St Nicaise</a>, Union des Maisons de Champagne</li><li><a href=\"https://champagne.education/sites/default/files/2024-05/Factsheet-Champagne-Making-Process-EN.pdf\">The Champagne Making Process</a>, Comité Champagne</li><li><a href=\"https://worldoffinewine.com/tasting-notes/dom-prignon-oenothque-19661996-4207945\">Dom Pérignon Oenothèque</a>, The World of Fine Wine, on Dom Grossard</li><li><a href=\"https://www.historyhit.com/dom-perignon-the-champagne-monk/\">Dom Pérignon: How a French Monk Became the King of Champagne</a>, History Hit</li><li><a href=\"https://scroll.in/article/1054745/scroll_in\">The champagne myth</a>, Scroll (from The Conversation)</li><li><a href=\"https://www.adamsmith.org/blog/champagne-invented-by-an-englishman\">Champagne, invented by an Englishman</a>, on Christopher Merret</li><li><a href=\"https://imdb.com/title/tt0632984/fullcredits\">Little House on the Prairie credits</a>, IMDb</li><li><a href=\"https://www.aol.com/articles/little-house-prairie-star-sets-174614259.html\">Little House star on Carrie's fall</a>, Parade</li></ul><p>No links in this story are affiliate links.</p>",
+        "hero-caption": "Waiting it out in the dark: champagne racked in a Reims cellar.",
+        "pillar-2": "6a0be74918c878ae030c30e8",
+        "trip-when": "April 2022",
+        "cost-summary": null,
+        "sources": "First-hand, with UNESCO, the Comité Champagne and The World of Fine Wine on champagne history",
+        "edited-by": "Nancy Carleton",
+        "route-stops": null,
+        "route-note": null,
+        "disclosure": null,
+        "last-updated": null,
+        "show-posted-date": true,
+        "show-traveled-date": true,
+        "show-edited-date": false,
+        "external-url": null,
+        "name": "Patience, Grasshopper",
+        "slug": "champagne-reims-patience-grasshopper"
+      }
+    },
+    {
+      "id": "6acce3f69fbc479ed1325f6c",
+      "slug": "vietnam-weekends-monkeys-in-sweaters",
+      "lastPublished": "2026-10-13T05:47:08.891Z",
+      "fieldData": {
+        "hero-image": {
+          "fileId": "6acce3f69fbc479ed1325f1b",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f1b_6acce271f71844c9c275db84_tll-vn-weekends-039.jpeg",
+          "alt": "A monkey sitting high in the branches of a tree."
+        },
+        "excerpt": "After months of lockdown, Jay and I spent our weekends making up for lost time: a boat reunion in Ha Long Bay, borrowed capris in Da Nang, a tropical Christmas on Phú Quốc, and a surprise birthday in Nha Trang.",
+        "body": "<p>In a country of 97 million people, a flight from home, a quiet voice across a crowded boat called out our names.</p><h2>Ha Long Bay, and a very small world</h2><p>We were surrounded by eager backpackers, laughing boisterously over silly common experiences the way Jay and I do, when we heard a quainter voice from across the boat: \"Jay? Nancy?\" It was the friends we had met on our tour of the Cu Chi Tunnels the weekend before. Coincidences like that are always welcome, and this one came as we set out into one of the world's great natural wonders.</p><p>For my Oregon friends: I had imagined Ha Long would be a bit like Cannon Beach, stunning and makes-you-feel-small. But like so many things, pictures do not do this Goliath of limestone in the Gulf of Tonkin justice. It was bigger than I had imagined. A short mountain hike gave us a panoramic view as the fog parted. We swam, kayaked and indulged. We explored a large cave, then had a monkey sighting, then refueled with scrumptious meals to cover the calories we had burned. A final kiss on the cheek from a local toddler, and we headed, freshened, into the work week.</p><p>(If you want to know why Ha Long looks like that, I took the limestone apart properly in <a href=\"https://www.thatlayover.life/stories/vietnam-year-of-the-dragon\">The Year of the Dragon</a>.)</p><h2>Da Nang, and the dorky pun board</h2><p>Lesser known fact about me: I keep a <a href=\"https://pin.it/6FwBURZ\">Pinterest board</a> full of dorky food puns and silly quotes for rainy days.</p><p>On an impromptu weekend in Da Nang, sharing some of these silly-isms with new friends had me belly laughing. Add spying endangered species in the jungle (monkeys who appeared to be wearing sweaters), dance parties with my husband in pools and in the ocean, and a long walk to a banyan tree. Add dinner at La Maison 1888, a well regarded restaurant for which we had to borrow shoes, and Jay had to borrow pants. Capris, technically. We felt pretty swell, which is roughly how I feel when I dive into a good avocado pun.</p><h2>How a monkey lives on leaves</h2><p>The forest above Da Nang is the Son Tra peninsula, and the monkeys in sweaters are almost certainly red-shanked doucs. They look dressed for a gala: gray body, white forearms like long gloves, a pale gold face, and maroon \"stockings\" from knee to ankle. Son Tra holds more than 1,300 of them, the largest stable population of an endangered primate found only in Vietnam, Laos and Cambodia.</p><p>What makes them strange is their diet. On Son Tra, leaves are more than 87 percent of what doucs eat, and most of that is young leaves. Leaves are a terrible food: mostly cell wall that no mammal can digest on its own, and often laced with chemical defenses.</p><p>Doucs solve this the way a cow does. They belong to the colobines, the leaf-eating monkeys, which have a stomach with several chambers. The front chambers work as a fermentation vat, full of microbes that break down plant cell walls and can neutralize some of the plants' toxins before the food moves on. The arrangement is so close to a cow's that researchers studying colobine digestion have used cattle rumen fluid as a stand-in for the monkeys' own gut microbes.</p><p>So the monkey in the sweater, sitting very still in a tree, looking like it is waiting for a waiter, may not be lazy at all. It has a fermentation vat to run.</p><h2>Phú Quốc, for Christmas</h2><p>Merry Christmas, Glædelig Jul, Giáng sinh vui vẻ. Missing our friends and family from afar, we took a weekend away to celebrate the season on Phú Quốc with some new expat crew, too much delicious food, beach runs, and the not-so-big jolly man himself. It is a pretty fabulous little slice of heaven, and we very much recommend it. We could not wait to get back and explore the other side of the island.</p><h2>Nha Trang, for my \"26th\"</h2><p>Squeal, what an incredible birthday surprise: Jay booked us a week in Nha Trang. (Oregonians, think Vietnam's Cannon Beach. Yes, that is twice now. I stand by both.)</p><p>The adventure started with a sunny trek to the Ba Hồ waterfalls, where we cliff jumped, swam and bouldered in the jungle. Our guide, Tu, knew we were all about the path less traveled and gave us an insider's look.</p><p>The morning of my \"26th\" birthday brought a gorgeous floral bouquet from a few of my favorite people on the planet, and the hotel made a beautiful cake. Joy. Then came sunny runs, crazy monsoons, a lightning storm watched over rooftop cocktails, and our first couple's scuba dive. If you have never danced underwater with your best friend, I recommend it, 10 out of 10.</p><p>We went home by way of beach time, temple tours, and hop-on, hop-off pedicabs. What a celebration.</p><h2>If you go</h2><ul><li><strong>Son Tra peninsula</strong> is just outside Da Nang. Go early, go quiet, and bring binoculars; the doucs are easiest to spot feeding in the morning. The local conservation group GreenViet has run viewing trips.</li><li><strong>Ha Long Bay</strong> is worth an overnight, not a day trip. The hikes, caves and kayaking all happen off the boat.</li><li><strong>Nha Trang's Ba Hồ waterfalls</strong> reward a guide who knows the quieter pools. Wear shoes you can climb in.</li><li><strong>Phú Quốc</strong> was one of the first places in Vietnam to reopen to vaccinated international tourists, on a pilot basis in late 2021. Leave time for both sides of the island.</li><li><strong>La Maison 1888</strong> has a dress code. Pack real shoes. Pack real pants.</li></ul><h2>Making up for lost time</h2><p>We had spent our first months in Vietnam unable to leave the house. Once we could, we made the most of every weekend we got: a boat, a pun, a monkey, a dive. Lockdown had taught us exactly how much a free Saturday is worth, and we spent every one of them like we knew.</p>",
+        "contributor": "6a0be79e01ee7eff10102ce9",
+        "sensory-anchors": "borrowed capris, a red-shanked douc, a lightning storm over rooftop cocktails",
+        "pull-quote": "Doucs solve this the way a cow does.",
+        "sign-off": "Mood: dancing underwater, 10 out of 10. Nancy",
+        "hashtag-set": "#ThatLayoverLife, #HaLong, #Vietnam, #WhatTheDuac, #FancyMonkeysInSweaters, #TeaTime, #TropicalChristmas",
+        "reader-question": "What's the best weekend trip you have ever taken from somewhere you lived?",
+        "reading-time": 5,
+        "video-url": null,
+        "related-stories": [
+          "6a3503d2b838e59a94bfab78",
+          "6acce42f7f3e73e2282fce52",
+          "6accb17ef0f89e81f06bfeed"
+        ],
+        "seo-title": "Weekends in Vietnam: Ha Long Bay, Da Nang's Doucs, Phú Quốc and Nha Trang",
+        "seo-description": "Weekend escapes in Vietnam: a Ha Long reunion, monkeys in sweaters on Son Tra, how doucs digest leaves like cows, a tropical Christmas and a birthday scuba dive.",
+        "og-image": null,
+        "published-date": "2022-08-01T12:00:00.000Z",
+        "byline-location": "VIETNAM",
+        "weekend-read": false,
+        "audio-version-url": null,
+        "region": "a1e06f7a3091709d901b9be349d2beef",
+        "status": "40fb8550c58a86ae03f3dfb83bf691e3",
+        "theme": null,
+        "country-2": "6a0e967e1439561374cc818c",
+        "photo-gallery": [
+          {
+            "fileId": "6acce3f59fbc479ed1325ef7",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325ef7_6acce24a00171f41b350c10c_tll-vn-weekends-013.jpeg",
+            "alt": "Green water winding between steep limestone islands in Ha Long Bay, boats moored below."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325ee9",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325ee9_6acce24b00171f41b350c128_tll-vn-weekends-017.jpeg",
+            "alt": "Nancy and Jay on a beach in Ha Long Bay, limestone islands on the horizon."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325f00",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325f00_6acce24b7e21ed721d037114_tll-vn-weekends-015.jpeg",
+            "alt": "A huge limestone cave lit from below, visitors small against the rock."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325efa",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325efa_6acce24b37636a1a167d58a1_tll-vn-weekends-023.jpeg",
+            "alt": "A kayaker in a blue life vest paddling through the dark mouth of a cave toward the light."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325eee",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325eee_6acce24bcf6abacbc2f33c27_tll-vn-weekends-009.jpeg",
+            "alt": "Two mojitos and two pairs of sunglasses on a red table, Ha Long Bay's islands behind."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325ef4",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325ef4_6acce24a00171f41b350c0f7_tll-vn-weekends-hero-121.jpeg",
+            "alt": "Nancy and Jay in wetsuits, smiling on the deck of a dive boat, a rocky island behind them."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f27",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f27_6acce271f71844c9c275db4f_tll-vn-weekends-040.jpeg",
+            "alt": "A paved path lined with palms leading down to the sea."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f0a",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f0a_6acce27100171f41b350ce47_tll-vn-weekends-014.jpeg",
+            "alt": "Jay at the edge of an infinity pool looking out over the sea toward a forested headland."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f42",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f42_6acce2727e5880be4b13e2ac_tll-vn-weekends-025.jpeg",
+            "alt": "A cable car line above a bay crowded with fishing boats and a town along the shore on Phú Quốc."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f1f",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f1f_6acce27229d6d1172452fa6e_tll-vn-weekends-051.jpeg",
+            "alt": "Sunset over the sea seen above a resort's infinity pool and palms on Phú Quốc."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f23",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f23_6acce2726079ad0c413fd309_tll-vn-weekends-050.jpeg",
+            "alt": "Nancy and Jay with Santa Claus outside a yellow resort building on Phú Quốc."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f2c",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f2c_6acce27223ca56483668e268_tll-vn-weekends-033.jpeg",
+            "alt": "Jay in sunglasses and reindeer antlers posing against a bright blue wall."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f14",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f14_6acce2729356a088c9deeed7_tll-vn-weekends-053.jpeg",
+            "alt": "A small Christmas tree on a white table set up on the beach."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f17",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f17_6acce272f637f2f028789811_tll-vn-weekends-116.jpeg",
+            "alt": "Nancy holding a huge bouquet of pale pink roses on a high balcony above Nha Trang's beach."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f11",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f11_6acce273f71844c9c275dc4a_tll-vn-weekends-114.jpeg",
+            "alt": "A heart-shaped chocolate birthday cake topped with a strawberry and Happy Birthday in red icing."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f3b",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f3b_6acce2736079ad0c413fd3b8_tll-vn-weekends-125.jpeg",
+            "alt": "Huge granite boulders and a pool in a forested valley at the Ba Hồ waterfalls."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f31",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f31_6acce2735ede645dd8440ee9_tll-vn-weekends-012.jpeg",
+            "alt": "A flash of lightning lighting up storm clouds over a dark bay at night."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325f06",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325f06_6acce27331a8be26cd43115a_tll-vn-weekends-119.jpeg",
+            "alt": "Nha Trang's beachfront glowing at dusk under heavy blue storm clouds."
+          },
+          {
+            "fileId": "6acce3f59fbc479ed1325f03",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f59fbc479ed1325f03_6acce29a98a3c045a3135b1e_tll-vn-weekends-117.jpeg",
+            "alt": "Jay smiling with a cocktail at a rooftop bar above Nha Trang."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f34",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f34_6acce29a3d3082859c1f2157_tll-vn-weekends-118.jpeg",
+            "alt": "Nancy at a rooftop table with a drink, Nha Trang's curving beach and bay behind her."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f38",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f38_6acce29a739a3e17e1f9627b_tll-vn-weekends-130.jpeg",
+            "alt": "People sheltering under a domed pavilion in a monsoon downpour."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f3e",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f3e_6acce29abdfd9affeada1ab4_tll-vn-weekends-120.jpeg",
+            "alt": "Blue and red wooden fishing boats moored in a harbor."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f46",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f46_6acce29b23ca56483668e978_tll-vn-weekends-112.jpeg",
+            "alt": "A picnic of beef stew, baguettes, herbs and limes on a wooden table."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f4a",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f4a_6acce29b240a7893be9ae623_tll-vn-weekends-111.jpeg",
+            "alt": "A busy night market under a glowing sign reading Yến Sào Khánh Hòa."
+          },
+          {
+            "fileId": "6acce3f69fbc479ed1325f4e",
+            "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f4e_6acce29b29d6d11724530f83_tll-vn-weekends-108.jpeg",
+            "alt": "A narrow alley with a red arched doorway and a hanging sign for Deja Brew coffee bar."
+          }
+        ],
+        "submitted-at": null,
+        "notes-to-editor": null,
+        "view-count": null,
+        "reaction-count": null,
+        "bookmark-count": null,
+        "comment-count": null,
+        "ai-review": null,
+        "human-co-travelers": null,
+        "pet-co-travelers": null,
+        "ai-editor-notes": null,
+        "ai-seo-score": null,
+        "ai-pull-quote-candidates": null,
+        "ai-banned-word-flags": null,
+        "ai-suggested-themes": null,
+        "featured-pull-quote": "Lockdown had taught us exactly how much a free Saturday is worth.",
+        "featured-in-gallery": false,
+        "short-version": "<p>Nancy Carleton and her husband Jay spent their weekends in Vietnam, after months of Covid lockdown, at Ha Long Bay, Da Nang, Phú Quốc and Nha Trang. Near Da Nang, the Son Tra peninsula holds more than 1,300 red-shanked doucs, an endangered leaf-eating monkey. Like other colobine monkeys, doucs digest leaves with a multi-chambered forestomach where microbes ferment plant cell walls, much as in a cow's rumen. Reported first-hand for That Layover Life.</p>",
+        "quick-answers": "<h3>Where can you see red-shanked doucs near Da Nang?</h3><p>On the Son Tra peninsula, about 10 km from central Da Nang. It holds more than 1,300 doucs, the largest stable population of the species, according to the conservation group GreenViet.</p><h3>Are red-shanked doucs endangered?</h3><p>Yes. The species is listed as endangered on the IUCN Red List and in Vietnam's Red Data Book; some Vietnamese reports describe a later uplisting to Critically Endangered.</p><h3>How do doucs digest leaves?</h3><p>Doucs are colobine monkeys, with a multi-chambered forestomach where microbes break down plant cell walls and can neutralize some plant toxins, much like a cow's rumen.</p><h3>When did Phú Quốc reopen to international tourists?</h3><p>Phú Quốc began welcoming vaccinated international tourists on a pilot basis in November 2021, one of the first places in Vietnam to reopen.</p>",
+        "pillar-name": "Stories From the Road",
+        "pillar-slug": "stories-from-the-road",
+        "country-number": null,
+        "links-and-mentions": "<p>Sources used in reporting this story:</p><ul><li><a href=\"https://vietnam.vnanet.vn/english/print/son-tra-peninsula39s-red-shanked-douc-langur-398839.html\">Son Tra Peninsula's Red-shanked Douc Langur</a>, Vietnam News Agency</li><li><a href=\"https://complete.bioone.org/journals/primate-conservation/volume-23/issue-1/052.023.0108/The-Time-is-Now--Survival-of-the-Douc-Langurs/10.1896/052.023.0108.full\">The Time is Now: Survival of the Douc Langurs of Son Tra</a>, Primate Conservation</li><li><a href=\"https://www.bangkokpost.com/news/special-reports/1499642/the-last-sanctuary\">The last sanctuary</a>, Bangkok Post</li><li><a href=\"https://vietnamnews.vn/society/373431/unique-son-tra-reserve-under-threat.html\">Unique Sơn Trà Reserve under threat</a>, Viet Nam News</li><li><a href=\"https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2022.795015/full\">Dietary Choices of a Foregut-Fermenting Primate, Colobus guereza</a>, Matsuda et al., Frontiers in Ecology and Evolution, 2022</li><li><a href=\"https://agbrief.com/news/vietnam/03/10/2021/phu-quoc-readying-for-international-travel-from-november/\">Phu Quoc readying for international travel from November</a>, AGBrief, 2021</li></ul><p>No links in this story are affiliate links.</p>",
+        "hero-caption": "One monkey, high up and very still, possibly running a fermentation vat.",
+        "pillar-2": "6a0be74918c878ae030c30e8",
+        "trip-when": "Late 2021 to August 2022",
+        "cost-summary": null,
+        "sources": "First-hand, with Vietnamese state media, a Primate Conservation field census and peer-reviewed colobine research",
+        "edited-by": "Nancy Carleton",
+        "route-stops": "Ha Long Bay, Da Nang, Phú Quốc, Nha Trang",
+        "route-note": "Weekends between lockdowns and leaving",
+        "disclosure": null,
+        "last-updated": null,
+        "show-posted-date": false,
+        "show-traveled-date": true,
+        "show-edited-date": false,
+        "external-url": null,
+        "name": "Monkeys in Sweaters",
+        "slug": "vietnam-weekends-monkeys-in-sweaters"
+      }
+    }
+  ]
+}

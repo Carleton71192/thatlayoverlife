@@ -1,0 +1,53 @@
+{
+  "id": "6a0b29ee116b2fe274ef9714",
+  "displayName": "Partners",
+  "slug": "partners",
+  "singularName": "Partner",
+  "schema": {
+    "fields": [
+      {
+        "id": "837d73fda4778e3f6bc9c74b19b5556d",
+        "slug": "type",
+        "displayName": "Type",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "5d771012bdc00be81b59d9fcbc6dcbd1",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "f0ce9ad816d6c033248fd9f4bc80fe9d",
+        "slug": "logo",
+        "displayName": "Logo",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "f5243c845f244da45c22eca5326d06da",
+        "slug": "disclosure-terms",
+        "displayName": "Disclosure terms",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "11da8802a32bbe57085ddda0b1d7eff0",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "0ee2d9f9f7704dc42c0e1fd42a86cced",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

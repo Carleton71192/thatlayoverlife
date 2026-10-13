@@ -1,0 +1,214 @@
+{
+  "id": "6a0b29cdafd5d6fd115e3d24",
+  "displayName": "Layovers",
+  "slug": "layovers",
+  "singularName": "Layover",
+  "schema": {
+    "fields": [
+      {
+        "id": "2c4571142f0ef13881ec7f4efb16497e",
+        "slug": "city",
+        "displayName": "City",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "39aa8dbef0e294bafe45bcd378bf0654",
+        "slug": "airport-code",
+        "displayName": "Airport code",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "04fc585ffbfac3ea48a97a0cab686531",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "c5da4c748c8bca2f3ce7f2ba41fd63a9",
+        "slug": "time-window",
+        "displayName": "Time window",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "310a00262ab9b30c2bcee7603efbbdac",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "46b4c4df992f69f0364355d68577c061",
+        "slug": "quick-answers",
+        "displayName": "Quick answers",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "5b916967d197ae4976123a5e17be7f4c",
+        "slug": "cab-cost",
+        "displayName": "Cab cost",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "46189406fe761f5c41d734d346a79ad6",
+        "slug": "metro-option",
+        "displayName": "Metro option",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "5ec06518c82bff083d4c86f410ee25ee",
+        "slug": "best-in-airport-food",
+        "displayName": "Best in-airport food",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "e98e083ea304edf758a53623e80d8c5a",
+        "slug": "walk-through",
+        "displayName": "Walk-through",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "baf599c1d36f9d700fa0bdef479b8d46",
+        "slug": "practical",
+        "displayName": "Practical",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "29f825e8522764758acb549809508edd",
+        "slug": "map-url",
+        "displayName": "Map URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "b439fde57913d663716935ab9086e01c",
+        "slug": "last-updated",
+        "displayName": "Last updated",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "751a5b2846a6905a177c5cf3d049827d",
+        "slug": "author",
+        "displayName": "Author",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "a79a5e7e1e9199ea9e5aaf77e91e90a1",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "de535ef67bb7079643fd990a3f6ebc47",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "f57cf72227ed9b0f35fec783ec7cdfff",
+        "slug": "difficulty",
+        "displayName": "Difficulty",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "4a9449b238cc887a7e7bd3c42e13df5e",
+        "slug": "photo-gallery",
+        "displayName": "Photo gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "2b32273be730780dc6d651fa93d65c32",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "7175e17328156bf22162175511ac4d1a",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0d456a52226bf74e926bcd",
+      "slug": "cph-copenhagen-6h",
+      "lastPublished": "2026-09-23T14:22:49.334Z",
+      "fieldData": {
+        "city": "Copenhagen",
+        "airport-code": "CPH",
+        "country": "6a0be79c05052e49dc6c9042",
+        "time-window": "fd532eea28aef8ab737d425db36d1845",
+        "hero-image": {
+          "fileId": "6a13ea7c5a528723c5ec9a90",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg",
+          "alt": "Copenhagen harbour from a six-hour layover"
+        },
+        "quick-answers": "M2 metro from CPH to the centre: 14 minutes, 36 DKK, every four minutes.\nSmørrebrød at Schønnemann if you booked, the herring plate at Skipperkroen if you did not.\nSauna and a harbour swim at La Banchina, April to October.",
+        "cab-cost": "~350 DKK each way to the city center, 2026 ($50, 30 minutes).",
+        "metro-option": "M2 from CPH to Nørreport or Kongens Nytorv, 36 DKK, 14 minutes, every 4 minutes. Buy the ticket at the machine; the card reader on the platform is for monthly passes.",
+        "best-in-airport-food": "Aamanns Etablissement (Terminal 3, by Gate A) for real smørrebrød. Lagkagehuset for the rye sandwich, not its smørrebrød. Skip Joe & The Juice.",
+        "walk-through": "<p>🇩🇰 Six hours at CPH. Customs is fast, fifteen minutes at worst, and the Metro takes fourteen. Call it five and a half hours in the city, and spend them like someone who lives here.</p><p><strong>Getting in.</strong> The M2 leaves from inside the airport, runs every four minutes, and puts you at Nørreport or Kongens Nytorv in about fourteen minutes for 36 DKK. Buy the ticket at the machine. The card reader on the platform is for monthly passes, which nobody warns you about.</p><h3>Hour one: Nyhavn, briefly</h3><p>Kongens Nytorv to Nyhavn. Painted houses, boats, tourists. Pretend you are a tourist. You are. Take the photo and move on; the canal is better in the ten minutes before you commit to it than in the hour after.</p><h3>Hour two: Strøget, the Round Tower, and the bun</h3><p>Walk Strøget toward Rådhuspladsen. Skip the H&amp;M. Ten minutes in Hay House on Østergade for interior design covet. If it is Wednesday, Sankt Peders Bageri does the cinnamon roll the size of a side plate. It is not a side plate. Then the Round Tower: a spiral ramp, no stairs, built in 1642 for a king who wanted his astronomers to ride horses to the top. Tycho Brahe lived nearby and lost his nose in a duel about mathematics. We are not making this up.</p><h3>Hour three: lunch, properly</h3><p>Smørrebrød at Schønnemann if you booked: one shrimp, one rye with roast beef, remoulade and crispy onions, and a Tuborg. If you did not book, Skipperkroen at the harbour and the herring plate. Order one snaps. Two is a problem you discover on the plane.</p><h3>Hours four and five: the fork</h3><p>April to October, cross to Christianshavn and walk the canal to La Banchina. Swim. The water is cold and clean. The sauna is 80 DKK for ninety minutes. Bring a towel and bring nothing else. Walk back via Refshaleøen and stop at Lille Bakery on Refshalevej for a cardamom bun.</p><p>November to March, when the harbour is a rumour and Tivoli shuts early, take Christiansborg instead. Free above ground, and the tower view beats the airport observation deck by several orders of magnitude.</p><h3>Hour six: back under the city</h3><p>M2 from Kongens Nytorv or Nørreport, fourteen minutes. Leave the buffer. Buy a box of Mille's marcipan at the airport for the next leg. Thank me later.</p>",
+        "practical": "<p><strong>Visa:</strong> Schengen, 90 days in any 180. US, UK and EU passports walk in. Check first if yours is not visa exempt.</p><p><strong>Wifi:</strong> free and unlimited at CPH, and free at every cafe. The outdoor city network is patchy. Use the cafe one.</p><p><strong>Power:</strong> Type K, the Danish socket. Type C and E plugs fit it without drama. Most cafes have outlets at the table.</p><p><strong>Luggage storage:</strong> Bagstore at Terminal 3 arrivals, 60 DKK for six hours, or the Bagshare lockers in Terminal 3 at 80 DKK for six hours. Card at both.</p><p><strong>Showers:</strong> the Aviator Lounge sells a day pass at 250 DKK with showers, and the Aspire Lounge in Terminal 2 is 35 euro walk up, salmon plate included. The salmon plate is fine. Or sauna at La Banchina and use theirs.</p>",
+        "map-url": "https://maps.app.goo.gl/cph6h-reset",
+        "last-updated": "2026-09-23T00:00:00.000Z",
+        "author": "6a0be79e01ee7eff10102ce9",
+        "seo-title": "Copenhagen 6-hour layover from CPH · That Layover Life",
+        "seo-description": "Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.",
+        "difficulty": "6bcb6815772ae50f69246ebbf45a950b",
+        "photo-gallery": null,
+        "name": "The 6-Hour Copenhagen Reset (from CPH)",
+        "slug": "cph-copenhagen-6h"
+      }
+    },
+    {
+      "id": "6a0d456a52226bf74e926bd1",
+      "slug": "sof-sofia-3h",
+      "lastPublished": "2026-05-27T15:41:32.069Z",
+      "fieldData": {
+        "city": "Sofia",
+        "airport-code": "SOF",
+        "country": "6a0be79c05052e49dc6c9036",
+        "time-window": "633102dc6d25728ae2f2aa43a5e0f698",
+        "hero-image": {
+          "fileId": "6a0cc5157e83888edcfbbeee",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg",
+          "alt": "Sofia at street level on a Saturday morning"
+        },
+        "quick-answers": "One tarator at Made in Home (cold cucumber yogurt soup, sparkling water version).\nThe Banya Bashi mosque from the outside plus the Alexander Nevsky Cathedral from across the street.\nA shot of rakia at Hambara, which is a candlelit bar near Sveta Sofia (no electricity since 1934, technically).",
+        "cab-cost": "~30 leva each way to the city center, 2026 ($15, 25 minutes).",
+        "metro-option": "Metro line M1, SOF to Serdika station (city center), 1.60 leva, 18 minutes, runs every 4-6 minutes.",
+        "best-in-airport-food": "Cafe Mr. Pizza near Gate B. Better than the Costa Coffee. Lower bar.",
+        "walk-through": "<p>🇧🇬 Three hours is tight. Customs takes 20. Metro takes 18 each way. You have an hour and a quarter in the city. Make it count.</p><p>Minute 0-18: Metro from SOF to Serdika. Buy the round-trip ticket. Do not mess with the kiosk twice.</p><p>Minute 18-35: Walk to Made in Home on ulitsa Angel Kanchev. Order tarator (cold, ask for sparkling water version) and a Shopska salad to split. Pay in cash. Tip 10%. Leave.</p><p>Minute 35-55: Walk north up Vitosha Boulevard. Photograph the Alexander Nevsky Cathedral. Look at the Banya Bashi mosque from across the road. Do not enter (you do not have time, and the dress code is real).</p><p>Minute 55-70: Shot of rakia at Hambara, which is a candlelit bar tucked off Sveta Sofia. The bartender is named Vesko. He has been there for nineteen years. Pay 8 leva. Do not mess with the menu.</p><p>Minute 70-90: Metro back to SOF. Be at security 75 minutes before boarding. Do not skip this buffer. SOF security is slow on Sundays.</p>",
+        "practical": "<p><strong>Visa:</strong> Bulgaria is in the EU but not Schengen. Most travelers do not need a visa for under 90 days. Check Bulgaria's specific rules.</p><p><strong>Wifi:</strong> SOF has free wifi, 60-minute session. The city has decent free wifi in most cafes. Sofia Tourism has a free city wifi network at Vitosha Boulevard.</p><p><strong>Power:</strong> Type F plug. Bring a Euro adapter.</p><p><strong>Luggage storage:</strong> SOF arrivals hall, left luggage 10 leva for 6 hours.</p><p><strong>Showers:</strong> Not available at SOF airside. If you really need one, the Holiday Inn at SOF Terminal 2 sells day-use rooms.</p>",
+        "map-url": "https://maps.app.goo.gl/sof3h-rakia",
+        "last-updated": "2026-05-19T00:00:00.000Z",
+        "author": "6a0be79e01ee7eff10102ce9",
+        "seo-title": "3-hour Sofia layover · SOF tarator and rakia · That Layover Life",
+        "seo-description": "Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.",
+        "difficulty": "20744d5698b7482eda9c089152316f3e",
+        "photo-gallery": null,
+        "name": "Three Hours in Sofia, If You Must (from SOF)",
+        "slug": "sof-sofia-3h"
+      }
+    }
+  ]
+}

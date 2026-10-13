@@ -1,0 +1,46 @@
+{
+  "id": "6aca11b69e57978135e4c248",
+  "displayName": "Trip Bundles",
+  "slug": "trip-bundles",
+  "singularName": "Trip Bundle",
+  "schema": {
+    "fields": [
+      {
+        "id": "e62be2f5b3ae954b90515eabaf93c1a0",
+        "slug": "trip-code",
+        "displayName": "Trip code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4bc8b489f7fc557cf70486f3f17e8ff7",
+        "slug": "story-slugs",
+        "displayName": "Story slugs",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b097738c50eaa7b9645be4ecad349e99",
+        "slug": "stories",
+        "displayName": "Stories",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "94bb8d98526006a9b39c538978d17253",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "502f5b74c0c477c5ba8779074f73639a",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

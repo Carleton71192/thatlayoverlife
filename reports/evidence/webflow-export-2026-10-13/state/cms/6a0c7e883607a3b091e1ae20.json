@@ -1,0 +1,73 @@
+{
+  "id": "6a0c7e883607a3b091e1ae20",
+  "displayName": "Themes",
+  "slug": "themes",
+  "singularName": "Theme",
+  "schema": {
+    "fields": [
+      {
+        "id": "c03cfc77656fc3dcbd646ac849aca770",
+        "slug": "description",
+        "displayName": "Description",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "40853e9df358afeb12019478b6f124e9",
+        "slug": "accent-color",
+        "displayName": "Accent color",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "63e52d8263d923f53b096c8c70f0e0eb",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a84295903ab2e7def845f8e18f10436d",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0d485442bba0c5f5fca387",
+      "slug": "sunset-mode",
+      "lastPublished": "2026-09-23T17:09:51.951Z",
+      "fieldData": {
+        "description": "Soft hour, soft focus. Coastal cities, blue hour, the second drink.",
+        "accent-color": "dc27ea262b66092b5cba8fe4c000e187",
+        "name": "Sunset Mode",
+        "slug": "sunset-mode"
+      }
+    },
+    {
+      "id": "6a0d485442bba0c5f5fca385",
+      "slug": "desert-glow",
+      "lastPublished": "2026-09-23T17:09:51.951Z",
+      "fieldData": {
+        "description": "Dry heat, big quiet. Dunes, oasis towns, and what the light does at 6pm.",
+        "accent-color": "d6335f352afe85fe951fb02687b0d682",
+        "name": "Desert Glow",
+        "slug": "desert-glow"
+      }
+    },
+    {
+      "id": "6a0d485442bba0c5f5fca383",
+      "slug": "alpine-escape",
+      "lastPublished": "2026-09-23T17:09:51.951Z",
+      "fieldData": {
+        "description": "Cold air, hot soup. Mountain stories from people who pack the right base layer.",
+        "accent-color": "6d3fc4e848e2e768101373f749c036b2",
+        "name": "Alpine Escape",
+        "slug": "alpine-escape"
+      }
+    }
+  ]
+}

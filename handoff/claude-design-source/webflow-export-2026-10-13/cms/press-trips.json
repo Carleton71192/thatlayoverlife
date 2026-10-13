@@ -1,0 +1,88 @@
+{
+  "id": "6abcd638b10dc7b4930f6440",
+  "displayName": "Press Trips",
+  "slug": "press-trips",
+  "singularName": "Press Trip",
+  "schema": {
+    "fields": [
+      {
+        "id": "92278cb63902671fee83d3775bffecb8",
+        "slug": "destination-country",
+        "displayName": "Destination country",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "b1380e05812d4fb7e64216a2894cebab",
+        "slug": "destination",
+        "displayName": "Destination",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a1f396247d46dd4af82c6ebc12b4296e",
+        "slug": "dates",
+        "displayName": "Dates",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4bb1b9dea17aa4cc2d8a2140674fbf50",
+        "slug": "covered",
+        "displayName": "Covered",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "9d19dd8d2486603d4b3e0fad41e90658",
+        "slug": "wants",
+        "displayName": "Wants",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "71eb6585d34a5a320529e821dc9e5e21",
+        "slug": "host",
+        "displayName": "Host",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "51fc237963b7d4730a9b189436947d08",
+        "slug": "deadline",
+        "displayName": "Deadline",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "6299f2887318c3d30c1e2be45a8d24ab",
+        "slug": "apply-url",
+        "displayName": "Apply URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "8bc812118315bb13fca63f495e0c0db3",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "0eca5de82cb52ed464d129187c2d6493",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "8e6a1fb8427f48dfa5bc1e1bf8107b6b",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

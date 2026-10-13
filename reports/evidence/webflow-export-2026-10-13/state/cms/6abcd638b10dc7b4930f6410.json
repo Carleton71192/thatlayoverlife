@@ -1,0 +1,261 @@
+{
+  "id": "6abcd638b10dc7b4930f6410",
+  "displayName": "Directory",
+  "slug": "directory",
+  "singularName": "Directory Member",
+  "schema": {
+    "fields": [
+      {
+        "id": "4e307aa953239a75e734d8dd85f15e11",
+        "slug": "member-id",
+        "displayName": "Member ID",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "4325c88bb6723d9c1c429cb609c75e4e",
+        "slug": "profile-slug",
+        "displayName": "Profile slug",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "f8da73bd320983b95a22bb8efdfaf338",
+        "slug": "is-expat",
+        "displayName": "Is expat",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "af0865ce9d369e91dcf912796c684db2",
+        "slug": "is-creator",
+        "displayName": "Is creator",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "9f1f0fe8724cb70c2bd04f187d421f92",
+        "slug": "is-press",
+        "displayName": "Is press",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "8ebb1ff1178487a3012b1c4ee5f7c839",
+        "slug": "press-verified",
+        "displayName": "Press verified",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "83d6c3158350b67be1708e061120ae5e",
+        "slug": "lives-in",
+        "displayName": "Lives in",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "a7149c9d0f125a9d788a0258b1ff1d77",
+        "slug": "city",
+        "displayName": "City",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c2f3be962f79d8afed7c1d0bfa966fcc",
+        "slug": "abroad-since",
+        "displayName": "Abroad since",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "d88e4146fecd365864f89644abed36e9",
+        "slug": "knows",
+        "displayName": "Knows",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "5497b05a5b5db942bcc49e58ed8b0f76",
+        "slug": "tags",
+        "displayName": "Tags",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "29dabca78bff4b4e77da6ac7aca11ae7",
+        "slug": "languages",
+        "displayName": "Languages",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c20c80e203c3b6bdb2edf806c5857621",
+        "slug": "roles",
+        "displayName": "Roles",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "1cb8a1265c3602e10eb899461516e74c",
+        "slug": "affiliation",
+        "displayName": "Affiliation",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "d884b5dd3328afcc41423737881e9f49",
+        "slug": "regions",
+        "displayName": "Regions",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ff71acf00c556b85ab16468ed4d547b5",
+        "slug": "monetization",
+        "displayName": "Monetization",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "16f169e0f10f438f478c4b12077d5d35",
+        "slug": "links-json",
+        "displayName": "Links JSON",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "aa301f0c952810b8a7ce1873498d9d0e",
+        "slug": "contact-mode",
+        "displayName": "Contact mode",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "9a5d0d65a6993237f00936e4eef8c5f9",
+        "slug": "contact-instagram",
+        "displayName": "Contact Instagram",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "8b6eb7e0a9bc59bdadacf584cc37c077",
+        "slug": "contact-whatsapp",
+        "displayName": "Contact WhatsApp",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "ddf3a8d59a5a1e74803f970ec2d4d68a",
+        "slug": "relay-form-on",
+        "displayName": "Relay form on",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "0b29c2e595a36d1546dc2f065377c26a",
+        "slug": "photo",
+        "displayName": "Photo",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "80c56631635015982e1a7cb937236e74",
+        "slug": "synced-on",
+        "displayName": "Synced on",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "887bc9c7b5b3e96c56d9748e31978dc7",
+        "slug": "lives-in-name",
+        "displayName": "Lives in name",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "56f5abf52dc10f461ce57715eda6dc93",
+        "slug": "knows-text",
+        "displayName": "Knows text",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "92d0e3177e6aae3cdbc178f0b1e126fe",
+        "slug": "tags-text",
+        "displayName": "Tags text",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "a303358389caa0353aebb809dbdce5f2",
+        "slug": "flags",
+        "displayName": "Flags",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cf63ba2ac9a44ea13ffd4afc9361b62f",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "a8b2830131d064ddcad0c4ba2af5febc",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6abcd6c0e03ef5f1ffae94bb",
+      "slug": "nancy-carleton",
+      "lastPublished": "2026-10-06T08:35:15.956Z",
+      "fieldData": {
+        "member-id": "[withheld]",
+        "profile-slug": "nancy-carleton",
+        "is-expat": true,
+        "is-creator": false,
+        "is-press": false,
+        "press-verified": false,
+        "lives-in": "6a8afc5dbbe4ec84f69815fe",
+        "city": "Copenhagen",
+        "abroad-since": 2018,
+        "knows": [
+          "6ab4c642bf853b11d9521a51",
+          "6ab64ec594788ceb9c973315"
+        ],
+        "tags": [
+          "6abcd6a090ec31e18ad7e60e",
+          "6abcd6a090ec31e18ad7e5f2"
+        ],
+        "languages": "English, Danish, Portuguese",
+        "roles": null,
+        "affiliation": null,
+        "regions": null,
+        "monetization": null,
+        "links-json": "[{\"type\":\"instagram\",\"url\":\"https://www.instagram.com/nancycarleton\"},{\"type\":\"youtube\",\"url\":\"https://www.youtube.com/@nancycarleton\"},{\"type\":\"website\",\"url\":\"https://thatlayover.life\"},{\"type\":\"other\",\"url\":\"https://linktr.ee/nancycarleton\"}]",
+        "contact-mode": "d630433321cba2d6fce1d9759a96e163",
+        "contact-instagram": "nancycarleton",
+        "contact-whatsapp": null,
+        "relay-form-on": true,
+        "photo": {
+          "fileId": "6aba20632eb7673deeca212a",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aba20632eb7673deeca212a_6aba2059525e130282e72224_nancy-carleton-avatar.jpeg",
+          "alt": null
+        },
+        "synced-on": "2026-09-30T09:30:00.000Z",
+        "lives-in-name": "Denmark",
+        "knows-text": "Brazil, Vietnam",
+        "tags-text": "Running scene, Groceries + cooking",
+        "flags": "expat relay",
+        "name": "Nancy Carleton",
+        "slug": "nancy-carleton"
+      }
+    }
+  ]
+}

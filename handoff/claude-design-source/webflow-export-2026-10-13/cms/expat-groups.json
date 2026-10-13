@@ -1,0 +1,81 @@
+{
+  "id": "6abcd6371aa0f0654773a56e",
+  "displayName": "Expat Groups",
+  "slug": "expat-groups",
+  "singularName": "Expat Group",
+  "schema": {
+    "fields": [
+      {
+        "id": "c3949861b0513bbb0748ff5c9bdaa649",
+        "slug": "city",
+        "displayName": "City",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "d03635527d3ed5f98775fb99633d2002",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "58d43285adca02b2a4bea4217863a076",
+        "slug": "link",
+        "displayName": "Link",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "0cbbacc9782275549d60e9710c95f3eb",
+        "slug": "contact-email",
+        "displayName": "Contact email",
+        "type": "Email",
+        "isRequired": false
+      },
+      {
+        "id": "350e8271e817e2c1be1e32e0e6cd20c6",
+        "slug": "runs-group",
+        "displayName": "Runs group",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "8ea3f1b31079f4c19fafc50c6c47f07d",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "30f31f5f6ec23b18003140d2aa288634",
+        "slug": "submitted-on",
+        "displayName": "Submitted on",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "664dd0b6cc6dfd06510c67f99e66aaf0",
+        "slug": "country-name",
+        "displayName": "Country name",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "045a9ff10644520c6d3d9f6845bec33a",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "ee798549b38c925a4f80326f785e565c",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

@@ -1,0 +1,74 @@
+{
+  "id": "6aba75215f29fa631c175c45",
+  "displayName": "Award Nominations",
+  "slug": "award-nominations",
+  "singularName": "Award Nomination",
+  "schema": {
+    "fields": [
+      {
+        "id": "7671ff04a8fbd2b47e4216034952cba5",
+        "slug": "category",
+        "displayName": "Category",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "95eda89423458901e94ede15c2f5a9f0",
+        "slug": "place",
+        "displayName": "Place",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "6b014c735710b1a1e6abf9db168cdda8",
+        "slug": "why",
+        "displayName": "Why",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "4c5db0e7166299bc4f01c3a3ee56930d",
+        "slug": "member-id",
+        "displayName": "Member ID",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "c16c2daa9145e828c518f705e2103416",
+        "slug": "logged-flag",
+        "displayName": "Logged flag",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "f721e4480e195ec21c45d1a25012fd20",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "1919693d8c82a6427e1974cb7962bd47",
+        "slug": "year",
+        "displayName": "Year",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "295be43cbc5b71c40f2ae6e5282a1efe",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b6f27297287b25e6cd223cfcc1ebffe7",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

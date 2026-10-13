@@ -1,0 +1,287 @@
+{
+  "id": "6a0be8194ccc05a63fbdcfa3",
+  "displayName": "Pets",
+  "slug": "pets",
+  "singularName": "Pet",
+  "schema": {
+    "fields": [
+      {
+        "id": "def0f7d72f06770cca3aced0aba86e7f",
+        "slug": "owner",
+        "displayName": "Owner",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "12ab94f05c3dc9bcda3e726efb485d9d",
+        "slug": "breed",
+        "displayName": "Breed",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "42d2907629d271cd1c26c2461254edb6",
+        "slug": "age-years",
+        "displayName": "Age years",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "d18388aedf7f498a3c9742d9292b9418",
+        "slug": "countries-visited",
+        "displayName": "Countries visited",
+        "type": "Number",
+        "isRequired": true
+      },
+      {
+        "id": "8f9549db8d6220940e736022046de53d",
+        "slug": "bio",
+        "displayName": "Bio",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "1962390d84d79dbf79a4b44f382f3ae8",
+        "slug": "avatar",
+        "displayName": "Avatar",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "800cbfd06a0c72a0a577a5634bdd901c",
+        "slug": "emoji",
+        "displayName": "Emoji",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "2a85a9f64bcc1514d4357cc0434a5570",
+        "slug": "featured",
+        "displayName": "Featured",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "f909afbffae2b32eb625e82a1fcade85",
+        "slug": "visited-countries",
+        "displayName": "Visited countries",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "f6f40156d59b52ca9b1014427ecef9be",
+        "slug": "favorite-place",
+        "displayName": "Favorite place",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "c2af533908dbe43fa24c4bb96cedbfe2",
+        "slug": "is-public",
+        "displayName": "Is public",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "5112bff9da2ec5f768e825343227449d",
+        "slug": "pet-type",
+        "displayName": "Pet type",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "232374e02baabffa67d1e2954aa56ea2",
+        "slug": "size",
+        "displayName": "Size",
+        "type": "Option",
+        "isRequired": false
+      },
+      {
+        "id": "20a8f52827f5384808116f456cbf461a",
+        "slug": "date-of-birth",
+        "displayName": "Date of birth",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "2e73cad6afe056062bda62fa4471bb36",
+        "slug": "ahc-issued-date",
+        "displayName": "AHC issued date",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "90c7c4f56a5bae32041c06c93fe58edf",
+        "slug": "ahc-expires-date",
+        "displayName": "AHC expires date",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "510742092488e1de91d0bbccb0a5e92e",
+        "slug": "rabies-vaccine-date",
+        "displayName": "Rabies vaccine date",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "4847496ea5f30eef8f5f73a3ec5850ed",
+        "slug": "microchip-number",
+        "displayName": "Microchip number",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "f3e1ec65e680d310a48b202f49853df3",
+        "slug": "passport-photo",
+        "displayName": "Passport photo",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "faec1bfff3230dd1c86027800ce18e44",
+        "slug": "header-image",
+        "displayName": "Header image",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "480a4b8f62416eaa377e3df50ab366ca",
+        "slug": "bio-long",
+        "displayName": "Bio long",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "529dd17b299cd1d531af87aca91bdbeb",
+        "slug": "favorite-snack",
+        "displayName": "Favorite snack",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "84761a0cd564fc07038b800898093488",
+        "slug": "favn-titer",
+        "displayName": "FAVN titer",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "eed6fbecd85f7b7d4a3da4b9544ce983",
+        "slug": "eu-pet-passport-number",
+        "displayName": "EU pet passport number",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "7eb3437708a472b487525d19494445e5",
+        "slug": "pet-gallery",
+        "displayName": "Pet Gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "4724ef5edc3a7ba55662519dcbd2421a",
+        "slug": "visited-states",
+        "displayName": "Visited states",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "4db33036fc7acb716bfee4073d6372aa",
+        "slug": "visited-national-parks",
+        "displayName": "Visited national parks",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "81bb41a30b0e49344077be3692fa1012",
+        "slug": "visited-subdivisions",
+        "displayName": "Visited subdivisions",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "0850549b0a4dd6d20ded1e62ef2deb61",
+        "slug": "countries-list",
+        "displayName": "Countries list",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "99cc835fa56bb3feb1efa6165f399181",
+        "slug": "weight-kg",
+        "displayName": "Weight kg",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "afcfb3d462e97aa66fd106a4972961ec",
+        "slug": "quote",
+        "displayName": "Quote",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "147dcb2a2525535f8f19274afda7bdf9",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "e3bf96f8b2bb660f9494c0e12921df3a",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0be888a0693535d3487303",
+      "slug": "magnus-waffles",
+      "lastPublished": "2026-09-23T16:11:20.795Z",
+      "fieldData": {
+        "owner": "6a0be79e01ee7eff10102ce9",
+        "breed": "Samoyed",
+        "age-years": 3,
+        "countries-visited": 13,
+        "bio": "Polar bear by appearance, supervisor by profession. Has crossed more EU borders than your accountant.",
+        "avatar": {
+          "fileId": "6a0e02c4823ce7e6fcd3e743",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e02c4823ce7e6fcd3e743_6a0e022486157e60bbf8ce14_Magnus%2520colors.jpeg",
+          "alt": "Magnus Waffles the Samoyed in Copenhagen"
+        },
+        "emoji": "🐻‍❄️",
+        "featured": true,
+        "visited-countries": null,
+        "favorite-place": null,
+        "is-public": true,
+        "pet-type": "16f58961c2636900ef1275bf774c9d3f",
+        "size": "ab91541fa2491e8290f3e25191e9a9d0",
+        "date-of-birth": "2023-07-03T00:00:00.000Z",
+        "ahc-issued-date": null,
+        "ahc-expires-date": null,
+        "rabies-vaccine-date": null,
+        "microchip-number": null,
+        "passport-photo": null,
+        "header-image": null,
+        "bio-long": "<p>Magnus 🐻‍❄️ Waffles is a Samoyed from Copenhagen who supervises the household's travel. Veteran of a fourteen-day, twelve-country EV road trip across the Balkans, where he operated strictly in an advisory capacity.</p><p>Often confused with a polar bear, seal, or teddy bear. 100% Samoyed.</p><p>Has located a full baguette on a sidewalk in more than one country. Chose his own baked goods at a Budapest dog bakery. Regretted nothing. Polar bear by appearance, supervisor by profession.</p>",
+        "favorite-snack": "Coconut. He drinks the water, then eats the meat.",
+        "favn-titer": null,
+        "eu-pet-passport-number": null,
+        "pet-gallery": null,
+        "visited-states": null,
+        "visited-national-parks": null,
+        "visited-subdivisions": null,
+        "countries-list": "Brazil, Germany, Czech Republic, Slovakia, Austria, Albania, Serbia, Kosovo, Bulgaria, Sweden, North Macedonia, Hungary, Poland",
+        "weight-kg": 35,
+        "quote": "Everyone I meet is a new best friend.",
+        "name": "Magnus Waffles",
+        "slug": "magnus-waffles"
+      }
+    }
+  ]
+}

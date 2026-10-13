@@ -1,0 +1,1442 @@
+{
+ "page_id": "6a0dfca3f9fa5b751d154257",
+ "site_id": "69d6145cf421c777840c1e25",
+ "page_slug": "share-photos",
+ "source_spec": "/home/user/thatlayoverlife/reports/page-simplify-2026-10-12/share-photos.md (sections 3, 4, 5, 7; defaults of section 6 approved 13 Oct 2026)",
+ "element_map": "/home/user/thatlayoverlife/src/pages/share-photos/v3/state/element-map.json",
+ "tree": "/home/user/thatlayoverlife/src/pages/share-photos/v3/state/tree.json",
+ "house_rules": "staged, unpublished edits only; never publish; no input, id, name, data-ms-* or form attribute is removed, renamed or re-bound; no site-wide code, nav, footer, other page or registered script is touched",
+ "op_counts": {
+  "footer-code": 1,
+  "text": 31,
+  "placeholder-clear": 6,
+  "required": 2,
+  "accept": 1,
+  "add-elements": 2
+ },
+ "copy_rule_check": {
+  "strings_checked": 39,
+  "em_dash": 0,
+  "exclamation": 0,
+  "banned_words": 0,
+  "british_spellings": 0,
+  "problems": [],
+  "strings_not_found_verbatim_in_proposal": [],
+  "protected_strings_as_ops": [],
+  "protected_ids_as_ops": [],
+  "unresolved_element_ids": []
+ },
+ "ops": [
+  {
+   "kind": "footer-code",
+   "spec_row": "3.1",
+   "also_rows": [
+    "3.2"
+   ],
+   "selector_hint": "Page settings > Custom code > Before </body> tag (page freeform footer, whole block)",
+   "before": "<style id=\"tll-form-fix\">…</style> (1525 bytes, the entire footer; byte range [0,1525))",
+   "after": "<style id=\"tll-photos-v3\">…</style> then <script id=\"tll-photos-form-v1\">…</script>, nothing else",
+   "files": {
+    "current_footer": "/home/user/thatlayoverlife/src/pages/share-photos/v3/state/page-footer.html",
+    "css_block": "/home/user/thatlayoverlife/src/pages/share-photos/v3/tll-photos-v3.html",
+    "script_block": "/home/user/thatlayoverlife/src/pages/share-photos/v3/tll-photos-form-v1.html",
+    "intended_footer": "/home/user/thatlayoverlife/src/pages/share-photos/v3/page-footer-new.html"
+   },
+   "action": {
+    "tool": "mcp__Webflow__data_scripts_tool",
+    "action": "set_page_freeform_code",
+    "page_id": "6a0dfca3f9fa5b751d154257",
+    "location": "footer",
+    "content": "<contents of page-footer-new.html, regenerated at apply time>"
+   },
+   "preconditions": [
+    "Regenerate page-footer-new.html at apply time: strip <style id=\"tll-form-fix\">…</style> from a fresh get_page_freeform_code(footer) read (must still equal the 1525-byte capture), then append tll-photos-v3.html and tll-photos-form-v1.html in that order. The file written now embeds the script block but carries a placeholder comment for the CSS block, which did not exist yet.",
+    "Refuse to write while any TLL-APPLY-PLACEHOLDER marker remains or either file is missing.",
+    "node --check on the script body and a CSS parse of the style body before writing.",
+    "Head block (<meta name=\"robots\" content=\"noindex, follow\">) is not touched."
+   ],
+   "notes": "Decision 11 default: delete tll-form-fix, add tll-photos-v3 and tll-photos-form-v1, draft only. Both files exist now (CSS 29659 bytes, script 18520 bytes, intended footer 48180 bytes); page-footer-new.html embeds them with no placeholder. Webflow caps page custom-code fields (documented at 10,000 characters per field at last check, while the site-level footer on this site already holds 30,111 bytes, so the real cap here is unknown): treat a size refusal as the signal and stop, see open_questions. Verification after the write: get_page_freeform_code(footer) must start with <style id=\"tll-photos-v3\"> and end with the script; count </style> == 1 and </script> == 1 rather than grepping for tll-form-fix, because that string also appears inside a comment on line 1 of the CSS block. Site code, nav, footer and registered scripts stay untouched.",
+   "n": 1
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.5",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758670"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "section.tll-photos-hero .tll-photos-eyebrow (div)",
+   "before": "· The Layover Lounge · Member-gated ·",
+   "after": "The Layover Lounge",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758670",
+    "text": "The Layover Lounge"
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "The Layover Lounge"
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid.",
+   "n": 2
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.9",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675867c"
+   },
+   "spec_element_id": null,
+   "target_type": "DOM",
+   "selector_hint": "fieldset.tll-pen-fieldset(868a) > legend.tll-pen-legend",
+   "before": "01 · Your photos",
+   "after": "Your photos",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Your photos"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "Your photos"
+   },
+   "notes": "DOM legend exposes key \"text\" (valueType textContent, probe on 867c). Its literal class attribute (tll-pen-legend) is untouched by a text write. Number removed from the source; the CSS counter in tll-photos-v3 adds \"0n · \" back (decision 7 default: numbered).",
+   "n": 3
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.9",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868d"
+   },
+   "spec_element_id": null,
+   "target_type": "DOM",
+   "selector_hint": "fieldset.tll-pen-fieldset(86bd) > legend.tll-pen-legend",
+   "before": "02 · Where and when",
+   "after": "The story",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "The story"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "The story"
+   },
+   "notes": "DOM legend exposes key \"text\" (valueType textContent, probe on 867c). Its literal class attribute (tll-pen-legend) is untouched by a text write. Number removed from the source; the CSS counter in tll-photos-v3 adds \"0n · \" back (decision 7 default: numbered).",
+   "n": 4
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.9",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586cb"
+   },
+   "spec_element_id": null,
+   "target_type": "DOM",
+   "selector_hint": "fieldset.tll-pen-fieldset(8709) > legend.tll-pen-legend",
+   "before": "04 · Your credit",
+   "after": "Your credit",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Your credit"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "Your credit"
+   },
+   "notes": "DOM legend exposes key \"text\" (valueType textContent, probe on 867c). Its literal class attribute (tll-pen-legend) is untouched by a text write. Number removed from the source; the CSS counter in tll-photos-v3 adds \"0n · \" back (decision 7 default: numbered).",
+   "n": 5
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.9",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "455964ef-6e78-0828-ec2c-424e20792f04"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "fieldset(8709) > div.tll-pen-legend (promises label, 5th child)",
+   "before": "05 · Three promises · ticked separately, never pre-ticked",
+   "after": "Three promises · ticked separately, never pre-ticked",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "455964ef-6e78-0828-ec2c-424e20792f04",
+    "text": "Three promises · ticked separately, never pre-ticked"
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Three promises · ticked separately, never pre-ticked"
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid. Only the number leaves; \"ticked separately, never pre-ticked\" stays in the label (section 7).",
+   "n": 6,
+   "also_rows": [
+    "3.21"
+   ]
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.10",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675867e"
+   },
+   "spec_element_id": null,
+   "target_type": "Paragraph",
+   "selector_hint": "fieldset(868a) > p.tll-pen-help",
+   "before": "Up to 12 at a time. JPG or WebP.",
+   "after": "Up to 12 at a time. JPG or WebP, 25MB each at most.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee62675867e",
+    "text": "Up to 12 at a time. JPG or WebP, 25MB each at most."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Up to 12 at a time. JPG or WebP, 25MB each at most."
+    }
+   },
+   "notes": "Paragraph exposes the text setting (probe on 867e); set_text lists paragraphs as valid.",
+   "n": 7
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.11",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758680"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "label.tll-photos-drop > div.tll-photos-drop-icon",
+   "before": "+",
+   "after": "↑",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758680",
+    "text": "↑"
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "↑"
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid. Glyph U+2191, decorative; aria-hidden comes from the CSS/script, not this edit.",
+   "n": 8
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.11",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758682"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "label.tll-photos-drop > div.tll-photos-drop-headline",
+   "before": "Drag photos here",
+   "after": "Drag photos here or tap to choose",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758682",
+    "text": "Drag photos here or tap to choose"
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Drag photos here or tap to choose"
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid.",
+   "n": 9
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.11",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758684"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "label.tll-photos-drop > div.tll-photos-drop-sub",
+   "before": "or click to choose from your computer",
+   "after": "Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758684",
+    "text": "Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Send the original straight from your Photos app, not a copy that went through WhatsApp or Instagram."
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid.",
+   "n": 10
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.14",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675868f"
+   },
+   "spec_element_id": null,
+   "target_type": "Paragraph",
+   "selector_hint": "fieldset(86bd) > p.tll-pen-help",
+   "before": "Photos without context disappear. A country and a year is enough.",
+   "after": "Photos without a place disappear. A country is enough, a city is better.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee62675868f",
+    "text": "Photos without a place disappear. A country is enough, a city is better."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Photos without a place disappear. A country is enough, a city is better."
+    }
+   },
+   "notes": "Paragraph exposes the text setting (probe on 867e); set_text lists paragraphs as valid.",
+   "n": 11
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.14",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758691"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758693"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-grid-2(86b5) > label.tll-pen-field(8693) > span.tll-pen-label",
+   "before": "Country",
+   "after": "Where is this?",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758691",
+    "text": "Where is this?"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 8693; the text lives in child/sibling 8691.",
+   "n": 12
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.14",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b7"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586bb"
+   },
+   "target_type": "Span",
+   "selector_hint": "fieldset(86bd) > label.tll-pen-field(86bb) > span.tll-pen-label",
+   "before": "Caption (one sentence)",
+   "after": "What was happening?",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586b7",
+    "text": "What was happening?"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86bb; the text lives in child/sibling 86b7.",
+   "n": 13
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.14",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ba"
+   },
+   "spec_element_id": null,
+   "target_type": "Span",
+   "selector_hint": "label.tll-pen-field(86bb) > span.tll-pen-helptext",
+   "before": "Renders below the photo in the gallery. Optional but earns the like.",
+   "after": "One line is plenty. It is the first thing people read, and the funny ones do well.",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586ba",
+    "text": "One line is plenty. It is the first thing people read, and the funny ones do well."
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid.",
+   "n": 14
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.15",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758695"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758697"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-grid-2(86b5) > label.tll-pen-field(8697) > span.tll-pen-label",
+   "before": "City or layover (optional)",
+   "after": "City or layover",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758695",
+    "text": "City or layover"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 8697; the text lives in child/sibling 8695.",
+   "n": 15
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.15",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758699"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869b"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-grid-2(86b5) > label.tll-pen-field(869b) > span.tll-pen-label",
+   "before": "When (year)",
+   "after": "Year",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758699",
+    "text": "Year"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 869b; the text lives in child/sibling 8699.",
+   "n": 16
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.15",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869d"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b4"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-grid-2(86b5) > label.tll-pen-field(86b4) > span.tll-pen-label",
+   "before": "Trip type (optional)",
+   "after": "Trip type",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee62675869d",
+    "text": "Trip type"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86b4; the text lives in child/sibling 869d.",
+   "n": 17
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.16",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c0"
+   },
+   "spec_element_id": null,
+   "target_type": "DOM",
+   "selector_hint": "fieldset.tll-pen-fieldset(86c8) > legend.tll-pen-legend",
+   "before": "03 · Tag the bestie (optional)",
+   "after": "Pet in the shot?",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Pet in the shot?"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "Pet in the shot?"
+   },
+   "notes": "DOM legend exposes key \"text\" (valueType textContent, probe on 867c). Its literal class attribute (tll-pen-legend) is untouched by a text write.",
+   "n": 18
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.16",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c2"
+   },
+   "spec_element_id": null,
+   "target_type": "Paragraph",
+   "selector_hint": "fieldset(86c8) > p.tll-pen-help",
+   "before": "If your pet's in the photo, tag them and we'll cross-post to their Paw Passport.",
+   "after": "Tag them and the photo lands on their Paw Passport too.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586c2",
+    "text": "Tag them and the photo lands on their Paw Passport too."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Tag them and the photo lands on their Paw Passport too."
+    }
+   },
+   "notes": "Paragraph exposes the text setting (probe on 867e); set_text lists paragraphs as valid.",
+   "n": 19
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.16",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c4"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c6"
+   },
+   "target_type": "Span",
+   "selector_hint": "fieldset(86c8) > label.tll-pen-field(86c6) > span.tll-pen-label",
+   "before": "Pet along",
+   "after": "Their name",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586c4",
+    "text": "Their name"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86c6; the text lives in child/sibling 86c4. Label stays a connected label; visually hidden by CSS (row 16): tll-photos-form-v1 step 5 adds the class tll-photos-vh to this span at runtime (never to the label), so no Designer class op is needed.",
+   "n": 20
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.19",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586cd"
+   },
+   "spec_element_id": null,
+   "target_type": "Paragraph",
+   "selector_hint": "fieldset(8709) > p.tll-pen-help",
+   "before": "Each photo gets the same credit + syndication rules unless you submit separately.",
+   "after": "One credit for the whole batch. Want different credits? Send them as separate batches.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586cd",
+    "text": "One credit for the whole batch. Want different credits? Send them as separate batches."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "One credit for the whole batch. Want different credits? Send them as separate batches."
+    }
+   },
+   "notes": "Paragraph exposes the text setting (probe on 867e); set_text lists paragraphs as valid.",
+   "n": 21
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.19",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d2"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d0"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-radios(86dc) > label.tll-pen-radio(86d3) > span (sibling of radio input 86d0)",
+   "before": "Named (my name + avatar in the byline)",
+   "after": "My name",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586d2",
+    "text": "My name"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86d0; the text lives in child/sibling 86d2.",
+   "n": 22
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.19",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586da"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586d8"
+   },
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-radios(86dc) > label.tll-pen-radio(86db) > span (sibling of radio input 86d8)",
+   "before": "Anonymous Traveler (no name, off the map)",
+   "after": "Anonymous Traveler",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586da",
+    "text": "Anonymous Traveler"
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86d8; the text lives in child/sibling 86da.",
+   "n": 23
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.20",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586df"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586fd"
+   },
+   "target_type": "Span",
+   "selector_hint": "label.tll-pen-field(86fd) > span.tll-pen-label (\"Syndication\" heading)",
+   "before": "Syndication",
+   "after": "Unticked means the Lounge only. Say yes to any of these.",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee6267586df",
+    "text": "Unticked means the Lounge only. Say yes to any of these."
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid. Section 5 names 86fd; the text lives in child/sibling 86df. The heading span becomes the opt-in help line; its 13px help styling and the hidden second spans are CSS (row 20).",
+   "n": 24
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.20",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e9"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586e7"
+   },
+   "target_type": "FormInlineLabel",
+   "selector_hint": "label.tll-pen-checkbox(86ed) > .w-checkbox(86e8) > span.w-form-label (inline label of syndication-social)",
+   "before": "TLL Instagram and LinkedIn",
+   "after": "On our Instagram and LinkedIn, with the same credit line",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "On our Instagram and LinkedIn, with the same credit line"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "On our Instagram and LinkedIn, with the same credit line"
+   },
+   "notes": "FormInlineLabel exposes key \"text\" (probe on 86e9). The checkbox input beside it is a sibling, not a child, so nothing else is touched. Section 5 names 86e7; the text lives in child/sibling 86e9.",
+   "n": 25
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.20",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f0"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586ee"
+   },
+   "target_type": "FormInlineLabel",
+   "selector_hint": "label.tll-pen-checkbox(86f4) > .w-checkbox(86ef) > span.w-form-label (inline label of syndication-rotation)",
+   "before": "Homepage rotation",
+   "after": "On the homepage, in the rotating set",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "On the homepage, in the rotating set"
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "On the homepage, in the rotating set"
+   },
+   "notes": "FormInlineLabel exposes key \"text\" (probe on 86e9). The checkbox input beside it is a sibling, not a child, so nothing else is touched. Section 5 names 86ee; the text lives in child/sibling 86f0.",
+   "n": 26
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.20",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f7"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586f5"
+   },
+   "target_type": "FormInlineLabel",
+   "selector_hint": "label.tll-pen-checkbox(86fb) > .w-checkbox(86f6) > span.w-form-label (inline label of syndication-press)",
+   "before": "Press and partner features",
+   "after": "Offered to press and partners. We ask you first, every time.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Offered to press and partners. We ask you first, every time."
+    }
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "<element_id>",
+    "text": "Offered to press and partners. We ask you first, every time."
+   },
+   "notes": "FormInlineLabel exposes key \"text\" (probe on 86e9). The checkbox input beside it is a sibling, not a child, so nothing else is touched. Section 5 names 86f5; the text lives in child/sibling 86f7.",
+   "n": 27
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.25",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675870d"
+   },
+   "spec_element_id": null,
+   "target_type": "Span",
+   "selector_hint": "div.tll-pen-actions(870e) > span.tll-pen-status",
+   "before": "A human reviews every photo before it goes up.",
+   "after": "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down.",
+   "route": "api-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee62675870d",
+    "text": "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+   },
+   "alternate": null,
+   "notes": "Span exposes NO text setting (probes on 8691, 86ba, 86d2, 870d list only domId and visibility) and String children cannot be addressed (\"Could not resolve element data type\" on 867a). set_text on the Span is the one API attempt; the Span holds a single String, so a refusal loses nothing. On refusal: leave for Nancy (Designer, double-click the text) and log it. NEVER write the \"text\" setting on the parent label (8693, 86bb, 8697, 869b, 86b4, 86c6, 86d3, 86db, 86fd, 870e): it would replace the label children, including the input, which the house rules forbid.",
+   "n": 28
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.26",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758712"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758711"
+   },
+   "target_type": "Block",
+   "selector_hint": ".w-form-done(8711) > div (text block)",
+   "before": "Got them. Your photos are on their way to the Lounge. The first few from a new Traveler get a human look; after that they go straight up. Withdraw any of them any time from your account.",
+   "after": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758712",
+    "text": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published."
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid. Section 5 names 8711; the text lives in child/sibling 8712. FormSuccessMessage/FormErrorMessage wrappers (8711/8714) keep their settings; only the inner text block changes.",
+   "n": 29
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.27",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758715"
+   },
+   "spec_element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758714"
+   },
+   "target_type": "Block",
+   "selector_hint": ".w-form-fail(8714) > div (text block)",
+   "before": "That did not go through. Check for at least one photo, a country, a year, and all three promises ticked. Still stuck? Write to hello@thatlayover.life and we will sort it by hand.",
+   "after": "That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758715",
+    "text": "That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "That did not go through. Try once more. If it still refuses, write to hello@thatlayover.life with the photos attached and we will sort it by hand."
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid. Section 5 names 8714; the text lives in child/sibling 8715. FormSuccessMessage/FormErrorMessage wrappers (8711/8714) keep their settings; only the inner text block changes.",
+   "n": 30
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.30",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675871b"
+   },
+   "spec_element_id": null,
+   "target_type": "Block",
+   "selector_hint": "div[data-ms-content=anonymous] .tll-container(8728) > div.tll-eyebrow-rose",
+   "before": "· The Lounge ·",
+   "after": "The Layover Lounge",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee62675871b",
+    "text": "The Layover Lounge"
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "The Layover Lounge"
+    }
+   },
+   "notes": "Block exposes the text setting (probe on 8670 and 8712); set_text lists text blocks as valid.",
+   "n": 31
+  },
+  {
+   "kind": "text",
+   "spec_row": "3.30",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758722"
+   },
+   "spec_element_id": null,
+   "target_type": "Paragraph",
+   "selector_hint": "div[data-ms-content=anonymous] .tll-container(8728) > p.tll-lede",
+   "before": "Photos that don't need a full story. Free to share forever.",
+   "after": "A photo, not an essay. Three short steps, and a human on the other end.",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_text",
+    "id": "c09ceb51-0ee9-0a93-6196-eee626758722",
+    "text": "A photo, not an essay. Three short steps, and a human on the other end."
+   },
+   "alternate": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "text",
+    "static_text": {
+     "value": "A photo, not an essay. Three short steps, and a human on the other end."
+    }
+   },
+   "notes": "Paragraph exposes the text setting (probe on 867e); set_text lists paragraphs as valid.",
+   "n": 32
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": [
+    "3.12"
+   ],
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758687"
+   },
+   "selector_hint": "input[name=photos] (id photos-upload)",
+   "before": "Example text",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 33
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": null,
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758692"
+   },
+   "selector_hint": "input[name=country] (duplicate id \"field\")",
+   "before": "Bulgaria · Deutschland · your way",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 34
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": null,
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758696"
+   },
+   "selector_hint": "input[name=city] (duplicate id \"field\")",
+   "before": "Sofia, Doha, between flights",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 35
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": [
+    "3.17"
+   ],
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869a"
+   },
+   "selector_hint": "input[name=year] (duplicate id \"field\")",
+   "before": "2026",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 36
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": null,
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586b8"
+   },
+   "selector_hint": "input[name=caption] (duplicate id \"field\")",
+   "before": "The Atlantic at 6pm in Ipanema is its own currency.",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 37
+  },
+  {
+   "kind": "placeholder-clear",
+   "spec_row": "3.18",
+   "also_rows": [
+    "3.16"
+   ],
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee6267586c5"
+   },
+   "selector_hint": "input[name=pets-along] (duplicate id \"field\")",
+   "before": "Magnus 🐻‍❄️ or leave blank",
+   "after": "",
+   "route": "api-probe-then-designer",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "placeholder",
+    "clear": true,
+    "probe_first": {
+     "action": "get_settings",
+     "type": "query_settings",
+     "queries": [
+      {
+       "key": "placeholder"
+      }
+     ]
+    }
+   },
+   "notes": "The read stage found no placeholder key on FormTextInput (query_settings on 8692 and 8687 list only domId, visibility, name, required, type); the value above is from the form schema (forms.json). Probe once at apply time; if the key is still absent, skip the write, record the field as Nancy's Designer step (section 5 step 3), and rely on tll-photos-form-v1 step 1, which removes the attribute at runtime (row 18). Do not use the \"attributes\" setting for this: it replaces the whole attribute list and placeholder is reserved. Name, id, type and required are not touched.",
+   "n": 38
+  },
+  {
+   "kind": "required",
+   "spec_row": "3.17",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee62675869a"
+   },
+   "selector_hint": "input[name=year] (type number, min 1990, max 2030)",
+   "before": "required: true",
+   "after": "required: false",
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "required",
+    "static_boolean": {
+     "value": false
+    }
+   },
+   "notes": "Decision 3 default: year optional inside More detail. Key \"required\" is exposed on this input (read-stage query_settings; resolved value true). min, max, type number, name and id stay.",
+   "n": 39
+  },
+  {
+   "kind": "required",
+   "spec_row": "3.12",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758687"
+   },
+   "selector_hint": "input[name=photos]#photos-upload (type file, multiple)",
+   "before": "required: false",
+   "after": "required: true",
+   "route": "api",
+   "exposure": "if exposed: the read stage listed key \"required\" on 8687 (resolved false), so it is expected to accept the write; the script sets it at runtime either way",
+   "action": {
+    "tool": "mcp__Webflow__data_element_settings_tool",
+    "action": "set_settings",
+    "key": "required",
+    "static_boolean": {
+     "value": true
+    }
+   },
+   "notes": "Row 12: the error copy already demands a photo, the markup has to agree. If the write is refused, log it; tll-photos-form-v1 step 2 sets required on load.",
+   "n": 40
+  },
+  {
+   "kind": "accept",
+   "spec_row": "3.12",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758687"
+   },
+   "selector_hint": "input[name=photos]#photos-upload",
+   "before": "accept=\"image/*\" (custom attribute; multiple=\"\" beside it)",
+   "after": "accept=\"image/jpeg,image/webp\"",
+   "route": "api",
+   "exposure": "if exposed: accept is a custom attribute on the element (element map attributes: accept, multiple), so set_attributes updates it in place; else the script sets it",
+   "action": {
+    "tool": "mcp__Webflow__data_element_tool",
+    "action": "set_attributes",
+    "attributes": [
+     {
+      "name": "accept",
+      "value": "image/jpeg,image/webp"
+     }
+    ],
+    "verify_after": {
+     "action": "get_attributes",
+     "expect": [
+      "accept=image/jpeg,image/webp",
+      "multiple=",
+      "id untouched (photos-upload)"
+     ]
+    }
+   },
+   "notes": "set_attributes adds or updates named attributes only; \"multiple\" and the id stay. Never use the settings \"attributes\" key here (it replaces the full list). tll-photos-form-v1 step 2 also sets accept at runtime (row 12).",
+   "n": 41
+  },
+  {
+   "kind": "add-elements",
+   "spec_row": "3.30",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758722"
+   },
+   "anchor": "after the lede 8722, before the button row 8727, inside container 8728 (div[data-ms-content=anonymous] 872a > div 8729 > div.tll-container.inline-div-1 8728)",
+   "selector_hint": "div[data-ms-content=anonymous] .tll-container(8728) > p.tll-lede(8722) + div.tll-photos-preview (new)",
+   "before": "(nothing between the lede and the button row)",
+   "after": "div.tll-photos-preview > 3 x div.tll-photos-preview-row [ div.tll-photos-preview-word (word) + p.tll-photos-preview-text (sentence) ] + p.tll-photos-public-line",
+   "texts": {
+    "rows": [
+     {
+      "k": "Drop",
+      "s": "Up to 12 photos, straight from your camera roll."
+     },
+     {
+      "k": "Where",
+      "s": "A country is enough. Add a caption if you feel like it."
+     },
+     {
+      "k": "Send",
+      "s": "Three promises about rights, your credit the way you want it, and a human looks at it before it goes up."
+     }
+    ],
+    "line": "Every photo in the Lounge was taken by a member and sent with their permission."
+   },
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_builder",
+    "parent_element_id": {
+     "component": "6a0dfca3f9fa5b751d154257",
+     "element": "c09ceb51-0ee9-0a93-6196-eee626758722"
+    },
+    "creation_position": "after",
+    "element_schema": {
+     "type": "DivBlock",
+     "set_style": {
+      "style_names": [
+       "tll-photos-preview"
+      ]
+     },
+     "children": [
+      {
+       "type": "DivBlock",
+       "set_style": {
+        "style_names": [
+         "tll-photos-preview-row"
+        ]
+       },
+       "children": [
+        {
+         "type": "TextBlock",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-word"
+          ]
+         },
+         "set_text": {
+          "text": "Drop"
+         }
+        },
+        {
+         "type": "Paragraph",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-text"
+          ]
+         },
+         "set_text": {
+          "text": "Up to 12 photos, straight from your camera roll."
+         }
+        }
+       ]
+      },
+      {
+       "type": "DivBlock",
+       "set_style": {
+        "style_names": [
+         "tll-photos-preview-row"
+        ]
+       },
+       "children": [
+        {
+         "type": "TextBlock",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-word"
+          ]
+         },
+         "set_text": {
+          "text": "Where"
+         }
+        },
+        {
+         "type": "Paragraph",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-text"
+          ]
+         },
+         "set_text": {
+          "text": "A country is enough. Add a caption if you feel like it."
+         }
+        }
+       ]
+      },
+      {
+       "type": "DivBlock",
+       "set_style": {
+        "style_names": [
+         "tll-photos-preview-row"
+        ]
+       },
+       "children": [
+        {
+         "type": "TextBlock",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-word"
+          ]
+         },
+         "set_text": {
+          "text": "Send"
+         }
+        },
+        {
+         "type": "Paragraph",
+         "set_style": {
+          "style_names": [
+           "tll-photos-preview-text"
+          ]
+         },
+         "set_text": {
+          "text": "Three promises about rights, your credit the way you want it, and a human looks at it before it goes up."
+         }
+        }
+       ]
+      },
+      {
+       "type": "Paragraph",
+       "set_style": {
+        "style_names": [
+         "tll-photos-public-line"
+        ]
+       },
+       "set_text": {
+        "text": "Every photo in the Lounge was taken by a member and sent with their permission."
+       }
+      }
+     ]
+    },
+    "return_element_info": true
+   },
+   "pre_step": {
+    "tool": "mcp__Webflow__data_style_tool",
+    "action": "create_style",
+    "styles": [
+     "tll-photos-preview",
+     "tll-photos-preview-row",
+     "tll-photos-preview-word",
+     "tll-photos-preview-text",
+     "tll-photos-public-line"
+    ],
+    "properties": [],
+    "when": "only if the builder refuses unknown style names; none of these five names exists yet (query_styles on \"tll-photos\" lists only title, container, sub, section, form, drop, drop-icon, drop-headline, drop-sub, drop-hint, drop-input, hero, hero-inner, eyebrow)"
+   },
+   "notes": "Class names follow the CSS stage (tll-photos-v3.html lines 181 to 185: .tll-photos-preview, -preview-row, -preview-word, -preview-text, .tll-photos-public-line), not the -k/-s/-line names in the stage brief, because that CSS is what the footer carries; contract.md now records them. Section 5 step 4 says \"a small text block for the word and a paragraph for the sentence\", so the word is a Webflow TextBlock (a div with class tll-photos-preview-word), not a span; every gate rule is class-scoped so the tag does not matter. Each row must hold exactly two children (the row grid is 64px + 1fr). Existing elements use the classic Block type, so DivBlock (not Box) keeps the tree uniform; if the site rejects DivBlock, Box is the equivalent. The data-ms-content attribute on 872a, the gate script tllgateflashv1 and the buttons are not touched; a content addition inside the anonymous block is not a re-bind. Verify after: 8728 children in order 871b, 8720, 8722, NEW, 8727.",
+   "n": 42
+  },
+  {
+   "kind": "add-elements",
+   "spec_row": "3.30",
+   "element_id": {
+    "component": "6a0dfca3f9fa5b751d154257",
+    "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+   },
+   "anchor": "after the button row 8727 (last child of container 8728)",
+   "selector_hint": "div[data-ms-content=anonymous] .tll-container(8728) > div.inline-div-0(8727) + div.tll-photos-age (new)",
+   "before": "(nothing after the button row)",
+   "after": "div.tll-photos-age \"Free. Travelers are 16 and older.\"",
+   "texts": {
+    "age": "Free. Travelers are 16 and older."
+   },
+   "route": "api",
+   "action": {
+    "tool": "mcp__Webflow__data_element_builder",
+    "parent_element_id": {
+     "component": "6a0dfca3f9fa5b751d154257",
+     "element": "c09ceb51-0ee9-0a93-6196-eee626758727"
+    },
+    "creation_position": "after",
+    "element_schema": {
+     "type": "TextBlock",
+     "set_style": {
+      "style_names": [
+       "tll-photos-age"
+      ]
+     },
+     "set_text": {
+      "text": "Free. Travelers are 16 and older."
+     }
+    },
+    "return_element_info": true
+   },
+   "pre_step": {
+    "tool": "mcp__Webflow__data_style_tool",
+    "action": "create_style",
+    "styles": [
+     "tll-photos-age"
+    ],
+    "properties": [],
+    "when": "only if the builder refuses an unknown style name"
+   },
+   "notes": "Section 5 step 4: \"one small text block for the age line\", so a TextBlock (div.tll-photos-age), 12px #6B6660 by CSS. Sign-up age 16+ as the house rule states. Decision 14 default: add all three (rows, member line, age line).",
+   "n": 43
+  }
+ ]
+}

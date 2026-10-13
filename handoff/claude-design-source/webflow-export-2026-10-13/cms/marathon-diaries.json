@@ -1,0 +1,168 @@
+{
+  "id": "6a0b29e90328ffc0e30375ac",
+  "displayName": "Marathons",
+  "slug": "marathon-diaries",
+  "singularName": "Marathon",
+  "schema": {
+    "fields": [
+      {
+        "id": "b95983ffa36abed7b55038791aeb19d1",
+        "slug": "race-type",
+        "displayName": "Race type",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "d7e136fff14b31cd6148cd79174f3b98",
+        "slug": "continent",
+        "displayName": "Continent",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "e3a35f138cd77be1a811863bdc57f216",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "2f1eea36398dccfb5f92e4bcb4ab3dd5",
+        "slug": "city",
+        "displayName": "City",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "96a98c4c653b0d60c1745c10b60b6bd4",
+        "slug": "date",
+        "displayName": "Date",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "28f5d051671e40245218b133e69ae95e",
+        "slug": "status",
+        "displayName": "Status",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "91e06db2264b7ecdcb68c167b54e8585",
+        "slug": "race-time",
+        "displayName": "Race time",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "fb793e9cfa53c6f4350edd7d988c62cc",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "651a5818f7d9be2b696cedc27fc1eb49",
+        "slug": "recap-body",
+        "displayName": "Recap body",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "1d1d7f79557bde10aaf2c6a61ab186a0",
+        "slug": "pre-race-city-guide",
+        "displayName": "Pre-race city guide",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "c3a788edba153d333d1a7b47def0f4a7",
+        "slug": "strava-activity-url",
+        "displayName": "Strava activity URL",
+        "type": "Link",
+        "isRequired": false
+      },
+      {
+        "id": "2f0fce831c39e45b8db7c8c3ce8c6e0c",
+        "slug": "one-line-take",
+        "displayName": "One-line take",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "c4f13b07748b525a74a9d89e269bbeda",
+        "slug": "photo-gallery",
+        "displayName": "Photo gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "053fd8dc5379f08ca9ba39ecafc21a0d",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "d81fe47ad989777f8ca53205f1f06a44",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0d45971ff3d99429290f4b",
+      "slug": "tokyo-marathon-2027-prerace",
+      "lastPublished": "2026-09-28T16:47:46.232Z",
+      "fieldData": {
+        "race-type": "5dab28967f76f17420621c73fa756f3a",
+        "continent": "3d9d02ae67a3be82460398727e235d89",
+        "country": "6a0be79c05052e49dc6c9048",
+        "city": "Tokyo",
+        "date": "2027-03-07T00:00:00.000Z",
+        "status": "612a820aa80c9f8713002fa5bfb93318",
+        "race-time": null,
+        "hero-image": {
+          "fileId": "6a0cc5317e83888edcfbd1ca",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5317e83888edcfbd1ca_6a0be79b05052e49dc6c8ffb_F0507A.png",
+          "alt": "Tokyo, the year of the sixth Major, Yamanote loop at dawn"
+        },
+        "recap-body": null,
+        "pre-race-city-guide": "<p>🇯🇵 The Tokyo Marathon is the last of my six Abbott World Marathon Majors. (Don't say it. I know.) The pre-race week is the project. The race is the celebration.</p><p>Where to stay: Shinjuku. Specifically the Park Hotel Tokyo or the Hyatt Regency. Both walkable to the start at the Tokyo Metropolitan Government Building. Both have early breakfast on race day. The Park Hotel staff have done this for runners since 2007 and will tape your bib if you ask politely.</p><p>Where to eat (carb load, days T-3 to T-1): Tsurutontan in Roppongi for udon. Maisen in Aoyama for tonkatsu (yes, you can have the fried). Konbini onigiri for breakfast, in this order: salmon, kombu, tuna mayo. The 7-Eleven by Shinjuku Station opens at 5am for the race-day grab.</p><p>What to skip: The Tsukiji Outer Market sushi crawl at T-1. The wasabi will wreck your gut. The Robot Restaurant. The Skytree on race-eve. Save it for after.</p><p>Where to walk (legs loose, not workout): The Imperial Palace gardens loop is exactly 5km on flat gravel. Two laps is your race-week shakeout. Yoyogi Park is also flat and has the dog watchers, which the Carleton household enjoys vicariously while Magnus 🐻‍❄️ stays in Copenhagen.</p><p>Race morning: Trains start at 5am. Be at the start corral by 7:30 for an 9:10 gun. Bring a throwaway long-sleeve. Tokyo in early March is 5-10°C at the start. Bring tape, not blister bandaids. The Asics expo has the good blister tape, but only the Tuesday of race week.</p><p>The course is fast. Sub-3 is realistic if you have the fitness. The crowds will carry you from km 25 to 35 through Ginza. Do not look at your watch in Asakusa. The senbei stalls smell like a hug.</p>",
+        "strava-activity-url": null,
+        "one-line-take": "Pre-race build for Tokyo, the sixth Major. Where to sleep, what to eat from T-3, the palace loop, the 5am train to the start. (No, I will not say it.)",
+        "photo-gallery": null,
+        "name": "Tokyo Marathon 2027 (Pre-race Build)",
+        "slug": "tokyo-marathon-2027-prerace"
+      }
+    },
+    {
+      "id": "6a16a04aa8d1d5f4ec9bc44d",
+      "slug": "copenhagen-marathon-2026-recap",
+      "lastPublished": "2026-05-27T20:11:28.634Z",
+      "fieldData": {
+        "race-type": "5dab28967f76f17420621c73fa756f3a",
+        "continent": "4754c994e67522ac7f978571deedb1e5",
+        "country": "6a0be79c05052e49dc6c9042",
+        "city": "Copenhagen",
+        "date": "2026-05-17T09:30:00.000Z",
+        "status": "880773f0711e0e181334dfc27d4763da",
+        "race-time": "4:08:42",
+        "hero-image": {
+          "fileId": "6a0e02c41cbdc4a8ddda2ec6",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e02c41cbdc4a8ddda2ec6_6a0e022401ba6df8805baa65_Denmark%2520Ice.jpeg"
+        },
+        "recap-body": "<p>🇩🇰 Copenhagen, May 17, 2026. The bib number was 8842 (a coincidence the Carletons made a moment of, given Bulgaria #88 happened last week). The gun went off at 9:30 with 14°C and a quartering crosswind. I finished in 4:08:42.</p><p>The first 5km were too fast. The next 5km were correct. The middle 21km were the place where the home race becomes the race. I passed the bike-lane corner of Vesterbrogade and Værnedamsvej at km 11. Our bike commute corner. Mama Pizza on the corner had a man named Per on the sidewalk yelling, in Danish and then in English, that I was doing fantastic. Per is 64. Per is the owner of the dry-cleaner three doors down. Per knows me from the cardigan I dropped off in February.</p><p>At km 24, the Inner Harbor bridge was as wind-tunneled as expected. I leaned into it. I lost a pace band. (It is still on the bridge somewhere. Some other runner will inherit it.)</p><p>At km 32, the wall arrived on schedule. The wall, this year, took the form of a small Danish child handing me a slice of orange. The child's name was Asger. Asger was four. Asger said, in Danish, that it was sour, and pointed to me, and pointed to himself, and laughed. I ate the orange. The wall moved.</p><p>At km 38, the Islands Brygge waterfront opened up and our apartment building came into view across the harbor. On the third floor balcony, against the harbor wind, a 45-kilo Samoyed in a sit-stay. Magnus 🐻‍❄️ was on the balcony. Jay was holding the leash. Jay was holding up a small printed sign that read, in Danish, Mor er hurtig (Mom is fast). Magnus 🐻‍❄️ was supervising.</p><p>I cried for 200 meters. I do not usually cry. I corrected for it by km 39. The crowd at km 40, behind the barriers at Langebro, included Jay's parents who had taken the train from Aarhus and who had a flag from a former Czechoslovakian national team that Jay's mother has had since 1984. They waved it. I waved back. I did not break stride. Jay's mother, whose name is Tove, will not forgive me if I had.</p><p>The finish was at Islands Brygge. 4:08:42. A 3-minute PR on a marathon. A 7-minute PR on Copenhagen specifically. Sixteenth in my age group out of 904. (The age group is now 38-42 since I age-up'd in October. I am pleased about this, in the way runners are pleased about age groups, which is to say grimly.)</p><p>After: The smørrebrød at the Vesterbrogade lunch place. The sauna at La Banchina the next day. The Carleton household stayed two extra days, walking slowly, letting Magnus 🐻‍❄️ direct the route. The Trip Ledger now reads: 88 countries, 7 continents marathoned, 1 home marathon PR.</p><p>The Tokyo Major is in 9 months and 22 days. The training has begun. The cardamom focaccia is also on the schedule.</p>",
+        "pre-race-city-guide": "<p>🇩🇰 The Copenhagen Marathon is the home race. May 17, 2026. Start and finish at Islands Brygge. 30,000 runners on the streets you bike to the bakery on. The course is flat and the wind in May is rude. (The Carletons keep a windbreaker in a saddlebag in case.)</p><p>Where to stay if you are flying in: anywhere within 2km of Islands Brygge. Hotel SP34 in the Latin Quarter is the smart pick (15 minutes walk, has the early breakfast for runners on race day). Nimb, if you want the budget to feel painful but the location to be perfect.</p><p>Where to eat (carb load, days T-3 to T-1): Mirabelle on Guldbergsgade for the spaghetti and the natural wine you should not have on T-1. Schønnemann on Hauser Plads for the smørrebrød lunch (eat by 14:00 so it digests). Hart Bakery on Refshalevej for the carb-load morning bread on T-2 and T-1, specifically the cardamom focaccia.</p><p>What to skip on race week: La Banchina sauna (heart rate gets weird). Tivoli's rides (your legs need still floors). Christianshavn's cobblestones. Save them for after.</p><p>Where to walk: The Søerne loop, exactly 6.4km on flat asphalt around the three city-center lakes. Two laps is your race-week shakeout. Or the Refshaleøen waterfront path, flat dirt, dog-friendly, ends at La Banchina (you cannot sauna but you can sit).</p><p>Race morning: The Metro runs from 4:30am. Be at the start zone by 8:00 for a 9:30 gun. Bring a throwaway long-sleeve. Copenhagen in May is 9-14°C at the start. Bring sport-tape, not blister bandaids. The Hyltebjerg pharmacy at Vesterbrogade 124 has the good blister tape and opens at 7:00 on race day.</p><p>The course: Fast. Sub-3 is realistic if you have the fitness. The Vesterbro crowds at km 18 will carry you. The bridge over the Inner Harbor at km 24 is wind-tunneled, so save energy. The final km along the Islands Brygge waterfront is downwind and downhill, finish strong.</p>",
+        "strava-activity-url": null,
+        "one-line-take": "Home marathon, 3-minute PR, the orange slice from a Danish four-year-old that moved the wall.",
+        "photo-gallery": null,
+        "name": "Copenhagen Marathon 2026 (Recap)",
+        "slug": "copenhagen-marathon-2026-recap"
+      }
+    }
+  ]
+}

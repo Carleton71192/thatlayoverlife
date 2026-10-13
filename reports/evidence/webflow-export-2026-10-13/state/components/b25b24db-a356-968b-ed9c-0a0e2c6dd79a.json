@@ -1,0 +1,41 @@
+{
+ "id": "b25b24db-a356-968b-ed9c-0a0e2c6dd79a",
+ "name": "TLL Sponsor Disclosure v1",
+ "group": "TLL Editorial",
+ "description": "FTC-style sponsored-content disclosure line. Muted bone card. Disclosure text is a prop.",
+ "instanceCount": 0,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 1,
+ "nodeTypes": {
+  "Block": 1
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"b25b24db-a356-968b-ed9c-0a0e2c6dd79a\" tree loaded",
+  "data": {
+   "id": {
+    "component": "b25b24db-a356-968b-ed9c-0a0e2c6dd79a",
+    "element": "b25b24db-a356-968b-ed9c-0a0e2c6dd79a"
+   },
+   "type": "Block",
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   }
+  }
+ },
+ "settings": {},
+ "rawSettings": {},
+ "props": [],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

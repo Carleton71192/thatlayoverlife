@@ -1,0 +1,67 @@
+{
+  "id": "6a0e97318d3078942dca2fed",
+  "displayName": "National Parks",
+  "slug": "national-parks",
+  "singularName": "National Park",
+  "schema": {
+    "fields": [
+      {
+        "id": "6b93b48fd16713ab306bc485c70c887c",
+        "slug": "park-code",
+        "displayName": "Park code",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "9ce933e03840a3d3692fc306c97a2c01",
+        "slug": "year-established",
+        "displayName": "Year established",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "2d99c60be595974986ef3c4eb893b531",
+        "slug": "visited-by-founder",
+        "displayName": "Visited by founder",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "64a94b14d33ddbc3525bb346600a304b",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "fe3b630042a6f3366d320268ec0a313d",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "023e22678b6a96a02a391280968b1afc",
+        "slug": "state",
+        "displayName": "State",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "96cadaa6075b987090a7f9f6456699a7",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "8af485634de0c9cff82fd5c253ec6a48",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

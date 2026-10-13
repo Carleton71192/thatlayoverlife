@@ -1,0 +1,132 @@
+{
+ "id": "61fd1e77-9157-2ddc-7139-28cd4ec5ad33",
+ "name": "TLL Pull Quote v1",
+ "group": "TLL Editorial",
+ "description": "Large serif pull quote with marigold left rule. Drops into story bodies. Quote text is a prop. Reuses brand display stack and palette tokens.",
+ "instanceCount": 0,
+ "capturedAt": "2026-10-13",
+ "source": "Webflow MCP data_element_tool get_all_elements depth -1 scope_component_id; data_element_settings_tool get_settings all_resolved_settings and all_raw_settings; data_component_tool get_component includeProps includeInstanceCount; get_component includeVariants",
+ "nodeCount": 2,
+ "nodeTypes": {
+  "Block": 2
+ },
+ "tree": {
+  "status": "success",
+  "message": "Component \"61fd1e77-9157-2ddc-7139-28cd4ec5ad33\" tree loaded",
+  "data": {
+   "id": {
+    "component": "61fd1e77-9157-2ddc-7139-28cd4ec5ad33",
+    "element": "61fd1e77-9157-2ddc-7139-28cd4ec5ad33"
+   },
+   "type": "Block",
+   "styleNames": [
+    "tll-pullquote"
+   ],
+   "settings": {
+    "tag": "div",
+    "visibility": true,
+    "block": {
+     "tag": "div"
+    }
+   },
+   "children": [
+    {
+     "id": {
+      "component": "61fd1e77-9157-2ddc-7139-28cd4ec5ad33",
+      "element": "9d578ac3-11e6-0e2c-6f87-4789ef6eee88"
+     },
+     "type": "Block",
+     "styleNames": [
+      "tll-pullquote-text"
+     ],
+     "settings": {
+      "tag": "div",
+      "visibility": true,
+      "block": {
+       "tag": "div"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "settings": {
+  "9d578ac3-11e6-0e2c-6f87-4789ef6eee88": {
+   "type": "all_resolved_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "innerText": "The plum brandy decided it, not the map."
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  }
+ },
+ "rawSettings": {
+  "9d578ac3-11e6-0e2c-6f87-4789ef6eee88": {
+   "type": "all_raw_settings",
+   "total_matches": 5,
+   "matches": [
+    {
+     "key": "domId",
+     "value": ""
+    },
+    {
+     "key": "tag",
+     "value": "div"
+    },
+    {
+     "key": "text",
+     "value": {
+      "sourceType": "prop",
+      "propId": "7c0da9c4-f498-6ff2-ec77-6c5fa6f4a54f",
+      "propName": "Quote",
+      "propGroup": "Pull Quote"
+     }
+    },
+    {
+     "key": "visibility",
+     "value": true
+    },
+    {
+     "key": "attributes",
+     "value": []
+    }
+   ]
+  }
+ },
+ "props": [
+  {
+   "id": "7c0da9c4-f498-6ff2-ec77-6c5fa6f4a54f",
+   "type": "textContent",
+   "name": "Quote",
+   "group": "Pull Quote",
+   "defaultValue": "The plum brandy decided it, not the map."
+  }
+ ],
+ "variants": [
+  {
+   "id": "base",
+   "name": "Base",
+   "isSelected": true
+  }
+ ]
+}

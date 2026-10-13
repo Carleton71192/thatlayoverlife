@@ -1,0 +1,95 @@
+{
+  "id": "6a0b29c6d081332e921900ff",
+  "displayName": "Pillars",
+  "slug": "pillars",
+  "singularName": "Pillar",
+  "schema": {
+    "fields": [
+      {
+        "id": "c4d4ac956057c23cea1b1d090e223104",
+        "slug": "color-accent",
+        "displayName": "Color accent",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "a534329074aba4af94f07cd3a33e8f6e",
+        "slug": "icon",
+        "displayName": "Icon",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "a725e82a676d12daf891f52f0e579377",
+        "slug": "one-line-description",
+        "displayName": "One-line description",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "81657b5b15e424d2a08f6ec498ff7286",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b78b6b0b71b5885824dac672bec44a6f",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0be74918c878ae030c30f0",
+      "slug": "cultural-intelligence",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "color-accent": "664655edf3d630e93d796101702d4c05",
+        "icon": {
+          "fileId": "6a0be74918c878ae030c30bb",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0be74918c878ae030c30bb_0A0B14.png",
+          "alt": null
+        },
+        "one-line-description": "What travel teaches about how the world actually works. The Swedish 37-hour week. The customs officer in Pristina.",
+        "name": "Cultural Intelligence",
+        "slug": "cultural-intelligence"
+      }
+    },
+    {
+      "id": "6a0be74918c878ae030c30ec",
+      "slug": "travel-logistics",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "color-accent": "83007822f173be62787cfd06479dc76c",
+        "icon": {
+          "fileId": "6a0be74918c878ae030c30b5",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0be74918c878ae030c30b5_0A0B14.png",
+          "alt": null
+        },
+        "one-line-description": "Visas, AHCs, EV charging, real wifi, customs surprises. The unsexy intel that actually saves the trip.",
+        "name": "Travel Logistics",
+        "slug": "travel-logistics"
+      }
+    },
+    {
+      "id": "6a0be74918c878ae030c30ea",
+      "slug": "layover-guides",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "color-accent": "664655edf3d630e93d796101702d4c05",
+        "icon": {
+          "fileId": "6a0be74918c878ae030c30c1",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0be74918c878ae030c30c1_0A0B14.png",
+          "alt": null
+        },
+        "one-line-description": "What to do with 3, 6, 9, or 12 plus hours in a city. Written by people who have done the layover and lived to file the report.",
+        "name": "Layover Guides",
+        "slug": "layover-guides"
+      }
+    }
+  ]
+}

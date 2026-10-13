@@ -1,0 +1,60 @@
+{
+  "id": "6a0e97318d3078942dca2fbe",
+  "displayName": "States",
+  "slug": "states",
+  "singularName": "State",
+  "schema": {
+    "fields": [
+      {
+        "id": "b777936f37aded8b907cdbdcf97daec1",
+        "slug": "state-code",
+        "displayName": "State code",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "3a8c06c338f1584fe4005fff3b100e78",
+        "slug": "region",
+        "displayName": "Region",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "d0d6c099c6d371506db01f1b9fe93d0d",
+        "slug": "visited-by-founder",
+        "displayName": "Visited by founder",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "1d5ea54b4498bb0ae56b5be689affe3c",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "cd736351c7f52cd7a887d87f498da22a",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "548f6478a0a5e62d966b7cc35b296991",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "733dce0c6223a2039892c33beea7bb6b",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

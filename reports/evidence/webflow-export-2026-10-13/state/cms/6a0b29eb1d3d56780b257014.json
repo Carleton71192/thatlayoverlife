@@ -1,0 +1,164 @@
+{
+  "id": "6a0b29eb1d3d56780b257014",
+  "displayName": "Magnus Diary",
+  "slug": "paw-passport",
+  "singularName": "Magnus Diary Entry",
+  "schema": {
+    "fields": [
+      {
+        "id": "1768ab2c11bf7ec4187e1540bd21323a",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "aa24565b58ecb7b843ae4af5204b9ef1",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": true
+      },
+      {
+        "id": "bc3d44cacd8f1d04357fef5a80f0d61c",
+        "slug": "body",
+        "displayName": "Body",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "b3bc838ce5172aa4e690c69771e492ec",
+        "slug": "logistics-block",
+        "displayName": "Logistics block",
+        "type": "RichText",
+        "isRequired": true
+      },
+      {
+        "id": "272dbf5dc79852cfac77f17d1e5b8d32",
+        "slug": "magnus-rating",
+        "displayName": "Magnus rating",
+        "type": "Number",
+        "isRequired": true
+      },
+      {
+        "id": "6c33777baa547fe254aa7897d3353662",
+        "slug": "reader-question",
+        "displayName": "Reader question",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b830776765f1872965dda16d90b54877",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "637661935d7bbce27eb17aa648ecc998",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "3585ff3954e2416c6efea7027b794c9f",
+        "slug": "photo-gallery",
+        "displayName": "Photo gallery",
+        "type": "MultiImage",
+        "isRequired": false
+      },
+      {
+        "id": "5dac21eccb4b0734312d90766a655c8a",
+        "slug": "entry-date",
+        "displayName": "Entry date",
+        "type": "DateTime",
+        "isRequired": false
+      },
+      {
+        "id": "d12c2f435562a4fa79b2bd89aab2d16e",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "3d631500d58ae8baf6ffd2e32b9c7c42",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a16a046ddcf8666bf6ead2f",
+      "slug": "magnus-boryana-sofia-bulgaria",
+      "lastPublished": "2026-09-28T16:47:46.232Z",
+      "fieldData": {
+        "country": "6a0be79c05052e49dc6c9036",
+        "hero-image": {
+          "fileId": "6a0e02c4823ce7e6fcd3e743",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e02c4823ce7e6fcd3e743_6a0e022486157e60bbf8ce14_Magnus%2520colors.jpeg"
+        },
+        "body": "<p>🇧🇬 Sofia in May. The plum brandy smells the same to humans and to dogs, but only one of us is allowed to have it. The other one is allowed to have what falls from the table.</p><p>I am at the long restaurant on Vitosha Boulevard with Mama and Tata. The waiter, a man named Aleksandar with a small mustache and the patience of an old monk, brings me a bowl of water with one ice cube. He does this without being asked. He has dogs at home (a Mladorus rescue named Borodin and a Bichon named Lola). We make a professional acknowledgment.</p><p>The table next to us has Boryana. Boryana is eight. Boryana has braids. Boryana has the snowman keychain with the wonky carrot nose. Boryana has been studying me for three minutes when I arrive and has made her decision. The decision is that I am her best human in the world even though I am not a human. (Children of eight do not need this to make sense.)</p><p>Boryana asks her grandmother, in Bulgarian, if she may visit me. Her grandmother (Baba) says yes if she is gentle. Boryana is gentle. Boryana is exquisite at gentle. She kneels at my level. She places her small hand on my chest, just on the white fur where the heart is. She says my name in Bulgarian (Магнус) and then in English. She says, in careful school-English, that I am beautiful.</p><p>I sit up taller. The Carletons have noticed. Mama lets me. This is the only acceptable use of a Samoyed.</p><p>Under the table, the kissel comes. It comes from Boryana's plate. Cherry kissel, slightly cool, slightly tart. A spoonful at a time. Eight spoonfuls before Baba notices and laughs and waves at Mama. Mama waves back. The Carletons are amused. The kissel keeps coming.</p><p>The dinner takes two hours. Boryana visits four times. By the fourth visit she has shown me the snowman keychain (the carrot is too long on purpose, this is the joke, she explains in Bulgarian and then in slow English in case I missed it), her plastic horse named Тhornes, and her loose tooth (the bottom front, second from the left). I supervise all of this.</p><p>When we leave, Boryana asks Mama if I will be at the restaurant tomorrow. Mama explains, gently, that we leave in the morning. Boryana nods. She is eight and has done goodbyes. She gives me the snowman keychain. It is the keychain.</p><p>The keychain is now on my leash. I supervise the keychain.</p>",
+        "logistics-block": "<p><strong>Bulgaria pet entry (EU member, but the back-of-Schengen kind):</strong> EU pet passport, microchip ISO 11784/11785, rabies booster in date. No serological test required for in-EU travel. Carry a printed AHC if your home country requires re-entry (Bulgaria does not).</p><p><strong>Dog-friendly Sofia restaurants:</strong> Trops Kashta on Vitosha Boulevard (Bulgarian comfort food, dogs welcome at outdoor tables, water bowl on request). Hadjidraganov's Cellars in the old town (large dogs allowed in the garden area, leash required, the schnitzel comes with mustard). Edno on Stamboliyski Boulevard (modernist Bulgarian, dogs welcome on the patio, the kashkaval breaded is the move).</p><p><strong>Sofia parks for large breeds:</strong> Borisova Gradina (off-leash zones at the eastern end, fenced dog park). Yuzhen Park (the southern park, dirt paths, shaded). Vrana Park (free entry on weekends, large grounds, a former royal hunting estate).</p><p><strong>Leash law:</strong> Required in central Sofia. Off-leash permitted in designated zones only. Aggressive breeds (which a Samoyed is not, despite the size) require a muzzle in some neighborhoods. We did not need one. We carried one anyway.</p>",
+        "magnus-rating": 5,
+        "reader-question": "Which small human, in which country, decided you were their best human even though you are a dog? Reply with the country and the keychain.",
+        "seo-title": "Magnus in Sofia: Boryana and the kissel · That Layover Life",
+        "seo-description": "Sofia in May: an eight-year-old named Boryana, cherry kissel under the table, and Bulgaria pet entry, leash law and dog-friendly restaurants.",
+        "photo-gallery": null,
+        "entry-date": "2026-05-27T07:41:58.554Z",
+        "name": "Boryana, My Best Human in the World (Sofia, by Magnus 🐻‍❄️)",
+        "slug": "magnus-boryana-sofia-bulgaria"
+      }
+    },
+    {
+      "id": "6a0d456942bba0c5f5fa9a31",
+      "slug": "magnus-cph-to-malmo-border",
+      "lastPublished": "2026-09-28T16:47:46.232Z",
+      "fieldData": {
+        "country": "6a0be79c05052e49dc6c903c",
+        "hero-image": {
+          "fileId": "6a13ea7279db061ef20b98e7",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7279db061ef20b98e7_6a0cb9cea916b3a0a7622e42_1sDthtcZ0nFbfrBV23hfSQnYolErRCvkG%253Dw2400.jpeg",
+          "alt": "Magnus 🐻‍❄️ at the Øresund customs booth"
+        },
+        "body": "<p>🇸🇪 The Øresund bridge takes the humans 25 minutes. The dog walks it in five frames. I sit upright in the back seat. I supervise. I do not lie down on the bridge. This is not a bridge for lying down. This is a bridge for civic responsibility.</p><p>We cross on a Saturday at 10am. The Swedish customs officer is a woman named Inger who has a small white dog at home named Bruno who is also, in her words, a personality. She does not ask for Magnus's pet passport. She looks at it because she wants to. The microchip number is correct. The rabies booster is in date. Inger and I make eye contact through the window. I incline my head one centimeter. Bridge cleared.</p><p>In Malmö we go directly to a coffee shop on Lilla Torg called Solde. The dog water is in a low ceramic bowl. The barista, whose name is Linus and who has been working there since the place opened in 2007, brings me a piece of unsalted ham on a saucer. I accept. I do not eat right away. There is a small terrier at the next table who is being too loud about a croissant crumb. I wait until he has been spoken to. Then I eat.</p><p>The Carletons drink oat lattes. Jay does the math on whether to drive back via the bridge or take the train. The math is the same either way. I supervise the math.</p>",
+        "logistics-block": "<p><strong>Border crossing:</strong> Copenhagen to Malmö via the Øresund bridge. EU pet passport. Rabies booster in date (within 12 months for under-12-month vaccinations, otherwise within 3 years). Microchip ISO 11784/11785.</p><p><strong>What Swedish customs actually checks:</strong> In practice, very little. The passport is glanced at. The microchip scanner is rarely used. Be prepared for both. Inger was the polite version. Be ready for her tougher colleague.</p><p><strong>Large-breed-friendly stops in Malmö:</strong> Solde Kafferosteri (Lilla Torg, water bowl, treats), Folk &amp; Rock (outdoor seating, water on request), the entire boardwalk along Ribersborgsstranden (off-leash zones at the eastern end).</p><p><strong>Toll:</strong> 600 SEK each way (car + dog, no extra dog fee). Pay by camera, no booth stop required.</p>",
+        "magnus-rating": 5,
+        "reader-question": "What's the most polite border crossing you've done with a dog? Reply with the customs officer's first name.",
+        "seo-title": "Copenhagen to Malmö with a dog · Øresund · That Layover Life",
+        "seo-description": "The Øresund bridge with a 45-kilo Samoyed. EU pet passport mechanics, Malmö coffee shop intel, and one customs officer named Inger.",
+        "photo-gallery": null,
+        "entry-date": "2026-05-16T10:00:00.000Z",
+        "name": "The Copenhagen-to-Malmö Border Patrol (by Magnus 🐻‍❄️)",
+        "slug": "magnus-cph-to-malmo-border"
+      }
+    },
+    {
+      "id": "6a0d456942bba0c5f5fa9a35",
+      "slug": "magnus-airport-pickup-ritual-cph",
+      "lastPublished": "2026-08-22T15:43:40.793Z",
+      "fieldData": {
+        "country": "6a0be79c05052e49dc6c9042",
+        "hero-image": {
+          "fileId": "6a13ea7279db061ef20b98e7",
+          "url": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7279db061ef20b98e7_6a0cb9cea916b3a0a7622e42_1sDthtcZ0nFbfrBV23hfSQnYolErRCvkG%253Dw2400.jpeg",
+          "alt": "Magnus 🐻‍❄️ in the wagon, supervising the CPH terminal sliding doors"
+        },
+        "body": "<p>🇩🇰 The protocol when Mama returns from a trip: I am parked at the kiss-and-fly drop-off at CPH Terminal 3 in the back of the wagon. Papa is at the wheel. I do not bark when she comes through the sliding doors. I do not jump. I do not strain the seatbelt harness. I supervise her approach.</p><p>The first sniff is at the back hatch when Papa opens it. This is the diagnostic. I am looking for: another dog she petted (concerning), an airport carpet (forgivable), a foreign cheese (suspicious), a Samoyed she met in the lounge (unforgivable). The verdict is delivered through the tail.</p><p>This trip the verdict is: she petted a dog. A husky, I think. The tail is at half mast. I will require additional reassurance over the 24 hours that follow. The reassurance will take the form of: lap time on the sofa, an extra walk around Søerne, and the ham off her open-faced sandwich at lunch. She knows the protocol.</p><p>(For the record, I have done this ritual 47 times in 2026. Mama travels for work. I have learned to read the calendar. Tuesday is suspicious. Saturday is for me.)</p>",
+        "logistics-block": "<p><strong>CPH airport with a dog (waiting in the car):</strong> Kiss-and-fly drop-off at Terminal 3 allows 10 minutes. Terminal 2 short-stay parking (P12) is the better option for a real pickup, 110 DKK per hour, dogs allowed in the car park. The arrival hall has a small outdoor patio with benches near Exit C2 that is dog-friendly.</p><p><strong>Public transit option:</strong> The Metro is dog-friendly off-peak (avoid 7-9am, 4-6pm). One zone from CPH to Nørreport. Buy a ticket for the dog (child fare).</p><p><strong>Quiet area for an anxious dog:</strong> The lawn between Terminal 3 and the long-stay parking is the calmest patch of grass near the airport. Better than the official designated pet relief areas inside, which are fluorescent-lit closets with artificial turf and despair.</p>",
+        "magnus-rating": 5,
+        "reader-question": "What's your dog's airport pickup tell? Tail at half mast? Side-eye? Full silent treatment? Reply.",
+        "seo-title": "The CPH airport pickup ritual · Samoyed dispatch · That Layover Life",
+        "seo-description": "Copenhagen Airport pickup, told by Magnus 🐻‍❄️. The diagnostic sniff, the verdict, and the parking lots that make it work.",
+        "photo-gallery": null,
+        "entry-date": "2026-05-20T05:23:53.701Z",
+        "name": "The Airport Pickup Ritual (CPH, on Mama)",
+        "slug": "magnus-airport-pickup-ritual-cph"
+      }
+    }
+  ]
+}

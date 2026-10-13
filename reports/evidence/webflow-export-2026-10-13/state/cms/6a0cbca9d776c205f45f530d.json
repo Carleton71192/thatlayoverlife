@@ -1,0 +1,95 @@
+{
+  "id": "6a0cbca9d776c205f45f530d",
+  "displayName": "Visits",
+  "slug": "visits",
+  "singularName": "Visit",
+  "schema": {
+    "fields": [
+      {
+        "id": "298d13d5adbaa45e4247158096bb21e6",
+        "slug": "contributor",
+        "displayName": "Contributor",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "1e99c2503cac2ef70861275a13a7e121",
+        "slug": "country",
+        "displayName": "Country",
+        "type": "Reference",
+        "isRequired": true
+      },
+      {
+        "id": "4bf84e4800c9f73afc62aeb301f355cc",
+        "slug": "linked-story",
+        "displayName": "Linked Story",
+        "type": "Reference",
+        "isRequired": false
+      },
+      {
+        "id": "09d280536ebab47a794e9363d4bb7ac0",
+        "slug": "visit-date",
+        "displayName": "Visit date",
+        "type": "DateTime",
+        "isRequired": true
+      },
+      {
+        "id": "3d6278a54b0ae5276f6ff8f919088b50",
+        "slug": "duration-days",
+        "displayName": "Duration days",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "959a85221e1f081d7bb4175c340d8097",
+        "slug": "city",
+        "displayName": "City",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "ea50b0e6057d8d55e126c2f5fc24d00b",
+        "slug": "notes",
+        "displayName": "Notes",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "6bca6e901d9c8482deaa0b72d6dbf703",
+        "slug": "photo",
+        "displayName": "Photo",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "79cc50fe227b1d565fd8d6c18177d7fa",
+        "slug": "is-private",
+        "displayName": "Is private",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "c279bb5fa3d442b42b727f254b21ae49",
+        "slug": "pets-along",
+        "displayName": "Pets along",
+        "type": "MultiReference",
+        "isRequired": false
+      },
+      {
+        "id": "44b3a42aa0688f573b6f1ad9d58196b1",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "ecbe7d0415096a65f64383ed93a3116d",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": []
+}

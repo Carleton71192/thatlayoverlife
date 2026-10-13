@@ -1,0 +1,25 @@
+/* design-mode.css
+   Loaded last by every page in this export. It exists so the pages can be opened
+   without the live site scripts (Memberstack, the reveal script, the form handler).
+   On the live site a script fades [data-tll-reveal] blocks in when they scroll into
+   view. With no script the block would stay invisible, so this file forces it shown.
+   Collection empty states and form done/fail messages are hidden the way Webflow
+   hides them at runtime. Nothing else is changed here. */
+
+[data-tll-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* No class in styles-base.json named *reveal*, *fade*, *hidden* or *is-in* starts at
+   opacity 0, so no extra class overrides are needed (checked 13 Oct 2026). */
+
+.w-dyn-empty {
+  display: none;
+}
+
+.w-form-done,
+.w-form-fail {
+  display: none;
+}

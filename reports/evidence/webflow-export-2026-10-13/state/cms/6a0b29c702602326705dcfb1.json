@@ -1,0 +1,193 @@
+{
+  "id": "6a0b29c702602326705dcfb1",
+  "displayName": "Destinations",
+  "slug": "destinations",
+  "singularName": "Destination",
+  "schema": {
+    "fields": [
+      {
+        "id": "562139bdf62d0460de54953cc1b41a1f",
+        "slug": "country-code",
+        "displayName": "Country code",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "b419327ef58dabbbb4a21467d045d393",
+        "slug": "flag-emoji",
+        "displayName": "Flag emoji",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "4547138c6913af969c55adcb6a6596f3",
+        "slug": "continent",
+        "displayName": "Continent",
+        "type": "Option",
+        "isRequired": true
+      },
+      {
+        "id": "33e955b6b351fd9b4b11dcaf8f2d5b1c",
+        "slug": "region",
+        "displayName": "Region",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "8ee872e8991c07132997babd4174a48a",
+        "slug": "hero-image",
+        "displayName": "Hero image",
+        "type": "Image",
+        "isRequired": false
+      },
+      {
+        "id": "910d811a3ddc77af878bd4f94c066851",
+        "slug": "country-brief",
+        "displayName": "Country brief",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "f0504f95de16cbe0bbd36a3576e6ec93",
+        "slug": "marathon-notes",
+        "displayName": "Marathon notes",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "08275571a51662029c6b4e657253589a",
+        "slug": "paw-passport-notes",
+        "displayName": "Paw Passport notes",
+        "type": "RichText",
+        "isRequired": false
+      },
+      {
+        "id": "eac2b8d7c2f6c3f7b893f4a114a3bde8",
+        "slug": "visited-by-founder",
+        "displayName": "Visited by founder",
+        "type": "Switch",
+        "isRequired": false
+      },
+      {
+        "id": "effcb3f6f2a236f60887234c77852229",
+        "slug": "country-number",
+        "displayName": "Country number",
+        "type": "Number",
+        "isRequired": false
+      },
+      {
+        "id": "6eade2d7ead7b723fdeeeee42f680cae",
+        "slug": "seo-title",
+        "displayName": "SEO title",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "cbbddaea1dc2c34ac4a3f7efbf2d5581",
+        "slug": "seo-description",
+        "displayName": "SEO description",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "497f4ef43b2584dab6dbb815a2351b5a",
+        "slug": "alternative-names",
+        "displayName": "Alternative Names",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "88412a0925d67ddcf01c03b6db537317",
+        "slug": "map-coordinates",
+        "displayName": "Map coordinates",
+        "type": "PlainText",
+        "isRequired": false
+      },
+      {
+        "id": "0deaeb36205ed025224e191ca2df76d4",
+        "slug": "name",
+        "displayName": "Name",
+        "type": "PlainText",
+        "isRequired": true
+      },
+      {
+        "id": "4e638f38eb3f6ee6489788a9367220d8",
+        "slug": "slug",
+        "displayName": "Slug",
+        "type": "PlainText",
+        "isRequired": true
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "6a0e967e1439561374cc813e",
+      "slug": "cambodia",
+      "lastPublished": "2026-10-12T15:18:13.111Z",
+      "fieldData": {
+        "country-code": "KH",
+        "flag-emoji": "🇰🇭",
+        "continent": "3f989e328d1f3e6f3899810ea7ad8ccb",
+        "region": null,
+        "hero-image": null,
+        "country-brief": null,
+        "marathon-notes": null,
+        "paw-passport-notes": null,
+        "visited-by-founder": false,
+        "country-number": null,
+        "seo-title": "Cambodia · That Layover Life",
+        "seo-description": "Travel stories, layover guides, and pet-passport notes from Cambodia.",
+        "alternative-names": null,
+        "map-coordinates": null,
+        "name": "Cambodia",
+        "slug": "cambodia"
+      }
+    },
+    {
+      "id": "6a0e971cf834d0b87b26e55e",
+      "slug": "antarctica",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "country-code": "AQ",
+        "flag-emoji": "🇦🇶",
+        "continent": "67e20835286d148b1609b50583f75be1",
+        "region": null,
+        "hero-image": null,
+        "country-brief": null,
+        "marathon-notes": null,
+        "paw-passport-notes": null,
+        "visited-by-founder": false,
+        "country-number": null,
+        "seo-title": "Antarctica · That Layover Life",
+        "seo-description": "Travel stories, layover guides, and pet-passport notes from Antarctica.",
+        "alternative-names": null,
+        "map-coordinates": null,
+        "name": "Antarctica",
+        "slug": "antarctica"
+      }
+    },
+    {
+      "id": "6a0e971cf834d0b87b26e55c",
+      "slug": "vanuatu",
+      "lastPublished": "2026-10-12T13:39:39.108Z",
+      "fieldData": {
+        "country-code": "VU",
+        "flag-emoji": "🇻🇺",
+        "continent": "d85aca189ab7dcea4d222ee7c7f6aaeb",
+        "region": null,
+        "hero-image": null,
+        "country-brief": null,
+        "marathon-notes": null,
+        "paw-passport-notes": null,
+        "visited-by-founder": false,
+        "country-number": null,
+        "seo-title": "Vanuatu · That Layover Life",
+        "seo-description": "Travel stories, layover guides, and pet-passport notes from Vanuatu.",
+        "alternative-names": null,
+        "map-coordinates": null,
+        "name": "Vanuatu",
+        "slug": "vanuatu"
+      }
+    }
+  ]
+}
