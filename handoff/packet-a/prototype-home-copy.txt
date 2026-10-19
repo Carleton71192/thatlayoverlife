@@ -1,0 +1,102 @@
+0;"> ROUTE TLL {{ ed.tix.code }} 
+ FROM {{ ed.tix.from }} 
+ TO {{ ed.tix.to }} 
+ VIA {{ ed.tix.via }} 
+ STOP {{ ed.tix.gate }} 
+ DEPARTS {{ ed.tix.boards }} 
+ STATUS {{ ed.tix.stamp }} 
+ {{ ed.tix.line }} 
+ PROTOTYPE · ALL SCREENS · {{ protoScreenLabel }} {{ protoToggleLabel }} 
+ {{ p.label }} 
+[section] 
+ CURAÇAO 12.17° N, 68.99° W 
+[h1] Find your next somewhere. 
+[p] Stories from the people who went, and a map of everywhere you have been. 
+ Read the stories → Build your free map 
+ FREE, FOREVER. NO CARD, NO PAYWALL. 
+[section] 
+ 01 · THE STORIES 
+[h2] Trips that can't wait for payday. 
+[p] Read about the places people went, then make a plan that begins with one open tab and ends with a national park, a layover, a dog, or a marathon entry you will defend to your accountant. 
+ {{ c.label }} 
+[section] 
+ Already published 
+ The library. 
+ {{ s.initials }} {{ s.author }} {{ s.role }} 
+ {{ s.placeU }} 
+[h3] {{ s.title }} 
+ {{ s.pillar }} · {{ s.mins }} 
+ More landing weekly. 
+ {{ ed.storyCount }} PUBLISHED SO FAR · THE EIGHT NEWEST HERE 
+ Read the stories → 
+ {{ ed.storyCount }} STORIES · THEY MOVE SIDEWAYS → 
+[section] 
+ Search it 
+[p] Find the country, layover, dog problem, or question your current itinerary has created. 
+ SEARCH → 
+ {{ r.no }} {{ r.title }} {{ r.placeU }} 
+ Nothing for "{{ ed.sq }}" yet. It grows weekly. 
+ TRY {{ t.label }} 
+[section] 
+ 02 · YOUR TRAVEL DASHBOARD 
+[h2] Every place you have been, in one spot. 
+[p] Countries, lists, pets, a public page you can send to a friend, and at the end of the year, your Layover Wrapped. It builds itself from the places you add. 
+ {{ dash.cta }} {{ dash.sub }} 
+ {{ dash.mapLabel }} 
+ {{ dash.line }} COUNTED FROM THE MAP, NEVER TYPED 
+[li] 01 · PROFILE Sign up and your page is live in a minute, story or no story. 
+[li] 02 · STORIES AND PHOTOS Add a trip or a frame. It lands on your page and in the library. 
+[li] 03 · THE MAP Every place you add fills in. Lists, pets and Wrapped follow from there. 
+[section] 
+ 03 · LIVING THERE, NOT PASSING THROUGH 
+[h2] Moving somewhere? Someone here already did. 
+[p] For the people who stay. Moving guides written by members who made the move, visa trackers that remember the dates so you do not have to, and lifestyle hubs for the city you are learning to call home. 
+ MOVING GUIDES The paperwork, in the order it happens. Registration, bank, phone, doctor, the one office that closes at two. Written by someone who stood in that line. 
+ VISA TRACKERS The dates, remembered for you. Permit renewals, Schengen days, the appointment you booked eleven months ago. One list, with reminders. 
+ LIFESTYLE HUBS The city, after the boxes are unpacked. Where members in your new city run, eat, swim and find a vet. Updated by the people who live there. 
+ Go to For expats → OPENING WITH THE COUNTRIES OUR MEMBERS LIVE IN 
+[section] 
+ MAGNUS · SAMOYED · 35 KG · {{ dash.pet }} PLACES 
+ 04 · PAW PASSPORT 
+[h2] Traveling with your bestie, whatever the species. 
+[p] They get a passport, a country count, and veto power over the hotel. Magnus was simply first. 
+ Open the Paw Passport → 
+[p] The EU pet travel guide: every step the law requires, in order, with the forms and the prices. 
+[a] Get the guide · €9 ON KO-FI 
+[section] 
+ The Layover Lounge 
+ The Layover Lounge. 
+ The photos that made the next trip look affordable. 
+[p] Send the view that made you open another tab, check flight prices, and start doing the maths for a trip you said was not happening this year. We credit every frame. 
+ See the Lounge → Send a photo 
+ TLL PAR AVION GREETINGS FROM {{ p.cap }} 
+[section] 
+ 06 · THE FIRST 100 
+[h2] You went. Write it down. 
+[p] Send us the trip you keep telling people about, the national park you drove six hours to reach, or the dog whose itinerary was better than yours. We edit lightly, keep your byline, and publish the moment it passes the submission rules. The first hundred members get a founding badge and a direct line to Nancy. 
+ Send your trip → Send a photo WHAT FOUNDERS GET 
+ FOUNDING 01 Nancy Carleton Founder · Copenhagen · abroad since 2018 
+[a] FOUNDING 02 Jay Carleton Seven marathons, seven continents, never crosses the line first 
+ FOUNDING 03 · PET Magnus Waffles Samoyed · 35 kg · {{ dash.pet }} places · advisory capacity 
+ OPEN SLOT 04 Your profile could be here. 
+ OPEN SLOT 05 Ninety-six more after this one. 
+[section] 
+ 07 · THE LAYOVER LETTER 
+[h2] Your inbox deserves better than deals. 
+[p] One story a week, Sunday morning, Copenhagen time. No schedule we would break to send you a deal. Unsubscribe anywhere. 
+ Your email 
+[button] Send it → 
+ {{ ed.nlMsg }} 
+ You're in. One story, every Sunday, 09:00 Copenhagen time. 
+[h2] Where did your last {{ ed.fw }} take you? 
+ Build your map → Read the stories 
+[section] 
+ {{ lib.heroVideo }}
+ THE LIBRARY · STORIES BY PLACE 
+ IN THE FRAME PORTO JOFRE, BRAZIL 
+[button] {{ lib.pauseLabel }} 
+ VIDEO LOOP SLOT · 8 TO 12 S · NO SOUND 
+[h1] {{ lib.nWord }} stories, all worth the detour. 
+[section] 
+[p] {{ lib.nStories }} stories from {{ lib.nCountries }} countries, each about a specific place at a specific time. Read them one by one, or start from a place. 
+ <input val

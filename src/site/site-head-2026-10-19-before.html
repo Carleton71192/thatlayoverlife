@@ -1,0 +1,336 @@
+<style id="tll-embed-mode">
+.tll-embed body > *:not(main){display:none !important;}
+.tll-embed nav,.tll-embed .tll-nav-v1,.tll-embed footer,.tll-embed .tll-footer-v1{display:none !important;}
+.tll-embed main > section:not(.tll-map-section){display:none !important;}
+.tll-embed .tll-map-section,.tll-embed .tll-map-section-inner{padding:0 !important;margin:0 !important;max-width:none !important;background:#CBDBE1 !important;}
+.tll-embed #tllLegend,.tll-embed .tllLegend,.tll-embed #tllShareBar,.tll-embed .tllShareBar,.tll-embed .tll-map-section-inner > button,.tll-embed .tll-map-legend{display:none !important;}
+.tll-embed html,.tll-embed body{background:#CBDBE1 !important;overflow:hidden !important;margin:0 !important;}
+</style>
+<script>if(/[?&]embed=1/.test(location.search)){document.documentElement.classList.add('tll-embed');}</script>
+<!-- Mobile pass 1 (2026-09-28): the cookie banner only opens after window load, so its stylesheet no longer blocks first paint. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css"></noscript>
+<style>
+#cc-main{
+  --cc-bg:#0D0F1A; --cc-primary-color:#F7F1E8; --cc-secondary-color:#00C9C8;
+  --cc-btn-primary-bg:#D63859; --cc-btn-primary-color:#fff; --cc-btn-primary-hover-bg:#F0507A;
+  --cc-btn-secondary-bg:rgba(255,255,255,.10); --cc-btn-secondary-color:#F7F1E8; --cc-btn-secondary-hover-bg:rgba(255,255,255,.18);
+  --cc-toggle-on-bg:#00C9C8; --cc-cookie-category-block-bg:rgba(255,255,255,.05); --cc-overlay-bg:rgba(13,15,26,.6);
+  font-family:'Syne',sans-serif;
+}
+</style>
+<style id="tll-shelf-fix">
+.tll-shelf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;}
+.tll-shelf-card{display:flex;flex-direction:column;text-decoration:none;background:#FFFFFF;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(13,15,26,.10);transition:transform .25s ease,box-shadow .25s ease;}
+.tll-shelf-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(13,15,26,.16);}
+.tll-shelf-photo{width:100%;aspect-ratio:16/10;background-size:cover;background-position:center;}
+.tll-shelf-body{padding:20px 22px 26px;}
+.tll-shelf-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8425E;margin-bottom:10px;}
+.tll-shelf-title{font-family:"Recoleta","Playfair Display",Georgia,serif;font-weight:500;font-size:21px;line-height:1.22;letter-spacing:-0.01em;color:#0D0F1A;margin:0;}
+@media(max-width:991px){.tll-shelf-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.tll-shelf-grid{grid-template-columns:1fr;}}
+</style>
+<style id="tll-craft-polish">
+/* TLL craft polish (2026-07-28): form focus rings, button feel, a11y focus, mobile form hardening */
+.w-input,.w-select,input[type="text"],input[type="email"],input[type="password"],input[type="search"],input[type="tel"],input[type="url"],input[type="number"],textarea,select{transition:border-color .15s ease, box-shadow .15s ease, background-color .15s ease;}
+.w-input:focus,.w-select:focus,input:focus,textarea:focus,select:focus{border-color:#F0507A !important;box-shadow:0 0 0 3px rgba(240,80,122,.18) !important;outline:none;}
+::placeholder{color:#9a958c;opacity:1;}
+.tll-btn,.w-button,button{transition:transform .12s ease, box-shadow .18s ease, background-color .15s ease, opacity .15s ease;}
+.tll-btn:hover,.w-button:hover{transform:translateY(-1px);}
+.tll-btn:active,.w-button:active{transform:translateY(0);}
+a:focus-visible,button:focus-visible,.tll-btn:focus-visible,.w-input:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #F0507A;outline-offset:2px;border-radius:6px;}
+@media(max-width:600px){.w-input,.w-select,textarea,select{width:100% !important;box-sizing:border-box;}.tll-btn,.w-button{min-height:44px;}}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style id="tll-proto-type-v1">
+/* Prototype parity (2026-09-20, Claude Design handoff): Playfair Display 800 headlines, Plex Condensed body, story hero contrast */
+h1,h2,h1 *,h2 *,[class*=tll-display],[class*=tll-display] *,.tll-shelf-title,.tll-story-body .w-richtext h2,.tll-story-body .w-richtext h3{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;}
+.tll-story-title{font-size:clamp(34px,4.2vw,56px) !important;line-height:1.05 !important;text-shadow:0 2px 16px rgba(10,11,20,.8);}
+.tll-story-hero-overlay{background-image:linear-gradient(180deg,rgba(10,11,20,.45),rgba(10,11,20,.35) 35%,rgba(10,11,20,.92)) !important;}
+.tll-story-body .w-richtext p,.tll-story-body .w-richtext li{font-size:17px !important;line-height:1.7 !important;color:#3a3a3a;margin:0 0 1.1em;}
+.tll-story-body .w-richtext h2{font-size:30px !important;line-height:1.15 !important;margin:1.8em 0 .6em !important;color:#1A1A1A;}
+.tll-aeo-box:has(.w-dyn-bind-empty){display:none !important;}
+</style>
+<style id="tll-consistency-v1">
+/* One page shell site-wide, matched to the Claude Design prototype (2026-09-20) */
+:root{--tll-ink:#0A0B14;--tll-rose:#F0507A;--tll-rose-d:#D63859;--tll-teal:#00C9C8;--tll-teal-l:#067A79;--tll-cream:#F7F1E8;--tll-paper:#FDF9F3;--tll-border:#E0DACE;--tll-muted:#6B6660}
+h1:not(.tll-story-title){font-size:clamp(38px,4.6vw,60px) !important;line-height:1.03 !important;letter-spacing:-.01em !important;}
+h1 em{color:var(--tll-rose);font-style:italic}
+[class*=eyebrow],:is(section,header) div:has(+ h1):not(:has(*)){font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;text-transform:uppercase !important;line-height:1.4 !important;}
+[class*=eyebrow]{color:var(--tll-teal-l) !important}
+:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-support-hero,.tll-auth-section,footer,.tll-story-hero) [class*=eyebrow]{color:var(--tll-teal) !important}
+:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-library-hero,.tll-support-hero,.tll-contact-hero,.tll-legal-hero):has(h1){padding-top:88px !important;padding-bottom:72px !important}
+h1:not(.tll-story-title) + p,h1:not(.tll-story-title) + div:not(:has(*)){font-size:17px !important;line-height:1.6 !important}
+@media(max-width:767px){:is(.tll-section-dark,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-library-hero,.tll-support-hero,.tll-contact-hero,.tll-legal-hero):has(h1){padding-top:56px !important;padding-bottom:48px !important}h1:not(.tll-story-title) + p{font-size:16px !important}}
+.tll-lib-card{text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.tll-lib-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,11,20,.10);border-color:#cfc6b6}
+.tll-lib-img{object-fit:cover}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+</style>
+<script id="tll-live-stories-v1">
+/* Live story count from the sitemap (no hardcoded counts) + prototype search placeholder. Member dashboards (/account, /profile) show the member's own count instead.
+   Mobile pass 1 (2026-09-28): the count is fetched once per visit and kept in sessionStorage, instead of downloading the whole sitemap on every page. */
+(function(){
+function ph(){[].forEach.call(document.querySelectorAll('input[placeholder^="Search the library"],input[placeholder^="Search a country"]'),function(i){i.setAttribute('placeholder','Search a country, a layover, a feeling…');});}
+function apply(n){
+[].forEach.call(document.querySelectorAll('div,span,p,strong'),function(e){if(e.children.length)return;var t=e.textContent.trim().toLowerCase();if(/^stor(y|ies)( filed| published| on the shelf)?$/.test(t)){var q=e.previousElementSibling||(e.parentElement&&e.parentElement.previousElementSibling);if(q&&/^\d+$/.test(q.textContent.trim()))q.textContent=String(n);}});
+var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue,o=s;s=s.replace(/\b\d+(?= stories, growing weekly)/,n).replace(/\b\d+(?= stories filed)/,n);if(s!==o)t.nodeValue=s;}
+[].forEach.call(document.querySelectorAll('strong'),function(st){var nx=st.nextSibling;if(nx&&nx.nodeType===3&&/^\s*stor(y|ies)\b/i.test(nx.nodeValue)&&/^\d+$/.test(st.textContent.trim()))st.textContent=String(n);});
+}
+function count(){if(/^\/(account|profile)/.test(location.pathname))return;var c=0;try{c=+sessionStorage.getItem('tllStoryN')||0;}catch(e){}
+if(c){apply(c);return;}
+fetch('/sitemap.xml').then(function(r){return r.text();}).then(function(x){var m=x.match(/<loc>[^<]*\/stories\/[^<]+<\/loc>/g);if(!m)return;var n=m.length;try{sessionStorage.setItem('tllStoryN',String(n));}catch(e){}apply(n);}).catch(function(){});}
+function run(){ph();count();}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+setTimeout(ph,1500);
+})();
+</script>
+<style id="tll-mobile-nav-v1">
+.tllmm-btn{display:none;align-items:center;gap:8px;background:transparent;border:1px solid rgba(247,241,232,.35);color:#F7F1E8;border-radius:999px;padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:600;text-transform:uppercase;cursor:pointer;min-height:40px}
+.tllmm-share{display:none}
+@media(max-width:767px){
+.tll-nav-inner{flex-wrap:wrap}
+.tllmm-btn{display:inline-flex}
+.tll-nav-v1.tllmm-open .tll-nav-links-row{display:flex !important;flex-direction:column;align-items:stretch;width:100%;order:10;padding:8px 0 18px;gap:0}
+.tll-nav-v1.tllmm-open .tll-nav-links-row a{display:block;padding:14px 4px;font-size:18px;border-bottom:1px solid rgba(247,241,232,.08)}
+.tll-nav-v1.tllmm-open .tllmm-share{display:block;color:#F0507A !important;font-weight:600}
+/* v2 (2026-09-21): logo, Sign up and Menu/Close stay on one row, open or closed; slimmer bar */
+.tll-nav-v1 .tll-nav-inner{column-gap:8px;row-gap:0}
+.tll-nav-v1 .tll-nav-cta-row{margin-left:auto;gap:8px}
+.tllmm-btn{min-width:76px;justify-content:center}
+.tll-nav-v1 .tll-nav-main{padding:6px 0}
+}
+@media(max-width:359px){
+.tll-nav-v1 .tll-nav-anon a{padding-left:10px !important;padding-right:10px !important}
+.tll-nav-v1 .tll-nav-cta-row{gap:6px}
+.tll-nav-v1 .tll-nav-inner{column-gap:4px}
+.tllmm-btn{min-width:62px;padding:9px 8px;letter-spacing:1px}
+}
+</style>
+<script id="tll-mobile-nav-js-v1">
+/* Mobile nav (2026-09-20): the nav had no menu under 768px, so phone readers could not reach Stories, Destinations or Travelers. */
+(function(){
+function init(){[].forEach.call(document.querySelectorAll('.tll-nav-v1'),function(nav){
+if(nav.__tllmm)return;nav.__tllmm=1;var row=nav.querySelector('.tll-nav-links-row'),cta=nav.querySelector('.tll-nav-cta-row');if(!row||!cta)return;
+if(!row.id)row.id='tll-nav-links';
+var s=document.createElement('a');s.href='/submit';s.className='tll-nav-link tllmm-share';s.textContent='Share your story';row.appendChild(s);
+var b=document.createElement('button');b.type='button';b.className='tllmm-btn';b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',row.id);b.textContent='Menu';
+cta.appendChild(b);
+b.addEventListener('click',function(){var o=nav.classList.toggle('tllmm-open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Close':'Menu';});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('tllmm-open')){nav.classList.remove('tllmm-open');b.setAttribute('aria-expanded','false');b.textContent='Menu';b.focus();}});
+});}
+if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<script type="text/plain" data-category="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-T1K83PRL1R"></script>
+<script type="text/plain" data-category="analytics">
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-T1K83PRL1R');
+</script>
+<!-- Ahrefs Web Analytics -->
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="hbUjDXMWTy6UXwJhDa47gw" async></script>
+<style id="tll-proto-parity-v1">
+/* Prototype parity layer v1 (2026-09-21). Font aliases so legacy families render in brand fonts, nav lockup, public placeholders hidden. */
+@font-face{font-family:'DM Sans';font-weight:100 500;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:600;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY527LvspYY.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:700 900;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'DM Sans';font-weight:100 900;font-style:italic;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8nN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYas-KzLgA.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:100 500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:600 900;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'Syne';font-weight:100 500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8lN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHYapyK4.woff2) format('woff2')}
+@font-face{font-family:'Syne';font-weight:600 900;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexsanscondensed/v15/Gg8gN4UfRSqiPg7Jn2ZI12V4DCEwkj1E4LVeHY4S7bvspYY.woff2) format('woff2')}
+@font-face{font-family:'Recoleta';font-weight:100 900;font-style:normal;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+@font-face{font-family:'Recoleta';font-weight:100 900;font-style:italic;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_iiUXtHA-Q.woff2) format('woff2')}
+@font-face{font-family:'DM Serif Display';font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+@font-face{font-family:'Druk';font-weight:100 900;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKfFunDXbtM.woff2) format('woff2')}
+body,footer a,footer p,footer span,.tll-lede,.tll-body-l,.tllpx-sub{font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif}
+:root{--_typography---font--heading-font:'Playfair Display',Georgia,serif}
+.heading-8{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important}
+/* Nav lockup: Playfair wordmark, rose LIFE., solid rose Share button, sentence case */
+.tll-nav-logo-block{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;letter-spacing:.01em !important}
+.tll-nav-v1 .tll-nav-logo .tll-nav-logo-life{color:#F0507A !important}
+.tll-nav-v1 .tll-nav-pen-cta{background:#F0507A !important;border-color:#F0507A !important;color:#fff !important;text-transform:none !important;letter-spacing:0 !important;border-radius:6px !important;font-weight:700 !important;white-space:nowrap}
+.tll-nav-v1 .tll-nav-pen-cta:hover{background:#D63859 !important;border-color:#D63859 !important}
+.tll-nav-v1 .tll-nav-signup{border-radius:6px !important;white-space:nowrap}
+.tll-nav-v1 .tll-nav-signin{white-space:nowrap}
+@media(min-width:768px) and (max-width:1199px){.tll-nav-v1 .tll-nav-links-row{gap:10px !important}.tll-nav-v1 .tll-nav-link{white-space:nowrap;font-size:13px !important;padding-left:6px !important;padding-right:6px !important}.tll-nav-v1 .tll-nav-pen-cta,.tll-nav-v1 .tll-nav-signup,.tll-nav-v1 .tll-nav-signin{font-size:13px !important;padding:8px 12px !important}.tll-nav-v1 .tll-nav-logo{white-space:nowrap;flex:none}.tll-nav-v1 .tll-nav-inner{column-gap:14px}}
+/* Placeholders that must not show publicly */
+.tll-share-wrap{min-height:0 !important}
+#tll-ad-slot-story,#tll-ad-slot-home{display:none !important}
+[data-tll-links-card]:has(.w-richtext.w-dyn-bind-empty){display:none !important}
+.tll-story-meta-row .w-dyn-bind-empty,.tll-story-meta-row .w-dyn-bind-empty + .tll-story-meta-divider{display:none !important}
+[data-tll-crumb="title"]{display:none !important}
+.tllcx-word:has(.tllcx-big.w-dyn-bind-empty){display:none !important}
+.tll-contributor-name{color:#0A0B14 !important}
+.tll-story-feedback p{color:#3a3a3a !important}
+[data-tll-loc] > span{color:#F7F1E8 !important;background:rgba(10,11,20,.72) !important;padding:3px 8px !important;border-radius:4px !important}
+.tll-pet-title,.tll-pet-countries-title,.tll-pet-stories-title,.tll-pet-humans h3,.tll-support-title,.tll-support-secondary-card h3,.tll-contact-faq-card h3,.tll-li-availability h3,.tll-li-skills h3,.tll-li-platforms h3{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important}
+/* Home library search: one pill, inline teal button (prototype) */
+form.tll-home-search{display:flex !important;align-items:center;gap:6px;background:#fff;border:1.5px solid #0A0B14;border-radius:32px;padding:6px 6px 6px 20px;max-width:640px;margin:0 auto}
+form.tll-home-search input[type=text]{flex:1;min-width:0;border:0 !important;box-shadow:none !important;background:transparent !important;font-size:16px;height:44px;margin:0;padding:0;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#1A1A1A}
+form.tll-home-search input[type=submit]{background:#00C9C8 !important;color:#06302f !important;border:0;border-radius:26px;padding:0 22px;height:44px;font-weight:700;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;margin:0}
+</style>
+<script>(function(){var p=(location.pathname.replace(/^\/|\/$/g,'')||'home').split('/')[0];document.documentElement.classList.add('tllp-'+p.replace(/[^a-z0-9-]/gi,''));})();</script>
+<script id="tll-proto-parity-js-v1">
+/* Prototype parity layer v1 (2026-09-21): contrast repair, nav wordmark, consent defaults, copy fixes, fabricated-content cleanup.
+   Mobile pass 1 (2026-09-28): the contrast repair runs once, in idle time after load, instead of twice on a timer, so it no longer competes with the first taps on a phone. */
+(function(){
+  var P=location.pathname.replace(/\/$/,'')||'/';
+  function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+  function rgb(c){var m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return null;var p=m[1].split(',').map(parseFloat);return{r:p[0],g:p[1],b:p[2],a:p.length>3?p[3]:1};}
+  function L(c){function f(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);}return .2126*f(c.r)+.7152*f(c.g)+.0722*f(c.b);}
+  function ratio(a,b){var x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
+  function bg(el){for(var e=el;e&&e.nodeType===1;e=e.parentElement){var cs=getComputedStyle(e);if(cs.backgroundImage&&cs.backgroundImage!=='none')return null;var c=rgb(cs.backgroundColor);if(c&&c.a>.6)return c;}return{r:255,g:255,b:255,a:1};}
+  function overImage(el){var r=el.getBoundingClientRect();if(!r.width)return true;var cx=r.left+r.width/2,cy=r.top+r.height/2;var s=el.closest('section,header,article,footer')||document.body;return $$('img,video,picture',s).some(function(i){var q=i.getBoundingClientRect();return q.width>200&&cx>=q.left&&cx<=q.right&&cy>=q.top&&cy<=q.bottom;});}
+  function contrast(){var n=0;$$('h1,h2,h3,h4,h5,h6,p,li,a,span,div,label,strong,em,blockquote,dt,dd').forEach(function(el){if(n>5000)return;n++;var t=false;for(var c=el.firstChild;c;c=c.nextSibling){if(c.nodeType===3&&c.nodeValue.trim()){t=true;break;}}if(!t||!/[A-Za-z0-9]/.test(el.textContent))return;var cs=getComputedStyle(el);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity===0)return;var fg=rgb(cs.color),b=bg(el);if(!fg||!b||fg.a<.4)return;if(ratio(fg,b)>=1.8)return;if(overImage(el))return;el.style.setProperty('color',L(b)>.4?'#1A1A1A':'#F7F1E8','important');el.setAttribute('data-tll-contrast','1');});}
+  function wordmark(){$$('.tll-nav-logo-block').forEach(function(b){if(b.dataset.tllWm)return;b.dataset.tllWm='1';var t=b.textContent.trim();if(/^LAYOVER LIFE\.?$/i.test(t))b.innerHTML='LAYOVER <span class="tll-nav-logo-life">LIFE.</span>';});}
+  function navOut(){var navs=$$('nav.tll-nav-v1');if(!navs.length)return;if(navs.some(function(n){return !n.closest('[data-ms-content]');}))return;var n=navs[0],w=n.closest('[data-ms-content]');w.parentNode.insertBefore(n,w);}
+  function consent(){$$('input[type=checkbox][name^="syndication"]').forEach(function(i){if(i.dataset.tllOptin)return;i.dataset.tllOptin='1';i.checked=false;i.removeAttribute('checked');var v=i.previousElementSibling;if(v&&v.classList.contains('w-checkbox-input--inputType-custom'))v.classList.remove('w--redirected-checked');});}
+  var COPY=[
+    [/^Live in 48 hours, free, your byline stays yours\.$/,'Reviewed by a human within 48 hours. Free, and your byline stays yours.'],
+    [/^Published in 48 hours, edited lightly\.$/,'Reviewed within 48 hours, edited lightly.'],
+    [/^Editorial review for first 3 submissions\. After that, photos go live immediately\.$/,'A human reviews every photo before it goes up.'],
+    [/the twelve questions first-time visitors send us/,'the questions first-time visitors send us'],
+    [/the twelve things people actually ask/,'the things people actually ask']
+  ];
+  function copy(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var v=t.nodeValue,o=v;COPY.forEach(function(c){var s=v.trim();if(c[0].test(s))v=v.replace(s,s.replace(c[0],c[1]));});if(v!==o)t.nodeValue=v;}
+    if(P==='/support'){var em=document.querySelector('.tll-support-title em');if(em&&em.textContent.trim()==='Three doors')em.textContent='Six doors';}}
+  function homeSearch(){var i=document.querySelector('input[name="Search-the-library"]');if(i&&i.form){i.form.classList.add('tll-home-search');var s=i.form.querySelector('input[type=submit]');if(s&&s.value==='Submit')s.value='Search';}}
+  function placeholders(){
+    /* Profile: rows still pointing at "#" are unfilled placeholders */
+    if(/^\/contributors\//.test(P)){$$('a[href="#"],a[href$="/in/profile"]').forEach(function(a){if(a.closest('nav,footer'))return;var row=a.closest('.tll-link-row')||a;row.style.display='none';});}
+    /* Travelers: the persona roster and duplicate spotlight block are invented people; hide until real travelers exist */
+    if(P==='/travelers'){$$('.tll-spotlight-section,#full-crew').forEach(function(s){s.style.display='none';});}
+    /* Map: invented "recently lit" counts and continent totals */
+    if(P==='/the-map'){$$('section').forEach(function(s){if(/Recently lit/.test(s.textContent)&&/By continent/.test(s.textContent))s.style.display='none';});
+      /* 9 Oct 2026, fix-first item 1: the fetch-and-reset of #tll-map-counter and #tll-map-pct was removed here; it pasted the static dash back over the real count five times. The map page owns the counter. */}
+    if(P==='/spotlight')spotlight();
+  }
+  function spotlight(){
+    var f=document.querySelector('a.inline-a-0-1');if(f&&!f.dataset.tllSp){f.dataset.tllSp='1';f.href='/contributors/nancy-carleton';f.style.padding='0';f.style.background='transparent';f.style.minHeight='0';f.style.boxShadow='none';
+      f.innerHTML='<div style="display:grid;grid-template-columns:minmax(0,340px) 1fr;background:#0A0B14;border-radius:14px;overflow:hidden;color:#F7F1E8" class="tllsp-feat"><div style="background:#16182a url(https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e022401ba6df8805baa65_Denmark%20Ice.jpg) center/cover;min-height:300px;display:flex;align-items:flex-end;padding:22px" role="img" aria-label="Copenhagen, Denmark"><span style="width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);box-shadow:0 0 0 3px #F0507A;display:flex;align-items:center;justify-content:center;font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:28px;color:#0A0B14">NC</span></div><div style="padding:32px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:2px;color:#D98A2B;font-weight:600">★ TRAVELER OF THE WEEK</div><div style="font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:30px;line-height:1.1">Nancy Carleton</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:1.5px;color:#9a9cb3">THE FOUNDER · EXPAT · LIFER · COPENHAGEN</div><p style="margin:0;color:#cfcbc4;font-size:16px;line-height:1.55">American expat in Copenhagen. Travels with Magnus 🐻‍❄️ Waffles, a Samoyed of strong opinions.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><span style="background:#F0507A;color:#fff;border-radius:6px;padding:10px 18px;font-weight:700">Full profile →</span><span data-href="/stories" class="tllsp-stories" style="border:1.5px solid rgba(247,241,232,.4);border-radius:6px;padding:10px 18px;font-weight:600">Read the stories</span></div></div></div>';
+      var rs=f.querySelector('.tllsp-stories');if(rs)rs.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();location.href='/stories';});}
+    var slots=[['COMING SOON','Spotlight slot','Lisbon, Portugal. Slow travel + food culture. Reach out if this is you.','#c9b89a',null],['COMING SOON','Spotlight slot','Berlin, Germany. Night trains + border towns. Could be you.','#c9b89a',null],['OPEN SLOT','Your name here.','One story gets you the feature.','#F0507A','/submit']];
+    ['a.inline-a-1-1','a.inline-a-2-1','a.inline-a-3'].forEach(function(s,i){var a=document.querySelector(s);if(!a||a.dataset.tllSp)return;a.dataset.tllSp='1';var d=slots[i];a.href=d[4]||'/contact';a.setAttribute('style','display:block;border:2px dashed '+d[3]+';border-radius:12px;padding:26px 22px;text-align:center;background:#fff;text-decoration:none;color:#1A1A1A;'+(d[4]?'':'opacity:.85'));a.innerHTML='<div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:2px;font-weight:600;color:'+(d[4]?'#D63859':'#8a5a14')+';margin-bottom:10px">'+d[0]+'</div><div style="font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:22px;margin-bottom:8px">'+d[1]+'</div><p style="margin:0 0 '+(d[4]?'16px':'0')+';color:#3a3a3a;font-size:15px;line-height:1.5">'+d[2]+'</p>'+(d[4]?'<span style="display:inline-block;background:#F0507A;color:#fff;border-radius:6px;padding:10px 18px;font-weight:700">Share your story →</span>':'');});
+  }
+  /* Founder avatar: the CMS avatar is a colour swatch and the Drive photo is private, so show the prototype's NC monogram until a public headshot is uploaded. */
+  function monogram(){$$('img[src*="F0507A"],img[src*="1sbjvhecBGFMGuRblUoyI0BTN_h51p83J"]').forEach(function(img){var w=img.clientWidth||(img.parentElement&&img.parentElement.clientWidth)||56;var s=document.createElement('span');s.className='tll-nc-av';s.setAttribute('role','img');s.setAttribute('aria-label','Nancy Carleton, founder of That Layover Life');s.textContent='NC';s.style.cssText='display:flex;align-items:center;justify-content:center;width:100%;height:100%;aspect-ratio:1/1;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);box-shadow:inset 0 0 0 3px #F0507A;color:#0A0B14;font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:'+Math.max(12,Math.round(w*.34))+'px;line-height:1';img.parentNode.replaceChild(s,img);});}
+  function run(){monogram();wordmark();navOut();consent();copy();homeSearch();placeholders();}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  window.addEventListener('load',function(){monogram();setTimeout(monogram,1200);consent();copy();setTimeout(function(){(window.requestIdleCallback||function(f){setTimeout(f,0);})(contrast,{timeout:2000});},1500);});
+})();
+</script>
+<style>@media(max-width:767px){.tllsp-feat{grid-template-columns:1fr !important}}</style>
+<style id="tll-v9-chrome-v1">
+/* v9 chrome (5 Oct 2026): J03 focus ring, J04 skip link, J05 muted greys, J06 text and tap floors, J07 MENU under 900px. Additive: overrides the 28 Sep a11y block, touches no Memberstack element. */
+a:focus-visible,button:focus-visible,[role=button]:focus-visible,summary:focus-visible,.w-button:focus-visible,.tll-btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:not([tabindex="-1"]):focus-visible,.w-checkbox-input.w--redirected-focus,.w-radio-input.w--redirected-focus{outline:3px solid #0A0B14 !important;outline-offset:2px !important;box-shadow:0 0 0 6px #00C9C8 !important;border-radius:2px}
+.tll-skip,.tll-skip:focus{left:-9999px;top:8px;background:#F0507A !important;color:#0A0B14 !important;font-family:'JetBrains Mono',monospace !important;font-size:12px !important;font-weight:700 !important;letter-spacing:1.5px;padding:12px 18px;border-radius:2px;text-transform:uppercase}
+.tll-skip:focus{left:12px}
+[style*="font-size:8px"],[style*="font-size: 8px"],[style*="font-size:9px"],[style*="font-size: 9px"],[style*="font-size:9.5px"]{font-size:10px !important}
+.tllmm-btn{border-radius:2px !important;border:1.5px solid #F7F1E8 !important;font-size:12px !important;font-weight:700 !important;letter-spacing:2px !important;padding:12px 16px !important;min-height:44px !important}
+@media(max-width:899px){
+.tll-nav-v1{position:relative}
+.tll-nav-v1 .tll-nav-inner{flex-wrap:wrap}
+.tllmm-btn{display:inline-flex}
+.tll-nav-v1 .tll-nav-links-row{display:none}
+.tll-nav-v1.tllmm-open .tll-nav-links-row{display:flex !important;flex-direction:column;align-items:stretch;position:absolute;left:0;right:0;top:100%;width:100%;background:#0A0B14;padding:22px 28px 30px;border-top:1px solid #23263c;gap:22px;z-index:60;box-shadow:0 24px 40px rgba(10,11,20,.35)}
+.tll-nav-v1.tllmm-open .tll-nav-links-row a{display:block;padding:0;font-size:18px;border-bottom:0;min-height:44px;line-height:44px}
+.tll-nav-v1.tllmm-open .tllmm-share{display:block;color:#F0507A !important;font-weight:600}
+.tll-nav-v1 .tll-nav-cta-row{margin-left:auto;gap:8px}
+}
+@media(pointer:coarse){.tll-nav-v1 a,.w-button,.tll-btn,button:not(.tllmm-btn){min-height:44px}}
+</style>
+<script id="tll-v9-chrome-js-v1">
+/* v9 chrome script: landmarks (header, nav aria-label Main, main#main, footer), SKIP TO CONTENT, MENU / CLOSE ✕ labels and close-on-pick, retired grey repair (#7d7f96 #9a958d #4a4d63 → #9496AC on dark, #6B6660 on light), keyboard activation for role=button. */
+(function(){
+var RET=/#(7d7f96|9a958d|4a4d63)/i;
+function landmarks(){
+  var main=document.querySelector('main');
+  if(main){ if(!main.id||main.id==='tll-main'){ if(!document.getElementById('main')) main.id='main'; } if(!main.hasAttribute('tabindex')) main.setAttribute('tabindex','-1'); }
+  var nav=document.querySelector('.tll-nav-v1');
+  if(nav){ var n=nav.matches('nav')?nav:(nav.querySelector('nav')||nav.querySelector('.tll-nav-links-row')); if(n&&!n.getAttribute('aria-label')){ if(!n.matches('nav')) n.setAttribute('role','navigation'); n.setAttribute('aria-label','Main'); } if(!nav.matches('header')&&!nav.closest('header')&&!nav.getAttribute('role')) nav.setAttribute('role','banner'); }
+  var foot=document.querySelector('.tll-footer-v1,footer'); if(foot&&!foot.matches('footer')&&!foot.getAttribute('role')) foot.setAttribute('role','contentinfo');
+  var skip=document.querySelector('.tll-skip'); if(skip){ skip.textContent='SKIP TO CONTENT'; if(main&&main.id) skip.href='#'+main.id; }
+}
+function menu(){
+  var nav=document.querySelector('.tll-nav-v1'), b=nav&&nav.querySelector('.tllmm-btn'); if(!nav||!b||b.__v9) return; b.__v9=1;
+  function lab(){ b.textContent=nav.classList.contains('tllmm-open')?'CLOSE ✕':'MENU'; }
+  lab(); b.addEventListener('click',function(){ setTimeout(lab,0); });
+  document.addEventListener('keydown',function(){ setTimeout(lab,0); });
+  var row=nav.querySelector('.tll-nav-links-row'); if(row) row.addEventListener('click',function(e){ if(e.target.closest('a')){ nav.classList.remove('tllmm-open'); b.setAttribute('aria-expanded','false'); lab(); } });
+}
+function keys(){
+  [].forEach.call(document.querySelectorAll('[role=button]:not(button):not(a):not(input):not(summary)'),function(el){
+    if(el.__v9k) return; el.__v9k=1; if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){ e.preventDefault(); el.click(); } });
+  });
+}
+function greys(){
+  var cx=window.tllCx; [].forEach.call(document.querySelectorAll('[style*="7d7f96"],[style*="9a958d"],[style*="4a4d63"],[style*="7D7F96"],[style*="9A958D"],[style*="4A4D63"]'),function(el){
+    if(!RET.test(el.getAttribute('style')||'')) return; var dark=true;
+    try{ if(cx&&cx.B){ var bg=cx.B(el); bg=bg&&bg.c?bg.c:bg; if(bg&&bg.r!=null) dark=cx.L(bg)<.35; } }catch(e){}
+    el.style.setProperty('color',dark?'#9496AC':'#6B6660','important');
+  });
+}
+function run(){ try{landmarks();}catch(e){} try{menu();}catch(e){} try{keys();}catch(e){} try{greys();}catch(e){ window.__tllV9err=String(e); } }
+if(document.readyState!=='loading') run(); else document.addEventListener('DOMContentLoaded',run);
+window.addEventListener('load',function(){ run(); setTimeout(run,1500); setTimeout(greys,2800); });
+})();
+</script>
+
+<style id="tll-v9-type-v1">
+/* v9 J11 (6 Oct 2026): the 2.0 type scale. Home hero 148px / .94 (186px collided with the eyebrow, Nancy 6 Oct). Story titles keep their own rules. */
+h1:not(.tll-story-title){font-size:clamp(44px,6.4vw,112px) !important;line-height:.9 !important;letter-spacing:-.035em !important;text-wrap:balance}
+.tllp-home h1:not(.tll-story-title){font-size:clamp(46px,7.6vw,148px) !important;line-height:.94 !important;letter-spacing:-.035em !important;margin-top:18px !important;padding-top:.06em;max-width:min(78vw,1100px) !important}
+.tllp-home [class*=eyebrow]{margin-bottom:14px !important}
+h2:not(.w-richtext h2):not(.tll-story-body h2):not([class*="card"] h2):not([class*="-title"]):not(.tll-shelf-title):not(.tll-lib-title):not(.tll-related-headline){font-size:clamp(34px,5vw,64px) !important;line-height:.95 !important;letter-spacing:-.025em !important;text-wrap:balance}
+h1:not(.tll-story-title) + p,h1:not(.tll-story-title) + div:not(:has(*)){font-size:17px !important;line-height:1.55 !important}
+@media(max-width:767px){h1:not(.tll-story-title){line-height:.92 !important}}
+</style>
+<style id="tll-v91-hero-scrim-v1">
+/* v9.1 fix 02 (6 Oct 2026, DRAFT): bottom scrim on the home hero photo so the teal eyebrow clears 4.5:1, and the eyebrow at 12px / 0.18em.
+   Remove the scrim once photo-safe zones exist. */
+.tllp-home :has(> img[data-tll-parallax="hero"]){position:relative}
+.tllp-home :has(> img[data-tll-parallax="hero"])::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(10,11,20,0) 40%,rgba(10,11,20,.72) 100%)}
+.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *,.tllp-home :has(> img[data-tll-parallax="hero"]) > :not(img):not(:empty){position:relative;z-index:2}
+/* 6 Oct: the empty overlay div stays absolute (as relative it became a full-width flex sibling and pushed the copy right) */
+.tllp-home :has(> img[data-tll-parallax="hero"]) > div:empty{position:absolute !important;inset:0;z-index:1}
+.tllp-home [class*=eyebrow]{font-size:12px !important;letter-spacing:.18em !important;color:#00C9C8 !important}
+</style>
+<style id="tll-v91-motion-v1">
+/* v9.1 fix 09 (6 Oct 2026, DRAFT): one motion spec for the whole site. Enter: ease-out cubic-bezier(.23,1,.32,1), 200 to 300ms, opacity + 6 to 12px move,
+   never from scale 0. Exit 150ms. Hover only with a real pointer, color and shadow only, no movement on text links. Press: scale(.97) 100ms.
+   Only transform and opacity animate; every transition names its properties. Reduced motion: no movement, opacity fades of 150ms or less. */
+:root{--tll-ease-out:cubic-bezier(.23,1,.32,1);--tll-ease-in-out:cubic-bezier(.77,0,.175,1);--tll-t-enter:240ms;--tll-t-exit:150ms;--tll-t-hover:150ms;--tll-t-press:100ms}
+/* Buttons: press feedback, no lift on hover (the 28 Jul polish lifted by 1px, which is movement on hover) */
+.tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn{transition:transform var(--tll-t-press) var(--tll-ease-out),background-color var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease,box-shadow var(--tll-t-hover) ease,opacity var(--tll-t-hover) ease !important}
+.tll-btn:hover,.w-button:hover{transform:none !important}
+.tll-btn:active,.w-button:active,button:not(.tllmm-btn):active,.tll-nav-pen-cta:active,.tll-nav-signup:active,.tll-fos-cta:active,.tsh-btn:active{transform:scale(.97) !important}
+/* Cards: hover is shadow and border only, with a real pointer */
+.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition:box-shadow var(--tll-t-hover) ease,border-color var(--tll-t-hover) ease !important}
+.tll-shelf-card:hover,.tll-lib-card:hover{transform:none !important}
+@media(hover:hover) and (pointer:fine){.tll-shelf-card:hover,.tll-lib-card:hover{box-shadow:0 12px 28px rgba(10,11,20,.12)}}
+/* Text links: color only */
+a:not([class]),.tll-nav-link,footer a{transition:color var(--tll-t-hover) ease,text-decoration-color var(--tll-t-hover) ease}
+/* Enter: reveal and stagger hooks used by the flow layer, the shelf and the pins */
+.tll-flow-reveal,[data-tll-reveal],.tll-enter{transition:opacity var(--tll-t-enter) var(--tll-ease-out),transform var(--tll-t-enter) var(--tll-ease-out)}
+.tll-enter{opacity:0;transform:translateY(8px)}.tll-enter.in{opacity:1;transform:none}
+/* Reduced motion: the single global hook. Movement off, opacity fades kept at 150ms or less, pinned sections released. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition-property:opacity,color,background-color,border-color,box-shadow !important;transition-duration:150ms !important;scroll-behavior:auto !important}
+  .tll-enter,.tll-flow-reveal,[data-tll-reveal]{opacity:1 !important;transform:none !important}
+  .tll-btn,.w-button,button:not(.tllmm-btn),.tll-nav-pen-cta,.tll-nav-signup,.tll-fos-cta,.tsh-btn,.tll-shelf-card,.tll-lib-card,.tll-trav-card-dark{transition-property:opacity,background-color,border-color,box-shadow !important}
+  .tll-btn:active,.w-button:active,button:active{transform:none !important}
+  [data-tll-parallax]{transform:none !important}
+  .tll-flow-man{height:auto !important}.tll-flow-man .pin{position:static !important;height:auto !important}
+}
+</style>
+<script id="tll-v91-motion-js-v1">
+/* The JS half of the reduced-motion hook: window.tllReduced is true when the OS asks for less motion; scripts that move things check it. */
+(function(){var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');function set(){window.tllReduced=!!(mq&&mq.matches);document.documentElement.classList.toggle('tll-reduced',window.tllReduced);}set();if(mq&&mq.addEventListener)mq.addEventListener('change',set);
+/* Enter animations for anything marked .tll-enter: 30% visible, once */
+function io(){var els=document.querySelectorAll('.tll-enter:not(.in)');if(!els.length)return;if(window.tllReduced||!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}
+var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');o.unobserve(x.target);}});},{threshold:.3});els.forEach(function(e){o.observe(e);});}
+if(document.readyState!=='loading')io();else document.addEventListener('DOMContentLoaded',io);window.addEventListener('load',io);})();
+</script>
