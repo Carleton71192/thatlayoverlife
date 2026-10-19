@@ -1,0 +1,172 @@
+<meta property="og:image" content="{{wf {&quot;path&quot;:&quot;hero-image&quot;,&quot;type&quot;:&quot;ImageRef&quot;} }}">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}">
+<script type="application/ld+json" id="tll-article-ld-v2">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}#article","url":"https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","mainEntityOfPage":"https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","headline":"{{wf {&quot;path&quot;:&quot;name&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","description":"{{wf {&quot;path&quot;:&quot;excerpt&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","image":"{{wf {&quot;path&quot;:&quot;hero-image&quot;,&quot;type&quot;:&quot;ImageRef&quot;} }}","datePublished":"{{wf {&quot;path&quot;:&quot;published-date&quot;,&quot;type&quot;:&quot;Date&quot;} }}","dateModified":"{{wf {&quot;path&quot;:&quot;published-date&quot;,&quot;type&quot;:&quot;Date&quot;} }}","author":{"@type":"Person","name":"{{wf {&quot;path&quot;:&quot;contributor:name&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","url":"https://www.thatlayover.life/contributors/{{wf {&quot;path&quot;:&quot;contributor:slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}"},"publisher":{"@type":"Organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"{{wf {&quot;path&quot;:&quot;byline-location&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}"},"inLanguage":"en","isAccessibleForFree":true},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"{{wf {&quot;path&quot;:&quot;name&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}","item":"https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}"}]}]}
+</script>
+<style id="tll-story-meta-v1">
+.tll-story-meta-row .w-dyn-bind-empty,.tll-story-meta-row .w-dyn-bind-empty + .tll-story-meta-divider{display:none !important}
+.tll-story-reading-time:not(.w-dyn-bind-empty)::after,.tll-related-meta:not(.w-dyn-bind-empty)::after{content:" min read"}
+.tll-related-img-wrap{overflow:hidden}
+.tll-related-img-wrap img.tll-related-img{width:100%;height:100%;object-fit:cover;display:block}
+.tll-related-grid .w-dyn-item{display:flex}
+.tll-related-grid .tll-related-card{width:100%}
+</style>
+<style id="tll-story-launch-v1">
+/* 2026-09-28 launch-readiness: hooks stay in the DOM (contract), only hidden. */
+#tll-ad-slot-story,[data-tll-ad-slot]{display:none !important}          /* AdSense OFF until reader threshold */
+.tll-vouch-btn,[data-tll-vouch]{display:none !important}                 /* vouch flow not built yet */
+[data-tll-links-card]:has(.w-dyn-bind-empty),[data-tll-links-card]:has(.w-richtext:empty){display:none !important}
+.tll-story-gallery:has(img[src*="placeholder"]){display:none !important}
+</style>
+<script>
+/* TLL date format v1 (2026-09-28, Nancy): Copenhagen order, month spelled. "September 19, 2026" -> "19 September 2026". */
+(function(){
+  var re=/\b(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})\b/g;
+  function run(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;
+    while(t=w.nextNode()){var s=t.nodeValue;if(s&&re.test(s)){re.lastIndex=0;t.nodeValue=s.replace(re,'$2 $1 $3');}re.lastIndex=0;}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+  window.addEventListener('load',run);
+})();
+</script>
+<style id="tll-ledger-v1">
+/* Story ledger + route strip (handoff v6, 2026-09-28). Empty ledger fields say so; they never hide and never invent a value. */
+[data-tll-ledger] .tll-ledger-v.w-dyn-bind-empty::after{content:"Contributor to add";color:#6B6660}
+[data-tll-ledger] .tll-ledger-note a{color:#0A0B14;text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px}
+[data-tll-route]:has([data-tll-route-stops].w-dyn-bind-empty){display:none !important}
+[data-tll-route] .tll-route-arrow{color:#00C9C8;margin:0 8px}
+@media(max-width:767px){[data-tll-route]{padding-left:16px !important;padding-right:16px !important}}
+</style>
+<script id="tll-ledger-js-v1">
+(function(){
+  function run(){
+    var L=document.querySelector('[data-tll-ledger]');
+    if(L&&!L.dataset.tllDone){L.dataset.tllDone='1';
+      var up=L.querySelector('[data-tll-lg="updated"]'),pb=L.querySelector('[data-tll-lg="published"]');
+      if(up&&pb&&up.classList.contains('w-dyn-bind-empty')&&pb.textContent.trim()){up.textContent=pb.textContent;up.classList.remove('w-dyn-bind-empty');}
+      var n=L.querySelector('.tll-ledger-note');
+      if(n){var h=n.querySelector('h1')||document.querySelector('h1');var s='CORRECTION'+(h?': '+h.textContent.trim().slice(0,90):'');var t=n.textContent,i=t.indexOf('Tell the editor');
+        if(i>-1){n.textContent='';n.appendChild(document.createTextNode(t.slice(0,i)));var a=document.createElement('a');a.href='mailto:hello@thatlayover.life?subject='+encodeURIComponent(s);a.textContent='Tell the editor';n.appendChild(a);n.appendChild(document.createTextNode(t.slice(i+15)));}}
+    }
+    var st=document.querySelector('[data-tll-route-stops]');
+    if(st&&!st.dataset.tllDone&&!st.classList.contains('w-dyn-bind-empty')){st.dataset.tllDone='1';var p=st.textContent.split(',').map(function(x){return x.trim();}).filter(Boolean);st.textContent='';
+      p.forEach(function(x,k){if(k){var r=document.createElement('span');r.className='tll-route-arrow';r.setAttribute('aria-hidden','true');r.textContent='→';st.appendChild(r);}var e=document.createElement('span');e.textContent=x;st.appendChild(e);});}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-places-css-v1">
+.tll-place-btn:focus-visible,.tll-place-btn-been-on:focus-visible,.tll-place-btn-want-on:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+.tll-place-btn:hover{border-color:#0A0B14}
+[data-tll-sponsored][hidden]{display:none !important}
+</style>
+<script id="tll-places-js-v1">
+/* TLL Been here / Want to go v1 (2026-09-28, design screen 03, requirement D03). Stores the choice in member JSON under tllPlaces,
+   keyed by country name. Never touches tllStates or tllStatesAt (the map owns those). Logged out: the note says log in to save.
+   Country name comes from the byline location field, then the breadcrumb (the Country reference field cannot bind to text).
+   Also unhides the sponsored box when the ledger disclosure starts with "Hosted" (the only honest source for a sponsor). */
+(function(){
+  function txt(sel){var n=document.querySelector(sel);return n&&!n.classList.contains('w-dyn-bind-empty')?n.textContent.trim():'';}
+  function nice(s){s=s.split(',')[0].trim();if(s===s.toUpperCase())s=s.toLowerCase().replace(/(^|[\s-])([a-z])/g,function(m,a,b){return a+b.toUpperCase();});return s;}
+  function places(){
+    var W=document.querySelector('[data-tll-places]');if(!W||W.dataset.tllDone)return;W.dataset.tllDone='1';
+    var raw=txt('[data-tll-place-name]')||txt('[data-tll-place-alt]')||txt('[data-tll-crumb="country"]');
+    if(!raw){W.style.display='none';return;}
+    var name=nice(raw);
+    var key=name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+    var lab=W.querySelector('[data-tll-places-label]');if(lab)lab.textContent=name+', and you?';
+    var note=W.querySelector('[data-tll-places-note]');
+    var btns={been:W.querySelector('[data-tll-place-toggle="been"]'),want:W.querySelector('[data-tll-place-toggle="want"]')};
+    var state=null,ms=null,member=false;
+    function paint(){
+      Object.keys(btns).forEach(function(k){var b=btns[k];if(!b)return;var on=state===k;
+        b.classList.toggle('tll-place-btn',!on);b.classList.toggle('tll-place-btn-'+k+'-on',on);b.setAttribute('aria-pressed',on?'true':'false');
+        b.textContent=on?(k==='been'?'✓ Been here':'★ On my list'):(k==='been'?'Been here':'Want to go');});
+      if(note)note.textContent=member?'Saves to your lists':'Log in to save';
+    }
+    function load(){
+      ms=window.$memberstackDom;if(!ms){paint();return;}
+      ms.getCurrentMember().then(function(r){if(!(r&&r.data)){paint();return;}member=true;return ms.getMemberJSON().then(function(j){var d=(j&&j.data)||{};var p=d.tllPlaces||{};var e=p[key];state=(e&&e.state)||(typeof e==='string'?e:null);paint();});}).catch(function(){paint();});
+    }
+    function save(k){
+      if(!member||!ms){location.href='/login?redirect='+encodeURIComponent(location.pathname);return;}
+      state=state===k?null:k;paint();if(note)note.textContent='Saving…';
+      ms.getMemberJSON().then(function(j){var d=(j&&j.data)||{};var p=Object.assign({},d.tllPlaces||{});if(state)p[key]={state:state,name:name,at:new Date().toISOString()};else delete p[key];
+        var out=Object.assign({},d,{tllPlaces:p});return ms.updateMemberJSON({json:out});}).then(function(){if(note)note.textContent='Saved to your lists';}).catch(function(){if(note)note.textContent='Could not save. Try again.';});
+    }
+    Object.keys(btns).forEach(function(k){var b=btns[k];if(b)b.addEventListener('click',function(e){e.preventDefault();save(k);});});
+    paint();var n=0,iv=setInterval(function(){if(window.$memberstackDom){clearInterval(iv);load();}else if(++n>40){clearInterval(iv);paint();}},250);
+  }
+  function sponsored(){
+    var S=document.querySelector('[data-tll-sponsored]');if(!S||S.dataset.tllDone)return;S.dataset.tllDone='1';
+    var d=txt('[data-tll-lg="disclosure"]');var m=d.match(/^hosted\s*(?:by|:)?\s*(.+)$/i);
+    if(!m)return;var host=m[1].trim();var t=S.querySelector('[data-tll-sponsored-text]');
+    if(t)t.textContent='This story was hosted by '+host+'. The travel was paid for by the host; the opinions were not. Disclosed at the top, never buried. That is the charter.';
+    S.removeAttribute('hidden');
+  }
+  function run(){places();sponsored();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-label-v1">
+/* E06 labeling v1 (2026-09-30, design screens 23 + 32). Danish disclosure: "Reklame for [company]" sits before the headline of a hosted or
+   sponsored story, "Reklamelink" sits beside every affiliate link, "Annonce" heads any paid slot. The only source is the ledger Disclosure
+   row and the link itself; nothing is invented. Source: Markedsforingsloven s. 6 and Forbrugerombudsmanden's guidance on hidden advertising
+   (forbrugerombudsmanden.dk). */
+.tll-reklame{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#0A0B14;background:#F0507A;padding:6px 10px;border-radius:4px;margin:0 0 14px}
+.tll-reklamelink{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.4;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#b8791f;border:1px solid #D98A2B;border-radius:3px;padding:1px 5px;margin-left:5px;vertical-align:middle;white-space:nowrap;text-decoration:none}
+#tll-ad-slot-story::before,[data-tll-ad-slot]::before{content:"Annonce";display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6B6660;margin-bottom:6px}
+</style>
+<script id="tll-label-js-v1">
+(function(){
+  function txt(sel){var n=document.querySelector(sel);return n&&!n.classList.contains('w-dyn-bind-empty')?n.textContent.trim():'';}
+  var HOSTS=/(^|\.)(amzn\.to|amazon\.[a-z.]+|awin1\.com|go\.skimresources\.com|shareasale\.com|prf\.hn|partnerize\.com|tp\.media|travelpayouts\.com|c\.trackingtrack\.com|anrdoezrs\.net|jdoqocy\.com|tkqlhce\.com|dpbolvw\.net|kqzyfj\.com|linksynergy\.com|click\.linksynergy\.com|impact\.com|sjv\.io|pxf\.io|booking\.com|expedia\.[a-z.]+|hotels\.com|getyourguide\.[a-z.]+|viator\.com|klook\.com|omio\.[a-z.]+|trainline\.[a-z.]+|kiwi\.com|skyscanner\.[a-z.]+|rentalcars\.com|discovercars\.com|worldnomads\.com|safetywing\.com)$/i;
+  var PARAMS=/(^|[?&])(tag|aid|affcid|affiliate_id|partner_id|partner|pid|awc|clickref|irclickid|irgwc|sid|subid|u1|ref_?id|utm_medium=affiliate)(=|&|$)/i;
+  function isAffiliate(a){
+    var rel=(a.getAttribute('rel')||'').toLowerCase();if(/\bsponsored\b/.test(rel)||a.hasAttribute('data-tll-affiliate'))return true;
+    var u;try{u=new URL(a.href,location.href);}catch(e){return false;}
+    if(u.host===location.host)return false;
+    return HOSTS.test(u.hostname)&&PARAMS.test(u.search);
+  }
+  function reklame(){
+    if(document.querySelector('[data-tll-reklame]'))return;
+    var d=txt('[data-tll-lg="disclosure"]');
+    var m=d.match(/^(?:hosted|sponsored|paid for|reklame)\s*(?:by|for|:)?\s*([^.;\n]+)/i);if(!m)return;
+    var who=m[1].trim().replace(/,.*$/,'').trim();if(!who)return;
+    var h=document.querySelector('main h1')||document.querySelector('h1');if(!h)return;
+    var e=document.createElement('div');e.className='tll-reklame';e.setAttribute('data-tll-reklame','1');e.setAttribute('lang','da');e.textContent='Reklame for '+who;
+    h.parentNode.insertBefore(e,h);
+  }
+  function reklamelink(){
+    var scope=document.querySelector('main')||document.body;
+    var links=scope.querySelectorAll('.w-richtext a[href],[data-tll-links-card] a[href]');
+    Array.prototype.forEach.call(links,function(a){
+      if(a.dataset.tllLabeled||!isAffiliate(a))return;a.dataset.tllLabeled='1';
+      var rel=(a.getAttribute('rel')||'').split(/\s+/).filter(Boolean);['sponsored','nofollow','noopener'].forEach(function(r){if(rel.indexOf(r)<0)rel.push(r);});a.setAttribute('rel',rel.join(' '));
+      var s=document.createElement('span');s.className='tll-reklamelink';s.setAttribute('lang','da');s.textContent='Reklamelink';s.title='Affiliate link. We may earn a commission at no cost to you.';
+      a.parentNode.insertBefore(s,a.nextSibling);
+    });
+  }
+  function run(){reklame();reklamelink();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
+<style id="tll-v9-j13-v1">
+/* v9 J13 (6 Oct 2026, 2.0 parity for /stories/{slug}, DRAFT): the hero photo runs full-bleed at 88vh with the 2.0 gradient, the title sits at the
+   bottom of the photo at the page-title scale (Playfair 800 clamp(44px, 6.4vw, 112px) / .9 / -.035em), meta row in mono teal. CSS only: the
+   breadcrumb, meta row, excerpt and author block all stay in place; nothing is removed. Reduced motion: no parallax (site rule). */
+.tll-story-hero{position:relative !important;min-height:min(88vh,980px) !important;background:#0A0B14 !important;display:flex !important;align-items:flex-end !important;overflow:hidden !important;padding:0 !important}
+.tll-story-hero-img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;object-fit:cover !important}
+.tll-story-hero-overlay{position:relative !important;width:100% !important;min-height:min(88vh,980px) !important;display:flex !important;flex-direction:column !important;justify-content:flex-end !important;background-image:linear-gradient(180deg,rgba(10,11,20,.45),rgba(10,11,20,.15) 40%,rgba(10,11,20,.92)) !important}
+.tll-story-hero-content{max-width:1320px !important;width:100% !important;margin:0 auto !important;padding:10vh 6vw 8vh !important;box-sizing:border-box}
+.tll-story-hero [data-tll-breadcrumb]{margin-bottom:14px !important}
+.tll-story-hero .tll-story-meta-row{margin-bottom:12px !important}
+.tll-story-hero [data-tll-hero-caption]{font-family:'JetBrains Mono',monospace !important;font-size:10.5px !important;letter-spacing:1.5px !important;color:#9496AC !important}
+.tll-story-hero .tll-story-meta-row .tll-eyebrow-teal,.tll-story-hero .tll-story-reading-time{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:2px !important;color:#00C9C8 !important;text-transform:uppercase !important}
+.tll-story-hero .tll-story-meta-divider{color:#00C9C8 !important}
+h1.tll-story-title{font-size:clamp(44px,6.4vw,112px) !important;line-height:.9 !important;letter-spacing:-.035em !important;text-wrap:balance;max-width:none !important;color:#fff !important;text-shadow:0 2px 16px rgba(10,11,20,.8) !important;margin:0 0 18px !important}
+.tll-story-excerpt{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:clamp(16px,1.25vw,20px) !important;line-height:1.5 !important;max-width:560px !important;color:#e8e2d8 !important}
+@media(max-width:767px){.tll-story-hero,.tll-story-hero-overlay{min-height:min(76vh,720px) !important}.tll-story-hero-content{padding:12vh 16px 6vh !important}h1.tll-story-title{line-height:.94 !important}}
+</style>

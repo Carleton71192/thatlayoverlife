@@ -753,6 +753,79 @@ const POST_ROUTES = {
   "/photo": { handler: (request) => handlePhoto(request) },
 };
 
+// GET /places: every Places Been item as {id, name}, public, cached for an hour. The /submit country picker reads it.
+async function handlePlaces(env) {
+  const kvKey = "list:places:v1";
+  try {
+    const cached = await env.TLL_KV.get(kvKey, "json");
+    if (Array.isArray(cached) && cached.length) return json({ places: cached }, 200, { "cache-control": "public, max-age=600" });
+  } catch {
+    // fall through
+  }
+  const places = [];
+  for (let offset = 0; offset < 400; offset += 100) {
+    const r = await webflow(env, "GET", `/collections/${env.PLACES_COLLECTION}/items?limit=100&offset=${offset}`);
+    if (!r.ok) break;
+    const items = r.data?.items || [];
+    for (const item of items) {
+      if (item.isArchived || item.isDraft) continue;
+      const name = item.fieldData?.name;
+      if (item.id && typeof name === "string" && name.trim()) places.push({ id: item.id, name: name.trim(), code: item.fieldData?.["country-code"] || "" });
+    }
+    if (items.length < 100) break;
+  }
+  places.sort((a, b) => a.name.localeCompare(b.name));
+  try {
+    await env.TLL_KV.put(kvKey, JSON.stringify(places), { expirationTtl: 3600 });
+  } catch {
+    // caching is best effort
+  }
+  return json({ places }, 200, { "cache-control": "public, max-age=600" });
+}
+
+// GET /me: the signed-in writer's profile basics, pets and crew, so /submit can offer pickers. No email leaves the Worker.
+async function handleMe(env, auth) {
+  let contributor;
+  try {
+    contributor = await findContributor(env, auth.memberId);
+  } catch {
+    return json({ error: "We could not look up your profile right now." }, 502);
+  }
+  if (!contributor) return json({ error: "No profile yet. Finish your profile first." }, 404);
+  const f = contributor.fieldData || {};
+  const CREDIT = { "3489ae81c67477dbdf19a921804b343e": "Full", d01799503381d459b0ae4b27b0535111: "First", "38820387bc6c4892f486394a6c28776c": "Pen" };
+  const pets = [];
+  try {
+    const r = await webflow(env, "GET", `/collections/${env.PETS_COLLECTION}/items?limit=100`);
+    for (const p of r.data?.items || []) {
+      const pf = p.fieldData || {};
+      const shared = Array.isArray(pf["shared-with"]) ? pf["shared-with"] : [];
+      if (pf.owner === contributor.id || shared.includes(contributor.id)) pets.push({ id: p.id, name: pf.name });
+    }
+  } catch {
+    // pets are optional
+  }
+  const crew = [];
+  const crewIds = Array.isArray(f.crew) ? f.crew.slice(0, 20) : [];
+  for (const id of crewIds) {
+    try {
+      const r = await webflow(env, "GET", `/collections/${env.CONTRIBUTORS_COLLECTION}/items/${id}`);
+      if (r.ok && r.data?.fieldData?.name) crew.push({ id, name: r.data.fieldData.name });
+    } catch {
+      // skip
+    }
+  }
+  return json({
+    contributorId: contributor.id,
+    name: f.name || "",
+    slug: f.slug || "",
+    creditMode: CREDIT[f["credit-mode"]] || "Full",
+    penName: f["pen-name"] || "",
+    pets,
+    crew,
+  });
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin");
@@ -772,6 +845,12 @@ export default {
       if (request.method === "OPTIONS") return respond(new Response(null, { status: 204 }));
 
       if (request.method === "GET" && path === "/health") return respond(json({ ok: true, service: "tll-worker" }));
+      if (request.method === "GET" && path === "/places") return respond(await handlePlaces(env));
+      if (request.method === "GET" && path === "/me") {
+        const auth = await authenticate(request, env);
+        if (auth instanceof Response) return respond(auth);
+        return respond(await handleMe(env, auth));
+      }
 
       const route = POST_ROUTES[path];
       if (!route) return respond(json({ error: "Not found." }, 404));

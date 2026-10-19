@@ -1,0 +1,75 @@
+{
+  "pages": [
+    {
+      "id": "6a0b29eedc14f1444e935766",
+      "siteId": "69d6145cf421c777840c1e25",
+      "localeId": "6a0b29c6d081332e921900ef",
+      "effectiveLocaleId": "6a0b29c6d081332e921900ef",
+      "publishedPath": "/stories",
+      "lastUpdated": "2026-10-19T17:45:59.791Z",
+      "jsonLdSchema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#article",
+            "headline": "{{wf {\"path\":\"seo-title\",\"type\":\"PlainText\"} }}",
+            "description": "{{wf {\"path\":\"seo-description\",\"type\":\"PlainText\"} }}",
+            "abstract": "{{wf {\"path\":\"short-version\",\"type\":\"PlainText\"} }}",
+            "image": "{{wf {\"path\":\"hero-image\",\"type\":\"ImageRef\"} }}",
+            "datePublished": "{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}",
+            "dateModified": "{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}",
+            "url": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}",
+            "mainEntityOfPage": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}",
+            "author": {
+              "@type": "Person",
+              "name": "{{wf {\"path\":\"contributor:name\",\"type\":\"PlainText\"} }}",
+              "url": "https://www.thatlayover.life/contributors/{{wf {\"path\":\"contributor:slug\",\"type\":\"PlainText\"} }}"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "That Layover Life",
+              "url": "https://www.thatlayover.life/"
+            },
+            "contentLocation": {
+              "@type": "Place",
+              "name": "{{wf {\"path\":\"byline-location\",\"type\":\"PlainText\"} }}"
+            },
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "keywords": "{{wf {\"path\":\"hashtag-set\",\"type\":\"PlainText\"} }}",
+            "breadcrumb": {
+              "@id": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.thatlayover.life/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Stories",
+                "item": "https://www.thatlayover.life/stories"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}",
+                "item": "https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}"
+              }
+            ]
+          }
+        ]
+      },
+      "rawJsonLdSchema": null,
+      "isInherited": false
+    }
+  ]
+}

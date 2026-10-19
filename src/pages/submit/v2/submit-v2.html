@@ -1,0 +1,247 @@
+<!-- TLL /submit v2 markup embed (19 Oct 2026). Writer-led story flow. The writer writes body, headline, excerpt and pull quote; the page never fills them.
+     data-worker is the only configuration. No secret lives here. Script: submit-v2.js (hosted). Styles: submit-v2.css embed. -->
+<div class="tsv2" id="tll-submit-v2" data-worker="https://REPLACE-WITH-WORKER-URL" data-cloud="idonvlow" data-preset="tll_photos">
+
+  <ol class="tsv2-steps" aria-label="Steps">
+    <li class="tsv2-step is-current" data-step-tab="1"><span class="tsv2-step-n">1</span><span class="tsv2-step-t">The trip</span></li>
+    <li class="tsv2-step" data-step-tab="2"><span class="tsv2-step-n">2</span><span class="tsv2-step-t">Extras</span></li>
+    <li class="tsv2-step" data-step-tab="3"><span class="tsv2-step-n">3</span><span class="tsv2-step-t">Confirm</span></li>
+  </ol>
+
+  <form class="tsv2-form" novalidate autocomplete="on">
+
+    <!-- Step 1: The trip -->
+    <section class="tsv2-panel" data-step="1">
+      <p class="tsv2-intro">Write it the way you would tell a friend at the gate.</p>
+
+      <div class="tsv2-row tsv2-row-2">
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-country">Country <span class="tsv2-req">required</span></label>
+          <input class="tsv2-input" id="tsv2-country" name="country" list="tsv2-country-list" autocomplete="off" placeholder="Start typing" required>
+          <datalist id="tsv2-country-list"></datalist>
+          <p class="tsv2-err" id="tsv2-country-err" hidden>Pick a country from the list.</p>
+        </div>
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-city">City or place <span class="tsv2-req">required</span></label>
+          <input class="tsv2-input" id="tsv2-city" name="city" maxlength="80" required>
+          <p class="tsv2-err" id="tsv2-city-err" hidden>Where were you?</p>
+        </div>
+      </div>
+
+      <div class="tsv2-row tsv2-row-2">
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-month">Month <span class="tsv2-req">required</span></label>
+          <select class="tsv2-input" id="tsv2-month" name="month" required>
+            <option value="">Pick one</option>
+            <option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option>
+          </select>
+        </div>
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-year">Year <span class="tsv2-req">required</span></label>
+          <select class="tsv2-input" id="tsv2-year" name="year" required><option value="">Pick one</option></select>
+          <p class="tsv2-err" id="tsv2-when-err" hidden>Add the month and year you went.</p>
+        </div>
+      </div>
+
+      <div class="tsv2-field">
+        <label class="tsv2-label" for="tsv2-body">Your story <span class="tsv2-req">required</span></label>
+        <textarea class="tsv2-input tsv2-textarea" id="tsv2-body" name="body" rows="12" required></textarea>
+        <div class="tsv2-meta"><span id="tsv2-words">0 words</span><span id="tsv2-readtime"></span></div>
+        <p class="tsv2-err" id="tsv2-body-err" hidden>The story is the one thing we cannot write for you.</p>
+      </div>
+
+      <div class="tsv2-field">
+        <label class="tsv2-label" for="tsv2-headline">Headline <span class="tsv2-req">required</span></label>
+        <input class="tsv2-input" id="tsv2-headline" name="headline" maxlength="120" required>
+        <div class="tsv2-meta"><span id="tsv2-headline-count">0 characters. About 60 fits a search result.</span></div>
+        <p class="tsv2-err" id="tsv2-headline-err" hidden>Give it a headline.</p>
+      </div>
+
+      <div class="tsv2-field">
+        <label class="tsv2-label" for="tsv2-excerpt">Excerpt <span class="tsv2-req">required</span></label>
+        <textarea class="tsv2-input" id="tsv2-excerpt" name="excerpt" rows="2" maxlength="240" required></textarea>
+        <div class="tsv2-meta"><span id="tsv2-excerpt-count">0 characters. About 155 fits a search result.</span></div>
+        <p class="tsv2-err" id="tsv2-excerpt-err" hidden>One or two sentences for the card.</p>
+      </div>
+
+      <div class="tsv2-field" data-photo="hero">
+        <span class="tsv2-label" id="tsv2-hero-label">Hero photo <span class="tsv2-req">required</span></span>
+        <label class="tsv2-drop" for="tsv2-hero-file">
+          <input class="tsv2-file" id="tsv2-hero-file" type="file" accept="image/*" aria-labelledby="tsv2-hero-label">
+          <span class="tsv2-drop-t">Choose a photo</span>
+          <span class="tsv2-drop-s">Your own, from the trip. Up to 10 MB.</span>
+        </label>
+        <div class="tsv2-photo" id="tsv2-hero-photo" hidden>
+          <img class="tsv2-photo-img" id="tsv2-hero-img" alt="">
+          <div class="tsv2-photo-tools">
+            <div class="tsv2-toggle" role="group" aria-label="Which version">
+              <button type="button" class="tsv2-tg is-on" data-hero-pick="original" aria-pressed="true">Original</button>
+              <button type="button" class="tsv2-tg" data-hero-pick="cleaned" aria-pressed="false">Cleaned</button>
+            </div>
+            <label class="tsv2-slider"><span>Straighten</span><input type="range" id="tsv2-hero-angle" min="-10" max="10" step="0.5" value="0"><output id="tsv2-hero-angle-out">0°</output></label>
+            <label class="tsv2-check"><input type="checkbox" id="tsv2-hero-crop"> <span>Crop to 16:9</span></label>
+            <button type="button" class="tsv2-link" id="tsv2-hero-remove">Remove photo</button>
+          </div>
+          <p class="tsv2-note">Cleaned means light, color and contrast adjusted. Nothing is added or removed. The original is kept.</p>
+        </div>
+        <p class="tsv2-status" id="tsv2-hero-status" role="status" aria-live="polite"></p>
+        <p class="tsv2-err" id="tsv2-hero-err" hidden>Add one photo of your own from the trip.</p>
+      </div>
+    </section>
+
+    <!-- Step 2: Extras -->
+    <section class="tsv2-panel" data-step="2" hidden>
+      <details class="tsv2-extras" open>
+        <summary class="tsv2-extras-s">Add more if you like <span class="tsv2-extras-hint">All optional</span></summary>
+
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-pullquote">Pull quote</label>
+          <input class="tsv2-input" id="tsv2-pullquote" name="pullQuote" maxlength="200">
+          <p class="tsv2-help">One line from your story worth setting apart.</p>
+        </div>
+
+        <div class="tsv2-field" data-photo="gallery">
+          <span class="tsv2-label" id="tsv2-gallery-label">More photos</span>
+          <label class="tsv2-drop" for="tsv2-gallery-file">
+            <input class="tsv2-file" id="tsv2-gallery-file" type="file" accept="image/*" multiple aria-labelledby="tsv2-gallery-label">
+            <span class="tsv2-drop-t">Add up to 8</span>
+            <span class="tsv2-drop-s">Each one keeps its original. Tap a photo to clean it.</span>
+          </label>
+          <ul class="tsv2-gallery" id="tsv2-gallery"></ul>
+          <p class="tsv2-status" id="tsv2-gallery-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="tsv2-field">
+          <span class="tsv2-label">Pets along</span>
+          <div class="tsv2-chips" id="tsv2-pets"><p class="tsv2-help" id="tsv2-pets-hint">Sign in at step 3 and your pets appear here.</p></div>
+        </div>
+
+        <div class="tsv2-field">
+          <label class="tsv2-label" for="tsv2-signoff">Sign-off</label>
+          <input class="tsv2-input" id="tsv2-signoff" name="signOff" maxlength="120" placeholder="Mood, then your name">
+        </div>
+
+        <div class="tsv2-field">
+          <span class="tsv2-label">Co-travelers</span>
+          <div class="tsv2-chips" id="tsv2-crew"><p class="tsv2-help" id="tsv2-crew-hint">Sign in at step 3 to tag profiles. Or name them below.</p></div>
+          <input class="tsv2-input" id="tsv2-crew-text" name="crewText" maxlength="200" placeholder="Names, if they are not on TLL">
+        </div>
+
+        <div class="tsv2-field">
+          <span class="tsv2-label">Shout-outs</span>
+          <div id="tsv2-shoutouts"></div>
+          <button type="button" class="tsv2-btn tsv2-btn-ghost" id="tsv2-shoutout-add">Add another</button>
+        </div>
+
+        <div class="tsv2-row tsv2-row-2">
+          <div class="tsv2-field">
+            <label class="tsv2-label" for="tsv2-cost">What it cost</label>
+            <input class="tsv2-input" id="tsv2-cost" name="cost" maxlength="80" placeholder="One line">
+          </div>
+          <div class="tsv2-field">
+            <label class="tsv2-label" for="tsv2-forwhom">Who it's for</label>
+            <input class="tsv2-input" id="tsv2-forwhom" name="forWhom" maxlength="80" placeholder="Dog owners with a long weekend">
+          </div>
+        </div>
+
+        <p class="tsv2-help">Your credit links live on your profile. <a href="/edit-profile">Edit them there</a>.</p>
+      </details>
+    </section>
+
+    <!-- Step 3: Confirm -->
+    <section class="tsv2-panel" data-step="3" hidden>
+      <div class="tsv2-gate" id="tsv2-gate" hidden>
+        <h2 class="tsv2-h2">Almost there. Sign in to publish.</h2>
+        <p class="tsv2-help">Your draft stays on this page. Free to join, free to publish.</p>
+        <div class="tsv2-actions">
+          <button type="button" class="tsv2-btn tsv2-btn-primary" id="tsv2-login">Log in</button>
+          <button type="button" class="tsv2-btn tsv2-btn-ghost" id="tsv2-join">Join the Travelers</button>
+        </div>
+      </div>
+
+      <div id="tsv2-confirm">
+        <div class="tsv2-field">
+          <label class="tsv2-check tsv2-check-big"><input type="checkbox" id="tsv2-rights" required> <span>This is my trip, my words and my photos.</span></label>
+          <p class="tsv2-err" id="tsv2-rights-err" hidden>We need this one.</p>
+        </div>
+
+        <fieldset class="tsv2-fieldset">
+          <legend class="tsv2-label">Credit</legend>
+          <label class="tsv2-radio"><input type="radio" name="creditMode" value="Full" checked> <span>Full name</span></label>
+          <label class="tsv2-radio"><input type="radio" name="creditMode" value="First"> <span>First name only</span></label>
+          <label class="tsv2-radio"><input type="radio" name="creditMode" value="Pen"> <span>Pen name <small id="tsv2-penname"></small></span></label>
+        </fieldset>
+
+        <fieldset class="tsv2-fieldset">
+          <legend class="tsv2-label">Was any part of this trip paid for or hosted?</legend>
+          <label class="tsv2-radio"><input type="radio" name="sponsored" value="no" checked> <span>No</span></label>
+          <label class="tsv2-radio"><input type="radio" name="sponsored" value="yes"> <span>Yes</span></label>
+          <div class="tsv2-row tsv2-row-2" id="tsv2-sponsor" hidden>
+            <div class="tsv2-field"><label class="tsv2-label" for="tsv2-sponsor-name">Who paid or hosted</label><input class="tsv2-input" id="tsv2-sponsor-name" maxlength="80"></div>
+            <div class="tsv2-field"><label class="tsv2-label" for="tsv2-sponsor-url">Their link, optional</label><input class="tsv2-input" id="tsv2-sponsor-url" type="url" placeholder="https://"></div>
+          </div>
+          <p class="tsv2-help">A label goes at the top of the story. Readers see it before the headline.</p>
+        </fieldset>
+
+        <fieldset class="tsv2-fieldset">
+          <legend class="tsv2-label">Where else it may appear</legend>
+          <label class="tsv2-check"><input type="checkbox" name="syndication" value="newsletter" checked> <span>The newsletter</span></label>
+          <label class="tsv2-check"><input type="checkbox" name="syndication" value="social" checked> <span>TLL social accounts</span></label>
+          <label class="tsv2-check"><input type="checkbox" name="syndication" value="press"> <span>Press requests, with your yes each time</span></label>
+        </fieldset>
+
+        <div class="tsv2-field">
+          <label class="tsv2-check tsv2-check-big"><input type="checkbox" id="tsv2-charter" required> <span>I have read the <a href="/editorial-charter" target="_blank" rel="noopener">editorial charter</a>.</span></label>
+          <p class="tsv2-err" id="tsv2-charter-err" hidden>The charter is short. Have a look, then tick.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Done -->
+    <section class="tsv2-panel tsv2-done" data-step="done" hidden>
+      <h2 class="tsv2-h2">It's live.</h2>
+      <p class="tsv2-help">Nancy reads every story and writes if something needs a word.</p>
+      <p><a class="tsv2-btn tsv2-btn-primary" id="tsv2-done-link" href="/stories">Read it on the site</a></p>
+    </section>
+
+    <div class="tsv2-nav" id="tsv2-nav">
+      <button type="button" class="tsv2-btn tsv2-btn-ghost" id="tsv2-back" hidden>Back</button>
+      <p class="tsv2-status tsv2-nav-status" id="tsv2-form-status" role="status" aria-live="polite"></p>
+      <button type="button" class="tsv2-btn tsv2-btn-primary" id="tsv2-next">Next</button>
+      <button type="submit" class="tsv2-btn tsv2-btn-primary" id="tsv2-publish" hidden>Publish my story</button>
+    </div>
+  </form>
+
+  <!-- Editor's notes: separate panel, never inline -->
+  <aside class="tsv2-notes" id="tsv2-notes" aria-labelledby="tsv2-notes-h">
+    <div class="tsv2-notes-head">
+      <h2 class="tsv2-notes-h" id="tsv2-notes-h">Editor's notes</h2>
+      <button type="button" class="tsv2-btn tsv2-btn-notes" id="tsv2-notes-ask">Ask for Editor's notes</button>
+    </div>
+    <p class="tsv2-notes-empty" id="tsv2-notes-empty">Nothing yet. Ask when you have a draft you like.</p>
+    <p class="tsv2-notes-status" id="tsv2-notes-status" role="status" aria-live="polite"></p>
+    <div class="tsv2-sugg" id="tsv2-sugg" hidden>
+      <p class="tsv2-sugg-k" id="tsv2-sugg-k"></p>
+      <p class="tsv2-sugg-line"><span class="tsv2-sugg-lbl">Now</span><span id="tsv2-sugg-orig"></span></p>
+      <p class="tsv2-sugg-line"><span class="tsv2-sugg-lbl">Suggested</span><span id="tsv2-sugg-new"></span></p>
+      <p class="tsv2-sugg-note" id="tsv2-sugg-note"></p>
+      <div class="tsv2-actions">
+        <button type="button" class="tsv2-btn tsv2-btn-accept" id="tsv2-accept">Accept</button>
+        <button type="button" class="tsv2-btn tsv2-btn-skip" id="tsv2-skip">Skip</button>
+      </div>
+      <p class="tsv2-sugg-count" id="tsv2-sugg-count"></p>
+    </div>
+    <div id="tsv2-tips-wrap" hidden>
+      <h3 class="tsv2-notes-h3">Tips</h3>
+      <ul class="tsv2-tips" id="tsv2-tips"></ul>
+    </div>
+    <div id="tsv2-tags-wrap" hidden>
+      <h3 class="tsv2-notes-h3">Tags <span class="tsv2-suggested">suggested</span></h3>
+      <div class="tsv2-chips" id="tsv2-tags"></div>
+      <h3 class="tsv2-notes-h3">Pursuit <span class="tsv2-suggested">suggested</span></h3>
+      <div class="tsv2-chips" id="tsv2-pursuit"></div>
+    </div>
+    <p class="tsv2-notes-foot">Point out, never replace. Nothing in your text changes unless you tap Accept.</p>
+  </aside>
+</div>

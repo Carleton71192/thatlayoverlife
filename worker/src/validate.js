@@ -132,7 +132,7 @@ export function classifyEdit(original, suggested) {
 // Cloudinary URLs
 // ---------------------------------------------------------------------------------------
 
-const ALLOWED_PREFIXES = ["c_crop", "a_", "w_", "h_", "x_", "y_", "g_", "q_auto", "f_auto", "fl_keep_iptc"];
+const ALLOWED_PREFIXES = ["c_crop", "ar_", "a_", "w_", "h_", "x_", "y_", "g_", "q_auto", "f_auto", "fl_keep_iptc"];
 const ALLOWED_EXACT = new Set(["e_improve", "e_auto_brightness", "e_auto_color", "e_auto_contrast"]);
 const BLOCKED_FRAGMENTS = ["e_gen_", "e_background_removal", "e_upscale", "e_enhance"];
 const TRANSFORM_LIKE = /^[a-z]{1,4}_/i;
