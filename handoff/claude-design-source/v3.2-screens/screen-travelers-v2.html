@@ -1,0 +1,34 @@
+<div data-screen-label="Travelers v2" style="max-width:1320px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw) clamp(72px,12vh,144px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px 80px;align-items:end;margin-bottom:40px">
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600">THE TRAVELERS<\u002Fdiv><h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(44px,7vw,112px);line-height:.9;letter-spacing:-.04em;margin:12px 0 0;text-wrap:balance">Where the Travelers <em style="font-style:italic;color:#F0507A">{{ ed.travVerb }}.<\u002Fem><\u002Fh1><\u002Fdiv>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:#3a3a3a;max-width:48ch;text-wrap:pretty">Every member has a page from the day they sign up. Filter by what they can help with: a city they live in, work they make, or a press card.<\u002Fp>
+  <\u002Fdiv>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:3px solid #0A0B14;border-bottom:1px solid #E0DACE;padding:20px 0;margin-bottom:40px">
+    <sc-for list="{{ tv.filters }}" as="f" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:10px 16px;min-height:44px;border-radius:999px;border:1px solid {{ f.bd }};background:{{ f.bg }};color:{{ f.fg }};cursor:pointer">{{ f.label }} · {{ f.n }}<\u002Fbutton><\u002Fsc-for>
+    <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#6B6660">{{ tv.countLine }}<\u002Fspan>
+  <\u002Fdiv>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:24px">
+    <sc-for list="{{ tv.cards }}" as="c" hint-placeholder-count="4">
+      <article sc-camel-on-click="{{ c.open }}" role="link" sc-camel-tab-index="0" aria-label="{{ c.name }}" style="cursor:pointer;min-width:0;display:flex;flex-direction:column;background:#FDF9F3;border:1px solid #E0DACE;overflow:hidden">
+        <div style="position:relative;aspect-ratio:4/5;background:#12141F url('{{ c.photo }}') center {{ c.pos }}/cover">
+          <sc-if value="{{ c.noPhoto }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,6vw,96px);color:#F7F1E8;letter-spacing:-.04em">{{ c.initials }}<\u002Fdiv><\u002Fsc-if>
+          <span style="position:absolute;left:12px;top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;background:{{ c.labelBg }};color:{{ c.labelFg }};padding:6px 10px">{{ c.label }}<\u002Fspan>
+          <sc-if value="{{ c.isPet }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;right:12px;top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;background:#00C9C8;color:#0A0B14;padding:6px 10px">PET<\u002Fspan><\u002Fsc-if>
+        <\u002Fdiv>
+        <div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1">
+          <h2 style="margin:0;font-family:'Playfair Display',serif;font-weight:800;font-size:22px;line-height:1.05;letter-spacing:-.02em">{{ c.name }}<\u002Fh2>
+          <sc-if value="{{ c.hasLine }}" hint-placeholder-val="{{ true }}"><div style="font-size:14px;line-height:1.45;color:#3a3a3a">{{ c.line }}<\u002Fdiv><\u002Fsc-if>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660;margin-top:auto;padding-top:8px"><span>{{ c.home }}<\u002Fspan><sc-if value="{{ c.hasFlags }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;gap:4px"><sc-for list="{{ c.flags }}" as="f" hint-placeholder-count="3"><span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;background:#E0DACE center/cover;background-image:{{ f }};box-shadow:0 0 0 1.5px #FDF9F3"><\u002Fspan><\u002Fsc-for><\u002Fspan><\u002Fsc-if><\u002Fdiv>
+          <div style="display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660;border-top:1px solid #E0DACE;padding-top:10px"><span><strong style="color:#0A0B14;font-family:'Playfair Display',serif;font-size:16px;letter-spacing:0;margin-right:4px">{{ c.n1 }}<\u002Fstrong>{{ c.k1 }}<\u002Fspan><span><strong style="color:#0A0B14;font-family:'Playfair Display',serif;font-size:16px;letter-spacing:0;margin-right:4px">{{ c.n2 }}<\u002Fstrong>{{ c.k2 }}<\u002Fspan><\u002Fdiv>
+        <\u002Fdiv>
+      <\u002Farticle>
+    <\u002Fsc-for>
+    <div style="border:2px dashed #c9b89a;background:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:280px">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#6B6660">{{ tv.openEyebrow }}<\u002Fdiv><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:24px;line-height:1.05;letter-spacing:-.02em;margin-top:10px">{{ tv.openTitle }}<\u002Fdiv><p style="font-size:14px;line-height:1.5;color:#3a3a3a;margin:10px 0 0">{{ tv.openBody }}<\u002Fp><\u002Fdiv>
+      <button type="button" sc-camel-on-click="{{ tv.openGo }}" style="align-self:flex-start;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;background:#F0507A;color:#0A0B14;border:0;padding:12px 20px;min-height:44px;cursor:pointer">{{ tv.openCta }}<\u002Fbutton>
+    <\u002Fdiv>
+  <\u002Fdiv>
+  <div style="margin-top:40px;padding-top:16px;border-top:1px solid #E0DACE;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660"><span>SHUFFLED, NEVER RANKED, NEVER PAID · WHERE THEY KNOW, NOT WHERE THEY ARE<\u002Fspan><span sc-camel-on-click="{{ goPress }}" role="link" sc-camel-tab-index="0" style="color:#067A79;font-weight:700;cursor:pointer">PR TEAMS: SHARE A PRESS TRIP →<\u002Fspan><\u002Fdiv>
+<\u002Fdiv>
+<\u002Fsc-if>
+

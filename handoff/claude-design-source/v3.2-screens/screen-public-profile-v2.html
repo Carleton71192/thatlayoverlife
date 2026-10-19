@@ -1,0 +1,72 @@
+<div data-screen-label="Public profile v2" style="background:#F7F1E8;color:#0A0B14">
+<sc-if value="{{ pf.isDemo }}" hint-placeholder-val="{{ true }}"><div style="max-width:1120px;margin:0 auto;padding:16px max(20px,6vw) 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#b8791f">PROTOTYPE · VIEW AS<\u002Fspan><sc-for list="{{ pf.demo }}" as="d" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{ d.pick }}" aria-pressed="{{ d.pressed }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;padding:8px 12px;min-height:36px;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};cursor:pointer">{{ d.label }}<\u002Fbutton><\u002Fsc-for><\u002Fdiv><\u002Fsc-if>
+
+<section style="max-width:1120px;margin:0 auto;padding:clamp(40px,7vh,80px) max(20px,6vw) 40px;display:grid;grid-template-columns:{{ pf.heroCols }};gap:40px;align-items:end">
+  <div style="position:relative;aspect-ratio:4/5;background:#12141F url('{{ pf.photo }}') center {{ pf.photoPos }}/cover;overflow:hidden;max-width:420px;width:100%">
+    <sc-if value="{{ pf.noPhoto }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(64px,10vw,140px);color:#F7F1E8;letter-spacing:-.04em">{{ pf.initials }}<\u002Fdiv><\u002Fsc-if>
+    <sc-if value="{{ pf.hasBadge }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:700;background:#F7F1E8;color:#0A0B14;padding:6px 10px">{{ pf.badge }}<\u002Fspan><\u002Fsc-if>
+  <\u002Fdiv>
+  <div style="min-width:0">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600">{{ pf.eyebrow }}<\u002Fdiv>
+    <h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(44px,7vw,112px);line-height:.9;letter-spacing:-.04em;margin:12px 0 0;text-wrap:balance">{{ pf.first }} <em style="font-style:italic;color:#F0507A">{{ pf.last }}<\u002Fem><\u002Fh1>
+    <sc-if value="{{ pf.hasTitle }}" hint-placeholder-val="{{ true }}"><div style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:clamp(17px,1.5vw,22px);line-height:1.4;color:#3a3a3a;margin-top:16px;max-width:40ch">{{ pf.title }}<\u002Fdiv><\u002Fsc-if>
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660">
+      <span>{{ pf.home }}<\u002Fspan><span>·<\u002Fspan><span>ON TLL SINCE {{ pf.since }}<\u002Fspan>
+      <sc-if value="{{ pf.hasFlags }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex;align-items:center;gap:8px"><span>FROM · HAS LIVED IN<\u002Fspan><span style="display:inline-flex;gap:6px"><sc-for list="{{ pf.flags }}" as="f" hint-placeholder-count="3"><span aria-hidden="true" style="width:28px;height:28px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #F7F1E8;background:#E0DACE center/cover;background-image:{{ f.src }}"><\u002Fspan><\u002Fsc-for><\u002Fspan><\u002Fspan><\u002Fsc-if>
+    <\u002Fdiv>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:20px;margin-top:40px;border-top:3px solid #0A0B14;padding-top:16px;max-width:560px;position:relative">
+      <span sc-camel-on-click="{{ goMapPage }}" role="link" sc-camel-tab-index="0" title="What counts: lived or stayed. Antarctica beside. Layovers beside, never inside." aria-label="What counts" style="position:absolute;right:0;top:16px;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;cursor:help">i<\u002Fspan>
+      <sc-for list="{{ pf.stats }}" as="s" hint-placeholder-count="3"><div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(32px,3.6vw,52px);line-height:.9;letter-spacing:-.03em">{{ s.v }}<\u002Fdiv><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660;margin-top:8px">{{ s.k }}<\u002Fdiv><\u002Fdiv><\u002Fsc-for>
+    <\u002Fdiv>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px"><button type="button" sc-camel-on-click="{{ pf.contact }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;background:#0A0B14;color:#F7F1E8;border:0;padding:12px 20px;min-height:44px;cursor:pointer">{{ pf.contactLabel }}<\u002Fbutton><sc-for list="{{ pf.links }}" as="l" hint-placeholder-count="2"><a href="{{ l.href }}" target="_blank" rel="noopener" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;color:#0A0B14;border:1.5px solid #0A0B14;padding:12px 18px;min-height:44px;display:inline-flex;align-items:center;gap:6px;text-decoration:none">{{ l.label }} <span aria-hidden="true">↗<\u002Fspan><\u002Fa><\u002Fsc-for><sc-if value="{{ pf.isOwner }}" hint-placeholder-val="{{ false }}"><a href="/edit-profile" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#067A79;font-weight:700;min-height:44px;display:inline-flex;align-items:center;padding:0 8px;text-decoration:none">EDIT PROFILE →<\u002Fa><\u002Fsc-if><\u002Fdiv>
+    <div style="font-size:12px;color:#6B6660;line-height:1.5;margin-top:10px">{{ pf.contactNote }}<\u002Fdiv>
+  <\u002Fdiv>
+<\u002Fsection>
+
+<sc-if value="{{ pf.hasBio }}" hint-placeholder-val="{{ true }}">
+<section style="max-width:1120px;margin:0 auto;padding:40px max(20px,6vw) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px 80px;align-items:start">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600">ABOUT<\u002Fdiv>
+  <div style="font-size:17px;line-height:1.65;color:#1A1A1A;max-width:62ch;display:flex;flex-direction:column;gap:16px"><sc-for list="{{ pf.bio }}" as="p" hint-placeholder-count="2"><p style="margin:0">{{ p }}<\u002Fp><\u002Fsc-for><\u002Fdiv>
+<\u002Fsection>
+<\u002Fsc-if>
+
+<section style="max-width:1120px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw) 0">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:3px solid #0A0B14;padding-bottom:12px;margin-bottom:24px"><h2 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.025em;margin:0">{{ pf.storiesHead }}<\u002Fh2><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660">{{ pf.storiesMeta }}<\u002Fspan><\u002Fdiv>
+  <sc-if value="{{ pf.hasStories }}" hint-placeholder-val="{{ true }}">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:40px 24px">
+    <sc-for list="{{ pf.stories }}" as="st" hint-placeholder-count="3">
+      <article sc-camel-on-click="{{ st.open }}" role="link" sc-camel-tab-index="0" style="cursor:pointer;min-width:0">
+        <sc-if value="{{ st.hasImg }}" hint-placeholder-val="{{ true }}"><div style="aspect-ratio:4/3;overflow:hidden;background:#0A0B14"><img src="{{ st.img }}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"><\u002Fdiv><\u002Fsc-if>
+        <sc-if value="{{ st.noImg }}" hint-placeholder-val="{{ false }}"><div style="aspect-ratio:4/3;background:#12141F;color:#F7F1E8;display:flex;align-items:flex-end;padding:20px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(28px,3vw,44px);line-height:.9;letter-spacing:-.03em">{{ st.place }}<\u002Fdiv><\u002Fsc-if>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:600;color:#067A79;margin-top:16px">{{ st.placeU }}<sc-if value="{{ st.co }}" hint-placeholder-val="{{ false }}"> · BY {{ st.authorU }}, WITH {{ pf.firstU }}<\u002Fsc-if><\u002Fdiv>
+        <h3 style="margin:8px 0 0;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(20px,1.8vw,26px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance">{{ st.title }}<\u002Fh3>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660;margin-top:10px">{{ st.pillar }} · {{ st.mins }}<\u002Fdiv>
+      <\u002Farticle>
+    <\u002Fsc-for>
+  <\u002Fdiv>
+  <\u002Fsc-if>
+  <sc-if value="{{ pf.noStories }}" hint-placeholder-val="{{ false }}"><div style="border:2px dashed #c9b89a;padding:20px 24px;background:#FDF9F3;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap"><span style="font-size:15px;line-height:1.5;color:#3a3a3a">{{ pf.noStoriesLine }}<\u002Fspan><sc-if value="{{ pf.isOwner }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ goShare }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;background:#F0507A;color:#0A0B14;border:0;padding:12px 20px;min-height:44px;cursor:pointer">Write your first →<\u002Fbutton><\u002Fsc-if><\u002Fdiv><\u002Fsc-if>
+<\u002Fsection>
+
+<sc-if value="{{ pf.hasPet }}" hint-placeholder-val="{{ true }}">
+<section style="max-width:1120px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw) 0">
+  <div sc-camel-on-click="{{ goPawPassport }}" role="link" sc-camel-tab-index="0" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));background:#0A0B14;color:#F7F1E8;overflow:hidden;cursor:pointer">
+    <div style="min-height:240px;background:#16182a url(&quot;b7c0f303-a2d3-4c58-a62c-1ccb92f61482&quot;) center 35%/cover"><\u002Fdiv>
+    <div style="padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:center;gap:10px"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#00C9C8;font-weight:600">TRAVELS WITH<\u002Fdiv><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(28px,3vw,44px);line-height:.95;letter-spacing:-.03em">Magnus <em style="color:#F0507A;font-style:italic">Waffles.<\u002Fem><\u002Fdiv><div style="font-size:14px;color:#cfcbc4;line-height:1.5">Samoyed · {{ pf.petCount }} places · zero complaints on record<\u002Fdiv><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#00C9C8;font-weight:700">PAW PASSPORT →<\u002Fspan><\u002Fdiv>
+  <\u002Fdiv>
+<\u002Fsection>
+<\u002Fsc-if>
+
+<sc-if value="{{ pf.hasMap }}" hint-placeholder-val="{{ true }}">
+<section style="max-width:1120px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw) 0">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px"><h2 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.025em;margin:0">{{ pf.mapHead }}<\u002Fh2><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660">{{ pf.mapMeta }}<\u002Fspan><\u002Fdiv>
+  <div style="background:#12141F;overflow:hidden"><iframe title="Where they have been" src="about:blank#09361cf2-15dc-4c83-a35c-52e769cfe6e4" loading="lazy" style="width:100%;height:clamp(300px,42vw,480px);border:0;display:block"><\u002Fiframe><\u002Fdiv>
+<\u002Fsection>
+<\u002Fsc-if>
+
+<section style="max-width:1120px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw) clamp(72px,12vh,144px)">
+  <div style="border-top:1px solid #E0DACE;padding-top:16px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660"><span>HOSTED OR GIFTED TRAVEL IS LABELED AT THE TOP OF EVERY STORY<\u002Fspan><button type="button" sc-camel-on-click="{{ pf.report }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660;background:none;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline">REPORT THIS PROFILE<\u002Fbutton><\u002Fdiv>
+<\u002Fsection>
+<\u002Fdiv>
+<\u002Fsc-if>
+

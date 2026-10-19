@@ -1,0 +1,143 @@
+<div data-screen-label="Edit profile v2" style="background:#F7F1E8;color:#0A0B14">
+<div style="max-width:1120px;margin:0 auto;padding:clamp(40px,7vh,80px) max(20px,6vw) clamp(72px,12vh,144px);display:grid;grid-template-columns:{{ ep.cols }};gap:40px;align-items:start">
+
+  <!-- left: the form -->
+  <div style="min-width:0">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:24px">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#067A79;font-weight:600">YOUR PROFILE · LIVE<\u002Fdiv><h1 style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(36px,4.6vw,64px);line-height:.92;letter-spacing:-.035em;margin:12px 0 0">Edit your <em style="font-style:italic;color:#F0507A">profile.<\u002Fem><\u002Fh1><\u002Fdiv>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span role="status" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#067A79">{{ ep.saveLine }}<\u002Fspan><span sc-camel-on-click="{{ goProfile }}" role="link" sc-camel-tab-index="0" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#0A0B14;border:1.5px solid #0A0B14;padding:10px 16px;min-height:44px;display:inline-flex;align-items:center;cursor:pointer">View as visitor<\u002Fspan><\u002Fdiv>
+    <\u002Fdiv>
+    <p style="font-size:15px;line-height:1.55;color:#3a3a3a;margin:0 0 20px;max-width:60ch">Your page is public from the day you sign up. Everything saves as you type. Leave anything blank; a short profile is a normal profile.<\u002Fp>
+    <nav aria-label="Sections" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px"><sc-for list="{{ ep.steps }}" as="st" hint-placeholder-count="8"><a href="{{ st.href }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;padding:8px 12px;min-height:36px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }};text-decoration:none"><span aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:{{ st.dot }}"><\u002Fspan>{{ st.label }}<\u002Fa><\u002Fsc-for><\u002Fnav>
+
+    <!-- 1 · who -->
+    <section id="ep-who" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:16px">01 · WHO YOU ARE<\u002Fdiv>
+      <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;margin-bottom:20px">
+        <span role="button" sc-camel-tab-index="0" aria-label="Change your photo" style="width:88px;height:88px;border-radius:50%;border:2.5px solid #F0507A;overflow:hidden;background:#1d5e5d url(&quot;8649dab4-6f29-49e6-9c17-e16d88a8605e&quot;) center 30%/cover;display:block;cursor:pointer;position:relative"><span style="position:absolute;inset:auto 0 0 0;background:rgba(10,11,20,.72);color:#F7F1E8;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-align:center;padding:4px 0">CHANGE<\u002Fspan><\u002Fspan>
+        <div style="font-size:13px;color:#6B6660;line-height:1.5">A photo of you, not a logo. Square crops best. Straight from your phone is fine.<\u002Fdiv>
+      <\u002Fdiv>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+        <div><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">Name<\u002Fdiv><input value="{{ ep.name }}" sc-camel-on-change="{{ ep.setName }}" placeholder="Nancy Carleton" aria-label="Name" style="width:100%;box-sizing:border-box;background:#fff;border:1px solid #E0DACE;border-radius:2px;padding:11px 13px;font-size:15px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><\u002Fdiv>
+        <div><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">Shown as<span sc-camel-tab-index="0" role="img" aria-label="How your name appears on bylines. Full name, first name, or a pen name." title="How your name appears on bylines. Full name, first name, or a pen name." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;cursor:help">i<\u002Fspan><\u002Fdiv><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ ep.credit }}" as="c" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:10px 14px;min-height:44px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer">{{ c.label }}<\u002Fbutton><\u002Fsc-for><\u002Fdiv><sc-if value="{{ ep.isPen }}" hint-placeholder-val="{{ false }}"><input value="{{ ep.pen }}" sc-camel-on-change="{{ ep.setPen }}" placeholder="Your pen name" aria-label="Pen name" style="margin-top:8px;width:100%;box-sizing:border-box;background:#fff;border:1px solid #E0DACE;border-radius:2px;padding:11px 13px;font-size:15px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><div style="font-size:12px;color:#6B6660;line-height:1.5;margin-top:6px">Your real name stays on file with the editor and is never shown. Every byline is still a real person.<\u002Fdiv><\u002Fsc-if><\u002Fdiv>
+      <\u002Fdiv>
+      <div style="margin-top:16px"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">One line<span sc-camel-tab-index="0" role="img" aria-label="The line under your name on your page and on the Travelers list. Not a job title." title="The line under your name on your page and on the Travelers list. Not a job title." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;cursor:help">i<\u002Fspan><\u002Fdiv><input value="{{ ep.title }}" sc-camel-on-change="{{ ep.setTitle }}" placeholder="e.g. Seven marathons on seven continents. Never crosses the line first." aria-label="One line" sc-camel-max-length="90" style="width:100%;box-sizing:border-box;background:#fff;border:1px solid #E0DACE;border-radius:2px;padding:11px 13px;font-size:15px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660;margin-top:6px;text-align:right">{{ ep.titleLeft }}<\u002Fdiv><\u002Fdiv>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:16px">
+        <div><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">Home base<\u002Fdiv><input value="{{ ep.home }}" sc-camel-on-change="{{ ep.setHome }}" placeholder="Copenhagen, Denmark" aria-label="Home base" style="width:100%;box-sizing:border-box;background:#fff;border:1px solid #E0DACE;border-radius:2px;padding:11px 13px;font-size:15px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><\u002Fdiv>
+        <div><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">From, and has lived in<span sc-camel-tab-index="0" role="img" aria-label="Up to five. Shown as flags under your name. Not a count." title="Up to five. Shown as flags under your name. Not a count." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;cursor:help">i<\u002Fspan><\u002Fdiv><div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><sc-for list="{{ ep.flags }}" as="f" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{ f.rm }}" aria-label="Remove {{ f.name }}" title="{{ f.name }} · remove" style="width:36px;height:36px;border-radius:50%;border:2px solid #F7F1E8;box-shadow:0 0 0 1px #E0DACE;background:#E0DACE center/cover;background-image:{{ f.src }};cursor:pointer;padding:0"><\u002Fbutton><\u002Fsc-for><input value="{{ ep.flagQ }}" sc-camel-on-change="{{ ep.setFlagQ }}" sc-camel-on-key-down="{{ ep.flagKey }}" list="ep-countries" placeholder="Add a country, Enter" aria-label="Add a country" style="flex:1;min-width:140px;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;font-size:14px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><datalist id="ep-countries"><sc-for list="{{ ep.countryOpts }}" as="o" hint-placeholder-count="0"><option value="{{ o }}"><\u002Foption><\u002Fsc-for><\u002Fdatalist><\u002Fdiv><\u002Fdiv>
+      <\u002Fdiv>
+      <div style="margin-top:16px"><div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">Languages<\u002Fdiv><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ ep.langs }}" as="l" hint-placeholder-count="6"><button type="button" sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.pressed }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:9px 14px;min-height:40px;border-radius:999px;border:1px solid {{ l.bd }};background:{{ l.bg }};color:{{ l.fg }};cursor:pointer">{{ l.label }}<\u002Fbutton><\u002Fsc-for><input value="{{ ep.langQ }}" sc-camel-on-change="{{ ep.setLangQ }}" sc-camel-on-key-down="{{ ep.langKey }}" placeholder="Another, Enter" aria-label="Add a language" style="flex:1;min-width:120px;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;font-size:14px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><\u002Fdiv><\u002Fdiv>
+    <\u002Fsection>
+
+    <!-- 2 · about -->
+    <section id="ep-about" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:16px">02 · ABOUT YOU · OPTIONAL<\u002Fdiv>
+      <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px">Bio<span sc-camel-tab-index="0" role="img" aria-label="Two or three short paragraphs. Leave the numbers out; your counts show live next to it and never go out of date." title="Two or three short paragraphs. Leave the numbers out; your counts show live next to it and never go out of date." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6B6660;cursor:help">i<\u002Fspan><\u002Fdiv>
+      <textarea value="{{ ep.bio }}" sc-camel-on-change="{{ ep.setBio }}" rows="6" placeholder="Start with where you are and why you travel. Skip the country count, we show it for you." aria-label="Bio" style="width:100%;box-sizing:border-box;background:#fff;border:1px solid #E0DACE;border-radius:2px;padding:12px 14px;font-size:15px;line-height:1.6;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;resize:vertical;color:#0A0B14"><\u002Ftextarea>
+      <sc-if value="{{ ep.bioHasCount }}" hint-placeholder-val="{{ false }}"><div role="status" style="margin-top:8px;font-size:13px;line-height:1.5;color:#0A0B14;background:#F0EBE0;padding:10px 12px">That looks like a country count in your bio. It will go out of date; the live number already sits next to your name. Keep it if you like.<\u002Fdiv><\u002Fsc-if>
+    <\u002Fsection>
+
+    <!-- 3 · links -->
+    <section id="ep-links" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600">03 · YOUR LINKS<\u002Fdiv><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660">{{ ep.linksOnLine }}<\u002Fspan><\u002Fdiv>
+      <p style="font-size:13px;color:#6B6660;line-height:1.5;margin:0 0 14px">Paste a link, flip it on. Off means saved but hidden. Links open in a new tab.<\u002Fp>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #E0DACE">
+        <sc-for list="{{ linkEditRows }}" as="r" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #E0DACE">
+          <span style="font-size:14px;font-weight:600">{{ r.label }}<\u002Fspan>
+          <input value="{{ r.url }}" sc-camel-on-change="{{ r.setUrl }}" placeholder="{{ r.ph }}" aria-label="{{ r.label }}" type="url" sc-camel-input-mode="url" style="min-width:0;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;font-size:14px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14">
+          <button type="button" sc-camel-on-click="{{ r.toggle }}" role="switch" aria-checked="{{ r.on }}" aria-label="Show {{ r.label }} on your profile" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;font-weight:700;padding:8px 12px;min-height:40px;min-width:64px;border:1px solid {{ r.bd }};background:{{ r.bg }};color:{{ r.fg }};cursor:pointer">{{ r.tgLabel }}<\u002Fbutton>
+        <\u002Fdiv>
+        <\u002Fsc-for>
+      <\u002Fdiv>
+    <\u002Fsection>
+
+    <!-- 4 · contact -->
+    <!-- 3b · connections -->
+    <section id="ep-crew" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:6px"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600">04 · YOUR CREW<\u002Fdiv><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660">{{ ep.crewLine }}<\u002Fspan><\u002Fdiv>
+      <p style="font-size:13px;color:#6B6660;line-height:1.5;margin:0 0 14px">People and pets you travel with. Once linked, you can tag them in a story with one tap, and your shared trips show on both pages. Both sides have to agree.<\u002Fp>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+        <sc-for list="{{ ep.crew }}" as="c" hint-placeholder-count="2">
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid #E0DACE;background:#FDF9F3">
+          <span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;background:#1d5e5d url('{{ c.img }}') center/cover;border:2px solid {{ c.ring }};flex:none"><\u002Fspan>
+          <div style="min-width:0"><div style="font-size:15px;font-weight:700">{{ c.name }}<\u002Fdiv><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660;margin-top:2px">{{ c.meta }}<\u002Fdiv><\u002Fdiv>
+          <div style="display:flex;gap:6px;align-items:center"><sc-if value="{{ c.pending }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#b8791f">WAITING FOR THEM<\u002Fspan><\u002Fsc-if><button type="button" sc-camel-on-click="{{ c.rm }}" aria-label="Unlink {{ c.name }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;padding:8px 10px;min-height:36px;border:1px solid #CFC8BB;background:transparent;color:#6B6660;cursor:pointer">UNLINK<\u002Fbutton><\u002Fdiv>
+        <\u002Fdiv>
+        <\u002Fsc-for>
+      <\u002Fdiv>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input value="{{ ep.crewQ }}" sc-camel-on-change="{{ ep.setCrewQ }}" sc-camel-on-key-down="{{ ep.crewKey }}" placeholder="A member's name or @handle, Enter to invite" aria-label="Invite someone to your crew" style="flex:1 1 240px;min-width:0;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;font-size:14px;font-family:'IBM Plex Sans Condensed',sans-serif;outline:none;color:#0A0B14"><span style="font-size:12px;color:#6B6660">Not on TLL yet? Name them in the story byline instead; no account needed.<\u002Fspan><\u002Fdiv>
+    <\u002Fsection>
+
+    <!-- 3c · pets and photos -->
+    <section id="ep-pets" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:6px">05 · PETS AND PHOTOS<\u002Fdiv>
+      <p style="font-size:13px;color:#6B6660;line-height:1.5;margin:0 0 14px">Each pet gets its own page and its own count. Your Lounge photos are yours; credit or anonymous, per photo.<\u002Fp>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:8px">
+        <div sc-camel-on-click="{{ goMyPets }}" role="link" sc-camel-tab-index="0" style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid #E0DACE;background:#FDF9F3;cursor:pointer">
+          <span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;background:#0A0B14 url(&quot;b7c0f303-a2d3-4c58-a62c-1ccb92f61482&quot;) center 35%/cover;border:2px solid #00C9C8;flex:none"><\u002Fspan>
+          <div style="min-width:0"><div style="font-size:15px;font-weight:700">Magnus Waffles<\u002Fdiv><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660;margin-top:2px">SAMOYED · {{ ep.petCount }} PLACES · SHARED WITH JAY<\u002Fdiv><\u002Fdiv>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#067A79;font-weight:700">PAW PASSPORT →<\u002Fspan>
+        <\u002Fdiv>
+        <div sc-camel-on-click="{{ goMyPets }}" role="button" sc-camel-tab-index="0" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:2px dashed #c9b89a;background:#fff;cursor:pointer;min-height:70px;font-size:14px;font-weight:600;color:#3a3a3a">+ Add a pet<\u002Fdiv>
+        <div sc-camel-on-click="{{ goGallery }}" role="link" sc-camel-tab-index="0" style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid #E0DACE;background:#FDF9F3;cursor:pointer">
+          <span aria-hidden="true" style="width:44px;height:44px;background:#0A0B14 url(&quot;6154859a-22f4-4812-88db-507b5a4b972b&quot;) center/cover;flex:none"><\u002Fspan>
+          <div style="min-width:0"><div style="font-size:15px;font-weight:700">Your Lounge photos<\u002Fdiv><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660;margin-top:2px">{{ ep.photoLine }}<\u002Fdiv><\u002Fdiv>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#067A79;font-weight:700">MANAGE →<\u002Fspan>
+        <\u002Fdiv>
+        <div sc-camel-on-click="{{ goSharePhotos }}" role="button" sc-camel-tab-index="0" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:2px dashed #c9b89a;background:#fff;cursor:pointer;min-height:70px;font-size:14px;font-weight:600;color:#3a3a3a">+ Send a photo<\u002Fdiv>
+      <\u002Fdiv>
+    <\u002Fsection>
+
+    <section id="ep-contact" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:6px">06 · HOW PEOPLE REACH YOU<\u002Fdiv>
+      <p style="font-size:13px;color:#6B6660;line-height:1.5;margin:0 0 14px">Pick what the "Get in touch" button does. Phone numbers are never shown. Email only if you choose it.<\u002Fp>
+      <div role="radiogroup" aria-label="Contact method" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px">
+        <sc-for list="{{ ep.contact }}" as="c" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ c.pressed }}" sc-camel-on-click="{{ c.pick }}" style="text-align:left;padding:14px 16px;min-height:44px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;font-family:inherit"><span style="display:block;font-size:15px;font-weight:700">{{ c.label }}<\u002Fspan><span style="display:block;font-size:13px;line-height:1.45;margin-top:4px;opacity:.85">{{ c.sub }}<\u002Fspan><\u002Fbutton><\u002Fsc-for>
+      <\u002Fdiv>
+    <\u002Fsection>
+
+    <!-- 5 · the lists -->
+    <section id="ep-dirs" style="border-top:3px solid #0A0B14;padding-top:16px;margin-bottom:40px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:6px">07 · THE DIRECTORIES · OPTIONAL<\u002Fdiv>
+      <p style="font-size:13px;color:#6B6660;line-height:1.5;margin:0 0 14px">Three lists people search. Opt in, never ranked, never paid. Where you know, not where you are.<\u002Fp>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ ep.dirs }}" as="d" hint-placeholder-count="3">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;border:1px solid #E0DACE;background:#FDF9F3">
+          <div style="min-width:0"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">{{ d.label }}<\u002Fspan><span sc-camel-on-click="{{ d.learn }}" role="link" sc-camel-tab-index="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#067A79;cursor:pointer">WHAT IS THIS →<\u002Fspan><\u002Fdiv><div style="font-size:13px;color:#6B6660;line-height:1.45;margin-top:2px">{{ d.sub }}<\u002Fdiv><sc-if value="{{ d.hasNote }}" hint-placeholder-val="{{ false }}"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#b8791f;margin-top:6px">{{ d.note }}<\u002Fdiv><\u002Fsc-if><\u002Fdiv>
+          <button type="button" sc-camel-on-click="{{ d.toggle }}" role="switch" aria-checked="{{ d.on }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;font-weight:700;padding:10px 14px;min-height:44px;min-width:72px;border:1px solid {{ d.bd }};background:{{ d.bg }};color:{{ d.fg }};cursor:pointer">{{ d.tg }}<\u002Fbutton>
+        <\u002Fdiv>
+        <\u002Fsc-for>
+      <\u002Fdiv>
+    <\u002Fsection>
+
+    <!-- 6 · visibility -->
+    <section id="ep-vis" style="border-top:3px solid #0A0B14;padding-top:16px;scroll-margin-top:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#067A79;font-weight:600;margin-bottom:6px">08 · WHO SEES YOUR PAGE<\u002Fdiv>
+      <div role="radiogroup" aria-label="Visibility" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px;margin-bottom:16px">
+        <sc-for list="{{ ep.vis }}" as="c" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ c.pressed }}" sc-camel-on-click="{{ c.pick }}" style="text-align:left;padding:14px 16px;min-height:44px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;font-family:inherit"><span style="display:block;font-size:15px;font-weight:700">{{ c.label }}<\u002Fspan><span style="display:block;font-size:13px;line-height:1.45;margin-top:4px;opacity:.85">{{ c.sub }}<\u002Fspan><\u002Fbutton><\u002Fsc-for>
+      <\u002Fdiv>
+      <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input type="checkbox" checked="{{ ep.ranges }}" sc-camel-on-change="{{ ep.toggleRanges }}" style="width:18px;height:18px;accent-color:#F0507A;margin-top:2px"><span style="font-size:14px;line-height:1.5">Show my counts as ranges to visitors ("80-something countries"). Exact numbers stay on my own account.<\u002Fspan><\u002Flabel>
+      <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px"><a href="/account#settings" style="color:#067A79;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center">EMAIL, PASSWORD, NEWSLETTER →<\u002Fa><a href="/account#settings" style="color:#067A79;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center">DOWNLOAD MY DATA →<\u002Fa><span sc-camel-on-click="{{ goMyPets }}" role="link" sc-camel-tab-index="0" style="color:#067A79;font-weight:700;min-height:44px;display:inline-flex;align-items:center;cursor:pointer">MY PETS →<\u002Fspan><\u002Fdiv>
+    <\u002Fsection>
+  <\u002Fdiv>
+
+  <!-- right: live preview card, sticky -->
+  <aside aria-label="Preview" style="position:{{ ep.asidePos }};top:20px;min-width:0">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#6B6660;margin-bottom:10px">HOW IT LOOKS · {{ ep.visLabel }}<\u002Fdiv>
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;overflow:hidden">
+      <div style="aspect-ratio:4/3;background:#12141F url(&quot;8649dab4-6f29-49e6-9c17-e16d88a8605e&quot;) center 25%/cover"><\u002Fdiv>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:10px">
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(24px,2.4vw,32px);line-height:.95;letter-spacing:-.03em">{{ ep.pvName }}<\u002Fdiv>
+        <sc-if value="{{ ep.hasTitle }}" hint-placeholder-val="{{ true }}"><div style="font-size:14px;line-height:1.45;color:#3a3a3a">{{ ep.title }}<\u002Fdiv><\u002Fsc-if>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:#6B6660"><span>{{ ep.homeU }}<\u002Fspan><span style="display:inline-flex;gap:4px"><sc-for list="{{ ep.flags }}" as="f" hint-placeholder-count="4"><span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;background:#E0DACE center/cover;background-image:{{ f.src }};box-shadow:0 0 0 1.5px #FDF9F3"><\u002Fspan><\u002Fsc-for><\u002Fspan><\u002Fdiv>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid #E0DACE;padding-top:12px"><sc-for list="{{ ep.pvStats }}" as="s" hint-placeholder-count="3"><div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;line-height:.9;letter-spacing:-.02em">{{ s.v }}<\u002Fdiv><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660;margin-top:5px">{{ s.k }}<\u002Fdiv><\u002Fdiv><\u002Fsc-for><\u002Fdiv>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#6B6660">{{ ep.pvLinks }}<\u002Fdiv>
+      <\u002Fdiv>
+    <\u002Fdiv>
+    <div style="font-size:12px;color:#6B6660;line-height:1.5;margin-top:10px">Counts come from your map, never from this form. <span sc-camel-on-click="{{ goMapPage }}" role="link" sc-camel-tab-index="0" style="color:#067A79;font-weight:700;cursor:pointer">Edit your map →<\u002Fspan><\u002Fdiv>
+  <\u002Faside>
+<\u002Fdiv>
+<\u002Fdiv>
+<\u002Fsc-if>
+
