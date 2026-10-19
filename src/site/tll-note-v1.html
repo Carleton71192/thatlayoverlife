@@ -1,0 +1,59 @@
+<style id="tll-note-v1-css">
+/* Tell the editor, Packet A (19 Oct 2026, prototype 3.3). Fixed bottom left, under the cookie banner (banner z-index 70), 44px pill,
+   card capped at the viewport minus the safe-area insets. The form is a Webflow form in the site footer component, so submissions land in
+   Webflow Forms and the editor's notification email. Hidden while the consent banner or preferences are open. */
+#tll-note{position:fixed;left:calc(16px + env(safe-area-inset-left));bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;max-width:calc(100vw - 32px);
+font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#F7F1E8}
+html.show--consent #tll-note,html.show--preferences #tll-note,html.tll-note-hidden #tll-note{display:none !important}
+#tll-note .tll-note-pill{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border:1.5px solid #F7F1E8;border-radius:999px;
+background:#0A0B14;color:#F7F1E8;font:700 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(10,11,20,.35);
+transition:transform 150ms cubic-bezier(.23,1,.32,1),background-color 150ms cubic-bezier(.23,1,.32,1)}
+#tll-note .tll-note-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:#F0507A}
+#tll-note .tll-note-pill:active{transform:scale(.97)}
+#tll-note .tll-note-pill:focus-visible{outline:3px solid #00C9C8;outline-offset:3px}
+@media(hover:hover) and (pointer:fine){#tll-note .tll-note-pill:hover{background:#12141F}}
+#tll-note[data-open="true"] .tll-note-pill{display:none}
+#tll-note .tll-note-card{display:none;width:360px;max-width:100%;max-height:calc(100vh - 32px - env(safe-area-inset-bottom) - env(safe-area-inset-top));overflow:auto;
+background:#0A0B14;border:1px solid #23263c;border-radius:4px;padding:18px;box-shadow:0 12px 32px rgba(10,11,20,.45)}
+#tll-note[data-open="true"] .tll-note-card{display:grid;gap:10px}
+#tll-note .tll-note-eyebrow{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8}
+#tll-note .tll-note-title{font:800 20px/1.15 'Playfair Display',Georgia,serif;color:#F7F1E8;margin:0}
+#tll-note .tll-note-close{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:transparent;color:#F7F1E8;font-size:18px;cursor:pointer;border-radius:50%}
+#tll-note .tll-note-close:focus-visible{outline:3px solid #00C9C8;outline-offset:-3px}
+#tll-note .tll-note-card{position:relative}
+#tll-note .w-form{margin:0}
+#tll-note form{display:grid;gap:10px}
+#tll-note label{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}
+#tll-note textarea,#tll-note input[type=email],#tll-note input[type=text]{width:100%;min-height:48px;padding:12px;border:1.5px solid #23263c;border-radius:4px;background:#12141F;color:#F7F1E8;
+font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;box-sizing:border-box;margin:0}
+#tll-note textarea{min-height:110px;resize:vertical}
+#tll-note textarea:focus,#tll-note input:focus{outline:none;border-color:#00C9C8;box-shadow:0 0 0 3px rgba(0,201,200,.28)}
+#tll-note input[type=submit],#tll-note .w-button{min-height:48px;padding:0 22px;border:0;border-radius:999px;background:#F0507A;color:#0A0B14;font:700 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer;
+transition:transform 150ms cubic-bezier(.23,1,.32,1)}
+#tll-note input[type=submit]:active{transform:scale(.97)}
+#tll-note input[type=submit]:focus-visible{outline:3px solid #00C9C8;outline-offset:3px}
+#tll-note .w-form-done,#tll-note .w-form-fail{margin-top:8px;padding:12px;border-radius:4px;font:400 14px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;text-align:left}
+#tll-note .w-form-done{background:#12141F;color:#F7F1E8;border:1px solid #067A79}
+#tll-note .w-form-fail{background:#12141F;color:#F7F1E8;border:1px solid #D63859}
+@media(prefers-reduced-motion:reduce){#tll-note .tll-note-pill,#tll-note input[type=submit]{transition:none !important}#tll-note .tll-note-pill:active,#tll-note input[type=submit]:active{transform:none !important}}
+</style>
+<script id="tll-note-v1-js">
+/* Tell the editor behavior: open and close, page URL into the hidden field, Escape closes, focus returns to the pill, aria-expanded on the pill. */
+(function(){
+  function run(){
+    var W=document.getElementById('tll-note');if(!W||W.dataset.tllDone)return;W.dataset.tllDone='1';
+    var pill=W.querySelector('.tll-note-pill'),card=W.querySelector('.tll-note-card'),close=W.querySelector('.tll-note-close'),page=W.querySelector('input[name="page"]'),eyebrow=W.querySelector('.tll-note-eyebrow'),ta=W.querySelector('textarea');
+    if(!pill||!card)return;
+    var path=location.pathname.replace(/\/$/,'')||'/';
+    if(page)page.value=location.href.split('#')[0];
+    if(eyebrow)eyebrow.textContent='Tell the editor · '+path.toUpperCase();
+    function open(){W.setAttribute('data-open','true');pill.setAttribute('aria-expanded','true');if(ta)ta.focus();}
+    function shut(){W.setAttribute('data-open','false');pill.setAttribute('aria-expanded','false');pill.focus();}
+    pill.setAttribute('aria-expanded','false');pill.setAttribute('aria-controls',card.id||'tll-note-card');
+    pill.addEventListener('click',open);if(close)close.addEventListener('click',shut);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&W.getAttribute('data-open')==='true')shut();});
+    var old=document.querySelector('.tll-fbk-btn');if(old&&old.parentNode)old.parentNode.removeChild(old);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>

@@ -1,0 +1,44 @@
+<style id="tll-floor-v1">
+/* TLL type floor and tap targets, Packet A (19 Oct 2026, prototype 3.3). 12px minimum on every eyebrow, meta, chip and caption rule that
+   sat at 9 to 11.5px (measured at 390px on the 13 Oct export: 76 runs on home, 62 on /travelers); 44px minimum on footer links, chips and
+   pills. Letter spacing stays. The script below is the safety net for classes this list misses. */
+/* home 3.x */
+.h3-card-tag,.h3-card-meta,.h3-chip,.h3-co,.h3-ey,.h3-sr,.h3-note,.h3-mcard-k,.h3-mcard-f span,.h3-tag-k,.h3-tag-d,.h3-shelf-note,.h3-shelf-note span,
+.h3-shelf-all,.h3-legend span,.h3-pc span,.h3-toggle button,.h3-c7-note,.h3-c5-ph figcaption,.h3-ph figcaption,section[class*="h3"] figcaption,
+.h3-chips button,.h3-ctas span,.h3 b,.h3-in b,.h3-mcard-b b,.h3-flags li,.h3-flags small,.tll-flow-ticker span,
+/* stories, destinations, travelers, paw passport */
+.tll-shelf-chip,.tll-fyp-pill,.tll-filter-label,.tll-filter-chip,.tll-filter-chip-on,.tll-lib-meta,.tll-lib-read,.tll-chip-row a,.tll-chip-row div,
+.tll-trav-meta,.tll-trav-meta-light,.tll-trav-label,.tll-trav-pill,.tll-trav-pill div,.tll-trav-linkchips span,.tll-trav-link,.tll-trav-chips a,
+.tll-fos-label,.tll-tag-owner,.tll-fos-cta,.tll-guide-tag,.tll-paw-ex-lbl,.tll-dest-grid small,.tll-dest-card small,.tll-dest-card div,
+/* story page */
+.tll-story-hero [data-tll-hero-caption],.tll-story-hero .tll-story-meta-row .tll-eyebrow-teal,.tll-story-hero .tll-story-reading-time,.tll-story-hero [data-tll-breadcrumb],
+.tll-reklamelink,#tll-ad-slot-story::before,[data-tll-ad-slot]::before,.st3-author-filed,.st3-trip-k,.st3-trip-n,.st3-trip-by,[data-tll-ledger] .tll-ledger-k,
+[data-tll-ledger] .tll-sl-title,.st3-cc-badge,.st3-cc-count,.tll-story-body>.tll-aeo-box .tll-aeo-eyebrow,[data-tll-links-card]>:first-child,
+.tll-story-share-row .tll-story-share-label,.st3-tw-h,.st3-tw-ini,[data-tll-places] [data-tll-places-label],[data-tll-places] [data-tll-places-note],
+/* nav and footer */
+.tll-nav-anon .tll-btn,.tll-nav a.tll-btn,footer h4,footer [class^="inline-h4"],footer [class^="inline-span"],footer small,.tll-footer-eyebrow,.tll-eyebrow,.tll-eyebrow-teal,.tll-eyebrow-rose,
+small,figcaption{font-size:12px !important}
+/* 44px targets: footer links, chips, pills, small buttons */
+footer a[href],.h3-chip,.h3-chips button,.h3-toggle button,.tll-shelf-chip,.tll-fyp-pill,.tll-filter-chip,.tll-filter-chip-on,.tll-trav-chips a,.tll-fos-cta,.tll-trav-link,
+.tll-story-share-link,[data-tll-place-toggle],.tll-nav-anon .tll-btn,.h3-shelf-all,.tll-lib-read{min-height:44px;display:inline-flex;align-items:center;box-sizing:border-box}
+footer a[href]{padding-top:10px;padding-bottom:10px}
+</style>
+<script id="tll-floor-js-v1">
+/* Safety net for the 12px floor: any visible text run still under 12px after the stylesheet gets 12px inline. Runs once after load.
+   It never touches layout boxes, only font size on the element that holds the text. */
+(function(){
+  function run(){
+    try{
+      var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t,seen=new Set(),n=0;
+      while(t=w.nextNode()){
+        if(!t.nodeValue||!t.nodeValue.trim())continue;var e=t.parentElement;if(!e||seen.has(e))continue;seen.add(e);
+        if(e.closest('script,style,noscript,svg,[data-tll-floor-skip]'))continue;
+        var fs=parseFloat(getComputedStyle(e).fontSize);if(fs&&fs<12){e.style.fontSize='12px';n++;}
+      }
+      document.documentElement.setAttribute('data-tll-floor',String(n));
+    }catch(x){}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+  window.addEventListener('load',run);
+})();
+</script>
