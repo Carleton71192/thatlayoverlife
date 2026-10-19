@@ -1,63 +1,122 @@
-# That Layover Life: what is still open (13 October 2026)
+# That Layover Life: open work and recommendations (19 October 2026)
 
-Built from handoff/STATUS.md (224 rows) and reports/fix-pass-2026-10-12/nancy-afternoon-list.md.
-Every full-site publish pushes all staged edits live, so rows still marked "Staged" in STATUS from before 13 Oct are live now and only need a check.
+For Claude Design's update (functionality, UX, AX, UI, AEO, SEO). Built from handoff/STATUS.md (rows up to S76), the 13 Oct plan (OPEN-TASKS-2026-10-13.md) and Nancy's notes from 19 Oct.
+House rules for any copy or build: STANDING-RULINGS.md.
 
-## 0. Do first: one thing waiting in Webflow, not published
-- **/share-photos simplification is staged in the Designer, unpublished.** New page footer code (styling + form script) and the text changes from the proposal you approved with "go with defaults". Tested offline; not yet reviewed by you. **Do not publish the site until you have looked at /share-photos in the Designer preview**, or tell me to revert it (the old footer code is saved in src/pages/share-photos/v3/state/page-footer.html). Log: src/pages/share-photos/v3/applied/apply-log.md.
-  - Left for you in the Designer: clear the placeholder text on 6 inputs (photos, country, city, year, caption, pets). The new script hides them meanwhile.
+**Live as of 19 Oct 14:05 UTC (nothing waiting in Webflow):** /share-photos simplification, home flags row, Ko-fi buttons on /support, Antarctica's own box on the map, Jay's public profile (/contributors/jay-carleton).
 
-## 1. Your decisions (each one unblocks work)
-1. **Photo uploads probably never arrive.** The /share-photos form sends a plain GET, so files go nowhere. Send one test photo and tell me if it lands. Then pick the upload target: Worker to R2 (recommended), Webflow File Upload (paid form plan), or Uploadcare. EXIF stripping (option A) waits on this too.
-2. **Ko-fi links:** the TLL Ko-fi page and the Paw Passport product. Unhides the buttons and /faq line B.
-3. **Newsletter name:** Gate Change, Window Seat or Long Way Round.
-4. **Your country count:** fix it in the map editor. Add Aruba, Botswana, Curaçao, Faroe Islands, Liechtenstein (all can now be logged). Decide Luxembourg (booked, not visited), Antarctica and New Caledonia (count or not; if yes you are at 89). Magnus: sheet 11, CMS 13, map 14. Which is right?
-5. **Jaguars:** how many did you see (Pantanal story)?
-6. **/submit change log** (reports/fix-pass-2026-10-12/submit-change-log.md): approve rows 1 to 9; do email sign-up inputs count toward the 7?
-7. **/edit-profile proposal** (reports/page-simplify-2026-10-12/edit-profile.md): answer section 6 or say "go with defaults".
-8. **Words left for you:** /terms "doesn't ship" to "doesn't run"; your bio's "Trip Ledger" (Jay's name for it) keep or change; /edit-profile "Log a place to your Trip Ledger" to "Log a place"; draft stories that say "ledger".
-9. **Marathon recap and the Montenegro entry for Magnus:** you don't recognize them. Set both to draft?
-10. **Seven Continents story** may show a false "Reklame" label; **/for-brands** links to charter rule 08, which is not live. Approve rule 08 or remove the link.
-11. **Guides:** check each answer against its source and send the "last checked" date.
-12. **Older open decisions (STATUS I03 to I14):** a real Magnus quote; AMSOC full name and link; headline country base (UN 193, 195 or 250); tier names; how old "layover" map entries migrate; Magnus Denmark and Kosovo; companion purple #7C5CBF; Layover Club price; guide PDF checked against Regulations (EU) 2026/131 and 2026/705; Magnus's real pack friends; a short GDPR review before public travel profiles.
-13. **Feature calls:** Jay's map colors (S08); several flags on multi-country stories (S11); one shared Magnus across your and Jay's accounts (B44, option A recommended); travel companions (B46); "Your reading list." on /account to "Your library."?
+---
 
-## 2. Your clicks (a few minutes each)
-- **Story template:** hosted box (tll-sponsored) > Conditional visibility > "Disclosure is set".
-- **Pillars template:** collection list tllpr-stories > add filter "Pillar equals Current Pillar".
-- **Hero images:** Stories and Countries templates > Image settings > Load: Eager.
-- **Sitemap:** Destinations and Collections templates > Sitemap indexing off.
-- **301 redirects** (Site settings > Publishing): /countries to /destinations, /share to /submit, /gallery to /the-layover-lounge; then the slug flips.
-- **Sitemap and robots.txt** check (Site settings > SEO).
-- **Google:** archive the duplicate GA4 property (grouped under Lub Bub); add a Search Console Domain property, verify by DNS, submit /sitemap.xml; mark the new events as key events.
+## A. Claude Code's list (built or traced by Claude Code; each waits on Nancy's go or answer)
 
-## 3. Live, needs your eyes once
-- /account logged in: LOGGED number, Wrapped, every tab. A sign-in on your phone.
-- Story photos under the right sections: La Tomatina, Morocco, Pantanal. La Tomatina hero faces in frame.
-- /destinations: Denmark, Brazil, France open their own pages; STORY FILED tiles.
-- /the-map#edit: search "Aruba", stamp it, count goes up.
-- New hero photos: Monkeys in Sweaters, Portland to Mayfield Heights, Obrigada F, Ninja Duckies, Cerveja Bandeira.
+### New on 19 Oct
+1. **Home search bar is not responsive.** The field sits right of center and its hint text ("Search a country, a l...") is cut off. Proposed fix: line it up with the text on the left, run it full width, and size the type so the whole hint fits at every width. Needs Nancy's go.
+2. **Home hero buttons.** "Send your trip" and "Send a photo" were removed on 12 Oct (Nancy's go-to-market plan item 6: two hero buttons; the contribution buttons moved to Chapter 02). Nancy now notices them missing. Decision: bring them back or keep two.
+3. **/travelers: Nancy is not listed as an expat.** Her Directory item is correct (expat on, Copenhagen, published 6 Oct). The /travelers page is not reading it. To trace.
+4. **"Schengen Road Trip Echoes" has no photos in the story body**, unlike other stories. Not checked yet: either the item has no inline images (Nancy sends photos) or the template is not placing them.
+5. **Story tagging: other travelers, pets and places (countries, cities, airports and more).** Plan first (see C1). /submit already collects "co-travelers", "pets along", city and country as free text; the Stories collection has no structured fields for them.
+6. **Merge /destinations and /stories.** Nancy likes /destinations but finds it repeats /stories. Plan first (see C2). Any nav change is a proposal for Nancy.
+7. **Jay.**
+   - His /account "View public profile" link still goes to /travelers. It needs custom-slug "jay-carleton" on his Memberstack record (proposed).
+   - His story "Even Brave Boys Get Scared" exists as two drafts. The job: keep one, add the story photo (Nancy is getting it from Jay), link it to his profile, publish.
+   - His profile bio was filled with a placeholder line (the field is required). Nancy may rewrite it.
+8. **New Caledonia on Nancy's map:** keep it or remove it (no answer yet).
 
-## 4. Built or drafted, waiting on a go
-- Fix-first change log, 13 items (S15); one source for counts (S20) follows your count decision.
-- Copy pass change log (S09): reports/copy-pass/2026-10-09-tll-copy-pass.md.
-- Edit profile v3 skin (S16), in the repo only; superseded if you take the /edit-profile proposal.
-- EXIF option A plan (S58).
-- Growth build, design stage proposals: reports/growth-build/design/.
+### Carried over from 13 Oct, still open
+9. **Photo uploads on /share-photos go nowhere.** The form sends a plain GET, so files never arrive. Pick an upload target: Worker to R2 (recommended), Webflow File Upload (paid form plan) or Uploadcare. EXIF stripping (S58, option A) waits on this.
+10. **Ko-fi:**
+    - the Paw Passport product link (none exists yet)
+    - the /faq line B wording
+    - "Join on Ko-fi" needs a Ko-fi membership set up, or should be hidden
+11. **One source for counts (S20):**
+    - Public profiles show a typed CMS number to visitors. Nancy's says 88, while her map gives 89 plus Antarctica.
+    - Her short and long bios also say "88 countries".
+    - The site footer says 47 countries with stories; the home flags row shows 53. To reconcile.
+12. **Change logs waiting on approval:**
+    - fix-first pass (S15)
+    - copy pass (S09)
+    - /submit rows 1 to 9
+    - /edit-profile proposal (S65)
+    - EXIF plan (S58)
+    - growth build design proposals (S56; reports/growth-build/design/)
+13. **Decisions from 13 Oct with no answer on record:**
+    - newsletter name (Gate Change, Window Seat or Long Way Round)
+    - jaguar count for the Pantanal story
+    - Marathon recap and the Montenegro entry for Magnus (S25)
+    - Magnus's country count (sheet 11, CMS 13, map 14)
+    - the "Reklame" label on the Seven Continents story
+    - /for-brands link to charter rule 08
+    - guides "last checked" date
+    - Jay's map colors (S08)
+    - several flags on multi-country stories (S11)
+    - one shared Magnus across Nancy's and Jay's accounts
+    - travel companions
+    - the older STATUS I03 to I14 list
 
-## 5. Bigger builds, not started
-- Share cards and public travel pages /p/ (G01 to G16): blocked on public storage and the GDPR review.
-- The Pack on the Paw Passport (H01 to H04).
-- Traveler directory /expats, /creators, /press, /press-trips (C01 to C18): partly built, pages still drafts.
-- Readymag-style long scroll (R01): waiting on your new design.
-- Sticker Passport and Colophon pages (J16).
+    Some may have been settled outside this log. Confirm before acting.
 
-## 6. Prototype match check (good job for Claude Design)
-STATUS rows A01 to J16 compare the live site to the 2.0 prototype: about 145 are "Partial" or "TODO". Most need a look, not a build: brand rules (A), every screen (B), directory (C), story extras (D), money pages (E), gates (F), share cards (G), pack (H), accessibility and craft (J).
+## B. Designer clicks (Nancy, or Claude Design guiding her)
+- /share-photos:
+  - clear the placeholder text on 6 inputs (photos, country, city, year, caption, pets)
+  - set the accepted file types on the photo input
+- Story template: hosted box (tll-sponsored) > Conditional visibility > "Disclosure is set".
+- Pillars template: collection list tllpr-stories > filter "Pillar equals Current Pillar".
+- Stories and Countries templates: hero image Load: Eager.
+- Destinations and Collections templates: Sitemap indexing off.
+- 301 redirects (Site settings > Publishing), then flip the slugs:
+  - /countries to /destinations
+  - /share to /submit
+  - /gallery to /the-layover-lounge
+- Google:
+  - archive the duplicate GA4 property (it is grouped under Lub Bub)
+  - add a Search Console Domain property, verify it by DNS and submit /sitemap.xml
+  - mark the new events as key events
 
-**Prompt for Claude Design** (upload this file, STANDING-RULINGS.md and the v3 folder):
-> Compare the live site thatlayover.life with TLL Site Prototype 3.0, screen by screen. For each screen say matched, close, or not matched, and list what differs. Use OPEN-TASKS.md section 6 and handoff/STATUS.md rows B00 to B41 as the screen list. Then turn sections 1 to 5 into a one-week action plan with my decisions first.
+## C. Recommendations from Claude Code
 
-## Housekeeping
-- STATUS still labels about 22 rows "Staged" (S01 to S59) that went live in the 12 Oct publishes. Relabel when convenient.
-- A partial site export started today is in handoff/claude-design-source/webflow-export-2026-10-13 (stylesheets, components, CMS samples, one page). Stopped to save your usage; not needed for this plan.
+### Functionality
+1. **Link stories to people and places by reference, not by name text.**
+   - Today the profile story list and the home map match bylines as text. That broke on upper-case bylines and cannot see co-travelers.
+   - Add these Story fields:
+     - Author (reference to Contributors)
+     - Travelers (multi-reference to Contributors)
+     - Pets (multi-reference to the pets collection)
+     - Countries (multi-reference)
+     - Cities and Airports (multi-reference; new collections or the existing map lists)
+   - /submit maps its existing answers into these fields.
+   - One change unlocks tagging (A5), profile story lists, pet pages, destination pages and the home map.
+2. **One library, not two (A6).**
+   - /stories becomes the single library: a flags or map strip at the top, then filters (country, theme, traveler, pet).
+   - Country pages (/destinations/{country}) stay as country hubs, because they are the best search landing pages.
+   - The /destinations index redirects (301) to /stories with that country filter, or the reverse.
+   - The nav change needs Nancy's OK.
+3. **Counts from one place.**
+   - The map data is the source.
+   - Profile count fields are written from it, never typed.
+   - Bios avoid numbers so they cannot go stale.
+   - Places out of 249 include Antarctica. Numbers labeled "countries" do not, and add "+ Antarctica".
+4. **Finish the upload path before promoting /share-photos (A9).**
+5. **Map editor:** adding or renaming a traveler uses browser pop-ups. An inline form would be clearer on phones and for screen readers.
+
+### UX and UI
+6. Home search bar and hero buttons (A1, A2).
+7. **Thin profiles.** Jay's profile shows what a new member looks like: placeholder bio, no stories, few stats. Design the empty and partial states (what shows, what hides, one clear next step such as "Log your first place").
+8. **Profile badges and categories.** Badge (Contributor, Frequent, Editor, Founder) and Traveler Category (Nomad, Expat, Press, Friend, Founder) overlap. Pick one visible label per profile.
+
+### AX (agents) and SEO/AEO
+9. **Facts drawn by JavaScript are invisible to crawlers and AI agents.** That covers the home flags row, the profile story list (fetched from /stories after load) and the counters. Use CMS-bound lists where possible (C1 makes this possible), so names, places and counts sit in the page HTML.
+10. Finish the redirects and sitemap settings in section B. Connect Search Console; it is the biggest data gap.
+11. **Country hubs as answer pages:**
+    - a question-style intro with a short direct answer
+    - FAQ structured data with sources
+    - links in from stories that mention the country
+12. Check that robots.txt allows the AI crawlers: GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot and Google-Extended. Keep Organization structured data on the home page; profiles already add Person sameAs links.
+
+### Accessibility
+13. Keep 44px touch targets, visible focus outlines and reduced-motion rules on every new piece. Check that emoji in labels (the paw on pet names) read well on screen readers.
+
+### Maintenance and cost
+14. The map editor (45 KB) and the account page (41 KB) each live in one large inline code block. Every small edit re-sends the whole block, which is slow, uses a lot of tokens and risks typos. Moving them to versioned script files would make edits small. This adds new scripts, so it needs Nancy's OK first.
+
+## D. Prompt for Claude Design
+> Use OPEN-TASKS.md (this file), STANDING-RULINGS.md and the v3 folder. Design the update for functionality, UX, AX, UI, AEO and SEO. Start with C1 (stories linked to people and places) and C2 (one library), because tagging, the merge, profiles and the map all depend on them. Show each screen that changes, with its empty and partial states, and list the CMS fields it needs. Keep the TLL brand kit, WCAG 2.1 AA, visible focus and reduced motion. Copy rules: US spelling, no em dashes, no exclamation marks.
