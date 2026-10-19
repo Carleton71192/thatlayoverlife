@@ -1,0 +1,21 @@
+name = "tll-worker"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Secrets are never stored in this file. Set each one with `wrangler secret put <NAME>`:
+#   ANTHROPIC_API_KEY
+#   MEMBERSTACK_SECRET_KEY
+#   WEBFLOW_API_TOKEN
+
+[[kv_namespaces]]
+binding = "TLL_KV"
+id = "<fill after wrangler kv namespace create TLL_KV>"
+
+[vars]
+SITE_ORIGINS = "https://www.thatlayover.life,https://thatlayover.life"
+WEBFLOW_SITE_ID = "69d6145cf421c777840c1e25"
+STORIES_COLLECTION = "6a0b29eddc14f1444e935760"
+CONTRIBUTORS_COLLECTION = "6a0b29c7a7b1840afe9390a5"
+THEMES_COLLECTION = "6a0c7e883607a3b091e1ae20"
+PILLARS_COLLECTION = "6a0b29c6d081332e921900ff"
+PLACES_COLLECTION = "6a0b29c702602326705dcfb1"
