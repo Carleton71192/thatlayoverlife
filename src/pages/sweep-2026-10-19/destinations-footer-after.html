@@ -1,0 +1,25 @@
+<script>
+/* tll-atlas-v1 (2026-09-29, screen 40): renders every country by flag from the ISO list behind the Countries collection (names via Intl.DisplayNames, slugs via the same alias table as the expats finder), marks the countries that have a story card on this page as STORY FILED, and rewrites the lede and the section heading with computed counts. Nothing hardcoded. */
+(function(){
+  if(window.__tllAtlas) return; window.__tllAtlas=1;
+  var CODES="AD,AE,AF,AG,AL,AM,AO,AR,AT,AU,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BN,BO,BR,BS,BT,BW,BY,BZ,CA,CD,CF,CG,CH,CI,CL,CM,CN,CO,CR,CU,CV,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,ER,ES,ET,FI,FJ,FM,FR,GA,GB,GD,GE,GH,GM,GN,GQ,GR,GT,GW,GY,HN,HR,HT,HU,ID,IE,IL,IN,IQ,IR,IS,IT,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MG,MH,MK,ML,MM,MN,MR,MT,MU,MV,MW,MX,MY,MZ,NA,NE,NG,NI,NL,NO,NP,NR,NZ,OM,PA,PE,PG,PH,PK,PL,PS,PT,PW,PY,QA,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SI,SK,SL,SM,SN,SO,SR,SS,ST,SV,SY,SZ,TD,TG,TH,TJ,TL,TM,TN,TO,TR,TT,TV,TZ,UA,UG,US,UY,UZ,VA,VC,VE,VN,VU,WS,YE,ZA,ZM,ZW".split(",");
+  var SLUG={TR:"turkiye",MM:"myanmar",PS:"palestine",CD:"dr-congo",CG:"republic-of-the-congo",CI:"ivory-coast",CV:"cape-verde",FM:"micronesia",SZ:"eswatini",GB:"united-kingdom",US:"united-states",VA:"vatican-city",ST:"sao-tome-and-principe",TL:"timor-leste",KN:"saint-kitts-and-nevis",LC:"saint-lucia",VC:"saint-vincent-and-the-grenadines",AE:"united-arab-emirates",BA:"bosnia-and-herzegovina",TT:"trinidad-and-tobago",GW:"guinea-bissau",GQ:"equatorial-guinea",KP:"north-korea",KR:"south-korea",MK:"north-macedonia",CZ:"czechia",LA:"laos",SY:"syria",VN:"vietnam",RU:"russia",IR:"iran",BO:"bolivia",BN:"brunei",MD:"moldova",TZ:"tanzania"};
+  var dn; try{dn=new Intl.DisplayNames(["en"],{type:"region"});}catch(e){}
+  function name(c){ try{ var n=dn&&dn.of(c); if(n&&n!==c) return n; }catch(e){} return c; }
+  function norm(s){ return String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,' ').trim(); }
+  function slugOf(c){ return SLUG[c]||norm(name(c)).replace(/ /g,'-'); }
+  function flag(c){ return c.replace(/./g,function(ch){return String.fromCodePoint(127397+ch.charCodeAt(0));}); }
+  function unflag(s){ var m=String(s||'').match(/[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/); if(!m) return ''; var cps=Array.from(m[0]).map(function(ch){return ch.codePointAt(0)-127397;}); return String.fromCharCode(cps[0],cps[1]); }
+  function boot(){
+    var cards=[].slice.call(document.querySelectorAll('.tlldx-card:not(.tlldx-card-open)'));
+    var filed={}; cards.forEach(function(c){ var f=c.querySelector('.tlldx-flag'); var code=unflag(f&&f.textContent); if(code) filed[code]=1; });
+    var nStories=cards.length, nFiled=Object.keys(filed).length, total=CODES.length, rest=total-nFiled;
+    var grid=document.querySelector('[data-tll-atlas=grid]');
+    if(grid){ grid.innerHTML=''; CODES.map(function(c){return {c:c,n:name(c)};}).sort(function(a,b){return a.n.localeCompare(b.n);}).forEach(function(it){ var li=document.createElement('li'); var a=document.createElement('a'); a.href='/countries/'+slugOf(it.c); if(filed[it.c]) a.setAttribute('data-tll-filed','1'); var i=document.createElement('i'); i.textContent=flag(it.c); i.setAttribute('aria-hidden','true'); var d=document.createElement('div'); var b=document.createElement('b'); b.textContent=it.n; var s=document.createElement('small'); s.textContent=filed[it.c]?'HAS A STORY':'OPEN'; d.appendChild(b); d.appendChild(s); a.appendChild(i); a.appendChild(d); li.appendChild(a); grid.appendChild(li); }); }
+    var k=document.querySelector('[data-tll-atlas=kicker]'); if(k) k.textContent='EVERY COUNTRY · BY FLAG · '+total;
+    var sub=document.querySelector('.tlldx-sub'); if(sub){ sub.textContent=''; sub.appendChild(document.createTextNode('Countries with a published story: '+nFiled+'. The other '+rest+' are open until someone files. ')); var j=document.createElement('a'); j.href='#atlas-all'; j.setAttribute('data-tll-atlas','jump'); j.textContent='Jump to every country by flag'; sub.appendChild(j); sub.appendChild(document.createTextNode('.')); }
+    var h2=document.querySelector('.tlldx-h2'); if(h2&&nFiled){ var em=h2.querySelector('em'); h2.textContent=''; h2.appendChild(document.createTextNode(nFiled+(nFiled===1?' country, ':' countries, ')+nStories+' ')); var e2=document.createElement('em'); e2.className=em?em.className:'tlldx-accent2'; e2.textContent=nStories===1?'story':'stories'; h2.appendChild(e2); h2.appendChild(document.createTextNode('.')); }
+  }
+  if(document.readyState!=='loading') boot(); else document.addEventListener('DOMContentLoaded',boot);
+})();
+</script>

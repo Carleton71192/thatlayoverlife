@@ -1,0 +1,99 @@
+<section class="h3 h3-sec h3-dark" aria-labelledby="h3-c4-t" data-h3-map-sec>
+<div class="h3-in">
+<p class="h3-ey">Chapter 04 · The map, with receipts</p>
+<h2 id="h3-c4-t" class="h3-title-l">Every place you have been, <em>in one spot.</em></h2>
+<p class="h3-lede">Countries, cities, airports, parks, marathons, and other evidence that someone has been leaving the house.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-rose" href="/the-map">Build your map →</a></div>
+<div class="h3-toggle" role="group" aria-label="Which map"><button type="button" aria-pressed="true" data-h3-mode="filed">Stories</button><button type="button" aria-pressed="false" data-h3-mode="mine">My passport</button></div>
+<div class="h3-c4-grid">
+<div>
+<div class="h3-map" data-h3-map role="img" aria-label="World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map."></div>
+<p class="h3-legend"><span><i></i>A story lives here</span><span><i class="o"></i>Open, be the first</span><span data-h3-ata hidden>Antarctica benched from the drawing, story listed below</span></p>
+</div>
+<aside class="h3-mcard" aria-live="polite" data-h3-mcard hidden><img alt="" data-h3-mc-img loading="lazy"><div class="h3-mcard-b"><p class="h3-mcard-k" data-h3-mc-k></p><p class="h3-mcard-t" data-h3-mc-t></p><div class="h3-mcard-f"><a class="h3-btn h3-btn-ink" data-h3-mc-a href="/stories">Read it →</a><span data-h3-mc-n></span></div></div></aside>
+</div>
+<div class="h3-filed"><ul data-h3-filed><li>Stories from</li></ul><a class="h3-open" href="/submit" data-h3-open></a></div>
+<ul class="h3-gets" aria-label="What a free profile gives you">
+<li><b>01 · Your map</b><span>Every country, marked lived, stayed, or layover only. Layovers are counted apart.</span></li>
+<li><b>02 · Your lists</b><span>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites and marathons.</span></li>
+<li><b>03 · Your pets</b><span>Add a pet as a traveler and they get their own stamps and Paw Passport page.</span></li>
+<li><b>04 · Your page</b><span>Your stories, links and places on one public page you can switch on or off.</span></li>
+<li><b>05 · Your year</b><span>Layover Wrapped, a short recap you can share or keep to yourself.</span></li>
+</ul>
+</div>
+</section>
+<style id="h3-flags-css">
+/* 2026-10-19: "Filed from" is a row of circle flags, one per country with a story, A to Z (Nancy: "This list of countries should just be flag icons. It is way too busy. Maybe alphabetical?"). */
+.h3-filed ul[data-h3-filed]{gap:4px}
+.h3-filed ul[data-h3-filed] li:first-child{margin-right:10px}
+.h3-filed button.h3-flag{display:block;width:44px;height:44px;padding:6px;border:0;border-radius:50%;background:none;line-height:0;text-decoration:none;cursor:pointer;color:var(--h3-cream);font:600 11px/1 var(--h3-mono);transition:transform .16s var(--h3-ease)}
+.h3-flag img{display:block;width:32px;height:32px;border-radius:50%;box-shadow:0 0 0 1px rgba(247,241,232,.22);transition:box-shadow .16s var(--h3-ease)}
+.h3-flag.is-on img{box-shadow:0 0 0 2px var(--h3-ink),0 0 0 4px var(--h3-rose)}
+.h3-filed button.h3-flag:focus-visible{outline:2px solid var(--h3-teal);outline-offset:1px}
+.h3-filed button.h3-flag:active{transform:scale(.96)}
+@media (hover:hover){.h3-flag:hover img{box-shadow:0 0 0 2px var(--h3-ink),0 0 0 4px var(--h3-rose)}.h3-filed button.h3-flag:hover{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.h3-filed button.h3-flag,.h3-flag img{transition:none}.h3-filed button.h3-flag:hover,.h3-filed button.h3-flag:active{transform:none}}
+</style>
+<script id="h3-map-js">
+/* Home 3.0 map. Rose = countries with a published story (from the shelf data, so it follows the CMS). "My passport" colours the
+   signed-in member's own countries from tllStates (read only). Libraries load only when the section nears the screen.
+   2026-10-19: story locations are read into country codes the same way as the card flags (tllflagsv53), so the
+   "Filed from" row shows one circle flag per country, A to Z, and the map colours by country code (it used to match
+   names letter for letter, so upper-case bylines such as "MEXICO" or "TANZANIA" stayed grey). */
+(function(){var sec=document.querySelector('[data-h3-map-sec]');if(!sec||sec.__h3)return;sec.__h3=1;
+var box=sec.querySelector('[data-h3-map]'),card=sec.querySelector('[data-h3-mcard]'),list=sec.querySelector('[data-h3-filed]'),open=sec.querySelector('[data-h3-open]'),ata=sec.querySelector('[data-h3-ata]');
+var DEN=249,stories=[],byCode={},codes=[],filedId={},feats=null,svg=null,mode='filed',mine=null;
+var CDN='https://cdn.jsdelivr.net/npm/';
+var FB='https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba',FJ='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/',FH={mx:'209779fdd6acfa9a5b57',cl:'2096310af94e01eb9a06',ar:'209d0b20448acd7ab45d',me:'2098bc9469648f2dd31d',gh:'20853c5a2a7f5f712e62',aq:'209b6b8ff3588d0d3677',bg:'2095d472a995a4b681fe',dk:'abea6aa280006821dd68'};
+var A2N={},AS='AD020AE784AF004AG028AI660AL008AM051AO024AQ010AR032AS016AT040AU036AW533AX248AZ031BA070BB052BD050BE056BF854BG100BH048BI108BJ204BL652BM060BN096BO068BQ535BR076BS044BT064BV074BW072BY112BZ084CA124CC166CD180CF140CG178CH756CI384CK184CL152CM120CN156CO170CR188CU192CV132CW531CX162CY196CZ203DE276DJ262DK208DM212DO214DZ012EC218EE233EG818EH732ER232ES724ET231FI246FJ242FK238FM583FO234FR250GA266GB826GD308GE268GF254GG831GH288GI292GL304GM270GN324GP312GQ226GR300GS239GT320GU316GW624GY328HK344HM334HN340HR191HT332HU348ID360IE372IL376IM833IN356IO086IQ368IR364IS352IT380JE832JM388JO400JP392KE404KG417KH116KI296KM174KN659KP408KR410KW414KY136KZ398LA418LB422LC662LI438LK144LR430LS426LT440LU442LV428LY434MA504MC492MD498ME499MF663MG450MH584MK807ML466MM104MN496MO446MP580MQ474MR478MS500MT470MU480MV462MW454MX484MY458MZ508NA516NC540NE562NF574NG566NI558NL528NO578NP524NR520NU570NZ554OM512PA591PE604PF258PG598PH608PK586PL616PM666PN612PR630PS275PT620PW585PY600QA634RE638RO642RS688RU643RW646SA682SB090SC690SD729SE752SG702SH654SI705SJ744SK703SL694SM674SN686SO706SR740SS728ST678SV222SX534SY760SZ748TC796TD148TF260TG768TH764TJ762TK772TL626TM795TN788TO776TR792TT780TV798TW158TZ834UA804UG800UM581US840UY858UZ860VA336VC670VE862VG092VI850VN704VU548WF876WS882XK900YE887YT175ZA710ZM894ZW716';for(var x=0;x<AS.length;x+=5)A2N[AS.substr(x,2).toLowerCase()]=AS.substr(x+2,3);
+var AL={usa:'us',oregon:'us',maine:'us','texas hill country':'us',dubai:'ae','sao paulo':'br','ho chi minh city':'vn',copenhagen:'dk',hanoi:'vn',bangkok:'th',phuket:'th',turkiye:'tr',turkey:'tr',balkans:'dk pl cz sk at hu si rs xk al mk bg','seven continents':'us br aq ie dk vn nz za'},NM=null,DN=null;
+function z(s){return(''+s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
+function dn(){if(DN===null){try{DN=new Intl.DisplayNames('en',{type:'region'});}catch(e){DN=false;}}return DN;}
+function nm(){if(!NM){NM={};for(var k in AL)NM[k]=AL[k];var d=dn();if(d)for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n='';try{n=d.of(c);}catch(e){}if(n&&n!=c&&!/^(AN|BU|CS|DD|NH|RH|VD|YD)$/.test(c)&&!NM[z(n)])NM[z(n)]=c.toLowerCase();}}return NM;}
+function q(s){return nm()[z(s)]||'';}
+function codesOf(t){var w=nm()[z(t).replace(/\band\b/g,' ').replace(/\s+/g,' ').trim()];if(w)return w.split(' ');
+ var p=(t||'').split(/,| and | & | to |\//i),o=[],all=1;p.forEach(function(s){if(!z(s))return;var c=q(s);if(c)c.split(' ').forEach(function(k){if(o.indexOf(k)<0)o.push(k);});else all=0;});
+ return all&&o.length?o:(q(p[p.length-1])||'').split(' ').filter(String);}
+function cname(c){var d=dn(),n='';try{n=d?d.of(c.toUpperCase()):'';}catch(e){}return n&&n.toUpperCase()!==c.toUpperCase()?n:c.toUpperCase();}
+function mark(cc,s){[].forEach.call(list.querySelectorAll('.h3-flag'),function(f){var k=f.getAttribute('data-cc');f.classList.toggle('is-on',cc?k===cc:s.cc.indexOf(k)>=0);});}
+function show(i,cc){var s=stories[i];if(!s)return;card.hidden=false;sec.querySelector('[data-h3-mc-img]').src=s.img;sec.querySelector('[data-h3-mc-img]').alt=s.alt;
+ sec.querySelector('[data-h3-mc-k]').textContent='From '+s.loc+(s.mins?' · '+s.mins+' min':'');sec.querySelector('[data-h3-mc-t]').textContent=s.title;
+ sec.querySelector('[data-h3-mc-a]').href=s.href;sec.querySelector('[data-h3-mc-a]').setAttribute('aria-label','Read it: '+s.title);sec.querySelector('[data-h3-mc-n]').textContent='Story '+(i+1)+' of '+stories.length;
+ mark(cc,s);
+ if(svg){[].forEach.call(svg.querySelectorAll('path.is-on'),function(p){p.classList.remove('is-on');});s.cc.forEach(function(c){var p=A2N[c]&&svg.querySelector('path[data-id="'+A2N[c]+'"]');if(p)p.classList.add('is-on');});}}
+function build(){stories=(window.tllHomeStories||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});if(!stories.length)return;
+ byCode={};filedId={};stories.forEach(function(s,i){s.cc=codesOf(s.loc);s.cc.forEach(function(c){(byCode[c]=byCode[c]||[]).push(i);});});
+ codes=Object.keys(byCode).map(function(c){if(A2N[c])filedId[A2N[c]]=c;return {c:c,n:cname(c)};}).sort(function(a,b){return a.n.localeCompare(b.n,'en');});
+ [].slice.call(list.querySelectorAll('li+li')).forEach(function(li){li.remove();});
+ codes.forEach(function(o){var li=document.createElement('li'),b=document.createElement('button'),im=document.createElement('img'),arr=byCode[o.c],step=0;
+  b.type='button';b.className='h3-flag';b.setAttribute('data-cc',o.c);b.title=o.n;b.setAttribute('aria-label',o.n+', '+arr.length+(arr.length>1?' stories':' story'));
+  im.src=FH[o.c]?FB+FH[o.c]+'_flag-'+o.c+'.svg':FJ+o.c+'.svg';im.alt='';im.width=32;im.height=32;im.loading='lazy';im.decoding='async';
+  im.onerror=function(){b.textContent=o.c.toUpperCase();};b.appendChild(im);
+  b.addEventListener('click',function(){show(arr[step%arr.length],o.c);step++;});b.addEventListener('mouseenter',function(){show(arr[0],o.c);});b.addEventListener('focus',function(){show(arr[0],o.c);});
+  li.appendChild(b);list.appendChild(li);});
+ list.setAttribute('aria-label','Countries with a story, A to Z');
+ counts();paint();show(0);}
+function counts(){var n=codes.filter(function(o){return A2N[o.c];}).length;open.textContent=n?(DEN-n)+' countries still open. Claim one →':'';ata.hidden=!byCode.aq;}
+function paint(){if(!svg)return;[].forEach.call(svg.querySelectorAll('path'),function(p){var id=p.getAttribute('data-id');
+ p.classList.toggle('is-filed',mode==='filed'&&!!filedId[id]);p.classList.toggle('is-mine',mode==='mine'&&!!mine&&!!mine[id]);});
+ var msg=box.querySelector('.h3-map-msg');if(msg)msg.remove();
+ if(mode==='mine'&&!mine){var m=document.createElement('p');m.className='h3-map-msg';m.innerHTML='This is your map once you join. Free to join. <a href="/signup">Start your map →</a>';box.appendChild(m);}}
+function hit(e){var id=e.target.getAttribute&&e.target.getAttribute('data-id'),c=filedId[id];if(mode==='filed'&&c)show(byCode[c][0],c);}
+function draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;var FIXID={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};all.forEach(function(f){if(f.id==null&&FIXID[f.properties.name])f.id=FIXID[f.properties.name];});feats=all.filter(function(f){return f.id!=='010';});
+ var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj);
+ var ns='http://www.w3.org/2000/svg';svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+ feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-n',f.properties.name);p.setAttribute('data-id',f.id);svg.appendChild(p);});
+ svg.addEventListener('mouseover',hit);svg.addEventListener('click',hit);
+ box.appendChild(svg);counts();paint();}
+function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}
+function boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),
+ fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}
+function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
+ ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(j){var d=j&&j.data&&j.data.tllStates;if(!d||!d.states)return;
+  var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1';mine={};Object.keys(d.states).forEach(function(c){var e=d.states[c],v=e&&typeof e==='object'?e[id]:e;if(v&&v!=='airside')mine[c==='undefined'?'900':c]=1;});paint();});}).catch(function(){});},250);}
+sec.querySelector('.h3-toggle').addEventListener('click',function(e){var b=e.target.closest('[data-h3-mode]');if(!b)return;mode=b.getAttribute('data-h3-mode');
+ [].forEach.call(sec.querySelectorAll('[data-h3-mode]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});box.setAttribute('aria-label',mode==='mine'?'World map of your own countries, shown in teal.':'World map. Countries with a story on That Layover Life are shown in rose. The same countries are listed below the map.');paint();});
+document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();boot();}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
+})();
+</script>
