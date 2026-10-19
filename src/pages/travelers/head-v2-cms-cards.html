@@ -1,0 +1,68 @@
+<link rel="canonical" href="https://www.thatlayover.life/travelers">
+<style id="tll-fyp-h6-v1">.tll-fyp-label h6{font:inherit;margin:0;color:inherit;letter-spacing:inherit;text-transform:inherit}</style>
+<style id="tll-v9-tags-v1">
+/* v9 J14 (6 Oct 2026): luggage-tag people cards on /travelers (DESIGN-SPEC-v9 §4). The founder tag is Ink, rotated -0.6°; the open slot is a Paper
+   tag with a dashed inset, rotated 0.8°. Grommet and PROPERTY OF row are pseudo-elements; the shadow sits on a wrapper the script adds, because
+   clip-path clips box-shadow. One open slot per grid until the roster has three real people (COUNCIL-REVIEW decision). Additive: no card removed. */
+[data-tll-travelers="v2"] .tll-trav-card-dark,[data-tll-travelers="v2"] .tll-fos-card-open{position:relative;box-sizing:border-box;height:100%;padding:84px 24px 24px !important;border-radius:0 !important;clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%,0 24px);box-shadow:none !important}
+[data-tll-travelers="v2"] .tll-trav-card-dark{background:#0A0B14 !important;color:#F7F1E8}
+[data-tll-travelers="v2"] .tll-fos-card-open{background:#FDF9F3 !important;outline:2px dashed #c9b89a;outline-offset:-14px;border:0 !important}
+[data-tll-travelers="v2"] .tll-trav-card-dark::before,[data-tll-travelers="v2"] .tll-fos-card-open::before{content:"";position:absolute;top:18px;left:50%;margin-left:-10px;width:20px;height:20px;border-radius:50%;background:#F7F1E8;box-shadow:inset 0 0 0 4px #c9b89a;pointer-events:none}
+[data-tll-travelers="v2"] .tll-trav-card-dark::after,[data-tll-travelers="v2"] .tll-fos-card-open::after{content:"PROPERTY OF";position:absolute;top:50px;left:24px;right:24px;padding-top:8px;border-top:1.5px dashed #2b2f52;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;font-weight:600;color:#9496AC;pointer-events:none}
+[data-tll-travelers="v2"] .tll-fos-card-open::after{border-top-color:#c9b89a;color:#6B6660}
+[data-tll-travelers="v2"] .tll-tag-owner{position:absolute;top:58px;right:24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;font-weight:600;color:#9496AC;pointer-events:none}
+[data-tll-travelers="v2"] .tll-fos-card-open .tll-tag-owner{color:#6B6660}
+.tll-tag-wrap{filter:drop-shadow(0 14px 26px rgba(10,11,20,.18));display:block;height:100%}
+.tll-tag-wrap[data-tag="founder"]{transform:rotate(-.6deg)}
+.tll-tag-wrap[data-tag="open"]{transform:rotate(.8deg)}
+[data-tll-travelers="v2"] .tll-trav-grid{align-items:stretch;gap:18px}
+@media(prefers-reduced-motion:reduce){.tll-tag-wrap{transform:none}}
+</style>
+<script id="tll-v9-tags-js-v1">
+(function(){
+  function run(){
+    var S=document.querySelector('[data-tll-travelers="v2"]');if(!S)return;
+    [].forEach.call(S.querySelectorAll('.tll-trav-card-dark,.tll-fos-card-open'),function(card){
+      if(card.closest('.tll-tag-wrap'))return;
+      var w=document.createElement('div');w.className='tll-tag-wrap';w.setAttribute('data-tag',card.classList.contains('tll-fos-card-open')?'open':'founder');
+      card.parentNode.insertBefore(w,card);w.appendChild(card);
+      var o=document.createElement('span');o.className='tll-tag-owner';o.setAttribute('aria-hidden','true');o.textContent='TLL TRAVELER';card.appendChild(o);
+    });
+  }
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
+<style id="tll-v9-b04-hero-v1">
+/* v9 B04 (6 Oct 2026, 2.0 parity for /travelers, DRAFT): screen 06 opens on a Cream hero under the Departures board (eyebrow THE TRAVELERS in
+   #067A79, Ink title with the rose italic, muted lede), not the Ink hero that shipped in September. CSS only on the existing section. */
+.tll-travelers-hero{background:#F7F1E8 !important;color:#0A0B14 !important;padding-top:10vh !important;padding-bottom:6vh !important}
+.tll-travelers-hero .tll-eyebrow-teal{color:#067A79 !important}
+.tll-travelers-hero .tll-travelers-title{color:#0A0B14 !important;max-width:14ch}
+.tll-travelers-hero .tll-travelers-sub{color:#6B6660 !important;font-size:15px !important;max-width:60ch}
+</style>
+<style id="tll-trav-cms-cards-v1">
+/* 19 Oct 2026: cards that come from the CMS on /travelers. Location experts = Directory items with Is expat on (card shown only then);
+   The travelers = every Contributors profile except the founder, who has her own card. Both lists sit inside the existing grids. */
+[data-tll-cms-cards],[data-tll-cms-cards]>.w-dyn-items{display:contents}
+[data-tll-cms-cards] .w-dyn-item:empty,[data-tll-cms-cards] .tll-trav-pill:empty{display:none}
+[data-tll-cms-cards] .tll-trav-row{flex-wrap:wrap}
+</style>
+<script id="tll-trav-cms-cards-js-v1">
+(function(){
+  function run(){
+    var D=document;
+    [].forEach.call(D.querySelectorAll('[data-tll-cms-cards] [data-tll-trav-card]'),function(a){
+      var item=a.closest('.w-dyn-item')||a, kind=a.getAttribute('data-tll-trav-card');
+      if(kind==='traveler'&&(a.getAttribute('data-badge')||'').trim()==='Founder'){item.style.display='none';return;}
+      var s=(a.getAttribute('data-slug')||'').trim(), n=(a.getAttribute('data-name')||'').trim();
+      if(s){a.setAttribute('href','/contributors/'+encodeURIComponent(s));a.setAttribute('aria-label',n+(kind==='expat'?', location expert':'')+'. Open the profile');}
+      else{a.removeAttribute('href');a.querySelectorAll('.tll-trav-link').forEach(function(l){l.style.display='none';});}
+      [].forEach.call(a.querySelectorAll('.tll-trav-pill'),function(p){if(!(p.textContent||'').trim()){p.style.display='none';var l=p.previousElementSibling;if(l&&l.classList.contains('tll-trav-meta'))l.style.display='none';}});
+    });
+    [].forEach.call(D.querySelectorAll('[data-tll-cms-cards] .w-dyn-item'),function(it){if(!it.querySelector('[data-tll-trav-card]'))it.style.display='none';});
+    var g=D.querySelector('[data-tll-roster-grid]');
+    if(g&&![].some.call(g.querySelectorAll('.w-dyn-item'),function(it){return it.style.display!=='none';})){g.style.display='none';var lb=D.querySelector('[data-tll-t="roster-label"]');if(lb)lb.style.display='none';}
+  }
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
