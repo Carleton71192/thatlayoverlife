@@ -64,7 +64,7 @@ export function jwtId(token) {
 
 /**
  * Checks the Bearer token with Memberstack.
- * Returns { memberId } on success, or a Response (401 or 503) to send back.
+ * Returns { memberId, verifiedId } on success, or a Response (401 or 503) to send back.
  */
 export async function verifyMemberToken(request, env, { fetchImpl = fetch } = {}) {
   const match = /^Bearer\s+(\S+)$/i.exec(request.headers.get('Authorization') || '');
@@ -89,9 +89,11 @@ export async function verifyMemberToken(request, env, { fetchImpl = fetch } = {}
   } catch {
     data = null;
   }
-  const memberId = pickId(data) || jwtId(token);
+  // verifiedId is the id in Memberstack's own reply. The owner check (owner-map.js) uses only that one.
+  const verifiedId = pickId(data);
+  const memberId = verifiedId || jwtId(token);
   if (!memberId) return reply({ error: 'Please sign in again.' }, 401);
-  return { memberId };
+  return { memberId, verifiedId };
 }
 
 /** The UTC hour a timestamp falls in, as "2026-10-20T12". */

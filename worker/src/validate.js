@@ -217,3 +217,72 @@ export function readingTime(text) {
     .filter(Boolean).length;
   return Math.max(1, Math.ceil(words / 220));
 }
+
+// ---------------------------------------------------------------------------------------
+// Story text (B2.2 word floor, B2.3 writer copy, B2.2 link check)
+// ---------------------------------------------------------------------------------------
+
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
+
+function decodeEntities(s) {
+  return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, code) => {
+    if (code[0] === "#") {
+      const n = code[1] === "x" || code[1] === "X" ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
+      return Number.isFinite(n) && n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : m;
+    }
+    return ENTITIES[code.toLowerCase()] ?? m;
+  });
+}
+
+/** The story body as plain text: paragraphs become blank lines, <br> a line break, tags go. */
+export function htmlToText(html) {
+  const s = String(html ?? "")
+    .replace(/\r\n?/g, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|h[1-6]|li|blockquote)\s*>/gi, "\n\n")
+    .replace(/<[^>]*>/g, "");
+  return decodeEntities(s)
+    .split("\n")
+    .map((line) => line.replace(/[ \t\u00a0]+/g, " ").trim())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+/** Words in the story, counted on the plain text. A token with no letter or number (a lone dash) is not a word. */
+export function wordCount(html) {
+  return htmlToText(html)
+    .split(/\s+/)
+    .filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+}
+
+/** Every href in the body, entity-decoded, in order, without duplicates. */
+export function bodyHrefs(html) {
+  const out = [];
+  const re = /\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>"']+))/gi;
+  let m;
+  while ((m = re.exec(String(html ?? "")))) {
+    const href = decodeEntities((m[1] ?? m[2] ?? m[3] ?? "").trim());
+    if (href && !out.includes(href)) out.push(href);
+  }
+  return out;
+}
+
+/**
+ * A link the Worker will check: http or https, a public host name (no IP address,
+ * no localhost, no single-label name). Returns the URL string or null.
+ */
+export function publicHttpUrl(href) {
+  let u;
+  try {
+    u = new URL(String(href));
+  } catch {
+    return null;
+  }
+  if (u.protocol !== "https:" && u.protocol !== "http:") return null;
+  if (u.username || u.password) return null;
+  const host = u.hostname.toLowerCase();
+  if (!host.includes(".") || host.startsWith("[") || /^[\d.]+$/.test(host)) return null;
+  if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || host.endsWith(".internal")) return null;
+  return u.href;
+}

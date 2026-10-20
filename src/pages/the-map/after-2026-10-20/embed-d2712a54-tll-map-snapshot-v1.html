@@ -1,4 +1,4 @@
-<!-- tll-map-snapshot-v1 (Packet C row C1.1, 20 October 2026). Worker base URL goes in data-worker on [data-tll-map-snapshot] after the Worker deploys. -->
+<!-- tll-map-snapshot-v1 (Packet C row C1.1, 20 October 2026; beta B3.7: the body also carries the saved states, which the Worker keeps only for the site owner as the visitors' map). Worker base URL goes in data-worker on [data-tll-map-snapshot] after the Worker deploys. -->
 <script id="tll-map-snapshot-v1">
 (function(){
   if(window.__tllSnap) return; window.__tllSnap=1;
@@ -32,7 +32,7 @@
     if(!tok) return;
     var body=bodyOf(states,t); if(!body) return;
     try{
-      fetch(W+'/map-snapshot',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+tok},body:JSON.stringify(body),keepalive:true})
+      fetch(W+'/map-snapshot',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+tok},body:JSON.stringify({snapshot:body,states:states}),keepalive:true})
         .then(function(r){ if(r&&r.ok){ try{ window.dispatchEvent(new CustomEvent('tll:snapshot',{detail:body})); }catch(e){} } })
         .catch(function(){});
     }catch(e){}

@@ -329,6 +329,7 @@ npm run tail                     # watch the cron runs
 | `src/profile-save.js` | POST /profile/save, the /edit-profile autosave |
 | `src/map-snapshot.js` | POST /map-snapshot, the count snapshot from /the-map |
 | `src/member-auth.js` | Memberstack token check, hourly counters, CORS allow list |
+| `src/owner-map.js` | The site owner's sanitized map in KV, and GET /owner-map for the visitors' view |
 | `scripts/setup-kv.mjs` | Creates the KV namespace and updates `wrangler.toml` |
 | `scripts/verify-feeds.mjs` | Checks every feed, optionally rewrites the roster |
 
@@ -392,6 +393,7 @@ the browser ever holds a Webflow token; every write goes through this worker.
 POST /hooks/member-updated?token=...   Memberstack webhook, member.created and member.updated
 POST /profile/save                     /edit-profile autosave, Authorization: Bearer <Memberstack token>
 POST /map-snapshot                     /the-map writes the count snapshot, same Bearer token
+GET  /owner-map                        the site owner's map for logged-out visitors, public
 ```
 
 **/hooks/member-updated** (`src/profile-sync.js`). On member.updated the
@@ -420,6 +422,22 @@ is a 400. Option fields take the option name or id. Switches take true/false,
 JSON string to map-snapshot on the member's own item, then published. 30 per
 member per hour.
 
+The page may also send the member's saved map next to the snapshot:
+`{"snapshot":{...the object above...},"states":{"v":2,"travelers":[...],"states":{...}}}`.
+Both body shapes are accepted. The states are used only when the member id that
+Memberstack returns for the token equals `OWNER_MEMBER_ID` (see below); for every
+other member they are ignored and never stored. For the site owner a sanitized
+copy goes into WIRE_KV under `owner-map:v2`: only `v`, each traveler's id, color
+and pet flag (a name only for pets), and states whose keys are 3-digit country
+codes (Kosovo, sent as "undefined" or "XK" by older map versions, becomes 900)
+with the values lived, visited or layover. At most 10 travelers, 300 countries
+and 64 KB. The owner's reply adds `"ownerMap":true` when it was stored.
+
+**/owner-map** (`src/owner-map.js`). `GET` returns that JSON with
+`Cache-Control: public, max-age=300` and CORS for the three site origins, or a
+404 `{"error":"No owner map saved yet."}` until the owner saves the map once with
+the states included.
+
 Both member routes answer CORS preflights for https://thatlayover.life,
 https://www.thatlayover.life and https://that-layover-life.webflow.io only,
 with Authorization and Content-Type allowed. A bad or missing token is a 401; a
@@ -447,6 +465,16 @@ npx wrangler secret put MEMBERSTACK_KEY
 
 (your Memberstack secret key, from Memberstack under Dev Tools; the same one the
 story webhook uses)
+
+The owner map needs one plain value, not a secret. Add this line under `[vars]`
+in `wrangler.toml` (it is your own Memberstack member id, from Memberstack under
+Members, then your member):
+
+```toml
+OWNER_MEMBER_ID = "mem_cmqcj6qqo35ab0sn20bafhzh3"
+```
+
+Without it no member's states are ever stored and GET /owner-map answers 404.
 
 Then in Memberstack, under Dev Tools, then Webhooks, add one webhook for the
 events **member.created** and **member.updated** pointing at:

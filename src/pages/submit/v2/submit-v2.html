@@ -48,7 +48,7 @@
         <label class="tsv2-label" for="tsv2-body">Your story <span class="tsv2-req">required</span></label>
         <textarea class="tsv2-input tsv2-textarea" id="tsv2-body" name="body" rows="12" required></textarea>
         <div class="tsv2-meta"><span id="tsv2-words">0 words</span><span id="tsv2-readtime"></span></div>
-        <p class="tsv2-err" id="tsv2-body-err" hidden>The story is the one thing we cannot write for you.</p>
+        <p class="tsv2-err" id="tsv2-body-err" hidden>Stories publish at 300 words or more. The story is the one thing we cannot write for you.</p>
       </div>
 
       <div class="tsv2-field">
@@ -182,6 +182,14 @@
             <div class="tsv2-field"><label class="tsv2-label" for="tsv2-sponsor-url">Their link, optional</label><input class="tsv2-input" id="tsv2-sponsor-url" type="url" placeholder="https://"></div>
           </div>
           <p class="tsv2-help">A label goes at the top of the story. Readers see it before the headline.</p>
+        </fieldset>
+
+        <fieldset class="tsv2-fieldset">
+          <legend class="tsv2-label">Does the story contain affiliate links? <span class="tsv2-req">required</span></legend>
+          <label class="tsv2-radio"><input type="radio" name="affiliateLinks" value="no"> <span>No</span></label>
+          <label class="tsv2-radio"><input type="radio" name="affiliateLinks" value="yes"> <span>Yes, and they are labeled</span></label>
+          <p class="tsv2-help">Affiliate links are fine when readers can see them. A yes adds a line to the disclosure at the top.</p>
+          <p class="tsv2-err" id="tsv2-affiliate-err" hidden>Pick one, so readers know.</p>
         </fieldset>
 
         <fieldset class="tsv2-fieldset">

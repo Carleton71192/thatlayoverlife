@@ -1,0 +1,114 @@
+<style id="tll-logbook-v1">
+.tlllb{margin:40px 0 0;background:#0A0B14;color:#F7F1E8;border-radius:14px;padding:32px 34px;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;scroll-margin-top:110px}
+.tlllb-eyebrow{font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:3px;text-transform:uppercase;color:#00C9C8}
+.tlllb-h{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(28px,3vw,38px);line-height:1.1;margin:8px 0 6px;color:#F7F1E8}
+.tlllb-lede{color:#cfcbc4;font-size:16px;line-height:1.5;margin:0 0 22px}
+.tlllb-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.tlllb-tab{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.14);border-radius:11px;padding:14px 16px;text-align:left;color:#F7F1E8;cursor:pointer;font-family:inherit}
+.tlllb-tab[aria-selected=true]{border-color:#00C9C8;background:rgba(0,201,200,.09)}
+.tlllb-n{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:34px;line-height:1}
+.tlllb-l{display:block;font:600 10px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#a9abc0;margin-top:6px}
+.tlllb-row{display:flex;gap:10px;flex-wrap:wrap}
+.tlllb-row input{flex:1 1 220px;min-width:0;height:46px;margin:0;border-radius:9px;border:1px solid rgba(255,255,255,.2)!important;background:rgba(255,255,255,.06)!important;color:#F7F1E8!important;padding:0 14px;font-size:16px;font-family:inherit}
+.tlllb-row input::placeholder{color:#9496ab}
+.tlllb-add{height:46px;border:0;border-radius:9px;background:#F0507A;color:#fff;font-weight:700;padding:0 22px;cursor:pointer;font-family:inherit;font-size:15px}
+.tlllb-add:hover{background:#D63859}
+.tlllb-msg{min-height:20px;margin-top:10px;font-size:13px;color:#00C9C8}
+.tlllb-list{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.tlllb-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border-radius:999px;padding:6px 6px 6px 14px;font-size:14px}
+.tlllb-x{background:transparent;border:0;color:#cfcbc4;cursor:pointer;font-size:17px;line-height:1;padding:3px 7px;border-radius:50%}
+.tlllb-x:hover{color:#fff;background:rgba(255,255,255,.14)}
+.tlllb-empty{color:#a9abc0;font-size:14px;margin:14px 0 0}
+.tlllb-cta{display:inline-block;background:#F0507A;color:#fff!important;border-radius:9px;padding:12px 20px;font-weight:700;text-decoration:none}
+.tlllb-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:600px){.tlllb{padding:24px 18px;margin-top:28px}.tlllb-tabs{gap:8px}.tlllb-tab{padding:12px 10px}.tlllb-n{font-size:26px}.tlllb-l{letter-spacing:1px;font-size:9px}}
+</style>
+<section id="tll-logbook" class="tlllb" aria-labelledby="tlllb-h">
+<div class="tlllb-eyebrow">Your logbook</div>
+<h2 id="tlllb-h" class="tlllb-h">Parks, cities and airports</h2>
+<p class="tlllb-lede">The map counts countries. The logbook counts what is inside them: the parks you walked, the cities you slept in, the airports you connected through.</p>
+<div class="tlllb-tabs" role="tablist" aria-label="Logbook"></div>
+<div class="tlllb-body"><p class="tlllb-lede" style="margin:0">Opening your logbook…</p></div>
+</section>
+<script>
+/* TLL logbook v2 (2026-09-28): parks, cities and airports a member has been to, on /the-map.
+   US national parks live in the member's existing tllParks list ({v:1,parks:{CODE:time}}), so the
+   logbook and the parks overlay share one record. Other parks, cities and airports go in tllLog.
+   Each save re-reads the member JSON and changes only tllLog, tllLogAt and tllParks.parks;
+   tllStates, pets and every other key stay exactly as they are. Unknown park codes are kept. */
+(function(){
+if(window.__tllLog)return;window.__tllLog=1;
+var box=document.getElementById('tll-logbook');if(!box)return;
+if(/[?&]embed=1/.test(location.search)){box.style.display='none';return;}
+var T={parks:{one:'park',label:'Parks walked',ph:'Yosemite, Torres del Paine, Thingvellir…'},cities:{one:'city',label:'Cities',ph:'Lisbon, Accra, Sofia…'},airports:{one:'airport',label:'Airports',ph:'Airport code or name: CPH, DOH, Heathrow…'}};
+var NP={"ACAD":"Acadia","ARCH":"Arches","BADL":"Badlands","BIBE":"Big Bend","BISC":"Biscayne","BLCA":"Black Canyon of the Gunnison","BRCA":"Bryce Canyon","CANY":"Canyonlands","CARE":"Capitol Reef","CAVE":"Carlsbad Caverns","CHIS":"Channel Islands","CONG":"Congaree","CRLA":"Crater Lake","CUVA":"Cuyahoga Valley","DEVA":"Death Valley","DENA":"Denali","DRTO":"Dry Tortugas","EVER":"Everglades","GAAR":"Gates of the Arctic","JEFF":"Gateway Arch","GLAC":"Glacier","GLBA":"Glacier Bay","GRCA":"Grand Canyon","GRTE":"Grand Teton","GRBA":"Great Basin","GRSA":"Great Sand Dunes","GRSM":"Great Smoky Mountains","GUMO":"Guadalupe Mountains","HALE":"Haleakala","HAVO":"Hawaii Volcanoes","HOSP":"Hot Springs","INDU":"Indiana Dunes","ISRO":"Isle Royale","JOTR":"Joshua Tree","KATM":"Katmai","KEFJ":"Kenai Fjords","KICA":"Kings Canyon","KOVA":"Kobuk Valley","LACL":"Lake Clark","LAVO":"Lassen Volcanic","MACA":"Mammoth Cave","MEVE":"Mesa Verde","MORA":"Mount Rainier","NPSA":"National Park of American Samoa","NERI":"New River Gorge","NOCA":"North Cascades","OLYM":"Olympic","PEFO":"Petrified Forest","PINN":"Pinnacles","REDW":"Redwood","ROMO":"Rocky Mountain","SAGU":"Saguaro","SEQU":"Sequoia","SHEN":"Shenandoah","THRO":"Theodore Roosevelt","VIIS":"Virgin Islands","VOYA":"Voyageurs","WHSA":"White Sands","WICA":"Wind Cave","WRST":"Wrangell-St. Elias","YELL":"Yellowstone","YOSE":"Yosemite","ZION":"Zion"};
+var K=['parks','cities','airports'],cur='parks',log=blank(),parks={},member=null,note='',queue=Promise.resolve();
+function blank(){return {v:1,parks:[],cities:[],airports:[]};}
+function norm(o){var d=blank();K.forEach(function(k){var a=o&&Array.isArray(o[k])?o[k]:[];d[k]=a.filter(function(e){return e&&e.n;}).map(function(e){return {n:String(e.n).slice(0,80),at:+e.at||0};});});return d;}
+function normParks(o){var p={},src=o&&o.parks&&typeof o.parks==='object'?o.parks:{};for(var c in src){p[c]=+src[c]||0;}return p;}
+function npCode(v){var u=v.trim().toUpperCase();if(NP[u])return u;var k=key(v).replace(/ national park$/,'');for(var c in NP){if(key(NP[c])===k)return c;}return '';}
+function items(k){if(k!=='parks')return log[k];var a=Object.keys(parks).map(function(c){return {n:(NP[c]||c)+(NP[c]?' National Park':''),code:c,at:parks[c]};});return a.concat(log.parks).sort(function(x,y){return (y.at||0)-(x.at||0);});}
+function key(s){return String(s).toLowerCase().replace(/\s+/g,' ').trim();}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function local(){try{localStorage.setItem('tllLog',JSON.stringify(log));localStorage.setItem('tllParks',JSON.stringify({v:1,parks:parks}));}catch(e){}}
+function save(ok){
+  var snap=JSON.parse(JSON.stringify(log)),ps=JSON.parse(JSON.stringify(parks));local();
+  var ms=window.$memberstackDom;if(!ms)return;
+  queue=queue.then(function(){
+    return ms.getMemberJSON().then(function(r){
+      var j=(r&&r.data)||{};j.tllLog=snap;j.tllLogAt=Date.now();
+      var tp=j.tllParks&&typeof j.tllParks==='object'?j.tllParks:{v:1};j.tllParks=Object.assign({},tp,{v:tp.v||1,parks:ps});
+      return ms.updateMemberJSON({json:j});
+    }).then(function(){say(ok||'Saved.');},function(){say('That did not save. Check your connection and try again.');});
+  });
+}
+function say(t){note=t;var m=box.querySelector('.tlllb-msg');if(m)m.textContent=t;}
+function tabs(){
+  var t=box.querySelector('.tlllb-tabs');t.innerHTML='';
+  K.forEach(function(k){
+    var b=document.createElement('button');b.type='button';b.className='tlllb-tab';b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',k===cur?'true':'false');
+    b.innerHTML='<span class="tlllb-n">'+items(k).length+'</span><span class="tlllb-l">'+T[k].label+'</span>';
+    b.addEventListener('click',function(){cur=k;note='';draw();});
+    t.appendChild(b);
+  });
+}
+function add(){
+  var i=box.querySelector('#tlllb-in');if(!i)return;var v=i.value.trim().slice(0,80);if(!v)return;
+  if(cur==='airports'&&/^[a-z]{3}$/i.test(v))v=v.toUpperCase();
+  var code=cur==='parks'?npCode(v):'';
+  if(code){if(parks[code]){say(NP[code]+' is already in your logbook.');return;}parks[code]=Date.now();v=NP[code]+' National Park';}
+  else{if(items(cur).some(function(x){return key(x.n)===key(v);})){say(v+' is already in your logbook.');return;}log[cur].unshift({n:v,at:Date.now()});}
+  i.value='';draw(true);say('Saving '+v+'…');save(v+' is in your logbook.');
+}
+function body(){
+  var b=box.querySelector('.tlllb-body');
+  if(!member){b.innerHTML='<p class="tlllb-lede" style="margin-bottom:16px">Sign in and your logbook lives here, next to your map. Free, and only you can edit it.</p><a class="tlllb-cta" href="/login">Sign in to start your logbook →</a>';return;}
+  var t=T[cur];
+  b.innerHTML='<div class="tlllb-row"><label class="tlllb-sr" for="tlllb-in">Add a '+t.one+'</label><input id="tlllb-in" type="text" autocomplete="off" maxlength="80" placeholder="'+esc(t.ph)+'"'+(cur==='parks'?' list="tlllb-np"':'')+'>'+(cur==='parks'?'<datalist id="tlllb-np">'+Object.keys(NP).map(function(c){return '<option value="'+esc(NP[c])+' National Park">';}).join('')+'</datalist>':'')+'<button class="tlllb-add" type="button">Add '+t.one+'</button></div><div class="tlllb-msg" role="status" aria-live="polite">'+esc(note)+'</div>';
+  b.querySelector('.tlllb-add').addEventListener('click',add);
+  b.querySelector('#tlllb-in').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();add();}});
+  var list=items(cur);if(!list.length){var p=document.createElement('p');p.className='tlllb-empty';p.textContent='Nothing here yet. Your first '+t.one+' goes in the box above.';b.appendChild(p);return;}
+  var ul=document.createElement('ul');ul.className='tlllb-list';
+  list.forEach(function(x){
+    var li=document.createElement('li');li.className='tlllb-chip';li.appendChild(document.createTextNode(x.n));
+    var r=document.createElement('button');r.type='button';r.className='tlllb-x';r.setAttribute('aria-label','Remove '+x.n);r.textContent='×';
+    r.addEventListener('click',function(){if(x.code){delete parks[x.code];}else{log[cur]=log[cur].filter(function(y){return y!==x;});}draw();say('Removing '+x.n+'…');save(x.n+' is off your logbook.');});
+    li.appendChild(r);ul.appendChild(li);
+  });
+  b.appendChild(ul);
+}
+function draw(focus){tabs();body();if(focus){var i=box.querySelector('#tlllb-in');if(i)i.focus();}}
+function open(k){cur=k;note='';draw();box.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(function(){var i=box.querySelector('#tlllb-in');if(i)i.focus({preventScroll:true});},450);}
+[].forEach.call(document.querySelectorAll('a.tll-park-cta,a[href="#tll-logbook"]'),function(a){a.addEventListener('click',function(e){e.preventDefault();open('parks');});});
+function boot(){
+  var ms=window.$memberstackDom;if(!ms)return false;
+  ms.getCurrentMember().then(function(r){
+    member=r&&r.data;if(!member){draw();return;}
+    return ms.getMemberJSON().then(function(j){log=norm(j&&j.data&&j.data.tllLog);parks=normParks(j&&j.data&&j.data.tllParks);local();draw();if(location.hash==='#tll-logbook')open('parks');});
+  }).catch(function(){draw();});
+  return true;
+}
+var n=0,iv=setInterval(function(){if(boot()||++n>40){clearInterval(iv);if(n>40)draw();}},250);
+})();
+</script>

@@ -10,9 +10,13 @@ Everything below is a draft until you run `wrangler deploy`. Nothing in this fol
 2. Sign in to Cloudflare: `wrangler login`.
 3. From this folder, create the KV namespace: `wrangler kv namespace create TLL_KV`. Copy the `id` it prints and paste it into `wrangler.toml`, replacing `<fill after wrangler kv namespace create TLL_KV>`.
 4. Set the three secrets. Each command prompts for the value, so it never lands in a file or your shell history:
-   - `wrangler secret put ANTHROPIC_API_KEY`
-   - `wrangler secret put MEMBERSTACK_SECRET_KEY`
-   - `wrangler secret put WEBFLOW_API_TOKEN`
+   - `npx wrangler secret put ANTHROPIC_API_KEY`
+   - `npx wrangler secret put MEMBERSTACK_SECRET_KEY`
+   - `npx wrangler secret put WEBFLOW_API_TOKEN`
+   
+   For the email copy to the writer (optional; without both the Worker skips the email and replies `"emailed":false`):
+   - `npx wrangler secret put RESEND_KEY` (a Resend API key with sending access, from resend.com under API Keys)
+   - `npx wrangler secret put MAIL_FROM` (the sender, for example `That Layover Life <stories@thatlayover.life>`; the domain must be verified in Resend first)
 5. Before the first deploy, confirm the Memberstack endpoint path (`POST https://admin.memberstack.com/members/verify-token`) against the Memberstack Admin API docs. There is a comment above that call in `src/index.js`.
 6. Deploy: `wrangler deploy`.
 7. Copy the Worker URL that wrangler prints (it looks like `https://tll-worker.<your-subdomain>.workers.dev`) and paste it into the /submit page code where the Worker address is set.
@@ -26,6 +30,7 @@ Run the unit tests any time with `node --test worker/test/*.test.js` from the re
 - Every response is JSON.
 - Request bodies are never logged.
 - Rate limits are stored in the `TLL_KV` namespace: `/notes` allows 20 per member per hour, `/publish` allows 10 per member per day. Past the limit the response is a 429.
+- The writer's email address and the story text are never logged.
 
 ## Routes
 
@@ -98,7 +103,7 @@ Returns `{"ok":true,"record":{...}}`, or a 400 with the reason.
 
 ### POST /publish
 
-Creates one Stories item in Webflow, publishes it, and records a "Story published" form entry so the site owner is notified. The Worker never writes or changes the story text: body, headline, excerpt and pull quote are stored as received, trimmed only.
+Creates one Stories item in Webflow, publishes it, records a "Story published" form entry so the site owner is notified, and emails the writer a copy when `RESEND_KEY` and `MAIL_FROM` are set. The Worker never writes or changes the story text: body, headline, excerpt and pull quote are stored as received, trimmed only.
 
 ```
 curl -X POST https://tll-worker.example.workers.dev/publish \
@@ -125,20 +130,41 @@ curl -X POST https://tll-worker.example.workers.dev/publish \
     "sponsorName": "",
     "sponsorUrl": "",
     "syndication": ["newsletter"],
+    "rightsAgreed": true,
     "charterAgreed": true,
+    "affiliateLinks": false,
     "editorNotesLog": [],
     "tags": [],
     "pursuit": null
   }'
 ```
 
-Required: `country`, `city`, `when`, `body`, `headline`, `excerpt`, `heroPhoto`, and `charterAgreed` set to `true`.
+Required: `country`, `city`, `when`, `body`, `headline`, `excerpt`, `heroPhoto`, `rightsAgreed` and `charterAgreed` set to `true`, and `affiliateLinks` set to `true` or `false`.
+
+The rules a story must pass before anything is created (change log B2.2):
+
+| Rule | Where |
+|---|---|
+| Headline, up to 200 characters | `readPublishInput` |
+| Country is a Places item id (the list GET /places serves), found, not archived or draft | `readPublishInput` (id shape), `handlePublish` (lookup) |
+| City, up to 120 characters | `readPublishInput` |
+| Body of 300 words or more, counted on the text without tags | `readPublishInput`, `wordCount` in `validate.js` |
+| Hero photo from `https://res.cloudinary.com/idonvlow/image/upload/`, original untouched, cleaned version with allowed adjustments only | `readPhotoRecord`, `checkCloudinaryUrl` in `validate.js` |
+| Rights tick (`rightsAgreed: true`) | `readPublishInput` |
+| Charter tick (`charterAgreed: true`) | `readPublishInput` |
+| Affiliate declaration (`affiliateLinks` true or false; a shout-out marked `"affiliate": true` needs `true`). A yes adds "Contains affiliate links" to the disclosure and `rel="sponsored nofollow"` to that shout-out | `readPublishInput`, `handlePublish` |
+| Links resolve: every shout-out link, the sponsor link and every href in the body, at most 20, public web addresses only. A link fails on no answer within 6 seconds, 404 or 410; any other answer (403 included, many sites refuse automated checks) passes | `checkLinks` in `handlePublish`, after the daily limit |
+| No markup that can run code in the body | `readPublishInput` |
+
+Each shout-out may carry `"affiliate": true`.
+
+The email copy (B2.3) goes only to the signed-in writer: the address comes from the Memberstack token check, or from the Memberstack Admin API (`GET /members/<id>` with `MEMBERSTACK_SECRET_KEY`) when the check does not include it. It is plain text: the subject "Your story is live: <headline>", the live link, the headline and the story text. Nothing else is in it. A failed lookup or send never blocks the story.
 
 Responses:
 
-- 200 `{"ok":true,"url":"https://www.thatlayover.life/stories/<slug>","itemId":"..."}`
+- 200 `{"ok":true,"url":"https://www.thatlayover.life/stories/<slug>","itemId":"...","emailed":true}` (`emailed` is false when the email was skipped or failed)
 - 207 `{"ok":false,"itemId":"...","url":"...","error":"..."}` when the item was created but publishing failed. Do not resubmit; the item already exists.
-- 400 for a missing or invalid field, or a photo that fails the Cloudinary check.
+- 400 for a missing or invalid field, a body under 300 words, a link that does not open, or a photo that fails the Cloudinary check.
 - 409 `{"error":"No profile yet. Finish your profile first."}` when no Contributors item matches the member.
 - 429 when the daily limit is used up.
 

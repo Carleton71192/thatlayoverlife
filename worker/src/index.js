@@ -1,4 +1,4 @@
-import { classifyEdit, checkCloudinaryUrl, readingTime } from "./validate.js";
+import { classifyEdit, checkCloudinaryUrl, readingTime, wordCount, htmlToText, bodyHrefs, publicHttpUrl } from "./validate.js";
 
 const MODEL = "claude-sonnet-5-5";
 const SITE_URL = "https://www.thatlayover.life";
@@ -35,6 +35,10 @@ const REGION_ALIASES = {
 const PUBLISHED_STATUS_ID = "40fb8550c58a86ae03f3dfb83bf691e3";
 
 const ID_RE = /^[a-f0-9]{24}$/;
+// B2.2 minimum rules (change log 20 Oct 2026): 300 words or more, every link opens.
+export const MIN_WORDS = 300;
+const LINK_LIMIT = 20;
+const LINK_TIMEOUT_MS = 6000;
 const SYNDICATION = ["newsletter", "social", "press"];
 const CREDIT_MODES = ["Full", "First", "Pen"];
 
@@ -149,6 +153,13 @@ function pickId(data) {
   return candidates.find((c) => typeof c === "string" && c) || null;
 }
 
+const EMAIL_RE = /^[^\s@<>,;"]+@[^\s@<>,;"]+\.[^\s@<>,;"]+$/;
+
+function pickEmail(data) {
+  const candidates = [data?.data?.auth?.email, data?.data?.email, data?.auth?.email, data?.email, data?.member?.auth?.email];
+  return candidates.find((c) => typeof c === "string" && c.length <= 254 && EMAIL_RE.test(c)) || null;
+}
+
 function jwtId(token) {
   try {
     const part = token.split(".")[1];
@@ -192,7 +203,9 @@ async function authenticate(request, env) {
   const verifiedId = pickId(data);
   const memberId = verifiedId || jwtId(token);
   if (!memberId) return json({ error: "Please sign in again." }, 401);
-  return { memberId, verifiedId };
+  // Used only to send the writer their own copy after /publish (B2.3). Never logged.
+  const verifiedEmail = verifiedId ? pickEmail(data) : null;
+  return { memberId, verifiedId, verifiedEmail };
 }
 
 // ---------------------------------------------------------------------------------------
@@ -469,7 +482,13 @@ function readPublishInput(input) {
     throw new Bad("The story contains markup that cannot be published.");
   }
 
+  const words = wordCount(out.body);
+  if (words < MIN_WORDS) throw new Bad(`Stories need ${MIN_WORDS} words or more. This one has ${words}.`);
+
+  if (input.rightsAgreed !== true) throw new Bad("Please confirm this is your trip, your words and your photos.");
   if (input.charterAgreed !== true) throw new Bad("Please agree to the charter before publishing.");
+  if (typeof input.affiliateLinks !== "boolean") throw new Bad("Tell us whether the story has affiliate links, yes or no.");
+  out.affiliateLinks = input.affiliateLinks;
 
   out.heroPhoto = readPhotoRecord(input.heroPhoto, "hero photo");
   if (input.gallery !== undefined && input.gallery !== null) {
@@ -494,8 +513,12 @@ function readPublishInput(input) {
       who: text(s.who, "shout-out name", { required: true, max: 120 }),
       link: httpUrl(text(s.link, "shout-out link", { required: true, max: 500 }), "shout-out link"),
       why: text(s.why, "shout-out reason", { max: 300 }),
+      affiliate: s.affiliate === true,
     };
   });
+  if (!out.affiliateLinks && out.shoutOuts.some((s) => s.affiliate)) {
+    throw new Bad("A shout-out is marked as an affiliate link, so the story has affiliate links. Change that answer to yes.");
+  }
 
   const credit = input.creditMode ?? "Full";
   if (!CREDIT_MODES.includes(credit)) throw new Bad('"creditMode" must be Full, First or Pen.');
@@ -540,7 +563,7 @@ function regionOptionId(regionText) {
 function shoutOutsHtml(list) {
   const items = list.map(
     (s) =>
-      `<li><a href="${escapeHtml(s.link)}" rel="nofollow">${escapeHtml(s.who)}</a>${s.why ? `: ${escapeHtml(s.why)}` : ""}</li>`
+      `<li><a href="${escapeHtml(s.link)}" rel="${s.affiliate ? "sponsored nofollow" : "nofollow"}"${s.affiliate ? " data-tll-affiliate" : ""}>${escapeHtml(s.who)}</a>${s.why ? `: ${escapeHtml(s.why)}` : ""}</li>`
   );
   return `<ul>${items.join("")}</ul>`;
 }
@@ -575,6 +598,134 @@ async function flagNancy(env, { headline, url, writer }) {
   return res.ok;
 }
 
+// ---------------------------------------------------------------------------------------
+// Links resolve (B2.2)
+// ---------------------------------------------------------------------------------------
+
+/** Every link the story will carry: shout-outs, the sponsor link, and hrefs in the body. */
+export function storyLinks(story) {
+  const links = [];
+  const add = (href) => {
+    if (href && !links.includes(href)) links.push(href);
+  };
+  for (const s of story.shoutOuts) add(s.link);
+  if (story.sponsorUrl) add(story.sponsorUrl);
+  for (const href of bodyHrefs(story.body)) {
+    if (/^(mailto|tel):/i.test(href) || href.startsWith("#")) continue;
+    add(href);
+  }
+  return links;
+}
+
+// A link resolves when its server answers with anything but 404 or 410. A refusal such as
+// 403 or 429 still proves the page exists (many sites refuse automated checks), so it passes.
+async function linkResolves(url) {
+  const attempt = async (method) => {
+    try {
+      const res = await fetch(url, {
+        method,
+        redirect: "follow",
+        signal: AbortSignal.timeout(LINK_TIMEOUT_MS),
+        headers: { "user-agent": "ThatLayoverLife-LinkCheck/1.0 (+https://www.thatlayover.life)" },
+      });
+      try {
+        await res.body?.cancel();
+      } catch {
+        // nothing to release
+      }
+      return res.status;
+    } catch {
+      return 0;
+    }
+  };
+  const head = await attempt("HEAD");
+  if (head && ![404, 405, 410, 501].includes(head)) return true;
+  const get = await attempt("GET");
+  return get !== 0 && get !== 404 && get !== 410;
+}
+
+/** Throws Bad naming the links that do not open. */
+async function checkLinks(story) {
+  const links = storyLinks(story);
+  if (links.length > LINK_LIMIT) throw new Bad(`A story can carry up to ${LINK_LIMIT} links. This one has ${links.length}.`);
+  const notPublic = links.filter((href) => !publicHttpUrl(href));
+  if (notPublic.length) throw new Bad(`This link is not a public web address: ${notPublic[0].slice(0, 200)}`);
+  const results = await Promise.all(links.map((href) => linkResolves(href)));
+  const broken = links.filter((_, i) => !results[i]);
+  if (broken.length) {
+    const list = broken.slice(0, 3).map((h) => h.slice(0, 200)).join(", ");
+    throw new Bad(`${broken.length === 1 ? "This link does not open" : "These links do not open"}: ${list}. Fix or remove ${broken.length === 1 ? "it" : "them"}, then publish again.`);
+  }
+}
+
+// ---------------------------------------------------------------------------------------
+// The writer's copy (B2.3)
+// ---------------------------------------------------------------------------------------
+
+/** The email to the writer: their own headline, their own text and the live link. Nothing else. */
+export function writerCopy({ headline, body, url }) {
+  const subject = `Your story is live: ${String(headline).replace(/[\r\n]+/g, " ").trim()}`.slice(0, 200);
+  const textBody = [
+    "Hello,",
+    "",
+    "Your story is live on That Layover Life:",
+    url,
+    "",
+    "Here is a copy of what you published, for your own records.",
+    "",
+    "----",
+    "",
+    headline,
+    "",
+    htmlToText(body),
+    "",
+    "----",
+    "",
+    "To change something, write to hello@thatlayover.life with the link above.",
+    "",
+    "That Layover Life",
+    SITE_URL,
+  ].join("\n");
+  return { subject, text: textBody };
+}
+
+async function writerEmail(env, auth) {
+  if (auth.verifiedEmail) return auth.verifiedEmail;
+  const key = env.MEMBERSTACK_SECRET_KEY || env.MEMBERSTACK_KEY;
+  if (!key || !auth.verifiedId) return null;
+  try {
+    const res = await fetch(`https://admin.memberstack.com/members/${encodeURIComponent(auth.verifiedId)}`, {
+      method: "GET",
+      headers: { "X-API-KEY": key },
+    });
+    if (!res.ok) return null;
+    return pickEmail(await res.json());
+  } catch {
+    return null;
+  }
+}
+
+/** Sends the copy through Resend when RESEND_KEY and MAIL_FROM are both set. Returns true when Resend accepted it. */
+async function sendWriterCopy(env, auth, story, url) {
+  if (!env.RESEND_KEY || !env.MAIL_FROM) return false;
+  const to = await writerEmail(env, auth);
+  if (!to) return false;
+  const { subject, text: textBody } = writerCopy({ headline: story.headline, body: story.body, url });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.RESEND_KEY}`, "content-type": "application/json" },
+      body: JSON.stringify({ from: env.MAIL_FROM, to: [to], subject, text: textBody }),
+    });
+    // Status only: the address and the text are never logged.
+    if (!res.ok) console.error(`publish: writer copy failed with status ${res.status}`);
+    return res.ok;
+  } catch {
+    console.error("publish: writer copy request failed");
+    return false;
+  }
+}
+
 async function handlePublish(request, env, auth) {
   let story;
   try {
@@ -594,7 +745,7 @@ async function handlePublish(request, env, auth) {
       if (last.published === false) {
         return json({ ok: false, itemId: last.itemId, url: last.url, error: "Your story was saved but is not live yet. Please contact us instead of resubmitting." }, 207);
       }
-      return json({ ok: true, url: last.url, itemId: last.itemId });
+      return json({ ok: true, url: last.url, itemId: last.itemId, emailed: last.emailed === true });
     }
   } catch {
     // an unreadable marker should not block publishing
@@ -602,6 +753,13 @@ async function handlePublish(request, env, auth) {
 
   const allowed = await rateLimit(env, `publish:${keyPart(auth.memberId)}:${stamp(8)}`, 10, 90000);
   if (!allowed) return json({ error: "Publishing is resting for today. Try again tomorrow." }, 429);
+
+  try {
+    await checkLinks(story);
+  } catch (err) {
+    if (err instanceof Bad) return json({ error: err.message }, 400);
+    throw err;
+  }
 
   let contributor;
   try {
@@ -640,6 +798,8 @@ async function handlePublish(request, env, auth) {
   } catch {
     return json({ error: "We could not look up that country right now. Try again in a moment." }, 502);
   }
+  // Only a country the /places list offers: an archived or draft item is not on it.
+  if (place?.isArchived || place?.isDraft) return json({ error: "We could not find that country." }, 400);
   const countryName = String(place?.fieldData?.name || "").trim();
   const writerName = String(contributor.fieldData?.name || "").trim();
 
@@ -664,7 +824,9 @@ async function handlePublish(request, env, auth) {
     "submitted-at": nowIso,
     "seo-title": story.headline,
     "seo-description": story.excerpt,
-    disclosure: story.sponsored ? `Sponsored or hosted: ${story.sponsorName}` : "Paid for by the traveler",
+    disclosure:
+      (story.sponsored ? `Sponsored or hosted: ${story.sponsorName}` : "Paid for by the traveler") +
+      (story.affiliateLinks ? ". Contains affiliate links" : ""),
     "charter-agreed-at": nowIso,
     "editor-notes-log": JSON.stringify(story.editorNotesLog),
     "photo-originals": JSON.stringify({ hero: story.heroPhoto, gallery: story.gallery }),
@@ -740,7 +902,16 @@ async function handlePublish(request, env, auth) {
     console.error("publish: owner notice failed");
   }
 
-  return json({ ok: true, url, itemId });
+  const emailed = await sendWriterCopy(env, auth, story, url);
+  if (emailed) {
+    try {
+      await env.TLL_KV.put(lastKey, JSON.stringify({ ...marker, published: true, emailed: true }), { expirationTtl: 3600 });
+    } catch {
+      // best effort
+    }
+  }
+
+  return json({ ok: true, url, itemId, emailed });
 }
 
 // ---------------------------------------------------------------------------------------

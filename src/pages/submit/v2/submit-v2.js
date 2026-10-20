@@ -336,7 +336,7 @@
     var c = resolveCountry(); mark(el.country, !c); showErr('tsv2-country-err', !c); ok = ok && c;
     var city = !!el.city.value.trim(); mark(el.city, !city); showErr('tsv2-city-err', !city); ok = ok && city;
     var when = !!(el.month.value && el.year.value); mark(el.year, !when); showErr('tsv2-when-err', !when); ok = ok && when;
-    var b = words(el.body.value) >= 1; mark(el.body, !b); showErr('tsv2-body-err', !b); ok = ok && b;
+    var b = words(el.body.value) >= 300; mark(el.body, !b); showErr('tsv2-body-err', !b); ok = ok && b; /* beta B2.2: the Worker refuses under 300 words */
     var h = !!el.headline.value.trim(); mark(el.headline, !h); showErr('tsv2-headline-err', !h); ok = ok && h;
     var x = !!el.excerpt.value.trim(); mark(el.excerpt, !x); showErr('tsv2-excerpt-err', !x); ok = ok && x;
     var p = !!(S.hero || S.pendingHero); showErr('tsv2-hero-err', !p); ok = ok && p;
@@ -347,6 +347,7 @@
     var ok = true;
     showErr('tsv2-rights-err', !el.rights.checked); ok = ok && el.rights.checked;
     showErr('tsv2-charter-err', !el.charter.checked); ok = ok && el.charter.checked;
+    var aff = form.querySelector('input[name=affiliateLinks]:checked'); showErr('tsv2-affiliate-err', !aff); ok = ok && !!aff;
     return ok;
   }
   function go(step) {
@@ -394,7 +395,8 @@
       creditMode: form.querySelector('input[name=creditMode]:checked').value, sponsored: sponsored,
       sponsorName: sponsored ? el.sponsorName.value.trim() : '', sponsorUrl: sponsored ? el.sponsorUrl.value.trim() : '',
       syndication: Array.prototype.map.call(form.querySelectorAll('input[name=syndication]:checked'), function (c) { return c.value; }),
-      charterAgreed: el.charter.checked && el.rights.checked, editorNotesLog: S.log, tags: S.tags, pursuit: S.pursuit, readingTime: readingTime(el.body.value)
+      charterAgreed: el.charter.checked, rightsAgreed: el.rights.checked,
+      affiliateLinks: (form.querySelector('input[name=affiliateLinks]:checked') || {}).value === 'yes', editorNotesLog: S.log, tags: S.tags, pursuit: S.pursuit, readingTime: readingTime(el.body.value)
     };
     api('/publish', payload).then(function (r) {
       if (!r.ok) { el.publish.disabled = false; setStatus(el.formStatus, (r.data && r.data.error) || 'That did not go through. Try again, or write to hello@thatlayover.life.', true); return; }

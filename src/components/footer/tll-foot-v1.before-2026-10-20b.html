@@ -1,0 +1,33 @@
+<style id="tll-foot-v1">
+/* Footer layout, Packet A items A2.1 and A2.6 (20 Oct 2026, prototype 3.3). Desktop: the four columns sit in one row, 14px links, 44px rows.
+   Phones: each column is an accordion with a 52px header and 44px rows. Lives in the footer component next to the counts embed. */
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div{min-width:0;margin:0}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{display:block;font-size:14px;line-height:1.3;min-height:44px;padding:10px 0;box-sizing:border-box}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{margin:0 0 6px}
+@media(max-width:767px){
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:block}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div{border-top:1px solid rgba(247,241,232,.14)}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{display:flex;align-items:center;justify-content:space-between;min-height:52px;margin:0;cursor:pointer}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4::after{content:"+";font-weight:400;font-size:18px}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div[data-tll-open="true"] h4::after{content:"\2013"}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div:not([data-tll-open="true"])>a{display:none}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4:focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
+}
+/* Story From line (A7.2): "From {City}, {Country} · {Pursuit}". The comma and the dot only print when the part has text. */
+.st3-from{margin-top:6px;font-size:13px;line-height:1.4}
+.st3-from [data-st3-from-part="city"]:not(:empty)::after{content:", "}
+.st3-from [data-st3-from-part="pursuit"]:not(:empty)::before{content:" \00b7 "}
+.st3-from a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.st3-from a:empty{display:none}
+#tll-note [data-tll-note-desk]{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}
+#tll-note input[type=hidden]{display:none}
+</style>
+<script>
+/* Footer accordions on phones: the column heading toggles its links, with Enter and Space on the keyboard. Desktop ignores the clicks. */
+(function(){function run(){var F=document.querySelector('footer[data-tll-canonical-footer]');if(!F||F.dataset.tllFoot)return;F.dataset.tllFoot='1';var row=F.querySelector('[class^="inline-div-7-"]');if(!row)return;var mq=window.matchMedia('(max-width:767px)');[].forEach.call(row.children,function(col){var h=col.querySelector('h4');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.setAttribute('aria-expanded','false');function t(){var o=col.getAttribute('data-tll-open')==='true';col.setAttribute('data-tll-open',o?'false':'true');h.setAttribute('aria-expanded',o?'false':'true')}h.addEventListener('click',function(){if(mq.matches)t()});h.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&mq.matches){e.preventDefault();t()}})})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();
+/* The Data API cannot set input placeholders (Webflow ships "Example Text"), so the widget's two placeholders are written here. */
+(function(){function p(){var a=document.getElementById('tll-note-text'),b=document.getElementById('tll-note-email');if(a)a.placeholder='A typo, a wrong flag, a story that needs a look.';if(b)b.placeholder='Email, if you want a reply (optional)';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',p);else p()})();
+/* From line hrefs (A7.2): the story page script already writes href = data-st3-base + data-st3-slug on every [data-st3-slug] link. Seven Places slugs differ from the Countries hub slugs, so those are mapped here; Taiwan has no hub page and becomes plain text. Runs after that script, on DOMContentLoaded and again on load. */
+(function(){var M={turkey:'turkiye','georgia-country':'georgia','cote-divoire':'ivory-coast','democratic-republic-of-the-congo':'dr-congo',congo:'republic-of-the-congo','cabo-verde':'cape-verde'},NO={taiwan:1};function fix(){[].forEach.call(document.querySelectorAll('a[data-st3-from-part="country"][data-st3-slug]'),function(a){var s=a.getAttribute('data-st3-slug')||'';if(NO[s]){var sp=document.createElement('span');sp.textContent=a.textContent;a.parentNode.replaceChild(sp,a);return}if(M[s])a.href='/countries/'+M[s];else if(s&&a.getAttribute('href')==='/countries')a.href='/countries/'+s});[].forEach.call(document.querySelectorAll('a[data-st3-from-part="pursuit"][data-st3-slug]'),function(a){var s=a.getAttribute('data-st3-slug')||'';if(s&&/^[a-z0-9-]+$/.test(s)&&a.getAttribute('href')==='/stories')a.href='/pillars/'+s})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();window.addEventListener('load',fix)})();
+</script>

@@ -8,7 +8,9 @@
 //   POST /hooks/story-published         Webflow publish webhook: adds a story's
 //                                       countries to its author's map (story-hook.js)
 //   POST /profile/save                  /edit-profile autosave, Memberstack Bearer token (profile-save.js)
-//   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js)
+//   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
+//                                       for the site owner only, also the sanitized tllStates
+//   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
 // The member routes and the member webhook answer CORS preflights for the site's
 // three origins only (member-auth.js). Cron (every 30 min) runs the same ingest as /refresh.
 
@@ -21,6 +23,7 @@ import { handleProfileHook } from './profile-sync.js';
 import { handleProfileSave } from './profile-save.js';
 import { handleMapSnapshot } from './map-snapshot.js';
 import { memberCors, withHeaders } from './member-auth.js';
+import { handleOwnerMap, ownerMapCors } from './owner-map.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -88,6 +91,18 @@ export default {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
       if (request.method !== 'POST') return withHeaders(json({ error: 'method not allowed' }, { status: 405 }), cors);
       return withHeaders(await MEMBER_ROUTES[url.pathname](request, env), cors);
+    }
+
+    if (url.pathname === '/owner-map') {
+      const cors = ownerMapCors(request);
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response(JSON.stringify({ error: 'method not allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', ...cors },
+        });
+      }
+      return handleOwnerMap(request, env);
     }
 
     if (request.method === 'OPTIONS') {
