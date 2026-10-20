@@ -261,7 +261,7 @@
     root.appendChild(stage);
 
     // Sections under the map
-    secCards = section('THE RECEIPTS · ONE ROW PER LIST', 'Counted by hand, <em>list by list.</em>', null);
+    secCards = section('THE RECEIPTS · ONE ROW PER LIST', 'Every list, <em>one row each.</em>', null);
     secRules = section('MANY WAYS TO COUNT', 'Same trips. Four rulebooks. <em>Four answers.</em>', 'The trips did not change. The math did.');
     secSets = section('SETS OF SEVEN', 'Seven slots, <em>one row each.</em>', 'Tap a stamp for the receipt.');
     secStrip = section('LINES AND EXTREMES', 'How far, <em>and across what.</em>', 'Computed from pin coordinates, so it updates itself.');
@@ -321,7 +321,7 @@
   function initMap() {
     return new Promise(function (ok, no) {
       var maplibregl = window.maplibregl; if (!maplibregl) return no(new Error('MapLibre did not load'));
-      map = new maplibregl.Map({ container: 'tllm-stage', style: STYLE || baseStyle(), center: [10, 20], zoom: 1.2, minZoom: 0.8, maxZoom: 15, attributionControl: false, renderWorldCopies: true, fadeDuration: reduce ? 0 : 180 });
+      map = new maplibregl.Map({ container: 'tllm-stage', style: STYLE || baseStyle(), center: [10, 20], zoom: 1.2, minZoom: 0.8, maxZoom: 15, attributionControl: false, renderWorldCopies: true, fadeDuration: reduce ? 0 : 180, cooperativeGestures: true }); // 20 Oct 2026 (Nancy: the map took the page scroll): zoom with Ctrl or Cmd plus scroll, two fingers on phones
       root.tllmMap = map;
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Shapes: Natural Earth via world-atlas' }), 'bottom-right');

@@ -15,7 +15,7 @@
   },
   {
    "id": "motion",
-   "name": "On foot and in motion",
+   "name": "In motion",
    "pin_shape": "triangle",
    "color": "#FF7093"
   },
@@ -90,7 +90,7 @@
    "denominator_label": "ISO country codes plus Kosovo",
    "as_of": "2026-10-07",
    "what_counts": "Set foot outside the airport. Layovers count separately.",
-   "caption": "Lit in Rose. Counted by hand, argued about at dinner.",
+   "caption": "Lit in Rose. Argued about at dinner.",
    "depth_values": [
     "Lived",
     "Stayed",
@@ -98,7 +98,7 @@
    ],
    "source": "placesbeen",
    "captions": [
-    "Lit in Rose. Counted by hand, argued about at dinner.",
+    "Lit in Rose. Argued about at dinner.",
     "Halfway is {half}. You can see it from here.",
     "{n} down. The other {rest} are already in a spreadsheet."
    ]
@@ -108,14 +108,14 @@
    "name": "Cities",
    "shelf": "places",
    "default_on": false,
-   "verb": "slept in or walked",
+   "verb": "slept in or stood in",
    "denominator": null,
    "as_of": "2026-10-07",
-   "what_counts": "One night, or the center on foot.",
-   "caption": "Slept in or walked. A train window does not count, however long you stared.",
+   "what_counts": "One night, or the center at ground level.",
+   "caption": "Slept in or stood in. A train window does not count, however long you stared.",
    "source": "placesbeen",
    "captions": [
-    "Slept in or walked. A train window does not count, however long you stared.",
+    "Slept in or stood in. A train window does not count, however long you stared.",
     "{US} of them are in the US. The rest took more paperwork.",
     "Enough to forget a few. That is what the list is for."
    ]
@@ -133,7 +133,7 @@
    "source": "placesbeen",
    "captions": [
     "{large} large, {medium} medium, {small} small. You remember the small ones.",
-    "Connected through. Nobody asked how fast you walked.",
+    "Connected through. Nobody asked about the gate change.",
     "The brand’s namesake, {n} times over."
    ]
   },
@@ -142,16 +142,16 @@
    "name": "US parks",
    "shelf": "places",
    "default_on": false,
-   "verb": "walked",
+   "verb": "been inside",
    "denominator": 63,
    "denominator_label": "designated national parks",
    "as_of": "2026-10-07",
-   "what_counts": "Walked a trail inside the boundary. Driving through does not count.",
+   "what_counts": "Past the gate and inside. Driving past the sign does not count.",
    "caption": "{n} of {of}. The other {rest} are not going anywhere.",
    "source": "placesbeen",
    "captions": [
     "{n} of {of}. The other {rest} are not going anywhere.",
-    "Walked, not driven past. The ranger would know.",
+    "Inside, not driven past. The ranger would know.",
     "From Denali to the Everglades. The middle needs work."
    ]
   },
@@ -160,15 +160,15 @@
    "name": "Parks, everywhere",
    "shelf": "places",
    "default_on": false,
-   "verb": "walked",
+   "verb": "been inside",
    "denominator": null,
    "as_of": "2026-10-07",
-   "what_counts": "Same rule as the US list: boots inside the boundary.",
+   "what_counts": "Same rule as the US list: past the gate and inside.",
    "caption": "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
    "source": "placesbeen",
    "captions": [
     "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
-    "Teide counts. So does Muir Woods. The rule is boots on the ground.",
+    "Teide counts. So does Muir Woods. The rule is past the gate and inside.",
     "Paparoa is on here. Look it up, then look at flights."
    ]
   },
@@ -301,12 +301,12 @@
    "id": "spa",
    "shelf": "wonders",
    "name": "Great Spa Towns",
-   "verb": "walked",
+   "verb": "been inside",
    "denominator": 11,
    "source": "placesbeen",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "Walked the town.",
+   "what_counts": "One night, or the center at ground level.",
    "computed": "pins_named",
    "match": [
     "City of Bath"
@@ -331,12 +331,12 @@
    "id": "vikings",
    "shelf": "wonders",
    "name": "Viking ring forts",
-   "verb": "walked",
+   "verb": "been inside",
    "denominator": 5,
    "source": "hand",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "Walked the rampart.",
+   "what_counts": "Past the gate and inside the ring.",
    "items": [
     [
      "TRE",
@@ -586,12 +586,12 @@
    "id": "bridges",
    "shelf": "motion",
    "name": "Bridges",
-   "verb": "walked across",
+   "verb": "crossed",
    "denominator": null,
    "source": "hand",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "Walked across, both ways optional.",
+   "what_counts": "Crossed it, both ways optional.",
    "items": []
   },
   {
@@ -663,7 +663,7 @@
    "source": "hand",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "Summits reached on foot.",
+   "what_counts": "Summits reached, however you got there.",
    "items": [
     [
      "TOU",
@@ -704,11 +704,11 @@
    "denominator": null,
    "as_of": "2026-10-07",
    "what_counts": "All four paws on the ground, past border control.",
-   "caption": "35 kg of Samoyed, {n} countries, zero complaints filed.",
+   "caption": "35 kg of Samoyed, {n} countries, zero complaints on record.",
    "pin_shape": "paw",
    "source": "member",
    "captions": [
-    "35 kg of Samoyed, {n} countries, zero complaints filed.",
+    "35 kg of Samoyed, {n} countries, zero complaints on record.",
     "{n} countries sniffed. Each border checked personally, nose first.",
     "He does not know what a country is. He has been to {n}."
    ]
@@ -1109,7 +1109,7 @@
  "empty_copy": {
   "chip": "Not yet.",
   "card_zero": "0 of {of}. The list is ready when you are.",
-  "popover_no_story": "No story filed from here yet.",
+  "popover_no_story": "No story from here yet.",
   "map_all_off": "Every layer is off. Here is the planet, unannotated.",
   "human": "Nothing here yet. The first line is the hardest to write.",
   "heat": "No photos or runs synced. Rounded on purpose, once there is something to round.",
