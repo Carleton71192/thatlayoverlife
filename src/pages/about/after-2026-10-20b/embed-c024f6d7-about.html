@@ -1,0 +1,44 @@
+<style>@media(max-width:600px){.tll-about-final-title{font-size:38px;letter-spacing:-.5px}.tll-about-final-hero{padding-top:52px;padding-bottom:40px}.tll-about-final-intro{font-size:18px}.tll-about-final-section{padding-top:36px;padding-bottom:26px}.tll-about-final-h2{font-size:29px}.tll-about-final-p,.tll-about-final-li{font-size:17px}.tll-about-final-quote{font-size:21px}}
+.tll-about-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:0 24px;margin:28px 0 0;padding:0;border-top:1px solid #E0DACE}
+.tll-about-facts div{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid #E0DACE}
+.tll-about-facts dt{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#067A79}
+.tll-about-facts dd{margin:0;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;line-height:1.4;color:#1A1A1A}
+.tll-about-facts [hidden]{display:none}</style>
+<dl class="tll-about-facts" data-tll-about-facts>
+<div data-tll-about-fact="countries" hidden><dt>Countries</dt><dd data-tll-about-fact-v></dd></div>
+<div><dt>Abroad since</dt><dd>2018</dd></div>
+<div><dt>Speaks</dt><dd>English · Danish · Portuguese</dd></div>
+<div><dt>Marathons</dt><dd>Seven, one per continent</dd></div>
+</dl>
+<div hidden data-tll-owner-url=""></div>
+<script>/* About (E1.10 and E2.1, 20 October 2026 evening). Nancy's number comes from one place: her saved map, read from the Worker's public
+   /owner-map route (its URL goes in data-tll-owner-url above after the Worker is deployed). Until then the count sentence keeps its
+   no-number text and the Countries fact stays hidden, so no old or typed number shows. Count rule as the map save (tll-map-snapshot-v1):
+   human travelers only; Lived and Stayed make places; Antarctica (010) is a place, not a country; layover-only places sit beside;
+   what is left is counted against the 249 places. The side facts move under the letter. Magnus's line reads his pet page. */
+(function(){
+var ATA='010',TOTAL=249;
+function best(row,allow){var b='';Object.keys(row||{}).forEach(function(id){if(allow&&!allow[id])return;var v=row[id];if(v==='lived')b='lived';else if(v==='visited'){if(b!=='lived')b='visited';}else if(v==='layover'&&!b)b='layover';});return b;}
+function count(d){if(!d||d.v!==2||!d.states)return null;var hum={},any=false,c=0,ata=false,lay=0;
+ (d.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=true;}});
+ Object.keys(d.states).forEach(function(k){var b=best(d.states[k]||{},any?hum:null);if(b==='lived'||b==='visited'){if(k===ATA)ata=true;else c++;}else if(b==='layover')lay++;});
+ return {countries:c,ata:ata,lay:lay,places:c+(ata?1:0)};}
+function get(path){return fetch(path,{cache:'no-cache'}).then(function(r){if(!r.ok)throw Error('Unavailable');return r.text();}).then(function(h){return new DOMParser().parseFromString(h,'text/html');});}
+function run(){
+var facts=document.querySelector('[data-tll-about-facts]'),span=document.querySelector('[data-tll-about-count="nancy"]');
+var sec=span&&span.closest('section');if(facts&&sec)sec.appendChild(facts);
+var o=document.querySelector('[data-tll-owner-url]'),u=o?(o.getAttribute('data-tll-owner-url')||'').trim():'';
+if(/^https:\/\//.test(u)){fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){var c=count(d);if(!c||!c.places||c.places>TOTAL)return;
+ if(span)span.textContent='The country count stands at '+c.countries+(c.ata?' plus Antarctica':'')+', which leaves me '+(TOTAL-c.places)+' of the '+TOTAL+' places. Excellent reasons to keep going.';
+ var f=document.querySelector('[data-tll-about-fact="countries"]');if(f){f.querySelector('[data-tll-about-fact-v]').textContent=c.countries+(c.ata?' + Antarctica':'')+' · '+c.lay+' layovers beside';f.hidden=false;}
+}).catch(function(){});}
+get('/pets/magnus-waffles').then(function(d){
+var scripts=Array.from(d.querySelectorAll('script')),match;
+scripts.some(function(s){if(s.textContent.indexOf('window.TLL_PET=')<0)return false;match=s.textContent.match(/countries:\s*("(?:\\.|[^"\\])*")/);return !!match;});
+if(!match)return;var list=JSON.parse(match[1]).split(',').map(function(s){return s.trim().toLowerCase();}).filter(Boolean);
+var n=new Set(list).size,t=document.querySelector('[data-tll-about-count="magnus"]');
+if(t)t.textContent='He has crossed into '+n+' countries.';
+}).catch(function(){});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();</script>
