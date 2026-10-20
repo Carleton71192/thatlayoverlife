@@ -1,20 +1,135 @@
 /* The Map 2.0 for thatlayover.life. Plain JavaScript, no build step.
    Built to the Claude Design file "TLL Map Layers" (7 Oct 2026): dark canvas, depth fills, one shape per shelf,
    a drawer switcher with every list, the receipts (one card per list), sets of seven, the lines strip, framed embeds.
-   Mounts into #tll-map-layers. Reads collections.json, counts.json and one data file per list from data-tll-data.
-   Every number on the page is counted from those files. Nothing here touches tllStates, Memberstack, the logbook
-   or the share bundle. */
+   Mounts into #tll-map-layers. Reads collections.json, and a list's data file only when that list is switched on.
+   20 Oct 2026 (B3, Nancy: "Everything on this page needs to live calculate"): every number is counted live from the
+   member's saved map (tllStates) and logbook (tllLog, tllParks), or for visitors from the site owner's live map
+   (data-tll-owner-url, falling back to data/owner-record.json). counts.json and extremes.json are no longer read. */
+/* TLL map counts (B3, 20 October 2026). Pure functions, no DOM: the map below and test/map-live-counts.test.js share them.
+   Counting rules are COUNT-RULES.md (19 October 2026): places = Lived or Stayed by any person on the account, Antarctica
+   included; countries = places without Antarctica; layover-only places counted apart; pets never in the member's numbers.
+   The tables are geography facts, not counts: ISO 3166-1 numeric (249 codes) plus Kosovo 900 by continent (UN M49
+   regions, the Americas split into North and South, Antarctica its own continent), and the 193 UN member states. */
+(function (g) {
+  'use strict';
+  var CONTINENTS = ['Africa', 'Antarctica', 'Asia', 'Europe', 'North America', 'Oceania', 'South America'];
+  var BY_CONTINENT = {
+    'Africa': '012 024 072 086 108 120 132 140 148 174 175 178 180 204 226 231 232 260 262 266 270 288 324 384 404 426 430 434 450 454 466 478 480 504 508 516 562 566 624 638 646 654 678 686 690 694 706 710 716 728 729 732 748 768 788 800 818 834 854 894',
+    'Antarctica': '010',
+    'Asia': '004 031 048 050 051 064 096 104 116 144 156 158 196 268 275 344 356 360 364 368 376 392 398 400 408 410 414 417 418 422 446 458 462 496 512 524 586 608 626 634 682 702 704 760 762 764 784 792 795 860 887',
+    'Europe': '008 020 040 056 070 100 112 191 203 208 233 234 246 248 250 276 292 300 336 348 352 372 380 428 438 440 442 470 492 498 499 528 578 616 620 642 643 674 688 703 705 724 744 752 756 804 807 826 831 832 833 900',
+    'North America': '028 044 052 060 084 092 124 136 188 192 212 214 222 304 308 312 320 332 340 388 474 484 500 531 533 534 535 558 591 630 652 659 660 662 663 666 670 780 796 840 850',
+    'Oceania': '016 036 090 162 166 184 242 258 296 316 334 520 540 548 554 570 574 580 581 583 584 585 598 612 772 776 798 876 882',
+    'South America': '032 068 074 076 152 170 218 238 239 254 328 600 604 740 858 862'
+  };
+  var UN_MEMBERS = '004 008 012 020 024 028 031 032 036 040 044 048 050 051 052 056 064 068 070 072 076 084 090 096 100 104 108 112 116 120 124 132 140 144 148 152 156 170 174 178 180 188 191 192 196 203 204 208 212 214 218 222 226 231 232 233 242 246 250 262 266 268 270 276 288 296 300 308 320 324 328 332 340 348 352 356 360 364 368 372 376 380 384 388 392 398 400 404 408 410 414 417 418 422 426 428 430 434 438 440 442 450 454 458 462 466 470 478 480 484 492 496 498 499 504 508 512 516 520 524 528 548 554 558 562 566 578 583 584 585 586 591 598 600 604 608 616 620 624 626 634 642 643 646 659 662 670 674 678 682 686 688 690 694 702 703 704 705 706 710 716 724 728 729 740 748 752 756 760 762 764 768 776 780 784 788 792 795 798 800 804 807 818 826 834 840 854 858 860 862 882 887 894';
+  var OBSERVERS = ['336', '275']; // Holy See, Palestine
+  var EXTRA = { '901': 'Asia', '902': 'Africa' }; // Northern Cyprus, Somaliland, if a record ever holds them (COUNT-RULES 2)
+  var ANTARCTICA = '010', KOSOVO = '900';
+  var CONT = {}, ISO = {}, UN = {}, UNO = {};
+  Object.keys(BY_CONTINENT).forEach(function (c) { BY_CONTINENT[c].split(' ').forEach(function (k) { CONT[k] = c; ISO[k] = 1; }); });
+  Object.keys(EXTRA).forEach(function (k) { CONT[k] = EXTRA[k]; });
+  UN_MEMBERS.split(' ').forEach(function (k) { UN[k] = 1; UNO[k] = 1; });
+  OBSERVERS.forEach(function (k) { UNO[k] = 1; });
+  var RANK = { layover: 1, visited: 2, lived: 3 };
+
+  // One key per place: older records saved Kosovo as 'undefined' or 'XK'; anything that is not three digits is dropped.
+  function canon(k) { k = String(k); if (k === 'undefined' || k === 'XK' || k === KOSOVO) return KOSOVO; return /^\d{3}$/.test(k) ? k : null; }
+  function better(a, v) { return RANK[v] && (!a || RANK[v] > RANK[a]) ? v : a; }
+
+  function countRecord(raw) {
+    var out = { ok: false, places: 0, countries: 0, antarctica: false, layovers: 0, lived: 0, stayed: 0, continents: [], codes: 0, un: 0, unObservers: 0,
+      placeIsos: [], countryIsos: [], layoverIsos: [], best: {}, pets: [] };
+    if (!raw || raw.v !== 2 || !raw.states || typeof raw.states !== 'object') return out;
+    out.ok = true;
+    var hum = {}, pet = {}, anyHum = false, petSeen = {};
+    (Array.isArray(raw.travelers) ? raw.travelers : []).forEach(function (t) {
+      if (!t || t.id == null) return; var id = String(t.id);
+      if (t.pet) { pet[id] = 1; petSeen[id] = {}; out.pets.push({ id: id, name: String(t.name || 'Pet'), places: 0 }); } else { hum[id] = 1; anyHum = true; }
+    });
+    // Listed people make the member's numbers (same as the S94 count function); with nobody listed, every id that is not a pet.
+    Object.keys(raw.states).forEach(function (k) {
+      var iso = canon(k); if (!iso) return;
+      var row = raw.states[k] || {}, b = out.best[iso] || '';
+      Object.keys(row).forEach(function (id) {
+        if (pet[id]) { if (RANK[row[id]]) petSeen[id][iso] = 1; return; }
+        if (anyHum && !hum[id]) return;
+        b = better(b, row[id]);
+      });
+      if (b) out.best[iso] = b;
+    });
+    var cs = {};
+    Object.keys(out.best).sort().forEach(function (iso) {
+      var b = out.best[iso];
+      if (b === 'layover') { out.layovers++; out.layoverIsos.push(iso); return; }
+      out.places++; out.placeIsos.push(iso); if (b === 'lived') out.lived++; else out.stayed++;
+      if (iso === ANTARCTICA) out.antarctica = true; else { out.countries++; out.countryIsos.push(iso); }
+      if (CONT[iso]) cs[CONT[iso]] = 1;
+      if (ISO[iso]) out.codes++;
+      if (UN[iso]) out.un++;
+      if (UNO[iso]) out.unObservers++;
+    });
+    out.continents = CONTINENTS.filter(function (c) { return cs[c]; });
+    out.pets.forEach(function (p) { p.places = Object.keys(petSeen[p.id]).length; });
+    return out;
+  }
+
+  // The logbook: tllLog {v:1, parks:[{n,at}], cities:[...], airports:[...]} and tllParks {v:1, parks:{CODE:time}}.
+  // A name logged twice counts once. Parks everywhere = US park codes plus the other parks.
+  function names(a) { var s = {}, n = 0; (Array.isArray(a) ? a : []).forEach(function (e) { var k = e && e.n != null ? String(e.n).toLowerCase().replace(/\s+/g, ' ').trim() : ''; if (k && !s[k]) { s[k] = 1; n++; } }); return n; }
+  function countLogbook(log, parks) {
+    var okLog = !!(log && typeof log === 'object'), p = parks && typeof parks === 'object' && parks.parks && typeof parks.parks === 'object' ? parks.parks : null;
+    var us = p ? Object.keys(p).length : 0, other = okLog ? names(log.parks) : 0;
+    return { ok: okLog || !!p, cities: okLog ? names(log.cities) : 0, airports: okLog ? names(log.airports) : 0, usParks: us, parksEverywhere: us + other };
+  }
+
+  // Lines and extremes by country: each country at the center of its shape, from centroid(iso) -> [lon, lat].
+  function lines(isos, centroid) {
+    var out = { n: 0, north: null, south: null, east: null, west: null, hemispheres: [], hemisphereCount: 0, equator: false, meridian: false }, N = false, S = false, E = false, W = false;
+    (isos || []).forEach(function (iso) {
+      var c = centroid(iso); if (!c || !isFinite(c[0]) || !isFinite(c[1])) return;
+      var lon = +c[0], lat = +c[1]; while (lon > 180) lon -= 360; while (lon < -180) lon += 360;
+      var p = { iso: iso, lat: lat, lon: lon }; out.n++;
+      if (!out.north || lat > out.north.lat) out.north = p;
+      if (!out.south || lat < out.south.lat) out.south = p;
+      if (!out.east || lon > out.east.lon) out.east = p;
+      if (!out.west || lon < out.west.lon) out.west = p;
+      if (lat > 0) N = true; if (lat < 0) S = true; if (lon > 0) E = true; if (lon < 0) W = true;
+    });
+    out.hemispheres = [N && 'N', S && 'S', E && 'E', W && 'W'].filter(Boolean); out.hemisphereCount = out.hemispheres.length;
+    out.equator = N && S; out.meridian = E && W;
+    return out;
+  }
+
+  var MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  function toMs(v) { if (v == null || v === '') return 0; var n = +v; if (isFinite(n) && n > 0) return n; var t = Date.parse(v); return isFinite(t) ? t : 0; }
+  function dateLabel(v) { var t = toMs(v); if (!t) return ''; var d = new Date(t); return d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear(); } // 19 October 2026
+
+  var api = { CONTINENTS: CONTINENTS, canon: canon, continentOf: function (k) { var c = canon(k); return c ? CONT[c] || null : null; },
+    isIso: function (k) { var c = canon(k); return !!(c && ISO[c]); }, isUN: function (k) { return !!UN[canon(k)]; }, isUNorObserver: function (k) { return !!UNO[canon(k)]; },
+    isoCount: Object.keys(ISO).length, unCount: Object.keys(UN).length, unObserverCount: Object.keys(UNO).length,
+    countRecord: countRecord, countLogbook: countLogbook, lines: lines, toMs: toMs, dateLabel: dateLabel };
+  if (typeof module === 'object' && module && module.exports) module.exports = api;
+  if (g) g.TLLMapCounts = api;
+})(typeof window !== 'undefined' ? window : null);
+
 (function () {
   'use strict';
+  if (typeof document === 'undefined') return; // loaded by the tests for TLLMapCounts only
   if (window.__tllMapLayers) return; window.__tllMapLayers = 1;
   var root = document.getElementById('tll-map-layers'); if (!root) return;
+  var K = window.TLLMapCounts;
 
   var VER = root.getAttribute('data-tll-version') || 'main';
   var CDN = 'https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@' + VER + '/map-2.0/';
   var DATA = (root.getAttribute('data-tll-data') || (CDN + 'data/')).replace(/\/?$/, '/');
   var CONFIG = root.getAttribute('data-tll-config') || (DATA.replace(/data\/$/, '') + 'collections.json');
   var ATLAS = root.getAttribute('data-tll-atlas') || 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json';
-  var STYLE = root.hasAttribute('data-tll-style') ? root.getAttribute('data-tll-style') : 'https://tiles.openfreemap.org/styles/dark';
+  // B3.9: the OpenFreeMap dark tiles were the biggest download and the countries draw from our own shapes either way.
+  // Empty, missing or the OpenFreeMap URL means the built-in plain base style; any other style URL still works.
+  var STYLE_ATTR = (root.getAttribute('data-tll-style') || '').trim();
+  var STYLE = !STYLE_ATTR || /openfreemap\.org/i.test(STYLE_ATTR) ? null : STYLE_ATTR;
+  var OWNER_URL = (root.getAttribute('data-tll-owner-url') || '').trim(); // B3.7: a GET that returns the owner's tllStates v2
   var LIB = root.getAttribute('data-tll-lib') || 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl';
   var TOPO = root.getAttribute('data-tll-topojson') || 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js';
   var NOT_YET = root.getAttribute('data-tll-not-yet') === 'full' ? '#E9E1D3' : '#2E2D33'; // design prop "notYet": Cream dimmed (default) or Cream full
@@ -38,26 +153,59 @@
 
   // ---------- state ----------
   var cfg, counts = {}, vars = {}, shelves = {}, colls = [], byId = {}, srcs = {}, empty = {};
-  var map, topojson, countryRows = {}, loggedIso = {}, loaded = {}, active = {}, popup, tip, status, heatKey, extremesData;
+  var map, topojson, countryRows = {}, loggedIso = {}, loaded = {}, active = {}, popup, tip, status, heatKey, LINES = null;
+  var LOG = null, MEMBER_LOG = null, OWNER_LOG = null, SAVED_AT = 0, savedBar, savedText, savedMsg, savedBtn;
+  var mapStarted = false, mapReady = false, pending = {}, ownerP = Promise.resolve();
   var bar, onChips, drawer, drawerBtn, listBox, listUl, listFilter, secCards, secRules, secSets, secStrip, secFrames;
 
   root.classList.add('tllm'); root.setAttribute('data-tll-map-layers', '2.0');
 
-  Promise.all([getJSON(CONFIG), getJSON(DATA + 'counts.json').catch(function () { return {}; })])
-    .then(function (r) {
-      cfg = r[0]; counts = r[1].counts || {}; vars = r[1].vars || {};
+  getJSON(CONFIG)
+    .then(function (c) {
+      cfg = c;
       (cfg.shelves || []).forEach(function (s) { shelves[s.id] = s; });
-      colls = cfg.collections || []; colls.forEach(function (c) { byId[c.id] = c; });
+      // B3.5: a list with no way for a member to log it keeps its file but leaves the page for everyone (chips, drawer,
+      // cards, pins) while its collections.json entry carries "hidden_until_loggable": true.
+      colls = (cfg.collections || []).filter(function (x) { return !x.hidden_until_loggable; }); colls.forEach(function (x) { byId[x.id] = x; });
       srcs = cfg.sources || {}; empty = cfg.empty_copy || {};
-      buildUI();
-      css(LIB + '.css');
       ownerCheck(); REC = recordFromStorage();
-      var owner = getJSON(DATA + 'owner-record.json').then(function (j) { OWNER = normalizeRecord(j, 'owner'); if (!REC) REC = OWNER; }).catch(function () {});
-      return Promise.all([script(LIB + '.js'), script(TOPO), owner]);
+      buildUI();
+      applyRecord(REC);
+      ownerP = loadOwner().then(function (o) { OWNER = o; applyRecord(!REC ? o : null); });
+      watchRecord();
+      whenNear(document.getElementById('tllm-stage'), startMap);
     })
-    .then(function () { topojson = window.topojson; return initMap(); })
-    .then(function () { colls.forEach(function (c) { if (c.default_on) toggle(c.id, true); }); watchRecord(); })
     .catch(function (e) { fail('The map could not start: ' + e.message); });
+
+  // B3.9: MapLibre, its stylesheet and the country shapes load only once the map is about one screen away.
+  function whenNear(target, go) {
+    if (!target || !('IntersectionObserver' in window)) return go();
+    var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); go(); } }, { rootMargin: '100% 0px 100% 0px' });
+    io.observe(target);
+  }
+  function startMap() {
+    if (mapStarted) return; mapStarted = true;
+    css(LIB + '.css');
+    Promise.all([script(LIB + '.js'), script(TOPO), ownerP])
+      .then(function () { topojson = window.topojson; return initMap(); })
+      .then(function () {
+        mapReady = true;
+        colls.forEach(function (c) { var on = Object.prototype.hasOwnProperty.call(pending, c.id) ? pending[c.id] : !!c.default_on; if (on || c.id === 'countries') toggle(c.id, on); });
+        applyRecord(null);
+      })
+      .catch(function (e) { fail('The map could not start: ' + e.message); });
+  }
+  // B3.7: visitors see the site owner's live map. Fallback: the 7 October copy in data/owner-record.json.
+  function loadOwner() {
+    function fallback() { OWNER_LOG = null; return getJSON(DATA + 'owner-record.json').then(function (j) { return normalizeRecord(j, 'owner'); }).catch(function () { return null; }); }
+    if (!OWNER_URL) return fallback();
+    return getJSON(OWNER_URL).then(function (j) {
+      var raw = j && j.v === 2 && j.states ? j : (j && j.tllStates && j.tllStates.v === 2 ? j.tllStates : null);
+      var rec = normalizeRecord(raw, 'owner'); if (!rec) return fallback();
+      OWNER_LOG = j.tllLog || j.tllParks ? { log: j.tllLog || null, parks: j.tllParks || null } : null; // only if the route ever carries the logbook
+      return rec;
+    }).catch(fallback);
+  }
 
   // ---------- the member record ----------
   // tllStates v2, written by the map editor and mirrored by the page head into localStorage and the Memberstack
@@ -75,12 +223,15 @@
     var me = null, pets = [];
     (raw.travelers || []).forEach(function (t) { if (!t || !t.id) return; if (t.pet) pets.push({ id: String(t.id), name: String(t.name || 'Pet'), states: {} }); else if (!me) me = String(t.id); });
     if (!me) me = 't1';
-    var out = { me: {}, pets: pets, source: source };
+    // me: the member's own depths (the log buttons). all: the best depth of anyone on the account (the fills).
+    // count: the numbers, from TLLMapCounts. Kosovo is 'XK' on the map shapes, whatever key the record used.
+    var count = K.countRecord(raw), out = { me: {}, all: {}, pets: pets, source: source, raw: raw, count: count };
     Object.keys(raw.states).forEach(function (k) {
-      var e = raw.states[k] || {}, id = k === 'undefined' ? 'XK' : String(k);
+      var e = raw.states[k] || {}, id = k === 'undefined' || k === '900' ? 'XK' : String(k);
       if (e[me] && DEPTH[e[me]]) out.me[id] = DEPTH[e[me]];
       pets.forEach(function (p) { if (e[p.id]) p.states[id] = DEPTH[e[p.id]] || 'Stayed'; });
     });
+    Object.keys(count.best).forEach(function (iso) { out.all[iso === '900' ? 'XK' : iso] = DEPTH[count.best[iso]]; });
     return out;
   }
   var member = null; // true once Memberstack reports a logged-in member, false once it reports none or never loads
@@ -88,7 +239,7 @@
     try { var mid = localStorage.getItem('_ms-mid') || '', own = localStorage.getItem('tllStatesOwner') || ''; if (mid && own && own !== mid) { localStorage.removeItem('tllStates'); localStorage.removeItem('tllStatesAt'); } if (mid) localStorage.setItem('tllStatesOwner', mid); } catch (e) {}
   }
   function canEdit() { return member === true || !!(REC && REC.source === 'local'); }
-  root.tllmState = function () { return { member: member, source: REC && REC.source, canEdit: canEdit() }; };
+  root.tllmState = function () { return { member: member, source: REC && REC.source, canEdit: canEdit(), mapStarted: mapStarted, record: REC && REC.count, logbook: LOG ? K.countLogbook(LOG.log, LOG.parks) : null, lines: LINES, savedAt: SAVED_AT }; };
   function rawRecord() {
     var raw = null; try { raw = JSON.parse(localStorage.getItem('tllStates') || 'null'); } catch (e) {}
     if (!raw || raw.v !== 2 || !raw.states) raw = { v: 2, travelers: [], states: {} };
@@ -106,7 +257,7 @@
       var ms = window.$memberstackDom; if (!ms) return;
       ms.getCurrentMember().then(function (r) {
         if (!r || !r.data) return;
-        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; var t = Date.now(); json.tllStates = JSON.parse(j); json.tllStatesAt = t; return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; try { localStorage.setItem('tllStatesAt', String(t)); } catch (err) {} }); });
+        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; var t = Date.now(); json.tllStates = JSON.parse(j); json.tllStatesAt = t; return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; SAVED_AT = t; renderSaved(); try { localStorage.setItem('tllStatesAt', String(t)); } catch (err) {} }); });
       }).catch(function () {});
     }, 1200);
   }
@@ -122,42 +273,103 @@
     applyRecord(normalizeRecord(raw, 'local'));
   }
   function recordFromStorage() { try { return normalizeRecord(JSON.parse(localStorage.getItem('tllStates') || 'null'), 'local'); } catch (e) { return null; } }
+  // B3.3: the logbook. Signed in: the member JSON (tllLog, tllParks). Otherwise the browser copies under the same keys.
+  function readJSONKey(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+  function logFromStorage() { var l = readJSONKey('tllLog'), p = readJSONKey('tllParks'); return l || p ? { log: l, parks: p } : null; }
+  function takeMemberJSON(j) { MEMBER_LOG = { log: j.tllLog || null, parks: j.tllParks || null }; var t = K.toMs(j.tllStatesAt); if (t) SAVED_AT = t; }
   function recordFromMemberstack() {
     var ms = window.$memberstackDom; if (!ms || !ms.getCurrentMember) return Promise.resolve(null);
     return ms.getCurrentMember().then(function (r) {
       member = !!(r && r.data); if (!member) return null;
-      return ms.getMemberJSON().then(function (mj) { var j = (mj && mj.data) || {}; return normalizeRecord(j.tllStates, 'member') || normalizeRecord({ v: 2, travelers: [], states: {} }, 'member'); });
+      return ms.getMemberJSON().then(function (mj) { var j = (mj && mj.data) || {}; takeMemberJSON(j); return normalizeRecord(j.tllStates, 'member') || normalizeRecord({ v: 2, travelers: [], states: {} }, 'member'); });
     }).catch(function () { return null; });
+  }
+  // Same-tab saves (the logbook, the map sync) go through updateMemberJSON; once one resolves, the cards follow it.
+  function hookSaves(ms) {
+    if (!ms || !ms.updateMemberJSON || ms.__tllmHooked) return; ms.__tllmHooked = 1;
+    var orig = ms.updateMemberJSON.bind(ms);
+    ms.updateMemberJSON = function (arg) {
+      var p = orig(arg), j = arg && arg.json;
+      if (j && p && p.then) p.then(function () {
+        if (member !== true) return;
+        if (j.tllLog || j.tllParks) MEMBER_LOG = { log: j.tllLog || (MEMBER_LOG && MEMBER_LOG.log) || null, parks: j.tllParks || (MEMBER_LOG && MEMBER_LOG.parks) || null };
+        if (j.tllStates) { var t = K.toMs(j.tllStatesAt); if (t) SAVED_AT = t; }
+        applyRecord(null);
+      }, function () {});
+      return p;
+    };
+  }
+  // B3.8: "Refresh from my account" reads the member JSON again; the account wins over the browser copy.
+  function refreshFromAccount() {
+    var ms = window.$memberstackDom; if (!ms || !ms.getMemberJSON) { savedMsg.textContent = 'Your account is not reachable right now. Try again in a moment.'; return; }
+    savedBtn.setAttribute('aria-busy', 'true'); savedBtn.disabled = true; savedMsg.textContent = '';
+    ms.getMemberJSON().then(function (mj) {
+      var j = (mj && mj.data) || {}, raw = j.tllStates && j.tllStates.v === 2 && j.tllStates.states ? j.tllStates : null;
+      try { if (raw) localStorage.setItem('tllStates', JSON.stringify(raw)); if (K.toMs(j.tllStatesAt)) localStorage.setItem('tllStatesAt', String(j.tllStatesAt)); } catch (e) {}
+      takeMemberJSON(j);
+      if (raw && window.__tllMapApply) { try { window.__tllMapApply(JSON.parse(JSON.stringify(raw))); } catch (e) {} }
+      applyRecord(normalizeRecord(raw || { v: 2, travelers: [], states: {} }, 'member'));
+      savedMsg.textContent = 'Refreshed from your account.';
+    }).catch(function () { savedMsg.textContent = 'That did not load. Check your connection and try again.'; })
+      .then(function () { savedBtn.removeAttribute('aria-busy'); savedBtn.disabled = false; });
+  }
+  function renderSaved() {
+    if (!savedBar) return;
+    savedBar.hidden = member !== true;
+    var d = K.dateLabel(SAVED_AT); savedText.textContent = d ? 'Last saved ' + d : ''; savedText.hidden = !d;
   }
   function watchRecord() {
     var tries = 0, iv = setInterval(function () {
-      if (window.$memberstackDom) { clearInterval(iv); recordFromMemberstack().then(function (r) { if (r) applyRecord(r); }); }
-      else if (++tries > 40) { clearInterval(iv); if (member === null) member = false; }
+      if (window.$memberstackDom) { clearInterval(iv); hookSaves(window.$memberstackDom); recordFromMemberstack().then(function (r) { applyRecord(r); }); }
+      else if (++tries > 40) { clearInterval(iv); if (member === null) { member = false; applyRecord(null); } }
     }, 300);
     window.addEventListener('tll:states', function (e) { var r = normalizeRecord(e.detail, 'local'); if (r) applyRecord(r); });
-    window.addEventListener('storage', function (e) { if (e.key === 'tllStates') { var r = recordFromStorage(); if (r) applyRecord(r); } });
+    // The logbook embed fires 'tll:log' ({log, parks}) in this tab after each save; 'storage' covers other tabs.
+    window.addEventListener('tll:log', function (e) {
+      var d = e && e.detail || {}, l = { log: d.log || null, parks: d.parks || null };
+      if (member === true) MEMBER_LOG = l; applyRecord(null);
+    });
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'tllStates') { var r = recordFromStorage(); if (r) applyRecord(r); }
+      else if (e.key === 'tllLog' || e.key === 'tllParks') { if (member === true) MEMBER_LOG = logFromStorage(); applyRecord(null); }
+      else if (e.key === 'tllStatesAt' && member === true) { var t = K.toMs(e.newValue); if (t) { SAVED_AT = t; renderSaved(); } }
+    });
   }
   function setDepthProps(f, id, row) {
-    var d = REC ? (REC.me[id] || '') : ((row && row.depth) || '');
+    var d = REC ? (REC.all[id] || '') : ''; // no record, no fill: the export rows only ever propose
     f.properties.logged = !!d; f.properties.depth = d;
     f.properties.proposed = !d && !!(row && (row.depth_proposed || row.depth)) && isOwnerRecord(REC);
   }
+  // B3.1: countries, places, layovers and continents from the record only (TLLMapCounts.countRecord).
   function countDepths() {
-    var v = { lived: 0, stayed: 0, layover: 0, proposed: 0 };
-    (fcCountries ? fcCountries.features : []).forEach(function (f) { var p = f.properties; if (p.depth === 'Lived') v.lived++; else if (p.depth === 'Stayed') v.stayed++; else if (p.depth === 'Layover only') v.layover++; else if (p.proposed) v.proposed++; });
-    var den = (byId.countries && byId.countries.denominator) || 0;
-    v.n = v.lived + v.stayed; v.of = den; v.notyet = Math.max(0, den - v.lived - v.stayed - v.layover); v.rest = v.notyet;
+    var k = REC ? REC.count : K.countRecord(null), den = (byId.countries && byId.countries.denominator) || 249;
+    var v = { lived: k.lived, stayed: k.stayed, layover: k.layovers, proposed: 0, countries: k.countries, places: k.places, antarctica: k.antarctica, continents: k.continents.length, continentNames: k.continents };
+    (fcCountries ? fcCountries.features : []).forEach(function (f) { if (f.properties.proposed) v.proposed++; });
+    v.n = k.places; v.of = den; v.notyet = Math.max(0, den - k.lived - k.stayed - k.layovers); v.rest = v.notyet;
     v.pct = den ? Math.round(v.n / den * 1000) / 10 : 0; v.half = Math.ceil(den / 2);
-    v.split = 'LIVED ' + v.lived + ' · STAYED ' + v.stayed + ' · LAYOVER ONLY ' + v.layover;
-    counts.countries = v.n; vars.countries = Object.assign({}, vars.countries || {}, v);
+    counts.countries = REC ? k.countries : null; vars.countries = v;
     return v;
   }
-  function centroidOf(iso) {
-    var f = fcCountries && fcCountries.features.filter(function (x) { return x.properties.iso === iso; })[0]; if (!f) return null;
-    var polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates, best = null, bestN = 0;
-    polys.forEach(function (p) { if (p[0].length > bestN) { bestN = p[0].length; best = p[0]; } });
-    if (!best) return null; var x = 0, y = 0; best.forEach(function (c) { x += c[0]; y += c[1]; }); return [x / best.length, y / best.length];
+  // B3.3: cities, airports, US parks and parks everywhere from the logbook (TLLMapCounts.countLogbook). No logbook, no number.
+  function countLog() {
+    var k = LOG ? K.countLogbook(LOG.log, LOG.parks) : null;
+    colls.forEach(function (c) { if (c.count_from === 'logbook') counts[c.id] = k && k.ok && c.logbook_count ? (k[c.logbook_count] || 0) : null; });
   }
+  var centroids = {};
+  function centroidOf(iso) {
+    if (centroids[iso] !== undefined) return centroids[iso];
+    var f = fcCountries && fcCountries.features.filter(function (x) { return x.properties.iso === iso; })[0]; if (!f) return null;
+    // The center of the country's largest piece by area (shoelace centroid), so a long coastline does not pull it aside.
+    var polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates, best = null, bestA = 0;
+    polys.forEach(function (p) {
+      var r = p[0], a = 0, cx = 0, cy = 0, i, k;
+      for (i = 0; i < r.length - 1; i++) { k = r[i][0] * r[i + 1][1] - r[i + 1][0] * r[i][1]; a += k; cx += (r[i][0] + r[i + 1][0]) * k; cy += (r[i][1] + r[i + 1][1]) * k; }
+      if (Math.abs(a) > bestA && a) { bestA = Math.abs(a); best = [cx / (3 * a), cy / (3 * a)]; }
+    });
+    return (centroids[iso] = best);
+  }
+  // B3.4: lines and extremes by country, from the countries in the record (Antarctica is a place, not a country).
+  function computeLines() { LINES = fcCountries && REC ? K.lines(REC.count.countryIsos.map(function (i) { return i === '900' ? 'XK' : i; }), centroidOf) : null; }
   function recordRows(states, verb) {
     var rows = [];
     Object.keys(states).forEach(function (iso) {
@@ -176,21 +388,21 @@
     if (map && map.getLayer('tllm-magnus-outline')) map.setFilter('tllm-magnus-outline', ['in', ['get', 'a2'], ['literal', rows.map(function (r) { return r.country; })]]);
     var card = root.querySelector('.tllm-card[data-id="magnus"] .tllm-card-num b'); if (card) { card.textContent = fmt(counts.magnus); card.dataset.count = counts.magnus; }
   }
+  // One repaint for every change: a new record, a logbook save, Memberstack answering, the shapes arriving.
   function applyRecord(rec) {
-    if (!rec) return; REC = rec; if (!fcCountries || !map || !map.getSource('tllm-countries')) return;
-    fcCountries.features.forEach(function (f) { setDepthProps(f, f.properties.iso, countryRows[f.properties.a2]); });
-    map.getSource('tllm-countries').setData(fcCountries);
-    applyPets(); var v = countDepths(); bindCounters(v.n); refreshDrawerCounts(); renderBar(); refreshCountriesCard(v); refreshHint();
+    if (rec) REC = rec;
+    LOG = member === true || (REC && REC.source === 'member') ? MEMBER_LOG : REC && REC.source === 'owner' ? OWNER_LOG : logFromStorage();
+    var ready = mapReady && fcCountries && map && map.getSource('tllm-countries');
+    if (ready) { fcCountries.features.forEach(function (f) { setDepthProps(f, f.properties.iso, countryRows[f.properties.a2]); }); map.getSource('tllm-countries').setData(fcCountries); applyPets(); }
+    renderAll();
+    if (ready) { refreshLineLayers(); syncLogbookPins(); }
   }
+  function renderAll() {
+    var v = countDepths(); countLog(); computeLines();
+    if (REC) bindCounters(v.n); refreshDrawerCounts(); renderBar(); renderCards(v); renderRules(); renderStrip(); renderSaved(); refreshHint(); renderList();
+  }
+  function visitor() { return member !== true; } // never a zero for a signed-out visitor: hide instead
   function refreshHint() { var h = document.getElementById('tllm-hint'); if (h) h.textContent = canEdit() ? 'Tap a country to log it: Lived, Stayed, or Layover only. Stack as many lists as you like.' : 'Stack as many as you like.'; }
-  function refreshCountriesCard(v) {
-    var card = root.querySelector('.tllm-card[data-id="countries"]'), c = byId.countries; if (!card || !c) return;
-    var b = card.querySelector('.tllm-card-num b'); if (b) { b.textContent = fmt(v.n); b.dataset.count = v.n; }
-    var bar = card.querySelector('.tllm-card-bar i'); if (bar && v.of) bar.style.width = Math.min(100, v.n / v.of * 100).toFixed(2) + '%';
-    var old = card.querySelector('.tllm-depth'); if (old) old.parentNode.replaceChild(depthBlock(v), old);
-    var cap = card.querySelector('.tllm-card-cap'); if (cap) cap.textContent = v.n === 0 ? fill(empty.card_zero || '0 of {of}.', v) : fill(c.caption, v);
-    var sb = card.querySelector('.tllm-card-src'), nb = sourceBadge(c); if (sb && nb) sb.parentNode.replaceChild(nb, sb);
-  }
 
   // ---------- shelf glyphs and colors ----------
   function shapeFor(c) { return c.pin_shape || (shelves[c.shelf] && shelves[c.shelf].pin_shape) || 'circle'; }
@@ -208,13 +420,17 @@
   }
   function countText(c) {
     if (c.computed === 'placeholder') return '?/' + fmt(c.denominator || 0);
-    if (c.computed === 'crossed') return (extremesData ? extremesData.lines_crossed_count : '·') + '/' + (c.denominator || 7);
-    if (c.computed === 'extremes') return '4';
+    if (c.computed === 'crossed') return LINES && LINES.n ? ((LINES.equator ? 1 : 0) + (LINES.meridian ? 1 : 0)) + '/' + (c.denominator || 2) : '';
+    if (c.computed === 'extremes') return LINES && LINES.n ? '4' : '';
     if (c.type === 'heat') return counts[c.id] ? fmt(counts[c.id]) + ' hex' : 'hex';
-    var n = counts[c.id]; if (n == null) return '';
+    var n = counts[c.id]; if (n == null || (n === 0 && visitor())) return '';
+    if (c.id === 'countries') return fmt(n); // "countries" never sits over 249; the places count does, on the card
     return c.denominator ? fmt(n) + '/' + fmt(c.denominator) : fmt(n);
   }
-  function isEmpty(c) { if (c.computed === 'placeholder') return true; if (c.computed === 'extremes' || c.computed === 'crossed') return false; return !counts[c.id]; }
+  function isEmpty(c) { if (c.computed === 'placeholder') return true; if (c.computed === 'extremes' || c.computed === 'crossed') return !(LINES && LINES.n); return counts[c.id] === 0; }
+  function chipLabel(c) { var n = countText(c); return c.name + (n ? ', ' + n.replace('/', ' of ') : '') + (isEmpty(c) ? ', nothing logged yet' : '') + ', ' + c.verb; }
+  // Pins in the Places Been files for the logbook lists are the site owner's: they show only on the owner's map.
+  function pinsAllowed(c) { return c.count_from !== 'logbook' || isOwnerRecord(REC); }
 
   // ---------- UI ----------
   function buildUI() {
@@ -253,6 +469,13 @@
     root.appendChild(drawer);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.dataset.open === '1') { openDrawer(false); drawerBtn.focus(); } });
 
+    // B3.8: members see when their map was last saved, and can pull the account copy over a stale browser copy.
+    savedBar = el('div', 'tllm-saved'); savedBar.hidden = true;
+    savedText = el('p', 'tllm-saved-t'); savedText.hidden = true; savedBar.appendChild(savedText);
+    savedMsg = el('p', 'tllm-saved-m'); savedMsg.setAttribute('role', 'status'); savedMsg.setAttribute('aria-live', 'polite'); savedBar.appendChild(savedMsg);
+    savedBtn = el('button', 'tllm-saved-btn', 'Refresh from my account'); savedBtn.type = 'button'; savedBtn.addEventListener('click', refreshFromAccount); savedBar.appendChild(savedBtn);
+    root.appendChild(savedBar);
+
     // Canvas
     var stage = el('div', 'tllm-stage'); stage.id = 'tllm-stage';
     tip = el('div', 'tllm-tip'); tip.setAttribute('aria-hidden', 'true'); stage.appendChild(tip);
@@ -264,7 +487,7 @@
     secCards = section('THE RECEIPTS · ONE ROW PER LIST', 'Every list, <em>one row each.</em>', null);
     secRules = section('MANY WAYS TO COUNT', 'Same trips. Four rulebooks. <em>Four answers.</em>', 'The trips did not change. The math did.');
     secSets = section('SETS OF SEVEN', 'Seven slots, <em>one row each.</em>', 'Tap a stamp for the receipt.');
-    secStrip = section('LINES AND EXTREMES', 'How far, <em>and across what.</em>', 'Computed from pin coordinates, so it updates itself.');
+    secStrip = section('LINES AND EXTREMES', 'How far, <em>and across what.</em>', 'From the countries on your map, so it changes when your map does.');
     secFrames = section('IN MOTION', 'From the road, <em>framed.</em>', 'Official embeds only. Past trips only.');
     buildStamps(); buildEmbeds();
 
@@ -277,6 +500,7 @@
     listUl = el('ul'); listUl.setAttribute('aria-label', 'Pins'); listBox.appendChild(listUl);
     root.appendChild(listBox);
     renderList(); renderBar();
+    [secCards, secRules, secStrip].forEach(function (x) { x.style.display = 'none'; }); // shown once there is a number
 
     [].forEach.call(document.querySelectorAll('[data-tll-map="fullscreen"]'), function (a) {
       a.addEventListener('click', function (e) { e.preventDefault(); var f = root.requestFullscreen || root.webkitRequestFullscreen; if (f) f.call(root); else root.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); });
@@ -294,7 +518,7 @@
     var b = el('button', 'tllm-chip'); b.type = 'button'; b.dataset.id = c.id; b.setAttribute('aria-pressed', 'false');
     if (isEmpty(c)) b.classList.add('tllm-chip-empty');
     var n = countText(c);
-    b.setAttribute('aria-label', c.name + (n ? ', ' + n.replace('/', ' of ') : '') + (isEmpty(c) ? ', nothing logged yet' : '') + ', ' + c.verb);
+    b.setAttribute('aria-label', chipLabel(c));
     b.innerHTML = glyphSVG(shapeFor(c), colorFor(c)) + '<span aria-hidden="true">' + esc(c.name) + '</span>' + (n ? '<span class="tllm-chip-n" aria-hidden="true">' + esc(n) + '</span>' : '') + '<span class="tllm-chip-ck" aria-hidden="true">✓</span>';
     b.addEventListener('click', function () { toggle(c.id, b.getAttribute('aria-pressed') !== 'true'); });
     return b;
@@ -306,7 +530,7 @@
     onChips.innerHTML = '';
     on.forEach(function (c) { var b = chip(c); b.setAttribute('aria-pressed', 'true'); onChips.appendChild(b); });
     [].forEach.call(drawer.querySelectorAll('.tllm-chip'), function (b) { b.setAttribute('aria-pressed', active[b.dataset.id] ? 'true' : 'false'); });
-    if (!on.length) say(empty.map_all_off || 'Every layer is off.');
+    if (!on.length && mapReady) say(empty.map_all_off || 'Every layer is off.');
   }
   function say(t) { status.textContent = t || ''; status.dataset.on = t ? '1' : '0'; }
 
@@ -417,7 +641,7 @@
       var a2 = loggedIso[id] || (id === 'XK' ? 'XK' : '') || (f.properties && f.properties.a2hint) || ''; var row = countryRows[a2];
       f.properties = f.properties || {}; f.properties.iso = id; f.properties.a2 = a2; setDepthProps(f, id, row);
     });
-    fcCountries = fc; var depths = countDepths(); if (REC) applyPets();
+    fcCountries = fc; centroids = {}; if (REC) applyPets();
     hatchImage();
     var before = firstBasemapLayer();
     map.addLayer({ id: 'tllm-sphere', type: 'background', paint: { 'background-color': C.sphere } }, before);
@@ -451,8 +675,7 @@
       var note = !f.properties.logged ? (f.properties.proposed ? 'Pins in Places Been, nothing logged. Log it in the editor and it counts.' : 'Not yet. The cream.') : d === 'Lived' ? 'Lived here. The deepest of the three depths.' : d === 'Layover only' ? (f.properties.proposed ? 'Airport pins only in Places Been. Proposed as layover only, Nancy to confirm.' : 'Never left the terminal. Counted, on a separate shelf.') : (f.properties.proposed ? 'City pins in Places Been. Proposed as stayed, Nancy to confirm.' : 'Left the airport and slept at least one night.');
       openCard({ _c: 'countries', name: row ? row.name : f.properties.name, country: f.properties.a2, _iso: f.properties.iso, verb: d, year: row && row.year, note: note, link: row && row.link, story: row && row.story, _country: true }, e.lngLat.toArray());
     });
-    antarcticaLabel(rows); bindCounters(depths.n); buildCards(rows); buildRules();
-    getJSON(DATA + 'extremes.json').then(function (x) { extremesData = x; buildStrip(x); renderBar(); refreshDrawerCounts(); }).catch(function () { secStrip.remove(); });
+    antarcticaLabel();
   }
   function landFill(on) {
     if (!on) return C.landOff;
@@ -492,10 +715,10 @@
     });
     return out;
   }
-  function antarcticaLabel(rows) {
+  function antarcticaLabel() {
     if (globe) return;
-    var aq = rows.filter(function (r) { return r.country === 'AQ'; })[0]; if (!aq) return;
-    var d = el('div', 'tllm-aq'); d.setAttribute('role', 'note'); d.innerHTML = '<b>Antarctica</b><span>' + esc(depthOf(aq) || 'logged') + '</span>';
+    var aq = REC && REC.all['010']; if (!aq) return;
+    var d = el('div', 'tllm-aq'); d.setAttribute('role', 'note'); d.innerHTML = '<b>Antarctica</b><span>' + esc(aq) + '</span>';
     new window.maplibregl.Marker({ element: d, anchor: 'top' }).setLngLat([0, -66]).addTo(map);
   }
   function bindCounters(n) {
@@ -504,7 +727,12 @@
     var c2 = document.getElementById('tll-map-pct'); if (c2 && den) { c2.textContent = Math.round(n / den * 100) + '%'; c2.removeAttribute('aria-busy'); }
   }
   function refreshDrawerCounts() {
-    [].forEach.call(root.querySelectorAll('.tllm-chip'), function (b) { var c = byId[b.dataset.id]; var n = b.querySelector('.tllm-chip-n'); if (c && n) n.textContent = countText(c); });
+    [].forEach.call(root.querySelectorAll('.tllm-chip'), function (b) {
+      var c = byId[b.dataset.id]; if (!c) return; var t = countText(c), n = b.querySelector('.tllm-chip-n');
+      if (!n && t) { n = el('span', 'tllm-chip-n'); n.setAttribute('aria-hidden', 'true'); var ck = b.querySelector('.tllm-chip-ck'); b.insertBefore(n, ck); }
+      if (n) { n.textContent = t; n.hidden = !t; }
+      b.classList.toggle('tllm-chip-empty', isEmpty(c)); b.setAttribute('aria-label', chipLabel(c));
+    });
   }
 
   // ---------- pin icons: one shape per shelf, Ink edge; not-yet draws as a dashed outline ----------
@@ -530,6 +758,7 @@
   // ---------- toggling ----------
   function toggle(id, on) {
     var c = byId[id]; if (!c) return;
+    if (!mapReady) { pending[id] = on; active[id] = on; renderBar(); startMap(); return; } // a chip before the map: start it now
     var btns = [].slice.call(root.querySelectorAll('.tllm-chip[data-id="' + id + '"]'));
     if (id === 'countries') {
       active[id] = on; map.setPaintProperty('tllm-land', 'fill-color', landFill(on)); map.setLayoutProperty('tllm-land-hatch', 'visibility', on ? 'visible' : 'none'); map.setLayoutProperty('tllm-land-line', 'visibility', on ? 'visible' : 'none'); if (map.getLayer('tllm-aq-line')) map.setLayoutProperty('tllm-aq-line', 'visibility', on ? 'visible' : 'none');
@@ -537,15 +766,15 @@
     }
     if (c.computed === 'placeholder') { active[id] = on; say(on ? c.name + ': ' + (empty.list_zero || 'nothing logged yet.') : ''); finish(); return; }
     if (c.computed === 'crossed') { active[id] = on; drawCrossed(on); finish(); return; }
+    if (c.computed === 'extremes') { active[id] = on; loaded[id] = extremesRows(); if (!map.getSource('tllm-src-' + id)) addLayer(c); finish(); return; }
+    if (!pinsAllowed(c)) { active[id] = on; hideLayer(c); renderBar(); density(); renderList(); say(on ? logbookMsg(c) : ''); return; }
     if (on && loaded[id] && !map.getSource('tllm-src-' + id) && c.type !== 'heat') addLayer(c); // rows arrived from the record before the layer existed
     if (on && !loaded[id]) {
       btns.forEach(function (b) { b.setAttribute('aria-busy', 'true'); });
-      var file = c.computed === 'extremes' ? 'extremes.json' : id + '.json';
       if (id === 'magnus' && REC && REC.pets.length) { applyPets(); addLayer(c); finish(); return; }
-      return getJSON(DATA + file).then(function (j) {
-        loaded[id] = c.computed === 'extremes' ? extremesRows(j) : (j.rows || []);
+      return getJSON(DATA + id + '.json').then(function (j) { // B3.9: a list's file loads the first time it is switched on
+        loaded[id] = j.rows || [];
         if (c.type === 'heat') loaded[id].cellKm = j.cell_km || 400;
-        if (counts[id] != null && !c.set_of && !c.items && counts[id] !== loaded[id].length && c.computed !== 'extremes') { counts[id] = loaded[id].length; refreshDrawerCounts(); }
         addLayer(c); finish();
       }).catch(function () { say('Could not load ' + c.name); btns.forEach(function (b) { b.removeAttribute('aria-busy'); }); });
     }
@@ -559,15 +788,33 @@
       renderBar(); density(); renderList();
     }
   }
+  function logbookMsg(c) {
+    var n = counts[c.id];
+    if (n == null || n === 0) return c.name + ': ' + (empty.list_zero || 'nothing logged yet.');
+    return c.name + ': ' + fmt(n) + ' in your logbook. The logbook holds names, not map points.';
+  }
+  function hideLayer(c) { var l = 'tllm-pt-' + c.id; if (map && map.getLayer(l)) map.setLayoutProperty(l, 'visibility', 'none'); if (popup && popup._tllm === c.id) popup.remove(); }
+  // A record change can turn the owner's pins on or off for the logbook lists that are switched on.
+  function syncLogbookPins() {
+    colls.forEach(function (c) {
+      if (c.count_from !== 'logbook' || !active[c.id]) return;
+      if (!pinsAllowed(c)) hideLayer(c); else if (!map.getLayer('tllm-pt-' + c.id)) toggle(c.id, true); else setVisible(c, true);
+    });
+  }
+  function refreshLineLayers() {
+    var s = map.getSource('tllm-src-extremes'); if (s) { loaded.extremes = extremesRows(); s.setData(toGeo(byId.extremes, loaded.extremes)); }
+    var l = map.getSource('tllm-lines'); if (l) l.setData(linesGeo());
+  }
   function emptyMsg(c) {
     if (c.id === 'moments') return empty.human || 'Nothing here yet.';
     if (c.type === 'heat') return empty.heat || 'Nothing synced.';
     var s = srcs[c.source]; if (s && s.connected === false) return (s.label || upper(c.source)) + ' · ' + (empty.source_never || 'not connected.');
     return c.name + ': ' + (empty.list_zero || 'nothing logged yet.');
   }
-  function extremesRows(x) {
+  function extremesRows() {
+    var x = LINES; if (!x || !x.n) return [];
     return [['Furthest north', x.north], ['Furthest south', x.south], ['Furthest east', x.east], ['Furthest west', x.west]].filter(function (r) { return r[1]; }).map(function (r) {
-      return { name: r[1].name, collection: 'extremes', latitude: r[1].latitude, longitude: r[1].longitude, country: r[1].country, verb: 'reached', year: '', note: r[0] + '. From the pins.', link: '', depth: '', done: true };
+      var iso = r[1].iso; return { name: nameOf(iso) || iso, collection: 'extremes', latitude: r[1].lat, longitude: r[1].lon, country: loggedIso[iso] || iso, verb: 'reached', year: '', note: r[0] + ', by country: the center of its shape.', link: '', depth: '', done: true };
     });
   }
   function toGeo(c, rows) {
@@ -632,16 +879,17 @@
       map.setLayoutProperty(l, 'icon-size', ['interpolate', ['linear'], ['zoom'], 1, base * k, 6, 0.8 * k]);
     });
   }
-  // Lines crossed: the seven lines drawn on the map when that chip is on.
+  // Lines crossed, by country: the equator and the prime meridian, drawn on the map when that chip is on. The polar
+  // circles, tropics and antimeridian need place coordinates the record does not hold (B3.4).
+  function linesGeo() {
+    var x = LINES || {};
+    return { type: 'FeatureCollection', features: [
+      { type: 'Feature', properties: { name: 'Equator', crossed: !!x.equator }, geometry: { type: 'LineString', coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]] } },
+      { type: 'Feature', properties: { name: 'Prime meridian', crossed: !!x.meridian }, geometry: { type: 'LineString', coordinates: [[0, -80], [0, 0], [0, 80]] } }] };
+  }
   function drawCrossed(on) {
-    var x = extremesData; if (!x) return;
     if (!map.getSource('tllm-lines')) {
-      var f = [];
-      [['equator_crossed', 0, 'Equator'], ['tropic_of_cancer_crossed', 23.4367, 'Tropic of Cancer'], ['tropic_of_capricorn_crossed', -23.4367, 'Tropic of Capricorn'], ['arctic_circle_crossed', 66.5633, 'Arctic Circle'], ['antarctic_circle_crossed', -66.5633, 'Antarctic Circle']].forEach(function (r) {
-        f.push({ type: 'Feature', properties: { name: r[2], crossed: !!x[r[0]] }, geometry: { type: 'LineString', coordinates: [[-180, r[1]], [-90, r[1]], [0, r[1]], [90, r[1]], [180, r[1]]] } }); });
-      [['prime_meridian_crossed', 0, 'Prime meridian'], ['antimeridian_crossed', 180, 'Antimeridian']].forEach(function (r) {
-        f.push({ type: 'Feature', properties: { name: r[2], crossed: !!x[r[0]] }, geometry: { type: 'LineString', coordinates: [[r[1], -80], [r[1], 0], [r[1], 80]] } }); });
-      map.addSource('tllm-lines', { type: 'geojson', data: { type: 'FeatureCollection', features: f } });
+      map.addSource('tllm-lines', { type: 'geojson', data: linesGeo() });
       map.addLayer({ id: 'tllm-lines', type: 'line', source: 'tllm-lines', paint: { 'line-color': ['case', ['get', 'crossed'], C.cream, C.muted], 'line-width': 1.2, 'line-dasharray': [4, 3], 'line-opacity': 0, 'line-opacity-transition': { duration: reduce ? 0 : 180 } } });
       map.on('mousemove', 'tllm-lines', function (e) { var p = e.features[0].properties; tip.innerHTML = '<b>' + esc(p.name) + '</b><span>' + (p.crossed ? 'crossed' : 'Not yet') + '</span>'; tip.style.transform = 'translate(' + (e.point.x + 14) + 'px,' + (e.point.y - 8) + 'px)'; tip.style.opacity = '1'; });
       map.on('mouseleave', 'tllm-lines', function () { tip.style.opacity = '0'; });
@@ -660,11 +908,11 @@
     var c = byId[p._c] || {}; var maplibregl = window.maplibregl;
     if (popup) popup.remove();
     var notDone = p._nd === true || p._nd === 'true' || p.done === false || p.done === 'false';
-    var verb = p._country ? p.verb : (notDone ? 'Not yet' : (p.verb || c.verb));
+    var verb = p._country ? p.verb : (notDone ? 'Not yet' : (c.verb || p.verb)); // the list's verb; export rows carried old ones
     var meta = upper(verb) + ' · ' + (p.year ? upper(String(p.year)) : notDone ? 'OPEN SLOT' : 'YEAR NOT LOGGED');
     var note = p.note || (p.type ? p.type + (p.country ? ' · ' + p.country : '') : '');
     var link = p.link ? '<a class="tllm-pop-a" href="' + esc(p.link) + '" ' + (/^https?:/.test(p.link) ? 'target="_blank" rel="noopener"' : '') + '>' + (/unesco\.org/.test(p.link) ? 'Official UNESCO page →' : 'Read the ' + esc(p.story || p.name) + ' story →') + '</a>'
-      : (p._country ? '<p class="tllm-pop-c">' + esc(empty.popover_no_story || 'No story filed from here yet.') + '</p>' : '');
+      : (p._country ? '<p class="tllm-pop-c">' + esc(empty.popover_no_story || 'No story from here yet.') + '</p>' : '');
     var html = '<div class="tllm-pop-k">' + esc(c.name || p.collection) + '</div><h3 class="tllm-pop-h">' + esc(p.name) + '</h3><p class="tllm-pop-m">' + esc(meta) + '</p>' +
       (note ? '<p class="tllm-pop-n">' + esc(note) + '</p>' : '') + link + (p.confirm === true || p.confirm === 'true' ? '<p class="tllm-pop-c">Listing to confirm.</p>' : '');
     if (p._country && p.country !== undefined) {
@@ -706,37 +954,60 @@
   function sourceBadge(c) {
     var s = srcs[c.source]; if (!s || !s.label) return null; // hand lists carry no badge; that is the badge
     var b = el('span', 'tllm-card-src');
-    if ((c.id === 'countries' || c.id === 'magnus') && REC) { b.textContent = (srcs.member && srcs.member.label || 'FROM THE MEMBER RECORD') + (REC.source === 'owner' ? ' · SITE OWNER' : ' · LIVE'); return b; }
+    if (c.source === 'member' || c.source === 'logbook' || c.id === 'countries' || c.id === 'magnus') { if (!REC) return null; b.textContent = (s.label || 'FROM THE MEMBER RECORD') + (REC.source === 'owner' ? ' · SITE OWNER' : ' · LIVE'); return b; }
     if (s.connected === false) { b.textContent = s.label + ' · NOT CONNECTED'; b.dataset.off = '1'; }
     else b.textContent = s.label + (s.synced ? ' · SYNCED ' + upper(dateLabel(s.synced)) : '');
     return b;
   }
-  function buildCards(countryRowsArr) {
-    var grid = el('div', 'tllm-card-grid'); secCards.appendChild(grid);
+  // The receipts, rebuilt on every repaint. Countries from the record, the logbook lists from the logbook.
+  var cardGrid = null, counted = false;
+  function cardShell(c) {
+    var card = el('article', 'tllm-card'); card.dataset.id = c.id;
+    var top = el('div', 'tllm-card-top'); top.appendChild(el('span', 'tllm-card-label', c.name)); var sb = sourceBadge(c); if (sb) top.appendChild(sb); card.appendChild(top);
+    return card;
+  }
+  function cardBar(card, n, of, label) { var pct = Math.min(100, n / of * 100); var bar = el('div', 'tllm-card-bar'); bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', label || Math.round(pct) + ' percent'); var fi = el('i'); fi.style.width = pct.toFixed(2) + '%'; bar.appendChild(fi); card.appendChild(bar); }
+  function cardFoot(card, c, cap) {
+    if (cap) card.appendChild(el('p', 'tllm-card-cap', cap));
+    if (c.what_counts) card.appendChild(el('p', 'tllm-card-rule', 'What counts: ' + c.what_counts));
+    var asof = c.as_of_label || (c.denominator && c.as_of ? 'World total as of ' + dateLabel(c.as_of) : ''); // live counts carry no "as of"
+    if (asof) card.appendChild(el('p', 'tllm-card-asof', asof));
+  }
+  function countriesCard(c, v) {
+    var card = cardShell(c);
+    var num = el('div', 'tllm-card-num'); num.innerHTML = '<b data-count="' + v.countries + '">' + fmt(v.countries) + '</b>' + (v.antarctica ? '<span class="tllm-card-den">+ Antarctica</span>' : ''); card.appendChild(num);
+    card.appendChild(el('div', 'tllm-card-verb', c.verb));
+    card.appendChild(el('div', 'tllm-card-sub', 'Places ' + fmt(v.places) + ' of ' + fmt(v.of) + ' · ' + v.pct + '%'));
+    cardBar(card, v.places, v.of, 'Places: ' + v.places + ' of ' + v.of + ', ' + Math.round(v.places / v.of * 100) + ' percent');
+    card.appendChild(depthBlock(v));
+    if (v.continents || !visitor()) card.appendChild(el('div', 'tllm-card-sub', 'Continents ' + v.continents + ' of 7' + (v.continentNames.length ? ' · ' + v.continentNames.join(', ') : '')));
+    cardFoot(card, c, v.places === 0 ? fill(empty.card_zero || '0 of {of}.', v) : fill(c.caption, v));
+    return card;
+  }
+  function renderCards(dv) {
+    if (!secCards) return;
+    var grid = el('div', 'tllm-card-grid'), shown = 0;
     colls.forEach(function (c) {
-      if (c.computed && c.computed !== 'pins_named' && c.computed !== 'unesco_country') return;
+      if (c.computed) return;
+      if (c.id === 'countries') { if (!REC || (dv.places === 0 && visitor())) return; grid.appendChild(countriesCard(c, dv)); shown++; return; }
       var n = counts[c.id]; if (n == null) return;
-      if (n === 0 && !c.denominator) return;
+      if (n === 0 && (visitor() || !c.denominator)) return;
       var v = Object.assign({}, vars[c.id] || {}, { n: n, of: c.denominator });
-      var card = el('article', 'tllm-card'); card.dataset.id = c.id;
-      var top = el('div', 'tllm-card-top'); top.appendChild(el('span', 'tllm-card-label', c.name)); var sb = sourceBadge(c); if (sb) top.appendChild(sb); card.appendChild(top);
-      var num = el('div', 'tllm-card-num'); num.innerHTML = '<b data-count="' + n + '">' + (c.type === 'heat' ? 'Rounded' : fmt(n)) + '</b>' + (c.denominator ? '<span class="tllm-card-den">of ' + fmt(c.denominator) + '</span>' : ''); card.appendChild(num);
+      if (c.denominator) { v.rest = Math.max(0, c.denominator - n); v.pct = Math.round(n / c.denominator * 1000) / 10; v.half = Math.ceil(c.denominator / 2); }
+      var card = cardShell(c);
+      var num = el('div', 'tllm-card-num'); num.innerHTML = '<b data-count="' + n + '">' + fmt(n) + '</b>' + (c.denominator ? '<span class="tllm-card-den">of ' + fmt(c.denominator) + '</span>' : ''); card.appendChild(num);
       card.appendChild(el('div', 'tllm-card-verb', c.verb));
-      if (c.denominator) { var pct = Math.min(100, n / c.denominator * 100); var bar = el('div', 'tllm-card-bar'); bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', Math.round(pct) + ' percent'); var fi = el('i'); fi.style.width = pct.toFixed(2) + '%'; bar.appendChild(fi); card.appendChild(bar); }
-      if (c.id === 'countries') card.appendChild(depthBlock(v));
-      if (v.split && c.id !== 'countries') card.appendChild(el('div', 'tllm-card-split', v.split));
-      var cap = n === 0 ? fill(empty.card_zero || '0 of {of}.', v) : fill(c.caption, v);
-      if (cap) card.appendChild(el('p', 'tllm-card-cap', cap));
-      if (c.what_counts) card.appendChild(el('p', 'tllm-card-rule', 'What counts: ' + c.what_counts));
-      var asof = c.as_of_label || (c.denominator ? 'World total as of ' + dateLabel(c.as_of) : (c.as_of ? 'As of ' + dateLabel(c.as_of) : ''));
-      if (asof) card.appendChild(el('p', 'tllm-card-asof', asof));
-      grid.appendChild(card);
+      if (c.denominator) cardBar(card, n, c.denominator);
+      cardFoot(card, c, n === 0 ? fill(empty.card_zero || '0 of {of}.', v) : fill(c.caption, v));
+      grid.appendChild(card); shown++;
     });
-    countUp(grid);
+    if (cardGrid) cardGrid.remove(); cardGrid = grid; secCards.appendChild(grid); secCards.style.display = shown ? '' : 'none';
+    if (shown && !counted) { counted = true; countUp(grid); }
   }
   function depthBlock(v) {
     var wrap = el('div', 'tllm-depth'); wrap.setAttribute('role', 'list'); wrap.setAttribute('aria-label', 'Depth of visit');
     [['Lived', v.lived], ['Stayed', v.stayed], ['Layover only', v.layover, 'counted apart'], ['Not yet', v.notyet]].forEach(function (d) {
+      if (!d[1] && visitor()) return;
       var li = el('div', 'tllm-depth-row'); li.setAttribute('role', 'listitem');
       var sw = el('i', 'tllm-depth-sw'); sw.dataset.d = d[0]; li.appendChild(sw); var l = el('span', 'tllm-depth-l', d[0]); if (d[2]) l.appendChild(el('em', 'tllm-depth-x', ' · ' + d[2])); li.appendChild(l); li.appendChild(el('b', 'tllm-depth-n', fmt(d[1] || 0))); wrap.appendChild(li);
     });
@@ -755,21 +1026,27 @@
     }, { threshold: 0.3 });
     nums.forEach(function (n) { n.textContent = '0'; io.observe(n); });
   }
-  function buildRules() {
-    var rb = cfg.rulebooks || []; if (!rb.length) { secRules.remove(); return; }
-    var grid = el('div', 'tllm-rules'); secRules.appendChild(grid);
-    getJSON(DATA + 'extremes.json').then(function (x) {
-      rb.forEach(function (r) {
-        var n = r.count && x.rulebooks ? x.rulebooks[r.count] : null;
-        var d = el('div', 'tllm-rule'); var nn = el('div', 'tllm-rule-n'); nn.innerHTML = (n == null ? '<span style="font-size:16px;color:#8890A6;margin:0">OPEN</span>' : fmt(n)) + '<span>of ' + fmt(r.of) + '</span>'; d.appendChild(nn);
-        d.appendChild(el('p', 'tllm-rule-w', r.who)); grid.appendChild(d);
-      });
-    }).catch(function () { secRules.remove(); });
+  // B3.2: many ways to count, from the record. Codes of 249 (ISO plus Kosovo), UN members of 193, UN plus the two observers of 195.
+  var rulesGrid = null;
+  function renderRules() {
+    var rb = cfg.rulebooks || []; if (!secRules) return;
+    if (!rb.length || !REC) { secRules.style.display = 'none'; return; }
+    var k = REC.count, val = { codes: k.codes, un_only: k.un, un_or_observer: k.unObservers }, grid = el('div', 'tllm-rules'), shown = 0;
+    rb.forEach(function (r) {
+      var n = r.count && val[r.count] != null ? val[r.count] : null;
+      if (n === 0 && visitor()) return;
+      if (n != null) shown++;
+      var d = el('div', 'tllm-rule'); var nn = el('div', 'tllm-rule-n'); nn.innerHTML = (n == null ? '<span style="font-size:16px;color:#8890A6;margin:0">OPEN</span>' : fmt(n)) + '<span>of ' + fmt(r.of) + '</span>'; d.appendChild(nn);
+      d.appendChild(el('p', 'tllm-rule-w', r.who)); grid.appendChild(d);
+    });
+    if (rulesGrid) rulesGrid.remove(); rulesGrid = grid; secRules.appendChild(grid); secRules.style.display = shown ? '' : 'none';
   }
 
   // ---------- sets of seven: stamps with three-letter codes ----------
   function buildStamps() {
-    var sets = cfg.sets_of_seven || []; if (!sets.length) { secSets.remove(); return; }
+    var all = cfg.collections || [], made = 0;
+    var sets = (cfg.sets_of_seven || []).filter(function (st) { var owner = all.filter(function (c) { return c.set_of === st.id; })[0]; return !(owner && owner.hidden_until_loggable); }); // B3.5
+    if (!sets.length) { secSets.remove(); return; }
     sets.forEach(function (st) {
       var items = st.items, done = items.filter(function (i) { return i.done; }).length, open = items.length - done;
       var coll = colls.filter(function (c) { return c.set_of === st.id; })[0];
@@ -802,26 +1079,30 @@
     });
   }
 
-  // ---------- lines strip: number first, label second, source third ----------
-  function buildStrip(x) {
-    var strip = el('div', 'tllm-strip'); secStrip.appendChild(strip);
+  // ---------- lines strip (B3.4): by country, number first, label second, source third ----------
+  var stripBox = null;
+  function renderStrip() {
+    if (!secStrip) return;
+    var lede = secStrip.querySelector('.tllm-lede');
+    if (lede) lede.textContent = REC && REC.source === 'owner' ? 'From Nancy\u2019s map, so it changes when hers does.' : 'From the countries on your map, so it changes when your map does.';
+    var x = LINES; if (stripBox) { stripBox.remove(); stripBox = null; }
+    if (!x || !x.n) { secStrip.style.display = 'none'; return; }
+    var box = el('div'), strip = el('div', 'tllm-strip'); box.appendChild(strip);
     function cell(v, l, s, muted) { var d = el('div', 'tllm-cell' + (muted ? ' tllm-cell-muted' : '')); d.appendChild(el('div', 'tllm-cell-v', v)); d.appendChild(el('div', 'tllm-cell-l', l)); if (s) d.appendChild(el('div', 'tllm-cell-s', s)); return d; }
     function deg(n, pos, neg) { return Math.abs(n).toFixed(1) + '°' + (n >= 0 ? pos : neg); }
     [['Furthest north', x.north, 'lat'], ['Furthest south', x.south, 'lat'], ['Furthest east', x.east, 'lng'], ['Furthest west', x.west, 'lng']].forEach(function (r) {
-      var p = r[1]; if (!p) return;
-      var c = cell(r[2] === 'lat' ? deg(p.latitude, 'N', 'S') : deg(p.longitude, 'E', 'W'), r[0], p.name + ', ' + countryName(p.country));
-      c.tabIndex = 0; c.setAttribute('role', 'button'); c.setAttribute('aria-label', r[0] + ': ' + p.name + ', ' + countryName(p.country) + '. Show on the map');
-      function go() { move([p.longitude, p.latitude], 5); } c.addEventListener('click', go); c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+      var p = r[1]; if (!p) return; var nm = nameOf(p.iso) || p.iso;
+      var c = cell(r[2] === 'lat' ? deg(p.lat, 'N', 'S') : deg(p.lon, 'E', 'W'), r[0] + ', by country', nm);
+      c.tabIndex = 0; c.setAttribute('role', 'button'); c.setAttribute('aria-label', r[0] + ', by country: ' + nm + '. Show on the map');
+      function go() { if (map) move([p.lon, p.lat], 4); } c.addEventListener('click', go); c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
       strip.appendChild(c);
     });
-    strip.appendChild(cell(x.equator_crossed ? 'Crossed' : 'Not yet', 'Equator', 'From the pins'));
-    strip.appendChild(cell((x.arctic_circle_crossed ? 'N' : '·') + ' ' + (x.antarctic_circle_crossed ? 'S' : '·'), 'Polar circles', x.arctic_circle_crossed && x.antarctic_circle_crossed ? 'Both crossed' : 'Arctic or Antarctic'));
-    strip.appendChild(cell((x.lines_crossed_count || 0) + '/' + (x.lines_total || 7), 'Lines crossed', 'Equator, tropics, polar circles, meridians'));
-    strip.appendChild(cell(x.hemispheres_count + '/4', 'Hemispheres', 'N, S, E and W'));
-    strip.appendChild(cell('?/38', 'Time zones', 'Open slot', true));
-    var ran = counts.marathons === 7;
-    strip.appendChild(cell(x.continents_count + '/7', 'Continents', ran ? 'Run on all seven' : (x.continents || []).join(', ')));
-    secStrip.appendChild(el('p', 'tllm-card-asof', 'From ' + x.from));
+    strip.appendChild(cell(x.equator ? 'Crossed' : 'Not yet', 'Equator', 'Countries north and south'));
+    strip.appendChild(cell(x.meridian ? 'Crossed' : 'Not yet', 'Prime meridian', 'Countries east and west'));
+    strip.appendChild(cell(x.hemisphereCount + '/4', 'Hemispheres, by country', x.hemispheres.join(', ')));
+    var k = REC.count; strip.appendChild(cell(k.continents.length + '/7', 'Continents', k.continents.join(', ')));
+    box.appendChild(el('p', 'tllm-card-asof', 'By country: each country counts once, at the center of its shape. Antarctica counts as a continent.'));
+    stripBox = box; secStrip.appendChild(box); secStrip.style.display = '';
   }
 
   // ---------- framed embeds ----------
@@ -850,8 +1131,8 @@
   function renderList() {
     if (!listUl) return;
     var q = (listFilter.value || '').trim().toLowerCase(); listUl.innerHTML = ''; var items = [];
-    colls.forEach(function (c) { if (!active[c.id] || !loaded[c.id] || c.type === 'heat') return; loaded[c.id].forEach(function (r) { if (r.name && r.latitude != null) items.push({ c: c, r: r }); }); });
-    if (active.countries) Object.keys(countryRows).forEach(function (k) { items.push({ c: byId.countries, r: countryRows[k] }); });
+    colls.forEach(function (c) { if (c.id === 'countries' || !active[c.id] || !loaded[c.id] || c.type === 'heat' || !pinsAllowed(c)) return; loaded[c.id].forEach(function (r) { if (r.name && r.latitude != null) items.push({ c: c, r: r }); }); });
+    if (active.countries && mapReady && REC) recordRows(REC.all, 'logged').forEach(function (r) { items.push({ c: byId.countries, r: r }); }); // the record's places, not the export
     items.sort(function (a, b) { return a.r.name.localeCompare(b.r.name); });
     var shown = 0;
     items.forEach(function (it) {

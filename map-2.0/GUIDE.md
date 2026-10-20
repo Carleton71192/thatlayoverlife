@@ -4,7 +4,13 @@ Everything the map shows comes from the files in `map-2.0/`. No code changes nee
 
 ## Where the countries come from
 
-The countries layer, the counter and the paw layer read the editor's logged record (Memberstack member JSON, mirrored to the browser), not the data files. Logged-out visitors see `data/owner-record.json`, a copy of the site owner's states; refresh it by re-reading the member JSON into `source/member-states.json` and running the small conversion (see PHASE-5-NOTES). Lived and Stayed make the total; layovers are counted apart. Pins in `data/countries.json` only propose a country until it is logged in the editor.
+Every number on the page is counted live (20 October 2026, B3). The countries card, the counter, the rulebooks and Lines and extremes read the member's saved map (tllStates in the Memberstack member JSON, mirrored to the browser). Cities, airports, US parks and parks everywhere read the logbook (tllLog and tllParks in the same member JSON). The counting functions are the `TLLMapCounts` block at the top of `dist/tll-map-layers.js`, tested in `test/map-live-counts.test.js`. `data/counts.json` and `data/extremes.json` are no longer read.
+
+Logged-out visitors see the site owner's live map from the URL in `data-tll-owner-url` on the map root (a GET that returns tllStates v2). If that attribute is empty or the request fails, they see `data/owner-record.json`, the 7 October copy. Lived and Stayed make places; Antarctica is a place, not a country; layovers are counted apart; pets never count in the member's numbers. Pins in `data/countries.json` only propose a country until it is logged in the editor, and the Places Been pins for cities, airports and parks show only on the owner's map.
+
+## Hide or bring back a list
+
+A list members cannot log yet carries `"hidden_until_loggable": true` in `collections.json`. It is then off the page for everyone (chip, drawer, card, pins) and its data file stays in the repo. Set it to `false` or remove the line to bring the list back.
 
 ## Add a pin
 
@@ -17,7 +23,7 @@ The countries layer, the counter and the paw layer read the editor's logged reco
 
 1. Add one entry to `collections.json` under `collections`: id, name, shelf (places, wonders, motion, lines or human), verb, denominator (a number or null), as_of, what_counts, caption. Pin shape comes from the shelf; set `pin_shape` to override.
 2. Create `data/<id>.json` with the same row shape as the others.
-3. Add the id and its count to `data/counts.json`, or re-run `build-data.py` if the rows come from the export.
+3. Give it a live count source: `"count_from": "logbook"` with a `logbook_count` key, or keep it hidden with `"hidden_until_loggable": true` until members can log it. Pins alone never make a count.
 4. Commit, push, update the hash. A new chip and a new card appear.
 
 ## Refresh from a Places Been export

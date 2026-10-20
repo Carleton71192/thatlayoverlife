@@ -225,3 +225,16 @@
 .tllm-pop-edit .tllm-pop-clear{color:#6B6660;border-style:dashed}
 @media (pointer:coarse){.tllm-pop-edit button{min-height:44px;padding:0 14px}}
 @media (prefers-reduced-motion:reduce){.tllm-pop-edit button{transition:none}.tllm-pop-edit button:active{transform:none}}
+/* B3.8 (20 Oct 2026): "Last saved" and "Refresh from my account" above the map, members only. 12px floor, 44px target. */
+.tllm-saved{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;padding:8px 20px;border-bottom:1px solid var(--hair)}
+.tllm-saved[hidden],.tllm-saved [hidden]{display:none}
+.tllm-saved-t{margin:0;color:var(--cream);font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase}
+.tllm-saved-m{margin:0;color:var(--muted);font-size:13px;line-height:1.4;flex:1 1 12ch}
+.tllm-saved-m:empty{display:none}
+.tllm-saved-btn{margin-left:auto;display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:0 18px;border-radius:22px;border:1px solid var(--cream);background:transparent;color:var(--cream);cursor:pointer;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase}
+.tllm-saved-btn:hover{background:var(--cream);color:var(--ink)}
+.tllm-saved-btn:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.tllm-saved-btn[aria-busy=true]{opacity:.6;cursor:progress}
+.tllm-card-sub{font:700 12px/1.5 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+@media (max-width:760px){.tllm-saved{padding:8px 16px}.tllm-saved-btn{margin-left:0}}
+.tllm-heatkey[hidden]{display:none}

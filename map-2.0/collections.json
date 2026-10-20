@@ -1,5 +1,5 @@
 {
- "_about": "The only file to edit when adding a collection. Each entry becomes a chip in the layer switcher and a card under the map. The number shown is always counted from data/<id>.json; the denominator is the world total, with its as-of date. Pin shape is set per shelf so color is never the only signal. Captions marked [COPY NEEDED] are placeholders for Nancy's words. Reconciled with the Claude Design file TLL Map Layers (7 October 2026): 36 lists in five shelves, caption bank with templated numbers, source badges.",
+ "_about": "The only file to edit when adding a collection. Each entry becomes a chip in the layer switcher and a card under the map. The number shown is always counted from data/<id>.json; the denominator is the world total, with its as-of date. Pin shape is set per shelf so color is never the only signal. Captions marked [COPY NEEDED] are placeholders for Nancy's words. Reconciled with the Claude Design file TLL Map Layers (7 October 2026): 36 lists in five shelves, caption bank with templated numbers, source badges. 20 October 2026 (B3): every number is counted live from the member record (tllStates) or the logbook (tllLog, tllParks); counts.json and extremes.json are no longer read. A list with \"hidden_until_loggable\": true keeps its data file but is off the page for everyone (chips, drawer, cards, pins) until members have a way to log it; set it to false to bring the list back.",
  "shelves": [
   {
    "id": "places",
@@ -38,8 +38,7 @@
    "synced": "2026-10-06"
   },
   "member": {
-   "label": "FROM THE MEMBER RECORD",
-   "synced": "2026-10-07"
+   "label": "FROM THE MEMBER RECORD"
   },
   "hand": {
    "label": ""
@@ -55,6 +54,9 @@
   "polarsteps": {
    "label": "FROM POLARSTEPS",
    "connected": false
+  },
+  "logbook": {
+   "label": "FROM THE LOGBOOK"
   }
  },
  "rulebooks": [
@@ -96,7 +98,7 @@
     "Stayed",
     "Layover only"
    ],
-   "source": "placesbeen",
+   "source": "member",
    "captions": [
     "Lit in Rose. Argued about at dinner.",
     "Halfway is {half}. You can see it from here.",
@@ -113,7 +115,9 @@
    "as_of": "2026-10-07",
    "what_counts": "One night, or the center at ground level.",
    "caption": "Slept in or stood in. A train window does not count, however long you stared.",
-   "source": "placesbeen",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "cities",
    "captions": [
     "Slept in or stood in. A train window does not count, however long you stared.",
     "{US} of them are in the US. The rest took more paperwork.",
@@ -129,11 +133,13 @@
    "denominator": null,
    "as_of": "2026-10-07",
    "what_counts": "Connected through or flew from. Duty free optional.",
-   "caption": "{large} large, {medium} medium, {small} small. You remember the small ones.",
-   "source": "placesbeen",
+   "caption": "Connected through. Nobody asked about the gate change.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "airports",
    "captions": [
-    "{large} large, {medium} medium, {small} small. You remember the small ones.",
     "Connected through. Nobody asked about the gate change.",
+    "{large} large, {medium} medium, {small} small. You remember the small ones.",
     "The brand’s namesake, {n} times over."
    ]
   },
@@ -148,7 +154,9 @@
    "as_of": "2026-10-07",
    "what_counts": "Past the gate and inside. Driving past the sign does not count.",
    "caption": "{n} of {of}. The other {rest} are not going anywhere.",
-   "source": "placesbeen",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "usParks",
    "captions": [
     "{n} of {of}. The other {rest} are not going anywhere.",
     "Inside, not driven past. The ranger would know.",
@@ -164,16 +172,19 @@
    "denominator": null,
    "as_of": "2026-10-07",
    "what_counts": "Same rule as the US list: past the gate and inside.",
-   "caption": "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
-   "source": "placesbeen",
+   "caption": "Teide counts. So does Muir Woods. The rule is past the gate and inside.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "parksEverywhere",
    "captions": [
-    "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
     "Teide counts. So does Muir Woods. The rule is past the gate and inside.",
+    "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
     "Paparoa is on here. Look it up, then look at flights."
    ]
   },
   {
    "id": "ports",
+   "hidden_until_loggable": true,
    "name": "Ports",
    "shelf": "places",
    "default_on": false,
@@ -191,6 +202,7 @@
   },
   {
    "id": "unesco",
+   "hidden_until_loggable": true,
    "name": "UNESCO",
    "shelf": "wonders",
    "default_on": false,
@@ -211,6 +223,7 @@
   },
   {
    "id": "landmarks",
+   "hidden_until_loggable": true,
    "name": "Landmarks",
    "shelf": "wonders",
    "default_on": false,
@@ -228,6 +241,7 @@
   },
   {
    "id": "new7",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "New 7 Wonders",
    "verb": "stood at",
@@ -246,6 +260,7 @@
   },
   {
    "id": "nat7",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Natural Wonders",
    "verb": "witnessed",
@@ -264,6 +279,7 @@
   },
   {
    "id": "nature7",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Wonders of Nature",
    "verb": "stood at",
@@ -282,6 +298,7 @@
   },
   {
    "id": "volcanoes",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Decade Volcanoes",
    "verb": "stood near",
@@ -299,6 +316,7 @@
   },
   {
    "id": "spa",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Great Spa Towns",
    "verb": "been inside",
@@ -314,6 +332,7 @@
   },
   {
    "id": "dkheritage",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Danish heritage",
    "verb": "stood in",
@@ -329,6 +348,7 @@
   },
   {
    "id": "vikings",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Viking ring forts",
    "verb": "been inside",
@@ -382,6 +402,7 @@
   },
   {
    "id": "wine",
+   "hidden_until_loggable": true,
    "shelf": "wonders",
    "name": "Wine Capitals",
    "verb": "tasted in",
@@ -394,6 +415,7 @@
   },
   {
    "id": "marathons",
+   "hidden_until_loggable": true,
    "name": "Continents run",
    "shelf": "motion",
    "default_on": false,
@@ -413,6 +435,7 @@
   },
   {
    "id": "majors",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Marathon Majors",
    "verb": "ran",
@@ -484,6 +507,7 @@
   },
   {
    "id": "superhalfs",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "SuperHalfs",
    "verb": "ran",
@@ -546,6 +570,7 @@
   },
   {
    "id": "heat",
+   "hidden_until_loggable": true,
    "name": "Photos and runs",
    "shelf": "motion",
    "default_on": false,
@@ -560,6 +585,7 @@
   },
   {
    "id": "flights",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Flight arcs",
    "verb": "flew",
@@ -572,6 +598,7 @@
   },
   {
    "id": "trains",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Trains and ferries",
    "verb": "rode",
@@ -584,6 +611,7 @@
   },
   {
    "id": "bridges",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Bridges",
    "verb": "crossed",
@@ -596,6 +624,7 @@
   },
   {
    "id": "metros",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Metros",
    "verb": "rode",
@@ -608,6 +637,7 @@
   },
   {
    "id": "bathing",
+   "hidden_until_loggable": true,
    "shelf": "motion",
    "name": "Bathing traditions",
    "verb": "tried",
@@ -624,10 +654,10 @@
    "name": "Extremes",
    "verb": "reached",
    "denominator": null,
-   "source": "placesbeen",
+   "source": "member",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "The four furthest places you stood.",
+   "what_counts": "The four furthest countries on your map, each at the center of its shape.",
    "computed": "extremes"
   },
   {
@@ -635,15 +665,16 @@
    "shelf": "lines",
    "name": "Lines crossed",
    "verb": "crossed",
-   "denominator": 7,
-   "source": "placesbeen",
+   "denominator": 2,
+   "source": "member",
    "as_of": "2026-10-07",
    "default_on": false,
-   "what_counts": "Equator, both tropics, both polar circles, prime meridian, antimeridian.",
+   "what_counts": "Equator and prime meridian, by country: crossed when your map holds countries on both sides.",
    "computed": "crossed"
   },
   {
    "id": "timezones",
+   "hidden_until_loggable": true,
    "shelf": "lines",
    "name": "Time zones",
    "verb": "stood in",
@@ -652,10 +683,12 @@
    "as_of": "2026-10-07",
    "default_on": false,
    "what_counts": "Needs a time-zone boundary set.",
-   "computed": "placeholder"
+   "computed": "placeholder",
+   "_note": "B3.4 (20 Oct 2026): time zones, the polar circles and the tropics need place coordinates the record does not hold. Hidden until a member can log a place with coordinates."
   },
   {
    "id": "mountains",
+   "hidden_until_loggable": true,
    "shelf": "lines",
    "name": "Mountains",
    "verb": "stood on",
@@ -697,6 +730,7 @@
   },
   {
    "id": "magnus",
+   "hidden_until_loggable": true,
    "name": "Magnus Waffles 🐻‍❄️",
    "shelf": "human",
    "default_on": false,
@@ -715,6 +749,7 @@
   },
   {
    "id": "moments",
+   "hidden_until_loggable": true,
    "name": "Moments",
    "shelf": "human",
    "default_on": false,
@@ -752,6 +787,7 @@
   },
   {
    "id": "auroras",
+   "hidden_until_loggable": true,
    "shelf": "human",
    "name": "Auroras and eclipses",
    "verb": "stood under",
@@ -767,6 +803,7 @@
   },
   {
    "id": "weddings",
+   "hidden_until_loggable": true,
    "shelf": "human",
    "name": "Weddings abroad",
    "verb": "attended",
@@ -779,6 +816,7 @@
   },
   {
    "id": "friends",
+   "hidden_until_loggable": true,
    "shelf": "human",
    "name": "Friends visited",
    "verb": "visited",
@@ -791,6 +829,7 @@
   },
   {
    "id": "beds",
+   "hidden_until_loggable": true,
    "shelf": "human",
    "name": "Beds by type",
    "verb": "slept in",
