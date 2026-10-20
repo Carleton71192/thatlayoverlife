@@ -1,0 +1,95 @@
+<section class="h3 h3-sec h3-dark" aria-labelledby="h3-c2-t" data-h3-dash>
+<div class="h3-in">
+<p class="h3-ey">02 · Your travel dashboard</p>
+<h2 id="h3-c2-t" class="h3-title-l">Every place you have been, <em>in one spot.</em></h2>
+<p class="h3-lede">Countries, lists, pets, a public page you can send to a friend, and at the end of the year, your Layover Wrapped. It builds itself from the places you add.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-rose" href="/the-map" data-h3-dash-cta>Build your free map</a><span class="h3-note" data-h3-dash-sub>Free, forever</span></div>
+<div class="h3-dash-map" data-h3-dash-map>
+<div class="h3-map" data-h3-map role="img" aria-label="World map. Countries with a story on That Layover Life are shown in rose."></div>
+</div>
+<p class="h3-dash-line"><span data-h3-dash-line hidden></span><span class="h3-dash-cap">Counted from the map, never typed</span></p>
+<ol class="h3-steps" aria-label="How the dashboard builds itself">
+<li><b>01 · Profile</b><span>Sign up and your page is live in a minute, story or no story.</span></li>
+<li><b>02 · Stories and photos</b><span>Add a trip or a frame. It lands on your page and in the library.</span></li>
+<li><b>03 · The map</b><span>Every place you add fills in. Lists, pets and Wrapped follow from there.</span></li>
+</ol>
+</div>
+</section>
+<style id="h3b-dash">
+/* Packet B (20 Oct 2026, prototype 3.3) B3: one dashboard chapter in place of the passport and map chapters. Visitors see the countries with a story
+   (rose), drawn from the story rail data; a signed-in member sees their own map (the /the-map page, embedded) and a count line from tllStates. 12px floor. */
+.h3-dash-map{margin-top:32px;background:var(--h3-ink2);min-height:240px}
+.h3-dash-map iframe{display:block;width:100%;aspect-ratio:1140/560;border:0;background:#CBDBE1}
+.h3-dash-line{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;margin:14px 0 0;font-family:var(--h3-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cfcbc4}
+.h3-dash-line [data-h3-dash-line]{color:var(--h3-cream)}
+.h3-dash-cap{color:#9496AC}
+.h3-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:48px 0 0;padding:0;list-style:none;border-top:1px solid var(--h3-line-d);counter-reset:none}
+.h3-steps li{padding-top:18px}
+.h3-steps b{display:block;font-family:var(--h3-mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal);margin-bottom:8px}
+.h3-steps span{font-size:15px;line-height:1.45;color:#cfcbc4}
+.h3-map-msg{font-size:15px}
+@media(max-width:899px){.h3-steps{grid-template-columns:1fr}}
+</style>
+<script id="h3-dash-js">
+/* Home 3.3 dashboard (Packet B, 20 Oct 2026). Visitors: the countries with a story, rose, from the story rail data (never a zero, never "be the first").
+   Members: their own map embedded from /the-map, and the count line from tllStates read the same way the map page counts: places are lived or stayed
+   (Antarctica counts, layover only does not), countries are the same set without Antarctica, layovers are airside only. Read only; the map editor writes. */
+(function(){var sec=document.querySelector('[data-h3-dash]');if(!sec||sec.__h3)return;sec.__h3=1;
+var box=sec.querySelector('[data-h3-map]'),wrap=sec.querySelector('[data-h3-dash-map]'),line=sec.querySelector('[data-h3-dash-line]'),cta=sec.querySelector('[data-h3-dash-cta]'),sub=sec.querySelector('[data-h3-dash-sub]');
+var DEN=249,feats=null,svg=null,filedId={},stories=[],CDN='https://cdn.jsdelivr.net/npm/';
+var A2N={},AS='AD020AE784AF004AG028AI660AL008AM051AO024AQ010AR032AS016AT040AU036AW533AX248AZ031BA070BB052BD050BE056BF854BG100BH048BI108BJ204BL652BM060BN096BO068BQ535BR076BS044BT064BV074BW072BY112BZ084CA124CC166CD180CF140CG178CH756CI384CK184CL152CM120CN156CO170CR188CU192CV132CW531CX162CY196CZ203DE276DJ262DK208DM212DO214DZ012EC218EE233EG818EH732ER232ES724ET231FI246FJ242FK238FM583FO234FR250GA266GB826GD308GE268GF254GG831GH288GI292GL304GM270GN324GP312GQ226GR300GS239GT320GU316GW624GY328HK344HM334HN340HR191HT332HU348ID360IE372IL376IM833IN356IO086IQ368IR364IS352IT380JE832JM388JO400JP392KE404KG417KH116KI296KM174KN659KP408KR410KW414KY136KZ398LA418LB422LC662LI438LK144LR430LS426LT440LU442LV428LY434MA504MC492MD498ME499MF663MG450MH584MK807ML466MM104MN496MO446MP580MQ474MR478MS500MT470MU480MV462MW454MX484MY458MZ508NA516NC540NE562NF574NG566NI558NL528NO578NP524NR520NU570NZ554OM512PA591PE604PF258PG598PH608PK586PL616PM666PN612PR630PS275PT620PW585PY600QA634RE638RO642RS688RU643RW646SA682SB090SC690SD729SE752SG702SH654SI705SJ744SK703SL694SM674SN686SO706SR740SS728ST678SV222SX534SY760SZ748TC796TD148TF260TG768TH764TJ762TK772TL626TM795TN788TO776TR792TT780TV798TW158TZ834UA804UG800UM581US840UY858UZ860VA336VC670VE862VG092VI850VN704VU548WF876WS882XK900YE887YT175ZA710ZM894ZW716';for(var x=0;x<AS.length;x+=5)A2N[AS.substr(x,2).toLowerCase()]=AS.substr(x+2,3);
+var AL={usa:'us',oregon:'us',maine:'us','texas hill country':'us',dubai:'ae','sao paulo':'br','ho chi minh city':'vn',copenhagen:'dk',hanoi:'vn',bangkok:'th',phuket:'th',turkiye:'tr',turkey:'tr',balkans:'dk pl cz sk at hu si rs xk al mk bg','seven continents':'us br aq ie dk vn nz za'},NM=null,DN=null;
+function z(s){return(''+s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
+function dn(){if(DN===null){try{DN=new Intl.DisplayNames('en',{type:'region'});}catch(e){DN=false;}}return DN;}
+function nm(){if(!NM){NM={};for(var k in AL)NM[k]=AL[k];var d=dn();if(d)for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n='';try{n=d.of(c);}catch(e){}if(n&&n!=c&&!/^(AN|BU|CS|DD|NH|RH|VD|YD)$/.test(c)&&!NM[z(n)])NM[z(n)]=c.toLowerCase();}}return NM;}
+function q(s){return nm()[z(s)]||'';}
+function codesOf(t){var w=nm()[z(t).replace(/\band\b/g,' ').replace(/\s+/g,' ').trim()];if(w)return w.split(' ');
+ var p=(t||'').split(/,| and | & | to |\//i),o=[],all=1;p.forEach(function(s){if(!z(s))return;var c=q(s);if(c)c.split(' ').forEach(function(k){if(o.indexOf(k)<0)o.push(k);});else all=0;});
+ return all&&o.length?o:(q(p[p.length-1])||'').split(' ').filter(String);}
+function cname(c){var d=dn(),n='';try{n=d?d.of(c.toUpperCase()):'';}catch(e){}return n&&n.toUpperCase()!==c.toUpperCase()?n:c.toUpperCase();}
+function mark(cc,s){[].forEach.call(list.querySelectorAll('.h3-flag'),function(f){var k=f.getAttribute('data-cc');f.classList.toggle('is-on',cc?k===cc:s.cc.indexOf(k)>=0);});}
+function show(i,cc){var s=stories[i];if(!s)return;card.hidden=false;sec.querySelector('[data-h3-mc-img]').src=s.img;sec.querySelector('[data-h3-mc-img]').alt=s.alt;
+ sec.querySelector('[data-h3-mc-k]').textContent='From '+s.loc+(s.mins?' · '+s.mins+' min':'');sec.querySelector('[data-h3-mc-t]').textContent=s.title;
+ sec.querySelector('[data-h3-mc-a]').href=s.href;sec.querySelector('[data-h3-mc-a]').setAttribute('aria-label','Read it: '+s.title);sec.querySelector('[data-h3-mc-n]').textContent='Story '+(i+1)+' of '+stories.length;
+ mark(cc,s);
+ if(svg){[].forEach.call(svg.querySelectorAll('path.is-on'),function(p){p.classList.remove('is-on');});s.cc.forEach(function(c){var p=A2N[c]&&svg.querySelector('path[data-id="'+A2N[c]+'"]');if(p)p.classList.add('is-on');});}}
+function build(){stories=(window.tllHomeStories||[]).slice().sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});if(!stories.length)return;
+ byCode={};filedId={};stories.forEach(function(s,i){s.cc=codesOf(s.loc);s.cc.forEach(function(c){(byCode[c]=byCode[c]||[]).push(i);});});
+ codes=Object.keys(byCode).map(function(c){if(A2N[c])filedId[A2N[c]]=c;return {c:c,n:cname(c)};}).sort(function(a,b){return a.n.localeCompare(b.n,'en');});
+ [].slice.call(list.querySelectorAll('li+li')).forEach(function(li){li.remove();});
+ codes.forEach(function(o){var li=document.createElement('li'),b=document.createElement('button'),im=document.createElement('img'),arr=byCode[o.c],step=0;
+  b.type='button';b.className='h3-flag';b.setAttribute('data-cc',o.c);b.title=o.n;b.setAttribute('aria-label',o.n+', '+arr.length+(arr.length>1?' stories':' story'));
+  im.src=FH[o.c]?FB+FH[o.c]+'_flag-'+o.c+'.svg':FJ+o.c+'.svg';im.alt='';im.width=32;im.height=32;im.loading='lazy';im.decoding='async';
+  im.onerror=function(){b.textContent=o.c.toUpperCase();};b.appendChild(im);
+  b.addEventListener('click',function(){show(arr[step%arr.length],o.c);step++;});b.addEventListener('mouseenter',function(){show(arr[0],o.c);});b.addEventListener('focus',function(){show(arr[0],o.c);});
+  li.appendChild(b);list.appendChild(li);});
+ list.setAttribute('aria-label','Countries with a story, A to Z');
+ counts();paint();show(0);}
+
+function paint(){if(!svg)return;[].forEach.call(svg.querySelectorAll('path'),function(p){p.classList.toggle('is-filed',!!filedId[p.getAttribute('data-id')]);});}
+
+function draw(world){var topo=window.topojson,d3=window.d3;var all=topo.feature(world,world.objects.countries).features;var FIXID={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};all.forEach(function(f){if(f.id==null&&FIXID[f.properties.name])f.id=FIXID[f.properties.name];});feats=all.filter(function(f){return f.id!=='010';});
+ var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj);
+ var ns='http://www.w3.org/2000/svg';svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+ feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-n',f.properties.name);p.setAttribute('data-id',f.id);svg.appendChild(p);});
+  box.appendChild(svg);paint();}
+function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}
+function boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),
+ fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}
+
+function build(){stories=(window.tllHomeStories||[]);filedId={};var codes={};stories.forEach(function(s){codesOf(s.loc).forEach(function(c){if(A2N[c]){filedId[A2N[c]]=c;codes[c]=1;}});});
+ var n=Object.keys(codes).length;if(n&&line.hidden!==false&&!sec.__member){line.textContent=n+' countries in our stories';line.hidden=false;}paint();}
+function count(d){if(!d||!d.states)return null;var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1',places=0,lay=0,ata=false;
+ Object.keys(d.states).forEach(function(k){var kk=k==='undefined'?'900':k;if(!/^\d{3}$/.test(kk))return;var e=d.states[k],v=e&&typeof e==='object'&&!Array.isArray(e)?e[id]:(typeof e==='string'?e:null);if(!v)return;if(v==='airside'){lay++;return;}places++;if(kk==='010')ata=true;});
+ return {places:places,countries:places-(ata?1:0),ata:ata,lay:lay};}
+function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
+ ms.getCurrentMember().then(function(r){if(!r||!r.data)return;sec.__member=true;
+  cta.textContent='Open your dashboard';cta.href='/account';if(sub)sub.textContent='Your map, your lists';
+  var f=document.createElement('iframe');f.src='/the-map?embed=1';f.title='Your map';f.loading='lazy';wrap.innerHTML='';wrap.appendChild(f);
+  var ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
+  function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + Antarctica':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
+  if(ls&&ls.states){show(count(ls));return;}return ms.getMemberJSON().then(function(j){show(count(j&&j.data&&j.data.tllStates));});}).catch(function(){});},250);}
+document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();boot();}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
+})();
+</script>
