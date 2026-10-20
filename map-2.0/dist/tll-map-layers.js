@@ -503,6 +503,7 @@
     if (ready) { refreshLineLayers(); syncLogbookPins(); }
   }
   function renderAll() {
+    if (!document.getElementById('tllm-bar-k')) return; // 20 Oct 2026: the Stamp it list can edit before the map starts; REC is kept and drawn when the bar is built
     var v = countDepths(); countLog(); computeLines();
     if (REC) bindCounters(v.n); refreshDrawerCounts(); renderBar(); renderCards(v); renderRules(); renderStrip(); renderSaved(); refreshHint(); renderList();
   }
