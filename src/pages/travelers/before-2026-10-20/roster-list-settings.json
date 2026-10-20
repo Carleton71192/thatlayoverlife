@@ -1,0 +1,27 @@
+{
+  "note": "Raw settings read on 20 Oct 2026 before the Travelers v2 rebuild (data_element_settings_tool, all_raw_settings).",
+  "roster_wrapper_f9c1a8a9-a5b3-9869-2428-9dc25b3fd014": {
+    "attributes": [{"name": "data-tll-cms-cards", "value": "roster"}],
+    "source": {"collectionId": "6a0b29c7a7b1840afe9390a5"},
+    "queryMode": "dynamic", "filters": [], "filterMatch": "all", "sort": [], "limit": 100, "offset": 0, "pagination": null, "curatedItemIds": []
+  },
+  "card_link_75833cff-c508-0418-500a-0e538e2e2ee2": {
+    "styleNames": ["tll-trav-card-dark"],
+    "link": {"mode": "url", "to": "#"},
+    "attributes": [
+      {"name": "data-tll-trav-card", "value": "traveler"},
+      {"name": "data-slug", "value": {"sourceType": "cms", "collectionId": "6a0b29c7a7b1840afe9390a5", "fieldId": "92c1e56dca553d1e4571067de54b86ae", "fieldName": "Slug"}},
+      {"name": "data-name", "value": {"sourceType": "cms", "collectionId": "6a0b29c7a7b1840afe9390a5", "fieldId": "088d522a5121ff994cda679e963f5b43", "fieldName": "Name"}},
+      {"name": "data-badge", "value": {"sourceType": "cms", "collectionId": "6a0b29c7a7b1840afe9390a5", "fieldId": "e8ebed32220cc875b4a436f93be19ac1", "fieldName": "Badge"}}
+    ],
+    "children": {
+      "6bf95a05-4c6c-dbbc-4797-9d645325ad39": "Image tll-trav-avatar, assetId bound to Photo (af056701c8511e1cf3ea859478f7913d), data-tll-trav-avatar=roster",
+      "c62e9a50-52d1-7f0d-feb3-5dc8c11d015e": "Image tll-trav-avatar, assetId null (unbound duplicate), data-tll-trav-avatar=roster",
+      "1bc4d74b-a399-c96c-aeec-b2e9a0aade17": "Block tll-trav-row > b2d39169-3e87-8564-0ed3-5f32e38cba71 Block tll-trav-badge, text bound to Badge (option)",
+      "6b188587-4011-a09f-7cf5-09a5c9bd1d04": "Heading h3 tll-trav-name, text bound to Name",
+      "fcddac68-5cc2-2632-132a-ba57f61ff288": "Block tll-trav-meta, text bound to Home base (1ad2e73892af12dcd94603d66b567339)",
+      "1dd71898-c516-76e0-e5fb-881555a5ece0": "Block tll-trav-quote, text bound to Bio short (703bf7e8a8e0bb3864fce67e90f1d842)",
+      "88f51025-f851-ec17-d0db-1a3a7bbab54b": "Block tll-trav-link, static text 'See their work →'"
+    }
+  }
+}

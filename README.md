@@ -304,7 +304,7 @@ To add a city, put it in `src/gazetteer.js` under its country code and add a tes
 ## Working on it
 
 ```bash
-npm test                         # 72 unit tests, no network needed
+npm test                         # unit tests, no network needed
 npm run dev                      # run it locally at http://localhost:8787
 npm run setup-kv                 # create the KV namespace, write its id to wrangler.toml
 npm run verify-feeds             # check the feeds, report only
@@ -324,6 +324,11 @@ npm run tail                     # watch the cron runs
 | `src/gazetteer.js` | Places |
 | `src/regions.js` | Country to region table |
 | `src/store.js` | KV read and write, dedupe, filters |
+| `src/story-hook.js` | Webflow publish webhook: a story's countries onto the author's map |
+| `src/profile-sync.js` | Memberstack webhook: profile fields onto the Contributors item, item creation on sign-up |
+| `src/profile-save.js` | POST /profile/save, the /edit-profile autosave |
+| `src/map-snapshot.js` | POST /map-snapshot, the count snapshot from /the-map |
+| `src/member-auth.js` | Memberstack token check, hourly counters, CORS allow list |
 | `scripts/setup-kv.mjs` | Creates the KV namespace and updates `wrangler.toml` |
 | `scripts/verify-feeds.mjs` | Checks every feed, optionally rewrites the roster |
 
@@ -376,6 +381,84 @@ https://tll-travel-wire.YOUR-SUBDOMAIN.workers.dev/hooks/story-published?token=Y
 
 Until all three secrets are set, the address does nothing. `npx wrangler tail`
 shows one `story-hook` line per published story, with what was added.
+
+## Member profiles: the webhook and the two member routes
+
+Three routes keep a Traveler's public profile (the Contributors item behind
+/contributors/{slug}) in step with what the member does on the site. Nothing in
+the browser ever holds a Webflow token; every write goes through this worker.
+
+```
+POST /hooks/member-updated?token=...   Memberstack webhook, member.created and member.updated
+POST /profile/save                     /edit-profile autosave, Authorization: Bearer <Memberstack token>
+POST /map-snapshot                     /the-map writes the count snapshot, same Bearer token
+```
+
+**/hooks/member-updated** (`src/profile-sync.js`). On member.updated the
+member's custom fields (keys equal the Contributors slugs: one-line, home-base,
+from-and-lived-in, languages, credit-mode, pen-name, contact-mode, visibility,
+share-ranges, links-shown, bio-long, the ten platform links, list-expats,
+list-creators, list-press) are copied onto the item and it is republished. On
+member.created with no item yet, one is created with the name, a slug from the
+name (-2, -3 on a collision), the photo if Memberstack has one, visibility
+Public, contact-mode Relay, credit-mode Full, memberstack-id and member-since,
+then published, so a profile is live within a minute of sign-up. The typed
+counts are not copied any more. badge-label, press-verified, map-snapshot and
+slug are never written from a member payload.
+
+**/profile/save** (`src/profile-save.js`). Body `{"fields": {"one-line": "...",
+"links-shown": "instagram,youtube"}}`. The token is verified with Memberstack
+and only that member's own item is written, then published. Allowed slugs are
+the member-writable ones above plus name, avatar, email and crew; anything else
+is a 400. Option fields take the option name or id. Switches take true/false,
+"true"/"false", "on"/"off". 60 writes per member per hour, then 429. Replies
+`{"ok":true,"savedAt":"...","slug":"...","fields":[...],"published":true}`.
+
+**/map-snapshot** (`src/map-snapshot.js`). Body
+`{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"}`
+(whole numbers 0 to 300, a boolean, an ISO date; nothing else). Written as a
+JSON string to map-snapshot on the member's own item, then published. 30 per
+member per hour.
+
+Both member routes answer CORS preflights for https://thatlayover.life,
+https://www.thatlayover.life and https://that-layover-life.webflow.io only,
+with Authorization and Content-Type allowed. A bad or missing token is a 401; a
+member with no Contributors item yet is a 404; until the secrets are set the
+routes answer 503.
+
+Secrets, one command at a time:
+
+```bash
+npx wrangler secret put PROFILE_HOOK_TOKEN
+```
+
+(any long password you make up; it goes in the webhook address below)
+
+```bash
+npx wrangler secret put WEBFLOW_TOKEN
+```
+
+(a Webflow site API token with CMS read and write access; the same one the
+story webhook uses)
+
+```bash
+npx wrangler secret put MEMBERSTACK_KEY
+```
+
+(your Memberstack secret key, from Memberstack under Dev Tools; the same one the
+story webhook uses)
+
+Then in Memberstack, under Dev Tools, then Webhooks, add one webhook for the
+events **member.created** and **member.updated** pointing at:
+
+```
+https://tll-travel-wire.YOUR-SUBDOMAIN.workers.dev/hooks/member-updated?token=YOUR-PASSWORD
+```
+
+The /edit-profile and /the-map blocks read the worker's base URL from a
+`data-worker` attribute on their root element; with it empty the page stays
+read-only. `npx wrangler tail` shows one `profile-sync`, `profile-save` or
+`map-snapshot` line per call.
 
 ## Docs
 

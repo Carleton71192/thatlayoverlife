@@ -3,10 +3,14 @@
 //   GET /health                         liveness plus wire freshness
 //   POST /refresh                       manual ingest, only when REFRESH_TOKEN is set
 //   POST /hooks/member-updated          Memberstack webhook: copies a member's profile
-//                                       fields onto their Contributors CMS item (profile-sync.js)
+//                                       fields onto their Contributors CMS item, creates
+//                                       the item on member.created (profile-sync.js)
 //   POST /hooks/story-published         Webflow publish webhook: adds a story's
 //                                       countries to its author's map (story-hook.js)
-// Cron (every 30 min) runs the same ingest as /refresh.
+//   POST /profile/save                  /edit-profile autosave, Memberstack Bearer token (profile-save.js)
+//   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js)
+// The member routes and the member webhook answer CORS preflights for the site's
+// three origins only (member-auth.js). Cron (every 30 min) runs the same ingest as /refresh.
 
 import { runIngest, summarizeRun } from './ingest.js';
 import { handleStoryHook } from './story-hook.js';
@@ -14,6 +18,16 @@ import { FEEDS } from './feeds.js';
 import { filterItems, readWire } from './store.js';
 import { REGIONS } from './regions.js';
 import { handleProfileHook } from './profile-sync.js';
+import { handleProfileSave } from './profile-save.js';
+import { handleMapSnapshot } from './map-snapshot.js';
+import { memberCors, withHeaders } from './member-auth.js';
+
+/** Routes a signed-in member calls from the site, plus the member webhook. */
+const MEMBER_ROUTES = {
+  '/profile/save': handleProfileSave,
+  '/map-snapshot': handleMapSnapshot,
+  '/hooks/member-updated': handleProfileHook,
+};
 
 const EDGE_CACHE_SECONDS = 300;
 
@@ -69,6 +83,13 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    if (url.pathname in MEMBER_ROUTES) {
+      const cors = memberCors(request);
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (request.method !== 'POST') return withHeaders(json({ error: 'method not allowed' }, { status: 405 }), cors);
+      return withHeaders(await MEMBER_ROUTES[url.pathname](request, env), cors);
+    }
+
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
@@ -76,11 +97,6 @@ export default {
     if (url.pathname === '/refresh') {
       if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
       return handleRefresh(request, env);
-    }
-
-    if (url.pathname === '/hooks/member-updated') {
-      if (request.method !== 'POST') return json({ error: 'method not allowed' }, { status: 405 });
-      return handleProfileHook(request, env);
     }
 
     if (url.pathname === '/hooks/story-published') {

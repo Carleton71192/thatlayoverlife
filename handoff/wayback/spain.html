@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="en-US">
+<head><script src="https://web-static.archive.org/_static/js/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app262.us.archive.org';v.server_ms=5511;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=lGQTDXxZ" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=o9P2E1FK" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/","20250523022317","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1747966997");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>Spain: A Wedding and an Adventure &#8211; That Layover Life</title>
+<meta name="robots" content="max-image-preview:large"/>
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="dns-prefetch" href="//web.archive.org/web/20250523022317/https://accounts.google.com/"/>
+<link rel="alternate" type="application/rss+xml" title="That Layover Life » Feed" href="/web/20250523022317/https://thatlayover.life/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="That Layover Life » Comments Feed" href="/web/20250523022317/https://thatlayover.life/comments/feed/"/>
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/web.archive.org\/web\/20250523022317\/https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/web.archive.org\/web\/20250523022317\/https:\/\/s.w.org\/images\/core\/emoji\/15.1.0\/svg\/","svgExt":".svg","source":{"wpemoji":"\/wp-includes\/js\/wp-emoji.js?ver=6.8.1","twemoji":"\/wp-includes\/js\/twemoji.js?ver=6.8.1"}};
+/**
+ * @output wp-includes/js/wp-emoji-loader.js
+ */
+
+/**
+ * Emoji Settings as exported in PHP via _print_emoji_detection_script().
+ * @typedef WPEmojiSettings
+ * @type {object}
+ * @property {?object} source
+ * @property {?string} source.concatemoji
+ * @property {?string} source.twemoji
+ * @property {?string} source.wpemoji
+ * @property {?boolean} DOMReady
+ * @property {?Function} readyCallback
+ */
+
+/**
+ * Support tests.
+ * @typedef SupportTests
+ * @type {object}
+ * @property {?boolean} flag
+ * @property {?boolean} emoji
+ */
+
+/**
+ * IIFE to detect emoji support and load Twemoji if needed.
+ *
+ * @param {Window} window
+ * @param {Document} document
+ * @param {WPEmojiSettings} settings
+ */
+( function wpEmojiLoader( window, document, settings ) {
+	if ( typeof Promise === 'undefined' ) {
+		return;
+	}
+
+	var sessionStorageKey = 'wpEmojiSettingsSupports';
+	var tests = [ 'flag', 'emoji' ];
+
+	/**
+	 * Checks whether the browser supports offloading to a Worker.
+	 *
+	 * @since 6.3.0
+	 *
+	 * @private
+	 *
+	 * @returns {boolean}
+	 */
+	function supportsWorkerOffloading() {
+		return (
+			typeof Worker !== 'undefined' &&
+			typeof OffscreenCanvas !== 'undefined' &&
+			typeof URL !== 'undefined' &&
+			URL.createObjectURL &&
+			typeof Blob !== 'undefined'
+		);
+	}
+
+	/**
+	 * @typedef SessionSupportTests
+	 * @type {object}
+	 * @property {number} timestamp
+	 * @property {SupportTests} supportTests
+	 */
+
+	/**
+	 * Get support tests from session.
+	 *
+	 * @since 6.3.0
+	 *
+	 * @private
+	 *
+	 * @returns {?SupportTests} Support tests, or null if not set or older than 1 week.
+	 */
+	function getSessionSupportTests() {
+		try {
+			/** @type {SessionSupportTests} */
+			var item = JSON.parse(
+				sessionStorage.getItem( sessionStorageKey )
+			);
+			if (
+				typeof item === 'object' &&
+				typeof item.timestamp === 'number' &&
+				new Date().valueOf() < item.timestamp + 604800 && // Note: Number is a week in seconds.
+				typeof item.supportTests === 'object'
+			) {
+				return item.supportTests;
+			}
+		} catch ( e ) {}
+		return null;
+	}
+
+	/**
+	 * Persist the supports in session storage.
+	 *
+	 * @since 6.3.0
+	 *
+	 * @private
+	 *
+	 * @param {SupportTests} supportTests Support tests.
+	 */
+	function setSessionSupportTests( supportTests ) {
+		try {
+			/** @type {SessionSupportTests} */
+			var item = {
+				supportTests: supportTests,
+				timestamp: new Date().valueOf()
+			};
+
+			sessionStorage.setItem(
+				sessionStorageKey,
+				JSON.stringify( item )
+			);
+		} catch ( e ) {}
+	}
+
+	/**
+	 * Checks if two sets of Emoji characters render the same visually.
+	 *
+	 * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
+	 * scope. Everything must be passed by parameters.
+	 *
+	 * @since 4.9.0
+	 *
+	 * @private
+	 *
+	 * @param {CanvasRenderingContext2D} context 2D Context.
+	 * @param {string} set1 Set of Emoji to test.
+	 * @param {string} set2 Set of Emoji to test.
+	 *
+	 * @return {boolean} True if the two sets render the same.
+	 */
+	function emojiSetsRenderIdentically( context, set1, set2 ) {
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
+		context.fillText( set1, 0, 0 );
+		var rendered1 = new Uint32Array(
+			context.getImageData(
+				0,
+				0,
+				context.canvas.width,
+				context.canvas.height
+			).data
+		);
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, context.canvas.width, context.canvas.height );
+		context.fillText( set2, 0, 0 );
+		var rendered2 = new Uint32Array(
+			context.getImageData(
+				0,
+				0,
+				context.canvas.width,
+				context.canvas.height
+			).data
+		);
+
+		return rendered1.every( function ( rendered2Data, index ) {
+			return rendered2Data === rendered2[ index ];
+		} );
+	}
+
+	/**
+	 * Determines if the browser properly renders Emoji that Twemoji can supplement.
+	 *
+	 * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
+	 * scope. Everything must be passed by parameters.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @private
+	 *
+	 * @param {CanvasRenderingContext2D} context 2D Context.
+	 * @param {string} type Whether to test for support of "flag" or "emoji".
+	 * @param {Function} emojiSetsRenderIdentically Reference to emojiSetsRenderIdentically function, needed due to minification.
+	 *
+	 * @return {boolean} True if the browser can render emoji, false if it cannot.
+	 */
+	function browserSupportsEmoji( context, type, emojiSetsRenderIdentically ) {
+		var isIdentical;
+
+		switch ( type ) {
+			case 'flag':
+				/*
+				 * Test for Transgender flag compatibility. Added in Unicode 13.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (white flag emoji + transgender symbol).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					context,
+					'\uD83C\uDFF3\uFE0F\u200D\u26A7\uFE0F', // as a zero-width joiner sequence
+					'\uD83C\uDFF3\uFE0F\u200B\u26A7\uFE0F' // separated by a zero-width space
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for UN flag compatibility. This is the least supported of the letter locale flags,
+				 * so gives us an easy test for full support.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly ([U] + [N]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					context,
+					'\uD83C\uDDFA\uD83C\uDDF3', // as the sequence of two code points
+					'\uD83C\uDDFA\u200B\uD83C\uDDF3' // as the two code points separated by a zero-width space
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for English flag compatibility. England is a country in the United Kingdom, it
+				 * does not have a two letter locale code but rather a five letter sub-division code.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (black flag emoji + [G] + [B] + [E] + [N] + [G]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					context,
+					// as the flag sequence
+					'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F',
+					// with each code point separated by a zero-width space
+					'\uD83C\uDFF4\u200B\uDB40\uDC67\u200B\uDB40\uDC62\u200B\uDB40\uDC65\u200B\uDB40\uDC6E\u200B\uDB40\uDC67\u200B\uDB40\uDC7F'
+				);
+
+				return ! isIdentical;
+			case 'emoji':
+				/*
+				 * Rise Like a Phoenix.
+				 *
+				 * To test for Emoji 15.1 support, try to render a new emoji: Phoenix.
+				 *
+				 * A phoenix, a mythical immortal bird with flame-like feathers found in the folklore of many global
+				 * cultures. Often used to symbolize renewal or rebirth.
+				 *
+				 * The Phoenix emoji is a ZWJ sequence combining 🐦 Bird, Zero Width Joiner and 🔥 Fire.
+				 * These display as a single emoji on supported platforms.
+				 *
+				 * 0xD83D 0xDC26 (\uD83D\uDC26) == 🐦 Bird
+				 * 0x200D                       == Zero-Width Joiner (ZWJ) that links the code points for the new emoji or
+				 * 0x200B                       == Zero-Width Space (ZWS) that is rendered for clients not supporting the new emoji.
+				 * 0xD83D 0xDD25 (\uD83D\uDD25) == 🔥 Fire
+				 *
+				 * When updating this test for future Emoji releases, ensure that individual emoji that make up the
+				 * sequence come from older emoji standards.
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					context,
+					'\uD83D\uDC26\u200D\uD83D\uDD25', // as the zero-width joiner sequence
+					'\uD83D\uDC26\u200B\uD83D\uDD25' // separated by a zero-width space
+				);
+
+				return ! isIdentical;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Checks emoji support tests.
+	 *
+	 * This function may be serialized to run in a Worker. Therefore, it cannot refer to variables from the containing
+	 * scope. Everything must be passed by parameters.
+	 *
+	 * @since 6.3.0
+	 *
+	 * @private
+	 *
+	 * @param {string[]} tests Tests.
+	 * @param {Function} browserSupportsEmoji Reference to browserSupportsEmoji function, needed due to minification.
+	 * @param {Function} emojiSetsRenderIdentically Reference to emojiSetsRenderIdentically function, needed due to minification.
+	 *
+	 * @return {SupportTests} Support tests.
+	 */
+	function testEmojiSupports( tests, browserSupportsEmoji, emojiSetsRenderIdentically ) {
+		var canvas;
+		if (
+			typeof WorkerGlobalScope !== 'undefined' &&
+			self instanceof WorkerGlobalScope
+		) {
+			canvas = new OffscreenCanvas( 300, 150 ); // Dimensions are default for HTMLCanvasElement.
+		} else {
+			canvas = document.createElement( 'canvas' );
+		}
+
+		var context = canvas.getContext( '2d', { willReadFrequently: true } );
+
+		/*
+		 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
+		 * it doesn't work when the font is bolder than 500 weight. So, we
+		 * check for bold rendering support to avoid invisible emoji in Chrome.
+		 */
+		context.textBaseline = 'top';
+		context.font = '600 32px Arial';
+
+		var supports = {};
+		tests.forEach( function ( test ) {
+			supports[ test ] = browserSupportsEmoji( context, test, emojiSetsRenderIdentically );
+		} );
+		return supports;
+	}
+
+	/**
+	 * Adds a script to the head of the document.
+	 *
+	 * @ignore
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param {string} src The url where the script is located.
+	 *
+	 * @return {void}
+	 */
+	function addScript( src ) {
+		var script = document.createElement( 'script' );
+		script.src = src;
+		script.defer = true;
+		document.head.appendChild( script );
+	}
+
+	settings.supports = {
+		everything: true,
+		everythingExceptFlag: true
+	};
+
+	// Create a promise for DOMContentLoaded since the worker logic may finish after the event has fired.
+	var domReadyPromise = new Promise( function ( resolve ) {
+		document.addEventListener( 'DOMContentLoaded', resolve, {
+			once: true
+		} );
+	} );
+
+	// Obtain the emoji support from the browser, asynchronously when possible.
+	new Promise( function ( resolve ) {
+		var supportTests = getSessionSupportTests();
+		if ( supportTests ) {
+			resolve( supportTests );
+			return;
+		}
+
+		if ( supportsWorkerOffloading() ) {
+			try {
+				// Note that the functions are being passed as arguments due to minification.
+				var workerScript =
+					'postMessage(' +
+					testEmojiSupports.toString() +
+					'(' +
+					[
+						JSON.stringify( tests ),
+						browserSupportsEmoji.toString(),
+						emojiSetsRenderIdentically.toString()
+					].join( ',' ) +
+					'));';
+				var blob = new Blob( [ workerScript ], {
+					type: 'text/javascript'
+				} );
+				var worker = new Worker( URL.createObjectURL( blob ), { name: 'wpTestEmojiSupports' } );
+				worker.onmessage = function ( event ) {
+					supportTests = event.data;
+					setSessionSupportTests( supportTests );
+					worker.terminate();
+					resolve( supportTests );
+				};
+				return;
+			} catch ( e ) {}
+		}
+
+		supportTests = testEmojiSupports( tests, browserSupportsEmoji, emojiSetsRenderIdentically );
+		setSessionSupportTests( supportTests );
+		resolve( supportTests );
+	} )
+		// Once the browser emoji support has been obtained from the session, finalize the settings.
+		.then( function ( supportTests ) {
+			/*
+			 * Tests the browser support for flag emojis and other emojis, and adjusts the
+			 * support settings accordingly.
+			 */
+			for ( var test in supportTests ) {
+				settings.supports[ test ] = supportTests[ test ];
+
+				settings.supports.everything =
+					settings.supports.everything && settings.supports[ test ];
+
+				if ( 'flag' !== test ) {
+					settings.supports.everythingExceptFlag =
+						settings.supports.everythingExceptFlag &&
+						settings.supports[ test ];
+				}
+			}
+
+			settings.supports.everythingExceptFlag =
+				settings.supports.everythingExceptFlag &&
+				! settings.supports.flag;
+
+			// Sets DOMReady to false and assigns a ready function to settings.
+			settings.DOMReady = false;
+			settings.readyCallback = function () {
+				settings.DOMReady = true;
+			};
+		} )
+		.then( function () {
+			return domReadyPromise;
+		} )
+		.then( function () {
+			// When the browser can not render everything we need to load a polyfill.
+			if ( ! settings.supports.everything ) {
+				settings.readyCallback();
+
+				var src = settings.source || {};
+
+				if ( src.concatemoji ) {
+					addScript( src.concatemoji );
+				} else if ( src.wpemoji && src.twemoji ) {
+					addScript( src.twemoji );
+					addScript( src.wpemoji );
+				}
+			}
+		} );
+} )( window, document, window._wpemojiSettings );
+</script>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel="stylesheet" id="wp-block-library-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-includes/css/dist/block-library/style.css?ver=6.8.1" media="all"/>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1200px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: underline;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;line-height: inherit;padding: calc(0.667em + 2px) calc(1.333em + 2px);text-decoration: none;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel="stylesheet" id="that-layover-life-conditional-display-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/that-layover-life-travel-blogs/public/assets/css/conditional-display.css?ver=1.0.0" media="all"/>
+<link rel="stylesheet" id="hello-elementor-style-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/themes/hello-elementor/style.css?ver=6.8.1" media="all"/>
+<link rel="stylesheet" id="that-layover-life-style-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/themes/that-layover-life/style.css?ver=6.8.1" media="all"/>
+<link rel="stylesheet" id="hello-elementor-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/themes/hello-elementor/style.css?ver=3.4.1" media="all"/>
+<link rel="stylesheet" id="hello-elementor-theme-style-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/themes/hello-elementor/theme.css?ver=3.4.1" media="all"/>
+<link rel="stylesheet" id="hello-elementor-header-footer-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/themes/hello-elementor/header-footer.css?ver=3.4.1" media="all"/>
+<link rel="stylesheet" id="elementor-frontend-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-frontend.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="elementor-post-7-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-7.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-image-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.28.4" media="all"/>
+<link rel="stylesheet" id="widget-nav-menu-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-pro-widget-nav-menu.min.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-heading-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.28.4" media="all"/>
+<link rel="stylesheet" id="widget-form-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css?ver=3.27.4" media="all"/>
+<link rel="stylesheet" id="widget-social-icons-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.28.4" media="all"/>
+<link rel="stylesheet" id="e-apple-webkit-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-apple-webkit.min.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-icon-box-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-widget-icon-box.min.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-image-box-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-widget-image-box.min.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-loop-common-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/css/widget-loop-common.min.css?ver=3.27.4" media="all"/>
+<link rel="stylesheet" id="widget-loop-grid-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/custom-pro-widget-loop-grid.min.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="widget-divider-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.28.4" media="all"/>
+<link rel="stylesheet" id="e-animation-fadeIn-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.css?ver=3.28.4" media="all"/>
+<link rel="stylesheet" id="e-popup-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css?ver=3.27.4" media="all"/>
+<link rel="stylesheet" id="elementor-post-258-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-258.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="elementor-post-146-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-146.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="elementor-post-637-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-637.css?ver=1746721666" media="all"/>
+<link rel="stylesheet" id="elementor-post-352-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-352.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="elementor-post-178-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/css/post-178.css?ver=1746721628" media="all"/>
+<link rel="stylesheet" id="elementor-gf-local-roboto-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/google-fonts/css/roboto.css?ver=1746043134" media="all"/>
+<link rel="stylesheet" id="elementor-gf-local-robotoslab-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/google-fonts/css/robotoslab.css?ver=1746043137" media="all"/>
+<link rel="stylesheet" id="elementor-gf-local-poppins-css" href="/web/20250523022317cs_/https://thatlayover.life/wp-content/uploads/elementor/google-fonts/css/poppins.css?ver=1746043139" media="all"/>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/jquery/jquery.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/jquery/jquery-migrate.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/"/><link rel="alternate" title="JSON" type="application/json" href="/web/20250523022317/https://thatlayover.life/wp-json/wp/v2/travel_blogs/1544"/><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd"/>
+<meta name="generator" content="WordPress 6.8.1"/>
+<link rel="canonical" href="/web/20250523022317/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/"/>
+<link rel="shortlink" href="/web/20250523022317/https://thatlayover.life/?p=1544"/>
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="/web/20250523022317/https://thatlayover.life/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthatlayover.life%2Ftravel-blogs%2Fspain-a-wedding-and-an-adventure%2F"/>
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="/web/20250523022317/https://thatlayover.life/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthatlayover.life%2Ftravel-blogs%2Fspain-a-wedding-and-an-adventure%2F&amp;format=xml"/>
+<meta name="description" content="Arriving in Madrid felt like pure bliss, with fresh air and sunny days inviting us to explore hidden gems before our friend's wedding. From savoring patatas bravas at local spots to dancing the night away at a techno club, every moment was filled with joy. The wedding at a fairytale hacienda was a beautiful blend of cultures, laughter, and love. Our adventure continued on the stunning island of Ibiza, where we balanced lively nightlife with peaceful relaxation. Join me as I share the unforgettable experiences, delicious food, and vibrant energy that make Spain a truly magical destination!">
+<meta name="generator" content="Elementor 3.28.4; features: e_font_icon_svg, additional_custom_breakpoints, e_local_google_fonts, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			</head>
+<body class="wp-singular travel_blogs-template-default single single-travel_blogs postid-1544 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor wp-child-theme-that-layover-life eio-default logged-out-condition hello-elementor-default elementor-default elementor-kit-7 elementor-page-637"><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;height:0;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20250523022317/https%3A//thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;" nav="async">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20250523022317" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20250523022317*/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/" title="See a list of every capture for this URL">3 captures</a>
+          <div class="r" title="Timespan for captures of this URL">23 May 2025 - 20 Jan 2026</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="775" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Apr</td>
+            <td class="c" id="displayMonthEl" title="You are here: 02:23:17 May 23, 2025">MAY</td>
+            <td class="f" nowrap="nowrap">Jun</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><span class="ta"></span></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 02:23:17 May 23, 2025">23</td>
+            <td class="f" nowrap="nowrap"><span class="ta"></span></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2024</td>
+            <td class="c" id="displayYearEl" title="You are here: 02:23:17 May 23, 2025">2025</td>
+            <td class="f" nowrap="nowrap">2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="https://help.archive.org/help/category/the-wayback-machine/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20250523022317/http://web.archive.org/screenshot/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20250523022317/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20250523022317/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by" source="api" trigger="hover" token="MU8PDK6kc2EUhJUOH98bFgz3dDhQ5seZqQZmhv_7_qh79rlAQZwXtN2q7n-9uyaiwcKzTA"></div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20250523022317/https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(775,27,25,2,"web","https://thatlayover.life/travel-blogs/spain-a-wedding-and-an-adventure/","20250523022317",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+
+
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<div data-elementor-type="header" data-elementor-id="258" class="elementor elementor-258 elementor-location-header" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-d93e0c6 e-flex e-con-boxed e-con e-child" data-id="d93e0c6" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-c91080f e-con-full e-flex e-con e-child" data-id="c91080f" data-element_type="container">
+				<div class="elementor-element elementor-element-7da820d elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="7da820d" data-element_type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+											<a href="https://web.archive.org/web/20250523022317/https://thatlayover.life/">
+			<img width="160" height="28" src="/web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/02/logo-1.svg" class="attachment-full size-full wp-image-260" alt=""/>				</a>
+											</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-3ff5c11 e-con-full e-flex e-con e-child" data-id="3ff5c11" data-element_type="container">
+				<div class="elementor-element elementor-element-3d3b1cf elementor-nav-menu__align-center elementor-nav-menu--stretch elementor-nav-menu--dropdown-tablet elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="3d3b1cf" data-element_type="widget" data-settings="{&quot;full_width&quot;:&quot;stretch&quot;,&quot;layout&quot;:&quot;horizontal&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;<svg class=\&quot;e-font-icon-svg e-fas-caret-down\&quot; viewBox=\&quot;0 0 320 512\&quot; xmlns=\&quot;http:\/\/www.w3.org\/2000\/svg\&quot;><path d=\&quot;M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z\&quot;><\/path><\/svg>&quot;,&quot;library&quot;:&quot;fa-solid&quot;},&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="Menu" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-none">
+				<ul id="menu-1-3d3b1cf" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="/web/20250523022317/https://thatlayover.life/" class="elementor-item">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1165"><a href="/web/20250523022317/https://thatlayover.life/about-us/" class="elementor-item">About Us</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-172"><a href="/web/20250523022317/https://thatlayover.life/travel-blogs" class="elementor-item">Travel Blogs</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1166"><a href="/web/20250523022317/https://thatlayover.life/gallery/" class="elementor-item">Photography</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1167"><a href="/web/20250523022317/https://thatlayover.life/contributors/" class="elementor-item">Contributors</a></li>
+</ul>			</nav>
+					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle" aria-expanded="false">
+			<span class="elementor-menu-toggle__icon--open"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewbox="0 0 40 40" fill="none"><path d="M36.668 11.6667L3.33464 11.6667" stroke="#1E1E1E" stroke-width="2.5" stroke-linecap="round"></path><path d="M36.668 20L13.3346 20" stroke="#1E1E1E" stroke-width="2.5" stroke-linecap="round"></path><path d="M36.668 28.3333H23.3346" stroke="#1E1E1E" stroke-width="2.5" stroke-linecap="round"></path></svg></span><svg aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close e-font-icon-svg e-eicon-close" viewbox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d="M742 167L500 408 258 167C246 154 233 150 217 150 196 150 179 158 167 167 154 179 150 196 150 212 150 229 154 242 171 254L408 500 167 742C138 771 138 800 167 829 196 858 225 858 254 829L496 587 738 829C750 842 767 846 783 846 800 846 817 842 829 829 842 817 846 804 846 783 846 767 842 750 829 737L588 500 833 258C863 229 863 200 833 171 804 137 775 137 742 167Z"></path></svg>		</div>
+					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-3d3b1cf" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-169"><a href="/web/20250523022317/https://thatlayover.life/" class="elementor-item" tabindex="-1">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1165"><a href="/web/20250523022317/https://thatlayover.life/about-us/" class="elementor-item" tabindex="-1">About Us</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-172"><a href="/web/20250523022317/https://thatlayover.life/travel-blogs" class="elementor-item" tabindex="-1">Travel Blogs</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1166"><a href="/web/20250523022317/https://thatlayover.life/gallery/" class="elementor-item" tabindex="-1">Photography</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1167"><a href="/web/20250523022317/https://thatlayover.life/contributors/" class="elementor-item" tabindex="-1">Contributors</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-3094f86 e-con-full e-flex e-con e-child" data-id="3094f86" data-element_type="container">
+				<div class="elementor-element elementor-element-e5cdd5d hide-logged-in elementor-widget elementor-widget-button" data-id="e5cdd5d" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjE3OCIsInRvZ2dsZSI6ZmFsc2V9">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Register</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				<div class="elementor-element elementor-element-9648668 hide-logged-in elementor-widget elementor-widget-button" data-id="9648668" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjM1MiIsInRvZ2dsZSI6ZmFsc2V9">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Login</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				<div class="elementor-element elementor-element-2cdba37 hide-logged-out elementor-widget elementor-widget-button" data-id="2cdba37" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/web/20250523022317/https://thatlayover.life/create-a-blog/">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Create a Post</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				<div class="elementor-element elementor-element-518a9bf hide-logged-out elementor-widget elementor-widget-button" data-id="518a9bf" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/web/20250523022317/https://thatlayover.life/profile">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Profile</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="single-post" data-elementor-id="637" class="elementor elementor-637 elementor-location-single post-1544 travel_blogs type-travel_blogs status-publish has-post-thumbnail hentry travel_blog_country-spain travel_blog_category-travel" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-edef272 e-flex e-con-boxed e-con e-parent" data-id="edef272" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-acea442 elementor-widget elementor-widget-heading" data-id="acea442" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default"><a href="/web/20250523022317/https://thatlayover.life/travel-blog-category/travel/" rel="tag">Travel</a></h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-ba5a29f elementor-widget elementor-widget-heading" data-id="ba5a29f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">Spain: A Wedding and an Adventure</h2>				</div>
+				</div>
+		<div class="elementor-element elementor-element-edc6b7f e-con-full e-flex e-con e-child" data-id="edc6b7f" data-element_type="container">
+				<div class="elementor-element elementor-element-fc4da55 elementor-position-left elementor-position-left elementor-vertical-align-top elementor-widget elementor-widget-image-box" data-id="fc4da55" data-element_type="widget" data-widget_type="image-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image-box-wrapper"><figure class="elementor-image-box-img"><img src="https://web.archive.org/web/20250523022317im_/https://secure.gravatar.com/avatar/413cf7c60db95aa354e3d67e0aa8c1cb3a4e5b406e4cecbb4c9c120958c2ecfa?s=96&amp;d=mm&amp;r=g" title="" alt="" loading="lazy"/></figure><div class="elementor-image-box-content"><h3 class="elementor-image-box-title">Chesney L</h3><p class="elementor-image-box-description">May 8, 2025</p></div></div>				</div>
+				</div>
+				<div class="elementor-element elementor-element-ef6c39f elementor-widget elementor-widget-button" data-id="ef6c39f" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/web/20250523022317/https://thatlayover.life/travel-blogs">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">View all </span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				<div class="elementor-element elementor-element-a19c616 elementor-align-right elementor-widget elementor-widget-button" data-id="a19c616" data-element_type="widget" id="share" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewbox="0 0 21 20" fill="none"><path d="M14.6641 7.50162C16.4766 7.51171 17.4582 7.59208 18.0985 8.2324C18.8307 8.96464 18.8307 10.1431 18.8307 12.5002V13.3335C18.8307 15.6905 18.8307 16.869 18.0985 17.6013C17.3663 18.3335 16.1878 18.3335 13.8307 18.3335H7.16406C4.80704 18.3335 3.62853 18.3335 2.8963 17.6013C2.16406 16.869 2.16406 15.6905 2.16406 13.3335L2.16406 12.5002C2.16406 10.1431 2.16406 8.96464 2.8963 8.2324C3.53661 7.59208 4.51821 7.51171 6.33073 7.50162" stroke="#1E1E1E" stroke-linecap="round"></path><path d="M10.5 12.5L10.5 1.66667M10.5 1.66667L13 4.58333M10.5 1.66667L8 4.58333" stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"></path></svg>			</span>
+									<span class="elementor-button-text">Share</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				<div class="elementor-element elementor-element-9090e3f elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-html" data-id="9090e3f" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<script>
+const shareButton = document.querySelector("#share");
+
+if (shareButton) {
+  shareButton.addEventListener("click", function () {
+    const url = window.location.href;
+
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          alert("URL copied to clipboard!");
+        })
+        .catch((err) => {
+          console.error("Failed to copy URL: ", err);
+        });
+    }
+  });
+}
+</script>				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-275c478 e-flex e-con-boxed e-con e-parent" data-id="275c478" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-fd257ca elementor-widget elementor-widget-theme-post-content" data-id="fd257ca" data-element_type="widget" data-widget_type="theme-post-content.default">
+				<div class="elementor-widget-container">
+					
+<p>Arriving in Madrid, Spain felt like pure bliss. The air was fresh, and the sunny day was filled with light as we prepared to explore the city&#8217;s hidden gems before our friend&#8217;s wedding on Sunday.</p>
+
+
+
+<p>We stayed at Hotel De Toledo, centrally located and perfect for walking around and discovering the area. Our first stop was for patatas bravas at a local spot where, with each drink, you get a free tapa—no questions asked, no chairs, just standing around, drinking, and chatting with friends. Perfecto!</p>
+
+
+
+<p>We wandered through alleyways and quaint shops before a quick gelato stop on our way to Siroco, a techno club on the northwest side of town, where my boyfriend had a show. The club has two rooms with different vibes, so if you&#8217;re looking for something unique in Madrid’s nightlife, it’s a must-visit.</p>
+
+
+
+<p>After a late night, we spent the next day hopping from café to restaurant to bar (Sahurao Madrid and Ok Hostel are great spots). We met a wonderful woman from the Balearic Islands, who mentioned a Keinemusik show at La Caja Mágica that evening—it was perfect, since we’re big fans. We joined her and danced the night away.</p>
+
+
+
+<p>The sunset that evening was a watercolor painting of fiery hues, setting the stage for an unforgettable night of dancing, singing, and enjoying great company, both old and new. In Spain, everyone is friendly, and life feels more relaxed. All you need is a drink, tapas, good music, and great company.</p>
+
+
+
+<p>Madrid’s architecture also takes you back in time, with its rich history still very much alive in the city streets.</p>
+
+
+
+<p>Sunday was the big day—time for the wedding. We took a bus to Fábricas De Harinas, a hacienda just outside the city, straight out of a fairytale. The Indian-Spanish ceremony was beautiful, with translations in Hindi, Spanish, and English, as the bride grew up in Canada. The night was filled with laughter, tears, sparkling wine, a delicious courtyard dinner, dancing, and lots of music. We fell asleep with warm, fuzzy feelings from a joyous celebration of love.</p>
+
+
+
+<p>The next day, we headed to Spain’s famous island, Ibiza. Having been there before with a local friend, this time was different—we were staying in a villa with the wedding party. The villa, located on the quieter northeast side of the island, offered a peaceful retreat, though still close enough to join in the party atmosphere when desired.</p>
+
+
+
+<p>Ibiza is special because you can strike a balance between lively nightlife and peaceful relaxation. The island&#8217;s beauty is palpable, and the energy is ever-present.</p>
+
+
+
+<p>Our first evening was spent at Playa Soleil for the All Day I Dream party, enjoying amazing sushi and Greek salad. The second night, we dined at S’Illa Des Bosc with the wedding party and tried Ibiza’s famous black rice paella. With the restaurant perched on cliffs and the sunset painting the sky, it was a perfect evening.</p>
+
+
+
+<p>The following night, we partied with Fisher at Hï Ibiza. If you&#8217;re going to one of these big clubs, I’d recommend the VIP option—especially if you don’t arrive early. The crowds can be intense, and visibility can be an issue! But the energy was high, and we danced until morning.</p>
+
+
+
+<p>The next day, we took a ferry to Formentera, a stunning island just 40 minutes from Ibiza Town. The island narrows during high tide, creating a thin strip of beach with ocean views on both sides. It’s a breathtaking sight. The ferry drops you off at the dock, where a bus takes you to the beach. The last bus returns to the ferry around 6 p.m.</p>
+
+
+
+<p>Spain is absolutely stunning, with friendly people, incredible food, laid-back vibes, and countless beautiful places to explore.</p>
+
+
+
+<p><strong>What’s your favorite part of Spain?</strong></p>
+
+
+
+<p>Xx,<br><strong>Chesney</strong>&lt;</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" fetchpriority="high" decoding="async" width="768" height="1024" src="/web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-768x1024.jpeg" alt="" class="wp-image-1558" srcset="/web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-768x1024.jpeg 768w, /web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-225x300.jpeg 225w, /web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-1152x1536.jpeg 1152w, /web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-1536x2048.jpeg 1536w, /web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/05/IMG_6872-scaled.jpeg 1920w" sizes="(max-width: 768px) 100vw, 768px"/></figure>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-29acbca e-flex e-con-boxed e-con e-parent" data-id="29acbca" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-35ff3c2 elementor-widget elementor-widget-heading" data-id="35ff3c2" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">More stories by the author</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-c3d7a4b elementor-grid-1 elementor-grid-tablet-1 elementor-grid-mobile-1 elementor-widget elementor-widget-loop-grid" data-id="c3d7a4b" data-element_type="widget" data-settings="{&quot;template_id&quot;:&quot;644&quot;,&quot;columns&quot;:1,&quot;columns_tablet&quot;:1,&quot;_skin&quot;:&quot;post&quot;,&quot;columns_mobile&quot;:&quot;1&quot;,&quot;edit_handle_selector&quot;:&quot;[data-elementor-type=\&quot;loop-item\&quot;]&quot;,&quot;row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;row_gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;row_gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="loop-grid.post">
+				<div class="elementor-widget-container">
+							<div class="e-loop-nothing-found-message">
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-5054489 elementor-grid-2 elementor-grid-tablet-1 elementor-grid-mobile-1 elementor-widget elementor-widget-loop-grid" data-id="5054489" data-element_type="widget" data-settings="{&quot;template_id&quot;:&quot;654&quot;,&quot;columns&quot;:2,&quot;row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:20,&quot;sizes&quot;:[]},&quot;columns_tablet&quot;:1,&quot;_skin&quot;:&quot;post&quot;,&quot;columns_mobile&quot;:&quot;1&quot;,&quot;edit_handle_selector&quot;:&quot;[data-elementor-type=\&quot;loop-item\&quot;]&quot;,&quot;row_gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;row_gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="loop-grid.post">
+				<div class="elementor-widget-container">
+							<div class="e-loop-nothing-found-message">
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-07c66b1 elementor-align-center elementor-widget elementor-widget-button" data-id="07c66b1" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/web/20250523022317/https://thatlayover.life/travel-blogs">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">See all stories</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="footer" data-elementor-id="146" class="elementor elementor-146 elementor-location-footer" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-d12a617 e-flex e-con-boxed e-con e-parent" data-id="d12a617" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-a8ff5a5 e-con-full e-flex e-con e-child" data-id="a8ff5a5" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+		<div class="elementor-element elementor-element-e636993 e-con-full e-flex e-con e-child" data-id="e636993" data-element_type="container">
+				<div class="elementor-element elementor-element-b9af57e elementor-widget elementor-widget-heading" data-id="b9af57e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">Start your journey with inspirational stories and advice <span>with us</span></h2>				</div>
+				</div>
+		<div class="elementor-element elementor-element-4c802a2 e-con-full e-flex e-con e-child" data-id="4c802a2" data-element_type="container">
+				<div class="elementor-element elementor-element-1804a9d elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="1804a9d" data-element_type="widget" data-settings="{&quot;button_width&quot;:&quot;33&quot;,&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width_tablet&quot;:&quot;40&quot;,&quot;button_width_mobile&quot;:&quot;40&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+							<form class="elementor-form" method="post" name="Newsletter Form">
+			<input type="hidden" name="post_id" value="146"/>
+			<input type="hidden" name="form_id" value="1804a9d"/>
+			<input type="hidden" name="referer_title" value="Page not found"/>
+
+			
+			<div class="elementor-form-fields-wrapper elementor-labels-">
+								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-66 elementor-md-60 elementor-sm-60 elementor-field-required">
+												<label for="form-field-email" class="elementor-field-label elementor-screen-only">
+								Email							</label>
+														<input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Enter your email adress" required="required">
+											</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-33 e-form__buttons elementor-md-40 elementor-sm-40">
+					<button class="elementor-button elementor-size-sm" type="submit">
+						<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-text">Subscribe</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d2cab70 e-grid-align-left e-grid-align-mobile-center elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="d2cab70" data-element_type="widget" data-widget_type="social-icons.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-social-icons-wrapper elementor-grid">
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-repeater-item-e7e9c90" target="_blank">
+						<span class="elementor-screen-only">Facebook</span>
+						<svg class="e-font-icon-svg e-fab-facebook" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-repeater-item-5a3cc0f" target="_blank">
+						<span class="elementor-screen-only">Instagram</span>
+						<svg class="e-font-icon-svg e-fab-instagram" viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin elementor-repeater-item-a93f222" target="_blank">
+						<span class="elementor-screen-only">Linkedin</span>
+						<svg class="e-font-icon-svg e-fab-linkedin" viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-x-twitter elementor-repeater-item-7143869" target="_blank">
+						<span class="elementor-screen-only">X-twitter</span>
+						<svg class="e-font-icon-svg e-fab-x-twitter" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>					</a>
+				</span>
+					</div>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-c177fc1 e-con-full elementor-hidden-tablet elementor-hidden-mobile e-flex e-con e-child" data-id="c177fc1" data-element_type="container">
+				<div class="elementor-element elementor-element-03e47a6 elementor-widget elementor-widget-image" data-id="03e47a6" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="229" height="40" src="/web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/02/logo.svg" class="attachment-full size-full wp-image-708" alt=""/>															</div>
+				</div>
+				<div class="elementor-element elementor-element-0dc656a elementor-widget elementor-widget-text-editor" data-id="0dc656a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>Terms &amp; Conditions       Privacy Policy</p><p>© 2024 That Layover Life. All Rights Reserved.</p>								</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-724b73c e-con-full e-flex e-con e-child" data-id="724b73c" data-element_type="container">
+				<div class="elementor-element elementor-element-4202f27 elementor-position-left elementor-vertical-align-middle elementor-tablet-position-left elementor-vertical-align-middle elementor-widget-tablet__width-initial elementor-mobile-position-left elementor-widget-mobile__width-inherit elementor-view-default elementor-widget elementor-widget-icon-box" data-id="4202f27" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="49" height="46" viewbox="0 0 49 46" fill="none"><path d="M34.1511 29.4161L32.9365 30.6237C32.9365 30.6237 30.0496 33.4943 22.1696 25.659C14.2896 17.8237 17.1765 14.9532 17.1765 14.9532L17.9414 14.1927C19.8255 12.3193 20.0031 9.31144 18.3593 7.11563L14.9967 2.62389C12.9621 -0.0938818 9.03052 -0.452899 6.6985 1.86588L2.5129 6.02772C1.35658 7.17748 0.581707 8.66792 0.675669 10.3213C0.916062 14.5512 2.82988 23.6521 13.5089 34.2705C24.8337 45.531 35.4595 45.9785 39.8047 45.5734C41.1791 45.4453 42.3744 44.7453 43.3376 43.7875L47.1258 40.0209C49.6828 37.4784 48.9619 33.1195 45.6902 31.341L40.5955 28.5714C38.4473 27.4036 35.83 27.7467 34.1511 29.4161Z" fill="#A1A1A1"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span>
+							WhatsApp?						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Talk to Nancy 👩🏻					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-f5f0398 elementor-position-left elementor-vertical-align-middle elementor-widget-tablet__width-initial elementor-mobile-position-left elementor-vertical-align-middle elementor-widget-mobile__width-inherit elementor-view-default elementor-widget elementor-widget-icon-box" data-id="f5f0398" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="44" height="54" viewbox="0 0 44 54" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.0013 0.333008C10.2192 0.333008 0.667969 11.0066 0.667969 22.9997C0.667969 34.8988 7.47683 47.8328 18.1001 52.7982C20.5766 53.9557 23.426 53.9557 25.9025 52.7982C36.5258 47.8328 43.3346 34.8988 43.3346 22.9997C43.3346 11.0066 33.7834 0.333008 22.0013 0.333008ZM22.0013 26.9997C24.9468 26.9997 27.3346 24.6119 27.3346 21.6663C27.3346 18.7208 24.9468 16.333 22.0013 16.333C19.0558 16.333 16.668 18.7208 16.668 21.6663C16.668 24.6119 19.0558 26.9997 22.0013 26.9997Z" fill="#A1A1A1"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span>
+							Headquarters						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Portland, Oregon, USA / São Paulo, Brazil					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-d920d2d elementor-position-left elementor-vertical-align-middle elementor-widget-tablet__width-initial elementor-mobile-position-left elementor-widget-mobile__width-inherit elementor-view-default elementor-widget elementor-widget-icon-box" data-id="d920d2d" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewbox="0 0 54 54" fill="none"><path d="M44.6958 36.7867L49.273 23.0551C53.2715 11.0594 55.2708 5.0616 52.1048 1.89555C48.9387 -1.2705 42.9409 0.728782 30.9452 4.72734L17.2136 9.30453C7.53194 12.5318 2.6911 14.1454 1.31547 16.5116C0.00682163 18.7627 0.00682121 21.5428 1.31547 23.7939C2.6911 26.1601 7.53194 27.7738 17.2136 31.001C18.4135 31.4009 19.7633 31.1154 20.6618 30.2252L35.3435 15.6796C36.1695 14.8612 37.5024 14.8674 38.3208 15.6934C39.1391 16.5194 39.1329 17.8523 38.3069 18.6707L23.8623 32.9815C22.872 33.9626 22.5585 35.4642 22.9993 36.7867C26.2265 46.4683 27.8402 51.3092 30.2064 52.6848C32.4575 53.9935 35.2377 53.9935 37.4887 52.6848C39.8549 51.3092 41.4686 46.4684 44.6958 36.7867Z" fill="#A1A1A1"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span>
+							Contact Us						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Send us a feedback form					</p>
+				
+			</div>
+			
+		</div>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-7786883 e-con-full elementor-hidden-desktop e-flex e-con e-child" data-id="7786883" data-element_type="container">
+				<div class="elementor-element elementor-element-749905e elementor-widget elementor-widget-image" data-id="749905e" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="229" height="40" src="/web/20250523022317im_/https://thatlayover.life/wp-content/uploads/2025/02/logo.svg" class="attachment-full size-full wp-image-708" alt=""/>															</div>
+				</div>
+				<div class="elementor-element elementor-element-03fbbc0 elementor-widget elementor-widget-text-editor" data-id="03fbbc0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>Terms &amp; Conditions       Privacy Policy</p><p>© 2024 That Layover Life. All Rights Reserved.</p>								</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/that-layover-life\/*","\/wp-content\/themes\/hello-elementor\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+		<div data-elementor-type="popup" data-elementor-id="178" class="elementor elementor-178 elementor-location-popup" data-elementor-settings="{&quot;entrance_animation&quot;:&quot;fadeIn&quot;,&quot;exit_animation&quot;:&quot;fadeIn&quot;,&quot;entrance_animation_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0.3,&quot;sizes&quot;:[]},&quot;prevent_scroll&quot;:&quot;yes&quot;,&quot;avoid_multiple_popups&quot;:&quot;yes&quot;,&quot;a11y_navigation&quot;:&quot;yes&quot;,&quot;triggers&quot;:[],&quot;timing&quot;:[]}" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-fffbae7 e-flex e-con-boxed e-con e-parent" data-id="fffbae7" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-039a8be elementor-widget elementor-widget-heading" data-id="039a8be" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">Register your account</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-0cb0700 elementor-button-align-center elementor-widget elementor-widget-form" data-id="0cb0700" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next step&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+							<form class="elementor-form" method="post" id="register_form" name="Register" novalidate="">
+			<input type="hidden" name="post_id" value="178"/>
+			<input type="hidden" name="form_id" value="0cb0700"/>
+			<input type="hidden" name="referer_title" value="Page not found"/>
+
+			
+			<div class="elementor-form-fields-wrapper elementor-labels-above">
+								<div class="elementor-field-type-step elementor-field-group elementor-column elementor-field-group-field_a9ea20e elementor-col-100">
+							<div class="e-field-step elementor-hidden" data-label="" data-previousbutton="" data-nextbutton="" data-iconurl="" data-iconlibrary="fas fa-star" data-icon="<svg class=&quot;e-font-icon-svg e-fas-star&quot; viewBox=&quot;0 0 576 512&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><path d=&quot;M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z&quot;></path></svg>"></div>
+
+						</div>
+								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-signup_username elementor-col-50 elementor-field-required elementor-mark-required">
+												<label for="form-field-signup_username" class="elementor-field-label">
+								Username							</label>
+														<input size="1" type="text" name="form_fields[signup_username]" id="form-field-signup_username" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Make up your nickname" required="required">
+											</div>
+								<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-signup_email elementor-col-50 elementor-field-required elementor-mark-required">
+												<label for="form-field-signup_email" class="elementor-field-label">
+								E-mail							</label>
+														<input size="1" type="email" name="form_fields[signup_email]" id="form-field-signup_email" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Enter your e-mail" required="required">
+											</div>
+								<div class="elementor-field-type-password elementor-field-group elementor-column elementor-field-group-signup_password elementor-col-50 elementor-field-required elementor-mark-required">
+												<label for="form-field-signup_password" class="elementor-field-label">
+								Password							</label>
+														<input size="1" type="password" name="form_fields[signup_password]" id="form-field-signup_password" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Enter your password" required="required">
+											</div>
+								<div class="elementor-field-type-password elementor-field-group elementor-column elementor-field-group-signup_cpassword elementor-col-50 elementor-field-required elementor-mark-required">
+												<label for="form-field-signup_cpassword" class="elementor-field-label">
+								Confirm password							</label>
+														<input size="1" type="password" name="form_fields[signup_cpassword]" id="form-field-signup_cpassword" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Confirm your password" required="required">
+											</div>
+								<div class="elementor-field-type-step elementor-field-group elementor-column elementor-field-group-field_9f32de4 elementor-col-100">
+							<div class="e-field-step elementor-hidden" data-label="" data-previousbutton="" data-nextbutton="" data-iconurl="" data-iconlibrary="fas fa-star" data-icon="<svg class=&quot;e-font-icon-svg e-fas-star&quot; viewBox=&quot;0 0 576 512&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><path d=&quot;M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z&quot;></path></svg>"></div>
+
+						</div>
+								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-signup_first_name elementor-col-50">
+												<label for="form-field-signup_first_name" class="elementor-field-label">
+								First name							</label>
+														<input size="1" type="text" name="form_fields[signup_first_name]" id="form-field-signup_first_name" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Enter your first name">
+											</div>
+								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-signup_last_name elementor-col-50">
+												<label for="form-field-signup_last_name" class="elementor-field-label">
+								Last name							</label>
+														<input size="1" type="text" name="form_fields[signup_last_name]" id="form-field-signup_last_name" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Enter your last name">
+											</div>
+								<div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-signup_biography elementor-col-100">
+												<label for="form-field-signup_biography" class="elementor-field-label">
+								Biography							</label>
+						<textarea class="elementor-field-textual elementor-field  elementor-size-md" name="form_fields[signup_biography]" id="form-field-signup_biography" rows="8" placeholder="Enter your password"></textarea>				</div>
+								<div class="elementor-field-type-upload elementor-field-group elementor-column elementor-field-group-signup_profile_image elementor-col-33">
+												<label for="form-field-signup_profile_image" class="elementor-field-label">
+								Profile image							</label>
+								<input type="file" name="form_fields[signup_profile_image]" id="form-field-signup_profile_image" class="elementor-field elementor-size-md  elementor-upload-field">
+
+						</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+					<button class="elementor-button elementor-size-sm" type="submit" id="register-btn">
+						<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-text">Complete registration</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-1e5b34e e-con-full e-flex e-con e-child" data-id="1e5b34e" data-element_type="container">
+				<div class="elementor-element elementor-element-5a80ef9 elementor-widget-divider--view-line_text elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider" data-id="5a80ef9" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+							<p class="elementor-divider__text elementor-divider__element">
+				OR				</p>
+						</span>
+		</div>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-973add6 e-con-full e-flex e-con e-child" data-id="973add6" data-element_type="container">
+				<div class="elementor-element elementor-element-d01fae4 elementor-widget elementor-widget-html" data-id="d01fae4" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<div id="google-signin-container" style="text-align: center;"></div>				</div>
+				</div>
+				<div class="elementor-element elementor-element-3df0a3c elementor-widget elementor-widget-button" data-id="3df0a3c" data-element_type="widget" id="facebook-signup-btn" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-facebook" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>			</span>
+									<span class="elementor-button-text">Continue with Facebook</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<div data-elementor-type="popup" data-elementor-id="352" class="elementor elementor-352 elementor-location-popup" data-elementor-settings="{&quot;entrance_animation&quot;:&quot;fadeIn&quot;,&quot;exit_animation&quot;:&quot;fadeIn&quot;,&quot;entrance_animation_duration&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0.3,&quot;sizes&quot;:[]},&quot;prevent_scroll&quot;:&quot;yes&quot;,&quot;avoid_multiple_popups&quot;:&quot;yes&quot;,&quot;a11y_navigation&quot;:&quot;yes&quot;,&quot;triggers&quot;:[],&quot;timing&quot;:[]}" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-9e17bf2 e-flex e-con-boxed e-con e-parent" data-id="9e17bf2" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-791fb9d9 elementor-widget elementor-widget-heading" data-id="791fb9d9" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default">Log in to That layover life</h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-1ba0ef11 elementor-button-align-center elementor-widget elementor-widget-form" data-id="1ba0ef11" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next step&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
+				<div class="elementor-widget-container">
+							<form class="elementor-form" method="post" id="login_form" name="Login">
+			<input type="hidden" name="post_id" value="352"/>
+			<input type="hidden" name="form_id" value="1ba0ef11"/>
+			<input type="hidden" name="referer_title" value="Page not found"/>
+
+			
+			<div class="elementor-form-fields-wrapper elementor-labels-above">
+								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-login_username elementor-col-100 elementor-field-required elementor-mark-required">
+												<label for="form-field-login_username" class="elementor-field-label">
+								Username or E-mail							</label>
+														<input size="1" type="text" name="form_fields[login_username]" id="form-field-login_username" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Make up your nickname" required="required">
+											</div>
+								<div class="elementor-field-type-password elementor-field-group elementor-column elementor-field-group-login_password elementor-col-100 elementor-field-required elementor-mark-required">
+												<label for="form-field-login_password" class="elementor-field-label">
+								Password							</label>
+														<input size="1" type="password" name="form_fields[login_password]" id="form-field-login_password" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Enter your password" required="required">
+											</div>
+								<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-field-group-field_f8b6d80 elementor-col-100">
+					<div class="elementor-field-subgroup  elementor-subgroup-inline"><span class="elementor-field-option"><input type="checkbox" value="Keep me signed in" id="form-field-field_f8b6d80-0" name="form_fields[field_f8b6d80]"> <label for="form-field-field_f8b6d80-0">Keep me signed in</label></span></div>				</div>
+								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+					<button class="elementor-button elementor-size-sm" type="submit" id="login-btn">
+						<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-text">Login</span>
+													</span>
+					</button>
+				</div>
+			</div>
+		</form>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-38e9add8 e-con-full e-flex e-con e-child" data-id="38e9add8" data-element_type="container">
+				<div class="elementor-element elementor-element-550ef0a2 elementor-widget-divider--view-line_text elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider" data-id="550ef0a2" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+							<p class="elementor-divider__text elementor-divider__element">
+				OR				</p>
+						</span>
+		</div>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-b73e1a9 e-con-full e-flex e-con e-child" data-id="b73e1a9" data-element_type="container">
+				<div class="elementor-element elementor-element-29b30cf elementor-widget elementor-widget-html" data-id="29b30cf" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<div id="google-signin-container" style="text-align: center;"></div>				</div>
+				</div>
+				<div class="elementor-element elementor-element-9ec48e0 elementor-widget elementor-widget-button" data-id="9ec48e0" data-element_type="widget" id="facebook-signup-btn" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-size-sm" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-facebook" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>			</span>
+									<span class="elementor-button-text">Continue with Facebook</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+					<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<style id="core-block-supports-inline-css">
+/**
+ * Core styles: block-supports
+ */
+
+</style>
+<script id="that-layover-life-travel-blogs-login-handler-js-extra">
+var thatLayoverLifeTravelBlogsLoginAjax = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"2ab3f8a802"};
+</script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/that-layover-life-travel-blogs/public/assets/js/login-handler.js?ver=1.0.0" id="that-layover-life-travel-blogs-login-handler-js"></script>
+<script id="that-layover-life-travel-blogs-signup-handler-js-extra">
+var thatLayoverLifeTravelBlogsSignupAjax = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"1f367e55a6"};
+</script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/that-layover-life-travel-blogs/public/assets/js/signup-handler.js?ver=1.0.0" id="that-layover-life-travel-blogs-signup-handler-js"></script>
+<script src="https://web.archive.org/web/20250523022317js_/https://accounts.google.com/gsi/client" id="google-platform-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/themes/hello-elementor/assets/js/hello-frontend.js?ver=3.4.1" id="hello-theme-frontend-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.js?ver=1.2.1" id="smartmenus-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.js?ver=3.27.4" id="elementor-pro-webpack-runtime-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor/assets/js/webpack.runtime.js?ver=3.28.4" id="elementor-webpack-runtime-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor/assets/js/frontend-modules.js?ver=3.28.4" id="elementor-frontend-modules-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/dist/hooks.js?ver=be67dc331e61e06d52fa" id="wp-hooks-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/dist/i18n.js?ver=5edc734adb78e0d7d00e" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"\/wp-admin\/admin-ajax.php","nonce":"63d4a307cf","urls":{"assets":"\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/js/frontend.js?ver=3.27.4" id="elementor-pro-frontend-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-includes/js/jquery/ui/core.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":true},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":481,"lg":769,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":480,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":768,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":true},"version":"3.28.4","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_local_google_fonts":true,"theme_builder_v2":true,"hello-theme-header-footer":true,"nested-elements":true,"editor_v2":true,"e_element_cache":true,"home_screen":true,"launchpad-checklist":true},"urls":{"assets":"\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"\/wp-admin\/admin-ajax.php","uploadUrl":"\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"c4b7423b86"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"body_background_background":"classic","viewport_mobile":480,"viewport_tablet":768,"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","hello_header_logo_type":"logo","hello_header_menu_layout":"horizontal","hello_footer_logo_type":"logo"},"post":{"id":1544,"title":"Spain%3A%20A%20Wedding%20and%20an%20Adventure%20%E2%80%93%20That%20Layover%20Life","excerpt":"Arriving in Madrid felt like pure bliss, with fresh air and sunny days inviting us to explore hidden gems before our friend's wedding. From savoring patatas bravas at local spots to dancing the night away at a techno club, every moment was filled with joy. The wedding at a fairytale hacienda was a beautiful blend of cultures, laughter, and love. Our adventure continued on the stunning island of Ibiza, where we balanced lively nightlife with peaceful relaxation. Join me as I share the unforgettable experiences, delicious food, and vibrant energy that make Spain a truly magical destination!","featuredImage":"\/wp-content\/uploads\/2025\/05\/IMG_6568-768x1024.jpeg"}};
+</script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor/assets/js/frontend.js?ver=3.28.4" id="elementor-frontend-js"></script>
+<script src="/web/20250523022317js_/https://thatlayover.life/wp-content/plugins/elementor-pro/assets/js/elements-handlers.js?ver=3.27.4" id="pro-elements-handlers-js"></script>
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 02:23:17 May 23, 2025 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:49:53 Oct 20, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.533
+  exclusion.robots: 0.067
+  exclusion.robots.policy: 0.056
+  esindex: 0.008
+  cdx.remote: 76.733
+  LoadShardBlock: 4308.266 (3)
+  PetaboxLoader3.datanode: 853.245 (4)
+  PetaboxLoader3.resolve: 4045.949 (2)
+  load_resource: 1100.936
+  nav: 0.199 (6)
+-->

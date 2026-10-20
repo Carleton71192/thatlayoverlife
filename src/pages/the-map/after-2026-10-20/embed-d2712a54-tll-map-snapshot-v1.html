@@ -1,0 +1,60 @@
+<!-- tll-map-snapshot-v1 (Packet C row C1.1, 20 October 2026). Worker base URL goes in data-worker on [data-tll-map-snapshot] after the Worker deploys. -->
+<script id="tll-map-snapshot-v1">
+(function(){
+  if(window.__tllSnap) return; window.__tllSnap=1;
+  var ATA='010';
+  function best(row,allow){ var b=''; Object.keys(row||{}).forEach(function(id){ if(allow&&!allow[id]) return; var v=row[id]; if(v==='lived') b='lived'; else if(v==='visited'){ if(b!=='lived') b='visited'; } else if(v==='layover'&&!b) b='layover'; }); return b; }
+  /* Same rules as tll-acct-counts-v1: human travelers make the member's numbers, pets count on their own.
+     Lived and Stayed make places; Antarctica (010) is a place but not a country; layover-only places are counted apart. */
+  function counts(d){
+    var out={places:0,countries:0,ata:false,layovers:0,ok:false};
+    if(!d||d.v!==2||!d.states) return out;
+    out.ok=true;
+    var hum={},any=false;
+    (d.travelers||[]).forEach(function(t){ if(t&&!t.pet){ hum[t.id]=1; any=true; } });
+    Object.keys(d.states).forEach(function(k){
+      var b=best(d.states[k]||{},any?hum:null);
+      if(b==='lived'||b==='visited'){ if(k===ATA) out.ata=true; else out.countries++; }
+      else if(b==='layover') out.layovers++;
+    });
+    out.places=out.countries+(out.ata?1:0);
+    return out;
+  }
+  function bodyOf(states,t){ var c=counts(states); if(!c.ok) return null; return {countries:c.countries,antarctica:c.ata,places:c.places,layovers:c.layovers,savedAt:new Date(t||Date.now()).toISOString()}; }
+  window.__tllSnapBody=bodyOf;
+  var pending=null, timer=null;
+  function send(states,t){
+    var h=document.querySelector('[data-tll-map-snapshot]');
+    var W=h?(h.getAttribute('data-worker')||'').trim().replace(/\/+$/,''):'';
+    if(!/^https:\/\//.test(W)) return;
+    var ms=window.$memberstackDom; if(!ms||!ms.getMemberToken) return;
+    var tok=null; try{ tok=ms.getMemberToken(); }catch(e){}
+    if(!tok) return;
+    var body=bodyOf(states,t); if(!body) return;
+    try{
+      fetch(W+'/map-snapshot',{method:'POST',headers:{'content-type':'application/json','authorization':'Bearer '+tok},body:JSON.stringify(body),keepalive:true})
+        .then(function(r){ if(r&&r.ok){ try{ window.dispatchEvent(new CustomEvent('tll:snapshot',{detail:body})); }catch(e){} } })
+        .catch(function(){});
+    }catch(e){}
+  }
+  /* One write per settled save: quick saves inside 1.5 s collapse into the last one (the Worker allows 30 an hour). */
+  window.__tllSnapshot=function(states,t){
+    pending=[states,t]; clearTimeout(timer);
+    timer=setTimeout(function(){ var p=pending; pending=null; if(p) send(p[0],p[1]); },1500);
+  };
+  /* Hook (no change to the map's own code): when a save carries tllStates through updateMemberJSON, the snapshot rides in the same
+     JSON (so /edit-profile can read json.tllSnapshot), and after that save resolves it goes to the Worker. Other saves pass through untouched. */
+  var k=0, iv=setInterval(function(){
+    var ms=window.$memberstackDom; if(!ms||!ms.updateMemberJSON){ if(++k>80) clearInterval(iv); return; }
+    clearInterval(iv); if(ms.__tllSnapHooked) return; ms.__tllSnapHooked=1;
+    var orig=ms.updateMemberJSON.bind(ms);
+    ms.updateMemberJSON=function(arg){
+      var j=arg&&arg.json, st=j&&j.tllStates, t=j&&+j.tllStatesAt||Date.now();
+      if(st){ try{ var b=bodyOf(st,t); if(b) j.tllSnapshot=b; }catch(e){} }
+      var p=orig(arg);
+      if(st&&p&&p.then){ p.then(function(){ window.__tllSnapshot(st,t); },function(){}); }
+      return p;
+    };
+  },150);
+})();
+</script>
