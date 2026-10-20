@@ -1,0 +1,30 @@
+# Packet C contracts (20 October 2026)
+
+Shared by the four builders of Packet C. Approved log: handoff/CHANGE-LOG-PACKET-C-2026-10-20.md. Rules: US English, no em dashes, no exclamation marks, never filed, ship, ledger, the shelf, counted by hand, No filler, Truth over polish, real names, Currently in. Counts are never typed. Never touch data-ms-* elements. Nothing is published by a builder; the lead publishes once.
+
+## Webflow
+- Site 69d6145cf421c777840c1e25. Contributors 6a0b29c7a7b1840afe9390a5, Pets 6a0be8194ccc05a63fbdcfa3, Stories 6a0b29eddc14f1444e935760, Pursuits 6ad73a386a6035fb86d60569 (new, items to be created by the lead).
+- Pages: Contributors Template 6a0b29c8a7b1840afe9390ab (/contributors/{slug}), /travelers 6a0e0632ef1e4948167e827c, /edit-profile 6a0df371cd5b09ac504421ae, /the-map 6a0df81df4016d4f78cfb22a, /account 6a0d5c23c57426a9c563e8de.
+- Contributors field slugs the packet renders or writes: name, slug, avatar (Photo), one-line, home-base (display name Location, to be renamed Home base), from-and-lived-in (ISO2 list), languages, credit-mode (Option: Full 3489ae81c67477dbdf19a921804b343e, First d01799503381d459b0ae4b27b0535111, Pen 38820387bc6c4892f486394a6c28776c), pen-name, contact-mode (Relay e059bc90db214b44e068b9c6a89fad5e, Instagram d1db81e50c5db2f87fd57f60cc1ee423, Email 5728f608dc64c601dd0c6c8aaca5e036, Off 3e614a6cd3aa38f1ce19263324b32179), email (Public email), visibility (Public a6fcbaf1151c3a0c53d2f575bd540c73, Unlisted c32afc794ebfffa4275c7710b9b45c9b, Off 1423c8d17c2060776541377f76ea0b31), share-ranges (switch), map-snapshot (JSON text), crew (multi-ref Contributors), badge-label, bio-long, member-since, memberstack-id, links: instagram-url, youtube-url, website-url, tiktok-url, substack-url-2, strava-url-2, alltrails-url, komoot-url, garmin-url, beli-url; links-shown (comma keys: instagram,youtube,website,tiktok,substack,strava,alltrails,komoot,garmin,beli; empty means every filled link shows); list-expats, list-creators, list-press (switches, new 20 Oct), press-verified (text, editor only). Pets: owner, shared-with, countries-list, avatar, breed, weight-kg, quote, is-public.
+- Typed counts never rendered again: country-count, cities-count, states-count, continents-marathoned, published-count, visited-countries.
+- Data API limits (tested 20 Oct): a link in collectionPage mode publishes as a broken relative href, so links to a referenced item's page use url mode plus data-st3-base and a CMS-bound data-st3-slug attribute (the site's story script fills them; the profile template gets its own tiny filler); a Collection List cannot be bound to a multi-reference field through the API (one nested list bound to a collection with filters is fine); input placeholders cannot be set (write them at load from a script); HtmlEmbed code is set with data_element_settings_tool key "code"; "width", "height", "href", "placeholder" are reserved attribute names.
+- Webflow MCP: session_id ses_3KwnAbBW5UxA75vbTZO6Cw2gLIi (send exactly this), your own agent_id "<model>|claude-code|<5 letters>" kept for the whole task.
+
+## Map snapshot (C1)
+JSON on map-snapshot, written only after a successful map save: {"countries":n,"antarctica":true|false,"places":n,"layovers":n,"savedAt":"2026-10-20T12:00:00Z"}. countries = places minus Antarctica. Readers show "80-something" when share-ranges is on, "+ Antarctica" when antarctica is true, STORIES only when the field is empty. Readers never compute from tllStates except /account for the signed-in member.
+
+## Worker (root worker tll-travel-wire, src/index.js)
+- Base URL is not known to the pages; every page block that calls the Worker reads it from a data-worker attribute on its root element (same convention as /submit v2). Empty data-worker means the call is skipped and the page stays read-only.
+- Memberstack token check: the pattern in worker/src/index.js lines 169 to 190 (Authorization: Bearer <token>, POST https://admin.memberstack.com/members/verify-token with the app's secret key from env.MEMBERSTACK_KEY). Reuse it; the member id from the verified token is the only member whose item may be written.
+- Routes:
+  - POST /hooks/member-updated (exists): member.updated copies the Profile v2 fields (FIELD_MAP rewritten; typed counts out); member.created finds no item and creates one (name, slug from the name with -2, -3 on collision, avatar if given, visibility Public, contact-mode Relay, credit-mode Full, memberstack-id, member-since now) and publishes it.
+  - POST /profile/save: Bearer token; body {"fields":{slug:value,...}} limited to the member-writable slugs above (never badge-label, press-verified, map-snapshot, memberstack-id, slug); writes them to the member's own item (found by memberstack-id) and publishes it; 60 writes per member per hour (KV); returns {"ok":true,"savedAt":ISO,"slug":...}.
+  - POST /map-snapshot: Bearer token; body = the snapshot JSON above (validated: integers 0..300, boolean, ISO date); writes map-snapshot and publishes; 30 per member per hour.
+  - CORS: allow origins https://thatlayover.life, https://www.thatlayover.life, https://that-layover-life.webflow.io; OPTIONS preflight.
+- Secrets Nancy sets: PROFILE_HOOK_TOKEN, WEBFLOW_TOKEN, MEMBERSTACK_KEY. Tests with node:test in test/, no network.
+
+## Memberstack custom fields (C6.3)
+Keys equal the Webflow slugs: one-line, home-base, from-and-lived-in, languages, credit-mode, pen-name, contact-mode, visibility, share-ranges, links-shown, alltrails-url, komoot-url, garmin-url, beli-url, list-expats, list-creators, list-press (the older keys already exist: name, home-base, bio-long, instagram-url, youtube-url, personal-website-url, tiktok-url, substack-url, strava-url).
+
+## Deliverables per builder
+Write only inside your area. Commit nothing; the lead commits. Put your STATUS text in handoff/packet-c/ROW-<area>.md (one paragraph in the STATUS.md style: what changed, element ids, what is left). Save every before snapshot you take under src/pages/<area>/before-2026-10-20/ and every new block under src/pages/<area>/after-2026-10-20/.
