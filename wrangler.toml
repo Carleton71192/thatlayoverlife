@@ -19,6 +19,8 @@ id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
 STORIES_COLLECTION_ID = "6a0b29eddc14f1444e935760"
 CONTRIBUTORS_COLLECTION_ID = "6a0b29c7a7b1840afe9390a5"
 COUNTRIES_COLLECTION_ID = "6a8afbd98e907b41c4da109b"
+# The site owner (Nancy). Only her map saves are stored for GET /owner-map, the visitors' map. A member id, not a secret.
+OWNER_MEMBER_ID = "mem_cmqcj6qqo35ab0sn20bafhzh3"
 
 # One-line log per cron run, readable with `npx wrangler tail`.
 [observability]
