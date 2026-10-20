@@ -507,7 +507,7 @@
     if (REC) bindCounters(v.n); refreshDrawerCounts(); renderBar(); renderCards(v); renderRules(); renderStrip(); renderSaved(); refreshHint(); renderList();
   }
   function visitor() { return member !== true; } // never a zero for a signed-out visitor: hide instead
-  function refreshHint() { var h = document.getElementById('tllm-hint'); if (h) h.textContent = canEdit() ? 'Tap a country to log it: Lived, Stayed, or Layover only. Stack as many lists as you like.' : 'Stack as many as you like.'; }
+  function refreshHint() { var h = document.getElementById('tllm-hint'); if (h) h.textContent = member === true ? 'Stack as many lists as you like.' : canEdit() ? 'Tap a country to log it: Lived, Stayed, or Layover only. Stack as many lists as you like.' : 'Stack as many as you like.'; }
 
   // ---------- shelf glyphs and colors ----------
   function shapeFor(c) { return c.pin_shape || (shelves[c.shelf] && shelves[c.shelf].pin_shape) || 'circle'; }
