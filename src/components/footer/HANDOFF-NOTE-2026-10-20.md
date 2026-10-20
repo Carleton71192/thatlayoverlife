@@ -1,0 +1,9 @@
+# Footer and story template: state when the first session stopped (20 Oct 2026, morning)
+
+Written by the original session (session_01TRgXiW9sHm4kPh7GR4qgnb) for the new session. The two helpers were stopped on request; no further Webflow edits from here.
+
+- Footer helper (component 710ff458-c06e-d602-a663-e5e88ca1456b): stopped mid-way. Its last status line was "Now Contribute and the TLL column", so the READ column was likely done and the CONTRIBUTE, TLL and LEGAL columns, the deletions, the counts embed write and the Tell the editor form were not confirmed. Files it saved before stopping: before-2026-10-19.md (component map), counts-embed-v2.2-before.html (embed 22cd9a12 code as found), counts-embed-v3.html (proposed v3 code; whether it was written to the embed is unknown, read element 22cd9a12 key "code" to check).
+- Story template helper (page 6a0b29eedc14f1444e935766): stopped while still reading; it reported no changes. Verify: no st3-from elements, author link 09c29e7a-5347-fea2-dfdb-d58efca59b21 still static /contributors, and whether a Stories field "Countries" (multi-reference to 6a8afbd98e907b41c4da109b) was created.
+- Nav component 8484ce87-193e-8ab5-fff8-590bb198f8a8: done by the original session before the handoff. Link 7593d683-32fe-906b-6c81-822ae2baea9d is now "The Map" (/the-map) placed after Travelers; new link a4874c6a-4d02-f32b-28be-5ae768ef1278 "Expats" (/for-expats) after it.
+- Site head and footer code: floor block (tll-floor-v1 style plus tll-floor-js-v1 script) and the Tell the editor widget code (tll-note-v1 style and script) are in the site custom code, verified by readback (src/site/site-head-2026-10-19-after-2.html, site-footer-2026-10-19-after.html). Site script tllfbkplacev1 was removed from the applied site scripts.
+- Also done: Visits item 6ad31a65b57ead3b53f15592 excluded from the sitemap; /creators page out of draft; Stories Template head holds the Article JSON-LD and the page schema setting is cleared.
