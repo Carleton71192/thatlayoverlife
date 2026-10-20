@@ -24,7 +24,8 @@ footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4:focus-visible{outl
 #tll-note input[type=hidden]{display:none}
 .tll-comm-tag{color:#C8325B}
 .tll-comm-tag::before{content:" \00b7 ";color:inherit}
-a[data-tll-commissioned="story"]{display:inline-flex;align-items:center;min-height:44px;margin:0 0 4px;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;text-decoration:none}
+a[data-tll-commissioned="story"]{display:none;align-items:center;min-height:44px;margin:0 0 4px;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;text-decoration:none}
+a[data-tll-commissioned="story"].tll-comm-on{display:inline-flex}
 a[data-tll-commissioned="story"]:hover{text-decoration:underline;text-underline-offset:3px}
 .tll-auth-section .tll-auth-eyebrow,.tll-auth-section .tll-auth-card-eyebrow,.tll-auth-section .tll-auth-divider,.tll-auth-section .tll-auth-field label,.tll-forgot-section .tll-auth-field label,.tll-forgot-section .tll-forgot-eyebrow,.au3-eye{font-size:12px!important} /* beta B6.5: 12px floor on /signup, /login, /forgot-password */
 </style>
@@ -35,7 +36,7 @@ a[data-tll-commissioned="story"]:hover{text-decoration:underline;text-underline-
 (function(){function p(){var a=document.getElementById('tll-note-text'),b=document.getElementById('tll-note-email');if(a)a.placeholder='A typo, a wrong flag, a story that needs a look.';if(b)b.placeholder='Email, if you want a reply (optional)';}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',p);else p()})();
 /* From line hrefs (A7.2): the story page script already writes href = data-st3-base + data-st3-slug on every [data-st3-slug] link. Seven Places slugs differ from the Countries hub slugs, so those are mapped here; Taiwan has no hub page and becomes plain text. Runs after that script, on DOMContentLoaded and again on load. */
 (function(){var M={turkey:'turkiye','georgia-country':'georgia','cote-divoire':'ivory-coast','democratic-republic-of-the-congo':'dr-congo',congo:'republic-of-the-congo','cabo-verde':'cape-verde'},NO={taiwan:1};function fix(){[].forEach.call(document.querySelectorAll('a[data-st3-from-part="country"][data-st3-slug]'),function(a){var s=a.getAttribute('data-st3-slug')||'';if(NO[s]){var sp=document.createElement('span');sp.textContent=a.textContent;a.parentNode.replaceChild(sp,a);return}if(M[s])a.href='/countries/'+M[s];else if(s&&a.getAttribute('href')==='/countries')a.href='/countries/'+s});[].forEach.call(document.querySelectorAll('a[data-st3-from-part="pursuit"][data-st3-slug]'),function(a){var s=a.getAttribute('data-st3-slug')||'';if(s&&/^[a-z0-9-]+$/.test(s)&&a.getAttribute('href')==='/stories')a.href='/pillars/'+s})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();window.addEventListener('load',fix)})();
-/* Commissioned label (beta B4.1, 20 Oct 2026). Story cards carry a hidden [data-tll-commissioned] marker whose Webflow visibility is bound to the
+/* Commissioned label (beta B4.1, 20 Oct 2026). Story cards and the story page carry a hidden [data-tll-commissioned] marker (Webflow drops it when the switch is off; it also ignores conditional visibility on the story link, so the link stays hidden until the marker is there) whose Webflow visibility is bound to the
    Stories switch "commissioned"; when it renders without w-condition-invisible the card meta gets "Commissioned by TLL". The home rail builds its own
    cards, so it reads the markers from /stories. Runs again after page scripts that rewrite card meta. */
 (function(){var L='Commissioned by TLL';function on(m){return !!(m&&!m.classList.contains('w-condition-invisible'));}
@@ -44,6 +45,7 @@ function cards(){[].forEach.call(document.querySelectorAll('a[data-tll-card]'),f
 [].forEach.call(document.querySelectorAll('[data-pf5="story-card"]'),function(c){if(on(c.querySelector('[data-tll-commissioned]')))tag(c.querySelector('[data-pf5="card-meta"]'));});}
 var set=null;function home(){if(!document.querySelector('.h3-card'))return;if(set){[].forEach.call(document.querySelectorAll('.h3-card'),function(c){if(set[c.getAttribute('data-slug')])tag(c.querySelector('.h3-card-meta'));});return;}
 set={};fetch('/stories').then(function(r){return r.ok?r.text():'';}).then(function(h){if(!h)return;var d=new DOMParser().parseFromString(h,'text/html');[].forEach.call(d.querySelectorAll('a[data-tll-card]'),function(a){if(on(a.querySelector('[data-tll-commissioned]'))){var s=((a.getAttribute('href')||'').match(/\/stories\/([^/?#]+)/)||[])[1];if(s)set[s]=1;}});home();}).catch(function(){});}
-function run(){cards();home();}
+function story(){var a=document.querySelector('a[data-tll-commissioned="story"]');if(a&&on(document.querySelector('[data-tll-commissioned="marker"]')))a.classList.add('tll-comm-on');}
+function run(){story();cards();home();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();window.addEventListener('load',function(){run();setTimeout(run,1500);});})();
 </script>
