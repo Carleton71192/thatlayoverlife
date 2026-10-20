@@ -70,8 +70,9 @@
     return m.getCurrentMember().then(function (r) { return r && r.data ? r.data : null; }).catch(function () { return null; });
   }
   function token() {
-    var m = ms(); if (!m || !m.getMemberToken) return null;
-    try { return m.getMemberToken(); } catch (e) { return null; }
+    var m = ms(); if (!m) return null;
+    // The Memberstack DOM package exposes the member token as getMemberCookie(); getMemberToken does not exist there (20 Oct 2026).
+    try { return (m.getMemberToken && m.getMemberToken()) || (m.getMemberCookie && m.getMemberCookie()) || null; } catch (e) { return null; }
   }
   function api(path, body, method) {
     var t = token();

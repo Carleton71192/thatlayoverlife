@@ -32,8 +32,9 @@
     var h=document.querySelector('[data-tll-map-snapshot]');
     var W=h?(h.getAttribute('data-worker')||'').trim().replace(/\/+$/,''):'';
     if(!/^https:\/\//.test(W)) return;
-    var ms=window.$memberstackDom; if(!ms||!ms.getMemberToken) return;
-    var tok=null; try{ tok=ms.getMemberToken(); }catch(e){}
+    var ms=window.$memberstackDom; if(!ms) return;
+    /* The Memberstack DOM package exposes the member token as getMemberCookie() (getMemberToken does not exist on the live site; fixed 20 Oct 2026). */
+    var tok=null; try{ tok=(ms.getMemberToken&&ms.getMemberToken())||(ms.getMemberCookie&&ms.getMemberCookie())||null; }catch(e){}
     if(!tok) return;
     var body=bodyOf(states,t); if(!body) return;
     try{

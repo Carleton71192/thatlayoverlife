@@ -17,7 +17,8 @@ E.list=function(s){return String(s||"").split(",").map(function(x){return x.trim
 E.initials=function(n){return String(n||"").trim().split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0].toUpperCase()}).join("")||"?"};
 E.slugify=function(n){return String(n||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")};
 E.ms=function(){return window.$memberstackDom||null};
-E.token=function(){var m=E.ms();if(!m||!m.getMemberToken)return null;try{return m.getMemberToken()||null}catch(e){return null}};
+/* The member token: getMemberCookie() on the Memberstack DOM package (getMemberToken does not exist there; fixed 20 Oct 2026). */
+E.token=function(){var m=E.ms();if(!m)return null;try{return (m.getMemberToken&&m.getMemberToken())||(m.getMemberCookie&&m.getMemberCookie())||null}catch(e){return null}};
 E.msField=function(k){return E.$('form[data-ms-form="profile"] [data-ms-member="'+k+'"]')};
 return E;})();
 </script>
