@@ -2,25 +2,32 @@
      opened the old SVG editor, which has not been on the page since the Map 2.0 cut-over (its canvas is hidden), so a click did nothing.
      This catches those clicks first and opens a four-way picker. A pick writes tllStates the way the map itself does: the browser copy,
      the tll:states event (the map and the list repaint), then window.__tllPush (the member save in the page head). Only the member's own
-     traveler changes; other travelers on the account keep theirs. -->
+     traveler changes; other travelers on the account keep theirs.
+     M1, M2 and M4 (Nancy, 20 Oct 2026): the same words as the map popup (Lived, Stayed, Layover only, Remove; Remove only on a logged place),
+     the change goes through the map's own editor (window.TLLMapEdit) when it is there, and the picker stays open to say what really
+     happened (saved, nothing to change, not saved because logged out, not saved) with Undo for ten seconds. -->
 <style id="tll-mp3-depth-pick-v1">
 .mp3-pick{position:absolute;z-index:9990;display:flex;flex-wrap:wrap;gap:6px;padding:10px;background:#0A0B14;border:1px solid #2A2D44;max-width:calc(100vw - 32px)}
 .mp3-pick p{flex:1 0 100%;margin:0 0 4px;font:600 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8}
 .mp3-pick button{min-height:44px;min-width:44px;padding:0 14px;border:1.5px solid #F7F1E8;background:transparent;color:#F7F1E8;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out}
 .mp3-pick button[aria-pressed="true"]{background:#F0507A;border-color:#F0507A;color:#0A0B14}
 .mp3-pick button:focus-visible{outline:2px solid #00C9C8;outline-offset:2px}
-.mp3-pick-msg{flex:1 0 100%;margin:4px 0 0;font:500 12px/1.4 'IBM Plex Sans Condensed',sans-serif;color:#cfcbc4;min-height:16px}
+.mp3-pick-msg{flex:1 0 100%;margin:4px 0 0;font:600 13px/1.4 'IBM Plex Sans Condensed',sans-serif;color:#F7F1E8;min-height:18px}
+.mp3-pick .mp3-pick-rm{border-style:dashed}
+.mp3-pick .mp3-pick-undo{border-color:#00C9C8;color:#00C9C8}
+.mp3-pick [hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.mp3-pick button{transition:none}}
 </style>
 <script id="tll-mp3-depth-pick-js-v1">
 (function(){
   if(window.__mp3Pick) return; window.__mp3Pick=1;
-  var OPTS=[['','Not yet'],['layover','Layover'],['visited','Stayed'],['lived','Lived']], open=null;
+  var OPTS=[['lived','Lived'],['visited','Stayed'],['layover','Layover only'],['','Remove']], WORD={lived:'Lived',visited:'Stayed',layover:'Layover only'}, open=null;
   function pad(k){ return String(k).padStart(3,'0'); }
   function rec(){ try{ var s=JSON.parse(localStorage.getItem('tllStates')||'null'); if(s&&s.v===2&&s.states) return s; }catch(e){} return {v:2,travelers:[],states:{}}; }
   function meOf(raw){ var me=null; (raw.travelers||[]).forEach(function(t){ if(!me&&t&&t.id&&!t.pet) me=String(t.id); }); return me; }
   function current(id){ var raw=rec(), me=meOf(raw); if(!me) return ''; var k=Object.keys(raw.states).filter(function(x){ return pad(x)===id; })[0]; return k&&raw.states[k]&&raw.states[k][me]||''; }
-  function write(id,key){
+  function write(id,key,name){
+    if(window.TLLMapEdit){ window.TLLMapEdit.set(id,key,name); return; }
     var raw=rec(); raw.travelers=raw.travelers||[]; raw.states=raw.states||{};
     var me=meOf(raw); if(!me){ raw.travelers.unshift({id:'t1',name:'Me',color:'#F0507A',pet:false}); me='t1'; }
     var k=Object.keys(raw.states).filter(function(x){ return pad(x)===id; })[0]||id;
@@ -30,7 +37,7 @@
     try{ window.dispatchEvent(new CustomEvent('tll:states',{detail:JSON.parse(JSON.stringify(raw))})); }catch(err){}
     if(window.__tllPush) window.__tllPush(raw);
   }
-  function close(back){ if(!open) return; var o=open; open=null; o.box.remove(); document.removeEventListener('keydown',onKey,true); document.removeEventListener('pointerdown',onOut,true); if(back){ var b=document.querySelector('#tll-passport [data-id="'+o.id+'"]'); if(b) b.focus({preventScroll:true}); } }
+  function close(back){ if(!open) return; var o=open; open=null; if(o.box.__off) o.box.__off(); o.box.remove(); document.removeEventListener('keydown',onKey,true); document.removeEventListener('pointerdown',onOut,true); if(back){ var b=document.querySelector('#tll-passport [data-id="'+o.id+'"]'); if(b) b.focus({preventScroll:true}); } }
   function onKey(e){ if(e.key==='Escape'){ e.preventDefault(); close(true); } }
   function onOut(e){ if(open&&!open.box.contains(e.target)) close(false); }
   function show(btn){
@@ -38,16 +45,29 @@
     var id=btn.getAttribute('data-id'), name=btn.getAttribute('data-n')||'', cur=current(id);
     var box=document.createElement('div'); box.className='mp3-pick'; box.setAttribute('role','group'); box.setAttribute('aria-label','How deep you went in '+name);
     var h=document.createElement('p'); h.textContent=name; box.appendChild(h);
-    OPTS.forEach(function(o){ var b=document.createElement('button'); b.type='button'; b.textContent=o[1]; b.setAttribute('aria-pressed',String(o[0]===cur)); b.addEventListener('click',function(){
-      write(id,o[0]); [].forEach.call(box.querySelectorAll('button'),function(x){ x.setAttribute('aria-pressed',String(x===b)); });
-      msg.textContent=name+': '+o[1]+'. Saving to your account.'; setTimeout(function(){ close(true); },900);
-    }); box.appendChild(b); });
+    var state={cur:cur,prev:null,edit:null}, undoT=null;
+    function line(k){ return k?name+': '+WORD[k]:'Removed '+name; }
+    function paint(){ [].forEach.call(box.querySelectorAll('button[data-k]'),function(x){ var k=x.getAttribute('data-k'); if(k===''){ x.hidden=!state.cur; } else x.setAttribute('aria-pressed',String(k===state.cur)); }); }
+    function pick(k,isUndo){
+      if(k===state.cur){ msg.textContent=k?name+' is already '+WORD[k]+'. Nothing to change.':name+' is not on your map.'; return; }
+      state.prev=state.cur; state.cur=k; state.edit={to:k,undo:!!isUndo}; paint();
+      write(id,k,name); msg.textContent=(isUndo?'Undone. ':'')+line(k)+'. Saving.';
+      clearTimeout(undoT); undo.hidden=!!isUndo; if(!isUndo) undoT=setTimeout(function(){ undo.hidden=true; },10000);
+    }
+    OPTS.forEach(function(o){ var b=document.createElement('button'); b.type='button'; b.textContent=o[1]; b.setAttribute('data-k',o[0]); if(o[0]==='') b.className='mp3-pick-rm'; b.addEventListener('click',function(){ pick(o[0]); }); box.appendChild(b); });
+    var undo=document.createElement('button'); undo.type='button'; undo.className='mp3-pick-undo'; undo.textContent='Undo'; undo.hidden=true; undo.addEventListener('click',function(){ if(state.prev!==null) pick(state.prev,true); }); box.appendChild(undo);
     var msg=document.createElement('p'); msg.className='mp3-pick-msg'; msg.setAttribute('role','status'); msg.setAttribute('aria-live','polite'); box.appendChild(msg);
+    function onSave(e){ var d=e&&e.detail||{}; if(!open||open.box!==box||!state.edit) return;
+      if(d.phase==='saved') msg.textContent='Saved. '+(state.edit.undo?'Undone. ':'')+line(state.edit.to)+'.';
+      else if(d.phase==='signedout'){ msg.textContent='Not saved. Log in to save your map.'; undo.hidden=true; }
+      else if(d.phase==='error') msg.textContent='Not saved. Check your connection, then try again from the line above the map.'; }
+    window.addEventListener('tll:save',onSave); box.__off=function(){ window.removeEventListener('tll:save',onSave); clearTimeout(undoT); };
+    paint();
     document.body.appendChild(box);
     var r=btn.getBoundingClientRect(), w=box.offsetWidth, left=Math.max(16,Math.min(window.scrollX+r.left, window.scrollX+document.documentElement.clientWidth-w-16));
     box.style.left=left+'px'; box.style.top=(window.scrollY+r.bottom+6)+'px';
     open={box:box,id:id};
-    var on=box.querySelector('button[aria-pressed="true"]')||box.querySelector('button'); on.focus({preventScroll:true});
+    var on=box.querySelector('button[aria-pressed="true"]')||box.querySelector('button[data-k]'); on.focus({preventScroll:true});
     document.addEventListener('keydown',onKey,true); setTimeout(function(){ document.addEventListener('pointerdown',onOut,true); },0);
   }
   /* Capture phase: runs before the list's own handler, which would look for the retired editor. */

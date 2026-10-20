@@ -318,27 +318,65 @@
   // when present, follows through window.__tllMapApply.
   var pushTimer, pushLast = '';
   function pushMemberstack(raw) {
-    var j; try { j = JSON.stringify(raw); } catch (e) { return; } if (j === pushLast) return;
-    clearTimeout(pushTimer);
+    var j; try { j = JSON.stringify(raw); } catch (e) { return; } if (j === pushLast) { saveEvent('unchanged'); return; }
+    clearTimeout(pushTimer); saveEvent('saving');
     pushTimer = setTimeout(function () {
-      var ms = window.$memberstackDom; if (!ms) return;
+      var ms = window.$memberstackDom; if (!ms) { saveEvent('error'); return; }
       ms.getCurrentMember().then(function (r) {
-        if (!r || !r.data) return;
-        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; var t = Date.now(); json.tllStates = JSON.parse(j); json.tllStatesAt = t; return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; SAVED_AT = t; renderSaved(); try { localStorage.setItem('tllStatesAt', String(t)); } catch (err) {} }); });
-      }).catch(function () {});
+        if (!r || !r.data) { saveEvent('signedout'); return; }
+        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; var t = Date.now(); json.tllStates = JSON.parse(j); json.tllStatesAt = t; return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; SAVED_AT = t; renderSaved(); try { localStorage.setItem('tllStatesAt', String(t)); } catch (err) {} saveEvent('saved', t); }); });
+      }).catch(function () { saveEvent('error'); });
     }, 1200);
   }
-  function writeDepth(iso, key) {
+  function writeDepth(iso, key, name, isUndo) {
     var raw = rawRecord(), me = null;
     raw.travelers.forEach(function (t) { if (!me && t && t.id && !t.pet) me = String(t.id); });
     if (!me) { raw.travelers.unshift({ id: 't1', name: 'Me', color: C.rose, pet: false }); me = 't1'; }
-    var e = raw.states[iso] || {}; if (key) e[me] = key; else delete e[me];
+    var e = raw.states[iso] || {}, prev = e[me] || '';
+    var nm = name || nameOf(iso) || iso;
+    if (prev !== (key || '')) noteEdit(iso, nm, prev, key || '', isUndo);
+    else { lastEdit = { iso: iso, name: nm, from: prev, to: prev, same: true }; setEditMsg(prev ? nm + ' is already ' + depthWord(prev) + '.' : nm + ' is not on your map.'); }
+    if (key) e[me] = key; else delete e[me];
     if (Object.keys(e).length) raw.states[iso] = e; else delete raw.states[iso];
     try { localStorage.setItem('tllStates', JSON.stringify(raw)); } catch (err) {} // 20 Oct 2026: tllStatesAt is stamped after a successful save, not here
     if (window.__tllMapApply) { try { window.__tllMapApply(JSON.parse(JSON.stringify(raw))); } catch (err) {} }
-    if (window.__tllPush) window.__tllPush(raw); else pushMemberstack(raw);
+    try { window.dispatchEvent(new CustomEvent('tll:states', { detail: JSON.parse(JSON.stringify(raw)) })); } catch (err) {}
+    pushMemberstack(raw); // 20 Oct 2026 (M2): the map's own save, which reports saved, logged out or failed; the page's __tllPush could not say
     applyRecord(normalizeRecord(raw, 'local'));
   }
+  // M1 to M4 (Nancy, 20 Oct 2026: "how to submit places and unsubmit them if they are wrong"). One editor for the map popup and the
+  // Stamp it list (window.TLLMapEdit), and one status line above the map that says what really happened: saving, saved, nothing to
+  // save, not saved because you are logged out, or not saved with Try again. Undo for ten seconds after any change or removal.
+  // Edits save through pushMemberstack, which reports through the 'tll:save' event (the page's __tllPush still loads the account copy).
+  var lastEdit = null, undoTimer = null, editMsg, undoBtn, retryBtn;
+  function saveEvent(phase, at) { try { window.dispatchEvent(new CustomEvent('tll:save', { detail: { phase: phase, at: at || 0 } })); } catch (e) {} }
+  function depthWord(k) { return k ? DEPTH[k] || k : ''; }
+  function editLine(ed) { return ed.to ? ed.name + ': ' + depthWord(ed.to) : 'Removed ' + ed.name; }
+  function setEditMsg(t) { if (editMsg) { editMsg.textContent = t; editMsg.hidden = !t; } }
+  function noteEdit(iso, name, from, to, isUndo) {
+    lastEdit = { iso: iso, name: name, from: from, to: to, undo: !!isUndo };
+    setEditMsg((isUndo ? 'Undone. ' : '') + editLine(lastEdit) + '. Saving.');
+    if (retryBtn) retryBtn.hidden = true;
+    clearTimeout(undoTimer);
+    if (undoBtn) { undoBtn.hidden = !!isUndo; if (!isUndo) undoTimer = setTimeout(function () { undoBtn.hidden = true; }, 10000); }
+  }
+  function onSave(e) {
+    var d = e && e.detail || {}, ed = lastEdit;
+    if (d.phase === 'saving') return;
+    if (d.phase === 'saved') { if (d.at) { SAVED_AT = d.at; renderSaved(); } setEditMsg(ed ? 'Saved. ' + (ed.undo ? 'Undone. ' : '') + editLine(ed) + '.' : 'Saved.'); if (retryBtn) retryBtn.hidden = true; }
+    else if (d.phase === 'unchanged') { setEditMsg(ed && ed.same ? (ed.to ? ed.name + ' is already ' + depthWord(ed.to) + '. Nothing to change.' : ed.name + ' is not on your map. Nothing to change.') : ed ? 'Already saved. ' + editLine(ed) + '.' : 'Nothing new to save.'); }
+    else if (d.phase === 'signedout') { setEditMsg('Not saved. Log in to save your map.'); if (undoBtn) undoBtn.hidden = true; }
+    else if (d.phase === 'error') { setEditMsg('Not saved. Check your connection.'); if (retryBtn) retryBtn.hidden = false; }
+  }
+  function undoLast() { var ed = lastEdit; if (!ed || ed.undo || ed.same) return; clearTimeout(undoTimer); if (undoBtn) undoBtn.hidden = true; writeDepth(ed.iso, ed.from, ed.name, true); }
+  function retrySave() { if (retryBtn) retryBtn.hidden = true; setEditMsg('Trying again.'); pushLast = ''; pushMemberstack(rawRecord()); }
+  window.addEventListener('tll:save', onSave);
+  window.TLLMapEdit = {
+    current: function (iso) { var raw = rawRecord(), me = null; raw.travelers.forEach(function (t) { if (!me && t && t.id && !t.pet) me = String(t.id); }); return me && raw.states[iso] && raw.states[iso][me] || ''; },
+    set: function (iso, key, name) { writeDepth(iso, key || '', name); },
+    undo: undoLast, retry: retrySave,
+    last: function () { return lastEdit; }
+  };
   function recordFromStorage() { try { return normalizeRecord(JSON.parse(localStorage.getItem('tllStates') || 'null'), 'local'); } catch (e) { return null; } }
   // B3.3: the logbook. Signed in: the member JSON (tllLog, tllParks). Otherwise the browser copies under the same keys.
   function readJSONKey(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
@@ -538,6 +576,10 @@
 
     // B3.8: members see when their map was last saved, and can pull the account copy over a stale browser copy.
     savedBar = el('div', 'tllm-saved'); savedBar.hidden = true;
+    savedBar.appendChild(el('p', 'tllm-saved-help', 'Tap a country and pick how deep you went. Tap it again to change it or remove it. Saves on its own.'));
+    editMsg = el('p', 'tllm-saved-e'); editMsg.setAttribute('role', 'status'); editMsg.setAttribute('aria-live', 'polite'); editMsg.hidden = true; savedBar.appendChild(editMsg);
+    undoBtn = el('button', 'tllm-saved-btn tllm-saved-undo', 'Undo'); undoBtn.type = 'button'; undoBtn.hidden = true; undoBtn.addEventListener('click', undoLast); savedBar.appendChild(undoBtn);
+    retryBtn = el('button', 'tllm-saved-btn tllm-saved-retry', 'Try again'); retryBtn.type = 'button'; retryBtn.hidden = true; retryBtn.addEventListener('click', retrySave); savedBar.appendChild(retryBtn);
     savedText = el('p', 'tllm-saved-t'); savedText.hidden = true; savedBar.appendChild(savedText);
     savedMsg = el('p', 'tllm-saved-m'); savedMsg.setAttribute('role', 'status'); savedMsg.setAttribute('aria-live', 'polite'); savedBar.appendChild(savedMsg);
     savedBtn = el('button', 'tllm-saved-btn', 'Refresh from my account'); savedBtn.type = 'button'; savedBtn.addEventListener('click', refreshFromAccount); savedBar.appendChild(savedBtn);
@@ -987,7 +1029,7 @@
       var iso = p._iso || '';
       if (canEdit() && iso) {
         var cur = REC && REC.me[iso] || '';
-        html += '<div class="tllm-pop-edit" role="group" aria-label="Log ' + esc(p.name) + '">' + [['lived', 'Lived'], ['visited', 'Stayed'], ['layover', 'Layover only']].map(function (d) { return '<button type="button" data-d="' + d[0] + '" aria-pressed="' + (cur === DEPTH[d[0]] ? 'true' : 'false') + '">' + d[1] + '</button>'; }).join('') + (cur ? '<button type="button" data-d="" class="tllm-pop-clear">Clear</button>' : '') + '</div>';
+        html += '<div class="tllm-pop-edit" role="group" aria-label="Log ' + esc(p.name) + '">' + [['lived', 'Lived'], ['visited', 'Stayed'], ['layover', 'Layover only']].map(function (d) { return '<button type="button" data-d="' + d[0] + '" aria-pressed="' + (cur === DEPTH[d[0]] ? 'true' : 'false') + '">' + d[1] + '</button>'; }).join('') + (cur ? '<button type="button" data-d="" class="tllm-pop-clear">Remove</button>' : '') + '</div>';
       } else if (member === false && !(REC && REC.source === 'local')) {
         html += '<a class="tllm-pop-a" href="' + esc(root.getAttribute('data-tll-login') || '/signup') + '">' + esc(empty.login_to_log || 'Log in to map your own countries →') + '</a>';
       }
@@ -998,13 +1040,13 @@
       var ed = popup.getElement() && popup.getElement().querySelector('.tllm-pop-edit');
       if (ed) ed.addEventListener('click', function (ev) {
         var b = ev.target.closest('button'); if (!b) return;
-        var key = b.getAttribute('data-d'); writeDepth(p._iso, key);
+        var key = b.getAttribute('data-d'); writeDepth(p._iso, key, p.name);
         var now = REC && REC.me[p._iso] || '';
         [].forEach.call(ed.querySelectorAll('button[data-d]'), function (x) { if (x.getAttribute('data-d')) x.setAttribute('aria-pressed', now === DEPTH[x.getAttribute('data-d')] ? 'true' : 'false'); });
-        var cl = ed.querySelector('.tllm-pop-clear'); if (now && !cl) { cl = document.createElement('button'); cl.type = 'button'; cl.className = 'tllm-pop-clear'; cl.setAttribute('data-d', ''); cl.textContent = 'Clear'; ed.appendChild(cl); } else if (!now && cl) cl.remove();
-        var m = popup.getElement().querySelector('.tllm-pop-m'); if (m) m.textContent = upper(now || 'Not yet') + ' · ' + (now ? 'LOGGED JUST NOW' : 'CLEARED');
-        var nn = popup.getElement().querySelector('.tllm-pop-n'); if (nn) nn.textContent = now === 'Lived' ? 'Lived here. The deepest of the three depths.' : now === 'Stayed' ? 'Left the airport and slept at least one night.' : now === 'Layover only' ? 'Never left the terminal. Counted, on a separate shelf.' : 'Not yet. The cream.';
-        say(p.name + ', ' + (now || 'cleared'));
+        var cl = ed.querySelector('.tllm-pop-clear'); if (now && !cl) { cl = document.createElement('button'); cl.type = 'button'; cl.className = 'tllm-pop-clear'; cl.setAttribute('data-d', ''); cl.textContent = 'Remove'; ed.appendChild(cl); } else if (!now && cl) cl.remove();
+        var m = popup.getElement().querySelector('.tllm-pop-m'); if (m) m.textContent = upper(now || 'Not yet') + ' · ' + (now ? 'LOGGED JUST NOW' : 'REMOVED');
+        var nn = popup.getElement().querySelector('.tllm-pop-n'); if (nn) nn.textContent = now === 'Lived' ? 'Lived here. The deepest of the three depths.' : now === 'Stayed' ? 'Left the airport and slept at least one night.' : now === 'Layover only' ? 'Never left the terminal. Counted, on a separate shelf.' : 'Removed from your map.';
+        say(p.name + ', ' + (now || 'removed'));
       });
     }
     var box = popup.getElement(); if (box) { box.querySelector('.maplibregl-popup-close-button').setAttribute('aria-label', 'Close card'); box.addEventListener('animationend', function () { box.classList.remove('tllm-pop-enter'); }, { once: true }); }

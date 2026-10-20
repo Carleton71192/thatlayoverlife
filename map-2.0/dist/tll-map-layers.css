@@ -248,3 +248,9 @@
 .tllm-card-sub{font:700 12px/1.5 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:8px}
 @media (max-width:760px){.tllm-saved{padding:8px 16px}.tllm-saved-btn{margin-left:0}}
 .tllm-heatkey[hidden]{display:none}
+
+/* M2 and M3 (20 Oct 2026): help line, save status, Undo and Try again above the map. 12px floor, 44px targets. */
+.tllm-saved-help{flex:1 0 100%;margin:0;color:var(--cream);font-size:14px;line-height:1.45}
+.tllm-saved-e{margin:0;flex:1 1 20ch;color:var(--cream);font:700 13px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif}
+.tllm-saved-undo,.tllm-saved-retry{margin-left:0}
+.tllm-saved-retry{border-color:var(--rose,#F0507A);color:var(--rose,#F0507A)}
