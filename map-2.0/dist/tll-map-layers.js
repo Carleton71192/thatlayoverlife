@@ -106,7 +106,7 @@
       var ms = window.$memberstackDom; if (!ms) return;
       ms.getCurrentMember().then(function (r) {
         if (!r || !r.data) return;
-        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; json.tllStates = JSON.parse(j); json.tllStatesAt = Date.now(); return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; }); });
+        return ms.getMemberJSON().then(function (mj) { var json = (mj && mj.data) || {}; var t = Date.now(); json.tllStates = JSON.parse(j); json.tllStatesAt = t; return ms.updateMemberJSON({ json: json }).then(function () { pushLast = j; try { localStorage.setItem('tllStatesAt', String(t)); } catch (err) {} }); });
       }).catch(function () {});
     }, 1200);
   }
@@ -116,7 +116,7 @@
     if (!me) { raw.travelers.unshift({ id: 't1', name: 'Me', color: C.rose, pet: false }); me = 't1'; }
     var e = raw.states[iso] || {}; if (key) e[me] = key; else delete e[me];
     if (Object.keys(e).length) raw.states[iso] = e; else delete raw.states[iso];
-    try { localStorage.setItem('tllStates', JSON.stringify(raw)); localStorage.setItem('tllStatesAt', String(Date.now())); } catch (err) {}
+    try { localStorage.setItem('tllStates', JSON.stringify(raw)); } catch (err) {} // 20 Oct 2026: tllStatesAt is stamped after a successful save, not here
     if (window.__tllMapApply) { try { window.__tllMapApply(JSON.parse(JSON.stringify(raw))); } catch (err) {} }
     if (window.__tllPush) window.__tllPush(raw); else pushMemberstack(raw);
     applyRecord(normalizeRecord(raw, 'local'));

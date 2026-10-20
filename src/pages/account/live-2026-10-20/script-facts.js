@@ -1,0 +1,7 @@
+/* TLL facts v1 (2026-09-21): Nancy's confirmed answers. Sign-up age 16+, one 48-hour reply promise, Magnus country count read from his CMS item. */
+(function(){var R=[[/I am 13 or older\./,'I am 16 or older.'],[/, or 4 hours if it(’|')s safety-critical\./,'.'],[/^\s*editorial 48h · takedowns( \+ safety)? 4h · press 3 business days\s*$/,' 48 hours, every door.'],[/We act within 7 days\./,'We act within 48 hours.'],[/A different editor reviews\. Within 14 days\./,'We take a second look within 48 hours.'],[/We respond within 3 business days\./,'We respond within 48 hours.']];
+function walk(f){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t,a=[];while(t=w.nextNode())a.push(t);a.forEach(f);}
+function copy(){walk(function(t){var v=t.nodeValue,o=v;R.forEach(function(r){v=v.replace(r[0],r[1]);});if(v!==o)t.nodeValue=v;});}
+function magnus(){if(!/(magnus|samoyed)/i.test(document.body.textContent))return;fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var m=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!m)return;var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(!n)return;walk(function(t){var v=t.nodeValue,o=v;v=v.replace(/\b22(?=\s*(countries|COUNTRIES|Countries)\b)/g,String(n));if(v!==o)t.nodeValue=v;});}).catch(function(){});}
+function run(){copy();if(!/^\/pets\/magnus-waffles/.test(location.pathname))magnus();}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);})();
