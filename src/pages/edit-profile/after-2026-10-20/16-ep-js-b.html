@@ -43,7 +43,8 @@ E.paintPreview=function(){
  var pl=$("[data-ep-pv-links]");if(pl){var k=E.shown().length;pl.textContent=k+(k===1?" link":" links")}
  var pc=$("[data-ep-pv-contact]");if(pc){var m=E.get("contact-mode")||"relay";pc.textContent=m==="off"?"No contact button":"Get in touch · "+m}
  var pv=$("[data-ep-pv-vis]");if(pv)pv.textContent=E.get("visibility")||"public";
- var view=$("[data-ep-view]"),cf=(E.member&&E.member.customFields)||{};if(view){var slug=cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"));view.href=slug?"/contributors/"+slug:"/travelers"}
+ /* M5 (20 Oct 2026): every "View my public profile" link on the page opens the member's own page. */
+ var cf=(E.member&&E.member.customFields)||{},slug=cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"));$$("[data-ep-view]").forEach(function(view){view.href=slug?"/contributors/"+slug:"/travelers"});
 };
 E.fill=function(member){E.member=member||null;var cf=(member&&member.customFields)||{};
  ["name","home-base","bio-long","bio-short","one-line","pen-name","from-and-lived-in","languages","credit-mode","contact-mode","visibility","share-ranges","links-shown","list-expats","list-creators","list-press"].forEach(function(k){var v=cf[k];if(v==null||v==="")return;E.S[k]=String(v)});
