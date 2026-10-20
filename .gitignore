@@ -10,3 +10,6 @@ map-2.0/source/private/*
 # map-2.0 embed code is served from the repo through a CDN, so it must be committed
 !map-2.0/dist/
 !map-2.0/dist/**
+
+# Claude Design standalone prototypes stay out of the repo (S90); the 3.4 file lives locally only
+handoff/claude-design-source/**/TLL Site Prototype*(standalone).html
