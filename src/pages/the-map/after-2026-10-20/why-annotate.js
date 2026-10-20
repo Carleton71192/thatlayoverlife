@@ -1,0 +1,44 @@
+/* tll-why-annotate-v1 (20 October 2026). The rulebook why on the passport ("Stamp it, or list it", #tll-passport):
+   a small line under the name on each stamp and in each list row for the places that are not among the 193 UN members.
+   Reads window.TLLMapCounts.why (map-2.0/dist/tll-map-layers.js), never writes the map. window.__tllWhy(id) for the depth picker. */
+(function () {
+  'use strict';
+  if (window.__tllWhyAnnotate) return; window.__tllWhyAnnotate = 1;
+  function K() { return window.TLLMapCounts && window.TLLMapCounts.why ? window.TLLMapCounts : null; }
+  window.__tllWhy = function (id) { var k = K(); return k ? k.why(id) : null; };
+
+  var css = '.tllw-why{display:block;font:400 12px/1.3 system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#6B6660;margin-top:2px}' +
+    '.mp3-stamp.tllw-has{height:auto;min-height:132px}' +
+    '.mp3-stamp .tllw-why{text-align:center;max-width:100%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}';
+  var sec, mo, t;
+
+  function line(text, title) { var s = document.createElement('span'); s.className = 'tllw-why'; s.textContent = text; if (title) s.title = title; return s; }
+  function label(b, w) { var a = b.getAttribute('aria-label'); if (a && a.indexOf(w.label) < 0) b.setAttribute('aria-label', a + '. ' + w.text); }
+
+  function apply() {
+    var k = K(); if (!k || !sec) return;
+    mo.disconnect();
+    [].forEach.call(sec.querySelectorAll('button.mp3-stamp[data-id]'), function (b) {
+      if (b.querySelector('.tllw-why')) return; var w = k.why(b.getAttribute('data-id')); if (!w) return;
+      var nm = b.querySelector('.mp3-nm'), s = line(w.label, w.text);
+      if (nm && nm.nextSibling) b.insertBefore(s, nm.nextSibling); else b.appendChild(s);
+      b.classList.add('tllw-has'); label(b, w);
+    });
+    [].forEach.call(sec.querySelectorAll('button.mp3-dep[data-id]'), function (b) {
+      var w = k.why(b.getAttribute('data-id')); if (!w) return;
+      var tr = b.closest('tr'), cell = tr && tr.querySelector('th') || b.parentNode;
+      if (!cell || cell.querySelector('.tllw-why')) return;
+      cell.appendChild(line(w.text)); label(b, w);
+    });
+    mo.observe(sec, { childList: true, subtree: true });
+  }
+  function soon() { clearTimeout(t); t = setTimeout(apply, 80); }
+
+  function start() {
+    sec = document.getElementById('tll-passport'); if (!sec) return;
+    if (!document.getElementById('tllw-css')) { var st = document.createElement('style'); st.id = 'tllw-css'; st.textContent = css; document.head.appendChild(st); }
+    mo = new MutationObserver(soon); mo.observe(sec, { childList: true, subtree: true });
+    var n = 0; (function wait() { if (K()) return apply(); if (++n < 240) setTimeout(wait, 250); })(); // the map bundle loads TLLMapCounts
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();

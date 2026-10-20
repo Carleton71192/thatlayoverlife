@@ -86,6 +86,7 @@
 .tllm-pop .maplibregl-popup-close-button:hover{background:rgba(10,11,20,.08);color:var(--ink)}
 .tllm-pop-k{font:700 10px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#067A79;margin:0 24px 4px 0}
 .tllm-pop-h{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:19px;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em}
+.tllm-pop-why{margin:-2px 0 8px;font-size:12px;line-height:1.4;color:#6B6660}
 .tllm-pop-m{margin:0;font:700 10px/1.5 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660}
 .tllm-pop-n{margin:8px 0 0;font-size:14px;line-height:1.4}
 .tllm-pop-a{display:inline-block;margin-top:10px;font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;text-transform:uppercase;color:#C8325B;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
@@ -130,6 +131,13 @@
 .tllm-rule-n{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:40px;line-height:1;letter-spacing:-.03em}
 .tllm-rule-n span{font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:var(--muted);margin-left:6px}
 .tllm-rule-w{margin:8px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+/* Why the numbers differ (20 Oct 2026): the record's places that are not UN members */
+.tllm-why{margin-top:22px;padding:16px 18px;background:var(--card);border:1px solid var(--hair);border-radius:6px}
+.tllm-why-h{margin:0;font:700 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--teal)}
+.tllm-why-l{margin:6px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
+.tllm-why-ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.tllm-why-ul li{font-size:14px;line-height:1.45;color:var(--muted)}
+.tllm-why-ul b{color:var(--cream);font-weight:600}
 
 /* Sets of seven */
 .tllm-set{padding:18px 0 18px;border-bottom:1px solid var(--hair)}
@@ -190,6 +198,8 @@
 .tllm-list li button:hover{background:rgba(255,255,255,.06)}
 .tllm-list li button:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
 .tllm-list-empty{color:var(--muted);font-size:14px;margin:0}
+.tllm-list-nm{display:flex;flex-direction:column;min-width:0;font-weight:inherit}
+.tllm-list-why{font-size:12px;line-height:1.35;color:var(--muted);margin-top:2px}
 .tllm-err{margin:0;padding:16px 20px;color:var(--rose-text);font-size:14px}
 
 /* Phone: bottom sheet switcher, 44 px targets */

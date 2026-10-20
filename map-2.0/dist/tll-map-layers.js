@@ -37,6 +37,73 @@
   function canon(k) { k = String(k); if (k === 'undefined' || k === 'XK' || k === KOSOVO) return KOSOVO; return /^\d{3}$/.test(k) ? k : null; }
   function better(a, v) { return RANK[v] && (!a || RANK[v] > RANK[a]) ? v : a; }
 
+  // Rulebook whys (Nancy, 20 October 2026: "need to identify the whys on our lists"). Every one of the 250 entries that is
+  // not among the 193 UN members, with its kind and one plain line. Kinds: antarctica (a), observer (o), partial (p), territory (t).
+  var WHY_KIND = { a: 'antarctica', o: 'observer', p: 'partial', t: 'territory' };
+  var WHY_TAIL = { a: 'Counts as a place and a continent, not in the country count or any UN list.', o: 'Counts in the 249 and in the 195, not among the 193 UN members.',
+    p: 'Counts in the 249, not among the 193 UN members.', t: 'Counts in the 249, not among the 193 UN members.' };
+  var WHY = {
+    '010': ['a', 'Antarctica', 'A continent, not a country.'],
+    '016': ['t', 'American Samoa', 'US territory.'],
+    '060': ['t', 'Bermuda', 'British territory.'],
+    '074': ['t', 'Bouvet Island', 'Uninhabited Norwegian island.'],
+    '086': ['t', 'British Indian Ocean Territory', 'British-administered islands with no permanent residents.'],
+    '092': ['t', 'British Virgin Islands', 'British territory.'],
+    '136': ['t', 'Cayman Islands', 'British territory.'],
+    '158': ['p', 'Taiwan', 'Not a UN member, recognized by some governments.'],
+    '162': ['t', 'Christmas Island', 'Australian territory.'],
+    '166': ['t', 'Cocos (Keeling) Islands', 'Australian territory.'],
+    '175': ['t', 'Mayotte', 'Overseas department of France, with its own ISO code.'],
+    '184': ['t', 'Cook Islands', 'Self-governing, in free association with New Zealand.'],
+    '234': ['t', 'Faroe Islands', 'Self-governing Danish islands.'],
+    '238': ['t', 'Falkland Islands', 'British territory.'],
+    '239': ['t', 'South Georgia and the South Sandwich Islands', 'British islands with no permanent residents.'],
+    '248': ['t', 'Åland Islands', 'Autonomous region of Finland.'],
+    '254': ['t', 'French Guiana', 'Overseas department of France, with its own ISO code.'],
+    '258': ['t', 'French Polynesia', 'French territory.'],
+    '260': ['t', 'French Southern Territories', 'French islands with no permanent residents.'],
+    '275': ['o', 'Palestine', 'UN observer state.'],
+    '292': ['t', 'Gibraltar', 'British territory.'],
+    '304': ['t', 'Greenland', 'Autonomous Danish territory.'],
+    '312': ['t', 'Guadeloupe', 'Overseas department of France, with its own ISO code.'],
+    '316': ['t', 'Guam', 'US territory.'],
+    '334': ['t', 'Heard Island and McDonald Islands', 'Uninhabited Australian islands.'],
+    '336': ['o', 'Holy See', 'UN observer state.'],
+    '344': ['t', 'Hong Kong', 'Special administrative region of China.'],
+    '446': ['t', 'Macao', 'Special administrative region of China.'],
+    '474': ['t', 'Martinique', 'Overseas department of France, with its own ISO code.'],
+    '500': ['t', 'Montserrat', 'British territory.'],
+    '531': ['t', 'Curaçao', 'Self-governing part of the Kingdom of the Netherlands.'],
+    '533': ['t', 'Aruba', 'Self-governing part of the Kingdom of the Netherlands.'],
+    '534': ['t', 'Sint Maarten', 'Self-governing part of the Kingdom of the Netherlands.'],
+    '535': ['t', 'Caribbean Netherlands', 'Special municipalities of the Netherlands.'],
+    '540': ['t', 'New Caledonia', 'French territory.'],
+    '570': ['t', 'Niue', 'Self-governing, in free association with New Zealand.'],
+    '574': ['t', 'Norfolk Island', 'Australian territory.'],
+    '580': ['t', 'Northern Mariana Islands', 'US territory.'],
+    '581': ['t', 'US Minor Outlying Islands', 'US islands with no permanent residents.'],
+    '612': ['t', 'Pitcairn Islands', 'British territory.'],
+    '630': ['t', 'Puerto Rico', 'US territory.'],
+    '638': ['t', 'Réunion', 'Overseas department of France, with its own ISO code.'],
+    '652': ['t', 'Saint Barthélemy', 'French territory.'],
+    '654': ['t', 'Saint Helena, Ascension and Tristan da Cunha', 'British territory.'],
+    '660': ['t', 'Anguilla', 'British territory.'],
+    '663': ['t', 'Saint Martin', 'French territory, the French side of the island.'],
+    '666': ['t', 'Saint Pierre and Miquelon', 'French territory.'],
+    '732': ['t', 'Western Sahara', 'Disputed territory.'],
+    '744': ['t', 'Svalbard and Jan Mayen', 'Norwegian islands, with their own ISO code.'],
+    '772': ['t', 'Tokelau', 'New Zealand territory.'],
+    '796': ['t', 'Turks and Caicos Islands', 'British territory.'],
+    '831': ['t', 'Guernsey', 'British Crown Dependency.'],
+    '832': ['t', 'Jersey', 'British Crown Dependency.'],
+    '833': ['t', 'Isle of Man', 'British Crown Dependency.'],
+    '850': ['t', 'US Virgin Islands', 'US territory.'],
+    '876': ['t', 'Wallis and Futuna', 'French territory.'],
+    '900': ['p', 'Kosovo', 'Not a UN member, recognized by some governments.']
+  };
+  // why('540') -> { kind: 'territory', name: 'New Caledonia', label: 'French territory.', text: 'French territory. Counts in the 249, ...' }; null for a UN member.
+  function why(k) { var c = canon(k), w = c && WHY[c]; return w ? { kind: WHY_KIND[w[0]], name: w[1], label: w[2], text: w[2] + ' ' + WHY_TAIL[w[0]] } : null; }
+
   function countRecord(raw) {
     var out = { ok: false, places: 0, countries: 0, antarctica: false, layovers: 0, lived: 0, stayed: 0, continents: [], codes: 0, un: 0, unObservers: 0,
       placeIsos: [], countryIsos: [], layoverIsos: [], best: {}, pets: [] };
@@ -108,7 +175,7 @@
   var api = { CONTINENTS: CONTINENTS, canon: canon, continentOf: function (k) { var c = canon(k); return c ? CONT[c] || null : null; },
     isIso: function (k) { var c = canon(k); return !!(c && ISO[c]); }, isUN: function (k) { return !!UN[canon(k)]; }, isUNorObserver: function (k) { return !!UNO[canon(k)]; },
     isoCount: Object.keys(ISO).length, unCount: Object.keys(UN).length, unObserverCount: Object.keys(UNO).length,
-    countRecord: countRecord, countLogbook: countLogbook, lines: lines, toMs: toMs, dateLabel: dateLabel };
+    countRecord: countRecord, countLogbook: countLogbook, lines: lines, toMs: toMs, dateLabel: dateLabel, why: why, whyIds: Object.keys(WHY).sort() };
   if (typeof module === 'object' && module && module.exports) module.exports = api;
   if (g) g.TLLMapCounts = api;
 })(typeof window !== 'undefined' ? window : null);
@@ -375,7 +442,7 @@
     Object.keys(states).forEach(function (iso) {
       var a2 = loggedIso[iso] || (iso === 'XK' ? 'XK' : ''), row = countryRows[a2], c = row && row.latitude != null ? [row.longitude, row.latitude] : centroidOf(iso);
       if (!c) return;
-      rows.push({ name: row ? row.name : (nameOf(iso) || iso), country: a2 || iso, latitude: c[1], longitude: c[0], verb: verb, year: '', note: '', link: '', depth: states[iso], source: 'member record (tllStates)', type: 'Country' });
+      rows.push({ name: row ? row.name : (nameOf(iso) || iso), country: a2 || iso, latitude: c[1], longitude: c[0], verb: verb, year: '', note: '', link: '', depth: states[iso], source: 'member record (tllStates)', type: 'Country', iso: iso });
     });
     return rows;
   }
@@ -913,7 +980,8 @@
     var note = p.note || (p.type ? p.type + (p.country ? ' · ' + p.country : '') : '');
     var link = p.link ? '<a class="tllm-pop-a" href="' + esc(p.link) + '" ' + (/^https?:/.test(p.link) ? 'target="_blank" rel="noopener"' : '') + '>' + (/unesco\.org/.test(p.link) ? 'Official UNESCO page →' : 'Read the ' + esc(p.story || p.name) + ' story →') + '</a>'
       : (p._country ? '<p class="tllm-pop-c">' + esc(empty.popover_no_story || 'No story from here yet.') + '</p>' : '');
-    var html = '<div class="tllm-pop-k">' + esc(c.name || p.collection) + '</div><h3 class="tllm-pop-h">' + esc(p.name) + '</h3><p class="tllm-pop-m">' + esc(meta) + '</p>' +
+    var whyP = p._country && p._iso ? K.why(p._iso) : null; // rulebook why: not among the 193 UN members
+    var html = '<div class="tllm-pop-k">' + esc(c.name || p.collection) + '</div><h3 class="tllm-pop-h">' + esc(p.name) + '</h3>' + (whyP ? '<p class="tllm-pop-why">' + esc(whyP.text) + '</p>' : '') + '<p class="tllm-pop-m">' + esc(meta) + '</p>' +
       (note ? '<p class="tllm-pop-n">' + esc(note) + '</p>' : '') + link + (p.confirm === true || p.confirm === 'true' ? '<p class="tllm-pop-c">Listing to confirm.</p>' : '');
     if (p._country && p.country !== undefined) {
       var iso = p._iso || '';
@@ -1027,7 +1095,7 @@
     nums.forEach(function (n) { n.textContent = '0'; io.observe(n); });
   }
   // B3.2: many ways to count, from the record. Codes of 249 (ISO plus Kosovo), UN members of 193, UN plus the two observers of 195.
-  var rulesGrid = null;
+  var rulesGrid = null, whyBox = null;
   function renderRules() {
     var rb = cfg.rulebooks || []; if (!secRules) return;
     if (!rb.length || !REC) { secRules.style.display = 'none'; return; }
@@ -1039,7 +1107,19 @@
       var d = el('div', 'tllm-rule'); var nn = el('div', 'tllm-rule-n'); nn.innerHTML = (n == null ? '<span style="font-size:16px;color:#8890A6;margin:0">OPEN</span>' : fmt(n)) + '<span>of ' + fmt(r.of) + '</span>'; d.appendChild(nn);
       d.appendChild(el('p', 'tllm-rule-w', r.who)); grid.appendChild(d);
     });
-    if (rulesGrid) rulesGrid.remove(); rulesGrid = grid; secRules.appendChild(grid); secRules.style.display = shown ? '' : 'none';
+    if (rulesGrid) rulesGrid.remove(); rulesGrid = grid; secRules.appendChild(grid);
+    if (whyBox) whyBox.remove(); whyBox = whyList(k.placeIsos); if (whyBox) secRules.appendChild(whyBox);
+    secRules.style.display = shown ? '' : 'none';
+  }
+  // Why the numbers differ (20 October 2026): the record's own places that are not UN members, each with its why.
+  function whyList(isos) {
+    var ws = (isos || []).map(function (i) { return K.why(i); }).filter(Boolean); if (!ws.length) return null;
+    ws.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    var box = el('div', 'tllm-why'); box.appendChild(el('h3', 'tllm-why-h', 'Why the numbers differ'));
+    box.appendChild(el('p', 'tllm-why-l', (visitor() ? 'Places on this map' : 'Your places') + ' that are not among the 193 UN members, and where each one counts.'));
+    var ul = el('ul', 'tllm-why-ul');
+    ws.forEach(function (w) { var li = el('li'); li.appendChild(el('b', null, w.name)); li.appendChild(document.createTextNode(' · ' + w.text)); ul.appendChild(li); });
+    box.appendChild(ul); return box;
   }
 
   // ---------- sets of seven: stamps with three-letter codes ----------
@@ -1138,7 +1218,8 @@
     items.forEach(function (it) {
       var hay = (it.r.name + ' ' + countryName(it.r.country) + ' ' + it.c.name).toLowerCase(); if (q && hay.indexOf(q) < 0) return; if (++shown > 400) return;
       var li = el('li'), b = el('button'); b.type = 'button';
-      b.innerHTML = esc(it.r.name) + '<span>' + esc(it.c.id === 'countries' ? (depthOf(it.r) || 'logged') : countryName(it.r.country)) + '</span>';
+      var w = it.c.id === 'countries' && it.r.iso ? K.why(it.r.iso) : null;
+      b.innerHTML = (w ? '<b class="tllm-list-nm">' + esc(it.r.name) + '<small class="tllm-list-why">' + esc(w.text) + '</small></b>' : esc(it.r.name)) + '<span>' + esc(it.c.id === 'countries' ? (depthOf(it.r) || 'logged') : countryName(it.r.country)) + '</span>';
       b.addEventListener('click', function () {
         var co = [it.r.longitude, it.r.latitude]; move(co, it.c.id === 'countries' ? 4 : 9);
         if (it.c.id !== 'countries') map.once('moveend', function () { openCard(Object.assign({}, it.r, { _c: it.c.id }), co); }); else say(it.r.name + ', ' + (depthOf(it.r) || 'logged'));

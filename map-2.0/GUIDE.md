@@ -8,6 +8,10 @@ Every number on the page is counted live (20 October 2026, B3). The countries ca
 
 Logged-out visitors see the site owner's live map from the URL in `data-tll-owner-url` on the map root (a GET that returns tllStates v2). If that attribute is empty or the request fails, they see `data/owner-record.json`, the 7 October copy. Lived and Stayed make places; Antarctica is a place, not a country; layovers are counted apart; pets never count in the member's numbers. Pins in `data/countries.json` only propose a country until it is logged in the editor, and the Places Been pins for cities, airports and parks show only on the owner's map.
 
+## The rulebook whys
+
+Every one of the 250 entries that is not among the 193 UN members has a kind (observer, partial, territory, antarctica) and one plain line in the `WHY` table of the `TLLMapCounts` block, read with `TLLMapCounts.why(id)`. The map shows it under the name in the country card and the keyboard pin list, and lists the record's own places that have one under the rulebooks as "Why the numbers differ". The passport on /the-map shows it through `src/pages/the-map/after-2026-10-20/why-annotate.js` (also `window.__tllWhy(id)`). To change a line, edit the table, keep it under 110 characters with its tail, and run the tests.
+
 ## Hide or bring back a list
 
 A list members cannot log yet carries `"hidden_until_loggable": true` in `collections.json`. It is then off the page for everyone (chip, drawer, card, pins) and its data file stays in the repo. Set it to `false` or remove the line to bring the list back.

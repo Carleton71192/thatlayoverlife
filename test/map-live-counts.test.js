@@ -141,3 +141,51 @@ describe('dates', () => {
     expect(K.dateLabel(null)).toBe('');
   });
 });
+
+// Rulebook whys (Nancy, 20 October 2026: "Want Antarctica and New Caledonia but need to identify the whys on our lists").
+describe('rulebook whys', () => {
+  const all = [];
+  for (let n = 0; n < 1000; n++) { const k = String(n).padStart(3, '0'); if (K.isIso(k)) all.push(k); }
+  it('gives every one of the 250 entries either a UN seat or a why', () => {
+    expect(all).toHaveLength(250);
+    for (const k of all) expect(K.isUN(k) !== !!K.why(k), k).toBe(true);
+    expect(all.filter((k) => K.why(k))).toHaveLength(57);
+    expect([...K.whyIds]).toEqual(all.filter((k) => !K.isUN(k)));
+  });
+  it('returns null for UN members', () => {
+    expect(K.why('208')).toBe(null);
+    expect(K.why('840')).toBe(null);
+  });
+  it('names the kind for New Caledonia, Antarctica, Kosovo and the Holy See', () => {
+    expect(K.why('540')).toMatchObject({ kind: 'territory', text: 'French territory. Counts in the 249, not among the 193 UN members.' });
+    expect(K.why('010')).toMatchObject({ kind: 'antarctica', text: 'A continent, not a country. Counts as a place and a continent, not in the country count or any UN list.' });
+    expect(K.why('900').kind).toBe('partial');
+    expect(K.why('XK').kind).toBe('partial');
+    expect(K.why('undefined').kind).toBe('partial');
+    expect(K.why('336')).toMatchObject({ kind: 'observer', text: 'UN observer state. Counts in the 249 and in the 195, not among the 193 UN members.' });
+    expect(K.why('275').kind).toBe('observer');
+    expect(K.why('158').kind).toBe('partial');
+    expect(K.why('732').kind).toBe('territory');
+  });
+  it('keeps every why short and inside the copy rules', () => {
+    for (const k of K.whyIds) {
+      const w = K.why(k);
+      expect(w.text.length, k).toBeLessThan(110);
+      expect(w.name.length, k).toBeGreaterThan(1);
+      expect(w.text, k).not.toMatch(/[—!]|\b(filed|ships?|shipped|ledger|countries|walked|on foot)\b|the shelf|counted by hand/i);
+    }
+  });
+});
+
+describe('the passport why script', () => {
+  const SRC = readFileSync(new URL('../src/pages/the-map/after-2026-10-20/why-annotate.js', import.meta.url), 'utf8');
+  it('stays under 4 KB and exposes __tllWhy once TLLMapCounts is there', () => {
+    expect(Buffer.byteLength(SRC)).toBeLessThan(4096);
+    const win = {};
+    runInNewContext(SRC, { window: win, document: { readyState: 'complete', getElementById: () => null } });
+    expect(win.__tllWhy('540')).toBe(null); // the bundle has not loaded yet
+    win.TLLMapCounts = K;
+    expect(win.__tllWhy('540').kind).toBe('territory');
+    expect(win.__tllWhy('208')).toBe(null);
+  });
+});
