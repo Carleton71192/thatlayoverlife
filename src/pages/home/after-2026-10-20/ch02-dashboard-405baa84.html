@@ -31,7 +31,7 @@
 @media(max-width:899px){.h3-steps{grid-template-columns:1fr}}
 </style>
 <script id="h3-dash-js">
-/* Home 3.3 dashboard (Packet B, 20 Oct 2026). Visitors: the countries with a story, rose, from the story rail data (never a zero, never "be the first").
+/* Home 3.3 dashboard (Packet B, 20 Oct 2026). Visitors: the countries with a story, rose, read from /stories the same way the footer counts them, so the home line and the footer agree (never a zero, never "be the first").
    Members: their own map embedded from /the-map, and the count line from tllStates read the same way the map page counts: places are lived or stayed
    (Antarctica counts, layover only does not), countries are the same set without Antarctica, layovers are airside only. Read only; the map editor writes. */
 (function(){var sec=document.querySelector('[data-h3-dash]');if(!sec||sec.__h3)return;sec.__h3=1;
@@ -77,8 +77,16 @@ function load(src){return new Promise(function(ok,no){var s=document.createEleme
 function boot(){Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),
  fetch(CDN+'world-atlas@2.0.2/countries-110m.json').then(function(r){return r.json();})]).then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. The countries with stories are listed below it.';box.appendChild(m);});}
 
-function build(){stories=(window.tllHomeStories||[]);filedId={};var codes={};stories.forEach(function(s){codesOf(s.loc).forEach(function(c){if(A2N[c]){filedId[A2N[c]]=c;codes[c]=1;}});});
- var n=Object.keys(codes).length;if(n&&line.hidden!==false&&!sec.__member){line.textContent=n+' countries in our stories';line.hidden=false;}paint();}
+function apply(codes){filedId={};Object.keys(codes).forEach(function(c){if(A2N[c])filedId[A2N[c]]=c;});var n=Object.keys(codes).filter(function(c){return A2N[c];}).length;
+ if(n&&!sec.__member){line.textContent=n+' countries in our stories';line.hidden=false;}paint();}
+function build(){var codes={};(window.tllHomeStories||[]).forEach(function(s){codesOf(s.loc).forEach(function(c){codes[c]=1;});});if(!sec.__all)apply(codes);}
+/* The footer counts embed (tll-live-counts v3.2) publishes its numbers on window.tllCounts; the line takes that figure so home and footer always agree. Only if the footer has not counted within four seconds does this block count the same way itself. */
+function fromFooter(n){if(!n||!n.c||sec.__member)return false;sec.__all=true;line.textContent=n.c+' countries in our stories';line.hidden=false;return true;}
+document.addEventListener('tll:counts',function(e){fromFooter(e.detail);});
+function all(){if(fromFooter(window.tllCounts))return;setTimeout(function(){if(sec.__all)return;fetchAll();},4000);}
+function fetchAll(){fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';}).then(function(h){if(!h)return;var d=new DOMParser().parseFromString(h,'text/html'),codes={};
+ [].forEach.call(d.querySelectorAll('a.tll-lib-card .tll-lib-meta'),function(m){codesOf(m.textContent).forEach(function(c){codes[c]=1;});});
+ if(Object.keys(codes).length){sec.__all=true;apply(codes);}}).catch(function(){});}
 function count(d){if(!d||!d.states)return null;var tr=(d.travelers||[]).filter(function(t){return !t.pet;})[0],id=tr?tr.id:'t1',places=0,lay=0,ata=false;
  Object.keys(d.states).forEach(function(k){var kk=k==='undefined'?'900':k;if(!/^\d{3}$/.test(kk))return;var e=d.states[k],v=e&&typeof e==='object'&&!Array.isArray(e)?e[id]:(typeof e==='string'?e:null);if(!v)return;if(v==='airside'){lay++;return;}places++;if(kk==='010')ata=true;});
  return {places:places,countries:places-(ata?1:0),ata:ata,lay:lay};}
@@ -89,7 +97,7 @@ function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDo
   var ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
   function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + Antarctica':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
   if(ls&&ls.states){show(count(ls));return;}return ms.getMemberJSON().then(function(j){show(count(j&&j.data&&j.data.tllStates));});}).catch(function(){});},250);}
-document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();member();
+document.addEventListener('h3:stories',build);if(window.tllHomeStories)build();all();member();
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();boot();}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
 })();
 </script>
