@@ -1,6 +1,6 @@
 # Change log: /account map pin moves to aeba470 (20 October 2026)
 
-**Status:** Proposed, awaiting Nancy's approval. Staged as an unpublished Webflow edit on 20 October 2026; the code was read back and matches the after file. Nothing is published. STATUS.md row S121.
+**Status:** Approved 21 Oct 2026 with one change (Nancy: "Approve the account map pin, use today's version"): pinned to a81ffb9 instead of aeba470, live (STATUS S122). Original status: proposed, awaiting Nancy's approval. Staged as an unpublished Webflow edit on 20 October 2026; the code was read back and matches the after file. Nothing is published. STATUS.md row S121.
 **Site:** 69d6145cf421c777840c1e25. **Page:** /account 6a0d5c23c57426a9c563e8de. **Element:** HtmlEmbed ee672abf-2d76-2371-e49d-ea35ffd3960c ("My map", Map 2.0 in member mode).
 **Before and after code:** src/pages/account/live-2026-10-20/map-embed-ee672abf-before.html (read from Webflow today) and map-embed-ee672abf-after.html (what was staged).
 **Why:** COUNT-RULES.md section 7, stale browser copies. Follows S94 (handoff/CHANGE-LOG-ACCOUNT-COUNTS-2026-10-20.md, item 9), which moved the save stamp in the repo and left this pin for later.
