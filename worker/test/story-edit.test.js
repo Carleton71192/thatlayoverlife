@@ -162,17 +162,28 @@ afterEach(() => {
 test("parseShoutOuts reads back what shoutOutsHtml wrote, affiliate flag included", () => {
   const html = '<ul><li><a href="https://a.example.com/x?y=1&amp;z=2" rel="sponsored nofollow" data-tll-affiliate>A &amp; B</a>: Why</li><li><a href="https://b.example.com/" rel="nofollow">B</a></li></ul>';
   assert.deepEqual(parseShoutOuts(html), [
-    { link: "https://a.example.com/x?y=1&z=2", affiliate: true, who: "A & B", why: "Why" },
-    { link: "https://b.example.com/", affiliate: false, who: "B", why: "" },
+    { link: "https://a.example.com/x?y=1&z=2", affiliate: true, comped: false, who: "A & B", why: "Why" },
+    { link: "https://b.example.com/", affiliate: false, comped: false, who: "B", why: "" },
   ]);
   assert.deepEqual(parseShoutOuts(""), []);
 });
 
 test("parseDisclosure reads the two answers back from the disclosure line", () => {
-  assert.deepEqual(parseDisclosure("Paid for by the traveler"), { sponsored: false, sponsorName: "", affiliateLinks: false });
-  assert.deepEqual(parseDisclosure("Paid for by the traveler. Contains affiliate links"), { sponsored: false, sponsorName: "", affiliateLinks: true });
-  assert.deepEqual(parseDisclosure("Sponsored or hosted: Hotel Example. Contains affiliate links"), { sponsored: true, sponsorName: "Hotel Example", affiliateLinks: true });
-  assert.deepEqual(parseDisclosure("Sponsored or hosted: Hotel Example"), { sponsored: true, sponsorName: "Hotel Example", affiliateLinks: false });
+  assert.deepEqual(parseDisclosure("Paid for by the traveler"), { sponsored: false, sponsorName: "", affiliateLinks: false, sponsors: [] });
+  assert.deepEqual(parseDisclosure("Paid for by the traveler. Contains affiliate links"), { sponsored: false, sponsorName: "", affiliateLinks: true, sponsors: [] });
+  assert.deepEqual(parseDisclosure("Sponsored or hosted: Hotel Example. Contains affiliate links"), { sponsored: true, sponsorName: "Hotel Example", affiliateLinks: true, sponsors: [] });
+  assert.deepEqual(parseDisclosure("Sponsored or hosted: Hotel Example"), { sponsored: true, sponsorName: "Hotel Example", affiliateLinks: false, sponsors: [] });
+});
+
+test("parseDisclosure reads the Submit v5 line back into sponsor rows", () => {
+  const v5 = parseDisclosure("Hosted by Hotel Example. Gifted by Ferry Co. Opinions are the writer's own. Contains affiliate links.");
+  assert.deepEqual(v5, {
+    sponsored: true,
+    sponsorName: "Hotel Example, Ferry Co",
+    affiliateLinks: true,
+    sponsors: [{ name: "Hotel Example", kind: "hosted" }, { name: "Ferry Co", kind: "gifted" }],
+  });
+  assert.deepEqual(parseDisclosure("Paid for by Airline X. Opinions are the writer's own.").sponsors, [{ name: "Airline X", kind: "paid" }]);
 });
 
 test("readLog keeps an unreadable log as a legacy entry instead of dropping it", () => {
@@ -202,8 +213,11 @@ test("GET /story returns the owner's story in form shape", async () => {
   assert.equal(data.charterOnFile, true);
   assert.equal(data.countryName, "Denmark");
   assert.equal(data.heroPhoto.publicId, "tll/abc");
-  assert.deepEqual(data.shoutOuts, [{ link: "https://cafe.example.com/menu", affiliate: false, who: "Cafe Example", why: "Coffee" }]);
+  assert.deepEqual(data.shoutOuts, [{ link: "https://cafe.example.com/menu", affiliate: false, comped: false, who: "Cafe Example", why: "Coffee" }]);
   assert.equal(data.sponsored, false);
+  assert.deepEqual(data.sponsors, []);
+  assert.deepEqual(data.datesShown, { posted: true, traveled: true, edited: false });
+  assert.equal(data.readerQuestion, "");
   assert.equal(data.url, "https://www.thatlayover.life/stories/six-hours-in-kastrup-ab12");
 });
 

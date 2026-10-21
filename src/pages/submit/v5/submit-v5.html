@@ -1,0 +1,243 @@
+<!-- TLL /submit v5 markup embed (21 October 2026). Target: handoff/claude-design-source/TLL Submit v5.dc.html, copy verbatim.
+     One Paper panel, six sections with a sticky sub nav, the rules rail on desktop, a bottom bar on phones. Writer-led: the page never writes
+     headline, excerpt, pull quote or body. data-worker is the only configuration; no secret lives here. Script: submit-v5.js (hosted, pinned).
+     Styles: submit-v5.css embed. The old Webflow forms stay on the page, hidden, so their names and submission history keep working.
+     Link mode fills and submits the live "Link-out story" Webflow form (data-tll-form="link-out-story"). -->
+<div class="tsv5" id="tll-submit-v5" data-worker="" data-cloud="idonvlow" data-preset="tll_photos">
+  <p class="tsv5-saveline" id="tsv5-saveline" aria-live="polite">SAVES AS YOU TYPE</p>
+
+  <section class="tsv5-sent" id="tsv5-sent" hidden aria-live="polite">
+    <p class="tsv5-eye tsv5-eye-teal"><span id="tsv5-sent-eye">LIVE</span></p>
+    <h1 class="tsv5-h1" id="tsv5-sent-h">It's live.</h1>
+    <p id="tsv5-sent-p"><span id="tsv5-sent-title">Your story</span>. A copy is in your inbox.</p>
+    <div class="tsv5-sent-a">
+      <a class="tsv5-btn" id="tsv5-sent-link" href="/stories">See your story</a>
+      <button type="button" class="tsv5-link" id="tsv5-sent-again">Write another</button>
+    </div>
+  </section>
+
+  <div id="tsv5-form">
+    <div class="tsv5-editbar" id="tsv5-editbar" hidden>
+      <span><b>EDITING A LIVE STORY</b> · same page, same link</span>
+      <a class="tsv5-link" id="tsv5-edit-cancel" href="/account#stories">Cancel, keep it as is</a>
+    </div>
+
+    <div class="tsv5-head">
+      <p class="tsv5-eye">SHARE YOUR STORY</p>
+      <h1 class="tsv5-h1">You went. <em>Write it down.</em></h1>
+      <p class="tsv5-lede">Passes the rules, goes live. Your voice stays yours.</p>
+    </div>
+
+    <div class="tsv5-modes" role="radiogroup" aria-label="How you share it">
+      <button type="button" class="tsv5-mode" role="radio" aria-checked="true" data-mode="write"><b>Write it here</b><span>The full story on TLL</span></button>
+      <button type="button" class="tsv5-mode" role="radio" aria-checked="false" data-mode="link"><b>Link to it</b><span>Already published elsewhere</span></button>
+    </div>
+
+    <div class="tsv5-grid">
+      <div class="tsv5-main">
+
+        <!-- Write it here -->
+        <div class="tsv5-panel" id="tsv5-write">
+          <nav class="tsv5-subnav" aria-label="Story sections">
+            <button type="button" class="tsv5-tab" data-tab="trip" aria-current="location"><i aria-hidden="true"></i>TRIP</button>
+            <button type="button" class="tsv5-tab" data-tab="story"><i aria-hidden="true"></i>STORY</button>
+            <button type="button" class="tsv5-tab" data-tab="photos"><i aria-hidden="true"></i>PHOTOS</button>
+            <button type="button" class="tsv5-tab" data-tab="extras"><i aria-hidden="true"></i>EXTRAS</button>
+            <button type="button" class="tsv5-tab" data-tab="credit"><i aria-hidden="true"></i>BYLINE</button>
+            <button type="button" class="tsv5-tab" data-tab="send"><i aria-hidden="true"></i>SEND</button>
+          </nav>
+
+          <section class="tsv5-sec" id="sv-trip" data-sv="trip">
+            <h2 class="tsv5-h2"><span class="tsv5-n">01</span>The trip</h2>
+            <div class="tsv5-row">
+              <label class="tsv5-field"><span class="tsv5-label"><span>Country<span class="tsv5-req">REQUIRED</span></span></span><input class="tsv5-input" id="tsv5-country" list="tsv5-countries" placeholder="Montenegro" autocomplete="country-name"><span class="tsv5-hint" id="tsv5-region"></span></label>
+              <label class="tsv5-field"><span class="tsv5-label"><span>City or layover</span></span><input class="tsv5-input" id="tsv5-city" placeholder="Budva" maxlength="120"></label>
+              <label class="tsv5-field"><span class="tsv5-label"><span>When</span></span><input class="tsv5-input" id="tsv5-when" placeholder="May 2026, or Easter weekend" maxlength="60"></label>
+            </div>
+            <datalist id="tsv5-countries"></datalist>
+          </section>
+
+          <section class="tsv5-sec" id="sv-story" data-sv="story">
+            <h2 class="tsv5-h2"><span class="tsv5-n">02</span>The story</h2>
+            <div class="tsv5-col">
+              <label class="tsv5-field"><span class="tsv5-label"><span>Headline<span class="tsv5-req">REQUIRED</span></span><span class="tsv5-count" id="tsv5-title-count">0 / 60</span></span><input class="tsv5-input tsv5-input-h" id="tsv5-title" maxlength="80" placeholder="Specific beats clever"></label>
+              <label class="tsv5-field"><span class="tsv5-label"><span>Excerpt</span><span class="tsv5-count" id="tsv5-excerpt-count">0 / 240</span></span><textarea class="tsv5-input" id="tsv5-excerpt" rows="2" maxlength="260" placeholder="The one-line pitch on the story card"></textarea></label>
+              <div class="tsv5-field">
+                <span class="tsv5-label"><span>Story<span class="tsv5-req">300+ WORDS</span></span><span class="tsv5-count" id="tsv5-words">0 WORDS</span></span>
+                <div class="tsv5-editor">
+                  <div class="tsv5-tools" role="toolbar" aria-label="Formatting">
+                    <button type="button" class="tsv5-tool" data-cmd="bold" aria-label="Bold" title="Bold">B</button>
+                    <button type="button" class="tsv5-tool tsv5-tool-i" data-cmd="italic" aria-label="Italic" title="Italic">I</button>
+                    <button type="button" class="tsv5-tool tsv5-tool-h" data-cmd="formatBlock" data-arg="h2" aria-label="Subhead" title="Subhead">H</button>
+                    <button type="button" class="tsv5-tool tsv5-tool-q" data-cmd="formatBlock" data-arg="blockquote" aria-label="Quote" title="Quote">“</button>
+                    <button type="button" class="tsv5-tool" data-cmd="createLink" aria-label="Link" title="Link">↗</button>
+                  </div>
+                  <div class="tsv5-body" id="tsv5-body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Your story" data-ph="Start anywhere. The middle is fine."></div>
+                </div>
+                <span class="tsv5-hint" id="tsv5-read"></span>
+              </div>
+              <div class="tsv5-field">
+                <span class="tsv5-label"><span>Files under<span class="tsv5-mono">UP TO 3</span><button type="button" class="tsv5-i" aria-label="The dot marks a suggestion from your text. You decide." data-tip="The dot marks a suggestion from your text. You decide." aria-expanded="false">i</button></span></span>
+                <div class="tsv5-chips" id="tsv5-themes"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="tsv5-sec" id="sv-photos" data-sv="photos">
+            <h2 class="tsv5-h2"><span class="tsv5-n">03</span>Photos</h2>
+            <div class="tsv5-row tsv5-row-wide">
+              <div class="tsv5-field">
+                <span class="tsv5-label"><span>Hero<span class="tsv5-req">REQUIRED · YOURS</span></span></span>
+                <label class="tsv5-hero" id="tsv5-hero"><input type="file" accept="image/*" id="tsv5-hero-file" aria-label="Upload hero photo"><span class="tsv5-hero-chip" id="tsv5-hero-chip">ADD YOUR PHOTO</span></label>
+                <p class="tsv5-status" id="tsv5-hero-status" role="status" aria-live="polite"></p>
+              </div>
+              <div class="tsv5-field">
+                <span class="tsv5-label"><span>Gallery<span class="tsv5-mono" id="tsv5-gallery-count">0 / 12</span></span></span>
+                <div class="tsv5-gallery" id="tsv5-gallery"><label class="tsv5-gadd" id="tsv5-gadd"><input type="file" accept="image/*" multiple id="tsv5-gallery-file" aria-label="Add gallery photos">+</label></div>
+                <p class="tsv5-status" id="tsv5-gallery-status" role="status" aria-live="polite"></p>
+                <label class="tsv5-check"><input type="checkbox" id="tsv5-lounge">Send my favorite to the Layover Lounge too</label>
+              </div>
+            </div>
+          </section>
+
+          <section class="tsv5-sec" id="sv-extras" data-sv="extras">
+            <h2 class="tsv5-h2" style="margin-bottom:6px"><span class="tsv5-n">04</span>Extras</h2>
+            <p class="tsv5-note-line" style="margin:0 0 16px">All optional. Open what fits.</p>
+            <div class="tsv5-x">
+
+              <div class="tsv5-xi">
+                <button type="button" class="tsv5-xh" aria-expanded="false" aria-controls="tsv5-x-sponsor"><span><b>Sponsored, hosted or gifted</b><small class="is-ask" id="tsv5-sponsor-sum">ANSWER THIS ONE</small></span><i aria-hidden="true">+</i></button>
+                <div class="tsv5-xb" id="tsv5-x-sponsor" hidden>
+                  <div class="tsv5-seg" role="radiogroup" aria-label="Did anyone pay, host or gift any part of this trip?">
+                    <button type="button" class="tsv5-chip" role="radio" aria-checked="false" data-sponsored="no">No</button>
+                    <button type="button" class="tsv5-chip" role="radio" aria-checked="false" data-sponsored="yes">Yes</button>
+                  </div>
+                  <div class="tsv5-xb" id="tsv5-sponsors-wrap" hidden style="padding:0;gap:8px">
+                    <div id="tsv5-sponsors"></div>
+                    <button type="button" class="tsv5-link" id="tsv5-sponsor-add" style="align-self:flex-start">+ Another sponsor or host</button>
+                    <div class="tsv5-preview"><b>READERS SEE, AT THE TOP</b><span id="tsv5-sponsor-preview">Add who, and readers see it here.</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tsv5-xi">
+                <button type="button" class="tsv5-xh" aria-expanded="false" aria-controls="tsv5-x-shouts"><span><b>Shout-outs</b><small id="tsv5-shouts-sum">PLACES YOU WOULD SEND A FRIEND</small></span><i aria-hidden="true">+</i></button>
+                <div class="tsv5-xb" id="tsv5-x-shouts" hidden style="gap:8px">
+                  <div id="tsv5-shouts" style="display:flex;flex-direction:column;gap:8px"></div>
+                  <button type="button" class="tsv5-link" id="tsv5-shout-add" style="align-self:flex-start">+ Add another</button>
+                </div>
+              </div>
+
+              <div class="tsv5-xi">
+                <button type="button" class="tsv5-xh" aria-expanded="false" aria-controls="tsv5-x-hook"><span><b>Pull quote and sign-off</b><small id="tsv5-hook-sum">THE LINE THEY SCREENSHOT</small></span><i aria-hidden="true">+</i></button>
+                <div class="tsv5-xb tsv5-row tsv5-row-wide" id="tsv5-x-hook" hidden style="display:grid">
+                  <label class="tsv5-field"><span class="tsv5-label"><span>Pull quote</span></span><input class="tsv5-input" id="tsv5-quote" maxlength="400" placeholder="The line people screenshot"></label>
+                  <label class="tsv5-field"><span class="tsv5-label"><span>Question for readers</span></span><input class="tsv5-input" id="tsv5-question" maxlength="300" placeholder="Would you take the ferry?"></label>
+                  <label class="tsv5-field"><span class="tsv5-label"><span>Sign-off</span></span><input class="tsv5-input" id="tsv5-signoff" maxlength="300" placeholder="Still raising glasses. Nancy"></label>
+                  <label class="tsv5-field"><span class="tsv5-label"><span>A dish, a sound, an animal</span></span><input class="tsv5-input" id="tsv5-anchors" maxlength="300" placeholder="burek, ferry horn, a goat"></label>
+                  <label class="tsv5-field tsv5-field-full"><span class="tsv5-label"><span>Hashtags</span></span><input class="tsv5-input" id="tsv5-hashtags" maxlength="300" placeholder="#layover #montenegro"></label>
+                </div>
+              </div>
+
+              <div class="tsv5-xi">
+                <button type="button" class="tsv5-xh" aria-expanded="false" aria-controls="tsv5-x-crew"><span><b>Who came along</b><small id="tsv5-crew-sum">PEOPLE AND PETS</small></span><i aria-hidden="true">+</i></button>
+                <div class="tsv5-xb" id="tsv5-x-crew" hidden>
+                  <label class="tsv5-field"><span class="tsv5-label"><span>People<button type="button" class="tsv5-i" aria-label="Only tag people happy to be named. They get a link to write their side of the same trip." data-tip="Only tag people happy to be named. They get a link to write their side of the same trip." aria-expanded="false">i</button></span></span><input class="tsv5-input" id="tsv5-crew" maxlength="200" placeholder="Name, @handle or email"></label>
+                  <div class="tsv5-chips" id="tsv5-crew-chips"></div>
+                  <div class="tsv5-chips" id="tsv5-pets"></div>
+                </div>
+              </div>
+
+              <div class="tsv5-xi">
+                <button type="button" class="tsv5-xh" aria-expanded="false" aria-controls="tsv5-x-prefs"><span><b>Sharing and dates</b><small id="tsv5-prefs-sum">4 OF 6 ON</small></span><i aria-hidden="true">+</i></button>
+                <div class="tsv5-xb tsv5-prefs" id="tsv5-x-prefs" hidden style="display:grid">
+                  <label class="tsv5-check"><input type="checkbox" data-pref="news" checked>OK for the Sunday letter</label>
+                  <label class="tsv5-check"><input type="checkbox" data-pref="social" checked>OK to quote on TLL social</label>
+                  <label class="tsv5-check"><input type="checkbox" data-pref="press">OK for press to ask about it</label>
+                  <label class="tsv5-check"><input type="checkbox" data-pref="posted" checked>Show the date it went live</label>
+                  <label class="tsv5-check"><input type="checkbox" data-pref="traveled" checked>Show when I traveled</label>
+                  <label class="tsv5-check"><input type="checkbox" data-pref="edited">Show when I last edited</label>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <section class="tsv5-sec" id="sv-credit" data-sv="credit">
+            <h2 class="tsv5-h2"><span class="tsv5-n">05</span>Your byline</h2>
+            <div class="tsv5-credits" role="radiogroup" aria-label="Credit">
+              <button type="button" class="tsv5-credit" role="radio" aria-checked="true" data-credit="Full"><b>Your name</b><span>Name and photo</span></button>
+              <button type="button" class="tsv5-credit" role="radio" aria-checked="false" data-credit="Pen"><b>Pen name</b><span>Still a real person</span></button>
+            </div>
+            <label class="tsv5-field tsv5-pen" id="tsv5-pen-wrap" hidden><span class="tsv5-label"><span>Pen name</span></span><input class="tsv5-input" id="tsv5-pen" maxlength="80" placeholder="The Gate Floor Correspondent"></label>
+            <div class="tsv5-row">
+              <label class="tsv5-field"><span class="tsv5-label"><span>Website</span></span><input class="tsv5-input" id="tsv5-website" inputmode="url" maxlength="300" placeholder="https://"></label>
+              <label class="tsv5-field"><span class="tsv5-label"><span>Instagram</span></span><input class="tsv5-input" id="tsv5-instagram" maxlength="120" placeholder="@yourhandle"></label>
+            </div>
+          </section>
+
+          <section class="tsv5-sec" id="sv-send" data-sv="send">
+            <h2 class="tsv5-h2"><span class="tsv5-n">06</span>Read-through and send</h2>
+            <div class="tsv5-notes">
+              <span class="tsv5-notes-h">EDITOR'S NOTES · <span id="tsv5-notes-line">ALL CLEAR</span><button type="button" class="tsv5-i" aria-label="Spelling and facts to double-check. Accept or skip each one. Your voice is never touched." data-tip="Spelling and facts to double-check. Accept or skip each one. Your voice is never touched." aria-expanded="false">i</button></span>
+              <div class="tsv5-note" id="tsv5-note" hidden>
+                <span class="tsv5-note-k" id="tsv5-note-k"></span>
+                <span class="tsv5-note-t" id="tsv5-note-t"></span>
+                <div class="tsv5-note-a"><button type="button" class="tsv5-btn tsv5-btn-dark" id="tsv5-note-accept">Fix it</button><button type="button" class="tsv5-link" id="tsv5-note-skip">Skip</button></div>
+              </div>
+              <span class="tsv5-note-line" id="tsv5-note-line">Notes appear once you write.</span>
+            </div>
+            <div class="tsv5-check-list">
+              <label class="tsv5-check tsv5-check-big"><input type="checkbox" id="tsv5-travel"><span>It's a trip I took.</span></label>
+              <label class="tsv5-check tsv5-check-big"><input type="checkbox" id="tsv5-rights"><span>These are my words and photos, or I have the rights. People in them are OK with it.</span></label>
+              <label class="tsv5-check tsv5-check-big"><input type="checkbox" id="tsv5-charter"><span>I follow the <a href="/community-guidelines" target="_blank" rel="noopener">Community Guidelines</a></span></label>
+            </div>
+            <div class="tsv5-sendrow">
+              <button type="button" class="tsv5-btn" id="tsv5-send" aria-disabled="true">8 to go</button>
+              <span class="tsv5-next" id="tsv5-next">Next: A place</span>
+              <p class="tsv5-status tsv5-formstatus" id="tsv5-form-status" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Link to it -->
+        <div class="tsv5-panel tsv5-linkpanel" id="tsv5-link" hidden>
+          <h2 class="tsv5-h2"><span class="tsv5-n">01</span>Point us at it</h2>
+          <label class="tsv5-field"><span class="tsv5-label"><span>The link<span class="tsv5-req">REQUIRED</span></span></span><input class="tsv5-input" id="tsv5-lk-url" inputmode="url" placeholder="https://"><span class="tsv5-hint" id="tsv5-lk-host"></span></label>
+          <div class="tsv5-row">
+            <label class="tsv5-field"><span class="tsv5-label"><span>Title</span></span><input class="tsv5-input" id="tsv5-lk-title" maxlength="120"></label>
+            <label class="tsv5-field"><span class="tsv5-label"><span>Country</span></span><input class="tsv5-input" id="tsv5-lk-country" list="tsv5-countries" autocomplete="country-name"></label>
+          </div>
+          <label class="tsv5-field"><span class="tsv5-label"><span>One line on what it is</span></span><input class="tsv5-input" id="tsv5-lk-summary" maxlength="160"></label>
+          <label class="tsv5-check"><input type="checkbox" id="tsv5-lk-gated">Behind a paywall or login</label>
+          <label class="tsv5-check tsv5-check-big"><input type="checkbox" id="tsv5-lk-charter"><span>It's my travel story, and it follows the Community Guidelines.</span></label>
+          <p class="tsv5-status" id="tsv5-lk-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <aside class="tsv5-rail" aria-label="Submission rules">
+        <div class="tsv5-ink">
+          <div class="tsv5-rail-h"><b>THE RULES</b><span id="tsv5-rule-line">0 OF 8 RULES</span></div>
+          <div class="tsv5-prog" role="progressbar" aria-label="Rules passed" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="tsv5-prog"><i></i></div>
+          <ul class="tsv5-rules" id="tsv5-rules"></ul>
+          <button type="button" class="tsv5-btn" id="tsv5-send-rail" aria-disabled="true">8 to go</button>
+          <div class="tsv5-goes">Goes live when you send.<button type="button" class="tsv5-i" aria-label="No waiting for approval. The editor reads it after and can correct or pull it under the Charter. You get an email copy." data-tip="No waiting for approval. The editor reads it after and can correct or pull it under the Charter. You get an email copy." aria-expanded="false">i</button></div>
+        </div>
+        <div class="tsv5-cardp" id="tsv5-cardp">
+          <div class="tsv5-cardp-img" id="tsv5-cardp-img"></div>
+          <div class="tsv5-cardp-b">
+            <span class="tsv5-mono" id="tsv5-cardp-meta">COUNTRY</span>
+            <span class="tsv5-cardp-t" id="tsv5-cardp-t">Your headline</span>
+            <span class="tsv5-cardp-x" id="tsv5-cardp-x">Your excerpt shows here.</span>
+            <span class="tsv5-cardp-s" id="tsv5-cardp-s" hidden></span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="tsv5-bar" id="tsv5-bar" hidden>
+    <button type="button" class="tsv5-bar-txt" id="tsv5-bar-go"><b id="tsv5-bar-rule">0 OF 8 RULES</b><span id="tsv5-bar-next">Next: A place</span></button>
+    <button type="button" class="tsv5-btn" id="tsv5-send-bar" aria-disabled="true">8 to go</button>
+  </div>
+</div>

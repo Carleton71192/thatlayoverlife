@@ -367,3 +367,87 @@ test("the email copy follows the TLL rules", () => {
   }
   assert.equal(writerCopy({ headline: "Two\r\nlines", body: "", url: "u" }).subject, "Your story is live: Two lines");
 });
+
+// ---------------------------------------------------------------------------------------
+// Submit v5 (21 Oct 2026): sponsor rows, extras, dates shown, profile links, themes list
+// ---------------------------------------------------------------------------------------
+
+test("v5: sponsor rows write the disclosure line readers see and join the names into Sponsored by", async () => {
+  install();
+  const res = await publish(story({ sponsored: true, sponsors: [{ name: "Hotel Example", kind: "hosted" }, { name: "Ferry Co", kind: "gifted" }, { name: "", kind: "paid" }] }));
+  assert.equal(res.status, 200);
+  const fields = created().body.fieldData;
+  assert.equal(fields.disclosure, "Hosted by Hotel Example. Gifted by Ferry Co. Opinions are the writer's own.");
+  assert.equal(fields["sponsor-name-2"], "Hotel Example, Ferry Co");
+  calls = [];
+  const aff = await publish(story({ headline: "Another one", sponsored: true, affiliateLinks: true, sponsors: [{ name: "Airline X", kind: "paid" }] }));
+  assert.equal(aff.status, 200);
+  assert.equal(created().body.fieldData.disclosure, "Paid for by Airline X. Opinions are the writer's own. Contains affiliate links.");
+});
+
+test("v5: sponsored yes with no named row is refused; a v2 payload without rows keeps the old wording", async () => {
+  install();
+  const none = await publish(story({ sponsored: true, sponsors: [{ name: "", kind: "hosted" }] }));
+  assert.equal(none.status, 400);
+  assert.match((await none.json()).error, /name the sponsor/);
+  const v2 = await publish(story({ sponsored: true, sponsorName: "Hotel Example" }));
+  assert.equal(v2.status, 200);
+  assert.equal(created().body.fieldData.disclosure, "Sponsored or hosted: Hotel Example");
+});
+
+test("v5: reader question, anchors, hashtags, dates shown and the Lounge opt-in are written; absent keys write nothing", async () => {
+  install();
+  const res = await publish(story({ readerQuestion: "Would you take the ferry?", anchors: "burek, ferry horn", hashtags: "#layover #montenegro", datesShown: { posted: true, traveled: false, edited: true }, loungeOptIn: true }));
+  assert.equal(res.status, 200);
+  const f = created().body.fieldData;
+  assert.equal(f["reader-question"], "Would you take the ferry?");
+  assert.equal(f["sensory-anchors"], "burek, ferry horn");
+  assert.equal(f["hashtag-set"], "#layover #montenegro");
+  assert.deepEqual([f["show-posted-date"], f["show-traveled-date"], f["show-edited-date"]], [true, false, true]);
+  assert.deepEqual(JSON.parse(f["editor-notes-log"]).map((e) => e.type), ["lounge-opt-in"]);
+  calls = [];
+  await publish(story({ headline: "Plain v2 payload" }));
+  const g = created().body.fieldData;
+  for (const k of ["reader-question", "sensory-anchors", "hashtag-set", "show-posted-date", "show-traveled-date", "show-edited-date"]) assert.ok(!(k in g), k);
+  assert.equal(g["editor-notes-log"], "[]");
+});
+
+test("v5: the byline step patches pen name, website and Instagram on the profile, only when they changed", async () => {
+  install();
+  const res = await publish(story({ creditMode: "Pen", penName: "The Gate Floor Correspondent", profileLinks: { website: "https://example.com/", instagram: "@gatefloor" } }));
+  assert.equal(res.status, 200);
+  const patch = calls.find((c) => c.url === "https://api.webflow.com/v2/collections/contributors/items/c-writer" && c.method === "PATCH");
+  assert.ok(patch, "profile patched");
+  assert.deepEqual(patch.body.fieldData, {
+    "credit-mode": "38820387bc6c4892f486394a6c28776c",
+    "pen-name": "The Gate Floor Correspondent",
+    "personal-website-url": "https://example.com/",
+    "instagram-url": "https://www.instagram.com/gatefloor",
+  });
+  const bad = await publish(story({ headline: "Bad site", profileLinks: { website: "not a url" } }));
+  assert.equal(bad.status, 400);
+  calls = [];
+  await publish(story({ headline: "Nothing to patch" }));
+  assert.ok(!calls.some((c) => c.url.endsWith("/items/c-writer") && c.method === "PATCH"), "no patch when nothing changed");
+});
+
+test("v5: a comped shout-out is marked in the links list", async () => {
+  install();
+  const res = await publish(story({ shoutOuts: [{ who: "Cafe Example", link: "https://cafe.example.com/menu", comped: true }] }));
+  assert.equal(res.status, 200);
+  assert.match(created().body.fieldData["links-and-mentions"], /data-tll-comped/);
+});
+
+test("v5: GET /themes lists the themes publicly", async () => {
+  install();
+  globalThis.fetch = ((inner) => async (input, init) => {
+    const url = typeof input === "string" ? input : input.url;
+    if (url.startsWith("https://api.webflow.com/v2/collections/themes/items")) return new Response(JSON.stringify({ items: [{ id: "t1", fieldData: { name: "Layovers" } }] }), { status: 200 });
+    return inner(input, init);
+  })(globalThis.fetch);
+  const res = await worker.fetch(new Request("https://w.example/themes", { headers: { Origin: "https://www.thatlayover.life" } }), env({ THEMES_COLLECTION: "themes" }));
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  assert.ok(Array.isArray(data.themes));
+  assert.equal(data.themes[0].name, "Layovers");
+});

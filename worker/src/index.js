@@ -42,6 +42,23 @@ const LINK_LIMIT = 20;
 const LINK_TIMEOUT_MS = 6000;
 const SYNDICATION = ["newsletter", "social", "press"];
 const CREDIT_MODES = ["Full", "First", "Pen"];
+// Submit v5 (21 Oct 2026): what a sponsor or host gave, as the disclosure line names it.
+const SPONSOR_KINDS = { paid: "Paid for", hosted: "Hosted", gifted: "Gifted", discount: "Discounted" };
+const DISCLOSURE_TAIL = "Opinions are the writer's own.";
+
+/** The disclosure line readers see at the top of the story. With sponsor rows: "Hosted by X. Gifted by Y. Opinions are the writer's own."
+ *  Without rows the pre-v5 wording is kept, so older stories read back unchanged. */
+export function disclosureLine(story) {
+  const rows = Array.isArray(story.sponsors) ? story.sponsors.filter((r) => r && r.name) : [];
+  let line;
+  if (story.sponsored && rows.length) {
+    line = rows.map((r) => `${SPONSOR_KINDS[r.kind] || "Hosted"} by ${r.name}.`).join(" ") + ` ${DISCLOSURE_TAIL}`;
+  } else {
+    line = story.sponsored ? `Sponsored or hosted: ${story.sponsorName}` : "Paid for by the traveler";
+  }
+  if (story.affiliateLinks) line += rows.length && story.sponsored ? " Contains affiliate links." : ". Contains affiliate links";
+  return line;
+}
 
 // ---------------------------------------------------------------------------------------
 // Small helpers
@@ -515,6 +532,7 @@ function readPublishInput(input) {
       link: httpUrl(text(s.link, "shout-out link", { required: true, max: 500 }), "shout-out link"),
       why: text(s.why, "shout-out reason", { max: 300 }),
       affiliate: s.affiliate === true,
+      comped: s.comped === true,
     };
   });
   if (!out.affiliateLinks && out.shoutOuts.some((s) => s.affiliate)) {
@@ -527,13 +545,48 @@ function readPublishInput(input) {
 
   out.sponsored = input.sponsored === true;
   out.sponsorUrl = "";
+  // Submit v5 (21 Oct 2026): several sponsors or hosts, each with what they gave. The names also join into sponsorName,
+  // so the existing Sponsored by field keeps working. A v2 payload without "sponsors" behaves as before.
+  out.sponsors = [];
+  if (input.sponsors !== undefined && input.sponsors !== null) {
+    if (!Array.isArray(input.sponsors) || input.sponsors.length > 5) throw new Bad("Sponsors are limited to 5.");
+    out.sponsors = input.sponsors
+      .map((r, i) => {
+        if (!isObject(r)) throw new Bad(`Sponsor ${i + 1} is not valid.`);
+        const name = text(r.name, "sponsor name", { max: 120 });
+        const kind = typeof r.kind === "string" && SPONSOR_KINDS[r.kind] ? r.kind : "hosted";
+        return { name, kind };
+      })
+      .filter((r) => r.name);
+    if (out.sponsored && !out.sponsorName && out.sponsors.length) out.sponsorName = out.sponsors.map((r) => r.name).join(", ");
+  }
   if (out.sponsored) {
     if (!out.sponsorName) throw new Bad("Please name the sponsor.");
     const raw = text(input.sponsorUrl, "sponsorUrl", { max: 500 });
     if (raw) out.sponsorUrl = httpUrl(raw, "sponsorUrl");
   } else {
     out.sponsorName = "";
+    out.sponsors = [];
   }
+
+  // Submit v5 extras. All optional; absent keys write nothing.
+  out.readerQuestion = text(input.readerQuestion, "readerQuestion", { max: 300 });
+  out.anchors = text(input.anchors, "anchors", { max: 300 });
+  out.hashtags = text(input.hashtags, "hashtags", { max: 300 });
+  out.loungeOptIn = input.loungeOptIn === true;
+  out.datesShown = null;
+  if (input.datesShown !== undefined && input.datesShown !== null) {
+    if (!isObject(input.datesShown)) throw new Bad('"datesShown" is not valid.');
+    out.datesShown = { posted: input.datesShown.posted !== false, traveled: input.datesShown.traveled !== false, edited: input.datesShown.edited === true };
+  }
+  out.profileLinks = null;
+  if (input.profileLinks !== undefined && input.profileLinks !== null) {
+    if (!isObject(input.profileLinks)) throw new Bad('"profileLinks" is not valid.');
+    const website = text(input.profileLinks.website, "website", { max: 300 });
+    const instagram = text(input.profileLinks.instagram, "instagram", { max: 120 });
+    out.profileLinks = { website: website ? httpUrl(website, "website") : "", instagram: instagram.replace(/^@/, "") };
+  }
+  out.penName = text(input.penName, "penName", { max: 80 });
 
   const synd = input.syndication ?? [];
   if (!Array.isArray(synd) || synd.some((s) => !SYNDICATION.includes(s))) throw new Bad('"syndication" has an option that is not recognized.');
@@ -564,7 +617,7 @@ function regionOptionId(regionText) {
 function shoutOutsHtml(list) {
   const items = list.map(
     (s) =>
-      `<li><a href="${escapeHtml(s.link)}" rel="${s.affiliate ? "sponsored nofollow" : "nofollow"}"${s.affiliate ? " data-tll-affiliate" : ""}>${escapeHtml(s.who)}</a>${s.why ? `: ${escapeHtml(s.why)}` : ""}</li>`
+      `<li><a href="${escapeHtml(s.link)}" rel="${s.affiliate ? "sponsored nofollow" : "nofollow"}"${s.affiliate ? " data-tll-affiliate" : ""}${s.comped ? " data-tll-comped" : ""}>${escapeHtml(s.who)}</a>${s.why ? `: ${escapeHtml(s.why)}` : ""}</li>`
   );
   return `<ul>${items.join("")}</ul>`;
 }
@@ -727,6 +780,22 @@ async function sendWriterCopy(env, auth, story, url) {
   }
 }
 
+/** Profile fields the byline step may set: credit mode, pen name, website, Instagram (Submit v5). Only what changed is patched. */
+function profileFieldPatch(story, contributor, wantedCredit) {
+  const f = contributor.fieldData || {};
+  const patch = {};
+  if (wantedCredit && f["credit-mode"] !== wantedCredit) patch["credit-mode"] = wantedCredit;
+  if (story.creditMode === "Pen" && story.penName && f["pen-name"] !== story.penName) patch["pen-name"] = story.penName;
+  if (story.profileLinks) {
+    if (story.profileLinks.website && f["personal-website-url"] !== story.profileLinks.website) patch["personal-website-url"] = story.profileLinks.website;
+    if (story.profileLinks.instagram) {
+      const ig = `https://www.instagram.com/${story.profileLinks.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/\/+$/, "")}`;
+      if (f["instagram-url"] !== ig) patch["instagram-url"] = ig;
+    }
+  }
+  return patch;
+}
+
 async function handlePublish(request, env, auth) {
   let story;
   try {
@@ -777,10 +846,11 @@ async function handlePublish(request, env, auth) {
     Pen: "38820387bc6c4892f486394a6c28776c",
   };
   const wantedCredit = CREDIT_OPTION_IDS[story.creditMode];
-  if (wantedCredit && contributor.fieldData?.["credit-mode"] !== wantedCredit) {
+  const profilePatch = profileFieldPatch(story, contributor, wantedCredit);
+  if (Object.keys(profilePatch).length) {
     try {
       await webflow(env, "PATCH", `/collections/${env.CONTRIBUTORS_COLLECTION}/items/${contributor.id}`, {
-        fieldData: { "credit-mode": wantedCredit },
+        fieldData: profilePatch,
       });
       await webflow(env, "POST", `/collections/${env.CONTRIBUTORS_COLLECTION}/items/publish`, {
         itemIds: [contributor.id],
@@ -825,9 +895,7 @@ async function handlePublish(request, env, auth) {
     "submitted-at": nowIso,
     "seo-title": story.headline,
     "seo-description": story.excerpt,
-    disclosure:
-      (story.sponsored ? `Sponsored or hosted: ${story.sponsorName}` : "Paid for by the traveler") +
-      (story.affiliateLinks ? ". Contains affiliate links" : ""),
+    disclosure: disclosureLine(story),
     "charter-agreed-at": nowIso,
     "editor-notes-log": JSON.stringify(story.editorNotesLog),
     "photo-originals": JSON.stringify({ hero: story.heroPhoto, gallery: story.gallery }),
@@ -848,11 +916,21 @@ async function handlePublish(request, env, auth) {
     syndication: story.syndication.join(","),
     theme: story.tags,
     "pillar-2": story.pursuit,
+    "reader-question": story.readerQuestion,
+    "sensory-anchors": story.anchors,
+    "hashtag-set": story.hashtags,
   };
   for (const [k, v] of Object.entries(optional)) {
     if (v === "" || v === null || (Array.isArray(v) && v.length === 0)) continue;
     fieldData[k] = v;
   }
+  if (story.datesShown) {
+    fieldData["show-posted-date"] = story.datesShown.posted;
+    fieldData["show-traveled-date"] = story.datesShown.traveled;
+    fieldData["show-edited-date"] = story.datesShown.edited;
+  }
+  // The Lounge opt-in has no CMS field yet (open for Nancy); it rides in the log so the morning review sees it.
+  if (story.loungeOptIn) fieldData["editor-notes-log"] = JSON.stringify([...story.editorNotesLog, { type: "lounge-opt-in", decision: "accepted", at: nowIso }]);
 
   // Create exactly one item. A failure here creates nothing, so the writer can try again.
   let itemId;
@@ -922,7 +1000,7 @@ async function handlePublish(request, env, auth) {
 // Members edit their own stories (E1 to E4 of the story edit log). The helpers are shared, not copied.
 const storyEdit = createStoryEditHandlers({
   json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime,
-  regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL,
+  regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL, disclosureLine,
 });
 
 const POST_ROUTES = {
@@ -932,6 +1010,16 @@ const POST_ROUTES = {
   "/story/update": { handler: storyEdit.handleStoryUpdate },
   "/story/unpublish": { handler: storyEdit.handleStoryUnpublish },
 };
+
+// GET /themes: every Theme as {id, name}, public, cached for an hour. The /submit "Files under" chips read it (Submit v5).
+async function handleThemes(env) {
+  try {
+    const list = await getNameList(env, env.THEMES_COLLECTION, "themes:list");
+    return json({ themes: list }, 200, { "cache-control": "public, max-age=300" });
+  } catch {
+    return json({ error: "We could not load the themes right now." }, 502);
+  }
+}
 
 // GET /places: every Places Been item as {id, name}, public, cached for an hour. The /submit country picker reads it.
 async function handlePlaces(env) {
@@ -1001,6 +1089,8 @@ async function handleMe(env, auth) {
     slug: f.slug || "",
     creditMode: CREDIT[f["credit-mode"]] || "Full",
     penName: f["pen-name"] || "",
+    website: f["personal-website-url"] || "",
+    instagram: String(f["instagram-url"] || "").replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/\/+$/, ""),
     pets,
     crew,
   });
@@ -1026,6 +1116,7 @@ export default {
 
       if (request.method === "GET" && path === "/health") return respond(json({ ok: true, service: "tll-worker" }));
       if (request.method === "GET" && path === "/places") return respond(await handlePlaces(env));
+      if (request.method === "GET" && path === "/themes") return respond(await handleThemes(env));
       if (request.method === "GET" && (path === "/me" || path === "/story" || path === "/story/mine")) {
         const auth = await authenticate(request, env);
         if (auth instanceof Response) return respond(auth);

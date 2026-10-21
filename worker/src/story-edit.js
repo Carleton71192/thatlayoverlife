@@ -39,6 +39,12 @@ export const MEMBER_FIELDS = [
   "pillar-2",
   "byline-location",
   "last-updated",
+  "reader-question",
+  "sensory-anchors",
+  "hashtag-set",
+  "show-posted-date",
+  "show-traveled-date",
+  "show-edited-date",
 ];
 
 const SLUG_RE = /^[a-z0-9-]{1,120}$/;
@@ -58,7 +64,7 @@ export function parseShoutOuts(html) {
   const re = /<li><a href="([^"]*)"([^>]*)>([^<]*)<\/a>(?::\s*([^<]*))?<\/li>/g;
   let m;
   while ((m = re.exec(String(html || ""))) && out.length < 5) {
-    out.push({ link: decodeEntities(m[1]), affiliate: /\bdata-tll-affiliate\b/.test(m[2]), who: decodeEntities(m[3]), why: decodeEntities(m[4] || "") });
+    out.push({ link: decodeEntities(m[1]), affiliate: /\bdata-tll-affiliate\b/.test(m[2]), comped: /\bdata-tll-comped\b/.test(m[2]), who: decodeEntities(m[3]), why: decodeEntities(m[4] || "") });
   }
   return out;
 }
@@ -68,7 +74,15 @@ export function parseDisclosure(text) {
   const t = String(text || "").trim();
   const affiliateLinks = /contains affiliate links/i.test(t);
   const m = /^Sponsored or hosted:\s*(.+?)(?:\.\s*Contains affiliate links)?\.?$/i.exec(t);
-  return { sponsored: !!m, sponsorName: m ? m[1].trim() : "", affiliateLinks };
+  if (m) return { sponsored: true, sponsorName: m[1].trim(), affiliateLinks, sponsors: [] };
+  // Submit v5 line: "Hosted by X. Gifted by Y. Opinions are the writer's own." (one row per sponsor, what they gave first)
+  const KIND = { "paid for": "paid", hosted: "hosted", gifted: "gifted", discounted: "discount" };
+  const rows = [];
+  const re = /(Paid for|Hosted|Gifted|Discounted) by ([^.]+?)\./gi;
+  let r;
+  if (/opinions are the writer's own/i.test(t)) while ((r = re.exec(t))) rows.push({ name: r[2].trim(), kind: KIND[r[1].toLowerCase()] || "hosted" });
+  if (rows.length) return { sponsored: true, sponsorName: rows.map((x) => x.name).join(", "), affiliateLinks, sponsors: rows };
+  return { sponsored: false, sponsorName: "", affiliateLinks, sponsors: [] };
 }
 
 /** The editor-notes-log field as an array. Anything unreadable is kept as one legacy entry, never dropped. */
@@ -84,7 +98,7 @@ export function readLog(raw) {
 }
 
 export function createStoryEditHandlers(h) {
-  const { json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime, regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL } = h;
+  const { json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime, regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL, disclosureLine } = h;
 
   function readSlug(v) {
     const s = typeof v === "string" ? v.trim().toLowerCase() : "";
@@ -200,7 +214,12 @@ export function createStoryEditHandlers(h) {
       sponsored: disclosure.sponsored,
       sponsorName: f["sponsor-name-2"] || disclosure.sponsorName,
       sponsorUrl: f["sponsor-url"] || "",
+      sponsors: disclosure.sponsors,
       affiliateLinks: disclosure.affiliateLinks,
+      readerQuestion: f["reader-question"] || "",
+      anchors: f["sensory-anchors"] || "",
+      hashtags: f["hashtag-set"] || "",
+      datesShown: { posted: f["show-posted-date"] !== false, traveled: f["show-traveled-date"] !== false, edited: f["show-edited-date"] === true },
       syndication: String(f.syndication || "")
         .split(",")
         .map((s) => s.trim())
@@ -314,9 +333,7 @@ export function createStoryEditHandlers(h) {
       region,
       "seo-title": story.headline,
       "seo-description": story.excerpt,
-      disclosure:
-        (story.sponsored ? `Sponsored or hosted: ${story.sponsorName}` : "Paid for by the traveler") +
-        (story.affiliateLinks ? ". Contains affiliate links" : ""),
+      disclosure: disclosureLine(story),
       "sign-off": story.signOff,
       "pet-co-travelers": story.pets,
       "human-co-travelers": story.coTravelers,
@@ -329,7 +346,15 @@ export function createStoryEditHandlers(h) {
       theme: story.tags,
       "pillar-2": story.pursuit,
       "byline-location": countryName ? `${story.city.toUpperCase()}, ${countryName.toUpperCase()}` : story.city.toUpperCase(),
+      "reader-question": story.readerQuestion,
+      "sensory-anchors": story.anchors,
+      "hashtag-set": story.hashtags,
     };
+    if (story.datesShown) {
+      next["show-posted-date"] = story.datesShown.posted;
+      next["show-traveled-date"] = story.datesShown.traveled;
+      next["show-edited-date"] = story.datesShown.edited;
+    }
 
     // Only what changed is written, and only from the member list. The log names those fields (E3.4).
     const same = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
