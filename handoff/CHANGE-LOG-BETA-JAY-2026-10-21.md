@@ -1,4 +1,4 @@
-# Change log for approval: Jay's beta notes (21 October 2026, 05:34 to 05:58)
+# Change log: Jay's beta notes (21 October 2026, 05:34 to 05:58). Approved by Nancy 21 Oct ("Approve of changes") with one change to B6: Antarctica shows as "countries + AQ". Built in the repo, see handoff/packet-d/ROW-beta-jay.md.
 
 Six notes from Jay's WhatsApp screenshots, each checked against the live code copies in the repo, the CMS item and his Memberstack record. Nothing below is built. The lock holder applies B1 to B4 in Webflow; B5 and B6 wait for Nancy's word.
 

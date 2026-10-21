@@ -25,10 +25,10 @@ For Claude Design. These are the rules the live site uses today, plus the decisi
 | Number | Rule | Where it shows |
 |---|---|---|
 | **Places** | Every place where any person on the account has Lived or Stayed. Antarctica counts. Layover-only places do not. Pets do not count toward the member's number. | Map counter "n / 249", percent, "n of 249 logged", passport, home Chapter 03, the "of 249" badge on /account |
-| **Countries** | The same set without Antarctica. When Antarctica is ticked, the number is followed by "+ Antarctica". | /account LOGGED, Layover Wrapped "Countries logged", the owner's view of their public profile |
+| **Countries** | The same set without Antarctica. When Antarctica is ticked, the number is followed by "+ AQ" (Nancy, 21 Oct 2026; was "+ Antarctica"). | /account LOGGED, Layover Wrapped "Countries logged", the owner's view of their public profile |
 | **Layovers** | Places where the only state is Layover. Counted on their own, never added to the totals above. | Map legend, /account |
 | **Continents** | Continents of the counted places. Antarctica counts as a continent. | /account, profile |
-| **Pet stamps** | Places where the pet has any state. Each pet has its own count, separate from the member's. | Paw Passport, /account pet card ("N countries plus Antarctica" when ticked) |
+| **Pet stamps** | Places where the pet has any state. Each pet has its own count, separate from the member's. | Paw Passport, /account pet card ("N countries + AQ" when ticked) |
 | **Stories by country (site-wide)** | Every country named in a live story. This is story coverage, not anyone's travel count, and must be labeled that way. | Site footer, /destinations, home map flags |
 
 **Antarctica:** it has its own "Been to Antarctica" box above the country list in the map editor, with one checkbox per traveler. It is not a country but it is a place, so it counts in Places and the percent, and shows as "+ Antarctica" next to Countries.

@@ -29,8 +29,8 @@ var facts=document.querySelector('[data-tll-about-facts]'),span=document.querySe
 var sec=span&&span.closest('section');if(facts&&sec)sec.appendChild(facts);
 var o=document.querySelector('[data-tll-owner-url]'),u=o?(o.getAttribute('data-tll-owner-url')||'').trim():'';
 if(/^https:\/\//.test(u)){fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){var c=count(d);if(!c||!c.places||c.places>TOTAL)return;
- if(span)span.textContent='The country count stands at '+c.countries+(c.ata?' plus Antarctica':'')+', which leaves me '+(TOTAL-c.places)+' of the '+TOTAL+' places. Excellent reasons to keep going.';
- var f=document.querySelector('[data-tll-about-fact="countries"]');if(f){f.querySelector('[data-tll-about-fact-v]').textContent=c.countries+(c.ata?' + Antarctica':'')+' · '+c.lay+' layovers beside';f.hidden=false;}
+ if(span)span.textContent='The country count stands at '+c.countries+(c.ata?' + AQ':'')+', which leaves me '+(TOTAL-c.places)+' of the '+TOTAL+' places. Excellent reasons to keep going.';
+ var f=document.querySelector('[data-tll-about-fact="countries"]');if(f){f.querySelector('[data-tll-about-fact-v]').textContent=c.countries+(c.ata?' + AQ':'')+' · '+c.lay+' layovers beside';f.hidden=false;}
 }).catch(function(){});}
 get('/pets/magnus-waffles').then(function(d){
 var scripts=Array.from(d.querySelectorAll('script')),match;

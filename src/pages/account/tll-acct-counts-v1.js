@@ -61,7 +61,7 @@
     var c=tllCounts(d); cur=c;
     put('[data-tll-mod=countries]', c.ok?c.places:null);
     put('[data-tll-mod=pets]', c.ok?c.pets.length:null);
-    if(c.pets.length===1){ var p=c.pets[0], pl=$('[data-tll-mod=pets]'), body=pl&&pl.parentNode.querySelector('.tll-pickin-card-body'); if(body) body.textContent=p.name+' · '+p.stamps+(p.stamps===1?' country':' countries')+(p.ata?' plus Antarctica':'')+' and zero complaints.'; }
+    if(c.pets.length===1){ var p=c.pets[0], pl=$('[data-tll-mod=pets]'), body=pl&&pl.parentNode.querySelector('.tll-pickin-card-body'); if(body) body.textContent=p.name+' · '+p.stamps+(p.stamps===1?' country':' countries')+(p.ata?' + AQ':'')+' and zero complaints.'; }
     saved(json&&json.tllStatesAt);
     return c;
   }

@@ -53,7 +53,7 @@ function humans(d){var hum={},any=false;(d.travelers||[]).forEach(function(t){if
 function count(d){if(!d||d.v!==2||!d.states)return null;var h=humans(d),c=0,ata=false,lay=0;
  Object.keys(d.states).forEach(function(k){var b=best(d.states[k]||{},h);if(b==='lived'||b==='visited'){if(k===ATA)ata=true;else c++;}else if(b==='layover')lay++;});
  return {countries:c,ata:ata,lay:lay,places:c+(ata?1:0)};}
-function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + Antarctica':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
+function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + AQ':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
 function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;});}
 var rec=null,svg=null;
 function paint(){if(!svg||!rec||sec.__member)return;var h=humans(rec),st=rec.states||{};[].forEach.call(svg.querySelectorAll('path'),function(p){var id=p.getAttribute('data-id'),row=st[id]||(id==='900'?(st.XK||st.xk||st['undefined']):null);var b=best(row||{},h);p.classList.toggle('is-been',b==='lived'||b==='visited');p.classList.toggle('is-lay',b==='layover');});}
