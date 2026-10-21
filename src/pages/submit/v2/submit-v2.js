@@ -1,9 +1,11 @@
-/* TLL /submit v2 (19 Oct 2026). Writer-led story flow. Served from the repo through jsDelivr, pinned to one commit, registered as a
+/* TLL /submit v2 (19 Oct 2026, edit mode 21 Oct 2026). Writer-led story flow. Served from the repo through jsDelivr, pinned to one commit, registered as a
    Webflow hosted script. Source of truth: this file.
    The authenticity contract, in code: the page never writes to body, headline, excerpt or pull quote except (a) what the writer types and
    (b) one Accept on one Editor's note, which replaces exactly that span. There is no other path. Tags and pursuit are suggestions the
    writer can change. Reading time is words / 220, computed here, never asked. Photos: the original upload is never changed; a cleaned
-   version is a derived URL the writer can pick. No secret lives in this file; the Worker holds every key. */
+   version is a derived URL the writer can pick. No secret lives in this file; the Worker holds every key.
+   Edit mode (/submit?edit={slug}): the same form loaded with the live story from GET /story (owner only), saved through
+   POST /story/update. The URL, published date, contributor and the editor's fields never change from here. */
 (function () {
   'use strict';
   var root = document.getElementById('tll-submit-v2');
@@ -12,7 +14,8 @@
   var CLOUD = root.getAttribute('data-cloud') || 'idonvlow';
   var PRESET = root.getAttribute('data-preset') || 'tll_photos';
   var CLEAN = 'e_improve,e_auto_brightness,e_auto_color,e_auto_contrast,q_auto,f_auto,fl_keep_iptc';
-  var DRAFT_KEY = 'tll_submit_draft';
+  var EDIT_SLUG = (function () { try { var v = new URLSearchParams(location.search).get('edit') || ''; return /^[a-z0-9-]{1,120}$/.test(v) ? v : ''; } catch (e) { return ''; } })();
+  var DRAFT_KEY = EDIT_SLUG ? 'tll_submit_edit_' + EDIT_SLUG : 'tll_submit_draft';
   var MAX_GALLERY = 8;
   var MAX_SHOUT = 5;
   var MAX_BYTES = 10 * 1024 * 1024;
@@ -41,7 +44,8 @@
   /* ---------- state ---------- */
   var S = {
     step: 1, places: [], countryId: '', hero: null, gallery: [], pets: [], crew: [], shoutouts: [{ who: '', link: '', why: '' }],
-    tags: [], pursuit: null, tagOptions: [], pursuitOptions: [], log: [], edits: [], editIndex: 0, me: null, pendingHero: null, pendingGallery: []
+    tags: [], pursuit: null, tagOptions: [], pursuitOptions: [], log: [], edits: [], editIndex: 0, me: null, pendingHero: null, pendingGallery: [],
+    edit: null, editBodyHtml: '', editBodyText: ''
   };
 
   /* ---------- helpers ---------- */
@@ -54,6 +58,16 @@
   function paragraphsToHtml(t) {
     return (t || '').replace(/\r\n?/g, '\n').split(/\n{2,}/).map(function (p) { return p.trim(); }).filter(Boolean)
       .map(function (p) { return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; }).join('');
+  }
+  function htmlToText(html) {
+    var d = document.createElement('div'); d.innerHTML = String(html || '');
+    var out = [];
+    [].forEach.call(d.childNodes, function (n) {
+      var t = n.nodeType === 1 ? n.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '') : n.textContent;
+      var e = document.createElement('textarea'); e.innerHTML = t; t = e.value.trim();
+      if (t) out.push(t);
+    });
+    return out.join('\n\n');
   }
   function cleanedUrl(url, opts) {
     var i = url.indexOf('/image/upload/');
@@ -100,6 +114,11 @@
     var d = null;
     try { d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) { d = null; }
     if (!d) return;
+    if (EDIT_SLUG) {
+      /* An unfinished edit comes back only when nothing changed on the live item since it was saved (E2.1 over E2.4). */
+      var since = S.edit && (S.edit.lastUpdated || S.edit.publishedDate);
+      if (!S.edit || !d.savedAt || (since && d.savedAt <= since)) { clearDraft(); return; }
+    }
     el.country.value = d.country || ''; S.countryId = d.countryId || ''; el.city.value = d.city || ''; el.month.value = d.month || ''; el.year.value = d.year || '';
     el.body.value = d.body || ''; el.headline.value = d.headline || ''; el.excerpt.value = d.excerpt || ''; el.pullquote.value = d.pullQuote || '';
     el.signoff.value = d.signOff || ''; el.crewText.value = d.crewText || ''; el.cost.value = d.cost || ''; el.forwhom.value = d.forWhom || '';
@@ -108,7 +127,7 @@
     if (S.hero) paintHero();
     paintGallery();
     paintShoutouts();
-    if (d.savedAt) setStatus(el.formStatus, 'Draft restored from ' + new Date(d.savedAt).toLocaleString());
+    if (d.savedAt) setStatus(el.formStatus, (EDIT_SLUG ? 'Unfinished edit restored from ' : 'Draft restored from ') + new Date(d.savedAt).toLocaleString());
   }
   function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
 
@@ -365,13 +384,14 @@
   function gate() {
     member().then(function (m) {
       el.gate.hidden = !!m; el.confirm.hidden = !m; el.publish.disabled = !m;
+      if (m && EDIT_SLUG && !S.edit) { loadStory().then(function (ok) { if (ok) go(1); }); return; }
       if (m) uploadPending().then(loadMe);
     });
   }
   el.next.addEventListener('click', function () { if (S.step === 1) { if (validate1()) go(2); } else if (S.step === 2) go(3); });
   el.back.addEventListener('click', function () { if (S.step === 3) go(2); else if (S.step === 2) go(1); });
   function openModal(kind) {
-    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent('/submit'); return; }
+    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent(EDIT_SLUG ? '/submit?edit=' + EDIT_SLUG : '/submit'); return; }
     m.openModal(kind).then(function () { gate(); }).catch(function () {});
   }
   el.login.addEventListener('click', function () { openModal('LOGIN'); });
@@ -384,11 +404,11 @@
     if (S.step !== 3) return;
     if (!validate3()) return;
     if (!resolveCountry() || !S.hero) { setStatus(el.formStatus, 'Step 1 is missing something. Go back and check.', true); return; }
-    el.publish.disabled = true; setStatus(el.formStatus, 'Publishing');
+    el.publish.disabled = true; setStatus(el.formStatus, EDIT_SLUG ? 'Saving' : 'Publishing');
     var sponsored = form.querySelector('input[name=sponsored]:checked').value === 'yes';
     var payload = {
       country: S.countryId, city: el.city.value.trim(), when: el.month.value + ' ' + el.year.value,
-      body: paragraphsToHtml(el.body.value), headline: el.headline.value.trim(), excerpt: el.excerpt.value.trim(), pullQuote: el.pullquote.value.trim(),
+      body: (EDIT_SLUG && S.editBodyHtml && el.body.value === S.editBodyText) ? S.editBodyHtml : paragraphsToHtml(el.body.value), headline: el.headline.value.trim(), excerpt: el.excerpt.value.trim(), pullQuote: el.pullquote.value.trim(),
       heroPhoto: { publicId: S.hero.publicId, originalUrl: S.hero.originalUrl, cleanedUrl: S.hero.cleanedUrl, approved: S.hero.approved },
       gallery: S.gallery.map(function (g) { return { publicId: g.publicId, originalUrl: g.originalUrl, cleanedUrl: g.cleanedUrl, approved: g.approved }; }),
       pets: S.pets, signOff: el.signoff.value.trim(), coTravelers: S.crew, coTravelersText: el.crewText.value.trim(),
@@ -399,19 +419,76 @@
       charterAgreed: el.charter.checked, rightsAgreed: el.rights.checked,
       affiliateLinks: (form.querySelector('input[name=affiliateLinks]:checked') || {}).value === 'yes', editorNotesLog: S.log, tags: S.tags, pursuit: S.pursuit, readingTime: readingTime(el.body.value)
     };
-    api('/publish', payload).then(function (r) {
+    if (EDIT_SLUG) payload.slug = EDIT_SLUG;
+    api(EDIT_SLUG ? '/story/update' : '/publish', payload).then(function (r) {
       if (!r.ok) { el.publish.disabled = false; setStatus(el.formStatus, (r.data && r.data.error) || 'That did not go through. Try again, or write to hello@thatlayover.life.', true); return; }
-      el.doneLink.href = r.data.url || '/stories'; clearDraft(); go('done');
-      try { if (window.tllEv) window.tllEv('story_submitted', { type: 'write' }); } catch (x) {}
+      el.doneLink.href = r.data.url || '/stories'; clearDraft();
+      if (EDIT_SLUG) {
+        var dh = root.querySelector('.tsv2-done .tsv2-h2'), dp = root.querySelector('.tsv2-done .tsv2-help');
+        if (dh) dh.textContent = 'Saved.';
+        if (dp) dp.textContent = r.data.message || 'Saved. The story is live again with your changes.';
+        el.doneLink.textContent = 'See the story';
+      }
+      go('done');
+      try { if (window.tllEv) window.tllEv(EDIT_SLUG ? 'story_edited' : 'story_submitted', { type: 'write' }); } catch (x) {}
     }).catch(function () { el.publish.disabled = false; setStatus(el.formStatus, 'That did not go through. Try again, or write to hello@thatlayover.life.', true); });
   });
+
+  /* ---------- edit mode (E2): the live story into the form, owner only ---------- */
+  function fillFromStory(d) {
+    S.edit = d;
+    el.headline.value = d.headline || ''; el.excerpt.value = d.excerpt || ''; el.pullquote.value = d.pullQuote || '';
+    S.editBodyHtml = d.body || ''; S.editBodyText = htmlToText(d.body); el.body.value = S.editBodyText;
+    el.country.value = d.countryName || ''; S.countryId = d.country || '';
+    el.city.value = d.city || '';
+    var w = /^(\S+)\s+(\d{4})$/.exec((d.when || '').trim()); if (w) { el.month.value = w[1]; el.year.value = w[2]; }
+    S.hero = (d.heroPhoto && d.heroPhoto.publicId) ? d.heroPhoto : null;
+    if (!S.hero) setStatus(el.heroStatus, 'Add the hero photo again to save.', true);
+    S.gallery = (d.gallery || []).filter(function (g) { return g && g.publicId; });
+    S.pets = d.pets || []; S.crew = d.coTravelers || [];
+    S.shoutouts = (d.shoutOuts && d.shoutOuts.length) ? d.shoutOuts.map(function (x) { return { who: x.who || '', link: x.link || '', why: x.why || '', affiliate: !!x.affiliate }; }) : [{ who: '', link: '', why: '' }];
+    el.cost.value = d.cost || ''; el.forwhom.value = d.forWhom || ''; el.signoff.value = d.signOff || '';
+    S.tags = d.tags || []; S.pursuit = d.pursuit || null;
+    var sp = form.querySelector('input[name=sponsored][value="' + (d.sponsored ? 'yes' : 'no') + '"]'); if (sp) sp.checked = true;
+    el.sponsor.hidden = !d.sponsored; el.sponsorName.value = d.sponsorName || ''; el.sponsorUrl.value = d.sponsorUrl || '';
+    var af = form.querySelector('input[name=affiliateLinks][value="' + (d.affiliateLinks ? 'yes' : 'no') + '"]'); if (af) af.checked = true;
+    form.querySelectorAll('input[name=syndication]').forEach(function (c) { c.checked = (d.syndication || []).indexOf(c.value) > -1; });
+    /* Rights and charter were agreed on first publish: shown, not asked again (E2.3). */
+    if (d.charterOnFile) {
+      [el.rights, el.charter].forEach(function (c) { c.checked = true; c.disabled = true; var l = c.closest('label'); if (l) l.title = 'Agreed when the story was first published.'; });
+    }
+    el.publish.textContent = 'Save changes';
+    var banner = root.querySelector('.tsv2-edit-banner');
+    if (!banner) { banner = document.createElement('p'); banner.className = 'tsv2-edit-banner tsv2-help'; root.insertBefore(banner, root.firstChild); }
+    banner.textContent = 'Edit \u201C' + (d.headline || 'this story') + '\u201D' + (d.state === 'taken-down' ? '. It is off the site; saving puts it back.' : d.state === 'held' ? '. The editor is looking at this one.' : '');
+    paintHero(); paintGallery(); paintShoutouts(); paintTags(); counters(); resolveCountry();
+  }
+  function loadStory() {
+    setStatus(el.formStatus, 'Loading your story');
+    return api('/story?slug=' + encodeURIComponent(EDIT_SLUG), null, 'GET').then(function (r) {
+      if (!r.ok) { setStatus(el.formStatus, (r.data && r.data.error) || 'We could not load that story.', true); return false; }
+      fillFromStory(r.data); restore(); loadMe();
+      if (!el.formStatus.textContent || el.formStatus.textContent === 'Loading your story') setStatus(el.formStatus, '');
+      return true;
+    }).catch(function () { setStatus(el.formStatus, 'We could not load that story right now. Try again in a moment.', true); return false; });
+  }
 
   /* ---------- wire up ---------- */
   ['country', 'city', 'month', 'year', 'body', 'headline', 'excerpt', 'pullquote', 'signoff', 'crewText', 'cost', 'forwhom'].forEach(function (k) {
     el[k].addEventListener('input', function () { counters(); if (k === 'country') resolveCountry(); save(); });
     el[k].addEventListener('change', save);
   });
-  restore(); counters(); paintShoutouts(); loadPlaces();
-  if (S.step && S.step !== 1 && S.step !== 'done') go(S.step); else go(1);
-  var tries = 0, iv = setInterval(function () { if (ms()) { clearInterval(iv); member().then(function (m) { if (m) loadMe(); }); } else if (++tries > 40) clearInterval(iv); }, 250);
+  if (!EDIT_SLUG) restore();
+  counters(); paintShoutouts(); loadPlaces();
+  if (EDIT_SLUG) { el.publish.textContent = 'Save changes'; go(1); setStatus(el.formStatus, 'Loading your story'); }
+  else if (S.step && S.step !== 1 && S.step !== 'done') go(S.step); else go(1);
+  var tries = 0, iv = setInterval(function () {
+    if (ms()) {
+      clearInterval(iv);
+      member().then(function (m) {
+        if (EDIT_SLUG) { if (m) loadStory(); else { setStatus(el.formStatus, 'Sign in to edit this story.'); go(3); } }
+        else if (m) loadMe();
+      });
+    } else if (++tries > 40) { clearInterval(iv); if (EDIT_SLUG) setStatus(el.formStatus, 'Sign in to edit this story.', true); }
+  }, 250);
 })();

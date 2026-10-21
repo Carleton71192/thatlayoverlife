@@ -1,4 +1,5 @@
 import { classifyEdit, checkCloudinaryUrl, readingTime, wordCount, htmlToText, bodyHrefs, publicHttpUrl } from "./validate.js";
+import { createStoryEditHandlers } from "./story-edit.js";
 
 const MODEL = "claude-sonnet-5-5";
 const SITE_URL = "https://www.thatlayover.life";
@@ -918,10 +919,18 @@ async function handlePublish(request, env, auth) {
 // Router
 // ---------------------------------------------------------------------------------------
 
+// Members edit their own stories (E1 to E4 of the story edit log). The helpers are shared, not copied.
+const storyEdit = createStoryEditHandlers({
+  json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime,
+  regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL,
+});
+
 const POST_ROUTES = {
   "/notes": { handler: handleNotes },
   "/publish": { handler: handlePublish },
   "/photo": { handler: (request) => handlePhoto(request) },
+  "/story/update": { handler: storyEdit.handleStoryUpdate },
+  "/story/unpublish": { handler: storyEdit.handleStoryUnpublish },
 };
 
 // GET /places: every Places Been item as {id, name}, public, cached for an hour. The /submit country picker reads it.
@@ -1017,10 +1026,12 @@ export default {
 
       if (request.method === "GET" && path === "/health") return respond(json({ ok: true, service: "tll-worker" }));
       if (request.method === "GET" && path === "/places") return respond(await handlePlaces(env));
-      if (request.method === "GET" && path === "/me") {
+      if (request.method === "GET" && (path === "/me" || path === "/story" || path === "/story/mine")) {
         const auth = await authenticate(request, env);
         if (auth instanceof Response) return respond(auth);
-        return respond(await handleMe(env, auth));
+        if (path === "/me") return respond(await handleMe(env, auth));
+        if (path === "/story") return respond(await storyEdit.handleStoryGet(request, env, auth));
+        return respond(await storyEdit.handleStoryMine(env, auth));
       }
 
       const route = POST_ROUTES[path];

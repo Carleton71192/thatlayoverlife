@@ -156,3 +156,6 @@ select.tsv2-input{appearance:none;-webkit-appearance:none;background-image:linea
 .tsv2 .tsv2-btn:active,.tsv2 .tsv2-chip:active{transform:none !important}
 }
 </style>
+
+/* edit mode (21 Oct 2026) */
+.tsv2-edit-banner{font-weight:600;margin:0 0 12px}

@@ -170,6 +170,28 @@ Responses:
 
 Sending the same headline again from the same member within 10 minutes returns the first result instead of creating a second item.
 
+### Members edit their own stories (21 October 2026)
+
+Four routes next to /publish, all behind the same token check. The story is found by slug, and every write first checks that the item's Contributor carries the signed-in member's Memberstack id; anyone else gets a 403. Nothing here deletes an item.
+
+#### GET /story?slug=<slug>
+
+The owner's story in form shape: headline, excerpt, body (HTML), pull quote, country id and name, city, when, hero photo and gallery records (from photo-originals), pets, co-travelers, shout-outs, cost line, who it is for, sign-off, the two disclosure answers, syndication, tags and pursuit, plus `state` (`live`, `held` or `taken-down`), `charterOnFile`, `publishedDate` and `lastUpdated`. 404 when there is no such story, 403 when it belongs to someone else.
+
+#### GET /story/mine
+
+`{"stories":[{slug,url,headline,state,publishedDate,lastUpdated,heroUrl,city}]}` for the signed-in member, newest first. The /account Stories tab reads it.
+
+#### POST /story/update
+
+The /publish body plus `"slug"`. Rights and charter are taken as agreed when the item carries charter-agreed-at; otherwise they are required again. The same rules as /publish run on the edited text (headline, country, 300 words, own photo, links that open). Only the writer's fields are written, and only those that changed: name, body, excerpt, pull-quote, hero-image, photo-gallery, photo-originals, country-2, city, trip-when, reading-time, region, seo-title, seo-description, disclosure, sign-off, pet-co-travelers, human-co-travelers, links-and-mentions, cost-summary, who-it-s-for, sponsor-name-2, sponsor-url, syndication, theme, pillar-2, byline-location. Never written: slug, published-date, contributor, commissioned, status, submitted-at, charter-agreed-at, sources, the editor's fields. Each save appends `{"type":"member-edit","at":...,"fields":[...],"words":{"before":n,"after":n},"notes":[...]}` to editor-notes-log and sets last-updated, then publishes the one item. A taken-down story is put back by a save (the entry carries `restored: true`). A held story (status other than Published) is saved on the item only, not published, and the response says `held: true`. 20 saves per member per hour.
+
+Responses: 200 `{"ok":true,"url","changed":[...],"live":true,"held":false,"message":"Saved. The story is live again with your changes."}`; 207 when the item was written but the publish step failed; 400 `{"error":"Not saved yet: <rule>. Fix it and save again."}`; 403, 404, 409, 429 as above.
+
+#### POST /story/unpublish
+
+`{"slug":"..."}`. Unpublishes the live item (`DELETE .../items/<id>/live`) and marks it draft, keeping the slug and every field, and appends `{"type":"member-takedown","at":...}` to the log. Returns `{"ok":true,"slug","state":"taken-down"}`. Already down is a no-op.
+
 ## What is sent to the model, and what is not
 
 Sent to the Anthropic Messages API from `/notes` only, as one JSON object of strings:
