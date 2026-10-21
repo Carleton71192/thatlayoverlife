@@ -35,14 +35,15 @@
 .h3-steps b{display:block;font-family:var(--h3-mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal);margin-bottom:8px}
 .h3-steps span{font-size:15px;line-height:1.45;color:#cfcbc4}
 @media(max-width:899px){.h3-steps{grid-template-columns:1fr}}
-@media(max-width:600px){.h3-dash-map{min-height:0;display:flex;flex-direction:column}.h3-dash-label{position:static;order:-1;align-self:flex-start;margin:0}}
+@media(max-width:600px){.h3-dash-map{min-height:0;display:flex;flex-direction:column}.h3-dash-label{position:static;order:-1;align-self:flex-start;margin:0}.h3-dash-map .h3-map{width:100%}}
 </style>
 <script id="h3-dash-js">
 /* Home dashboard (E1.3 and E2.1, 20 October 2026 evening).
    Visitors: Nancy's map, labeled as hers, drawn here from her saved states. Source: the Worker's public /owner-map route (its URL goes in
    data-owner-url on this section after the Worker is deployed); until then the same 7 October copy The Map shows visitors
    (map-2.0/data/owner-record.json, pinned to the map's commit), and the count line stays hidden rather than show an old number.
-   Members: their own map (/the-map?embed=1) and their own count line from tllStates.
+   Members (21 Oct 2026, Nancy: "No map on the mobile version"): the same drawn map, painted from their own tllStates, and their own count line.
+   The earlier frame of /the-map in its old embed mode showed nothing on phones: that mode belongs to the old SVG map, gone since the Map 2.0 cut-over (S05).
    One count rule for both, the same as the map save (tll-map-snapshot-v1): human travelers only; Lived and Stayed make places;
    Antarctica (010) is a place, not a country; layover-only places sit beside the count. */
 (function(){var sec=document.querySelector('[data-h3-dash]');if(!sec||sec.__h3)return;sec.__h3=1;
@@ -56,25 +57,27 @@ function count(d){if(!d||d.v!==2||!d.states)return null;var h=humans(d),c=0,ata=
 function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + AQ':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
 function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;});}
 var rec=null,svg=null;
-function paint(){if(!svg||!rec||sec.__member)return;var h=humans(rec),st=rec.states||{};[].forEach.call(svg.querySelectorAll('path'),function(p){var id=p.getAttribute('data-id'),row=st[id]||(id==='900'?(st.XK||st.xk||st['undefined']):null);var b=best(row||{},h);p.classList.toggle('is-been',b==='lived'||b==='visited');p.classList.toggle('is-lay',b==='layover');});}
+function paint(){if(!svg||!rec)return;var h=humans(rec),st=rec.states||{};[].forEach.call(svg.querySelectorAll('path'),function(p){var id=p.getAttribute('data-id'),row=st[id]||(id==='900'?(st.XK||st.xk||st['undefined']):null);var b=best(row||{},h);p.classList.toggle('is-been',b==='lived'||b==='visited');p.classList.toggle('is-lay',b==='layover');});}
 function owner(){var u=(sec.getAttribute('data-owner-url')||'').trim();
- if(/^https:\/\//.test(u)){getJSON(u).then(function(d){if(d&&d.v===2){rec=d;paint();if(!sec.__member)show(count(d));}else return copy();}).catch(copy);}else copy();}
-function copy(){return getJSON(COPY).then(function(d){if(d&&d.v===2&&!rec){rec=d;paint();}}).catch(function(){});}
+ if(/^https:\/\//.test(u)){getJSON(u).then(function(d){if(sec.__member)return;if(d&&d.v===2){rec=d;paint();show(count(d));}else return copy();}).catch(copy);}else copy();}
+function copy(){return getJSON(COPY).then(function(d){if(d&&d.v===2&&!rec&&!sec.__member){rec=d;paint();}}).catch(function(){});}
 function draw(world){var topo=window.topojson,d3=window.d3,all=topo.feature(world,world.objects.countries).features,FIX={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};
  all.forEach(function(f){if(f.id==null&&FIX[f.properties.name])f.id=FIX[f.properties.name];});var feats=all.filter(function(f){return f.id!==ATA;});
  var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj),ns='http://www.w3.org/2000/svg';
  svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
  feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-id',f.id);svg.appendChild(p);});box.appendChild(svg);paint();}
 function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}
-function boot(){if(sec.__member||sec.__booted)return;sec.__booted=1;owner();
+function boot(){if(sec.__booted)return;sec.__booted=1;if(!sec.__member)owner();
  Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),getJSON(CDN+'world-atlas@2.0.2/countries-110m.json')])
- .then(function(a){if(!sec.__member)draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. Open The Map to see it.';box.appendChild(m);});}
+ .then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. Open The Map to see it.';box.appendChild(m);});}
 function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
  ms.getCurrentMember().then(function(r){if(!r||!r.data)return;sec.__member=true;
   cta.textContent='Open your dashboard';cta.href='/account';if(sub)sub.textContent='Your map, your lists';if(label)label.textContent='Your map · live';
-  var f=document.createElement('iframe');f.src='/the-map?embed=1';f.title='Your map';f.loading='lazy';if(box)box.remove();wrap.insertBefore(f,wrap.firstChild);
+  if(box){box.setAttribute('aria-label','Your map. Countries you have lived in or stayed in are rose, layovers are teal.');box.style.cursor='pointer';box.addEventListener('click',function(){location.href='/the-map';});}
+  /* The member's own record: the browser copy first (the map keeps it current), then the saved one. The visitor record never paints over it. */
+  function own(d){rec=(d&&d.v===2&&d.states)?d:{v:2,states:{},travelers:[]};paint();show(count(rec));}
   var ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
-  if(ls&&ls.states){show(count(ls));return;}return ms.getMemberJSON().then(function(j){show(count(j&&j.data&&j.data.tllStates));});}).catch(function(){});},250);}
+  if(ls&&ls.v===2&&ls.states){own(ls);return;}return ms.getMemberJSON().then(function(j){own(j&&j.data&&j.data.tllStates);}).catch(function(){own(null);});}).catch(function(){});},250);}
 member();
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();setTimeout(boot,300);}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
 })();
