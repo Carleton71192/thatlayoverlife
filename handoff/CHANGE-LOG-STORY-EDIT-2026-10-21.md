@@ -68,9 +68,9 @@ Today: a story is written once on /submit. There is no way for a member to chang
 ## Open for you
 
 1. Edit window: no limit (recommended, the log keeps the history), or a fixed window such as 30 days after publish.
-2. Take down as unpublish to draft (recommended, never delete), or no take-down at all.
+2. Answered by Nancy, 21 Oct: "Yes unpublished not deleted." Take down unpublishes to draft and never deletes (E4 as written).
 3. After an edit that follows an editor correction: flag only in the morning review (recommended), or hold the story until the editor looks.
 4. "Updated {date}" on the story: only when the member's show-edited-date switch is on (recommended, it is their switch today), or always after a member edit.
 5. Where "Edit" lives: /account and the story page (recommended), or /account only.
 
-Reply with the line numbers to approve or change. Build starts on approval, as unpublished edits in the repo, with the Webflow and Worker parts applied by whichever session holds the lock in handoff/WEBFLOW-LOCK.md.
+Open questions 1, 3, 4 and 5 follow the recommendation unless Nancy says otherwise. Reply with the line numbers to approve or change. Build starts on approval, as unpublished edits in the repo, with the Webflow and Worker parts applied by whichever session holds the lock in handoff/WEBFLOW-LOCK.md.
