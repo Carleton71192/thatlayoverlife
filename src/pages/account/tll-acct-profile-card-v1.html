@@ -1,0 +1,40 @@
+<!-- TLL /account profile card v1 (21 October 2026, Edit profile 3.4 D2.4). One HtmlEmbed near the top of the /account members-only content.
+     Shows "YOUR PROFILE · {STAGE} · n OF 8" with the next step and "Continue →" to /edit-profile while fewer than eight of the eight
+     steps are done; gone at eight of eight. The eight steps are the same as the developing card on /edit-profile, read from the saved
+     profile (Memberstack custom fields and photo) and the map (the saved snapshot or the browser copy). Nothing typed, no data-ms-* element touched. -->
+<a class="tll-apc" data-tll-profile-card href="/edit-profile" hidden>
+<span class="tll-apc-av" data-apc-av aria-hidden="true"></span>
+<span><span class="tll-apc-l">YOUR PROFILE · <b data-apc-stage>BLACK AND WHITE</b> · <span data-apc-count>0 OF 8</span></span><span class="tll-apc-next">Next: <span data-apc-next>add a photo</span></span></span>
+<span class="tll-apc-go">Continue →</span>
+</a>
+<style id="tll-apc-css-v1">
+.tll-apc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;padding:14px 18px;margin:0 0 24px;color:#0A0B14;text-decoration:none;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
+.tll-apc[hidden]{display:none}
+.tll-apc-av{width:44px;height:44px;border-radius:50%;background:#0A0B14;color:#F7F1E8;display:flex;align-items:center;justify-content:center;font:800 16px/1 'Playfair Display',Georgia,serif;overflow:hidden;flex:none;transition:filter 600ms ease}
+.tll-apc-av img{width:100%;height:100%;object-fit:cover}
+.tll-apc-l{display:block;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px}
+.tll-apc-l span{color:#6B6660;font-weight:400}
+.tll-apc-next{display:block;font-size:15px;margin-top:4px}
+.tll-apc-go{font-size:14px;font-weight:600;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px;white-space:nowrap}
+@media(max-width:600px){.tll-apc{grid-template-columns:auto minmax(0,1fr)}.tll-apc-go{grid-column:2}}
+@media(prefers-reduced-motion:reduce){.tll-apc-av{transition:none}}
+</style>
+<script id="tll-apc-js-v1">
+(function(){var card=document.querySelector('[data-tll-profile-card]');if(!card)return;
+function list(s){return String(s||'').split(',').map(function(x){return x.trim()}).filter(Boolean)}
+function initials(n){return String(n||'').trim().split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0].toUpperCase()}).join('')||'?'}
+function mapSaved(j){if(j&&j.tllSnapshot&&Number(j.tllSnapshot.places||0)>0)return true;try{var s=JSON.parse(localStorage.getItem('tllStates')||'null');return !!(s&&s.v===2&&s.states&&Object.keys(s.states).length)}catch(e){return false}}
+function paint(m,j){var cf=m.customFields||{},ls=list(cf['links-shown']);
+ var links=['instagram-url','youtube-url','personal-website-url','tiktok-url','substack-url','strava-url','alltrails-url','komoot-url','garmin-url','beli-url'].filter(function(k){return String(cf[k]||'').trim()});
+ var on=links.filter(function(k){return !ls.length||ls.indexOf(k.replace(/-url$/,'').replace('personal-website','website'))>-1}).length;
+ var steps=[['add a photo',!!m.profileImage],['write your one line',!!String(cf['one-line']||'').trim()],['add your home base',!!String(cf['home-base']||'').trim()],['add the flags you have lived under',list(cf['from-and-lived-in']).length>0],['add the languages you speak',list(cf['languages']).length>0],['write a short bio',!!(String(cf['bio-long']||'').trim()||String(cf['bio-short']||'').trim())],['switch on a link',on>0],['save your map',mapSaved(j)]];
+ var done=steps.filter(function(s){return s[1]}).length,next=null;for(var i=0;i<steps.length;i++)if(!steps[i][1]){next=steps[i];break}
+ if(!next){card.hidden=true;return}
+ var STAGES=['BLACK AND WHITE','DEVELOPING','DEVELOPING','DEVELOPING','COMING THROUGH','COMING THROUGH','NEARLY THERE','NEARLY THERE','FULL COLOR'];
+ card.querySelector('[data-apc-stage]').textContent=STAGES[done];card.querySelector('[data-apc-count]').textContent=done+' OF '+steps.length;card.querySelector('[data-apc-next]').textContent=next[0];
+ var av=card.querySelector('[data-apc-av]');av.innerHTML=m.profileImage?'<img src="'+String(m.profileImage).replace(/"/g,'&quot;')+'" alt="">':initials(cf.name||((cf['first-name']||'')+' '+(cf['last-name']||'')));av.style.filter='grayscale('+(Math.round((1-done/steps.length)*100)/100)+')';
+ card.hidden=false}
+var t=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++t>40)clearInterval(iv);return;}clearInterval(iv);
+ ms.getCurrentMember().then(function(r){if(!r||!r.data)return;var m=r.data;if(ms.getMemberJSON)return ms.getMemberJSON().then(function(j){paint(m,j&&j.data)}).catch(function(){paint(m,null)});paint(m,null)}).catch(function(){});},250);
+})();
+</script>

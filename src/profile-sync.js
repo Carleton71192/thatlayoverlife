@@ -71,6 +71,7 @@ export const FIELD_MAP = Object.freeze({
   'list-expats': 'list-expats',
   'list-creators': 'list-creators',
   'list-press': 'list-press',
+  'desks': 'desks',
 });
 
 /** The ten platform keys links-shown may hold, in display order. */
@@ -84,7 +85,7 @@ export const OPTION_FIELDS = new Set(Object.keys(OPTION_IDS));
 export const MEMBER_WRITABLE = Object.freeze([
   'name', 'avatar', 'one-line', 'home-base', 'from-and-lived-in', 'languages',
   'credit-mode', 'pen-name', 'contact-mode', 'email', 'visibility', 'share-ranges',
-  'crew', 'bio-long', ...URL_FIELDS, 'links-shown', 'list-expats', 'list-creators', 'list-press',
+  'crew', 'bio-long', ...URL_FIELDS, 'links-shown', 'list-expats', 'list-creators', 'list-press', 'desks',
 ]);
 
 function reply(body, status = 200) {
@@ -157,6 +158,25 @@ export function coerce(slug, raw) {
   if (slug === 'crew') {
     const ids = listOf(text).filter((id) => /^[a-f0-9]{24}$/i.test(id));
     return ids.length ? ids : [];
+  }
+  if (slug === 'desks') {
+    // Expat desks (Edit profile 3.4, D7): one per place lived, as a JSON list of {c, years, knows, now}. Twenty at most.
+    let list = text;
+    if (typeof list === 'string') {
+      if (list === '') return null;
+      try { list = JSON.parse(list); } catch { return undefined; }
+    }
+    if (!Array.isArray(list)) return undefined;
+    const out = [];
+    const seen = new Set();
+    for (const d of list.slice(0, 20)) {
+      if (!d || typeof d !== 'object') continue;
+      const c = String(d.c || '').toLowerCase();
+      if (!/^[a-z]{2}$/.test(c) || seen.has(c)) continue;
+      seen.add(c);
+      out.push({ c, years: String(d.years || '').slice(0, 11), knows: String(d.knows || '').slice(0, 160), now: d.now === true });
+    }
+    return out.length ? JSON.stringify(out) : null;
   }
   if (slug === 'bio-long') {
     if (text === '') return null;

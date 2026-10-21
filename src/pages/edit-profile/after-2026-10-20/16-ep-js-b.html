@@ -1,9 +1,9 @@
 <script id="tll-ep-js-b">
-/* Edit profile v2, script part B: state, first fill from Memberstack, paint of the form and the preview card. */
+/* Edit profile v2, script part B: state, first fill from Memberstack, paint of the form and the preview card. 3.4 (21 Oct 2026): the developing card, crew rows, contributions, expat desks, the preview in grayscale. */
 (function(E){
 var $=E.$,$$=E.$$,esc=E.esc;
 var root=document.getElementById("tll-ep");if(!root||!E)return;
-E.S={};E.member=null;E.snapshot=null;E.listeners=[];
+E.S={};E.member=null;E.snapshot=null;E.listeners=[];E.json={};E.pets=[];E.stories=null;
 E.onChange=function(fn){E.listeners.push(fn)};
 E.get=function(k){return E.S[k]==null?"":String(E.S[k])};
 E.set=function(k,v){v=String(v==null?"":v);if(E.S[k]===v)return;E.S[k]=v;E.listeners.forEach(function(fn){fn(k,v)});E.paint()};
@@ -14,6 +14,48 @@ E.dispName=function(){var n=E.get("name").trim(),m=E.get("credit-mode")||"full";
 function renderLinks(){var box=$("[data-ep-linkrows]");if(!box)return;box.innerHTML=E.LINKS.map(function(l){return '<div class="ep-link"><label for="ep-f-'+l[2]+'">'+esc(l[1])+'</label><input class="ep-input" type="url" inputmode="url" id="ep-f-'+l[2]+'" data-ep-f="'+l[2]+'" autocomplete="url"><button type="button" class="ep-sw" role="switch" aria-checked="true" data-ep-link="'+l[0]+'" aria-label="Show '+esc(l[1])+' on your profile">ON</button></div>'}).join("")}
 function renderCountries(){var d=$("#ep-countries");if(d)d.innerHTML=E.C.map(function(c){return '<option value="'+esc(c.n)+'"></option>'}).join("")}
 function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+E.jsonList=function(k){try{var v=JSON.parse(E.get(k)||"null");return Array.isArray(v)?v:[]}catch(e){return []}};
+/* The eight steps of the developing card (3.4 D2). Every answer is read from the saved profile and the map; nothing is typed. */
+E.mapSaved=function(){if(E.snapshot&&Number(E.snapshot.places||0)>0)return true;try{var s=JSON.parse(localStorage.getItem("tllStates")||"null");return !!(s&&s.v===2&&s.states&&Object.keys(s.states).length)}catch(e){return false}};
+E.progress=function(){var steps=[
+ ["who","add a photo",!!(E.member&&E.member.profileImage)],
+ ["who","write your one line",!!E.get("one-line").trim()],
+ ["who","add your home base",!!E.get("home-base").trim()],
+ ["who","add the flags you have lived under",E.list(E.get("from-and-lived-in")).length>0],
+ ["who","add the languages you speak",E.list(E.get("languages")).length>0],
+ ["about","write a short bio",!!(E.get("bio-long").trim()||E.get("bio-short").trim())],
+ ["links","switch on a link",E.shown().length>0],
+ ["map","save your map",E.mapSaved()]];
+ var done=steps.filter(function(s){return s[2]}).length,next=null;for(var i=0;i<steps.length;i++)if(!steps[i][2]){next=steps[i];break}
+ var STAGES=["BLACK AND WHITE","DEVELOPING","DEVELOPING","DEVELOPING","COMING THROUGH","COMING THROUGH","NEARLY THERE","NEARLY THERE","FULL COLOR"];
+ return {steps:steps,done:done,total:steps.length,stage:STAGES[done],next:next,gray:Math.round((1-done/steps.length)*100)/100}};
+E.crewRows=function(){var rows=E.jsonList("crew").map(function(c){return {name:String(c.name||""),meta:String(c.meta||""),pending:!!c.pending,pet:false,img:c.img||"",key:"c:"+c.name}});
+ E.pets.forEach(function(p){rows.push({name:p.name||"Pet",meta:"PET"+(p.breed?" · "+String(p.breed).toUpperCase():"")+(p.sharedWith?" · SHARED WITH "+String(p.sharedWith).toUpperCase():""),pending:false,pet:true,img:p.avatar||"",key:"p:"+(p.id||p.name)})});return rows};
+E.petPlaces=function(p){var n=0;try{var s=JSON.parse(localStorage.getItem("tllStates")||"null"),t=s&&s.travelers&&s.travelers.filter(function(x){return x&&x.pet&&String(x.name||"").toLowerCase()===String(p.name||"").toLowerCase()})[0];
+ if(t&&s.states){Object.keys(s.states).forEach(function(k){var v=s.states[k]&&s.states[k][t.id];if(v==="lived"||v==="visited"||v==="layover")n++});return n}}catch(e){}
+ return Array.isArray(p.countries)?p.countries.length:0};
+var deskKey="",crewKey="",petKey="";
+E.paintDev=function(){var p=E.progress(),st=$("[data-ep-dev-stage]"),ct=$("[data-ep-dev-count]"),bar=$("[data-ep-dev-bar]"),nx=$("[data-ep-dev-next]"),dn=$("[data-ep-dev-done]");
+ if(st)st.textContent=p.stage;if(ct)ct.textContent=p.done+" OF "+p.total;
+ if(bar){bar.setAttribute("aria-valuenow",String(p.done));$$("i",bar).forEach(function(i,k){i.setAttribute("data-on",p.steps[k]&&p.steps[k][2]?"1":"0");i.title=p.steps[k]?p.steps[k][1]:""})}
+ if(nx){nx.hidden=!p.next;if(p.next){nx.textContent="Next: "+p.next[1]+" →";nx.setAttribute("data-ep-dev-to",p.next[0])}}if(dn)dn.hidden=!!p.next;
+ $$(".ep-gray").forEach(function(el){el.style.filter=p.gray>0?"grayscale("+p.gray+")":""});
+ var pb=$("[data-ep-photobtn]");if(pb)pb.textContent=(E.member&&E.member.profileImage)?"CHANGE":"ADD"};
+E.paintCrew=function(){var rows=E.crewRows(),box=$("[data-ep-crewlist]"),key=rows.map(function(r){return r.key+r.pending}).join("|");
+ if(box&&key!==crewKey){crewKey=key;box.innerHTML=rows.map(function(r){return '<div class="ep-crew-row"><span class="ep-av'+(r.pet?' ep-av--pet':'')+'" aria-hidden="true">'+(r.img?'<img src="'+esc(r.img)+'" alt="">':esc(E.initials(r.name)))+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.meta)+'</small></span><span class="ep-crew-acts">'+(r.pending?'<span class="ep-wait">WAITING FOR THEM</span>':'')+(r.pet?'<a class="ep-x" href="/my-pets" style="text-decoration:none;display:inline-flex;align-items:center">EDIT</a>':'<button type="button" class="ep-x" data-ep-crew-rm="'+esc(r.name)+'" aria-label="Unlink '+esc(r.name)+'">UNLINK</button>')+'</span></div>'}).join("")}
+ var cl=$("[data-ep-crewline]");if(cl){var linked=rows.filter(function(r){return !r.pending}).length,wait=rows.filter(function(r){return r.pending}).length;cl.textContent="· "+(linked?linked+" linked":"nobody linked yet")+(wait?" · "+wait+" waiting":"")}};
+E.paintPets=function(){var box=$("[data-ep-petcards]");if(!box)return;var key=E.pets.map(function(p){return p.id||p.name}).join("|")+":"+E.pets.map(E.petPlaces).join(",");if(key===petKey)return;petKey=key;
+ box.innerHTML=E.pets.map(function(p){var n=E.petPlaces(p),slug=p.id||E.slugify(p.name);return '<div class="ep-card"><span class="ep-card-img ep-card-img--pet" aria-hidden="true"'+(p.avatar?' style="background-image:url('+esc(p.avatar)+')"':'')+'>'+(p.avatar?'':esc(E.initials(p.name)))+'</span><span><b>'+esc(p.name||"Pet")+'</b><small class="ep-mono">'+esc([p.breed?String(p.breed).toUpperCase():"",n+(n===1?" PLACE":" PLACES"),p.sharedWith?"SHARED WITH "+String(p.sharedWith).toUpperCase():""].filter(Boolean).join(" · "))+'</small><span class="ep-card-acts"><a href="/my-pets">EDIT PASSPORT</a><a href="/pets/'+esc(slug)+'">VIEW →</a></span></span></div>'}).join("")};
+E.paintStories=function(){var ln=$("[data-ep-stories-line]"),im=$("[data-ep-stories-img]");if(!ln)return;var s=E.stories;if(!s){ln.textContent="Counting";return}
+ ln.textContent=s.count+(s.count===1?" STORY LIVE":" STORIES LIVE")+(s.down?" · "+s.down+" TAKEN DOWN":"");if(im&&s.img){im.style.backgroundImage="url("+s.img+")";im.textContent=""}};
+E.paintDesks=function(){var box=$("[data-ep-desks]"),list=$("[data-ep-desklist]"),h=$("[data-ep-desks-h]");if(!box)return;var on=E.get("list-expats")==="true";box.hidden=!on;if(!on)return;
+ var D=E.jsonList("desks");
+ if(!D.length&&!E.S.desks){var home=E.ccode(E.get("home-base").split(",").pop());D=E.list(E.get("from-and-lived-in")).filter(function(c){return c!==home}).map(function(c){return {c:c,years:"",knows:"",now:false}})}
+ if(h)h.textContent="YOUR EXPAT DESKS · "+D.length+(D.length===1?" PLACE":" PLACES");
+ var key=D.map(function(d){return d.c+(d.now?1:0)}).join("|");
+ if(list&&key!==deskKey){deskKey=key;list.innerHTML=D.map(function(d,i){return '<div class="ep-desk" data-ep-desk="'+i+'"><span class="ep-fl" aria-hidden="true">'+E.flag(d.c)+'</span><span class="ep-desk-f"><span><b>'+esc(E.cname(d.c))+'</b> <input data-ep-desk-years="'+i+'" placeholder="'+(d.now?'2024–now':'2019–2021')+'" aria-label="Years in '+esc(E.cname(d.c))+'" inputmode="numeric" maxlength="11"></span><input data-ep-desk-knows="'+i+'" placeholder="What you know: visas, schools, dog parks" aria-label="What you know about '+esc(E.cname(d.c))+'" maxlength="160"></span><button type="button" class="ep-sw" role="switch" aria-checked="'+(d.now?'true':'false')+'" data-ep-desk-now="'+i+'">'+(d.now?'NOW':'BEFORE')+'</button><button type="button" class="ep-x" data-ep-desk-rm="'+i+'" aria-label="Remove '+esc(E.cname(d.c))+'">×</button></div>'}).join("")}
+ D.forEach(function(d,i){val('[data-ep-desk-years="'+i+'"]',d.years||"");val('[data-ep-desk-knows="'+i+'"]',d.knows||"")});
+ E.desksShown=D};
 E.paint=function(){
  var cm=E.get("credit-mode")||"full";$$("[data-ep-credit]").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-ep-credit")===cm))});
  var pw=$("[data-ep-penwrap]");if(pw)pw.hidden=cm!=="pen";
@@ -29,14 +71,15 @@ E.paint=function(){
  var cmode=E.get("contact-mode")||"relay";$$("[data-ep-contact]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-contact")===cmode))});var ew=$("[data-ep-emailwrap]");if(ew)ew.hidden=cmode!=="email";val("#ep-f-email",E.get("email"));
  $$("[data-ep-list]").forEach(function(b){var on=E.get(b.getAttribute("data-ep-list"))==="true";b.setAttribute("aria-checked",String(on));b.textContent=on?"ON":"OFF"});
  var vis=E.get("visibility")||"public";$$("[data-ep-vis]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-vis")===vis))});var rg=$("[data-ep-ranges]");if(rg)rg.checked=E.get("share-ranges")==="true";
- var cl=$("[data-ep-crewline]");if(cl)cl.textContent="· nobody linked yet";
- var dots={who:!!E.get("name").trim(),about:!!(E.get("bio-long").trim()||E.get("bio-short").trim()),links:!!E.filled().length,crew:false,pets:false,contact:!!E.get("contact-mode"),dirs:["list-expats","list-creators","list-press"].some(function(k){return E.get(k)==="true"}),vis:!!E.get("visibility")};
+ E.paintCrew();E.paintPets();E.paintStories();E.paintDesks();E.paintDev();
+ var dots={who:!!E.get("name").trim(),about:!!(E.get("bio-long").trim()||E.get("bio-short").trim()),links:!!E.filled().length,crew:E.crewRows().length>0,pets:E.pets.length>0||!!(E.stories&&E.stories.count),contact:!!E.get("contact-mode"),dirs:["list-expats","list-creators","list-press"].some(function(k){return E.get(k)==="true"}),vis:!!E.get("visibility")};
  Object.keys(dots).forEach(function(k){var a=$('[data-ep-dot="'+k+'"]');if(a)a.setAttribute("data-on",dots[k]?"1":"0")});
  E.paintPreview();
 };
 E.paintPreview=function(){
  var n=E.dispName()||"Your name",parts=n.split(/\s+/),nm=$("[data-ep-pv-name]");if(nm)nm.innerHTML=parts.length>1?esc(parts.slice(0,-1).join(" "))+" <em>"+esc(parts[parts.length-1])+"</em>":esc(n);
- var img=E.member&&E.member.profileImage,avh=img?'<img src="'+esc(img)+'" alt="">':esc(E.initials(E.get("name")));var av=$("[data-ep-pv-av]");if(av)av.innerHTML=avh;var a2=$("[data-ep-avatar]");if(a2)a2.innerHTML=avh;
+ var img=E.member&&E.member.profileImage,avh=img?'<img src="'+esc(img)+'" alt="">':esc(E.initials(E.get("name")));var av=$("[data-ep-pv-av]");if(av)av.innerHTML=avh;$$("[data-ep-avatar]").forEach(function(a2){a2.innerHTML=avh});
+ var lg=$("[data-ep-pv-langs]");if(lg){var L=E.list(E.get("languages"));lg.hidden=!L.length;lg.textContent="SPEAKS "+L.join(" · ").toUpperCase()}
  var ln=$("[data-ep-pv-line]");if(ln)ln.textContent=E.get("one-line");
  var hb=$("[data-ep-pv-home]");if(hb)hb.textContent=E.get("home-base").toUpperCase();
  var fl=$("[data-ep-pv-flags]");if(fl)fl.textContent=E.list(E.get("from-and-lived-in")).map(E.flag).join(" ");
@@ -56,6 +99,10 @@ E.fill=function(member){E.member=member||null;var cf=(member&&member.customField
  if(!{full:1,first:1,pen:1}[E.get("credit-mode")])E.S["credit-mode"]="full";if(!{"public":1,unlisted:1,off:1}[E.get("visibility")])E.S["visibility"]="public";
  var pn=$("[data-ep-pressnote]");if(pn&&cf["press-verified"])pn.textContent="Verified · "+cf["press-verified"];
  E.paint()};
+/* The member's own JSON record: pets (from /my-pets), crew invites and expat desks live there. */
+E.fillJson=function(j){j=j&&typeof j==="object"?j:{};E.json=j;E.pets=Array.isArray(j.pets)?j.pets:[];
+ if(Array.isArray(j.tllCrew)&&!E.S.crew)E.S.crew=JSON.stringify(j.tllCrew);if(Array.isArray(j.tllDesks)&&!E.S.desks)E.S.desks=JSON.stringify(j.tllDesks);
+ if(j.tllSnapshot&&typeof j.tllSnapshot==="object")E.snapshot=j.tllSnapshot;E.paint()};
 renderLinks();renderCountries();E.paint();
 })(window.TLLEP);
 </script>

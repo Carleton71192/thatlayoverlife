@@ -4,7 +4,10 @@
 // every element wider than the viewport (first twelve, by selector), text under 12px, tap targets under 44px in the first two
 // screens, console errors, broken images, and the response status. Output: reports/mobile-review/<date>/README.md plus the PNGs.
 // Signed out only. It reads pages, it changes nothing.
-import { chromium } from 'playwright';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+// Playwright lives in the global modules here, not in the repo, so resolve it either way.
+const { chromium } = (() => { try { return require('playwright'); } catch { return require('/opt/node-tools/node_modules/playwright'); } })();
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 

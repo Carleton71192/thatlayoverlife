@@ -49,6 +49,15 @@ describe('FIELD_MAP', () => {
 });
 
 describe('coerce', () => {
+  it('keeps expat desks as a short clean JSON list', () => {
+    const raw = JSON.stringify([{ c: 'PT', years: '2019–2021', knows: 'Visas, schools', now: false }, { c: 'dk', now: true, knows: 'x'.repeat(300) }, { c: 'pt' }, { c: 'usa' }, 'junk']);
+    const out = JSON.parse(coerce('desks', raw));
+    expect(out).toEqual([{ c: 'pt', years: '2019–2021', knows: 'Visas, schools', now: false }, { c: 'dk', years: '', knows: 'x'.repeat(160), now: true }]);
+    expect(coerce('desks', '')).toBeNull();
+    expect(coerce('desks', '[]')).toBeNull();
+    expect(coerce('desks', 'not json')).toBeUndefined();
+    expect(coerce('desks', '{"c":"pt"}')).toBeUndefined();
+  });
   it('writes option ids from a name or an id', () => {
     expect(coerce('credit-mode', 'Full')).toBe(OPTION_IDS['credit-mode'].Full);
     expect(coerce('credit-mode', 'pen')).toBe(OPTION_IDS['credit-mode'].Pen);

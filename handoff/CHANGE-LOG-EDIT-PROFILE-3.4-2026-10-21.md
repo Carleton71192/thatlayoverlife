@@ -1,4 +1,4 @@
-# Change log for approval: Edit profile from prototype 3.4 (21 October 2026)
+# Change log: Edit profile from prototype 3.4 (21 October 2026). Approved by Nancy 21 Oct ("Walk me through what you need from me and start the build"), the three open questions on their recommendations. Built in the repo, see handoff/packet-d/BUILD-EDIT-PROFILE-3.4-2026-10-21.md.
 
 Nancy, 21 Oct: the Claude Design project "TLL Site Prototype 3.4", screen editprofile, "Implement". The file is in the repo at handoff/claude-design-source/v3.4/. This log is the 3.4 screen read against what is live on /edit-profile today (Edit profile v2, Packet C C4, built from the 3.2 screen, live 20 October) and against the two builds already in the repo from this morning (languages list B5, story edit). Nothing below is built. Rules kept: counts come from the map and are never typed; nothing touches a data-ms-* element; the AI writes no profile copy for anyone.
 
