@@ -72,3 +72,19 @@ It writes reports/mobile-review/<date>/README.md and the screenshots (26 pages a
 ## Commits on the branch from 21 October (cloud session)
 
 1fb1656 story edit build; e98f143 beta log; 693c6bd languages list; 965428b beta notes B1, B3, B4, B6; d108306 PLACES VISITED; cfaaaee Jay test plan; 64019b4 and 3d87023 home dashboard member map; this file and tools/mobile-review.mjs.
+
+## Progress log, 21 October 2026 (cloud session, lock held)
+
+Applied in Webflow, all read back and verified:
+- Footer component embed tll-foot-v1 (082f2f3d): column links margin 0, 32px rows on desktop; phones keep 44px rows (Nancy: "The paragraph spacing here is whack").
+- Site footer custom code: ledger() block gone (src/site/site-footer-2026-10-21-after.html, byte identical to the live readback).
+- /the-map page footer: + AQ counter (src/pages/the-map/live-2026-10-21/page-footer-2026-10-21-after.html).
+- /account page footer: + AQ in the pet card line and Wrapped (src/pages/account/live-2026-10-21/page-footer-2026-10-21-after.html).
+- Registered hosted script tllacctstoriesv2 (jsDelivr pin 1fb165680c554b2093b0704f005b884bee0acb02, SRI sha384-pvbCfAlE4LSxlEYW5T8wOQOZvP/I0FBvNMCn67VGFiMcd95WsPXVtmMoa7eV1Wpl), applied to /account footer; tllacctstoriesv1 removed from /account (still registered). Script attributes must be data-* keys, so no defer attribute.
+- Stories Template author row 4693d6d0-08b9-6906-7eb0-1be3e537cab8 attributes: data-st3-author=1, data-st3-owner-ms bound to Contributor > Member ID, data-st3-story-slug bound to Slug, data-st3-updated bound to Last updated.
+
+Nancy, mid-session:
+- "I personally have not been to New Caledonia": her saved map (member JSON tllStates) holds "540": {"t1": "visited"}; 540 is New Caledonia in the map's own table, so the shape was tapped at some point. The saved map is the source (the browser copy is replaced by it on load), so clearing it on /the-map and saving fixes it; a direct removal from member JSON would also hold. Not changed by me.
+- "Countries logged ... were not all this year": the map stores no date per country, only tllStatesAt. Wrapped's "Your 2026, so far" headline over a lifetime count is misleading. Proposed: headline "Your map, so far." and label "COUNTRIES ON YOUR MAP" until years exist. Waiting on Nancy.
+
+Still to do: owner-edit embed on the Stories Template (src/pages/story/v3/embed-st3-owner-edit-v1.html, after embed 3074c26c); /submit v2 markup, CSS and script (page 6a0d5e5eb7804d3a750dc266: forms 410fe31c "Story submission" and 51b9abee "Link-out story", embeds f12d8018, 841089e3, 76d2ca29, f8aefc70); data-tll-worker div on /account and data-story-worker on #tll-ep once the tll-worker address is known; subdomain publish and Nancy's check; STATUS rows; release the lock.
