@@ -26,7 +26,7 @@ Fix: remove `ledger()` from the site footer script (the function and its two cal
 
 The list Jay saw (Africa, Americas, Antarctica, Asia, Europe, Middle East, Oceania) is the Stories collection's Region option, the editorial filter for the stories feed, not a continent list. The block in B3 labeled it CONTINENT. With B3 gone, members never pick a continent by hand: continents come from the map. The stories feed keeps its Region filter as it is, and the Middle East stays a region there because readers browse that way.
 
-## B5 Made-up languages (decision)
+## B5 Made-up languages (Nancy, 21 Oct: "World languages please": option 1 approved, built in the repo)
 
 Today the Languages field on /edit-profile takes any text, Enter adds a chip, up to ten (Jay's record now carries "Nonsense"). Nancy decides:
 
