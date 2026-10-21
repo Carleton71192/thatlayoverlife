@@ -3,7 +3,7 @@
    Phones: each column is an accordion with a 52px header and 44px rows. Lives in the footer component next to the counts embed. */
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div{min-width:0;margin:0}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{display:block;font-size:14px;line-height:1.3;min-height:44px;padding:10px 0;box-sizing:border-box}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{display:block;font-size:14px;line-height:1.3;min-height:32px;margin:0;padding:6px 0;box-sizing:border-box} /* 21 Oct 2026: 32px rows on desktop, class margins off (they stacked to 54px); 44px rows stay on phones below */
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{margin:0 0 6px}
 @media(max-width:767px){
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:block}
@@ -12,6 +12,7 @@ footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{display:flex;align
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4::after{content:"+";font-weight:400;font-size:18px}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div[data-tll-open="true"] h4::after{content:"\2013"}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div:not([data-tll-open="true"])>a{display:none}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{min-height:44px;padding:10px 0}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4:focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
 }
 /* Story From line (A7.2): "From {City}, {Country} · {Pursuit}". The comma and the dot only print when the part has text. */
