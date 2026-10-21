@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&amp;family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet">
+<style>html,body{background:#F7F1E8 !important}body{margin:0;font-family:'IBM Plex Sans Condensed',sans-serif;color:#0A0B14;-webkit-font-smoothing:antialiased}a{color:#0A0B14;text-decoration-color:#067A79}a:hover{color:#067A79}*{box-sizing:border-box}[contenteditable]:empty:before{content:attr(data-ph);color:#5E5A54}[contenteditable] h2{font-family:'Playfair Display',serif;font-weight:800;font-size:24px;margin:20px 0 8px}[contenteditable] blockquote{border-left:3px solid #F0507A;margin:16px 0;padding:2px 0 2px 16px;font-style:italic}[contenteditable] p{margin:0 0 14px}@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}</style>
+</helmet>
+<div data-screen-label="Submit v5" style="min-height:100vh;background:#F7F1E8;color:#0A0B14;padding-bottom:{{ padBottom }}">
+<header style="position:sticky;top:0;z-index:40;background:#F7F1E8;border-bottom:1px solid #E0DACE;height:57px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 max(20px,6vw)">
+  <span style="white-space:nowrap;font-size:16px"><span style="font-family:'Syne',sans-serif;font-weight:800">that</span><span style="color:#C8325B;font-weight:700">LAYOVER LIFE.</span></span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#5E5A54">{{ saveLine }}</span>
+</header>
+
+<sc-if value="{{ isSent }}" hint-placeholder-val="{{ false }}">
+<div style="max-width:720px;margin:0 auto;padding:clamp(56px,9vh,112px) max(20px,6vw)">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;font-weight:700;color:#067A79;margin-bottom:12px">LIVE · {{ sentDate }}</div>
+  <h1 style="margin:0 0 16px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(40px,6vw,64px);line-height:.95;letter-spacing:-.03em">It's live.</h1>
+  <p style="margin:0 0 24px;font-size:18px;line-height:1.5;max-width:52ch">{{ sentTitle }}. A copy is in your inbox.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center">
+    <button type="button" onClick="{{ reset }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;color:#0A0B14;background:#F0507A;border:0;border-radius:2px;padding:0 20px;min-height:48px;cursor:pointer">See your story</button>
+    <button type="button" onClick="{{ reset }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;color:#0A0B14;background:transparent;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px">Write another</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:1320px;margin:0 auto;padding:clamp(40px,7vh,80px) max(20px,6vw) clamp(72px,12vh,144px)">
+  <div style="max-width:720px;margin-bottom:32px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;font-weight:700;color:#C8325B;margin-bottom:12px">SHARE YOUR STORY</div>
+    <h1 style="margin:0 0 12px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(40px,6vw,64px);line-height:.95;letter-spacing:-.03em">You went. <span style="font-style:italic">Write it down.</span></h1>
+    <p style="margin:0;font-size:17px;line-height:1.5;color:#0A0B14">Passes the rules, goes live. Your voice stays yours.</p>
+  </div>
+
+  <div role="radiogroup" aria-label="How you share it" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px;max-width:720px;margin-bottom:32px">
+    <sc-for list="{{ modes }}" as="m" hint-placeholder-count="2"><button type="button" role="radio" aria-checked="{{ m.on }}" onClick="{{ m.pick }}" style="text-align:left;padding:14px 16px;min-height:44px;border:1.5px solid {{ m.bd }};border-radius:2px;background:{{ m.bg }};color:{{ m.fg }};cursor:pointer;font-family:inherit;transition:background 200ms ease-out,color 160ms ease"><span style="display:block;font-size:16px;font-weight:700">{{ m.label }}</span><span style="display:block;font-size:14px;margin-top:2px">{{ m.sub }}</span></button></sc-for>
+  </div>
+
+  <div style="display:grid;grid-template-columns:{{ gridCols }};gap:32px;align-items:start">
+  <div style="min-width:0">
+
+  <sc-if value="{{ isWrite }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#FDF9F3;border:1px solid #E0DACE">
+    <nav aria-label="Story sections" style="position:sticky;top:57px;z-index:20;background:#FDF9F3;border-bottom:1px solid #E0DACE;display:flex;gap:0 20px;overflow-x:auto;scrollbar-width:none;padding:0 clamp(16px,3vw,28px)"><sc-for list="{{ tabs }}" as="t" hint-placeholder-count="6"><button type="button" onClick="{{ t.go }}" aria-current="{{ t.cur }}" style="flex:none;display:inline-flex;align-items:center;gap:7px;background:transparent;border:0;border-bottom:3px solid {{ t.bd }};margin-bottom:-1px;padding:0;min-height:48px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;font-weight:700;color:{{ t.fg }};cursor:pointer;white-space:nowrap;transition:color 160ms ease,border-color 200ms ease-out"><span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:{{ t.dot }}"></span>{{ t.label }}</button></sc-for></nav>
+
+    <section id="sv-trip" data-sv="trip" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px)">
+      <h2 style="margin:0 0 20px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">01</span>The trip</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px 20px">
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">Country<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#C8325B">REQUIRED</span></span><input value="{{ f.country }}" onChange="{{ set.country }}" list="sv-countries" placeholder="Montenegro" autoComplete="country-name" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;min-height:16px">{{ regionLine }}</span></label>
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">City or layover</span><input value="{{ f.city }}" onChange="{{ set.city }}" placeholder="Budva" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">When</span><input value="{{ f.when }}" onChange="{{ set.when }}" placeholder="May 2026, or Easter weekend" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+      </div>
+      <datalist id="sv-countries"><sc-for list="{{ countryOpts }}" as="c" hint-placeholder-count="0"><option value="{{ c }}"></option></sc-for></datalist>
+    </section>
+
+    <section id="sv-story" data-sv="story" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);border-top:1px solid #E0DACE">
+      <h2 style="margin:0 0 20px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">02</span>The story</h2>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;font-weight:700"><span style="display:flex;gap:6px;align-items:center">Headline<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#C8325B">REQUIRED</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:{{ titleCountColor }}">{{ titleCount }}</span></span><input value="{{ f.title }}" onChange="{{ set.title }}" maxLength="80" placeholder="Specific beats clever" style="font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);letter-spacing:-.01em;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;min-height:48px;color:#0A0B14;outline:none"></label>
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;font-weight:700">Excerpt<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:{{ excerptCountColor }}">{{ excerptCount }}</span></span><textarea value="{{ f.excerpt }}" onChange="{{ set.excerpt }}" rows="2" maxLength="260" placeholder="The one-line pitch on the story card" style="font:inherit;font-size:16px;line-height:1.5;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:10px 12px;color:#0A0B14;resize:vertical"></textarea></label>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;font-weight:700"><span style="display:flex;gap:6px;align-items:center">Story<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#C8325B">300+ WORDS</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;color:{{ wordColor }}">{{ wordLine }}</span></span>
+          <div style="border:1px solid #CFC8BB;border-radius:2px;background:#fff">
+            <div role="toolbar" aria-label="Formatting" style="display:flex;gap:2px;border-bottom:1px solid #E0DACE;padding:4px;flex-wrap:wrap"><sc-for list="{{ tools }}" as="b" hint-placeholder-count="5"><button type="button" onMouseDown="{{ b.run }}" aria-label="{{ b.aria }}" title="{{ b.aria }}" style="min-width:44px;min-height:44px;border:0;background:transparent;border-radius:2px;font-family:{{ b.font }};font-weight:700;font-style:{{ b.style }};font-size:15px;color:#0A0B14;cursor:pointer" style-hover="background:#F0EBE0">{{ b.label }}</button></sc-for></div>
+            <div ref="{{ bodyRef }}" contentEditable="true" suppressContentEditableWarning="{{ true }}" onInput="{{ onBody }}" role="textbox" aria-multiline="true" aria-label="Your story" data-ph="Start anywhere. The middle is fine." style="min-height:320px;padding:16px;font-size:17px;line-height:1.65;outline:none;color:#0A0B14"></div>
+          </div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54">{{ readLine }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">Files under<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#5E5A54">UP TO 3</span><span tabIndex="0" role="img" aria-label="The dot marks a suggestion from your text. You decide." title="The dot marks a suggestion from your text. You decide." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-weight:400;font-size:12px;color:#5E5A54;cursor:help">i</span></span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ pillars }}" as="p" hint-placeholder-count="5"><button type="button" aria-pressed="{{ p.on }}" onClick="{{ p.toggle }}" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:0 14px;min-height:44px;border:1px solid {{ p.bd }};border-radius:2px;background:{{ p.bg }};color:{{ p.fg }};cursor:pointer;transition:background 200ms ease-out"><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:{{ p.dot }}"></span>{{ p.label }}</button></sc-for></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sv-photos" data-sv="photos" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);border-top:1px solid #E0DACE">
+      <h2 style="margin:0 0 20px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">03</span>Photos</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">Hero<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#C8325B">REQUIRED · YOURS</span></span>
+          <label style="position:relative;aspect-ratio:16/9;border:1.5px dashed #CFC8BB;border-radius:2px;background:#F0EBE0 url('{{ f.hero }}') center/cover;display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden"><input type="file" accept="image/*" onChange="{{ set.heroFile }}" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="Upload hero photo"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;font-weight:700;background:{{ heroChipBg }};color:{{ heroChipFg }};padding:8px 12px">{{ heroChip }}</span></label>
+          <button type="button" onClick="{{ sampleHero }}" style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;background:transparent;border:1px dashed #CFC8BB;padding:6px 10px;min-height:36px;cursor:pointer">PROTOTYPE · USE A SAMPLE</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">Gallery<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#5E5A54">{{ galleryCount }}</span></span>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
+            <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="0"><button type="button" onClick="{{ g.remove }}" aria-label="Remove photo {{ g.n }}" style="aspect-ratio:1;border:0;border-radius:2px;background:#0A0B14 url('{{ g.src }}') center/cover;cursor:pointer;position:relative"><span style="position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(10,11,20,.8);color:#F7F1E8;font-size:14px;line-height:22px">×</span></button></sc-for>
+            <sc-if value="{{ canAddGallery }}" hint-placeholder-val="{{ true }}"><label style="position:relative;aspect-ratio:1;border:1.5px dashed #CFC8BB;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;color:#5E5A54"><input type="file" accept="image/*" multiple="{{ true }}" onChange="{{ set.galleryFiles }}" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="Add gallery photos">+</label></sc-if>
+          </div>
+          <label style="display:flex;gap:10px;align-items:center;min-height:44px;cursor:pointer;font-size:14px"><input type="checkbox" checked="{{ f.lounge }}" onChange="{{ set.lounge }}" style="width:20px;height:20px;accent-color:#067A79">Send my favorite to the Layover Lounge too</label>
+        </div>
+      </div>
+    </section>
+
+    <section id="sv-extras" data-sv="extras" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);border-top:1px solid #E0DACE">
+      <h2 style="margin:0 0 6px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">04</span>Extras</h2>
+      <p style="margin:0 0 16px;font-size:15px;color:#5E5A54">All optional. Open what fits.</p>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #E0DACE">
+
+        <div style="border-bottom:1px solid #E0DACE">
+          <button type="button" onClick="{{ x.sponsor.toggle }}" aria-expanded="{{ x.sponsor.a }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:transparent;border:0;padding:14px 0;min-height:56px;cursor:pointer;font-family:inherit;color:#0A0B14"><span><span style="display:block;font-size:16px;font-weight:700">Sponsored, hosted or gifted</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:{{ x.sponsor.sumColor }};margin-top:2px">{{ x.sponsor.sum }}</span></span><span aria-hidden="true" style="font-size:20px;transform:rotate({{ x.sponsor.rot }});transition:transform 200ms ease-out">+</span></button>
+          <sc-if value="{{ x.sponsor.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 0 18px;display:flex;flex-direction:column;gap:12px">
+            <div role="radiogroup" aria-label="Did anyone pay, host or gift any part of this trip?" style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ sp.yn }}" as="y" hint-placeholder-count="2"><button type="button" role="radio" aria-checked="{{ y.on }}" onClick="{{ y.pick }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:0 16px;min-height:44px;border:1px solid {{ y.bd }};border-radius:2px;background:{{ y.bg }};color:{{ y.fg }};cursor:pointer">{{ y.label }}</button></sc-for></div>
+            <sc-if value="{{ sp.on }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ sp.rows }}" as="r" hint-placeholder-count="1">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:8px;align-items:center;background:#fff;border:1px solid #E0DACE;padding:10px 12px">
+                <input value="{{ r.name }}" onChange="{{ r.setName }}" placeholder="Who, named exactly" aria-label="Sponsor or host {{ r.n }}" style="font:inherit;font-size:16px;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;min-height:44px;color:#0A0B14;outline:none">
+                <div role="radiogroup" aria-label="What they gave" style="display:flex;gap:4px;flex-wrap:wrap"><sc-for list="{{ r.kinds }}" as="k" hint-placeholder-count="4"><button type="button" role="radio" aria-checked="{{ k.on }}" onClick="{{ k.pick }}" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;font-weight:700;padding:0 10px;min-height:40px;border:1px solid {{ k.bd }};border-radius:2px;background:{{ k.bg }};color:{{ k.fg }};cursor:pointer">{{ k.label }}</button></sc-for></div>
+                <sc-if value="{{ r.canRemove }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ r.remove }}" aria-label="Remove {{ r.name }}" style="justify-self:end;font-size:14px;font-weight:600;color:#C8325B;background:transparent;border:0;min-height:44px;cursor:pointer">Remove</button></sc-if>
+              </div>
+              </sc-for>
+              <button type="button" onClick="{{ sp.add }}" style="align-self:flex-start;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#0A0B14;background:transparent;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px">+ Another sponsor or host</button>
+              <div style="background:#0A0B14;color:#F7F1E8;padding:12px 14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;font-weight:700;color:#00C9C8">READERS SEE, AT THE TOP</span><span style="font-size:15px;line-height:1.45">{{ sp.preview }}</span></div>
+            </div>
+            </sc-if>
+          </div>
+          </sc-if>
+        </div>
+
+        <div style="border-bottom:1px solid #E0DACE">
+          <button type="button" onClick="{{ x.shouts.toggle }}" aria-expanded="{{ x.shouts.a }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:transparent;border:0;padding:14px 0;min-height:56px;cursor:pointer;font-family:inherit;color:#0A0B14"><span><span style="display:block;font-size:16px;font-weight:700">Shout-outs</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;margin-top:2px">{{ x.shouts.sum }}</span></span><span aria-hidden="true" style="font-size:20px;transform:rotate({{ x.shouts.rot }});transition:transform 200ms ease-out">+</span></button>
+          <sc-if value="{{ x.shouts.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 0 18px;display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ shouts }}" as="s" hint-placeholder-count="1">
+            <div style="background:#fff;border:1px solid #E0DACE;padding:10px 12px;display:flex;flex-direction:column;gap:6px">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px"><input value="{{ s.name }}" onChange="{{ s.setName }}" placeholder="The place" aria-label="Shout-out {{ s.n }} name" style="font:inherit;font-size:16px;border:0;border-bottom:1px solid #CFC8BB;background:transparent;padding:8px 0;min-height:44px;color:#0A0B14;outline:none;min-width:0"><input value="{{ s.url }}" onChange="{{ s.setUrl }}" placeholder="https://" inputMode="url" aria-label="Shout-out {{ s.n }} link" style="font:inherit;font-size:16px;border:0;border-bottom:1px solid {{ s.urlBd }};background:transparent;padding:8px 0;min-height:44px;color:#0A0B14;outline:none;min-width:0"></div>
+              <div style="display:flex;gap:4px 16px;flex-wrap:wrap;align-items:center"><label style="display:flex;gap:8px;align-items:center;min-height:40px;font-size:14px;cursor:pointer"><input type="checkbox" checked="{{ s.aff }}" onChange="{{ s.toggleAff }}" style="width:18px;height:18px;accent-color:#067A79">I earn from this link</label><label style="display:flex;gap:8px;align-items:center;min-height:40px;font-size:14px;cursor:pointer"><input type="checkbox" checked="{{ s.comp }}" onChange="{{ s.toggleComp }}" style="width:18px;height:18px;accent-color:#067A79">Free or discounted</label><span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:{{ s.tagColor }}">{{ s.tag }}</span></div>
+            </div>
+            </sc-for>
+            <button type="button" onClick="{{ addShout }}" style="align-self:flex-start;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#0A0B14;background:transparent;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px">+ Add another</button>
+          </div>
+          </sc-if>
+        </div>
+
+        <div style="border-bottom:1px solid #E0DACE">
+          <button type="button" onClick="{{ x.hook.toggle }}" aria-expanded="{{ x.hook.a }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:transparent;border:0;padding:14px 0;min-height:56px;cursor:pointer;font-family:inherit;color:#0A0B14"><span><span style="display:block;font-size:16px;font-weight:700">Pull quote and sign-off</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;margin-top:2px">{{ x.hook.sum }}</span></span><span aria-hidden="true" style="font-size:20px;transform:rotate({{ x.hook.rot }});transition:transform 200ms ease-out">+</span></button>
+          <sc-if value="{{ x.hook.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px 20px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Pull quote</span><input value="{{ f.quote }}" onChange="{{ set.quote }}" placeholder="The line people screenshot" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Question for readers</span><input value="{{ f.question }}" onChange="{{ set.question }}" placeholder="Would you take the ferry?" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Sign-off</span><input value="{{ f.signoff }}" onChange="{{ set.signoff }}" placeholder="Still raising glasses. Nancy" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">A dish, a sound, an animal</span><input value="{{ f.anchors }}" onChange="{{ set.anchors }}" placeholder="burek, ferry horn, a goat" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+            <label style="display:flex;flex-direction:column;gap:6px;grid-column:1 / -1"><span style="font-size:14px;font-weight:700">Hashtags</span><input value="{{ f.tags }}" onChange="{{ set.tags }}" placeholder="#layover #montenegro" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+          </div>
+          </sc-if>
+        </div>
+
+        <div style="border-bottom:1px solid #E0DACE">
+          <button type="button" onClick="{{ x.crew.toggle }}" aria-expanded="{{ x.crew.a }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:transparent;border:0;padding:14px 0;min-height:56px;cursor:pointer;font-family:inherit;color:#0A0B14"><span><span style="display:block;font-size:16px;font-weight:700">Who came along</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;margin-top:2px">{{ x.crew.sum }}</span></span><span aria-hidden="true" style="font-size:20px;transform:rotate({{ x.crew.rot }});transition:transform 200ms ease-out">+</span></button>
+          <sc-if value="{{ x.crew.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 0 18px;display:flex;flex-direction:column;gap:12px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">People<span tabIndex="0" role="img" aria-label="Only tag people happy to be named. They get a link to write their side of the same trip." title="Only tag people happy to be named. They get a link to write their side of the same trip." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-weight:400;font-size:12px;color:#5E5A54;cursor:help">i</span></span><input value="{{ f.crew }}" onChange="{{ set.crew }}" placeholder="Name, @handle or email" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+            <div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ petOpts }}" as="p" hint-placeholder-count="1"><button type="button" aria-pressed="{{ p.on }}" onClick="{{ p.toggle }}" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;padding:0 14px 0 4px;min-height:44px;border:1px solid {{ p.bd }};border-radius:22px;background:{{ p.bg }};color:{{ p.fg }};cursor:pointer"><span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:#0A0B14 url('{{ p.img }}') center/cover"></span>{{ p.label }}</button></sc-for></div>
+            <sc-if value="{{ hasCrew }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid #E0DACE;padding:10px 12px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#0A0B14;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">thatlayover.life/submit?with=a8k2</span><button type="button" onClick="{{ copyInvite }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#0A0B14;background:transparent;border:1px solid rgba(10,11,20,.4);border-radius:2px;padding:0 14px;min-height:44px;cursor:pointer">{{ copyLabel }}</button></div></sc-if>
+          </div>
+          </sc-if>
+        </div>
+
+        <div>
+          <button type="button" onClick="{{ x.prefs.toggle }}" aria-expanded="{{ x.prefs.a }}" style="width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:transparent;border:0;padding:14px 0;min-height:56px;cursor:pointer;font-family:inherit;color:#0A0B14"><span><span style="display:block;font-size:16px;font-weight:700">Sharing and dates</span><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;margin-top:2px">{{ x.prefs.sum }}</span></span><span aria-hidden="true" style="font-size:20px;transform:rotate({{ x.prefs.rot }});transition:transform 200ms ease-out">+</span></button>
+          <sc-if value="{{ x.prefs.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:0 0 18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:4px 20px">
+            <sc-for list="{{ prefs }}" as="p" hint-placeholder-count="6"><label style="display:flex;gap:10px;align-items:center;min-height:44px;font-size:15px;cursor:pointer"><input type="checkbox" checked="{{ p.on }}" onChange="{{ p.toggle }}" style="width:20px;height:20px;accent-color:#067A79;flex:none">{{ p.label }}</label></sc-for>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section id="sv-credit" data-sv="credit" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);border-top:1px solid #E0DACE">
+      <h2 style="margin:0 0 20px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">05</span>Your byline</h2>
+      <div role="radiogroup" aria-label="Credit" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:8px;margin-bottom:16px"><sc-for list="{{ credits }}" as="c" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ c.on }}" onClick="{{ c.pick }}" style="text-align:left;padding:12px 14px;min-height:44px;border:1.5px solid {{ c.bd }};border-radius:2px;background:{{ c.bg }};color:{{ c.fg }};cursor:pointer;font-family:inherit"><span style="display:block;font-size:15px;font-weight:700">{{ c.label }}</span><span style="display:block;font-size:13px;margin-top:2px">{{ c.sub }}</span></button></sc-for></div>
+      <sc-if value="{{ isPen }}" hint-placeholder-val="{{ false }}"><label style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;max-width:360px"><span style="font-size:14px;font-weight:700">Pen name</span><input value="{{ f.pen }}" onChange="{{ set.pen }}" placeholder="The Gate Floor Correspondent" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label></sc-if>
+      <sc-if value="{{ showLinks }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px 20px">
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Website</span><input value="{{ f.website }}" onChange="{{ set.website }}" placeholder="https://" inputMode="url" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+        <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Instagram</span><input value="{{ f.instagram }}" onChange="{{ set.instagram }}" placeholder="@yourhandle" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+      </div>
+      </sc-if>
+    </section>
+
+    <section id="sv-send" data-sv="send" style="padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);border-top:1px solid #E0DACE">
+      <h2 style="margin:0 0 20px;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">06</span>Read-through and send</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <span style="display:flex;gap:6px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;font-weight:700">EDITOR'S NOTES · {{ notesLine }}<span tabIndex="0" role="img" aria-label="Spelling and facts to double-check. Accept or skip each one. Your voice is never touched." title="Spelling and facts to double-check. Accept or skip each one. Your voice is never touched." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #CFC8BB;font-weight:400;color:#5E5A54;cursor:help">i</span></span>
+        <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#fff;border:1px solid #E0DACE;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54">{{ note.kind }}</span>
+          <span style="font-size:16px;line-height:1.5">{{ note.text }}</span>
+          <div style="display:flex;gap:16px;align-items:center"><button type="button" onClick="{{ note.accept }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#F7F1E8;background:#0A0B14;border:0;border-radius:2px;padding:0 16px;min-height:44px;cursor:pointer">{{ note.acceptLabel }}</button><button type="button" onClick="{{ note.skip }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:14px;font-weight:600;color:#0A0B14;background:transparent;border:0;padding:0;min-height:44px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px">Skip</button></div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ noNotes }}" hint-placeholder-val="{{ true }}"><span style="font-size:15px;color:#5E5A54">{{ noNotesLine }}</span></sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ ticks }}" as="t" hint-placeholder-count="3"><label style="display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:8px 0;font-size:15px;line-height:1.45;cursor:pointer"><input type="checkbox" checked="{{ t.on }}" onChange="{{ t.toggle }}" style="width:22px;height:22px;accent-color:#F0507A;flex:none;margin:0"><span>{{ t.label }} <a href="https://www.thatlayover.life/community-guidelines" target="_blank" rel="noopener" style="color:#0A0B14;font-weight:600;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:3px">{{ t.link }}</a></span></label></sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;border-top:1px solid #E0DACE;margin-top:16px;padding-top:20px">
+        <button type="button" onClick="{{ send }}" aria-disabled="{{ notReady }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;font-weight:600;color:{{ sendFgLight }};background:{{ sendBgLight }};border:0;border-radius:2px;padding:0 24px;min-height:48px;cursor:{{ sendCursor }};transition:background 200ms ease-out">{{ sendLabel }}</button>
+        <span style="font-size:14px;color:#5E5A54">{{ nextRuleLine }}</span>
+        <button type="button" onClick="{{ fillSample }}" style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54;background:transparent;border:1px dashed #CFC8BB;padding:6px 10px;min-height:36px;cursor:pointer">PROTOTYPE · FILL A SAMPLE STORY</button>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isLink }}" hint-placeholder-val="{{ false }}">
+  <div style="background:#FDF9F3;border:1px solid #E0DACE;padding:clamp(24px,3vw,32px) clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;display:flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(22px,2.4vw,26px);line-height:1.15;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;color:#067A79">01</span>Point us at it</h2>
+    <label style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;gap:6px;align-items:center;font-size:14px;font-weight:700">The link<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:1px;color:#C8325B">REQUIRED</span></span><input value="{{ f.lkUrl }}" onChange="{{ set.lkUrl }}" placeholder="https://" inputMode="url" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54">{{ lkHost }}</span></label>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px 20px">
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Title</span><input value="{{ f.title }}" onChange="{{ set.title }}" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+      <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">Country</span><input value="{{ f.country }}" onChange="{{ set.country }}" list="sv-countries2" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+    </div>
+    <datalist id="sv-countries2"><sc-for list="{{ countryOpts }}" as="c" hint-placeholder-count="0"><option value="{{ c }}"></option></sc-for></datalist>
+    <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:700">One line on what it is</span><input value="{{ f.excerpt }}" onChange="{{ set.excerpt }}" maxLength="160" style="font:inherit;font-size:16px;border:1px solid #CFC8BB;border-radius:2px;background:#fff;padding:0 12px;min-height:48px;color:#0A0B14"></label>
+    <label style="display:flex;gap:10px;align-items:center;min-height:44px;font-size:15px;cursor:pointer"><input type="checkbox" checked="{{ f.gated }}" onChange="{{ set.gated }}" style="width:20px;height:20px;accent-color:#067A79">Behind a paywall or login</label>
+    <label style="display:flex;gap:12px;align-items:flex-start;min-height:44px;font-size:15px;line-height:1.45;cursor:pointer"><input type="checkbox" checked="{{ f.charter }}" onChange="{{ set.charter }}" style="width:22px;height:22px;accent-color:#F0507A;flex:none;margin:0">It's my travel story, and it follows the Community Guidelines.</label>
+  </div>
+  </sc-if>
+  </div>
+
+  <aside aria-label="Submission rules" style="position:{{ railPos }};top:81px;display:{{ railDisplay }};flex-direction:column;gap:16px">
+    <div style="background:#0A0B14;color:#F7F1E8;padding:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:12px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;font-weight:700;color:#00C9C8">THE RULES</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#CFCBC4">{{ ruleLine }}</span></div>
+      <div role="progressbar" aria-valuemin="0" aria-valuemax="{{ ruleTotal }}" aria-valuenow="{{ ruleDone }}" aria-label="Rules passed" style="height:4px;background:#1E2944;margin-bottom:12px"><div style="height:4px;width:{{ rulePct }};background:#00C9C8;transition:width 300ms ease-out"></div></div>
+      <ul style="list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column">
+        <sc-for list="{{ rules }}" as="r" hint-placeholder-count="8"><li><button type="button" onClick="{{ r.go }}" style="width:100%;display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:center;text-align:left;background:transparent;border:0;padding:6px 0;min-height:36px;cursor:pointer;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;color:{{ r.fg }}"><span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;border:1.5px solid {{ r.ring }};background:{{ r.fill }};color:#0A0B14;font-size:12px;font-weight:700;line-height:15px;text-align:center">{{ r.mark }}</span><span>{{ r.label }}<span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">{{ r.sr }}</span></span></button></li></sc-for>
+      </ul>
+      <button type="button" onClick="{{ send }}" aria-disabled="{{ notReady }}" style="width:100%;font-family:'IBM Plex Sans Condensed',sans-serif;font-size:16px;font-weight:600;color:{{ sendFg }};background:{{ sendBg }};border:0;border-radius:2px;padding:0 20px;min-height:48px;cursor:{{ sendCursor }};transition:background 200ms ease-out">{{ sendLabel }}</button>
+      <div style="display:flex;gap:6px;align-items:center;justify-content:center;margin-top:10px;font-size:13px;color:#CFCBC4">Goes live when you send.<span tabIndex="0" role="img" aria-label="No waiting for approval. The editor reads it after and can correct or pull it under the Charter. You get an email copy." title="No waiting for approval. The editor reads it after and can correct or pull it under the Charter. You get an email copy." style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid #4A4D63;color:#CFCBC4;cursor:help">i</span></div>
+    </div>
+    <sc-if value="{{ isWrite }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#FDF9F3;border:1px solid #E0DACE;overflow:hidden">
+      <div style="aspect-ratio:16/9;background:#E0DACE url('{{ f.hero }}') center/cover"></div>
+      <div style="padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#5E5A54">{{ cardMeta }}</span>
+        <span style="font-family:'Playfair Display',serif;font-weight:800;font-size:20px;line-height:1.15">{{ cardTitle }}</span>
+        <span style="font-size:14px;line-height:1.45;color:#0A0B14">{{ cardExcerpt }}</span>
+        <sc-if value="{{ sp.on }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;font-weight:700;color:#7A4D10">{{ sp.chip }}</span></sc-if>
+      </div>
+    </div>
+    </sc-if>
+  </aside>
+  </div>
+</div>
+
+<sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:50;background:#0A0B14;color:#F7F1E8;padding:10px 20px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center">
+  <button type="button" onClick="{{ goNextRule }}" style="text-align:left;background:transparent;border:0;padding:0;min-height:44px;cursor:pointer;color:#F7F1E8;font-family:inherit"><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#00C9C8;font-weight:700">{{ ruleLine }}</span><span style="display:block;font-size:14px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ nextRuleLine }}</span></button>
+  <button type="button" onClick="{{ send }}" aria-disabled="{{ notReady }}" style="font-family:'IBM Plex Sans Condensed',sans-serif;font-size:15px;font-weight:600;color:{{ sendFg }};background:{{ sendBg }};border:0;border-radius:2px;padding:0 18px;min-height:48px;cursor:{{ sendCursor }}">{{ sendShort }}</button>
+</div>
+</sc-if>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mode: 'write', f: { country: '', city: '', when: '', title: '', excerpt: '', hero: '', lounge: false, quote: '', question: '', signoff: '', anchors: '', tags: '', crew: '', pen: '', website: '', instagram: '', lkUrl: '', gated: false, charter: false },
+    words: 0, bodyText: '', pillars: [], pets: [], sponsored: null, sponsors: [{ name: '', kind: 'hosted' }], shouts: [{ name: '', url: '', aff: false, comp: false }],
+    credit: 'named', prefs: { news: true, social: true, press: false, posted: true, traveled: true, edited: false }, rights: false, travel: false,
+    open: {}, gallery: [], active: 'trip', notesDone: {}, sent: false, vw: 1280, copied: false, savedAt: null };
+  bodyRef = React.createRef();
+  COUNTRIES = { Albania: 'Europe', Antarctica: 'Antarctica', Argentina: 'Americas', Australia: 'Oceania', Austria: 'Europe', Brazil: 'Americas', Bulgaria: 'Europe', Canada: 'Americas', Chile: 'Americas', Colombia: 'Americas', 'Costa Rica': 'Americas', Croatia: 'Europe', 'Curaçao': 'Americas', Czechia: 'Europe', Denmark: 'Europe', Egypt: 'Africa', France: 'Europe', Germany: 'Europe', Ghana: 'Africa', Greece: 'Europe', Hungary: 'Europe', Iceland: 'Europe', India: 'Asia', Indonesia: 'Asia', Ireland: 'Europe', Italy: 'Europe', Japan: 'Asia', Jordan: 'Middle East', Kenya: 'Africa', Kosovo: 'Europe', Mexico: 'Americas', Montenegro: 'Europe', Morocco: 'Africa', Netherlands: 'Europe', 'New Zealand': 'Oceania', 'North Macedonia': 'Europe', Norway: 'Europe', Peru: 'Americas', Poland: 'Europe', Portugal: 'Europe', Qatar: 'Middle East', Serbia: 'Europe', Singapore: 'Asia', Slovakia: 'Europe', 'South Africa': 'Africa', Spain: 'Europe', Sweden: 'Europe', Thailand: 'Asia', Turkey: 'Europe', 'United Arab Emirates': 'Middle East', 'United Kingdom': 'Europe', 'United States': 'Americas', Vietnam: 'Asia' };
+  PILLARS = [['layover', 'Layover Guides', /layover|airport|terminal|gate|lounge|transit/i], ['paw', 'Paw Passport', /dog|cat|pet|samoyed|paw/i], ['logistics', 'Travel Logistics', /visa|ferry|train|bus|EV|charg|border|ticket|rebook/i], ['culture', 'Cultural Intelligence', /festival|church|tradition|language|custom|easter|market/i], ['road', 'Stories From the Road', /./]];
+  componentDidMount() {
+    this._r = () => this.setState({ vw: window.innerWidth }); this._r(); window.addEventListener('resize', this._r);
+    this._s = () => { if (Date.now() - (this._lock || 0) < 800) return; let cur = 'trip'; document.querySelectorAll('[data-sv]').forEach(el => { if (el.getBoundingClientRect().top <= 140) cur = el.getAttribute('data-sv'); }); if (cur !== this.state.active) this.setState({ active: cur }); };
+    window.addEventListener('scroll', this._s, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); window.removeEventListener('scroll', this._s); }
+  go(id) { const el = document.getElementById('sv-' + id); if (!el) return; this._lock = Date.now(); this.setState({ active: id }); window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 57 - 48 - 8, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+  touch(patch) { this.setState(s => ({ ...patch, savedAt: Date.now() })); }
+  setF(k, v) { this.touch({ f: { ...this.state.f, [k]: v } }); }
+  notes() {
+    const t = this.state.bodyText + ' ' + this.state.f.title, out = [];
+    const typos = { teh: 'the', recieve: 'receive', seperate: 'separate', definately: 'definitely', accomodation: 'accommodation', untill: 'until', wich: 'which', occured: 'occurred', beleive: 'believe', tommorow: 'tomorrow' };
+    Object.keys(typos).forEach(w => { if (new RegExp('\\b' + w + '\\b', 'i').test(t)) out.push({ id: 'sp-' + w, kind: 'SPELLING', text: '"' + w + '" → "' + typos[w] + '"', fix: [w, typos[w]] }); });
+    (t.match(/\b\d[\d,.]*\s?(km|kg|m|meters|metres|hours|years|euros|€|\$|dkk|people|countries|%)/gi) || []).slice(0, 3).forEach(m => out.push({ id: 'fx-' + m, kind: 'FACT TO CONFIRM', text: '"' + m.trim() + '". Worth a double-check before it goes live.' }));
+    return out.filter(n => !this.state.notesDone[n.id]);
+  }
+  renderVals() {
+    const s = this.state, f = s.f, narrow = s.vw < 900, write = s.mode === 'write';
+    const set = {}; ['country', 'city', 'when', 'title', 'excerpt', 'quote', 'question', 'signoff', 'anchors', 'tags', 'crew', 'pen', 'website', 'instagram', 'lkUrl'].forEach(k => set[k] = e => this.setF(k, e.target.value));
+    ['lounge', 'gated', 'charter'].forEach(k => set[k] = () => this.setF(k, !f[k]));
+    set.heroFile = e => { const fl = e.target.files && e.target.files[0]; if (fl) this.setF('hero', URL.createObjectURL(fl)); };
+    set.galleryFiles = e => { const fl = [...(e.target.files || [])].slice(0, 12 - s.gallery.length).map(x => URL.createObjectURL(x)); this.touch({ gallery: s.gallery.concat(fl) }); };
+    const region = this.COUNTRIES[f.country.trim()] || '';
+    const httpsOk = u => /^https:\/\/[^\s.]+\.[^\s]+$/.test(u.trim());
+    const shoutsFilled = s.shouts.filter(x => x.url.trim());
+    const linksOk = shoutsFilled.every(x => httpsOk(x.url)) && (!f.website.trim() || httpsOk(f.website));
+    const spOk = s.sponsored === false || (s.sponsored === true && s.sponsors.every(x => x.name.trim()));
+    const tl = f.title.trim().length;
+    const R = write ? [
+      ['trip', 'A place', !!f.country.trim()],
+      ['story', 'A headline, 60 or fewer', tl > 0 && tl <= 60],
+      ['story', '300 words or more', s.words >= 300],
+      ['photos', 'Your own hero photo', !!f.hero],
+      ['send', "It's travel", s.travel],
+      ['send', 'Your words and photos', s.rights],
+      ['extras', 'Links work, paid links declared', linksOk && spOk],
+      ['send', 'Charter agreed', f.charter]
+    ] : [
+      ['link', 'A link that works', httpsOk(f.lkUrl)], ['link', 'A title', !!f.title.trim()], ['link', 'A place', !!f.country.trim()], ['link', 'One line on what it is', !!f.excerpt.trim()], ['link', "It's travel, Charter agreed", f.charter]
+    ];
+    const done = R.filter(r => r[2]).length, ready = done === R.length, firstMiss = R.find(r => !r[2]);
+    const tog = k => () => this.setState(st => ({ open: { ...st.open, [k]: !st.open[k] } }));
+    const acc = (k, sum, sumColor) => ({ open: !!s.open[k], a: String(!!s.open[k]), rot: s.open[k] ? '45deg' : '0deg', toggle: tog(k), sum, sumColor: sumColor || '#5E5A54' });
+    const kindL = { paid: 'Paid for', hosted: 'Hosted', gifted: 'Gifted', discount: 'Discounted' };
+    const named = s.sponsors.filter(x => x.name.trim());
+    const spPreview = named.length ? named.map(x => kindL[x.kind] + ' by ' + x.name.trim()).join('. ') + '. Opinions are the writer\u2019s own.' : 'Add who, and readers see it here.';
+    const chip = (on) => ({ bg: on ? '#0A0B14' : 'transparent', fg: on ? '#F7F1E8' : '#0A0B14', bd: on ? '#0A0B14' : 'rgba(10,11,20,.4)' });
+    const notes = this.notes(), note = notes[0];
+    const mins = Math.max(1, Math.ceil(s.words / 220));
+    const hasCrew = !!f.crew.trim() || s.pets.length > 0;
+    const prefsL = [['news', 'OK for the Sunday letter'], ['social', 'OK to quote on TLL social'], ['press', 'OK for press to ask about it'], ['posted', 'Show the date it went live'], ['traveled', 'Show when I traveled'], ['edited', 'Show when I last edited']];
+    const saved = s.savedAt ? 'DRAFT SAVED ' + new Date(s.savedAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : 'SAVES AS YOU TYPE';
+    return {
+      padBottom: narrow && !s.sent ? '84px' : '0', saveLine: saved, isSent: s.sent, isForm: !s.sent,
+      sentDate: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase(), sentTitle: f.title.trim() || 'Your story',
+      reset: () => { this.setState({ sent: false }); window.scrollTo(0, 0); },
+      modes: [['write', 'Write it here', 'The full story on TLL'], ['link', 'Link to it', 'Already published elsewhere']].map(([k, label, sub]) => ({ label, sub, on: String(s.mode === k), ...chip(s.mode === k), pick: () => this.setState({ mode: k }) })),
+      gridCols: narrow ? 'minmax(0,1fr)' : 'minmax(0,1fr) 340px', railPos: narrow ? 'static' : 'sticky', railDisplay: narrow ? 'none' : 'flex', showBar: narrow,
+      isWrite: write, isLink: !write, f, set,
+      tabs: [['trip', 'TRIP'], ['story', 'STORY'], ['photos', 'PHOTOS'], ['extras', 'EXTRAS'], ['credit', 'BYLINE'], ['send', 'SEND']].map(([id, label]) => { const cur = s.active === id; const sec = R.filter(r => r[0] === id); const ok = sec.length ? sec.every(r => r[2]) : null; return { label, cur: cur ? 'location' : 'false', go: () => this.go(id), fg: cur ? '#0A0B14' : '#5E5A54', bd: cur ? '#F0507A' : 'transparent', dot: ok === null ? 'transparent' : ok ? '#067A79' : '#CFC8BB' }; }),
+      countryOpts: Object.keys(this.COUNTRIES), regionLine: region ? 'REGION · ' + region.toUpperCase() + ' · ADDED FOR YOU' : '',
+      titleCount: tl + ' / 60', titleCountColor: tl > 60 ? '#C8325B' : '#5E5A54', excerptCount: f.excerpt.length + ' / 240', excerptCountColor: f.excerpt.length > 240 ? '#C8325B' : '#5E5A54',
+      wordLine: s.words + ' WORDS', wordColor: s.words >= 300 ? '#067A79' : '#5E5A54', readLine: s.words ? mins + ' MIN READ · WORKED OUT FOR YOU' : '',
+      bodyRef: this.bodyRef, onBody: e => { const t = e.currentTarget.innerText || ''; this.touch({ bodyText: t, words: (t.trim().match(/\S+/g) || []).length }); },
+      tools: [['B', 'Bold', 'bold', null, "'IBM Plex Sans Condensed',sans-serif", 'normal'], ['I', 'Italic', 'italic', null, "'Playfair Display',serif", 'italic'], ['H', 'Subhead', 'formatBlock', 'h2', "'Playfair Display',serif", 'normal'], ['\u201C', 'Quote', 'formatBlock', 'blockquote', "'Playfair Display',serif", 'normal'], ['\u2197', 'Link', 'createLink', null, "'IBM Plex Sans Condensed',sans-serif", 'normal']].map(([label, aria, cmd, arg, font, style]) => ({ label, aria, font, style, run: e => { e.preventDefault(); let a = arg; if (cmd === 'createLink') { a = window.prompt('Link (https://)'); if (!a) return; } document.execCommand(cmd, false, a); } })),
+      pillars: this.PILLARS.map(([k, label, re]) => { const on = s.pillars.includes(k); const sug = k !== 'road' ? re.test(s.bodyText + ' ' + f.title) : !this.PILLARS.slice(0, 4).some(p => p[2].test(s.bodyText + ' ' + f.title)) && s.words > 20; return { label, on: String(on), ...chip(on), dot: sug ? (on ? '#00C9C8' : '#067A79') : 'transparent', toggle: () => this.touch({ pillars: on ? s.pillars.filter(x => x !== k) : (s.pillars.length < 3 ? s.pillars.concat([k]) : s.pillars) }) }; }),
+      heroChip: f.hero ? 'CHANGE' : 'ADD YOUR PHOTO', heroChipBg: f.hero ? 'rgba(10,11,20,.8)' : '#0A0B14', heroChipFg: '#F7F1E8',
+      sampleHero: () => this.touch({ f: { ...f, hero: 'images/montenegro.jpg' }, gallery: s.gallery.length ? s.gallery : ['images/coast1.jpg', 'images/coast2.jpg'] }),
+      gallery: s.gallery.map((src, i) => ({ src, n: String(i + 1), remove: () => this.touch({ gallery: s.gallery.filter((_, j) => j !== i) }) })), galleryCount: s.gallery.length + ' / 12', canAddGallery: s.gallery.length < 12,
+      x: {
+        sponsor: acc('sponsor', s.sponsored === null ? 'ANSWER THIS ONE' : s.sponsored ? named.length + ' NAMED' : 'NOBODY PAID, HOSTED OR GIFTED', s.sponsored === null ? '#C8325B' : null),
+        shouts: acc('shouts', shoutsFilled.length ? shoutsFilled.length + ' ADDED' : 'PLACES YOU WOULD SEND A FRIEND'),
+        hook: acc('hook', [f.quote && 'QUOTE', f.signoff && 'SIGN-OFF', f.question && 'QUESTION'].filter(Boolean).join(' · ') || 'THE LINE THEY SCREENSHOT'),
+        crew: acc('crew', hasCrew ? 'TAGGED' : 'PEOPLE AND PETS'),
+        prefs: acc('prefs', Object.values(s.prefs).filter(Boolean).length + ' OF 6 ON')
+      },
+      sp: {
+        on: s.sponsored === true, preview: spPreview, chip: named.length ? named.map(x => kindL[x.kind].toUpperCase()).filter((v, i, a) => a.indexOf(v) === i).join(' · ') + ' · ' + named.length + (named.length === 1 ? ' PARTNER' : ' PARTNERS') : '',
+        yn: [[false, 'No'], [true, 'Yes']].map(([v, label]) => ({ label, on: String(s.sponsored === v), ...chip(s.sponsored === v), pick: () => this.touch({ sponsored: v }) })),
+        rows: s.sponsors.map((r, i) => ({ n: String(i + 1), name: r.name, setName: e => this.touch({ sponsors: s.sponsors.map((x, j) => j === i ? { ...x, name: e.target.value } : x) }), canRemove: s.sponsors.length > 1, remove: () => this.touch({ sponsors: s.sponsors.filter((_, j) => j !== i) }),
+          kinds: Object.keys(kindL).map(k => ({ label: kindL[k].toUpperCase(), on: String(r.kind === k), ...chip(r.kind === k), pick: () => this.touch({ sponsors: s.sponsors.map((x, j) => j === i ? { ...x, kind: k } : x) }) })) })),
+        add: () => this.touch({ sponsors: s.sponsors.concat([{ name: '', kind: 'hosted' }]) })
+      },
+      shouts: s.shouts.map((x, i) => { const up = p => this.touch({ shouts: s.shouts.map((y, j) => j === i ? { ...y, ...p } : y) }); const bad = x.url.trim() && !httpsOk(x.url); return { n: String(i + 1), name: x.name, url: x.url, aff: x.aff, comp: x.comp, setName: e => up({ name: e.target.value }), setUrl: e => up({ url: e.target.value }), toggleAff: () => up({ aff: !x.aff }), toggleComp: () => up({ comp: !x.comp }), urlBd: bad ? '#C8325B' : '#CFC8BB', tag: bad ? 'NEEDS HTTPS://' : [x.aff && 'AFFILIATE', x.comp && 'COMPED'].filter(Boolean).join(' · ') || (x.url.trim() ? 'PLAIN LINK' : ''), tagColor: bad ? '#C8325B' : '#5E5A54' }; }),
+      addShout: () => this.touch({ shouts: s.shouts.concat([{ name: '', url: '', aff: false, comp: false }]) }),
+      petOpts: [['magnus', 'Magnus Waffles', 'images/magnus-holi-side.jpg']].map(([k, label, img]) => { const on = s.pets.includes(k); return { label, img, on: String(on), ...chip(on), toggle: () => this.touch({ pets: on ? s.pets.filter(x => x !== k) : s.pets.concat([k]) }) }; }),
+      hasCrew, copyLabel: s.copied ? 'Copied' : 'Copy invite link', copyInvite: () => { try { navigator.clipboard.writeText('https://www.thatlayover.life/submit?with=a8k2'); } catch (e) {} this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2000); },
+      prefs: prefsL.map(([k, label]) => ({ label, on: !!s.prefs[k], toggle: () => this.touch({ prefs: { ...s.prefs, [k]: !s.prefs[k] } }) })),
+      credits: [['named', 'Your name', 'Name and photo'], ['pen', 'Pen name', 'Still a real person'], ['anon', 'Anonymous', 'Shown as Anonymous Traveler']].map(([k, label, sub]) => ({ label, sub, on: String(s.credit === k), ...chip(s.credit === k), pick: () => this.touch({ credit: k }) })),
+      isPen: s.credit === 'pen', showLinks: s.credit !== 'anon',
+      notesLine: notes.length ? notes.length + ' TO LOOK AT' : 'ALL CLEAR', hasNote: !!note, noNotes: !note, noNotesLine: s.words ? 'Nothing to flag. Nice.' : 'Notes appear once you write.',
+      note: note ? { kind: note.kind, text: note.text, acceptLabel: note.fix ? 'Fix it' : 'Checked', accept: () => { if (note.fix && this.bodyRef.current) { const el = this.bodyRef.current; el.innerHTML = el.innerHTML.replace(new RegExp('\\b' + note.fix[0] + '\\b', 'gi'), note.fix[1]); this.touch({ bodyText: el.innerText, notesDone: { ...s.notesDone, [note.id]: 'accepted' } }); } else this.setState({ notesDone: { ...s.notesDone, [note.id]: 'accepted' } }); }, skip: () => this.setState({ notesDone: { ...s.notesDone, [note.id]: 'skipped' } }) } : {},
+      ticks: [['travel', "It's a trip I took.", ''], ['rights', 'These are my words and photos, or I have the rights. People in them are OK with it.', ''], ['charter', 'I follow the', 'Community Guidelines']].map(([k, label, link]) => { const on = k === 'charter' ? f.charter : s[k]; return { label, link, on, toggle: () => k === 'charter' ? this.setF('charter', !f.charter) : this.touch({ [k]: !s[k] }) }; }),
+      lkHost: (() => { try { return f.lkUrl.trim() ? 'THE CARD SAYS: OPENS ON ' + new URL(f.lkUrl.trim()).hostname.replace(/^www\./, '').toUpperCase() : ''; } catch (e) { return ''; } })(),
+      rules: R.map(([sec, label, ok]) => ({ label, fg: ok ? '#F7F1E8' : '#CFCBC4', ring: ok ? '#00C9C8' : '#4A4D63', fill: ok ? '#00C9C8' : 'transparent', mark: ok ? '\u2713' : '', sr: ok ? ' (done)' : ' (to do)', go: () => sec === 'link' ? null : this.go(sec) })),
+      ruleLine: done + ' OF ' + R.length + ' RULES', ruleTotal: String(R.length), ruleDone: String(done), rulePct: Math.round(done / R.length * 100) + '%',
+      nextRuleLine: firstMiss ? 'Next: ' + firstMiss[1] : 'Ready to go live.', goNextRule: () => { if (firstMiss && firstMiss[0] !== 'link') this.go(firstMiss[0]); },
+      sendBgLight: ready ? '#F0507A' : '#E0DACE', sendFgLight: ready ? '#0A0B14' : '#5E5A54',
+      fillSample: () => { const p = 'The ferry from Kotor left forty minutes late, which in Montenegro counts as early. '; const txt = Array.from({ length: 6 }, (_, i) => p + 'Paragraph ' + (i + 1) + ' of the trip: a switchback road, a Mangalitsa fillet, a goat who had opinions about our rental car, and a beach bar that only took cash and compliments. We stayed until the light went orange and the last bus left without us.').join('\n\n'); if (this.bodyRef.current) this.bodyRef.current.innerText = txt; this.touch({ f: { ...f, country: 'Montenegro', city: 'Budva', when: 'May 2026', title: 'Switchbacks, burek and a goat with opinions', excerpt: 'Four days on the Montenegro coast, one rental car, zero regrets.', hero: 'images/montenegro.jpg', charter: true }, bodyText: txt, words: (txt.match(/\S+/g) || []).length, travel: true, rights: true, sponsored: false, pillars: ['road'] }); },
+      notReady: String(!ready), sendBg: ready ? '#F0507A' : '#4A4D63', sendFg: ready ? '#0A0B14' : '#CFCBC4', sendCursor: ready ? 'pointer' : 'not-allowed',
+      sendLabel: ready ? 'Send it live' : (R.length - done) + ' to go', sendShort: ready ? 'Send it live' : (R.length - done) + ' to go',
+      send: () => { if (!ready) { if (firstMiss && firstMiss[0] !== 'link') this.go(firstMiss[0]); return; } this.setState({ sent: true }); window.scrollTo(0, 0); },
+      cardMeta: [(f.country || 'COUNTRY').toUpperCase(), s.words ? mins + ' MIN' : null].filter(Boolean).join(' · '), cardTitle: f.title.trim() || 'Your headline', cardExcerpt: f.excerpt.trim() || 'Your excerpt shows here.'
+    };
+  }
+}
+</script>
+</body>
+</html>
