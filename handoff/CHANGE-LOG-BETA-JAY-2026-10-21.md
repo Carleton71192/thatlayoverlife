@@ -45,7 +45,7 @@ Fix: the label under "58 / 249" reads "PLACES LOGGED" (recommended) or "PLACES",
 
 | Where | Copy |
 |---|---|
-| Map counter label | PLACES LOGGED |
+| Map counter label | PLACES VISITED (Nancy, 21 Oct: "Can it say places visited not countries"). The number reads "57 + AQ / 249" for Jay: countries, plus Antarctica, out of 249 places. |
 | Languages, entry not on the list | Not on the list. Pick a language or remove this one. |
 | Strava field hint | Your Strava address or username. |
 
