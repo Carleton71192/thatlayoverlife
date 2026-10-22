@@ -20,3 +20,9 @@ THEMES_COLLECTION = "6a0c7e883607a3b091e1ae20"
 PILLARS_COLLECTION = "6a0b29c6d081332e921900ff"
 PLACES_COLLECTION = "6a0b29c702602326705dcfb1"
 PETS_COLLECTION = "6a0be8194ccc05a63fbdcfa3"
+# Story extras (22 Oct 2026): companion collection, one item per story (sponsors, Lounge, owner, Anonymous, photos 26 to 50).
+STORY_EXTRAS_COLLECTION = "6ad997935f308b0209d358b8"
+# The shared Anonymous profile in Contributors. Anonymous stories are credited to it.
+ANONYMOUS_CONTRIBUTOR_ID = "6ad997b28216cc385ddb1594"
+# Memberstack plan ids (comma list) that unlock a 50-photo gallery. Empty until a Gallery Plus plan exists.
+GALLERY_PLUS_PLANS = ""

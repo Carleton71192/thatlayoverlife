@@ -33,3 +33,12 @@ Editing a live story keeps the same page and the same link.
 1. Deploy tll-worker (`cd worker`, then `npx wrangler deploy`) and send the workers.dev address.
 2. That address goes into the v5 form and the story edit panel.
 3. v5 goes on /submit. The old form stays on the page, hidden, so its name and history are kept.
+
+## Update, 22 October 2026 (Nancy's answers)
+
+1. **Sponsors get their own field.** Stories is at Webflow's hard cap of 60 fields, so the new per-story fields live in a companion collection, **Story extras** (one item per story, same slug): Sponsors (one line each, e.g. "Hosted: Hotel Example"), Lounge opt-in, Owner member ID, Anonymous, Photo gallery more. The Disclosure line readers see is still built from the rows.
+2. **Anonymous is in.** It is per story, not per profile. An Anonymous story is credited to a shared "Anonymous" profile (hidden from lists), so every byline, card and profile list shows Anonymous and the story never appears on the writer's profile. The writer's member id stays on the extras item (plus a backup copy in the Worker's storage), so only they can edit it. Their profile credit setting is left alone.
+3. **Gallery: 25 for everyone, 50 with Gallery Plus.** 25 is Webflow's limit for one gallery field; photos 26 to 50 go on the extras item. Gallery Plus is a Memberstack plan that does not exist yet. When it does, its plan id goes in the Worker setting GALLERY_PLUS_PLANS. Still to build before anyone can buy it: the plan and price, and the story page block that shows photos 26 to 50.
+4. **Lounge opt-in** now has its own switch on Story extras (it no longer rides in the editor notes log).
+
+Also fixed: the Worker was saving the writer's website to a field name that does not exist on Contributors. It now writes Personal site URL (website-url).

@@ -97,8 +97,10 @@ export function readLog(raw) {
   }
 }
 
+import { parseSponsorsText } from "./extras.js";
+
 export function createStoryEditHandlers(h) {
-  const { json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime, regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL, disclosureLine } = h;
+  const { json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime, regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL, disclosureLine, extras, galleryCheck, extrasFields, splitGallery } = h;
 
   function readSlug(v) {
     const s = typeof v === "string" ? v.trim().toLowerCase() : "";
@@ -139,8 +141,27 @@ export function createStoryEditHandlers(h) {
       return json({ error: "We could not look up that story right now. Try again in a moment." }, 502);
     }
     if (!story || story.isArchived) return json({ error: "We could not find that story." }, 404);
-    if (story.fieldData?.contributor !== contributor.id) return json({ error: "Only the writer of a story can change it." }, 403);
-    return { story, contributor };
+    let extra = null;
+    try {
+      extra = extras ? await extras.find(env, slug) : null;
+    } catch {
+      extra = null;
+    }
+    const credited = story.fieldData?.contributor;
+    if (credited === contributor.id) return { story, contributor, extra };
+    // An Anonymous story is credited to the shared profile; its writer is the owner on the extras item (or the KV copy).
+    if (env.ANONYMOUS_CONTRIBUTOR_ID && credited === env.ANONYMOUS_CONTRIBUTOR_ID && auth.verifiedId) {
+      let owner = extra?.fieldData?.["owner-member-id"] || null;
+      if (!owner) {
+        try {
+          owner = await env.TLL_KV.get(`owner:${slug}`);
+        } catch {
+          owner = null;
+        }
+      }
+      if (owner && owner === auth.verifiedId) return { story, contributor, extra };
+    }
+    return json({ error: "Only the writer of a story can change it." }, 403);
   }
 
   function stateOf(item) {
@@ -173,8 +194,9 @@ export function createStoryEditHandlers(h) {
     }
     const owned = await ownedStory(env, auth, slug);
     if (owned instanceof Response) return owned;
-    const { story } = owned;
+    const { story, extra } = owned;
     const f = story.fieldData || {};
+    const ef = extra?.fieldData || {};
     const photos = photoRecords(f);
     const heroUrl = f["hero-image"]?.url || "";
     const hero = photos.hero || (heroUrl ? { publicId: "", originalUrl: heroUrl, cleanedUrl: heroUrl, approved: "original" } : null);
@@ -188,6 +210,8 @@ export function createStoryEditHandlers(h) {
       }
     }
     const disclosure = parseDisclosure(f.disclosure);
+    const extraSponsors = parseSponsorsText(ef.sponsors);
+    const anonymous = !!env.ANONYMOUS_CONTRIBUTOR_ID && f.contributor === env.ANONYMOUS_CONTRIBUTOR_ID;
     return json({
       slug,
       url: `${SITE_URL}/stories/${slug}`,
@@ -214,7 +238,10 @@ export function createStoryEditHandlers(h) {
       sponsored: disclosure.sponsored,
       sponsorName: f["sponsor-name-2"] || disclosure.sponsorName,
       sponsorUrl: f["sponsor-url"] || "",
-      sponsors: disclosure.sponsors,
+      sponsors: extraSponsors.length ? extraSponsors : disclosure.sponsors,
+      loungeOptIn: ef["lounge-opt-in"] === true,
+      anonymous,
+      creditMode: anonymous ? "Anonymous" : null,
       affiliateLinks: disclosure.affiliateLinks,
       readerQuestion: f["reader-question"] || "",
       anchors: f["sensory-anchors"] || "",
@@ -239,6 +266,12 @@ export function createStoryEditHandlers(h) {
     }
     if (!contributor) return json({ stories: [] });
     const mine = [];
+    let anonIds = new Set();
+    try {
+      anonIds = extras && env.ANONYMOUS_CONTRIBUTOR_ID && auth.verifiedId ? await extras.ownedStoryIds(env, auth.verifiedId) : new Set();
+    } catch {
+      anonIds = new Set();
+    }
     try {
       for (let offset = 0; offset < 1000; offset += 100) {
         const r = await webflow(env, "GET", `/collections/${env.STORIES_COLLECTION}/items?limit=100&offset=${offset}`);
@@ -246,7 +279,8 @@ export function createStoryEditHandlers(h) {
         const items = r.data?.items || [];
         for (const item of items) {
           const f = item.fieldData || {};
-          if (item.isArchived || f.contributor !== contributor.id || !f.slug) continue;
+          const anonMine = !!env.ANONYMOUS_CONTRIBUTOR_ID && f.contributor === env.ANONYMOUS_CONTRIBUTOR_ID && anonIds.has(item.id);
+          if (item.isArchived || (f.contributor !== contributor.id && !anonMine) || !f.slug) continue;
           mine.push({
             slug: f.slug,
             url: `${SITE_URL}/stories/${f.slug}`,
@@ -256,6 +290,7 @@ export function createStoryEditHandlers(h) {
             lastUpdated: f["last-updated"] || null,
             heroUrl: f["hero-image"]?.url || "",
             city: f.city || "",
+            anonymous: anonMine,
           });
         }
         if (items.length < 100) break;
@@ -282,7 +317,7 @@ export function createStoryEditHandlers(h) {
 
     const owned = await ownedStory(env, auth, slug);
     if (owned instanceof Response) return owned;
-    const { story: item } = owned;
+    const { story: item, contributor, extra } = owned;
     const before = item.fieldData || {};
 
     // Rights and charter were agreed when the story was first published; the edit form shows them, it does not ask again (E2.3).
@@ -294,6 +329,13 @@ export function createStoryEditHandlers(h) {
       if (err instanceof Bad) return json({ error: `Not saved yet: ${err.message} Fix it and save again.` }, 400);
       throw err;
     }
+
+    if (galleryCheck) {
+      const tooMany = await galleryCheck(env, auth.verifiedId, story);
+      if (tooMany) return tooMany;
+    }
+    const wantAnon = story.creditMode === "Anonymous";
+    if (wantAnon && !env.ANONYMOUS_CONTRIBUTOR_ID) return json({ error: "Not saved yet: Anonymous bylines are not switched on yet. Pick another credit and save again." }, 400);
 
     const allowed = await rateLimit(env, `storyedit:${keyPart(auth.memberId)}:${stamp(10)}`, 20, 3600);
     if (!allowed) return json({ error: "That is a lot of saves in one hour. Take a breath and try again later." }, 429);
@@ -318,13 +360,14 @@ export function createStoryEditHandlers(h) {
     }
 
     const nowIso = new Date().toISOString();
+    const gallery = splitGallery ? splitGallery(story.gallery.map((p) => approvedUrl(p))) : { main: story.gallery.map((p) => approvedUrl(p)), more: [] };
     const next = {
       name: story.headline,
       body: story.body,
       excerpt: story.excerpt,
       "pull-quote": story.pullQuote,
       "hero-image": { url: approvedUrl(story.heroPhoto) },
-      "photo-gallery": story.gallery.map((p) => ({ url: approvedUrl(p) })),
+      "photo-gallery": gallery.main.map((url) => ({ url })),
       "photo-originals": JSON.stringify({ hero: story.heroPhoto, gallery: story.gallery }),
       "country-2": story.country,
       city: story.city,
@@ -366,6 +409,41 @@ export function createStoryEditHandlers(h) {
     };
     const changed = [];
     const fieldData = {};
+    // Credit is the one Contributor change a member may make: between their own profile and the Anonymous profile.
+    if (env.ANONYMOUS_CONTRIBUTOR_ID && input.creditMode !== undefined) {
+      const credit = wantAnon ? env.ANONYMOUS_CONTRIBUTOR_ID : before.contributor === env.ANONYMOUS_CONTRIBUTOR_ID ? contributor.id : before.contributor;
+      if (credit !== before.contributor) {
+        fieldData.contributor = credit;
+        changed.push("contributor");
+      }
+    }
+    // Story extras: written when something in them changed, before the story itself.
+    if (extras && extrasFields && env.STORY_EXTRAS_COLLECTION) {
+      const want = extrasFields(story, auth.verifiedId, gallery.more);
+      const have = extra?.fieldData || {};
+      const moreUrls = (v) => (Array.isArray(v) ? v : []).map((p) => p?.url || null);
+      // An Anonymous story keeps its original owner; nobody else reaches this point for it.
+      if (have["owner-member-id"]) want["owner-member-id"] = have["owner-member-id"];
+      const differs =
+        !extra ||
+        String(have.sponsors || "") !== want.sponsors ||
+        (have["lounge-opt-in"] === true) !== want["lounge-opt-in"] ||
+        (have.anonymous === true) !== want.anonymous ||
+        (have["owner-member-id"] || "") !== want["owner-member-id"] ||
+        JSON.stringify(moreUrls(have["photo-gallery-more"])) !== JSON.stringify(moreUrls(want["photo-gallery-more"]));
+      if (differs) {
+        const saved = await extras.save(env, { existing: extra, storyId: item.id, slug, headline: story.headline, fieldData: want });
+        if (!saved.ok) return json({ error: "We could not save your changes right now. Nothing was changed. Try again in a moment." }, 502);
+        changed.push("story-extras");
+        if (wantAnon) {
+          try {
+            await env.TLL_KV.put(`owner:${slug}`, want["owner-member-id"]);
+          } catch {
+            // the extras item is the main record
+          }
+        }
+      }
+    }
     for (const k of MEMBER_FIELDS) {
       if (!(k in next)) continue;
       if (same(norm(k, next[k]), norm(k, before[k]))) continue;

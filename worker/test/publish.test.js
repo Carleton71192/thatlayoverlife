@@ -395,7 +395,7 @@ test("v5: sponsored yes with no named row is refused; a v2 payload without rows 
   assert.equal(created().body.fieldData.disclosure, "Sponsored or hosted: Hotel Example");
 });
 
-test("v5: reader question, anchors, hashtags, dates shown and the Lounge opt-in are written; absent keys write nothing", async () => {
+test("v5: reader question, anchors, hashtags and dates shown are written; absent keys write nothing", async () => {
   install();
   const res = await publish(story({ readerQuestion: "Would you take the ferry?", anchors: "burek, ferry horn", hashtags: "#layover #montenegro", datesShown: { posted: true, traveled: false, edited: true }, loungeOptIn: true }));
   assert.equal(res.status, 200);
@@ -404,7 +404,8 @@ test("v5: reader question, anchors, hashtags, dates shown and the Lounge opt-in 
   assert.equal(f["sensory-anchors"], "burek, ferry horn");
   assert.equal(f["hashtag-set"], "#layover #montenegro");
   assert.deepEqual([f["show-posted-date"], f["show-traveled-date"], f["show-edited-date"]], [true, false, true]);
-  assert.deepEqual(JSON.parse(f["editor-notes-log"]).map((e) => e.type), ["lounge-opt-in"]);
+  // The Lounge opt-in now lives on Story extras, not in the log.
+  assert.equal(f["editor-notes-log"], "[]");
   calls = [];
   await publish(story({ headline: "Plain v2 payload" }));
   const g = created().body.fieldData;
@@ -421,7 +422,7 @@ test("v5: the byline step patches pen name, website and Instagram on the profile
   assert.deepEqual(patch.body.fieldData, {
     "credit-mode": "38820387bc6c4892f486394a6c28776c",
     "pen-name": "The Gate Floor Correspondent",
-    "personal-website-url": "https://example.com/",
+    "website-url": "https://example.com/",
     "instagram-url": "https://www.instagram.com/gatefloor",
   });
   const bad = await publish(story({ headline: "Bad site", profileLinks: { website: "not a url" } }));
@@ -450,4 +451,112 @@ test("v5: GET /themes lists the themes publicly", async () => {
   const data = await res.json();
   assert.ok(Array.isArray(data.themes));
   assert.equal(data.themes[0].name, "Layovers");
+});
+
+// ---------------------------------------------------------------------------------------
+// Story extras, Anonymous byline, Gallery Plus (22 Oct 2026)
+// ---------------------------------------------------------------------------------------
+
+const EXTRAS_ENV = { STORY_EXTRAS_COLLECTION: "extras", ANONYMOUS_CONTRIBUTOR_ID: "c-anon", GALLERY_PLUS_PLANS: "pln_plus" };
+
+function withExtras(opts = {}) {
+  install();
+  const inner = globalThis.fetch;
+  globalThis.fetch = async (input, init = {}) => {
+    const url = typeof input === "string" ? input : input.url;
+    const method = init.method || "GET";
+    if (url === `https://admin.memberstack.com/members/${WRITER}` && opts.plans) {
+      calls.push({ url, method, body: null, headers: init.headers || {} });
+      return new Response(JSON.stringify({ data: { id: WRITER, planConnections: opts.plans } }), { status: 200 });
+    }
+    if (url === "https://api.webflow.com/v2/collections/extras/items" && method === "POST") {
+      calls.push({ url, method, body: JSON.parse(init.body), headers: init.headers || {} });
+      return new Response(JSON.stringify(opts.extrasFail ? { message: "no" } : { id: "extra-1" }), { status: opts.extrasFail ? 500 : 200 });
+    }
+    if (url === "https://api.webflow.com/v2/collections/extras/items/publish") {
+      calls.push({ url, method, body: JSON.parse(init.body), headers: init.headers || {} });
+      return new Response("{}", { status: 200 });
+    }
+    return inner(input, init);
+  };
+}
+
+function photo(i) {
+  const u = `https://res.cloudinary.com/idonvlow/image/upload/v1/tll/g${i}.jpg`;
+  return { publicId: `tll/g${i}`, originalUrl: u, cleanedUrl: u, approved: "original" };
+}
+const extrasCreated = () => calls.find((c) => c.url === "https://api.webflow.com/v2/collections/extras/items" && c.method === "POST");
+
+test("extras: sponsors, Lounge opt-in and the owner go on a Story extras item with the story's slug", async () => {
+  withExtras();
+  const res = await publish(story({ sponsored: true, sponsors: [{ name: "Hotel Example", kind: "hosted" }, { name: "Ferry Co", kind: "gifted" }], loungeOptIn: true }), env(EXTRAS_ENV));
+  assert.equal(res.status, 200);
+  const s = created().body.fieldData;
+  const x = extrasCreated().body.fieldData;
+  assert.equal(x.slug, s.slug);
+  assert.equal(x.story, "story-1");
+  assert.equal(x.sponsors, "Hosted: Hotel Example\nGifted: Ferry Co");
+  assert.equal(x["lounge-opt-in"], true);
+  assert.equal(x["owner-member-id"], WRITER);
+  assert.equal(x.anonymous, false);
+  assert.ok(calls.some((c) => c.url.endsWith("/extras/items/publish")), "extras item published");
+  assert.equal(s.contributor, "c-writer");
+});
+
+test("extras: a failed extras save does not stop the story", async () => {
+  withExtras({ extrasFail: true });
+  const res = await publish(story(), env(EXTRAS_ENV));
+  assert.equal(res.status, 200);
+  assert.ok(logs.some((l) => /story extras not saved/.test(l)));
+});
+
+test("anonymous: the story is credited to the Anonymous profile, the writer's profile credit is untouched, the owner is kept", async () => {
+  withExtras();
+  const e = env(EXTRAS_ENV);
+  const res = await publish(story({ creditMode: "Anonymous" }), e);
+  assert.equal(res.status, 200);
+  const s = created().body.fieldData;
+  assert.equal(s.contributor, "c-anon");
+  assert.ok(!calls.some((c) => c.url.endsWith("/items/c-writer") && c.method === "PATCH"), "profile credit not changed");
+  const x = extrasCreated().body.fieldData;
+  assert.equal(x.anonymous, true);
+  assert.equal(x["owner-member-id"], WRITER);
+  assert.equal(e.TLL_KV.store.get(`owner:${s.slug}`), WRITER);
+});
+
+test("anonymous: refused while the Anonymous profile is not configured", async () => {
+  withExtras();
+  const res = await publish(story({ creditMode: "Anonymous" }));
+  assert.equal(res.status, 400);
+  assert.match((await res.json()).error, /Anonymous bylines are not switched on/);
+});
+
+test("gallery: 25 photos for everyone; 26 or more needs Gallery Plus", async () => {
+  withExtras();
+  const ok25 = await publish(story({ gallery: Array.from({ length: 25 }, (_, i) => photo(i)) }), env(EXTRAS_ENV));
+  assert.equal(ok25.status, 200);
+  assert.equal(created().body.fieldData["photo-gallery"].length, 25);
+  calls = [];
+  const no = await publish(story({ headline: "Big trip", gallery: Array.from({ length: 30 }, (_, i) => photo(i)) }), env(EXTRAS_ENV));
+  assert.equal(no.status, 402);
+  assert.match((await no.json()).error, /Gallery Plus holds up to 50/);
+  const tooMany = await publish(story({ headline: "Huge trip", gallery: Array.from({ length: 51 }, (_, i) => photo(i)) }), env(EXTRAS_ENV));
+  assert.equal(tooMany.status, 400);
+});
+
+test("gallery: with Gallery Plus, photos 26 to 50 go on the extras item", async () => {
+  withExtras({ plans: [{ planId: "pln_plus", status: "ACTIVE" }] });
+  const res = await publish(story({ gallery: Array.from({ length: 40 }, (_, i) => photo(i)) }), env(EXTRAS_ENV));
+  assert.equal(res.status, 200);
+  assert.equal(created().body.fieldData["photo-gallery"].length, 25);
+  const more = extrasCreated().body.fieldData["photo-gallery-more"];
+  assert.equal(more.length, 15);
+  assert.equal(more[0].url, "https://res.cloudinary.com/idonvlow/image/upload/v1/tll/g25.jpg");
+  assert.equal(JSON.parse(created().body.fieldData["photo-originals"]).gallery.length, 40);
+});
+
+test("gallery: a canceled Gallery Plus plan does not count", async () => {
+  withExtras({ plans: [{ planId: "pln_plus", status: "CANCELED" }] });
+  const res = await publish(story({ gallery: Array.from({ length: 26 }, (_, i) => photo(i)) }), env(EXTRAS_ENV));
+  assert.equal(res.status, 402);
 });

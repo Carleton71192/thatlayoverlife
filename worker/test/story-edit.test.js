@@ -438,3 +438,97 @@ test("GET on a POST story route is 405 and an unknown story route is 404", async
   assert.equal((await call("/story/update", null, "GET")).status, 405);
   assert.equal((await call("/story/delete", { slug: "x" })).status, 404);
 });
+
+// ---------------------------------------------------------------------------------------
+// Story extras and Anonymous bylines (22 Oct 2026)
+// ---------------------------------------------------------------------------------------
+
+const XENV = { STORY_EXTRAS_COLLECTION: "extras", ANONYMOUS_CONTRIBUTOR_ID: "c-anon" };
+
+// opts.extra: the extras item for the story slug (null = none). opts.kvOwner: a KV owner copy.
+function installExtras(opts = {}) {
+  install(opts);
+  const inner = globalThis.fetch;
+  globalThis.fetch = async (input, init = {}) => {
+    const url = typeof input === "string" ? input : input.url;
+    const method = init.method || "GET";
+    if (url.startsWith("https://api.webflow.com/v2/collections/extras/items")) {
+      const body = init.body ? JSON.parse(init.body) : null;
+      calls.push({ url, method, body });
+      const ok = (data) => new Response(JSON.stringify(data), { status: 200 });
+      if (method === "GET") {
+        const u = new URL(url);
+        const all = opts.extra ? [opts.extra] : [];
+        if (u.searchParams.get("slug")) return ok({ items: all.filter((i) => i.fieldData.slug === u.searchParams.get("slug")) });
+        return ok({ items: all });
+      }
+      if (method === "POST" && url.endsWith("/publish")) return ok({});
+      if (method === "POST") return ok({ id: "extra-1" });
+      if (method === "PATCH") return ok({ id: opts.extra?.id || "extra-1" });
+    }
+    return inner(input, init);
+  };
+}
+
+const anonItem = () => liveItem({}, { contributor: "c-anon" });
+const extraFor = (owner, fields = {}) => ({ id: "extra-1", isArchived: false, fieldData: { slug: "six-hours-in-kastrup-ab12", story: "story-1", "owner-member-id": owner, anonymous: true, sponsors: "", ...fields } });
+
+test("anonymous: the owner on the extras item can open and edit the story", async () => {
+  installExtras({ item: anonItem(), extra: extraFor(WRITER, { sponsors: "Hosted: Hotel Example", "lounge-opt-in": true }) });
+  const res = await call("/story?slug=six-hours-in-kastrup-ab12", null, "GET", env(XENV));
+  assert.equal(res.status, 200);
+  const data = await res.json();
+  assert.equal(data.creditMode, "Anonymous");
+  assert.equal(data.anonymous, true);
+  assert.equal(data.loungeOptIn, true);
+  assert.deepEqual(data.sponsors, [{ name: "Hotel Example", kind: "hosted" }]);
+});
+
+test("anonymous: anyone else is refused, even another signed-in member", async () => {
+  installExtras({ item: anonItem(), extra: extraFor("mem_other"), member: WRITER });
+  const res = await call("/story?slug=six-hours-in-kastrup-ab12", null, "GET", env(XENV));
+  assert.equal(res.status, 403);
+});
+
+test("anonymous: the KV owner copy works when the extras item is missing", async () => {
+  installExtras({ item: anonItem(), extra: null });
+  const e = env(XENV);
+  e.TLL_KV.store.set("owner:six-hours-in-kastrup-ab12", WRITER);
+  const res = await call("/story?slug=six-hours-in-kastrup-ab12", null, "GET", e);
+  assert.equal(res.status, 200);
+});
+
+test("anonymous: /story/mine lists the writer's Anonymous stories too", async () => {
+  installExtras({ items: [liveItem(), liveItem({ id: "story-2" }, { slug: "quiet-one-cd34", contributor: "c-anon" })], extra: { id: "extra-2", isArchived: false, fieldData: { slug: "quiet-one-cd34", story: "story-2", "owner-member-id": WRITER } } });
+  const res = await call("/story/mine", null, "GET", env(XENV));
+  const data = await res.json();
+  assert.deepEqual(data.stories.map((s) => [s.slug, s.anonymous]).sort(), [["quiet-one-cd34", true], ["six-hours-in-kastrup-ab12", false]]);
+});
+
+test("anonymous: switching an edit to Anonymous moves the credit and records the owner; switching back restores it", async () => {
+  installExtras({ extra: null });
+  const e = env(XENV);
+  const res = await call("/story/update", edit({ creditMode: "Anonymous" }), "POST", e);
+  assert.equal(res.status, 200);
+  assert.equal(patched().body.fieldData.contributor, "c-anon");
+  const x = calls.find((c) => c.url.endsWith("/extras/items") && c.method === "POST").body.fieldData;
+  assert.equal(x.anonymous, true);
+  assert.equal(x["owner-member-id"], WRITER);
+  assert.equal(e.TLL_KV.store.get("owner:six-hours-in-kastrup-ab12"), WRITER);
+
+  calls = [];
+  installExtras({ item: anonItem(), extra: extraFor(WRITER) });
+  const back = await call("/story/update", edit({ creditMode: "Full" }), "POST", env(XENV));
+  assert.equal(back.status, 200);
+  assert.equal(patched().body.fieldData.contributor, "c-writer");
+  const p = calls.find((c) => c.url.endsWith("/extras/items/extra-1") && c.method === "PATCH").body.fieldData;
+  assert.equal(p.anonymous, false);
+  assert.equal(p["owner-member-id"], WRITER);
+});
+
+test("extras: an edit with unchanged extras does not touch the extras item", async () => {
+  installExtras({ extra: { id: "extra-1", isArchived: false, fieldData: { slug: "six-hours-in-kastrup-ab12", story: "story-1", "owner-member-id": WRITER, anonymous: false, sponsors: "", "lounge-opt-in": false, "photo-gallery-more": [] } } });
+  const res = await call("/story/update", edit({ headline: "Seven hours in Kastrup" }), "POST", env(XENV));
+  assert.equal(res.status, 200);
+  assert.ok(!calls.some((c) => c.url.includes("/extras/items") && c.method !== "GET"), "extras untouched");
+});

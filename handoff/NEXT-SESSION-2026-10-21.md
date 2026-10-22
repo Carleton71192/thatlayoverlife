@@ -90,3 +90,21 @@ Nancy, mid-session:
 Done after that: owner-edit embed 5496c6ff-4082-19ea-b072-b55ef8702437 on the Stories Template (after 3074c26c, code = src/pages/story/v3/embed-st3-owner-edit-v1.html, read back). Published to the Webflow subdomain only at about 14:55 UTC (publish task ca8251eb-61a1-4329-bbe0-8826522bc523); custom domains wait for Nancy's check.
 
 Still to do: /submit v2 markup, CSS and script, ON HOLD until the tll-worker address exists (v2 posts to the Worker; the old form stays live until then) (page 6a0d5e5eb7804d3a750dc266: forms 410fe31c "Story submission" and 51b9abee "Link-out story", embeds f12d8018, 841089e3, 76d2ca29, f8aefc70); data-tll-worker div on /account and data-story-worker on #tll-ep once the tll-worker address is known; subdomain publish and Nancy's check; STATUS rows; release the lock.
+
+## 22 October 2026 (Opus 5.5 session)
+
+Nancy's answers: 1 add separate sponsors field, 2 Anonymous byline yes, 3 gallery 25+ with a paid upgrade idea, 4 Lounge field yes, Wrapped wording yes, she removes New Caledonia herself. She also asked that her personal stats stop appearing site-wide (a sample "show" profile is welcome).
+
+Done:
+- Stories hit the 60-field cap, so created collection **Story extras** 6ad997935f308b0209d358b8 (fields: story ref 651b53e7..., sponsors, lounge-opt-in, owner-member-id, anonymous, photo-gallery-more). Its template page 6ad997945f308b0209d358be cannot be drafted; head code adds noindex and redirects /story-extras/<slug> to /stories/<slug>.
+- Created Contributors item **Anonymous** 6ad997b28216cc385ddb1594 (visibility Off, contact Off).
+- Worker: src/extras.js; publish and edit write Story extras; Anonymous credit; gallery 25 free / 50 with GALLERY_PLUS_PLANS; /me returns galleryMax; website field fix (website-url). wrangler.toml vars added. 83 tests pass.
+- Submit v5: Anonymous credit option, gallery cap 25 (50 from /me), edit mode reads loungeOptIn and Anonymous; draft restore now repaints the credit buttons.
+- /account footer v8 applied (Wrapped headline "Your map, so far.", label COUNTRIES ON YOUR MAP). Before/after in src/pages/account/live-2026-10-22/.
+- Published to the webflow.io subdomain only (task 5f86e0ba-e42e-47f0-8390-7e3929c6fcae).
+
+Open:
+- Story template block for photos 26 to 50 (collection list of Story extras filtered to the current story). Not needed until a Gallery Plus plan exists.
+- Owner-edit button on the story page reads Contributor > Member ID, so it does not show on Anonymous stories; the writer edits those from /account Stories (which uses /story/mine and includes them).
+- Gallery Plus plan and price in Memberstack (Nancy's call).
+- Personal stats audit (subagent report) and the sample profile.

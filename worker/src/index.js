@@ -1,5 +1,6 @@
 import { classifyEdit, checkCloudinaryUrl, readingTime, wordCount, htmlToText, bodyHrefs, publicHttpUrl } from "./validate.js";
 import { createStoryEditHandlers } from "./story-edit.js";
+import { createExtras, galleryLimit, splitGallery, sponsorsText, GALLERY_FREE, GALLERY_PLUS } from "./extras.js";
 
 const MODEL = "claude-sonnet-5-5";
 const SITE_URL = "https://www.thatlayover.life";
@@ -41,7 +42,8 @@ export const MIN_WORDS = 300;
 const LINK_LIMIT = 20;
 const LINK_TIMEOUT_MS = 6000;
 const SYNDICATION = ["newsletter", "social", "press"];
-const CREDIT_MODES = ["Full", "First", "Pen"];
+// Anonymous (22 Oct 2026): the story is credited to the shared Anonymous profile; the writer stays in Story extras.
+const CREDIT_MODES = ["Full", "First", "Pen", "Anonymous"];
 // Submit v5 (21 Oct 2026): what a sponsor or host gave, as the disclosure line names it.
 const SPONSOR_KINDS = { paid: "Paid for", hosted: "Hosted", gifted: "Gifted", discount: "Discounted" };
 const DISCLOSURE_TAIL = "Opinions are the writer's own.";
@@ -510,7 +512,8 @@ function readPublishInput(input) {
 
   out.heroPhoto = readPhotoRecord(input.heroPhoto, "hero photo");
   if (input.gallery !== undefined && input.gallery !== null) {
-    if (!Array.isArray(input.gallery) || input.gallery.length > 8) throw new Bad("The gallery can hold up to 8 photos.");
+    // 25 for everyone, 50 with Gallery Plus. The plan check happens after sign-in, in galleryCheck().
+    if (!Array.isArray(input.gallery) || input.gallery.length > GALLERY_PLUS) throw new Bad(`The gallery can hold up to ${GALLERY_PLUS} photos.`);
     out.gallery = input.gallery.map((p, i) => readPhotoRecord(p, `gallery photo ${i + 1}`));
   } else {
     out.gallery = [];
@@ -540,7 +543,7 @@ function readPublishInput(input) {
   }
 
   const credit = input.creditMode ?? "Full";
-  if (!CREDIT_MODES.includes(credit)) throw new Bad('"creditMode" must be Full, First or Pen.');
+  if (!CREDIT_MODES.includes(credit)) throw new Bad('"creditMode" must be Full, First, Pen or Anonymous.');
   out.creditMode = credit;
 
   out.sponsored = input.sponsored === true;
@@ -787,13 +790,33 @@ function profileFieldPatch(story, contributor, wantedCredit) {
   if (wantedCredit && f["credit-mode"] !== wantedCredit) patch["credit-mode"] = wantedCredit;
   if (story.creditMode === "Pen" && story.penName && f["pen-name"] !== story.penName) patch["pen-name"] = story.penName;
   if (story.profileLinks) {
-    if (story.profileLinks.website && f["personal-website-url"] !== story.profileLinks.website) patch["personal-website-url"] = story.profileLinks.website;
+    if (story.profileLinks.website && f["website-url"] !== story.profileLinks.website) patch["website-url"] = story.profileLinks.website;
     if (story.profileLinks.instagram) {
       const ig = `https://www.instagram.com/${story.profileLinks.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/\/+$/, "")}`;
       if (f["instagram-url"] !== ig) patch["instagram-url"] = ig;
     }
   }
   return patch;
+}
+
+const extras = createExtras(webflow);
+
+/** Gallery Plus gate: more than 25 photos needs an active Gallery Plus plan. Returns a Response or null. */
+async function galleryCheck(env, memberId, story) {
+  if (story.gallery.length <= GALLERY_FREE) return null;
+  if ((await galleryLimit(env, memberId)) >= story.gallery.length) return null;
+  return json({ error: `The gallery holds ${GALLERY_FREE} photos. Gallery Plus holds up to ${GALLERY_PLUS}.`, galleryMax: GALLERY_FREE }, 402);
+}
+
+/** What the Story extras item holds for this story. */
+function extrasFields(story, memberId, moreUrls) {
+  return {
+    sponsors: story.sponsored ? sponsorsText(story.sponsors) : "",
+    "lounge-opt-in": story.loungeOptIn === true,
+    "owner-member-id": memberId,
+    anonymous: story.creditMode === "Anonymous",
+    "photo-gallery-more": moreUrls.map((url) => ({ url })),
+  };
 }
 
 async function handlePublish(request, env, auth) {
@@ -839,13 +862,20 @@ async function handlePublish(request, env, auth) {
   }
   if (!contributor) return json({ error: "No profile yet. Finish your profile first." }, 409);
 
+  const tooMany = await galleryCheck(env, memberId, story);
+  if (tooMany) return tooMany;
+
+  const anonymous = story.creditMode === "Anonymous";
+  if (anonymous && !env.ANONYMOUS_CONTRIBUTOR_ID) return json({ error: "Anonymous bylines are not switched on yet. Pick another credit for now." }, 400);
+
   // Credit mode lives on the profile, not the story: it drives every byline.
   const CREDIT_OPTION_IDS = {
     Full: "3489ae81c67477dbdf19a921804b343e",
     First: "d01799503381d459b0ae4b27b0535111",
     Pen: "38820387bc6c4892f486394a6c28776c",
   };
-  const wantedCredit = CREDIT_OPTION_IDS[story.creditMode];
+  // Anonymous is per story: the profile keeps its own credit mode.
+  const wantedCredit = anonymous ? null : CREDIT_OPTION_IDS[story.creditMode];
   const profilePatch = profileFieldPatch(story, contributor, wantedCredit);
   if (Object.keys(profilePatch).length) {
     try {
@@ -878,13 +908,14 @@ async function handlePublish(request, env, auth) {
   const url = `${SITE_URL}/stories/${slug}`;
   const nowIso = new Date().toISOString();
 
+  const gallery = splitGallery(story.gallery.map((p) => approvedUrl(p)));
   const fieldData = {
     name: story.headline,
     slug,
     body: story.body,
     excerpt: story.excerpt,
     "hero-image": { url: approvedUrl(story.heroPhoto) },
-    contributor: contributor.id,
+    contributor: anonymous ? env.ANONYMOUS_CONTRIBUTOR_ID : contributor.id,
     "country-2": story.country,
     city: story.city,
     "trip-when": story.when,
@@ -904,7 +935,7 @@ async function handlePublish(request, env, auth) {
   };
   const optional = {
     "pull-quote": story.pullQuote,
-    "photo-gallery": story.gallery.map((p) => ({ url: approvedUrl(p) })),
+    "photo-gallery": gallery.main.map((url) => ({ url })),
     "sign-off": story.signOff,
     "pet-co-travelers": story.pets,
     "human-co-travelers": story.coTravelers,
@@ -929,8 +960,6 @@ async function handlePublish(request, env, auth) {
     fieldData["show-traveled-date"] = story.datesShown.traveled;
     fieldData["show-edited-date"] = story.datesShown.edited;
   }
-  // The Lounge opt-in has no CMS field yet (open for Nancy); it rides in the log so the morning review sees it.
-  if (story.loungeOptIn) fieldData["editor-notes-log"] = JSON.stringify([...story.editorNotesLog, { type: "lounge-opt-in", decision: "accepted", at: nowIso }]);
 
   // Create exactly one item. A failure here creates nothing, so the writer can try again.
   let itemId;
@@ -945,6 +974,18 @@ async function handlePublish(request, env, auth) {
     console.error("publish: create request failed");
     return json({ error: "We could not save your story right now. Nothing was published. Try again in a moment." }, 502);
   }
+
+  // Story extras: sponsors, Lounge, owner, Anonymous, photos 26 to 50. The story stands without it, but an Anonymous
+  // story needs the owner record to stay editable, so a KV copy of the owner is kept as well.
+  const saved = await extras.save(env, { storyId: itemId, slug, headline: story.headline, fieldData: extrasFields(story, memberId, gallery.more) });
+  if (anonymous) {
+    try {
+      await env.TLL_KV.put(`owner:${slug}`, memberId);
+    } catch {
+      // the extras item is the main record
+    }
+  }
+  if (!saved.ok) console.error("publish: story extras not saved");
 
   const marker = { headline: story.headline, url, itemId, at: Date.now(), published: false };
   try {
@@ -976,7 +1017,7 @@ async function handlePublish(request, env, auth) {
   }
 
   try {
-    await flagNancy(env, { headline: story.headline, url, writer: writerName });
+    await flagNancy(env, { headline: story.headline, url, writer: anonymous ? `${writerName} (Anonymous byline)` : writerName });
   } catch {
     console.error("publish: owner notice failed");
   }
@@ -1001,6 +1042,7 @@ async function handlePublish(request, env, auth) {
 const storyEdit = createStoryEditHandlers({
   json, readJson, Bad, webflow, findContributor, rateLimit, keyPart, stamp, readPublishInput, checkLinks, approvedUrl, readingTime,
   regionOptionId, shoutOutsHtml, wordCount, PUBLISHED_STATUS_ID, SITE_URL, disclosureLine,
+  extras, galleryCheck, extrasFields, splitGallery,
 });
 
 const POST_ROUTES = {
@@ -1089,10 +1131,11 @@ async function handleMe(env, auth) {
     slug: f.slug || "",
     creditMode: CREDIT[f["credit-mode"]] || "Full",
     penName: f["pen-name"] || "",
-    website: f["personal-website-url"] || "",
+    website: f["website-url"] || "",
     instagram: String(f["instagram-url"] || "").replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/\/+$/, ""),
     pets,
     crew,
+    galleryMax: await galleryLimit(env, auth.verifiedId),
   });
 }
 

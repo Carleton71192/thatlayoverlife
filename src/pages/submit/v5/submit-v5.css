@@ -165,6 +165,7 @@ textarea.tsv5-input{line-height:1.5;padding:10px 12px;resize:vertical;min-height
 .tsv5-credit b{display:block;font-size:15px;font-weight:700}
 .tsv5-credit span{display:block;font-size:13px;margin-top:2px}
 .tsv5-credit[aria-checked="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tsv5-anon{margin:0 0 16px;font-size:14px;line-height:1.5;color:var(--ink)}
 .tsv5-pen{margin-bottom:16px;max-width:360px}
 
 /* send */
