@@ -108,3 +108,13 @@ Open:
 - Owner-edit button on the story page reads Contributor > Member ID, so it does not show on Anonymous stories; the writer edits those from /account Stories (which uses /story/mine and includes them).
 - Gallery Plus plan and price in Memberstack (Nancy's call).
 - Personal stats audit (subagent report) and the sample profile.
+
+## 23 October 2026: published
+
+Nancy, 23 Oct: "And publish / Go and publish / Publish the photo fix".
+- Publish 4a9b48b4-aaf7-446c-89a1-6f821f84ae85 (both custom domains and subdomain): /share-photos fix (gate removed, tllphotosendv1), Wrapped wording, footer spacing, owner edit on stories, Anonymous profile, Story extras template redirect, and everything else staged since 21 Oct.
+- Registered tllmemberwayv1 (jsDelivr 280f73b, SRI sha384-jenZS7eI9jzgm9zubVtZIY+5ZC7XwNMgj5Fcfm1dyeINHWxR2FrpNQeHDd+cgS+0), footer on the Contributors template, /account, /edit-profile, /the-map, /my-pets: owner bar THIS IS YOUR PAGE with Edit your profile and Edit your map, the member bar, rose Edit profile on /account. Offline test 14 of 14 (src/components/member-way/test).
+- Publish 6a830c01-dfea-4478-9da7-974e8f086279 (both custom domains and subdomain).
+- Not verified in a browser from the sandbox: the network blocks the live site. Nancy to add the hosts under Network access so the next session can screenshot.
+- Open: /my-pets still carries tll_photo_upload_v1, which uploads original pet photos (location data included) the moment they are chosen. Same fix as /share-photos when Nancy says so.
+- Lock still held for the mobile design pass.
