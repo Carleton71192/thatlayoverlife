@@ -1,0 +1,134 @@
+[
+  {
+    "name": "owner sees THIS IS YOUR PAGE bar at the top of main",
+    "pass": true,
+    "evidence": {
+      "first": true,
+      "text": "THIS IS YOUR PAGEEdit your profileEdit your map",
+      "href": "/edit-profile",
+      "bg": "rgb(214, 56, 89)",
+      "h": 44,
+      "w": 171,
+      "overflow": false
+    }
+  },
+  {
+    "name": "Edit your profile is rose, 44px+, goes to /edit-profile",
+    "pass": true,
+    "evidence": {
+      "first": true,
+      "text": "THIS IS YOUR PAGEEdit your profileEdit your map",
+      "href": "/edit-profile",
+      "bg": "rgb(214, 56, 89)",
+      "h": 44,
+      "w": 171,
+      "overflow": false
+    }
+  },
+  {
+    "name": "no sideways scroll at 390",
+    "pass": true,
+    "evidence": {
+      "first": true,
+      "text": "THIS IS YOUR PAGEEdit your profileEdit your map",
+      "href": "/edit-profile",
+      "bg": "rgb(214, 56, 89)",
+      "h": 44,
+      "w": 171,
+      "overflow": false
+    }
+  },
+  {
+    "name": "no page errors (owner)",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "another member does not see the bar",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "name": "signed out: nothing added",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "name": "/account: bar before the members block, not inside it",
+    "pass": true,
+    "evidence": {
+      "bar": true,
+      "outsideMembers": true,
+      "current": "OVERVIEW",
+      "links": [
+        "OVERVIEW /account",
+        "PROFILE /edit-profile",
+        "MAP /the-map",
+        "PETS /my-pets",
+        "STORIES /account#stories",
+        "SETTINGS /account#settings"
+      ],
+      "editBg": "rgb(214, 56, 89)",
+      "overflow": false
+    }
+  },
+  {
+    "name": "/account: OVERVIEW marked current, six links",
+    "pass": true,
+    "evidence": [
+      "OVERVIEW /account",
+      "PROFILE /edit-profile",
+      "MAP /the-map",
+      "PETS /my-pets",
+      "STORIES /account#stories",
+      "SETTINGS /account#settings"
+    ]
+  },
+  {
+    "name": "/account: Edit profile button turns rose",
+    "pass": true,
+    "evidence": "rgb(214, 56, 89)"
+  },
+  {
+    "name": "/account: no sideways scroll at 390",
+    "pass": true,
+    "evidence": {
+      "bar": true,
+      "outsideMembers": true,
+      "current": "OVERVIEW",
+      "links": [
+        "OVERVIEW /account",
+        "PROFILE /edit-profile",
+        "MAP /the-map",
+        "PETS /my-pets",
+        "STORIES /account#stories",
+        "SETTINGS /account#settings"
+      ],
+      "editBg": "rgb(214, 56, 89)",
+      "overflow": false
+    }
+  },
+  {
+    "name": "no page errors (account)",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "/the-map: bar at the top of main, MAP current",
+    "pass": true,
+    "evidence": {
+      "first": true,
+      "cur": "MAP"
+    }
+  },
+  {
+    "name": "/the-map signed out: no bar",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "name": "other pages: script does nothing",
+    "pass": true,
+    "evidence": ""
+  }
+]
