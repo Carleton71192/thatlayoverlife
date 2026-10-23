@@ -1,0 +1,125 @@
+[
+  {
+    "name": "three photos upload, one at a time",
+    "pass": true,
+    "evidence": {
+      "uploads": 3,
+      "inputSizes": [
+        12076,
+        12076,
+        12076
+      ]
+    }
+  },
+  {
+    "name": "no EXIF block and no GPS text in any upload",
+    "pass": true,
+    "evidence": [
+      {
+        "bytes": 12409,
+        "exif": false,
+        "gps": false
+      },
+      {
+        "bytes": 12409,
+        "exif": false,
+        "gps": false
+      },
+      {
+        "bytes": 12409,
+        "exif": false,
+        "gps": false
+      }
+    ]
+  },
+  {
+    "name": "originals carried EXIF and the GPS marker (the test is meaningful)",
+    "pass": true,
+    "evidence": [
+      true,
+      true,
+      true
+    ]
+  },
+  {
+    "name": "Webflow handler ran exactly once",
+    "pass": true,
+    "evidence": 1
+  },
+  {
+    "name": "form sends the three links in \"photos\"",
+    "pass": true,
+    "evidence": "https://res.cloudinary.com/idonvlow/image/upload/v1/tll/photos/p1.jpg\nhttps://res.cloudinary.com/idonvlow/image/upload/v1/tll/photos/p2.jpg\nhttps://res.cloudinary.com/idonvlow/image/upload/v1/tll/photos/p3.jpg"
+  },
+  {
+    "name": "no stray \"Field N\" and country kept",
+    "pass": true,
+    "evidence": [
+      "country",
+      "caption",
+      "city",
+      "year",
+      "trip-type",
+      "pets-along",
+      "credit-mode",
+      "agree-rights",
+      "agree-licence",
+      "agree-people",
+      "photos"
+    ]
+  },
+  {
+    "name": "button enabled again after send",
+    "pass": true,
+    "evidence": "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+  },
+  {
+    "name": "no page errors",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "missing country and promises: no upload, no send",
+    "pass": true,
+    "evidence": {
+      "runs": 0,
+      "status": "4 things to fix above."
+    }
+  },
+  {
+    "name": "no page errors (check path)",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "upload failure: form not sent",
+    "pass": true,
+    "evidence": {
+      "uploads": 1,
+      "runs": 0,
+      "status": "The upload did not go through. Check your connection and press Send again. Nothing was sent.",
+      "role": "alert",
+      "disabled": false
+    }
+  },
+  {
+    "name": "upload failure: clear message, button usable",
+    "pass": true,
+    "evidence": {
+      "runs": 0,
+      "status": "The upload did not go through. Check your connection and press Send again. Nothing was sent.",
+      "role": "alert",
+      "disabled": false
+    }
+  },
+  {
+    "name": "no page errors (failure path)",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "choosing photos uploads nothing",
+    "pass": true,
+    "evidence": 0
+  }
+]

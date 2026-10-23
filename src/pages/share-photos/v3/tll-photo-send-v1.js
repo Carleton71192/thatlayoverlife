@@ -1,0 +1,68 @@
+/* tll-photo-send-v1 (23 Oct 2026). Hosted from the repo through jsDelivr (page code is capped at 50,000 characters). Replaces the 15 Oct safety gate (tll-photo-intake-safety-20261015) and the
+   registered TLL Photo Upload v1 on /share-photos. Nancy chose browser-side location stripping on 12 Oct.
+   On Send, once the page's own check (tll-photos-form-v1, capture phase) has passed:
+   1. each chosen photo is redrawn on a canvas and saved as a fresh JPEG (long edge 3000px at most). A canvas copy
+      carries no EXIF: no GPS, no camera serial, no capture time;
+   2. the clean copies go to Cloudinary (unsigned preset tll_photos, folder tll/photos), one at a time;
+   3. the form goes to Webflow with the photo links in a hidden "photos" field. Webflow never sends the files.
+   Nothing leaves the browser before Send. A failed upload sends nothing and says so. */
+(function(){
+  if(window.__tllPhotoSend) return; window.__tllPhotoSend=1;
+  var CLOUD='https://api.cloudinary.com/v1_1/idonvlow/image/upload', PRESET='tll_photos', FOLDER='tll/photos', EDGE=3000;
+  function run(){
+    var form=document.querySelector('form[data-tll-form="share-photos"]'); if(!form) return;
+    var input=form.querySelector('#photos-upload')||form.querySelector('input[type="file"]'); if(!input) return;
+    var submit=form.querySelector('input[type="submit"],button[type="submit"]');
+    var busy=false, pass=false, cache={};
+    var links=document.createElement('input'); links.type='hidden'; links.setAttribute('data-tll-photo-links','1');
+    form.appendChild(links);
+    function status(){ return form.querySelector('.tll-pen-status'); }
+    function say(t,err){ var s=status(); if(!s) return; s.textContent=t; if(err) s.setAttribute('role','alert'); else s.setAttribute('role','status'); }
+    function key(f){ return [f.name,f.size,f.lastModified].join('|'); }
+    function viaImg(f){ return new Promise(function(res,rej){ var u=URL.createObjectURL(f), i=new Image(); i.onload=function(){ res(i); setTimeout(function(){ URL.revokeObjectURL(u); },0); }; i.onerror=function(){ URL.revokeObjectURL(u); rej('read'); }; i.src=u; }); }
+    function decode(f){ if(window.createImageBitmap){ return createImageBitmap(f,{imageOrientation:'from-image'}).catch(function(){ return viaImg(f); }); } return viaImg(f); }
+    function clean(f){
+      return decode(f).then(function(img){
+        var w=img.naturalWidth||img.width, h=img.naturalHeight||img.height; if(!w||!h) throw 'read';
+        var s=Math.min(1,EDGE/Math.max(w,h)), c=document.createElement('canvas'); c.width=Math.round(w*s); c.height=Math.round(h*s);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height); if(img.close) img.close();
+        return new Promise(function(res,rej){ c.toBlob(function(b){ if(b) res(b); else rej('read'); },'image/jpeg',0.9); });
+      },function(){ throw 'read'; });
+    }
+    function upload(blob,name){
+      var fd=new FormData(); fd.append('file',blob,String(name||'photo').replace(/\.[^.]*$/,'')+'.jpg'); fd.append('upload_preset',PRESET); fd.append('folder',FOLDER);
+      return fetch(CLOUD,{method:'POST',body:fd}).then(function(r){ if(!r.ok) throw 'send'; return r.json(); },function(){ throw 'send'; })
+        .then(function(j){ if(!j||!j.secure_url) throw 'send'; return j.secure_url; });
+    }
+    function idle(){ busy=false; if(submit) submit.disabled=false; }
+    /* Bubble phase on the form: the page check runs first (capture phase) and stops a form that is not ready. */
+    form.addEventListener('submit',function(ev){
+      if(pass){ pass=false; return; }                       /* second pass: the links are in, let Webflow send it */
+      ev.preventDefault(); ev.stopImmediatePropagation();
+      if(busy) return;
+      var files=[].slice.call(input.files||[]); if(!files.length) return;
+      busy=true; if(submit) submit.disabled=true;
+      var n=files.length, urls=[], i=0;
+      say('Removing location data and sending '+(n===1?'your photo':n+' photos')+'. Keep this page open.');
+      (function next(){
+        if(i>=n){
+          links.value=urls.join('\n'); links.name='photos'; links.setAttribute('data-name','photos');
+          input.removeAttribute('name'); input.removeAttribute('data-name');
+          idle(); pass=true; say('Photos are up. Sending the form.');
+          try{ if(form.requestSubmit) form.requestSubmit(submit||undefined); else if(submit) submit.click(); else form.submit(); }catch(e){ pass=false; say('That did not go through. Press Send again.',true); }
+          return;
+        }
+        var f=files[i], k=key(f);
+        if(cache[k]){ urls.push(cache[k]); i++; return next(); }
+        clean(f).then(function(b){ return upload(b,f.name); }).then(function(u){
+          cache[k]=u; urls.push(u); i++; if(n>1&&i<n) say('Sent '+i+' of '+n+'. Keep this page open.'); next();
+        }).catch(function(why){
+          idle();
+          say(why==='read' ? (f.name||'One photo')+' could not be read. Send it as a JPG or WebP and press Send again. Nothing was sent.'
+                           : 'The upload did not go through. Check your connection and press Send again. Nothing was sent.',true);
+        });
+      })();
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
