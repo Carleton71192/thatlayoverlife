@@ -118,3 +118,13 @@ Nancy, 23 Oct: "And publish / Go and publish / Publish the photo fix".
 - Not verified in a browser from the sandbox: the network blocks the live site. Nancy to add the hosts under Network access so the next session can screenshot.
 - Open: /my-pets still carries tll_photo_upload_v1, which uploads original pet photos (location data included) the moment they are chosen. Same fix as /share-photos when Nancy says so.
 - Lock still held for the mobile design pass.
+
+## 24 October 2026: /my-pets photo fix published
+
+Nancy, 24 Oct: "Please fix the my pets page and continue".
+- New script src/components/photo-clean/tll-photo-clean-v1.js (commit c3d6bcc). Works on any form with photo fields except /share-photos (which keeps tllphotosendv1). On Send it holds the form before any other script, redraws each photo as a fresh JPEG (no EXIF, so no GPS), uploads the clean copies to Cloudinary folder tll/<field name>, puts the links in hidden fields with the same names, then sends the form once so the pet editor and pet extras scripts run once. Nothing uploads on pick. Offline test 10 of 10 (src/components/photo-clean/test).
+- Registered tllphotocleanv1 (jsDelivr c3d6bcc, SRI sha384-v6xcXlTwO0YvnpES2eWfdb9LFFugx4bAMSMep6vRkUYNZG6wZDpaahmb0o52ABmt), footer on /my-pets and /submit. tll_photo_upload_v1 removed from both pages (still registered, applied nowhere now).
+- Publish d32cbc0f-52f6-46d1-9bc0-dfbcba4bc3f8 (both custom domains and subdomain).
+- Pet photo links now arrive as text (one link per line) in the avatar and pet-gallery fields instead of Webflow file uploads.
+- Not checked in a browser: the sandbox still cannot reach thatlayover.life, webflow.io or jsDelivr.
+- Nancy: Cloudinary may hold original pet photos chosen before today (with location data). Same check as tll/photos.
