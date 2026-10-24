@@ -1,0 +1,102 @@
+[
+  {
+    "name": "three photos uploaded (1 avatar, 2 gallery)",
+    "pass": true,
+    "evidence": 3
+  },
+  {
+    "name": "no EXIF or GPS text in any upload",
+    "pass": true,
+    "evidence": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ]
+    ]
+  },
+  {
+    "name": "folders follow the field names",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "name": "pet editor and extras ran exactly once each",
+    "pass": true,
+    "evidence": {
+      "editor": 1,
+      "extras": 1,
+      "wf": 1,
+      "fields": {
+        "name": "Biscuit",
+        "breed": "",
+        "avatar": "https://res.cloudinary.com/idonvlow/image/upload/tll/avatar/p1.jpg",
+        "pet-gallery": "https://res.cloudinary.com/idonvlow/image/upload/tll/pet-gallery/p2.jpg\nhttps://res.cloudinary.com/idonvlow/image/upload/tll/pet-gallery/p3.jpg"
+      },
+      "msg": "Photos are up. Sending."
+    }
+  },
+  {
+    "name": "Webflow sent once with avatar and pet-gallery links",
+    "pass": true,
+    "evidence": {
+      "name": "Biscuit",
+      "breed": "",
+      "avatar": "https://res.cloudinary.com/idonvlow/image/upload/tll/avatar/p1.jpg",
+      "pet-gallery": "https://res.cloudinary.com/idonvlow/image/upload/tll/pet-gallery/p2.jpg\nhttps://res.cloudinary.com/idonvlow/image/upload/tll/pet-gallery/p3.jpg"
+    }
+  },
+  {
+    "name": "no page errors",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "no photos chosen: form untouched, scripts once, nothing uploaded",
+    "pass": true,
+    "evidence": {
+      "editor": 1,
+      "extras": 1,
+      "wf": 1,
+      "fields": {
+        "name": "Noodle",
+        "breed": ""
+      },
+      "msg": ""
+    }
+  },
+  {
+    "name": "name missing: browser stops it, nothing uploaded, nothing saved",
+    "pass": true,
+    "evidence": {
+      "editor": 0,
+      "extras": 0,
+      "wf": 0,
+      "fields": null,
+      "msg": ""
+    }
+  },
+  {
+    "name": "upload fails: nothing saved or sent, clear message, button usable",
+    "pass": true,
+    "evidence": {
+      "editor": 0,
+      "extras": 0,
+      "wf": 0,
+      "fields": null,
+      "msg": "The upload did not go through. Check your connection and send again. Nothing was sent."
+    }
+  },
+  {
+    "name": "choosing photos uploads nothing",
+    "pass": true,
+    "evidence": 0
+  }
+]
