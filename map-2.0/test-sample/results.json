@@ -1,0 +1,74 @@
+[
+  {
+    "n": "signed out: SAMPLE label shows",
+    "p": true,
+    "e": {
+      "banner": true,
+      "text": "SAMPLE MAPThese countries belong to a made-up traveler, so you can see how the map works. None of it is a real trip.Start your own map →Sign in",
+      "badges": [
+        "FROM THE MEMBER RECORD · SAMPLE"
+      ],
+      "src": "sample"
+    }
+  },
+  {
+    "n": "signed out: record is the sample",
+    "p": true,
+    "e": "sample"
+  },
+  {
+    "n": "signed out: owner record never requested",
+    "p": true,
+    "e": [
+      "/data/sample-record.json"
+    ]
+  },
+  {
+    "n": "signed out: badges say SAMPLE, never SITE OWNER",
+    "p": true,
+    "e": [
+      "FROM THE MEMBER RECORD · SAMPLE"
+    ]
+  },
+  {
+    "n": "empty browser copy does not hide the sample",
+    "p": true,
+    "e": {
+      "banner": true,
+      "text": "SAMPLE MAPThese countries belong to a made-up traveler, so you can see how the map works. None of it is a real trip.Start your own map →Sign in",
+      "badges": [
+        "FROM THE MEMBER RECORD · SAMPLE"
+      ],
+      "src": "sample"
+    }
+  },
+  {
+    "n": "visitor with own browser map sees theirs, no label",
+    "p": true,
+    "e": {
+      "banner": false,
+      "text": "",
+      "badges": [
+        "FROM THE MEMBER RECORD · LIVE"
+      ],
+      "src": "local"
+    }
+  },
+  {
+    "n": "member sees own record, no label",
+    "p": true,
+    "e": {
+      "banner": false,
+      "text": "",
+      "badges": [
+        "FROM THE MEMBER RECORD · LIVE"
+      ],
+      "src": "member"
+    }
+  },
+  {
+    "n": "without the attribute the old behavior stays (owner)",
+    "p": true,
+    "e": "owner"
+  }
+]

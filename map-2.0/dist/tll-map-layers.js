@@ -197,6 +197,9 @@
   var STYLE_ATTR = (root.getAttribute('data-tll-style') || '').trim();
   var STYLE = !STYLE_ATTR || /openfreemap\.org/i.test(STYLE_ATTR) ? null : STYLE_ATTR;
   var OWNER_URL = (root.getAttribute('data-tll-owner-url') || '').trim(); // B3.7: a GET that returns the owner's tllStates v2
+  // 25 Oct 2026 (Nancy: option B): data-tll-visitor="sample" shows signed-out visitors a labeled SAMPLE map from data/sample-record.json
+  // (a made-up traveler) instead of the site owner's map. Members always see their own record.
+  var SAMPLE = (root.getAttribute('data-tll-visitor') || '').trim() === 'sample';
   var LIB = root.getAttribute('data-tll-lib') || 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl';
   var TOPO = root.getAttribute('data-tll-topojson') || 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js';
   var NOT_YET = root.getAttribute('data-tll-not-yet') === 'full' ? '#E9E1D3' : '#2E2D33'; // design prop "notYet": Cream dimmed (default) or Cream full
@@ -238,7 +241,7 @@
       ownerCheck(); REC = recordFromStorage();
       buildUI();
       applyRecord(REC);
-      ownerP = loadOwner().then(function (o) { OWNER = o; applyRecord(!REC ? o : null); });
+      ownerP = loadOwner().then(function (o) { OWNER = o; applyRecord(!REC || (SAMPLE && emptyLocal(REC)) ? o : null); });
       watchRecord();
       whenNear(document.getElementById('tllm-stage'), startMap);
     })
@@ -264,6 +267,7 @@
   }
   // B3.7: visitors see the site owner's live map. Fallback: the 7 October copy in data/owner-record.json.
   function loadOwner() {
+    if (SAMPLE) { OWNER_LOG = null; return getJSON(DATA + 'sample-record.json').then(function (j) { return normalizeRecord(j, 'sample'); }).catch(function () { return null; }); }
     function fallback() { OWNER_LOG = null; return getJSON(DATA + 'owner-record.json').then(function (j) { return normalizeRecord(j, 'owner'); }).catch(function () { return null; }); }
     if (!OWNER_URL) return fallback();
     return getJSON(OWNER_URL).then(function (j) {
@@ -283,7 +287,7 @@
   var REC = null, OWNER = null, fcCountries = null, DEPTH = { lived: 'Lived', visited: 'Stayed', layover: 'Layover only' };
   // Places Been pins are the site owner's. They propose countries only on the owner's map: the showcase copy, or a live
   // record that holds nearly all of the showcase countries (no member id needed to tell).
-  function isOwnerRecord(r) { if (!r) return false; if (r.source === 'owner') return true; if (!OWNER) return false; var k = Object.keys(OWNER.me), hit = 0; k.forEach(function (i) { if (r.me[i]) hit++; }); return k.length > 0 && hit / k.length >= 0.8; }
+  function isOwnerRecord(r) { if (!r || SAMPLE || r.source === 'sample') return false; if (r.source === 'owner') return true; if (!OWNER) return false; var k = Object.keys(OWNER.me), hit = 0; k.forEach(function (i) { if (r.me[i]) hit++; }); return k.length > 0 && hit / k.length >= 0.8; }
   function normalizeRecord(raw, source) {
     if (!raw || raw.v !== 2 || !raw.states) return null;
     if (!raw.travelers) raw.travelers = [];
@@ -377,6 +381,8 @@
     undo: undoLast, retry: retrySave,
     last: function () { return lastEdit; }
   };
+  // A browser copy with no countries in it (the old editor writes one for every visitor) does not hide the sample.
+  function emptyLocal(r) { return !!(r && r.source === 'local' && member !== true && r.raw && !Object.keys(r.raw.states || {}).length); }
   function recordFromStorage() { try { return normalizeRecord(JSON.parse(localStorage.getItem('tllStates') || 'null'), 'local'); } catch (e) { return null; } }
   // B3.3: the logbook. Signed in: the member JSON (tllLog, tllParks). Otherwise the browser copies under the same keys.
   function readJSONKey(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
@@ -496,11 +502,25 @@
   // One repaint for every change: a new record, a logbook save, Memberstack answering, the shapes arriving.
   function applyRecord(rec) {
     if (rec) REC = rec;
-    LOG = member === true || (REC && REC.source === 'member') ? MEMBER_LOG : REC && REC.source === 'owner' ? OWNER_LOG : logFromStorage();
+    LOG = member === true || (REC && REC.source === 'member') ? MEMBER_LOG : REC && REC.source === 'owner' ? OWNER_LOG : REC && REC.source === 'sample' ? null : logFromStorage();
     var ready = mapReady && fcCountries && map && map.getSource('tllm-countries');
     if (ready) { fcCountries.features.forEach(function (f) { setDepthProps(f, f.properties.iso, countryRows[f.properties.a2]); }); map.getSource('tllm-countries').setData(fcCountries); applyPets(); }
-    renderAll();
+    renderAll(); renderSample();
     if (ready) { refreshLineLayers(); syncLogbookPins(); }
+  }
+  // The SAMPLE label sits above the map whenever the sample record is on screen.
+  function renderSample() {
+    var b = document.getElementById('tllm-sample'), on = !!(REC && REC.source === 'sample');
+    if (!on) { if (b) b.remove(); return; }
+    if (b) return;
+    b = el('div', 'tllm-sample'); b.id = 'tllm-sample'; b.setAttribute('role', 'note');
+    b.style.cssText = 'display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:0 0 14px;padding:14px 16px;border:1.5px dashed ' + C.teal + ';border-radius:12px;background:' + C.card + ';color:' + C.cream + ';font:400 15px/1.5 "IBM Plex Sans",system-ui,sans-serif';
+    var k = el('span', null, 'SAMPLE MAP'); k.style.cssText = 'font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;color:' + C.teal;
+    var t = el('span', null, 'These countries belong to a made-up traveler, so you can see how the map works. None of it is a real trip.'); t.style.cssText = 'flex:1 1 260px';
+    var a = el('a', null, 'Start your own map \u2192'); a.href = '/signup'; a.style.cssText = 'color:' + C.cream + ';font-weight:600;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center';
+    var a2 = el('a', null, 'Sign in'); a2.href = '/login'; a2.style.cssText = a.style.cssText;
+    b.appendChild(k); b.appendChild(t); b.appendChild(a); b.appendChild(a2);
+    root.insertBefore(b, root.firstChild);
   }
   function renderAll() {
     if (!document.getElementById('tllm-bar-k')) return; // 20 Oct 2026: the Stamp it list can edit before the map starts; REC is kept and drawn when the bar is built
@@ -1065,7 +1085,7 @@
   function sourceBadge(c) {
     var s = srcs[c.source]; if (!s || !s.label) return null; // hand lists carry no badge; that is the badge
     var b = el('span', 'tllm-card-src');
-    if (c.source === 'member' || c.source === 'logbook' || c.id === 'countries' || c.id === 'magnus') { if (!REC) return null; b.textContent = (s.label || 'FROM THE MEMBER RECORD') + (REC.source === 'owner' ? ' · SITE OWNER' : ' · LIVE'); return b; }
+    if (c.source === 'member' || c.source === 'logbook' || c.id === 'countries' || c.id === 'magnus') { if (!REC) return null; b.textContent = (s.label || 'FROM THE MEMBER RECORD') + (REC.source === 'owner' ? ' · SITE OWNER' : REC.source === 'sample' ? ' · SAMPLE' : ' · LIVE'); return b; }
     if (s.connected === false) { b.textContent = s.label + ' · NOT CONNECTED'; b.dataset.off = '1'; }
     else b.textContent = s.label + (s.synced ? ' · SYNCED ' + upper(dateLabel(s.synced)) : '');
     return b;
@@ -1207,7 +1227,7 @@
   function renderStrip() {
     if (!secStrip) return;
     var lede = secStrip.querySelector('.tllm-lede');
-    if (lede) lede.textContent = REC && REC.source === 'owner' ? 'From Nancy\u2019s map, so it changes when hers does.' : 'From the countries on your map, so it changes when your map does.';
+    if (lede) lede.textContent = REC && REC.source === 'sample' ? 'From the sample map, a made-up traveler.' : REC && REC.source === 'owner' ? 'From Nancy\u2019s map, so it changes when hers does.' : 'From the countries on your map, so it changes when your map does.';
     var x = LINES; if (stripBox) { stripBox.remove(); stripBox = null; }
     if (!x || !x.n) { secStrip.style.display = 'none'; return; }
     var box = el('div'), strip = el('div', 'tllm-strip'); box.appendChild(strip);
