@@ -1,0 +1,244 @@
+[
+  {
+    "n": "signed out: sign-in link, no sheet",
+    "p": true,
+    "e": {
+      "t": "Sign in to log your countries",
+      "h": "/login?redirect=%2Fthe-map%23quick-log"
+    }
+  },
+  {
+    "n": "no errors (signed out)",
+    "p": true,
+    "e": []
+  },
+  {
+    "n": "sheet opens as bottom sheet, map visible above",
+    "p": true,
+    "e": {
+      "top": 320.734375,
+      "h": 523.265625,
+      "rows": 250
+    }
+  },
+  {
+    "n": "all 250 places listed",
+    "p": true,
+    "e": 250
+  },
+  {
+    "n": "Denmark shows LIVED from the saved map",
+    "p": true,
+    "e": [
+      "false",
+      "true",
+      "false",
+      "false"
+    ]
+  },
+  {
+    "n": "search narrows the list",
+    "p": true,
+    "e": [
+      "🇫🇷France"
+    ]
+  },
+  {
+    "n": "tap boxes are at least 44px",
+    "p": true,
+    "e": {
+      "x": 162,
+      "y": 517.734375,
+      "width": 44,
+      "height": 44
+    }
+  },
+  {
+    "n": "BEEN on France saves visited to tllStates",
+    "p": true,
+    "e": {
+      "208": {
+        "t1": "lived"
+      },
+      "250": {
+        "t1": "visited"
+      }
+    }
+  },
+  {
+    "n": "other member JSON kept",
+    "p": true,
+    "e": [
+      "tllStates",
+      "tllPlaces",
+      "other",
+      "tllStatesAt"
+    ]
+  },
+  {
+    "n": "map told: tll:states and __tllMapApply",
+    "p": true,
+    "e": {
+      "saved": {
+        "tllStates": {
+          "v": 2,
+          "travelers": [
+            {
+              "id": "t1",
+              "name": "Me",
+              "pet": false
+            },
+            {
+              "id": "t2",
+              "name": "Magnus",
+              "pet": true
+            }
+          ],
+          "states": {
+            "208": {
+              "t1": "lived"
+            },
+            "250": {
+              "t1": "visited"
+            }
+          }
+        },
+        "tllPlaces": {},
+        "other": "keep",
+        "tllStatesAt": 1792946829788
+      },
+      "applied": 1,
+      "ev": 1,
+      "st": "Saved"
+    }
+  },
+  {
+    "n": "status says Saved",
+    "p": true,
+    "e": "Saved"
+  },
+  {
+    "n": "LAYOVER replaces BEEN (one depth per traveler)",
+    "p": true,
+    "e": {
+      "t1": "layover"
+    }
+  },
+  {
+    "n": "tap again clears",
+    "p": true
+  },
+  {
+    "n": "WANT writes tllPlaces keyed by slug",
+    "p": true,
+    "e": {
+      "france": {
+        "state": "want",
+        "name": "France",
+        "at": "2026-10-25T16:47:12.239Z"
+      }
+    }
+  },
+  {
+    "n": "pet chip: WANT off, BEEN on",
+    "p": true,
+    "e": {
+      "want": true,
+      "been": false
+    }
+  },
+  {
+    "n": "pet logs under its own traveler id",
+    "p": true,
+    "e": {
+      "t2": "visited"
+    }
+  },
+  {
+    "n": "import preview counts (PT, QA, FR new; DK kept as lived)",
+    "p": true,
+    "e": "From your Places Been file: 3 countries to add as BEEN, 1 to WANT, 3 cities, 1 airport, 0 parks. Nothing you already logged changes. 1 pin in another list (landmarks, UNESCO, ports) stays in Places Been for now."
+  },
+  {
+    "n": "nothing saved before Import is pressed",
+    "p": true,
+    "e": 5
+  },
+  {
+    "n": "import: countries added, Denmark still lived",
+    "p": true,
+    "e": {
+      "208": {
+        "t1": "lived"
+      },
+      "250": {
+        "t2": "visited",
+        "t1": "visited"
+      },
+      "620": {
+        "t1": "visited"
+      },
+      "634": {
+        "t1": "visited"
+      }
+    }
+  },
+  {
+    "n": "import: Iceland to WANT",
+    "p": true,
+    "e": [
+      "france",
+      "iceland"
+    ]
+  },
+  {
+    "n": "import: logbook cities and airport",
+    "p": true,
+    "e": {
+      "cities": [
+        {
+          "n": "Lisbon",
+          "at": 1792946834772
+        },
+        {
+          "n": "Porto, North",
+          "at": 1792946834772
+        },
+        {
+          "n": "Copenhagen",
+          "at": 1792946834772
+        }
+      ],
+      "airports": [
+        {
+          "n": "Doha Hamad",
+          "at": 1792946834772
+        }
+      ]
+    }
+  },
+  {
+    "n": "second import of the same file adds nothing",
+    "p": true,
+    "e": "From your Places Been file: 0 countries to add as BEEN, 0 to WANT, 0 cities, 0 airports, 0 parks. Nothing you already logged changes. 1 pin in another list (landmarks, UNESCO, ports) stays in Places Been for now."
+  },
+  {
+    "n": "Escape closes the sheet",
+    "p": true,
+    "e": null
+  },
+  {
+    "n": "no errors (member)",
+    "p": true,
+    "e": []
+  },
+  {
+    "n": "#quick-log opens it; side panel on desktop",
+    "p": true,
+    "e": {
+      "hidden": false,
+      "w": 440,
+      "left": 840
+    }
+  }
+]
