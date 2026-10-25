@@ -5,7 +5,7 @@
    words / 220, computed here, never asked. Photos: the original upload is kept; nothing is adjusted here. No secret lives in this file;
    the Worker holds every key. Rules (8): a place, headline 60 or fewer, 300 words or more, own hero photo, it's travel, words and photos
    are yours, links work and paid links declared, Charter agreed. Send stays disabled until every rule passes; tapping it scrolls to the first miss.
-   Edit mode (/submit?edit={slug}): the same form loaded with the live story from GET /story (owner only), saved through POST /story/update.
+   Edit mode (/submit?story={slug}): the same form loaded with the live story from GET /story (owner only), saved through POST /story/update.
    Link mode fills and submits the live Webflow "Link-out story" form (data-tll-form="link-out-story"), so its name and hooks keep working. */
 (function () {
   'use strict';
@@ -14,7 +14,7 @@
   var WORKER = (root.getAttribute('data-worker') || '').replace(/\/$/, '');
   var CLOUD = root.getAttribute('data-cloud') || 'idonvlow';
   var PRESET = root.getAttribute('data-preset') || 'tll_photos';
-  var EDIT_SLUG = (function () { try { var v = new URLSearchParams(location.search).get('edit') || ''; return /^[a-z0-9-]{1,120}$/.test(v) ? v : ''; } catch (e) { return ''; } })();
+  var EDIT_SLUG = (function () { try { var v = new URLSearchParams(location.search).get('story') || ''; return /^[a-z0-9-]{1,120}$/.test(v) ? v : ''; } catch (e) { return ''; } })();
   var DRAFT_KEY = EDIT_SLUG ? 'tll_submit_edit_' + EDIT_SLUG : 'tll_submit_v5_draft';
   var MAX_GALLERY = 25; /* 25 for everyone; /me says 50 for Gallery Plus */
   var MAX_SHOUT = 5;
@@ -507,7 +507,7 @@
 
   /* ---------- send ---------- */
   function openModal(kind) {
-    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent(EDIT_SLUG ? '/submit?edit=' + EDIT_SLUG : '/submit'); return Promise.resolve(null); }
+    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent(EDIT_SLUG ? '/submit?story=' + EDIT_SLUG : '/submit'); return Promise.resolve(null); }
     return m.openModal(kind).then(function () { return member(); }).catch(function () { return null; });
   }
   function payload() {

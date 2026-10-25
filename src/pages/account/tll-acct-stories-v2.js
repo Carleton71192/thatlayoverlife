@@ -46,7 +46,7 @@
       if (meta) body.appendChild(el('div', 'tms-m', meta));
       var title = el('a', 'tms-t'); title.textContent = s.headline; title.href = s.url; body.appendChild(title);
       var acts = el('div', 'tms-acts');
-      var edit = el('a', 'tms-act', s.state === 'taken-down' ? 'Put it back' : 'Edit'); edit.href = '/submit?edit=' + encodeURIComponent(s.slug);
+      var edit = el('a', 'tms-act', s.state === 'taken-down' ? 'Put it back' : 'Edit'); edit.href = '/submit?story=' + encodeURIComponent(s.slug);
       if (s.state === 'taken-down') { acts.appendChild(el('span', 'tms-state', 'Taken down')); acts.appendChild(el('span', 'tms-dot', ' · ')); acts.appendChild(edit); }
       else {
         if (s.state === 'held') { acts.appendChild(el('span', 'tms-state', 'With the editor')); acts.appendChild(el('span', 'tms-dot', ' · ')); }

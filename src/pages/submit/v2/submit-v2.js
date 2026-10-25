@@ -4,7 +4,7 @@
    (b) one Accept on one Editor's note, which replaces exactly that span. There is no other path. Tags and pursuit are suggestions the
    writer can change. Reading time is words / 220, computed here, never asked. Photos: the original upload is never changed; a cleaned
    version is a derived URL the writer can pick. No secret lives in this file; the Worker holds every key.
-   Edit mode (/submit?edit={slug}): the same form loaded with the live story from GET /story (owner only), saved through
+   Edit mode (/submit?story={slug}): the same form loaded with the live story from GET /story (owner only), saved through
    POST /story/update. The URL, published date, contributor and the editor's fields never change from here. */
 (function () {
   'use strict';
@@ -14,7 +14,7 @@
   var CLOUD = root.getAttribute('data-cloud') || 'idonvlow';
   var PRESET = root.getAttribute('data-preset') || 'tll_photos';
   var CLEAN = 'e_improve,e_auto_brightness,e_auto_color,e_auto_contrast,q_auto,f_auto,fl_keep_iptc';
-  var EDIT_SLUG = (function () { try { var v = new URLSearchParams(location.search).get('edit') || ''; return /^[a-z0-9-]{1,120}$/.test(v) ? v : ''; } catch (e) { return ''; } })();
+  var EDIT_SLUG = (function () { try { var v = new URLSearchParams(location.search).get('story') || ''; return /^[a-z0-9-]{1,120}$/.test(v) ? v : ''; } catch (e) { return ''; } })();
   var DRAFT_KEY = EDIT_SLUG ? 'tll_submit_edit_' + EDIT_SLUG : 'tll_submit_draft';
   var MAX_GALLERY = 8;
   var MAX_SHOUT = 5;
@@ -391,7 +391,7 @@
   el.next.addEventListener('click', function () { if (S.step === 1) { if (validate1()) go(2); } else if (S.step === 2) go(3); });
   el.back.addEventListener('click', function () { if (S.step === 3) go(2); else if (S.step === 2) go(1); });
   function openModal(kind) {
-    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent(EDIT_SLUG ? '/submit?edit=' + EDIT_SLUG : '/submit'); return; }
+    var m = ms(); if (!m) { location.href = (kind === 'SIGNUP' ? '/signup' : '/login') + '?redirect=' + encodeURIComponent(EDIT_SLUG ? '/submit?story=' + EDIT_SLUG : '/submit'); return; }
     m.openModal(kind).then(function () { gate(); }).catch(function () {});
   }
   el.login.addEventListener('click', function () { openModal('LOGIN'); });
