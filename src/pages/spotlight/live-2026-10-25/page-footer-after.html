@@ -1,0 +1,31 @@
+<script id="tll-spotlight-featured-v1">
+/* 25 Oct 2026. Runs in the page footer, before the site head spotlight() (DOMContentLoaded), and marks the card done so the old typed card never renders. */
+(function(){
+    /* 25 Oct 2026 (Nancy: yes, drive /spotlight from "Is featured"): the card reads the hidden list [data-tll-spot-src] on /spotlight,
+       Contributors where Is featured is on, limit 1. Nobody featured: an honest empty slot linking to /travelers. Nothing typed about a person. */
+    var f=document.querySelector('a.inline-a-0-1');if(f&&!f.dataset.tllSp){f.dataset.tllSp='1';f.style.padding='0';f.style.background='transparent';f.style.minHeight='0';f.style.boxShadow='none';
+      var esc=function(t){return String(t||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+      var it=document.querySelector('[data-tll-spot-src] [data-tll-spot]'),g=function(k){return it?(it.getAttribute('data-'+k)||'').trim():'';};
+      var slug=g('slug'),K='font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:2px;color:#D98A2B;font-weight:600',
+        H='font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:30px;line-height:1.1',M='font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:1.5px;color:#9a9cb3',
+        Pp='margin:0;color:#cfcbc4;font-size:16px;line-height:1.55',B1='background:#F0507A;color:#fff;border-radius:6px;padding:10px 18px;font-weight:700',
+        B2='border:1.5px solid rgba(247,241,232,.4);border-radius:6px;padding:10px 18px;font-weight:600',
+        AV='width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#1d5e5d,#00C9C8);box-shadow:0 0 0 3px #F0507A;display:flex;align-items:center;justify-content:center;font-family:Playfair Display,Georgia,serif;font-weight:800;font-size:28px;color:#0A0B14';
+      var wrap=function(left,right){return '<div style="display:grid;grid-template-columns:minmax(0,340px) 1fr;background:#0A0B14;border-radius:14px;overflow:hidden;color:#F7F1E8" class="tllsp-feat">'+left+'<div style="padding:32px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px">'+right+'</div></div>';};
+      if(slug&&/^[a-z0-9-]+$/.test(slug)){
+        var cm=g('credit').toLowerCase(),nm=g('name');if(cm==='pen'&&g('pen'))nm=g('pen');else if(cm==='first')nm=nm.split(/\s+/)[0];
+        var ini=nm.split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w.charAt(0).toUpperCase();}).join('');
+        var img=it.querySelector('img'),src=img&&img.getAttribute('src')&&!/placeholder|\.svg$/i.test(img.getAttribute('src'))?img.getAttribute('src'):'';
+        var meta=[g('badge')||'TRAVELER',g('home')].filter(Boolean).join(' · ').toUpperCase(),line=g('line')||g('bio');
+        f.href='/contributors/'+slug;
+        f.innerHTML=wrap('<div style="background:#16182a'+(src?' url(&quot;'+esc(src)+'&quot;) center/cover':'')+';min-height:300px;display:flex;align-items:flex-end;padding:22px"'+(src?' role="img" aria-label="'+esc(nm)+'"':'')+'>'+(src?'':'<span style="'+AV+'" aria-hidden="true">'+esc(ini)+'</span>')+'</div>',
+          '<div style="'+K+'">★ TRAVELER OF THE WEEK</div><div style="'+H+'">'+esc(nm)+'</div>'+(meta?'<div style="'+M+'">'+esc(meta)+'</div>':'')+(line?'<p style="'+Pp+'">'+esc(line)+'</p>':'')+
+          '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><span style="'+B1+'">Full profile →</span><span data-href="/stories" class="tllsp-stories" style="'+B2+'">Read the stories</span></div>');
+        var rs=f.querySelector('.tllsp-stories');if(rs)rs.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();location.href='/stories';});
+      }else{
+        f.href='/travelers';
+        f.innerHTML=wrap('<div style="background:#16182a;min-height:300px;display:flex;align-items:flex-end;padding:22px"><span style="'+AV+';background:transparent;border:2px dashed #F0507A;box-shadow:none;color:#F0507A" aria-hidden="true">?</span></div>',
+          '<div style="'+K+'">★ TRAVELER OF THE WEEK</div><div style="'+H+'">Not picked yet this week.</div><p style="'+Pp+'">Meanwhile, every traveler on the site has a profile worth a look.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><span style="'+B1+'">Meet the travelers →</span></div>');
+      }}
+})();
+</script>
