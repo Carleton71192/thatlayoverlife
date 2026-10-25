@@ -1,6 +1,6 @@
 import { chromium } from '/opt/node22/lib/node_modules/playwright/index.mjs';
 import fs from 'fs';
-const head=fs.readFileSync('head.html','utf8');const foot=fs.readFileSync('/home/user/thatlayoverlife/src/pages/spotlight/live-2026-10-25/page-footer-after.html','utf8');
+const DIR=new URL('.',import.meta.url).pathname;const head=fs.readFileSync(DIR+'../site-head-before.html','utf8');const foot=fs.readFileSync(DIR+'../page-footer-after.html','utf8');
 const body=(item)=>`<main><section><a class="inline-a-0-1" href="/travelers">old</a></section>
 <a class="inline-a-1-1"></a><a class="inline-a-2-1"></a><a class="inline-a-3"></a>
 <div data-tll-spot-src hidden><div class="w-dyn-list">${item}</div></div></main>${foot}`;
@@ -12,6 +12,6 @@ for (const [name,item] of [['featured','<div role="listitem" class="w-dyn-item">
   await p.goto('http://tll.test/spotlight'); await p.waitForTimeout(800);
   const o=await p.evaluate(()=>{const a=document.querySelector('a.inline-a-0-1');return {href:a.getAttribute('href'),text:a.innerText.replace(/\s+/g,' '),html:a.innerHTML.includes('<coffee>')}});
   console.log(name,JSON.stringify(o),errs.slice(0,3));
-  await p.screenshot({path:name+'.png'});
+  await p.screenshot({path:DIR+name+'.png'});
 }
 await b.close();

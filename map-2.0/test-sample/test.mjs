@@ -2,7 +2,7 @@
 // fails to start, but the record, the SAMPLE label, the counters and the badges render before the map does.
 import { chromium } from '/opt/node22/lib/node_modules/playwright/index.mjs';
 import fs from 'fs';
-const R = new URL('..', import.meta.url).pathname;
+const R = new URL('..', import.meta.url).pathname, DIR = new URL('.', import.meta.url).pathname;
 const results = []; const rec = (n, p, e) => results.push({ n, p: !!p, e });
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 async function run({ visitor = 'sample', member = null, local = undefined }) {
@@ -25,7 +25,7 @@ async function run({ visitor = 'sample', member = null, local = undefined }) {
   }, { member, local });
   await p.goto('http://tll.test/page.html'); await p.waitForTimeout(2500);
   const st = await p.evaluate(() => ({ banner: !!document.getElementById('tllm-sample'), text: (document.getElementById('tllm-sample') || {}).textContent || '', badges: [...document.querySelectorAll('.tllm-card-src')].map(x => x.textContent), src: (function(){var m=document.getElementById('tll-map-layers');return m&&m.tllmState?m.tllmState().source:(window.tllmState?window.tllmState().source:null);})() }));
-  await p.screenshot({ path: `shot-${visitor || 'none'}-${member ? 'member' : 'out'}-${local ? 'local' : 'x'}.png` });
+  await p.screenshot({ path: DIR + `shot-${visitor || 'none'}-${member ? 'member' : 'out'}-${local ? 'local' : 'x'}.png` });
   await ctx.close(); return { st, errs, got };
 }
 let r = await run({});
@@ -42,6 +42,6 @@ rec('member sees own record, no label', !r.st.banner && r.st.src === 'member', r
 r = await run({ visitor: '' });
 rec('without the attribute the old behavior stays (owner)', !r.st.banner && r.st.src === 'owner', r.st.src);
 await b.close();
-fs.writeFileSync('results.json', JSON.stringify(results, null, 2));
+fs.writeFileSync(DIR + 'results.json', JSON.stringify(results, null, 2));
 for (const x of results) console.log((x.p ? 'PASS ' : 'FAIL ') + x.n + (x.p ? '' : ' ' + JSON.stringify(x.e)));
 console.log(results.filter(x => x.p).length + '/' + results.length);

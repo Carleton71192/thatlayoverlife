@@ -1,0 +1,100 @@
+[
+  {
+    "name": "three-step bar starts at step 1",
+    "pass": true,
+    "evidence": "Step 1 of 3 · The story"
+  },
+  {
+    "name": "Next with empty required fields stays on step 1",
+    "pass": true,
+    "evidence": "Step 1 of 3 · The story"
+  },
+  {
+    "name": "every required field except the photos can be filled",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "Next moves to step 3 once filled",
+    "pass": true,
+    "evidence": "Step 3 of 3 · Credit & photos"
+  },
+  {
+    "name": "three photos uploaded (1 hero, 2 gallery)",
+    "pass": true,
+    "evidence": 3
+  },
+  {
+    "name": "no EXIF or GPS text in any upload",
+    "pass": true,
+    "evidence": [
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ],
+      [
+        false,
+        false
+      ]
+    ]
+  },
+  {
+    "name": "Webflow sent the story once",
+    "pass": true,
+    "evidence": 1
+  },
+  {
+    "name": "hero-image carries one Cloudinary link",
+    "pass": true,
+    "evidence": "https://res.cloudinary.com/idonvlow/image/upload/tll/hero-image/p1.jpg"
+  },
+  {
+    "name": "photo-gallery carries two links",
+    "pass": true,
+    "evidence": "https://res.cloudinary.com/idonvlow/image/upload/tll/photo-gallery/p2.jpg\nhttps://res.cloudinary.com/idonvlow/image/upload/tll/photo-gallery/p3.jpg"
+  },
+  {
+    "name": "the written fields went with it",
+    "pass": true,
+    "evidence": 50
+  },
+  {
+    "name": "draft cleared after the send",
+    "pass": true,
+    "evidence": ""
+  },
+  {
+    "name": "no page errors (send)",
+    "pass": true,
+    "evidence": []
+  },
+  {
+    "name": "no hero photo: nothing uploaded, nothing sent, still on step 3",
+    "pass": true,
+    "evidence": {
+      "uploads": 0,
+      "wf": 0
+    }
+  },
+  {
+    "name": "Memberstack form: not held, nothing uploaded, its file field untouched",
+    "pass": true,
+    "evidence": {
+      "uploads": 0,
+      "ms": 1,
+      "file": "profile-image:1"
+    }
+  },
+  {
+    "name": "Memberstack-owned field skipped, hero still cleaned and sent",
+    "pass": true,
+    "evidence": {
+      "uploads": 1,
+      "wf": 1
+    }
+  }
+]

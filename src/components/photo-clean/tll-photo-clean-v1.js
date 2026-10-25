@@ -5,12 +5,15 @@
    2. each chosen photo is redrawn on a canvas and saved as a fresh JPEG (long edge 3000px at most): no EXIF, so no GPS, camera or time;
    3. the clean copies go to Cloudinary (unsigned preset tll_photos, folder tll/<field name>), one at a time;
    4. the links go into hidden fields with the photo fields' names, and the form is sent once, so the page's own scripts run once.
-   Nothing leaves the browser before Send. A failed upload sends nothing and says so. A form with no photos chosen is not touched. */
+   Nothing leaves the browser before Send. A failed upload sends nothing and says so. A form with no photos chosen is not touched.
+   26 Oct 2026 (troubleshoot plan, step 1): Memberstack's own forms (data-ms-form) and file fields Memberstack owns (any data-ms-*
+   attribute on the field) are never held. Note: the /submit story form carries data-ms-member-bound on the form itself and is still handled. */
 (function(){
   if(window.__tllPhotoClean) return; window.__tllPhotoClean=1;
   var CLOUD='https://api.cloudinary.com/v1_1/idonvlow/image/upload', PRESET='tll_photos', EDGE=3000, SKIP='[data-tll-form="share-photos"]';
   var D=document, state=new WeakMap(), cache={};
 
+  function msOwned(el){ return [].some.call(el.attributes,function(a){ return a.name.indexOf('data-ms-')===0; }); }
   function key(f){ return [f.name,f.size,f.lastModified].join('|'); }
   function viaImg(f){ return new Promise(function(res,rej){ var u=URL.createObjectURL(f), i=new Image(); i.onload=function(){ res(i); setTimeout(function(){ URL.revokeObjectURL(u); },0); }; i.onerror=function(){ URL.revokeObjectURL(u); rej('read'); }; i.src=u; }); }
   function decode(f){ if(window.createImageBitmap){ return createImageBitmap(f,{imageOrientation:'from-image'}).catch(function(){ return viaImg(f); }); } return viaImg(f); }
@@ -38,10 +41,10 @@
 
   /* Capture phase on the document: runs before every listener on the form, so nothing else acts on the held send. */
   D.addEventListener('submit',function(ev){
-    var form=ev.target; if(!form||!form.matches||!form.matches('form')||form.matches(SKIP)) return;
+    var form=ev.target; if(!form||!form.matches||!form.matches('form')||form.matches(SKIP)||form.hasAttribute('data-ms-form')) return;
     var st=state.get(form)||{}; state.set(form,st);
     if(st.pass){ st.pass=false; return; }                        /* the links are in: let the form and its scripts run once */
-    var inputs=[].filter.call(form.querySelectorAll('input[type="file"]'),function(i){ return i.files&&i.files.length&&(i.getAttribute('name')||i.getAttribute('data-tll-photo-name')); });
+    var inputs=[].filter.call(form.querySelectorAll('input[type="file"]'),function(i){ return i.files&&i.files.length&&(i.getAttribute('name')||i.getAttribute('data-tll-photo-name'))&&!msOwned(i); });
     if(!inputs.length) return;
     ev.preventDefault(); ev.stopImmediatePropagation();
     if(st.busy) return;
