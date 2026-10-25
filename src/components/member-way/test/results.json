@@ -130,5 +130,30 @@
     "name": "other pages: script does nothing",
     "pass": true,
     "evidence": ""
+  },
+  {
+    "name": "/account with its own member bar: no second bar",
+    "pass": true,
+    "evidence": {
+      "ours": false,
+      "bars": 1
+    }
+  },
+  {
+    "name": "its bar on a phone: one line, 16px from the edge",
+    "pass": true,
+    "evidence": {
+      "wrap": "nowrap",
+      "pl": "16px"
+    }
+  },
+  {
+    "name": "page without <main>: bar goes after the site header, never above it",
+    "pass": true,
+    "evidence": {
+      "bar": true,
+      "afterNav": true,
+      "notFirst": true
+    }
   }
 ]

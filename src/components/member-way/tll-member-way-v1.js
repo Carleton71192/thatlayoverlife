@@ -26,12 +26,18 @@
     '.tmw-bar a{flex:none;display:inline-flex;align-items:center;min-height:48px;margin-bottom:-1px;border-bottom:3px solid transparent;color:#5E5A54;text-decoration:none}'+
     '.tmw-bar a[aria-current="page"]{color:#0A0B14;border-bottom-color:#F0507A}'+
     '.tmw-bar a:focus-visible{outline:3px solid #0A0B14;outline-offset:-3px}'+
-    '.a3-btn-edit{background:#D63859 !important;color:#fff !important;border-color:#D63859 !important}';
+    '.a3-btn-edit{background:#D63859 !important;color:#fff !important;border-color:#D63859 !important}'+
+    /* the page's own member bar on phones: one line that scrolls sideways, off the screen edge */
+    '@media (max-width:767px){.tll-mbar{flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none;padding:0 16px;margin-bottom:16px !important}.tll-mbar::-webkit-scrollbar{display:none}.tll-mbar a{flex:none}}';
   D.head.appendChild(s);
 
   function el(tag,attrs,txt){ var e=D.createElement(tag); for(var k in attrs) e.setAttribute(k,attrs[k]); if(txt!=null) e.textContent=txt; return e; }
   function main(){ return D.querySelector('main')||D.body; }
-  function first(parent,node){ parent.insertBefore(node,parent.firstChild); }
+  /* 26 Oct 2026 (Nancy: "There is a double menu in the profile section"): never above the site header. Pages without a
+     <main> (/account, /edit-profile) got the bar as the first thing in <body>. Now it goes right after the header. */
+  function navTop(root){ var n=D.querySelector('.tll-nav-v1,.tll-nav-inner,body > nav,header'); if(!n||!root.contains(n)) return null;
+    while(n.parentNode&&n.parentNode!==root) n=n.parentNode; return n.parentNode===root?n:null; }
+  function first(parent,node){ var t=navTop(parent); parent.insertBefore(node,t?t.nextSibling:parent.firstChild); }
 
   function ownerBar(m){
     var root=D.querySelector('[data-pf5="root"]'); if(!root||D.getElementById('tmw-own')) return;
@@ -45,6 +51,8 @@
 
   function memberBar(){
     if(D.getElementById('tmw-bar')) return;
+    /* The page already carries its own member bar (Edit profile 3.4 embed, data-tll-member-bar): stand aside. */
+    if(D.querySelector('[data-tll-member-bar],.tll-mbar')) return;
     var wrap=el('div',{id:'tmw-bar','class':'tmw-bar'}), nav=el('nav',{'aria-label':'Your TLL'});
     [['/account','OVERVIEW'],['/edit-profile','PROFILE'],['/the-map','MAP'],['/my-pets','PETS'],['/account#stories','STORIES'],['/account#settings','SETTINGS']].forEach(function(l){
       var a=el('a',{href:l[0]},l[1]); if(l[0]===P) a.setAttribute('aria-current','page'); nav.appendChild(a);
