@@ -1,0 +1,22 @@
+<style id="tll-home-hero-phone-v1">
+/* 26 Oct 2026: the home hero on phones, matched to prototype 3.4 after Nancy's 23 Oct critique
+   (handoff/MOBILE-HOME-CRITIQUE-2026-10-23.md). Phones only (767px and under); tablets and desktop are unchanged.
+   Full-bleed photo, no eyebrow, headline anchored at the bottom, full-width buttons, FREE line in teal,
+   coordinates top-right, and room at the bottom so the floating "Tell the editor" pill never covers the copy. */
+@media (max-width:767px){
+body:not(.tll-none) [data-h3-hero]{min-height:calc(100svh - 96px);display:flex !important;flex-direction:column !important;justify-content:flex-end !important;margin:0 !important;border:0 !important;border-radius:0 !important;overflow:hidden !important}
+body:not(.tll-none) [data-h3-hero] > img[data-tll-parallax="hero"]{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;max-width:none !important;object-fit:cover !important;object-position:center 40% !important;border-radius:0 !important}
+body:not(.tll-none) [data-h3-hero]::after,body.tllp-home [data-h3-hero]::after{content:"" !important;position:absolute !important;inset:0 !important;z-index:1 !important;pointer-events:none !important;background:linear-gradient(180deg,rgba(10,11,20,.35) 0%,rgba(10,11,20,0) 30%,rgba(10,11,20,.15) 55%,rgba(10,11,20,.92) 100%) !important}
+body:not(.tll-none) [data-h3-hero] > div:has(> h1){position:relative !important;z-index:2 !important;width:100% !important;max-width:none !important;margin:0 !important;padding:0 16px max(clamp(40px,8vh,80px),76px) !important;box-sizing:border-box !important}
+body:not(.tll-none) [data-h3-hero] div:has(+ h1){display:none !important}
+body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title){font-size:clamp(52px,13.4vw,64px) !important;line-height:.88 !important;letter-spacing:-.045em !important;text-wrap:balance;margin:0 !important;padding-top:.06em !important;max-width:none !important}
+body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:17px !important;line-height:1.5 !important;max-width:46ch !important;margin:20px 0 0 !important;color:#E8E2D8 !important;text-wrap:pretty}
+body:not(.tll-none) [data-h3-hero] .h3-hero-cta{flex-direction:column !important;gap:12px !important;margin:24px 0 0 !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn{flex:none !important;width:100% !important;min-height:48px !important;box-sizing:border-box !important;justify-content:center !important;border-radius:0 !important;font-size:16px !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-free{margin:14px 0 0 !important;font-size:11px !important;letter-spacing:2px !important;line-height:1.5 !important;color:#00C9C8 !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-coords{top:16px !important;bottom:auto !important;left:auto !important;right:16px !important;text-align:right !important;white-space:normal !important;overflow:visible !important;font-size:10px !important;letter-spacing:.16em !important;z-index:3 !important}
+body:not(.tll-none) [data-h3-hero] > div:has(> .h3-hero-coords){position:absolute !important;inset:0 !important;z-index:3 !important;pointer-events:none !important;width:auto !important;height:auto !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-coords .h3-co,body:not(.tll-none) [data-h3-hero] .h3-hero-coords b{display:block !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-coords b::before{content:none !important}
+}
+</style>

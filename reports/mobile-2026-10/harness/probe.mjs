@@ -1,0 +1,14 @@
+import { createRequire } from 'module'; const { chromium } = createRequire(import.meta.url)('playwright');
+import fs from 'fs'; import path from 'path'; import url from 'url';
+const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
+const EXP = path.join(ROOT, 'handoff/claude-design-source/webflow-export-2026-10-13');
+let html = fs.readFileSync(path.join(EXP, 'pages/index.html'), 'utf8');
+html = html.replace('</head>', '<style>' + fs.readFileSync(path.join(ROOT,'src/pages/home/tll-home-hero-phone-v1.html'),'utf8').replace(/^<style[^>]*>|<\/style>\s*$/g,'') + '</style></head>');
+const tmp = path.join(EXP, 'pages/__probe.html'); fs.writeFileSync(tmp, html);
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 390, height: 844 } });
+await p.route('**/*', r => r.request().url().startsWith('file:') ? r.continue() : r.abort());
+await p.goto('file://' + tmp).catch(()=>{}); await p.waitForTimeout(800);
+console.log(await p.evaluate(() => { const c = document.querySelector('.h3-hero-coords'), h = document.querySelector('[data-h3-hero]');
+ const r = e => { const x = e.getBoundingClientRect(); return [x.top|0, x.left|0, x.width|0, x.height|0]; };
+ return JSON.stringify({ coords: r(c), hero: r(h), cs: getComputedStyle(c).display + ' ' + getComputedStyle(c).position, parent: r(c.parentElement), ppos: getComputedStyle(c.parentElement).position, kids: [...h.children].map(k => k.tagName + '.' + k.className.slice(0, 20) + ' ' + getComputedStyle(k).position + ' ' + r(k)) }); }));
+await b.close(); fs.unlinkSync(tmp);

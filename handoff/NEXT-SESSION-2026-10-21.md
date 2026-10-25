@@ -159,3 +159,20 @@ Nancy (phone screenshot of /account): "There is a double menu in the profile sec
 ## 26 October 2026: troubleshoot plan, step 1 live
 
 troubleshoot-plan.md (repo root) covers mobile layout, story editing and photo forms. Step 1 is done and published (134b55db): tllphotocleanv11 on /my-pets and /submit, a test against the live /submit three-step code (15/15), and vitest skipping worker/. Step 2 waits on Nancy deploying worker/ (three secrets, then wrangler deploy). Step 4 waits on network hosts being allowed.
+
+## 26 October 2026: home hero on phones, live
+
+Nancy's 23 Oct critique of the home hero at 390px, fixed per prototype 3.4, for 767px and under only:
+- full-bleed photo with the 3.4 scrim;
+- no eyebrow;
+- headline anchored at the bottom, 52px, balanced over two lines;
+- full-width square buttons;
+- the FREE FOREVER line in #00C9C8;
+- coordinates top-right;
+- bottom room so "Tell the editor" never covers the copy.
+
+The code is a style block appended to the hero CTA embed 13326a8e. Its source is `src/pages/home/tll-home-hero-phone-v1.html`, with before and after code in `src/pages/home/live-2026-10-26/`. Screenshots are in `reports/mobile-2026-10/` (before-390, after-390, after-360, compare-390, after-390-tllp). It was published to webflow.io and both custom domains.
+
+To roll back: set embed 13326a8e back to `embed-13326a8e-before.html` and publish.
+
+The check was offline only, because the sandbox still cannot reach the live site. Nancy should look at the home page on her phone.
