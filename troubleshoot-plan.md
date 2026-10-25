@@ -173,7 +173,11 @@ Regression checks:
 - No data-ms-* element is styled differently. The axe run shows no new contrast failures.
 - The banned-word and counts rules still hold (no typed counts in the new CSS content strings).
 
-**Done early, 26 Oct (live):** items 3 and 4 for the home hero on phones, as a phone-only layer (`src/pages/home/tll-home-hero-phone-v1.html`) appended to the hero CTA embed 13326a8e. Before and after code are in `src/pages/home/live-2026-10-26/`. It was checked offline, because the hosts are still blocked: `node reports/mobile-2026-10/harness/render.mjs <out.png> src/pages/home/tll-home-hero-phone-v1.html [width] [height]` renders the 13 Oct export with today's CTA markup and a stand-in photo. At 390 and 360: the headline is 52px on two lines, the eyebrow is hidden, the buttons are full width, the FREE line is #00C9C8, the coordinates are top-right, the pill does not cover the copy, and there is no sideways scroll. At 768 the page is pixel-identical to before. Still to check against the live page once the hosts are open. Item 5 (header button shape) is still open.
+**Done early, 26 Oct (live):** items 3 and 4 for the home hero on phones, as a phone-only layer (`src/pages/home/tll-home-hero-phone-v1.html`) appended to the hero CTA embed 13326a8e. Before and after code are in `src/pages/home/live-2026-10-26/`. It was checked offline, because the hosts are still blocked: `node reports/mobile-2026-10/harness/render.mjs <out.png> src/pages/home/tll-home-hero-phone-v1.html [width] [height]` renders the 13 Oct export with today's CTA markup and a stand-in photo. At 390 and 360: the headline is 52px on two lines, the eyebrow is hidden, the buttons are full width, the FREE line is #00C9C8, the coordinates are top-right, the pill does not cover the copy, and there is no sideways scroll. At 768 the page is pixel-identical to before. Still to check against the live page once the hosts are open. Item 5 is done too (26 Oct, live): the site script `tllnavphonev1` is pinned to a38abb0 with an SRI hash, and its source is `src/site-layers/tll-nav-phone-v1.html`.
+- On phones, Sign up, the account button and MENU share one square shape at 44px.
+- The header fits on one row from 360px up and drops from 114px to 81px tall.
+- At 768 the page is pixel-identical to before. The MENU drawer still opens.
+- Check with `node reports/mobile-2026-10/harness/nav-probe.mjs <out.png> src/site-layers/tll-nav-phone-v1.html <width>` (MEMBER=1 for signed in).
 
 ### Step 6 (A3): page by page
 

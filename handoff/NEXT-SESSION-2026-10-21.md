@@ -176,3 +176,17 @@ The code is a style block appended to the hero CTA embed 13326a8e. Its source is
 To roll back: set embed 13326a8e back to `embed-13326a8e-before.html` and publish.
 
 The check was offline only, because the sandbox still cannot reach the live site. Nancy should look at the home page on her phone.
+
+## 26 October 2026: header buttons on phones, live
+
+This fixes point 1 of Nancy's 23 Oct critique: the rounded "Nancy" pill next to the square MENU box.
+- On phones, Sign up, the account button and MENU now share the prototype's square shape at 44px.
+- The header fits on one row from 360px up (114px down to 81px tall). 320px phones wrap to two tidy rows.
+- The round avatar letter and every other data-ms element are untouched.
+- Tablet and desktop are unchanged.
+
+The code is the site script `tllnavphonev1` (header, jsDelivr pinned to a38abb0 with an SRI hash). Its source is `src/site-layers/tll-nav-phone-v1.html`, with the injector in `tll-nav-phone-v1.js`. Shots are `reports/mobile-2026-10/nav-*.png`.
+
+To roll back: remove the site script `tllnavphonev1` and publish.
+
+This was checked offline only. Nancy should look at it on her phone, signed in and signed out.
