@@ -190,3 +190,21 @@ The code is the site script `tllnavphonev1` (header, jsDelivr pinned to a38abb0 
 To roll back: remove the site script `tllnavphonev1` and publish.
 
 This was checked offline only. Nancy should look at it on her phone, signed in and signed out.
+
+## 26 October 2026: contrast fixes, live (site script now tllsitelayersv1)
+
+An offline accessibility check found three text-contrast failures in today's site code:
+- the header "Sign up" and "Share your story" were light text on the bright rose, on the home page on desktop;
+- the /stories "Share your story" button was cream on teal;
+- the rose words "on the way" and "worth it" were bright rose on cream.
+
+The fixes:
+- The buttons now use white on #D63859, the look most pages already had.
+- Rose words on light backgrounds now use #C8325B.
+- Rose on dark sections is unchanged.
+
+Webflow caps site scripts at 15. The header fix and the contrast fix now ship together as `tllsitelayersv1` (jsDelivr pinned to 834be1b, SRI), which replaced `tllnavphonev1`. Source files are in `src/site-layers/`. Shots are `reports/mobile-2026-10/contrast-*.png`.
+
+To roll back: remove the site script `tllsitelayersv1`, then re-apply `tllnavphonev1` if the header fix should stay.
+
+The live search box overflow at 390px was already fixed by the 19 Oct page code (`tll-home-search-left-v5`). The newsletter placeholder "Your email" is set by the 20 Oct embed. Both were checked, and neither needed a change.

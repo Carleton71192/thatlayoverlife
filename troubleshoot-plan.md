@@ -179,6 +179,23 @@ Regression checks:
 - At 768 the page is pixel-identical to before. The MENU drawer still opens.
 - Check with `node reports/mobile-2026-10/harness/nav-probe.mjs <out.png> src/site-layers/tll-nav-phone-v1.html <width>` (MEMBER=1 for signed in).
 
+**Contrast, 26 Oct (live):** an offline axe check covered nine pages at 390 and 1440, signed out and signed in, with today's site head and footer swapped into the 13 Oct export. It found three failures:
+- header "Sign up" and "Share your story", 3.07 and 3.42;
+- the /stories share button, 2.59;
+- rose words on cream, 3.07.
+
+All three are fixed in `src/site-layers/tll-contrast-v1.html`, and a rerun shows none left.
+
+Webflow allows only 15 site scripts, so the header and contrast layers now ship as one script, `tllsitelayersv1` (pinned to 834be1b, SRI). It replaces `tllnavphonev1`. `tllnavphonev1` and `tllcontrastv1` stay registered but are not applied. Add future site-wide layers to `tll-site-layers-v1.js` as a new version rather than as new scripts.
+
+Commands:
+- `AXE=<axe.min.js> node reports/mobile-2026-10/harness/axe.mjs <width> [pages]` (EXTRA=<layer files> to test a new layer)
+- `node reports/mobile-2026-10/harness/audit.mjs <width>` for overflow, small text and tap sizes
+
+Not changed, by choice:
+- The 10 to 11px mono labels sit at the site's 10px floor.
+- Footer links are 25px tall, which passes WCAG AA 2.5.8 (24px), not the 44px AAA size.
+
 ### Step 6 (A3): page by page
 
 Stories, Travelers, the map and Account, one packet each: screenshot, list, fix, screenshot again, Nancy approves, publish.
