@@ -1,0 +1,14 @@
+<style id="tll-contrast-v1">
+/* 26 Oct 2026: three text-contrast failures found by an axe check (WCAG AA needs 4.5:1 for small text).
+   1. Header "Sign up" and "Share your story": cream or white on #F0507A (3.07 and 3.42). Now white on #D63859 (4.6), the
+      look most pages already had; only the home page on desktop used the lighter rose.
+   2. /stories "Share your story" button (.tll-cta-rose): cream on teal #00A9A4 (2.59). Now white on #D63859 (4.6).
+   3. Rose words on light backgrounds (.tll-text-rose, #F0507A on cream, 3.07). Now #C8325B (4.64), the site rule for rose
+      text on light. Rose on dark sections keeps the bright #F0507A. Links only; no data-ms-* element is touched. */
+body .tll-nav-v1 a.tll-nav-signup,body .tll-nav-v1 a.tll-nav-pen-cta{background-color:#D63859 !important;color:#FFFFFF !important}
+body .tll-nav-v1 a.tll-nav-signup:hover,body .tll-nav-v1 a.tll-nav-pen-cta:hover{background-color:#C8325B !important;color:#FFFFFF !important}
+body a.tll-cta-rose{background-color:#D63859 !important;color:#FFFFFF !important}
+body a.tll-cta-rose:hover{background-color:#C8325B !important}
+body .tll-text-rose{color:#C8325B}
+body :is(.tll-section-dark,.tll-nav-v1,footer,.tll-footer-v1,.tll-story-hero,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-support-hero,.tll-auth-section,[data-h3-hero]) .tll-text-rose{color:#F0507A}
+</style>

@@ -1,0 +1,10 @@
+<style id="tll-home-search-left-v5">
+/* 19 Oct 2026 (Claude Design packet 1.6, Nancy: "that search bar is not responsive"): the field sits in the same left column as the
+   "Search it" text, runs the full width, and the hint fits at 390px. Try chips reach 44px. */
+[data-h3="search"] > div,[data-h3="search"] .w-form,[data-h3="search"] form:has(#Search-the-library){width:100% !important;max-width:1240px !important;margin-left:0 !important;margin-right:0 !important;justify-content:flex-start !important;text-align:left !important}
+[data-h3="search"] > div{margin:0 auto !important}
+[data-h3="search"] #Search-the-library{font-size:clamp(22px,3.6vw,64px) !important;text-overflow:ellipsis}
+[data-h3="search"] #Search-the-library::placeholder{font-size:.78em !important}
+.h3-try a{min-height:44px !important}
+@media(max-width:480px){[data-h3="search"] #Search-the-library{font-size:20px !important}[data-h3="search"] #Search-the-library::placeholder{font-size:16px !important}}
+</style>
