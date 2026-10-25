@@ -137,3 +137,12 @@ Nancy, 25 Oct (screenshot of the Webflow "Log in to manage your site" page): "So
 - Registered tllacctstoriesv21 (jsDelivr a1fb28e, SRI sha384-EBvhI9bWyvCQpuEbPtNioPMfb4svlk9ZJBjiRyUwnsP3vzQq9rmVCNKPMeAmQutl) in place of tllacctstoriesv2 on /account (same position; v2 still registered).
 - Rule for later: never use `edit` as a query parameter on this site. `#edit` is fine (webflow.js only reacts to `?edit` inside the hash).
 - Publish ddad6a38-18d7-4c3f-b613-fe5783d60247 (both custom domains and subdomain).
+
+## 25 October 2026: Nancy's four answers applied and published
+
+Nancy: "Signed-out /the-map ... I choose B; /spotlight from Is featured: yes; drop typed counts on /about and the home Magnus card: yes; map quick-log columns (4) and the Places Been export file: yes".
+- /about: founder bio drops "87 countries" (94dc06dc), Magnus line drops "13 countries" (80dc3fa6). Home Magnus card 77240a57-...5c3 now "0 complaints".
+- /spotlight: driven by Contributors Is featured (nobody is featured yet, so it reads "Not picked yet this week."). Details: src/pages/spotlight/live-2026-10-25/APPLY-LOG.md. Nancy switches Is featured on one Contributor at a time.
+- /the-map: signed-out visitors see a labeled SAMPLE map (made-up traveler) instead of Nancy's map. Details: src/pages/the-map/live-2026-10-25/APPLY-LOG.md. Intro 01f53496 and legend 794d reworded.
+- Publish ded27d68-94c9-49e7-91ec-48d87e7e5487 (both custom domains and subdomain).
+- Next: quick log v1 with four columns (Been, Lived, Want, Layover); Places Been importer once Nancy sends the export file.
