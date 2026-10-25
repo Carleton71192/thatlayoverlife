@@ -1,0 +1,27 @@
+<!-- TLL story page: owner-only "Edit this story" and the Updated date (21 October 2026, change log E1.2 and E3.6).
+     Reads three attributes the Designer binds on the author row [data-st3-author]: data-st3-owner-ms (Contributor > Member ID),
+     data-st3-story-slug (Slug), data-st3-updated (Last updated, empty when never edited). Visitors see nothing new.
+     25 Oct 2026: link is /submit?story= (Webflow opens its Editor login for any ?edit address) and shows only once a Worker address is on the page. -->
+<script id="tll-st3-owner-edit-v1">
+(function(){
+function q(s,r){return (r||document).querySelector(s);}
+function okSlug(s){return /^[a-z0-9-]{1,120}$/.test(s||'');}
+var A=q('[data-st3-author]');if(!A)return;
+var owner=(A.getAttribute('data-st3-owner-ms')||'').trim(),slug=(A.getAttribute('data-st3-story-slug')||location.pathname.replace(/^\/stories\//,'').replace(/\/$/,'')).trim();
+function updated(){var u=(A.getAttribute('data-st3-updated')||'').trim();if(!u)return;var d=new Date(u);if(isNaN(d.getTime()))return;
+var ld=q('#tll-article-ld-v2');if(!ld)return;try{var j=JSON.parse(ld.textContent);var art=(j['@graph']||[]).filter(function(n){return n['@type']==='Article';})[0];
+if(art&&art.datePublished&&d.getTime()>new Date(art.datePublished).getTime()){art.dateModified=d.toISOString();ld.textContent=JSON.stringify(j);}}catch(e){}}
+function worker(){var n=q('[data-tll-worker]');return ((n&&n.getAttribute('data-tll-worker'))||window.TLL_WORKER||'').trim();}
+function link(){if(!worker()||!owner||!okSlug(slug)||q('[data-st3-owner-edit]'))return;
+var a=document.createElement('a');a.className='st3-owner-edit';a.setAttribute('data-st3-owner-edit','1');a.href='/submit?story='+encodeURIComponent(slug);a.textContent='Edit this story';
+A.parentNode.insertBefore(a,A.nextSibling);}
+function check(){var m=window.$memberstackDom;if(!m)return false;m.getCurrentMember().then(function(r){var id=r&&r.data&&r.data.id;if(id&&owner&&id===owner)link();}).catch(function(){});return true;}
+updated();
+if(!check()){var t=0,iv=setInterval(function(){if(check()||++t>40)clearInterval(iv);},250);}
+})();
+</script>
+<style id="tll-st3-owner-edit-css-v1">
+.st3-owner-edit{display:inline-block;margin:8px 0 0;font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:underline;text-underline-offset:3px}
+.st3-owner-edit:hover{color:#F0507A}
+.st3-owner-edit:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+</style>

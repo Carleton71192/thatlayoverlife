@@ -128,3 +128,12 @@ Nancy, 24 Oct: "Please fix the my pets page and continue".
 - Pet photo links now arrive as text (one link per line) in the avatar and pet-gallery fields instead of Webflow file uploads.
 - Not checked in a browser: the sandbox still cannot reach thatlayover.life, webflow.io or jsDelivr.
 - Nancy: Cloudinary may hold original pet photos chosen before today (with location data). Same check as tll/photos.
+
+## 25 October 2026: story Edit link sent Jay to Webflow's login
+
+Nancy, 25 Oct (screenshot of the Webflow "Log in to manage your site" page): "Somehow Jay was sent here from the edit space".
+- Cause: the owner-only "Edit this story" link on story pages went to /submit?edit=<slug>. Webflow's site script (webflow.js) loads its legacy Editor for any address whose query has an `edit` parameter, so it showed Webflow's login. Also, story editing runs through the Worker, which is not deployed, so the link had nowhere to go.
+- Fix: the address part is now `story` everywhere (/submit?story=<slug>): story template embed 5496c6ff (read back identical, copy in src/pages/story/live-2026-10-25/), submit-v5.js, submit-v2.js, tll-acct-stories-v2.js (commit a1fb28e). The story-page link now shows only when the page has a Worker address (data-tll-worker or window.TLL_WORKER), so it stays hidden until the Worker is live. When wiring the Worker, add `<div data-tll-worker="WORKER" hidden></div>` to the Stories Template as well as /account.
+- Registered tllacctstoriesv21 (jsDelivr a1fb28e, SRI sha384-EBvhI9bWyvCQpuEbPtNioPMfb4svlk9ZJBjiRyUwnsP3vzQq9rmVCNKPMeAmQutl) in place of tllacctstoriesv2 on /account (same position; v2 still registered).
+- Rule for later: never use `edit` as a query parameter on this site. `#edit` is fine (webflow.js only reacts to `?edit` inside the hash).
+- Publish ddad6a38-18d7-4c3f-b613-fe5783d60247 (both custom domains and subdomain).
