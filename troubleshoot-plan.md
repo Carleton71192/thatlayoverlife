@@ -94,6 +94,12 @@ Order: C first (code only, testable offline today), then B (needs Nancy's deploy
 
 ### Step 1 (C1): harden photo-clean and test it against the live /submit page
 
+**Done 26 Oct, live.** Commit 2201983, registered tllphotocleanv11 (SRI sha384-AAifp68s8YonZMUePqdmkqh1tCcdKPmYFwY640tgYRXuXGeynwK9F5ARXarResAO). It replaces tllphotocleanv1 on /my-pets and /submit (v1 stays registered). Publish 134b55db-aea0-43d6-b3e8-f100e929dca0.
+- The live /submit footer code is saved in `src/pages/submit/live-2026-10-26/page-footer.html`. The story form markup (13 Oct export) is in `form-story-export-2026-10-13.html`.
+- Finding: the /submit story form itself carries `data-ms-member-bound`. A blanket "skip any data-ms- form" rule would have switched photo cleaning off on /submit. The guard therefore skips only `form[data-ms-form]` and file fields that carry a data-ms-* attribute.
+- `submit.mjs` passes 15/15. Against the old version it fails 2 of 15: the old version took over a Memberstack form and stripped its field name.
+- Extras done in this step: `vitest.config.js` excludes `worker/**`, so `npx vitest run` is clean (15 files, 176 checks). The sample-map and spotlight tests now write into their own folders instead of the folder they are run from.
+
 1. Read the live /submit head and footer code and its embeds through the Webflow API (read only). Save copies to `src/pages/submit/live-2026-10-26/`.
 2. In `tll-photo-clean-v1.js`, skip forms Memberstack owns (`form[data-ms-form]`, or a form whose file field carries a `data-ms-*` attribute).
 3. Add `src/components/photo-clean/test/submit.mjs`: a page built from the saved /submit code plus photo-clean, with fake Cloudinary and a fake Webflow form handler. Covers: hero and gallery photos upload once with no location data; the form sends once with the links in `hero-image` and `photo-gallery`; the three-step script still moves between steps; a missing required field stops the send before any upload; and a Memberstack form with a file field is left alone.

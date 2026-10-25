@@ -155,3 +155,7 @@ Nancy (phone screenshot of /account): "There is a double menu in the profile sec
 - Cause: tllmemberwayv1 (23 Oct) added its own member bar on /account, /edit-profile, /the-map and /my-pets, but /account already carries the Edit profile 3.4 member bar embed (data-tll-member-bar, with CONTRIBUTIONS). Pages without a <main> (/account, /edit-profile) also got the extra bar as the first thing in <body>, above the site header.
 - Fix v1.1 (commit e4342d4, registered tllmemberwayv11, SRI sha384-5sLCIrRVb02lPTc8ICl8NTrJwYvYGeAgnH8c7hjMcUdRHPp82IEd28EjZKSrgZ0b): stands aside when the page has its own bar; otherwise places its bar after the site header, never above it; on phones the page's own bar is one sideways-scrolling line, 16px off the edge. Swapped in for tllmemberwayv1 on /account, /edit-profile, /the-map, /my-pets and the Contributors template (v1 stays registered). Test 17/17.
 - Publish 64197437-ad23-4971-b5f8-f34184485878.
+
+## 26 October 2026: troubleshoot plan, step 1 live
+
+troubleshoot-plan.md (repo root) covers mobile layout, story editing and photo forms. Step 1 is done and published (134b55db): tllphotocleanv11 on /my-pets and /submit, a test against the live /submit three-step code (15/15), and vitest skipping worker/. Step 2 waits on Nancy deploying worker/ (three secrets, then wrangler deploy). Step 4 waits on network hosts being allowed.
