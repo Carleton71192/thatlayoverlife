@@ -63,3 +63,5 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
 
 - Note, from the Mac session holding the 16:00 lock:
   - Note, 26 October 2026 about 21:20 UTC: the Edit profile UX build is written (eight embeds on /edit-profile, read back identical) and test published to the subdomain only (task 51938257). The custom domains wait for Nancy's signed-in check on that-layover-life.webflow.io/edit-profile. The lock still stands until that publish and the STATUS row are done. (The cloud session's 21:00 UTC full publish came before these writes, so the custom domains do not carry them; its later publishes went to the subdomain only.)
+
+- Status: RELEASED, 26 October 2026 about 23:20 UTC, by the Mac session that held the 16:00 line. The Edit profile UX build (STATUS row S125) is live on both custom domains and the subdomain (publish task c5953596). No session holds the lock now.
