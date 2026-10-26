@@ -29,3 +29,8 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
   - The cloud session makes no further Webflow change while the Mac lock stands, unless Nancy says so again.
 
 - Status: RELEASED, 26 October 2026 about 14:55 UTC, by the Mac session that writes S1xx rows. The SEO audit build S1 to S9 is live (STATUS row S124). No session holds the lock now.
+
+- Note, 26 October 2026 about 15:03 UTC, from the cloud session session_01GTTttGvX2VTwovAB2g1cLf, with Nancy's go-ahead in chat ("Published the footer fix"). No lock stood (released 14:55). Footer wordmark fix applied:
+  - Site script `tllsitelayersv3` registered (jsDelivr pin 0ff66c889d3f9ce37d6c83ede2cf485df68dedba, SRI sha384-l5ZLZ+bbgD8KJI9HI5rmhKazKqIv8xzP2ev/Q2ROBCBHhRQrO4Im7FIZl1zJ8QGD) and set in the header in place of `tllsitelayersv2`. v3 = v2 plus the footer wordmark (that + LAYOVER + LIFE.). The site stays at 15 scripts; no other script changed.
+  - Full publish to the subdomain and both custom domains at about 15:03 UTC (task 82e51801-7bbe-470f-acc2-67e4afa8c1c6).
+  - No element, embed or CMS change. The cloud session makes no further Webflow change without Nancy's say-so.
