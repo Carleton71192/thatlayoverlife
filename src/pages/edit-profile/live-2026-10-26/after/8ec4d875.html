@@ -74,4 +74,9 @@
 .ep-desks-off{color:#7A4D10 !important;margin-top:4px}
 @media (min-width:900px){[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){top:150px}}
 @media (max-width:600px){.ep-desk-g{grid-template-columns:1fr 1fr}.ep-desk-k{grid-column:1/-1}}
+/* Signed-in fix (26 Oct 2026): the site core CSS sets html.ms-loaded [data-ms-content="members"] to display:block, which beat the page grid for every signed-in member (the page showed as one wide column since 20 Oct), and the grid rule beat the core's display:none before Memberstack loaded (the empty form flashed at login). Hidden until Memberstack has loaded, then the grid. */
+.tll-edit-container [data-ms-content="members"]{display:none !important}
+html.ms-loaded .tll-edit-container [data-ms-content="members"]{display:grid !important}
+.ep-dir .ep-mono{margin-left:10px}
+.ep-eb span{font:inherit !important;letter-spacing:1.5px !important;color:#6B6660 !important}
 </style>

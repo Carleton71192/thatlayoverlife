@@ -43,3 +43,6 @@ Reply with the item numbers to approve or change.
 Nancy: "Approve U1 to U14 as written, take the lock". D1 (the Denmark years) is left to Nancy; the build does not change member data.
 
 Found while confirming U12 before the build: Short bio is not a field the Worker accepts (src/profile-sync.js MEMBER_WRITABLE has no bio-short), so typing in Short bio makes every later Worker save on that visit fail and the page read "Not saved." Memberstack still saved. The build stops sending Short bio to the Worker, and the Short bio note says where it really lives: "One sentence, kept on your account. Your public page shows the Bio above."
+
+## Built and live, 26 October 2026
+U1 to U12 and U14 live (STATUS S125). U13 is Nancy's: in the Designer, the Name input placeholder to "Your name" and the Home base placeholder to "City, country", then publish. Found at Nancy's signed-in check and fixed before the live publish: the signed-in page had been one wide column since 20 October (a site core rule beat the page grid once Memberstack loaded) and the empty form flashed at login; both fixed in the page CSS. Also a gap before "What is this" in 07 and the "· optional" label in the small type.
