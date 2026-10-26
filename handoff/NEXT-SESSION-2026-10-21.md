@@ -222,3 +222,26 @@ Findings:
 - The Contributors template has hard-coded text with typed counts, "Trip Ledger" and "Currently in Copenhagen · filing weekly". It sits inside two sections that are switched off in Webflow (`tll-traveler-hero` and `tll-traveler-bio-section`), so visitors never see it. It was left alone. If either section is ever switched back on, rewrite that text first.
 - All other hits were CSS class names (h3-shelf, tll-shelf-card, is-filed), which visitors do not see.
 - No typed site counts in the home copy. The number-words are a story title and the newsletter line "One story. Sunday morning."
+
+## 26 October 2026: nine phone fixes live (Nancy: "Go ahead")
+
+All published at about 14:39 UTC. The full record and rollback steps are in `handoff/PENDING-WEBFLOW-2026-10-26-site-layers-v2.md`.
+
+One site script, `tllsitelayersv2`, carries:
+- the phone header;
+- the contrast fixes;
+- the round "Tell the editor" button, which hides while typing;
+- /account SETTINGS and CONTRIBUTIONS opening their tabs;
+- the /edit-profile country field and the pen name note;
+- the /share-photos picker tap on iPhones;
+- the home coordinates.
+
+Two home embed edits:
+- the library rotates on every visit (94ce12c0);
+- the Chapter 04 spacing (a4c1009d).
+
+Nancy to check on her iPhone:
+- the photo picker on /share-photos (no WebKit in the sandbox);
+- SETTINGS on /account;
+- "Portland, Oregon, USA" on /edit-profile;
+- two reloads of the home page, where the library changes.

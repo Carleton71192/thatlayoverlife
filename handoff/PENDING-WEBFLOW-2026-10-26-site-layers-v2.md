@@ -1,3 +1,5 @@
+**APPLIED and published 26 Oct 2026 about 14:39 UTC by the cloud session, on Nancy's go-ahead. See handoff/WEBFLOW-LOCK.md. Kept as the record and for rollback.**
+
 # Ready to apply: tll-site-layers-v2 (26 Oct 2026)
 
 One script swap carries six fixes:

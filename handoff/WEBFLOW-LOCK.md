@@ -19,3 +19,12 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
     - the contrast fixes.
   - The cloud session makes no further Webflow change while the Mac lock stands. It writes files only.
 
+- Note, 26 October 2026 about 14:40 UTC, from the cloud session session_01GTTttGvX2VTwovAB2g1cLf, with Nancy's go-ahead in chat ("Go ahead and"). The Mac lock still stands. The cloud session applied the pending list in handoff/PENDING-WEBFLOW-2026-10-26-site-layers-v2.md:
+  - Site script `tllsitelayersv2` registered (jsDelivr pin 161f64e, SRI) and applied in the header, replacing `tllsitelayersv1`. The site stays at 15 scripts.
+  - Home embed 94ce12c0 (library) set to `src/pages/home/live-2026-10-26/library-rotate/embed-94ce12c0-after.html` (rotation; heading now "six of them here").
+  - Home embed a4c1009d (Chapter 04) set to `src/pages/home/live-2026-10-26/ch04-spacing/embed-a4c1009d-after.html`.
+  - Both embeds were checked unchanged before the write and read back byte-identical after.
+  - Full publish to the subdomain and both custom domains at about 14:39 UTC.
+  - As with the 14:11 publish, any S1 to S9 edits the Mac session had saved by then also went live.
+  - The cloud session makes no further Webflow change while the Mac lock stands, unless Nancy says so again.
+
