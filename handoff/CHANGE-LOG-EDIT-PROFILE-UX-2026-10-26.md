@@ -38,3 +38,8 @@ Autosave as you type (no Save button comes back), the 900 ms wait, everything sa
 On a local copy with a stand-in member, then on the Webflow subdomain: edit a desk at the bottom of the page and see "Saved" beside the desk and in the bar without scrolling; cut the connection and see "Not saved." with Try again, then the retry; leave mid-save and get the browser's question; the section labels at 12 px; Pen name and Public email boxes only when chosen; the account bar at the top; the desk layout at 375 px. Then your signed-in check on the subdomain before the custom domains.
 
 Reply with the item numbers to approve or change.
+
+## Approved 26 October 2026
+Nancy: "Approve U1 to U14 as written, take the lock". D1 (the Denmark years) is left to Nancy; the build does not change member data.
+
+Found while confirming U12 before the build: Short bio is not a field the Worker accepts (src/profile-sync.js MEMBER_WRITABLE has no bio-short), so typing in Short bio makes every later Worker save on that visit fail and the page read "Not saved." Memberstack still saved. The build stops sending Short bio to the Worker, and the Short bio note says where it really lives: "One sentence, kept on your account. Your public page shows the Bio above."
