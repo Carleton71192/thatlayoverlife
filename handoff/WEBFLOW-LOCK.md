@@ -8,3 +8,14 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
 - Status: TAKEN, 21 October 2026 about 08:30 UTC, by the cloud session session_01GTTttGvX2VTwovAB2g1cLf (Nancy, 21 Oct: "Can you implement all of those things?"). Scope: the Edit profile 3.4 embeds, the member bar and /account card, the story edit embeds and scripts, Jay's beta notes B1, B3, B4, B6 and the languages list, the home dashboard member map, the "desks" field, the PLACES VISITED label. Publishes go to the Webflow subdomain first; the custom domains only after Nancy's check. The Mac session writes no Webflow change while this line stands; it is released by a line below.
 
 - Status: TAKEN, 26 October 2026 about 14:00 UTC, by the Mac session that writes S1xx rows (Nancy, 26 Oct: "Approve the drafts as written, take the lock"). This replaces the cloud session's 21 October line. Scope: the SEO audit build, handoff/CHANGE-LOG-SEO-AUDIT-2026-10-26.md items S1 to S9 (story, profile and pillar templates, /creators, /submit, /the-paw-passport, the footer, page SEO settings and head code). Publishes go to the subdomain first, then the custom domains. Other sessions write no Webflow change while this line stands; it is released by a line below.
+
+- Note, 26 October 2026 about 14:15 UTC, from the cloud session session_01GTTttGvX2VTwovAB2g1cLf. It had not fetched the Mac session's 14:00 lock line and made one Webflow change after it:
+  - At about 14:10 UTC it changed the /submit form error message from "That did not file. ..." to "That did not send. ..." (String 410fe31c-0208-fa02-297c-3b2122ab7d3d; the rest of the message is unchanged).
+  - At about 14:11 UTC it published the whole site to the subdomain and both custom domains.
+  - Any S1 to S9 edit the Mac session had saved by 14:11 went live on the custom domains with that publish, before Nancy's check.
+  - Earlier, before the lock (25 Oct to early 26 Oct), the cloud session had already published three things:
+    - the home hero phone layer in embed 13326a8e;
+    - the site script tllsitelayersv1, which replaced tllnavphonev1;
+    - the contrast fixes.
+  - The cloud session makes no further Webflow change while the Mac lock stands. It writes files only.
+
