@@ -1,0 +1,9 @@
+<style id="tll-photos-tap-v1">
+/* 26 Oct 2026, Nancy on an iPhone: "Tap to add photo doesn't work" on /share-photos. The file input sat hidden inside the drop
+   zone (1px, clipped, pointer-events none) and relied on the label passing the tap on, which iPhone browsers do not always do.
+   Now the input itself covers the whole drop zone, fully transparent, so a tap lands on the real file input on every phone.
+   Drag and drop and the keyboard still work; the focus ring shows on the drop zone. */
+body [data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop{position:relative !important}
+body [data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop input.tll-photos-drop-input{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;min-height:0 !important;margin:0 !important;padding:0 !important;border:0 !important;opacity:0 !important;clip-path:none !important;overflow:hidden !important;cursor:pointer !important;pointer-events:auto !important;z-index:2 !important;font-size:16px !important;display:block !important}
+body [data-tll-form=share-photos] label.tll-photos-drop:has(> input.tll-photos-drop-input:focus-visible){outline:3px solid #F0507A;outline-offset:2px}
+</style>
