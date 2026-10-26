@@ -59,32 +59,33 @@ p{margin:0}
 .policy{background:var(--ink);color:var(--cream);font-size:13px;text-align:center;padding:10px var(--m);line-height:1.4}
 .policy b{font-weight:500;color:var(--rose-dark)}
 
-/* the cover */
-.cover{position:relative;background:var(--ink);color:var(--cream);overflow:hidden}
-.cover .ph{position:relative;aspect-ratio:4/5;background:var(--ink2)}
-.cover .ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
-.cover .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.15) 0%,rgba(10,11,20,0) 25%,rgba(10,11,20,.2) 60%,rgba(10,11,20,.85) 100%)}
-.cover .stamp{position:absolute;right:16px;top:16px;width:96px;z-index:2;opacity:.95;transform-origin:50% 50%}
-.cover .chip{position:absolute;left:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;min-height:48px;border-radius:999px;background:rgba(10,11,20,.78);color:var(--cream);text-decoration:none;font-size:13px;line-height:1.2;backdrop-filter:blur(6px)}
+/* the cover: full bleed. The photo is the page; the masthead, the stamp and the words sit on it. */
+.cover{position:relative;background:var(--ink);color:var(--cream);overflow:hidden;min-height:max(calc(100svh - 60px),640px);display:flex;flex-direction:column;justify-content:flex-end}
+.cover .ph{position:absolute;inset:0}
+.cover .ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.cover .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.4) 0%,rgba(10,11,20,0) 22%,rgba(10,11,20,.1) 50%,rgba(10,11,20,.72) 72%,rgba(10,11,20,.94) 100%)}
+.cover .stamp{position:absolute;right:var(--m);top:20px;width:96px;z-index:2;opacity:.95;transform-origin:50% 50%}
+.cover .words{position:relative;z-index:2;padding:0 var(--m) 36px}
+.cover .chip{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;min-height:48px;border-radius:999px;background:rgba(10,11,20,.6);color:var(--cream);text-decoration:none;font-size:13px;line-height:1.2;margin-bottom:18px;backdrop-filter:blur(6px)}
 .cover .chip img{position:static;width:36px;height:36px;border-radius:50%;object-fit:cover;flex:0 0 36px}
 .cover .chip b{display:block;font-weight:500;font-size:15px}
+.cover .kicker{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--cream);opacity:.85;margin-bottom:12px}
+.cover h1{font-size:clamp(46px,12vw,64px);line-height:.95;max-width:12ch}
+.cover .dek{font-size:19px;line-height:1.45;margin-top:16px;max-width:36ch;color:#E8E2D8}
+.cover .btn{margin-top:24px;width:100%}
+.cover .by{color:var(--soft);margin-top:14px}
 .card .by{display:flex;align-items:center;gap:8px}
 .card .by img{width:24px;height:24px;border-radius:50%;object-fit:cover}
 /* the one motion on the site: the stamp lands on the cover, once */
 @keyframes land{0%{opacity:0;transform:scale(1.7) rotate(-14deg)}70%{opacity:1;transform:scale(.96) rotate(2deg)}100%{opacity:.95;transform:none}}
 @media(prefers-reduced-motion:no-preference){.cover .stamp{animation:land 420ms cubic-bezier(.2,.9,.3,1.2) 250ms both}}
-.cover .words{position:relative;padding:28px var(--m) 40px}
-.cover .kicker{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:14px}
-.cover h1{font-size:clamp(46px,12vw,64px);line-height:.95}
-.cover .dek{font-size:19px;line-height:1.45;margin-top:16px;max-width:36ch;color:#E8E2D8}
-.cover .btn{margin-top:24px;width:100%}
+@media(max-width:899px){.cover .ph>img{top:-40%;bottom:auto;height:140%}.cover .ph::after{background:linear-gradient(180deg,rgba(10,11,20,.4) 0%,rgba(10,11,20,0) 22%,rgba(10,11,20,.05) 52%,rgba(10,11,20,.5) 70%,rgba(10,11,20,.9) 100%)}}
 @media(min-width:900px){
-  .cover .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;min-height:min(86vh,820px);padding-top:40px;padding-bottom:48px}
-  .cover .ph{grid-column:1/9;aspect-ratio:3/2;border-radius:var(--r);overflow:hidden}
-  .cover .ph::after{background:linear-gradient(180deg,rgba(10,11,20,0) 70%,rgba(10,11,20,.35) 100%)}
-  .cover .stamp{width:140px;right:24px;top:24px}
-  .cover .words{grid-column:9/13;padding:0}
-  .cover h1{font-size:clamp(48px,4.6vw,72px)}
+  .cover{min-height:min(88vh,860px)}
+  .cover .wrap{width:100%;padding-bottom:56px}
+  .cover .stamp{width:150px;right:var(--m);top:32px}
+  .cover .words{padding:0;max-width:640px}
+  .cover h1{font-size:clamp(56px,6vw,96px)}
   .cover .btn{width:auto}
 }
 
@@ -116,23 +117,23 @@ p{margin:0}
 .faces .open b{color:var(--rose)}
 @media(min-width:900px){.faces{grid-template-columns:repeat(4,1fr)}}
 
-/* departments */
-.depts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
-.depts ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;}
-.depts li{border-bottom:1px solid var(--line)}
-.depts li:last-child{border-bottom:0}
-.depts a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;text-decoration:none;min-height:64px}
-.depts h3{font-size:26px;line-height:1.05}
-.depts p{font-size:15px;color:var(--muted);margin-top:4px}
-.depts svg{width:24px;height:24px;flex:0 0 24px;fill:none;stroke:var(--rose);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@media(min-width:900px){.depts ul{grid-template-columns:repeat(4,1fr);gap:var(--gap)}.depts li{border-bottom:0;border-right:1px solid var(--line);padding-right:var(--gap)}.depts li:last-child{border-right:0}.depts a{flex-direction:column;align-items:flex-start;padding:32px 0}.depts h3{font-size:30px}}
+/* departments: three photo tiles */
+.depts{padding-top:0}
+.dtiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:var(--gap)}
+.dtiles a{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--ink2);color:var(--cream);text-decoration:none}
+.dtiles img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dtiles a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,0) 35%,rgba(10,11,20,.88) 100%)}
+.dtiles span{position:absolute;left:18px;right:18px;bottom:16px;z-index:1}
+.dtiles h3{font-size:28px;line-height:1.05}
+.dtiles p{font-size:14px;color:var(--soft);margin-top:4px}
+@media(min-width:900px){.dtiles{grid-template-columns:repeat(3,1fr)}.dtiles a{aspect-ratio:3/4}.dtiles h3{font-size:32px}}
 
 /* the map */
 .dark{background:var(--ink);color:var(--cream)}
 .map .grid{align-items:center}
 .map .words{grid-column:1/-1}
 .map h2{font-size:36px;line-height:1.02}
-.map .dek{font-size:18px;color:var(--soft);margin-top:14px;max-width:40ch}
+.map .dek{font-size:18px;color:var(--text2);margin-top:14px;max-width:40ch}
 .map .btn{margin-top:24px;width:100%}
 .mapcard{grid-column:1/-1;background:var(--ink2);border-radius:var(--r);padding:14px 12px 10px;margin-top:8px}
 .mapcard svg{display:block;width:100%;height:auto}
@@ -142,18 +143,21 @@ p{margin:0}
 .mapcard .label{color:var(--soft);margin-bottom:8px;display:block}
 @media(min-width:900px){.map .words{grid-column:1/5}.mapcard{grid-column:5/13;margin:0}.map h2{font-size:52px}.map .btn{width:auto}}
 
-/* the letter */
-.letter{background:var(--paper)}
-.letter .grid{align-items:start}
+/* the letter: the cover treatment */
+.letter{padding:64px 0}
+.letter .grid{align-items:end}
 .letter .words{grid-column:1/-1}
-.letter h2{font-size:36px;line-height:1.02}
-.letter .dek{font-size:18px;color:var(--text2);margin-top:14px;max-width:40ch}
-.letter form{grid-column:1/-1;margin-top:8px}
-.letter input{display:block;width:100%;min-height:52px;padding:0 2px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;font:400 22px var(--display);color:var(--ink)}
-.letter input::placeholder{color:#7a756e;font-style:italic}
+.letter .stamp{width:96px;margin-bottom:20px;color:var(--cream)}
+.letter .label{color:var(--soft)}
+.letter h2{font-size:clamp(40px,11vw,56px);line-height:.98;margin-top:10px}
+.letter .dek{font-size:19px;color:var(--soft);margin-top:16px;max-width:36ch}
+.letter form{grid-column:1/-1;margin-top:12px}
+.letter input{display:block;width:100%;min-height:52px;padding:0 2px;border:0;border-bottom:2px solid var(--cream);border-radius:0;background:transparent;font:400 24px var(--display);color:var(--cream)}
+.letter input::placeholder{color:#9a958e;font-style:italic}
+.letter input:focus{outline:0;border-bottom-color:var(--rose-dark)}
 .letter .btn{margin-top:16px;width:100%}
-.letter .note{font-size:13px;color:var(--muted);margin-top:12px}
-@media(min-width:900px){.letter .words{grid-column:1/7}.letter form{grid-column:8/13;margin:0}.letter h2{font-size:52px}.letter .btn{width:auto}}
+.letter .note{font-size:13px;color:var(--soft);margin-top:12px}
+@media(min-width:900px){.letter{padding:112px 0}.letter .words{grid-column:1/8}.letter form{grid-column:9/13;margin:0}.letter h2{font-size:clamp(56px,6vw,88px)}.letter .btn{width:auto}.letter .stamp{width:120px}}
 
 /* the masthead line and footer */
 .foot{background:var(--ink);color:var(--soft);padding:48px 0 56px}
@@ -180,17 +184,17 @@ p{margin:0}
 <p class="policy"><b>Written by the people who went.</b> Travel stories from members around the world, edited in Copenhagen.</p>
 
 <section class="cover" aria-labelledby="h1">
+  <div class="ph">
+    <img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="" width="1440" height="1920" fetchpriority="high">
+  </div>
+  <span class="stamp" aria-hidden="true"><!--STAMP--></span>
   <div class="wrap">
-    <div class="ph">
-      <img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="" width="1440" height="1920" fetchpriority="high">
-      <span class="stamp" aria-hidden="true"><!--STAMP--></span>
-      <a class="chip" href="/contributors/chesney-lish"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg" alt="" width="36" height="36"><span><b>Chesney Lish</b>went to Ibiza</span></a>
-    </div>
     <div class="words">
-      <p class="kicker">This week's cover · Ibiza</p>
+      <a class="chip" href="/contributors/chesney-lish"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg" alt="" width="36" height="36"><span><b>Chesney Lish</b>went to Ibiza</span></a>
+      <p class="kicker">This week's cover</p>
       <h1 id="h1">Find your next <em>somewhere.</em></h1>
       <p class="dek">Real places and real opinions, written by the people who went. Free to join, no card, no paywall.</p>
-      <a class="btn" href="/stories">Read the stories</a>
+      <a class="btn" href="/stories/spain-madrid-wedding-ibiza">Read the cover story</a>
       <p class="by"><b>Photo</b> Chesney Lish · Ibiza · 38.98° N 1.43° E</p>
     </div>
   </div>
@@ -219,21 +223,21 @@ p{margin:0}
   </div>
 </section>
 
-<section class="depts" aria-label="Departments">
+<section class="sec depts" aria-labelledby="t5">
   <div class="wrap">
-    <ul>
-      <li><a href="/for-expats"><div><h3>For expats</h3><p>Living there, not passing through.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-      <li><a href="/the-paw-passport"><div><h3>Paw Passport</h3><p>Traveling with your bestie, whatever the species.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-      <li><a href="/gallery"><div><h3>The Lounge</h3><p>The photos that made the next trip look affordable.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
-      <li><a href="/submit"><div><h3>Write for us</h3><p>You went. Write it down. The first 100 get a founding badge.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+    <div class="sechead"><h2 id="t5">The departments</h2></div>
+    <ul class="dtiles">
+      <li><a href="/for-expats"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg" alt="" loading="lazy" width="500" height="750"><span><h3>For expats</h3><p>Living there, not passing through.</p></span></a></li>
+      <li><a href="/the-paw-passport"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg" alt="" loading="lazy" width="1082" height="1624"><span><h3>Paw Passport</h3><p>Traveling with your bestie, whatever the species.</p></span></a></li>
+      <li><a href="/gallery"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6abccf813c37a815d4c03dde_6abcce087012c0cb94fe18b3_brazil-hero-riverboats-at-sunset-rio-negro.jpeg" alt="" loading="lazy" width="500" height="750"><span><h3>The Lounge</h3><p>The photos that made the next trip look affordable.</p></span></a></li>
     </ul>
   </div>
 </section>
 
-<section class="sec dark map" aria-labelledby="t2">
+<section class="sec map" aria-labelledby="t2">
   <div class="wrap grid">
     <div class="words">
-      <p class="label" style="color:var(--soft)">Your travel dashboard</p>
+      <p class="label">Your travel dashboard</p>
       <h2 id="t2" style="margin-top:10px">Every place you have been, <em>in one spot.</em></h2>
       <p class="dek">Every stamp, every stopover, one map. Nobody likes a blank map.</p>
       <a class="btn" href="/the-map">Build your free map</a>
@@ -245,11 +249,12 @@ p{margin:0}
   </div>
 </section>
 
-<section class="sec letter" aria-labelledby="t3">
+<section class="sec dark letter" aria-labelledby="t3">
   <div class="wrap grid">
     <div class="words">
+      <span class="stamp" aria-hidden="true"><!--STAMP-SUN--></span>
       <p class="label">The Layover Letter</p>
-      <h2 id="t3" style="margin-top:10px">Your inbox deserves <em>better than deals.</em></h2>
+      <h2 id="t3">Your inbox deserves <em>better than deals.</em></h2>
       <p class="dek">One story from a member. Sunday morning. Lounge wine optional.</p>
     </div>
     <form action="#" onsubmit="return false">

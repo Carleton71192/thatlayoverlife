@@ -21,6 +21,7 @@ page = tpl.replace('<!--STAMP-->', make('IBIZA', '27 SEP 2024', '38.98° N · 1.
 page = page.replace('<!--STAMP-AZ-->', make('ARIZONA', '30 SEP 2024', '36.88° N · 111.51° W', 'az'))
 page = page.replace('<!--STAMP-ES-->', make('MADRID', '27 SEP 2024', '40.42° N · 3.70° W', 'es'))
 page = page.replace('<!--STAMP-BR-->', make('PANTANAL', '09 OCT 2026', '16.4° S · 56.5° W', 'br'))
+page = page.replace('<!--STAMP-SUN-->', make('SUNDAY', '09:00 CPH', 'ONE STORY · NO DEALS', 'sun'))
 page = page.replace('<!--MAP-->', (ROOT / 'src/pages/home/mobile-proto-2026-10-26/map.svg').read_text())
 assert '<!--STAMP' not in page and '<!--MAP' not in page
 
