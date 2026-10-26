@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Type specimens, set in our headlines (26 Oct 2026)</title>
+<style>
+@font-face{font-family:'Fraunces';src:url(fonts/fraunces-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:'Fraunces';src:url(fonts/fraunces-latin-wght-italic.woff2) format('woff2');font-weight:100 900;font-style:italic}
+@font-face{font-family:'Newsreader';src:url(fonts/newsreader-latin-wght-normal.woff2) format('woff2');font-weight:200 800}
+@font-face{font-family:'Newsreader';src:url(fonts/newsreader-latin-wght-italic.woff2) format('woff2');font-weight:200 800;font-style:italic}
+@font-face{font-family:'Instrument Serif';src:url(fonts/instrument-serif-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:'Instrument Serif';src:url(fonts/instrument-serif-latin-400-italic.woff2) format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Inter Tight';src:url(fonts/inter-tight-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:'Instrument Sans';src:url(fonts/instrument-sans-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:'Instrument Sans';src:url(fonts/instrument-sans-latin-500-normal.woff2) format('woff2');font-weight:500}
+@font-face{font-family:'Playfair Display';src:url(fonts/playfair-display-latin-800-normal.woff2) format('woff2');font-weight:800}
+@font-face{font-family:'Playfair Display';src:url(fonts/playfair-display-latin-800-italic.woff2) format('woff2');font-weight:800;font-style:italic}
+@font-face{font-family:'JetBrains Mono';src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2');font-weight:400}
+:root{--ink:#0A0B14;--cream:#F7F1E8;--rose:#C8325B;--muted:#6B6660}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.spec{padding:40px 24px 48px;border-bottom:1px solid #D8D0C4}
+.spec:nth-child(even){background:#FDF9F3}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 24px}
+.tag b{color:var(--ink);font-weight:400}
+.cover{font-size:clamp(54px,9vw,120px);line-height:.92;letter-spacing:-.03em;margin:0;text-wrap:balance;max-width:11ch}
+.cover em{font-style:italic;font-weight:inherit}
+.hed{font-size:clamp(30px,4.2vw,52px);line-height:1.02;letter-spacing:-.015em;margin:44px 0 0;max-width:22ch;text-wrap:balance}
+.dek{font-size:clamp(18px,1.6vw,22px);line-height:1.45;margin:14px 0 0;max-width:46ch;color:#2a2a2a;font-weight:400}
+.by{font-size:14px;color:var(--muted);margin:14px 0 0}
+.by b{color:var(--ink);font-weight:500}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:36px;padding-top:24px;border-top:1px solid #D8D0C4}
+.row h3{font-size:22px;line-height:1.08;margin:0;letter-spacing:-.01em;font-weight:inherit;text-wrap:balance}
+.row p{font-size:14px;color:var(--muted);margin:8px 0 0}
+.body{font-size:17px;line-height:1.55;max-width:60ch;margin:28px 0 0;color:#2a2a2a}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:2px;text-underline-offset:4px}
+@media(max-width:700px){.row{grid-template-columns:1fr}.spec{padding:32px 16px 40px}}
+/* the four candidates */
+.f-playfair .cover,.f-playfair .hed,.f-playfair .row h3{font-family:'Playfair Display';font-weight:800}
+.f-fraunces .cover,.f-fraunces .hed,.f-fraunces .row h3{font-family:'Fraunces';font-weight:560;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1}
+.f-fraunces .hed,.f-fraunces .row h3{font-variation-settings:"opsz" 72,"SOFT" 20,"WONK" 1}
+.f-newsreader .cover,.f-newsreader .hed,.f-newsreader .row h3{font-family:'Newsreader';font-weight:500;letter-spacing:-.02em}
+.f-instrument .cover,.f-instrument .hed,.f-instrument .row h3{font-family:'Instrument Serif';font-weight:400;letter-spacing:-.01em}
+.f-instrument .cover{font-size:clamp(60px,10vw,132px)}
+.f-instrument .dek,.f-instrument .by,.f-instrument .body,.f-instrument .row p{font-family:'Instrument Sans'}
+</style></head><body>
+
+<section class="spec f-playfair">
+<p class="tag"><b>Today</b> · Playfair Display 800 + IBM Plex Sans Condensed + JetBrains Mono · the template pairing</p>
+<h1 class="cover">Find your next <em>somewhere.</em></h1>
+<h2 class="hed">Ghana asked us to wear all white. We complied. Eventually.</h2>
+<p class="dek">An Easter weekend in Accra, three church services, one very patient tailor, and the moment the whole street turned to look.</p>
+<p class="by"><b>Nancy Carleton</b> · Accra, Ghana · 19 September 2026</p>
+<div class="row"><div><h3>I Drove Across Denmark to Watch a Million Birds Go to Bed</h3><p>Nancy Carleton · Denmark · 8 min</p></div><div><h3>Spain: A Wedding and an Adventure</h3><p>Chesney Lish · Madrid · 4 min</p></div><div><h3>Patagonia, measured in Camp Italianos</h3><p>Nancy Carleton · Chile and Argentina · 6 min</p></div></div>
+<p class="body">Written by the people who went. Travel stories from <a href="#">members</a> around the world, edited in Copenhagen. The library moves sideways, the map is yours to build, and the Sunday letter is one story, no deals.</p>
+</section>
+
+<section class="spec f-newsreader">
+<p class="tag"><b>Candidate 1</b> · Newsreader 500 + Inter Tight · the broadsheet: quiet, serious, made for news</p>
+<h1 class="cover">Find your next <em>somewhere.</em></h1>
+<h2 class="hed">Ghana asked us to wear all white. We complied. Eventually.</h2>
+<p class="dek">An Easter weekend in Accra, three church services, one very patient tailor, and the moment the whole street turned to look.</p>
+<p class="by"><b>Nancy Carleton</b> · Accra, Ghana · 19 September 2026</p>
+<div class="row"><div><h3>I Drove Across Denmark to Watch a Million Birds Go to Bed</h3><p>Nancy Carleton · Denmark · 8 min</p></div><div><h3>Spain: A Wedding and an Adventure</h3><p>Chesney Lish · Madrid · 4 min</p></div><div><h3>Patagonia, measured in Camp Italianos</h3><p>Nancy Carleton · Chile and Argentina · 6 min</p></div></div>
+<p class="body">Written by the people who went. Travel stories from <a href="#">members</a> around the world, edited in Copenhagen. The library moves sideways, the map is yours to build, and the Sunday letter is one story, no deals.</p>
+</section>
+
+<section class="spec f-fraunces">
+<p class="tag"><b>Candidate 2</b> · Fraunces 560, optical size on + Inter Tight · the magazine with a wink: warm, slightly wonky, unmistakable</p>
+<h1 class="cover">Find your next <em>somewhere.</em></h1>
+<h2 class="hed">Ghana asked us to wear all white. We complied. Eventually.</h2>
+<p class="dek">An Easter weekend in Accra, three church services, one very patient tailor, and the moment the whole street turned to look.</p>
+<p class="by"><b>Nancy Carleton</b> · Accra, Ghana · 19 September 2026</p>
+<div class="row"><div><h3>I Drove Across Denmark to Watch a Million Birds Go to Bed</h3><p>Nancy Carleton · Denmark · 8 min</p></div><div><h3>Spain: A Wedding and an Adventure</h3><p>Chesney Lish · Madrid · 4 min</p></div><div><h3>Patagonia, measured in Camp Italianos</h3><p>Nancy Carleton · Chile and Argentina · 6 min</p></div></div>
+<p class="body">Written by the people who went. Travel stories from <a href="#">members</a> around the world, edited in Copenhagen. The library moves sideways, the map is yours to build, and the Sunday letter is one story, no deals.</p>
+</section>
+
+<section class="spec f-instrument">
+<p class="tag"><b>Candidate 3</b> · Instrument Serif + Instrument Sans · the fashion title: condensed, light, very current (and used by many studios this year)</p>
+<h1 class="cover">Find your next <em>somewhere.</em></h1>
+<h2 class="hed">Ghana asked us to wear all white. We complied. Eventually.</h2>
+<p class="dek">An Easter weekend in Accra, three church services, one very patient tailor, and the moment the whole street turned to look.</p>
+<p class="by"><b>Nancy Carleton</b> · Accra, Ghana · 19 September 2026</p>
+<div class="row"><div><h3>I Drove Across Denmark to Watch a Million Birds Go to Bed</h3><p>Nancy Carleton · Denmark · 8 min</p></div><div><h3>Spain: A Wedding and an Adventure</h3><p>Chesney Lish · Madrid · 4 min</p></div><div><h3>Patagonia, measured in Camp Italianos</h3><p>Nancy Carleton · Chile and Argentina · 6 min</p></div></div>
+<p class="body">Written by the people who went. Travel stories from <a href="#">members</a> around the world, edited in Copenhagen. The library moves sideways, the map is yours to build, and the Sunday letter is one story, no deals.</p>
+</section>
+</body></html>

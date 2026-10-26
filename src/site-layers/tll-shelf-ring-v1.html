@@ -1,0 +1,7 @@
+<style id="tll-shelf-ring-v1">
+/* 26 Oct 2026, Nancy on the home library on her phone: "The user circles are getting cut off." The 40px avatar's rose ring is a
+   box-shadow drawn outside its box, and on phones the story rail (.h3-track) is the scroll container, so it clips the ring at its
+   left and top edges on the first card. Three pixels of padding on those sides, pulled back by the same negative margin, keep every
+   card exactly where it was and give the ring room. Desktop (the pinned rail) was never clipped. CSS only. */
+.h3-shelf:not(.is-pinned) .h3-track{padding-left:3px;padding-top:3px;margin-left:-3px;margin-top:-3px;scroll-padding-left:3px}
+</style>
