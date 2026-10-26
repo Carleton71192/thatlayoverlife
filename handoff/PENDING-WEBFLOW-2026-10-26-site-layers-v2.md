@@ -1,10 +1,11 @@
 # Ready to apply: tll-site-layers-v2 (26 Oct 2026)
 
-One script swap carries four fixes:
+One script swap carries five fixes:
 1. Member bar SETTINGS and CONTRIBUTIONS on /account.
 2. The /edit-profile country field.
 3. The pen name note copy.
 4. The "Tell the editor" button on phones.
+5. The /share-photos photo picker on iPhones.
 
 ## 1. Member bar SETTINGS and CONTRIBUTIONS on /account
 
@@ -46,19 +47,30 @@ The pill covered the Languages field (keyboard up) and the /account tab strip. U
 
 Test: `node src/components/edit-profile-fixes/test/note-pill.mjs`.
 
+## 5. /share-photos: tapping the drop zone does not open the photo picker on an iPhone (Nancy, 26 Oct)
+
+The file input was hidden inside the drop zone (1px, clipped, pointer-events none) and relied on the label passing the tap on. iPhone browsers do not always do that. In Chromium the tap worked, so the fault is specific to WebKit, the engine every iPhone browser uses, and there is no WebKit build in the sandbox.
+
+`src/site-layers/tll-photos-tap-v1.html` makes the transparent file input cover the whole drop zone, so a tap lands on the real input on every phone. Drag and drop, the photo list and the keyboard focus ring are unchanged.
+
+Test: `node src/pages/share-photos/v3/test/round-5-tap/tap.mjs` (with `EXTRA=<the style or the bundled script in a script tag>`). Every tap point is now the file input, the picker opens, and two chosen photos list.
+
+Check on a real iPhone after publish: tap the box, choose two photos, and both should list.
+
 ## Steps (Webflow write: only the session holding the lock in handoff/WEBFLOW-LOCK.md)
 
 1. Register a hosted script:
    - display name: tllsitelayersv2
    - version: 1.0.0
-   - URL: https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@bb91e2e6f2cdd930824d2cd55da302f80d247787/src/site-layers/tll-site-layers-v2.js
-   - SRI: sha384-4HnVWVCh1b/ZsLMPryu1Qt+WXSHSQu+P5qFl04gPmdLnDgn9eWnKP/Y86dDgNhoJ
+   - URL: https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@208d72972debe5ab1c54c722356d11ed320b6f90/src/site-layers/tll-site-layers-v2.js
+   - SRI: sha384-4ySWNwfRL/Fcav3d0ffJgQvvFfrEovpkI3ByzNzqys6AcgA3Y9yDAhvUwKQzqPcm
 2. Remove the site script tllsitelayersv1.
 3. Add tllsitelayersv2 to the site, location header.
 4. Publish. Then, on a phone:
    - at /account, tap CONTRIBUTIONS and then SETTINGS;
    - at /edit-profile, type "Portland, Oregon, USA" and press Enter, and a US flag appears;
-   - confirm the note button is a small round dot and hides while you type.
+   - confirm the note button is a small round dot and hides while you type;
+   - at /share-photos, tap the drop zone, choose two photos, and both list.
 
 Rollback: remove tllsitelayersv2, re-add tllsitelayersv1, publish.
 
