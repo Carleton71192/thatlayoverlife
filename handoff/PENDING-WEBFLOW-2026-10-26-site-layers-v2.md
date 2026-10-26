@@ -1,11 +1,14 @@
 # Ready to apply: tll-site-layers-v2 (26 Oct 2026)
 
-One script swap carries five fixes:
+One script swap carries six fixes:
 1. Member bar SETTINGS and CONTRIBUTIONS on /account.
 2. The /edit-profile country field.
 3. The pen name note copy.
 4. The "Tell the editor" button on phones.
 5. The /share-photos photo picker on iPhones.
+6. The home photo coordinates on phones.
+
+Rebuild the bundle with `python3 src/site-layers/build-site-layers-v2.py`.
 
 ## 1. Member bar SETTINGS and CONTRIBUTIONS on /account
 
@@ -57,20 +60,29 @@ Test: `node src/pages/share-photos/v3/test/round-5-tap/tap.mjs` (with `EXTRA=<th
 
 Check on a real iPhone after publish: tap the box, choose two photos, and both should list.
 
+## 6. Home photo coordinates half off the screen on phones (Nancy, 26 Oct)
+
+The coordinates embed (de5cdec9, h3-hero-coords-v3, 20 Oct) sets them to `position:static` under 900px. The phone hero layer (embed 13326a8e) moves them top-right but never reset that, so they sat flush against the right edge and the last letters were cut.
+
+`src/site-layers/tll-home-coords-v1.html` puts them top-right, 16px in from the edges, on phones.
+
+Test: `node reports/mobile-2026-10/harness/coords.mjs` (with `EXTRA=` to add the fix). Without the fix it fails at 390, 360 and 320 (static, flush right). With the fix it passes at all three.
+
 ## Steps (Webflow write: only the session holding the lock in handoff/WEBFLOW-LOCK.md)
 
 1. Register a hosted script:
    - display name: tllsitelayersv2
    - version: 1.0.0
-   - URL: https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@208d72972debe5ab1c54c722356d11ed320b6f90/src/site-layers/tll-site-layers-v2.js
-   - SRI: sha384-4ySWNwfRL/Fcav3d0ffJgQvvFfrEovpkI3ByzNzqys6AcgA3Y9yDAhvUwKQzqPcm
+   - URL: https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@161f64e36c5523989c56a1c80765dac934dad437/src/site-layers/tll-site-layers-v2.js
+   - SRI: sha384-OymsfnSP149jIeJ20B8f5Ym5TXpA9KxoAid3N2mL+ak9LYj+kh+EOFsPSvp+MAJA
 2. Remove the site script tllsitelayersv1.
 3. Add tllsitelayersv2 to the site, location header.
 4. Publish. Then, on a phone:
    - at /account, tap CONTRIBUTIONS and then SETTINGS;
    - at /edit-profile, type "Portland, Oregon, USA" and press Enter, and a US flag appears;
    - confirm the note button is a small round dot and hides while you type;
-   - at /share-photos, tap the drop zone, choose two photos, and both list.
+   - at /share-photos, tap the drop zone, choose two photos, and both list;
+   - on the home page, the coordinates sit fully inside the photo, top right.
 
 Rollback: remove tllsitelayersv2, re-add tllsitelayersv1, publish.
 
