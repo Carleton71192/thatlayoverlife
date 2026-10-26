@@ -36,3 +36,26 @@ S114 said the raw HTML of every story was free of the typed count. That check wa
 A fresh crawl of all pages after the build: no 4XX targets, no internal link to a redirect, no sitemap page without an HTML link (or a reason in this log), one H1 per page, og:url on every indexable page, the author box count gone from all 53 stories. Then you run New crawl in Ahrefs and we compare the 28.
 
 Reply with the item numbers to approve or change.
+
+## Approved 26 October 2026
+Nancy: "Approve S1 to S9 as written", "Draft new titles and descriptions for static pages" (S6 option b), and for S8 /awards and /spotlight: "Not live yet but please publish" (they go in the footer and stay in the sitemap). Build waits for the Webflow lock (held by the cloud session since 21 October).
+
+## S6 and S7 drafts, for your line-by-line approval
+Titles 60 characters or fewer, descriptions 110 to 160. Each draft is a trim of the page's own words.
+
+| Page | Field | Now | Draft | Length |
+|---|---|---|---|---|
+| /awards | Title | The Layover Awards 2026 · You Nominate, the Editors Decide · TLL (64) | The Layover Awards 2026 · You Nominate, Editors Decide | 54 |
+| /awards | Description | Nominate the places that earned it. No vote-for-us campaigns, no public tallies. Travelers nominate, editors pick the winners and write why. Proposed window 1 to 31 October. (173) | Nominate the places that earned it. No campaigns, no public tallies. Travelers nominate, and the editors pick the winners and write why. | 136 |
+| /gallery | Description | Traveler photos from real trips, shared with permission and reviewed before publication. Choose your credit and where your photos may appear. Social sharing is optional. (169) | Traveler photos from real trips, shared with permission and reviewed first. You pick the credit. Social sharing is optional. | 124 |
+| /for-brands | Description | Stopovers, sold by someone who actually stops over. Creator casting, stopover content and hosted trips, disclosed every time. Work is done and billed by The Brand Collective, Copenhagen. (186) | Stopovers, sold by someone who actually stops over. Creator casting, stopover content and hosted trips, labeled every time. Billed by The Brand Collective. | 155 |
+| /cookies | Description and social description | Every cookie this site sets, who sets it, why, and for how long. Manage or withdraw your consent any time. (106; no social tags) | Every cookie this site sets, who sets it, why, and for how long. Analytics runs only after you say yes. Change your mind any time. | 130 |
+| /cookies | Social title | (none) | Cookie policy · That Layover Life | 33 |
+| /creators | Description and social description | Members who make travel content and opted in to be found. Shuffled on every load, never ranked. (95; no social tags) | Travel creators worth following: bloggers, photographers, video makers and podcasters. Every card says how the creator earns. Shuffled, never ranked. | 149 |
+| /creators | Social title | (none) | Travel creators · That Layover Life | 35 |
+| /countries/bulgaria | Description (the country item's line) | Piping banitsa for breakfast, architecture that rewards a slow walk, and one more sidewalk baguette in a region that clearly has an underground bread distribution problem. (171) | Piping banitsa for breakfast, architecture that rewards a slow walk, and a region with a clear underground bread distribution problem. | 134 |
+| /countries/kosovo | Description (the country item's line) | No TLL story is about Kosovo on its own yet. The reference facts below come from public sources and are not yet checked by TLL; the verdict waits for a traveler to write it up. (176) | No TLL story covers Kosovo on its own yet. The facts below come from public sources and are not yet checked. The verdict waits for a traveler. | 142 |
+
+The country lines also show at the top of each country page, so the Bulgaria and Kosovo drafts change the page text as well as the search snippet.
+
+Seen in passing, not in this log: the Kosovo page's "Stories from here" lists a Copenhagen layover, a Sofia layover and the Tokyo Marathon diary, none of them about Kosovo.
