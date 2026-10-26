@@ -28,3 +28,4 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
   - As with the 14:11 publish, any S1 to S9 edits the Mac session had saved by then also went live.
   - The cloud session makes no further Webflow change while the Mac lock stands, unless Nancy says so again.
 
+- Status: RELEASED, 26 October 2026 about 14:55 UTC, by the Mac session that writes S1xx rows. The SEO audit build S1 to S9 is live (STATUS row S124). No session holds the lock now.
