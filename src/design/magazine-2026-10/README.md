@@ -7,4 +7,6 @@ Direction A with the stamp, from handoff/CREATIVE-DIRECTION-2026-10-26.md. Nancy
 - `cover/template.html` is the home page as a magazine cover, phone and desktop, with a font switcher in the corner (prototype only). `build.py` inlines the stamp per story and Nancy's map, and writes `cover.html` (CDN photos, Google Fonts) and `cover-local.html` (offline). `shots/` has both widths in each face. Checks: no overflow, 44px targets, axe clean at 390 and 1280.
 - `render.mjs` renders the specimens and the stamp sheet.
 
-Open: Nancy picks the display face; the shoot waits for budget (the hero stays Curaçao until then).
+- `story/template.html` is the story page in the same system, built from `story/ghana.json` (the Ghana story as the CMS holds it, read 26 Oct, untouched) by `story/build.py`: kicker, headline, deck, byline with place, date and reading time, the stamp, the hero with caption and credit, the reading column in Newsreader at 19px with a drop cap, the pull quote beside it on desktop, Quick answers, the sign-off, the reader question with one button, three more stories, the masthead line.
+
+Decided 26 Oct: Newsreader (Nancy: "I like candidate 1"). Open: the shoot waits for budget (the hero stays Curaçao until then).
