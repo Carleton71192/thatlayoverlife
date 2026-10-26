@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
-"""Builds the story page prototype from template.html and ghana.json (the CMS item, read 26 Oct 2026, untouched).
+"""Builds the story page prototype from template.html and a CMS story (read 26 Oct 2026, untouched): spain-madrid-wedding-ibiza.json
+by default (a contributor's story), or the slug given as the first argument.
 Writes story.html (CDN photos, Google Fonts) and story-local.html (offline)."""
 import json, pathlib, re, sys, datetime
 HERE = pathlib.Path(__file__).parent
 ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT / 'src/pages/home/mobile-proto-2026-10-26'))
 from build import IMG, CDN
-fd = json.loads((HERE / 'ghana.json').read_text())
+SLUG = sys.argv[1] if len(sys.argv) > 1 else 'spain-madrid-wedding-ibiza'
+fd = json.loads((HERE / (SLUG + '.json')).read_text())
+AUTHORS = {  # contributor id in the CMS: name, page, avatar
+    '6a0be79e01ee7eff10102ce9': ('Nancy Carleton', '/contributors/nancy-carleton', 'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg'),
+}
+STORY = {  # per slug: author (when the CMS contributor is not Nancy), hero alt, caption, stamp place and coordinates, pull quote prefix
+    'spain-madrid-wedding-ibiza': dict(author=('Chesney Lish', '/contributors/chesney-lish', 'https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg'), alt='Sunset over the sea from a beach bar in Ibiza, the sun low behind a thatched roof', caption='Sunset from a beach bar, Ibiza.', place='MADRID', coords='40.42° N · 3.70° W', pull='The sunset that evening'),
+    'ghana-easter-everyone-wears-white': dict(author=AUTHORS['6a0be79e01ee7eff10102ce9'], alt='Kids in Ghana at Easter', caption='Kids at Easter, Accra.', place='ACCRA', coords='5.60° N · 0.19° W', pull='Ghana gave us drumbeats'),
+}
+S = STORY[SLUG]
+author = AUTHORS.get(fd.get('contributor')) or S['author']
 tpl = (HERE / 'template.html').read_text()
 stamp = re.sub(r'<!--.*?-->', '', (HERE.parent / 'stamp/stamp.svg').read_text(), flags=re.S).replace('width="200" height="200" ', '')
 
@@ -20,22 +31,27 @@ def make(place, date, coords, uid):
 d = datetime.datetime.fromisoformat(fd['published-date'].replace('Z', '+00:00'))
 date_long = f"{d.day} {d.strftime('%B %Y')}"
 body = fd['body']
-# the pull quote is the last sentence of the story, chosen by hand (the CMS field is empty)
-pull = 'Ghana gave us drumbeats, hibiscus, monkeys with no concept of personal space, and a sun warm enough to undo a Danish winter.'
-assert pull in body
+# the pull quote: the CMS field when set, else the sentence that starts with the prefix above, chosen by hand
+plain = re.sub(r'<[^>]+>', ' ', body)
+m = re.search(re.escape(S['pull']) + r'[^.!?]*[.!?]', plain)
+pull = (fd.get('pull-quote') or '').strip() or (m.group(0).strip() if m else '')
+assert pull, 'no pull quote'
 rep = {
-    '<!--PILLAR-->': fd['pillar-name'], '<!--PLACE-->': 'Ghana', '<!--TITLE-->': fd['name'], '<!--DEK-->': fd['excerpt'],
+    '<!--PILLAR-->': fd.get('pillar-name') or 'Story', '<!--PLACE-->': (fd.get('byline-location') or '').title().split(',')[-1].strip() or 'Somewhere', '<!--TITLE-->': fd['name'], '<!--DEK-->': fd['excerpt'],
+    '<!--AUTHOR-->': author[0], '<!--AUTHOR-HREF-->': author[1], '<!--AVATAR-->': author[2], '<!--LOCATION-->': (fd.get('byline-location') or '').title(),
+    '<!--HERO-->': fd['hero-image']['url'], '<!--HERO-ALT-->': S['alt'], '<!--CAPTION-->': S['caption'],
     '<!--DATE-->': date_long, '<!--MINS-->': str(fd['reading-time']), '<!--BODY-->': body, '<!--PULL-->': pull,
     '<!--QA-->': fd['quick-answers'], '<!--SIGNOFF-->': fd['sign-off'], '<!--QUESTION-->': fd['reader-question'],
-    '<!--STAMP-->': make('ACCRA', d.strftime('%d %b %Y').upper(), '5.60° N · 0.19° W', 'gh'),
-    '<!--STAMP-ES-->': make('MADRID', '27 SEP 2024', '40.42° N · 3.70° W', 'es'),
+    '<!--STAMP-->': make(S['place'], d.strftime('%d %b %Y').upper(), S['coords'], 'st'),
+    '<!--STAMP-AZ-->': make('ARIZONA', '30 SEP 2024', '36.88° N · 111.51° W', 'az'),
     '<!--STAMP-BR-->': make('PANTANAL', '09 OCT 2026', '16.4° S · 56.5° W', 'br'),
-    '<!--STAMP-DK-->': make('TØNDER', '29 SEP 2026', '54.93° N · 8.86° E', 'dk'),
+    '<!--STAMP-GH-->': make('ACCRA', '19 SEP 2026', '5.60° N · 0.19° W', 'gh'),
 }
 page = tpl
 for k, v in rep.items():
     assert k in page, k
     page = page.replace(k, v)
+assert fd.get('quick-answers'), 'no quick answers'
 assert '<!--' not in page.replace('<!--FONTS-->', ''), re.search(r'<!--[A-Z-]+-->', page).group(0)
 
 FONT_DIR = '../type/fonts/'

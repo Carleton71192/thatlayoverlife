@@ -32,7 +32,7 @@ Not a platform, not a community site, not a travel app. A magazine has a masthea
 - The map is the reader's own page in the magazine.
 - "Written by people who went" is the editorial policy, printed on the masthead.
 
-That reframing does three things at once. It gives every page a known shape, so decisions get faster. It makes the no-AI policy a masthead line rather than a defensive note. And it is a look people already trust as professional, because the conventions are a century old.
+That reframing does three things at once. It gives every page a known shape, so decisions get faster. It makes "written by the people who went" a masthead line rather than a tagline. And it is a look people already trust as professional, because the conventions are a century old.
 
 ## 3. Two directions, one recommendation
 
@@ -60,7 +60,7 @@ That reframing does three things at once. It gives every page a known shape, so 
 - One crop on phones (4:5), one on desktop cards (3:2), full-bleed for covers.
 - One grade applied to everything: a touch warm, slightly lifted blacks, no HDR. A single Lightroom preset, applied by the editor on upload, makes two hundred phone photos look like one magazine.
 - Every photo carries a caption, a place, a date and a credit, set small and in the same spot. Credits are what separate a magazine from a feed.
-- A commissioned cover shoot: half a day with a Copenhagen photographer, Nancy and Magnus, at an airport, a gate, a train, a kitchen table. Six to ten usable frames for the hero, the about page, the letter and social. Expect roughly 600 to 1,500 USD. This is the single most convincing spend on the list.
+- A commissioned cover shoot: half a day with a Copenhagen photographer, members and the editor, at an airport, a gate, a train, a kitchen table. Not a portrait series of the editor; the magazine is the members. Six to ten usable frames for the hero, the about page, the letter and social. Expect roughly 600 to 1,500 USD. This is the single most convincing spend on the list.
 
 ### The stamp
 - A custom mark, designed once as vector: a circle or oval with the coordinates around the edge, place and date inside, the TLL monogram. Slightly imperfect in print terms (an inked edge), but drawn, not a filter.
@@ -82,7 +82,7 @@ That reframing does three things at once. It gives every page a known shape, so 
 ### Voice and editorial furniture
 - Headline and deck, like print: a short headline, then one sentence of deck. No UI language ("Build your free map" becomes "Your map", with the deck explaining it).
 - Bylines with place and date, always: "Nancy Carleton, Copenhagen, 12 October 2026".
-- The masthead line, printed once on the cover and once in the footer: "Written by people who went. No story here was written by AI. Edited by Nancy Carleton in Copenhagen."
+- The masthead line, printed once on the cover and once in the footer: "Written by the people who went. Travel stories from members around the world, edited in Copenhagen." (Nancy, 26 Oct: the site never claims that no story was written by AI, because that cannot be promised for every member; "written by the people who went" is the claim. And the site is about everyone's travel, not the editor and her dog: the cover, the contents and the contributors strip lead with members, and the editor is one byline among them.)
 - Contributors page with photographs, like a magazine's.
 
 ### Components

@@ -46,6 +46,7 @@ The prototype markup is a reference, not code to paste. Rebuild it in Webflow wi
 - **Countries are never hardcoded.** Counts bind to data (`tllStates` for Nancy's map, CMS for published stories). Member JSON keys `tllStates` / `tllStatesAt` are the only things that write the map.
 - **Publish to both custom domains plus the Webflow subdomain, every time.** Check each publish with a `?v=` cache-buster.
 - **Voice:** Lonely Planet × Klarna × a National Park Service sign. Quirky, dry, funny. No em dashes. Never invent facts, quotes, stats, people, pets or photo credits. Open slots say OPEN SLOT or SAMPLE.
+- **Two rules from Nancy, 26 Oct 2026:** the site never claims that no story was written by AI (it cannot be promised for every member); the line is "Written by the people who went." And the site is about sharing travel experiences, everyone's, not the editor and her dog: layouts, covers and examples lead with members, and Nancy is one byline among them.
 - **Dates:** Copenhagen order with the month spelled out ("28 September 2026"). No other format.
 - **Teal:** `#00C9C8` on dark surfaces only. `#067A79` for teal text on cream or paper.
 - **Type:** Playfair Display 800 for headlines, IBM Plex Sans Condensed for body, JetBrains Mono for eyebrows and meta. Syne appears only in the wordmark.

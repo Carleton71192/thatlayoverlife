@@ -53,7 +53,7 @@ Sections, top to bottom: hero (Find your next somewhere), The library (six stori
 4. Rose for taps only. Teal for labels. No decorative rose.
 5. One card radius and one gutter across every home embed.
 6. A small hand-drawn icon set for how it works and for the newsletter block.
-7. Proof near the top: a byline, a place and a date under the hero, in place of a review score.
+7. Proof near the top: a byline, a place and a date under the hero, in place of a review score. (Correction, 26 Oct: the proof line is "Written by the people who went", never a claim that no story was written by AI.)
 
 ## Next step
 

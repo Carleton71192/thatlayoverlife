@@ -17,8 +17,8 @@ def make(place, date, coords, uid):
         s = s.replace('id="%s"' % i, 'id="%s-%s"' % (i, uid)).replace('url(#%s)' % i, 'url(#%s-%s)' % (i, uid)).replace('href="#%s"' % i, 'href="#%s-%s"' % (i, uid))
     return s
 
-page = tpl.replace('<!--STAMP-->', make('CURAÇAO', '12 OCT 2026', '12.17° N · 68.99° W', 'cv'))
-page = page.replace('<!--STAMP-GH-->', make('ACCRA', '19 SEP 2026', '5.60° N · 0.19° W', 'gh'))
+page = tpl.replace('<!--STAMP-->', make('IBIZA', '27 SEP 2024', '38.98° N · 1.43° E', 'cv'))
+page = page.replace('<!--STAMP-AZ-->', make('ARIZONA', '30 SEP 2024', '36.88° N · 111.51° W', 'az'))
 page = page.replace('<!--STAMP-ES-->', make('MADRID', '27 SEP 2024', '40.42° N · 3.70° W', 'es'))
 page = page.replace('<!--STAMP-BR-->', make('PANTANAL', '09 OCT 2026', '16.4° S · 56.5° W', 'br'))
 page = page.replace('<!--MAP-->', (ROOT / 'src/pages/home/mobile-proto-2026-10-26/map.svg').read_text())
