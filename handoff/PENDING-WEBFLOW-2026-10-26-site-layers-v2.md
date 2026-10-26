@@ -86,3 +86,22 @@ Test: `node reports/mobile-2026-10/harness/coords.mjs` (with `EXTRA=` to add the
 
 Rollback: remove tllsitelayersv2, re-add tllsitelayersv1, publish.
 
+
+
+# Also ready: the home library rotates again (Nancy, 26 Oct: "The homepage library is not rotating")
+
+This is a separate step, because it is an embed edit, not part of the site script.
+
+Cause: on 20 Oct (Packet B, E3.1) the Chapter 01 library script (embed 94ce12c0) was changed to a fixed order: stories with a photo first, other writers before Nancy, then newest first. The 13 Oct daily rotation was dropped, so every visit showed the same six stories.
+
+The fix is `src/pages/home/live-2026-10-26/library-rotate/embed-94ce12c0-after.html`. It is the live code plus one function, `rot()`, and one changed line in `render()`.
+- The 20 Oct order stays.
+- On the All view, each group (other writers, then Nancy's) starts at a different story on every visit.
+- A pillar chip still shows that pillar's newest six.
+- The before copy is beside it, for rollback.
+
+Test: `node src/pages/home/live-2026-10-26/library-rotate/test.mjs before|after`. Before: one six-card set over 8 visits. After: 7 different sets, photos still first, no errors.
+
+Step (Webflow write, lock holder only): set embed 94ce12c0-56fc-4b10-fa9f-14da000634c7 on the home page to the after file, read it back, and publish. Check: reload the home page twice, and the first story in "The library" changes.
+
+The 3-card shelf in embed cd17db29 already shuffles on every visit, but it sits in the #tll-shelf section, which is mostly switched off.
