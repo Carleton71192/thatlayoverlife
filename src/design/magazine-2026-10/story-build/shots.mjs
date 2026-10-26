@@ -7,7 +7,7 @@ const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.
 const SLUG = process.argv[2] || 'spain-madrid-wedding-ibiza';
 const OUT = path.join(DIR, 'shots'); fs.mkdirSync(OUT, { recursive: true });
 const base = fs.readFileSync(path.join(DIR, `fixture-${SLUG}.html`), 'utf8');
-const layer = fs.readFileSync(path.join(DIR, 'tll-mag-story-v1.html'), 'utf8');
+const layer = process.env.BUNDLE ? '<script>' + fs.readFileSync(path.resolve(ROOT, process.env.BUNDLE), 'utf8') + '</script>' : fs.readFileSync(path.join(DIR, 'tll-mag-story-v1.html'), 'utf8');
 const FONTS = path.join(ROOT, 'src/design/magazine-2026-10/type/fonts');
 const IMG = path.join(ROOT, 'src/pages/home/mobile-proto-2026-10-26/img');
 const imgMap = Object.fromEntries(fs.readFileSync(path.join(ROOT, 'src/pages/home/mobile-proto-2026-10-26/build.py'), 'utf8').match(/'([^']+)': '([^']+\.jpe?g)'/g).map(s => { const m = s.match(/'([^']+)': '([^']+)'/); return [m[1], m[2]]; }));
@@ -19,7 +19,7 @@ const FONTCSS = [face('Playfair Display', 'normal', 800, 'playfair-display-latin
   face('IBM Plex Sans Condensed', 'normal', 400, 'ibm-plex-sans-condensed-latin-400-normal')].join('');
 const b = await chromium.launch(); const errs = [];
 for (const which of ['before', 'after']) for (const [w, h] of [[390, 844], [1280, 900]]) {
-  const html = which === 'after' ? base.replace('<!--LAYER-->', layer) : base;
+  const html = which === 'after' ? (process.env.BUNDLE ? base.replace('<!-- SITE HEAD CODE (Webflow site settings) -->', layer + '<!-- SITE HEAD CODE (Webflow site settings) -->') : base.replace('<!--LAYER-->', layer)) : base;
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
   p.on('pageerror', e => errs.push(which + ' ' + w + ': ' + e.message));
   await p.route('**/*', r => {
