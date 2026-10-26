@@ -1,0 +1,36 @@
+<section class="h3 h3-c5" aria-labelledby="h3-c5-t">
+<figure class="h3-c5-ph"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg" alt="Magnus the Samoyed grinning in a cloud of orange and blue Holi powder" loading="lazy" decoding="async" width="1082" height="1624"><figcaption>Magnus · Samoyed · 35 kg · <span data-h3-mag>…</span> places</figcaption></figure>
+<div class="h3-c5-panel">
+<p class="h3-ey">04 · Paw Passport</p>
+<h2 id="h3-c5-t" class="h3-title-l">Traveling with your bestie, <em>whatever the species.</em></h2>
+<p class="h3-lede">Muddy on side quests. A heated blanket on your face at 6 a.m. Your bestie sees the world too. Grandma wants the photos.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-ink" href="/the-paw-passport">Open the Paw Passport →</a></div>
+<p class="h3-lede h3-c5-guide">The EU pet travel guide. No surprises at the border.</p>
+<div class="h3-ctas h3-c5-kofi"><a class="h3-btn h3-btn-ink" data-h3-kofi hidden href="#" rel="noopener" target="_blank">Get the guide · €9</a><span class="h3-note" data-h3-kofi-note hidden>On Ko-fi</span></div>
+</div>
+</section>
+<style id="h3b-paw">
+/* Packet B (20 Oct 2026, prototype 3.3) B5: the Magnus line above the chapter eyebrow, the count from his pet page (never typed), the guide sentence,
+   and the Ko-fi button hidden until Nancy gives the URL (set data-h3-kofi href and remove hidden). 12px floor. */
+.h3-c5-panel .h3-ey{font-size:12px}
+.h3-c5-guide{margin-top:36px;font-size:clamp(16px,1.3vw,18px)}
+.h3-c5-kofi{margin-top:16px}
+.h3-c5-kofi[hidden],.h3-c5-kofi .h3-btn[hidden]{display:none}
+.h3-c5-ph figcaption{font-size:12px}
+
+/* 26 Oct 2026 (Nancy: "Spacing between blocks on mobile"), per prototype 3.4: the Magnus line with his live count moves into the
+   photo caption, so the panel opens with one eyebrow; square corners on the photo; the caption fits a phone. */
+.h3-c5,.h3-c5-ph,.h3-c5-ph img,.w-embed:has(> .h3-c5){border-radius:0!important}
+@media(max-width:899px){
+.h3-c5-ph figcaption{left:12px;right:12px;bottom:12px;width:max-content;max-width:calc(100% - 24px);letter-spacing:.12em;line-height:1.5;white-space:normal}
+.h3-c5-panel{padding:48px 20px 56px}
+.h3-c5-panel .h3-ey{margin-bottom:16px}
+.h3-c5-panel .h3-ctas{margin-top:28px}
+.h3-c5-guide{margin-top:32px}
+}
+</style>
+<script id="h3-mag-js">
+/* Magnus's places, read from his pet page (the same source tllfactsv1 uses), so it is never typed. Writes every [data-h3-mag] on the page (chapters 04 and 06). */
+(function(){var els=document.querySelectorAll('[data-h3-mag]');if(!els.length)return;fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){
+var m=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!m)return;var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(n)[].forEach.call(els,function(el){el.textContent=String(n);});}).catch(function(){});})();
+</script>

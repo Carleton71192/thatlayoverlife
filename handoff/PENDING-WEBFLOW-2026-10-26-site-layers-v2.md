@@ -105,3 +105,24 @@ Test: `node src/pages/home/live-2026-10-26/library-rotate/test.mjs before|after`
 Step (Webflow write, lock holder only): set embed 94ce12c0-56fc-4b10-fa9f-14da000634c7 on the home page to the after file, read it back, and publish. Check: reload the home page twice, and the first story in "The library" changes.
 
 The 3-card shelf in embed cd17db29 already shuffles on every visit, but it sits in the #tll-shelf section, which is mostly switched off.
+
+
+# Also ready: home Chapter 04 (Paw Passport) spacing on phones (Nancy, 26 Oct screenshot)
+
+This is a separate embed edit: embed a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7 on the home page.
+
+What was wrong on a phone:
+- The pink panel opened with two small labels 10px apart ("Magnus · Samoyed · 35 kg · 14 places", then "04 · Paw Passport"). The first repeated the photo caption.
+- The photo's bottom corners were rounded, with white showing above the pink panel.
+
+The fix is `src/pages/home/live-2026-10-26/ch04-spacing/embed-a4c1009d-after.html`, per prototype 3.4:
+- The Magnus line, with his live count (`data-h3-mag`), moves into the photo caption, "Magnus · Samoyed · 35 kg · N places", so the panel opens with one label.
+- Square corners on the section, the photo and its wrapper.
+- Even phone spacing: panel 48/20/56px, label 16px, buttons 28px, guide line 32px.
+- The caption wraps inside the photo.
+
+Note: the caption drops "Waffles 🐻‍❄️" to match the prototype. Put it back if Nancy prefers.
+
+Shots: `ch04-390-before.png`, `ch04-390-after.png` and `ch04-compare.png` in the same folder (`node render.mjs` there).
+
+Step (lock holder): set the embed to the after file, read it back, and publish.
