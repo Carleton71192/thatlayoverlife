@@ -1,0 +1,12 @@
+<style id="tll-tap-colors-v1">
+/* 26 Oct 2026, Nancy on the /account Stories tab: "Not a fan of the light blue on hover click."
+   The row title's hover was bright rose (#F0507A) on cream, which fails contrast (3.07:1). The site's contrast layer then recolors it
+   from its palette, and the result on an iPhone long-press was a pale teal. The magazine rule instead: text stays ink, the underline
+   goes rose (#C8325B on light). Same for the Edit and Share links in that tab. No element or script changes; CSS only, after the
+   script's own styles by specificity. */
+body .tms-row .tms-t:hover,body .tms-row .tms-t:focus-visible,body .tms-row:hover .tms-t,body .tms-row:active .tms-t{color:#0A0B14 !important;text-decoration:underline;text-decoration-color:#C8325B;text-decoration-thickness:2px;text-underline-offset:4px}
+body .tms-act:hover,body .tms-act:focus-visible{color:#0A0B14 !important;text-decoration-color:#C8325B;text-decoration-thickness:2px;text-underline-offset:3px}
+body .tms-act:focus-visible{outline-color:#C8325B}
+body .tms-row:hover,body .tms-row:active{border-color:#0A0B14 !important}
+@media(hover:none){body .tms-row:hover .tms-t,body .tms-row .tms-t:hover{text-decoration-color:transparent}body .tms-row:active .tms-t{text-decoration-color:#C8325B}}
+</style>
