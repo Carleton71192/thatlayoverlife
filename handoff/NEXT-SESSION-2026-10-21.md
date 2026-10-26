@@ -208,3 +208,17 @@ Webflow caps site scripts at 15. The header fix and the contrast fix now ship to
 To roll back: remove the site script `tllsitelayersv1`, then re-apply `tllnavphonev1` if the header fix should stay.
 
 The live search box overflow at 390px was already fixed by the 19 Oct page code (`tll-home-search-left-v5`). The newsletter placeholder "Your email" is set by the 20 Oct embed. Both were checked, and neither needed a change.
+
+## 26 October 2026: banned-word sweep of live copy
+
+I checked the visible text against Nancy's banned list, plus em dashes and exclamation marks, on:
+- Home (page text and the code of all 18 visible embeds; the snapshots are in `src/pages/home/live-2026-10-26/embeds/`);
+- Stories, Travelers, About, the Map, Account, Submit, Destinations, the Paw Passport, Spotlight, Share photos, My pets, Edit profile, Contact and the Lounge;
+- the Stories and Contributors templates;
+- today's site head and footer code.
+
+Findings:
+- One live hit, fixed and published: the /submit error message "That did not file." now reads "That did not send." The rest of the message is unchanged.
+- The Contributors template has hard-coded text with typed counts, "Trip Ledger" and "Currently in Copenhagen · filing weekly". It sits inside two sections that are switched off in Webflow (`tll-traveler-hero` and `tll-traveler-bio-section`), so visitors never see it. It was left alone. If either section is ever switched back on, rewrite that text first.
+- All other hits were CSS class names (h3-shelf, tll-shelf-card, is-filed), which visitors do not see.
+- No typed site counts in the home copy. The number-words are a story title and the newsletter line "One story. Sunday morning."

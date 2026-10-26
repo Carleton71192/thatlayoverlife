@@ -1,0 +1,12 @@
+<p class="h3 h3-hero-coords"><span class="h3-sr">Hero photo taken at </span><span class="h3-co">12.17° N</span> <span class="h3-co">68.99° W</span> <b>Curaçao</b></p>
+<style id="h3-hero-coords-v3">
+/* Packet B, 20 Oct 2026: the vertical magazine line and the scroll cue are gone (B1.3). Coordinates stay, 12px floor. Under 900px one line under the buttons. */
+.h3-hero-coords{font-size:12px}
+.h3-hero-coords .h3-co,.h3-hero-coords b{display:block}
+@media(max-width:899px){
+[data-h3-hero] .h3-hero-cta{margin-bottom:0}
+.h3-hero-coords{position:static;margin-top:18px;text-align:left;font-size:12px;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h3-hero-coords .h3-co,.h3-hero-coords b{display:inline}
+.h3-hero-coords b::before{content:"· ";color:rgba(247,241,232,.85);font-weight:400}
+}
+</style>

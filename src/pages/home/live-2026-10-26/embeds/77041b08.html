@@ -1,0 +1,18 @@
+<section class="h3 h3-sec h3-cream h3-close" aria-labelledby="h3-close-t" data-h3-close>
+<div class="h3-in">
+<h2 id="h3-close-t" class="h3-title-l">Where did your last <em data-h3-fw>layover</em> take you?</h2>
+<div class="h3-ctas"><a class="h3-btn h3-btn-ink" href="/the-map">Build your map →</a><a class="h3-btn h3-btn-line h3-on-light" href="/stories">Read the stories</a></div>
+</div>
+</section>
+<style id="h3b-close">
+/* Packet B (20 Oct 2026, prototype 3.3) B9: the closing line under the letter, with the rotating word. Reduced motion gets one word per visit. */
+.h3-close{padding-top:clamp(56px,9vh,112px);padding-bottom:clamp(56px,9vh,112px)}
+.h3-close [data-h3-fw]{display:inline-block;transition:opacity 220ms ease}
+.h3-close [data-h3-fw].is-out{opacity:0}
+</style>
+<script id="h3b-close-js">
+(function(){var el=document.querySelector('[data-h3-fw]');if(!el)return;var W=['layover','long weekend','dog','marathon','open tab','wedding invitation','visa run','national park'];
+var i=Math.floor(Math.random()*W.length);el.textContent=W[i];
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+setInterval(function(){el.classList.add('is-out');setTimeout(function(){i=(i+1)%W.length;el.textContent=W[i];el.classList.remove('is-out');},240);},3200);})();
+</script>
