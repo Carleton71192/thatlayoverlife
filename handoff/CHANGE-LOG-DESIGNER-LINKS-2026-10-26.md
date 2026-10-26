@@ -75,3 +75,11 @@ I recommend (b). (a) is the choice if you want no writing at all.
 Then you run New crawl in Ahrefs, and we compare with the 28 issues of 15 October.
 
 Reply with the item numbers to approve or change, and a, b or c for D1.
+
+## Approved 26 October 2026
+Nancy: "Approve L1 to L7, D1 option b". L1b and L2b sit inside that range and count as approved. L8 is no change.
+
+- Before L7: on Nancy's choice ("Stories From the Road"), the three live stories without a pillar now have Pillar, Pillar slug and Pillar name set to Stories From the Road, and only those three items were published (26 October 2026 about 21:25 UTC): even-brave-boys-get-scared, horseshoe-bend-arizona, spain-madrid-wedding-ibiza. Their From line now shows the pursuit. L7's filter can go on.
+- L1 to L7 are Nancy's clicks in the Designer. They need no Webflow lock (the Edit profile session holds it now), and the next publish by any session carries them, which is harmless: each binding writes the same address the scripts write today.
+- D1 (b): Nancy links the two Marathon Diaries, in her own words, from her story "Marathons on all 7 continents" (/stories/marathon-on-all-7-continents): /marathon-diaries/copenhagen-marathon-2026-recap and /marathon-diaries/tokyo-marathon-2027-prerace.
+- After the clicks: read back each element, subdomain test publish and crawl, live publish, crawl www, STATUS row, as in "After your clicks" above. The lock is taken only once the Edit profile session releases it.
