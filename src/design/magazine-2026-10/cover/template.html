@@ -62,9 +62,17 @@ p{margin:0}
 /* the cover */
 .cover{position:relative;background:var(--ink);color:var(--cream);overflow:hidden}
 .cover .ph{position:relative;aspect-ratio:4/5;background:var(--ink2)}
-.cover .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.cover .ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
 .cover .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.15) 0%,rgba(10,11,20,0) 25%,rgba(10,11,20,.2) 60%,rgba(10,11,20,.85) 100%)}
-.cover .stamp{position:absolute;right:16px;top:16px;width:96px;z-index:2;opacity:.95}
+.cover .stamp{position:absolute;right:16px;top:16px;width:96px;z-index:2;opacity:.95;transform-origin:50% 50%}
+.cover .chip{position:absolute;left:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;min-height:48px;border-radius:999px;background:rgba(10,11,20,.78);color:var(--cream);text-decoration:none;font-size:13px;line-height:1.2;backdrop-filter:blur(6px)}
+.cover .chip img{position:static;width:36px;height:36px;border-radius:50%;object-fit:cover;flex:0 0 36px}
+.cover .chip b{display:block;font-weight:500;font-size:15px}
+.card .by{display:flex;align-items:center;gap:8px}
+.card .by img{width:24px;height:24px;border-radius:50%;object-fit:cover}
+/* the one motion on the site: the stamp lands on the cover, once */
+@keyframes land{0%{opacity:0;transform:scale(1.7) rotate(-14deg)}70%{opacity:1;transform:scale(.96) rotate(2deg)}100%{opacity:.95;transform:none}}
+@media(prefers-reduced-motion:no-preference){.cover .stamp{animation:land 420ms cubic-bezier(.2,.9,.3,1.2) 250ms both}}
 .cover .words{position:relative;padding:28px var(--m) 40px}
 .cover .kicker{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:14px}
 .cover h1{font-size:clamp(46px,12vw,64px);line-height:.95}
@@ -73,7 +81,7 @@ p{margin:0}
 @media(min-width:900px){
   .cover .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;min-height:min(86vh,820px);padding-top:40px;padding-bottom:48px}
   .cover .ph{grid-column:1/9;aspect-ratio:3/2;border-radius:var(--r);overflow:hidden}
-  .cover .ph::after{background:none}
+  .cover .ph::after{background:linear-gradient(180deg,rgba(10,11,20,0) 70%,rgba(10,11,20,.35) 100%)}
   .cover .stamp{width:140px;right:24px;top:24px}
   .cover .words{grid-column:9/13;padding:0}
   .cover h1{font-size:clamp(48px,4.6vw,72px)}
@@ -176,24 +184,25 @@ p{margin:0}
     <div class="ph">
       <img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="" width="1440" height="1920" fetchpriority="high">
       <span class="stamp" aria-hidden="true"><!--STAMP--></span>
+      <a class="chip" href="/contributors/chesney-lish"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg" alt="" width="36" height="36"><span><b>Chesney Lish</b>went to Ibiza</span></a>
     </div>
     <div class="words">
-      <p class="kicker">The cover · Ibiza, by a member</p>
+      <p class="kicker">This week's cover · Ibiza</p>
       <h1 id="h1">Find your next <em>somewhere.</em></h1>
       <p class="dek">Real places and real opinions, written by the people who went. Free to join, no card, no paywall.</p>
       <a class="btn" href="/stories">Read the stories</a>
-      <p class="by"><b>Photo</b> Chesney Lish · Ibiza, Spain · 38.98° N 1.43° E</p>
+      <p class="by"><b>Photo</b> Chesney Lish · Ibiza · 38.98° N 1.43° E</p>
     </div>
   </div>
 </section>
 
 <section class="sec" aria-labelledby="t1">
   <div class="wrap">
-    <div class="sechead"><h2 id="t1">In this issue</h2><a class="lnk" href="/stories">The library</a></div>
+    <div class="sechead"><h2 id="t1">Trips that can't wait for <em>payday.</em></h2><a class="lnk" href="/stories">The library</a></div>
     <div class="cards">
-      <a class="card" href="/stories/spain-madrid-wedding-ibiza"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="Sunset from a beach bar in Ibiza" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-ES--></span></div><h3>Spain: A Wedding and an Adventure</h3><p class="dek">A friend's wedding outside Madrid, free tapas with every drink, then a villa in Ibiza and a ferry to Formentera.</p><p class="by"><b>Chesney Lish</b> · Madrid · 27 September 2024</p></a>
-      <a class="card" href="/stories/horseshoe-bend-arizona"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72ee26479034b2f7d3279_6ad72ec18bcd4df87c789510_barzy-adam-horseshoe-bend-hero.jpeg" alt="Horseshoe Bend, Arizona" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-AZ--></span></div><h3>My Unique Experience at Horseshoe Bend</h3><p class="dek">A five-hour drive from Phoenix that almost didn't happen, and a long climb down to the Colorado River.</p><p class="by"><b>Barzy Adam</b> · Arizona · 30 September 2024</p></a>
-      <a class="card" href="/stories/pantanal-glimmers-in-the-wild"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg" alt="A jaguar swimming the Cuiaba River" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-BR--></span></div><h3>Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</h3><p class="dek">The Pantanal by car, with the windows down.</p><p class="by"><b>Nancy Carleton</b> · Brazil · 9 October 2026</p></a>
+      <a class="card" href="/stories/spain-madrid-wedding-ibiza"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="Sunset from a beach bar in Ibiza" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-ES--></span></div><h3>Spain: A Wedding and an Adventure</h3><p class="dek">A friend's wedding outside Madrid, free tapas with every drink, then a villa in Ibiza and a ferry to Formentera.</p><p class="by"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg" alt="" width="24" height="24" loading="lazy"><b>Chesney Lish</b> · Madrid · 27 September 2024</p></a>
+      <a class="card" href="/stories/horseshoe-bend-arizona"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72ee26479034b2f7d3279_6ad72ec18bcd4df87c789510_barzy-adam-horseshoe-bend-hero.jpeg" alt="Horseshoe Bend, Arizona" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-AZ--></span></div><h3>My Unique Experience at Horseshoe Bend</h3><p class="dek">A five-hour drive from Phoenix that almost didn't happen, and a long climb down to the Colorado River.</p><p class="by"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg" alt="" width="24" height="24" loading="lazy"><b>Barzy Adam</b> · Arizona · 30 September 2024</p></a>
+      <a class="card" href="/stories/pantanal-glimmers-in-the-wild"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg" alt="A jaguar swimming the Cuiaba River" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-BR--></span></div><h3>Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</h3><p class="dek">The Pantanal by car, with the windows down.</p><p class="by"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg" alt="" width="24" height="24" loading="lazy"><b>Nancy Carleton</b> · Brazil · 9 October 2026</p></a>
     </div>
   </div>
 </section>
@@ -205,7 +214,7 @@ p{margin:0}
       <li><a href="/contributors/chesney-lish"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg" alt="" width="72" height="72" loading="lazy"><b>Chesney Lish</b><span>Madrid and Ibiza</span></a></li>
       <li><a href="/contributors/barzy-adam"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg" alt="" width="72" height="72" loading="lazy"><b>Barzy Adam</b><span>Arizona</span></a></li>
       <li><a href="/contributors/nancy-carleton"><img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg" alt="" width="72" height="72" loading="lazy"><b>Nancy Carleton</b><span>Editor · Copenhagen</span></a></li>
-      <li><a href="/submit" class="open"><i aria-hidden="true">+</i><b>You</b><span>You went. Write it down.</span></a></li>
+      <li><a href="/submit" class="open"><i aria-hidden="true">+</i><b>Your face could be here.</b><span>Ninety-six more seats. Window or aisle?</span></a></li>
     </ul>
   </div>
 </section>
@@ -224,13 +233,13 @@ p{margin:0}
 <section class="sec dark map" aria-labelledby="t2">
   <div class="wrap grid">
     <div class="words">
-      <p class="label" style="color:var(--soft)">Your page in the magazine</p>
+      <p class="label" style="color:var(--soft)">Your travel dashboard</p>
       <h2 id="t2" style="margin-top:10px">Every place you have been, <em>in one spot.</em></h2>
-      <p class="dek">Every stamp, every stopover, one map. Free, forever.</p>
-      <a class="btn" href="/the-map">Your map</a>
+      <p class="dek">Every stamp, every stopover, one map. Nobody likes a blank map.</p>
+      <a class="btn" href="/the-map">Build your free map</a>
     </div>
     <div class="mapcard" role="img" aria-label="The editor's map. Countries lived in or stayed in are rose, layovers are teal.">
-      <span class="label">The editor's map · log in to see yours</span>
+      <span class="label">The editor's map · yours starts blank and fills fast</span>
       <!--MAP-->
     </div>
   </div>
@@ -240,14 +249,14 @@ p{margin:0}
   <div class="wrap grid">
     <div class="words">
       <p class="label">The Layover Letter</p>
-      <h2 id="t3" style="margin-top:10px">One story. <em>Sunday morning.</em></h2>
-      <p class="dek">Your inbox deserves better than deals. One story from a member, Sundays at 09:00 Copenhagen time, unsubscribe anytime.</p>
+      <h2 id="t3" style="margin-top:10px">Your inbox deserves <em>better than deals.</em></h2>
+      <p class="dek">One story from a member. Sunday morning. Lounge wine optional.</p>
     </div>
     <form action="#" onsubmit="return false">
       <label class="sr" for="email">Your email</label>
       <input id="email" type="email" name="email" placeholder="Your email" autocomplete="email" inputmode="email">
       <button class="btn" type="submit">Sign me up</button>
-      <p class="note">One email a week. No deals, no lists.</p>
+      <p class="note">Sundays at 09:00 Copenhagen time. Unsubscribe anytime.</p>
     </form>
   </div>
 </section>
