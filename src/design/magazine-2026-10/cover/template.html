@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" data-font="newsreader">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>That Layover Life, the cover (magazine prototype, 26 Oct 2026)</title>
+<meta name="robots" content="noindex">
+<!--FONTS-->
+<style>
+/* The cover, magazine system, prototype 1 (26 Oct 2026). handoff/CREATIVE-DIRECTION-2026-10-26.md, direction A with the stamp.
+   One display face (switchable here while Nancy chooses), one text face, ink, cream, one rose. Rose means "press this".
+   12 columns on desktop, 4 on phones, one gutter, one margin. Eight components: masthead, cover, story card, stamp, byline,
+   department row, map card, letter form. The stamp is src/design/magazine-2026-10/stamp/stamp.svg, inlined. */
+:root{--ink:#0A0B14;--ink2:#16182a;--cream:#F7F1E8;--paper:#FDF9F3;--line:#D8D0C4;--line-d:#2a2d45;--text2:#2a2a2a;--muted:#6B6660;--soft:#cfcbc4;--rose:#C8325B;--rose-dark:#F0507A;
+  --text:'Inter Tight',system-ui,sans-serif;--m:16px;--gap:16px;--r:4px}
+html[data-font="newsreader"]{--display:'Newsreader',Georgia,serif;--dw:500;--dls:-.02em}
+html[data-font="fraunces"]{--display:'Fraunces',Georgia,serif;--dw:560;--dls:-.025em}
+html[data-font="instrument"]{--display:'Instrument Serif',Georgia,serif;--dw:400;--dls:-.01em;--text:'Instrument Sans',system-ui,sans-serif}
+html[data-font="playfair"]{--display:'Playfair Display',Georgia,serif;--dw:800;--dls:-.03em}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block}
+h1,h2,h3{font-family:var(--display);font-weight:var(--dw);letter-spacing:var(--dls);margin:0;text-wrap:balance;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1}
+h3{font-variation-settings:"opsz" 48,"SOFT" 20,"WONK" 1}
+em{font-style:italic}
+p{margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--m)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+@media(min-width:900px){:root{--m:40px;--gap:24px}.grid{grid-template-columns:repeat(12,1fr)}}
+.label{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border:1.5px solid transparent;border-radius:var(--r);font-weight:600;font-size:16px;text-decoration:none;background:var(--rose);color:#fff}
+.btn-line{background:transparent;border-color:var(--ink);color:var(--ink)}
+.dark .btn-line{border-color:var(--cream);color:var(--cream)}
+.lnk{display:inline-flex;align-items:center;min-height:44px;font-weight:500;text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:2px;text-underline-offset:5px}
+.stamp{display:inline-block;color:currentColor}
+.stamp svg{display:block;width:100%;height:auto}
+.by{font-size:14px;color:var(--muted);margin-top:10px}
+.by b{font-weight:500;color:inherit}
+.dark .by,.cover .by{color:var(--soft)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+
+/* font switcher, prototype only */
+.sw{position:fixed;right:12px;bottom:12px;z-index:50;display:flex;gap:4px;background:var(--ink);padding:4px;border-radius:999px}
+.sw button{min-height:36px;padding:0 12px;border:0;border-radius:999px;background:transparent;color:var(--cream);font:500 12px var(--text);cursor:pointer}
+.sw button[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+
+/* masthead */
+.mast{border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;align-items:center;height:60px;gap:8px}
+.mast .wm{font-family:var(--display);font-weight:var(--dw);font-size:22px;letter-spacing:var(--dls);text-decoration:none;margin-right:auto;min-height:44px;display:inline-flex;align-items:center}
+.mast .wm span{color:var(--rose)}
+.mast nav{display:none;gap:24px;margin-right:24px}
+.mast nav a{text-decoration:none;font-weight:500;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.mast .ic{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:none;border:0;padding:0;color:inherit;cursor:pointer}
+.mast .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mast .menu{min-height:44px;padding:0 14px;border:1.5px solid var(--ink);border-radius:var(--r);background:none;font:500 14px var(--text);cursor:pointer}
+@media(min-width:900px){.mast nav{display:flex}.mast .menu{display:none}.mast .wrap{height:72px}.mast .wm{font-size:26px}}
+.policy{background:var(--ink);color:var(--cream);font-size:13px;text-align:center;padding:10px var(--m);line-height:1.4}
+.policy b{font-weight:500;color:var(--rose-dark)}
+
+/* the cover */
+.cover{position:relative;background:var(--ink);color:var(--cream);overflow:hidden}
+.cover .ph{position:relative;aspect-ratio:4/5;background:var(--ink2)}
+.cover .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.cover .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,.15) 0%,rgba(10,11,20,0) 25%,rgba(10,11,20,.2) 60%,rgba(10,11,20,.85) 100%)}
+.cover .stamp{position:absolute;right:16px;top:16px;width:96px;z-index:2;opacity:.95}
+.cover .words{position:relative;padding:28px var(--m) 40px}
+.cover .kicker{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:14px}
+.cover h1{font-size:clamp(46px,12vw,64px);line-height:.95}
+.cover .dek{font-size:19px;line-height:1.45;margin-top:16px;max-width:36ch;color:#E8E2D8}
+.cover .btn{margin-top:24px;width:100%}
+@media(min-width:900px){
+  .cover .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap);align-items:center;min-height:min(86vh,820px);padding-top:40px;padding-bottom:48px}
+  .cover .ph{grid-column:1/9;aspect-ratio:3/2;border-radius:var(--r);overflow:hidden}
+  .cover .ph::after{background:none}
+  .cover .stamp{width:140px;right:24px;top:24px}
+  .cover .words{grid-column:9/13;padding:0}
+  .cover h1{font-size:clamp(48px,4.6vw,72px)}
+  .cover .btn{width:auto}
+}
+
+/* contents: the next three */
+.sec{padding:48px 0}
+@media(min-width:900px){.sec{padding:80px 0}}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:24px}
+.sechead h2{font-size:30px;line-height:1.05}
+@media(min-width:900px){.sechead h2{font-size:44px}.sechead{margin-bottom:36px}}
+.cards{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:600px){.cards{grid-template-columns:repeat(3,1fr);gap:var(--gap)}}
+.card{text-decoration:none;color:inherit;display:block}
+.card .ph{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--ink2)}
+@media(min-width:600px){.card .ph{aspect-ratio:3/4}}
+.card .ph img{width:100%;height:100%;object-fit:cover}
+.card .stamp{position:absolute;right:10px;top:10px;width:56px;color:var(--cream)}
+.card h3{font-size:24px;line-height:1.1;margin-top:14px}
+.card .dek{font-size:15px;line-height:1.5;color:var(--text2);margin-top:8px}
+.card .by{margin-top:8px}
+
+/* departments */
+.depts{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+.depts ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;}
+.depts li{border-bottom:1px solid var(--line)}
+.depts li:last-child{border-bottom:0}
+.depts a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;text-decoration:none;min-height:64px}
+.depts h3{font-size:26px;line-height:1.05}
+.depts p{font-size:15px;color:var(--muted);margin-top:4px}
+.depts svg{width:24px;height:24px;flex:0 0 24px;fill:none;stroke:var(--rose);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:900px){.depts ul{grid-template-columns:repeat(4,1fr);gap:var(--gap)}.depts li{border-bottom:0;border-right:1px solid var(--line);padding-right:var(--gap)}.depts li:last-child{border-right:0}.depts a{flex-direction:column;align-items:flex-start;padding:32px 0}.depts h3{font-size:30px}}
+
+/* the map */
+.dark{background:var(--ink);color:var(--cream)}
+.map .grid{align-items:center}
+.map .words{grid-column:1/-1}
+.map h2{font-size:36px;line-height:1.02}
+.map .dek{font-size:18px;color:var(--soft);margin-top:14px;max-width:40ch}
+.map .btn{margin-top:24px;width:100%}
+.mapcard{grid-column:1/-1;background:var(--ink2);border-radius:var(--r);padding:14px 12px 10px;margin-top:8px}
+.mapcard svg{display:block;width:100%;height:auto}
+.mapcard path{fill:var(--line-d);stroke:var(--ink);stroke-width:.6}
+.mapcard path.b{fill:var(--rose-dark)}
+.mapcard path.l{fill:#00C9C8}
+.mapcard .label{color:var(--soft);margin-bottom:8px;display:block}
+@media(min-width:900px){.map .words{grid-column:1/5}.mapcard{grid-column:5/13;margin:0}.map h2{font-size:52px}.map .btn{width:auto}}
+
+/* the letter */
+.letter{background:var(--paper)}
+.letter .grid{align-items:start}
+.letter .words{grid-column:1/-1}
+.letter h2{font-size:36px;line-height:1.02}
+.letter .dek{font-size:18px;color:var(--text2);margin-top:14px;max-width:40ch}
+.letter form{grid-column:1/-1;margin-top:8px}
+.letter input{display:block;width:100%;min-height:52px;padding:0 2px;border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;font:400 22px var(--display);color:var(--ink)}
+.letter input::placeholder{color:#7a756e;font-style:italic}
+.letter .btn{margin-top:16px;width:100%}
+.letter .note{font-size:13px;color:var(--muted);margin-top:12px}
+@media(min-width:900px){.letter .words{grid-column:1/7}.letter form{grid-column:8/13;margin:0}.letter h2{font-size:52px}.letter .btn{width:auto}}
+
+/* the masthead line and footer */
+.foot{background:var(--ink);color:var(--soft);padding:48px 0 56px}
+.foot .line{font-family:var(--display);font-weight:var(--dw);font-size:24px;line-height:1.25;color:var(--cream);max-width:30ch;letter-spacing:var(--dls)}
+.foot .line b{font-weight:inherit;color:var(--rose-dark)}
+.foot ul{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:0 24px}
+.foot li a{display:inline-flex;align-items:center;min-height:44px;color:var(--cream);text-decoration:none;font-weight:500}
+.foot .small{font-size:13px;margin-top:16px}
+@media(min-width:900px){.foot .line{font-size:32px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="wm" href="/" aria-label="That Layover Life, home">That Layover <span>Life.</span></a>
+    <nav aria-label="Departments"><a href="/stories">Stories</a><a href="/the-map">The Map</a><a href="/for-expats">For expats</a><a href="/the-paw-passport">Paw Passport</a><a href="/gallery">Lounge</a></nav>
+    <a class="ic" href="/stories" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg></a>
+    <a class="ic" href="/account" aria-label="Your account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg></a>
+    <button class="menu" type="button" aria-expanded="false">Menu</button>
+  </div>
+</header>
+<p class="policy">Written by people who went. <b>No story here was written by AI.</b> Edited by Nancy Carleton in Copenhagen.</p>
+
+<section class="cover" aria-labelledby="h1">
+  <div class="wrap">
+    <div class="ph">
+      <img src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="" width="1600" height="1066" fetchpriority="high">
+      <span class="stamp" aria-hidden="true"><!--STAMP--></span>
+    </div>
+    <div class="words">
+      <p class="kicker">The cover · Curaçao</p>
+      <h1 id="h1">Find your next <em>somewhere.</em></h1>
+      <p class="dek">Real places and real opinions, shared by the people who went. Free to join, no card, no paywall.</p>
+      <a class="btn" href="/stories">Read the stories</a>
+      <p class="by"><b>Photo</b> Nancy Carleton · Curaçao · 12.17° N 68.99° W</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="t1">
+  <div class="wrap">
+    <div class="sechead"><h2 id="t1">In this issue</h2><a class="lnk" href="/stories">The library</a></div>
+    <div class="cards">
+      <a class="card" href="/stories/ghana-easter-everyone-wears-white"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg" alt="Kids in Ghana at Easter" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-GH--></span></div><h3>Ghana asked us to wear all white. We complied. Eventually.</h3><p class="dek">An Easter weekend in Accra, three church services and one very patient tailor.</p><p class="by"><b>Nancy Carleton</b> · Accra · 19 September 2026</p></a>
+      <a class="card" href="/stories/spain-madrid-wedding-ibiza"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg" alt="Sunset from a beach bar in Ibiza" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-ES--></span></div><h3>Spain: A Wedding and an Adventure</h3><p class="dek">Madrid for the vows, Ibiza for the week after.</p><p class="by"><b>Chesney Lish</b> · Madrid · 27 September 2024</p></a>
+      <a class="card" href="/stories/pantanal-glimmers-in-the-wild"><div class="ph"><img src="https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg" alt="A jaguar swimming the Cuiaba River" loading="lazy" width="500" height="667"><span class="stamp" aria-hidden="true"><!--STAMP-BR--></span></div><h3>Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</h3><p class="dek">The Pantanal by car, with the windows down.</p><p class="by"><b>Nancy Carleton</b> · Brazil · 9 October 2026</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="depts" aria-label="Departments">
+  <div class="wrap">
+    <ul>
+      <li><a href="/for-expats"><div><h3>For expats</h3><p>Living there, not passing through.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      <li><a href="/the-paw-passport"><div><h3>Paw Passport</h3><p>Traveling with your bestie, whatever the species.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      <li><a href="/gallery"><div><h3>The Lounge</h3><p>The photos that made the next trip look affordable.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      <li><a href="/submit"><div><h3>Write for us</h3><p>You went. Write it down. The first 100 get a founding badge.</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec dark map" aria-labelledby="t2">
+  <div class="wrap grid">
+    <div class="words">
+      <p class="label" style="color:var(--soft)">Your page in the magazine</p>
+      <h2 id="t2" style="margin-top:10px">Every place you have been, <em>in one spot.</em></h2>
+      <p class="dek">Every stamp, every stopover, one map. Free, forever.</p>
+      <a class="btn" href="/the-map">Your map</a>
+    </div>
+    <div class="mapcard" role="img" aria-label="Nancy's map. Countries she has lived in or stayed in are rose, layovers are teal.">
+      <span class="label">Nancy's map · log in to see yours</span>
+      <!--MAP-->
+    </div>
+  </div>
+</section>
+
+<section class="sec letter" aria-labelledby="t3">
+  <div class="wrap grid">
+    <div class="words">
+      <p class="label">The Layover Letter</p>
+      <h2 id="t3" style="margin-top:10px">One story. <em>Sunday morning.</em></h2>
+      <p class="dek">Your inbox deserves better than deals. Sundays at 09:00 Copenhagen time, written by the editor, unsubscribe anytime.</p>
+    </div>
+    <form action="#" onsubmit="return false">
+      <label class="sr" for="email">Your email</label>
+      <input id="email" type="email" name="email" placeholder="Your email" autocomplete="email" inputmode="email">
+      <button class="btn" type="submit">Sign me up</button>
+      <p class="note">One email a week. No deals, no lists.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="line">Written by people who went. <b>No story here was written by AI.</b> Edited by Nancy Carleton in Copenhagen.</p>
+    <ul><li><a href="/stories">Stories</a></li><li><a href="/the-map">The Map</a></li><li><a href="/for-expats">For expats</a></li><li><a href="/the-paw-passport">Paw Passport</a></li><li><a href="/gallery">Lounge</a></li><li><a href="/creators">Contributors</a></li><li><a href="/about">About</a></li></ul>
+    <p class="small">That Layover Life · a travel magazine for people who get lost on purpose · Copenhagen</p>
+  </div>
+</footer>
+
+<div class="sw" role="group" aria-label="Display face (prototype only)">
+  <button type="button" data-font="newsreader" aria-pressed="true">Newsreader</button>
+  <button type="button" data-font="fraunces" aria-pressed="false">Fraunces</button>
+  <button type="button" data-font="instrument" aria-pressed="false">Instrument</button>
+  <button type="button" data-font="playfair" aria-pressed="false">Today</button>
+</div>
+<script>
+document.querySelectorAll('.sw button').forEach(function(b){b.addEventListener('click',function(){document.documentElement.setAttribute('data-font',b.getAttribute('data-font'));document.querySelectorAll('.sw button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});});});
+</script>
+</body>
+</html>
