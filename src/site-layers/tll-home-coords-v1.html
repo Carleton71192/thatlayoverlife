@@ -1,0 +1,8 @@
+<style id="tll-home-coords-v1">
+/* 26 Oct 2026, Nancy: the coordinates on the home photo were half off the screen on her phone. The 20 Oct coordinates embed
+   (h3-hero-coords-v3) sets them to position:static under 900px; the phone hero layer moves them top-right but never reset that,
+   so they sat flush against the right edge and the last letters were cut. Top-right, 16px in from the edges, on phones. */
+@media (max-width:767px){
+body:not(.tll-none) [data-h3-hero] .h3-hero-coords{position:absolute !important;margin:0 !important;top:16px !important;right:16px !important;left:auto !important;max-width:calc(100% - 32px) !important;white-space:nowrap !important;overflow:visible !important;text-overflow:clip !important;text-align:right !important}
+}
+</style>
