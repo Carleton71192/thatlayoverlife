@@ -1,0 +1,331 @@
+Body []    #4e93576e
+  Block [tll-story-article]    #7f1dd58d
+    Block [tll-story-progress]    #7f1dd532
+    ComponentInstance []    #bddf4824
+    Section [tll-story-hero]    #7f1dd54c
+      Image [tll-story-hero-img]  {'data-tll-parallax': 'hero', 'fetchpriority': 'high', 'deco  #817a2e61
+      Block [tll-story-hero-overlay]    #7f1dd54b
+        Block [tll-container tll-story-hero-content]    #7f1dd54a
+          Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26]  {'data-tll-breadcrumb': 'story'}  #36a903b7
+            Link [inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20]  {'href': '/'}  #36a903aa
+              String [] “Home”   #36a903a9
+            Span []    #36a903ac
+              String [] “→”   #36a903ab
+            Link [inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15]  {'href': '/stories'}  #36a903ae
+              String [] “Stories”   #36a903ad
+            Span []    #36a903b0
+              String [] “→”   #36a903af
+            Block []  {'data-tll-crumb': 'country'}  #f7e07cbf
+            Span []    #36a903b4
+              String [] “→”   #36a903b3
+            Block [tll-micro tll-text-bone]  {'data-tll-crumb': 'title'}  #a800deb8
+          Block []    #b3e4ac54
+          Block [tll-story-meta-row]    #1109536d
+            Block [tll-eyebrow-teal tll-story-byline-loc]    #5d6305b9
+            Block [tll-story-meta-divider]    #b0d1fff9
+            Block [tll-eyebrow-teal tll-story-byline-loc]    #61ed671d
+            Block [tll-story-meta-divider]    #9b566fa5
+            Block [tll-eyebrow-teal tll-story-byline-loc]    #9a28bd44
+            Block [tll-story-meta-divider]    #c11f7b43
+            Block [tll-micro tll-text-bone tll-story-reading-time]    #55e75e72
+          Heading [tll-display-xl tll-text-bone tll-story-title]    #7f1dd53e
+          Paragraph [tll-lede tll-text-bone tll-story-excerpt]    #7f1dd540
+          Block [tll-story-author-top]    #7f1dd549
+            Block [tll-story-author-avatar-wrap]    #7f1dd543
+              Block [tll-story-author-avatar-placeholder]    #7f1dd542
+                String [] “NC”   #7f1dd541
+            Block [tll-story-author-info]    #7f1dd548
+              Block [tll-micro tll-text-bone tll-story-author-label]    #7f1dd545
+                String [] “By”   #7f1dd544
+              Block [tll-story-author-name]    #7f1dd547
+                String [] “Nancy Carleton”   #7f1dd546
+              Block [tll-story-author-meta-row]    #0c0926d8
+                Block [tll-story-author-loc]    #04d3e94e
+                  String [] “Copenhagen, Denmark”   #228685b2
+                Block [tll-story-author-dot]    #b25e0cc5
+                  String [] “·”   #47fd9945
+                Block [tll-story-author-date]    #cb25cb89
+                Block [tll-story-author-dot]    #da82e51d
+                  String [] “·”   #15337ced
+                Block []    #dd372182
+          Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27]  {'data-tll-hero-caption': '1'}  #9a60867b
+            Block []    #6029fd80
+        Block []    #a48e2bf0
+    Block [tll-route]  {'data-tll-route': 'story', 'aria-label': 'Route'}  #78c79eec
+      Block [tll-route-stops]  {'data-tll-route-stops': '1'}  #cfc795ac
+      Block [tll-route-note]  {'data-tll-route-note': '1'}  #7f5ea68f
+    Block [tll-sponsored]  {'data-tll-sponsored': '1', 'hidden': 'hidden'}  #b9ccf136
+      Block [tll-sponsored-badge]    #8fc483c8
+      Block []  {'data-tll-sponsored-text': '1'}  #fcef45ed
+    Section [tll-story-body-section]    #7f1dd57b
+      Block [tll-container]    #7f1dd57a
+        Block [tll-reading-column tll-story-body]    #7f1dd579
+          Link []  {'data-tll-commissioned': 'story'}  #4f7c182c
+            String [] “Commissioned by TLL · Charter rule 08”   #8b53067c
+          Link []  {'data-tll-commissioned': 'story'}  #db79310f
+            String [] “Commissioned by TLL · Charter rule 08”   #ac692948
+          DOM []  {'data-tll-commissioned': 'marker', 'hidden': 'hidden', 'ari  #9d7e137b
+          Block [st3-author]  {'data-st3-author': '1'}  #e537cab8
+            Link [st3-author-link]  {'data-st3-base': '/contributors/'}  #fca59b21
+              Block [st3-author-avatar]    #37e8694a
+                Image [st3-author-img]    #b377369b
+              Block [st3-author-text]    #3db6f80e
+                Block [st3-author-name]    #6503491d
+                Block [st3-author-filed]    #26b3aa35
+                  DOM []    #9059271a
+                    String [] “From ”   #87d44c29
+                  DOM []  {'data-st3-loc': '1'}  #dd8ada04
+                  DOM []  {'data-st3-when': '1'}  #d8bc2bf3
+          Block [st3-from]  {'data-st3-from': '1'}  #192f53e0
+            DOM []    #e335454c
+              String [] “From ”   #4f86481f
+            DOM []  {'data-st3-from-part': 'city'}  #57da4bc2
+            Link [st3-from-link]  {'data-st3-from-part': 'country', 'data-st3-base': '/countri  #1f063e7e
+            Link [st3-from-link]  {'data-st3-from-part': 'pursuit', 'data-st3-base': '/pillars  #5d271ef7
+          Paragraph [st3-lede]  {'data-st3-lede': '1'}  #3804a0fd
+          Block [tll-aeo-box tll-aeo-box-teal]    #022f6eda
+            Block [tll-eyebrow-teal tll-aeo-eyebrow]    #7f69b098
+              String [] “The short version”   #7f69b097
+            RichText [tll-body]    #c690dd05
+          RichText [tll-body]    #e5ae70d4
+          Blockquote [tll-story-pullquote]    #7f1dd55a
+          Block [tll-aeo-box tll-aeo-box-rose]    #436e06d8
+            Block [tll-eyebrow-rose tll-aeo-eyebrow]    #2eff3687
+              String [] “Quick answers”   #2eff3686
+            RichText [tll-body]  {'id': 'tll-quick-answers'}  #bb3ee217
+          Block [inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22]  {'data-tll-links-card': '1'}  #5385b404
+            Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28]    #5385b400
+              String [] “Links ”   #5385b3fd
+              String [] “&”   #5385b3fe
+              String [] “ mentions”   #5385b3ff
+            RichText [tll-body]    #950066cb
+            Block [inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25]    #5385b403
+              String [] “Outbound links open in a new tab. Affiliate links ”   #5385b402
+          ComponentInstance []    #bf1be033
+          ComponentInstance []    #4247225d
+          ComponentInstance []    #6711ec89
+          Block [tll-story-share-row]    #7f1dd578
+            Span [tll-micro tll-text-mid tll-story-share-label]    #7f1dd56f
+              String [] “Share this story”   #7f1dd56e
+            Link [tll-story-share-link]  {'href': '#', 'data-tll-share': 'copy'}  #7f1dd571
+              String [] “Copy link”   #7f1dd570
+            Link [tll-story-share-link]  {'href': '#', 'data-tll-share': 'email'}  #7f1dd573
+              String [] “Email”   #7f1dd572
+            Link [tll-story-share-link]  {'href': '#', 'data-tll-share': 'linkedin'}  #7f1dd575
+              String [] “LinkedIn”   #7f1dd574
+            Link [tll-story-share-link]  {'href': '#', 'data-tll-share': 'x'}  #7f1dd577
+              String [] “X”   #7f1dd576
+    Section [tll-story-gallery]    #265f8be9
+      Block [tll-gallery-inner]    #265f8be8
+        Block [tll-gallery-label]    #265f8be5
+          String [] “From the trip”   #265f8be4
+        Block [tll-gallery-grid]    #265f8be7
+          LightboxWrapper []    #bb4d4454
+            Image [tll-gallery-img]  {'loading': 'lazy', 'decoding': 'async'}  #bb4d4455
+    DynamoWrapper []  {'hidden': 'hidden', 'aria-hidden': 'true', 'data-tll-placem  #034ec10a
+      DynamoList []    #034ec10b
+        DynamoItem []    #034ec10c
+          Block []  {'data-tll-placement-row': '1'}  #d88dd3d1
+      DynamoEmpty []    #034ec10d
+        Block []    #034ec10e
+          String [] “No items found.”   #034ec10f
+    Block []  {'data-tll-extras': 'data', 'hidden': 'hidden', 'aria-hidden  #813d9744
+      DynamoWrapper []  {'data-tll-extras-list': 'pet-notes'}  #cfcf757c
+        DynamoList []    #cfcf757d
+          DynamoItem []  {'data-tll-pet-note': '1'}  #cfcf757e
+        DynamoEmpty []    #cfcf757f
+          Block []    #cfcf7580
+            String [] “No items found.”   #cfcf7581
+      DynamoWrapper []  {'data-tll-extras-list': 'trip-bundles'}  #c1ac0484
+        DynamoList []    #c1ac0485
+          DynamoItem []  {'data-tll-bundle': '1'}  #c1ac0486
+        DynamoEmpty []    #c1ac0487
+          Block []    #c1ac0488
+            String [] “No items found.”   #c1ac0489
+      HtmlEmbed []    #96aa8456
+      HtmlEmbed []    #cc31fd8d
+      HtmlEmbed []    #a1b74443
+      HtmlEmbed []    #f8702437
+    Block [tll-inarticle-ad]  {'id': 'tll-ad-slot-story', 'data-tll-ad-slot': 'story-mid',  #84cb65c4
+      Block [tll-container tll-inarticle-container]    #84cb65c3
+        Block [tll-inarticle-card]    #84cb65c2
+          Span [tll-inarticle-eyebrow]    #84cb65bd
+            String [] “SPONSORED · TRAVEL PARTNER”   #84cb65bc
+          Paragraph [tll-inarticle-copy]    #84cb65bf
+            String [] “A two-line note from a partner brand goes here. Di”   #84cb65be
+          Link [tll-inarticle-link]  {'href': 'mailto:hello@thatlayover.life?subject=Story sponso  #84cb65c1
+            String [] “Sponsor a story →”   #84cb65c0
+        Block [inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24]  {'data-tll-reserved-ad': '1'}  #18180eea
+          Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30]    #18180ee7
+            Span [inline-span-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17]    #18180ee6
+              String [] “AD SLOT · IN-ARTICLE”   #18180ee5
+          Block [inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27]    #18180ee9
+            String [] “Trip photo for now. Reserved; off until the reader”   #18180ee8
+    Section [tll-story-aftermatter]    #b02aed53
+      Block [tll-container tll-aftermatter-container]    #b02aed52
+        Block [tll-contributor-card]    #b02aed0c
+          Block [tll-contributor-avatar-wrap]    #b02aecfb
+            Block [tll-contributor-avatar tll-contributor-avatar-fallback]    #b02aecfa
+              Span [tll-contributor-initials]    #b02aecf9
+                String [] “NC”   #b02aecf8
+          Block [tll-contributor-meta]    #b02aed0b
+            Span [tll-eyebrow-rose tll-contributor-eyebrow]    #b02aecfd
+              String [] “FOUNDER · NAMED TRAVELER”   #b02aecfc
+            Heading [tll-display-m tll-contributor-name]    #b02aecff
+              String [] “Nancy Carleton”   #b02aecfe
+            Paragraph [tll-body-s tll-text-mid tll-contributor-bio]    #b02aed01
+              String [] “American expat in Copenhagen. Seven continents mar”   #af1d0af7
+            Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31]    #f73c4390
+              Span [inline-span-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18]  {'data-tll-count': 'nc'}  #f73c438d
+                String [] “87”   #f73c438c
+              Span []    #f73c438f
+                String [] “countries and counting”   #f73c438e
+            Block [tll-contributor-actions]    #b02aed0a
+              Link [tll-contributor-link]    #b02aed05
+                String [] “See their work ”   #b02aed02
+                Span [tll-arrow]    #b02aed04
+                  String [] “→”   #b02aed03
+              Link [tll-vouch-btn]  {'type': 'button', 'data-tll-vouch': 'nancy-carleton'}  #b02aed09
+                Span [tll-vouch-icon]    #b02aed07
+                  String [] “✦”   #b02aed06
+                String [] “ Vouch for this traveler”   #b02aed08
+        Block [tll-places]  {'data-tll-places': 'story'}  #87275c0c
+          Block []  {'data-tll-place-alt': '1', 'hidden': 'hidden', 'aria-hidden  #cdcef297
+          Block [tll-places-label]  {'data-tll-places-label': '1'}  #01fc632a
+            String [] “And you?”   #01fc632b
+          Link [tll-place-btn]  {'data-tll-place-toggle': 'been', 'role': 'button', 'aria-pr  #0b2e7a67
+            String [] “Been here”   #31217a75
+          Link [tll-place-btn]  {'data-tll-place-toggle': 'want', 'role': 'button', 'aria-pr  #67b0e87c
+            String [] “Want to go”   #3910b52d
+          Block [tll-places-note]  {'data-tll-places-note': '1', 'role': 'status'}  #e16aee07
+            String [] “Log in to save”   #e16aee08
+        Block [st3-aff]  {'data-st3-aff': '1', 'aria-label': 'Affiliate disclosure',   #820e161e
+          DOM [st3-aff-k]    #42c0a1a1
+            String [] “Affiliate links”   #337e9c85
+          DOM [st3-aff-t]    #7d9ee205
+            String [] “Some links in this story pay the writer a small co”   #4636aad8
+        Block [st3-tw]  {'data-tll-cotravel': 'story', 'aria-labelledby': 'st3-tw-h'  #3a60ccbc
+          Heading [st3-tw-h]  {'id': 'st3-tw-h'}  #b1e216e4
+            String [] “Traveled with”   #ab253f91
+          Block [st3-tw-chips]    #50a913c7
+            DynamoWrapper []  {'data-st3-list': 'humans'}  #7d9a821e
+              DynamoList []    #7d9a821f
+                DynamoItem []    #7d9a8220
+                  Link [st3-tw-chip]  {'data-st3-base': '/contributors/'}  #e4db96e8
+                    DOM [st3-tw-ini]  {'aria-hidden': 'true'}  #00f4e1b6
+                    DOM [st3-tw-name]    #989f36db
+              DynamoEmpty []    #7d9a8221
+                Block []    #7d9a8222
+                  String [] “No items found.”   #7d9a8223
+            DynamoWrapper []  {'data-st3-list': 'pets'}  #554545ee
+              DynamoList []    #554545ef
+                DynamoItem []    #554545f0
+                  Link [st3-tw-chip]  {'data-st3-base': '/pets/'}  #d0eaf3b9
+                    DOM [st3-tw-ini]  {'aria-hidden': 'true'}  #e73f4b2f
+                    DOM [st3-tw-name]    #f41a9f93
+                    DOM []  {'data-st3-emoji': '1'}  #fa7ac552
+              DynamoEmpty []    #554545f1
+                Block []    #554545f2
+                  String [] “No items found.”   #554545f3
+        Block [tll-ledger]  {'data-tll-ledger': 'story'}  #835a6bb0
+          Block [tll-sl-title]    #39f9d6be
+            String [] “THE RECEIPTS”   #7bbac270
+          Block [tll-sl-grid]    #078e1fa6
+            Block [tll-ledger-row]    #6bf5dee7
+              Block [tll-ledger-k]    #eded2dd9
+                String [] “SUBMITTED BY”   #eded2dda
+              Block [tll-ledger-v]  {'data-tll-lg': 'author'}  #f05b7ae0
+            Block [tll-ledger-row]    #3112e7f5
+              Block [tll-ledger-k]    #55f5160e
+                String [] “EDITED BY”   #55f5160f
+              Block [tll-ledger-v]  {'data-tll-lg': 'edited-by'}  #9d4efa40
+            Block [tll-ledger-row]    #2db1f068
+              Block [tll-ledger-k]    #fd7a9df0
+                String [] “TRIP”   #fd7a9df1
+              Block [tll-ledger-v]  {'data-tll-lg': 'trip-when'}  #90996826
+            Block [tll-ledger-row]    #6fa3e52c
+              Block [tll-ledger-k]    #5272d995
+                String [] “PUBLISHED”   #5272d996
+              Block [tll-ledger-v]  {'data-tll-lg': 'published'}  #6ddfb898
+            Block [tll-ledger-row]    #846702b7
+              Block [tll-ledger-k]    #00487ca1
+                String [] “LAST UPDATED”   #00487ca2
+              Block [tll-ledger-v]  {'data-tll-lg': 'updated'}  #99ee6f28
+            Block [tll-ledger-row]    #3f745f27
+              Block [tll-ledger-k]    #aeffc141
+                String [] “WHAT IT COST”   #aeffc142
+              Block [tll-ledger-v]  {'data-tll-lg': 'cost-summary'}  #520d46d8
+            Block [tll-ledger-row]    #43b6bd5a
+              Block [tll-ledger-k]    #d0d07f84
+                String [] “SOURCES”   #d0d07f85
+              Block [tll-ledger-v]  {'data-tll-lg': 'sources'}  #408d8efc
+            Block [tll-ledger-row]    #bb3d7d70
+              Block [tll-ledger-k]    #4307a6b5
+                String [] “DISCLOSURE”   #4307a6b6
+              Block [tll-ledger-v]  {'data-tll-lg': 'disclosure'}  #634c826c
+          Paragraph [tll-ledger-note]    #80c5c8de
+            String [] “Every story carries its receipts. Something out of”   #3700e9d0
+        Block [inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22]  {'data-tll-story-cta': '1'}  #8692327b
+          Block [inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23]    #86923278
+            Block [inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29]    #86923275
+              String [] “Have a layover story like this?”   #86923274
+            Block [inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26]    #86923277
+              String [] “Stories publish the moment they pass the submissio”   #85b6a60d
+          Link [inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21]    #8692327a
+            String [] “Share your story →”   #86923279
+        Block [st3-cc]  {'data-st3-cc': '1'}  #d7a203cd
+          Block [st3-cc-avatar]    #1727d419
+            Image [st3-cc-img]    #abb1fd72
+          Block [st3-cc-meta]    #f8d11316
+            Block [st3-cc-badge]    #648569f9
+            Heading [st3-cc-name]    #f7c8b8f3
+            Paragraph [st3-cc-bio]    #1959b74d
+            Link [st3-cc-link]  {'data-st3-base': '/contributors/'}  #7bf36466
+              String [] “See their work”   #6529cee4
+        Block [tll-action-chips]    #b02aed1c
+          Link [tll-chip]  {'href': '/destinations/bulgaria'}  #b02aed11
+            Span [tll-chip-eyebrow]    #b02aed0e
+              String [] “More from”   #b02aed0d
+            Span [tll-chip-label]    #b02aed10
+              String [] “🇧🇬 Bulgaria”   #b02aed0f
+          Link [tll-chip]  {'href': '/stories?theme=conversations'}  #b02aed16
+            Span [tll-chip-eyebrow]    #b02aed13
+              String [] “More like this”   #b02aed12
+            Span [tll-chip-label]    #b02aed15
+              String [] “Conversations with strangers”   #b02aed14
+          Link [tll-chip]  {'href': '/stories?related=country-counts'}  #b02aed1b
+            Span [tll-chip-eyebrow]    #b02aed18
+              String [] “Related stories”   #b02aed17
+            Span [tll-chip-label]    #b02aed1a
+              String [] “The country count”   #b02aed19
+        Block []    #b02aed48
+          Block [tll-related-header]    #b02aed23
+            Span [tll-eyebrow-teal]    #b02aed1e
+              String [] “KEEP READING”   #b02aed1d
+            Heading [tll-display-m tll-text-midnight]    #b02aed22
+              String [] “Other stops on this ”   #b02aed1f
+              Emphasized [tll-text-rose]    #b02aed21
+                String [] “layover”   #b02aed20
+          DynamoWrapper []    #dd32d224
+            DynamoList [tll-related-grid]    #dd32d225
+              DynamoItem []    #dd32d226
+                Link [tll-related-card]    #eeb22182
+                  Block [tll-related-img-wrap]    #4bbb2774
+                    Image [tll-related-img]  {'loading': 'lazy', 'decoding': 'async'}  #35ebef36
+                  Block [tll-related-loc]    #210f48ed
+                  Heading [tll-related-headline]    #5b25af60
+                  Block [tll-related-meta]    #4097c3b0
+            DynamoEmpty []    #dd32d227
+              Block []    #dd32d228
+                String [] “More stories are on their way.”   #dd32d229
+        Block [tll-story-feedback]    #b02aed51
+          Span [tll-eyebrow-teal]    #b02aed4a
+            String [] “TELL THE EDITOR”   #b02aed49
+          Paragraph []    #b02aed4c
+            String [] “Spot a fact that's off? A name we misspelled? Tell”   #b02aed4b
+          Link [tll-feedback-link]    #b02aed50
+            String [] “hello@thatlayover.life ”   #b02aed4d
+            Span [tll-arrow]    #b02aed4f
+              String [] “→”   #b02aed4e
+  Block [tll-schema-wrapper inline-div-0]  {'aria-hidden': 'true'}  #47954f7a
+  ComponentInstance []    #ea1a78b9
