@@ -1,0 +1,10 @@
+<style id="tll-note-phone-v1">
+/* 26 Oct 2026: the floating "Tell the editor" pill covered page content on phones (the /account tab strip, the Languages
+   field on /edit-profile). Prototype 3.4 already set the answer: under 960px the pill is a 44px round button with the dot
+   only (the words stay for screen readers). It also steps aside while a form field outside the note has focus. */
+@media (max-width:959px){
+body #tll-note .tll-note-pill{font-size:0 !important;gap:0 !important;padding:0 !important;width:44px !important;height:44px !important;min-height:44px !important;justify-content:center !important;letter-spacing:0 !important}
+body #tll-note .tll-note-pill::before{width:10px !important;height:10px !important}
+}
+html.tll-typing #tll-note:not([data-open="true"]){display:none !important}
+</style>
