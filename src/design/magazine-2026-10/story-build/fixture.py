@@ -28,6 +28,8 @@ date_us = d.strftime('%B %-d, %Y')  # Webflow writes US order; the site's date s
 loc = fd.get('byline-location') or ''
 country = loc.split(',')[-1].strip().title() if loc else ''
 pillar = fd.get('pillar-name') or ''
+PLACEMENTS = {'pantanal-glimmers-in-the-wild': 'Day one: red lightning and the long nothing | pantanal-rhea-in-morning-mist<br>The road that ends on purpose | pantanal-driving-the-transpantaneira<br>Kilometer 42 | pantanal-jabiru-following-the-man-with-the-bucket<br>Kilometer 42 | pantanal-capybara-portrait<br>Why the jaguars let you watch | pantanal-jaguar-asleep-on-the-bank<br>Why the jaguars let you watch | pantanal-jaguar-charging-through-the-shallows<br>The stork, concluded | pantanal-jabiru-stork-in-the-marsh<br>Chapada, and down | pantanal-chapada-dos-guimaraes-cliffs<br>What I would tell you | pantanal-nancy-and-sami-in-the-safari-boat'}
+PLACEMENT = PLACEMENTS.get(SLUG, '')
 related = ('/stories/horseshoe-bend-arizona', 'https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72ee26479034b2f7d3279_6ad72ec18bcd4df87c789510_barzy-adam-horseshoe-bend-hero.jpeg', 'Arizona, USA', 'My Unique Experience at Horseshoe Bend', '1')
 
 TAG = {'Block': 'div', 'Section': 'section', 'Paragraph': 'p', 'Link': 'a', 'Image': 'img', 'RichText': 'div', 'DOM': 'span', 'Span': 'span',
@@ -60,16 +62,20 @@ BOUND = {
     '99ee6f28': EMPTY, '520d46d8': fd.get('cost-summary') or EMPTY, '408d8efc': fd.get('sources') or EMPTY, '634c826c': fd.get('disclosure') or EMPTY,
     'abb1fd72': ('src', author[2], 'alt', ''), '648569f9': author[3], 'f7c8b8f3': author[0], '1959b74d': EMPTY,
     '35ebef36': ('src', related[1], 'alt', related[3]), '210f48ed': related[2], '5b25af60': related[3], '4097c3b0': related[4],
-    'bb4d4455': ('src', 'placeholder.svg', 'alt', ''),
+    'bb4d4455': ('src', (fd.get('photo-gallery') or [{}])[0].get('url', 'placeholder.svg'), 'alt', ''),
+    'd88dd3d1': PLACEMENT or EMPTY,
     '989f36db': EMPTY, 'f41a9f93': EMPTY,
 }
 SLUGS = {'fca59b21': '/contributors/' + author[1], '7bf36466': '/contributors/' + author[1], 'eeb22182': related[0], '1f063e7e': '/countries/' + country.lower().replace(' ', '-')}
-RICH = {'c690dd05', 'e5ae70d4', 'bb3ee217', '950066cb', '7f1dd55a'}
+RICH = {'c690dd05', 'e5ae70d4', 'bb3ee217', '950066cb', '7f1dd55a', 'd88dd3d1'}
+GALLERY_JSON = json.dumps({'group': 'tll-story-gallery', 'items': [{'url': g['url'], 'type': 'image'} for g in (fd.get('photo-gallery') or [])]})
 
 def render(n):
     t = n.get('type')
     if t == 'String':
         return html.escape(n.get('textContent') or n.get('text') or n.get('value') or '')
+    if t == 'ComponentInstance' and sid(n) == 'bf1be033':  # TLL Sign-Off v1
+        return '<div class="tll-signoff"><div class="tll-signoff-rule"></div><div class="tll-signoff-label">Signed,</div><div class="tll-signoff-name">%s</div><div class="tll-signoff-loc">%s</div></div>' % (html.escape(author[0]), html.escape(fd.get('sign-off') or ''))
     if t in ('ComponentInstance', 'HtmlEmbed'):
         return '<!-- %s %s -->' % (t, sid(n))
     a, s = attrs(n)
@@ -87,9 +93,11 @@ def render(n):
     elif isinstance(b, str):
         inner = b if k in RICH else html.escape(b)
     if k in SLUGS: a['href'] = SLUGS[k]
+    if t == 'LightboxWrapper': inner += '<script type="application/json" class="w-json">%s</script>' % GALLERY_JSON; a['href'] = '#'
+    if k == 'd88dd3d1': a['data-story-slug'] = SLUG
     if s.get('visibility') is False: a['style'] = 'display:none'
     if a.get('data-tll-commissioned') and not fd.get('commissioned'): a['style'] = 'display:none'  # conditional visibility on the live page
-    if t == 'DynamoWrapper' and k in ('7d9a821e', '554545ee', '034ec10a', 'cfcf757c', 'c1ac0484'): inner = ''.join(render(c) for c in n.get('children') or [] if c.get('type') == 'DynamoEmpty')  # lists with no items
+    if t == 'DynamoWrapper' and k in ('7d9a821e', '554545ee', 'cfcf757c', 'c1ac0484'): inner = ''.join(render(c) for c in n.get('children') or [] if c.get('type') == 'DynamoEmpty')  # lists with no items
     if t == 'DynamoEmpty' and 'w-dyn-item' in inner: pass
     at = (' class="%s"' % cls if cls else '') + ''.join(' %s="%s"' % (x, html.escape(str(v), quote=True)) for x, v in a.items() if x != 'class')
     if tag == 'img': return '<img%s>' % at
@@ -105,7 +113,7 @@ footer = about_txt[about_txt.index('<footer class="inline-footer-0-1"'):about_tx
 site_head = (ROOT / 'src/pages/spotlight/live-2026-10-25/site-head-after.html').read_text()
 site_foot = (ROOT / 'src/site/site-footer-2026-10-21-after.html').read_text()
 tpl_head = (ROOT / 'src/pages/stories-template/head-2026-10-19-after.html').read_text()
-tpl_foot = (ROOT / 'src/pages/story/v3/template-footer-after-st3.html').read_text()
+tpl_foot = (ROOT / 'src/pages/story/v3/template-footer-after-st3.html').read_text() + ''.join('<script>%s</script>' % (ROOT / f).read_text() for f in ['src/site-layers/tllinlinephotosv2a.js', 'src/site-layers/tllinlinephotosv2b.js', 'src/pages/story/perspective-invite-v1.js'])  # the template's page scripts, from the repo copies
 embeds = ''.join((ROOT / p).read_text() for p in ['src/pages/story/v3/embed-st3-story-js-v1.html', 'src/pages/story/v3/embed-story-extras-v2.html', 'src/pages/story/live-2026-10-25/embed-5496c6ff-after.html'])
 article = article.replace('<!-- HtmlEmbed 96aa8456 -->', embeds, 1)
 CSS = ''.join('<link rel="stylesheet" href="/css/%s">' % f for f in ['fonts.css', 'webflow-base.css', 'tll-webflow.css'])  # served by shots.mjs from the export

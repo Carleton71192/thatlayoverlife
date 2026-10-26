@@ -10,6 +10,7 @@ const base = fs.readFileSync(path.join(DIR, `fixture-${SLUG}.html`), 'utf8');
 const layer = process.env.BUNDLE ? '<script>' + fs.readFileSync(path.resolve(ROOT, process.env.BUNDLE), 'utf8') + '</script>' : fs.readFileSync(path.join(DIR, 'tll-mag-story-v1.html'), 'utf8');
 const FONTS = path.join(ROOT, 'src/design/magazine-2026-10/type/fonts');
 const IMG = path.join(ROOT, 'src/pages/home/mobile-proto-2026-10-26/img');
+const GAL = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/design/magazine-2026-10/story', SLUG + '.json'), 'utf8'))['photo-gallery'] || [];
 const imgMap = Object.fromEntries(fs.readFileSync(path.join(ROOT, 'src/pages/home/mobile-proto-2026-10-26/build.py'), 'utf8').match(/'([^']+)': '([^']+\.jpe?g)'/g).map(s => { const m = s.match(/'([^']+)': '([^']+)'/); return [m[1], m[2]]; }));
 const face = (fam, style, w, file) => `@font-face{font-family:'${fam}';font-style:${style};font-weight:${w};src:url(http://tll.test/fonts/${file}.woff2) format('woff2')}`;
 const FONTCSS = [face('Playfair Display', 'normal', 800, 'playfair-display-latin-800-normal'), face('Playfair Display', 'italic', 800, 'playfair-display-latin-800-italic'),
@@ -29,6 +30,7 @@ for (const which of ['before', 'after']) for (const [w, h] of [[390, 844], [1280
     if (u.startsWith('http://tll.test/')) return r.fulfill({ body: html, contentType: 'text/html; charset=utf-8' });
     if (u.startsWith('file://')) return r.continue();
     if (u.includes('fonts.googleapis.com')) return r.fulfill({ body: FONTCSS, contentType: 'text/css' });
+    if (GAL.some(g => u === g.url)) return r.fulfill({ body: fs.readFileSync(path.join(IMG, 'pantanal-jaguar.jpg')), contentType: 'image/jpeg' });  // any gallery photo: a stand-in jpeg
     const key = Object.keys(imgMap).find(k => u.includes(k.split('/').pop().split('_')[0]));
     if (key) return r.fulfill({ body: fs.readFileSync(path.join(IMG, imgMap[key])), contentType: 'image/jpeg' });
     return r.abort();
