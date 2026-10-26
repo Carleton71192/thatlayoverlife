@@ -23,6 +23,7 @@ AUTHORS = {'6a0be79e01ee7eff10102ce9': ('Nancy Carleton', 'nancy-carleton', 'htt
 EXTRA = {'spain-madrid-wedding-ibiza': ('Chesney Lish', 'chesney-lish', 'https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg', 'Contributor'),
          'ghana-easter-everyone-wears-white': AUTHORS['6a0be79e01ee7eff10102ce9']}
 author = AUTHORS.get(fd.get('contributor')) or EXTRA[SLUG]
+author_home = 'Copenhagen, Denmark'  # the contributor's own location field, what the data-st3-loc span is bound to on the live page
 d = datetime.datetime.fromisoformat(fd['published-date'].replace('Z', '+00:00'))
 date_us = d.strftime('%B %-d, %Y')  # Webflow writes US order; the site's date script flips it on the page
 loc = fd.get('byline-location') or ''
@@ -52,7 +53,7 @@ BOUND = {
     '5d6305b9': loc, '61ed671d': pillar or EMPTY, '9a28bd44': EMPTY, '55e75e72': str(fd.get('reading-time') or ''),
     '7f1dd53e': fd['name'], '7f1dd540': fd.get('excerpt') or '', '6029fd80': fd.get('hero-caption') or EMPTY,
     'cb25cb89': date_us,
-    'b377369b': ('src', author[2], 'alt', ''), '6503491d': author[0], 'dd8ada04': loc or EMPTY, 'd8bc2bf3': date_us,
+    'b377369b': ('src', author[2], 'alt', ''), '6503491d': author[0], 'dd8ada04': 'home', 'd8bc2bf3': date_us,
     '57da4bc2': fd.get('city') or EMPTY, '1f063e7e': country or EMPTY, '5d271ef7': pillar or EMPTY,
     '3804a0fd': fd.get('excerpt') or EMPTY,
     'c690dd05': fd.get('short-version') or EMPTY, 'e5ae70d4': fd['body'], '7f1dd55a': fd.get('pull-quote') or EMPTY,
@@ -95,6 +96,7 @@ def render(n):
     if k in SLUGS: a['href'] = SLUGS[k]
     if t == 'LightboxWrapper': inner += '<script type="application/json" class="w-json">%s</script>' % GALLERY_JSON; a['href'] = '#'
     if k == 'd88dd3d1': a['data-story-slug'] = SLUG
+    if k == 'dd8ada04': inner = html.escape(author_home); a['data-st3-byline'] = loc; a['data-st3-country-name'] = country; a['data-st3-country'] = country.lower().replace(' ', '-')  # live binding: the contributor's home; the st3 script swaps in the byline
     if s.get('visibility') is False: a['style'] = 'display:none'
     if a.get('data-tll-commissioned') and not fd.get('commissioned'): a['style'] = 'display:none'  # conditional visibility on the live page
     if t == 'DynamoWrapper' and k in ('7d9a821e', '554545ee', 'cfcf757c', 'c1ac0484'): inner = ''.join(render(c) for c in n.get('children') or [] if c.get('type') == 'DynamoEmpty')  # lists with no items

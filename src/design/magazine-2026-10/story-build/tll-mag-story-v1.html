@@ -18,7 +18,7 @@
 .tll-story-hero-content{display:grid;grid-template-columns:minmax(0,1fr);row-gap:0;max-width:1280px !important;padding:28px var(--mg-m) 24px !important}
 .tll-story-hero-content>*{grid-column:1;min-width:0}
 .tll-mg-fig{position:relative;width:calc(100% - 2*var(--mg-m));max-width:1200px;margin:0 auto}
-.tll-story-hero-img{position:relative !important;inset:auto !important;display:block;width:100% !important;height:auto !important;aspect-ratio:4/5;object-fit:cover !important;margin:0 !important;border-radius:var(--mg-r);transform:none !important}
+.tll-story-hero-img{position:relative !important;inset:auto !important;display:block;width:100% !important;height:auto !important;max-height:85vh;aspect-ratio:auto;object-fit:cover !important;margin:0 !important;border-radius:var(--mg-r);transform:none !important}
 .tll-mg-cap{display:flex;justify-content:space-between;gap:16px;margin:10px 0 0;font:400 13px/1.4 var(--mg-text-f);color:var(--mg-muted)}
 .tll-mg-cap b{font-weight:500;color:var(--mg-ink)}
 .tll-mg-cap:empty{display:none}
@@ -29,7 +29,8 @@
 .tll-story-hero .tll-story-meta-row .tll-eyebrow-teal{font:500 13px/1.4 var(--mg-text-f) !important;letter-spacing:.06em !important;text-transform:uppercase !important;color:var(--mg-rose) !important;background:none !important;border:0 !important;padding:0 !important;margin:0 !important;border-radius:0 !important}
 .tll-story-hero .tll-story-meta-row .tll-story-meta-divider:has(+ .w-dyn-bind-empty),.tll-story-hero .tll-story-meta-row .tll-story-meta-divider:has(+ .tll-story-reading-time){display:none !important}
 .tll-story-hero .tll-story-meta-row .tll-eyebrow-teal img{display:none !important}
-.tll-story-hero .tll-story-meta-divider{color:var(--mg-rose) !important;font-size:13px}
+.tll-story-hero .tll-story-meta-divider{color:var(--mg-rose) !important;font:500 13px/1.4 var(--mg-text-f) !important;width:auto !important;height:auto !important;margin:0 !important;padding:0 !important;background:none !important;border:0 !important;opacity:1 !important}
+.tll-story-hero .tll-story-meta-divider:empty::before{content:"\00b7"}
 .tll-story-hero .tll-story-reading-time{display:none !important}
 h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:500 !important;font-size:clamp(38px,9.5vw,52px) !important;line-height:1 !important;letter-spacing:-.02em !important;color:var(--mg-ink) !important;text-shadow:none !important;margin:14px 0 0 !important;text-wrap:balance;max-width:none !important}
 .tll-story-excerpt{font-family:var(--mg-head) !important;font-weight:400 !important;font-size:21px !important;line-height:1.4 !important;color:var(--mg-text) !important;max-width:44ch !important;margin:18px 0 0 !important;font-variation-settings:"opsz" 24}
@@ -49,7 +50,7 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:500 !import
   .tll-mg-stamp{width:150px;right:24px;top:24px}
   h1.tll-story-title{font-size:clamp(52px,5.4vw,80px) !important;line-height:.98 !important;max-width:16ch !important}
   .tll-story-excerpt{font-size:24px !important}
-  .tll-story-hero-img{aspect-ratio:3/2}
+  .tll-story-hero-img{max-height:min(85vh,820px)}
 }
 
 /* the reading column */
@@ -95,7 +96,7 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:500 !import
 /* 26 Oct, from Nancy's subdomain check: spacing, the From line, the invite, the sign-off, inline photos and the gallery */
 .tll-story-body>.st3-from{margin:0 0 28px !important}
 .tll-story-body>.st3-from [data-st3-from-part="city"]:not(:empty)::after{content:", "}
-.tll-story-body>.st3-from a+a:not(:empty)::before,.tll-story-body>.st3-from [data-st3-from-part="pursuit"]:not(:empty)::before{content:"\00a0\00b7\00a0";color:var(--mg-muted);text-decoration:none;display:inline-block;margin:0 2px}
+.tll-story-body>.st3-from a+a:not(:empty)::before,.tll-story-body>.st3-from [data-st3-from-part="pursuit"]:not(:empty)::before{content:"\00b7";color:var(--mg-muted);text-decoration:none;display:inline-block;margin:0 .45em}
 .tll-story-body>.st3-from a.w-dyn-bind-empty,.tll-story-body>.st3-from a:empty{display:none}
 .tll-story-body>.w-richtext.tll-body{margin-bottom:40px !important}
 .tll-story-body .tll-persp-ask{margin:0 0 32px !important;padding:24px 0 0 !important;border-top:1px solid var(--mg-line) !important;font:400 16px/1.5 var(--mg-text-f) !important;color:var(--mg-text) !important}
@@ -126,7 +127,7 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:500 !import
 </style>
 <script id="tll-mag-story-js-v1">
 /* Three small moves the CSS cannot make: the hero caption goes under the photo with the writer's credit, the author row (the bound
-   byline) moves into the head with the reading time, and the stamp is drawn from the byline location, the date and the pillar.
+   byline) moves into the head with the reading time, and the stamp is drawn from the story's byline location (the data-st3-byline attribute, as the st3 script reads it; the span's own text is the contributor's home), the date and the pillar.
    Nothing is deleted; the caption element is hidden, not removed. Runs once. */
 (function(){
 var SVG='<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><filter id="tll-mg-ink" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter><path id="tll-mg-top" d="M30,100 A70,70 0 1,1 170,100"/><path id="tll-mg-bottom" d="M34,100 A66,66 0 0,0 166,100"/></defs><g filter="url(#tll-mg-ink)"><g fill="none" stroke="currentColor"><circle cx="100" cy="100" r="94" stroke-width="3"/><circle cx="100" cy="100" r="86" stroke-width="1.2"/><circle cx="100" cy="100" r="58" stroke-width="1.2"/></g><g fill="currentColor" font-family="\'JetBrains Mono\',ui-monospace,monospace" text-anchor="middle"><text font-size="12.5" font-weight="600" letter-spacing="3"><textPath href="#tll-mg-top" startOffset="50%">THAT LAYOVER LIFE</textPath></text><text font-size="9" letter-spacing="1.4"><textPath href="#tll-mg-bottom" startOffset="50%">{A}</textPath></text><text x="100" y="82" font-size="8" letter-spacing="3" font-weight="600">TLL</text><text x="100" y="106" font-size="{S}" font-weight="600" letter-spacing="1">{P}</text><text x="100" y="124" font-size="9.5" letter-spacing="2">{D}</text></g></g></svg>';
@@ -144,7 +145,7 @@ function run(){
   if(a){var mins=document.querySelector('.tll-story-reading-time'),m=txt(mins).match(/\d+/),w=a.querySelector('[data-st3-when]');
     if(m&&w){var sp=document.createElement('span');sp.className='tll-mg-mins';sp.textContent=' · '+m[0]+' min read';w.insertAdjacentElement('afterend',sp);}
     c.appendChild(a);}
-  var loc=txt(document.querySelector('[data-st3-loc]'))||txt(document.querySelector('.tll-story-meta-row .tll-eyebrow-teal'));
+  var L=document.querySelector('[data-st3-loc]'),loc=(L&&(L.getAttribute('data-st3-byline')||L.getAttribute('data-st3-country-name')||'').trim())||txt(L)||txt(document.querySelector('.tll-story-meta-row .tll-eyebrow-teal'));
   var place=(loc.split(',')[0]||'').trim().toUpperCase().slice(0,16);
   var when=txt(document.querySelector('[data-st3-when]')),d=when.match(/(\d{1,2}) (\w{3})\w* (\d{4})/)||when.match(/(\w{3})\w* (\d{1,2}),? (\d{4})/);
   var date=d?(d[0].match(/^\d/)?(('0'+d[1]).slice(-2)+' '+d[2].toUpperCase()+' '+d[3]):(('0'+d[2]).slice(-2)+' '+d[1].toUpperCase()+' '+d[3])):'';
