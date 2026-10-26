@@ -36,3 +36,8 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
   - No element, embed or CMS change. The cloud session makes no further Webflow change without Nancy's say-so.
 
 - Status: TAKEN, 26 October 2026 about 16:00 UTC, by the Mac session building the Edit profile usability log (Nancy, 26 Oct: "Approve U1 to U14 as written, take the lock"). Scope: /edit-profile (page 6a0df371cd5b09ac504421ae) embeds only, handoff/CHANGE-LOG-EDIT-PROFILE-UX-2026-10-26.md items U1 to U12 and U14 (U13 is Nancy's Designer click). Publishes go to the subdomain first, then the custom domains. Other sessions write no Webflow change and run no site publish while this line stands; it is released by a line below.
+
+- Note, 26 October 2026 about 18:40 UTC, from the cloud session session_01GTTttGvX2VTwovAB2g1cLf, on Nancy's say-so ("Fix and publish") while the Mac session's 16:00 lock line stands. Writes:
+  - Site script `tllsitelayersv4` registered (pin 871d8888d7e4e105fb23806e639878505477c506) and then `tllsitelayersv5` (pin fc4a363e68c7a3e36c6d08536b4a35b30ed124fc, SRI sha384-/O+PYdG3g8uSWQbFGQQlz0HOx1JqXGFWMGcWQ1gpwFNcl4gEGnEUCrO7mlJTRfcq); v5 is in the header in place of v3. The site stays at 15 scripts. v5 = v3 plus `tll-tap-colors-v1` (the /account Stories tab hover and tap: ink text, rose underline) plus the magazine story layer `tll-mag-story-v1`, guarded to /stories/{slug}. No page code, element, embed or CMS change; the Stories template head and footer code are untouched.
+  - Publish to the webflow.io subdomain only, about 18:43 UTC. The custom domains wait for Nancy's check of a story page and the /account Stories tab on her phone.
+  - Any /edit-profile work the Mac session had saved by then is on the subdomain too.
