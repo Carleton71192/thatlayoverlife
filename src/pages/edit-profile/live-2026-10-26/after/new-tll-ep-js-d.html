@@ -1,0 +1,56 @@
+<script id="tll-ep-js-d">
+/* Edit profile v2, script part D (UX build, 26 Oct 2026; handoff/CHANGE-LOG-EDIT-PROFILE-UX-2026-10-26.md). U1: the bar that follows the page (sections and save status) once the section row scrolls away. U4 to U8: expat desks with From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. U12 and U14: the Memberstack labels for Name, Bio and Short bio (text beside the inputs only; no data-ms element is changed). Saved desks keep the format the Worker takes: {c, years "2012–2018" or "2018–now", knows, now}. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U1: the bar */
+var bar=$("[data-ep-bar]"),nav=$(".ep-nav"),secB=$("[data-ep-bar-sec]"),raf=0;
+function headBottom(){var el=document.elementFromPoint(innerWidth/2,2);while(el&&el!==document.body&&el!==bar){var p=getComputedStyle(el).position;if(p==="fixed"||p==="sticky")return Math.max(0,el.getBoundingClientRect().bottom);el=el.parentElement}return 0}
+function place(){raf=0;if(!bar||!nav)return;var h=headBottom(),show=nav.getBoundingClientRect().bottom<h&&nav.offsetParent!==null;bar.style.setProperty("--ep-bar-top",h+"px");if(bar.hidden===show){bar.hidden=!show;if(!show)open(false)}}
+function open(on){if(!bar)return;bar.setAttribute("data-open",on?"1":"0");if(secB)secB.setAttribute("aria-expanded",String(on))}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(place)},{passive:true});addEventListener("resize",place);
+if(secB)secB.addEventListener("click",function(){open(bar.getAttribute("data-open")!=="1")});
+if(bar)bar.addEventListener("click",function(e){if(e.target.closest("a"))open(false)});
+/* U12, U14: labels beside the Memberstack inputs */
+function lab(k,t,note){var f=E.msField(k),l=f&&f.closest("label"),s=l&&l.querySelector("span");if(!s||l.hasAttribute("data-ep-lab"))return;l.setAttribute("data-ep-lab","1");s.textContent=t;
+ if(k==="name"){var r=document.createElement("span");r.className="ep-req";r.textContent="REQUIRED";s.appendChild(r)}
+ if(note){var n=document.createElement("small");n.className="ep-note";n.innerHTML=esc(note)+' <span data-ep-cnt="'+k+'"></span>';l.appendChild(n);var c=n.lastChild;function cnt(){var v=f.value.length;c.textContent="· "+v+(v===1?" character":" characters")}f.addEventListener("input",cnt);cnt();setTimeout(cnt,3000)}}
+lab("name","Name");lab("bio-long","Bio","On your page. Two or three short paragraphs.");lab("bio-short","Short bio","One sentence, kept on your account. Your public page shows the Bio above.");
+/* U4 to U8: desks */
+var key="",undo=null,undoT=0;
+function parse(d){var y=String(d.years||""),m=y.match(/\d{4}/g)||[],to=/now/i.test(y)?"":(m[1]||"");return {c:d.c,from:m[0]||"",to:to,knows:String(d.knows||""),now:!!d.now}}
+function saved(d){var y=d.from?(d.now&&!d.to?d.from+"–now":(d.to?d.from+"–"+d.to:d.from)):(d.to||(d.now?"now":""));return {c:d.c,years:y.slice(0,11),knows:d.knows.slice(0,160),now:!!d.now}}
+function list(){return (E.desksShown||[]).map(function(d){return {c:d.c,from:d.from,to:d.to,knows:d.knows,now:d.now}})}
+function put(D){E.set("desks",JSON.stringify(D.map(saved)))}
+function say(t){var m=$("[data-ep-desk-msg]");if(m)m.textContent=t||""}
+function homeC(){var h=E.get("home-base");return {c:E.ccode(h.split(",").pop()),city:h.split(",")[0].trim()}}
+function warn(d,h){if(d.now&&d.to)return {t:E.cname(d.c)+" says you live here now, but the years end in "+d.to+"."};if(h.c&&d.c===h.c&&!d.now)return {t:"Your home base is "+(h.city||E.cname(d.c))+". Mark "+E.cname(d.c)+" as I live here now?",b:1};return null}
+function val(el,v){if(el&&document.activeElement!==el&&el.value!==v)el.value=v}
+E.paintDesks=function(){var box=$("[data-ep-desks]"),lst=$("[data-ep-desklist]"),h=$("[data-ep-desks-h]"),off=$("[data-ep-desks-off]");if(!box)return;var on=E.get("list-expats")==="true";box.hidden=!on;if(off)off.hidden=on;if(!on)return;
+ var D;if(E.S.desks!=null)D=E.jsonList("desks").map(parse);else{var hc=homeC().c;D=E.list(E.get("from-and-lived-in")).filter(function(c){return c!==hc}).map(function(c){return {c:c,from:"",to:"",knows:"",now:false}})}
+ E.desksShown=D;if(h)h.textContent="YOUR EXPAT DESKS · "+D.length+(D.length===1?" PLACE":" PLACES");
+ var k=D.map(function(d){return d.c}).join("|");
+ if(lst&&k!==key){key=k;lst.innerHTML=D.map(function(d,i){var n=esc(E.cname(d.c));return '<div class="ep-desk" data-ep-desk="'+i+'"><div class="ep-desk-h"><span class="ep-fl" aria-hidden="true">'+E.flag(d.c)+'</span><b>'+n+'</b><span class="ep-desk-tag" data-ep-desk-tag></span><button type="button" class="ep-x" data-ep-desk-rm="'+i+'" aria-label="Remove '+n+'">×</button></div>'+
+  '<div class="ep-desk-g"><label>From<input data-ep-desk-from="'+i+'" inputmode="numeric" maxlength="4" placeholder="2018" autocomplete="off" aria-label="'+n+', from year"></label><label>To<input data-ep-desk-to="'+i+'" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="'+n+', to year"></label>'+
+  '<label class="ep-desk-k">What you know there<input data-ep-desk-knows="'+i+'" maxlength="160" placeholder="Visas, schools, dog parks" aria-label="What you know about '+n+'"><small data-ep-desk-n></small></label></div>'+
+  '<label class="ep-desk-c"><input type="checkbox" data-ep-desk-now="'+i+'"> I live here now</label><p class="ep-desk-warn" data-ep-desk-warn hidden><span></span> <button type="button" class="ep-x" data-ep-desk-mark="'+i+'" hidden>Mark it</button></p></div>'}).join("")}
+ var hc2=homeC();D.forEach(function(d,i){var row=$('[data-ep-desk="'+i+'"]');if(!row)return;val($('[data-ep-desk-from="'+i+'"]',row),d.from);var to=$('[data-ep-desk-to="'+i+'"]',row);val(to,d.to);to.placeholder=d.now?"now":"2021";val($('[data-ep-desk-knows="'+i+'"]',row),d.knows);
+  $('[data-ep-desk-now="'+i+'"]',row).checked=d.now;$("[data-ep-desk-tag]",row).textContent=d.now?"LIVE HERE":"LIVED HERE";$("[data-ep-desk-tag]",row).setAttribute("data-on",d.now?"1":"0");$("[data-ep-desk-n]",row).textContent=d.knows.length+" of 160";
+  var w=warn(d,hc2),wp=$("[data-ep-desk-warn]",row);wp.hidden=!w;if(w){wp.firstChild.textContent=w.t;$("[data-ep-desk-mark]",wp).hidden=!w.b}})};
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target;if(!t.getAttribute)return;var f=["from","to","knows"].filter(function(x){return t.hasAttribute("data-ep-desk-"+x)})[0];if(!f)return;var D=list(),i=+t.getAttribute("data-ep-desk-"+f);if(!D[i])return;D[i][f]=f==="knows"?t.value.slice(0,160):t.value.replace(/\D/g,"").slice(0,4);if(f!=="knows"&&t.value!==D[i][f])t.value=D[i][f];put(D)});
+wrap.addEventListener("change",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-ep-desk-now"))return;var D=list(),i=+t.getAttribute("data-ep-desk-now");if(!D[i])return;D[i].now=t.checked;if(t.checked)D[i].to="";put(D)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-desk-rm],[data-ep-desk-mark],[data-ep-desk-add],[data-ep-desk-undo-b]");if(!b)return;var D=list();
+ if(b.hasAttribute("data-ep-desk-mark")){var i=+b.getAttribute("data-ep-desk-mark");if(D[i]){D[i].now=true;D[i].to="";put(D)}return}
+ if(b.hasAttribute("data-ep-desk-add")){add();return}
+ if(b.hasAttribute("data-ep-desk-undo-b")){if(undo){D.splice(Math.min(undo.i,D.length),0,undo.d);undo=null;showUndo("");put(D)}return}
+ var j=+b.getAttribute("data-ep-desk-rm");if(!D[j])return;undo={d:D[j],i:j};D.splice(j,1);showUndo("Removed "+E.cname(undo.d.c)+".");put(D)});
+function showUndo(t){var u=$("[data-ep-desk-undo]");clearTimeout(undoT);if(!u)return;u.hidden=!t;$("[data-ep-desk-undo-t]",u).textContent=t;if(t)undoT=setTimeout(function(){u.hidden=true;undo=null},10000)}
+var q=$("[data-ep-deskq]");
+function add(){if(!q)return;var v=q.value.trim();if(!v)return;var c=E.ccode(v),D=list();if(!c){say("No country by that name. Try the English name.");return}if(D.some(function(d){return d.c===c})){say(E.cname(c)+" already has a desk.");q.value="";return}if(D.length>=20){say("Twenty is the limit.");return}say("");D.push({c:c,from:"",to:"",knows:"",now:false});q.value="";put(D)}
+if(q)q.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();add()}});
+/* crew invites (3.4 D6), moved here from part C: a name or handle adds a waiting row on this member's record. */
+var crq=$("[data-ep-crewq]");if(crq)crq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var v=crq.value.trim();if(!v||v.length>80)return;var cur=E.jsonList("crew");if(cur.some(function(c){return String(c.name).toLowerCase()===v.toLowerCase()})||cur.length>=20){crq.value="";return}
+ var when=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}).toUpperCase();cur.push({name:v,meta:"INVITED · "+when,pending:true,at:new Date().toISOString()});crq.value="";E.set("crew",JSON.stringify(cur))});
+E.paintDesks();place();
+})(window.TLLEP);
+</script>

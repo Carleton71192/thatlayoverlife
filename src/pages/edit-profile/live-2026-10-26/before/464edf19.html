@@ -1,0 +1,56 @@
+<script id="tll-ep-js-c">
+/* Edit profile v2, script part C: input wiring, the debounced 900 ms save and the status line. 3.4 (21 Oct 2026): crew invites and expat desks save to the member's own JSON record (tllCrew, tllDesks); desks also go to the Worker once data-desks-field is 1. Every change goes to the Memberstack custom fields through the DOM package; when data-worker on #tll-ep is set it also goes to POST {worker}/profile/save with the member token, and only then does the line say LIVE. */
+(function(E){
+var $=E.$,$$=E.$$;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+var WORKER=(root.getAttribute("data-worker")||"").replace(/\/$/,""),DESKS_FIELD=root.getAttribute("data-desks-field")==="1",STORY_WORKER=(root.getAttribute("data-story-worker")||"").replace(/\/$/,"");
+var JSONKEY={desks:"tllDesks",crew:"tllCrew"};
+var dirty={},timer=null,savedAt=0,live=false,busy=false,st=$("[data-ep-status]");
+function status(t,state){if(st){st.textContent=t;st.setAttribute("data-state",state||"")}}
+function tick(){if(!savedAt||busy)return;var n=Math.max(0,Math.round((Date.now()-savedAt)/1000));status("Saved "+n+" s ago"+(live?" · live":""),"ok")}
+setInterval(tick,1000);
+E.onChange(function(k,v){dirty[k]=v;clearTimeout(timer);timer=setTimeout(flush,900);status("Saving…","busy")});
+function flush(){timer=null;var d=dirty;dirty={};var keys=Object.keys(d);if(!keys.length)return;busy=true;status("Saving…","busy");
+ var m=E.ms(),cfs={},jkeys=keys.filter(function(k){return JSONKEY[k]}),fkeys=keys.filter(function(k){return !JSONKEY[k]});
+ fkeys.forEach(function(k){var mk=(k in E.MSKEY)?E.MSKEY[k]:k;if(mk)cfs[mk]=d[k]});
+ var p=(m&&m.updateMember&&Object.keys(cfs).length)?m.updateMember({customFields:cfs}):Promise.resolve();
+ /* JSON keys: read the record first so nothing else in it is lost, then write it back with the new lists. */
+ if(jkeys.length&&m&&m.getMemberJSON&&m.updateMemberJSON)p=p.then(function(){return m.getMemberJSON()}).then(function(j){var cur=(j&&j.data&&typeof j.data==="object")?j.data:{};jkeys.forEach(function(k){try{cur[JSONKEY[k]]=JSON.parse(d[k]||"[]")}catch(e){cur[JSONKEY[k]]=[]}});E.json=cur;return m.updateMemberJSON({json:cur})});
+ var wkeys=fkeys.concat(DESKS_FIELD&&jkeys.indexOf("desks")>-1?["desks"]:[]);
+ p.then(function(){if(!WORKER||!wkeys.length){savedAt=Date.now();live=false;return}var tok=E.token();if(!tok)throw new Error("no token");var body={fields:{}};wkeys.forEach(function(k){body.fields[k]=E.BOOL[k]?d[k]==="true":d[k]});
+  function send(b){return fetch(WORKER+"/profile/save",{method:"POST",keepalive:true,headers:{"content-type":"application/json","authorization":"Bearer "+tok},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok&&j.ok,j:j}})})}
+  return send(body).then(function(x){if(x.ok)return x;/* a Worker without the desks field yet: save the rest, keep desks in the member record */if(!x.ok&&/desks/.test(String(x.j.error||""))&&body.fields.desks!==undefined){delete body.fields.desks;if(!Object.keys(body.fields).length)return {ok:true,j:{savedAt:""}};return send(body)}return x}).then(function(x){if(!x.ok)throw new Error(x.j.error||"save");savedAt=Date.parse(x.j.savedAt)||Date.now();live=true})
+ }).then(function(){busy=false;tick()}).catch(function(){busy=false;keys.forEach(function(k){if(!(k in dirty))dirty[k]=d[k]});status("Not saved. Check your connection and type again.","fail")})}
+window.addEventListener("pagehide",function(){if(timer){clearTimeout(timer);flush()}});
+/* the Memberstack inputs that stay in place */
+["name","home-base","bio-long","bio-short"].forEach(function(k){var f=E.msField(k);if(f)f.addEventListener("input",function(){E.set(k,f.value)})});
+/* the new inputs */
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target,k=t&&t.getAttribute&&t.getAttribute("data-ep-f");if(k)E.set(k,t.value)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-credit],[data-ep-link],[data-ep-contact],[data-ep-list],[data-ep-vis],[data-ep-rmflag],[data-ep-rmlang],[data-ep-dev-next],[data-ep-crew-rm],[data-ep-desk-now],[data-ep-desk-rm]");if(!b)return;
+ if(b.hasAttribute("data-ep-dev-next")){var to=b.getAttribute("data-ep-dev-to");if(to==="map"){location.href="/the-map";return}var sec=document.getElementById("ep-"+to);if(sec){sec.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});var first=sec.querySelector("input,textarea,button");if(first&&first.focus)setTimeout(function(){first.focus({preventScroll:true})},400)}return}
+ if(b.hasAttribute("data-ep-crew-rm")){var nm=b.getAttribute("data-ep-crew-rm");E.set("crew",JSON.stringify(E.jsonList("crew").filter(function(c){return c.name!==nm})));return}
+ if(b.hasAttribute("data-ep-desk-now")||b.hasAttribute("data-ep-desk-rm")){var D=(E.desksShown||[]).slice(),i=parseInt(b.getAttribute("data-ep-desk-now")||b.getAttribute("data-ep-desk-rm"),10);if(!D[i])return;if(b.hasAttribute("data-ep-desk-rm"))D.splice(i,1);else D[i]={c:D[i].c,years:D[i].years||"",knows:D[i].knows||"",now:!D[i].now};E.set("desks",JSON.stringify(D));return}
+ if(b.hasAttribute("data-ep-credit"))E.set("credit-mode",b.getAttribute("data-ep-credit"));
+ else if(b.hasAttribute("data-ep-link")){var key=b.getAttribute("data-ep-link"),on=E.LINKS.map(function(l){return l[0]===key?!E.rowOn(l[0]):E.rowOn(l[0])});E.set("links-shown",on.every(Boolean)?"":E.LINKS.filter(function(l,i){return on[i]}).map(function(l){return l[0]}).join(","))}
+ else if(b.hasAttribute("data-ep-contact"))E.set("contact-mode",b.getAttribute("data-ep-contact"));
+ else if(b.hasAttribute("data-ep-list")){var k=b.getAttribute("data-ep-list");E.set(k,E.get(k)==="true"?"false":"true")}
+ else if(b.hasAttribute("data-ep-vis"))E.set("visibility",b.getAttribute("data-ep-vis"));
+ else if(b.hasAttribute("data-ep-rmflag"))E.set("from-and-lived-in",E.list(E.get("from-and-lived-in")).filter(function(c){return c!==b.getAttribute("data-ep-rmflag")}).join(","));
+ else if(b.hasAttribute("data-ep-rmlang"))E.set("languages",E.list(E.get("languages")).filter(function(l){return l!==b.getAttribute("data-ep-rmlang")}).join(", "));
+});
+var rg=$("[data-ep-ranges]");if(rg)rg.addEventListener("change",function(){E.set("share-ranges",rg.checked?"true":"false")});
+/* expat desks (3.4 D7): years and what-you-know lines save on input, debounced like everything else */
+wrap.addEventListener("input",function(e){var t=e.target,yi=t.getAttribute&&t.getAttribute("data-ep-desk-years"),ki=t.getAttribute&&t.getAttribute("data-ep-desk-knows");if(yi==null&&ki==null)return;var D=(E.desksShown||[]).map(function(d){return {c:d.c,years:d.years||"",knows:d.knows||"",now:!!d.now}}),i=parseInt(yi!=null?yi:ki,10);if(!D[i])return;if(yi!=null)D[i].years=t.value.slice(0,11);else D[i].knows=t.value.slice(0,160);E.set("desks",JSON.stringify(D))});
+var dq=$("[data-ep-deskq]");if(dq)dq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var c=E.ccode(dq.value);if(!c)return;var D=(E.desksShown||[]).slice();if(D.some(function(d){return d.c===c})||D.length>=20){dq.value="";return}D.push({c:c,years:"",knows:"",now:false});dq.value="";E.set("desks",JSON.stringify(D))});
+/* crew invites (3.4 D6): a name or handle adds a waiting row on this member's record; the other side says yes from their account once the crew route is live. */
+var crq=$("[data-ep-crewq]");if(crq)crq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var q=crq.value.trim();if(!q||q.length>80)return;var cur=E.jsonList("crew");if(cur.some(function(c){return String(c.name).toLowerCase()===q.toLowerCase()})||cur.length>=20){crq.value="";return}
+ var when=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}).toUpperCase();cur.push({name:q,meta:"INVITED · "+when,pending:true,at:new Date().toISOString()});crq.value="";E.set("crew",JSON.stringify(cur))});
+var ph=$("#ep-f-photo");if(ph)ph.addEventListener("change",function(){var f=ph.files&&ph.files[0],m=E.ms();if(!f)return;if(!m||!m.updateMemberProfileImage){status("Change your photo from /account for now.","fail");return}busy=true;status("Uploading photo…","busy");m.updateMemberProfileImage({profileImage:f}).then(function(r){if(r&&r.data)E.member=r.data;busy=false;savedAt=Date.now();E.paintPreview();tick()}).catch(function(){busy=false;status("That photo did not upload. Try a smaller one.","fail")})});
+/* boot: fill from Memberstack, then mirror the four inputs the Memberstack form fills itself */
+var n=0,iv=setInterval(function(){var m=E.ms();if(!m){if(++n>40)clearInterval(iv);return}clearInterval(iv);
+ m.getCurrentMember().then(function(r){if(!r||!r.data)return;E.fill(r.data);if(E.loadStories)E.loadStories();
+  if(m.getMemberJSON)return m.getMemberJSON().then(function(j){E.fillJson(j&&j.data)}).catch(function(){})}).catch(function(){});
+ var k=0,iv2=setInterval(function(){var f=E.msField("name");if((f&&f.value)||++k>24){clearInterval(iv2);["name","home-base","bio-long","bio-short"].forEach(function(key){var el=E.msField(key);if(el&&el.value&&E.get(key)!==el.value)E.S[key]=el.value});E.paint()}},250);
+},200);
+})(window.TLLEP);
+</script>

@@ -1,0 +1,27 @@
+<!-- TLL member bar v1 (21 October 2026, Edit profile 3.4 D1.2). One HtmlEmbed for the top of /account, /edit-profile, /the-map and /my-pets,
+     placed at the top of the members-only content. Shows only to a signed-in member; the current page is underlined rose.
+     CONTRIBUTIONS and SETTINGS jump to those blocks on /account (#stories from the story edit build, #settings). Touches no data-ms-* element. -->
+<nav class="tll-mbar" data-tll-member-bar aria-label="Your TLL" hidden>
+<a href="/account" data-mbar="/account">OVERVIEW</a>
+<a href="/edit-profile" data-mbar="/edit-profile">PROFILE</a>
+<a href="/the-map" data-mbar="/the-map">MAP</a>
+<a href="/my-pets" data-mbar="/my-pets">PETS</a>
+<a href="/account#stories">CONTRIBUTIONS</a>
+<a href="/account#settings">SETTINGS</a>
+</nav>
+<style id="tll-mbar-css-v1">
+.tll-mbar{display:flex;align-items:center;gap:4px 20px;flex-wrap:wrap;border-bottom:1px solid #E0DACE;margin:0 0 32px;font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px}
+.tll-mbar[hidden]{display:none}
+.tll-mbar a{display:inline-flex;align-items:center;min-height:44px;padding:12px 0;margin-bottom:-1px;border-bottom:3px solid transparent;color:#5E5A54;text-decoration:none}
+.tll-mbar a[aria-current="page"]{color:#0A0B14;border-bottom-color:#F0507A}
+.tll-mbar a:hover{color:#0A0B14}
+.tll-mbar a:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+</style>
+<script id="tll-mbar-js-v1">
+(function(){var bar=document.querySelector('[data-tll-member-bar]');if(!bar)return;
+var path=location.pathname.replace(/\/$/,'')||'/';
+[].forEach.call(bar.querySelectorAll('a[data-mbar]'),function(a){if(a.getAttribute('data-mbar')===path)a.setAttribute('aria-current','page');});
+var t=0,iv=setInterval(function(){var m=window.$memberstackDom;if(!m){if(++t>40)clearInterval(iv);return;}clearInterval(iv);
+m.getCurrentMember().then(function(r){if(r&&r.data)bar.hidden=false;}).catch(function(){});},250);
+})();
+</script>
