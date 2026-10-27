@@ -148,10 +148,11 @@
   function yes(v){ return v===true||v==='true'||v==='on'||v==='yes'||v===1||v==='1'; }
   function has(v){ return typeof v==='string'?v.trim().length>0:(v!=null&&v!==false&&v!==''); }
   /* E3 (look build, 27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md): the same eight steps as this page's profile card and the /edit-profile developing card, read from the saved profile and the map. Nothing typed. */
-  function list(v){ return String(v||'').split(',').map(function(x){return x.trim();}).filter(Boolean); }
+  /* splitList, not list: this scope already has var list for the tab rail, and the function form was shadowed by it (found on the subdomain, 27 Oct). */
+  function splitList(v){ return String(v||'').split(',').map(function(x){return x.trim();}).filter(Boolean); }
   function mapSaved(j){ if(j&&j.tllSnapshot&&Number(j.tllSnapshot.places||0)>0) return true; try{ var s=JSON.parse(localStorage.getItem('tllStates')||'null'); return !!(s&&s.v===2&&s.states&&Object.keys(s.states).length); }catch(e){ return false; } }
   function checks(m,j){
-    var cf=(m&&m.customFields)||{}, ls=list(cf['links-shown']);
+    var cf=(m&&m.customFields)||{}, ls=splitList(cf['links-shown']);
     var links=['instagram-url','youtube-url','personal-website-url','tiktok-url','substack-url','strava-url','alltrails-url','komoot-url','garmin-url','beli-url'].filter(function(k){ return has(cf[k]); });
     var on=links.filter(function(k){ return !ls.length||ls.indexOf(k.replace(/-url$/,'').replace('personal-website','website'))>-1; }).length;
     /* Records saved by the older editor keep links in link-{name} with link-{name}-on; those count too, so nobody's done step flips back. */
@@ -160,8 +161,8 @@
       ['Photo','add a photo',has(m.profileImage),'/edit-profile#ep-who'],
       ['One line','write your one line',has(cf['one-line']),'/edit-profile#ep-who'],
       ['Home base','add your home base',has(cf['home-base'])||has(cf['lives-country']),'/edit-profile#ep-who'],
-      ['Flags you have lived under','add the flags you have lived under',list(cf['from-and-lived-in']).length>0,'/edit-profile#ep-who'],
-      ['Languages','add the languages you speak',list(cf.languages).length>0,'/edit-profile#ep-who'],
+      ['Flags you have lived under','add the flags you have lived under',splitList(cf['from-and-lived-in']).length>0,'/edit-profile#ep-who'],
+      ['Languages','add the languages you speak',splitList(cf.languages).length>0,'/edit-profile#ep-who'],
       ['Bio','write a short bio',has(cf['bio-long'])||has(cf['bio-short']),'/edit-profile#ep-about'],
       ['A link switched on','switch on a link',on>0,'/edit-profile#ep-links'],
       ['Your map saved','save your map',mapSaved(j),'/the-map']
