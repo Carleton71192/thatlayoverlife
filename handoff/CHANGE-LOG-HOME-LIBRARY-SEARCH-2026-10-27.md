@@ -1,0 +1,28 @@
+# Change log for approval: home library heading and search bar (27 October 2026)
+
+Nancy, 27 October 2026, on www.thatlayover.life at laptop size: "Some type is cut off" (the library heading), and "On the search bar it is still smooshed". Nothing in this log changes any words on the site. Both fixes are code only, on the home page.
+
+## What is wrong
+**H1. The library heading is cut off on shorter windows.**
+- On wide screens the library section "pins": it holds still while the cards slide sideways as you scroll.
+- The pinned area is one window tall, with its content centered top to bottom. The content is about 650px tall: the line "54 published so far · six of them here", the "The library." heading, then the cards.
+- When the window is shorter than that plus the 77px menu bar, the content spills past the top and bottom. The menu bar sits on top of the spill.
+- On a 1000 by 570 window (a laptop with the bookmarks bar showing), the top line sits 40px above the window. That is the cut you saw. The card titles are cut at the bottom too.
+
+**H2. The search bar is squeezed into a narrow centered column.**
+- A Designer style on the box around the search form caps it at 640px wide and centers it.
+- The 19 October fix (tll-home-search-left-v5) was meant to undo that cap. The box sits one level deeper than that fix expects, so it never applies.
+- So the field starts about 130px to the right of "Search it" and the Try chips. It is 512px wide, while the hint needs about 620px at that size, so "Search a country, a layover, a feeling…" shows as "Search a country, a…".
+
+## Changes (numbered for your reply)
+| # | Where | Change | Result |
+|---|---|---|---|
+| H1 | Home, the library embed (94ce12c0), its pin script and two CSS lines | The section pins only when its content fits the window under the menu bar. The pinned area also starts under the menu bar instead of behind it. When it doesn't fit (shorter windows), the section works as it does on tablets: the cards scroll sideways with a swipe or trackpad, and the hint reads "Swipe, they move sideways →" (the existing tablet wording). | Nothing in the library section is cut off at any window height. On tall screens it pins and slides as today. |
+| H2 | Home, the page head code tll-home-search-left-v5, one added rule (it becomes v6) | The box around the search form loses its 640px cap and its centering, so the field lines up with "Search it" and runs the full column width. | At 1000px wide the field is 772px, the whole hint shows, and it lines up with "Search it" and the Try chips. Phones keep their own rules (v4 and the 480px rule in v5). |
+
+Tested in my browser on www at 1000 by 570 by adding the CSS in the browser only (nothing saved): H2 gives the full hint, lined up with the left column. For H1, the unpinned look at that size shows the heading and cards whole. Before the Webflow write I test both again on a local copy at 1440 by 900, 1000 by 570 and 375px. Then a subdomain test publish for your look.
+
+## Who builds it
+Both changes are Webflow writes on the home page, which needs the Webflow connector and the lock. The Edit profile look session holds the lock now for E1 to E11, which does not touch the home page. Once it releases the lock, or you connect Webflow here, I take the lock, write H1 and H2, publish to the subdomain, and come to you before going live.
+
+Reply with the item numbers to approve or change.
