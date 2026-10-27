@@ -20,7 +20,11 @@ cover = dict(slug=fd['slug'], title=fd['name'], img=fd['hero-image']['url'], alt
              coords=t.get('coords', ''), posPhone=t.get('posPhone', '50% 50%'), posDesk=t.get('posDesk', '50% 50%'), phoneZoom=t.get('phoneZoom', '0%'),
              kicker="This week's cover", dek='Real places and real opinions, written by the people who went. Free to join, no card, no paywall.',
              button='Read the cover story')
+# the people strip: the contributors as the live library rail names them, with what they went to; Nancy is one byline among them
+PEOPLE = [dict(name='Chesney Lish', slug='chesney-lish', avatar=AUTHORS['6ab3fabd46f0ae8633ccb97f'][2], sub='Madrid and Ibiza'),
+          dict(name='Barzy Adam', slug='barzy-adam', avatar='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg', sub='Arizona'),
+          dict(name='Nancy Carleton', slug='nancy-carleton', avatar=AUTHORS['6a0be79e01ee7eff10102ce9'][2], sub='Editor · Copenhagen')]
 svg = re.search(r"var SVG='(.*?)';\n", (ROOT / 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html').read_text()).group(1)
-out = (D / 'cover.template.html').read_text().replace('/*COVER*/{}', json.dumps(cover, ensure_ascii=False)).replace("/*SVG*/''", "'" + svg + "'")
+out = (D / 'cover.template.html').read_text().replace('/*COVER*/{}', json.dumps(cover, ensure_ascii=False)).replace("/*SVG*/''", "'" + svg + "'").replace('/*PEOPLE*/[]', json.dumps(PEOPLE, ensure_ascii=False))
 (D / 'tll-mag-cover-v1.html').write_text(out)
 print('built tll-mag-cover-v1.html for', cover['slug'], 'by', cover['author'], len(out), 'bytes')
