@@ -1,0 +1,47 @@
+<script id="tll-ep-js-f">
+/* Edit profile v2, script part F (27 Oct 2026): the expat desks, moved out of part D for the embed size limit. U4 to U8 (26 Oct): From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. T1 to T3 (handoff/CHANGE-LOG-EDIT-PROFILE-DESKS-TWICE-2026-10-27.md): a desk holds up to three stints, saved in years as "2018–2021 · 2024–now"; "I live here now" belongs to the last stint; a country that already has a desk gets an Add stint offer. Loads after part D. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U4 to U8, T1 to T3: desks. In memory a desk is {c, st:[{from,to}], knows, now}; saved as {c, years, knows, now}. */
+var key="",undo=null,undoT=0,MAXST=3,want={};/* want: empty stints added but not yet typed, per country, since an empty stint does not survive the saved form */
+function parse(d){var st=String(d.years||"").split(/\s*[·,;]\s*/).map(function(y){var m=y.match(/\d{4}/g)||[];return {from:m[0]||"",to:/now/i.test(y)?"":(m[1]||"")}}).filter(function(s){return s.from||s.to}).slice(0,MAXST);if(!st.length)st=[{from:"",to:""}];return {c:d.c,st:st,knows:String(d.knows||""),now:!!d.now}}
+function stY(s,last,now){return s.from?(now&&last&&!s.to?s.from+"–now":(s.to?s.from+"–"+s.to:s.from)):(s.to||(now&&last?"now":""))}
+function saved(d){var y=d.st.map(function(s,i){return stY(s,i===d.st.length-1,d.now)}).filter(Boolean).join(" · ");return {c:d.c,years:y.slice(0,40),knows:d.knows.slice(0,160),now:!!d.now}}
+function list(){return (E.desksShown||[]).map(function(d){return {c:d.c,st:d.st.map(function(s){return {from:s.from,to:s.to}}),knows:d.knows,now:d.now}})}
+function put(D){E.set("desks",JSON.stringify(D.map(saved)))}
+function say(t,c){var m=$("[data-ep-desk-msg]");if(!m)return;m.textContent=t||"";var b=$("[data-ep-desk-stint-offer]");if(b){b.hidden=!c;if(c)b.setAttribute("data-ep-desk-stint-offer",c)}}
+function homeC(){var h=E.get("home-base");return {c:E.ccode(h.split(",").pop()),city:h.split(",")[0].trim()}}
+function warn(d,h){var l=d.st[d.st.length-1];if(d.now&&l.to)return {t:E.cname(d.c)+" says you live here now, but the years end in "+l.to+"."};if(h.c&&d.c===h.c&&!d.now)return {t:"Your home base is "+(h.city||E.cname(d.c))+". Mark "+E.cname(d.c)+" as I live here now?",b:1};return null}
+function val(el,v){if(el&&document.activeElement!==el&&el.value!==v)el.value=v}
+function stintHtml(n,i,k,many){return '<span class="ep-stint" data-ep-stint="'+k+'"><label>From<input data-ep-desk-from="'+i+'" data-k="'+k+'" inputmode="numeric" maxlength="4" placeholder="2018" autocomplete="off" aria-label="'+n+', stint '+(k+1)+', from year"></label><label>To<input data-ep-desk-to="'+i+'" data-k="'+k+'" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="'+n+', stint '+(k+1)+', to year"></label>'+(many?'<button type="button" class="ep-x ep-stint-x" data-ep-stint-rm="'+i+'" data-k="'+k+'" aria-label="Remove stint '+(k+1)+' from '+n+'">×</button>':'')+'</span>'}
+E.paintDesks=function(){var box=$("[data-ep-desks]"),lst=$("[data-ep-desklist]"),h=$("[data-ep-desks-h]"),off=$("[data-ep-desks-off]");if(!box)return;var on=E.get("list-expats")==="true";box.hidden=!on;if(off)off.hidden=on;if(!on)return;
+ var D;if(E.S.desks!=null)D=E.jsonList("desks").map(parse);else{var hc=homeC().c;D=E.list(E.get("from-and-lived-in")).filter(function(c){return c!==hc}).map(function(c){return {c:c,st:[{from:"",to:""}],knows:"",now:false}})}
+ D.forEach(function(d){while(d.st.length<Math.min(MAXST,want[d.c]||0))d.st.push({from:"",to:""})});
+ E.desksShown=D;if(h)h.textContent="YOUR EXPAT DESKS · "+D.length+(D.length===1?" PLACE":" PLACES");
+ var k=D.map(function(d){return d.c+":"+d.st.length}).join("|");
+ if(lst&&k!==key){key=k;lst.innerHTML=D.map(function(d,i){var n=esc(E.cname(d.c)),many=d.st.length>1;return '<div class="ep-desk" data-ep-desk="'+i+'"><div class="ep-desk-h"><span class="ep-fl" aria-hidden="true">'+E.flag(d.c)+'</span><b>'+n+'</b><span class="ep-desk-tag" data-ep-desk-tag></span><button type="button" class="ep-x" data-ep-desk-rm="'+i+'" aria-label="Remove '+n+'">×</button></div>'+
+  '<div class="ep-desk-g"><span class="ep-stints">'+d.st.map(function(s,kk){return stintHtml(n,i,kk,many)}).join("")+(d.st.length<MAXST?'<button type="button" class="ep-stint-add" data-ep-stint-add="'+i+'">+ Add another stint</button>':'')+'</span>'+
+  '<label class="ep-desk-k">What you know there<input data-ep-desk-knows="'+i+'" maxlength="160" placeholder="Visas, schools, dog parks" aria-label="What you know about '+n+'"><small data-ep-desk-n></small></label></div>'+
+  '<label class="ep-desk-c"><input type="checkbox" data-ep-desk-now="'+i+'"> I live here now</label><p class="ep-desk-warn" data-ep-desk-warn hidden><span></span> <button type="button" class="ep-x" data-ep-desk-mark="'+i+'" hidden>Mark it</button></p></div>'}).join("")}
+ var hc2=homeC();D.forEach(function(d,i){var row=$('[data-ep-desk="'+i+'"]');if(!row)return;d.st.forEach(function(s,kk){var last=kk===d.st.length-1;val($('[data-ep-desk-from="'+i+'"][data-k="'+kk+'"]',row),s.from);var to=$('[data-ep-desk-to="'+i+'"][data-k="'+kk+'"]',row);val(to,s.to);if(to)to.placeholder=d.now&&last?"now":"2021"});val($('[data-ep-desk-knows="'+i+'"]',row),d.knows);
+  $('[data-ep-desk-now="'+i+'"]',row).checked=d.now;$("[data-ep-desk-tag]",row).textContent=d.now?"LIVE HERE":"LIVED HERE";$("[data-ep-desk-tag]",row).setAttribute("data-on",d.now?"1":"0");$("[data-ep-desk-n]",row).textContent=d.knows.length+" of 160";
+  var w=warn(d,hc2),wp=$("[data-ep-desk-warn]",row);wp.hidden=!w;if(w){wp.firstChild.textContent=w.t;$("[data-ep-desk-mark]",wp).hidden=!w.b}})};
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target;if(!t.getAttribute)return;var f=["from","to","knows"].filter(function(x){return t.hasAttribute("data-ep-desk-"+x)})[0];if(!f)return;var D=list(),i=+t.getAttribute("data-ep-desk-"+f);if(!D[i])return;
+ if(f==="knows")D[i].knows=t.value.slice(0,160);else{var kk=+t.getAttribute("data-k"),s=D[i].st[kk];if(!s)return;s[f]=t.value.replace(/\D/g,"").slice(0,4);if(t.value!==s[f])t.value=s[f]}put(D)});
+wrap.addEventListener("change",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-ep-desk-now"))return;var D=list(),i=+t.getAttribute("data-ep-desk-now");if(!D[i])return;D[i].now=t.checked;if(t.checked)D[i].st[D[i].st.length-1].to="";put(D)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-desk-rm],[data-ep-desk-mark],[data-ep-desk-add],[data-ep-desk-undo-b],[data-ep-stint-add],[data-ep-stint-rm],[data-ep-desk-stint-offer]");if(!b)return;var D=list();
+ if(b.hasAttribute("data-ep-desk-mark")){var i=+b.getAttribute("data-ep-desk-mark");if(D[i]){D[i].now=true;D[i].st[D[i].st.length-1].to="";put(D)}return}
+ if(b.hasAttribute("data-ep-desk-add")){add();return}
+ if(b.hasAttribute("data-ep-stint-add")){var a=+b.getAttribute("data-ep-stint-add");if(D[a]&&D[a].st.length<MAXST){D[a].st.push({from:"",to:""});want[D[a].c]=D[a].st.length;put(D);E.paintDesks();var nf=$('[data-ep-desk-from="'+a+'"][data-k="'+(D[a].st.length-1)+'"]');if(nf)nf.focus()}return}
+ if(b.hasAttribute("data-ep-stint-rm")){var r=+b.getAttribute("data-ep-stint-rm"),rk=+b.getAttribute("data-k");if(D[r]&&D[r].st.length>1){D[r].st.splice(rk,1);want[D[r].c]=D[r].st.length;put(D);E.paintDesks()}return}
+ if(b.hasAttribute("data-ep-desk-stint-offer")){var oc=b.getAttribute("data-ep-desk-stint-offer"),oi=-1;D.forEach(function(d,x){if(d.c===oc)oi=x});if(oi>-1&&D[oi].st.length<MAXST){D[oi].st.push({from:"",to:""});want[oc]=D[oi].st.length;say("");put(D);E.paintDesks();var of=$('[data-ep-desk-from="'+oi+'"][data-k="'+(D[oi].st.length-1)+'"]');if(of){of.focus();of.scrollIntoView({block:"center"})}}else say("");return}
+ if(b.hasAttribute("data-ep-desk-undo-b")){if(undo){D.splice(Math.min(undo.i,D.length),0,undo.d);undo=null;showUndo("");put(D)}return}
+ var j=+b.getAttribute("data-ep-desk-rm");if(!D[j])return;undo={d:D[j],i:j};delete want[D[j].c];D.splice(j,1);showUndo("Removed "+E.cname(undo.d.c)+".");put(D)});
+function showUndo(t){var u=$("[data-ep-desk-undo]");clearTimeout(undoT);if(!u)return;u.hidden=!t;$("[data-ep-desk-undo-t]",u).textContent=t;if(t)undoT=setTimeout(function(){u.hidden=true;undo=null},10000)}
+var q=$("[data-ep-deskq]");
+function add(){if(!q)return;var v=q.value.trim();if(!v)return;var c=E.ccode(v),D=list();if(!c){say("No country by that name. Try the English name.");return}var had=D.filter(function(d){return d.c===c})[0];if(had){q.value="";if(had.st.length<MAXST)say(E.cname(c)+" already has a desk. Add another stint on it?",c);else say(E.cname(c)+" already has a desk with three stints.");return}if(D.length>=20){say("Twenty is the limit.");return}say("");D.push({c:c,st:[{from:"",to:""}],knows:"",now:false});q.value="";put(D)}
+if(q)q.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();add()}});
+E.paintDesks();
+})(window.TLLEP);
+</script>

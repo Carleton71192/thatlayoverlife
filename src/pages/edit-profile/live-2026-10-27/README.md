@@ -13,3 +13,11 @@ Placement for the writer, in DOM order inside the members-only block of the page
 - Sizes: 4,606, 5,266, 4,887 and 3,835 characters. Every other embed stays as in before/.
 
 /account's half of the build (E3) is src/pages/account/a3-account.js and src/pages/account/live-2026-10-27/page-footer-2026-10-27-after.html (the page footer code with the script replaced; before copy beside it).
+
+## T1 to T3, stints (27 October 2026, handoff/CHANGE-LOG-EDIT-PROFILE-DESKS-TWICE-2026-10-27.md)
+- after/85cbe1b9.html replaces script part D (the desks leave it; bar, labels and crew invite stay).
+- after/new-js-f.html is a new HtmlEmbed, script part F (the desks with stints), placed right after part D (85cbe1b9).
+- after/new-css-c3.html is a new HtmlEmbed, CSS part C3, placed right after CSS part C (8ec4d875).
+- after/4080e4be.html replaces the directories embed (adds the Add stint button under the desk message).
+- Worker: src/profile-sync.js desks years limit 40; redeploy tll-travel-wire after the page goes live (the old limit cuts a second stint).
+Independent of the E1 to E11 files above (2801598c, new-css-d, new-css-d2, new-js-e); both sets can be written in one lock.

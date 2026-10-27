@@ -19,3 +19,9 @@ D1. Once T1 is live, your Denmark desk needs the second stint added by you (the 
 On a local copy with a stand-in member, then on the Webflow subdomain: a desk with two stints saves as "2018–2021 · 2024–now", reads back into two pairs after a reload, the tag says LIVE HERE, no note shows; removing the second stint clears the dash and the note returns; the Worker accepts the 40-character years and still drops a second row for the same country; /expats shows the desk once. Then your signed-in look on the subdomain before the custom domains.
 
 Reply with the item numbers to approve or change.
+
+## Approved 27 October 2026
+Nancy: "Approve T1 to T3 as written".
+
+## Built in the repo, 27 October 2026 (not yet in Webflow)
+Files in src/pages/edit-profile/live-2026-10-27/after/: 85cbe1b9.html (script part D without the desks), new-js-f.html (script part F, the desks with stints; a new HtmlEmbed placed right after part D), new-css-c3.html (CSS part C3, a new HtmlEmbed placed right after CSS part C 8ec4d875) and 4080e4be.html (the directories embed with the Add stint button). The desks moved out of part D into part F because part D with stints was 11,600 characters, over the 10,000 embed limit. Worker: src/profile-sync.js years limit 11 to 40 (test added in test/profile-sync.test.js, 177 tests pass); needs a redeploy of tll-travel-wire from the repo. Tested on a local copy of the live page with a stand-in member: a second stint on Denmark saves as "2018–2021 · 2024–now", reads back as two pairs, the tag says LIVE HERE and the note clears; "Denmark already has a desk. Add another stint on it?" with Add stint; three stints is the limit; removing a stint saves; other desks untouched. The Webflow write waits for a session with the Webflow connector, like E1 to E11.

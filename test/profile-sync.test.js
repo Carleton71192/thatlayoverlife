@@ -58,6 +58,12 @@ describe('coerce', () => {
     expect(coerce('desks', 'not json')).toBeUndefined();
     expect(coerce('desks', '{"c":"pt"}')).toBeUndefined();
   });
+
+  it('keeps up to three stints in a desk and still one desk per country (T2)', () => {
+    const raw = JSON.stringify([{ c: 'dk', years: '2018–2021 · 2024–now', knows: 'Copenhagen', now: true }, { c: 'dk', years: '1990–1991', knows: '', now: false }, { c: 'br', years: '2000–2001 · 2005–2006 · 2010–2011 · 2015–2016', knows: '', now: false }]);
+    const out = JSON.parse(coerce('desks', raw));
+    expect(out).toEqual([{ c: 'dk', years: '2018–2021 · 2024–now', knows: 'Copenhagen', now: true }, { c: 'br', years: '2000–2001 · 2005–2006 · 2010–2011 · 2015', knows: '', now: false }]);
+  });
   it('writes option ids from a name or an id', () => {
     expect(coerce('credit-mode', 'Full')).toBe(OPTION_IDS['credit-mode'].Full);
     expect(coerce('credit-mode', 'pen')).toBe(OPTION_IDS['credit-mode'].Pen);

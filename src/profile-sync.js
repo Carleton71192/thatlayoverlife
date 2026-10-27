@@ -161,6 +161,7 @@ export function coerce(slug, raw) {
   }
   if (slug === 'desks') {
     // Expat desks (Edit profile 3.4, D7): one per place lived, as a JSON list of {c, years, knows, now}. Twenty at most.
+    // Years may hold up to three stints, "2018–2021 · 2024–now" (T2, 27 Oct 2026), so 40 characters.
     let list = text;
     if (typeof list === 'string') {
       if (list === '') return null;
@@ -174,7 +175,7 @@ export function coerce(slug, raw) {
       const c = String(d.c || '').toLowerCase();
       if (!/^[a-z]{2}$/.test(c) || seen.has(c)) continue;
       seen.add(c);
-      out.push({ c, years: String(d.years || '').slice(0, 11), knows: String(d.knows || '').slice(0, 160), now: d.now === true });
+      out.push({ c, years: String(d.years || '').slice(0, 40), knows: String(d.knows || '').slice(0, 160), now: d.now === true });
     }
     return out.length ? JSON.stringify(out) : null;
   }
