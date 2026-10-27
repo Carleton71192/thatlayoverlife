@@ -1,0 +1,379 @@
+<script id="tll-acct-counts-v1">
+/* tll-acct-counts-v1 (20 Oct 2026): the one count function for /account, per handoff/claude-design-source/COUNT-RULES.md.
+   One source: the member's saved map (member JSON tllStates), read once by the lists block below and handed to paint().
+   tllCounts() is the only place a number is computed and paint() the only place a card is written. Nothing is typed,
+   nothing polls, nothing writes member data. The hidden stat strip (.tll-account-stats, data-ms-member cells) is left
+   alone: it is display:none and no script reads it any more. Written is the member's own story cards on /stories,
+   counted once. Replaces the __tllAcctStats block (setStat, ataNote, the 350 ms poll) and cardCounts in the lists block. */
+(function(){
+  if(window.__tllAcctCounts) return; window.__tllAcctCounts=1;
+  var C2K={"533":"NA","004":"AS","024":"AF","660":"NA","248":"EU","008":"EU","020":"EU","784":"AS","032":"SA","051":"AS","016":"OC","028":"NA","036":"OC","040":"EU","031":"AS","108":"AF","056":"EU","204":"AF","535":"NA","854":"AF","050":"AS","100":"EU","048":"AS","044":"NA","070":"EU","652":"NA","112":"EU","084":"NA","060":"NA","068":"SA","076":"SA","052":"NA","096":"AS","064":"AS","074":"AN","072":"AF","140":"AF","124":"NA","166":"AS","756":"EU","152":"SA","156":"AS","384":"AF","120":"AF","180":"AF","178":"AF","184":"OC","170":"SA","174":"AF","132":"AF","188":"NA","192":"NA","531":"NA","162":"AS","136":"NA","196":"AS","203":"EU","276":"EU","262":"AF","212":"NA","208":"EU","214":"NA","012":"AF","218":"SA","818":"AF","232":"AF","724":"EU","233":"EU","231":"AF","246":"EU","242":"OC","238":"SA","250":"EU","234":"EU","583":"OC","266":"AF","826":"EU","268":"AS","831":"EU","288":"AF","292":"EU","324":"AF","312":"NA","270":"AF","624":"AF","226":"AF","300":"EU","308":"NA","304":"NA","320":"NA","254":"SA","316":"OC","328":"SA","344":"AS","334":"AN","340":"NA","191":"EU","332":"NA","348":"EU","360":"AS","833":"EU","356":"AS","086":"AS","372":"EU","364":"AS","368":"AS","352":"EU","376":"AS","380":"EU","388":"NA","832":"EU","400":"AS","392":"AS","398":"AS","404":"AF","417":"AS","116":"AS","296":"OC","659":"NA","410":"AS","414":"AS","418":"AS","422":"AS","430":"AF","434":"AF","662":"NA","438":"EU","144":"AS","426":"AF","440":"EU","442":"EU","428":"EU","446":"AS","663":"NA","504":"AF","492":"EU","498":"EU","450":"AF","462":"AS","484":"NA","584":"OC","807":"EU","466":"AF","470":"EU","104":"AS","499":"EU","496":"AS","580":"OC","508":"AF","478":"AF","500":"NA","474":"NA","480":"AF","454":"AF","458":"AS","175":"AF","516":"AF","540":"OC","562":"AF","574":"OC","566":"AF","558":"NA","570":"OC","528":"EU","578":"EU","524":"AS","520":"OC","554":"OC","512":"AS","586":"AS","591":"NA","604":"SA","608":"AS","585":"OC","598":"OC","616":"EU","630":"NA","408":"AS","620":"EU","600":"SA","275":"AS","258":"OC","634":"AS","638":"AF","642":"EU","643":"EU","646":"AF","682":"AS","729":"AF","686":"AF","702":"AS","239":"SA","654":"AF","744":"EU","090":"OC","694":"AF","222":"NA","674":"EU","706":"AF","666":"NA","688":"EU","728":"AF","678":"AF","740":"SA","703":"EU","705":"EU","752":"EU","748":"AF","690":"AF","760":"AS","796":"NA","148":"AF","768":"AF","764":"AS","762":"AS","772":"OC","795":"AS","776":"OC","780":"NA","788":"AF","792":"AS","798":"OC","158":"AS","834":"AF","800":"AF","804":"EU","858":"SA","840":"NA","860":"AS","670":"NA","862":"SA","092":"NA","850":"NA","704":"AS","548":"OC","876":"OC","882":"OC","887":"AS","710":"AF","894":"AF","716":"AF","010":"AN","260":"AN"};
+  var ATA='010';
+  function best(row,allow){ var b=''; Object.keys(row||{}).forEach(function(id){ if(allow&&!allow[id]) return; var v=row[id]; if(v==='lived') b='lived'; else if(v==='visited'){ if(b!=='lived') b='visited'; } else if(v==='layover'&&!b) b='layover'; }); return b; }
+  /* The count function. Human travelers make the member's numbers; pets count on their own. Lived and Stayed make
+     places; Antarctica (010) is a place but not a country; layover-only places are counted apart and never added. */
+  function tllCounts(d){
+    var out={places:0,countries:0,ata:false,layovers:0,lived:0,stayed:0,continents:0,pets:[],travelers:0,ok:false};
+    if(!d||d.v!==2||!d.states) return out;
+    out.ok=true;
+    var hum={},any=false,pets=[];
+    (d.travelers||[]).forEach(function(t){ if(!t) return; out.travelers++; if(t.pet) pets.push({id:t.id,name:t.name||'Pet',stamps:0,ata:false}); else { hum[t.id]=1; any=true; } });
+    var conts={};
+    Object.keys(d.states).forEach(function(k){
+      var row=d.states[k]||{};
+      var b=best(row,any?hum:null);
+      if(b==='lived'||b==='visited'){
+        if(k===ATA) out.ata=true; else { out.countries++; if(b==='lived') out.lived++; else out.stayed++; }
+        var c=C2K[k]; if(c) conts[c]=1;
+      } else if(b==='layover') out.layovers++;
+      pets.forEach(function(p){ if(row[p.id]){ if(k===ATA) p.ata=true; else p.stamps++; } });
+    });
+    out.places=out.countries+(out.ata?1:0);
+    out.continents=Object.keys(conts).length;
+    out.pets=pets;
+    return out;
+  }
+  function $(s,r){ return (r||document).querySelector(s); }
+  function countEl(lbl){ var n=lbl.parentNode.firstElementChild; while(n){ if(n!==lbl&&n.classList&&n.classList.contains('tll-mod-count')) return n; n=n.nextElementSibling; } return null; }
+  /* put(): one number per card, as a sibling right after the label (the page CSS adds " of 249" to the Logged one).
+     null removes the number: with no saved map the card shows nothing rather than a guess. */
+  function put(sel,val){
+    var lbl=$(sel); if(!lbl) return null;
+    var c=countEl(lbl);
+    if(val===null||val===undefined||val===''){ if(c) c.parentNode.removeChild(c); return null; }
+    if(!c){ c=document.createElement('div'); c.className='tll-mod-count'; lbl.parentNode.insertBefore(c,lbl.nextSibling); }
+    var s=String(val); if(c.textContent!==s) c.textContent=s;
+    return c;
+  }
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmtDate(t){ t=+t||0; if(!t) return ''; var d=new Date(t); return d.getDate()+' '+MON[d.getMonth()]+' '+d.getFullYear(); }
+  /* Last saved: the stamp the map editor writes after a successful save (json.tllStatesAt). */
+  function saved(t){
+    var lbl=$('[data-tll-mod=countries]'); if(!lbl) return;
+    var card=lbl.parentNode, el=card.querySelector('.tll-mod-saved'), txt=t?('Last saved '+fmtDate(t)):'';
+    if(!txt){ if(el) el.parentNode.removeChild(el); return; }
+    if(!el){ el=document.createElement('div'); el.className='tll-mod-saved'; el.style.cssText="margin:6px 16px 0;font:600 11px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.06em;color:#b8b4ad"; var c=countEl(lbl); card.insertBefore(el,(c||lbl).nextSibling); }
+    if(el.textContent!==txt) el.textContent=txt;
+  }
+  var cur=null;
+  /* paint(): the only writer of the cards. Logged = places (Antarctica inside, "of 249" from the page CSS).
+     Pawed = number of pets, plus the one-pet body line. Written is written by stories() below. */
+  function paint(d,json){
+    var c=tllCounts(d); cur=c;
+    put('[data-tll-mod=countries]', c.ok?c.places:null);
+    put('[data-tll-mod=pets]', c.ok?c.pets.length:null);
+    if(c.pets.length===1){ var p=c.pets[0], pl=$('[data-tll-mod=pets]'), body=pl&&pl.parentNode.querySelector('.tll-pickin-card-body'); if(body) body.textContent=p.name+' · '+p.stamps+(p.stamps===1?' country':' countries')+(p.ata?' + AQ':'')+' and zero complaints.'; }
+    saved(json&&json.tllStatesAt);
+    return c;
+  }
+  /* stories(): Written = the member's own story cards on /stories (author slug rule, one per story URL), counted once. */
+  var storiesDone=false;
+  function slugOf(m){ var f=(m&&m.customFields)||{}; var s=f['custom-slug']||((f['first-name']||'')+' '+(f['last-name']||'')); return String(s||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+  function stories(member){
+    if(storiesDone||!member) return; var slug=slugOf(member); if(!slug) return; storiesDone=true;
+    fetch('/stories',{credentials:'same-origin'}).then(function(r){ return r.text(); }).then(function(h){
+      var doc=new DOMParser().parseFromString(h,'text/html'), seen={}, n=0;
+      [].forEach.call(doc.querySelectorAll('a[data-tll-card]'),function(a){ var au=a.querySelector('[data-tll-author]'), href=a.getAttribute('href')||''; if(!au||(au.textContent||'').trim()!==slug||seen[href]) return; seen[href]=1; n++; });
+      put('[data-tll-mod=stories]', n);
+    }).catch(function(){ storiesDone=false; });
+  }
+  window.tllAcctCounts={count:tllCounts,paint:paint,stories:stories,current:function(){ return cur; }};
+  /* Kept for anything that still calls the old name. Same numbers, old field names. */
+  window.tllOwn=function(d){ var c=tllCounts(d); return {n:c.countries,lived:c.lived,stayed:c.stayed,layover:c.layovers,ata:c.ata}; };
+})();
+</script>
+<script>
+/* tll-acct-lists-v1.4 (20 Oct 2026: counts moved to tll-acct-counts-v1 above; the saved map in member JSON is the source, the browser copy only a fallback; cardCounts gone). v1.3 (9 Oct 2026: every list gets a tab, a remove button and the Log a place form below) : card counts (LOGGED, PAWED), Your lists sticker sheet, Layover Wrapped with quiet-year fallback (22 Oct 2026: headline Your map, so far. and COUNTRIES ON YOUR MAP, approved by Nancy), wrapped-hidden switch. Reads tllStates (map-only key, never written here), tllPlaces and tllLists from member JSON. v1.1 (30 Sep 2026): tllPlaces values may be the string "want" or the country page's object {state,name,at}; keys may be ISO2, numeric or a kebab country name (resolved to a flag through Intl.DisplayNames). */
+(function(){
+  if(window.__tllAcctLists) return; window.__tllAcctLists=1;
+  var N2A={"004":"AF","248":"AX","008":"AL","012":"DZ","016":"AS","020":"AD","024":"AO","660":"AI","010":"AQ","028":"AG","032":"AR","051":"AM","533":"AW","036":"AU","040":"AT","031":"AZ","044":"BS","048":"BH","050":"BD","052":"BB","112":"BY","056":"BE","084":"BZ","204":"BJ","060":"BM","064":"BT","068":"BO","070":"BA","072":"BW","076":"BR","096":"BN","100":"BG","854":"BF","108":"BI","116":"KH","120":"CM","124":"CA","132":"CV","140":"CF","148":"TD","152":"CL","156":"CN","170":"CO","174":"KM","178":"CG","180":"CD","184":"CK","188":"CR","384":"CI","191":"HR","192":"CU","196":"CY","203":"CZ","208":"DK","262":"DJ","212":"DM","214":"DO","218":"EC","818":"EG","222":"SV","226":"GQ","232":"ER","233":"EE","231":"ET","238":"FK","234":"FO","242":"FJ","246":"FI","250":"FR","254":"GF","258":"PF","266":"GA","270":"GM","268":"GE","276":"DE","288":"GH","292":"GI","300":"GR","304":"GL","308":"GD","320":"GT","324":"GN","624":"GW","328":"GY","332":"HT","340":"HN","344":"HK","348":"HU","352":"IS","356":"IN","360":"ID","364":"IR","368":"IQ","372":"IE","376":"IL","380":"IT","388":"JM","392":"JP","400":"JO","398":"KZ","404":"KE","296":"KI","408":"KP","410":"KR","414":"KW","417":"KG","418":"LA","428":"LV","422":"LB","426":"LS","430":"LR","434":"LY","438":"LI","440":"LT","442":"LU","446":"MO","807":"MK","450":"MG","454":"MW","458":"MY","462":"MV","466":"ML","470":"MT","584":"MH","478":"MR","480":"MU","484":"MX","583":"FM","498":"MD","492":"MC","496":"MN","499":"ME","504":"MA","508":"MZ","104":"MM","516":"NA","520":"NR","524":"NP","528":"NL","540":"NC","554":"NZ","558":"NI","562":"NE","566":"NG","570":"NU","578":"NO","512":"OM","586":"PK","585":"PW","275":"PS","591":"PA","598":"PG","600":"PY","604":"PE","608":"PH","616":"PL","620":"PT","630":"PR","634":"QA","638":"RE","642":"RO","643":"RU","646":"RW","659":"KN","662":"LC","670":"VC","882":"WS","674":"SM","678":"ST","682":"SA","686":"SN","688":"RS","690":"SC","694":"SL","702":"SG","703":"SK","705":"SI","090":"SB","706":"SO","710":"ZA","728":"SS","724":"ES","144":"LK","729":"SD","740":"SR","748":"SZ","752":"SE","756":"CH","760":"SY","158":"TW","762":"TJ","834":"TZ","764":"TH","626":"TL","768":"TG","772":"TK","776":"TO","780":"TT","788":"TN","792":"TR","795":"TM","800":"UG","804":"UA","784":"AE","826":"GB","840":"US","858":"UY","860":"UZ","548":"VU","862":"VE","704":"VN","732":"EH","887":"YE","894":"ZM","716":"ZW","531":"CW","798":"TV"};
+  var DN=null; try{DN=new Intl.DisplayNames(['en'],{type:'region'});}catch(e){}
+  var NAME2A=null;
+  function norm(s){ return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+  function byName(k){ if(!DN) return ''; if(!NAME2A){ NAME2A={}; Object.keys(N2A).forEach(function(n){ var a=N2A[n]; try{ NAME2A[norm(DN.of(a))]=a; }catch(e){} }); NAME2A['turkiye']='TR'; NAME2A['czech-republic']='CZ'; NAME2A['ivory-coast']='CI'; NAME2A['dr-congo']='CD'; NAME2A['republic-of-the-congo']='CG'; NAME2A['cape-verde']='CV'; NAME2A['eswatini']='SZ'; NAME2A['united-kingdom']='GB'; NAME2A['united-states']='US'; NAME2A['north-macedonia']='MK'; NAME2A['south-korea']='KR'; NAME2A['north-korea']='KP'; NAME2A['russia']='RU'; NAME2A['vietnam']='VN'; NAME2A['laos']='LA'; NAME2A['syria']='SY'; NAME2A['iran']='IR'; NAME2A['bolivia']='BO'; NAME2A['moldova']='MD'; NAME2A['tanzania']='TZ'; NAME2A['palestine']='PS'; NAME2A['myanmar']='MM'; NAME2A['brunei']='BN'; NAME2A['timor-leste']='TL'; NAME2A['vatican-city']='VA'; } return NAME2A[norm(k)]||''; }
+  function a2(c){c=String(c||'').trim(); if(/^\d{1,3}$/.test(c)) return N2A[c.padStart(3,'0')]||''; if(/^[A-Za-z]{2}$/.test(c)) return c.toUpperCase(); return byName(c);}
+  function flag(a){return a?a.replace(/./g,function(ch){return String.fromCodePoint(127397+ch.charCodeAt(0));}):'';}
+  function nameOf(a,raw){ if(a&&DN){ try{ var n=DN.of(a); if(n&&n!==a) return n; }catch(e){} } return raw||a; }
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var states=null, json={}, member=null;
+  function getStates(cb){ var mj=(json&&json.tllStates&&json.tllStates.v===2&&json.tllStates.states)?json.tllStates:null; if(member&&mj){cb(mj);return;} var ls=null; try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){} if(ls&&ls.v===2&&ls.states){cb(ls);return;} cb(mj); }
+  function petStamps(){ if(!states) return []; var pets=(states.travelers||[]).filter(function(t){return t&&t.pet;}); var out=[]; Object.keys(states.states||{}).forEach(function(code){ var e=states.states[code]; pets.forEach(function(p){ if(e&&e[p.id]){ var a=a2(code); out.push({a:a,name:nameOf(a,code),meta:String(p.name||'PET').toUpperCase()}); } }); }); return out; }
+  function placeState(v){ return typeof v==='string'?v:(v&&v.state)||''; }
+  function wantList(){ var pl=(json&&json.tllPlaces)||{}; return Object.keys(pl).filter(function(k){return placeState(pl[k])==='want';}).map(function(k){ var v=pl[k]; var a=a2(k); var nm=(v&&v.name)||nameOf(a,k.replace(/-/g,' ')); return {a:a,name:nm,meta:'SOMEDAY'}; }); }
+  var META={airports:'AIRPORT',marathons:'RUN',parks:'PARK',bridges:'BRIDGE',labyrinths:'LABYRINTH',ports:'PORT',cities:'CITY',unesco:'UNESCO',landmarks:'LANDMARK'};
+  function listOf(k){ var L=(json&&json.tllLists)||{}; var arr=L[k]||[]; return arr.map(function(x,i){ var nm=typeof x==='string'?x:(x.city||x.name||x.slug||''); var yr=typeof x==='string'?'':(x.year||''); return {a:'',name:nm+(yr?' · '+yr:''),meta:META[k]||k.toUpperCase(),idx:i,list:k}; }); }
+  var EMPTY={countries:'No countries logged yet. Tap a country on your map and mark it Lived, Stayed, or Layover only.', pets:'No pet stamps yet. Add your pet as a traveler on the map and mark the countries you crossed together.', want:'Nothing on the someday list yet. Tap "Want to go" on any story or country page.', airports:'No airports logged yet. Add one below.', marathons:'No marathons logged yet. Add them one stamp at a time, finish line first.', parks:'No parks logged yet. Walk one, then log it.', bridges:'No bridges logged yet. Add one below.', labyrinths:'No labyrinths logged yet. Add one below.', ports:'No ports logged yet. Add one below.', cities:'No cities logged yet. Add one below.', unesco:'No UNESCO sites logged yet. Add one below.', landmarks:'No landmarks logged yet. Add one below.'};
+  function myCountries(){ if(!states) return []; var hum={},any=0; (states.travelers||[]).forEach(function(t){ if(t&&!t.pet){ hum[t.id]=1; any=1; } }); var out=[]; Object.keys(states.states||{}).forEach(function(code){ var row=states.states[code]||{}, best=''; Object.keys(row).forEach(function(id){ if(any&&!hum[id]) return; var v=row[id]; if(v==='lived') best='lived'; else if(v==='visited'){ if(best!=='lived') best='visited'; } else if(v==='layover'&&!best) best='layover'; }); if(!best) return; var a=a2(code); out.push({a:a,name:nameOf(a,code),meta:best==='lived'?'LIVED':best==='visited'?'STAYED':'LAYOVER ONLY',rank:best==='lived'?0:best==='visited'?1:2}); }); out.sort(function(x,y){ return x.rank-y.rank||x.name.localeCompare(y.name); }); return out; }
+  function data(k){ return k==='countries'?myCountries():k==='pets'?petStamps():k==='want'?wantList():listOf(k); }
+  function renderTabs(){ [].slice.call(document.querySelectorAll('[data-tll-ls-tab]')).forEach(function(a){ var k=a.getAttribute('data-tll-ls-tab'); var base=a.getAttribute('data-tll-base')||a.textContent.replace(/\s*·\s*\d+$/,''); a.setAttribute('data-tll-base',base); a.textContent=base+' · '+data(k).length; }); }
+  function renderSheet(k){ var ul=$('[data-tll-ls=sheet]'), em=$('[data-tll-ls=empty]'); if(!ul) return; ul.innerHTML=''; var tilt=[-3,2,-1,3,-2,1]; data(k).forEach(function(it,i){ var li=document.createElement('li'); li.style.transform='rotate('+tilt[i%6]+'deg)'; var f=document.createElement('i'); f.textContent=it.a?flag(it.a):'📍'; var d=document.createElement('div'); var b=document.createElement('b'); b.textContent=it.name; var s=document.createElement('small'); s.textContent=it.meta; d.appendChild(b); d.appendChild(s); li.appendChild(f); li.appendChild(d); if(it.list){ var x=document.createElement('button'); x.type='button'; x.className='tll-ls-rm'; x.setAttribute('data-tll-ls-rm',it.list+':'+it.idx); x.setAttribute('aria-label','Remove '+it.name); x.textContent='×'; li.appendChild(x); } ul.appendChild(li); }); if(em) em.textContent=EMPTY[k]||''; [].slice.call(document.querySelectorAll('[data-tll-ls-tab]')).forEach(function(a){ a.setAttribute('aria-selected', a.getAttribute('data-tll-ls-tab')===k?'true':'false'); }); }
+  /* cardCounts moved to tll-acct-counts-v1 (paint). */
+  var loaded=false;
+  function wrapped(){ if(!states&&!loaded) return; var yr=new Date().getFullYear(); var o=window.tllAcctCounts.count(states),n=o.countries,ata=!!o.ata; var ps=petStamps(), w=wantList(); var quiet=(n===0&&!ata&&ps.length===0&&w.length===0); var h=$('[data-tll-wr=headline]'), dl=$('[data-tll-wr=stats]'); if(h) h.textContent=quiet?'0 countries, 100% couch.':'Your map, so far.'; if(dl){ dl.innerHTML=''; var rows=quiet?[['COUNTRIES ON YOUR MAP','0'],['NAPS TAKEN','Uncounted'],['REGRETS','None']]:[['COUNTRIES ON YOUR MAP',String(n)+(ata?' + AQ':'')],['PET STAMPS',ps.length?ps.length+' · '+ps[0].meta:'0'],['ON THE SOMEDAY LIST',String(w.length)]]; rows.forEach(function(r){ var d=document.createElement('div'); var dt=document.createElement('dt'); dt.textContent=r[0]; var dd=document.createElement('dd'); dd.textContent=r[1]; d.appendChild(dt); d.appendChild(dd); dl.appendChild(d); }); } }
+  function hiddenFlag(){ var cf=member&&member.customFields||{}; var v=cf['wrapped-hidden']; if(v===undefined||v===null||v==='') v=json&&json.wrappedHidden; return v===true||v==='true'; }
+  function paintHide(){ var a=$('[data-tll-wr=hide]'); if(!a) return; var hid=hiddenFlag(); a.textContent=hid?'Hidden from your crew':'Visible to your crew'; a.setAttribute('aria-pressed',hid?'true':'false'); }
+  function wireHide(){ var a=$('[data-tll-wr=hide]'), msg=$('[data-tll-wr=msg]'); if(!a||a.__tll) return; a.__tll=1; a.addEventListener('click',function(e){ e.preventDefault(); var ms=window.$memberstackDom; if(!ms||!member){ if(msg) msg.textContent='Sign in to change this.'; return; } var next=!hiddenFlag(); if(msg) msg.textContent='Saving…'; ms.updateMember({customFields:{'wrapped-hidden':next}}).then(function(r){ member=r&&r.data||member; if(member){ member.customFields=member.customFields||{}; member.customFields['wrapped-hidden']=next; } paintHide(); if(msg) msg.textContent='Saved.'; }).catch(function(){ var j={}; for(var k in json) j[k]=json[k]; j.wrappedHidden=next; return ms.updateMemberJSON({json:j}).then(function(){ json=j; paintHide(); if(msg) msg.textContent='Saved.'; }).catch(function(){ if(msg) msg.textContent='Could not save. Try again in a moment.'; }); }); }); }
+  function wireTabs(){ [].slice.call(document.querySelectorAll('[data-tll-ls-tab]')).forEach(function(a){ if(a.__tll) return; a.__tll=1; a.addEventListener('click',function(e){ e.preventDefault(); renderSheet(a.getAttribute('data-tll-ls-tab')); }); }); }
+  function paint(){ renderTabs(); var cur=$('[data-tll-ls-tab][aria-selected=true]'); renderSheet(cur?cur.getAttribute('data-tll-ls-tab'):'countries'); window.tllAcctCounts.paint(states,json); if(member) window.tllAcctCounts.stories(member); wrapped(); paintHide(); }
+  function take(s){ if(s||!states) states=s; }
+  function load(){ var ms=window.$memberstackDom; if(!ms){ getStates(function(s){take(s); paint();}); return Promise.resolve(); } return ms.getCurrentMember().then(function(r){ member=r&&r.data||null; if(!member){ loaded=true; getStates(function(s){take(s); paint();}); return; } return ms.getMemberJSON().then(function(mj){ json=(mj&&mj.data)||{}; loaded=true; getStates(function(s){take(s); paint();}); }); }).catch(function(){ getStates(function(s){take(s); paint();}); }); }
+  window.tllAcctLists={reload:load,show:renderSheet,json:function(){return json;},member:function(){return member;}};
+  wireTabs(); wireHide(); paint();
+  var tries=0, iv=setInterval(function(){ tries++; if(window.$memberstackDom||tries>30){ clearInterval(iv); load(); } },300);
+})();
+</script>
+
+<style id="tll-acct-log-css">
+/* Log a place (9 Oct 2026, Nancy: "There is no where to add all of the other options: Airports, bridges, labyrinths, etc."). Writes tllLists[list] in member JSON; countries stay map-only. */
+[data-tll-log]{margin-top:22px;padding:18px 18px 16px;border:1.5px dashed #c9b89a;border-radius:16px;background:#FDF9F3}
+[data-tll-log] h3{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1.15;margin:0 0 4px;color:#0A0B14}
+[data-tll-log] p{margin:0 0 14px;font-size:14px;line-height:1.5;color:#6B6660}
+.tll-log-row{display:grid;grid-template-columns:150px 1fr 90px auto;gap:10px;align-items:end}
+@media(max-width:700px){.tll-log-row{grid-template-columns:1fr 1fr}.tll-log-row>:nth-child(2){grid-column:1/-1}}
+.tll-log-row label{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;margin:0 0 6px}
+.tll-log-row select,.tll-log-row input{width:100%;box-sizing:border-box;height:44px;padding:0 12px;border:1.5px solid #c9b89a;border-radius:10px;background:#fff;color:#0A0B14;font:500 15px 'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;-webkit-appearance:none;appearance:none}
+.tll-log-row select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230A0B14' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 12px center no-repeat;padding-right:34px}
+.tll-log-row select:focus-visible,.tll-log-row input:focus-visible,.tll-log-row button:focus-visible,.tll-ls-rm:focus-visible{outline:3px solid #D63859;outline-offset:2px}
+.tll-log-row button{height:44px;padding:0 18px;border:0;border-radius:999px;background:#0A0B14;color:#F7F1E8;font:700 13px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;cursor:pointer;transition:transform .12s ease,background .15s ease}
+.tll-log-row button:hover{background:#D63859}.tll-log-row button:active{transform:scale(.97)}
+.tll-log-row button[disabled]{opacity:.55;cursor:default}
+[data-tll-log-msg]{margin:10px 0 0;min-height:1.4em;font-size:13px;color:#6B6660}
+[data-tll-log-msg][data-tone="err"]{color:#B3122F}
+[data-tll-ls="sheet"] li{position:relative}
+.tll-ls-rm{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:1.5px solid #c9b89a;background:#FDF9F3;color:#0A0B14;font:700 14px/1 system-ui,sans-serif;cursor:pointer;opacity:0;transition:opacity .12s ease}
+[data-tll-ls="sheet"] li:hover .tll-ls-rm,[data-tll-ls="sheet"] li:focus-within .tll-ls-rm{opacity:1}
+@media(hover:none){.tll-ls-rm{opacity:1}}
+@media(prefers-reduced-motion:reduce){.tll-log-row button,.tll-ls-rm{transition:none}}
+</style>
+<script id="tll-acct-log-js">
+(function(){
+  if(window.__tllAcctLog) return; window.__tllAcctLog=1;
+  var LISTS=[['airports','Airports'],['cities','Cities'],['bridges','Bridges'],['labyrinths','Labyrinths'],['ports','Ports'],['parks','Parks'],['unesco','UNESCO sites'],['landmarks','Landmarks'],['marathons','Marathons']];
+  var $=function(s,r){return (r||document).querySelector(s);};
+  function tabsFill(){ var tl=$('[data-tll-ls=tabs]'); if(!tl) return; var ref=tl.querySelector('[data-tll-ls-tab]'); LISTS.forEach(function(L){ if(tl.querySelector('[data-tll-ls-tab="'+L[0]+'"]')) return; var a=document.createElement('a'); a.href='#'; a.setAttribute('role','tab'); a.setAttribute('aria-selected','false'); a.setAttribute('data-tll-ls-tab',L[0]); a.setAttribute('data-tll-base',L[1]); a.className=ref?ref.className:''; a.textContent=L[1]; tl.appendChild(a); a.addEventListener('click',function(e){ e.preventDefault(); if(window.tllAcctLists) window.tllAcctLists.show(L[0]); }); }); }
+  function build(){ var inner=$('[data-tll-ls=inner]'); if(!inner||$('[data-tll-log]')) return; var w=document.createElement('div'); w.setAttribute('data-tll-log','1');
+    w.innerHTML='<h3>Log a place</h3><p>Airports, cities, bridges, labyrinths, ports, parks, UNESCO sites, landmarks, marathons. Countries are logged on your map.</p>'
+      +'<form class="tll-log-row" data-tll-log-form novalidate><div><label for="tll-log-list">List</label><select id="tll-log-list" name="list">'+LISTS.map(function(L){return '<option value="'+L[0]+'">'+L[1]+'</option>';}).join('')+'</select></div>'
+      +'<div><label for="tll-log-name">Place</label><input id="tll-log-name" name="name" type="text" maxlength="80" autocomplete="off" placeholder="Keflavík, Golden Gate, Chartres"></div>'
+      +'<div><label for="tll-log-year">Year</label><input id="tll-log-year" name="year" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2024"></div>'
+      +'<div><button type="submit">ADD</button></div></form><p data-tll-log-msg aria-live="polite"></p>';
+    inner.appendChild(w);
+    var f=$('[data-tll-log-form]',w), msg=$('[data-tll-log-msg]',w), btn=$('button',f);
+    function say(t,err){ msg.textContent=t; if(err) msg.setAttribute('data-tone','err'); else msg.removeAttribute('data-tone'); }
+    f.addEventListener('submit',function(e){ e.preventDefault(); var ms=window.$memberstackDom; var k=f.list.value, nm=f.name.value.trim(), yr=f.year.value.trim();
+      if(!nm){ say('Give the place a name first.',1); f.name.focus(); return; }
+      if(yr&&!/^\d{4}$/.test(yr)){ say('Year is four digits, or leave it empty.',1); f.year.focus(); return; }
+      if(!ms||!(window.tllAcctLists&&window.tllAcctLists.member())){ say('Sign in to log places.',1); return; }
+      btn.disabled=true; say('Saving…');
+      ms.getMemberJSON().then(function(mj){ var j=(mj&&mj.data)||{}; var L=j.tllLists||{}; var arr=(L[k]||[]).slice(); var dup=arr.some(function(x){ var n=typeof x==='string'?x:(x.name||x.city||''); return n.toLowerCase()===nm.toLowerCase(); }); if(dup){ say(nm+' is already on that list.',1); btn.disabled=false; return; } var row={name:nm,at:new Date().toISOString().slice(0,10)}; if(yr) row.year=yr; arr.push(row); L[k]=arr; j.tllLists=L; return ms.updateMemberJSON({json:j}).then(function(){ f.name.value=''; f.year.value=''; say('Added. '+nm+' is on your '+k+' list.'); btn.disabled=false; return window.tllAcctLists.reload(); }).then(function(){ window.tllAcctLists.show(k); }); }).catch(function(){ say('Could not save. Try again in a moment.',1); btn.disabled=false; }); });
+  }
+  document.addEventListener('click',function(e){ var b=e.target.closest('[data-tll-ls-rm]'); if(!b) return; e.preventDefault(); var p=b.getAttribute('data-tll-ls-rm').split(':'), k=p[0], i=+p[1]; var ms=window.$memberstackDom, msg=$('[data-tll-log-msg]'); if(!ms) return; var name=(b.getAttribute('aria-label')||'').replace(/^Remove /,''); if(!window.confirm('Remove '+name+' from your '+k+' list?')) return; b.disabled=true;
+    ms.getMemberJSON().then(function(mj){ var j=(mj&&mj.data)||{}; var L=j.tllLists||{}; var arr=(L[k]||[]).slice(); if(i<0||i>=arr.length) return; arr.splice(i,1); L[k]=arr; j.tllLists=L; return ms.updateMemberJSON({json:j}).then(function(){ if(msg) msg.textContent='Removed '+name+'.'; return window.tllAcctLists.reload(); }).then(function(){ window.tllAcctLists.show(k); }); }).catch(function(){ if(msg) msg.textContent='Could not remove it. Try again in a moment.'; b.disabled=false; }); });
+  function run(){ tabsFill(); build(); if(window.tllAcctLists) window.tllAcctLists.reload(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
+<script id="tll-a3-account-js-v1">
+/* tll-a3-account-js-v1 · Account 3.0 (approved by Nancy 12 Oct 2026, "Go with defaults").
+   Builds the tab rail, the hero status line and action row, the profile progress, Finish your profile, the panel headings,
+   the list rule lines and the signed-out gate lines. Reads Memberstack with getCurrentMember only. Never calls updateMember,
+   updateMemberJSON or anything that writes tllStates, tllPlaces or tllLists. Nothing is moved: tabs show and hide existing parts. */
+(function(){
+  if(window.__tllA3) return; window.__tllA3=1;
+  var d=document, H=d.documentElement;
+  function $(s,r){return (r||d).querySelector(s);}
+  function $$(s,r){return [].slice.call((r||d).querySelectorAll(s));}
+  function el(tag,attrs,txt){var e=d.createElement(tag); if(attrs){for(var k in attrs){e.setAttribute(k,attrs[k]);}} if(txt!=null) e.textContent=txt; return e;}
+  function after(ref,node){ if(ref&&ref.parentNode) ref.parentNode.insertBefore(node,ref.nextSibling); }
+
+  /* A13: signed-out gate lines and a way back. Runs for everyone; the gate card only shows to signed-out visitors. */
+  function gate(){
+    var card=$('[data-ms-content="anonymous"] .tll-account-gateout-card'); if(!card||$('.a3-gate',card)) return;
+    var w=el('div',{'class':'a3-gate'});
+    w.appendChild(el('p',{'class':'a3-gate-k'},'Behind the sign-in'));
+    var ul=el('ul');
+    ['Your map, counted out of 249.','Your lists and your Layover Wrapped.','Your share card, and who gets to see it.'].forEach(function(t){ ul.appendChild(el('li',null,t)); });
+    w.appendChild(ul);
+    var btns=$('.tll-account-gateout-buttons',card);
+    if(btns) card.insertBefore(w,btns); else card.appendChild(w);
+    card.appendChild(el('a',{href:'/stories','class':'a3-gate-back'},'Back to the stories →'));
+  }
+  gate();
+
+  var M=$('[data-ms-content="members"]'); if(!M) return;
+  function top(n){ while(n&&n.parentNode&&n.parentNode!==M) n=n.parentNode; return (n&&n.parentNode===M)?n:null; }
+  var hero=$('.tll-account-hero',M);
+  var actions=$('.tll-account-actions-section',M);
+  var card1=actions&&$('.tll-pickin-card',actions), cards=card1?card1.parentNode:null;
+  var data=$('.tll-acct-data',M);
+  var map=$('[data-tll-acct="map"]',M);
+  var extras=$('[data-tll-acct="extras"]',M);
+  var lists=$('[data-tll-ls="sec"]',M), wr=$('[data-tll-wr="sec"]',M);
+  var mine=$('.tll-account-mine-section',M), blocks=$$('.tll-account-mine-block',M);
+  var stories=blocks[0]||null, pets=blocks[1]||null;
+  var settings=$('.tll-account-settings-section',M);
+  var share=top($('#tll-share-host',M));
+
+  /* A2: action row (Edit profile beside the existing Sign out link, which keeps its place and its Memberstack attribute). */
+  var signout=hero&&$('[data-tll-acct-signout]',hero);
+  if(signout&&!$('.a3-btn-edit',hero)){
+    var edit=el('a',{href:'/edit-profile','class':'a3-btn-edit'},'Edit profile');
+    signout.parentNode.insertBefore(edit,signout);
+  }
+
+  /* A12: the rail. */
+  var TABS=[
+    {k:'overview',label:'Overview',leaves:[cards,wr],before:actions,h:'Overview',p:'Everything you have logged, written and shared. Tap a card to go to it.'},
+    {k:'map',label:'Map and lists',leaves:[map,lists],before:map||extras,h:'Map and lists',p:'List by list. The full map lives on its own page.',cta:['/the-map','Open your map →','']},
+    {k:'stories',label:'Stories',leaves:[stories],before:mine,h:'Your stories',cta:['/submit','Share another story','a3-cta-rose']},
+    {k:'pets',label:'Pets',leaves:[pets],before:mine,h:'Pets',p:'Each pet gets a Paw Passport. Your pet follows your profile’s privacy setting.',cta:['/my-pets','+ Add a pet','']},
+    {k:'card',label:'Share card',leaves:[share],before:share,h:'Share card'},
+    {k:'privacy',label:'Privacy and data',leaves:[data],before:null,h:null},
+    {k:'settings',label:'Login and email',leaves:[settings],before:settings,h:'Login and email'}
+  ].filter(function(t){ t.leaves=t.leaves.filter(Boolean); return t.leaves.length>0; });
+  if(TABS.length<2||!hero) return;
+  var CONTAINERS=[actions,extras,mine].filter(Boolean);
+  var byKey={};
+
+  var rail=el('nav',{'class':'a3-rail','aria-label':'Account sections'});
+  var list=el('div',{role:'tablist','aria-orientation':'vertical','aria-label':'Account sections'});
+  rail.appendChild(list);
+  TABS.forEach(function(t){
+    byKey[t.k]=t;
+    var b=el('button',{type:'button','class':'a3-tab',role:'tab',id:'a3-tab-'+t.k,'aria-selected':'false',tabindex:'-1','data-a3-tab':t.k});
+    b.appendChild(el('span',null,t.label));
+    var badge=el('span',{'class':'a3-badge','data-a3-badge':t.k}); b.appendChild(badge);
+    list.appendChild(b); t.btn=b; t.badge=badge;
+    var ids=[];
+    t.leaves.forEach(function(n,i){ if(!n.id) n.id='a3-'+t.k+'-'+i; n.setAttribute('role','tabpanel'); n.setAttribute('aria-labelledby','a3-tab-'+t.k); ids.push(n.id); });
+    if(t.h&&t.before){
+      var ph=el('div',{'class':'a3-ph',id:'a3-ph-'+t.k,tabindex:'-1','data-a3-off':''});
+      var tx=el('div'); tx.appendChild(el('h2',null,t.h)); if(t.p) tx.appendChild(el('p',null,t.p)); ph.appendChild(tx);
+      if(t.cta) ph.appendChild(el('a',{href:t.cta[0],'class':('a3-cta '+t.cta[2]).trim()},t.cta[1]));
+      M.insertBefore(ph,t.before); t.ph=ph; ids.unshift(ph.id);
+    }
+    b.setAttribute('aria-controls',ids.join(' '));
+  });
+  var editLink=el('a',{href:'/edit-profile','class':'a3-rail-link'},'Edit profile →');
+  rail.appendChild(editLink);
+  after(hero,rail);
+  M.classList.add('a3-grid');
+
+  /* A10: point to the Share card tab from the privacy panel; the "Your data stays yours." title is the panel heading. */
+  var dataTitle=data&&$('.tll-acct-data-t',data);
+  if(data&&!$('.a3-note',data)&&byKey.card){
+    var dd=$('.tll-acct-data-d',data)||dataTitle;
+    var note=el('p',{'class':'a3-note'}); note.appendChild(d.createTextNode('Who sees your card and your profile is set on the '));
+    var go=el('a',{href:'#card','data-a3-go':'card'},'Share card tab'); note.appendChild(go); note.appendChild(d.createTextNode('.'));
+    after(dd,note);
+  }
+  if(dataTitle) dataTitle.setAttribute('tabindex','-1');
+
+  var cur=null;
+  function select(k,how){
+    var t=byKey[k]; if(!t) return;
+    cur=k;
+    TABS.forEach(function(o){
+      var on=(o.k===k);
+      o.btn.setAttribute('aria-selected',on?'true':'false'); o.btn.setAttribute('tabindex',on?'0':'-1');
+      o.leaves.forEach(function(n){ if(on) n.removeAttribute('data-a3-off'); else n.setAttribute('data-a3-off',''); });
+      if(o.ph){ if(on) o.ph.removeAttribute('data-a3-off'); else o.ph.setAttribute('data-a3-off',''); }
+    });
+    CONTAINERS.forEach(function(c){
+      var any=TABS.some(function(o){ return o.k===k&&o.leaves.some(function(n){ return n!==c&&c.contains(n); }); });
+      if(any) c.removeAttribute('data-a3-off'); else c.setAttribute('data-a3-off','');
+    });
+    if(how&&how.hash!==false){ try{ history.replaceState(null,'','#'+k); }catch(e){} }
+    if(how&&how.focusTab) t.btn.focus();
+    if(how&&how.focusPanel){ var f=t.ph||(k==='privacy'?dataTitle:null)||t.leaves[0]; if(f){ if(!f.hasAttribute('tabindex')) f.setAttribute('tabindex','-1'); try{ f.focus({preventScroll:false}); }catch(e){ f.focus(); } } }
+  }
+  list.addEventListener('click',function(e){ var b=e.target.closest('[data-a3-tab]'); if(!b) return; select(b.getAttribute('data-a3-tab'),{focusPanel:true}); });
+  list.addEventListener('keydown',function(e){
+    var keys=TABS.map(function(t){return t.k;}), i=keys.indexOf(cur), n=null;
+    if(e.key==='ArrowDown'||e.key==='ArrowRight') n=(i+1)%keys.length;
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft') n=(i-1+keys.length)%keys.length;
+    else if(e.key==='Home') n=0; else if(e.key==='End') n=keys.length-1;
+    if(n===null) return; e.preventDefault(); select(keys[n],{focusTab:true});
+  });
+  d.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('[data-a3-go]'); if(!a) return; e.preventDefault(); select(a.getAttribute('data-a3-go'),{focusPanel:true}); });
+  function fromHash(){ var h=(location.hash||'').replace('#',''); return byKey[h]?h:null; }
+  window.addEventListener('hashchange',function(){ var h=fromHash(); if(h&&h!==cur) select(h,{hash:false}); });
+  function narrow(){ var w=window.matchMedia&&window.matchMedia('(max-width:830px)').matches; list.setAttribute('aria-orientation',w?'horizontal':'vertical'); }
+  narrow(); if(window.matchMedia){ var mq=window.matchMedia('(max-width:830px)'); if(mq.addEventListener) mq.addEventListener('change',narrow); }
+  select(fromHash()||'overview',{hash:false});
+  H.classList.add('a3-on');
+
+  /* Badges: only numbers the live scripts already computed (LOGGED total, pet count). Never typed. */
+  function countOf(sel){ var l=cards&&$(sel,cards); var c=l&&l.parentNode.querySelector('.tll-mod-count'); var v=c?c.textContent.trim():''; return /^\d+$/.test(v)?v:''; }
+  function badges(){ if(byKey.map) byKey.map.badge.textContent=countOf('[data-tll-mod="countries"]'); if(byKey.pets) byKey.pets.badge.textContent=countOf('[data-tll-mod="pets"]'); }
+  badges();
+  if(cards&&window.MutationObserver) new MutationObserver(badges).observe(cards,{childList:true,subtree:true,characterData:true});
+
+  /* A7: one rule line per list tab, from the design. Lists without a rule in the design get none. */
+  var RULES={countries:'Set foot outside the airport. Layovers count separately.',airports:'Connected through or flew from.',cities:'One night, or the center on foot.',unesco:'Stood inside the listed property.',landmarks:'Saw it in person.',parks:'Boots inside the boundary.',ports:'Boarded or left a boat here.',marathons:'42.195 km, finished.'};
+  var lsInner=lists&&$('[data-tll-ls="inner"]',lists), lsTabs=lists&&$('[data-tll-ls="tabs"]',lists);
+  if(lsInner&&lsTabs){
+    var rule=el('p',{'class':'a3-rule'}); var rk=el('b',null,'WHAT COUNTS'); var rt=el('span'); rule.appendChild(rk); rule.appendChild(rt);
+    after(lsTabs,rule);
+    var paintRule=function(){ var s=$('[data-tll-ls-tab][aria-selected="true"]',lsTabs); var k=s?s.getAttribute('data-tll-ls-tab'):'countries'; var r=RULES[k]||''; rt.textContent=r; rule.hidden=!r; };
+    paintRule();
+    if(window.MutationObserver) new MutationObserver(paintRule).observe(lsTabs,{attributes:true,subtree:true,attributeFilter:['aria-selected'],childList:true});
+  }
+
+  /* A2, A3, A5: status line, progress and Finish your profile, from existing Memberstack data only. Read only. */
+  function yes(v){ return v===true||v==='true'||v==='on'||v==='yes'||v===1||v==='1'; }
+  function has(v){ return typeof v==='string'?v.trim().length>0:(v!=null&&v!==false&&v!==''); }
+  function checks(m){
+    var cf=(m&&m.customFields)||{};
+    var link=Object.keys(cf).some(function(k){ return /^link-/.test(k)&&!/-on$/.test(k)&&has(cf[k])&&yes(cf[k+'-on']); });
+    return [
+      ['Photo',has(m.profileImage)],
+      ['Display name',has(cf['first-name'])||has(cf.name)],
+      ['Short bio',has(cf['bio-short'])],
+      ['Home base',has(cf['lives-country'])||has(cf['home-base'])],
+      ['Languages',has(cf.languages)],
+      ['At least one link switched on',link],
+      ['A directory opt-in',yes(cf['is-expat'])||yes(cf['is-creator'])||yes(cf['is-press'])]
+    ];
+  }
+  function paintMember(m){
+    if(!m||$('.a3-status',hero)) return;
+    var cf=m.customFields||{};
+    var lvl=String(cf['share-level']||'off').toLowerCase();
+    var vis=lvl==='public'?'PUBLIC':lvl==='unlisted'?'LINK ONLY':'JUST YOU';
+    var dir=[]; if(yes(cf['is-expat'])) dir.push('/EXPATS'); if(yes(cf['is-creator'])) dir.push('/CREATORS'); if(yes(cf['is-press'])) dir.push('/PRESS');
+    var st=el('ul',{'class':'a3-status','aria-label':'Profile status'});
+    st.appendChild(el('li',null,'PROFILE · '+vis));
+    st.appendChild(el('li',null,'DIRECTORY · '+(dir.length?dir.join(' '):'OFF')));
+    var h1=$('h1',hero); after(h1,st);
+    var c=checks(m), done=c.filter(function(x){return x[1];}).length, next=c.filter(function(x){return !x[1];})[0];
+    var pr=el('div',{'class':'a3-prog'});
+    var tp=el('div',{'class':'a3-prog-top'}); var lab=el('span',{id:'a3-prog-l'},'PROFILE '+done+' OF '+c.length+' DONE'); tp.appendChild(lab);
+    tp.appendChild(el('a',{href:'/edit-profile'},next?('Add: '+next[0].toLowerCase()+' →'):'All done →'));
+    pr.appendChild(tp);
+    var bar=el('div',{'class':'a3-bar',role:'progressbar','aria-labelledby':'a3-prog-l','aria-valuemin':'0','aria-valuemax':String(c.length),'aria-valuenow':String(done)});
+    var fill=el('span'); fill.style.width=Math.round(done/c.length*100)+'%'; bar.appendChild(fill); pr.appendChild(bar);
+    var row=$('.tll-account-hero-row',hero); after(row||h1,pr);
+    var wrIn=wr&&$('[data-tll-wr="inner"]',wr);
+    if(wrIn&&!$('.a3-finish',wrIn)){
+      var f=el('section',{'class':'a3-finish','aria-labelledby':'a3-fin-h'});
+      f.appendChild(el('h3',{id:'a3-fin-h'},'Finish your profile'));
+      f.appendChild(el('p',null,'It shows on your Travelers card.'));
+      var ul=el('ul');
+      c.forEach(function(x){
+        var li=el('li',x[1]?{'class':'a3-done'}:null);
+        li.appendChild(el('span',{'class':'a3-dot','aria-hidden':'true'},x[1]?'✓':''));
+        var l=el('span',{'class':'a3-lbl'},x[0]); l.appendChild(el('span',{'class':'a3-sr'},x[1]?' (done)':' (to do)')); li.appendChild(l);
+        if(!x[1]){ li.appendChild(el('a',{href:'/edit-profile','class':'a3-add','aria-label':'Add '+x[0].toLowerCase()},'ADD →')); }
+        ul.appendChild(li);
+      });
+      f.appendChild(ul); wrIn.appendChild(f); wrIn.classList.add('a3-wr2');
+    }
+  }
+  var tries=0, iv=setInterval(function(){
+    var ms=window.$memberstackDom;
+    if(ms&&ms.getCurrentMember){ clearInterval(iv); ms.getCurrentMember().then(function(r){ paintMember(r&&r.data); }).catch(function(){}); }
+    else if(++tries>30) clearInterval(iv);
+  },300);
+})();
+</script>

@@ -1,0 +1,33 @@
+<script id="tll-ep-js-e">
+/* Edit profile v2, script part E (look build, 27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md). E1: the band moves into the page header (photo, sub line, chips, button, developing strip) and the title's last word goes rose italic. E4: the section in view is marked in the row and in the bar. E5: each section number becomes its own span. E7: long counts in the preview card shrink. E10: a way back on the signed-out gate, added once the page has parsed (the gate sits after this script). Loads after part D. Touches no data-ms-* element. */
+(function(E){
+var $=E.$,$$=E.$$,root=document.getElementById("tll-ep");if(!root||!E||!E.paint)return;
+var wrap=root.closest('[data-ms-content="members"]'),head=wrap&&wrap.querySelector(".tll-edit-header");
+/* E1 */
+if(head&&!head.hasAttribute("data-ep-hero")){head.setAttribute("data-ep-hero","1");
+ var h1=head.querySelector("h1");
+ if(h1&&!h1.querySelector("em")){var t=h1.textContent.trim(),m=t.match(/^(.*\S)\s+(\S+)$/);if(m){h1.textContent="";h1.appendChild(document.createTextNode(m[1]+" "));var em=document.createElement("em");em.textContent=m[2];h1.appendChild(em)}}
+ var av=document.createElement("span");av.className="ep-av ep-gray ep-hero-av";av.setAttribute("data-ep-avatar","");av.setAttribute("aria-hidden","true");head.insertBefore(av,head.firstChild);
+ if(h1){var sub=document.createElement("p");sub.className="ep-hero-sub";sub.textContent="Only your name is required. Everything else is yours to fill or leave.";h1.insertAdjacentElement("afterend",sub)}
+ var band=$("[data-ep-band]");if(band)head.appendChild(band)}
+/* E1 the two chips, in /account's words */
+function chips(){var v=E.get("visibility")||"public",c=$('[data-ep-chip="vis"]');if(c)c.textContent="PROFILE · "+(v==="unlisted"?"LINK ONLY":v==="off"?"JUST YOU":"PUBLIC");
+ var d=[["list-expats","/EXPATS"],["list-creators","/CREATORS"],["list-press","/PRESS"]].filter(function(x){return E.get(x[0])==="true"}).map(function(x){return x[1]}),e=$('[data-ep-chip="dir"]');if(e)e.textContent="DIRECTORY · "+(d.length?d.join(" "):"OFF")}
+/* E5 */
+$$(".ep-eb").forEach(function(h){var n=h.firstChild;if(!n||n.nodeType!==3)return;var m=n.nodeValue.match(/^\s*(\d\d)\s*·\s*/);if(!m)return;n.nodeValue=n.nodeValue.slice(m[0].length);var s=document.createElement("span");s.className="ep-n";s.textContent=m[1];h.insertBefore(s,n)});
+/* E7 */
+function longStats(){var st=$("[data-ep-pv-stats]");if(st)st.setAttribute("data-long",$$("b",st).some(function(b){return b.textContent.trim().length>4})?"1":"0")}
+var P=E.paint;E.paint=function(){P();chips();longStats()};
+/* E4 */
+var ids=$$(".ep-nav a").map(function(a){return a.getAttribute("href")}),raf=0;
+function cur(){raf=0;var bar=$("[data-ep-bar]"),line=(bar&&!bar.hidden?bar.getBoundingClientRect().bottom:0)+40,id=null;
+ ids.forEach(function(h){var s=document.getElementById(h.slice(1));if(s&&s.getBoundingClientRect().top<=line)id=h});if(!id&&ids.length)id=ids[0];
+ $$(".ep-nav a,.ep-bar-nav a").forEach(function(a){a.setAttribute("data-cur",a.getAttribute("href")===id?"1":"0")})}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(cur)},{passive:true});addEventListener("resize",cur);
+/* E10 */
+function gateLink(){var g=document.querySelector(".tll-edit-locked");if(!g||g.querySelector(".ep-gate-back"))return;var b=document.createElement("a");b.className="ep-gate-back";b.href="/stories";b.textContent="Back to the stories →";g.appendChild(b)}
+function gateWatch(){gateLink();var g=document.querySelector(".tll-edit-locked");if(g&&g.parentNode&&window.MutationObserver)new MutationObserver(gateLink).observe(g.parentNode,{childList:true,subtree:true})}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",gateWatch);else gateWatch();
+E.paint();cur();
+})(window.TLLEP);
+</script>

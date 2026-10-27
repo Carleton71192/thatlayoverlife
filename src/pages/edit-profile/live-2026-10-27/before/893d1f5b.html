@@ -1,0 +1,46 @@
+<style id="tll-ep-css">
+/* Edit profile v2 (20 Oct 2026, Packet C, C4). Two columns: the form on the left, a sticky preview on the right, stacked under 900px. The Memberstack form keeps every data-ms-* element in place; display:contents flattens its wrappers so its fields and the new blocks share one grid, ordered by CSS. Fonts and tokens as the home page. */
+.tll-edit-section{background:#F7F1E8 !important;padding:clamp(40px,7vh,80px) 0 clamp(72px,12vh,144px) !important}
+.tll-edit-container{max-width:1120px !important;padding:0 max(20px,6vw) !important}
+.tll-edit-container [data-ms-content="members"]{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:0 40px;align-items:start;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}
+.tll-edit-container [data-ms-content="members"] > *{grid-column:1;order:150;min-width:0}
+.tll-edit-container [data-ms-content="members"] .w-form,.tll-edit-container [data-ms-content="members"] form[data-ms-form="profile"],.tll-edit-container [data-ms-content="members"] .tll-edit-fieldset{display:contents}
+.tll-edit-container [data-ms-content="members"] .tll-edit-field{grid-column:1;order:150;min-width:0}
+.tll-edit-container [data-ms-content="members"] .w-form-done,.tll-edit-container [data-ms-content="members"] .w-form-fail{grid-column:1;order:149}
+.tll-edit-form .tll-edit-legend,.tll-edit-form .tll-edit-help{display:none !important}
+/* order of the left column */
+[data-ms-content="members"] > .tll-edit-header{order:10;margin:0 0 8px}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="top"]){order:20}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="name"]){order:31}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="shown"]){order:32}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="oneline"]){order:33}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="home-base"]){order:34}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="origin"]){order:35}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="about"]){order:40}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="bio-long"]){order:41}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="bio-short"]){order:42}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="bionote"]){order:43}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="links"]){order:50}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="crew"]){order:60}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="pets"]){order:70}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="contact"]){order:80}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="dirs"]){order:90}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="vis"]){order:100}
+[data-ms-content="members"] > .tll-edit-account-actions{order:140;margin-top:40px}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){grid-column:2;grid-row:1/span 80;order:0;position:sticky;top:96px;align-self:start}
+/* retired blocks: hidden in Webflow by visibility; this is the fallback so they stay off the page either way */
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="fun-title"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="country-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="cities-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="states-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="national-parks-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="continents-marathoned"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member$="-url"]),[data-ms-content="members"] .tll-edit-toggle,[data-ms-content="members"] .tll-edit-grid-4,[data-ms-content="members"] .tll-edit-grid-2,[data-ms-content="members"] .tll-edit-toggles,[data-ms-content="members"] .tll-edit-actions,[data-ms-content="members"] > [data-tll-edit="ledger"],[data-ms-content="members"] > [data-tll-edit="dir"],[data-ms-content="members"] > [data-tll-edit="desig"]{display:none !important}
+/* header: the old eyebrow Block refuses set_text through the API, so a new text block carries the v2 eyebrow and the old one is hidden */
+.tll-edit-header .tll-edit-eyebrow{display:none !important}
+.tll-edit-header [data-ep-eyebrow]{font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:12px !important;letter-spacing:3px;text-transform:uppercase;color:#067A79 !important;font-weight:600;margin:0 0 12px}
+.tll-edit-header .tll-edit-title{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(36px,4.6vw,64px) !important;line-height:.92 !important;letter-spacing:-.035em;margin:0 0 16px;color:#0A0B14 !important}
+.tll-edit-header .tll-edit-title em{font-style:italic;color:#F0507A}
+.tll-edit-header .tll-edit-sub{font-size:15px !important;line-height:1.55;color:#3a3a3a !important;max-width:60ch;margin:0}
+/* Memberstack fields, restyled in place */
+.tll-edit-container .tll-edit-field{display:flex;flex-direction:column;gap:6px;margin:0 0 18px;position:relative}
+.tll-edit-container .tll-edit-label,.ep-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;font-weight:600;display:flex;align-items:center;gap:8px}
+.tll-edit-container .tll-edit-input,.ep-input{font:400 16px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;background:#FDF9F3;border:1.5px solid #D9D2C5;border-radius:8px;padding:11px 14px;min-height:44px;width:100%;box-sizing:border-box;margin:0}
+.tll-edit-container .tll-edit-textarea{min-height:150px;resize:vertical}
+.tll-edit-container .tll-edit-helptext,.ep-help{font-size:13px;line-height:1.5;color:#6B6660}
+.tll-edit-container .tll-edit-input:focus-visible,.ep-input:focus-visible,[data-ep] button:focus-visible,[data-ep] a:focus-visible,[data-ep] input:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+</style>

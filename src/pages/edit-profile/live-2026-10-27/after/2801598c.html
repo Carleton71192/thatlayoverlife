@@ -1,0 +1,26 @@
+<div data-ep="top" id="tll-ep" data-worker="https://tll-travel-wire.thatlayoverlife.workers.dev" data-desks-field="1" data-story-worker="">
+<!-- Edit profile v2 root (20 Oct 2026; 3.4 head 21 Oct 2026; UX build U1 to U3 and U14, 26 Oct 2026). Look build (27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md, E1, E2, E4): the Ink band. Its top half is the Webflow header (eyebrow and title, styled by CSS part D; script part E adds the photo, the sub line and the rose italic there), its bottom half is data-ep-band below: the two status chips, the public profile button, the save status and the developing strip. Script part E moves the band into the header so both halves are one grid row; without it the band still shows here. Then the section row in the tab style and the bar that follows the page (part D).
+     data-worker: the Cloudflare Worker base URL. Empty means the page saves to Memberstack only. data-desks-field: 1 once the Contributors collection has the desks field. data-story-worker: the /submit Worker base URL once deployed. data-ep-say is the one line screen readers hear, once per save. -->
+<div class="ep-band" data-ep-band>
+<ul class="ep-hero-st" aria-label="Profile status"><li data-ep-chip="vis">PROFILE · PUBLIC</li><li data-ep-chip="dir">DIRECTORY · OFF</li></ul>
+<div class="ep-hero-act"><a class="ep-btn ep-btn--band" href="/travelers" data-ep-view target="_blank" rel="noopener">View my public profile →</a><span class="ep-hero-save"><span class="ep-status" data-ep-status>All changes save as you type</span> <button type="button" class="ep-retry" data-ep-retry hidden>Try again</button></span><span class="ep-sr" role="status" aria-live="polite" data-ep-say></span></div>
+<div class="ep-dev" data-ep-dev>
+<div class="ep-dev-l"><span data-ep-dev-stage>BLACK AND WHITE</span><span data-ep-dev-count>0 OF 8</span><span class="ep-i" tabindex="0" role="img" aria-label="Only your name is required. Your page fills with color as you add to it. Visitors always see it in full color." title="Only your name is required. Your page fills with color as you add to it. Visitors always see it in full color.">i</span><button type="button" class="ep-dev-next" data-ep-dev-next hidden>Next: add a photo →</button><span class="ep-dev-done" data-ep-dev-done hidden>Full color. Looking good.</span></div>
+<div class="ep-dev-bar" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" aria-label="Profile progress" data-ep-dev-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+</div>
+<div class="ep-bar" data-ep-bar hidden><div class="ep-bar-in"><button type="button" class="ep-bar-sec" data-ep-bar-sec aria-expanded="false">Sections</button><ul class="ep-bar-nav" data-ep-bar-nav><li><a href="#ep-who">Who</a></li><li><a href="#ep-about">About</a></li><li><a href="#ep-links">Links</a></li><li><a href="#ep-crew">Crew</a></li><li><a href="#ep-pets">Yours</a></li><li><a href="#ep-contact">Contact</a></li><li><a href="#ep-dirs">Directories</a></li><li><a href="#ep-vis">Visibility</a></li></ul><span class="ep-bar-st"><span class="ep-status" data-ep-status aria-hidden="true">All changes save as you type</span> <button type="button" class="ep-retry" data-ep-retry hidden>Try again</button></span></div></div>
+<nav class="ep-navwrap" aria-label="Sections"><ul class="ep-nav">
+<li><a href="#ep-who" data-ep-dot="who">Who<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-about" data-ep-dot="about">About<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-links" data-ep-dot="links">Links<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-crew" data-ep-dot="crew">Crew<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-pets" data-ep-dot="pets">Yours<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-contact" data-ep-dot="contact">Contact<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-dirs" data-ep-dot="dirs">Directories<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-vis" data-ep-dot="vis">Visibility<i aria-hidden="true"></i></a></li>
+</ul></nav>
+<section class="ep-sec" id="ep-who" aria-labelledby="ep-who-h"><h2 class="ep-eb" id="ep-who-h">01 · Who you are</h2>
+<div class="ep-photo"><label class="ep-avbtn" for="ep-f-photo" aria-label="Change your photo"><span class="ep-av ep-gray" data-ep-avatar aria-hidden="true"></span><b data-ep-photobtn>ADD</b><input type="file" id="ep-f-photo" accept="image/*" style="position:absolute;opacity:0;width:1px;height:1px"></label><div><p class="ep-note">A photo of you, not a logo. Square crops best. Straight from your phone is fine.</p></div></div>
+</section>
+</div>

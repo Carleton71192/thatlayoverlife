@@ -1,0 +1,81 @@
+<style id="tll-ep-css-b">
+/* Edit profile v2, part B: the new blocks, chips, switches, option cards, the preview card, breakpoints, reduced motion. */
+/* new blocks */
+[data-ep]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;font-size:15px;line-height:1.5}
+[data-ep] *{box-sizing:border-box}
+[data-ep] p{margin:0 0 14px}
+.ep-sec{border-top:1.5px solid #0A0B14;padding-top:22px;margin:30px 0 14px}
+.ep-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#067A79;font-weight:600;margin:0 0 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ep-eb span{color:#6B6660;letter-spacing:1.5px}
+.ep-lede{font-size:15px;line-height:1.55;color:#3a3a3a;max-width:60ch}
+.ep-field{display:flex;flex-direction:column;gap:6px;margin:0 0 18px}
+.ep-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ep-note{font-size:13px;line-height:1.5;color:#6B6660;margin:4px 0 0}
+.ep-note[hidden]{display:none}
+.ep-soft{background:#FDF9F3;border-left:3px solid #067A79;padding:10px 14px;font-size:13px;line-height:1.5;color:#3a3a3a;margin:0 0 18px}
+.ep-soft[hidden]{display:none}
+.ep-i{display:inline-flex;width:18px;height:18px;border-radius:50%;border:1.5px solid #6B6660;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;align-items:center;justify-content:center;color:#6B6660;letter-spacing:0;cursor:help}
+/* status and top row */
+.ep-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 6px}
+.ep-status{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#067A79;text-transform:uppercase}
+.ep-status[data-state="fail"]{color:#F0507A}
+.ep-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1.5px solid #0A0B14;border-radius:4px;background:transparent;color:#0A0B14;font:600 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.ep-btn--fill{background:#0A0B14;color:#F7F1E8}
+.ep-nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.ep-nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1.5px solid #D9D2C5;border-radius:999px;background:#FDF9F3;color:#0A0B14;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-decoration:none}
+.ep-nav a i{width:8px;height:8px;border-radius:50%;background:#D9D2C5;flex:none}
+.ep-nav a[data-on="1"] i{background:#067A79}
+/* photo */
+.ep-photo{display:flex;align-items:center;gap:16px;margin:0 0 20px}
+.ep-av{width:72px;height:72px;border-radius:50%;background:#0A0B14;color:#F7F1E8;display:flex;align-items:center;justify-content:center;font:800 22px/1 'Playfair Display',Georgia,serif;overflow:hidden;flex:none}
+.ep-av img{width:100%;height:100%;object-fit:cover;object-position:center}
+/* chips and switches */
+.ep-seg{display:flex;flex-wrap:wrap;gap:8px}
+.ep-seg button,.ep-chip{min-height:44px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:600 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ep-seg button[aria-pressed="true"],.ep-chip[aria-pressed="true"]{background:#0A0B14;color:#F7F1E8}
+.ep-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ep-chip--x{border-color:#D9D2C5}
+.ep-chip--off{border-style:dashed;color:#6B6660}
+.ep-chip--x b{font-weight:700;letter-spacing:1px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px}
+.ep-sw{min-width:68px;min-height:44px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;cursor:pointer}
+.ep-sw[aria-checked="true"]{background:#0A0B14;color:#F7F1E8}
+.ep-link{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;margin:0 0 10px}
+.ep-link label{font-weight:700;font-size:14px}
+.ep-opts{display:grid;gap:10px;margin:0 0 16px}
+.ep-opt{display:grid;grid-template-columns:20px 1fr;gap:2px 12px;align-items:start;text-align:left;width:100%;min-height:44px;padding:13px 16px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;color:#0A0B14;font-family:inherit;cursor:pointer}
+.ep-opt:before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid #0A0B14;margin-top:3px;box-sizing:border-box}
+.ep-opt[aria-checked="true"]{border-color:#0A0B14}
+.ep-opt[aria-checked="true"]:before{background:#0A0B14;box-shadow:inset 0 0 0 3px #FDF9F3}
+.ep-opt b{font-size:15px;font-weight:700;display:block}
+.ep-opt small{font-size:13px;color:#6B6660;line-height:1.45;display:block}
+.ep-dir{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid #D9D2C5}
+.ep-dir b{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:18px}
+.ep-dir small{display:block;font-size:13px;color:#6B6660;line-height:1.45}
+.ep-dir .ep-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:none;font-weight:600}
+.ep-card{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;color:#0A0B14;text-decoration:none;margin:0 0 10px;min-height:44px}
+.ep-card .ep-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;font-weight:600}
+.ep-card b{display:block;font-size:15px}
+.ep-card small{display:block;font-size:13px;color:#6B6660}
+.ep-check{display:flex;gap:12px;align-items:flex-start;min-height:44px;cursor:pointer;font-size:14px;line-height:1.5;color:#3a3a3a}
+.ep-check input{width:20px;height:20px;margin:3px 0 0;accent-color:#0A0B14;flex:none}
+.ep-foot{display:flex;flex-wrap:wrap;gap:16px 24px;margin:18px 0 0}
+.ep-foot a{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:none;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+/* preview */
+.ep-pv-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#6B6660;font-weight:600;margin:0 0 12px}
+.ep-pv{background:#0A0B14;color:#F7F1E8;border-radius:14px;padding:22px 22px 20px}
+.ep-pv .ep-av{width:64px;height:64px;margin:0 0 14px;background:#F7F1E8;color:#0A0B14}
+.ep-pv-name{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:26px;line-height:1.05;margin:0 0 6px;overflow-wrap:anywhere}
+.ep-pv-name em{font-style:italic;color:#F0507A}
+.ep-pv-line{font-size:14px;line-height:1.45;color:#cfcbc4;margin:0 0 10px;min-height:1.45em}
+.ep-pv-meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.ep-pv-stats{display:flex;gap:18px;border-top:1px dashed #2b2f52;padding-top:12px;margin:0 0 12px}
+.ep-pv-stats[hidden]{display:none}
+.ep-pv-stats b{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1}
+.ep-pv-stats small{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#9496AC;text-transform:uppercase}
+.ep-pv-foot{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8;display:flex;gap:10px;flex-wrap:wrap}
+.ep-pv-note{font-size:13px;line-height:1.5;color:#6B6660;margin:12px 0 0}
+.ep-pv-note a{color:#067A79;font-weight:700;text-decoration:none}
+@media (max-width:899px){.tll-edit-container [data-ms-content="members"]{grid-template-columns:minmax(0,1fr)}[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){grid-column:1;grid-row:auto;order:120;position:static}.ep-row{grid-template-columns:1fr}}
+@media (max-width:600px){.ep-link{grid-template-columns:1fr auto}.ep-link label{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){[data-ep] *,.tll-edit-container .tll-edit-input{transition:none !important;animation:none !important;scroll-behavior:auto !important}}
+</style>

@@ -147,20 +147,25 @@
   /* A2, A3, A5: status line, progress and Finish your profile, from existing Memberstack data only. Read only. */
   function yes(v){ return v===true||v==='true'||v==='on'||v==='yes'||v===1||v==='1'; }
   function has(v){ return typeof v==='string'?v.trim().length>0:(v!=null&&v!==false&&v!==''); }
-  function checks(m){
-    var cf=(m&&m.customFields)||{};
-    var link=Object.keys(cf).some(function(k){ return /^link-/.test(k)&&!/-on$/.test(k)&&has(cf[k])&&yes(cf[k+'-on']); });
+  /* E3 (look build, 27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md): the same eight steps as this page's profile card and the /edit-profile developing card, read from the saved profile and the map. Nothing typed. */
+  function list(v){ return String(v||'').split(',').map(function(x){return x.trim();}).filter(Boolean); }
+  function mapSaved(j){ if(j&&j.tllSnapshot&&Number(j.tllSnapshot.places||0)>0) return true; try{ var s=JSON.parse(localStorage.getItem('tllStates')||'null'); return !!(s&&s.v===2&&s.states&&Object.keys(s.states).length); }catch(e){ return false; } }
+  function checks(m,j){
+    var cf=(m&&m.customFields)||{}, ls=list(cf['links-shown']);
+    var links=['instagram-url','youtube-url','personal-website-url','tiktok-url','substack-url','strava-url','alltrails-url','komoot-url','garmin-url','beli-url'].filter(function(k){ return has(cf[k]); });
+    var on=links.filter(function(k){ return !ls.length||ls.indexOf(k.replace(/-url$/,'').replace('personal-website','website'))>-1; }).length;
     return [
-      ['Photo',has(m.profileImage)],
-      ['Display name',has(cf['first-name'])||has(cf.name)],
-      ['Short bio',has(cf['bio-short'])],
-      ['Home base',has(cf['lives-country'])||has(cf['home-base'])],
-      ['Languages',has(cf.languages)],
-      ['At least one link switched on',link],
-      ['A directory opt-in',yes(cf['is-expat'])||yes(cf['is-creator'])||yes(cf['is-press'])]
+      ['Photo','add a photo',has(m.profileImage),'/edit-profile#ep-who'],
+      ['One line','write your one line',has(cf['one-line']),'/edit-profile#ep-who'],
+      ['Home base','add your home base',has(cf['home-base'])||has(cf['lives-country']),'/edit-profile#ep-who'],
+      ['Flags you have lived under','add the flags you have lived under',list(cf['from-and-lived-in']).length>0,'/edit-profile#ep-who'],
+      ['Languages','add the languages you speak',list(cf.languages).length>0,'/edit-profile#ep-who'],
+      ['Bio','write a short bio',has(cf['bio-long'])||has(cf['bio-short']),'/edit-profile#ep-about'],
+      ['A link switched on','switch on a link',on>0,'/edit-profile#ep-links'],
+      ['Your map saved','save your map',mapSaved(j),'/the-map']
     ];
   }
-  function paintMember(m){
+  function paintMember(m,j){
     if(!m||$('.a3-status',hero)) return;
     var cf=m.customFields||{};
     var lvl=String(cf['share-level']||'off').toLowerCase();
@@ -170,10 +175,10 @@
     st.appendChild(el('li',null,'PROFILE · '+vis));
     st.appendChild(el('li',null,'DIRECTORY · '+(dir.length?dir.join(' '):'OFF')));
     var h1=$('h1',hero); after(h1,st);
-    var c=checks(m), done=c.filter(function(x){return x[1];}).length, next=c.filter(function(x){return !x[1];})[0];
+    var c=checks(m,j), done=c.filter(function(x){return x[2];}).length, next=c.filter(function(x){return !x[2];})[0];
     var pr=el('div',{'class':'a3-prog'});
     var tp=el('div',{'class':'a3-prog-top'}); var lab=el('span',{id:'a3-prog-l'},'PROFILE '+done+' OF '+c.length+' DONE'); tp.appendChild(lab);
-    tp.appendChild(el('a',{href:'/edit-profile'},next?('Add: '+next[0].toLowerCase()+' →'):'All done →'));
+    tp.appendChild(el('a',{href:next?next[3]:'/edit-profile'},next?('Next: '+next[1]+' →'):'All done →'));
     pr.appendChild(tp);
     var bar=el('div',{'class':'a3-bar',role:'progressbar','aria-labelledby':'a3-prog-l','aria-valuemin':'0','aria-valuemax':String(c.length),'aria-valuenow':String(done)});
     var fill=el('span'); fill.style.width=Math.round(done/c.length*100)+'%'; bar.appendChild(fill); pr.appendChild(bar);
@@ -185,10 +190,10 @@
       f.appendChild(el('p',null,'It shows on your Travelers card.'));
       var ul=el('ul');
       c.forEach(function(x){
-        var li=el('li',x[1]?{'class':'a3-done'}:null);
-        li.appendChild(el('span',{'class':'a3-dot','aria-hidden':'true'},x[1]?'✓':''));
-        var l=el('span',{'class':'a3-lbl'},x[0]); l.appendChild(el('span',{'class':'a3-sr'},x[1]?' (done)':' (to do)')); li.appendChild(l);
-        if(!x[1]){ li.appendChild(el('a',{href:'/edit-profile','class':'a3-add','aria-label':'Add '+x[0].toLowerCase()},'ADD →')); }
+        var li=el('li',x[2]?{'class':'a3-done'}:null);
+        li.appendChild(el('span',{'class':'a3-dot','aria-hidden':'true'},x[2]?'✓':''));
+        var l=el('span',{'class':'a3-lbl'},x[0]); l.appendChild(el('span',{'class':'a3-sr'},x[2]?' (done)':' (to do)')); li.appendChild(l);
+        if(!x[2]){ li.appendChild(el('a',{href:x[3],'class':'a3-add','aria-label':'Add '+x[0].toLowerCase()},'ADD →')); }
         ul.appendChild(li);
       });
       f.appendChild(ul); wrIn.appendChild(f); wrIn.classList.add('a3-wr2');
@@ -196,7 +201,7 @@
   }
   var tries=0, iv=setInterval(function(){
     var ms=window.$memberstackDom;
-    if(ms&&ms.getCurrentMember){ clearInterval(iv); ms.getCurrentMember().then(function(r){ paintMember(r&&r.data); }).catch(function(){}); }
+    if(ms&&ms.getCurrentMember){ clearInterval(iv); ms.getCurrentMember().then(function(r){ var m=r&&r.data; if(!m) return; if(ms.getMemberJSON) return ms.getMemberJSON().then(function(j){ paintMember(m,j&&j.data); }).catch(function(){ paintMember(m,null); }); paintMember(m,null); }).catch(function(){}); }
     else if(++tries>30) clearInterval(iv);
   },300);
 })();

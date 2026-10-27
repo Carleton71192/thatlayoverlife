@@ -1,0 +1,82 @@
+<style id="tll-ep-css-c">
+/* 3.4 (21 Oct 2026): developing card, 88 px photo button, contributions, crew rows, expat desks, grayscale preview */
+.ep-dev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;padding:16px 18px;margin:0 0 20px}
+.ep-dev .ep-av{width:56px;height:56px;font-size:18px}
+.ep-dev-l{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;color:#0A0B14}
+.ep-dev-l span[data-ep-dev-count]{color:#6B6660;font-weight:400}
+.ep-dev-bar{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;margin:10px 0 8px}
+.ep-dev-bar i{height:6px;background:#E0DACE;display:block;transition:background 400ms ease}
+.ep-dev-bar i[data-on="1"]{background:#F0507A}
+.ep-dev-next{font:600 14px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;background:transparent;border:0;padding:6px 0;min-height:36px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px}
+.ep-dev-next[hidden],.ep-dev-done[hidden]{display:none}
+.ep-dev-done{font-size:14px;font-weight:600;color:#067A79}
+.ep-gray{transition:filter 600ms ease}
+.ep-avbtn{position:relative;width:88px;height:88px;border-radius:50%;border:2.5px solid #F0507A;padding:0;background:#0A0B14;overflow:hidden;cursor:pointer;display:block;flex:none}
+.ep-avbtn .ep-av{width:100%;height:100%;font-size:30px}
+.ep-avbtn b{position:absolute;left:0;right:0;bottom:0;background:rgba(10,11,20,.72);color:#F7F1E8;font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-align:center;padding:6px 0}
+.ep-req{font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#C8325B;margin-left:6px}
+.ep-contrib{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:8px}
+.ep-contrib .ep-card{margin:0}
+[data-ep-petcards]{display:contents}
+.ep-card-img{width:44px;height:44px;background:#0A0B14 center/cover;border-radius:6px;flex:none;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ep-card-img--pet{border-radius:50%;border:2px solid #00C9C8;background-color:#1d5e5d}
+.ep-card-add{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:2px dashed #6B6660;border-radius:10px;background:#fff;min-height:70px;font-size:14px;font-weight:600;color:#3a3a3a;text-decoration:none}
+.ep-card-acts{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.ep-card-acts a{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#0A0B14;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px;min-height:36px;display:inline-flex;align-items:center}
+.ep-crew-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;margin:0 0 8px}
+.ep-crew-row .ep-av{width:44px;height:44px;font-size:16px;border:2px solid #F0507A}
+.ep-crew-row .ep-av--pet{border-color:#00C9C8;background:#1d5e5d}
+.ep-crew-row b{display:block;font-size:15px}
+.ep-crew-row small{display:block;font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#6B6660;margin-top:2px}
+.ep-crew-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.ep-wait{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#7A4D10}
+.ep-x{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#0A0B14;background:transparent;border:1.5px solid #D9D2C5;border-radius:999px;padding:0 12px;min-height:40px;cursor:pointer}
+.ep-desks{margin-top:12px;border:1.5px solid #D9D2C5;border-radius:10px;background:#fff;padding:14px 16px}
+.ep-desks[hidden]{display:none}
+.ep-desks-h{display:flex;align-items:center;gap:6px;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;margin-bottom:10px}
+.ep-pv-langs{font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;color:#0A0B14;margin:6px 0 0}
+.ep-pv-langs[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.ep-gray,.ep-dev-bar i{transition:none}}
+/* UX build (26 Oct 2026, U1 to U12): small section labels, hidden means hidden, member bar first, the bar that follows the page, saved marks, labeled desks */
+:is(#tll-ep,[data-ep]) .ep-eb{font:600 12px/1.4 'JetBrains Mono',ui-monospace,monospace !important;letter-spacing:3px !important;text-transform:uppercase !important;color:#067A79 !important}
+[data-ep] [hidden]{display:none !important}
+.ep-sec{scroll-margin-top:150px}
+[data-ms-content="members"] > .w-embed:has(> [data-tll-member-bar]){order:5}
+.ep-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ep-retry,.ep-saved--fail{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#C8325B;background:transparent;border:0;padding:6px 0;min-height:32px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ep-saved{font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin-left:10px;white-space:nowrap}
+.ep-saved--fail{text-transform:none;padding:0;min-height:0}
+.ep-bar{position:fixed;left:0;right:0;top:var(--ep-bar-top,0px);z-index:60;background:#F7F1E8;border-bottom:1.5px solid #0A0B14;box-shadow:0 4px 12px rgba(10,11,20,.06);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
+.ep-bar-in{max-width:1120px;margin:0 auto;padding:6px max(20px,6vw);display:flex;align-items:center;gap:12px;position:relative}
+.ep-bar-nav{display:flex;gap:6px;overflow-x:auto;flex:1;min-width:0;margin:0;padding:0;list-style:none;scrollbar-width:none}
+.ep-bar-nav a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1.5px solid #D9D2C5;border-radius:999px;background:#FDF9F3;color:#0A0B14;font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-decoration:none;white-space:nowrap}
+.ep-bar-st{margin-left:auto;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.ep-bar-sec{display:none;min-height:36px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
+@media (max-width:899px){.ep-bar-sec{display:inline-flex;align-items:center}.ep-bar-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-wrap:wrap;background:#F7F1E8;padding:10px max(20px,6vw) 14px;border-bottom:1.5px solid #0A0B14}.ep-bar[data-open="1"] .ep-bar-nav{display:flex}.ep-bar-st{white-space:normal;text-align:right}}
+.ep-desk{position:relative;padding:12px 0;border-top:1px solid #F0EBE0}
+.ep-desk-h{display:flex;align-items:center;gap:10px}
+.ep-desk-h .ep-fl{font-size:24px;line-height:1}
+.ep-desk-h b{font-size:16px}
+.ep-desk-h .ep-x{margin-left:auto;min-width:40px}
+.ep-desk-tag{font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;white-space:nowrap;color:#6B6660;border:1px solid #D9D2C5;border-radius:999px;padding:4px 8px}
+.ep-desk-tag[data-on="1"]{color:#F7F1E8;background:#067A79;border-color:#067A79}
+.ep-desk-g{display:grid;grid-template-columns:96px 96px minmax(0,1fr);gap:10px 14px;margin:10px 0 6px}
+.ep-desk-g label{display:flex;flex-direction:column;gap:4px;font:600 11px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660;min-width:0}
+.ep-desk-g input{width:100%;min-width:0;min-height:40px;border:1.5px solid #D9D2C5;border-radius:6px;background:#FDF9F3;padding:8px 10px;font:400 15px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;text-transform:none;letter-spacing:0}
+.ep-desk-g small{font:400 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;text-transform:none;text-align:right}
+.ep-desk-c{display:inline-flex;align-items:center;gap:10px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer}
+.ep-desk-c input{width:20px;height:20px;accent-color:#067A79;margin:0}
+.ep-desk-warn{font-size:13px;line-height:1.45;color:#7A4D10;background:#FDF6E8;border-left:3px solid #C98A2B;padding:8px 12px;margin:6px 0 0}
+.ep-desk-warn .ep-x{margin-left:6px;min-height:32px}
+.ep-desk-add{display:flex;gap:8px;align-items:center;border-top:1px solid #F0EBE0;padding-top:10px}
+.ep-desk-add input{flex:1;min-width:0;min-height:44px;border:1.5px solid #D9D2C5;border-radius:6px;background:#FDF9F3;padding:8px 10px;font:400 15px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif}
+.ep-desk-undo{display:flex;align-items:center;gap:8px;font-size:14px;margin:8px 0 0}
+.ep-desks-off{color:#7A4D10 !important;margin-top:4px}
+@media (min-width:900px){[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){top:150px}}
+@media (max-width:600px){.ep-desk-g{grid-template-columns:1fr 1fr}.ep-desk-k{grid-column:1/-1}}
+/* Signed-in fix (26 Oct 2026): the site core CSS sets html.ms-loaded [data-ms-content="members"] to display:block, which beat the page grid for every signed-in member (the page showed as one wide column since 20 Oct), and the grid rule beat the core's display:none before Memberstack loaded (the empty form flashed at login). Hidden until Memberstack has loaded, then the grid. */
+.tll-edit-container [data-ms-content="members"]{display:none !important}
+html.ms-loaded .tll-edit-container [data-ms-content="members"]{display:grid !important}
+.ep-dir .ep-mono{margin-left:10px}
+.ep-eb span{font:inherit !important;letter-spacing:1.5px !important;color:#6B6660 !important}
+</style>

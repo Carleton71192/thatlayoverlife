@@ -45,3 +45,14 @@ The save bar and the Saved mark beside the field you edited (U1 to U3), the eigh
 On a local copy with a stand-in member at 1440 px and 375 px, side by side with /account's HTML: the band, the bar and the content edges line up with /account's; the title measures the same as "Hi, Nancy."; the tab row marks the section in view as you scroll; the bar, the Saved marks and a save in every section still work; the focus ring is Ink on paper and teal on the band; nothing moves under reduced motion; the signed-out gate; E3's bar and the profile card on /account read the same count. Then the subdomain, then your signed-in look before the custom domains.
 
 Reply with the item numbers to approve or change.
+
+## Approved 27 October 2026
+Nancy: "Approve E1 to E11 as written, take the lock".
+
+## Build notes, 27 October 2026
+- /edit-profile: the top embed 2801598c rewritten (the band's lower half, the tab-style section row, the bar, section 01), plus two new HtmlEmbeds: CSS part D after CSS part C and script part E after script part D. Script part E does the band move, the rose italic, the section numbers and the gate link at load, so the seven section embeds are not rewritten. Copies: src/pages/edit-profile/live-2026-10-27/.
+- The title takes /account's size by its own rule (38 to 60 px): the site head sets h1 to 112 px at the widest, so dropping the page override alone would not have matched.
+- The band's two halves carry the Ink as their own background as well as bleeding to the edges, because two site scripts (tll-proto-parity-js-v1 and tll-a11y-motion-v1) read the background behind text and force dark text on anything they take for a light section. With only a pseudo-element behind it, the band text went dark on phones.
+- Inputs: the footer's tll-forms-v2 rule sets 10 px corners with !important and comes later in the document, so the 4 px rule names the section, container, field and input to win.
+- E3: src/pages/account/a3-account.js and the /account footer code copy in src/pages/account/live-2026-10-27/ (the eight steps, "Next: add a photo →", the map step's link to /the-map, the member record read for the map step).
+- Tested on a local copy of the live page with a stand-in member at 1024 px and 375 px, and signed out: the band, chips, strip, tab row and bar (the section in view marked), Playfair section titles, white 4 px inputs and cards, the preview frame, the account links row, the gate card with its back link. The Webflow write and the subdomain test follow once this session can reach Webflow and holds the lock.

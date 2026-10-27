@@ -1,0 +1,66 @@
+<script id="tll-ep-js-b">
+/* Edit profile v2, script part B: state, first fill from Memberstack, paint of the form and the preview card. 3.4 (21 Oct 2026): the developing card, crew rows, contributions, expat desks, the preview in grayscale. UX (26 Oct 2026, U14): the preview names the contact choice in words. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;
+var root=document.getElementById("tll-ep");if(!root||!E)return;
+E.S={};E.member=null;E.snapshot=null;E.listeners=[];E.json={};E.pets=[];E.stories=null;
+E.onChange=function(fn){E.listeners.push(fn)};
+E.get=function(k){return E.S[k]==null?"":String(E.S[k])};
+E.set=function(k,v){v=String(v==null?"":v);if(E.S[k]===v)return;E.S[k]=v;E.listeners.forEach(function(fn){fn(k,v)});E.paint()};
+E.rowOn=function(k){var ls=E.list(E.get("links-shown"));return !ls.length||ls.indexOf(k)>-1};
+E.filled=function(){return E.LINKS.filter(function(l){return E.get(l[2]).trim()})};
+E.shown=function(){return E.filled().filter(function(l){return E.rowOn(l[0])})};
+E.dispName=function(){var n=E.get("name").trim(),m=E.get("credit-mode")||"full";if(m==="pen"&&E.get("pen-name").trim())return E.get("pen-name").trim();if(m==="first")return n.split(/\s+/)[0]||n;return n};
+function renderLinks(){var box=$("[data-ep-linkrows]");if(!box)return;box.innerHTML=E.LINKS.map(function(l){return '<div class="ep-link"><label for="ep-f-'+l[2]+'">'+esc(l[1])+'</label><input class="ep-input" type="url" inputmode="url" id="ep-f-'+l[2]+'" data-ep-f="'+l[2]+'" autocomplete="url"><button type="button" class="ep-sw" role="switch" aria-checked="true" data-ep-link="'+l[0]+'" aria-label="Show '+esc(l[1])+' on your profile">ON</button></div>'}).join("")}
+function renderCountries(){var d=$("#ep-countries");if(d)d.innerHTML=E.C.map(function(c){return '<option value="'+esc(c.n)+'"></option>'}).join("")}
+function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+E.paint=function(){
+ var cm=E.get("credit-mode")||"full";$$("[data-ep-credit]").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-ep-credit")===cm))});
+ var pw=$("[data-ep-penwrap]");if(pw)pw.hidden=cm!=="pen";
+ val("#ep-f-one-line",E.get("one-line"));var cnt=$("[data-ep-count]");if(cnt)cnt.textContent=E.get("one-line").length+" of 90";
+ val("#ep-f-pen-name",E.get("pen-name"));
+ var flags=E.list(E.get("from-and-lived-in"));var fb=$("[data-ep-flags]");if(fb)fb.innerHTML=flags.map(function(c){return '<button type="button" class="ep-chip ep-chip--x" data-ep-rmflag="'+esc(c)+'" aria-label="Remove '+esc(E.cname(c))+'" title="'+esc(E.cname(c))+' · remove"><span aria-hidden="true">'+E.flag(c)+'</span><b>'+esc(c.toUpperCase())+'</b> ×</button>'}).join("");
+ var fq=$("[data-ep-countryq]");if(fq)fq.disabled=flags.length>=5;var fn=$("[data-ep-flagnote]");if(fn&&!fn.getAttribute("data-hold"))fn.textContent=flags.length>=5?"Five is the limit. Remove one to add another.":"Type a country and press Enter. Up to five.";
+ var langs=E.list(E.get("languages"));var lb=$("[data-ep-langs]");if(lb)lb.innerHTML=langs.map(function(l){var off=E.LANGS&&!E.langOk(l);return '<button type="button" class="ep-chip ep-chip--x'+(off?' ep-chip--off':'')+'" data-ep-rmlang="'+esc(l)+'" aria-label="Remove '+esc(l)+'"'+(off?' title="Not on the list. Pick a language or remove this one."':'')+'>'+esc(l)+' ×</button>'}).join("");
+ var ln=$("[data-ep-langnote]");if(ln&&!ln.getAttribute("data-hold")){var offs=langs.filter(function(l){return E.LANGS&&!E.langOk(l)});ln.textContent=offs.length?"Not on the list: "+offs.join(", ")+". Pick a language or remove it.":(langs.length>=10?"Ten is the limit. Remove one to add another.":"Pick a language and press Enter. Up to ten.")}
+ var bn=$("[data-ep-bionote]");if(bn)bn.hidden=!/\b\d{2,3}\s+(countries|places)\b/i.test(E.get("bio-long")+" "+E.get("bio-short"));
+ E.LINKS.forEach(function(l){val("#ep-f-"+l[2],E.get(l[2]));var b=$('[data-ep-link="'+l[0]+'"]');if(b){var on=E.rowOn(l[0]);b.setAttribute("aria-checked",String(on));b.textContent=on?"ON":"OFF"}});
+ var ll=$("[data-ep-linksline]");if(ll)ll.textContent="· "+E.shown().length+" shown · "+E.filled().length+" saved";
+ var cmode=E.get("contact-mode")||"relay";$$("[data-ep-contact]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-contact")===cmode))});var ew=$("[data-ep-emailwrap]");if(ew)ew.hidden=cmode!=="email";val("#ep-f-email",E.get("email"));
+ $$("[data-ep-list]").forEach(function(b){var on=E.get(b.getAttribute("data-ep-list"))==="true";b.setAttribute("aria-checked",String(on));b.textContent=on?"ON":"OFF"});
+ var vis=E.get("visibility")||"public";$$("[data-ep-vis]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-vis")===vis))});var rg=$("[data-ep-ranges]");if(rg)rg.checked=E.get("share-ranges")==="true";
+ E.paintCrew();E.paintPets();E.paintStories();E.paintDesks();E.paintDev();
+ var dots={who:!!E.get("name").trim(),about:!!(E.get("bio-long").trim()||E.get("bio-short").trim()),links:!!E.filled().length,crew:E.crewRows().length>0,pets:E.pets.length>0||!!(E.stories&&E.stories.count),contact:!!E.get("contact-mode"),dirs:["list-expats","list-creators","list-press"].some(function(k){return E.get(k)==="true"}),vis:!!E.get("visibility")};
+ Object.keys(dots).forEach(function(k){var a=$('[data-ep-dot="'+k+'"]');if(a)a.setAttribute("data-on",dots[k]?"1":"0")});
+ E.paintPreview();
+};
+E.paintPreview=function(){
+ var n=E.dispName()||"Your name",parts=n.split(/\s+/),nm=$("[data-ep-pv-name]");if(nm)nm.innerHTML=parts.length>1?esc(parts.slice(0,-1).join(" "))+" <em>"+esc(parts[parts.length-1])+"</em>":esc(n);
+ var img=E.member&&E.member.profileImage,avh=img?'<img src="'+esc(img)+'" alt="">':esc(E.initials(E.get("name")));var av=$("[data-ep-pv-av]");if(av)av.innerHTML=avh;$$("[data-ep-avatar]").forEach(function(a2){a2.innerHTML=avh});
+ var lg=$("[data-ep-pv-langs]");if(lg){var L=E.list(E.get("languages"));lg.hidden=!L.length;lg.textContent="SPEAKS "+L.join(" · ").toUpperCase()}
+ var ln=$("[data-ep-pv-line]");if(ln)ln.textContent=E.get("one-line");
+ var hb=$("[data-ep-pv-home]");if(hb)hb.textContent=E.get("home-base").toUpperCase();
+ var fl=$("[data-ep-pv-flags]");if(fl)fl.textContent=E.list(E.get("from-and-lived-in")).map(E.flag).join(" ");
+ var st=$("[data-ep-pv-stats]"),s=E.snapshot;if(st){st.hidden=!s;if(s){var r=E.get("share-ranges")==="true",c=Number(s.countries||0),p=Number(s.places||0);function rng(x){return r&&x>=10?Math.floor(x/10)*10+"-something":String(x)}$("[data-ep-pv-countries]").textContent=rng(c)+(s.antarctica?" +AQ":"");$("[data-ep-pv-places]").textContent=rng(p);$("[data-ep-pv-layovers]").textContent="+"+Number(s.layovers||0)}}
+ var pl=$("[data-ep-pv-links]");if(pl){var k=E.shown().length;pl.textContent=k+(k===1?" link":" links")}
+ var pc=$("[data-ep-pv-contact]");if(pc){var m=E.get("contact-mode")||"relay";pc.textContent=m==="off"?"No contact button":"Get in touch · "+({relay:"Relay form",instagram:"Instagram DM",email:"Email"}[m]||m)}
+ var pv=$("[data-ep-pv-vis]");if(pv)pv.textContent=E.get("visibility")||"public";
+ /* M5 (20 Oct 2026): every "View my public profile" link on the page opens the member's own page. */
+ var cf=(E.member&&E.member.customFields)||{},slug=cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"));$$("[data-ep-view]").forEach(function(view){view.href=slug?"/contributors/"+slug:"/travelers"});
+};
+E.fill=function(member){E.member=member||null;var cf=(member&&member.customFields)||{};
+ ["name","home-base","bio-long","bio-short","one-line","pen-name","from-and-lived-in","languages","credit-mode","contact-mode","visibility","share-ranges","links-shown","list-expats","list-creators","list-press"].forEach(function(k){var v=cf[k];if(v==null||v==="")return;E.S[k]=String(v)});
+ E.LINKS.forEach(function(l){var mk=E.MSKEY[l[2]]||l[2];if(cf[mk])E.S[l[2]]=String(cf[mk])});
+ ["name","home-base","bio-long","bio-short"].forEach(function(k){var f=E.msField(k);if(f&&f.value&&!E.S[k])E.S[k]=f.value});
+ /* the old directory editor wrote none or platforms; map them to the v2 modes */
+ var cm={relay:1,instagram:1,email:1,off:1};if(!cm[E.get("contact-mode")])E.S["contact-mode"]=E.get("contact-mode")==="none"?"off":"relay";
+ if(!{full:1,first:1,pen:1}[E.get("credit-mode")])E.S["credit-mode"]="full";if(!{"public":1,unlisted:1,off:1}[E.get("visibility")])E.S["visibility"]="public";
+ var pn=$("[data-ep-pressnote]");if(pn&&cf["press-verified"])pn.textContent="Verified · "+cf["press-verified"];
+ E.paint()};
+/* The member's own JSON record: pets (from /my-pets), crew invites and expat desks live there. */
+E.fillJson=function(j){j=j&&typeof j==="object"?j:{};E.json=j;E.pets=Array.isArray(j.pets)?j.pets:[];
+ if(Array.isArray(j.tllCrew)&&!E.S.crew)E.S.crew=JSON.stringify(j.tllCrew);if(Array.isArray(j.tllDesks)&&!E.S.desks)E.S.desks=JSON.stringify(j.tllDesks);
+ if(j.tllSnapshot&&typeof j.tllSnapshot==="object")E.snapshot=j.tllSnapshot;E.paint()};
+renderLinks();renderCountries();E.paint();
+})(window.TLLEP);
+</script>
