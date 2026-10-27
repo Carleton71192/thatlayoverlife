@@ -1,0 +1,7 @@
+<style id="tll-home-search-left-v6">
+/* H2 (27 Oct 2026, Nancy: "On the search bar it is still smooshed"): v5 missed the box around the form, a Designer class capped at 640px and centered,
+   one level deeper than v5 expects. It now runs the full column, in line with "Search it" and the Try chips, so the whole hint shows. */
+[data-h3="search"] div:has(> .w-form #Search-the-library){max-width:none !important;width:100% !important;margin-left:0 !important;margin-right:0 !important}
+/* Phones: the 19 Oct sizes from v5 (field 20px, hint 16px) were overridden by tll-home3-v1, which loads later; "html" makes these win, so the hint fits at 375px. */
+@media(max-width:480px){html [data-h3="search"] #Search-the-library{font-size:20px !important}html [data-h3="search"] #Search-the-library::placeholder{font-size:16px !important}}
+</style>
