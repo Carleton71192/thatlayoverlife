@@ -172,3 +172,7 @@ No previous legal audit exists in `reports/`. The 28 Sep 2026 site lab (SEO, acc
 - Web3Forms privacy and DPA: https://web3forms.com/privacy
 - Simply.com databehandleraftale: https://www.simply.com/
 - SIL Open Font License (Montserrat): https://openfontlicense.org/
+
+## Update 27 Oct 2026
+
+One third-party request added by request: Ahrefs Web Analytics (`analytics.ahrefs.com/analytics.js`). Ahrefs documents it as cookieless and free of personal data, which is the basis for loading it without consent under the Danish cookie rules; that is Ahrefs's claim, not something verified here (NEEDS COUNSEL only if a consent-free analytics tool is contested). The cookie policy linked from the footer should name it. L03 (Google Fonts) stays fixed; the page's external requests are now exactly one.

@@ -1,6 +1,6 @@
 --- index-live-2026-10-06.html	2026-10-06 08:36:25.701489002 +0000
-+++ index.html	2026-10-06 11:21:57.364157935 +0000
-@@ -3,42 +3,238 @@
++++ index.html	2026-10-27 15:41:09.060961814 +0000
+@@ -3,42 +3,239 @@
  <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +31,7 @@
 +<meta property="og:image:alt" content="Referencetermometer, datalogger og termoelement lagt klar til termometrisk kontrol foran en instrumentvaskemaskine">
 +<meta name="twitter:card" content="summary_large_image">
 +<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312263A'/%3E%3Cpath d='M16 18h9l7 20 7-20h9L37 46H27z' fill='%23FFFFFF'/%3E%3C/svg%3E">
++<script src="https://analytics.ahrefs.com/analytics.js" data-key="FYk+EvkMigCMB8MGfA0gDQ" async></script>
 +<script type="application/ld+json">
 +{
 +  "@context": "https://schema.org",
@@ -251,7 +252,7 @@
  .lang a{text-decoration:none;color:var(--nmid);}
  .lang .cur{color:var(--navy);}
  .lang span.sep{color:var(--nlight);margin:0 6px;}
-@@ -46,15 +242,16 @@
+@@ -46,15 +243,16 @@
  /* hero */
  .hero{padding:76px 0 64px;}
  .btnrow{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 44px;}
@@ -271,7 +272,7 @@
  .quote p{font-size:19px;font-weight:600;font-style:italic;color:var(--navy);line-height:1.45;margin-bottom:10px;}
  .quote cite{font-style:normal;font-size:12.5px;color:var(--nmid);letter-spacing:.2px;}
  
-@@ -73,12 +270,12 @@
+@@ -73,12 +271,12 @@
    border:1px solid var(--border);color:var(--nmid);border-radius:2px;}
  
  /* steps */
@@ -286,7 +287,7 @@
  .person p{font-size:15px;color:var(--text2);margin-bottom:8px;}
  .person .muted{font-size:13px;color:var(--nmid);margin:0;}
  
-@@ -88,7 +285,7 @@
+@@ -88,7 +286,7 @@
  .cta .lede{color:#C6D4DE;}
  .contactgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px;
    border-top:1px solid rgba(255,255,255,.18);padding-top:26px;}
@@ -295,7 +296,7 @@
  .contactgrid .v{font-size:15px;color:#E7EEF3;}
  .contactgrid a{color:#E7EEF3;text-decoration:none;}
  
-@@ -97,18 +294,31 @@
+@@ -97,18 +295,31 @@
  details summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:16px;list-style:none;
    display:flex;justify-content:space-between;gap:16px;align-items:center;}
  details summary::-webkit-details-marker{display:none;}
@@ -330,7 +331,7 @@
  @media (max-width:900px){
    .sec{padding:60px 0;}
    .grid3,.grid2,.grid4,.stats,.contactgrid,.fgrid{grid-template-columns:1fr;gap:26px;}
-@@ -116,6 +326,13 @@
+@@ -116,6 +327,13 @@
    .person{gap:16px;}
    .person img{width:66px;height:66px;flex-basis:66px;}
  }
@@ -344,7 +345,7 @@
  </style>
  </head>
  <body>
-@@ -123,12 +340,16 @@
+@@ -123,12 +341,16 @@
  <header class="top">
    <div class="wrap topbar">
      <div class="brand">Valideringseksperterne<span>En del af Damgaard Solutions</span></div>
@@ -363,7 +364,7 @@
    <h1>Revalidering, der holder hospitalssterilisation compliant.</h1>
    <p class="lede">Autoklaver og instrumentvaskemaskiner driver over tid. Vi revaliderer dem efter FSTA's nationale retningslinjer, på en fast årlig aftale, med sporbare rapporter jeres kvalitetssystem kan forsvare.</p>
    <div class="btnrow">
-@@ -141,11 +362,11 @@
+@@ -141,11 +363,11 @@
      <div><div class="k">Pris</div><div class="v">Fast pris pr. enhed</div></div>
      <div><div class="k">Dækning</div><div class="v">Leveret i hele Skandinavien</div></div>
    </div>
@@ -376,7 +377,7 @@
      <h2>Sterilisatorer driver. Akkreditering tilgiver det ikke.</h2>
      <p class="lede" style="margin-bottom:34px;">Ydeevnen falder langsomt og usynligt. Uden planlagt revalidering opdages afvigelsen først, når det er for sent.</p>
  
-@@ -174,9 +395,9 @@
+@@ -174,9 +396,9 @@
  
  <section class="sec" id="omfang">
    <div class="wrap">
@@ -387,7 +388,7 @@
      <div class="grid2">
        <div>
          <div class="label">Udstyrsrekvalificering</div>
-@@ -208,7 +429,6 @@
+@@ -208,7 +430,6 @@
  
  <section class="sec off">
    <div class="wrap">
@@ -395,7 +396,7 @@
      <h2>Revalidering som en aftale, ikke en engangsopgave.</h2>
      <p class="lede" style="margin-bottom:38px;">Fire trin, der binder revalideringen til jeres akkrediteringscyklus, år efter år.</p>
      <div class="grid4">
-@@ -221,21 +441,22 @@
+@@ -221,21 +442,22 @@
  </section>
  
  <section class="sec">
@@ -422,7 +423,7 @@
        <div>
          <h3>Morten Winsløw</h3>
          <div class="role">Senior Revalideringsspecialist</div>
-@@ -244,7 +465,7 @@
+@@ -244,7 +466,7 @@
      </div>
  
      <div class="person">
@@ -431,7 +432,7 @@
        <div>
          <h3>Peter Mastrup</h3>
          <div class="role">Valideringsspecialist</div>
-@@ -254,7 +475,7 @@
+@@ -254,7 +476,7 @@
      </div>
  
      <div class="person">
@@ -440,7 +441,7 @@
        <div>
          <h3>Valeria Meloni</h3>
          <div class="role">Validerings- og EM-specialist</div>
-@@ -264,7 +485,7 @@
+@@ -264,7 +486,7 @@
      </div>
  
      <div class="person" style="margin-bottom:0;">
@@ -449,7 +450,7 @@
        <div>
          <h3>Raquel Petersen</h3>
          <div class="role">Projektleder, pharmaudvikling og koordinering</div>
-@@ -277,7 +498,6 @@
+@@ -277,7 +499,6 @@
  
  <section class="sec">
    <div class="wrap">
@@ -457,7 +458,7 @@
      <h2>Et etableret team uden udstyr at sælge.</h2>
      <p class="lede" style="margin-bottom:38px;">Vi rådgiver ud fra compliance, ikke ud fra hvad vi kan sælge jer af udstyr.</p>
      <div class="grid3">
-@@ -303,7 +523,6 @@
+@@ -303,7 +524,6 @@
  
  <section class="sec">
    <div class="wrap">
@@ -465,7 +466,7 @@
      <h2 style="margin-bottom:26px;">Ofte stillede spørgsmål.</h2>
      <details><summary>Hvor ofte skal udstyret revalideres?</summary>
        <p>Hver 12. måned, og igen efter service, reparation eller flytning, der kan påvirke kritiske procesparametre. Omfanget efter et indgreb fastlægges ud fra en risikovurdering.</p></details>
-@@ -319,6 +538,7 @@
+@@ -319,6 +539,7 @@
        <p>Besøg planlægges omkring jeres operations- og sterilcentralbelastning. Vi medbringer to sæt måleudstyr, så en enhed kun er ude af drift til sin egen test.</p></details>
    </div>
  </section>
@@ -473,7 +474,7 @@
  
  <footer>
    <div class="wrap">
-@@ -329,14 +549,15 @@
+@@ -329,14 +550,15 @@
        </div>
        <div>
          <div class="k">Kontakt</div>
@@ -491,7 +492,7 @@
        </div>
        <div>
          <div class="k">Mere</div>
-@@ -345,7 +566,7 @@
+@@ -345,7 +567,7 @@
        </div>
      </div>
      <div class="legal">

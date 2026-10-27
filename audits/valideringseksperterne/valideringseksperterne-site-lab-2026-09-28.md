@@ -118,6 +118,10 @@ Webflow changes made the same afternoon (all unpublished, in the Designer): Engl
 1. Redirect the duplicate Danish page: Webflow, Site settings, Publishing, 301 redirects. Old path `/revalidation/da`, redirect to `https://valideringseksperterne.dk/`. Save, then publish. The Danish page itself can stay in the Designer (it is already out of the sitemap); the redirect wins over it on the live site.
 2. hreflang on the English page: Pages, Revalidation EN, Settings, Custom code, Inside head tag: paste the three lines above.
 
+## Update 27 Oct 2026: Ahrefs Web Analytics
+
+`index.html` now loads the Ahrefs Web Analytics tag (`analytics.ahrefs.com/analytics.js`, data-key for the Valideringseksperterne project 10342547) in the head, async. Re-upload `index.html` alone, then in Ahrefs open Project settings, Web Analytics, Verify installation. Ahrefs states the script sets no cookies and collects no personal data, so it runs without a consent banner; add one line to the cookie policy page the footer links to, naming Ahrefs Web Analytics as a cookieless visitor counter, so the policy stays complete. This is the only third-party request the page makes; everything else (fonts, photos, portraits) is self-hosted.
+
 ## Upload steps (Simply, damgaardsolutions.dk hotel)
 
 The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` on the NON-hyphenated `damgaardsolutions.dk` web hotel (server linux244, IP 93.191.156.127). That folder sits next to `public_html`, not inside it. Do not touch `public_html`, which serves damgaardsolutions.dk itself.
