@@ -49,6 +49,13 @@ Reply with the item numbers to approve or change.
 ## Approved 27 October 2026
 Nancy: "Approve E1 to E11 as written, take the lock".
 
+## Added 27 October 2026, for your reply: two more items on /account
+Source: you, signed in on www.thatlayover.life/account: "At a certain point if your profile is done the bar should disappear", the hero reading "PROFILE 7 OF 7 DONE" above a strip reading "5 OF 8", and "When I click the buttons like settings they disappear" (on /account#settings, the page back at the top, "Login and email" in a heavy black box, the rest below the fold). E3 as approved already gives the hero bar the same eight steps as the strip, so the two totals agree. These two are new and wait for your word; they touch /account only and go in the same footer code as E3.
+| # | Change |
+|---|---|
+| E12 | **The bar goes when you are done.** At 8 of 8 the hero progress bar and its "All done →" line hide, as the strip below it already does. Until then one count shows in both places: "PROFILE 5 OF 8" in the hero and "5 OF 8" on the strip. |
+| E13 | **Tabs stay where you clicked.** Today a tab click hides the other panels, so the page is suddenly short and sits at the top with the hero in view, and the panel heading takes a 3 px black focus box as if you had tabbed to it. New: the click scrolls the panel heading to just under the site header, and the black box shows only for keyboard focus. |
+
 ## Build notes, 27 October 2026
 - /edit-profile: the top embed 2801598c rewritten (the band's lower half, the tab-style section row, the bar, section 01), plus three new HtmlEmbeds: CSS parts D and D2 after CSS part C (one split in two to stay under the embed size) and script part E after script part D. Script part E does the band move, the rose italic, the section numbers and the gate link at load, so the seven section embeds are not rewritten. Copies: src/pages/edit-profile/live-2026-10-27/.
 - The title takes /account's size by its own rule (38 to 60 px): the site head sets h1 to 112 px at the widest, so dropping the page override alone would not have matched.
