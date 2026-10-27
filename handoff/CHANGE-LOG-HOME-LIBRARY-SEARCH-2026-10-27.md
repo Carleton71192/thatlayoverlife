@@ -42,3 +42,13 @@ Tested on a copy of the current subdomain home page, which carries site layers v
 - 1440 by 900: pinned. The top line sits at 85px, under the 77px menu bar. The cards end at 892px of 900. Halfway through, the rail has moved 535px.
 - 1000 by 570: not pinned. The heading and cards are whole, the search field is 792px wide, the hint needs 665px, and the field lines up with "Search it".
 - 375 by 812: not pinned. The search field is 20px and the hint 16px (282px of 335). No sideways page scroll.
+
+## Written and on the subdomain (27 October 2026)
+Written under the shared lock scope and published to the subdomain only (task 17dbb3f4).
+- **Read back:** the published embed and the head match the after files exactly.
+- **Checked on that-layover-life.webflow.io:**
+  - 1440 by 900: pinned. The top line sits at 109px under the 77px menu bar, the cards end at 868px of 900, and the rail slides (489px at mid-scroll, with the card stamps from site layers v12 in place).
+  - 1000 by 570: not pinned. The search field runs 788px from the "Search it" column, and the hint needs 624px.
+  - 375px: the field is 20px and the hint 16px (267px of 335).
+  - No sideways page scroll at any size.
+- **Live:** waits for Nancy's look and her word, together with the Edit profile builds (E1 to E11, T1 to T3).
