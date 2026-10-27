@@ -21,3 +21,6 @@ Placement for the writer, in DOM order inside the members-only block of the page
 - after/4080e4be.html replaces the directories embed (adds the Add stint button under the desk message).
 - Worker: src/profile-sync.js desks years limit 40; redeploy tll-travel-wire after the page goes live (the old limit cuts a second stint).
 Independent of the E1 to E11 files above (2801598c, new-css-d, new-css-d2, new-js-e); both sets can be written in one lock.
+
+## Order of the new embeds when both sets are written (27 October 2026)
+Styles, after CSS part C (8ec4d875): C3, then D, then D2 (D and D2 last, so the look rules win ties, including on the desk inputs). Scripts, after script part D (85cbe1b9): F, then E (E wraps the page's paint and must come last). Checked together on a local copy of the live page with a stand-in member: no console errors, the desks with the Add stint button inside the look's white 4 px cards, the band, tab row, bar and preview as before.
