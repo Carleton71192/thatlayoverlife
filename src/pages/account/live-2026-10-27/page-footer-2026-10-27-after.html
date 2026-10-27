@@ -330,6 +330,8 @@
     var cf=(m&&m.customFields)||{}, ls=list(cf['links-shown']);
     var links=['instagram-url','youtube-url','personal-website-url','tiktok-url','substack-url','strava-url','alltrails-url','komoot-url','garmin-url','beli-url'].filter(function(k){ return has(cf[k]); });
     var on=links.filter(function(k){ return !ls.length||ls.indexOf(k.replace(/-url$/,'').replace('personal-website','website'))>-1; }).length;
+    /* Records saved by the older editor keep links in link-{name} with link-{name}-on; those count too, so nobody's done step flips back. */
+    if(!on) on=Object.keys(cf).some(function(k){ return /^link-/.test(k)&&!/-on$/.test(k)&&has(cf[k])&&yes(cf[k+'-on']); })?1:0;
     return [
       ['Photo','add a photo',has(m.profileImage),'/edit-profile#ep-who'],
       ['One line','write your one line',has(cf['one-line']),'/edit-profile#ep-who'],
