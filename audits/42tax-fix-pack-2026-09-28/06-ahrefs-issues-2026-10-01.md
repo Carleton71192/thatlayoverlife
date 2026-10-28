@@ -186,3 +186,17 @@ Ahrefs re-requests pages with AI crawler user agents (GPTBot, ClaudeBot, Perplex
 - If the page is simply slow for everyone, fixing "Slow page" above clears this row too.
 
 Neither warning needs copy or control panel work. Both go to the developer, with the URL from Ahrefs.
+
+## Recrawl of late October 2026
+
+79 URLs. Health score 96. Errors still 4, so the two sitemap toggles from `02-sitemap-404s.md` have not landed yet. Warnings down from 13 to 12: the slow page cleared on its own, which points to a cold cache on the earlier crawl rather than a persistent problem. Notices 66, with two new rows that Ahrefs has started reporting under AI Discoverability:
+
+### Article page missing Article schema (34, new)
+
+The 34 are the insight articles in What we think and What we've done, English and Danish. Ahrefs detects article-shaped pages (dated, authored, long text) and checks for `Article` JSON-LD. The fix is already written: `01-schema/resources/views/partials/schema/article.antlers.html`, included once in each of the two article templates. One include per template clears all 34.
+
+### Organization schema missing or incomplete (1, new)
+
+The homepage. Ahrefs looks for an `Organization` type (ProfessionalService is a subtype and satisfies it) with name, url, logo and sameAs. The fix is `01-schema/resources/views/partials/schema/professional-service.antlers.html` in the layout head, plus the Company global set filled in. The row says "incomplete" as well as "missing": without the LinkedIn URL in `linkedin_url` and a PNG in `logo`, Ahrefs may keep flagging it as incomplete even after the partial ships. Both values are listed as asks to Anja in the cover note.
+
+Neither notice affects the health score. Both affect whether AI answer engines can tell who 42TAX is and who wrote each article, which is the point of folder 01.
