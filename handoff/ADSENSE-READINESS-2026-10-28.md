@@ -6,6 +6,20 @@ Staged files: `src/seo/live-2026-10-28/adsense/` (edits, CMP head code, banner C
 
 What could not be checked from this session: the live site, Google's help pages, CookieYes's site, PageSpeed and Search Console are all outside this sandbox's network. Those rows say so and name who checks them.
 
+## Update, 28 October 2026 about 15:08 UTC
+
+Nancy chose Google's free consent message, the merged open slot, and approved the change log. Written, read back, and published to the webflow.io subdomain only (task e90e7596-f4db-482f-b4a9-7cc47fd5f3c2). Custom domains wait for Nancy.
+
+- **Free CMP route.** Google's Privacy and messaging tool in AdSense is a Google-certified CMP on the IAB TCF, so it meets the EEA, UK and Swiss rule for ads. It appears once the AdSense account exists. CookieYes is not used, so A1 and A2 as written above are dropped; the staged CookieYes files stay in the repo only as reference.
+- **Consent Mode v2 now.** Added at the top of the site-layers bundle (v13), because Webflow caps site scripts at 15. Google tags start with every storage denied; CookieConsent still keeps GA4 from loading until analytics is accepted, and now also sends the analytics consent update. Tested offline with the real CookieConsent 3.1.0: nothing loads before a choice; after Accept, the update comes before the GA4 config; a return visit repeats it; Reject sends a denial.
+- **Home.** C1 to C5 as in the table, with two corrections found in testing: the rail shows six of its cards, so the heading now reads "{shown} stories here · {total} published so far" with both numbers computed; and the founders strip never received Magnus's count (the script looked before that section existed), which is fixed.
+- **/cookies and /privacy.** Rewritten for the free route: CookieConsent for analytics, Google's certified message for ads once they start, every cookie named with owner and duration, the Google vendor paragraph, the controller exception in section 4, and the new date.
+- **Footer.** "Cookies" now links to /cookies. The banner link already read "Cookies", so it is now "Cookie settings" to avoid two identical labels; it still opens the banner.
+
+**When AdSense opens (Nancy, in the AdSense account).** Privacy and messaging, European regulations: create the message for www.thatlayover.life, keep the consent buttons as Google words them, and turn on Consent Mode for Google tags. After that, ads ask through Google's message and analytics through the site banner. Merging the two into one banner is a later choice.
+
+**Still to check on the subdomain (needs a browser).** In a private window: no `_ga` cookie before a choice, `_ga` and `_ga_T1K83PRL1R` after Accept, GA4 Realtime shows the visit. Type "Patagonia" in the home search and land on the filtered Stories page. Magnus's count shows in both places.
+
 ---
 
 ## 1. Consent platform (CMP) recommendation, with cost
