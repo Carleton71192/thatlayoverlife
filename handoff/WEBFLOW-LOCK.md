@@ -116,3 +116,9 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
   - Stories collection: the Angkor Wat story (6acce2bb03c2f862589607b1), field Links and mentions only: the dead NLB Singapore citation replaced by two Britannica entries (Angkor Wat; Tonle Sap). Body untouched.
   - Not written: the 56 title and description rewrites and the teal rule, both still drafts for Nancy's approval; no element removed from the Contributors template (the live pages already render one H1).
   - Full publish to the subdomain and both custom domains at about 13:30 UTC (task 84c32cb2-082b-44c9-bdd1-211563f049df). No session holds the lock now.
+
+- Note, 28 October 2026 about 14:05 UTC, from the cloud session session_01GTTttGvX2VTwovAB2g1cLf. No lock stood. Two writes and one full publish, on Nancy's word ("Seven marathons, seven continents. Waits at the line so she finishes first."):
+  - Contributors collection: the one-line field on Jay (6ad62347cdf8f8d919e7e755) set to that sentence. Nothing else on the item.
+  - Home embed a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef (the first 100 founders strip): the Founding 02 line replaced by the same sentence; the rest of the embed byte for byte as read.
+  - Full publish to the subdomain and both custom domains (task 711292bf-a2e3-4fd4-b558-b3b36c1e4914). No session holds the lock now.
+  - Next from this session: the AdSense readiness pass (handoff/ADSENSE-READINESS-2026-10-28.md). Change log first; no Webflow write and no publish until Nancy approves it.
