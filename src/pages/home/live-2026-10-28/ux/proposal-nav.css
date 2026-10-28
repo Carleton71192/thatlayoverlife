@@ -1,0 +1,6 @@
+/* PROPOSAL ONLY (28 Oct 2026), not staged: "Share your story" becomes a text link in the desktop nav, so "Sign up" is the one filled button. */
+@media (min-width:960px){
+html body .tll-nav-v1 .tll-nav-pen-cta{background:transparent!important;border:0!important;box-shadow:none!important;color:#F7F1E8!important;padding:0 6px!important;min-height:44px;display:inline-flex!important;align-items:center;
+text-decoration:underline!important;text-decoration-color:#F0507A!important;text-decoration-thickness:2px!important;text-underline-offset:6px!important;transition:color 150ms cubic-bezier(.23,1,.32,1)}
+html body .tll-nav-v1 .tll-nav-pen-cta:hover{color:#F0507A!important}
+}
