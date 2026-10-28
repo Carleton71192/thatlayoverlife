@@ -1,0 +1,69 @@
+{
+ "_note": "Staged 28 Oct 2026 for Nancy's approval. Not written to Webflow. Each edit replaces old with new in the live embed code; apply only if old occurs exactly once.",
+ "home_page": "69d6145df421c777840c1e46",
+ "edits": [
+  {
+   "id": "C1",
+   "embed": "94ce12c0-56fc-4b10-fa9f-14da000634c7",
+   "what": "library heading: published count from the site-wide story count, shelf count from the cards",
+   "old": "<span data-h3-total></span> published so far · six of them here",
+   "new": "<span data-h3-shown></span> stories here<span data-h3-total-wrap hidden> · <span data-h3-total></span> published so far</span>"
+  },
+  {
+   "id": "C1b",
+   "embed": "94ce12c0-56fc-4b10-fa9f-14da000634c7",
+   "what": "rail script: shelf count from the cards; total from window.tllCounts.s (tll-live-counts, read from the sitemap), shown only once known",
+   "old": "if(tEl)tEl.textContent=String(all.length);",
+   "new": "var shEl=sec.querySelector('[data-h3-shown]');if(shEl)shEl.textContent=String(all.length);if(tEl&&!sec.__tllc){sec.__tllc=1;var tw=sec.querySelector('[data-h3-total-wrap]'),put=function(c){if(c&&c.s>all.length){tEl.textContent=String(c.s);if(tw)tw.hidden=false;}};put(window.tllCounts);document.addEventListener('tll:counts',function(e){put(e.detail);});}"
+  },
+  {
+   "id": "C2",
+   "embed": "a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7",
+   "what": "Magnus caption: no ellipsis; the places clause appears only once his pet page answers",
+   "old": "Magnus · Samoyed · 35 kg · <span data-h3-mag>…</span> places</figcaption>",
+   "new": "Magnus · Samoyed · 35 kg<span data-h3-mag-wrap hidden> · <span data-h3-mag></span> places</span></figcaption>"
+  },
+  {
+   "id": "C2b",
+   "embed": "a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7",
+   "what": "Magnus script: unhide every wrapper after the count is written",
+   "old": "if(n)[].forEach.call(els,function(el){el.textContent=String(n);});",
+   "new": "if(n){[].forEach.call(els,function(el){el.textContent=String(n);});[].forEach.call(document.querySelectorAll('[data-h3-mag-wrap]'),function(w){w.hidden=false;});}"
+  },
+  {
+   "id": "C2c",
+   "embed": "a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef",
+   "what": "founders strip: same treatment for Magnus",
+   "old": "<span>Samoyed · 35 kg · <span data-h3-mag>…</span> places · advisory capacity</span>",
+   "new": "<span>Samoyed · 35 kg<i data-h3-mag-wrap hidden style=\"font-style:normal\"> · <i data-h3-mag style=\"font-style:normal\"></i> places</i> · advisory capacity</span>"
+  },
+  {
+   "id": "C3",
+   "embed": "405baa84-b88f-64fd-3fcd-a1c81d3ac553",
+   "what": "sample map reads as a deliberate demo",
+   "old": "<span class=\"h3-dash-label\" data-h3-dash-label>This is Nancy's map. Log in to see yours.</span>",
+   "new": "<span class=\"h3-dash-label\" data-h3-dash-label>Sample passport: the editor's map. Log in and yours takes its place.</span>"
+  },
+  {
+   "id": "C3b",
+   "embed": "405baa84-b88f-64fd-3fcd-a1c81d3ac553",
+   "what": "map label for screen readers matches",
+   "old": "aria-label=\"Nancy's map. Countries she has lived in or stayed in are rose, layovers are teal.\"",
+   "new": "aria-label=\"Sample passport map, the editor's own. Countries she has lived in or stayed in are rose, layovers are teal.\""
+  },
+  {
+   "id": "C4",
+   "embed": "d3ac79f6-5c4d-c695-f759-aa94ad81cf69",
+   "what": "home search: send the query to the Stories page before Webflow's form handler can fail",
+   "old": "<p>Type a country. Your carry-on is already packed.</p></div>",
+   "new": "<p>Type a country. Your carry-on is already packed.</p></div><script id=\"h3-search-go\">/* 28 Oct 2026: the Library search box is a Webflow form; Webflow tried to submit it as a form entry and showed its fail message. This sends the words straight to the Stories page search, which already reads ?q= (the Try links use it). */document.addEventListener('submit',function(e){var f=e.target;if(!f||f.getAttribute('data-name')!=='Library search')return;e.preventDefault();e.stopImmediatePropagation();var i=f.querySelector('input[type=text]');var q=i?i.value.trim():'';location.href='/stories'+(q?'?q='+encodeURIComponent(q):'');},true);</script>"
+  },
+  {
+   "id": "C5",
+   "embed": "a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef",
+   "what": "open slot 05 drops the typed count (option B; Nancy chooses A, B or C)",
+   "old": "<a href=\"/signup\">Ninety-six more seats. Window or aisle?</a>",
+   "new": "<a href=\"/submit\">Write one trip. The founding badge is yours.</a>"
+  }
+ ]
+}

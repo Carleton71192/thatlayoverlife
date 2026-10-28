@@ -1,0 +1,12 @@
+/* STAGED 28 Oct 2026. Paste into CookieYes > Customize > Custom CSS (Pro plan). Brand tokens: Ink #0A0B14, Cream #F6F1E7, Rose on light #C8325B, Teal on light #067A79.
+   Body IBM Plex Sans Condensed, labels JetBrains Mono, title Playfair Display 800. Square corners, 44px buttons, 12px floor. */
+.cky-consent-container .cky-consent-bar,.cky-modal{background:#F6F1E7!important;color:#0A0B14!important;border:1px solid #0A0B14!important;border-radius:0!important;box-shadow:0 18px 40px rgba(10,11,20,.18)!important}
+.cky-title,.cky-preference-title{font-family:'Playfair Display',Georgia,serif!important;font-weight:800!important;font-size:22px!important;letter-spacing:-.01em!important;color:#0A0B14!important}
+.cky-notice-des,.cky-notice-des p,.cky-preference-content-wrapper,.cky-accordion-header-des{font-family:'IBM Plex Sans Condensed',Arial,sans-serif!important;font-size:15px!important;line-height:1.5!important;color:#0A0B14!important}
+.cky-btn{font-family:'JetBrains Mono',monospace!important;font-size:12px!important;letter-spacing:.14em!important;text-transform:uppercase!important;min-height:44px!important;border-radius:0!important;transition:background-color 150ms ease,color 150ms ease!important}
+.cky-btn-accept{background:#C8325B!important;border-color:#C8325B!important;color:#FFFFFF!important}
+.cky-btn-reject,.cky-btn-customize,.cky-btn-preferences{background:transparent!important;border:1px solid #0A0B14!important;color:#0A0B14!important}
+.cky-btn:focus-visible{outline:2px solid #067A79!important;outline-offset:2px!important}
+.cky-notice-des a,.cky-preference-content-wrapper a{color:#0A0B14!important;text-decoration:underline!important;text-decoration-color:#C8325B!important;text-underline-offset:3px!important}
+.cky-switch input[type=checkbox]:checked{background:#067A79!important}
+.cky-revisit-bottom-left{display:none!important}

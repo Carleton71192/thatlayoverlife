@@ -1,0 +1,84 @@
+<section class="h3 h3-sec h3-dark" aria-labelledby="h3-c2-t" data-h3-dash data-owner-url="https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map">
+<div class="h3-in">
+<p class="h3-ey">02 · Your travel dashboard</p>
+<h2 id="h3-c2-t" class="h3-title-l">Every place you have been, <em>in one spot.</em></h2>
+<p class="h3-lede">Every stamp, every stopover, one map. Plus inspo for the next one.</p>
+<div class="h3-ctas"><a class="h3-btn h3-btn-rose" href="/the-map" data-h3-dash-cta>Build your free map</a><span class="h3-note" data-h3-dash-sub>Free, forever</span></div>
+<div class="h3-dash-map" data-h3-dash-map>
+<div class="h3-map" data-h3-map role="img" aria-label="Nancy's map. Countries she has lived in or stayed in are rose, layovers are teal."></div><span class="h3-dash-label" data-h3-dash-label>This is Nancy's map. Log in to see yours.</span>
+</div>
+<p class="h3-dash-line"><span data-h3-dash-line hidden></span><span class="h3-dash-cap">Counted from your map</span></p>
+<ol class="h3-steps" aria-label="How the dashboard builds itself">
+<li><b>01 · Profile</b><span>Sign up. You are live.</span></li>
+<li><b>02 · Stories and photos</b><span>Add a trip. Or the photo from the gate.</span></li>
+<li><b>03 · The map</b><span>Nobody likes a blank map.</span></li>
+</ol>
+</div>
+</section>
+<style id="h3b-dash">
+/* Packet B (20 Oct 2026, prototype 3.3) B3, copy and counts from prototype 3.4 (E1.3 and E2.1, 20 Oct 2026 evening): one dashboard chapter. Visitors see Nancy's map with its label;
+   a signed-in member sees their own map (the /the-map page, embedded) and a count line from tllStates. 12px floor. */
+.h3-dash-map{position:relative;margin-top:32px;background:var(--h3-ink2);min-height:240px}
+.h3-dash-label{position:absolute;left:12px;top:12px;font-family:var(--h3-mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--h3-teal);background:#0A0B14;padding:6px 10px;pointer-events:none}
+.h3-dash-map iframe{display:block;width:100%;aspect-ratio:1140/560;border:0;background:#CBDBE1}
+.h3-dash-map .h3-map{position:relative;background:var(--h3-ink2);aspect-ratio:96/47;min-width:0}
+.h3-dash-map .h3-map svg{display:block;width:100%;height:100%}
+.h3-dash-map .h3-map path{fill:#2a2d45;stroke:#0A0B14;stroke-width:.5}
+.h3-dash-map .h3-map path.is-been{fill:var(--h3-rose)}
+.h3-dash-map .h3-map path.is-lay{fill:var(--h3-teal)}
+.h3-dash-map .h3-map-msg{position:absolute;inset:auto 16px 16px 16px;margin:0;font-size:15px;color:var(--h3-cream);background:rgba(10,11,20,.86);padding:12px 14px}
+.h3-dash-line{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;margin:14px 0 0;font-family:var(--h3-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cfcbc4}
+.h3-dash-line [data-h3-dash-line]{color:var(--h3-cream)}
+.h3-dash-cap{color:#9496AC}
+.h3-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:48px 0 0;padding:0;list-style:none;border-top:1px solid var(--h3-line-d);counter-reset:none}
+.h3-steps li{padding-top:18px}
+.h3-steps b{display:block;font-family:var(--h3-mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--h3-teal);margin-bottom:8px}
+.h3-steps span{font-size:15px;line-height:1.45;color:#cfcbc4}
+@media(max-width:899px){.h3-steps{grid-template-columns:1fr}}
+@media(max-width:600px){.h3-dash-map{min-height:0;display:flex;flex-direction:column}.h3-dash-label{position:static;order:-1;align-self:flex-start;margin:0}.h3-dash-map .h3-map{width:100%}}
+</style>
+<script id="h3-dash-js">
+/* Home dashboard (E1.3 and E2.1, 20 October 2026 evening).
+   Visitors: Nancy's map, labeled as hers, drawn here from her saved states. Source: the Worker's public /owner-map route (its URL goes in
+   data-owner-url on this section after the Worker is deployed); until then the same 7 October copy The Map shows visitors
+   (map-2.0/data/owner-record.json, pinned to the map's commit), and the count line stays hidden rather than show an old number.
+   Members (21 Oct 2026, Nancy: "No map on the mobile version"): the same drawn map, painted from their own tllStates, and their own count line.
+   The earlier frame of /the-map in its old embed mode showed nothing on phones: that mode belongs to the old SVG map, gone since the Map 2.0 cut-over (S05).
+   One count rule for both, the same as the map save (tll-map-snapshot-v1): human travelers only; Lived and Stayed make places;
+   Antarctica (010) is a place, not a country; layover-only places sit beside the count. */
+(function(){var sec=document.querySelector('[data-h3-dash]');if(!sec||sec.__h3)return;sec.__h3=1;
+var line=sec.querySelector('[data-h3-dash-line]'),cta=sec.querySelector('[data-h3-dash-cta]'),sub=sec.querySelector('[data-h3-dash-sub]'),wrap=sec.querySelector('[data-h3-dash-map]'),box=sec.querySelector('[data-h3-map]'),label=sec.querySelector('[data-h3-dash-label]'),DEN=249,ATA='010';
+var CDN='https://cdn.jsdelivr.net/npm/',COPY='https://cdn.jsdelivr.net/gh/carleton71192/thatlayoverlife@aeba470383a28a3d6143f282a758de18ded29aec/map-2.0/data/owner-record.json';
+function best(row,allow){var b='';Object.keys(row||{}).forEach(function(id){if(allow&&!allow[id])return;var v=row[id];if(v==='lived')b='lived';else if(v==='visited'){if(b!=='lived')b='visited';}else if(v==='layover'&&!b)b='layover';});return b;}
+function humans(d){var hum={},any=false;(d.travelers||[]).forEach(function(t){if(t&&!t.pet){hum[t.id]=1;any=true;}});return any?hum:null;}
+function count(d){if(!d||d.v!==2||!d.states)return null;var h=humans(d),c=0,ata=false,lay=0;
+ Object.keys(d.states).forEach(function(k){var b=best(d.states[k]||{},h);if(b==='lived'||b==='visited'){if(k===ATA)ata=true;else c++;}else if(b==='layover')lay++;});
+ return {countries:c,ata:ata,lay:lay,places:c+(ata?1:0)};}
+function show(c){if(!c||!c.places){line.hidden=true;return;}line.textContent=c.countries+' countries'+(c.ata?' + AQ':'')+' · '+c.lay+' layovers beside · '+c.places+' of '+DEN+' places';line.hidden=false;}
+function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;});}
+var rec=null,svg=null;
+function paint(){if(!svg||!rec)return;var h=humans(rec),st=rec.states||{};[].forEach.call(svg.querySelectorAll('path'),function(p){var id=p.getAttribute('data-id'),row=st[id]||(id==='900'?(st.XK||st.xk||st['undefined']):null);var b=best(row||{},h);p.classList.toggle('is-been',b==='lived'||b==='visited');p.classList.toggle('is-lay',b==='layover');});}
+function owner(){var u=(sec.getAttribute('data-owner-url')||'').trim();
+ if(/^https:\/\//.test(u)){getJSON(u).then(function(d){if(sec.__member)return;if(d&&d.v===2){rec=d;paint();show(count(d));}else return copy();}).catch(copy);}else copy();}
+function copy(){return getJSON(COPY).then(function(d){if(d&&d.v===2&&!rec&&!sec.__member){rec=d;paint();}}).catch(function(){});}
+function draw(world){var topo=window.topojson,d3=window.d3,all=topo.feature(world,world.objects.countries).features,FIX={'Kosovo':'900','N. Cyprus':'901','Somaliland':'902'};
+ all.forEach(function(f){if(f.id==null&&FIX[f.properties.name])f.id=FIX[f.properties.name];});var feats=all.filter(function(f){return f.id!==ATA;});
+ var W=960,H=470,proj=d3.geoEqualEarth().fitExtent([[8,8],[W-8,H-8]],{type:'FeatureCollection',features:feats}),path=d3.geoPath(proj),ns='http://www.w3.org/2000/svg';
+ svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+ feats.forEach(function(f){var p=document.createElementNS(ns,'path');p.setAttribute('d',path(f));p.setAttribute('data-id',f.id);svg.appendChild(p);});box.appendChild(svg);paint();}
+function load(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s);});}
+function boot(){if(sec.__booted)return;sec.__booted=1;if(!sec.__member)owner();
+ Promise.all([load(CDN+'d3-array@3.2.4/dist/d3-array.min.js').then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');}),load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js'),getJSON(CDN+'world-atlas@2.0.2/countries-110m.json')])
+ .then(function(a){draw(a[2]);}).catch(function(){var m=document.createElement('p');m.className='h3-map-msg';m.textContent='The map did not load. Open The Map to see it.';box.appendChild(m);});}
+function member(){var k=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(!ms){if(++k>40)clearInterval(iv);return;}clearInterval(iv);
+ ms.getCurrentMember().then(function(r){if(!r||!r.data)return;sec.__member=true;
+  cta.textContent='Open your dashboard';cta.href='/account';if(sub)sub.textContent='Your map, your lists';if(label)label.textContent='Your map · live';
+  if(box){box.setAttribute('aria-label','Your map. Countries you have lived in or stayed in are rose, layovers are teal.');box.style.cursor='pointer';box.addEventListener('click',function(){location.href='/the-map';});}
+  /* The member's own record: the browser copy first (the map keeps it current), then the saved one. The visitor record never paints over it. */
+  function own(d){rec=(d&&d.v===2&&d.states)?d:{v:2,states:{},travelers:[]};paint();show(count(rec));}
+  var ls=null;try{ls=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){}
+  if(ls&&ls.v===2&&ls.states){own(ls);return;}return ms.getMemberJSON().then(function(j){own(j&&j.data&&j.data.tllStates);}).catch(function(){own(null);});}).catch(function(){});},250);}
+member();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();setTimeout(boot,300);}},{rootMargin:'600px 0px'});io.observe(sec);}else boot();
+})();
+</script>

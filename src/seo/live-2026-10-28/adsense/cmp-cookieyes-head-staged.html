@@ -1,0 +1,10 @@
+<!-- STAGED 28 Oct 2026, not live. Replaces, in the site head: the two orestbida cookieconsent.css lines, the #cc-main style block, and the two text/plain GA4 blocks.
+     Order matters: consent defaults first, then CookieYes, then GA4. Nancy pastes her own CookieYes site ID where CY_SITE_ID is (from the CookieYes dashboard; it is not a secret, it is printed in every page). -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
+gtag('set','ads_data_redaction',true);
+</script>
+<script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/CY_SITE_ID/script.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T1K83PRL1R"></script>
+<script>gtag('js',new Date());gtag('config','G-T1K83PRL1R');</script>
