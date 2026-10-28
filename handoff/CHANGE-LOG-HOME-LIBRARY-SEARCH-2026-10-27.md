@@ -52,3 +52,6 @@ Written under the shared lock scope and published to the subdomain only (task 17
   - 375px: the field is 20px and the hint 16px (267px of 335).
   - No sideways page scroll at any size.
 - **Live:** waits for Nancy's look and her word, together with the Edit profile builds (E1 to E11, T1 to T3).
+
+## Live (28 October 2026)
+Carried live by the usability session's publish to the custom domains and the subdomain (task b0f1761e, about 12:05 UTC; Nancy: "Publish both"). The live check on www.thatlayover.life gives the same results as the subdomain check above, and the embed and head match the after files exactly.
