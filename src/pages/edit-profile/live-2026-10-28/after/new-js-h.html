@@ -1,0 +1,21 @@
+<script id="tll-ep-js-h">
+/* Edit profile v2, script part H (28 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md, N5), after part G: invite crew by picking a name. Typing in Invite someone shows matching Travelers (photo and name, read from the public /travelers page); Enter or a click adds a waiting invite to the member's own record (tllCrew), as the old Enter rule did, now with the traveler's slug and photo. Touches no data-ms-* element. */
+(function(E){
+var $=E&&E.$,$$=E&&E.$$,esc=E&&E.esc,root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+function day(t){return new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+function say(sel,t){var n=$(sel);if(!n)return;var was=n.textContent;n.textContent=t;setTimeout(function(){n.textContent=was},5000)}
+var pq=$("[data-ep-crewpick]"),box=$("[data-ep-crewopts]"),TV=null,hits=[],act=-1;
+function me(){var cf=(E.member&&E.member.customFields)||{};return cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"))}
+function loadTV(){if(TV)return Promise.resolve(TV);return fetch("/travelers",{credentials:"same-origin"}).then(function(r){return r.text()}).then(function(h){var d=new DOMParser().parseFromString(h,"text/html"),seen={};TV=[].slice.call(d.querySelectorAll("a.tv-card[data-slug]")).map(function(a){var im=a.querySelector("img");return {name:(a.getAttribute("data-name")||"").trim(),slug:a.getAttribute("data-slug"),img:im&&im.getAttribute("src")&&!/w-dyn-bind-empty/.test(im.className)?im.getAttribute("src"):""}}).filter(function(t){if(!t.name||seen[t.slug])return false;seen[t.slug]=1;return true});return TV}).catch(function(){return []})}
+function close(){if(!box)return;box.hidden=true;box.innerHTML="";hits=[];act=-1;pq.setAttribute("aria-expanded","false");pq.removeAttribute("aria-activedescendant")}
+function mark(){$$("[data-ep-crew-o]",box).forEach(function(o,i){o.setAttribute("aria-selected",String(i===act))});if(act>-1)pq.setAttribute("aria-activedescendant","ep-crew-o"+act);else pq.removeAttribute("aria-activedescendant")}
+function find(){var v=pq.value.trim().toLowerCase();if(!v){close();return}loadTV().then(function(L){if(pq.value.trim().toLowerCase()!==v)return;var cur=E.jsonList("crew").map(function(c){return String(c.slug||c.name||"").toLowerCase()}),mine=me();
+ hits=L.filter(function(t){return t.slug!==mine&&cur.indexOf(t.slug)<0&&cur.indexOf(t.name.toLowerCase())<0&&(" "+t.name.toLowerCase()).indexOf(" "+v)>-1}).slice(0,6);act=hits.length?0:-1;
+ box.innerHTML=hits.length?hits.map(function(t,i){return '<div class="ep-crew-row ep-crew-opt" role="option" id="ep-crew-o'+i+'" data-ep-crew-o="'+i+'"><span class="ep-av" aria-hidden="true">'+(t.img?'<img src="'+esc(t.img)+'" alt="">':esc(E.initials(t.name)))+'</span><span><b>'+esc(t.name)+'</b><small>TRAVELER</small></span><span class="ep-crew-acts"><span class="ep-x">INVITE</span></span></div>'}).join(""):'<p class="ep-note" role="option" aria-disabled="true">No traveler by that name. Not on TLL yet? Name them in the story byline instead.</p>';
+ box.hidden=false;pq.setAttribute("aria-expanded","true");mark()})}
+function pick(i){var t=hits[i];if(!t)return;var cur=E.jsonList("crew");if(cur.length>=20){close();say("[data-ep-crewnote]","Twenty is the limit.");return}cur.push({name:t.name,slug:t.slug,img:t.img,meta:"INVITED · "+day(Date.now()).toUpperCase(),pending:true,at:new Date().toISOString()});pq.value="";close();E.set("crew",JSON.stringify(cur))}
+if(pq&&box){pq.addEventListener("input",find);pq.addEventListener("focus",function(){loadTV()});pq.addEventListener("blur",function(){setTimeout(close,150)});
+ pq.addEventListener("keydown",function(e){if(e.key==="ArrowDown"||e.key==="ArrowUp"){if(!hits.length)return;e.preventDefault();act=(act+(e.key==="ArrowDown"?1:hits.length-1))%hits.length;mark()}else if(e.key==="Enter"){e.preventDefault();if(act>-1)pick(act);else find()}else if(e.key==="Escape")close()});
+ box.addEventListener("mousedown",function(e){var o=e.target.closest("[data-ep-crew-o]");if(o){e.preventDefault();pick(+o.getAttribute("data-ep-crew-o"))}})}
+})(window.TLLEP);
+</script>

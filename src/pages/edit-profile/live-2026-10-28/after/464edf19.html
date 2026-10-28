@@ -1,0 +1,61 @@
+<script id="tll-ep-js-c">
+/* Edit profile v2, script part C: input wiring, the 900 ms debounced save, the save status. Fields go to Memberstack, and with data-worker to POST {worker}/profile/save (bio-short to Memberstack only); crew and desks to the member JSON record (tllCrew, tllDesks), desks also to the Worker when data-desks-field is 1. UX build (26 Oct 2026, U1 to U3): status line, Saved marks, retry every 10 s, ask before leaving mid-save. 28 Oct 2026 (N2 to N9): fields the Worker answers "cannot be saved from a profile" are dropped from that send. Desk inputs: part F. Crew picker: part H. */
+(function(E){
+var $=E.$,$$=E.$$;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+var WORKER=(root.getAttribute("data-worker")||"").replace(/\/$/,""),DESKS_FIELD=root.getAttribute("data-desks-field")==="1";
+var JSONKEY={desks:"tllDesks",crew:"tllCrew"},MSONLY={"bio-short":1};
+var dirty={},timer=null,retry=null,savedAt=0,busy=false,failed=false,cur=null,where={};
+function pending(){return Object.keys(dirty).length>0}
+function status(t,state,say){$$("[data-ep-status]").forEach(function(s){s.textContent=t;s.setAttribute("data-state",state||"")});$$("[data-ep-retry]").forEach(function(b){b.hidden=!(state==="fail"&&pending())});var sr=$("[data-ep-say]");if(sr&&say)sr.textContent=say}
+function hm(t){return new Date(t).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})}
+function tick(){if(!savedAt||busy||failed)return;status(Date.now()-savedAt<60000?"Saved":"Saved at "+hm(savedAt),"ok")}
+setInterval(tick,15000);
+/* where each change came from, so its "Saved" mark lands beside it */
+["input","change","click","keydown"].forEach(function(t){document.addEventListener(t,function(e){cur=e.target},true)});
+function anchor(el){return el&&el.closest&&(el.closest(".ep-desk,.ep-desk-add,.ep-link,.ep-dir,.ep-crew-row,.tll-edit-field,.ep-field,.ep-opts,.ep-check")||el.closest(".ep-sec"))}
+function mark(keys,ok){$$(".ep-saved").forEach(function(m){m.remove()});var seen=[];keys.forEach(function(k){var w=where[k];if(!w)return;var a=w.a&&w.a.isConnected?w.a:(w.s&&$(w.s));if(!a||seen.indexOf(a)>-1)return;seen.push(a);
+ var t=a.querySelector(".ep-label,.tll-edit-label")||a.querySelector('[aria-checked="true"] b')||a.querySelector(".ep-desk-h b,b,label")||a,m=document.createElement(ok?"span":"button");
+ m.className="ep-saved"+(ok?"":" ep-saved--fail");if(ok){m.setAttribute("aria-hidden","true");m.textContent="Saved";setTimeout(function(){m.remove()},3000)}else{m.type="button";m.setAttribute("data-ep-retry","");m.textContent="Not saved. Try again"}t.appendChild(m)})}
+E.onChange(function(k,v){dirty[k]=v;var a=anchor(cur);if(a)where[k]={a:a,s:a.hasAttribute("data-ep-desk")?'[data-ep-desk="'+a.getAttribute("data-ep-desk")+'"]':""};clearTimeout(timer);clearTimeout(retry);timer=setTimeout(flush,900);if(!failed)status("Saving…","busy")});
+function flush(){timer=null;clearTimeout(retry);var d=dirty;dirty={};var keys=Object.keys(d);if(!keys.length)return;busy=true;status("Saving…","busy");
+ var m=E.ms(),cfs={},msOk=false,jkeys=keys.filter(function(k){return JSONKEY[k]}),fkeys=keys.filter(function(k){return !JSONKEY[k]});
+ fkeys.forEach(function(k){var mk=(k in E.MSKEY)?E.MSKEY[k]:k;if(mk)cfs[mk]=d[k]});
+ var p=(m&&m.updateMember&&Object.keys(cfs).length)?m.updateMember({customFields:cfs}):Promise.resolve();
+ /* JSON keys: read the record first so nothing else in it is lost, then write it back with the new lists. */
+ if(jkeys.length&&m&&m.getMemberJSON&&m.updateMemberJSON)p=p.then(function(){return m.getMemberJSON()}).then(function(j){var c=(j&&j.data&&typeof j.data==="object")?j.data:{};jkeys.forEach(function(k){try{c[JSONKEY[k]]=JSON.parse(d[k]||"[]")}catch(e){c[JSONKEY[k]]=[]}});E.json=c;return m.updateMemberJSON({json:c})});
+ var wkeys=fkeys.filter(function(k){return !MSONLY[k]}).concat(DESKS_FIELD&&jkeys.indexOf("desks")>-1?["desks"]:[]);
+ p.then(function(){msOk=true;if(!WORKER||!wkeys.length){savedAt=Date.now();return}var tok=E.token();if(!tok)throw new Error("no token");var body={fields:{}};wkeys.forEach(function(k){body.fields[k]=E.BOOL[k]?d[k]==="true":d[k]});
+  function send(b){return fetch(WORKER+"/profile/save",{method:"POST",keepalive:true,headers:{"content-type":"application/json","authorization":"Bearer "+tok},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok&&j.ok,j:j}})})}
+  return send(body).then(function(x){if(x.ok)return x;/* fields the Worker does not take yet stay on the account; the rest still saves */var er=String(x.j.error||""),m2=/saved from a profile: (.+)\.$/.exec(er),drop=(m2?m2[1].split(/,\s*/):[]).concat(/desks/.test(er)?["desks"]:[]).filter(function(k){return body.fields[k]!==undefined});if(!drop.length)return x;drop.forEach(function(k){delete body.fields[k]});if(!Object.keys(body.fields).length)return {ok:true,j:{savedAt:""}};return send(body)}).then(function(x){if(!x.ok)throw new Error(x.j.error||"save");savedAt=Date.parse(x.j.savedAt)||Date.now()})
+ }).then(function(){busy=false;failed=false;status("Saved","ok","Saved");mark(keys,true)}).catch(function(){busy=false;failed=true;keys.forEach(function(k){if(!(k in dirty))dirty[k]=d[k]});
+  var t=msOk&&WORKER?"Saved to your account. Your public page did not update.":"Not saved.";status(t,"fail",t);mark(keys,false);retry=setTimeout(flush,10000)})}
+document.addEventListener("click",function(e){if(e.target.closest("[data-ep-retry]")){clearTimeout(timer);flush()}});
+window.addEventListener("online",function(){if(failed)flush()});
+window.addEventListener("pagehide",function(){if(timer){clearTimeout(timer);flush()}});
+window.addEventListener("beforeunload",function(e){if(timer){clearTimeout(timer);flush()}if(busy||pending()){e.preventDefault();e.returnValue=""}});
+/* the Memberstack inputs that stay in place */
+["name","home-base","bio-long","bio-short"].forEach(function(k){var f=E.msField(k);if(f)f.addEventListener("input",function(){E.set(k,f.value)})});
+/* the new inputs */
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target,k=t&&t.getAttribute&&t.getAttribute("data-ep-f");if(k)E.set(k,t.value)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-credit],[data-ep-link],[data-ep-contact],[data-ep-list],[data-ep-vis],[data-ep-rmflag],[data-ep-rmlang],[data-ep-dev-next],[data-ep-crew-rm]");if(!b)return;
+ if(b.hasAttribute("data-ep-dev-next")){var to=b.getAttribute("data-ep-dev-to");if(to==="map"){location.href="/the-map";return}var sec=document.getElementById("ep-"+to);if(sec){sec.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});var first=sec.querySelector("input,textarea,button");if(first&&first.focus)setTimeout(function(){first.focus({preventScroll:true})},400)}return}
+ if(b.hasAttribute("data-ep-crew-rm")){var nm=b.getAttribute("data-ep-crew-rm");E.set("crew",JSON.stringify(E.jsonList("crew").filter(function(c){return c.name!==nm})));return}
+ if(b.hasAttribute("data-ep-credit"))E.set("credit-mode",b.getAttribute("data-ep-credit"));
+ else if(b.hasAttribute("data-ep-link")){var key=b.getAttribute("data-ep-link"),on=E.LINKS.map(function(l){return l[0]===key?!E.rowOn(l[0]):E.rowOn(l[0])});E.set("links-shown",on.every(Boolean)?"":E.LINKS.filter(function(l,i){return on[i]}).map(function(l){return l[0]}).join(","))}
+ else if(b.hasAttribute("data-ep-contact"))E.set("contact-mode",b.getAttribute("data-ep-contact"));
+ else if(b.hasAttribute("data-ep-list")){var k=b.getAttribute("data-ep-list");E.set(k,E.get(k)==="true"?"false":"true")}
+ else if(b.hasAttribute("data-ep-vis"))E.set("visibility",b.getAttribute("data-ep-vis"));
+ else if(b.hasAttribute("data-ep-rmflag"))E.set("from-and-lived-in",E.list(E.get("from-and-lived-in")).filter(function(c){return c!==b.getAttribute("data-ep-rmflag")}).join(","));
+ else if(b.hasAttribute("data-ep-rmlang"))E.set("languages",E.list(E.get("languages")).filter(function(l){return l!==b.getAttribute("data-ep-rmlang")}).join(", "));
+});
+var rg=$("[data-ep-ranges]");if(rg)rg.addEventListener("change",function(){E.set("share-ranges",rg.checked?"true":"false")});
+var ph=$("#ep-f-photo");if(ph)ph.addEventListener("change",function(){var f=ph.files&&ph.files[0],m=E.ms();if(!f)return;if(!m||!m.updateMemberProfileImage){status("Change your photo from /account for now.","fail");return}busy=true;status("Uploading photo…","busy");m.updateMemberProfileImage({profileImage:f}).then(function(r){if(r&&r.data)E.member=r.data;busy=false;failed=false;savedAt=Date.now();E.paintPreview();status("Saved","ok","Photo saved")}).catch(function(){busy=false;status("That photo did not upload. Try a smaller one.","fail","That photo did not upload. Try a smaller one.")})});
+/* boot: fill from Memberstack, then mirror the four inputs the Memberstack form fills itself */
+var n=0,iv=setInterval(function(){var m=E.ms();if(!m){if(++n>40)clearInterval(iv);return}clearInterval(iv);
+ m.getCurrentMember().then(function(r){if(!r||!r.data)return;E.fill(r.data);if(E.loadStories)E.loadStories();
+  if(m.getMemberJSON)return m.getMemberJSON().then(function(j){E.fillJson(j&&j.data)}).catch(function(){})}).catch(function(){});
+ var k=0,iv2=setInterval(function(){var f=E.msField("name");if((f&&f.value)||++k>24){clearInterval(iv2);["name","home-base","bio-long","bio-short"].forEach(function(key){var el=E.msField(key);if(el&&el.value&&E.get(key)!==el.value)E.S[key]=el.value});E.paint()}},250);
+},200);
+})(window.TLLEP);
+</script>

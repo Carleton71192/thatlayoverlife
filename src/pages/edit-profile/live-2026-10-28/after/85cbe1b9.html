@@ -1,0 +1,22 @@
+<script id="tll-ep-js-d">
+/* Edit profile v2, script part D (UX build, 26 Oct 2026; handoff/CHANGE-LOG-EDIT-PROFILE-UX-2026-10-26.md). U1: the bar that follows the page (sections and save status) once the section row scrolls away. U4 to U8: expat desks with From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. U12 and U14: the Memberstack labels for Name, Bio and Short bio (text beside the inputs only; no data-ms element is changed). Saved desks keep the format the Worker takes: {c, years, knows, now}.
+   27 Oct 2026: the desks moved to part F (tll-ep-js-f) for the embed size limit; this part keeps the bar and the labels. 28 Oct 2026: the counters show their limits (N4); the crew invite moved to part H (N5). */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U1: the bar */
+var bar=$("[data-ep-bar]"),nav=$(".ep-nav"),secB=$("[data-ep-bar-sec]"),raf=0;
+function headBottom(){var el=document.elementFromPoint(innerWidth/2,2);while(el&&el!==document.body&&el!==bar){var p=getComputedStyle(el).position;if(p==="fixed"||p==="sticky")return Math.max(0,el.getBoundingClientRect().bottom);el=el.parentElement}return 0}
+function place(){raf=0;if(!bar||!nav)return;var h=headBottom(),show=nav.getBoundingClientRect().bottom<h&&nav.offsetParent!==null;bar.style.setProperty("--ep-bar-top",h+"px");if(bar.hidden===show){bar.hidden=!show;if(!show)open(false)}}
+function open(on){if(!bar)return;bar.setAttribute("data-open",on?"1":"0");if(secB)secB.setAttribute("aria-expanded",String(on))}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(place)},{passive:true});addEventListener("resize",place);
+if(secB)secB.addEventListener("click",function(){open(bar.getAttribute("data-open")!=="1")});
+if(bar)bar.addEventListener("click",function(e){if(e.target.closest("a"))open(false)});
+/* U12, U14: labels beside the Memberstack inputs */
+function lab(k,t,note,max){var f=E.msField(k),l=f&&f.closest("label"),s=l&&l.querySelector("span");if(!s||l.hasAttribute("data-ep-lab"))return;l.setAttribute("data-ep-lab","1");s.textContent=t;
+ if(k==="name"){var r=document.createElement("span");r.className="ep-req";r.textContent="REQUIRED";s.appendChild(r)}
+ /* N4 (28 Oct 2026): the counter shows the limit and turns rose past it: "1,250 of 1,200, trim 50". Typing is never stopped (the box is Memberstack's). */
+ if(note){var n=document.createElement("small");n.className="ep-note";n.innerHTML=esc(note)+' <span class="ep-cnt" data-ep-cnt="'+k+'"></span>';l.appendChild(n);var c=n.lastChild;function cnt(){var v=f.value.length,o=v-max,F=function(x){return x.toLocaleString("en-US")};c.textContent="· "+F(v)+" of "+F(max)+(o>0?", trim "+F(o):" characters");c.setAttribute("data-over",o>0?"1":"0")}f.addEventListener("input",cnt);cnt();setTimeout(cnt,3000)}}
+lab("name","Name");lab("bio-long","Bio","On your page. Two or three short paragraphs.",1200);lab("bio-short","Short bio","One sentence, kept on your account. Your public page shows the Bio above.",160);
+place();
+})(window.TLLEP);
+</script>

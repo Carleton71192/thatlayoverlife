@@ -26,3 +26,23 @@ N1, N6 and N10 live with the Edit profile builds (publish b0f1761e, Nancy: "Once
 
 ## Approved 28 October 2026
 Nancy: "Approve N2 to N5 and N7 to N9 as written". For N8, asked how applications reach her (the Worker cannot send email: DNS at GoDaddy, mail on Microsoft 365, no mail service): "CMS list now, email later". Each application is saved as a draft item in a new Press applications collection in the Webflow CMS; email is a later item.
+
+## Built on the subdomain, 28 October 2026
+N2 to N5 and N7 to N9 are on https://that-layover-life.webflow.io (publish 0cb544eb, about 13:05 UTC). Not on www yet; that waits for your look and your word. Files and element ids: src/pages/edit-profile/live-2026-10-28/README.md and src/pages/contributors-template/live-2026-10-28/README.md.
+
+What works now, before the Worker redeploy:
+- /edit-profile: every new box shows and saves to your account (Memberstack). The page no longer fails a save when the Worker does not know a field yet; it keeps the rest of the save.
+- Your public page is ready to show From place, MAKES and the partner links, but they stay empty until the Worker copies them over.
+
+What needs the Worker redeploy (your `npx wrangler login`, then `npx wrangler deploy`):
+- From place, What you make and Shop and partners reaching your public page.
+- Send for review (N8). Until the deploy, the button answers "Your application did not reach us. Try again in a moment." After it, each application lands as a draft in the Press applications collection in the CMS.
+- The Bio cut at 1,200 characters on the public page.
+
+Changes from the log as written:
+- N9 is one saved value, partners, instead of three fields (store-url, partner-links, open-to-partners). The Contributors collection is at Webflow's 60-field limit, so a second and third field could not be created.
+- N7 and N9 on /creators and /for-brands: not built. /creators cards come from the Directory collection, which is filled by hand (STATUS C02, C18), not from Contributors, and /for-brands has no member cards yet. MAKES and OPEN TO PARTNERSHIPS show on the public profile only.
+- N8 sends to the CMS list, as you chose; email is STATUS S130.
+- Once a press application is sent, the form hides and the line reads "Sent {date}. Reviewed within 48 hours." There is no resend from the page yet.
+
+Found in the build and fixed: on the signed-in page, the site's contrast repair could paint dark text on the directory switches as they turned ON, so ON read dark on dark. The page now keeps the switches' own colors.

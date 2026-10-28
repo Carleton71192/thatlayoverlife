@@ -1,0 +1,56 @@
+<script id="tll-ep-js-g">
+/* Edit profile v2, script part G (28 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md), after part E. N2 and N3: From (one country plus a place in the member's words, from-place) and Has lived in (up to four); the saved list stays one field, from-and-lived-in, the From country first. N5 (the crew picker) is part H. N7: What you make (makes). N8: Send for review posts the press card to {worker}/press/apply; press-sent keeps the date. N9: Shop and partners as one value (partners). Touches no data-ms-* element. */
+(function(E){
+var $=E&&E.$,$$=E&&E.$$,esc=E&&E.esc,root=document.getElementById("tll-ep");if(!root||!E||!E.paint)return;
+var WORKER=(root.getAttribute("data-worker")||"").replace(/\/$/,""),MAKES=["photos","video","words","sound","other"];
+function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+function say(sel,t){var n=$(sel);if(!n)return;n.textContent=t;n.setAttribute("data-hold","1");clearTimeout(n.tllT);n.tllT=setTimeout(function(){n.removeAttribute("data-hold");E.paint()},5000)}
+function day(t){return new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+/* the first fill: part B's list predates these fields */
+var F=E.fill;E.fill=function(m){var cf=(m&&m.customFields)||{};["from-place","makes","partners","press-sent"].forEach(function(k){if(cf[k]!=null&&cf[k]!=="")E.S[k]=String(cf[k])});F(m)};
+/* N2, N3 */
+function flags(){return E.list(E.get("from-and-lived-in"))}
+function setFlags(L){E.set("from-and-lived-in",L.join(","))}
+function chip(c,a){return '<button type="button" class="ep-chip ep-chip--x" '+a+'="'+esc(c)+'" aria-label="Remove '+esc(E.cname(c))+'" title="'+esc(E.cname(c))+' · remove"><span aria-hidden="true">'+E.flag(c)+'</span><b>'+esc(c.toUpperCase())+'</b> ×</button>'}
+var NOTE_F="One country for the flag. The place is yours to word: a city, a state, a region.",NO="No country by that name. Try the English name or its two letter code.";
+function addFrom(){var q=$("[data-ep-fromq]");if(!q||!q.value.trim())return;var c=E.ccode(q.value);if(!c){say("[data-ep-fromnote]",NO);return}var L=flags();q.value="";if(L[0]===c)return;setFlags([c].concat(L.slice(1).filter(function(x){return x!==c})))}
+function addLived(){var q=$("[data-ep-livedq]");if(!q||!q.value.trim())return;var c=E.ccode(q.value),L=flags(),N="[data-ep-livednote]";if(!c){say(N,NO);return}if(!L.length){say(N,"Add your From country first. It leads the flags.");return}if(L.indexOf(c)>-1){q.value="";say(N,E.cname(c)+(L[0]===c?" is your From country.":" is already here."));return}if(L.length>=5){say(N,"Four is the limit. Remove one to add another.");return}q.value="";setFlags(L.concat(c))}
+function pOrigin(){var L=flags(),fb=$("[data-ep-fromflag]"),lb=$("[data-ep-livedflags]");if(fb)fb.innerHTML=L.slice(0,1).map(function(c){return chip(c,"data-ep-rmfrom")}).join("");if(lb)lb.innerHTML=L.slice(1).map(function(c){return chip(c,"data-ep-rmlived")}).join("");
+ var lq=$("[data-ep-livedq]"),ln=$("[data-ep-livednote]"),fn=$("[data-ep-fromnote]");if(lq)lq.disabled=L.length>=5;
+ if(ln&&!ln.getAttribute("data-hold"))ln.textContent=L.length>=5?"Four is the limit. Remove one to add another.":"Type a country and press Enter. Up to four.";
+ if(fn&&!fn.getAttribute("data-hold"))fn.textContent=L.length?"Add another country to replace it. "+NOTE_F.slice(NOTE_F.indexOf("The place")):NOTE_F;
+ val("#ep-f-from-place",E.get("from-place"));
+ var m=$(".ep-pv-meta"),s=$("[data-ep-pv-from]"),p=E.get("from-place").trim();if(m&&!s){s=document.createElement("span");s.setAttribute("data-ep-pv-from","");m.insertBefore(s,m.lastElementChild)}if(s){s.textContent=p?"FROM "+p.toUpperCase():"";s.hidden=!p}}
+/* N7 */
+function pMakes(){var b=$("[data-ep-makes]"),on=E.list(E.get("makes"));if(b)b.hidden=E.get("list-creators")!=="true";$$("[data-ep-make]").forEach(function(x){x.setAttribute("aria-pressed",String(on.indexOf(x.getAttribute("data-ep-make"))>-1))})}
+/* N8 */
+function pPress(){var cf=(E.member&&E.member.customFields)||{},ver=cf["press-verified"],sent=E.get("press-sent"),b=$("[data-ep-press]"),pn=$("[data-ep-pressnote]");if(b)b.hidden=E.get("list-press")!=="true"||!!ver||!!sent;if(pn)pn.textContent=ver?"Verified · "+ver:sent?"Sent "+day(sent)+". Reviewed within 48 hours.":"Reviewed within 48 hours"}
+function sendPress(){var msg=$("[data-ep-press-msg]"),btn=$("[data-ep-press-send]"),g=function(k){var i=$('[data-ep-pr="'+k+'"]');return i?i.value.trim():""},body={outlet:g("outlet"),role:g("role"),proof:g("proof")};if(!msg||!btn)return;
+ if(!body.outlet){msg.textContent="Add the outlet you work for.";return}if(!body.proof||/\s/.test(body.proof)){msg.textContent="Add one link to your press card or to two published pieces.";return}
+ var tok=E.token();if(!WORKER||!tok){msg.textContent="Sending is not switched on yet. Try again later.";return}
+ btn.disabled=true;msg.textContent="Sending…";
+ fetch(WORKER+"/press/apply",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+tok},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok){var e=new Error("send");e.say=j.error;throw e}return j})})
+ .then(function(j){var at=j.sentAt||new Date().toISOString(),m=E.ms();E.S["press-sent"]=at;if(m&&m.updateMember)m.updateMember({customFields:{"press-sent":at}}).catch(function(){});btn.disabled=false;msg.textContent="";E.paint()})
+ .catch(function(e){btn.disabled=false;msg.textContent=e.say||"Your application did not reach us. Try again in a moment."})}
+/* N9 */
+function pt(){try{var p=JSON.parse(E.get("partners")||"null");return p&&typeof p==="object"&&!Array.isArray(p)?p:{}}catch(e){return {}}}
+function pPartners(){var p=pt(),L=Array.isArray(p.links)?p.links:[];val('[data-ep-pt="store"]',p.store||"");for(var i=0;i<3;i++){val('[data-ep-pt="n'+i+'"]',(L[i]&&L[i].name)||"");val('[data-ep-pt="u'+i+'"]',(L[i]&&L[i].url)||"")}var b=$("[data-ep-pt-open]");if(b){b.setAttribute("aria-checked",String(p.open===true));b.textContent=p.open===true?"ON":"OFF"}}
+function ptSave(open){var g=function(k){var i=$('[data-ep-pt="'+k+'"]');return i?i.value.trim():""},v={store:g("store"),links:[0,1,2].map(function(i){return {name:g("n"+i),url:g("u"+i)}}),open:open==null?pt().open===true:open};
+ var half=v.links.some(function(l){return !l.name!==!l.url}),msg=$("[data-ep-pt-msg]");if(msg)msg.textContent=half?"A partner shows once it has a name and a link.":"";E.set("partners",JSON.stringify(v))}
+/* wiring */
+document.addEventListener("keydown",function(e){if(e.key!=="Enter")return;if(e.target.matches("[data-ep-fromq]")){e.preventDefault();addFrom()}else if(e.target.matches("[data-ep-livedq]")){e.preventDefault();addLived()}});
+document.addEventListener("input",function(e){if(e.target.hasAttribute&&e.target.hasAttribute("data-ep-pt"))ptSave()});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-ep-from-add],[data-ep-lived-add],[data-ep-rmfrom],[data-ep-rmlived],[data-ep-make],[data-ep-press-send],[data-ep-pt-open]");if(!b)return;
+ if(b.hasAttribute("data-ep-from-add"))addFrom();else if(b.hasAttribute("data-ep-lived-add"))addLived();
+ else if(b.hasAttribute("data-ep-rmfrom")){var L=flags().slice(1);setFlags(L);if(L.length)say("[data-ep-fromnote]",E.cname(L[0])+" moved up to From. Add your From country to change it.")}
+ else if(b.hasAttribute("data-ep-rmlived")){var c=b.getAttribute("data-ep-rmlived");setFlags(flags().filter(function(x,i){return i===0||x!==c}))}
+ else if(b.hasAttribute("data-ep-make")){var k=b.getAttribute("data-ep-make"),on=E.list(E.get("makes")),j=on.indexOf(k);if(j>-1)on.splice(j,1);else on.push(k);E.set("makes",MAKES.filter(function(m){return on.indexOf(m)>-1}).join(","))}
+ else if(b.hasAttribute("data-ep-press-send"))sendPress();
+ else ptSave(b.getAttribute("aria-checked")!=="true")});
+/* found in this build: the site's contrast repair (tll-a11y-motion-v1) can catch a switch mid-fade after load and pin dark text on it, so ON read dark on dark; the page's switches and chips keep their own colors */
+function unpin(){$$(".ep-sw[data-tc],.ep-chip[data-tc]").forEach(function(x){x.style.removeProperty("color");x.removeAttribute("data-tc")})}
+addEventListener("load",function(){setTimeout(unpin,2500);setTimeout(unpin,6000)});
+var P=E.paint;E.paint=function(){P();pOrigin();pMakes();pPress();pPartners()};
+E.paint();
+})(window.TLLEP);
+</script>

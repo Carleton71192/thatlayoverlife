@@ -1,0 +1,25 @@
+<style id="tll-ep-css-d3">
+/* Edit profile v2, CSS part D3 (28 Oct 2026, N2 to N9; handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md), after D2: From and Has lived in, the Bio counters past their limit, the crew picker, What you make, the press form, Shop and partners. No data-ms-* element targeted. */
+.ep-origin{display:grid;gap:16px;margin-top:8px}
+.ep-sub{display:grid;gap:8px}
+.ep-sublab{font:700 14px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;margin:0}
+.ep-sub .ep-desk-add{border-top:0;padding-top:0}
+.ep-chips:empty{display:none}
+.ep-cnt[data-over="1"]{color:#C23A62;font-weight:600}
+.ep-crew-opts{display:grid;gap:6px;margin-top:6px}
+.ep-crew-opts[hidden]{display:none}
+.ep-crew-opt{cursor:pointer;margin:0}
+.ep-crew-opt[aria-selected="true"]{border-color:#0A0B14}
+.ep-crew-opt .ep-x{pointer-events:none}
+.ep-makes,.ep-press{display:grid;gap:10px;padding:0 0 16px}
+.ep-makes[hidden],.ep-press[hidden]{display:none}
+.ep-press .ep-field{margin:0}
+.ep-press .ep-press-send{justify-self:start}
+.ep-press .ep-press-send[disabled]{opacity:.6;cursor:default}
+.ep-partners{display:grid;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid #E0DACE}
+.ep-partners .ep-link{grid-template-columns:110px 1fr;margin:0}
+.ep-pt-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px}
+.ep-partners .ep-dir{border-top:0;padding:6px 0 0}
+.ep-partners .ep-dir small{display:block}
+@media (max-width:600px){.ep-pt-row,.ep-partners .ep-link{grid-template-columns:1fr}}
+</style>

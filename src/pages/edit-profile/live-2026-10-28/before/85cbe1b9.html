@@ -1,0 +1,24 @@
+<script id="tll-ep-js-d">
+/* Edit profile v2, script part D (UX build, 26 Oct 2026; handoff/CHANGE-LOG-EDIT-PROFILE-UX-2026-10-26.md). U1: the bar that follows the page (sections and save status) once the section row scrolls away. U4 to U8: expat desks with From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. U12 and U14: the Memberstack labels for Name, Bio and Short bio (text beside the inputs only; no data-ms element is changed). Saved desks keep the format the Worker takes: {c, years, knows, now}.
+   27 Oct 2026: the desks moved to part F (tll-ep-js-f) for the embed size limit; this part keeps the bar, the labels and the crew invite. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U1: the bar */
+var bar=$("[data-ep-bar]"),nav=$(".ep-nav"),secB=$("[data-ep-bar-sec]"),raf=0;
+function headBottom(){var el=document.elementFromPoint(innerWidth/2,2);while(el&&el!==document.body&&el!==bar){var p=getComputedStyle(el).position;if(p==="fixed"||p==="sticky")return Math.max(0,el.getBoundingClientRect().bottom);el=el.parentElement}return 0}
+function place(){raf=0;if(!bar||!nav)return;var h=headBottom(),show=nav.getBoundingClientRect().bottom<h&&nav.offsetParent!==null;bar.style.setProperty("--ep-bar-top",h+"px");if(bar.hidden===show){bar.hidden=!show;if(!show)open(false)}}
+function open(on){if(!bar)return;bar.setAttribute("data-open",on?"1":"0");if(secB)secB.setAttribute("aria-expanded",String(on))}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(place)},{passive:true});addEventListener("resize",place);
+if(secB)secB.addEventListener("click",function(){open(bar.getAttribute("data-open")!=="1")});
+if(bar)bar.addEventListener("click",function(e){if(e.target.closest("a"))open(false)});
+/* U12, U14: labels beside the Memberstack inputs */
+function lab(k,t,note){var f=E.msField(k),l=f&&f.closest("label"),s=l&&l.querySelector("span");if(!s||l.hasAttribute("data-ep-lab"))return;l.setAttribute("data-ep-lab","1");s.textContent=t;
+ if(k==="name"){var r=document.createElement("span");r.className="ep-req";r.textContent="REQUIRED";s.appendChild(r)}
+ if(note){var n=document.createElement("small");n.className="ep-note";n.innerHTML=esc(note)+' <span data-ep-cnt="'+k+'"></span>';l.appendChild(n);var c=n.lastChild;function cnt(){var v=f.value.length;c.textContent="· "+v+(v===1?" character":" characters")}f.addEventListener("input",cnt);cnt();setTimeout(cnt,3000)}}
+lab("name","Name");lab("bio-long","Bio","On your page. Two or three short paragraphs.");lab("bio-short","Short bio","One sentence, kept on your account. Your public page shows the Bio above.");
+/* crew invites (3.4 D6), moved here from part C: a name or handle adds a waiting row on this member's record. */
+var crq=$("[data-ep-crewq]");if(crq)crq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var v=crq.value.trim();if(!v||v.length>80)return;var cur=E.jsonList("crew");if(cur.some(function(c){return String(c.name).toLowerCase()===v.toLowerCase()})||cur.length>=20){crq.value="";return}
+ var when=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}).toUpperCase();cur.push({name:v,meta:"INVITED · "+when,pending:true,at:new Date().toISOString()});crq.value="";E.set("crew",JSON.stringify(cur))});
+place();
+})(window.TLLEP);
+</script>
