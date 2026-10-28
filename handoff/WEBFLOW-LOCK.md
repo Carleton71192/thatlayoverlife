@@ -122,3 +122,5 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
   - Home embed a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef (the first 100 founders strip): the Founding 02 line replaced by the same sentence; the rest of the embed byte for byte as read.
   - Full publish to the subdomain and both custom domains (task 711292bf-a2e3-4fd4-b558-b3b36c1e4914). No session holds the lock now.
   - Next from this session: the AdSense readiness pass (handoff/ADSENSE-READINESS-2026-10-28.md). Change log first; no Webflow write and no publish until Nancy approves it.
+
+- Status: TAKEN, 28 October 2026 about 14:40 UTC, by the cloud session session_01GTTttGvX2VTwovAB2g1cLf (Nancy approved the AdSense change log, chose Google's free consent message and the merged open slot). Scope: home embeds 94ce12c0, a4c1009d, a0d1cd97, 405baa84, d3ac79f6; /cookies and /privacy text; one new "Cookies" link in TLL Site Footer; site head and footer code for Consent Mode v2 defaults. Subdomain publish only; custom domains on Nancy's word. Other sessions write no Webflow change and run no site publish while this line stands; it is released by a line below.
