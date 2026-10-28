@@ -2,7 +2,7 @@
 
 Scope: the ten items from the live audit of 26 October. Nothing is published. Every Webflow write below is staged only. The sandbox cannot reach the live site, so "live" facts come from the saved crawls in `src/seo/live-2026-10-26/` (26 Oct before the SEO build, 27 Oct after it, 306 URLs) and from the Webflow API on 28 October.
 
-A lock note first. The usability session holds the Webflow lock since 13:15 UTC today (handoff/WEBFLOW-LOCK.md) with a scope that covers the Contributors template and collection, /creators and /for-brands. The writes below that touch those pages are prepared and held, marked HELD. The Awards page is outside that scope, so its schema is written. Say the word and the held ones go in after the lock releases, or override the lock as you did on 26 October.
+Update, 13:30 UTC: on Nancy's word ("remove the lock and publish the updates") the lock was overridden, every HELD item below except the optional legacy H1 removal was written, and the site was published to all domains (task 84c32cb2-082b-44c9-bdd1-211563f049df). The title and description batch and the teal rule remain drafts. Rows marked HELD below read as written and published.
 
 ## 1. Change table
 
