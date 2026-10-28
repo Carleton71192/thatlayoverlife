@@ -101,6 +101,40 @@ describe('coerce', () => {
   });
 });
 
+describe('N3, N4, N7, N9 fields (28 Oct 2026)', () => {
+  it('maps and lets members write from-place, makes and partners', () => {
+    for (const key of ['from-place', 'makes', 'partners']) {
+      expect(FIELD_MAP[key], key).toBe(key);
+      expect(MEMBER_WRITABLE, key).toContain(key);
+    }
+  });
+  it('keeps From as one clean line of 80 characters', () => {
+    expect(coerce('from-place', '  Austin,\n  Texas ')).toBe('Austin, Texas');
+    expect(coerce('from-place', 'x'.repeat(100))).toBe('x'.repeat(80));
+    expect(coerce('from-place', '')).toBeNull();
+    expect(coerce('from-place', { a: 1 })).toBeUndefined();
+  });
+  it('keeps makes from the fixed list, in list order', () => {
+    expect(coerce('makes', 'Words, photos, paintings, words')).toBe('photos,words');
+    expect(coerce('makes', ['sound', 'video'])).toBe('video,sound');
+    expect(coerce('makes', '')).toBeNull();
+  });
+  it('keeps partners as one JSON value with up to three links', () => {
+    const raw = JSON.stringify({ store: 'shop.example', open: 'on', links: [
+      { name: ' Osprey ', url: 'osprey.com/ref' }, { name: '', url: 'x.com' }, { name: 'Bad', url: 'two words' },
+      { name: 'Rei', url: 'https://rei.com' }, { name: 'Fourth', url: 'f.com' }] });
+    expect(JSON.parse(coerce('partners', raw))).toEqual({ store: 'https://shop.example', links: [{ name: 'Osprey', url: 'https://osprey.com/ref' }], open: true });
+    expect(JSON.parse(coerce('partners', { links: [{ name: 'A', url: 'a.com' }, { name: 'B', url: 'b.com' }, { name: 'C', url: 'c.com' }] })).links).toHaveLength(3);
+    expect(coerce('partners', '{"store":"","links":[],"open":false}')).toBeNull();
+    expect(coerce('partners', '')).toBeNull();
+    expect(coerce('partners', 'not json')).toBeUndefined();
+    expect(coerce('partners', '[1]')).toBeUndefined();
+  });
+  it('keeps the first 1,200 characters of the Bio', () => {
+    expect(coerce('bio-long', 'a'.repeat(1250))).toBe(`<p>${'a'.repeat(1200)}</p>`);
+  });
+});
+
 describe('fieldDataFor', () => {
   it('maps only the keys the member sent', () => {
     const out = fieldDataFor({ customFields: { 'one-line': 'Lifer', 'strava-url': 'strava.com/n', 'country-count': '88', 'unknown': 'x' } });

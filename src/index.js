@@ -8,6 +8,8 @@
 //   POST /hooks/story-published         Webflow publish webhook: adds a story's
 //                                       countries to its author's map (story-hook.js)
 //   POST /profile/save                  /edit-profile autosave, Memberstack Bearer token (profile-save.js)
+//   POST /press/apply                   /edit-profile 07 press application, same token; saved as a
+//                                       draft item in the Press applications collection (press-apply.js)
 //   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
 //                                       for the site owner only, also the sanitized tllStates
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
@@ -21,6 +23,7 @@ import { filterItems, readWire } from './store.js';
 import { REGIONS } from './regions.js';
 import { handleProfileHook } from './profile-sync.js';
 import { handleProfileSave } from './profile-save.js';
+import { handlePressApply } from './press-apply.js';
 import { handleMapSnapshot } from './map-snapshot.js';
 import { memberCors, withHeaders } from './member-auth.js';
 import { handleOwnerMap, ownerMapCors } from './owner-map.js';
@@ -28,6 +31,7 @@ import { handleOwnerMap, ownerMapCors } from './owner-map.js';
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
   '/profile/save': handleProfileSave,
+  '/press/apply': handlePressApply,
   '/map-snapshot': handleMapSnapshot,
   '/hooks/member-updated': handleProfileHook,
 };

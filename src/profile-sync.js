@@ -72,10 +72,20 @@ export const FIELD_MAP = Object.freeze({
   'list-creators': 'list-creators',
   'list-press': 'list-press',
   'desks': 'desks',
+  // N3, N7, N9 (28 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md). partners is one JSON field
+  // {store, links, open} because the Contributors collection is at Webflow's 60-field limit.
+  'from-place': 'from-place',
+  'makes': 'makes',
+  'partners': 'partners',
 });
 
 /** The ten platform keys links-shown may hold, in display order. */
 export const LINK_KEYS = Object.freeze(['instagram', 'youtube', 'website', 'tiktok', 'substack', 'strava', 'alltrails', 'komoot', 'garmin', 'beli']);
+
+/** N7: what a creator can say they make. */
+export const MAKES = Object.freeze(['photos', 'video', 'words', 'sound', 'other']);
+/** N4: the Bio limit the editor counts to. */
+export const BIO_LONG_MAX = 1200;
 
 export const SWITCH_FIELDS = new Set(['share-ranges', 'list-expats', 'list-creators', 'list-press']);
 export const URL_FIELDS = new Set(['instagram-url', 'youtube-url', 'website-url', 'tiktok-url', 'substack-url-2', 'strava-url-2', 'alltrails-url', 'komoot-url', 'garmin-url', 'beli-url']);
@@ -86,6 +96,7 @@ export const MEMBER_WRITABLE = Object.freeze([
   'name', 'avatar', 'one-line', 'home-base', 'from-and-lived-in', 'languages',
   'credit-mode', 'pen-name', 'contact-mode', 'email', 'visibility', 'share-ranges',
   'crew', 'bio-long', ...URL_FIELDS, 'links-shown', 'list-expats', 'list-creators', 'list-press', 'desks',
+  'from-place', 'makes', 'partners',
 ]);
 
 function reply(body, status = 200) {
@@ -179,9 +190,43 @@ export function coerce(slug, raw) {
     }
     return out.length ? JSON.stringify(out) : null;
   }
+  if (slug === 'from-place') {
+    // N3: where the member is from, as they wrote it ("Austin, Texas"). One line, 80 characters.
+    if (text === '') return null;
+    if (typeof text !== 'string') return undefined;
+    return text.replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80) || null;
+  }
+  if (slug === 'makes') {
+    // N7: what a creator makes, from a fixed list, in list order.
+    const picked = listOf(text).map((m) => m.toLowerCase());
+    const out = MAKES.filter((m) => picked.includes(m));
+    return out.length ? out.join(',') : null;
+  }
+  if (slug === 'partners') {
+    // N9: {store, links: up to three {name, url}, open}. Bad links are dropped, not the whole value.
+    let value = text;
+    if (typeof value === 'string') {
+      if (value === '') return null;
+      try { value = JSON.parse(value); } catch { return undefined; }
+    }
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+    const url = (raw) => {
+      const t = String(raw || '').trim();
+      if (!t || /\s/.test(t)) return '';
+      return /^https?:\/\//i.test(t) ? t : `https://${t}`;
+    };
+    const store = url(value.store);
+    const links = (Array.isArray(value.links) ? value.links : []).slice(0, 3)
+      .map((l) => ({ name: String(l?.name || '').replace(/\s+/g, ' ').trim().slice(0, 40), url: url(l?.url) }))
+      .filter((l) => l.name && l.url);
+    const open = switchValue(value.open) === true;
+    if (!store && !links.length && !open) return null;
+    return JSON.stringify({ store, links, open });
+  }
   if (slug === 'bio-long') {
     if (text === '') return null;
-    return String(text).split(/\n{2,}/).map((p) => `<p>${escapeHtml(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
+    // N4: the Bio counts to 1,200 characters on /edit-profile; the public page keeps the first 1,200.
+    return String(text).slice(0, BIO_LONG_MAX).split(/\n{2,}/).map((p) => `<p>${escapeHtml(p.trim()).replace(/\n/g, '<br>')}</p>`).join('');
   }
   if (typeof text === 'object') return undefined;
   return text === '' ? null : String(text);
