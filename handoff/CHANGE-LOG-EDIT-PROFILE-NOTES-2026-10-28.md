@@ -23,3 +23,6 @@ Reply with the item numbers to approve or change.
 
 ## Live 28 October 2026
 N1, N6 and N10 live with the Edit profile builds (publish b0f1761e, Nancy: "Once those are done, please publish"). N2 to N5 and N7 to N9 wait for Nancy's reply.
+
+## Approved 28 October 2026
+Nancy: "Approve N2 to N5 and N7 to N9 as written". For N8, asked how applications reach her (the Worker cannot send email: DNS at GoDaddy, mail on Microsoft 365, no mail service): "CMS list now, email later". Each application is saved as a draft item in a new Press applications collection in the Webflow CMS; email is a later item.

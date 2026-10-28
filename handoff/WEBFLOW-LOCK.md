@@ -104,3 +104,5 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
     - No custom-domain publish. The lock stays with the usability session.
 
 - Status: RELEASED, 28 October 2026 about 12:05 UTC, by the usability session. E1 to E11, T1 to T3 and Nancy's notes N1, N6 and N10 are live (STATUS S126, S127), with the Mac session's home page items H1 and H2 in the same publish (task b0f1761e, Nancy: "Publish both"). No session holds the lock now.
+
+- Status: TAKEN, 28 October 2026 about 13:15 UTC, by the usability session (Nancy: "Approve N2 to N5 and N7 to N9 as written"). Scope: /edit-profile (page 6a0df371cd5b09ac504421ae) embeds, the Contributors collection (new fields from-place, makes, store-url, partner-links, open-to-partners) and a new Press applications collection, the profile template page code for the new fields, the /creators and /for-brands card scripts if they need the new fields. Subdomain first, then Nancy's look, then the custom domains on her word. Other sessions write no Webflow change and run no site publish while this line stands; it is released by a line below.
