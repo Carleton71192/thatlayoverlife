@@ -1,20 +1,20 @@
 {
- "_note": "Staged 28 Oct 2026 for Nancy's approval. Not written to Webflow. Each edit replaces old with new in the live embed code; apply only if old occurs exactly once.",
+ "_note": "Approved by Nancy 28 Oct 2026 (\"Approved\", slots: \"Merge\"). Each edit replaces old with new in the live embed code; applied only if old occurs exactly once.",
  "home_page": "69d6145df421c777840c1e46",
  "edits": [
   {
    "id": "C1",
    "embed": "94ce12c0-56fc-4b10-fa9f-14da000634c7",
-   "what": "library heading: published count from the site-wide story count, shelf count from the cards",
+   "what": "library heading: both numbers computed; shown = cards on screen, total = the larger of the rail's cards and the site story count",
    "old": "<span data-h3-total></span> published so far · six of them here",
-   "new": "<span data-h3-shown></span> stories here<span data-h3-total-wrap hidden> · <span data-h3-total></span> published so far</span>"
+   "new": "<span data-h3-shown></span> here<span data-h3-total-wrap hidden> · <span data-h3-total></span> published so far</span>"
   },
   {
    "id": "C1b",
    "embed": "94ce12c0-56fc-4b10-fa9f-14da000634c7",
-   "what": "rail script: shelf count from the cards; total from window.tllCounts.s (tll-live-counts, read from the sitemap), shown only once known",
+   "what": "rail script: writes the shown count from the visible cards and the total from window.tllCounts.s (tll-live-counts) or the card count; the total clause shows only when it is larger",
    "old": "if(tEl)tEl.textContent=String(all.length);",
-   "new": "var shEl=sec.querySelector('[data-h3-shown]');if(shEl)shEl.textContent=String(all.length);if(tEl&&!sec.__tllc){sec.__tllc=1;var tw=sec.querySelector('[data-h3-total-wrap]'),put=function(c){if(c&&c.s>all.length){tEl.textContent=String(c.s);if(tw)tw.hidden=false;}};put(window.tllCounts);document.addEventListener('tll:counts',function(e){put(e.detail);});}"
+   "new": "var shEl=sec.querySelector('[data-h3-shown]'),tw=sec.querySelector('[data-h3-total-wrap]'),k=list.length;if(shEl)shEl.textContent=k+(k===1?' story':' stories');sec.__tot=function(){var t=Math.max(cards().length,(window.tllCounts&&+window.tllCounts.s)||0);if(tEl)tEl.textContent=String(t);if(tw)tw.hidden=!(t>k);};sec.__tot();if(!sec.__tllc){sec.__tllc=1;document.addEventListener('tll:counts',function(){sec.__tot();});}"
   },
   {
    "id": "C2",
@@ -26,9 +26,9 @@
   {
    "id": "C2b",
    "embed": "a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7",
-   "what": "Magnus script: unhide every wrapper after the count is written",
+   "what": "Magnus script: write the count into every [data-h3-mag] found when the answer arrives (the founders strip comes later in the page, so the old early query missed it), then unhide the clauses",
    "old": "if(n)[].forEach.call(els,function(el){el.textContent=String(n);});",
-   "new": "if(n){[].forEach.call(els,function(el){el.textContent=String(n);});[].forEach.call(document.querySelectorAll('[data-h3-mag-wrap]'),function(w){w.hidden=false;});}"
+   "new": "if(n){[].forEach.call(document.querySelectorAll('[data-h3-mag]'),function(el){el.textContent=String(n);});[].forEach.call(document.querySelectorAll('[data-h3-mag-wrap]'),function(w){w.hidden=false;});}"
   },
   {
    "id": "C2c",
@@ -61,9 +61,23 @@
   {
    "id": "C5",
    "embed": "a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef",
-   "what": "open slot 05 drops the typed count (option B; Nancy chooses A, B or C)",
-   "old": "<a href=\"/signup\">Ninety-six more seats. Window or aisle?</a>",
-   "new": "<a href=\"/submit\">Write one trip. The founding badge is yours.</a>"
+   "what": "open slots 04 and 05 merged into one (Nancy: Merge); the typed count goes",
+   "old": "<li class=\"h3-fd h3-fd-open\"><b>Open slot 04</b><a href=\"/signup\">Your face could be here.</a></li>\n<li class=\"h3-fd h3-fd-open\"><b>Open slot 05</b><a href=\"/signup\">Ninety-six more seats. Window or aisle?</a></li>",
+   "new": "<li class=\"h3-fd h3-fd-open\"><b>Open slot · Founding 04</b><a href=\"/signup\">Your face could be here. Window or aisle?</a></li>"
+  },
+  {
+   "id": "C5b",
+   "embed": "a0d1cd97-fcc5-139e-f50f-1b1294a5e5ef",
+   "what": "roster grid fits four entries",
+   "old": "grid-template-columns:repeat(5,minmax(0,1fr))",
+   "new": "grid-template-columns:repeat(4,minmax(0,1fr))"
+  },
+  {
+   "id": "C2d",
+   "embed": "a4c1009d-e6d8-85a7-3e6a-57f2177aa0b7",
+   "what": "keep the hidden clause hidden whatever the shared stylesheet says",
+   "old": ".h3-c5-ph figcaption{font-size:12px}",
+   "new": ".h3-c5-ph figcaption{font-size:12px}\n[data-h3-mag-wrap][hidden]{display:none!important}"
   }
  ]
 }

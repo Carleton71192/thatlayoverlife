@@ -8,7 +8,7 @@
 </section>
 <section class="h3 h3-shelf" aria-labelledby="h3-shelf-t" data-h3-shelf>
 <div class="h3-shelf-pin">
-<div class="h3-shelf-head"><p class="h3-ey"><span data-h3-shown></span> stories here<span data-h3-total-wrap hidden> · <span data-h3-total></span> published so far</span></p><h2 id="h3-shelf-t" class="h3-title-shelf">The library.</h2></div>
+<div class="h3-shelf-head"><p class="h3-ey"><span data-h3-shown></span> here<span data-h3-total-wrap hidden> · <span data-h3-total></span> published so far</span></p><h2 id="h3-shelf-t" class="h3-title-shelf">The library.</h2></div>
 <div class="h3-shelf-row">
 <p class="h3-shelf-note" aria-live="polite"><span data-h3-n></span> stories · <span data-h3-hint>They move sideways →</span></p>
 <div class="h3-track" data-h3-track>
@@ -79,7 +79,7 @@ function render(){
   var list=(pill?all:rot(all)).filter(function(c){return !pill||c.getAttribute('data-pillar')===pill;}).slice(0,SHOW);
   all.forEach(function(c){track.appendChild(c);c.hidden=list.indexOf(c)<0;});
   list.forEach(function(c,i){track.insertBefore(c,track.children[i]||null);var t=c.querySelector('.h3-card-tag');t.textContent=pad(i+1)+' · '+(c.getAttribute('data-loc')||'');});
-  nEl.textContent=pad(list.length);var shEl=sec.querySelector('[data-h3-shown]');if(shEl)shEl.textContent=String(all.length);if(tEl&&!sec.__tllc){sec.__tllc=1;var tw=sec.querySelector('[data-h3-total-wrap]'),put=function(c){if(c&&c.s>all.length){tEl.textContent=String(c.s);if(tw)tw.hidden=false;}};put(window.tllCounts);document.addEventListener('tll:counts',function(e){put(e.detail);});}sec.style.setProperty('--h3-n',list.length);size();
+  nEl.textContent=pad(list.length);var shEl=sec.querySelector('[data-h3-shown]'),tw=sec.querySelector('[data-h3-total-wrap]'),k=list.length;if(shEl)shEl.textContent=k+(k===1?' story':' stories');sec.__tot=function(){var t=Math.max(cards().length,(window.tllCounts&&+window.tllCounts.s)||0);if(tEl)tEl.textContent=String(t);if(tw)tw.hidden=!(t>k);};sec.__tot();if(!sec.__tllc){sec.__tllc=1;document.addEventListener('tll:counts',function(){sec.__tot();});}sec.style.setProperty('--h3-n',list.length);size();
   window.tllHomeStories=data();document.dispatchEvent(new CustomEvent('h3:stories'));}
 chipsBox.addEventListener('click',function(e){var b=e.target.closest('[data-p]');if(!b)return;pill=b.getAttribute('data-p');
   [].forEach.call(chipsBox.querySelectorAll('[data-p]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});render();});
