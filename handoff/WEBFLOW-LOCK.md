@@ -102,3 +102,5 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
     - Both read back identical in the published HTML (src/pages/home/live-2026-10-27/*-after.html).
     - One publish, to the webflow.io subdomain only (task 17dbb3f4-28bd-49c5-b95b-742cae8e1900). It carries the usability session's E1 to E11 and T1 to T3 as they are.
     - No custom-domain publish. The lock stays with the usability session.
+
+- Status: RELEASED, 28 October 2026 about 12:05 UTC, by the usability session. E1 to E11, T1 to T3 and Nancy's notes N1, N6 and N10 are live (STATUS S126, S127), with the Mac session's home page items H1 and H2 in the same publish (task b0f1761e, Nancy: "Publish both"). No session holds the lock now.

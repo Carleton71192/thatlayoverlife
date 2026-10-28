@@ -20,3 +20,6 @@ Source: Nancy, 28 October, looking at the E1 to E11 and T1 to T3 build on the su
 On a local copy with a stand-in member, then on the subdomain: a record with five flags opens as From plus four; moving a country between the boxes saves the list in the new order; the desks seed (one desk per lived-in country, home base left out) still reads the same list; the public profile shows the same flags.
 
 Reply with the item numbers to approve or change.
+
+## Live 28 October 2026
+N1, N6 and N10 live with the Edit profile builds (publish b0f1761e, Nancy: "Once those are done, please publish"). N2 to N5 and N7 to N9 wait for Nancy's reply.
