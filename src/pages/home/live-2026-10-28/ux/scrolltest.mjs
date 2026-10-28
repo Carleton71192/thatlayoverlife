@@ -1,0 +1,14 @@
+import { createRequire } from 'module'; const { chromium } = createRequire(import.meta.url)('playwright');
+import fs from 'fs';
+let html = fs.readFileSync('fixture-home-current.html', 'utf8').replace('<!--BUNDLE-->', '<script>' + fs.readFileSync('../../../../site-layers/tll-site-layers-v14.js', 'utf8') + '</script>');
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 390, height: 844 } });
+await p.route('**/*', r => { const u = r.request().url();
+  if (u.startsWith('http://tll.test/css/')) return r.fulfill({ body: fs.readFileSync('../../../../../handoff/claude-design-source/webflow-export-2026-10-13/css/' + u.split('/').pop()), contentType: 'text/css' });
+  if (u === 'http://tll.test/') return r.fulfill({ body: html, contentType: 'text/html' }); return r.abort(); });
+await p.goto('http://tll.test/').catch(() => {}); await p.waitForTimeout(800);
+const st = () => p.evaluate(() => { const n = document.getElementById('tll-note'); const h = document.querySelector('[data-h3-hero]').getBoundingClientRect(); return { op: getComputedStyle(n).opacity, cls: n.className, heroBottom: Math.round(h.bottom), label: n.querySelector('.tll-note-pill').getAttribute('aria-label'), free: getComputedStyle(document.querySelector('.h3-hero-free')).fontSize, coords: getComputedStyle(document.querySelector('.h3-hero-coords')).fontSize, signup: (document.querySelector('.tll-nav-signup') ? getComputedStyle(document.querySelector('.tll-nav-signup')).fontSize : '-'), overflow: document.documentElement.scrollWidth > innerWidth }; });
+console.log('load', JSON.stringify(await st()));
+await p.mouse.wheel(0, 300); await p.waitForTimeout(500); console.log('scroll 300', JSON.stringify(await st()));
+await p.evaluate(() => scrollTo(0, 2000)); await p.waitForTimeout(500); console.log('scroll 2000', JSON.stringify(await st()));
+await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(500); await p.focus('#tll-note .tll-note-pill'); await p.waitForTimeout(400); console.log('focused at top', JSON.stringify(await st()));
+await b.close();
