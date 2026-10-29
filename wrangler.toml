@@ -7,10 +7,10 @@ compatibility_date = "2025-08-01"
 crons = ["*/30 * * * *"]
 
 # Where the wire is stored between runs.
-# Run `npx wrangler kv namespace create WIRE_KV` and paste the id it prints here.
+# The WIRE_KV namespace on the TLL Cloudflare account (id set 29 Oct 2026 from `npx wrangler kv namespace list`).
 [[kv_namespaces]]
 binding = "WIRE_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "7f96e7f1c0c240dd8944a11c2348d903"
 
 # Collections the story-published webhook reads (see src/story-hook.js).
 # Secrets it also needs: STORY_HOOK_TOKEN, WEBFLOW_TOKEN, MEMBERSTACK_KEY.
