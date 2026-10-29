@@ -1,0 +1,933 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="http://tll.test/css/webflow-base.css"><link rel="stylesheet" href="http://tll.test/css/tll-webflow.css"><link rel="stylesheet" href="http://tll.test/css/fonts.css"><!--BUNDLE--></head><body><nav style="height:64px;background:#0A0B14"></nav><main><div class="w-embed"><!-- TLL member bar v1 (21 October 2026, Edit profile 3.4 D1.2). One HtmlEmbed for the top of /account, /edit-profile, /the-map and /my-pets,
+     placed at the top of the members-only content. Shows only to a signed-in member; the current page is underlined rose.
+     CONTRIBUTIONS and SETTINGS jump to those blocks on /account (#stories from the story edit build, #settings). Touches no data-ms-* element. -->
+<nav class="tll-mbar" data-tll-member-bar aria-label="Your TLL" hidden>
+<a href="/account" data-mbar="/account">OVERVIEW</a>
+<a href="/edit-profile" data-mbar="/edit-profile">PROFILE</a>
+<a href="/the-map" data-mbar="/the-map">MAP</a>
+<a href="/my-pets" data-mbar="/my-pets">PETS</a>
+<a href="/account#stories">CONTRIBUTIONS</a>
+<a href="/account#settings">SETTINGS</a>
+</nav>
+<style id="tll-mbar-css-v1">
+.tll-mbar{display:flex;align-items:center;gap:4px 20px;flex-wrap:wrap;border-bottom:1px solid #E0DACE;margin:0 0 32px;font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px}
+.tll-mbar[hidden]{display:none}
+.tll-mbar a{display:inline-flex;align-items:center;min-height:44px;padding:12px 0;margin-bottom:-1px;border-bottom:3px solid transparent;color:#5E5A54;text-decoration:none}
+.tll-mbar a[aria-current="page"]{color:#0A0B14;border-bottom-color:#F0507A}
+.tll-mbar a:hover{color:#0A0B14}
+.tll-mbar a:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+</style>
+<script id="tll-mbar-js-v1">
+(function(){var bar=document.querySelector('[data-tll-member-bar]');if(!bar)return;
+var path=location.pathname.replace(/\/$/,'')||'/';
+[].forEach.call(bar.querySelectorAll('a[data-mbar]'),function(a){if(a.getAttribute('data-mbar')===path)a.setAttribute('aria-current','page');});
+var t=0,iv=setInterval(function(){var m=window.$memberstackDom;if(!m){if(++t>40)clearInterval(iv);return;}clearInterval(iv);
+m.getCurrentMember().then(function(r){if(r&&r.data)bar.hidden=false;}).catch(function(){});},250);
+})();
+</script></div>
+<div class="w-embed"><style id="tll-ep-css">
+/* Edit profile v2 (20 Oct 2026, Packet C, C4). Two columns: the form on the left, a sticky preview on the right, stacked under 900px. The Memberstack form keeps every data-ms-* element in place; display:contents flattens its wrappers so its fields and the new blocks share one grid, ordered by CSS. Fonts and tokens as the home page. */
+.tll-edit-section{background:#F7F1E8 !important;padding:clamp(40px,7vh,80px) 0 clamp(72px,12vh,144px) !important}
+.tll-edit-container{max-width:1120px !important;padding:0 max(20px,6vw) !important}
+.tll-edit-container [data-ms-content="members"]{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:0 40px;align-items:start;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}
+.tll-edit-container [data-ms-content="members"] > *{grid-column:1;order:150;min-width:0}
+.tll-edit-container [data-ms-content="members"] .w-form,.tll-edit-container [data-ms-content="members"] form[data-ms-form="profile"],.tll-edit-container [data-ms-content="members"] .tll-edit-fieldset{display:contents}
+.tll-edit-container [data-ms-content="members"] .tll-edit-field{grid-column:1;order:150;min-width:0}
+.tll-edit-container [data-ms-content="members"] .w-form-done,.tll-edit-container [data-ms-content="members"] .w-form-fail{grid-column:1;order:149}
+.tll-edit-form .tll-edit-legend,.tll-edit-form .tll-edit-help{display:none !important}
+/* order of the left column */
+[data-ms-content="members"] > .tll-edit-header{order:10;margin:0 0 8px}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="top"]){order:20}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="name"]){order:31}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="shown"]){order:32}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="oneline"]){order:33}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="home-base"]){order:34}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="origin"]){order:35}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="about"]){order:40}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="bio-long"]){order:41}
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="bio-short"]){order:42}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="bionote"]){order:43}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="links"]){order:50}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="crew"]){order:60}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="pets"]){order:70}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="contact"]){order:80}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="dirs"]){order:90}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="vis"]){order:100}
+[data-ms-content="members"] > .tll-edit-account-actions{order:140;margin-top:40px}
+[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){grid-column:2;grid-row:1/span 80;order:0;position:sticky;top:96px;align-self:start}
+/* retired blocks: hidden in Webflow by visibility; this is the fallback so they stay off the page either way */
+[data-ms-content="members"] .tll-edit-field:has([data-ms-member="fun-title"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="country-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="cities-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="states-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="national-parks-count"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member="continents-marathoned"]),[data-ms-content="members"] .tll-edit-field:has([data-ms-member$="-url"]),[data-ms-content="members"] .tll-edit-toggle,[data-ms-content="members"] .tll-edit-grid-4,[data-ms-content="members"] .tll-edit-grid-2,[data-ms-content="members"] .tll-edit-toggles,[data-ms-content="members"] .tll-edit-actions,[data-ms-content="members"] > [data-tll-edit="ledger"],[data-ms-content="members"] > [data-tll-edit="dir"],[data-ms-content="members"] > [data-tll-edit="desig"]{display:none !important}
+/* header: the old eyebrow Block refuses set_text through the API, so a new text block carries the v2 eyebrow and the old one is hidden */
+.tll-edit-header .tll-edit-eyebrow{display:none !important}
+.tll-edit-header [data-ep-eyebrow]{font-family:'JetBrains Mono',ui-monospace,monospace !important;font-size:12px !important;letter-spacing:3px;text-transform:uppercase;color:#067A79 !important;font-weight:600;margin:0 0 12px}
+.tll-edit-header .tll-edit-title{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(36px,4.6vw,64px) !important;line-height:.92 !important;letter-spacing:-.035em;margin:0 0 16px;color:#0A0B14 !important}
+.tll-edit-header .tll-edit-title em{font-style:italic;color:#F0507A}
+.tll-edit-header .tll-edit-sub{font-size:15px !important;line-height:1.55;color:#3a3a3a !important;max-width:60ch;margin:0}
+/* Memberstack fields, restyled in place */
+.tll-edit-container .tll-edit-field{display:flex;flex-direction:column;gap:6px;margin:0 0 18px;position:relative}
+.tll-edit-container .tll-edit-label,.ep-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;font-weight:600;display:flex;align-items:center;gap:8px}
+.tll-edit-container .tll-edit-input,.ep-input{font:400 16px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;background:#FDF9F3;border:1.5px solid #D9D2C5;border-radius:8px;padding:11px 14px;min-height:44px;width:100%;box-sizing:border-box;margin:0}
+.tll-edit-container .tll-edit-textarea{min-height:150px;resize:vertical}
+.tll-edit-container .tll-edit-helptext,.ep-help{font-size:13px;line-height:1.5;color:#6B6660}
+.tll-edit-container .tll-edit-input:focus-visible,.ep-input:focus-visible,[data-ep] button:focus-visible,[data-ep] a:focus-visible,[data-ep] input:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+</style>
+</div>
+<div class="w-embed"><style id="tll-ep-css-b">
+/* Edit profile v2, part B: the new blocks, chips, switches, option cards, the preview card, breakpoints, reduced motion. */
+/* new blocks */
+[data-ep]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;font-size:15px;line-height:1.5}
+[data-ep] *{box-sizing:border-box}
+[data-ep] p{margin:0 0 14px}
+.ep-sec{border-top:1.5px solid #0A0B14;padding-top:22px;margin:30px 0 14px}
+.ep-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#067A79;font-weight:600;margin:0 0 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ep-eb span{color:#6B6660;letter-spacing:1.5px}
+.ep-lede{font-size:15px;line-height:1.55;color:#3a3a3a;max-width:60ch}
+.ep-field{display:flex;flex-direction:column;gap:6px;margin:0 0 18px}
+.ep-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ep-note{font-size:13px;line-height:1.5;color:#6B6660;margin:4px 0 0}
+.ep-note[hidden]{display:none}
+.ep-soft{background:#FDF9F3;border-left:3px solid #067A79;padding:10px 14px;font-size:13px;line-height:1.5;color:#3a3a3a;margin:0 0 18px}
+.ep-soft[hidden]{display:none}
+.ep-i{display:inline-flex;width:18px;height:18px;border-radius:50%;border:1.5px solid #6B6660;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;align-items:center;justify-content:center;color:#6B6660;letter-spacing:0;cursor:help}
+/* status and top row */
+.ep-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 6px}
+.ep-status{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#067A79;text-transform:uppercase}
+.ep-status[data-state="fail"]{color:#F0507A}
+.ep-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1.5px solid #0A0B14;border-radius:4px;background:transparent;color:#0A0B14;font:600 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.ep-btn--fill{background:#0A0B14;color:#F7F1E8}
+.ep-nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.ep-nav a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1.5px solid #D9D2C5;border-radius:999px;background:#FDF9F3;color:#0A0B14;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-decoration:none}
+.ep-nav a i{width:8px;height:8px;border-radius:50%;background:#D9D2C5;flex:none}
+.ep-nav a[data-on="1"] i{background:#067A79}
+/* photo */
+.ep-photo{display:flex;align-items:center;gap:16px;margin:0 0 20px}
+.ep-av{width:72px;height:72px;border-radius:50%;background:#0A0B14;color:#F7F1E8;display:flex;align-items:center;justify-content:center;font:800 22px/1 'Playfair Display',Georgia,serif;overflow:hidden;flex:none}
+.ep-av img{width:100%;height:100%;object-fit:cover;object-position:center}
+/* chips and switches */
+.ep-seg{display:flex;flex-wrap:wrap;gap:8px}
+.ep-seg button,.ep-chip{min-height:44px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:600 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ep-seg button[aria-pressed="true"],.ep-chip[aria-pressed="true"]{background:#0A0B14;color:#F7F1E8}
+.ep-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ep-chip--x{border-color:#D9D2C5}
+.ep-chip--off{border-style:dashed;color:#6B6660}
+.ep-chip--x b{font-weight:700;letter-spacing:1px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px}
+.ep-sw{min-width:68px;min-height:44px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;cursor:pointer}
+.ep-sw[aria-checked="true"]{background:#0A0B14;color:#F7F1E8}
+.ep-link{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;margin:0 0 10px}
+.ep-link label{font-weight:700;font-size:14px}
+.ep-opts{display:grid;gap:10px;margin:0 0 16px}
+.ep-opt{display:grid;grid-template-columns:20px 1fr;gap:2px 12px;align-items:start;text-align:left;width:100%;min-height:44px;padding:13px 16px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;color:#0A0B14;font-family:inherit;cursor:pointer}
+.ep-opt:before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid #0A0B14;margin-top:3px;box-sizing:border-box}
+.ep-opt[aria-checked="true"]{border-color:#0A0B14}
+.ep-opt[aria-checked="true"]:before{background:#0A0B14;box-shadow:inset 0 0 0 3px #FDF9F3}
+.ep-opt b{font-size:15px;font-weight:700;display:block}
+.ep-opt small{font-size:13px;color:#6B6660;line-height:1.45;display:block}
+.ep-dir{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 0;border-top:1px solid #D9D2C5}
+.ep-dir b{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:18px}
+.ep-dir small{display:block;font-size:13px;color:#6B6660;line-height:1.45}
+.ep-dir .ep-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:none;font-weight:600}
+.ep-card{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;color:#0A0B14;text-decoration:none;margin:0 0 10px;min-height:44px}
+.ep-card .ep-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;font-weight:600}
+.ep-card b{display:block;font-size:15px}
+.ep-card small{display:block;font-size:13px;color:#6B6660}
+.ep-check{display:flex;gap:12px;align-items:flex-start;min-height:44px;cursor:pointer;font-size:14px;line-height:1.5;color:#3a3a3a}
+.ep-check input{width:20px;height:20px;margin:3px 0 0;accent-color:#0A0B14;flex:none}
+.ep-foot{display:flex;flex-wrap:wrap;gap:16px 24px;margin:18px 0 0}
+.ep-foot a{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:none;font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+/* preview */
+.ep-pv-eb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#6B6660;font-weight:600;margin:0 0 12px}
+.ep-pv{background:#0A0B14;color:#F7F1E8;border-radius:14px;padding:22px 22px 20px}
+.ep-pv .ep-av{width:64px;height:64px;margin:0 0 14px;background:#F7F1E8;color:#0A0B14}
+.ep-pv-name{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:26px;line-height:1.05;margin:0 0 6px;overflow-wrap:anywhere}
+.ep-pv-name em{font-style:italic;color:#F0507A}
+.ep-pv-line{font-size:14px;line-height:1.45;color:#cfcbc4;margin:0 0 10px;min-height:1.45em}
+.ep-pv-meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.ep-pv-stats{display:flex;gap:18px;border-top:1px dashed #2b2f52;padding-top:12px;margin:0 0 12px}
+.ep-pv-stats[hidden]{display:none}
+.ep-pv-stats b{display:block;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1}
+.ep-pv-stats small{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#9496AC;text-transform:uppercase}
+.ep-pv-foot{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8;display:flex;gap:10px;flex-wrap:wrap}
+.ep-pv-note{font-size:13px;line-height:1.5;color:#6B6660;margin:12px 0 0}
+.ep-pv-note a{color:#067A79;font-weight:700;text-decoration:none}
+@media (max-width:899px){.tll-edit-container [data-ms-content="members"]{grid-template-columns:minmax(0,1fr)}[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){grid-column:1;grid-row:auto;order:120;position:static}.ep-row{grid-template-columns:1fr}}
+@media (max-width:600px){.ep-link{grid-template-columns:1fr auto}.ep-link label{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){[data-ep] *,.tll-edit-container .tll-edit-input{transition:none !important;animation:none !important;scroll-behavior:auto !important}}
+</style></div>
+<div class="w-embed"><style id="tll-ep-css-c">
+/* 3.4 (21 Oct 2026): developing card, 88 px photo button, contributions, crew rows, expat desks, grayscale preview */
+.ep-dev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;padding:16px 18px;margin:0 0 20px}
+.ep-dev .ep-av{width:56px;height:56px;font-size:18px}
+.ep-dev-l{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;color:#0A0B14}
+.ep-dev-l span[data-ep-dev-count]{color:#6B6660;font-weight:400}
+.ep-dev-bar{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:3px;margin:10px 0 8px}
+.ep-dev-bar i{height:6px;background:#E0DACE;display:block;transition:background 400ms ease}
+.ep-dev-bar i[data-on="1"]{background:#F0507A}
+.ep-dev-next{font:600 14px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;background:transparent;border:0;padding:6px 0;min-height:36px;cursor:pointer;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px}
+.ep-dev-next[hidden],.ep-dev-done[hidden]{display:none}
+.ep-dev-done{font-size:14px;font-weight:600;color:#067A79}
+.ep-gray{transition:filter 600ms ease}
+.ep-avbtn{position:relative;width:88px;height:88px;border-radius:50%;border:2.5px solid #F0507A;padding:0;background:#0A0B14;overflow:hidden;cursor:pointer;display:block;flex:none}
+.ep-avbtn .ep-av{width:100%;height:100%;font-size:30px}
+.ep-avbtn b{position:absolute;left:0;right:0;bottom:0;background:rgba(10,11,20,.72);color:#F7F1E8;font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-align:center;padding:6px 0}
+.ep-req{font:400 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#C8325B;margin-left:6px}
+.ep-contrib{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:8px}
+.ep-contrib .ep-card{margin:0}
+[data-ep-petcards]{display:contents}
+.ep-card-img{width:44px;height:44px;background:#0A0B14 center/cover;border-radius:6px;flex:none;display:flex;align-items:center;justify-content:center;font-size:22px}
+.ep-card-img--pet{border-radius:50%;border:2px solid #00C9C8;background-color:#1d5e5d}
+.ep-card-add{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border:2px dashed #6B6660;border-radius:10px;background:#fff;min-height:70px;font-size:14px;font-weight:600;color:#3a3a3a;text-decoration:none}
+.ep-card-acts{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.ep-card-acts a{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#0A0B14;text-decoration:underline;text-decoration-color:#067A79;text-decoration-thickness:2px;text-underline-offset:4px;min-height:36px;display:inline-flex;align-items:center}
+.ep-crew-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border:1.5px solid #D9D2C5;border-radius:10px;background:#FDF9F3;margin:0 0 8px}
+.ep-crew-row .ep-av{width:44px;height:44px;font-size:16px;border:2px solid #F0507A}
+.ep-crew-row .ep-av--pet{border-color:#00C9C8;background:#1d5e5d}
+.ep-crew-row b{display:block;font-size:15px}
+.ep-crew-row small{display:block;font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#6B6660;margin-top:2px}
+.ep-crew-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.ep-wait{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#7A4D10}
+.ep-x{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#0A0B14;background:transparent;border:1.5px solid #D9D2C5;border-radius:999px;padding:0 12px;min-height:40px;cursor:pointer}
+.ep-desks{margin-top:12px;border:1.5px solid #D9D2C5;border-radius:10px;background:#fff;padding:14px 16px}
+.ep-desks[hidden]{display:none}
+.ep-desks-h{display:flex;align-items:center;gap:6px;font:700 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;margin-bottom:10px}
+.ep-pv-langs{font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;color:#0A0B14;margin:6px 0 0}
+.ep-pv-langs[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.ep-gray,.ep-dev-bar i{transition:none}}
+/* UX build (26 Oct 2026, U1 to U12): small section labels, hidden means hidden, member bar first, the bar that follows the page, saved marks, labeled desks */
+:is(#tll-ep,[data-ep]) .ep-eb{font:600 12px/1.4 'JetBrains Mono',ui-monospace,monospace !important;letter-spacing:3px !important;text-transform:uppercase !important;color:#067A79 !important}
+[data-ep] [hidden]{display:none !important}
+.ep-sec{scroll-margin-top:150px}
+[data-ms-content="members"] > .w-embed:has(> [data-tll-member-bar]){order:5}
+.ep-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ep-retry,.ep-saved--fail{font:700 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#C8325B;background:transparent;border:0;padding:6px 0;min-height:32px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ep-saved{font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin-left:10px;white-space:nowrap}
+.ep-saved--fail{text-transform:none;padding:0;min-height:0}
+.ep-bar{position:fixed;left:0;right:0;top:var(--ep-bar-top,0px);z-index:60;background:#F7F1E8;border-bottom:1.5px solid #0A0B14;box-shadow:0 4px 12px rgba(10,11,20,.06);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
+.ep-bar-in{max-width:1120px;margin:0 auto;padding:6px max(20px,6vw);display:flex;align-items:center;gap:12px;position:relative}
+.ep-bar-nav{display:flex;gap:6px;overflow-x:auto;flex:1;min-width:0;margin:0;padding:0;list-style:none;scrollbar-width:none}
+.ep-bar-nav a{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1.5px solid #D9D2C5;border-radius:999px;background:#FDF9F3;color:#0A0B14;font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-decoration:none;white-space:nowrap}
+.ep-bar-st{margin-left:auto;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.ep-bar-sec{display:none;min-height:36px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:transparent;color:#0A0B14;font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
+@media (max-width:899px){.ep-bar-sec{display:inline-flex;align-items:center}.ep-bar-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-wrap:wrap;background:#F7F1E8;padding:10px max(20px,6vw) 14px;border-bottom:1.5px solid #0A0B14}.ep-bar[data-open="1"] .ep-bar-nav{display:flex}.ep-bar-st{white-space:normal;text-align:right}}
+.ep-desk{position:relative;padding:12px 0;border-top:1px solid #F0EBE0}
+.ep-desk-h{display:flex;align-items:center;gap:10px}
+.ep-desk-h .ep-fl{font-size:24px;line-height:1}
+.ep-desk-h b{font-size:16px}
+.ep-desk-h .ep-x{margin-left:auto;min-width:40px}
+.ep-desk-tag{font:700 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;white-space:nowrap;color:#6B6660;border:1px solid #D9D2C5;border-radius:999px;padding:4px 8px}
+.ep-desk-tag[data-on="1"]{color:#F7F1E8;background:#067A79;border-color:#067A79}
+.ep-desk-g{display:grid;grid-template-columns:96px 96px minmax(0,1fr);gap:10px 14px;margin:10px 0 6px}
+.ep-desk-g label{display:flex;flex-direction:column;gap:4px;font:600 11px/1.2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660;min-width:0}
+.ep-desk-g input{width:100%;min-width:0;min-height:40px;border:1.5px solid #D9D2C5;border-radius:6px;background:#FDF9F3;padding:8px 10px;font:400 15px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;text-transform:none;letter-spacing:0}
+.ep-desk-g small{font:400 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;text-transform:none;text-align:right}
+.ep-desk-c{display:inline-flex;align-items:center;gap:10px;min-height:40px;font-size:14px;font-weight:600;cursor:pointer}
+.ep-desk-c input{width:20px;height:20px;accent-color:#067A79;margin:0}
+.ep-desk-warn{font-size:13px;line-height:1.45;color:#7A4D10;background:#FDF6E8;border-left:3px solid #C98A2B;padding:8px 12px;margin:6px 0 0}
+.ep-desk-warn .ep-x{margin-left:6px;min-height:32px}
+.ep-desk-add{display:flex;gap:8px;align-items:center;border-top:1px solid #F0EBE0;padding-top:10px}
+.ep-desk-add input{flex:1;min-width:0;min-height:44px;border:1.5px solid #D9D2C5;border-radius:6px;background:#FDF9F3;padding:8px 10px;font:400 15px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif}
+.ep-desk-undo{display:flex;align-items:center;gap:8px;font-size:14px;margin:8px 0 0}
+.ep-desks-off{color:#7A4D10 !important;margin-top:4px}
+@media (min-width:900px){[data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){top:150px}}
+@media (max-width:600px){.ep-desk-g{grid-template-columns:1fr 1fr}.ep-desk-k{grid-column:1/-1}}
+/* Signed-in fix (26 Oct 2026): the site core CSS sets html.ms-loaded [data-ms-content="members"] to display:block, which beat the page grid for every signed-in member (the page showed as one wide column since 20 Oct), and the grid rule beat the core's display:none before Memberstack loaded (the empty form flashed at login). Hidden until Memberstack has loaded, then the grid. */
+.tll-edit-container [data-ms-content="members"]{display:none !important}
+html.ms-loaded .tll-edit-container [data-ms-content="members"]{display:grid !important}
+.ep-dir .ep-mono{margin-left:10px}
+.ep-eb span{font:inherit !important;letter-spacing:1.5px !important;color:#6B6660 !important}
+</style></div>
+<div class="w-embed"><style id="tll-ep-css-c3">
+/* Edit profile v2, CSS part C3 (27 Oct 2026, T1 to T3): stints inside a desk. Loads after part C. */
+.ep-stints{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:flex-end;grid-column:1/3}
+.ep-stint{display:inline-flex;gap:10px;align-items:flex-end}
+.ep-stint label{width:96px}
+.ep-stint-x{min-height:40px;min-width:36px;padding:0 10px}
+.ep-stint-add{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px;color:#067A79;background:transparent;border:0;padding:0;min-height:40px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+[data-ep-desk-msgrow]{margin:4px 0 0}
+[data-ep-desk-msgrow] .ep-sw{min-height:36px;font-size:11px}
+@media (max-width:600px){.ep-stints{grid-column:1/-1}.ep-stint label{width:calc(50% - 22px)}}
+/* 28 Oct 2026, Nancy: "Still seeing the blue text hover". The site stylesheet's a:hover paints every link the accent hover blue; these pin each editor link to its own colour on hover. */
+.tll-edit-container [data-ms-content="members"] a:hover{color:#067A79}
+.tll-edit-container .ep-pv-note a:hover{color:#00C9C8}
+.tll-edit-container .ep-nav a:hover,.tll-edit-container .ep-bar-nav a:hover,.tll-edit-container .ep-card:hover,.tll-edit-container .ep-card-add:hover,.tll-edit-container .ep-card-acts a:hover,.tll-edit-container .tll-mbar a:hover{color:#0A0B14}
+.tll-edit-container .ep-nav a[data-cur="1"]:hover,.tll-edit-container .ep-bar-nav a[data-cur="1"]:hover,.tll-edit-container .ep-btn:not(.ep-btn--band):hover{color:#F7F1E8}
+.tll-edit-container .ep-btn--band:hover{color:#0A0B14}
+.tll-edit-container .ep-pv-foot a:hover{color:#00C9C8}
+</style>
+</div>
+<div class="w-embed"><style id="tll-ep-css-d">
+/* Edit profile v2, CSS part D: the look build (27 Oct 2026, CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md), E1 to E5 and E11; part D2 carries E6 to E10 and E8. Loads after parts A to C and wins ties. No data-ms-* element targeted. */
+/* E11, E6 width and paper */
+.tll-edit-section{background:#FDF9F3 !important;padding-top:0 !important}
+.tll-edit-container{max-width:1240px !important;padding:0 clamp(16px,4vw,48px) !important}
+.tll-edit-container [data-ms-content="members"] > .w-embed:has(> [data-tll-member-bar]){grid-row:1;grid-column:1/-1}
+.tll-edit-container [data-ms-content="members"] > .tll-edit-header{grid-row:2;grid-column:1/-1}
+@media (min-width:900px){.tll-edit-container [data-ms-content="members"] > .w-embed:has(> [data-ep="preview"]){grid-row:3/span 80}}
+/* E1 the band; both halves carry the Ink and bleed to the viewport edges */
+.tll-edit-header,.ep-band{position:relative;isolation:isolate;background:#0A0B14;color:#F7F1E8}
+.tll-edit-header::before,.ep-band::before{content:"";position:absolute;top:0;bottom:0;left:-100vw;right:-100vw;background:#0A0B14;z-index:-1}
+.tll-edit-header{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 28px;align-items:center;margin:0 !important;padding:40px 0 0}
+.tll-edit-header > *{grid-column:2;min-width:0}
+.tll-edit-header > .ep-hero-av{grid-column:1;grid-row:1/span 3;align-self:center}
+.tll-edit-header > .ep-band{grid-column:1/-1;margin-top:14px;padding-bottom:36px}
+.ep-hero-av{width:96px;height:96px;border:2.5px solid #F0507A;background:#26324D;color:#F7F1E8;font-size:30px}
+.tll-edit-header [data-ep-eyebrow]{color:#00C9C8 !important;font-size:11px !important;margin:0 0 8px}
+.tll-edit-container .tll-edit-header h1.tll-edit-title{font-size:clamp(38px,4.6vw,60px) !important;line-height:1 !important;letter-spacing:-.02em;color:#F7F1E8 !important;margin:0}
+.tll-edit-header .tll-edit-title em{color:#F0507A;font-style:italic}
+.ep-hero-sub{font:400 17px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#cfcbc4;max-width:62ch;margin:14px 0 0}
+.ep-hero-st{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0;padding:0;list-style:none;font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1px}
+.ep-hero-st li{border:1px solid #3a3d52;border-radius:4px;padding:4px 9px;color:#cfcbc4}
+.ep-hero-act{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;margin:18px 0 0}
+.ep-btn--band{color:#F7F1E8;border:1.5px solid #F7F1E8;border-radius:4px;padding:0 18px;font-weight:700;letter-spacing:.2px}
+.ep-band .ep-status{color:#b8b4ad}
+.ep-band .ep-status[data-state="ok"]{color:#00C9C8}
+.ep-band .ep-status[data-state="fail"],.ep-band .ep-retry{color:#FF7093}
+/* E2 the developing strip */
+.ep-band .ep-dev{display:block;border:0;border-radius:0;background:transparent;padding:0;margin:24px 0 0;max-width:560px}
+.ep-band .ep-dev-l{justify-content:flex-start;gap:8px;font:400 10.5px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;color:#b8b4ad;margin:0 0 6px}
+.ep-band .ep-dev-l span[data-ep-dev-stage]{font-weight:600}
+.ep-band .ep-dev-l span[data-ep-dev-count]{color:#b8b4ad}
+.ep-band .ep-dev-l .ep-i{border-color:#b8b4ad;color:#b8b4ad;width:16px;height:16px;font-size:10px}
+.ep-band .ep-dev-next,.ep-band .ep-dev-done{margin-left:auto;min-height:44px;padding:0;font:inherit;letter-spacing:inherit;color:#00C9C8;text-decoration:none;text-align:right}
+.ep-band .ep-dev-bar{gap:3px;margin:0;border-radius:3px;overflow:hidden}
+.ep-band .ep-dev-bar i{background:#23263c}
+.ep-band .ep-dev-bar i[data-on="1"]{background:#00C9C8}
+/* E4 tab-style section links */
+.ep-navwrap{margin:0 0 4px}
+.ep-nav{display:flex;flex-wrap:nowrap;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0;padding:10px 0;border-bottom:1px solid #E0DACE}
+.ep-nav::-webkit-scrollbar{display:none}
+.ep-nav a,.ep-bar-nav a{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border:0;border-radius:4px;background:transparent;color:#0A0B14;font:600 15px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:0;text-transform:none;text-decoration:none;white-space:nowrap;flex:none}
+.ep-bar-nav a{min-height:36px;font-size:14px}
+.ep-nav a[data-cur="1"],.ep-bar-nav a[data-cur="1"]{background:#0A0B14;color:#F7F1E8;font-weight:700}
+.ep-nav a i{order:2;width:8px;height:8px;border-radius:50%;background:#D9D2C5}
+.ep-nav a[data-on="1"] i{background:#067A79}
+.ep-nav a[data-cur="1"][data-on="1"] i{background:#00C9C8}
+.ep-bar{background:#FDF9F3;border-bottom:1px solid #E0DACE}
+.ep-bar-nav{gap:4px}
+/* E5 section titles */
+:is(#tll-ep,[data-ep]) .ep-eb{font:800 22px/1.2 'Playfair Display',Georgia,serif !important;letter-spacing:-.015em !important;text-transform:none !important;color:#0A0B14 !important;display:flex;align-items:baseline;justify-content:flex-start;gap:6px 12px;flex-wrap:wrap;margin:0 0 10px}
+:is(#tll-ep,[data-ep]) .ep-eb .ep-n{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace !important;letter-spacing:3px !important;color:#067A79 !important}
+:is(#tll-ep,[data-ep]) .ep-eb span:not(.ep-n){font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace !important;letter-spacing:1.5px !important;color:#6B6660 !important}
+.ep-sec{border-top:1px solid #E0DACE;padding-top:28px;margin:40px 0 14px}
+</style></div>
+<div class="w-embed"><style id="tll-ep-css-d2">
+/* Edit profile v2, CSS part D2: the look build (27 Oct 2026), E6 to E10 and E8, after part D. No data-ms-* element targeted. */
+/* E6 white surfaces, 4 px corners */
+.tll-edit-section .tll-edit-container .tll-edit-field .tll-edit-input.w-input,.ep-input,.ep-desk-g input,.ep-desk-add input{background:#fff !important;border:1px solid #E0DACE !important;border-radius:4px !important}
+.ep-card,.ep-opt,.ep-crew-row,.ep-desks,.ep-soft{background:#fff;border:1px solid #E0DACE;border-radius:4px}
+.ep-soft{border-left:3px solid #067A79}
+.ep-opt[aria-checked="true"]{border-color:#0A0B14}
+.ep-card-add{background:#fff;border:1px dashed #C9C3B8;border-radius:4px}
+.ep-card-img{border-radius:4px}
+.ep-seg button,.ep-chip{border:1px solid #C9C3B8;border-radius:4px;background:#fff;font:600 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif}
+.ep-seg button[aria-pressed="true"],.ep-chip[aria-pressed="true"]{background:#0A0B14;color:#F7F1E8;border-color:#0A0B14}
+.ep-chip--off{border-style:dashed}
+.ep-x{border:1px solid #C9C3B8;border-radius:4px;background:#fff}
+.ep-desk-tag{border-radius:4px}
+.ep-dir{border-top:1px solid #E0DACE}
+/* E7 the preview card frame */
+[data-ep="preview"]{background:#0A0B14;border-radius:4px;padding:16px 16px 0;color:#F7F1E8}
+.ep-pv-eb{color:#00C9C8;font-size:11px;letter-spacing:2px;margin:0 0 14px}
+.ep-pv{border-radius:0;padding:0}
+.ep-pv-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ep-pv-stats b{font-size:34px;overflow-wrap:anywhere}
+.ep-pv-stats[data-long="1"] b{font-size:22px}
+.ep-pv-foot{border-top:1px solid #23263c;margin:0 -16px;padding:0 16px;min-height:44px;align-items:center}
+.ep-pv-note{color:#b8b4ad;border-top:1px solid #23263c;margin:0 -16px;padding:12px 16px 14px}
+.ep-pv-note a{color:#00C9C8}
+/* E9 account links in 08's foot row */
+[data-ms-content="members"] > .tll-edit-account-actions{order:101;margin:0 0 8px;border-top:0;padding:0;gap:16px 24px;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
+.tll-edit-account-actions .tll-h3,.tll-edit-account-actions .tll-edit-divider{display:none}
+.tll-edit-account-actions a{font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.tll-edit-account-actions a[href^="/"]::after{content:" →";white-space:pre}
+/* E10 the signed-out gate card */
+.tll-edit-locked{background:#fff;border:1px solid #E0DACE;border-radius:4px;padding:40px clamp(20px,5vw,48px);max-width:560px;margin:40px auto;text-align:center}
+.tll-edit-locked .tll-btn-ghost-1{display:inline-flex;align-items:center;min-height:44px;padding:14px 24px;border:0;border-radius:999px;background:#0A0B14;color:#F7F1E8;font:600 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.04em}
+.ep-gate-back{display:inline-flex;align-items:center;min-height:44px;margin-top:16px;color:#067A79;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+/* E8 focus, hover, press */
+.tll-edit-container .tll-edit-input:focus-visible,.ep-input:focus-visible,[data-ep] button:focus-visible,[data-ep] a:focus-visible,[data-ep] input:focus-visible,.tll-edit-account-actions a:focus-visible,.tll-edit-locked a:focus-visible{outline:3px solid #0A0B14;outline-offset:2px}
+.tll-edit-header :focus-visible,.ep-band :focus-visible{outline:3px solid #00C9C8 !important;outline-offset:2px}
+.ep-btn,.ep-nav a,.ep-bar-nav a,.ep-seg button,.ep-chip,.ep-sw,.ep-x,.ep-opt,.ep-card,.ep-card-add,.ep-dev-next,.ep-foot a,.tll-edit-account-actions a,.ep-dir .ep-mono,.ep-gate-back{transition:border-color .15s ease-out,background-color .15s ease-out,color .15s ease-out,transform .15s ease-out}
+@media (hover:hover) and (pointer:fine){.ep-btn--band:hover{background:#F7F1E8;color:#0A0B14}.ep-btn:not(.ep-btn--band):hover{background:#0A0B14;color:#F7F1E8}.ep-nav a:not([data-cur="1"]):hover,.ep-bar-nav a:not([data-cur="1"]):hover,.ep-sw:not([aria-checked="true"]):hover{background:#F0EBE0}.ep-seg button:not([aria-pressed="true"]):hover,.ep-chip:hover,.ep-x:hover,.ep-opt:not([aria-checked="true"]):hover,.ep-card:hover,.ep-card-add:hover{border-color:#0A0B14}}
+.ep-btn:active,.ep-nav a:active,.ep-bar-nav a:active,.ep-seg button:active,.ep-chip:active,.ep-sw:active,.ep-x:active,.ep-opt:active,.ep-card:active,.ep-card-add:active{transform:scale(.97)}
+@media (max-width:899px){.tll-edit-header{padding-top:32px}.tll-edit-header > .ep-band{padding-bottom:28px}}
+@media (max-width:600px){.ep-hero-av{width:72px;height:72px;font-size:24px}.tll-edit-header{gap:0 16px}}
+@media (prefers-reduced-motion:reduce){.ep-btn,.ep-nav a,.ep-bar-nav a,.ep-seg button,.ep-chip,.ep-sw,.ep-x,.ep-opt,.ep-card,.ep-card-add,.ep-dev-next,.ep-foot a,.tll-edit-account-actions a,.ep-gate-back{transition:none !important;transform:none !important}}
+</style>
+</div>
+<div class="w-embed"><style id="tll-ep-css-d3">
+/* Edit profile v2, CSS part D3 (28 Oct 2026, N2 to N9; handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md), after D2: From and Has lived in, the Bio counters past their limit, the crew picker, What you make, the press form, Shop and partners. No data-ms-* element targeted. */
+.ep-origin{display:grid;gap:16px;margin-top:8px}
+.ep-sub{display:grid;gap:8px}
+.ep-sublab{font:700 14px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14;margin:0}
+.ep-sub .ep-desk-add{border-top:0;padding-top:0}
+.ep-chips:empty{display:none}
+.ep-cnt[data-over="1"]{color:#C23A62;font-weight:600}
+.ep-crew-opts{display:grid;gap:6px;margin-top:6px}
+.ep-crew-opts[hidden]{display:none}
+.ep-crew-opt{cursor:pointer;margin:0}
+.ep-crew-opt[aria-selected="true"]{border-color:#0A0B14}
+.ep-crew-opt .ep-x{pointer-events:none}
+.ep-makes,.ep-press{display:grid;gap:10px;padding:0 0 16px}
+.ep-makes[hidden],.ep-press[hidden]{display:none}
+.ep-press .ep-field{margin:0}
+.ep-press .ep-press-send{justify-self:start}
+.ep-press .ep-press-send[disabled]{opacity:.6;cursor:default}
+.ep-partners{display:grid;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid #E0DACE}
+.ep-partners .ep-link{grid-template-columns:110px 1fr;margin:0}
+.ep-pt-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px}
+.ep-partners .ep-dir{border-top:0;padding:6px 0 0}
+.ep-partners .ep-dir small{display:block}
+@media (max-width:600px){.ep-pt-row,.ep-partners .ep-link{grid-template-columns:1fr}}
+</style>
+</div>
+<div class="w-embed"><div data-ep="top" id="tll-ep" data-worker="https://tll-travel-wire.thatlayoverlife.workers.dev" data-desks-field="1" data-story-worker="">
+<!-- Edit profile v2 root (20 Oct 2026; 3.4 head 21 Oct 2026; UX build U1 to U3 and U14, 26 Oct 2026). Look build (27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md, E1, E2, E4): the Ink band. Its top half is the Webflow header (eyebrow and title, styled by CSS part D; script part E adds the photo, the sub line and the rose italic there), its bottom half is data-ep-band below: the two status chips, the public profile button, the save status and the developing strip. Script part E moves the band into the header so both halves are one grid row; without it the band still shows here. Then the section row in the tab style and the bar that follows the page (part D).
+     data-worker: the Cloudflare Worker base URL. Empty means the page saves to Memberstack only. data-desks-field: 1 once the Contributors collection has the desks field. data-story-worker: the /submit Worker base URL once deployed. data-ep-say is the one line screen readers hear, once per save. -->
+<div class="ep-band" data-ep-band>
+<ul class="ep-hero-st" aria-label="Profile status"><li data-ep-chip="vis">PROFILE · PUBLIC</li><li data-ep-chip="dir">DIRECTORY · OFF</li></ul>
+<div class="ep-hero-act"><a class="ep-btn ep-btn--band" href="/travelers" data-ep-view target="_blank" rel="noopener">View my public profile →</a><span class="ep-hero-save"><span class="ep-status" data-ep-status>All changes save as you type</span> <button type="button" class="ep-retry" data-ep-retry hidden>Try again</button></span><span class="ep-sr" role="status" aria-live="polite" data-ep-say></span></div>
+<div class="ep-dev" data-ep-dev>
+<div class="ep-dev-l"><span data-ep-dev-stage>BLACK AND WHITE</span><span data-ep-dev-count>0 OF 8</span><span class="ep-i" tabindex="0" role="img" aria-label="Only your name is required. Your page fills with color as you add to it. Visitors always see it in full color." title="Only your name is required. Your page fills with color as you add to it. Visitors always see it in full color.">i</span><button type="button" class="ep-dev-next" data-ep-dev-next hidden>Next: add a photo →</button><span class="ep-dev-done" data-ep-dev-done hidden>Full color. Looking good.</span></div>
+<div class="ep-dev-bar" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" aria-label="Profile progress" data-ep-dev-bar><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+</div>
+<div class="ep-bar" data-ep-bar hidden><div class="ep-bar-in"><button type="button" class="ep-bar-sec" data-ep-bar-sec aria-expanded="false">Sections</button><ul class="ep-bar-nav" data-ep-bar-nav><li><a href="#ep-who">Who</a></li><li><a href="#ep-about">About</a></li><li><a href="#ep-links">Links</a></li><li><a href="#ep-crew">Crew</a></li><li><a href="#ep-pets">Yours</a></li><li><a href="#ep-contact">Contact</a></li><li><a href="#ep-dirs">Directories</a></li><li><a href="#ep-vis">Visibility</a></li></ul><span class="ep-bar-st"><span class="ep-status" data-ep-status aria-hidden="true">All changes save as you type</span> <button type="button" class="ep-retry" data-ep-retry hidden>Try again</button></span></div></div>
+<nav class="ep-navwrap" aria-label="Sections"><ul class="ep-nav">
+<li><a href="#ep-who" data-ep-dot="who">Who<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-about" data-ep-dot="about">About<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-links" data-ep-dot="links">Links<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-crew" data-ep-dot="crew">Crew<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-pets" data-ep-dot="pets">Yours<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-contact" data-ep-dot="contact">Contact<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-dirs" data-ep-dot="dirs">Directories<i aria-hidden="true"></i></a></li>
+<li><a href="#ep-vis" data-ep-dot="vis">Visibility<i aria-hidden="true"></i></a></li>
+</ul></nav>
+<section class="ep-sec" id="ep-who" aria-labelledby="ep-who-h"><h2 class="ep-eb" id="ep-who-h">01 · Who you are</h2>
+<div class="ep-photo"><label class="ep-avbtn" for="ep-f-photo" aria-label="Change your photo"><span class="ep-av ep-gray" data-ep-avatar aria-hidden="true"></span><b data-ep-photobtn>ADD</b><input type="file" id="ep-f-photo" accept="image/*" style="position:absolute;opacity:0;width:1px;height:1px"></label><div><p class="ep-note">A square photo of you, not a logo. At least 600 by 600 pixels. Straight from your phone is fine.</p></div></div>
+</section>
+</div>
+</div>
+<div class="w-embed"><div data-ep="shown">
+<div class="ep-field"><div class="ep-label" id="ep-shown-l">Shown as <span class="ep-i" tabindex="0" role="img" aria-label="How your name appears on bylines. Full name, first name, or a pen name." title="How your name appears on bylines. Full name, first name, or a pen name.">i</span></div>
+<div class="ep-seg" role="group" aria-labelledby="ep-shown-l"><button type="button" data-ep-credit="full" aria-pressed="true">Full name</button><button type="button" data-ep-credit="first" aria-pressed="false">First name</button><button type="button" data-ep-credit="pen" aria-pressed="false">Pen name</button></div></div>
+<div class="ep-field" data-ep-penwrap hidden><label class="ep-label" for="ep-f-pen-name">Pen name</label><input class="ep-input" type="text" id="ep-f-pen-name" data-ep-f="pen-name" autocomplete="off" maxlength="60"><p class="ep-note">Your real name stays on file with the editor and is never shown. Every byline is still a real person.</p></div>
+</div>
+</div>
+<div class="w-embed"><div data-ep="oneline">
+<div class="ep-field"><label class="ep-label" for="ep-f-one-line">One line <span class="ep-i" tabindex="0" role="img" aria-label="The line under your name on your page and on the Travelers list. Not a job title." title="The line under your name on your page and on the Travelers list. Not a job title.">i</span><span style="margin-left:auto;letter-spacing:1px" data-ep-count>0 of 90</span></label><input class="ep-input" type="text" id="ep-f-one-line" data-ep-f="one-line" maxlength="90" autocomplete="off"></div>
+</div>
+</div>
+<div class="w-embed"><div data-ep="origin">
+<!-- N2, N3 (28 Oct 2026): From and Has lived in as two boxes, From with a place in your words. Script part G paints and wires them; the saved list stays one field (from-and-lived-in, the From country first). -->
+<div class="ep-field"><span class="ep-label">From, and has lived in <span class="ep-i" tabindex="0" role="img" aria-label="From is one country. Has lived in is up to four. Shown as flags under your name. Not a count." title="From is one country. Has lived in is up to four. Shown as flags under your name. Not a count.">i</span></span>
+<div class="ep-origin">
+<div class="ep-sub"><label class="ep-sublab" for="ep-f-from">From</label>
+<div class="ep-chips" data-ep-fromflag></div>
+<div class="ep-desk-add"><input type="text" id="ep-f-from" list="ep-countries" autocomplete="off" placeholder="Country" data-ep-fromq enterkeyhint="done"><button type="button" class="ep-sw" data-ep-from-add>Add</button></div>
+<input class="ep-input" type="text" id="ep-f-from-place" data-ep-f="from-place" maxlength="80" autocomplete="off" placeholder="Place, like Austin, Texas" aria-label="Where you are from, in your words">
+<p class="ep-note" data-ep-fromnote>One country for the flag. The place is yours to word: a city, a state, a region.</p></div>
+<div class="ep-sub"><label class="ep-sublab" for="ep-f-lived">Has lived in</label>
+<div class="ep-chips" data-ep-livedflags></div>
+<div class="ep-desk-add"><input type="text" id="ep-f-lived" list="ep-countries" autocomplete="off" placeholder="Country" data-ep-livedq enterkeyhint="done"><button type="button" class="ep-sw" data-ep-lived-add>Add</button></div>
+<p class="ep-note" data-ep-livednote>Type a country and press Enter. Up to four.</p></div>
+</div><datalist id="ep-countries"></datalist></div>
+<div class="ep-field"><label class="ep-label" for="ep-f-lang">Languages</label>
+<div class="ep-chips" data-ep-langs></div>
+<input class="ep-input" type="text" id="ep-f-lang" list="ep-languages" autocomplete="off" data-ep-langq><datalist id="ep-languages"></datalist><p class="ep-note" data-ep-langnote>Pick a language that you speak and press Enter. Up to ten.</p></div>
+</div>
+</div>
+<div class="w-embed"><div data-ep="about">
+<section class="ep-sec" id="ep-about" aria-labelledby="ep-about-h"><h2 class="ep-eb" id="ep-about-h">02 · About you</h2>
+<p class="ep-lede">Start with where you are and why you travel. Skip the country count, we show it for you.</p></section>
+</div></div>
+<div class="w-embed"><div data-ep="bionote">
+<p class="ep-soft" role="status" data-ep-bionote hidden>That looks like a country count in your bio. It will go out of date; the live number already sits next to your name. Keep it if you like.</p>
+</div>
+</div>
+<div class="w-embed"><div data-ep="links">
+<section class="ep-sec" id="ep-links" aria-labelledby="ep-links-h"><h2 class="ep-eb" id="ep-links-h">03 · Your links <span data-ep-linksline></span></h2>
+<p class="ep-lede">Paste a link, flip it on. Off means saved but hidden. Links open in a new tab.</p>
+<div data-ep-linkrows></div>
+<!-- N9 (28 Oct 2026): Shop and partners. Script part G saves the group as one value, partners: {store, links: [{name, url}], open}. -->
+<div class="ep-partners" data-ep-partners>
+<p class="ep-sublab">Shop and partners</p>
+<p class="ep-note">Your store and the brands you have a deal with. Each one shows on your page with a PARTNER tag.</p>
+<div class="ep-link"><label for="ep-f-store">Store</label><input class="ep-input" type="url" inputmode="url" id="ep-f-store" data-ep-pt="store" autocomplete="url" placeholder="https://"></div>
+<div class="ep-pt-row"><input class="ep-input" type="text" data-ep-pt="n0" maxlength="40" placeholder="Partner name" aria-label="Partner 1 name"><input class="ep-input" type="url" inputmode="url" data-ep-pt="u0" placeholder="https://" aria-label="Partner 1 link"></div>
+<div class="ep-pt-row"><input class="ep-input" type="text" data-ep-pt="n1" maxlength="40" placeholder="Partner name" aria-label="Partner 2 name"><input class="ep-input" type="url" inputmode="url" data-ep-pt="u1" placeholder="https://" aria-label="Partner 2 link"></div>
+<div class="ep-pt-row"><input class="ep-input" type="text" data-ep-pt="n2" maxlength="40" placeholder="Partner name" aria-label="Partner 3 name"><input class="ep-input" type="url" inputmode="url" data-ep-pt="u2" placeholder="https://" aria-label="Partner 3 link"></div>
+<div class="ep-dir"><div><b>Open to sponsored stories and partnerships</b><small>Brands see OPEN TO PARTNERSHIPS on your page.</small></div><button type="button" class="ep-sw" role="switch" aria-checked="false" data-ep-pt-open aria-label="Open to sponsored stories and partnerships">OFF</button></div>
+<p class="ep-note" data-ep-pt-msg role="status" aria-live="polite"></p>
+</div></section>
+</div>
+</div>
+<div class="w-embed"><div data-ep="crew">
+<section class="ep-sec" id="ep-crew" aria-labelledby="ep-crew-h"><h2 class="ep-eb" id="ep-crew-h">04 · Your crew <span data-ep-crewline></span></h2>
+<p class="ep-lede">People and pets you travel with. Once linked, you can tag them in a story with one tap, and your shared trips show on both pages. Both sides have to agree.</p>
+<div data-ep-crewlist></div>
+<!-- N5 (28 Oct 2026): pick from the Travelers list by name. Script part H reads /travelers and shows the matches. -->
+<div class="ep-field"><label class="ep-label" for="ep-f-crew">Invite someone</label><input class="ep-input" type="text" id="ep-f-crew" autocomplete="off" data-ep-crewpick placeholder="Start typing a name" role="combobox" aria-expanded="false" aria-controls="ep-crew-opts" aria-autocomplete="list" aria-describedby="ep-crew-note"><div class="ep-crew-opts" id="ep-crew-opts" role="listbox" aria-label="Travelers" data-ep-crewopts hidden></div><p class="ep-note" id="ep-crew-note" data-ep-crewnote>They see the invite on their account and say yes or no. Not on TLL yet? Name them in the story byline instead.</p></div></section>
+</div>
+</div>
+<div class="w-embed"><div data-ep="pets">
+<section class="ep-sec" id="ep-pets" aria-labelledby="ep-pets-h"><h2 class="ep-eb" id="ep-pets-h">05 · Your contributions</h2>
+<p class="ep-lede">Stories, photos and pets. Edit any of them.</p>
+<div class="ep-contrib">
+<a class="ep-card" href="/account#stories" data-ep-stories><span class="ep-card-img" data-ep-stories-img aria-hidden="true">✎</span><span><b>Your stories</b><small class="ep-mono" data-ep-stories-line>Counting</small></span><span class="ep-mono">Edit →</span></a>
+<div data-ep-petcards></div>
+<a class="ep-card-add" href="/my-pets">+ Add a pet</a>
+<a class="ep-card" href="/share-photos"><span class="ep-card-img" aria-hidden="true">📷</span><span><b>Your Lounge photos</b><small>Credit or anonymous, your call each time.</small></span><span class="ep-mono">Manage →</span></a>
+<a class="ep-card-add" href="/share-photos">+ Send a photo</a>
+</div></section>
+</div></div>
+<div class="w-embed"><div data-ep="contact">
+<section class="ep-sec" id="ep-contact" aria-labelledby="ep-contact-h"><h2 class="ep-eb" id="ep-contact-h">06 · How people reach you</h2>
+<p class="ep-lede">Pick what the Get in touch button does. Phone numbers are never shown. Email only if you choose it.</p>
+<div class="ep-opts" role="radiogroup" aria-label="Contact method">
+<button type="button" class="ep-opt" role="radio" aria-checked="true" data-ep-contact="relay"><span><b>Relay form</b><small>Readers write to you through TLL. Nobody sees your email until you reply.</small></span></button>
+<button type="button" class="ep-opt" role="radio" aria-checked="false" data-ep-contact="instagram"><span><b>Instagram DM</b><small>The button opens your Instagram. Needs your Instagram link in 03.</small></span></button>
+<button type="button" class="ep-opt" role="radio" aria-checked="false" data-ep-contact="email"><span><b>Show my email</b><small>Written as name [at] domain on your page, with a real mail link behind it.</small></span></button>
+<button type="button" class="ep-opt" role="radio" aria-checked="false" data-ep-contact="off"><span><b>No contact</b><small>No button on your page. Your stories still carry your byline.</small></span></button>
+</div>
+<div class="ep-field" data-ep-emailwrap hidden><label class="ep-label" for="ep-f-email">Public email</label><input class="ep-input" type="email" id="ep-f-email" data-ep-f="email" autocomplete="email"><p class="ep-note">Shown on your page by your choice. Saved to your public profile only.</p></div></section>
+</div>
+</div>
+<div class="w-embed"><div data-ep="dirs">
+<!-- N7 and N8 (28 Oct 2026): What you make under Make things, the press form under Press. Script part G wires both. -->
+<section class="ep-sec" id="ep-dirs" aria-labelledby="ep-dirs-h"><h2 class="ep-eb" id="ep-dirs-h">07 · The directories <span>· optional</span></h2>
+<p class="ep-lede">Three lists people search. Opt in, never ranked, never paid. Places you know, not where you are now.</p>
+<div class="ep-dir"><div><b>Live there</b> <a class="ep-mono" href="/for-expats">What is this →</a><small>For people who live somewhere and know it. One desk per country you have lived in, below.</small><small class="ep-desks-off" data-ep-desks-off hidden>Switch on Live there to list your expat desks. Your desks stay saved while it is off.</small></div><button type="button" class="ep-sw" role="switch" aria-checked="false" data-ep-list="list-expats" aria-label="List me on expats">OFF</button></div>
+<div class="ep-dir"><div><b>Make things</b> <a class="ep-mono" href="/creators">What is this →</a><small>Photos, video, words, sound. Every card says what you make.</small></div><button type="button" class="ep-sw" role="switch" aria-checked="false" data-ep-list="list-creators" aria-label="List me on creators">OFF</button></div>
+<div class="ep-makes" data-ep-makes hidden><span class="ep-sublab" id="ep-makes-l">What you make</span><div class="ep-chips" role="group" aria-labelledby="ep-makes-l"><button type="button" class="ep-chip" aria-pressed="false" data-ep-make="photos">Photos</button><button type="button" class="ep-chip" aria-pressed="false" data-ep-make="video">Video</button><button type="button" class="ep-chip" aria-pressed="false" data-ep-make="words">Words</button><button type="button" class="ep-chip" aria-pressed="false" data-ep-make="sound">Sound</button><button type="button" class="ep-chip" aria-pressed="false" data-ep-make="other">Other</button></div><p class="ep-note">Tap all that fit. Your card on /creators and your page say what you make.</p></div>
+<div class="ep-dir"><div><b>Press</b> <a class="ep-mono" href="/for-press">What is this →</a><small>Press card holders. A human checks before the badge shows.</small><small class="ep-mono" style="margin-top:4px" data-ep-pressnote>Reviewed within 48 hours</small></div><button type="button" class="ep-sw" role="switch" aria-checked="false" data-ep-list="list-press" aria-label="List me on press">OFF</button></div>
+<div class="ep-press" data-ep-press hidden><div class="ep-field"><label class="ep-label" for="ep-f-outlet">Outlet</label><input class="ep-input" type="text" id="ep-f-outlet" data-ep-pr="outlet" maxlength="80" autocomplete="organization"></div><div class="ep-field"><label class="ep-label" for="ep-f-role">Your role</label><input class="ep-input" type="text" id="ep-f-role" data-ep-pr="role" maxlength="80" autocomplete="organization-title"></div><div class="ep-field"><label class="ep-label" for="ep-f-proof">Press card or two published pieces</label><input class="ep-input" type="url" inputmode="url" id="ep-f-proof" data-ep-pr="proof" placeholder="https://" aria-describedby="ep-proof-note"><p class="ep-note" id="ep-proof-note">One link: your press card, or a page with two pieces you wrote.</p></div><button type="button" class="ep-btn ep-btn--fill ep-press-send" data-ep-press-send>Send for review</button><p class="ep-note" data-ep-press-msg role="status" aria-live="polite"></p></div>
+<div class="ep-desks" data-ep-desks hidden>
+<div class="ep-desks-h"><span data-ep-desks-h>YOUR EXPAT DESKS · 0 PLACES</span><span class="ep-i" tabindex="0" role="img" aria-label="One desk per country you have lived in. Years are optional." title="One desk per country you have lived in. Years are optional.">i</span></div>
+<div data-ep-desklist></div>
+<div class="ep-desk-add"><input type="text" list="ep-countries" placeholder="Add a place you lived" aria-label="Add a place you lived" data-ep-deskq autocomplete="off" enterkeyhint="done"><button type="button" class="ep-sw" data-ep-desk-add>Add</button></div>
+<p class="ep-note" data-ep-desk-msg role="status" aria-live="polite"></p><p class="ep-note" data-ep-desk-msgrow><button type="button" class="ep-sw" data-ep-desk-stint-offer hidden>Add stint</button></p>
+<p class="ep-desk-undo" data-ep-desk-undo hidden><span data-ep-desk-undo-t></span> <button type="button" class="ep-x" data-ep-desk-undo-b>Undo</button></p>
+</div></section>
+</div></div>
+<div class="w-embed"><div data-ep="vis">
+<section class="ep-sec" id="ep-vis" aria-labelledby="ep-vis-h"><h2 class="ep-eb" id="ep-vis-h">08 · Who sees your page</h2>
+<div class="ep-opts" role="radiogroup" aria-label="Visibility">
+<button type="button" class="ep-opt" role="radio" aria-checked="true" data-ep-vis="public"><span><b>Public</b><small>On the Travelers list and open to search engines.</small></span></button>
+<button type="button" class="ep-opt" role="radio" aria-checked="false" data-ep-vis="unlisted"><span><b>Unlisted</b><small>Reachable by link only. Search engines are asked not to index it.</small></span></button>
+<button type="button" class="ep-opt" role="radio" aria-checked="false" data-ep-vis="off"><span><b>Off</b><small>Visitors are sent to Travelers. Your bylines stay on your stories.</small></span></button>
+</div>
+<label class="ep-check" for="ep-f-ranges"><input type="checkbox" id="ep-f-ranges" data-ep-ranges><span>Show my counts as ranges to visitors ("80-something countries"). Exact numbers stay on my own account.</span></label>
+<div class="ep-foot"><a href="/account#settings">Email, password, newsletter, data →</a><a href="/my-pets">My pets →</a></div></section>
+</div></div>
+<div class="w-embed"><aside data-ep="preview" aria-label="Preview">
+<p class="ep-pv-eb">How it looks · <span data-ep-pv-vis>Public</span></p>
+<div class="ep-pv ep-gray" data-ep-pv><div class="ep-av" data-ep-pv-av aria-hidden="true"></div>
+<p class="ep-pv-name" data-ep-pv-name></p>
+<p class="ep-pv-line" data-ep-pv-line></p>
+<div class="ep-pv-meta"><span data-ep-pv-home></span><span data-ep-pv-flags aria-label="Countries"></span></div>
+<div class="ep-pv-stats" data-ep-pv-stats hidden><div><b data-ep-pv-countries>0</b><small>Countries</small></div><div><b data-ep-pv-places>0</b><small>Places</small></div><div><b data-ep-pv-layovers>0</b><small>Layovers</small></div></div>
+<p class="ep-pv-langs" data-ep-pv-langs hidden></p>
+<div class="ep-pv-foot"><span data-ep-pv-links>0 links</span><span>·</span><span data-ep-pv-contact>Get in touch · relay</span></div></div>
+<p class="ep-pv-note">Counts come from your map, never from this form. <a href="/the-map">Edit your map →</a></p>
+</aside></div>
+<div class="w-embed"><script id="tll-ep-js-a">
+/* Edit profile v2 (20 Oct 2026), script part A: data and helpers shared by parts B and C. */
+window.TLLEP=(function(){
+var E={};
+E.C="AF Afghanistan,AL Albania,DZ Algeria,AD Andorra,AO Angola,AG Antigua and Barbuda,AR Argentina,AM Armenia,AU Australia,AT Austria,AZ Azerbaijan,BS Bahamas,BH Bahrain,BD Bangladesh,BB Barbados,BY Belarus,BE Belgium,BZ Belize,BJ Benin,BT Bhutan,BO Bolivia,BA Bosnia and Herzegovina,BW Botswana,BR Brazil,BN Brunei,BG Bulgaria,BF Burkina Faso,BI Burundi,KH Cambodia,CM Cameroon,CA Canada,CV Cape Verde,CF Central African Republic,TD Chad,CL Chile,CN China,CO Colombia,KM Comoros,CG Congo,CD DR Congo,CR Costa Rica,CI Ivory Coast,HR Croatia,CU Cuba,CY Cyprus,CZ Czechia,DK Denmark,DJ Djibouti,DM Dominica,DO Dominican Republic,EC Ecuador,EG Egypt,SV El Salvador,GQ Equatorial Guinea,ER Eritrea,EE Estonia,SZ Eswatini,ET Ethiopia,FJ Fiji,FI Finland,FR France,GA Gabon,GM Gambia,GE Georgia,DE Germany,GH Ghana,GR Greece,GD Grenada,GT Guatemala,GN Guinea,GW Guinea-Bissau,GY Guyana,HT Haiti,HN Honduras,HU Hungary,IS Iceland,IN India,ID Indonesia,IR Iran,IQ Iraq,IE Ireland,IL Israel,IT Italy,JM Jamaica,JP Japan,JO Jordan,KZ Kazakhstan,KE Kenya,KI Kiribati,KP North Korea,KR South Korea,XK Kosovo,KW Kuwait,KG Kyrgyzstan,LA Laos,LV Latvia,LB Lebanon,LS Lesotho,LR Liberia,LY Libya,LI Liechtenstein,LT Lithuania,LU Luxembourg,MG Madagascar,MW Malawi,MY Malaysia,MV Maldives,ML Mali,MT Malta,MH Marshall Islands,MR Mauritania,MU Mauritius,MX Mexico,FM Micronesia,MD Moldova,MC Monaco,MN Mongolia,ME Montenegro,MA Morocco,MZ Mozambique,MM Myanmar,NA Namibia,NR Nauru,NP Nepal,NL Netherlands,NZ New Zealand,NI Nicaragua,NE Niger,NG Nigeria,MK North Macedonia,NO Norway,OM Oman,PK Pakistan,PW Palau,PS Palestine,PA Panama,PG Papua New Guinea,PY Paraguay,PE Peru,PH Philippines,PL Poland,PT Portugal,QA Qatar,RO Romania,RU Russia,RW Rwanda,KN Saint Kitts and Nevis,LC Saint Lucia,VC Saint Vincent and the Grenadines,WS Samoa,SM San Marino,ST Sao Tome and Principe,SA Saudi Arabia,SN Senegal,RS Serbia,SC Seychelles,SL Sierra Leone,SG Singapore,SK Slovakia,SI Slovenia,SB Solomon Islands,SO Somalia,ZA South Africa,SS South Sudan,ES Spain,LK Sri Lanka,SD Sudan,SR Suriname,SE Sweden,CH Switzerland,SY Syria,TW Taiwan,TJ Tajikistan,TZ Tanzania,TH Thailand,TL Timor-Leste,TG Togo,TO Tonga,TT Trinidad and Tobago,TN Tunisia,TR Turkey,TM Turkmenistan,TV Tuvalu,UG Uganda,UA Ukraine,AE United Arab Emirates,GB United Kingdom,US United States,UY Uruguay,UZ Uzbekistan,VU Vanuatu,VA Vatican City,VE Venezuela,VN Vietnam,YE Yemen,ZM Zambia,ZW Zimbabwe,HK Hong Kong,MO Macau,PR Puerto Rico,GL Greenland,FO Faroe Islands,AQ Antarctica".split(",").map(function(s){return {c:s.slice(0,2).toLowerCase(),n:s.slice(3)}});
+/* key, label, Webflow slug. The Memberstack key is the slug unless MSKEY says otherwise. */
+E.LINKS=[["instagram","Instagram","instagram-url"],["youtube","YouTube","youtube-url"],["website","Website","website-url"],["tiktok","TikTok","tiktok-url"],["substack","Substack","substack-url-2"],["strava","Strava","strava-url-2"],["alltrails","AllTrails","alltrails-url"],["komoot","Komoot","komoot-url"],["garmin","Garmin","garmin-url"],["beli","Beli","beli-url"]];
+E.MSKEY={"website-url":"personal-website-url","substack-url-2":"substack-url","strava-url-2":"strava-url","email":null};
+E.BOOL={"share-ranges":1,"list-expats":1,"list-creators":1,"list-press":1};
+E.$=function(s,c){return (c||document).querySelector(s)};
+E.$$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+E.esc=function(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+E.flag=function(c){return String(c||"").toUpperCase().replace(/[A-Z]/g,function(ch){return String.fromCodePoint(127397+ch.charCodeAt(0))})};
+E.cname=function(c){for(var i=0;i<E.C.length;i++)if(E.C[i].c===c)return E.C[i].n;return String(c).toUpperCase()};
+E.ccode=function(q){q=String(q||"").trim().toLowerCase();if(!q)return "";var i;for(i=0;i<E.C.length;i++){if(E.C[i].c===q||E.C[i].n.toLowerCase()===q)return E.C[i].c}for(i=0;i<E.C.length;i++){if(E.C[i].n.toLowerCase().indexOf(q)===0)return E.C[i].c}return ""};
+E.list=function(s){return String(s||"").split(",").map(function(x){return x.trim()}).filter(Boolean)};
+E.initials=function(n){return String(n||"").trim().split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0].toUpperCase()}).join("")||"?"};
+E.slugify=function(n){return String(n||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")};
+E.ms=function(){return window.$memberstackDom||null};
+/* The member token: getMemberCookie() on the Memberstack DOM package (getMemberToken does not exist there; fixed 20 Oct 2026). */
+E.token=function(){var m=E.ms();if(!m)return null;try{return (m.getMemberToken&&m.getMemberToken())||(m.getMemberCookie&&m.getMemberCookie())||null}catch(e){return null}};
+E.msField=function(k){return E.$('form[data-ms-form="profile"] [data-ms-member="'+k+'"]')};
+return E;})();
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-a2">
+/* Edit profile v2, script part A2 (3.4, 21 Oct 2026): the developing card, crew rows, contributions and their painters (the expat desks moved to part D on 26 Oct 2026). Loads between parts A and B; part B calls these. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;
+function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+E.jsonList=function(k){try{var v=JSON.parse(E.get(k)||"null");return Array.isArray(v)?v:[]}catch(e){return []}};
+/* The eight steps of the developing card (3.4 D2). Every answer is read from the saved profile and the map; nothing is typed. */
+E.mapSaved=function(){if(E.snapshot&&Number(E.snapshot.places||0)>0)return true;try{var s=JSON.parse(localStorage.getItem("tllStates")||"null");return !!(s&&s.v===2&&s.states&&Object.keys(s.states).length)}catch(e){return false}};
+E.progress=function(){var steps=[
+ ["who","add a photo",!!(E.member&&E.member.profileImage)],
+ ["who","write your one line",!!E.get("one-line").trim()],
+ ["who","add your home base",!!E.get("home-base").trim()],
+ ["who","add the flags you have lived under",E.list(E.get("from-and-lived-in")).length>0],
+ ["who","add the languages you speak",E.list(E.get("languages")).length>0],
+ ["about","write a short bio",!!(E.get("bio-long").trim()||E.get("bio-short").trim())],
+ ["links","switch on a link",E.shown().length>0],
+ ["map","save your map",E.mapSaved()]];
+ var done=steps.filter(function(s){return s[2]}).length,next=null;for(var i=0;i<steps.length;i++)if(!steps[i][2]){next=steps[i];break}
+ var STAGES=["BLACK AND WHITE","DEVELOPING","DEVELOPING","DEVELOPING","COMING THROUGH","COMING THROUGH","NEARLY THERE","NEARLY THERE","FULL COLOR"];
+ return {steps:steps,done:done,total:steps.length,stage:STAGES[done],next:next,gray:Math.round((1-done/steps.length)*100)/100}};
+E.crewRows=function(){var rows=E.jsonList("crew").map(function(c){return {name:String(c.name||""),meta:String(c.meta||""),pending:!!c.pending,pet:false,img:c.img||"",key:"c:"+c.name}});
+ E.pets.forEach(function(p){rows.push({name:p.name||"Pet",meta:"PET"+(p.breed?" · "+String(p.breed).toUpperCase():"")+(p.sharedWith?" · SHARED WITH "+String(p.sharedWith).toUpperCase():""),pending:false,pet:true,img:p.avatar||"",key:"p:"+(p.id||p.name)})});return rows};
+E.petPlaces=function(p){var n=0;try{var s=JSON.parse(localStorage.getItem("tllStates")||"null"),t=s&&s.travelers&&s.travelers.filter(function(x){return x&&x.pet&&String(x.name||"").toLowerCase()===String(p.name||"").toLowerCase()})[0];
+ if(t&&s.states){Object.keys(s.states).forEach(function(k){var v=s.states[k]&&s.states[k][t.id];if(v==="lived"||v==="visited"||v==="layover")n++});return n}}catch(e){}
+ return Array.isArray(p.countries)?p.countries.length:0};
+var crewKey="",petKey="";
+E.paintDev=function(){var p=E.progress(),st=$("[data-ep-dev-stage]"),ct=$("[data-ep-dev-count]"),bar=$("[data-ep-dev-bar]"),nx=$("[data-ep-dev-next]"),dn=$("[data-ep-dev-done]");
+ if(st)st.textContent=p.stage;if(ct)ct.textContent=p.done+" OF "+p.total;
+ if(bar){bar.setAttribute("aria-valuenow",String(p.done));$$("i",bar).forEach(function(i,k){i.setAttribute("data-on",p.steps[k]&&p.steps[k][2]?"1":"0");i.title=p.steps[k]?p.steps[k][1]:""})}
+ if(nx){nx.hidden=!p.next;if(p.next){nx.textContent="Next: "+p.next[1]+" →";nx.setAttribute("data-ep-dev-to",p.next[0])}}if(dn)dn.hidden=!!p.next;
+ $$(".ep-gray").forEach(function(el){el.style.filter=p.gray>0?"grayscale("+p.gray+")":""});
+ var pb=$("[data-ep-photobtn]");if(pb)pb.textContent=(E.member&&E.member.profileImage)?"CHANGE":"ADD"};
+E.paintCrew=function(){var rows=E.crewRows(),box=$("[data-ep-crewlist]"),key=rows.map(function(r){return r.key+r.pending}).join("|");
+ if(box&&key!==crewKey){crewKey=key;box.innerHTML=rows.map(function(r){return '<div class="ep-crew-row"><span class="ep-av'+(r.pet?' ep-av--pet':'')+'" aria-hidden="true">'+(r.img?'<img src="'+esc(r.img)+'" alt="">':esc(E.initials(r.name)))+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.meta)+'</small></span><span class="ep-crew-acts">'+(r.pending?'<span class="ep-wait">WAITING FOR THEM</span>':'')+(r.pet?'<a class="ep-x" href="/my-pets" style="text-decoration:none;display:inline-flex;align-items:center">EDIT</a>':'<button type="button" class="ep-x" data-ep-crew-rm="'+esc(r.name)+'" aria-label="Unlink '+esc(r.name)+'">UNLINK</button>')+'</span></div>'}).join("")}
+ var cl=$("[data-ep-crewline]");if(cl){var linked=rows.filter(function(r){return !r.pending}).length,wait=rows.filter(function(r){return r.pending}).length;cl.textContent="· "+(linked?linked+" linked":"nobody linked yet")+(wait?" · "+wait+" waiting":"")}};
+E.paintPets=function(){var box=$("[data-ep-petcards]");if(!box)return;var key=E.pets.map(function(p){return p.id||p.name}).join("|")+":"+E.pets.map(E.petPlaces).join(",");if(key===petKey)return;petKey=key;
+ box.innerHTML=E.pets.map(function(p){var n=E.petPlaces(p),slug=p.id||E.slugify(p.name);return '<div class="ep-card"><span class="ep-card-img ep-card-img--pet" aria-hidden="true"'+(p.avatar?' style="background-image:url('+esc(p.avatar)+')"':'')+'>'+(p.avatar?'':esc(E.initials(p.name)))+'</span><span><b>'+esc(p.name||"Pet")+'</b><small class="ep-mono">'+esc([p.breed?String(p.breed).toUpperCase():"",n+(n===1?" PLACE":" PLACES"),p.sharedWith?"SHARED WITH "+String(p.sharedWith).toUpperCase():""].filter(Boolean).join(" · "))+'</small><span class="ep-card-acts"><a href="/my-pets">EDIT PASSPORT</a><a href="/pets/'+esc(slug)+'">VIEW →</a></span></span></div>'}).join("")};
+E.paintStories=function(){var ln=$("[data-ep-stories-line]"),im=$("[data-ep-stories-img]");if(!ln)return;var s=E.stories;if(!s){ln.textContent="Counting";return}
+ ln.textContent=s.count+(s.count===1?" STORY LIVE":" STORIES LIVE")+(s.down?" · "+s.down+" TAKEN DOWN":"");if(im&&s.img){im.style.backgroundImage="url("+s.img+")";im.textContent=""}};
+/* The expat desks are drawn by part D (UX build, 26 Oct 2026); this placeholder keeps part B's first paint safe. */
+E.paintDesks=E.paintDesks||function(){};
+})(window.TLLEP);
+</script></div>
+<div class="w-embed"><script id="tll-ep-js-b">
+/* Edit profile v2, script part B: state, first fill from Memberstack, paint of the form and the preview card. 3.4 (21 Oct 2026): the developing card, crew rows, contributions, expat desks, the preview in grayscale. UX (26 Oct 2026, U14): the preview names the contact choice in words. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;
+var root=document.getElementById("tll-ep");if(!root||!E)return;
+E.S={};E.member=null;E.snapshot=null;E.listeners=[];E.json={};E.pets=[];E.stories=null;
+E.onChange=function(fn){E.listeners.push(fn)};
+E.get=function(k){return E.S[k]==null?"":String(E.S[k])};
+E.set=function(k,v){v=String(v==null?"":v);if(E.S[k]===v)return;E.S[k]=v;E.listeners.forEach(function(fn){fn(k,v)});E.paint()};
+E.rowOn=function(k){var ls=E.list(E.get("links-shown"));return !ls.length||ls.indexOf(k)>-1};
+E.filled=function(){return E.LINKS.filter(function(l){return E.get(l[2]).trim()})};
+E.shown=function(){return E.filled().filter(function(l){return E.rowOn(l[0])})};
+E.dispName=function(){var n=E.get("name").trim(),m=E.get("credit-mode")||"full";if(m==="pen"&&E.get("pen-name").trim())return E.get("pen-name").trim();if(m==="first")return n.split(/\s+/)[0]||n;return n};
+function renderLinks(){var box=$("[data-ep-linkrows]");if(!box)return;box.innerHTML=E.LINKS.map(function(l){return '<div class="ep-link"><label for="ep-f-'+l[2]+'">'+esc(l[1])+'</label><input class="ep-input" type="url" inputmode="url" id="ep-f-'+l[2]+'" data-ep-f="'+l[2]+'" autocomplete="url"><button type="button" class="ep-sw" role="switch" aria-checked="true" data-ep-link="'+l[0]+'" aria-label="Show '+esc(l[1])+' on your profile">ON</button></div>'}).join("")}
+function renderCountries(){var d=$("#ep-countries");if(d)d.innerHTML=E.C.map(function(c){return '<option value="'+esc(c.n)+'"></option>'}).join("")}
+function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+E.paint=function(){
+ var cm=E.get("credit-mode")||"full";$$("[data-ep-credit]").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-ep-credit")===cm))});
+ var pw=$("[data-ep-penwrap]");if(pw)pw.hidden=cm!=="pen";
+ val("#ep-f-one-line",E.get("one-line"));var cnt=$("[data-ep-count]");if(cnt)cnt.textContent=E.get("one-line").length+" of 90";
+ val("#ep-f-pen-name",E.get("pen-name"));
+ var flags=E.list(E.get("from-and-lived-in"));var fb=$("[data-ep-flags]");if(fb)fb.innerHTML=flags.map(function(c){return '<button type="button" class="ep-chip ep-chip--x" data-ep-rmflag="'+esc(c)+'" aria-label="Remove '+esc(E.cname(c))+'" title="'+esc(E.cname(c))+' · remove"><span aria-hidden="true">'+E.flag(c)+'</span><b>'+esc(c.toUpperCase())+'</b> ×</button>'}).join("");
+ var fq=$("[data-ep-countryq]");if(fq)fq.disabled=flags.length>=5;var fn=$("[data-ep-flagnote]");if(fn&&!fn.getAttribute("data-hold"))fn.textContent=flags.length>=5?"Five is the limit. Remove one to add another.":"Type a country and press Enter. Up to five.";
+ var langs=E.list(E.get("languages"));var lb=$("[data-ep-langs]");if(lb)lb.innerHTML=langs.map(function(l){var off=E.LANGS&&!E.langOk(l);return '<button type="button" class="ep-chip ep-chip--x'+(off?' ep-chip--off':'')+'" data-ep-rmlang="'+esc(l)+'" aria-label="Remove '+esc(l)+'"'+(off?' title="Not on the list. Pick a language or remove this one."':'')+'>'+esc(l)+' ×</button>'}).join("");
+ var ln=$("[data-ep-langnote]");if(ln&&!ln.getAttribute("data-hold")){var offs=langs.filter(function(l){return E.LANGS&&!E.langOk(l)});ln.textContent=offs.length?"Not on the list: "+offs.join(", ")+". Pick a language or remove it.":(langs.length>=10?"Ten is the limit. Remove one to add another.":"Pick a language that you speak and press Enter. Up to ten.")}
+ var bn=$("[data-ep-bionote]");if(bn)bn.hidden=!/\b\d{2,3}\s+(countries|places)\b/i.test(E.get("bio-long")+" "+E.get("bio-short"));
+ E.LINKS.forEach(function(l){val("#ep-f-"+l[2],E.get(l[2]));var b=$('[data-ep-link="'+l[0]+'"]');if(b){var on=E.rowOn(l[0]);b.setAttribute("aria-checked",String(on));b.textContent=on?"ON":"OFF"}});
+ var ll=$("[data-ep-linksline]");if(ll)ll.textContent="· "+E.shown().length+" shown · "+E.filled().length+" saved";
+ var cmode=E.get("contact-mode")||"relay";$$("[data-ep-contact]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-contact")===cmode))});var ew=$("[data-ep-emailwrap]");if(ew)ew.hidden=cmode!=="email";val("#ep-f-email",E.get("email"));
+ $$("[data-ep-list]").forEach(function(b){var on=E.get(b.getAttribute("data-ep-list"))==="true";b.setAttribute("aria-checked",String(on));b.textContent=on?"ON":"OFF"});
+ var vis=E.get("visibility")||"public";$$("[data-ep-vis]").forEach(function(b){b.setAttribute("aria-checked",String(b.getAttribute("data-ep-vis")===vis))});var rg=$("[data-ep-ranges]");if(rg)rg.checked=E.get("share-ranges")==="true";
+ E.paintCrew();E.paintPets();E.paintStories();E.paintDesks();E.paintDev();
+ var dots={who:!!E.get("name").trim(),about:!!(E.get("bio-long").trim()||E.get("bio-short").trim()),links:!!E.filled().length,crew:E.crewRows().length>0,pets:E.pets.length>0||!!(E.stories&&E.stories.count),contact:!!E.get("contact-mode"),dirs:["list-expats","list-creators","list-press"].some(function(k){return E.get(k)==="true"}),vis:!!E.get("visibility")};
+ Object.keys(dots).forEach(function(k){var a=$('[data-ep-dot="'+k+'"]');if(a)a.setAttribute("data-on",dots[k]?"1":"0")});
+ E.paintPreview();
+};
+E.paintPreview=function(){
+ var n=E.dispName()||"Your name",parts=n.split(/\s+/),nm=$("[data-ep-pv-name]");if(nm)nm.innerHTML=parts.length>1?esc(parts.slice(0,-1).join(" "))+" <em>"+esc(parts[parts.length-1])+"</em>":esc(n);
+ var img=E.member&&E.member.profileImage,avh=img?'<img src="'+esc(img)+'" alt="">':esc(E.initials(E.get("name")));var av=$("[data-ep-pv-av]");if(av)av.innerHTML=avh;$$("[data-ep-avatar]").forEach(function(a2){a2.innerHTML=avh});
+ var lg=$("[data-ep-pv-langs]");if(lg){var L=E.list(E.get("languages"));lg.hidden=!L.length;lg.textContent="SPEAKS "+L.join(" · ").toUpperCase()}
+ var ln=$("[data-ep-pv-line]");if(ln)ln.textContent=E.get("one-line");
+ var hb=$("[data-ep-pv-home]");if(hb)hb.textContent=E.get("home-base").toUpperCase();
+ var fl=$("[data-ep-pv-flags]");if(fl)fl.textContent=E.list(E.get("from-and-lived-in")).map(E.flag).join(" ");
+ var st=$("[data-ep-pv-stats]"),s=E.snapshot;if(st){st.hidden=!s;if(s){var r=E.get("share-ranges")==="true",c=Number(s.countries||0),p=Number(s.places||0);function rng(x){return r&&x>=10?Math.floor(x/10)*10+"-something":String(x)}$("[data-ep-pv-countries]").textContent=rng(c)+(s.antarctica?" +AQ":"");$("[data-ep-pv-places]").textContent=rng(p);$("[data-ep-pv-layovers]").textContent="+"+Number(s.layovers||0)}}
+ var pl=$("[data-ep-pv-links]");if(pl){var k=E.shown().length;pl.textContent=k+(k===1?" link":" links")}
+ var pc=$("[data-ep-pv-contact]");if(pc){var m=E.get("contact-mode")||"relay";pc.textContent=m==="off"?"No contact button":"Get in touch · "+({relay:"Relay form",instagram:"Instagram DM",email:"Email"}[m]||m)}
+ var pv=$("[data-ep-pv-vis]");if(pv)pv.textContent=E.get("visibility")||"public";
+ /* M5 (20 Oct 2026): every "View my public profile" link on the page opens the member's own page. */
+ var cf=(E.member&&E.member.customFields)||{},slug=cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"));$$("[data-ep-view]").forEach(function(view){view.href=slug?"/contributors/"+slug:"/travelers"});
+};
+E.fill=function(member){E.member=member||null;var cf=(member&&member.customFields)||{};
+ ["name","home-base","bio-long","bio-short","one-line","pen-name","from-and-lived-in","languages","credit-mode","contact-mode","visibility","share-ranges","links-shown","list-expats","list-creators","list-press"].forEach(function(k){var v=cf[k];if(v==null||v==="")return;E.S[k]=String(v)});
+ E.LINKS.forEach(function(l){var mk=E.MSKEY[l[2]]||l[2];if(cf[mk])E.S[l[2]]=String(cf[mk])});
+ ["name","home-base","bio-long","bio-short"].forEach(function(k){var f=E.msField(k);if(f&&f.value&&!E.S[k])E.S[k]=f.value});
+ /* the old directory editor wrote none or platforms; map them to the v2 modes */
+ var cm={relay:1,instagram:1,email:1,off:1};if(!cm[E.get("contact-mode")])E.S["contact-mode"]=E.get("contact-mode")==="none"?"off":"relay";
+ if(!{full:1,first:1,pen:1}[E.get("credit-mode")])E.S["credit-mode"]="full";if(!{"public":1,unlisted:1,off:1}[E.get("visibility")])E.S["visibility"]="public";
+ var pn=$("[data-ep-pressnote]");if(pn&&cf["press-verified"])pn.textContent="Verified · "+cf["press-verified"];
+ E.paint()};
+/* The member's own JSON record: pets (from /my-pets), crew invites and expat desks live there. */
+E.fillJson=function(j){j=j&&typeof j==="object"?j:{};E.json=j;E.pets=Array.isArray(j.pets)?j.pets:[];
+ if(Array.isArray(j.tllCrew)&&!E.S.crew)E.S.crew=JSON.stringify(j.tllCrew);if(Array.isArray(j.tllDesks)&&!E.S.desks)E.S.desks=JSON.stringify(j.tllDesks);
+ if(j.tllSnapshot&&typeof j.tllSnapshot==="object")E.snapshot=j.tllSnapshot;E.paint()};
+renderLinks();renderCountries();E.paint();
+})(window.TLLEP);
+</script></div>
+<div class="w-embed"><script id="tll-ep-js-c">
+/* Edit profile v2, script part C: input wiring, the 900 ms debounced save, the save status. Fields go to Memberstack, and with data-worker to POST {worker}/profile/save (bio-short to Memberstack only); crew and desks to the member JSON record (tllCrew, tllDesks), desks also to the Worker when data-desks-field is 1. UX build (26 Oct 2026, U1 to U3): status line, Saved marks, retry every 10 s, ask before leaving mid-save. 28 Oct 2026 (N2 to N9): fields the Worker answers "cannot be saved from a profile" are dropped from that send. Desk inputs: part F. Crew picker: part H. */
+(function(E){
+var $=E.$,$$=E.$$;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+var WORKER=(root.getAttribute("data-worker")||"").replace(/\/$/,""),DESKS_FIELD=root.getAttribute("data-desks-field")==="1";
+var JSONKEY={desks:"tllDesks",crew:"tllCrew"},MSONLY={"bio-short":1};
+var dirty={},timer=null,retry=null,savedAt=0,busy=false,failed=false,cur=null,where={};
+function pending(){return Object.keys(dirty).length>0}
+function status(t,state,say){$$("[data-ep-status]").forEach(function(s){s.textContent=t;s.setAttribute("data-state",state||"")});$$("[data-ep-retry]").forEach(function(b){b.hidden=!(state==="fail"&&pending())});var sr=$("[data-ep-say]");if(sr&&say)sr.textContent=say}
+function hm(t){return new Date(t).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})}
+function tick(){if(!savedAt||busy||failed)return;status(Date.now()-savedAt<60000?"Saved":"Saved at "+hm(savedAt),"ok")}
+setInterval(tick,15000);
+/* where each change came from, so its "Saved" mark lands beside it */
+["input","change","click","keydown"].forEach(function(t){document.addEventListener(t,function(e){cur=e.target},true)});
+function anchor(el){return el&&el.closest&&(el.closest(".ep-desk,.ep-desk-add,.ep-link,.ep-dir,.ep-crew-row,.tll-edit-field,.ep-field,.ep-opts,.ep-check")||el.closest(".ep-sec"))}
+function mark(keys,ok){$$(".ep-saved").forEach(function(m){m.remove()});var seen=[];keys.forEach(function(k){var w=where[k];if(!w)return;var a=w.a&&w.a.isConnected?w.a:(w.s&&$(w.s));if(!a||seen.indexOf(a)>-1)return;seen.push(a);
+ var t=a.querySelector(".ep-label,.tll-edit-label")||a.querySelector('[aria-checked="true"] b')||a.querySelector(".ep-desk-h b,b,label")||a,m=document.createElement(ok?"span":"button");
+ m.className="ep-saved"+(ok?"":" ep-saved--fail");if(ok){m.setAttribute("aria-hidden","true");m.textContent="Saved";setTimeout(function(){m.remove()},3000)}else{m.type="button";m.setAttribute("data-ep-retry","");m.textContent="Not saved. Try again"}t.appendChild(m)})}
+E.onChange(function(k,v){dirty[k]=v;var a=anchor(cur);if(a)where[k]={a:a,s:a.hasAttribute("data-ep-desk")?'[data-ep-desk="'+a.getAttribute("data-ep-desk")+'"]':""};clearTimeout(timer);clearTimeout(retry);timer=setTimeout(flush,900);if(!failed)status("Saving…","busy")});
+function flush(){timer=null;clearTimeout(retry);var d=dirty;dirty={};var keys=Object.keys(d);if(!keys.length)return;busy=true;status("Saving…","busy");
+ var m=E.ms(),cfs={},msOk=false,jkeys=keys.filter(function(k){return JSONKEY[k]}),fkeys=keys.filter(function(k){return !JSONKEY[k]});
+ fkeys.forEach(function(k){var mk=(k in E.MSKEY)?E.MSKEY[k]:k;if(mk)cfs[mk]=d[k]});
+ var p=(m&&m.updateMember&&Object.keys(cfs).length)?m.updateMember({customFields:cfs}):Promise.resolve();
+ /* JSON keys: read the record first so nothing else in it is lost, then write it back with the new lists. */
+ if(jkeys.length&&m&&m.getMemberJSON&&m.updateMemberJSON)p=p.then(function(){return m.getMemberJSON()}).then(function(j){var c=(j&&j.data&&typeof j.data==="object")?j.data:{};jkeys.forEach(function(k){try{c[JSONKEY[k]]=JSON.parse(d[k]||"[]")}catch(e){c[JSONKEY[k]]=[]}});E.json=c;return m.updateMemberJSON({json:c})});
+ var wkeys=fkeys.filter(function(k){return !MSONLY[k]}).concat(DESKS_FIELD&&jkeys.indexOf("desks")>-1?["desks"]:[]);
+ p.then(function(){msOk=true;if(!WORKER||!wkeys.length){savedAt=Date.now();return}var tok=E.token();if(!tok)throw new Error("no token");var body={fields:{}};wkeys.forEach(function(k){body.fields[k]=E.BOOL[k]?d[k]==="true":d[k]});
+  function send(b){return fetch(WORKER+"/profile/save",{method:"POST",keepalive:true,headers:{"content-type":"application/json","authorization":"Bearer "+tok},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok&&j.ok,j:j}})})}
+  return send(body).then(function(x){if(x.ok)return x;/* fields the Worker does not take yet stay on the account; the rest still saves */var er=String(x.j.error||""),m2=/saved from a profile: (.+)\.$/.exec(er),drop=(m2?m2[1].split(/,\s*/):[]).concat(/desks/.test(er)?["desks"]:[]).filter(function(k){return body.fields[k]!==undefined});if(!drop.length)return x;drop.forEach(function(k){delete body.fields[k]});if(!Object.keys(body.fields).length)return {ok:true,j:{savedAt:""}};return send(body)}).then(function(x){if(!x.ok)throw new Error(x.j.error||"save");savedAt=Date.parse(x.j.savedAt)||Date.now()})
+ }).then(function(){busy=false;failed=false;status("Saved","ok","Saved");mark(keys,true)}).catch(function(){busy=false;failed=true;keys.forEach(function(k){if(!(k in dirty))dirty[k]=d[k]});
+  var t=msOk&&WORKER?"Saved to your account. Your public page did not update.":"Not saved.";status(t,"fail",t);mark(keys,false);retry=setTimeout(flush,10000)})}
+document.addEventListener("click",function(e){if(e.target.closest("[data-ep-retry]")){clearTimeout(timer);flush()}});
+window.addEventListener("online",function(){if(failed)flush()});
+window.addEventListener("pagehide",function(){if(timer){clearTimeout(timer);flush()}});
+window.addEventListener("beforeunload",function(e){if(timer){clearTimeout(timer);flush()}if(busy||pending()){e.preventDefault();e.returnValue=""}});
+/* the Memberstack inputs that stay in place */
+["name","home-base","bio-long","bio-short"].forEach(function(k){var f=E.msField(k);if(f)f.addEventListener("input",function(){E.set(k,f.value)})});
+/* the new inputs */
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target,k=t&&t.getAttribute&&t.getAttribute("data-ep-f");if(k)E.set(k,t.value)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-credit],[data-ep-link],[data-ep-contact],[data-ep-list],[data-ep-vis],[data-ep-rmflag],[data-ep-rmlang],[data-ep-dev-next],[data-ep-crew-rm]");if(!b)return;
+ if(b.hasAttribute("data-ep-dev-next")){var to=b.getAttribute("data-ep-dev-to");if(to==="map"){location.href="/the-map";return}var sec=document.getElementById("ep-"+to);if(sec){sec.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});var first=sec.querySelector("input,textarea,button");if(first&&first.focus)setTimeout(function(){first.focus({preventScroll:true})},400)}return}
+ if(b.hasAttribute("data-ep-crew-rm")){var nm=b.getAttribute("data-ep-crew-rm");E.set("crew",JSON.stringify(E.jsonList("crew").filter(function(c){return c.name!==nm})));return}
+ if(b.hasAttribute("data-ep-credit"))E.set("credit-mode",b.getAttribute("data-ep-credit"));
+ else if(b.hasAttribute("data-ep-link")){var key=b.getAttribute("data-ep-link"),on=E.LINKS.map(function(l){return l[0]===key?!E.rowOn(l[0]):E.rowOn(l[0])});E.set("links-shown",on.every(Boolean)?"":E.LINKS.filter(function(l,i){return on[i]}).map(function(l){return l[0]}).join(","))}
+ else if(b.hasAttribute("data-ep-contact"))E.set("contact-mode",b.getAttribute("data-ep-contact"));
+ else if(b.hasAttribute("data-ep-list")){var k=b.getAttribute("data-ep-list");E.set(k,E.get(k)==="true"?"false":"true")}
+ else if(b.hasAttribute("data-ep-vis"))E.set("visibility",b.getAttribute("data-ep-vis"));
+ else if(b.hasAttribute("data-ep-rmflag"))E.set("from-and-lived-in",E.list(E.get("from-and-lived-in")).filter(function(c){return c!==b.getAttribute("data-ep-rmflag")}).join(","));
+ else if(b.hasAttribute("data-ep-rmlang"))E.set("languages",E.list(E.get("languages")).filter(function(l){return l!==b.getAttribute("data-ep-rmlang")}).join(", "));
+});
+var rg=$("[data-ep-ranges]");if(rg)rg.addEventListener("change",function(){E.set("share-ranges",rg.checked?"true":"false")});
+var ph=$("#ep-f-photo");if(ph)ph.addEventListener("change",function(){var f=ph.files&&ph.files[0],m=E.ms();if(!f)return;if(!m||!m.updateMemberProfileImage){status("Change your photo from /account for now.","fail");return}busy=true;status("Uploading photo…","busy");m.updateMemberProfileImage({profileImage:f}).then(function(r){if(r&&r.data)E.member=r.data;busy=false;failed=false;savedAt=Date.now();E.paintPreview();status("Saved","ok","Photo saved")}).catch(function(){busy=false;status("That photo did not upload. Try a smaller one.","fail","That photo did not upload. Try a smaller one.")})});
+/* boot: fill from Memberstack, then mirror the four inputs the Memberstack form fills itself */
+var n=0,iv=setInterval(function(){var m=E.ms();if(!m){if(++n>40)clearInterval(iv);return}clearInterval(iv);
+ m.getCurrentMember().then(function(r){if(!r||!r.data)return;E.fill(r.data);if(E.loadStories)E.loadStories();
+  if(m.getMemberJSON)return m.getMemberJSON().then(function(j){E.fillJson(j&&j.data)}).catch(function(){})}).catch(function(){});
+ var k=0,iv2=setInterval(function(){var f=E.msField("name");if((f&&f.value)||++k>24){clearInterval(iv2);["name","home-base","bio-long","bio-short"].forEach(function(key){var el=E.msField(key);if(el&&el.value&&E.get(key)!==el.value)E.S[key]=el.value});E.paint()}},250);
+},200);
+})(window.TLLEP);
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-c2">
+/* Edit profile v2, script part C2 (21 Oct 2026): the languages list and its Enter rule, and the stories count, moved out of part C for the embed size limit. */
+(function(E){
+var $=E.$;var root=document.getElementById("tll-ep");if(!root||!E)return;
+var STORY_WORKER=(root.getAttribute("data-story-worker")||"").replace(/\/$/,"");
+/* Languages: the world's languages (ISO 639-1 names plus Cantonese, Mandarin, Filipino, Greenlandic and sign languages). Enter accepts only a name on the list (Nancy, 21 Oct 2026: "World languages please"). An entry saved before this rule shows as "not on the list" until it is changed. */
+E.LANGS="Abkhazian,Afar,Afrikaans,Akan,Albanian,American Sign Language,Amharic,Arabic,Aragonese,Armenian,Assamese,Avaric,Aymara,Azerbaijani,Bambara,Bashkir,Basque,Belarusian,Bengali,Bislama,Bosnian,Breton,Bulgarian,Burmese,Cantonese,Catalan,Chamorro,Chechen,Chichewa,Chinese,Chuvash,Cornish,Corsican,Cree,Croatian,Czech,Danish,Divehi,Dutch,Dzongkha,English,Esperanto,Estonian,Ewe,Faroese,Fijian,Filipino,Finnish,French,Fulah,Galician,Georgian,German,Greek,Greenlandic,Guarani,Gujarati,Haitian Creole,Hausa,Hebrew,Herero,Hindi,Hiri Motu,Hungarian,Icelandic,Igbo,Indonesian,Inuktitut,Inupiaq,Irish,Italian,Japanese,Javanese,Kannada,Kanuri,Kashmiri,Kazakh,Khmer,Kikuyu,Kinyarwanda,Kirghiz,Komi,Kongo,Korean,Kurdish,Kwanyama,Lao,Latin,Latvian,Limburgish,Lingala,Lithuanian,Luba-Katanga,Luxembourgish,Macedonian,Malagasy,Malay,Malayalam,Maltese,Mandarin,Manx,Maori,Marathi,Marshallese,Mongolian,Nauru,Navajo,Ndonga,Nepali,North Ndebele,Northern Sami,Norwegian,Occitan,Ojibwa,Oriya,Oromo,Ossetian,Pashto,Persian,Polish,Portuguese,Punjabi,Quechua,Romanian,Romansh,Rundi,Russian,Samoan,Sango,Sanskrit,Sardinian,Scottish Gaelic,Serbian,Shona,Sign language,Sindhi,Sinhala,Slovak,Slovenian,Somali,South Ndebele,Southern Sotho,Spanish,Sundanese,Swahili,Swati,Swedish,Tagalog,Tahitian,Tajik,Tamil,Tatar,Telugu,Thai,Tibetan,Tigrinya,Tonga,Tsonga,Tswana,Turkish,Turkmen,Twi,Uighur,Ukrainian,Urdu,Uzbek,Venda,Vietnamese,Walloon,Welsh,Western Frisian,Wolof,Xhosa,Yiddish,Yoruba,Zhuang,Zulu".split(",");
+E.langOk=function(v){v=String(v||"").trim().toLowerCase();return E.LANGS.some(function(x){return x.toLowerCase()===v})};
+E.langFix=function(v){v=String(v||"").trim().toLowerCase();for(var i=0;i<E.LANGS.length;i++)if(E.LANGS[i].toLowerCase()===v)return E.LANGS[i];return null};
+var ld=$("#ep-languages");if(ld&&!ld.children.length)ld.innerHTML=E.LANGS.map(function(l){return '<option value="'+l+'">'}).join("");
+var lq=$("[data-ep-langq]"),lnote=$("[data-ep-langnote]");
+function langSay(t){if(!lnote)return;lnote.textContent=t;lnote.setAttribute("data-hold","1");setTimeout(function(){lnote.removeAttribute("data-hold");E.paint&&E.paint()},4000)}
+if(lq)lq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var v=lq.value.trim().replace(/,/g,"");if(!v)return;var name=E.langFix(v);if(!name){langSay("Not on the list. Pick a language from the list.");return}var cur=E.list(E.get("languages"));if(cur.length>=10){langSay("Ten is the limit. Remove one to add another.");return}if(!cur.some(function(x){return x.toLowerCase()===name.toLowerCase()}))cur.push(name);lq.value="";E.set("languages",cur.join(", "))});
+/* the member's own stories (3.4 D5): the /submit Worker counts them when its address is set; otherwise the /stories page, by author slug */
+E.loadStories=function(){var cf=(E.member&&E.member.customFields)||{},mine=cf["custom-slug"]||E.slugify((cf["first-name"]||"")+" "+(cf["last-name"]||""))||E.slugify(E.get("name"));
+ function fromPage(){fetch("/stories",{credentials:"same-origin"}).then(function(r){return r.text()}).then(function(html){var doc=new DOMParser().parseFromString(html,"text/html"),n=0,img="";[].forEach.call(doc.querySelectorAll("a[data-tll-card]"),function(card){var a=card.querySelector("[data-tll-author]");if(a&&E.slugify(a.textContent)===mine){n++;if(!img){var im=card.querySelector("img.tll-lib-img");img=im?im.getAttribute("src"):""}}});E.stories={count:n,down:0,img:img};E.paint()}).catch(function(){E.stories={count:0,down:0,img:""};E.paint()})}
+ if(!STORY_WORKER){fromPage();return}var tok=E.token();if(!tok){fromPage();return}
+ fetch(STORY_WORKER+"/story/mine",{headers:{authorization:"Bearer "+tok}}).then(function(r){return r.json()}).then(function(j){var L=(j&&j.stories)||[];E.stories={count:L.filter(function(s){return s.state!=="taken-down"}).length,down:L.filter(function(s){return s.state==="taken-down"}).length,img:(L[0]&&L[0].heroUrl)||""};E.paint()}).catch(fromPage)};
+var cq=$("[data-ep-countryq]"),fnote=$("[data-ep-flagnote]");if(cq)cq.addEventListener("keydown",function(e){if(e.key!=="Enter")return;e.preventDefault();var c=E.ccode(cq.value),cur=E.list(E.get("from-and-lived-in"));if(!c){if(fnote){fnote.setAttribute("data-hold","1");fnote.textContent="No country by that name. Try the English name or its two letter code."}return}if(fnote)fnote.removeAttribute("data-hold");cq.value="";if(cur.length>=5||cur.indexOf(c)>-1){E.paint();return}cur.push(c);E.set("from-and-lived-in",cur.join(","))});
+})(window.TLLEP);
+</script></div>
+<div class="w-embed"><script id="tll-ep-js-d">
+/* Edit profile v2, script part D (UX build, 26 Oct 2026; handoff/CHANGE-LOG-EDIT-PROFILE-UX-2026-10-26.md). U1: the bar that follows the page (sections and save status) once the section row scrolls away. U4 to U8: expat desks with From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. U12 and U14: the Memberstack labels for Name, Bio and Short bio (text beside the inputs only; no data-ms element is changed). Saved desks keep the format the Worker takes: {c, years, knows, now}.
+   27 Oct 2026: the desks moved to part F (tll-ep-js-f) for the embed size limit; this part keeps the bar and the labels. 28 Oct 2026: the counters show their limits (N4); the crew invite moved to part H (N5). */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U1: the bar */
+var bar=$("[data-ep-bar]"),nav=$(".ep-nav"),secB=$("[data-ep-bar-sec]"),raf=0;
+function headBottom(){var el=document.elementFromPoint(innerWidth/2,2);while(el&&el!==document.body&&el!==bar){var p=getComputedStyle(el).position;if(p==="fixed"||p==="sticky")return Math.max(0,el.getBoundingClientRect().bottom);el=el.parentElement}return 0}
+function place(){raf=0;if(!bar||!nav)return;var h=headBottom(),show=nav.getBoundingClientRect().bottom<h&&nav.offsetParent!==null;bar.style.setProperty("--ep-bar-top",h+"px");if(bar.hidden===show){bar.hidden=!show;if(!show)open(false)}}
+function open(on){if(!bar)return;bar.setAttribute("data-open",on?"1":"0");if(secB)secB.setAttribute("aria-expanded",String(on))}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(place)},{passive:true});addEventListener("resize",place);
+if(secB)secB.addEventListener("click",function(){open(bar.getAttribute("data-open")!=="1")});
+if(bar)bar.addEventListener("click",function(e){if(e.target.closest("a"))open(false)});
+/* U12, U14: labels beside the Memberstack inputs */
+function lab(k,t,note,max){var f=E.msField(k),l=f&&f.closest("label"),s=l&&l.querySelector("span");if(!s||l.hasAttribute("data-ep-lab"))return;l.setAttribute("data-ep-lab","1");s.textContent=t;
+ if(k==="name"){var r=document.createElement("span");r.className="ep-req";r.textContent="REQUIRED";s.appendChild(r)}
+ /* N4 (28 Oct 2026): the counter shows the limit and turns rose past it: "1,250 of 1,200, trim 50". Typing is never stopped (the box is Memberstack's). */
+ if(note){var n=document.createElement("small");n.className="ep-note";n.innerHTML=esc(note)+' <span class="ep-cnt" data-ep-cnt="'+k+'"></span>';l.appendChild(n);var c=n.lastChild;function cnt(){var v=f.value.length,o=v-max,F=function(x){return x.toLocaleString("en-US")};c.textContent="· "+F(v)+" of "+F(max)+(o>0?", trim "+F(o):" characters");c.setAttribute("data-over",o>0?"1":"0")}f.addEventListener("input",cnt);cnt();setTimeout(cnt,3000)}}
+lab("name","Name");lab("bio-long","Bio","On your page. Two or three short paragraphs.",1200);lab("bio-short","Short bio","One sentence, kept on your account. Your public page shows the Bio above.",160);
+place();
+})(window.TLLEP);
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-f">
+/* Edit profile v2, script part F (27 Oct 2026): the expat desks, moved out of part D for the embed size limit. U4 to U8 (26 Oct): From, To and What you know there, "I live here now", the home base checks, Add with messages, Undo. T1 to T3 (handoff/CHANGE-LOG-EDIT-PROFILE-DESKS-TWICE-2026-10-27.md): a desk holds up to three stints, saved in years as "2018–2021 · 2024–now"; "I live here now" belongs to the last stint; a country that already has a desk gets an Add stint offer. Loads after part D. */
+(function(E){
+var $=E.$,$$=E.$$,esc=E.esc;var root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+/* U4 to U8, T1 to T3: desks. In memory a desk is {c, st:[{from,to}], knows, now}; saved as {c, years, knows, now}. */
+var key="",undo=null,undoT=0,MAXST=3,want={};/* want: empty stints added but not yet typed, per country, since an empty stint does not survive the saved form */
+function parse(d){var st=String(d.years||"").split(/\s*[·,;]\s*/).map(function(y){var m=y.match(/\d{4}/g)||[];return {from:m[0]||"",to:/now/i.test(y)?"":(m[1]||"")}}).filter(function(s){return s.from||s.to}).slice(0,MAXST);if(!st.length)st=[{from:"",to:""}];return {c:d.c,st:st,knows:String(d.knows||""),now:!!d.now}}
+function stY(s,last,now){return s.from?(now&&last&&!s.to?s.from+"–now":(s.to?s.from+"–"+s.to:s.from)):(s.to||(now&&last?"now":""))}
+function saved(d){var y=d.st.map(function(s,i){return stY(s,i===d.st.length-1,d.now)}).filter(Boolean).join(" · ");return {c:d.c,years:y.slice(0,40),knows:d.knows.slice(0,160),now:!!d.now}}
+function list(){return (E.desksShown||[]).map(function(d){return {c:d.c,st:d.st.map(function(s){return {from:s.from,to:s.to}}),knows:d.knows,now:d.now}})}
+function put(D){E.set("desks",JSON.stringify(D.map(saved)))}
+function say(t,c){var m=$("[data-ep-desk-msg]");if(!m)return;m.textContent=t||"";var b=$("[data-ep-desk-stint-offer]");if(b){b.hidden=!c;if(c)b.setAttribute("data-ep-desk-stint-offer",c)}}
+function homeC(){var h=E.get("home-base");return {c:E.ccode(h.split(",").pop()),city:h.split(",")[0].trim()}}
+function warn(d,h){var l=d.st[d.st.length-1];if(d.now&&l.to)return {t:E.cname(d.c)+" says you live here now, but the years end in "+l.to+"."};if(h.c&&d.c===h.c&&!d.now)return {t:"Your home base is "+(h.city||E.cname(d.c))+". Mark "+E.cname(d.c)+" as I live here now?",b:1};return null}
+function val(el,v){if(el&&document.activeElement!==el&&el.value!==v)el.value=v}
+function stintHtml(n,i,k,many){return '<span class="ep-stint" data-ep-stint="'+k+'"><label>From<input data-ep-desk-from="'+i+'" data-k="'+k+'" inputmode="numeric" maxlength="4" placeholder="2018" autocomplete="off" aria-label="'+n+', stint '+(k+1)+', from year"></label><label>To<input data-ep-desk-to="'+i+'" data-k="'+k+'" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="'+n+', stint '+(k+1)+', to year"></label>'+(many?'<button type="button" class="ep-x ep-stint-x" data-ep-stint-rm="'+i+'" data-k="'+k+'" aria-label="Remove stint '+(k+1)+' from '+n+'">×</button>':'')+'</span>'}
+E.paintDesks=function(){var box=$("[data-ep-desks]"),lst=$("[data-ep-desklist]"),h=$("[data-ep-desks-h]"),off=$("[data-ep-desks-off]");if(!box)return;var on=E.get("list-expats")==="true";box.hidden=!on;if(off)off.hidden=on;if(!on)return;
+ var D;if(E.S.desks!=null)D=E.jsonList("desks").map(parse);else{var hc=homeC().c;D=E.list(E.get("from-and-lived-in")).filter(function(c){return c!==hc}).map(function(c){return {c:c,st:[{from:"",to:""}],knows:"",now:false}})}
+ D.forEach(function(d){while(d.st.length<Math.min(MAXST,want[d.c]||0))d.st.push({from:"",to:""})});
+ E.desksShown=D;if(h)h.textContent="YOUR EXPAT DESKS · "+D.length+(D.length===1?" PLACE":" PLACES");
+ var k=D.map(function(d){return d.c+":"+d.st.length}).join("|");
+ if(lst&&k!==key){key=k;lst.innerHTML=D.map(function(d,i){var n=esc(E.cname(d.c)),many=d.st.length>1;return '<div class="ep-desk" data-ep-desk="'+i+'"><div class="ep-desk-h"><span class="ep-fl" aria-hidden="true">'+E.flag(d.c)+'</span><b>'+n+'</b><span class="ep-desk-tag" data-ep-desk-tag></span><button type="button" class="ep-x" data-ep-desk-rm="'+i+'" aria-label="Remove '+n+'">×</button></div>'+
+  '<div class="ep-desk-g"><span class="ep-stints">'+d.st.map(function(s,kk){return stintHtml(n,i,kk,many)}).join("")+(d.st.length<MAXST?'<button type="button" class="ep-stint-add" data-ep-stint-add="'+i+'">+ Add another stint</button>':'')+'</span>'+
+  '<label class="ep-desk-k">What you know there<input data-ep-desk-knows="'+i+'" maxlength="160" placeholder="Visas, schools, dog parks" aria-label="What you know about '+n+'"><small data-ep-desk-n></small></label></div>'+
+  '<label class="ep-desk-c"><input type="checkbox" data-ep-desk-now="'+i+'"> I live here now</label><p class="ep-desk-warn" data-ep-desk-warn hidden><span></span> <button type="button" class="ep-x" data-ep-desk-mark="'+i+'" hidden>Mark it</button></p></div>'}).join("")}
+ var hc2=homeC();D.forEach(function(d,i){var row=$('[data-ep-desk="'+i+'"]');if(!row)return;d.st.forEach(function(s,kk){var last=kk===d.st.length-1;val($('[data-ep-desk-from="'+i+'"][data-k="'+kk+'"]',row),s.from);var to=$('[data-ep-desk-to="'+i+'"][data-k="'+kk+'"]',row);val(to,s.to);if(to)to.placeholder=d.now&&last?"now":"2021"});val($('[data-ep-desk-knows="'+i+'"]',row),d.knows);
+  $('[data-ep-desk-now="'+i+'"]',row).checked=d.now;$("[data-ep-desk-tag]",row).textContent=d.now?"LIVE HERE":"LIVED HERE";$("[data-ep-desk-tag]",row).setAttribute("data-on",d.now?"1":"0");$("[data-ep-desk-n]",row).textContent=d.knows.length+" of 160";
+  var w=warn(d,hc2),wp=$("[data-ep-desk-warn]",row);wp.hidden=!w;if(w){wp.firstChild.textContent=w.t;$("[data-ep-desk-mark]",wp).hidden=!w.b}})};
+var wrap=root.closest('[data-ms-content="members"]')||document;
+wrap.addEventListener("input",function(e){var t=e.target;if(!t.getAttribute)return;var f=["from","to","knows"].filter(function(x){return t.hasAttribute("data-ep-desk-"+x)})[0];if(!f)return;var D=list(),i=+t.getAttribute("data-ep-desk-"+f);if(!D[i])return;
+ if(f==="knows")D[i].knows=t.value.slice(0,160);else{var kk=+t.getAttribute("data-k"),s=D[i].st[kk];if(!s)return;s[f]=t.value.replace(/\D/g,"").slice(0,4);if(t.value!==s[f])t.value=s[f]}put(D)});
+wrap.addEventListener("change",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-ep-desk-now"))return;var D=list(),i=+t.getAttribute("data-ep-desk-now");if(!D[i])return;D[i].now=t.checked;if(t.checked)D[i].st[D[i].st.length-1].to="";put(D)});
+wrap.addEventListener("click",function(e){var b=e.target.closest("[data-ep-desk-rm],[data-ep-desk-mark],[data-ep-desk-add],[data-ep-desk-undo-b],[data-ep-stint-add],[data-ep-stint-rm],[data-ep-desk-stint-offer]");if(!b)return;var D=list();
+ if(b.hasAttribute("data-ep-desk-mark")){var i=+b.getAttribute("data-ep-desk-mark");if(D[i]){D[i].now=true;D[i].st[D[i].st.length-1].to="";put(D)}return}
+ if(b.hasAttribute("data-ep-desk-add")){add();return}
+ if(b.hasAttribute("data-ep-stint-add")){var a=+b.getAttribute("data-ep-stint-add");if(D[a]&&D[a].st.length<MAXST){D[a].st.push({from:"",to:""});want[D[a].c]=D[a].st.length;say("");put(D);E.paintDesks();var nf=$('[data-ep-desk-from="'+a+'"][data-k="'+(D[a].st.length-1)+'"]');if(nf)nf.focus()}return}
+ if(b.hasAttribute("data-ep-stint-rm")){var r=+b.getAttribute("data-ep-stint-rm"),rk=+b.getAttribute("data-k");if(D[r]&&D[r].st.length>1){D[r].st.splice(rk,1);want[D[r].c]=D[r].st.length;say("");put(D);E.paintDesks()}return}
+ if(b.hasAttribute("data-ep-desk-stint-offer")){var oc=b.getAttribute("data-ep-desk-stint-offer"),oi=-1;D.forEach(function(d,x){if(d.c===oc)oi=x});if(oi>-1&&D[oi].st.length<MAXST){D[oi].st.push({from:"",to:""});want[oc]=D[oi].st.length;say("");put(D);E.paintDesks();var of=$('[data-ep-desk-from="'+oi+'"][data-k="'+(D[oi].st.length-1)+'"]');if(of){of.focus();of.scrollIntoView({block:"center"})}}else say("");return}
+ if(b.hasAttribute("data-ep-desk-undo-b")){if(undo){D.splice(Math.min(undo.i,D.length),0,undo.d);undo=null;showUndo("");put(D)}return}
+ var j=+b.getAttribute("data-ep-desk-rm");if(!D[j])return;undo={d:D[j],i:j};delete want[D[j].c];D.splice(j,1);showUndo("Removed "+E.cname(undo.d.c)+".");put(D)});
+function showUndo(t){var u=$("[data-ep-desk-undo]");clearTimeout(undoT);if(!u)return;u.hidden=!t;$("[data-ep-desk-undo-t]",u).textContent=t;if(t)undoT=setTimeout(function(){u.hidden=true;undo=null},10000)}
+var q=$("[data-ep-deskq]");
+function add(){if(!q)return;var v=q.value.trim();if(!v)return;var c=E.ccode(v),D=list();if(!c){say("No country by that name. Try the English name.");return}var had=D.filter(function(d){return d.c===c})[0];if(had){q.value="";if(had.st.length<MAXST)say(E.cname(c)+" already has a desk. Add another stint on it?",c);else say(E.cname(c)+" already has a desk with three stints.");return}if(D.length>=20){say("Twenty is the limit.");return}say("");D.push({c:c,st:[{from:"",to:""}],knows:"",now:false});q.value="";put(D)}
+if(q)q.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();add()}});
+E.paintDesks();
+})(window.TLLEP);
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-e">
+/* Edit profile v2, script part E (look build, 27 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-LOOK-2026-10-27.md). E1: the band moves into the page header (photo, sub line, chips, button, developing strip) and the title's last word goes rose italic. E4: the section in view is marked in the row and in the bar. E5: each section number becomes its own span. E7: long counts in the preview card shrink. E10: a way back on the signed-out gate, added once the page has parsed (the gate sits after this script). Loads after part D. Touches no data-ms-* element. */
+(function(E){
+var $=E.$,$$=E.$$,root=document.getElementById("tll-ep");if(!root||!E||!E.paint)return;
+var wrap=root.closest('[data-ms-content="members"]'),head=wrap&&wrap.querySelector(".tll-edit-header");
+/* E1 */
+if(head&&!head.hasAttribute("data-ep-hero")){head.setAttribute("data-ep-hero","1");
+ var h1=head.querySelector("h1");
+ if(h1&&!h1.querySelector("em")){var t=h1.textContent.trim(),m=t.match(/^(.*\S)\s+(\S+)$/);if(m){h1.textContent="";h1.appendChild(document.createTextNode(m[1]+" "));var em=document.createElement("em");em.textContent=m[2];h1.appendChild(em)}}
+ var av=document.createElement("span");av.className="ep-av ep-gray ep-hero-av";av.setAttribute("data-ep-avatar","");av.setAttribute("aria-hidden","true");head.insertBefore(av,head.firstChild);
+ if(h1){var sub=document.createElement("p");sub.className="ep-hero-sub";sub.textContent="Only your name is required. Everything else is yours to fill or leave.";h1.insertAdjacentElement("afterend",sub)}
+ var band=$("[data-ep-band]");if(band)head.appendChild(band)}
+/* E1 the two chips, in /account's words */
+function chips(){var v=E.get("visibility")||"public",c=$('[data-ep-chip="vis"]');if(c)c.textContent="PROFILE · "+(v==="unlisted"?"LINK ONLY":v==="off"?"JUST YOU":"PUBLIC");
+ var d=[["list-expats","/EXPATS"],["list-creators","/CREATORS"],["list-press","/PRESS"]].filter(function(x){return E.get(x[0])==="true"}).map(function(x){return x[1]}),e=$('[data-ep-chip="dir"]');if(e)e.textContent="DIRECTORY · "+(d.length?d.join(" "):"OFF")}
+/* E5 */
+$$(".ep-eb").forEach(function(h){var n=h.firstChild;if(!n||n.nodeType!==3)return;var m=n.nodeValue.match(/^\s*(\d\d)\s*·\s*/);if(!m)return;n.nodeValue=n.nodeValue.slice(m[0].length);var s=document.createElement("span");s.className="ep-n";s.textContent=m[1];h.insertBefore(s,n)});
+/* E7 */
+function longStats(){var st=$("[data-ep-pv-stats]");if(st)st.setAttribute("data-long",$$("b",st).some(function(b){return b.textContent.trim().length>4})?"1":"0")}
+var P=E.paint;E.paint=function(){P();chips();longStats()};
+/* E4 */
+var ids=$$(".ep-nav a").map(function(a){return a.getAttribute("href")}),raf=0;
+function cur(){raf=0;var bar=$("[data-ep-bar]"),line=(bar&&!bar.hidden?bar.getBoundingClientRect().bottom:0)+40,id=null;
+ ids.forEach(function(h){var s=document.getElementById(h.slice(1));if(s&&s.getBoundingClientRect().top<=line)id=h});if(!id&&ids.length)id=ids[0];
+ $$(".ep-nav a,.ep-bar-nav a").forEach(function(a){a.setAttribute("data-cur",a.getAttribute("href")===id?"1":"0")})}
+addEventListener("scroll",function(){if(!raf)raf=requestAnimationFrame(cur)},{passive:true});addEventListener("resize",cur);
+/* E10 */
+function gateLink(){var g=document.querySelector(".tll-edit-locked");if(!g||g.querySelector(".ep-gate-back"))return;var b=document.createElement("a");b.className="ep-gate-back";b.href="/stories";b.textContent="Back to the stories →";g.appendChild(b)}
+function gateWatch(){gateLink();var g=document.querySelector(".tll-edit-locked");if(g&&g.parentNode&&window.MutationObserver)new MutationObserver(gateLink).observe(g.parentNode,{childList:true,subtree:true})}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",gateWatch);else gateWatch();
+E.paint();cur();
+})(window.TLLEP);
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-g">
+/* Edit profile v2, script part G (28 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md), after part E. N2 and N3: From (one country plus a place in the member's words, from-place) and Has lived in (up to four); the saved list stays one field, from-and-lived-in, the From country first. N5 (the crew picker) is part H. N7: What you make (makes). N8: Send for review posts the press card to {worker}/press/apply; press-sent keeps the date. N9: Shop and partners as one value (partners). Touches no data-ms-* element. */
+(function(E){
+var $=E&&E.$,$$=E&&E.$$,esc=E&&E.esc,root=document.getElementById("tll-ep");if(!root||!E||!E.paint)return;
+var WORKER=(root.getAttribute("data-worker")||"").replace(/\/$/,""),MAKES=["photos","video","words","sound","other"];
+function val(sel,v){var i=$(sel);if(i&&document.activeElement!==i&&i.value!==v)i.value=v}
+function say(sel,t){var n=$(sel);if(!n)return;n.textContent=t;n.setAttribute("data-hold","1");clearTimeout(n.tllT);n.tllT=setTimeout(function(){n.removeAttribute("data-hold");E.paint()},5000)}
+function day(t){return new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+/* the first fill: part B's list predates these fields */
+var F=E.fill;E.fill=function(m){var cf=(m&&m.customFields)||{};["from-place","makes","partners","press-sent"].forEach(function(k){if(cf[k]!=null&&cf[k]!=="")E.S[k]=String(cf[k])});F(m)};
+/* N2, N3 */
+function flags(){return E.list(E.get("from-and-lived-in"))}
+function setFlags(L){E.set("from-and-lived-in",L.join(","))}
+function chip(c,a){return '<button type="button" class="ep-chip ep-chip--x" '+a+'="'+esc(c)+'" aria-label="Remove '+esc(E.cname(c))+'" title="'+esc(E.cname(c))+' · remove"><span aria-hidden="true">'+E.flag(c)+'</span><b>'+esc(c.toUpperCase())+'</b> ×</button>'}
+var NOTE_F="One country for the flag. The place is yours to word: a city, a state, a region.",NO="No country by that name. Try the English name or its two letter code.";
+function addFrom(){var q=$("[data-ep-fromq]");if(!q||!q.value.trim())return;var c=E.ccode(q.value);if(!c){say("[data-ep-fromnote]",NO);return}var L=flags();q.value="";if(L[0]===c)return;setFlags([c].concat(L.slice(1).filter(function(x){return x!==c})))}
+function addLived(){var q=$("[data-ep-livedq]");if(!q||!q.value.trim())return;var c=E.ccode(q.value),L=flags(),N="[data-ep-livednote]";if(!c){say(N,NO);return}if(!L.length){say(N,"Add your From country first. It leads the flags.");return}if(L.indexOf(c)>-1){q.value="";say(N,E.cname(c)+(L[0]===c?" is your From country.":" is already here."));return}if(L.length>=5){say(N,"Four is the limit. Remove one to add another.");return}q.value="";setFlags(L.concat(c))}
+function pOrigin(){var L=flags(),fb=$("[data-ep-fromflag]"),lb=$("[data-ep-livedflags]");if(fb)fb.innerHTML=L.slice(0,1).map(function(c){return chip(c,"data-ep-rmfrom")}).join("");if(lb)lb.innerHTML=L.slice(1).map(function(c){return chip(c,"data-ep-rmlived")}).join("");
+ var lq=$("[data-ep-livedq]"),ln=$("[data-ep-livednote]"),fn=$("[data-ep-fromnote]");if(lq)lq.disabled=L.length>=5;
+ if(ln&&!ln.getAttribute("data-hold"))ln.textContent=L.length>=5?"Four is the limit. Remove one to add another.":"Type a country and press Enter. Up to four.";
+ if(fn&&!fn.getAttribute("data-hold"))fn.textContent=L.length?"Add another country to replace it. "+NOTE_F.slice(NOTE_F.indexOf("The place")):NOTE_F;
+ val("#ep-f-from-place",E.get("from-place"));
+ var m=$(".ep-pv-meta"),s=$("[data-ep-pv-from]"),p=E.get("from-place").trim();if(m&&!s){s=document.createElement("span");s.setAttribute("data-ep-pv-from","");m.insertBefore(s,m.lastElementChild)}if(s){s.textContent=p?"FROM "+p.toUpperCase():"";s.hidden=!p}}
+/* N7 */
+function pMakes(){var b=$("[data-ep-makes]"),on=E.list(E.get("makes"));if(b)b.hidden=E.get("list-creators")!=="true";$$("[data-ep-make]").forEach(function(x){x.setAttribute("aria-pressed",String(on.indexOf(x.getAttribute("data-ep-make"))>-1))})}
+/* N8 */
+function pPress(){var cf=(E.member&&E.member.customFields)||{},ver=cf["press-verified"],sent=E.get("press-sent"),b=$("[data-ep-press]"),pn=$("[data-ep-pressnote]");if(b)b.hidden=E.get("list-press")!=="true"||!!ver||!!sent;if(pn)pn.textContent=ver?"Verified · "+ver:sent?"Sent "+day(sent)+". Reviewed within 48 hours.":"Reviewed within 48 hours"}
+function sendPress(){var msg=$("[data-ep-press-msg]"),btn=$("[data-ep-press-send]"),g=function(k){var i=$('[data-ep-pr="'+k+'"]');return i?i.value.trim():""},body={outlet:g("outlet"),role:g("role"),proof:g("proof")};if(!msg||!btn)return;
+ if(!body.outlet){msg.textContent="Add the outlet you work for.";return}if(!body.proof||/\s/.test(body.proof)){msg.textContent="Add one link to your press card or to two published pieces.";return}
+ var tok=E.token();if(!WORKER||!tok){msg.textContent="Sending is not switched on yet. Try again later.";return}
+ btn.disabled=true;msg.textContent="Sending…";
+ fetch(WORKER+"/press/apply",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+tok},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok){var e=new Error("send");e.say=j.error;throw e}return j})})
+ .then(function(j){var at=j.sentAt||new Date().toISOString(),m=E.ms();E.S["press-sent"]=at;if(m&&m.updateMember)m.updateMember({customFields:{"press-sent":at}}).catch(function(){});btn.disabled=false;msg.textContent="";E.paint()})
+ .catch(function(e){btn.disabled=false;msg.textContent=e.say||"Your application did not reach us. Try again in a moment."})}
+/* N9 */
+function pt(){try{var p=JSON.parse(E.get("partners")||"null");return p&&typeof p==="object"&&!Array.isArray(p)?p:{}}catch(e){return {}}}
+function pPartners(){var p=pt(),L=Array.isArray(p.links)?p.links:[];val('[data-ep-pt="store"]',p.store||"");for(var i=0;i<3;i++){val('[data-ep-pt="n'+i+'"]',(L[i]&&L[i].name)||"");val('[data-ep-pt="u'+i+'"]',(L[i]&&L[i].url)||"")}var b=$("[data-ep-pt-open]");if(b){b.setAttribute("aria-checked",String(p.open===true));b.textContent=p.open===true?"ON":"OFF"}}
+function ptSave(open){var g=function(k){var i=$('[data-ep-pt="'+k+'"]');return i?i.value.trim():""},v={store:g("store"),links:[0,1,2].map(function(i){return {name:g("n"+i),url:g("u"+i)}}),open:open==null?pt().open===true:open};
+ var half=v.links.some(function(l){return !l.name!==!l.url}),msg=$("[data-ep-pt-msg]");if(msg)msg.textContent=half?"A partner shows once it has a name and a link.":"";E.set("partners",JSON.stringify(v))}
+/* wiring */
+document.addEventListener("keydown",function(e){if(e.key!=="Enter")return;if(e.target.matches("[data-ep-fromq]")){e.preventDefault();addFrom()}else if(e.target.matches("[data-ep-livedq]")){e.preventDefault();addLived()}});
+document.addEventListener("input",function(e){if(e.target.hasAttribute&&e.target.hasAttribute("data-ep-pt"))ptSave()});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-ep-from-add],[data-ep-lived-add],[data-ep-rmfrom],[data-ep-rmlived],[data-ep-make],[data-ep-press-send],[data-ep-pt-open]");if(!b)return;
+ if(b.hasAttribute("data-ep-from-add"))addFrom();else if(b.hasAttribute("data-ep-lived-add"))addLived();
+ else if(b.hasAttribute("data-ep-rmfrom")){var L=flags().slice(1);setFlags(L);if(L.length)say("[data-ep-fromnote]",E.cname(L[0])+" moved up to From. Add your From country to change it.")}
+ else if(b.hasAttribute("data-ep-rmlived")){var c=b.getAttribute("data-ep-rmlived");setFlags(flags().filter(function(x,i){return i===0||x!==c}))}
+ else if(b.hasAttribute("data-ep-make")){var k=b.getAttribute("data-ep-make"),on=E.list(E.get("makes")),j=on.indexOf(k);if(j>-1)on.splice(j,1);else on.push(k);E.set("makes",MAKES.filter(function(m){return on.indexOf(m)>-1}).join(","))}
+ else if(b.hasAttribute("data-ep-press-send"))sendPress();
+ else ptSave(b.getAttribute("aria-checked")!=="true")});
+/* found in this build: the site's contrast repair (tll-a11y-motion-v1) can catch a switch mid-fade after load and pin dark text on it, so ON read dark on dark; the page's switches and chips keep their own colors */
+function unpin(){$$(".ep-sw[data-tc],.ep-chip[data-tc]").forEach(function(x){x.style.removeProperty("color");x.removeAttribute("data-tc")})}
+addEventListener("load",function(){setTimeout(unpin,2500);setTimeout(unpin,6000)});
+var P=E.paint;E.paint=function(){P();pOrigin();pMakes();pPress();pPartners()};
+E.paint();
+})(window.TLLEP);
+</script>
+</div>
+<div class="w-embed"><script id="tll-ep-js-h">
+/* Edit profile v2, script part H (28 Oct 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md, N5), after part G: invite crew by picking a name. Typing in Invite someone shows matching Travelers (photo and name, read from the public /travelers page); Enter or a click adds a waiting invite to the member's own record (tllCrew), as the old Enter rule did, now with the traveler's slug and photo. Touches no data-ms-* element. */
+(function(E){
+var $=E&&E.$,$$=E&&E.$$,esc=E&&E.esc,root=document.getElementById("tll-ep");if(!root||!E||!E.set)return;
+function day(t){return new Date(t).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+function say(sel,t){var n=$(sel);if(!n)return;var was=n.textContent;n.textContent=t;setTimeout(function(){n.textContent=was},5000)}
+var pq=$("[data-ep-crewpick]"),box=$("[data-ep-crewopts]"),TV=null,hits=[],act=-1;
+function me(){var cf=(E.member&&E.member.customFields)||{};return cf["custom-slug"]||cf["share-slug"]||E.slugify(E.get("name"))}
+function loadTV(){if(TV)return Promise.resolve(TV);return fetch("/travelers",{credentials:"same-origin"}).then(function(r){return r.text()}).then(function(h){var d=new DOMParser().parseFromString(h,"text/html"),seen={};TV=[].slice.call(d.querySelectorAll("a.tv-card[data-slug]")).map(function(a){var im=a.querySelector("img");return {name:(a.getAttribute("data-name")||"").trim(),slug:a.getAttribute("data-slug"),img:im&&im.getAttribute("src")&&!/w-dyn-bind-empty/.test(im.className)?im.getAttribute("src"):""}}).filter(function(t){if(!t.name||seen[t.slug])return false;seen[t.slug]=1;return true});return TV}).catch(function(){return []})}
+function close(){if(!box)return;box.hidden=true;box.innerHTML="";hits=[];act=-1;pq.setAttribute("aria-expanded","false");pq.removeAttribute("aria-activedescendant")}
+function mark(){$$("[data-ep-crew-o]",box).forEach(function(o,i){o.setAttribute("aria-selected",String(i===act))});if(act>-1)pq.setAttribute("aria-activedescendant","ep-crew-o"+act);else pq.removeAttribute("aria-activedescendant")}
+function find(){var v=pq.value.trim().toLowerCase();if(!v){close();return}loadTV().then(function(L){if(pq.value.trim().toLowerCase()!==v)return;var cur=E.jsonList("crew").map(function(c){return String(c.slug||c.name||"").toLowerCase()}),mine=me();
+ hits=L.filter(function(t){return t.slug!==mine&&cur.indexOf(t.slug)<0&&cur.indexOf(t.name.toLowerCase())<0&&(" "+t.name.toLowerCase()).indexOf(" "+v)>-1}).slice(0,6);act=hits.length?0:-1;
+ box.innerHTML=hits.length?hits.map(function(t,i){return '<div class="ep-crew-row ep-crew-opt" role="option" id="ep-crew-o'+i+'" data-ep-crew-o="'+i+'"><span class="ep-av" aria-hidden="true">'+(t.img?'<img src="'+esc(t.img)+'" alt="">':esc(E.initials(t.name)))+'</span><span><b>'+esc(t.name)+'</b><small>TRAVELER</small></span><span class="ep-crew-acts"><span class="ep-x">INVITE</span></span></div>'}).join(""):'<p class="ep-note" role="option" aria-disabled="true">No traveler by that name. Not on TLL yet? Name them in the story byline instead.</p>';
+ box.hidden=false;pq.setAttribute("aria-expanded","true");mark()})}
+function pick(i){var t=hits[i];if(!t)return;var cur=E.jsonList("crew");if(cur.length>=20){close();say("[data-ep-crewnote]","Twenty is the limit.");return}cur.push({name:t.name,slug:t.slug,img:t.img,meta:"INVITED · "+day(Date.now()).toUpperCase(),pending:true,at:new Date().toISOString()});pq.value="";close();E.set("crew",JSON.stringify(cur))}
+if(pq&&box){pq.addEventListener("input",find);pq.addEventListener("focus",function(){loadTV()});pq.addEventListener("blur",function(){setTimeout(close,150)});
+ pq.addEventListener("keydown",function(e){if(e.key==="ArrowDown"||e.key==="ArrowUp"){if(!hits.length)return;e.preventDefault();act=(act+(e.key==="ArrowDown"?1:hits.length-1))%hits.length;mark()}else if(e.key==="Enter"){e.preventDefault();if(act>-1)pick(act);else find()}else if(e.key==="Escape")close()});
+ box.addEventListener("mousedown",function(e){var o=e.target.closest("[data-ep-crew-o]");if(o){e.preventDefault();pick(+o.getAttribute("data-ep-crew-o"))}})}
+})(window.TLLEP);
+</script>
+</div></main></body></html>
