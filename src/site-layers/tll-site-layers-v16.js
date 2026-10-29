@@ -25,6 +25,7 @@
    script src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    script src/site-layers/tll-photos-caption-v1.js (29 Oct: /share-photos caption room 600 characters with a running count (was cut at 256))
    script src/site-layers/tll-lounge-labels-v1.js (29 Oct Nancy: /gallery tile labels small, in the corner, off the photo)
+   script src/site-layers/tll-stories-places-v1.js (29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -811,6 +812,45 @@ var CSS="html body .tll-lounge-credit,html body .tll-lounge-open{position:absolu
 "@media (max-width:767px){html body .tll-lounge-credit,html body .tll-lounge-open{left:8px!important;bottom:8px!important;max-width:calc(100% - 16px)!important;font-size:9.5px!important;padding:3px 6px!important}}";
 function add(){if(document.getElementById('tll-lounge-labels-v1'))return;var s=document.createElement('style');s.id='tll-lounge-labels-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();
+})();
+
+/* tll-stories-places-v1 (29 Oct 2026, Nancy on /stories: "Where is Asia and Oceania?"). The place chips stopped at Europe, Africa,
+   Americas and Antarctica, while the Stories region field also has Asia, Middle East and Oceania. The missing three are added as copies
+   of an existing chip, in map order. The page's own chip script (TLL Stories chips v1) filters by the card's region text, so the new
+   chips work through it; if that script has already wired its chips, the new ones filter the same way on their own. A region with no
+   story yet shows the page's own "No stories from ... yet" note. Also: "the next story on the shelf" reads "the next story in the
+   library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched. */
+(function(){
+if(!/^\/stories\/?$/.test(location.pathname))return;
+var ORDER=['all','Europe','Asia','Middle East','Africa','Americas','Oceania','Antarctica'];
+function words(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;
+  while(t=w.nextNode()){if(t.nodeValue.indexOf('story on the shelf')>-1)t.nodeValue=t.nodeValue.replace('story on the shelf','story in the library');}}
+function chips(){
+  var row=document.querySelector('[data-tll-chips="place-sort"] .tll-chip-row');if(!row||row.dataset.tllPlaces)return;
+  var have={};[].forEach.call(row.querySelectorAll('[data-tll-place]'),function(c){have[c.getAttribute('data-tll-place')]=c;});
+  var model=row.querySelector('.tll-shelf-chip[data-tll-place]');if(!model)return;
+  row.dataset.tllPlaces='1';
+  var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');
+  var wired=!!(grid&&grid.dataset.tllChips);
+  var added=[];
+  ORDER.forEach(function(p){if(have[p])return;var c=model.cloneNode(true);c.setAttribute('data-tll-place',p);c.textContent=p;
+    c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');have[p]=c;added.push(c);});
+  /* place every chip in map order, after the label */
+  ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});
+  if(!wired||!grid)return;
+  /* fallback when the page script ran first: filter the same way it does */
+  added.forEach(function(c){c.addEventListener('click',function(e){e.preventDefault();var v=c.getAttribute('data-tll-place');
+    [].forEach.call(row.querySelectorAll('[data-tll-place]'),function(x){var on=x===c;x.classList.toggle('tll-filter-chip-on',on);x.classList.toggle('tll-shelf-chip',!on);x.setAttribute('aria-pressed',on?'true':'false');});
+    var n=0;[].forEach.call(grid.children,function(el){var r=el.querySelector('[data-tll-region]');var show=!!r&&r.textContent.trim()===v;el.style.display=show?'':'none';if(show)n++;});
+    var note=document.getElementById('tll-chip-note');if(note)note.remove();
+    if(!n){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');
+      note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';
+      note.textContent='No stories from '+v+' yet. Be the first.';grid.parentNode.insertBefore(note,grid);}
+  });});
+}
+function run(){chips();words();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+setTimeout(words,1500);
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
