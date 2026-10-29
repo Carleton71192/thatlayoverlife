@@ -1,6 +1,6 @@
 /* tll-stories-places-v1 (29 Oct 2026, Nancy on /stories: "Where is Asia and Oceania?"). The place chips stopped at Europe, Africa,
    Americas and Antarctica, while the Stories region field also has Asia, Middle East and Oceania. The missing three are added as copies
-   of an existing chip, in map order. The page's own chip script (TLL Stories chips v1) filters by the card's region text, so the new
+   of an existing chip, in alphabetical order. The page's own chip script (TLL Stories chips v1) filters by the card's region text, so the new
    chips work through it; if that script has already wired its chips, the new ones filter the same way on their own. A region with no
    story yet shows the page's own "No stories from ... yet" note. Also: "the next story on the shelf" reads "the next story in the
    library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched. */
