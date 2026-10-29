@@ -31,6 +31,7 @@
    script src/site-layers/tll-byline-links-v1.js (29 Oct Nancy: story card writer name and photo open the writer page)
    script src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
    script src/site-layers/tll-story-fixes-1029-v1.js (29 Oct Nancy: US flag for US state labels; related heading Other stories from this frequent traveler)
+   script src/site-layers/tll-email-hello-v1.js (29 Oct Nancy: every site email address shows and links to hello@thatlayover.life)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -1060,6 +1061,24 @@ function heading(){
 function later(){setTimeout(flags,1400);setTimeout(flags,2600);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){heading();later();});else{heading();later();}
 setTimeout(heading,1300);
+})();
+
+/* tll-email-hello-v1 (29 Oct 2026, Nancy: "Any mentions of emails on the site should go to hello@thatlayover.life"). The only mailbox
+   is hello@thatlayover.life. Any other @thatlayover.life address on a page (press@, partnerships@ on the writer page contact cards,
+   or any other) is shown and linked as hello@thatlayover.life; a mailto subject line is kept. Runs on every page and again for content
+   that arrives late. The page sources are being corrected too; this is the safety net. Nothing removed; no data-ms-* element touched. */
+(function(){
+var HELLO='hello@thatlayover.life';
+var RE=/\b(?!hello@)[A-Za-z0-9._%+-]+@thatlayover\.life\b/gi;
+function fix(root){
+  [].forEach.call((root||document).querySelectorAll('a[href^="mailto:"]'),function(a){var h=a.getAttribute('href');var n=h.replace(/^mailto:[^?]*/i,function(m){return /@thatlayover\.life$/i.test(m)&&!/^mailto:hello@/i.test(m)?'mailto:'+HELLO:m;});if(n!==h)a.setAttribute('href',n);});
+  var w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT),t;
+  while(t=w.nextNode()){if(t.nodeValue.indexOf('@thatlayover.life')>-1){var v=t.nodeValue.replace(RE,HELLO);if(v!==t.nodeValue)t.nodeValue=v;}}
+  [].forEach.call((root||document).querySelectorAll('input[placeholder*="@thatlayover.life"],[aria-label*="@thatlayover.life"]'),function(el){['placeholder','aria-label'].forEach(function(k){var v=el.getAttribute(k);if(v)el.setAttribute(k,v.replace(RE,HELLO));});});
+}
+function run(){if(!document.body)return;fix(document.body);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+setTimeout(run,1200);setTimeout(run,3000);
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
