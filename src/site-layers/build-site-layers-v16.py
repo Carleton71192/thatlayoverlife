@@ -44,7 +44,9 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-expert-from-v1.js', '29 Oct tester Roberta: Location Expert form asks where you are from'),
            ('src/site-layers/tll-submit-gallery-v1.js', '29 Oct tester Roberta: /submit gallery keeps every photo picked, plain autosave line'),
            ('src/site-layers/tll-submit-long-v1.js', '29 Oct Nancy: long stories arrive in full (body-part-1..12)'),
-           ('src/site-layers/tll-photos-form-v2.js', '29 Oct Nancy: /share-photos takes 30 photos and PNG')]
+           ('src/site-layers/tll-photos-form-v2.js', '29 Oct Nancy: /share-photos takes 30 photos and PNG'),
+           ('src/site-layers/tll-ep-linkstack-v1.js', '29 Oct Nancy: More links editor on /edit-profile'),
+           ('src/site-layers/tll-pf-linkstack-v1.js', '29 Oct Nancy: More links on public profiles')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()

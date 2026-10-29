@@ -38,6 +38,8 @@
    script src/site-layers/tll-submit-gallery-v1.js (29 Oct tester Roberta: /submit gallery keeps every photo picked, plain autosave line)
    script src/site-layers/tll-submit-long-v1.js (29 Oct Nancy: long stories arrive in full (body-part-1..12))
    script src/site-layers/tll-photos-form-v2.js (29 Oct Nancy: /share-photos takes 30 photos and PNG)
+   script src/site-layers/tll-ep-linkstack-v1.js (29 Oct Nancy: More links editor on /edit-profile)
+   script src/site-layers/tll-pf-linkstack-v1.js (29 Oct Nancy: More links on public profiles)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -1623,6 +1625,106 @@ setTimeout(hints,1500);
   }
 
   if(d.readyState==='loading') d.addEventListener('DOMContentLoaded',run); else run();
+})();
+
+/* tll-ep-linkstack-v1 (29 Oct 2026, Nancy: Linktree-style links on profiles, "Yes please" to the list including the paid ones).
+   /edit-profile gets a "More links" block under Shop and partners: up to 12 links, each a type, a label and a link. Saved inside the
+   existing partners value as partners.stack (the Contributors collection is at Webflow's 60-field limit), through the editor's own
+   save (window.TLLEP.set), so it travels like every other profile field. The Shop and partners inputs rebuild partners without the
+   stack, so their saves are merged here to keep it. Nothing removed; no data-ms-* element touched. */
+(function(){
+if(!/^\/edit-profile\/?$/.test(location.pathname))return;
+var TYPES=[['web','Web link','https://'],['pdf','PDF (menu, resume, schedule)','Link to the PDF file'],['youtube','YouTube video','https://youtu.be/...'],['x','X post','https://x.com/you/status/...'],['tiktok','TikTok','https://www.tiktok.com/@you/video/...'],['twitch','Twitch channel','https://twitch.tv/you'],['music','Music (Spotify, Apple Music)','Song, album or playlist link'],['presave','Music pre-save','Your pre-save page'],['podcast','Podcast','Spotify or Apple Podcasts link'],['book','Book','Where your book is sold'],['shop','Shop or affiliate product','Product or store link'],['digital','Digital product','Where it is sold'],['course','Course','Course page'],['tips','Tips','Ko-fi, Buy Me a Coffee, PayPal...'],['booking','Booking (Calendly and others)','https://calendly.com/you'],['contact','Contact card','Email to include (optional)']];
+var MAX=12,PAID={shop:'AFFILIATE',digital:'PAID',course:'PAID',tips:'TIPS'};
+var CSS='.tll-ls{margin:22px 0 0;padding:18px 0 0;border-top:1px solid #E0DACE}.tll-ls h3{margin:0 0 4px;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79}'+
+'.tll-ls p{margin:0 0 12px;font:400 13px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#5F5A54}.tll-ls-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.4fr) auto;gap:8px;align-items:center;margin:0 0 8px}'+
+'.tll-ls-row select,.tll-ls-row input{width:100%;min-height:44px;padding:8px 10px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;color:#0A0B14;font:400 15px/1.3 "IBM Plex Sans Condensed",system-ui,sans-serif}'+
+'.tll-ls-row button,.tll-ls-add{min-height:44px;padding:0 12px;border:0;background:transparent;color:#C8325B;font:600 13px/1 "IBM Plex Sans Condensed",system-ui,sans-serif;cursor:pointer}.tll-ls-add{padding:0;border-bottom:1px solid #C8325B;min-height:32px}'+
+'.tll-ls-tag{grid-column:1/-1;margin:-4px 0 4px;font:400 12px/1.4 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#5F5A54}@media(max-width:640px){.tll-ls-row{grid-template-columns:1fr 1fr}.tll-ls-row button{grid-column:2;justify-self:end}.tll-ls-row input[data-k=url]{grid-column:1/-1}}';
+function E(){return window.TLLEP}
+function pt(){try{var p=JSON.parse((E()&&E().get('partners'))||'null');return p&&typeof p==='object'&&!Array.isArray(p)?p:{}}catch(e){return {}}}
+var stack=null,box,list,tm;
+function save(){var e=E();if(!e)return;var p=pt();p.stack=stack.filter(function(l){return l.t&&(l.url||l.t==='contact')});e.set('partners',JSON.stringify(p))}
+function later(){clearTimeout(tm);tm=setTimeout(save,600)}
+function row(l,i){var r=document.createElement('div');r.className='tll-ls-row';
+  var s=document.createElement('select');s.setAttribute('aria-label','Link type');TYPES.forEach(function(t){var o=document.createElement('option');o.value=t[0];o.textContent=t[1];s.appendChild(o)});s.value=l.t||'web';
+  var a=document.createElement('input');a.setAttribute('data-k','label');a.maxLength=60;a.placeholder='Label people see';a.setAttribute('aria-label','Label');a.value=l.label||'';
+  var u=document.createElement('input');u.setAttribute('data-k','url');u.setAttribute('aria-label','Link');u.value=l.url||'';
+  var x=document.createElement('button');x.type='button';x.textContent='Remove';x.setAttribute('aria-label','Remove this link');
+  var tag=document.createElement('div');tag.className='tll-ls-tag';
+  function hint(){var t=TYPES.filter(function(z){return z[0]===s.value})[0];u.placeholder=t?t[2]:'https://';u.type=s.value==='contact'?'email':'url';tag.textContent=PAID[s.value]?'Shown with a '+PAID[s.value]+' tag, so readers know.':'';tag.hidden=!tag.textContent}
+  s.onchange=function(){l.t=s.value;hint();later()};a.oninput=function(){l.label=a.value;later()};u.oninput=function(){l.url=u.value.trim();later()};
+  x.onclick=function(){stack.splice(stack.indexOf(l),1);paint();save()};
+  hint();[s,a,u,x,tag].forEach(function(n){r.appendChild(n)});return r}
+function paint(){list.innerHTML='';stack.forEach(function(l,i){list.appendChild(row(l,i))});add.hidden=stack.length>=MAX}
+var add;
+function build(){
+  var e=E();if(!e||!e.set||document.querySelector('.tll-ls'))return !!document.querySelector('.tll-ls');
+  var u2=document.querySelector('[data-ep-pt="u2"]'),op=document.querySelector('[data-ep-pt-open]');if(!u2)return false;
+  var host=u2;while(host.parentElement&&!(op?host.parentElement.contains(op):false))host=host.parentElement;
+  var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+  box=document.createElement('div');box.className='tll-ls';box.innerHTML='<h3>More links</h3><p>Up to 12. A web page, a PDF, a video, music, a podcast, a book, a booking page, something you sell or a tip jar. Videos, music, posts and bookings open right on your page when a reader taps them.</p>';
+  list=document.createElement('div');box.appendChild(list);
+  add=document.createElement('button');add.type='button';add.className='tll-ls-add';add.textContent='+ Add a link';
+  add.onclick=function(){if(stack.length>=MAX)return;stack.push({t:'web',label:'',url:''});paint();var r=list.lastChild;if(r)r.querySelector('input').focus()};
+  box.appendChild(add);
+  (host.parentElement?host:u2).insertAdjacentElement('afterend',box);
+  stack=(pt().stack||[]).slice(0,MAX);paint();
+  /* keep the stack when the Shop and partners inputs save partners without it */
+  var set=e.set;e.set=function(k,v){if(k==='partners'&&stack){try{var p=JSON.parse(v||'{}');if(p&&typeof p==='object'&&!p.stack&&stack.length){p.stack=stack.filter(function(l){return l.t&&(l.url||l.t==='contact')});v=JSON.stringify(p)}}catch(err){}}return set.apply(this,arguments.length>1?[k,v].concat([].slice.call(arguments,2)):[k,v])};
+  return true}
+var n=0;(function tick(){if(!build()&&++n<40)setTimeout(tick,250)})();
+})();
+
+/* tll-pf-linkstack-v1 (29 Oct 2026). Public profile (/contributors/{slug}): shows the member's "More links" (partners.stack, set on
+   /edit-profile) under their link buttons. Plain links are buttons. YouTube, X posts, TikTok videos, Twitch, Spotify, Apple Music,
+   Apple Podcasts and Calendly show as a card that loads the player only when tapped, so no outside service loads until the reader
+   asks. Shop, digital products, courses and tips carry an AFFILIATE, PAID or TIPS tag and rel="sponsored". The contact card saves a
+   .vcf with the member's name, profile link and the email they chose to share. Never touches data-ms-* elements. */
+(function(){
+if(!/^\/contributors\/[^/]+\/?$/.test(location.pathname))return;
+var TAG={shop:'AFFILIATE',digital:'PAID',course:'PAID',tips:'TIPS'},WORD={web:'Link',pdf:'PDF',book:'Book',presave:'Pre-save',booking:'Book a time',contact:'Contact'};
+var CSS='.tll-lsp{display:grid;gap:10px;width:100%;flex-basis:100%;margin:14px 0 0}.tll-lsp-h{margin:0;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;color:#067A79}'+
+'.tll-lsp-btns{display:flex;flex-wrap:wrap;gap:8px}.tll-lsp-card{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 14px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;color:#0A0B14;font:600 15px/1.3 "IBM Plex Sans Condensed",system-ui,sans-serif;text-align:left;cursor:pointer}'+
+'.tll-lsp-card span{display:block;font:500 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1px;color:#5F5A54;text-transform:uppercase}.tll-lsp-card b{flex:none;width:34px;height:34px;border-radius:50%;background:#C8325B;color:#fff;display:grid;place-items:center;font-size:13px}'+
+'.tll-lsp-frame{width:100%;border:0;border-radius:4px;background:#F7F1E8}@media(hover:hover){.tll-lsp-card:hover{border-color:#C8325B}}.tll-lsp-card:focus-visible{outline:3px solid #0A0B14;outline-offset:2px}';
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function safe(u){u=String(u||'').trim();return /^https:\/\/\S+$/i.test(u)?u:''}
+function embed(l){var u=safe(l.url),m;if(!u)return null;var host=location.hostname;
+  if(l.t==='youtube'&&(m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{6,})/)))return {src:'https://www.youtube-nocookie.com/embed/'+m[1],h:'56.25%',name:'YouTube'};
+  if(l.t==='x'&&(m=u.match(/(?:x|twitter)\.com\/[^/]+\/status\/(\d+)/)))return {src:'https://platform.twitter.com/embed/Tweet.html?id='+m[1]+'&dnt=true',px:560,name:'X'};
+  if(l.t==='tiktok'&&(m=u.match(/tiktok\.com\/.*\/video\/(\d+)/)))return {src:'https://www.tiktok.com/embed/v2/'+m[1],px:740,name:'TikTok'};
+  if(l.t==='twitch'&&(m=u.match(/twitch\.tv\/([\w]+)\/?$/)))return {src:'https://player.twitch.tv/?channel='+m[1]+'&parent='+host+'&autoplay=false',h:'56.25%',name:'Twitch'};
+  if((l.t==='music'||l.t==='podcast')&&(m=u.match(/open\.spotify\.com\/(?:intl-\w+\/)?(track|album|playlist|episode|show|artist)\/(\w+)/)))return {src:'https://open.spotify.com/embed/'+m[1]+'/'+m[2],px:(m[1]==='track'||m[1]==='episode')?152:352,name:'Spotify'};
+  if(l.t==='music'&&/^https:\/\/music\.apple\.com\//.test(u))return {src:u.replace('https://music.apple.com/','https://embed.music.apple.com/'),px:/[?&]i=/.test(u)?175:450,name:'Apple Music'};
+  if(l.t==='podcast'&&/^https:\/\/podcasts\.apple\.com\//.test(u))return {src:u.replace('https://podcasts.apple.com/','https://embed.podcasts.apple.com/'),px:/[?&]i=/.test(u)?175:450,name:'Apple Podcasts'};
+  if(l.t==='booking'&&/^https:\/\/calendly\.com\//.test(u))return {src:u+(u.indexOf('?')>-1?'&':'?')+'embed_type=Inline&hide_gdpr_banner=1&embed_domain='+host,px:700,name:'Calendly'};
+  return null}
+function vcf(l){var name=((document.querySelector('h1')||{}).textContent||'').trim(),em=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(l.url||'')?l.url:'';
+  var t=['BEGIN:VCARD','VERSION:3.0','FN:'+name.replace(/[\r\n;,]/g,' '),'URL:'+location.origin+location.pathname].concat(em?['EMAIL:'+em]:[]).concat(['END:VCARD']).join('\r\n');
+  var a=el('a','pf5-btn pf5-btn-line',l.label||'Save my contact');a.href=URL.createObjectURL(new Blob([t],{type:'text/vcard'}));a.download=(name||'contact').replace(/[^\w]+/g,'-')+'.vcf';return a}
+function run(){
+  var root=document.querySelector('[data-pf5="root"]');if(!root||document.querySelector('.tll-lsp'))return;
+  var P;try{P=JSON.parse(root.getAttribute('data-partners')||'null')}catch(e){P=null}
+  var S=P&&Array.isArray(P.stack)?P.stack.slice(0,12):[];if(!S.length)return;
+  var st=el('style');st.textContent=CSS;document.head.appendChild(st);
+  var w=el('div','tll-lsp');w.appendChild(el('p','tll-lsp-h','MORE LINKS'));var btns=el('div','tll-lsp-btns'),cards=el('div','tll-lsp');cards.style.margin='0';
+  S.forEach(function(l){if(!l||!l.t)return;
+    if(l.t==='contact'){btns.appendChild(vcf(l));return}
+    var u=safe(l.url);if(!u)return;var em=embed(l);
+    if(em){var c=el('button','tll-lsp-card');c.type='button';c.appendChild(el('b',null,'▶'));var tx=el('div',null,l.label||em.name);tx.appendChild(el('span',null,em.name+' · tap to load'));c.appendChild(tx);
+      c.onclick=function(){var f=el('iframe','tll-lsp-frame');f.src=em.src;f.title=(l.label||em.name);f.loading='lazy';f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';f.setAttribute('allowfullscreen','');
+        if(em.h){var bx=el('div');bx.style.cssText='position:relative;width:100%;padding-top:'+em.h;f.style.cssText='position:absolute;inset:0;height:100%';bx.appendChild(f);c.replaceWith(bx)}else{f.style.height=em.px+'px';c.replaceWith(f)}};
+      cards.appendChild(c);return}
+    var a=el('a','pf5-btn pf5-btn-line',l.label||WORD[l.t]||'Link');a.href=u;a.target='_blank';a.rel=TAG[l.t]?'sponsored noopener':'noopener';
+    if(TAG[l.t]){var tg=el('span','pf5-tag',TAG[l.t]);a.appendChild(tg)}
+    if(l.t==='pdf'){var p=el('span','pf5-tag','PDF');a.appendChild(p)}
+    var s=el('span',null,'↗');s.setAttribute('aria-hidden','true');a.appendChild(s);btns.appendChild(a)});
+  if(btns.childNodes.length)w.appendChild(btns);if(cards.childNodes.length)w.appendChild(cards);
+  var B=document.querySelector('[data-pf5="buttons"]');if(B)B.insertAdjacentElement('afterend',w);else root.appendChild(w);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,50)});else setTimeout(run,50);
+setTimeout(run,1500);
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;

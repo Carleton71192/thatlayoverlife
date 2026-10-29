@@ -82,6 +82,11 @@ export const FIELD_MAP = Object.freeze({
 /** The ten platform keys links-shown may hold, in display order. */
 export const LINK_KEYS = Object.freeze(['instagram', 'youtube', 'website', 'tiktok', 'substack', 'strava', 'alltrails', 'komoot', 'garmin', 'beli']);
 
+/** Link stack types a member may add on /edit-profile (29 Oct 2026). */
+export const STACK_TYPES = Object.freeze(['web', 'pdf', 'youtube', 'x', 'tiktok', 'twitch', 'music', 'presave', 'podcast', 'book',
+  'shop', 'digital', 'course', 'tips', 'booking', 'contact']);
+export const STACK_MAX = 12;
+
 /** N7: what a creator can say they make. */
 export const MAKES = Object.freeze(['photos', 'video', 'words', 'sound', 'other']);
 /** N4: the Bio limit the editor counts to. */
@@ -220,8 +225,17 @@ export function coerce(slug, raw) {
       .map((l) => ({ name: String(l?.name || '').replace(/\s+/g, ' ').trim().slice(0, 40), url: url(l?.url) }))
       .filter((l) => l.name && l.url);
     const open = switchValue(value.open) === true;
-    if (!store && !links.length && !open) return null;
-    return JSON.stringify({ store, links, open });
+    // Link stack (29 Oct 2026): up to 12 typed links {t, label, url}, shown as buttons or click-to-load players on the public page.
+    const stack = (Array.isArray(value.stack) ? value.stack : [])
+      .map((l) => ({
+        t: String(l?.t || '').toLowerCase(),
+        label: String(l?.label || '').replace(/\s+/g, ' ').trim().slice(0, 60),
+        url: l?.t === 'contact' ? String(l?.url || '').trim().slice(0, 120) : url(l?.url),
+      }))
+      .filter((l) => STACK_TYPES.includes(l.t) && (l.t === 'contact' || /^https:\/\//i.test(l.url)))
+      .slice(0, STACK_MAX);
+    if (!store && !links.length && !open && !stack.length) return null;
+    return JSON.stringify(stack.length ? { store, links, open, stack } : { store, links, open });
   }
   if (slug === 'bio-long') {
     if (text === '') return null;
