@@ -10,7 +10,7 @@ const GAL = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/design/magazine-2026
 const face = (fam, style, w, file) => `@font-face{font-family:'${fam}';font-style:${style};font-weight:${w};src:url(http://tll.test/fonts/${file}.woff2) format('woff2')}`;
 const FONTCSS = [face('Newsreader', 'normal', '200 800', 'newsreader-latin-wght-normal'), face('Newsreader', 'italic', '200 800', 'newsreader-latin-wght-italic'), face('Inter Tight', 'normal', '100 900', 'inter-tight-latin-wght-normal'), face('JetBrains Mono', 'normal', 400, 'jetbrains-mono-latin-400-normal'), face('JetBrains Mono', 'normal', 600, 'jetbrains-mono-latin-600-normal')].join('');
 const b = await chromium.launch(); const errs = [];
-for (const [tag, bundle] of [['before', 'src/site-layers/tll-site-layers-v14.js'], ['after', 'src/site-layers/tll-site-layers-v15.js']])
+for (const [tag, bundle] of [['before', 'src/site-layers/tll-site-layers-v14.js'], ['after', process.env.AFTER || 'src/site-layers/tll-site-layers-v15.js']])
 for (const w of [390, 1440]) {
   const html = base.replace('<!--LAYER-->', '<script>' + fs.readFileSync(path.join(ROOT, bundle), 'utf8') + '</script>');
   const p = await b.newPage({ viewport: { width: w, height: 900 }, deviceScaleFactor: 2 }); p.on('pageerror', e => errs.push(w + ': ' + e.message));

@@ -8,7 +8,7 @@ const imgMap = Object.fromEntries(fs.readFileSync(path.join(ROOT, 'src/pages/hom
 const face = (fam, style, w, file) => `@font-face{font-family:'${fam}';font-style:${style};font-weight:${w};src:url(http://tll.test/fonts/${file}.woff2) format('woff2')}`;
 const FONTCSS = [face('Playfair Display', 'normal', 800, 'playfair-display-latin-800-normal'), face('Playfair Display', 'italic', 800, 'playfair-display-latin-800-italic'), face('JetBrains Mono', 'normal', 400, 'jetbrains-mono-latin-400-normal'), face('JetBrains Mono', 'normal', 600, 'jetbrains-mono-latin-600-normal'), face('Newsreader', 'normal', '200 800', 'newsreader-latin-wght-normal'), face('Newsreader', 'italic', '200 800', 'newsreader-latin-wght-italic'), face('Inter Tight', 'normal', '100 900', 'inter-tight-latin-wght-normal'), face('Inter Tight', 'italic', '100 900', 'inter-tight-latin-wght-italic'), face('IBM Plex Sans Condensed', 'normal', 400, 'ibm-plex-sans-condensed-latin-400-normal')].join('');
 const b = await chromium.launch();
-for (const [tag, bundle] of [['before', 'src/site-layers/tll-site-layers-v14.js'], ['after', 'src/site-layers/tll-site-layers-v15.js']])
+for (const [tag, bundle] of [['before', 'src/site-layers/tll-site-layers-v14.js'], ['after', process.env.AFTER || 'src/site-layers/tll-site-layers-v15.js']])
 for (const [w, h] of [[390, 844], [1440, 900]]) for (const mode of ['cover']) {
   const html = base.replace('<!--BUNDLE-->', '<script>' + fs.readFileSync(path.join(ROOT, bundle), 'utf8') + '</script>');
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
