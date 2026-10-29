@@ -1,0 +1,13 @@
+import { createRequire } from 'module'; const { chromium } = createRequire(import.meta.url)('playwright');
+import fs from 'fs'; import path from 'path'; import url from 'url';
+const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
+const layer = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-byline-links-v1.js'), 'utf8');
+const card = (n) => `<div><a class="tll-lib-card" href="/stories/x"><h2>Story</h2><div class="tll-lib-byline"><img class="tll-lib-byline-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><div class="tll-lib-byline-name">${n}</div></div><div class="tll-lib-read">Read</div></a></div>`;
+const html = `<!doctype html><html><head><script>${layer}</script></head><body>${card('Nancy Carleton')}${card('Zain M')}</body></html>`;
+const b = await chromium.launch(); const p = await b.newPage(); const seen = []; p.on('pageerror', e => console.log('ERR', e.message));
+await p.route('**/*', r => { seen.push(new URL(r.request().url()).pathname); return r.fulfill({ body: r.request().url().endsWith('/stories') ? html : 'ok', contentType: 'text/html; ' }); });
+await p.goto('http://tll.test/stories'); await p.waitForTimeout(300);
+await p.click('text=Zain M'); await p.waitForLoadState(); const a = new URL(p.url()).pathname;
+await p.goto('http://tll.test/stories'); await p.waitForTimeout(300); await p.click('h2 >> nth=0'); const b2 = new URL(p.url()).pathname;
+await p.goto('http://tll.test/stories'); await p.waitForTimeout(300); console.log('n', await p.locator('[data-tll-bl]').count(), new URL(p.url()).pathname); await p.locator('.tll-lib-byline-name').nth(0).focus(); await p.keyboard.press('Enter'); await p.waitForLoadState(); const c = new URL(p.url()).pathname;
+console.log({ nameClick: a, titleClick: b2, keyboard: c }); await b.close();

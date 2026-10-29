@@ -28,6 +28,8 @@
    script src/site-layers/tll-stories-places-v1.js (29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line)
    script src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    script src/site-layers/tll-linkout-preview-v1.js (29 Oct Nancy: /submit link-out form previews the article and sends its share photo (photos only, never ads) once the Worker route is live)
+   script src/site-layers/tll-byline-links-v1.js (29 Oct Nancy: story card writer name and photo open the writer page)
+   script src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -972,6 +974,52 @@ function run(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 setTimeout(run,1500);
+})();
+
+/* tll-byline-links-v1 (29 Oct 2026, Nancy on /stories: "When I click the user names here it does not take me to their profile").
+   Each story card is one link to the story, so the writer's name and photo inside it went to the story too (a link cannot sit
+   inside a link). The name and the small photo in a card byline (.tll-lib-byline-name, .tll-lib-byline-img) now open the writer's
+   page, /contributors/{slug}, where the slug is the writer's name the way Webflow makes slugs (Nancy Carleton -> nancy-carleton).
+   They act as links for mouse, touch and keyboard (role=link, Enter). Every other part of the card still opens the story.
+   Nothing removed; no data-ms-* element touched. */
+(function(){
+function slug(name){return String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+var CSS=".tll-lib-byline-name[data-tll-bl]{cursor:pointer;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}"+
+".tll-lib-byline-name[data-tll-bl]:hover{color:#C8325B!important}"+
+".tll-lib-byline-name[data-tll-bl]:focus-visible,.tll-lib-byline-img[data-tll-bl]:focus-visible{outline:3px solid #C8325B;outline-offset:2px;border-radius:2px}"+
+".tll-lib-byline-img[data-tll-bl]{cursor:pointer}";
+function hrefFor(card){var n=card.querySelector('.tll-lib-byline-name');var s=slug(n&&n.textContent.trim());return s?'/contributors/'+s:'';}
+function wire(){
+  var names=document.querySelectorAll('.tll-lib-byline-name:not([data-tll-bl])');if(!names.length)return;
+  if(!document.getElementById('tll-byline-links-v1')){var st=document.createElement('style');st.id='tll-byline-links-v1';st.textContent=CSS;(document.body||document.head).appendChild(st);}
+  [].forEach.call(names,function(n){
+    var card=n.closest('.tll-lib-byline')||n.parentElement;var href=hrefFor(card);if(!href)return;
+    [n,card.querySelector('.tll-lib-byline-img')].forEach(function(el){if(!el||el.getAttribute('data-tll-bl'))return;
+      el.setAttribute('data-tll-bl',href);el.setAttribute('role','link');el.setAttribute('tabindex','0');
+      if(el===n)el.setAttribute('aria-label',n.textContent.trim()+', writer page');else el.setAttribute('aria-hidden','true');});
+  });
+}
+function go(e){var t=e.target.closest&&e.target.closest('[data-tll-bl]');if(!t)return;
+  if(e.type==='keydown'&&e.key!=='Enter')return;
+  e.preventDefault();e.stopPropagation();
+  var href=t.getAttribute('data-tll-bl');if(e.metaKey||e.ctrlKey)window.open(href,'_blank','noopener');else location.href=href;}
+document.addEventListener('click',go,true);document.addEventListener('keydown',go,true);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
+setTimeout(wire,800);setTimeout(wire,2000);
+})();
+
+/* tll-mbar-align-v1 (29 Oct 2026, Nancy on /account: "The overview, profile... etc seems too left aligned and not consistent with the
+   design"). The member bar (OVERVIEW PROFILE MAP PETS CONTRIBUTIONS SETTINGS, nav.tll-mbar on /account, /edit-profile, /the-map and
+   /my-pets) ran from the very left edge of the window while the page content sits in a centered column. The bar keeps its full-width
+   rule, and its links now start where the content column starts (the site's 1208 px column, 24 px gutters on small screens). The
+   current page line is the light-background rose #C8325B. Same element and links; nothing removed; no data-ms-* element touched. */
+(function(){
+var CSS="html body nav.tll-mbar{box-sizing:border-box;width:100%;padding-left:max(24px,calc((100% - 1208px) / 2 + 12px))!important;padding-right:max(24px,calc((100% - 1208px) / 2 + 12px))!important;column-gap:28px}"+
+"html body nav.tll-mbar a[aria-current=\"page\"]{border-bottom-color:#C8325B}"+
+"html body nav.tll-mbar a:focus-visible{outline-color:#C8325B}"+
+"@media (max-width:767px){html body nav.tll-mbar{padding-left:24px!important;padding-right:24px!important;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;column-gap:22px}html body nav.tll-mbar::-webkit-scrollbar{display:none}html body nav.tll-mbar a{flex:0 0 auto}}";
+function add(){if(document.getElementById('tll-mbar-align-v1'))return;var s=document.createElement('style');s.id='tll-mbar-align-v1';s.textContent=CSS;(document.head||document.documentElement).appendChild(s);}
+add();
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
