@@ -38,7 +38,8 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-byline-links-v1.js', '29 Oct Nancy: story card writer name and photo open the writer page'),
            ('src/site-layers/tll-mbar-align-v1.js', '29 Oct Nancy: member bar links line up with the page column'),
            ('src/site-layers/tll-story-fixes-1029-v1.js', '29 Oct Nancy: US flag for US state labels; related heading Other stories from this frequent traveler'),
-           ('src/site-layers/tll-email-hello-v1.js', '29 Oct Nancy: every site email address shows and links to hello@thatlayover.life')]
+           ('src/site-layers/tll-email-hello-v1.js', '29 Oct Nancy: every site email address shows and links to hello@thatlayover.life'),
+           ('src/site-layers/tll-ep-marks-v1.js', '29 Oct tester Mariam: /edit-profile field marks say saved to your account when only the public page update failed')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()
