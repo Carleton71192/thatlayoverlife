@@ -12,3 +12,4 @@
 - Captions and choosing where each photo sits in the story: needs the v5 editor (inline photos) plus the Worker.
 - "An expats map, showing where all the expats currently live": conflicts with the rule never to expose a member's current whereabouts. If built, it should show only cities that expats chose to list as their Location Expert desk (opt in), at city level, never a live location.
 - Her Pompeii story is in Webflow Forms; her extra photos went to Nancy on Upwork.
+- Long stories (29 Oct): Webflow keeps only about 5,000 characters per form field. /submit now also sends the full body in hidden fields body-part-1 to body-part-12 (3,500 characters each, cut at a space) when the story is longer than 3,500 characters. Whoever builds the story from Webflow Forms joins the body-part fields in order; the body field alone may be cut off.
