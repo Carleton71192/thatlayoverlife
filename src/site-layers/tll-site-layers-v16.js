@@ -826,7 +826,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched. */
 (function(){
 if(!/^\/stories\/?$/.test(location.pathname))return;
-var ORDER=['all','Europe','Asia','Middle East','Africa','Americas','Oceania','Antarctica'];
+var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania']; /* alphabetical after All places (Nancy, 29 Oct) */
 function words(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;
   while(t=w.nextNode()){if(t.nodeValue.indexOf('story on the shelf')>-1)t.nodeValue=t.nodeValue.replace('story on the shelf','story in the library');}}
 function chips(){
@@ -839,7 +839,7 @@ function chips(){
   var added=[];
   ORDER.forEach(function(p){if(have[p])return;var c=model.cloneNode(true);c.setAttribute('data-tll-place',p);c.textContent=p;
     c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');have[p]=c;added.push(c);});
-  /* place every chip in map order, after the label */
+  /* place every chip in alphabetical order, after the label */
   ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});
   if(!wired||!grid)return;
   /* fallback when the page script ran first: filter the same way it does */
