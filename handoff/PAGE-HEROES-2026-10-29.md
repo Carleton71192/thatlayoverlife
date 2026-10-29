@@ -34,3 +34,23 @@ src/pages/heroes-2026-10-29/compare/: one image per page, with before and after 
 - Ghana photo: the children's faces can be recognized. It is already on the home rail, but it can be swapped for Fitz Roy if you prefer.
 - The story covers are a fixed list. When a new story should lead, the list in src/site-layers/tll-page-heroes-v1.js changes.
 - Another session wrote a cover-flash fix (handoff/CHANGE-LOG-HOME-COVER-FLASH-2026-10-29.md, F1) and planned to call it v15. That name is now taken by this bundle, so F1 should be built as v16 on top of v15, or folded into v15 before publish if you approve it.
+
+## Update, 29 October 2026 about 10:20 UTC: v16 staged in place of v15 (still NOT published)
+Nancy agreed to practices 1, 3 and 7 of handoff/CONTRIBUTOR-GROWTH-STORM-2026-10-29.md: no open slots, one action tile, stories first, and an exact-label ask at the end of a story.
+
+| # | Where | Change |
+|---|---|---|
+| T1 | Home, "The people who went" (bundle, cover layer) | "Your face could be here. Window or aisle?" becomes "Pitch your layover." / "We edit lightly and keep your byline." to /submit. |
+| T2 | Home, "The first 100" founders strip (embed a0d1cd97, written and read back) | "Open slot · Founding 04 / Your face could be here" becomes "Write for TLL / Pitch your layover → / We edit lightly and keep your byline." to /submit (was /signup). Copies: src/pages/home/live-2026-10-29/. |
+| T3 | /spotlight (bundle, tll-open-slots-v1.js) | The two "COMING SOON · Spotlight slot … Could be you" cards are hidden; "OPEN SLOT · Your name here." becomes one "Write for TLL / Pitch your layover." tile with a "Pitch a layover story →" button. Works whichever script runs first. |
+| T4 | /for-expats directory heading (Designer text) | "The experts so far. Plenty of room." becomes "The experts so far." |
+| A1 | Every story page (bundle, tll-story-ask-v1.js) | After the share row: "WRITE FOR TLL · Went somewhere worth telling? Pitch a layover story → or send one photo." No pop-up. |
+
+- The /travelers open-slot cards and the old persona roster are already hidden on the live page, so they are unchanged.
+- **v16:** the other session built F1, the home cover-flash fix that Nancy approved, as v16 on top of v15 (commit 48d6522). I added the 15.1.0 parts (T1, T3 and A1) to its builder, so one bundle holds everything.
+  - Pin: e473ed7cdbc70d398faf68c4765456a213c6154e.
+  - SRI: sha384-zr95ETvAqnN2Y9AVQFPqq+IOdPEpcZNtNzor7I7wMZq5tIYjpgV+bzZnljs5zdJD.
+  - Still 15 scripts.
+  - The five pages render identically under v16 and v15.
+- Pictures: compare/asks-and-tiles.png.
+- **Flag, not changed:** /spotlight still leads with "★ TRAVELER OF THE WEEK · Nancy Carleton". Since members come first, Chesney or Barzy may be the better feature.

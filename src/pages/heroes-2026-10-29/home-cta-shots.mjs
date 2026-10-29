@@ -10,7 +10,7 @@ const FONTCSS = [face('Playfair Display', 'normal', 800, 'playfair-display-latin
 const b = await chromium.launch();
 for (const [tag, bundle] of [['before', 'src/site-layers/tll-site-layers-v14.js'], ['after', process.env.AFTER || 'src/site-layers/tll-site-layers-v15.js']])
 for (const [w, h] of [[390, 844], [1440, 900]]) for (const mode of ['cover']) {
-  const html = base.replace('<!--BUNDLE-->', '<script>' + fs.readFileSync(path.join(ROOT, bundle), 'utf8') + '</script>');
+  const html = (tag === 'after' ? base.replace('<li class="h3-fd h3-fd-open"><b>Open slot · Founding 04</b><a href="/signup">Your face could be here. Window or aisle?</a></li>', '<li class="h3-fd h3-fd-open"><b>Write for TLL</b><a href="/submit">Pitch your layover →</a><span>We edit lightly and keep your byline.</span></li>') : base).replace('<!--BUNDLE-->', '<script>' + fs.readFileSync(path.join(ROOT, bundle), 'utf8') + '</script>');
   const p = await b.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 2 });
   await p.addInitScript(() => { Math.random = () => 0.42; });
   await p.route('**/*', r => { const u = r.request().url();
@@ -24,6 +24,7 @@ for (const [w, h] of [[390, 844], [1440, 900]]) for (const mode of ['cover']) {
     return r.abort(); });
   await p.goto(mode === 'cover' ? 'http://tll.test/' : 'http://tll.test/home-without-cover').catch(() => {}); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(1500);
   await p.screenshot({ path: path.join(OUT, `${tag}-home-${w}.png`) });
+  for (const [sel, nm] of [['.tll-mg-people', 'people'], ['.h3-founders', 'founders']]) { const el = await p.$(sel); if (!el) { console.log('missing', sel); continue; } await el.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); const bb = await el.boundingBox(); await p.screenshot({ path: path.join(OUT, `${tag}-home-${nm}-${w}.png`), clip: { x: 0, y: Math.max(0, bb.y - 40), width: w, height: Math.min(bb.height + 80, 900) } }); }
   console.log(tag, w, await p.evaluate(() => Array.from(document.querySelectorAll('[data-h3-hero] .h3-hero-cta a')).map(a => [a.textContent, a.getAttribute('href'), getComputedStyle(a).display])));
   await p.close();
 }
