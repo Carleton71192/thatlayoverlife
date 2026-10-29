@@ -13,6 +13,8 @@
 //   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
 //                                       for the site owner only, also the sanitized tllStates
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
+//   POST /translate                     { itemId, target }: a labeled machine translation of a PUBLISHED story for one
+//                                       reader; the original is never changed (translate.js, multilingual Phase 1)
 //   GET /link-preview?url=              a submitted article's own share photo, title and description for the
 //                                       /submit link-out form; photos only, never ads (link-preview.js)
 // The member routes and the member webhook answer CORS preflights for the site's
@@ -30,6 +32,7 @@ import { handleMapSnapshot } from './map-snapshot.js';
 import { memberCors, withHeaders } from './member-auth.js';
 import { handleOwnerMap, ownerMapCors } from './owner-map.js';
 import { handleLinkPreview, linkPreviewCors } from './link-preview.js';
+import { handleTranslate, translateCors } from './translate.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -110,6 +113,18 @@ export default {
         });
       }
       return handleOwnerMap(request, env);
+    }
+
+    if (url.pathname === '/translate') {
+      const cors = translateCors(request);
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (request.method !== 'POST') {
+        return new Response(JSON.stringify({ ok: false, code: 'method-not-allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', ...cors },
+        });
+      }
+      return handleTranslate(request, env);
     }
 
     if (url.pathname === '/link-preview') {
