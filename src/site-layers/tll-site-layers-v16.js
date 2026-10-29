@@ -20,6 +20,8 @@
    script src/site-layers/tll-travelers-fix-v1.js (29 Oct testers: /travelers link chips as labelled pills inside the card, no empty grid cell, one action tile instead of the open slot)
    script src/site-layers/tll-ep-ux-v1.js (29 Oct testers: /edit-profile save bar at the bottom, field stays put while saving, country suggestions, photo crop)
    script src/site-layers/tll-submit-ux-v1.js (29 Oct testers: /submit toolbar buttons labelled, Subhead easy to find)
+   script src/site-layers/tll-profile-count-v1.js (29 Oct: profile STORIES stat keeps the writer own count (the head script wrote the site total))
+   script src/site-layers/tll-hover-v1.js (29 Oct Nancy: dark pink hover on light backgrounds instead of bright teal on /account)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -581,6 +583,35 @@ function hints(){[].forEach.call(document.querySelectorAll('form textarea[name],
 function looks(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/A human looks within 48 hours/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace(/A human looks within 48 hours/g,'A human reviews it within 48 hours');}}
 function all(){run();hints();looks();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
+})();
+
+/* tll-profile-count-v1 (29 Oct 2026, Nancy's profile read "52 STORIES"). The site head script tll-live-stories-v1 rewrites any number
+   that sits next to the word "stories" with the site-wide story total from the sitemap; on /contributors/{slug} that overwrote the
+   writer's own count in the stat strip. Here the strip's STORIES number is set back to the writer's own count (the profile's
+   "N STORIES · NEWEST FIRST" line, which that script does not touch) whenever it changes. Nothing removed; no data-ms-* element touched. */
+(function(){
+if(!/^\/contributors\/[^/]+\/?$/.test(location.pathname))return;
+function own(){var m=document.querySelector('[data-pf5="stories-meta"]');var n=m&&parseInt(m.textContent,10);return n>0?n:0;}
+function fix(){var n=own();if(!n)return;[].forEach.call(document.querySelectorAll('.pf5-stat-k'),function(k){if(!/^stor(y|ies)$/i.test((k.textContent||'').trim()))return;
+  var v=k.previousElementSibling;if(!v)return;var t=v.firstChild&&v.firstChild.nodeType===3?v.firstChild:null,want=String(n);
+  if(t){if(t.nodeValue.trim()!==want)t.nodeValue=want;}else if((v.textContent||'').trim()!==want)v.textContent=want;
+  var lab=n===1?'STORY':'STORIES';if((k.textContent||'').trim()!==lab)k.textContent=lab;});}
+function run(){fix();var S=document.querySelector('.pf5-stat-k');var box=S&&S.parentNode&&S.parentNode.parentNode;
+  if(box)new MutationObserver(function(){fix();}).observe(box,{subtree:true,childList:true,characterData:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+addEventListener('load',function(){fix();setTimeout(fix,1500);});
+})();
+
+/* tll-hover-v1 (29 Oct 2026, Nancy: "still having blue on hover, it is too light, maybe the dark pink?"). On light backgrounds the
+   /account profile card turned its whole text bright teal on hover, and the account pick-in cards outlined in bright teal (#00C9C8 is
+   for dark backgrounds only). Hover is now ink text with a dark pink (#C8325B) border and link line. Namespaced; nothing removed. */
+(function(){
+var CSS="html body a.tll-apc:hover,html body a.tll-apc:hover *,html body a.tll-apc:focus-visible,html body a.tll-apc:focus-visible *{color:#0A0B14!important}"+
+"html body a.tll-apc:hover,html body a.tll-apc:focus-visible{border-color:#C8325B!important}"+
+"html body a.tll-apc:hover .tll-apc-go,html body a.tll-apc:focus-visible .tll-apc-go{color:#C8325B!important;text-decoration-color:#C8325B!important}"+
+"html body .tll-account-actions-section .tll-pickin-card:hover{outline-color:#C8325B!important;border-color:#C8325B!important}";
+function add(){if(document.getElementById('tll-hover-v1'))return;var s=document.createElement('style');s.id='tll-hover-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
