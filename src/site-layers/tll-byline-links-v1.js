@@ -10,7 +10,11 @@ var CSS=".tll-lib-byline-name[data-tll-bl]{cursor:pointer;text-decoration:underl
 ".tll-lib-byline-name[data-tll-bl]:hover{color:#C8325B!important}"+
 ".tll-lib-byline-name[data-tll-bl]:focus-visible,.tll-lib-byline-img[data-tll-bl]:focus-visible{outline:3px solid #C8325B;outline-offset:2px;border-radius:2px}"+
 ".tll-lib-byline-img[data-tll-bl]{cursor:pointer}";
-function hrefFor(card){var n=card.querySelector('.tll-lib-byline-name');var s=slug(n&&n.textContent.trim());return s?'/contributors/'+s:'';}
+/* The name element can also hold the place line (data-s3-place, "Sao Paulo, Brazil"), so read only its own text. */
+function nameOf(n){if(!n)return '';var own='';[].forEach.call(n.childNodes,function(c){if(c.nodeType===3)own+=c.nodeValue;});own=own.trim();
+  if(own)return own;var c=n.cloneNode(true);[].forEach.call(c.querySelectorAll('[data-s3-place],[data-tll-place]'),function(x){x.remove();});
+  var first=c.firstElementChild;return (first?first.textContent:c.textContent).trim();}
+function hrefFor(card){var s=slug(nameOf(card.querySelector('.tll-lib-byline-name')));return s?'/contributors/'+s:'';}
 function wire(){
   var names=document.querySelectorAll('.tll-lib-byline-name:not([data-tll-bl])');if(!names.length)return;
   if(!document.getElementById('tll-byline-links-v1')){var st=document.createElement('style');st.id='tll-byline-links-v1';st.textContent=CSS;(document.body||document.head).appendChild(st);}
@@ -18,7 +22,7 @@ function wire(){
     var card=n.closest('.tll-lib-byline')||n.parentElement;var href=hrefFor(card);if(!href)return;
     [n,card.querySelector('.tll-lib-byline-img')].forEach(function(el){if(!el||el.getAttribute('data-tll-bl'))return;
       el.setAttribute('data-tll-bl',href);el.setAttribute('role','link');el.setAttribute('tabindex','0');
-      if(el===n)el.setAttribute('aria-label',n.textContent.trim()+', writer page');else el.setAttribute('aria-hidden','true');});
+      if(el===n)el.setAttribute('aria-label',nameOf(n)+', writer page');else el.setAttribute('aria-hidden','true');});
   });
 }
 function go(e){var t=e.target.closest&&e.target.closest('[data-tll-bl]');if(!t)return;

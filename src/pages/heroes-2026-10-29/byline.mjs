@@ -2,7 +2,7 @@ import { createRequire } from 'module'; const { chromium } = createRequire(impor
 import fs from 'fs'; import path from 'path'; import url from 'url';
 const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
 const layer = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-byline-links-v1.js'), 'utf8');
-const card = (n) => `<div><a class="tll-lib-card" href="/stories/x"><h2>Story</h2><div class="tll-lib-byline"><img class="tll-lib-byline-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><div class="tll-lib-byline-name">${n}</div></div><div class="tll-lib-read">Read</div></a></div>`;
+const card = (n) => `<div><a class="tll-lib-card" href="/stories/x"><h2>Story</h2><div class="tll-lib-byline"><img class="tll-lib-byline-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="><div class="tll-lib-byline-name">${n}<div data-s3-place="1">São Paulo, Brazil</div></div></div><div class="tll-lib-read">Read</div></a></div>`;
 const html = `<!doctype html><html><head><script>${layer}</script></head><body>${card('Nancy Carleton')}${card('Zain M')}</body></html>`;
 const b = await chromium.launch(); const p = await b.newPage(); const seen = []; p.on('pageerror', e => console.log('ERR', e.message));
 await p.route('**/*', r => { seen.push(new URL(r.request().url()).pathname); return r.fulfill({ body: r.request().url().endsWith('/stories') ? html : 'ok', contentType: 'text/html; ' }); });
