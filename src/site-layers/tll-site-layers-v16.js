@@ -423,6 +423,8 @@ var CSS=
 ".tll-eps-btn[hidden]{display:none!important}"+
 ".tll-eps-btn--ghost{background:transparent;color:#0A0B14!important}"+
 ".tll-eps-btn:focus-visible{outline:3px solid #C8325B;outline-offset:2px}"+
+/* preview card: "80-something +AQ" broke mid-word in a third of the card; stats now wrap as whole words */
+"html body .ep-pv-stats{display:flex!important;flex-wrap:wrap;gap:12px 22px}html body .ep-pv-stats>*{min-width:0}html body .ep-pv-stats b{white-space:nowrap;overflow-wrap:normal!important;word-break:keep-all;font-size:28px!important}"+
 "@media (max-width:520px){.tll-eps-t{font-size:13px}.tll-eps-btn{padding:0 12px;font-size:14px}.tll-eps-btn--ghost{display:none}}"+
 /* country suggestions */
 ".tll-eps-ac{position:relative}"+

@@ -1,0 +1,10 @@
+import { createRequire } from 'module'; const { chromium } = createRequire(import.meta.url)('playwright'); import fs from 'fs';
+const R='/home/user/thatlayoverlife/';const html=fs.readFileSync(R+'src/pages/edit-profile/test-2026-10-29/fixture.html','utf8').replace('<!--BUNDLE-->','<script>'+fs.readFileSync(R+'src/site-layers/tll-site-layers-v16.js','utf8')+'</script>');
+const css=f=>fs.readFileSync(R+'handoff/claude-design-source/webflow-export-2026-10-13/css/'+f);
+const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:900}});
+await p.route('**/*',r=>{const u=r.request().url();if(u.startsWith('http://tll.test/css/'))return r.fulfill({body:css(u.split('/').pop()),contentType:'text/css'});if(u==='http://tll.test/edit-profile')return r.fulfill({body:html,contentType:'text/html; charset=utf-8'});return r.abort();});
+await p.addInitScript(()=>{const member={id:'m',profileImage:'',customFields:{name:'Nancy','share-ranges':'true'}};const json={tllSnapshot:{countries:89,antarctica:true,places:90,layovers:2}};
+ window.$memberstackDom={getCurrentMember:async()=>({data:member}),getMemberJSON:async()=>({data:json}),updateMember:async()=>({}),updateMemberJSON:async()=>({}),getMemberCookie:()=>'t',onAuthChange:()=>{}};});
+await p.goto('http://tll.test/edit-profile');await p.waitForTimeout(1500);
+const st=await p.$('[data-ep-pv-stats]');console.log(await p.evaluate(()=>[...document.querySelectorAll('[data-ep-pv-stats] b')].map(b=>[b.textContent,Math.round(b.getBoundingClientRect().height)])));
+if(st){await st.screenshot({path:'/tmp/claude-0/-home-user-thatlayoverlife/16a08c1e-77ab-50a3-8cf3-b364d5e24f1b/scratchpad/pvstats.png'});}await b.close();
