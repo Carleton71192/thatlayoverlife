@@ -13,6 +13,8 @@
 //   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
 //                                       for the site owner only, also the sanitized tllStates
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
+//   GET /link-preview?url=              a submitted article's own share photo, title and description for the
+//                                       /submit link-out form; photos only, never ads (link-preview.js)
 // The member routes and the member webhook answer CORS preflights for the site's
 // three origins only (member-auth.js). Cron (every 30 min) runs the same ingest as /refresh.
 
@@ -27,6 +29,7 @@ import { handlePressApply } from './press-apply.js';
 import { handleMapSnapshot } from './map-snapshot.js';
 import { memberCors, withHeaders } from './member-auth.js';
 import { handleOwnerMap, ownerMapCors } from './owner-map.js';
+import { handleLinkPreview, linkPreviewCors } from './link-preview.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -107,6 +110,18 @@ export default {
         });
       }
       return handleOwnerMap(request, env);
+    }
+
+    if (url.pathname === '/link-preview') {
+      const cors = linkPreviewCors(request);
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (request.method !== 'GET') {
+        return new Response(JSON.stringify({ error: 'method not allowed' }), {
+          status: 405,
+          headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', ...cors },
+        });
+      }
+      return handleLinkPreview(request, env, ctx);
     }
 
     if (request.method === 'OPTIONS') {
