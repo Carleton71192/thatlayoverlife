@@ -293,13 +293,27 @@ export function memberName(member) {
   return String(email).split('@')[0].trim();
 }
 
+/** Waits before a retry when Webflow answers busy (409), too many requests (429) or a passing 5xx. Tests may set it to [0, 0]. */
+export const RETRY_DELAYS_MS = [1200, 3000];
+const RETRYABLE = new Set([409, 429, 500, 502, 503, 504]);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function webflow(env, fetchImpl, path, init = {}) {
-  const response = await fetchImpl(`${WEBFLOW_API}${path}`, {
-    ...init,
-    headers: { Authorization: `Bearer ${env.WEBFLOW_TOKEN}`, accept: 'application/json', 'Content-Type': 'application/json', ...(init.headers || {}) },
-  });
-  if (!response.ok) throw new Error(`Webflow ${path}: HTTP ${response.status}`);
-  return response.status === 204 ? null : response.json();
+  for (let attempt = 0; ; attempt += 1) {
+    const response = await fetchImpl(`${WEBFLOW_API}${path}`, {
+      ...init,
+      headers: { Authorization: `Bearer ${env.WEBFLOW_TOKEN}`, accept: 'application/json', 'Content-Type': 'application/json', ...(init.headers || {}) },
+    });
+    if (response.ok) return response.status === 204 ? null : response.json();
+    if (RETRYABLE.has(response.status) && attempt < RETRY_DELAYS_MS.length) {
+      const after = Number(response.headers?.get?.('retry-after')) * 1000;
+      await sleep(Math.min(Number.isFinite(after) && after > 0 ? after : RETRY_DELAYS_MS[attempt], 5000));
+      continue;
+    }
+    let detail = '';
+    try { detail = (await response.text()).slice(0, 200); } catch { /* no body */ }
+    throw new Error(`Webflow ${path}: HTTP ${response.status} ${detail}`.trim());
+  }
 }
 
 /** Every item in the Contributors collection, paged 100 at a time. */
