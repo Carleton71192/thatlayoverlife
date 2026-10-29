@@ -22,3 +22,17 @@ Not in this log: the old hero photo is still downloaded and then not shown. Stop
 - It needs the Webflow lock, which is free now.
 
 Reply "Approve F1" to go ahead.
+
+## Approved 29 October 2026
+Nancy: "Approve F1".
+
+## Built in the repo (29 October 2026), waiting for the Webflow lock
+- **Built as tllsitelayersv16** (src/site-layers/build-site-layers-v16.py, tll-site-layers-v16.js). The cloud session's v15 is saved in Webflow but not published (story photos on five pages and Join free on the cover), and it asked for F1 to be built on top of it.
+- **What changes from v15 (the cover part only):**
+  - The cover style goes into the head at once, then moves to the end of the body when the page is parsed, exactly as before.
+  - The cover fills the hero as soon as the hero's next element arrives, with the page-parsed event as the fallback.
+- **Tested on local copies of the live home page,** served at the root (the cover only runs there), with v15 and with v16:
+  - v15: when the hero has arrived it is still the old one: old photo, no cover style, cover not filled. The cover fills only after the page is parsed.
+  - v16: when the hero has arrived it is already the cover. The cover photo, the cover style in the head and the chip, kicker, credit, stamp and Join free are all in place, at 15 ms against 44 ms for page parsed, and before the first paint. Each piece appears once.
+  - Finished page: the hero in v16 matches v15 exactly, all 31 elements in position, size and style. At 375px the result is the same, with no sideways scroll.
+- **Next:** once the cloud session's lock line is released, or it takes F1 into its publish, v16 replaces v15 (or v14) in the header. That means a new jsDelivr pin and SRI, still 15 scripts. Then a subdomain publish and a check of the first paint there, then Nancy's look before www.
