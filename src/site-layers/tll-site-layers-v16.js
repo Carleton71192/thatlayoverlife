@@ -459,6 +459,38 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 window.addEventListener('load',function(){run();chips();separate();setTimeout(function(){chips();separate();},600);});
 })();
 
+/* Pet cards as posters (29 Oct 2026, Nancy, pointing at the Paw Passport card in the Claude Design prototype 3.4). In the Travel
+   companions block each pet card is the photo itself: a slight tilt, the name over the bottom of the photo in Playfair, and one
+   mono line under it with the breed and the card's own stats (the CMS values, never typed). The PET chip stays; the one-line bio
+   stays on the pet's own page. Same card and link; nothing removed. */
+(function(){
+if(!/^\/travelers\/?$/.test(location.pathname))return;
+var CSS="html body .tll-tf-pets .tv-card{position:relative!important;display:block!important;aspect-ratio:4/5;overflow:hidden!important;padding:0!important;border:0!important;border-radius:2px!important;background:#0A0B14!important;"+
+"transform:rotate(-1.2deg);box-shadow:0 14px 30px rgba(10,11,20,.18);transition:transform 260ms cubic-bezier(.23,1,.32,1),box-shadow 260ms cubic-bezier(.23,1,.32,1)}"+
+"html body .tll-tf-pets .tv-card:nth-child(even),html body .tll-tf-pets [role=listitem]:nth-child(even) .tv-card{transform:rotate(1deg)}"+
+"@media (hover:hover) and (pointer:fine){html body .tll-tf-pets .tv-card:hover{transform:rotate(0) translateY(-4px);box-shadow:0 20px 38px rgba(10,11,20,.24)}}"+
+"html body .tll-tf-pets .tv-card:focus-visible{outline:3px solid #C8325B;outline-offset:4px}"+
+"html body .tll-tf-pets .tv-photo{position:absolute!important;inset:0!important;height:100%!important;width:100%!important;margin:0!important;aspect-ratio:auto!important}"+
+"html body .tll-tf-pets .tv-photo img{width:100%!important;height:100%!important;object-fit:cover!important}"+
+"html body .tll-tf-pets .tv-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,0) 48%,rgba(10,11,20,.78) 100%);pointer-events:none}"+
+"html body .tll-tf-pets .tv-label{display:none!important}"+
+"html body .tll-tf-pets .tv-body{position:absolute!important;left:0;right:0;bottom:0;z-index:2;padding:0 20px 20px!important;background:none!important;border:0!important}"+
+"html body .tll-tf-pets .tv-name{margin:0 0 6px!important;color:#F7F1E8!important;font:800 28px/1.05 'Playfair Display',Georgia,serif!important;letter-spacing:-.01em}"+
+"html body .tll-tf-pets .tv-line,html body .tll-tf-pets .tv-stats{display:none!important}"+
+"html body .tll-tf-pets .tll-pc-meta{margin:0;font:600 11px/1.5 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:#00C9C8}"+
+"@media (prefers-reduced-motion:reduce){html body .tll-tf-pets .tv-card{transition:none}}";
+function txt(el){if(!el)return '';var out=[];(function walk(n){[].forEach.call(n.childNodes,function(c){if(c.nodeType===3){var v=c.nodeValue.trim();if(v)out.push(v);}else if(c.nodeType===1)walk(c);});})(el);return out.join(' ').replace(/\s+/g,' ').trim();}
+function run(){
+  var box=document.querySelector('.tll-tf-pets');if(!box)return;
+  if(!document.getElementById('tll-pet-cards-v1')){var s=document.createElement('style');s.id='tll-pet-cards-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  [].forEach.call(box.querySelectorAll('.tv-card'),function(c){if(c.querySelector('.tll-pc-meta'))return;
+    var parts=[txt(c.querySelector('.tv-label')),txt(c.querySelector('.tv-stats'))].filter(Boolean);if(!parts.length)return;
+    var m=document.createElement('p');m.className='tll-pc-meta';m.textContent=parts.join(' · ');var b=c.querySelector('.tv-body');if(b)b.appendChild(m);});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,0);});else setTimeout(run,0);
+setTimeout(run,900);setTimeout(run,2000);
+})();
+
 /* tll-ep-ux-v1 (29 Oct 2026). /edit-profile, from the first paid testers' notes relayed by Nancy:
    "It is not clear how to save your profile"; "the page flickers and moves up and down every time I enter and save any information on
    the mobile version"; "it doesn't go back to the same section I was filling"; "Saved to your account ... hard to notice, I just saw this on
