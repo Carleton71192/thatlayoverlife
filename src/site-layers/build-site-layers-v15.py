@@ -1,5 +1,5 @@
 """Builds src/site-layers/tll-site-layers-v15.js from its parts. Run from the repo root: python3 src/site-layers/build-site-layers-v15.py
-v15 = v14 plus story photos on five pages (src/site-layers/tll-page-heroes-v1.js: /stories, /travelers, /the-map, /about, /for-expats) and the home cover's Join free button (rebuilt tll-mag-cover-v1.html).
+v15 = v14 plus story photos on five pages (src/site-layers/tll-page-heroes-v1.js: /stories, /travelers, /the-map, /about, /for-expats) and the home cover's Join free button (rebuilt tll-mag-cover-v1.html). 15.1.0 adds the end-of-story ask (tll-story-ask-v1.js), the people strip's action tile in place of the open seat, and the /spotlight action tile (tll-open-slots-v1.js).
 v14 = v13 plus the 28 Oct UX layer (src/site-layers/tll-ux-1028-v1.js: type floor, success message contrast, Tell the editor clear of the home hero). v13 = v12 plus Consent Mode v2 at the very top (src/site-layers/tll-consent-mode-v2.js; Google tags default to denied, CookieConsent updates analytics_storage). v12 = v11 plus stamps on the library cards and the letter (inside the cover layer) (src/design/magazine-2026-10/story-build/tll-mag-story-v1.html), which runs only on /stories/{slug}:
 its font link goes in the head and its style goes at the END of the body once the DOM is parsed, so it sits after the template's own
 head and footer styles in the cascade and wins every tie."""
@@ -19,7 +19,9 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-footer-wordmark-v1.js', 'footer wordmark text'),
            ('src/site-layers/tll-masthead-v1.js', 'footer masthead line: Written by the people who went'),
            ('src/site-layers/tll-ux-1028-v1.js', '28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero'),
-           ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked')]
+           ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked'),
+           ('src/site-layers/tll-story-ask-v1.js', '29 Oct: end-of-story ask, Pitch a layover story first, then send one photo'),
+           ('src/site-layers/tll-open-slots-v1.js', '29 Oct: /spotlight coming-soon and open-slot cards become one Pitch your layover tile')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()

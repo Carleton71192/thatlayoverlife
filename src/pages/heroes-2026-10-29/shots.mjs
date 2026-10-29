@@ -28,6 +28,7 @@ for (const page of PAGES) for (const [w, h] of [[390, 844], [1440, 900]]) {
   await p.screenshot({ path: path.join(OUT, `${TAG}-${page}-${w}.png`) });
   if (process.env.FULL) await p.screenshot({ path: path.join(OUT, `${TAG}-${page}-${w}-full.png`), fullPage: true });
   if (process.env.AXE) { await p.addScriptTag({ content: fs.readFileSync(process.env.AXE, 'utf8') }); report[page + '-' + w + '-axe'] = await p.evaluate(async () => { const r = await axe.run(document, { runOnly: ['color-contrast', 'image-alt', 'link-name', 'list', 'listitem', 'aria-allowed-attr', 'nested-interactive', 'scrollable-region-focusable'] }); return r.violations.map(v => [v.id, v.nodes.length, v.nodes.filter(n => /tll-ph|tll-mg-join/.test(n.html)).map(n => n.html.slice(0, 90) + ' | ' + (n.any[0] || {}).message)]); }); }
+  if (process.env.EVAL) report[page + '-' + w + '-eval'] = await p.evaluate(process.env.EVAL);
   if (process.env.MEASURE) report[page + '-' + w + '-m'] = await p.evaluate(sel => Array.from(document.querySelectorAll(sel)).slice(0, 12).map(e => { const r = e.getBoundingClientRect(), c = getComputedStyle(e); return [e.tagName + '.' + (e.className || '').toString().slice(0, 40), Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), c.display, c.maxWidth, c.padding, c.backgroundColor]; }), process.env.MEASURE);
   report[page + '-' + w] = await p.evaluate(() => ({ over: document.documentElement.scrollWidth > innerWidth, h1: (document.querySelector('h1') || {}).textContent }));
   report[page + '-' + w].errs = errs; await p.close();
