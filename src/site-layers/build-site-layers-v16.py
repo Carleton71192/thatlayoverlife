@@ -32,7 +32,8 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-home-bands-v1.js', '29 Oct Nancy: home photo bands use members story photos at full size, credited and linked'),
            ('src/site-layers/tll-photos-caption-v1.js', '29 Oct: /share-photos caption room 600 characters with a running count (was cut at 256)'),
            ('src/site-layers/tll-lounge-labels-v1.js', '29 Oct Nancy: /gallery tile labels small, in the corner, off the photo'),
-           ('src/site-layers/tll-stories-places-v1.js', '29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line')]
+           ('src/site-layers/tll-stories-places-v1.js', '29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line'),
+           ('src/site-layers/tll-stories-noimg-v1.js', '29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()

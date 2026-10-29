@@ -1,0 +1,12 @@
+import { createRequire } from 'module'; const { chromium } = createRequire(import.meta.url)('playwright');
+import fs from 'fs'; import path from 'path'; import url from 'url';
+const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
+const layer = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-stories-noimg-v1.js'), 'utf8');
+const lead = fs.readFileSync(path.join(DIR, 'code/stories-footer.html'), 'utf8').match(/<script id="tll-lib-lead-v1">[\s\S]*?<\/script>/)[0];
+const card = (img, c) => `<div><a class="tll-lib-card" data-tll-card="cms"><img class="tll-lib-img" alt="${c} story" ${img ? 'src="http://img.test/a.jpg"' : ''}><div class="tll-lib-body"><h2 class="tll-lib-title">${c}</h2></div><div data-tll-country="1" hidden>${c}</div></a></div>`;
+const html = `<!doctype html><html class="tllp-stories"><head><style>.tll-lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px}.tll-lib-grid>[data-tll-lead]{grid-column:1/-1;outline:3px solid red}.tll-lib-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}</style><script>${layer}</script></head><body><div class="tll-lib-grid">${card(false, 'Thailand')}${card(true, 'Spain')}${card(true, 'Luxembourg')}</div>${lead}</body></html>`;
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1200, height: 900 } }); const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.route('**/*', r => r.request().url().startsWith('http://img.test/') ? r.fulfill({ body: fs.readFileSync(path.join(ROOT, 'src/pages/home/mobile-proto-2026-10-26/img/pantanal-jaguar.jpg')), contentType: 'image/jpeg' }) : r.fulfill({ body: html, contentType: 'text/html' }));
+await p.goto('http://tll.test/stories'); await p.waitForTimeout(1800);
+console.log(JSON.stringify(await p.evaluate(() => ({ order: [...document.querySelectorAll('.tll-lib-grid>div')].map(d => d.querySelector('h2').textContent + (d.hasAttribute('data-tll-lead') ? '*' : '') + (d.querySelector('.tll-noimg') ? '[panel]' : '')) }))), errs);
+await p.screenshot({ path: path.join(DIR, 'shots/noimg-1200.png') }); await b.close();
