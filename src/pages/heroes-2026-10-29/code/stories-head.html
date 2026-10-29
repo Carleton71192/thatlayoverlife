@@ -1,0 +1,90 @@
+<link rel="canonical" href="https://www.thatlayover.life/stories">
+<meta property="og:url" content="https://www.thatlayover.life/stories">
+<style id="tll-lib-search-v2">
+/* Library search bar. Webflow applies an authored form class to the .w-form WRAPPER and leaves the inner <form>
+   bare, so the wrapper is the pill and the inner form is the row. It also re-adds .w-input / .w-button defaults
+   (block, 100% width, its own grey border), which is what stacked the field above the button. */
+.tllsb-form{display:flex;align-items:center}
+.tllsb-form > form{display:flex;align-items:center;gap:8px;flex:1 1 auto;min-width:0;width:100%;margin:0}
+.tllsb-input{flex:1 1 auto !important;width:auto !important;min-width:0;height:42px;margin:0 !important;padding:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;outline:0 !important;font-size:16px;color:#1A1A1A;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,-apple-system,sans-serif !important}
+.tllsb-input::placeholder{color:#6B6660;opacity:1}
+.tllsb-btn{flex:0 0 auto;height:42px;margin:0 !important;padding:0 24px !important;border:0 !important;font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,-apple-system,sans-serif !important;transition:background .15s ease}
+.tllsb-btn:hover{background:#05605F}
+.tllsb-label,.tllsb-clear{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace !important}
+.tllsb-clear:hover{text-decoration:underline}
+.tllsb-input:focus-visible,.tllsb-btn:focus-visible,.tllsb-clear:focus-visible{outline:3px solid #F0507A !important;outline-offset:2px}
+.tllsb-form .w-form-done,.tllsb-form .w-form-fail{display:none !important}
+.tllsb-form.w-form-loading{opacity:1}
+@media(max-width:700px){.tllsb-inner{gap:12px}.tllsb-label{width:100%}.tllsb-form{min-width:0;width:100%;max-width:none;padding-left:16px}.tllsb-btn{padding:0 16px !important}}
+</style>
+<style id="tll-lib-filters-mobile-v1">
+/* 2026-09-29: under 700px the filter bar laid its three columns (lenses, place + sort, Share CTA) side by side, so every
+   chip stacked into a tall tower. Stack the groups instead, and make each chip group one thumb-scrollable row. */
+@media(max-width:700px){
+.tll-library-filters .tll-filters-inner{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:10px !important;padding-top:12px !important;padding-bottom:12px !important}
+.tll-library-filters [data-tll-chiprow]{display:flex !important;flex-direction:row !important;flex-wrap:nowrap !important;align-items:center !important;gap:8px !important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px;width:auto !important}
+.tll-library-filters [data-tll-chiprow]::-webkit-scrollbar{display:none}
+.tll-library-filters [data-tll-chiprow] > a{flex:0 0 auto !important;white-space:nowrap !important;padding:8px 14px !important;font-size:13px !important;line-height:1.2 !important;border-radius:999px !important;margin:0 !important}
+.tll-library-filters [data-tll-chiprow] > span{display:none !important}
+.tll-library-filters .tll-chip-rows{display:flex !important;flex-direction:column !important;gap:6px !important;width:auto !important}
+.tll-library-filters .tll-chip-row{display:flex !important;flex-direction:row !important;flex-wrap:nowrap !important;align-items:center !important;gap:6px !important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+.tll-library-filters .tll-chip-row::-webkit-scrollbar{display:none}
+.tll-library-filters .tll-filter-label{min-width:0 !important;width:auto !important;flex:0 0 auto !important;margin:0 4px 0 0 !important}
+.tll-library-filters .tll-shelf-chip,.tll-library-filters .tll-filter-chip-on{flex:0 0 auto !important;white-space:nowrap !important;padding:7px 12px !important;font-size:10px !important;line-height:1.2 !important;margin:0 !important}
+.tll-library-filters .tll-filter-cta{align-self:flex-start;padding:10px 16px !important;font-size:12px !important;margin:2px 0 0 !important}
+}
+</style>
+<style id="tll-flow-v1">
+/* TLL long-scroll layer v1 (30 Sep 2026): reveal + endless atlas on the library. Additive. Kit v2.1 tokens only. */
+.tll-flow-reveal{opacity:0;transform:translateY(22px);transition:opacity .52s cubic-bezier(.2,.7,.2,1),transform .52s cubic-bezier(.2,.7,.2,1)}
+.tll-flow-reveal.in{opacity:1;transform:none}
+.tll-atlas{background:#FDF9F3;color:#1A1A1A;padding:80px 24px 0}
+.tll-atlas .in{max-width:1180px;margin:0 auto}
+.tll-atlas .e{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#067A79}
+.tll-atlas h2{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(32px,5vw,84px);line-height:1.02;letter-spacing:-.02em;max-width:14ch;margin:10px 0 0;color:#1A1A1A}
+.tll-atlas p{color:#6B6660;max-width:52ch;margin:14px 0 30px}
+.tll-atlas .list{columns:3;column-gap:32px;border-top:1px solid #E0DACE}
+@media(max-width:800px){.tll-atlas .list{columns:1}}
+.tll-atlas .k{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E0DACE;break-inside:avoid;text-decoration:none;color:#1A1A1A}
+.tll-atlas .k .n{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:20px}
+.tll-atlas .k .s{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#6B6660;white-space:nowrap}
+.tll-atlas .k.has .n{color:#C8325B}.tll-atlas .k.has .s{color:#067A79}
+.tll-atlas .k:hover .n{text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px}
+.tll-atlas .more{padding:40px 0 60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6B6660}
+@media(prefers-reduced-motion:reduce){.tll-flow-reveal{opacity:1;transform:none;transition:none}}
+</style>
+<style id="tll-v9-j12-v1">
+/* v9 J12 (6 Oct 2026, 2.0 parity for /stories, DRAFT): the Library search becomes the big underlined headline input, and the server-rendered
+   CMS cards become shelf cards (photo, country badge, Playfair title under the photo per v9.1 fix 04, mono pillar line, byline). CSS only:
+   every element, class, input name and data attribute stays; nothing is removed. Fix 06 applied: placeholder at 60% in #6B6A72, typed text full
+   size Ink, 3px to 4px underline on focus in 150ms. Kit v2.1 tokens only. */
+.tllsb-bar{background:#F7F1E8 !important;padding:6vh 0 4vh !important;border:0 !important}
+.tllsb-inner{display:block !important;max-width:1320px !important;margin:0 auto !important;padding:0 6vw !important}
+.tllsb-label{font-family:'JetBrains Mono',monospace !important;font-size:11px !important;letter-spacing:3px !important;font-weight:600 !important;color:#067A79 !important;text-transform:uppercase !important;margin:0 0 12px !important;width:auto !important;cursor:text}
+.tllsb-form{display:block !important;max-width:none !important;padding:0 !important;background:transparent !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;margin:0 !important}
+.tllsb-form > form{display:flex !important;align-items:flex-end !important;gap:18px !important;border-bottom:3px solid #0A0B14 !important;padding:0 0 12px !important;margin:0 !important;transition:box-shadow 150ms cubic-bezier(.23,1,.32,1)}
+.tllsb-form > form:focus-within{box-shadow:inset 0 -1px 0 #0A0B14}
+.tllsb-input{flex:1 1 auto !important;width:auto !important;min-width:0 !important;border:0 !important;background:transparent !important;box-shadow:none !important;outline:0 !important;margin:0 !important;height:auto !important;font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(26px,4.4vw,72px) !important;line-height:1.1 !important;letter-spacing:-.02em !important;color:#0A0B14 !important;padding:0 !important}
+.tllsb-input::placeholder{font-size:.6em !important;color:#6B6A72 !important;opacity:1 !important;font-weight:800;letter-spacing:-.01em}
+.tllsb-btn{height:auto !important;padding:13px 18px !important;background:#F0507A !important;color:#0A0B14 !important;font-family:'JetBrains Mono',monospace !important;font-size:12px !important;letter-spacing:2px !important;font-weight:700 !important;text-transform:uppercase !important;border-radius:0 !important;margin-bottom:2px !important}
+.tllsb-btn:hover{background:#D63859 !important;color:#F7F1E8 !important}
+.tllsb-clear{display:inline-block;margin-top:12px;font-size:11px !important;letter-spacing:1.5px;color:#6B6660 !important;text-transform:uppercase}
+@media(max-width:700px){.tllsb-form > form{gap:12px !important}.tllsb-btn{padding:12px 14px !important}}
+/* Shelf cards on the Cream page */
+.tll-lib-grid{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)) !important;gap:8vh 3vw !important;align-items:start !important}
+.tll-lib-card{display:block !important;background:transparent !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;padding:0 !important;overflow:visible !important;position:relative}
+.tll-lib-card:hover{box-shadow:none !important}
+.tll-lib-img{display:block !important;width:100% !important;aspect-ratio:4/3 !important;height:auto !important;object-fit:cover !important;border-radius:0 !important;background:#0A0B14}
+.tll-lib-grid > :nth-child(odd) .tll-lib-img{transform:rotate(-.8deg)}
+.tll-lib-grid > :nth-child(even) .tll-lib-img{transform:rotate(.9deg)}
+.tll-lib-body{padding:20px 0 0 !important}
+.tll-lib-meta{position:absolute;left:14px;top:12px;z-index:2;font-family:'JetBrains Mono',monospace !important;font-size:10px !important;letter-spacing:2px !important;color:#F7F1E8 !important;background:#0A0B14 !important;padding:5px 9px !important;text-transform:uppercase !important;margin:0 !important;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tll-lib-title{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(22px,2vw,32px) !important;line-height:1.06 !important;letter-spacing:-.01em !important;color:#0A0B14 !important;margin:0 !important;text-wrap:balance;overflow-wrap:anywhere}
+.tll-lib-card:hover .tll-lib-title{text-decoration:underline;text-decoration-color:#F0507A;text-decoration-thickness:3px;text-underline-offset:4px}
+.tll-lib-lede{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:15px !important;line-height:1.5 !important;color:#3a3a3a !important;margin:8px 0 0 !important;max-width:46ch}
+.tll-lib-byline{display:flex !important;align-items:center !important;gap:8px !important;margin:10px 0 0 !important}
+.tll-lib-byline-img{width:24px !important;height:24px !important;border-radius:50% !important;object-fit:cover !important;box-shadow:0 0 0 1.5px #F0507A}
+.tll-lib-byline-name{font-family:'IBM Plex Sans Condensed',sans-serif !important;font-size:13px !important;font-weight:600 !important;color:#0A0B14 !important;text-decoration:underline;text-decoration-color:#067A79;text-underline-offset:3px}
+.tll-lib-read{font-family:'JetBrains Mono',monospace !important;font-size:10.5px !important;letter-spacing:1.5px !important;color:#6B6660 !important;text-transform:uppercase !important;margin:10px 0 0 !important}
+@media(prefers-reduced-motion:reduce){.tll-lib-grid > * .tll-lib-img{transform:none !important}}
+</style>

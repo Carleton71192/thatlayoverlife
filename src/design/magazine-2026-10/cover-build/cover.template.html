@@ -2,8 +2,8 @@
 <style id="tll-mag-cover-v1">
 /* The magazine cover (26 Oct 2026, direction A, Nancy: "I prefer the full page image hero"). Home page only. Restyles the existing
    [data-h3-hero] block: the cover story's photo full bleed, a chip with the writer's face ("{Name} went to {Place}"), the kicker,
-   the site's own headline in Newsreader, the deck, one button to the cover story, the photo credit with coordinates, and the stamp,
-   which lands once on load. No element removed: the eyebrow, the second button, the FREE line and the old coordinates are hidden.
+   the site's own headline in Newsreader, the deck, a button to the cover story and a Join free button (29 Oct), the photo credit with coordinates, and the stamp,
+   which lands once on load. No element removed: the eyebrow, the FREE line and the old coordinates are hidden.
    Loads after the page's own styles and after tll-home-hero-phone-v1, so it wins the cascade with the same specificity. */
 body:not(.tll-none) [data-h3-hero]{position:relative !important;min-height:max(calc(100svh - 96px),640px) !important;display:flex !important;flex-direction:column !important;justify-content:flex-end !important;margin:0 !important;padding:0 !important;border:0 !important;border-radius:0 !important;overflow:hidden !important;background:#0A0B14 !important;--tll-cover-pos:var(--tll-cover-pos-phone,50% 50%)}
 body:not(.tll-none) [data-h3-hero] > img[data-tll-parallax="hero"]{position:absolute !important;inset:0 !important;top:calc(-1 * var(--tll-cover-zoom,0%)) !important;bottom:auto !important;width:100% !important;height:calc(100% + var(--tll-cover-zoom,0%)) !important;max-width:none !important;object-fit:cover !important;object-position:var(--tll-cover-pos) !important;border-radius:0 !important;transform:none !important;opacity:1 !important;filter:none !important}
@@ -23,7 +23,9 @@ body:not(.tll-none) [data-h3-hero] .h3-hero-cta{display:flex !important;flex-dir
 body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn{flex:none !important;width:100% !important;min-height:48px !important;box-sizing:border-box !important;justify-content:center !important;border-radius:0 !important;font:600 16px/1 'Inter Tight',system-ui,sans-serif !important;letter-spacing:0 !important;background:#D63859 !important;color:#fff !important;border-color:transparent !important}
 body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn:hover{background:#B82C4B !important}
 body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn:focus-visible{outline:3px solid #F7F1E8 !important;outline-offset:2px}
-body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn + .h3-btn{display:none !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn.tll-mg-join{background:transparent !important;color:#F7F1E8 !important;border:1.5px solid #F7F1E8 !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn.tll-mg-join:hover{background:#F7F1E8 !important;color:#0D0F1A !important}
+body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn + .h3-btn:not(.tll-mg-join){display:none !important}
 body:not(.tll-none) [data-h3-hero] .h3-hero-free{display:none !important}
 body:not(.tll-none) [data-h3-hero] .h3-hero-coords,body:not(.tll-none) [data-h3-hero] > div:has(> .h3-hero-coords){display:none !important}
 body:not(.tll-none) [data-h3-hero] .tll-mg-by{position:relative;z-index:2;margin:14px 0 0 !important;font:400 13px/1.5 'Inter Tight',system-ui,sans-serif;color:#B9B3A8}
@@ -104,6 +106,8 @@ function run(){
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
   var cta=hero.querySelector('.h3-hero-cta'),btn=cta&&cta.querySelector('a');
   if(btn){btn.textContent=COVER.button||'Read the cover story';btn.href='/stories/'+COVER.slug;}
+  /* 29 Oct 2026, Nancy: the hero said free to join but gave no way to join. The second button (hidden until now) becomes Join free. */
+  var join=cta&&cta.querySelectorAll('a')[1];if(join&&COVER.join){join.textContent=COVER.join;join.href='/signup';join.classList.add('tll-mg-join');}
   var by=document.createElement('p');by.className='tll-mg-by';var b=document.createElement('b');b.textContent='Photo';by.appendChild(b);
   by.appendChild(document.createTextNode(' '+COVER.author+' · '+COVER.place+(COVER.coords?' · '+COVER.coords:'')));
   (cta||words).insertAdjacentElement(cta?'afterend':'beforeend',by);
