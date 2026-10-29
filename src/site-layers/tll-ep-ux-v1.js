@@ -86,7 +86,7 @@ function paint(){var s=$('[data-ep-status]');if(!s||!bar)return;var st=s.getAttr
   bar.setAttribute('data-s',st||'idle');
   if(st==='busy'){txt.innerHTML='<span class="tll-eps-dot"></span>'+(photoPending?'Saving your photo…':'Saving…');}
   else if(st==='ok'){txt.innerHTML='<span class="tll-eps-dot"></span><b>'+(photoPending?'Photo saved':'Saved')+'</b> · '+hhmm();photoPending=false;}
-  else if(st==='fail'){photoPending=false;var why=/did not update/.test(t)&&lastErr?'Saved to your account. Your public page did not update yet: '+lastErr:t;txt.innerHTML='';var d=el('span','tll-eps-dot');txt.appendChild(d);txt.appendChild(D.createTextNode(why));}
+  else if(st==='fail'){photoPending=false;var why=/did not update/.test(t)?(/sign in/i.test(lastErr)||!lastErr?'Saved to your account. Your public page is not updating right now; nothing is lost, and it catches up on your next save once that is fixed.':'Saved to your account. Your public page did not update yet: '+lastErr):t; /* 29 Oct: the Worker answers "Please sign in again" when its own member check fails, not because the writer is signed out */txt.innerHTML='';var d=el('span','tll-eps-dot');txt.appendChild(d);txt.appendChild(D.createTextNode(why));}
   else{txt.innerHTML='<span class="tll-eps-dot"></span>Changes save as you type, or tap Save.';}
   retry.hidden=st!=='fail';btn.hidden=st==='fail';save.hidden=st==='fail';}
 function buildBar(){if($('.tll-eps'))return;bar=el('div','tll-eps');bar.setAttribute('data-s','idle');
