@@ -42,6 +42,6 @@ await p.screenshot({ path: path.join(DIR, `${TAG}-${W}-country-added.png`) });
 await p.locator('#ep-f-photo').setInputFiles(path.join(IMG, 'spain-ibiza.jpg')); await p.waitForTimeout(600);
 out.dialog = await p.locator('.tll-eps-crop').count(); await p.screenshot({ path: path.join(DIR, `${TAG}-${W}-crop.png`) });
 if (out.dialog) { const st = p.locator('.tll-eps-stage'); const bb = await st.boundingBox(); await p.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2); await p.mouse.down(); await p.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2 + 60, { steps: 5 }); await p.mouse.up();
-  await p.locator('.tll-eps-zoom input').fill('1.5'); await p.locator('.tll-eps-acts .tll-eps-btn:not(.tll-eps-btn--ghost)').click({ force: true }); await p.waitForTimeout(800); }
+  await p.locator('.tll-eps-zoom input').fill('1.5'); await p.locator('.tll-eps-acts .tll-eps-btn:not(.tll-eps-btn--ghost)').click({ force: true }); await p.waitForTimeout(800); out.barAfterPhoto = await p.evaluate(() => document.querySelector('.tll-eps-t').innerText); }
 out.calls = await p.evaluate(() => window.__calls.map(c => JSON.stringify(c).slice(0, 140)));
 console.log(JSON.stringify(out, null, 1)); await b.close();
