@@ -7,3 +7,8 @@
 - Built 29 Oct (needs `npx wrangler deploy` to go live): Worker GET /link-preview (src/link-preview.js) and the /submit layer tll-linkout-preview-v1.js. A pasted link shows the article's own share photo, title and description; the photo goes with the form as og-image only when it passes the photos-only check (JPEG/PNG/WebP, at least 600 x 315, not banner shaped, no ad, logo or icon address) and the writer leaves "Use this photo" ticked.
 - Next: create the Stories draft from a link-out submission automatically (title, summary, URL, country, contributor, og-image as hero with credit "Image: {site}"), so no one builds them by hand. Needs a Webflow form webhook to the Worker.
 - Next: a "Photo by" credit field for link-out heroes, so the story page does not say "Photo {writer}" for an image from the outlet.
+
+## Tester Roberta Bianchi, 29 Oct 2026
+- Captions and choosing where each photo sits in the story: needs the v5 editor (inline photos) plus the Worker.
+- "An expats map, showing where all the expats currently live": conflicts with the rule never to expose a member's current whereabouts. If built, it should show only cities that expats chose to list as their Location Expert desk (opt in), at city level, never a live location.
+- Her Pompeii story is in Webflow Forms; her extra photos went to Nancy on Upwork.
