@@ -46,6 +46,7 @@ var CSS=
 /* /stories: four covers under the title */
 ".tll-ph-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:960px;margin:36px auto 12px;padding:0 24px;box-sizing:border-box}"+
 ".tll-ph-row .tll-ph-img{aspect-ratio:4/5}"+
+".tll-ph-row.tll-ph-row-below{margin:28px auto 8px}"+
 "@media (max-width:767px){.tll-ph-row{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;margin:22px 0 6px;padding:0 24px 6px;scroll-padding:0 24px;scrollbar-width:none}"+
 ".tll-ph-row::-webkit-scrollbar{display:none}.tll-ph-row>.tll-ph-tile{flex:0 0 46%;scroll-snap-align:start}.tll-ph-row .tll-ph-cap b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tll-ph-row .tll-ph-img{aspect-ratio:3/4}}"+
 /* /travelers: the writers' faces */
@@ -105,9 +106,15 @@ function frame(p,eager){var f=el('span','tll-ph-img');f.appendChild(img(p,eager)
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
 function tile(p,eager){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager));a.appendChild(cap(p));return a;}
 
-function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1||document.querySelector('.tll-ph-row'))return;
-  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],true));});
-  h1.insertAdjacentElement('afterend',row);}
+function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
+  /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
+     (?q=) shows its results first with no photos above them. "on the shelf" reads "in the library" (house words). */
+  var w=document.createTreeWalker(h1.closest('section')||h1.parentNode,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/next story on the shelf/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace('next story on the shelf','next story in the library');}
+  if(document.querySelector('.tll-ph-row'))return;
+  if(/[?&]q=[^&]/.test(location.search))return;
+  var bar=document.querySelector('section.tllsb-bar');
+  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar));});
+  if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
 function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
   FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true));
