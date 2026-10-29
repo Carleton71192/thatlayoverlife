@@ -7,7 +7,7 @@
    Loads after the page's own styles and after tll-home-hero-phone-v1, so it wins the cascade with the same specificity. */
 body:not(.tll-none) [data-h3-hero]{position:relative !important;min-height:max(calc(100svh - 96px),640px) !important;display:flex !important;flex-direction:column !important;justify-content:flex-end !important;margin:0 !important;padding:0 !important;border:0 !important;border-radius:0 !important;overflow:hidden !important;background:#0A0B14 !important;--tll-cover-pos:var(--tll-cover-pos-phone,50% 50%)}
 body:not(.tll-none) [data-h3-hero] > img[data-tll-parallax="hero"]{position:absolute !important;inset:0 !important;top:calc(-1 * var(--tll-cover-zoom,0%)) !important;bottom:auto !important;width:100% !important;height:calc(100% + var(--tll-cover-zoom,0%)) !important;max-width:none !important;object-fit:cover !important;object-position:var(--tll-cover-pos) !important;border-radius:0 !important;transform:none !important;opacity:1 !important;filter:none !important}
-body:not(.tll-none) [data-h3-hero]::after{content:"" !important;position:absolute !important;inset:0 !important;z-index:1 !important;pointer-events:none !important;background:linear-gradient(180deg,rgba(10,11,20,.4) 0%,rgba(10,11,20,0) 22%,rgba(10,11,20,.05) 52%,rgba(10,11,20,.5) 70%,rgba(10,11,20,.9) 100%) !important}
+body:not(.tll-none) [data-h3-hero]::after{content:"" !important;position:absolute !important;inset:0 !important;z-index:1 !important;pointer-events:none !important;background:linear-gradient(180deg,rgba(10,11,20,.32) 0%,rgba(10,11,20,0) 20%,rgba(10,11,20,0) 46%,rgba(10,11,20,.42) 66%,rgba(10,11,20,.84) 100%) !important}
 body:not(.tll-none) [data-h3-hero] > div:has(> h1){position:relative !important;z-index:2 !important;width:100% !important;max-width:none !important;margin:0 !important;padding:0 16px max(clamp(40px,8vh,80px),76px) !important;box-sizing:border-box !important}
 body:not(.tll-none) [data-h3-hero] .tll-mg-eyebrow{display:none !important}
 body:not(.tll-none) [data-h3-hero] .tll-mg-chip{display:inline-flex !important;align-items:center;gap:10px;padding:6px 14px 6px 6px;min-height:48px;border-radius:999px;background:rgba(10,11,20,.6);color:#F7F1E8 !important;text-decoration:none !important;font:400 13px/1.2 'Inter Tight',system-ui,sans-serif;margin:0 0 18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:100%}
@@ -36,7 +36,9 @@ body:not(.tll-none) [data-h3-hero] .tll-mg-stamp svg{display:block;width:100%;he
 @media(prefers-reduced-motion:reduce){body:not(.tll-none) [data-h3-hero] .tll-mg-stamp{animation:none}}
 @media(min-width:768px){
 body:not(.tll-none) [data-h3-hero]{min-height:min(88vh,860px) !important;--tll-cover-pos:var(--tll-cover-pos-desk,50% 50%);--tll-cover-zoom:0%}
-body:not(.tll-none) [data-h3-hero]::after{background:linear-gradient(180deg,rgba(10,11,20,.4) 0%,rgba(10,11,20,0) 22%,rgba(10,11,20,.1) 50%,rgba(10,11,20,.72) 72%,rgba(10,11,20,.94) 100%) !important}
+body:not(.tll-none) [data-h3-hero]::after{background:linear-gradient(90deg,rgba(10,11,20,.55) 0%,rgba(10,11,20,.36) 34%,rgba(10,11,20,.08) 62%,rgba(10,11,20,0) 78%),linear-gradient(180deg,rgba(10,11,20,.3) 0%,rgba(10,11,20,0) 18%,rgba(10,11,20,0) 64%,rgba(10,11,20,.34) 100%) !important}
+body:not(.tll-none) [data-h3-hero] > img[data-tll-parallax="hero"]{filter:brightness(1.14) saturate(1.06)}
+body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title),body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,body:not(.tll-none) [data-h3-hero] .tll-mg-kicker{text-shadow:0 1px 2px rgba(10,11,20,.35),0 2px 24px rgba(10,11,20,.45)}
 body:not(.tll-none) [data-h3-hero] > div:has(> h1){max-width:1240px !important;margin:0 auto !important;padding:0 var(--h3-g,48px) 56px !important}
 body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title){font-size:clamp(56px,6vw,96px) !important}
 body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p{font-size:20px !important}
