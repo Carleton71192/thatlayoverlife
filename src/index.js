@@ -45,6 +45,7 @@ import { handleCrew, handleCrewPublic } from './crew.js';
 import { runEnrich } from './story-enrich.js';
 import { handleWhatsNew } from './whats-new.js';
 import { handleAlbum, handleAlbumSettings } from './album.js';
+import { handleExport } from './export.js';
 import { handleStamps, handleStampsPublic, runPursuitCounts } from './stamps.js';
 import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
@@ -69,6 +70,7 @@ const MEMBER_ROUTES = {
   '/stamps/delete': handleStamps,
   '/stamps/show': handleStamps,
   '/album/settings': handleAlbumSettings,
+  '/export': handleExport,
 };
 
 const EDGE_CACHE_SECONDS = 300;
