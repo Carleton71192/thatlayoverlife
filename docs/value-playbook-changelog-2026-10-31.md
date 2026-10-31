@@ -56,3 +56,9 @@ Counts on the tape are photos and countries in the album, not the member's whole
 |---|---|---|---|---|
 | /account | "Your copy · Download everything" card | None | One button builds a zip in the browser: README, profile, stories as readable pages (drafts too), collections and stamps as CSV and JSON, pets, companions, full map and summary, every photo in folders; failed photos listed as links | Playbook: the lost-account fix, before the Instagram line goes on the homepage |
 | Worker | POST /export | None | Member's own records only; internal fields (member id, outreach notes, press check, badge label) removed; 10 an hour | Privacy |
+
+## Phase 5: feedback loop into Notion (31 Oct, 17:08 UTC)
+
+- Notion database "TLL Feedback" (private until moved): Summary, Page, What happened, Expected, Type, Status (New, Approved, Building, Done, Not doing), Source, From (first name), Received, Effort, Week, Change log, Duplicate of.
+- Scheduled task "TLL weekly feedback triage", Mondays 07:41 Copenhagen: collects the week's Tell the editor and feedback form entries plus reader notes that report a fix, removes spam and duplicates, writes a change log page in the Master To-Do with an Approve tick per item, applies last week's ticks (Status Approved), emails Nancy. It never changes the site; approved items are built in a session like this one.
+- Needs: the Webflow, Notion, Gmail and Memberstack connectors added to the task in claude.ai.
