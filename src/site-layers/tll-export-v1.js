@@ -52,6 +52,9 @@ function run(){
         msg.textContent='Done. '+d.stories.length+(d.stories.length===1?' story, ':' stories, ')+(list.length-missing.length)+((list.length-missing.length)===1?' photo':' photos')+(missing.length?' ('+missing.length+' listed as links)':'')+'.';});
     }).catch(function(e){b.disabled=false;msg.textContent=(e&&e.message)||'The download did not finish. Try again.';});
   });
+  /* Site owner only: the Paw Passport waitlist (the Worker answers 403 to everyone else, and nothing shows). */
+  fetch(API.replace('/export','/paw/waitlist/export'),{method:'POST',headers:{Authorization:'Bearer '+tok()}}).then(function(r){if(r.status!==200)return;var n=r.headers.get('X-Count')||'0';return r.blob().then(function(blob){
+    var p=el('p','tll-exp-msg'),a=el('a','','Download the CSV');a.href=URL.createObjectURL(blob);a.download='paw-passport-waitlist.csv';p.appendChild(document.createTextNode('Paw Passport waitlist: '+n+(n==='1'?' sign-up · ':' sign-ups · ')));p.appendChild(a);box.appendChild(p);});}).catch(function(){});
   var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);
   var after=document.getElementById('tll-wn')||document.getElementById('tll-crew-inbox');
   if(after)after.insertAdjacentElement('afterend',box);else if(an&&an.parentNode)an.parentNode.insertBefore(box,an.nextSibling);else main.appendChild(box);
