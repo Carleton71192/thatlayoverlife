@@ -17,6 +17,7 @@ import { verifyMemberToken, rateLimit, memberCors, reply } from './member-auth.j
 import { webflow, slugify, uniqueSlug, findContributor, applyMember } from './profile-sync.js';
 import { bylineCountries } from './site-stats.js';
 import { summarizeLink } from './link-summary.js';
+import { enqueueEnrich } from './story-enrich.js';
 
 const MEMBERSTACK_API = 'https://admin.memberstack.com';
 export const INTAKE_LIMIT_PER_HOUR = 20;
@@ -242,6 +243,7 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
     }
     if (!fd.region) { fd.region = REGION_IDS.europe; (built.checks = built.checks || []).push('Region not chosen, set to Europe; check it'); fd['notes-to-editor'] = `${fd['notes-to-editor'] || ''}<p>Region not chosen; set to Europe for now.</p>`; }
     const id = await createPublished(env, fetchImpl, env.STORIES_COLLECTION_ID, fd);
+    if (kind === 'story') await enqueueEnrich(env, id).catch(() => {}); // AI summary and links, next 30-minute run
     if (kind === 'story' && built.placement && env.PHOTO_PLACEMENTS_COLLECTION_ID) {
       await createPublished(env, fetchImpl, env.PHOTO_PLACEMENTS_COLLECTION_ID, { name: slug, slug, story: id, 'photo-placement': built.placement });
     }

@@ -42,6 +42,7 @@ import { handleExpatsMap, expatsMapCors } from './expats-map.js';
 import { handleIntake, handleLounge } from './intake.js';
 import { handleLinkSummary } from './link-summary.js';
 import { handleCrew, handleCrewPublic } from './crew.js';
+import { runEnrich } from './story-enrich.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -220,6 +221,11 @@ export default {
       runSiteStats(env)
         .then((line) => console.log(line))
         .catch((error) => console.error(`site-stats failed: ${error?.message || error}`)),
+    );
+    ctx.waitUntil(
+      runEnrich(env)
+        .then((line) => console.log(line))
+        .catch((error) => console.error(`enrich failed: ${error?.message || error}`)),
     );
   },
 };
