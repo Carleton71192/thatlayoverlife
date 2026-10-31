@@ -12,6 +12,7 @@
 //                                       draft item in the Press applications collection (press-apply.js)
 //   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
 //                                       for the site owner only, also the sanitized tllStates
+//   GET /expats-map                     opted-in expats by country and home base, for /for-expats (expats-map.js)
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
 //   POST /translate                     { itemId, target }: a labeled machine translation of a PUBLISHED story for one
 //                                       reader; the original is never changed (translate.js, multilingual Phase 1)
@@ -34,6 +35,7 @@ import { handleOwnerMap, ownerMapCors } from './owner-map.js';
 import { handleLinkPreview, linkPreviewCors } from './link-preview.js';
 import { handleTranslate, translateCors } from './translate.js';
 import { runSiteStats } from './site-stats.js';
+import { handleExpatsMap, expatsMapCors } from './expats-map.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -102,6 +104,11 @@ export default {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
       if (request.method !== 'POST') return withHeaders(json({ error: 'method not allowed' }, { status: 405 }), cors);
       return withHeaders(await MEMBER_ROUTES[url.pathname](request, env), cors);
+    }
+
+    if (url.pathname === '/expats-map') {
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: expatsMapCors(request) });
+      return handleExpatsMap(request, env);
     }
 
     if (url.pathname === '/owner-map') {

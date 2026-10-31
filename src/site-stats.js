@@ -71,7 +71,7 @@ export function computeStats({ stories = [], contributors = [], pets = [] }) {
   return { stories: live(stories).length, travelers: shown.length, pets: live(pets).length, countries: set.size };
 }
 
-async function listLive(env, fetchImpl, collection) {
+export async function listLive(env, fetchImpl, collection) {
   const all = [];
   for (let offset = 0; offset < 2000; offset += 100) {
     const page = await webflow(env, fetchImpl, `/collections/${collection}/items/live?limit=100&offset=${offset}`);
