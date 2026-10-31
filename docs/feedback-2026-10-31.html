@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Tester Feedback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=IBM+Plex+Sans+Condensed:wght@400;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FDF9F3;--ink:#0A0B14;--muted:#5F5A54;--line:#E0DACE;--rose:#C8325B;--teal:#067A79;--ok:#067A79;--wait:#9A5B00;--open:#C8325B;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0A0B14;--ink:#F3EEE6;--muted:#B9B2A8;--line:#2A2C38;--rose:#F0507A;--teal:#00C9C8;--ok:#00C9C8;--wait:#F2B04A;--open:#F0507A;--card:#12141F}}
+:root[data-theme="dark"]{--paper:#0A0B14;--ink:#F3EEE6;--muted:#B9B2A8;--line:#2A2C38;--rose:#F0507A;--teal:#00C9C8;--ok:#00C9C8;--wait:#F2B04A;--open:#F0507A;--card:#12141F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:48px 16px 80px}
+.eyebrow{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
+h1{font:800 clamp(32px,5vw,52px)/1 "Playfair Display",Georgia,serif;margin:0 0 14px;letter-spacing:-.02em}
+h1 em{color:var(--rose)}
+h2{font:800 24px/1.15 "Playfair Display",Georgia,serif;margin:44px 0 12px}
+p.lede{color:var(--muted);max-width:68ch;margin:0 0 24px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 8px}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:4px;padding:12px 16px;min-width:140px}
+.stat b{display:block;font:800 28px/1 "Playfair Display",Georgia,serif}
+.stat span{font:500 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.table th,.table td{text-align:left;vertical-align:top;padding:10px 12px;border-top:1px solid var(--line);font-size:15px}
+.table th{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-top:0}
+.who{font:600 12px/1.4 "JetBrains Mono",monospace;white-space:nowrap}
+.s{display:inline-block;font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;border:1px solid currentColor;white-space:nowrap}
+.s.ok{color:var(--ok)}.s.wait{color:var(--wait)}.s.open{color:var(--open)}
+.wrap{overflow-x:auto}
+ul.plain{padding-left:18px;margin:0}ul.plain li{margin:0 0 6px}
+@media (max-width:700px){.table thead{display:none}.table tr{display:block;border-top:1px solid var(--line);padding:8px 0}.table td{display:block;border:0;padding:4px 12px}}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">That Layover Life · Beta · 31 October 2026</p>
+<h1>Tester feedback, <em>consolidated</em></h1>
+<p class="lede">Every note from the beta so far, from Roberta, Mariam, Luke and Zain and from Nancy's own walk-throughs, with what was done and how it was checked. Live checks of the pages themselves wait for the site to be reachable from the build environment (Monday); everything below was tested against saved copies of the live pages with the live site code, unless it says live.</p>
+<div class="stats">
+<div class="stat"><b>33</b><span>notes</span></div>
+<div class="stat"><b>27</b><span>fixed and live</span></div>
+<div class="stat"><b>2</b><span>live after deploy</span></div>
+<div class="stat"><b>4</b><span>open</span></div>
+</div>
+
+<h2>Roberta (Upwork tester, 29 Oct)</h2>
+<div class="wrap"><table class="table"><thead><tr><th>Note</th><th>What changed</th><th>Status</th><th>Checked by</th></tr></thead><tbody>
+<tr><td>The help (?) marks do nothing</td><td>They open a short note on tap, click, Enter or Space; Escape or a tap elsewhere closes it</td><td><span class="s ok">Live</span></td><td>Saved /edit-profile, 390 and 1440: note opens</td></tr>
+<tr><td>"One line" was unclear</td><td>Now "Tagline", with a hint and an example</td><td><span class="s ok">Live</span></td><td>Saved /edit-profile: label reads Tagline</td></tr>
+<tr><td>Only one gallery photo could be added</td><td>Each pick adds to the gallery; previews with Remove; up to 12 per story</td><td><span class="s ok">Live</span></td><td>Stand-in /submit: 31 of 31 checks, cover plus 3 gallery photos uploaded</td></tr>
+<tr><td>Only one photo on the photo page</td><td>/share-photos takes up to 30 photos, PNG as well as JPG and WebP; captions up to 1,000 characters</td><td><span class="s ok">Live</span></td><td>Stand-in: PNG accepted, old script steps aside</td></tr>
+<tr><td>Autosave was unclear</td><td>Plain line: when it saved, where, and that photos are added on send</td><td><span class="s ok">Live</span></td><td>Stand-in /submit</td></tr>
+<tr><td>Story cut off at about 4,900 characters</td><td>Long stories are also sent in pieces (up to about 7,000 words)</td><td><span class="s ok">Live</span></td><td>Stand-in: split and rejoined exactly</td></tr>
+<tr><td>Expert form did not ask where she is from</td><td>"Where you are from (optional)" added</td><td><span class="s ok">Live</span></td><td><b>Live:</b> Nancy's 29 Oct application arrived with "United States"</td></tr>
+<tr><td>Story published?</td><td>Pompeii story live with her photos, Desert Glow theme, Italy page</td><td><span class="s ok">Live</span></td><td>CMS: published 29 Oct</td></tr>
+<tr><td>Captions and choosing where each photo sits</td><td>Not built yet: needs the next story editor</td><td><span class="s open">Open</span></td><td>Notion: TLL beta item</td></tr>
+<tr><td>An expats map of where everyone lives</td><td>Conflicts with never showing where a member is now. Proposal: cities members choose for their Location Expert desk, opt in, city level only</td><td><span class="s open">Your call</span></td><td>Notion: TLL idea item</td></tr>
+<tr><td>Missing ending of her story</td><td>Ends on her last full sentence until she sends the rest (reply drafted)</td><td><span class="s open">Ask Roberta</span></td><td></td></tr>
+</tbody></table></div>
+
+<h2>Mariam (29 Oct)</h2>
+<div class="wrap"><table class="table"><thead><tr><th>Note</th><th>What changed</th><th>Status</th><th>Checked by</th></tr></thead><tbody>
+<tr><td>Every field said "Not saved. Try again" in red</td><td>When the account saved but the public page did not, fields now say "Saved. Public page pending". Root causes fixed: Memberstack key set (29 Oct), Webflow token replaced (31 Oct)</td><td><span class="s ok">Live</span></td><td><b>Live:</b> Nancy's first save worked; the second failed on the old token, now replaced</td></tr>
+<tr><td>Second save in a row failed</td><td>The Worker waits and retries when Webflow says busy</td><td><span class="s wait">After deploy</span></td><td>Worker tests: 231 of 231</td></tr>
+<tr><td>Profile page created by hand</td><td>Contributors profile published 29 Oct</td><td><span class="s ok">Live</span></td><td>CMS</td></tr>
+</tbody></table></div>
+
+<h2>Luke and Zain (29 Oct)</h2>
+<div class="wrap"><table class="table"><thead><tr><th>Note</th><th>What changed</th><th>Status</th><th>Checked by</th></tr></thead><tbody>
+<tr><td>Luke's Torrevieja story</td><td>Published with his photos and subheads; alt text added 31 Oct; Spain page names him</td><td><span class="s ok">Live</span></td><td>CMS</td></tr>
+<tr><td>Zain's link-out filed under Oman</td><td>Set to Thailand, Asia, with the flag label</td><td><span class="s ok">Live</span></td><td>CMS</td></tr>
+<tr><td>Link-outs should pull a preview and summary</td><td>Open Graph preview on /submit, real photos only (never ads)</td><td><span class="s ok">Live</span></td><td>Worker tests; deployed 29 Oct</td></tr>
+<tr><td>Zain's white flag edges hard to see</td><td>Flags get a thin ring</td><td><span class="s ok">Live</span></td><td>Saved /travelers</td></tr>
+</tbody></table></div>
+
+<h2>Nancy's walk-throughs (29 to 31 Oct)</h2>
+<div class="wrap"><table class="table"><thead><tr><th>Note</th><th>What changed</th><th>Status</th><th>Checked by</th></tr></thead><tbody>
+<tr><td>Expat question asked twice</td><td>One place, with a Directories opt-in and "Claim your desk"</td><td><span class="s ok">Live</span></td><td>Saved /edit-profile</td></tr>
+<tr><td>Search bar hidden on /stories</td><td>Photo row moved under the search bar</td><td><span class="s ok">Live</span></td><td>Saved /stories</td></tr>
+<tr><td>Pets mixed with people; breed odd in search</td><td>Travel companions block with pet poster cards</td><td><span class="s ok">Live</span></td><td>Saved /travelers, 390 and 1440</td></tr>
+<tr><td>Gallery labels covered the photos</td><td>Small corner labels</td><td><span class="s ok">Live</span></td><td>Screenshot 29 Oct</td></tr>
+<tr><td>Where is Asia and Oceania; continents in order</td><td>All regions, alphabetical</td><td><span class="s ok">Live</span></td><td>Saved /stories</td></tr>
+<tr><td>Story with no photo showed blank</td><td>Ink panel with the country; lead slot goes to a story with a photo</td><td><span class="s ok">Live</span></td><td>Stand-in</td></tr>
+<tr><td>Writer names did not open profiles (404)</td><td>Byline name and photo open /contributors/{slug}</td><td><span class="s ok">Live</span></td><td>Stand-in</td></tr>
+<tr><td>Member bar too far left</td><td>Aligned with the page grid; scrolls on phones</td><td><span class="s ok">Live</span></td><td>Nancy: "looks better"</td></tr>
+<tr><td>Your links wrong (profile and /travelers)</td><td>Profile record fixed 29 Oct; Directory record (feeds /travelers) fixed 31 Oct</td><td><span class="s ok">Live</span></td><td>CMS read back</td></tr>
+<tr><td>Emails should all go to hello@</td><td>Every @thatlayover.life address shows and links as hello@</td><td><span class="s ok">Live</span></td><td>Two Designer strings still say press@ and partnerships@ underneath</td></tr>
+<tr><td>Pixelated Rio band, dark cover, Montenegro band</td><td>Jaguar and Sort Sol photos; lighter cover</td><td><span class="s ok">Live</span></td><td>Screenshots 29 Oct</td></tr>
+<tr><td>Publishing delays</td><td>Every member submission published</td><td><span class="s ok">Live</span></td><td>CMS; the "within 48 hours" wording is still on the site</td></tr>
+<tr><td>Profile links like Linktree</td><td>More links editor (web, PDF, video, music, bookings, shop with tags)</td><td><span class="s wait">After deploy</span></td><td>Stand-in editor and profile; Worker tests</td></tr>
+<tr><td>Faded marathon hero</td><td>Cause not found</td><td><span class="s open">Need link</span></td><td></td></tr>
+<tr><td>Expats tiles promise pages that do not exist</td><td>Coming soon, with the Sunday letter as waitlist</td><td><span class="s ok">Live</span></td><td>Saved home page, 390 and 1440</td></tr>
+</tbody></table></div>
+
+<h2>Tests run on 31 October</h2>
+<ul class="plain">
+<li>Worker: 231 of 231 tests pass (profile saves with retry, link previews, translation, site stats, More links).</li>
+<li>/submit gallery and autosave stand-in: 31 of 31.</li>
+<li>Every site layer on saved copies of /edit-profile, /for-expats, /travelers, home, /the-map and /stories at 390 and 1440: 36 of 38. The two misses are the /edit-profile section tabs overflowing sideways in the saved copy, the same with or without the new code; on the live site they are a sideways-scrolling row. To confirm on the live page Monday.</li>
+<li>Live confirmation so far: the Where you are from field (a real submission), profile saves after the Memberstack key (Nancy's first save).</li>
+</ul>
+
+<h2>Waiting on Nancy</h2>
+<ul class="plain">
+<li>Run <code>git pull</code> then <code>npx wrangler deploy</code> (turns on the save retry and More links on public pages).</li>
+<li>Allow the four site domains in the Claude environment (Monday), so the live checks can run.</li>
+<li>Decide the 48-hour wording, the expats map idea, and send the marathon story link.</li>
+<li>Edit the press@ and partnerships@ text in the Designer.</li>
+</ul>
+</main>
+</body>
+</html>
