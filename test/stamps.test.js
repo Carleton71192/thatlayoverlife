@@ -77,3 +77,22 @@ describe('hub index rule', () => {
     expect(pursuitCounts(p(), { liveStories: live.map((s) => ({ ...s, fieldData: { contributor: 'x' } })) }).p).toMatchObject({ writers: 1, indexable: false });
   });
 });
+
+describe('one private stamp', () => {
+  it('stays hidden while the rest of its pursuit shows', async () => {
+    const w = world();
+    const a = await w.call('/stamps/add', { pursuit: 'work-trips', what: 'Offsite', country: 'Japan', year: 2025 });
+    await w.call('/stamps/add', { pursuit: 'work-trips', what: 'Kickoff', country: 'Japan', year: 2024 });
+    await w.call('/stamps/show', { pursuit: 'work-trips', show: true });
+    expect((await w.call('/stamps/private', { id: a.stamp.id, private: true })).ok).toBe(true);
+    let wt = (await w.pub('/stamps/public?slug=nancy-carleton')).shelves.find((x) => x.pursuit === 'work-trips');
+    expect(wt.count).toBe(1);
+    await w.call('/stamps/show', { pursuit: 'work-trips', show: true });
+    wt = (await w.pub('/stamps/public?slug=nancy-carleton')).shelves.find((x) => x.pursuit === 'work-trips');
+    expect(wt.count).toBe(1);
+    await w.call('/stamps/private', { id: a.stamp.id, private: false });
+    wt = (await w.pub('/stamps/public?slug=nancy-carleton')).shelves.find((x) => x.pursuit === 'work-trips');
+    expect(wt.count).toBe(2);
+    expect((await w.call('/stamps/mine')).stamps.find((s) => s.id === a.stamp.id).private).toBe(false);
+  });
+});

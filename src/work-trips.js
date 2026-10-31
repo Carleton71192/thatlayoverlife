@@ -23,7 +23,7 @@ const send = (b, s = 200, cache = 600) => new Response(JSON.stringify(b), { stat
 
 export function stampsWall(stamps, ps, people) {
   const shown = new Map(people.filter((p) => !p.isDraft && p.fieldData?.visibility !== VISIBILITY_OFF).map((p) => [p.id, p]));
-  const rows = stamps.filter((s) => !s.isArchived && s.fieldData?.['show-on-profile'] === true && isWorkTrip(s.fieldData, ps) && shown.has(s.fieldData.owner))
+  const rows = stamps.filter((s) => !s.isArchived && s.fieldData?.['show-on-profile'] === true && s.fieldData?.private !== true && isWorkTrip(s.fieldData, ps) && shown.has(s.fieldData.owner))
     .map((s) => { const f = s.fieldData, p = shown.get(f.owner).fieldData; return { country: f.name || '', city: f.city || '', year: f.year || null, what: publicWhat(f, ps), member: String(p.name || '').split(' ')[0], memberSlug: p.slug }; })
     .sort((a, b) => (b.year || 0) - (a.year || 0)).slice(0, WALL_MAX);
   return { stamps: rows, countries: new Set(rows.map((r) => r.country.toLowerCase())).size, members: new Set(rows.map((r) => r.memberSlug)).size };

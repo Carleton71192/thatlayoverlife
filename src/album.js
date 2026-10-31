@@ -78,7 +78,7 @@ export async function handleAlbum(request, env, { fetchImpl = fetch } = {}) {
     env.COLLECTION_CATEGORIES_ID ? listAll(env, fetchImpl, env.COLLECTION_CATEGORIES_ID) : [],
     env.PURSUITS_COLLECTION_ID ? listAll(env, fetchImpl, env.PURSUITS_COLLECTION_ID) : [],
   ]);
-  const mine = (list) => list.filter((x) => x.fieldData?.owner === person.id && !x.isArchived && x.fieldData?.['show-on-profile'] === true);
+  const mine = (list) => list.filter((x) => x.fieldData?.owner === person.id && !x.isArchived && x.fieldData?.['show-on-profile'] === true && x.fieldData?.private !== true);
   const name = (list, id) => list.find((x) => x.id === id)?.fieldData?.name || '';
   const shownItems = mine(items).map((i) => { const f = i.fieldData; return { country: f.name, city: f.city, year: f.year, line: f['own-category-name'] || name(cats, f.category), alt: f.photo?.alt || '', photos: [f.photo?.url, ...((f['more-photos'] || []).map((x) => x?.url))].filter(Boolean) }; });
   const shownStamps = mine(stamps).map((s) => { const f = s.fieldData; return { country: f.name, city: f.city, year: f.year, line: [name(ps, f.pursuit), publicWhat(f, ps)].filter(Boolean).join(': '), alt: f.photo?.alt || '', photos: [f.photo?.url].filter(Boolean) }; });

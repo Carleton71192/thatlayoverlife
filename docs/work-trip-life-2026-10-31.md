@@ -68,3 +68,12 @@ When a member adds a work-trip stamp, the country goes on their map as BEEN for 
 5. Which empty collection can go to free a slot for Conference Cities?
 6. Approve or rewrite the hub intro draft (shown in the preview, marked as a draft).
 7. When should the Work trips Pursuit item be published? The hub stays noindex until it meets the index rule (6 stories, 3 writers, an intro).
+
+## Nancy's answers (31 Oct, evening) and what changed
+
+1. **Hub name:** That Work Trip Life, confirmed.
+2. **LinkedIn newsletter name:** The Free Evening.
+3. **Next Conference Cities, by business traffic:** Lisbon, Paris, Barcelona. These are the top three cities in ICCA's 2025 ranking of international association meetings: Lisbon 188, Paris 174, Barcelona 166. Copenhagen is 7th with 131. ICCA counts association congresses, not company events. Sources: [Skift Meetings, 21 May 2026](https://meetings.skift.com/2026/05/21/lisbon-tops-iccas-association-meeting-rankings/), [Hosteltur](https://www.hosteltur.com/176337_el-ranking-icca-da-un-vuelco-lisboa-desbanca-a-viena-y-barcelona-sube-al-podio.html). The Conference Cities template still waits on a free CMS slot.
+4. **A single work-trip stamp can be private:**
+   - **Built:** a new Private switch on Pursuit stamps, a "Keep this one private" box on each work-trip stamp in /edit-profile (staged with the work-trip preview), and `POST /stamps/private`.
+   - **How it behaves:** a private stamp never shows on the profile, album or hub wall, even when its pursuit is shown. It still counts on the member's own map and export.

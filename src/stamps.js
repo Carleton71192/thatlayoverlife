@@ -32,13 +32,13 @@ export function stampView(s, ps, { owner = false } = {}) {
   const f = s.fieldData || {};
   const p = ps.find((x) => x.id === f.pursuit);
   const v = { pursuit: p?.fieldData?.slug || '', pursuitName: p?.fieldData?.name || '', what: owner ? f.what || '' : publicWhat(f, ps), country: f.name || '', city: f.city || '', year: f.year || null, photo: f.photo?.url || '', workTrip: isWorkTrip(f, ps) };
-  return owner ? { id: s.id, ...v, month: f.month || null, shown: f['show-on-profile'] === true, namedOk: f['permission-to-name'] === true } : v;
+  return owner ? { id: s.id, ...v, month: f.month || null, shown: f['show-on-profile'] === true && f.private !== true, private: f.private === true, namedOk: f['permission-to-name'] === true } : v;
 }
 
 export function stampShelves(stamps, ps) {
   const g = new Map();
   for (const s of stamps) {
-    if (s.fieldData?.['show-on-profile'] !== true) continue;
+    if (s.fieldData?.['show-on-profile'] !== true || s.fieldData?.private === true) continue;
     const v = stampView(s, ps);
     const add = (slug, name) => { if (!g.has(slug)) g.set(slug, { pursuit: slug, name, live: ps.find((x) => x.fieldData?.slug === slug)?.isDraft !== true, stamps: [] }); g.get(slug).stamps.push(v); };
     add(v.pursuit, v.pursuitName);
@@ -107,11 +107,20 @@ export async function handleStamps(request, env, { fetchImpl = fetch, now = Date
     const p = ps.find((x) => x.fieldData?.slug === b.pursuit);
     if (!p) return reply({ error: 'Pick a pursuit.' }, 400);
     const show = b.show === true;
-    const changed = (await mine()).filter((s) => s.fieldData?.pursuit === p.id && (s.fieldData?.['show-on-profile'] === true) !== show);
+    const changed = (await mine()).filter((s) => s.fieldData?.pursuit === p.id && (s.fieldData?.['show-on-profile'] === true) !== (show && s.fieldData?.private !== true));
     for (let i = 0; i < changed.length; i += 100) {
-      await webflow(env, fetchImpl, `/collections/${S}/items`, { method: 'PATCH', body: JSON.stringify({ items: changed.slice(i, i + 100).map((x) => ({ id: x.id, fieldData: { 'show-on-profile': show } })) }) });
+      await webflow(env, fetchImpl, `/collections/${S}/items`, { method: 'PATCH', body: JSON.stringify({ items: changed.slice(i, i + 100).map((x) => ({ id: x.id, fieldData: { 'show-on-profile': show && x.fieldData?.private !== true } })) }) });
     }
     return reply({ ok: true, show });
+  }
+  if (path === '/stamps/private') {
+    // One stamp kept private while the rest of its pursuit shows (Nancy, 31 Oct: "Sure").
+    const st = (await mine()).find((x) => x.id === b.id);
+    if (!st) return reply({ error: 'Not found.' }, 404);
+    const priv = b.private === true;
+    const shownPursuit = (await mine()).some((x) => x.id !== st.id && x.fieldData?.pursuit === st.fieldData?.pursuit && x.fieldData?.['show-on-profile'] === true);
+    await webflow(env, fetchImpl, `/collections/${S}/items`, { method: 'PATCH', body: JSON.stringify({ items: [{ id: st.id, fieldData: { private: priv, 'show-on-profile': priv ? false : shownPursuit } }] }) });
+    return reply({ ok: true, private: priv });
   }
   return reply({ error: 'not found' }, 404);
 }

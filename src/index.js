@@ -79,6 +79,7 @@ const MEMBER_ROUTES = {
   '/stamps/add': handleStamps,
   '/stamps/delete': handleStamps,
   '/stamps/show': handleStamps,
+  '/stamps/private': handleStamps,
   '/album/settings': handleAlbumSettings,
   '/export': handleExport,
   '/metrics': handleMetrics,
