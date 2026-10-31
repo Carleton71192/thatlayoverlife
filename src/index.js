@@ -44,6 +44,7 @@ import { handleLinkSummary } from './link-summary.js';
 import { handleCrew, handleCrewPublic } from './crew.js';
 import { runEnrich } from './story-enrich.js';
 import { handleWhatsNew } from './whats-new.js';
+import { handleAlbum } from './album.js';
 import { handleStamps, handleStampsPublic, runPursuitCounts } from './stamps.js';
 import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
@@ -134,6 +135,7 @@ export default {
     if (url.pathname === '/crew/people' || url.pathname === '/crew/public') return handleCrewPublic(request, env);
     if (url.pathname === '/collections/public') return handleCollectionsPublic(request, env);
     if (url.pathname === '/whats-new') return handleWhatsNew(request, env);
+    if (url.pathname === '/album') return handleAlbum(request, env);
     if (url.pathname === '/stamps/public' || url.pathname === '/pursuits/status') return handleStampsPublic(request, env);
 
     if (url.pathname === '/lounge') {
