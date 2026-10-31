@@ -73,3 +73,13 @@ Counts on the tape are photos and countries in the album, not the member's whole
 | /contributors/* of a pro | PRO badge | None | Badge with their pro line under the name | What they get |
 | /pursuits/* | From the Pros row | None | The hub's pros with links to their profiles | A spot in the hub |
 Invite email and optional badge: docs/pros-invite-kit-2026-10-31.md (draft, your words to change).
+
+## Phase 7: revenue wiring (31 Oct, 17:14 UTC)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| Every page | GA4 parameter division | None | paw-passport on /the-paw-passport, /pets/*, /my-pets, the dog-travel hub; tll elsewhere | Two divisions |
+| Revenue links (sponsored, partner, shop and tip links, Pro author links) | Click | Untracked | GA4 revenue_click with division, surface and domain; UTM source thatlayoverlife, medium = surface, campaign = division, when the link has none | Tag every revenue surface |
+| CMS Site settings (one empty item) | Legal name, registration number, city and country, legal email, division names | Typed on pages | One setting, read by GET /settings; elements marked data-tll-entity are filled from it | Entity-neutral pages |
+
+Needs you: fill Site settings when the adviser confirms the entity (sole proprietorship or company, AdSense payee); then I mark the privacy, terms and cookie pages' operator and controller lines with data-tll-entity and propose the wording change for your yes. Today the privacy page says "operated by Nancy Carleton"; that stays until you decide. Ads are not split by division yet: when the Paw Passport pages carry ads, make a separate ad unit for them in AdSense so revenue reports split cleanly.
