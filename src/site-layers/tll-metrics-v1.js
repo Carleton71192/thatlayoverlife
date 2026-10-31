@@ -34,6 +34,11 @@ function run(){
     box.appendChild(g);if(d.history.length>1){var ch=el('div');ch.innerHTML=line(d.history);box.appendChild(ch);}
     var b=el('button','','Download investor snapshot');b.type='button';b.onclick=function(){var a=el('a');a.href=URL.createObjectURL(new Blob([snapshot(d)],{type:'text/html'}));a.download='that-layover-life-metrics-'+d.today.date+'.html';document.body.appendChild(a);a.click();setTimeout(function(){a.remove();},2000);};
     box.appendChild(b);box.appendChild(el('small','','Counted from the live site. The growth line fills in one point a day from today.'));
+    /* "How do you travel most?" answers, this month (members count once; multi-select, so the rows can add up to more). */
+    var ts=d.travelStyle||{},months=Object.keys(ts).sort(),cur=months[months.length-1];
+    if(cur){var L={'big-trips':'A few big trips a year','short-trips':'Lots of short trips and layovers',abroad:'I live abroad (or did)',work:'For work',pet:'With my pet',pursuit:'For a pursuit'};
+      box.appendChild(el('p','tll-met-k','How members travel · '+cur+' · '+ts[cur].members+(ts[cur].members===1?' answer':' answers')));var tg=el('div','tll-met-g');
+      Object.keys(L).forEach(function(k){var c=el('div','tll-met-c');c.appendChild(el('b','',String(ts[cur][k]||0)));c.appendChild(el('span','',L[k]));tg.appendChild(c);});box.appendChild(tg);}
     var after=document.getElementById('tll-exp'),main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);
     if(after)after.insertAdjacentElement('afterend',box);else if(an&&an.parentNode)an.parentNode.insertBefore(box,an.nextSibling);else main.appendChild(box);
   }).catch(function(){});

@@ -173,3 +173,16 @@ The other pattern hits were history ("the next year" in past tense).
 - **Site layers:** re-apply 16.47.0.
 - **Head, footer and page code:** originals in `scratchpad/p0-1031/before/`.
 - **/my-passport:** set draft off.
+
+## Added after the Phase 0 prompt (31 Oct, evening; staged in 16.48.2 with the rest)
+
+- **Home value row:** "The uncle deck" now reads "The trip deck. Remember the 80-slide deck someone made of one weekend in Boston? This is that, except people ask to see it." Nobody's uncle is named.
+- **Welcome flow, after step 3 (UX Phase 3 addition):** an optional, one-tap "How do you travel most?" question.
+  - **Choices:** A few big trips a year / Lots of short trips and layovers / I live abroad (or did) / For work / With my pet / For a pursuit (running, hiking, food, more). Multi-select, with a Skip button.
+  - **Where answers go:**
+    - the member's private Memberstack field `travel-style` (created tonight);
+    - a GA4 user property `travel_style`, only after analytics consent;
+    - the Worker (`POST /travel-style`), which keeps one record per member.
+  - **The count:** Nancy's owner-only metrics panel on /account shows this month's count per answer. It's never shown publicly.
+  - **For you in GA4:** register `travel_style` as a user-scoped custom dimension.
+- **Site head:** the new consent block is written to the staged site head and verified byte for byte by readback.

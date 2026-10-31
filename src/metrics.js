@@ -4,6 +4,7 @@
 // stories, pets, stories published in the last 30 days, members using collections and stamps, companion links, the Paw
 // Passport waitlist size. The 30-minute job keeps one snapshot per day in WIRE_KV (metrics:day:YYYY-MM-DD, 400 days) so growth
 // shows as a line. Totals only: no names, emails or places. Traffic needs GA4 and is not here.
+import { travelStyleReport } from './travel-style.js';
 import { isOwner } from './owner-map.js';
 import { reply, verifyMemberToken } from './member-auth.js';
 import { computeStats, listLive } from './site-stats.js';
@@ -60,5 +61,5 @@ export async function handleMetrics(request, env, { fetchImpl = fetch, now = Dat
     const v = await env.WIRE_KV.get(`metrics:day:${d}`);
     if (v) { try { history.push(JSON.parse(v)); } catch { /* skip */ } }
   }
-  return reply({ ok: true, today, history: [...history, today] });
+  return reply({ ok: true, today, history: [...history, today], travelStyle: await travelStyleReport(env) });
 }

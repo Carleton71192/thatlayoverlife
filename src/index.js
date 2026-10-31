@@ -50,6 +50,7 @@ import { handlePros } from './pros.js';
 import { handleWorkTrips } from './work-trips.js';
 import { handleSeries } from './series.js';
 import { handleLivingLibrary } from './living-library.js';
+import { handleTravelStyle } from './travel-style.js';
 import { handlePetPublic, handlePetMember } from './pet-passport.js';
 import { handleSettings } from './settings.js';
 import { handlePaw } from './paw.js';
@@ -75,6 +76,7 @@ const MEMBER_ROUTES = {
   '/collections/show': handleCollections,
   '/stamps/mine': handleStamps,
   '/pets/mine': handlePetMember,
+  '/travel-style': handleTravelStyle,
   '/pets/update': handlePetMember,
   '/stamps/add': handleStamps,
   '/stamps/delete': handleStamps,

@@ -13,7 +13,7 @@ var on=PUBLIC;try{on=on||localStorage.getItem('tll-preview-value')==='1';}catch(
 if(!on&&q!=='value')return;
 var PURSUITS=[['foodie','Food'],['marathons','Marathons'],['trekking','Trekking'],['dog-travel','Dog travel']];
 var LINES=[['The slide show.','Remember when Grandpa pulled out the slide projector after dinner? This is that.'],
-  ['The uncle deck.','Remember when your uncle made a PowerPoint of his trip to Boston? (This really happened.) This is that, except people ask to see it.'],
+  ['The trip deck.','Remember the 80-slide deck someone made of one weekend in Boston? This is that, except people ask to see it.'],
   ['The lost account.','A friend got locked out of Instagram and lost every travel photo with it. TLL is the copy that does not vanish when an app decides you are someone else.']];
 var CSS='.tll-val{background:#FDF9F3;color:#0A0B14;padding:72px 16px 80px;font:400 17px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif}'+
 '.tll-val-in{max-width:1120px;margin:0 auto}.tll-val-ey{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#067A79;margin:0 0 14px}'+
