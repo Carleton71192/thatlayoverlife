@@ -54,19 +54,28 @@ function show(c,name){
   document.addEventListener('keydown',key,true);document.documentElement.style.overflow='hidden';document.body.appendChild(ss);draw();close.focus();
   try{var u=new URL(location.href);u.searchParams.set('play',c.key);history.replaceState(null,'',u);window.gtag&&gtag('event','slideshow_open',{division:'tll',continent:c.key});}catch(e){}
 }
+function group(d){var model=d.model||'seven',mc=d.mapCounts||null,by={};d.continents.forEach(function(c){by[c.key]=c;});
+  function merge(key,name,keys){var ps=[],n=0,m=0,cv=null;keys.forEach(function(k){var c=by[k];if(!c)return;ps=ps.concat(c.photos);n+=c.countries;if(mc)m+=mc[k]||0;cv=cv||c.cover;});return{key:key,name:name,photos:ps,countries:n,map:mc?m:null,cover:cv};}
+  var one=function(k){return merge(k,by[k]?by[k].name:k,[k]);};
+  var L={seven:[one('africa'),one('antarctica'),one('asia'),one('europe'),one('north-america'),one('oceania'),one('south-america')],
+    americas:[one('africa'),merge('america','America',['north-america','south-america']),one('antarctica'),one('asia'),one('europe'),one('oceania')],
+    eurasia:[one('africa'),one('antarctica'),merge('eurasia','Eurasia',['europe','asia']),one('north-america'),one('oceania'),one('south-america')],
+    olympic:[one('africa'),merge('america','America',['north-america','south-america']),one('asia'),one('europe'),one('oceania')]};
+  return L[model]||L.seven;}
+var HEAD={seven:'Seven continents, one slide each.',americas:'Six continents, one slide each.',eurasia:'Six continents, one slide each.',olympic:'Five continents, one slide each.'};
 function run(){
   if(document.getElementById('tll-alb'))return;
   fetch(API+encodeURIComponent(SLUG)).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d||!d.ok||!d.continents||!d.continents.length||document.getElementById('tll-alb'))return;
-    if(!d.continents.some(function(c){return c.photos.length;}))return;css();
-    var sec=el('section','tll-alb');sec.id='tll-alb';sec.appendChild(el('p','tll-alb-k','The album'));sec.appendChild(el('h2','','Seven continents, one slide each.'));
+    if(!d.continents.some(function(c){return c.photos.length;}))return;css();var all=d.continents;d.continents=group(d);
+    var sec=el('section','tll-alb');sec.id='tll-alb';sec.appendChild(el('p','tll-alb-k','The album'));sec.appendChild(el('h2','',HEAD[d.model]||HEAD.seven));
     var grid=el('div','tll-alb-grid');
     d.continents.forEach(function(c){var b;
       if(c.photos.length){b=el('button','tll-alb-mount');b.type='button';b.setAttribute('aria-label','Play '+c.name+', '+c.photos.length+' photos');
         var im=el('img');im.src=sized(c.cover.img,600);im.alt='';im.loading='lazy';b.appendChild(im);b.appendChild(el('span','tll-alb-play','▶ Play'));
-        var tp=el('span','tll-alb-tape');tp.appendChild(el('b','',c.name));tp.appendChild(el('small','',c.photos.length+(c.photos.length===1?' photo':' photos')+' · '+c.countries+(c.countries===1?' country':' countries')));b.appendChild(tp);
+        var tp=el('span','tll-alb-tape');tp.appendChild(el('b','',c.name));var nC=c.map!=null&&c.map>0?c.map:c.countries;tp.appendChild(el('small','',c.photos.length+(c.photos.length===1?' photo':' photos')+' · '+nC+(nC===1?' country':' countries')));b.appendChild(tp);
         b.onclick=function(){show(c,d.name);};}
-      else{b=el('div','tll-alb-mount');var e=el('div','tll-alb-empty');if(c.key==='antarctica')e.innerHTML=PENGUIN;e.appendChild(el('span','','Not yet'));b.appendChild(e);b.appendChild(el('span','tll-alb-tape',c.name));}
+      else{b=el('div','tll-alb-mount');var e=el('div','tll-alb-empty');if(c.key==='antarctica')e.innerHTML=PENGUIN;e.appendChild(el('span','',c.map?'No photos yet':'Not yet'));b.appendChild(e);var te=el('span','tll-alb-tape');te.appendChild(el('b','',c.name));if(c.map)te.appendChild(el('small','',c.map+(c.map===1?' country':' countries')));b.appendChild(te);}
       grid.appendChild(b);});
     sec.appendChild(grid);
     var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);

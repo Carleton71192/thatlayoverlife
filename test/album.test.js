@@ -24,3 +24,20 @@ describe('continent album', () => {
     expect(by.antarctica).toMatchObject({ photos: [], countries: 0, cover: null });
   });
 });
+
+import { continentOfM49, settingsFrom, M49 } from '../src/album.js';
+describe('album settings', () => {
+  it('maps every map code to one continent, Kosovo included', () => {
+    const all = Object.values(M49).flatMap((v) => v.split(' '));
+    expect(new Set(all).size).toBe(all.length);
+    expect(['208', '076', '704', '840', '010', '554', '288', '900'].map(continentOfM49)).toEqual(['europe', 'south-america', 'asia', 'north-america', 'antarctica', 'oceania', 'africa', 'europe']);
+  });
+  it('accepts only whole-number counts for the seven continents and a known model', () => {
+    const counts = { africa: 9, antarctica: 1, asia: 20, europe: 40, 'north-america': 8, oceania: 3, 'south-america': 6 };
+    expect(settingsFrom({ counts, model: 'americas' }).settings).toEqual({ counts, model: 'americas' });
+    expect(settingsFrom({ counts: { ...counts, mars: 1 } }).error).toBeTruthy();
+    expect(settingsFrom({ counts: { ...counts, asia: 2.5 } }).error).toBeTruthy();
+    expect(settingsFrom({ model: 'flat-earth' }).error).toBeTruthy();
+    expect(settingsFrom({}).error).toBeTruthy();
+  });
+});
