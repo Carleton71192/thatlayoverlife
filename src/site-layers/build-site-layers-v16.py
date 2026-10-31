@@ -48,7 +48,8 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-ep-linkstack-v1.js', '29 Oct Nancy: More links editor on /edit-profile'),
            ('src/site-layers/tll-pf-linkstack-v1.js', '29 Oct Nancy: More links on public profiles'),
            ('src/site-layers/tll-redesign-p0-v1.js', '31 Oct Nancy: expats tiles coming soon, Horseshoe Bend off the home shelf, labeled map counts'),
-           ('src/site-layers/tll-expats-map-v1.js', '31 Oct Nancy: expats map with flags on /for-expats (opt-in, home base, country level)')]
+           ('src/site-layers/tll-expats-map-v1.js', '31 Oct Nancy: expats map with flags on /for-expats (opt-in, home base, country level)'),
+           ('src/site-layers/tll-story-captions-v1.js', '31 Oct Roberta: photo captions on story pages from Photo placements')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()

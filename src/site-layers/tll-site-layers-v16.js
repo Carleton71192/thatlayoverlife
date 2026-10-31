@@ -42,6 +42,7 @@
    script src/site-layers/tll-pf-linkstack-v1.js (29 Oct Nancy: More links on public profiles)
    script src/site-layers/tll-redesign-p0-v1.js (31 Oct Nancy: expats tiles coming soon, Horseshoe Bend off the home shelf, labeled map counts)
    script src/site-layers/tll-expats-map-v1.js (31 Oct Nancy: expats map with flags on /for-expats (opt-in, home base, country level))
+   script src/site-layers/tll-story-captions-v1.js (31 Oct Roberta: photo captions on story pages from Photo placements)
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -1205,7 +1206,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 setTimeout(run,1200);
 })();
 
-/* tll-submit-gallery-v1 (29 Oct 2026, tester Roberta Bianchi on /submit: "I could only upload one hero image and 1 gallery image.
+/* tll-submit-gallery-v1 (29 Oct 2026; captions and placement added 31 Oct 2026, see below; tester Roberta Bianchi on /submit: "I could only upload one hero image and 1 gallery image.
    I could not select several images for the gallery" and "I would make the autosave part more clear.").
    STAGED: not in the published bundle until Nancy says yes.
 
@@ -1246,6 +1247,14 @@ var CSS=
 ".tll-sg-hero{display:flex;gap:12px;align-items:center;margin:10px 0 4px}"+
 ".tll-sg-hero[hidden]{display:none}"+
 ".tll-sg-hero .tll-sg-item{width:100%;aspect-ratio:16/9}"+
+/* captions and placement (31 Oct 2026) */
+".tll-cp{margin:12px 0 4px;padding:0;list-style:none;display:grid;gap:10px}.tll-cp:empty{display:none}"+
+".tll-cp-h{margin:14px 0 4px;font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79}"+
+".tll-cp li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:6px 12px;align-items:start}"+
+".tll-cp img,.tll-cp .tll-cp-x{grid-row:span 2;width:56px;height:56px;object-fit:cover;border-radius:6px;background:#FBF7F0;font:400 11px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54;overflow:hidden}"+
+".tll-cp input,.tll-cp select,.tll-cap-cover{width:100%;min-height:44px;padding:8px 10px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;color:#0A0B14;font:400 15px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;box-sizing:border-box}"+
+".tll-cp label,.tll-cap-lab{display:block;font:600 13px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
+".tll-cp small,.tll-cap-help{display:block;margin:2px 0 0;font:400 12px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}"+
 /* autosave line */
 "html body .tllst-save{font:400 13px/1.45 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif!important;letter-spacing:0!important;text-transform:none!important;color:#5F5A54!important;margin-top:10px!important}"+
 "html body .tllst-save b{font-weight:600;color:#0A0B14}"+
@@ -1265,6 +1274,15 @@ function thumb(f,onRemove,label){
 }
 function clearRow(row){[].forEach.call(row.children,function(li){if(li.__url)URL.revokeObjectURL(li.__url);});row.textContent='';}
 
+/* Captions and placement (31 Oct 2026, Roberta: "Could you add captions or choose where each photo sits?").
+   Each gallery photo gets an optional caption (200 characters) and a "Where it goes" menu built from the headings the writer typed
+   (a short line on its own with no closing punctuation), or "Gallery at the end". The choices travel in one hidden field,
+   photo-plan, as JSON in gallery order: [{"n":1,"name":"IMG_2.jpg","caption":"...","after":"The Art of Arriving First"}].
+   The cover photo gets a caption field, cover-caption. The builder copies them to the story's Photo placements row. */
+var CAPMAX=200;
+function headings(form){var b=form.querySelector('textarea[name="body"]');if(!b)return[];var seen={},out=[];
+  String(b.value||'').split(/\n/).forEach(function(l){var t=l.trim();if(t.length<3||t.length>90||/[.!?…:;,"”')\]]$/.test(t)||t.split(/\s+/).length>14||seen[t])return;seen[t]=1;out.push(t);});return out;}
+function planField(form){var h=form.querySelector('input[name="photo-plan"]');if(!h){h=document.createElement('input');h.type='hidden';h.name='photo-plan';h.setAttribute('data-name','photo-plan');form.appendChild(h);}return h;}
 function gallery(form){
   var inp=form.querySelector('input[type="file"][name="photo-gallery"]');if(!inp||inp.__tllSg)return;inp.__tllSg=1;
   inp.multiple=true;
@@ -1279,14 +1297,29 @@ function gallery(form){
   var note=el('p','tll-sg-note');note.setAttribute('role','status');
   var help=el('p','tll-sg-help',canSet?'Pick several photos at once, or add more with another pick. They upload when you send.'
                                       :'Pick all your gallery photos at once: hold one photo, then tap the others. They upload when you send.');
-  box.appendChild(row);box.appendChild(bar);box.appendChild(note);box.appendChild(help);
+  var capH=el('p','tll-cp-h','Captions and placement (optional)');capH.hidden=true;var plan=el('ul','tll-cp');var meta={};
+  box.appendChild(row);box.appendChild(bar);box.appendChild(note);box.appendChild(help);box.appendChild(capH);box.appendChild(plan);
   field.parentNode.insertBefore(box,field.nextSibling);
+  var hidden=planField(form);
+  function save(){var out=[];kept.forEach(function(f,i){var m=meta[key(f)]||{};if((m.caption||'').trim()||(m.after&&m.after!=='gallery'))out.push({n:i+1,name:f.name,caption:(m.caption||'').trim().slice(0,CAPMAX),after:m.after&&m.after!=='gallery'?m.after:'gallery'});});hidden.value=out.length?JSON.stringify(out):'';}
+  function fill(sel,cur){var hs=headings(form);sel.textContent='';var o=document.createElement('option');o.value='gallery';o.textContent='Gallery at the end';sel.appendChild(o);
+    hs.forEach(function(h){var x=document.createElement('option');x.value=h;x.textContent='After: '+h;sel.appendChild(x);});
+    if(cur&&cur!=='gallery'&&hs.indexOf(cur)<0){var y=document.createElement('option');y.value=cur;y.textContent='After: '+cur;sel.appendChild(y);}sel.value=cur||'gallery';}
+  function renderPlan(){plan.textContent='';capH.hidden=!kept.length;
+    kept.forEach(function(f,i){var k=key(f),m=meta[k]||(meta[k]={caption:'',after:'gallery'});var li=document.createElement('li');
+      var th;if(/^image\//.test(f.type)){th=document.createElement('img');th.alt='';th.src=URL.createObjectURL(f);th.onload=function(){URL.revokeObjectURL(th.src);};}else th=el('span','tll-cp-x',f.name);li.appendChild(th);
+      var id='tll-cp-'+i;var c=el('div');var lb=el('label',null,'Caption for photo '+(i+1));lb.setAttribute('for',id);var inp2=document.createElement('input');inp2.id=id;inp2.type='text';inp2.maxLength=CAPMAX;inp2.value=m.caption;inp2.placeholder='What are we looking at?';
+      var cnt=el('small',null,'');function cc(){cnt.textContent=(inp2.value.length)+' of '+CAPMAX;}cc();inp2.addEventListener('input',function(){m.caption=inp2.value;cc();save();});c.appendChild(lb);c.appendChild(inp2);c.appendChild(cnt);li.appendChild(c);
+      var d=el('div');var lb2=el('label',null,'Where it goes');lb2.setAttribute('for',id+'-w');var sel=document.createElement('select');sel.id=id+'-w';fill(sel,m.after);
+      sel.addEventListener('focus',function(){fill(sel,m.after);});sel.addEventListener('change',function(){m.after=sel.value;save();});d.appendChild(lb2);d.appendChild(sel);li.appendChild(d);plan.appendChild(li);});
+    save();}
   function render(){
     clearRow(row);
     kept.forEach(function(f,i){row.appendChild(thumb(f,function(){kept.splice(i,1);setFiles(inp,kept);note.textContent='';render();},'photo '+(i+1)+' of '+kept.length+', '+f.name));});
     count.textContent=kept.length?(kept.length+' of '+MAX+' photo'+(MAX===1?'':'s')+' chosen'):'No gallery photos yet';
     add.textContent=kept.length?'Add more photos':'Choose photos';
     add.hidden=!canSet||kept.length>=MAX;
+    renderPlan();
   }
   inp.addEventListener('change',function(){
     var picked=[].slice.call(inp.files||[]);
@@ -1307,7 +1340,11 @@ function hero(form){
   var field=inp.closest('label')||inp;
   var box=el('div','tll-sg-hero');box.hidden=true;var row=el('ul','tll-sg-row');row.style.cssText='margin:0;display:block;flex:0 0 120px;width:120px';
   var txt=el('p','tll-sg-help','This is your cover photo. Add more photos in the gallery below.');txt.style.margin='0';
-  box.appendChild(row);box.appendChild(txt);field.parentNode.insertBefore(box,field.nextSibling);
+  var wrap=el('div');wrap.appendChild(txt);
+  if(!form.querySelector('input[name="cover-caption"]')){var cl=el('label','tll-cap-lab','Cover caption (optional)');cl.setAttribute('for','tll-cap-cover');cl.style.marginTop='8px';
+    var ci=document.createElement('input');ci.type='text';ci.id='tll-cap-cover';ci.name='cover-caption';ci.setAttribute('data-name','cover-caption');ci.className='tll-cap-cover';ci.maxLength=CAPMAX;ci.placeholder='What are we looking at?';
+    var ch=el('small','tll-cap-help','0 of '+CAPMAX);ci.addEventListener('input',function(){ch.textContent=ci.value.length+' of '+CAPMAX;});wrap.appendChild(cl);wrap.appendChild(ci);wrap.appendChild(ch);}
+  box.appendChild(row);box.appendChild(wrap);field.parentNode.insertBefore(box,field.nextSibling);
   inp.addEventListener('change',function(){clearRow(row);var f=inp.files&&inp.files[0];box.hidden=!f;if(f)row.appendChild(thumb(f,null));});
 }
 
@@ -1845,6 +1882,33 @@ function run(){
   .then(function(a){var d=a[0];if(!d||!d.expats||!d.expats.length)return;build(d,a[1]);}).catch(function(){});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+
+/* tll-story-captions-v1 (31 Oct 2026, Roberta: captions and choosing where each photo sits). Story pages only. Reads caption
+   lines from the story's Photo placements text, the same text the inline-photo script (tllinlinephotosv2b) reads:
+     Caption: photo-filename-slug | The writer's caption
+   (that script skips these lines, so nothing else changes). Each captioned photo shows its caption under it: a figcaption
+   when it sits inline in the story, a small line under the thumbnail in the gallery, and the lightbox caption when opened.
+   Captions are the writer's own words, never written by AI. Nothing removed; no data-ms-* element touched. */
+(function(){
+if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;
+var CSS='.tll-ph-cap{display:block;margin:8px 0 0;font:400 14px/1.45 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#5F5A54;text-align:left}'+
+'.tll-inline-photo .tll-ph-cap{padding:0 4vw}@media(max-width:767px){.tll-inline-photo .tll-ph-cap{padding:0 16px}}'+
+'.tll-story-gallery .tll-ph-cap{font-size:13px;margin:6px 0 0}';
+function go(){
+  var X=window.tllPh,sec=document.querySelector('.tll-story-gallery');if(!X||!X.P||!sec||sec.getAttribute('data-tll-gallery-built')!=='1')return false;
+  var caps={};X.P().split(/\r?\n/).forEach(function(l){var m=/^\s*caption\s*:\s*([^|]+)\|(.+)$/i.exec(l);if(m)caps[m[1].trim().toLowerCase()]=m[2].trim().slice(0,300);});
+  if(!Object.keys(caps).length)return true;
+  if(!document.getElementById('tll-story-captions-v1')){var st=document.createElement('style');st.id='tll-story-captions-v1';st.textContent=CSS;document.head.appendChild(st);}
+  [].forEach.call(document.querySelectorAll('a.tll-gallery-link'),function(a){
+    var img=a.querySelector('img');if(!img||a.__tllCap)return;var c=caps[X.S(img.getAttribute('src'))];if(!c)return;a.__tllCap=1;
+    var fig=a.closest('figure.tll-inline-photo');var cap=document.createElement(fig?'figcaption':'span');cap.className='tll-ph-cap';cap.textContent=c;
+    if(fig)fig.appendChild(cap);else a.parentNode.insertBefore(cap,a.nextSibling);
+    var js=a.querySelector('script.w-json');if(js){try{var d=JSON.parse(js.textContent);(d.items||[]).forEach(function(it){it.caption=c;});js.textContent=JSON.stringify(d);}catch(e){}}
+  });
+  return true;
+}
+var n=0;(function t(){if(go())return;if(++n>60)return;setTimeout(t,200);})();
 })();
 
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
