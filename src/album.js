@@ -5,6 +5,7 @@
 // Answer: {continents: [{key, name, photos: [{img, alt, line, sub, href}], countries, cover}]} in a fixed order.
 import { bylineCountries, listLive } from './site-stats.js';
 import { listAll } from './collections.js';
+import { publicWhat } from './stamps.js';
 import { findContributor } from './profile-sync.js';
 import { rateLimit, reply, verifyMemberToken } from './member-auth.js';
 
@@ -80,7 +81,7 @@ export async function handleAlbum(request, env, { fetchImpl = fetch } = {}) {
   const mine = (list) => list.filter((x) => x.fieldData?.owner === person.id && !x.isArchived && x.fieldData?.['show-on-profile'] === true);
   const name = (list, id) => list.find((x) => x.id === id)?.fieldData?.name || '';
   const shownItems = mine(items).map((i) => { const f = i.fieldData; return { country: f.name, city: f.city, year: f.year, line: f['own-category-name'] || name(cats, f.category), alt: f.photo?.alt || '', photos: [f.photo?.url, ...((f['more-photos'] || []).map((x) => x?.url))].filter(Boolean) }; });
-  const shownStamps = mine(stamps).map((s) => { const f = s.fieldData; return { country: f.name, city: f.city, year: f.year, line: [name(ps, f.pursuit), f.what].filter(Boolean).join(': '), alt: f.photo?.alt || '', photos: [f.photo?.url].filter(Boolean) }; });
+  const shownStamps = mine(stamps).map((s) => { const f = s.fieldData; return { country: f.name, city: f.city, year: f.year, line: [name(ps, f.pursuit), publicWhat(f, ps)].filter(Boolean).join(': '), alt: f.photo?.alt || '', photos: [f.photo?.url].filter(Boolean) }; });
   const own = stories.filter((s) => s.fieldData?.contributor === person.id && !s.fieldData?.['external-url'])
     .sort((a, b) => String(b.fieldData?.['published-date'] || '').localeCompare(String(a.fieldData?.['published-date'] || '')));
   let settings = {};

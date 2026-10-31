@@ -5,6 +5,7 @@
 import { listLive } from './site-stats.js';
 
 const VISIBILITY_OFF = '1423c8d17c2060776541377f76ea0b31';
+const ROAD_WARRIOR = '7203ed9cbb4a974d00937c5b801ec7e4';
 
 export function relFor(p) {
   if (p['paid-or-hosted'] === true) return 'sponsored noopener';
@@ -21,7 +22,9 @@ export function prosList(pros, people, pursuits) {
     return {
       slug: person.fieldData.slug, name: person.fieldData.name, avatar: person.fieldData.avatar?.url || '',
       line: String(f['pro-line'] || '').slice(0, 40), linkName: String(f['link-name'] || person.fieldData.name).slice(0, 60), url, rel: relFor(f),
-      sponsored: f['paid-or-hosted'] === true, pursuit: hub ? { slug: hub.fieldData.slug, name: hub.fieldData['display-name'] || hub.fieldData.name } : null,
+      sponsored: f['paid-or-hosted'] === true, track: f.track === ROAD_WARRIOR ? 'road-warrior' : 'pursuit-expert',
+      // Road warriors: the employer is shown only when the pro gave permission to name it.
+      employer: f['permission-to-name-employer'] === true ? String(f.employer || '').slice(0, 60) : '', pursuit: hub ? { slug: hub.fieldData.slug, name: hub.fieldData['display-name'] || hub.fieldData.name } : null,
     };
   }).filter(Boolean);
 }

@@ -20,11 +20,19 @@ async function pursuits(env, fetchImpl) {
   return (await listAll(env, fetchImpl, env.PURSUITS_COLLECTION_ID)).filter((p) => !p.isArchived);
 }
 
+// Work trips (31 Oct 2026, That Work Trip Life): a stamp can be marked "Work trip". Its own words ("what") can name an
+// employer, client or colleague, so on every public surface a work-trip stamp reads "A work trip" unless the member ticked
+// "I have permission to name them". The member always sees their own words.
+export const WORK_TRIPS = 'work-trips';
+export const WORK_TRIP_LINE = 'A work trip';
+export const isWorkTrip = (f, ps) => f?.['work-trip'] === true || ps.find((x) => x.id === f?.pursuit)?.fieldData?.slug === WORK_TRIPS;
+export const publicWhat = (f, ps) => (isWorkTrip(f, ps) && f['permission-to-name'] !== true ? WORK_TRIP_LINE : f.what || '');
+
 export function stampView(s, ps, { owner = false } = {}) {
   const f = s.fieldData || {};
   const p = ps.find((x) => x.id === f.pursuit);
-  const v = { pursuit: p?.fieldData?.slug || '', pursuitName: p?.fieldData?.name || '', what: f.what || '', country: f.name || '', city: f.city || '', year: f.year || null, photo: f.photo?.url || '' };
-  return owner ? { id: s.id, ...v, month: f.month || null, shown: f['show-on-profile'] === true } : v;
+  const v = { pursuit: p?.fieldData?.slug || '', pursuitName: p?.fieldData?.name || '', what: owner ? f.what || '' : publicWhat(f, ps), country: f.name || '', city: f.city || '', year: f.year || null, photo: f.photo?.url || '', workTrip: isWorkTrip(f, ps) };
+  return owner ? { id: s.id, ...v, month: f.month || null, shown: f['show-on-profile'] === true, namedOk: f['permission-to-name'] === true } : v;
 }
 
 export function stampShelves(stamps, ps) {
@@ -32,8 +40,11 @@ export function stampShelves(stamps, ps) {
   for (const s of stamps) {
     if (s.fieldData?.['show-on-profile'] !== true) continue;
     const v = stampView(s, ps);
-    if (!g.has(v.pursuit)) g.set(v.pursuit, { pursuit: v.pursuit, name: v.pursuitName, stamps: [] });
-    g.get(v.pursuit).stamps.push(v);
+    const add = (slug, name) => { if (!g.has(slug)) g.set(slug, { pursuit: slug, name, live: ps.find((x) => x.fieldData?.slug === slug)?.isDraft !== true, stamps: [] }); g.get(slug).stamps.push(v); };
+    add(v.pursuit, v.pursuitName);
+    // A work-trip stamp under another pursuit (a race run on a work trip) also counts on the Work trips badge.
+    const wt = ps.find((x) => x.fieldData?.slug === WORK_TRIPS);
+    if (v.workTrip && wt && v.pursuit !== WORK_TRIPS) add(WORK_TRIPS, wt.fieldData.name);
   }
   return [...g.values()].map((x) => ({ ...x, count: x.stamps.length, countries: new Set(x.stamps.map((s) => s.country.toLowerCase())).size,
     stamps: x.stamps.sort((a, b) => (b.year || 0) - (a.year || 0)) }));
@@ -54,19 +65,23 @@ export async function handleStamps(request, env, { fetchImpl = fetch, now = Date
 
   if (path === '/stamps/mine') {
     const picked = Array.isArray(me.fieldData?.pursuits) ? me.fieldData.pursuits : [];
-    return reply({ ok: true, pursuits: ps.map((p) => ({ slug: p.fieldData.slug, name: p.fieldData.name, picked: picked.includes(p.id) })), stamps: (await mine()).map((s) => stampView(s, ps, { owner: true })) });
+    return reply({ ok: true, pursuits: ps.map((p) => ({ slug: p.fieldData.slug, name: p.fieldData.name, picked: picked.includes(p.id), draft: p.isDraft === true })), stamps: (await mine()).map((s) => stampView(s, ps, { owner: true })) });
   }
   if (path === '/stamps/add') {
     if (!(await rateLimit(env, 'stamps', auth.memberId, 60, now))) return reply({ error: 'That is a lot for one hour. Try again a little later.' }, 429);
     const p = ps.find((x) => x.fieldData?.slug === b.pursuit);
     if (!p) return reply({ error: 'Pick a pursuit.' }, 400);
-    const what = clean(b.what, 80);
+    const wtEarly = b.workTrip === true || p.fieldData.slug === WORK_TRIPS;
+    const what = clean(b.what, 80) || (wtEarly ? WORK_TRIP_LINE : '');
     if (!what) return reply({ error: 'Say what it was: the race, the trail, the library.' }, 400);
     const country = await findCountry(env, fetchImpl, b.country);
     if (!country) return reply({ error: 'Pick a country from the list.' }, 400);
     const year = Number(b.year), month = Number(b.month);
     const thisYear = new Date(now).getUTCFullYear();
     if (!(year >= 1900 && year <= thisYear)) return reply({ error: 'Add the year.' }, 400);
+    // Post after, not during: no future month (Work Trip rule 2, and true for every stamp).
+    if (year === thisYear && month >= 1 && month <= 12 && month > new Date(now).getUTCMonth() + 1) return reply({ error: 'Back home? Good. Now tell us. Stamps are for trips that already happened.' }, 400);
+    const workTrip = wtEarly;
     const photo = String(b.photo || '');
     if (photo && !PHOTO.test(photo)) return reply({ error: 'That photo could not be used. Try again.' }, 400);
     const existing = await mine();
@@ -76,7 +91,8 @@ export async function handleStamps(request, env, { fetchImpl = fetch, now = Date
       name: country.fieldData.name, slug: `${me.fieldData?.slug || 'm'}-${p.fieldData.slug}-${now.toString(36)}`.slice(0, 120),
       owner: me.id, pursuit: p.id, country: country.id, what, city: clean(b.city, 60) || null,
       month: month >= 1 && month <= 12 ? Math.round(month) : null, year: Math.round(year), 'show-on-profile': shown,
-      ...(photo ? { photo: { url: photo, alt: `${what}, ${country.fieldData.name}` } } : {}),
+      'work-trip': workTrip, 'permission-to-name': workTrip && b.namedOk === true,
+      ...(photo ? { photo: { url: photo, alt: `${workTrip && b.namedOk !== true ? WORK_TRIP_LINE : what}, ${country.fieldData.name}` } } : {}),
     };
     const made = await webflow(env, fetchImpl, `/collections/${S}/items`, { method: 'POST', body: JSON.stringify({ isDraft: true, isArchived: false, fieldData }) });
     return reply({ ok: true, stamp: stampView(made?.id ? made : { id: '', fieldData }, ps, { owner: true }) });

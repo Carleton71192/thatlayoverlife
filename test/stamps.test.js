@@ -4,7 +4,7 @@ import { handleStamps, handleStampsPublic, pursuitCounts } from '../src/stamps.j
 const A = 'a'.repeat(24);
 function world() {
   const people = [{ id: A, isDraft: false, fieldData: { name: 'Nancy Carleton', slug: 'nancy-carleton', 'memberstack-id': 'mem_a', pursuits: ['p-mar'] } }];
-  const ps = [{ id: 'p-mar', isDraft: false, fieldData: { name: 'Marathons', slug: 'marathons', indexable: false } }, { id: 'p-dog', isDraft: false, fieldData: { name: 'Dog Travel', slug: 'dog-travel' } }];
+  const ps = [{ id: 'p-mar', isDraft: false, fieldData: { name: 'Marathons', slug: 'marathons', indexable: false } }, { id: 'p-dog', isDraft: false, fieldData: { name: 'Dog Travel', slug: 'dog-travel' } }, { id: 'p-wt', isDraft: true, fieldData: { name: 'Work trips', slug: 'work-trips' } }];
   const dest = [{ id: 'd-jp', fieldData: { name: 'Japan' } }];
   let stamps = []; let n = 0;
   const env = { WEBFLOW_TOKEN: 't', MEMBERSTACK_KEY: 'k', CONTRIBUTORS_COLLECTION_ID: 'contrib', DESTINATIONS_COLLECTION_ID: 'dest', PURSUITS_COLLECTION_ID: 'purs', STAMPS_COLLECTION_ID: 'stamps',
@@ -36,9 +36,32 @@ describe('pursuit stamps', () => {
     await w.call('/stamps/show', { pursuit: 'marathons', show: true });
     const s = (await w.pub('/stamps/public?slug=nancy-carleton')).shelves[0];
     expect(s).toMatchObject({ pursuit: 'marathons', count: 1, countries: 1 });
-    expect(s.stamps[0]).toEqual({ pursuit: 'marathons', pursuitName: 'Marathons', what: 'Tokyo Marathon', country: 'Japan', city: 'Tokyo', year: 2025, photo: '' });
+    expect(s.stamps[0]).toEqual({ pursuit: 'marathons', pursuitName: 'Marathons', what: 'Tokyo Marathon', country: 'Japan', city: 'Tokyo', year: 2025, photo: '', workTrip: false });
     const mine = await w.call('/stamps/mine');
     expect(mine.pursuits.find((p) => p.slug === 'marathons').picked).toBe(true);
+  });
+});
+
+describe('work-trip stamps', () => {
+  it('never names an employer in public unless the member ticked permission; month in the future is refused', async () => {
+    const w = world();
+    expect((await w.call('/stamps/add', { pursuit: 'work-trips', what: 'Client offsite', country: 'Japan', month: 12, year: 2026 })).error).toMatch(/Back home\? Good\. Now tell us\./);
+    const a = await w.call('/stamps/add', { pursuit: 'work-trips', what: 'Acme sales kickoff', country: 'Japan', city: 'Osaka', month: 9, year: 2026 });
+    expect(a.stamp).toMatchObject({ what: 'Acme sales kickoff', workTrip: true, namedOk: false });
+    const blank = await w.call('/stamps/add', { pursuit: 'work-trips', what: '', country: 'Japan', year: 2024 });
+    expect(blank.stamp.what).toBe('A work trip');
+    await w.call('/stamps/add', { pursuit: 'marathons', what: 'Tokyo Marathon', country: 'Japan', year: 2025, workTrip: true, namedOk: true });
+    await w.call('/stamps/show', { pursuit: 'work-trips', show: true });
+    await w.call('/stamps/show', { pursuit: 'marathons', show: true });
+    const shelves = (await w.pub('/stamps/public?slug=nancy-carleton')).shelves;
+    const wt = shelves.find((x) => x.pursuit === 'work-trips');
+    expect(wt.live).toBe(false);
+    expect(wt.count).toBe(3);
+    expect(wt.stamps.map((x) => x.what).sort()).toEqual(['A work trip', 'A work trip', 'Tokyo Marathon']);
+    expect(JSON.stringify(shelves)).not.toMatch(/Acme/);
+    expect(w.stamps().find((x) => x.fieldData.what === 'Acme sales kickoff').fieldData['work-trip']).toBe(true);
+    const mine = await w.call('/stamps/mine');
+    expect(mine.pursuits.find((p) => p.slug === 'work-trips').draft).toBe(true);
   });
 });
 
