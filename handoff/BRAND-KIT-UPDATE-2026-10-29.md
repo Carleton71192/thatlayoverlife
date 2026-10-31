@@ -22,3 +22,8 @@ Also tag two older lines in the kit:
 - Community version line "Curated and lightly edited by TLL editorial": add "[replaced 29 Oct 2026, draft: we don't rewrite your story; see v2.2 rule 8]".
 - Overuse list row "A human reviews every submission within 48 hours": add "[replaced 29 Oct 2026, draft: see v2.2 rule 8]".
 - Cover eyebrow and page title: v2.1 to v2.2, September to October 2026.
+
+
+## v2.3, 31 October 2026
+
+Section "v2.3 updates" added (one body face: IBM Plex Sans Condensed; three faces only; emphasis rule; counts labeled and never typed; Coming soon rule). Title now v2.3. The Google Drive copy still needs Nancy to upload this file (the connector cannot edit it).

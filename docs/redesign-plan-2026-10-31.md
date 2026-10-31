@@ -41,12 +41,12 @@
 | 12 | Story pages: 60 to 75ch measure, sticky share from 1024 px, reading time shown, more room around gallery and FAQ. | Site layer |
 | 13 | /stories at 390: the same scroll affordance as the home shelf on the chip row. | Site layer |
 
-## Questions for Nancy
+## Nancy's answers (31 Oct)
 
-1. **Expats tiles:** mark Moving guides, Visa trackers and City hubs "Coming soon" with a waitlist, or remove the links until those pages exist?
-2. **Body font:** the brief asks for Inter Tight or Newsreader. Recommendation: **Inter Tight** for interface and body, since it is already the fallback in every layer and reads well at small sizes. Note: brand kit v2.2 and most site layers use IBM Plex Sans Condensed for body text; dropping Plex means updating those layers too. Keep Plex (and drop the other three), or move to Inter Tight?
-3. **Horseshoe Bend** (`/stories/horseshoe-bend-arizona`, 1-minute read): expand it, or keep it live but off the home shelf?
-4. **Count labels** (P0.2): approve the wording "Nancy's map: 89 + Antarctica" and "Countries in our stories: 54" (numbers read live, never typed)?
+1. **Expats tiles:** Coming soon, with the Sunday letter as the waitlist. Live in 16.24.0. A Notion to-do holds the Claude brief to start the three features.
+2. **Body font:** decided in brand kit v2.3: keep **IBM Plex Sans Condensed** as the one body face (the kit chose it in v2.1 and every layer uses it); Inter Tight, Newsreader, DM Sans and Teko leave the site in P2.9; Syne is not loaded as a web font.
+3. **Horseshoe Bend:** stays live, off the home shelf (16.24.0).
+4. **Count labels:** yes, and they must always be right: every count is read live from one source (Site stats, recounted by the Worker every 30 minutes, or Nancy's saved map), the labels say what is counted, and nothing is typed. Home map line and /the-map relabeled in 16.24.0; the footer binds to Site stats with Nancy present.
 
 ## Acceptance (from the brief)
 
