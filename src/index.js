@@ -43,6 +43,7 @@ import { handleIntake, handleLounge } from './intake.js';
 import { handleLinkSummary } from './link-summary.js';
 import { handleCrew, handleCrewPublic } from './crew.js';
 import { runEnrich } from './story-enrich.js';
+import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -56,6 +57,10 @@ const MEMBER_ROUTES = {
   '/crew/answer': handleCrew,
   '/crew/cancel': handleCrew,
   '/crew/leave': handleCrew,
+  '/collections/mine': handleCollections,
+  '/collections/add': handleCollections,
+  '/collections/delete': handleCollections,
+  '/collections/show': handleCollections,
 };
 
 const EDGE_CACHE_SECONDS = 300;
@@ -121,6 +126,7 @@ export default {
 
     if (url.pathname === '/link-summary') return handleLinkSummary(request, env);
     if (url.pathname === '/crew/people' || url.pathname === '/crew/public') return handleCrewPublic(request, env);
+    if (url.pathname === '/collections/public') return handleCollectionsPublic(request, env);
 
     if (url.pathname === '/lounge') {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: expatsMapCors(request) });
@@ -221,6 +227,11 @@ export default {
       runSiteStats(env)
         .then((line) => console.log(line))
         .catch((error) => console.error(`site-stats failed: ${error?.message || error}`)),
+    );
+    ctx.waitUntil(
+      runCollectionCounts(env)
+        .then((line) => console.log(line))
+        .catch((error) => console.error(`collections count failed: ${error?.message || error}`)),
     );
     ctx.waitUntil(
       runEnrich(env)

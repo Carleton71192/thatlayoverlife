@@ -55,6 +55,7 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-lounge-members-v1.js', '31 Oct Nancy: member photos appear in the Lounge'),
            ('src/site-layers/tll-crew-v1.js', '31 Oct Nancy approved the companions mockup: invite then accept, Travels with, shared pets'),
            ('src/site-layers/tll-home-value-v1.js', '31 Oct Value Playbook Phase 1: home value section, staged behind ?preview=value'),
+           ('src/site-layers/tll-collections-v1.js', '31 Oct Nancy: souvenir collections on /edit-profile and profiles, private by default with opt in'),
            ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
