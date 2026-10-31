@@ -100,7 +100,7 @@ export const OPTION_FIELDS = new Set(Object.keys(OPTION_IDS));
 export const MEMBER_WRITABLE = Object.freeze([
   'name', 'avatar', 'one-line', 'home-base', 'from-and-lived-in', 'languages',
   'credit-mode', 'pen-name', 'contact-mode', 'email', 'visibility', 'share-ranges',
-  'crew', 'bio-long', ...URL_FIELDS, 'links-shown', 'list-expats', 'list-creators', 'list-press', 'desks',
+  'bio-long', ...URL_FIELDS, 'links-shown', 'list-expats', 'list-creators', 'list-press', 'desks',
   'from-place', 'makes', 'partners',
 ]);
 

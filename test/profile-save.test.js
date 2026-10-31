@@ -54,7 +54,7 @@ describe('patchFrom', () => {
   it('coerces the member-writable fields', () => {
     const { patch } = patchFrom({ fields: {
       'one-line': ' Seven marathons. ', 'contact-mode': 'email', email: 'JAY@example.com', 'share-ranges': 'on',
-      'links-shown': 'strava,instagram', 'website-url': 'jay.run', 'list-expats': false, crew: ['aaaaaaaaaaaaaaaaaaaaaaaa'],
+      'links-shown': 'strava,instagram', 'website-url': 'jay.run', 'list-expats': false,
     } });
     expect(patch).toEqual({
       'one-line': 'Seven marathons.',
@@ -64,8 +64,8 @@ describe('patchFrom', () => {
       'links-shown': 'instagram,strava',
       'website-url': 'https://jay.run',
       'list-expats': false,
-      crew: ['aaaaaaaaaaaaaaaaaaaaaaaa'],
     });
+    expect(patchFrom({ fields: { crew: ['aaaaaaaaaaaaaaaaaaaaaaaa'] } }).status).toBe(400); // crew links only through an accepted invite
   });
 });
 
