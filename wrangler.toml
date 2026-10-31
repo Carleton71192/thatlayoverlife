@@ -21,6 +21,10 @@ CONTRIBUTORS_COLLECTION_ID = "6a0b29c7a7b1840afe9390a5"
 COUNTRIES_COLLECTION_ID = "6a8afbd98e907b41c4da109b"
 # The site owner (Nancy). Only her map saves are stored for GET /owner-map, the visitors' map. A member id, not a secret.
 OWNER_MEMBER_ID = "mem_cmqcj6qqo35ab0sn20bafhzh3"
+# Site stats (src/site-stats.js): the one item the footer binds to; the 30-minute job recounts it.
+PETS_COLLECTION_ID = "6a0be8194ccc05a63fbdcfa3"
+SITE_STATS_COLLECTION_ID = "6ae602821fa37291336b5680"
+SITE_STATS_ITEM_ID = "6ae602fb1fa37291336b8715"
 
 # One-line log per cron run, readable with `npx wrangler tail`.
 [observability]

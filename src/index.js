@@ -33,6 +33,7 @@ import { memberCors, withHeaders } from './member-auth.js';
 import { handleOwnerMap, ownerMapCors } from './owner-map.js';
 import { handleLinkPreview, linkPreviewCors } from './link-preview.js';
 import { handleTranslate, translateCors } from './translate.js';
+import { runSiteStats } from './site-stats.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
@@ -187,6 +188,11 @@ export default {
       runIngest(env)
         .then((summary) => console.log(summarizeRun(summary)))
         .catch((error) => console.error(`wire run failed: ${error?.stack || error}`)),
+    );
+    ctx.waitUntil(
+      runSiteStats(env)
+        .then((line) => console.log(line))
+        .catch((error) => console.error(`site-stats failed: ${error?.message || error}`)),
     );
   },
 };
