@@ -16,6 +16,7 @@
 import { verifyMemberToken, rateLimit, memberCors, reply } from './member-auth.js';
 import { webflow, slugify, uniqueSlug, findContributor, applyMember } from './profile-sync.js';
 import { bylineCountries } from './site-stats.js';
+import { summarizeLink } from './link-summary.js';
 
 const MEMBERSTACK_API = 'https://admin.memberstack.com';
 export const INTAKE_LIMIT_PER_HOUR = 20;
@@ -132,8 +133,12 @@ export function buildLinkout(fields, { contributorId, slug, now, memberName }) {
     'external-url': url, 'byline-location': country.toUpperCase() || null, region: null, commissioned: false,
     'notes-to-editor': `<p>Link-out set up automatically from /submit on ${new Date(now).toISOString().slice(0, 10)}. Points to ${esc(url)}.</p>`,
   };
+  // Cover: the article's own share photo when it passed the photo check; else the member's own photo; else none (the card
+  // shows the ink panel with the country, never a stock or ad image).
   const og = clean(fields['og-image'], 600);
+  const own = urls(fields['hero-image'])[0];
   if (/^https:\/\//i.test(og)) fd['hero-image'] = { url: og, alt: title };
+  else if (own) fd['hero-image'] = { url: own, alt: title };
   return { fieldData: fd, countryCodes: bylineCountries(country), country };
 }
 
@@ -222,6 +227,10 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
     const slug = uniqueSlug(title, taken);
     const built = kind === 'story' ? buildStory(fields, { contributorId: contributor.id, slug, now }) : buildLinkout(fields, { contributorId: contributor.id, slug, now, memberName });
     const fd = built.fieldData;
+    if (kind === 'linkout' && fd['external-url']) {
+      const s = await summarizeLink(fd['external-url'], env, { fetchImpl }).catch(() => null);
+      if (s) fd['short-version'] = `<p>${esc(s.summary)}</p><p><em>Summary by AI, from the linked article.</em></p>`;
+    }
     const [countryItem, destItem] = await Promise.all([
       findByName(env, fetchImpl, env.COUNTRIES_COLLECTION_ID, built.country), findByName(env, fetchImpl, env.DESTINATIONS_COLLECTION_ID, built.country),
     ]);

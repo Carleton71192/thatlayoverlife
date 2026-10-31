@@ -28,6 +28,7 @@
    script src/site-layers/tll-stories-places-v1.js (29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line)
    script src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    script src/site-layers/tll-linkout-preview-v1.js (29 Oct Nancy: /submit link-out form previews the article and sends its share photo (photos only, never ads) once the Worker route is live)
+   script src/site-layers/tll-linkout-summary-v1.js (31 Oct Nancy: AI summary box for linked articles, labeled as AI, and an own-photo backup when the article has no usable photo)
    script src/site-layers/tll-byline-links-v1.js (29 Oct Nancy: story card writer name and photo open the writer page)
    script src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
    script src/site-layers/tll-story-fixes-1029-v1.js (29 Oct Nancy: US flag for US state labels; related heading Other stories from this frequent traveler)
@@ -1024,6 +1025,62 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 setTimeout(run,1500);
 })();
 
+/* tll-linkout-summary-v1 (31 Oct 2026, Nancy: "building the AI summary box for linked articles and pulling in OG images or having a
+   backup option"). Works beside tll-linkout-preview-v1 on the /submit link-out form.
+   1. AI summary box: once the link reads, asks the Worker (GET /link-summary) for a short neutral summary of the linked article and
+      shows it under the preview, labeled "Summary by AI, from the linked article". It is never put into the writer's own fields; the
+      published story shows the same labeled box. If the Worker has no key yet or the article cannot be read, no box shows.
+   2. Backup photo: when the article has no usable photo, or the writer unticks it, an optional "Your own photo" upload appears
+      (field name hero-image, cleaned and uploaded by photo-clean like every other photo field). The Worker uses the article photo
+      first, then this one, else the country card. No data-ms-* element touched; existing field names unchanged. */
+(function(){
+if(!/^\/submit\/?$/.test(location.pathname))return;
+var API='https://tll-travel-wire.thatlayoverlife.workers.dev/link-summary?url=';
+var CSS=".tll-ls{margin:-8px 0 18px;border:1.5px solid #E0DACE;border-top:0;border-radius:0 0 4px 4px;background:#fff;padding:12px 14px;font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
+".tll-ls[hidden],.tll-own[hidden]{display:none!important}"+
+".tll-ls-k{font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#067A79;margin:0 0 6px}"+
+".tll-ls p{margin:0}.tll-ls-wait{color:#5F5A54}"+
+".tll-own{margin:0 0 18px;padding:12px 14px;border:1.5px dashed #E0DACE;border-radius:4px;font:400 14px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}"+
+".tll-own b{display:block;color:#0A0B14;font-weight:600;margin:0 0 4px}.tll-own input{display:block;margin-top:8px;font:inherit;max-width:100%}";
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function run(){
+  var form=document.querySelector('form[data-tll-form="link-out-story"]');if(!form||form.dataset.tllLs)return;
+  var url=form.querySelector('input[name="external-url"]'),lp=form.querySelector('.tll-lp');if(!url||!lp)return;
+  form.dataset.tllLs='1';
+  if(!document.getElementById('tll-linkout-summary-v1')){var s=document.createElement('style');s.id='tll-linkout-summary-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  var box=el('div','tll-ls');box.hidden=true;box.setAttribute('aria-live','polite');lp.insertAdjacentElement('afterend',box);
+  var own=el('div','tll-own');own.hidden=true;
+  own.appendChild(el('b','','Your own photo (optional)'));
+  own.appendChild(document.createTextNode("The article has no photo we can use. Add one of yours, or leave it and the card shows the country."));
+  var file=form.querySelector('input[type="file"][name="hero-image"]');
+  if(!file){file=el('input');file.type='file';file.name='hero-image';file.setAttribute('data-name','hero-image');file.accept='image/jpeg,image/png,image/webp,image/heic';}
+  own.appendChild(file);box.insertAdjacentElement('afterend',own);
+  var ogImg=form.querySelector('input[name="og-image"]');
+  var last='',seq=0;
+  function photoCheck(){
+    var reading=!lp.hidden&&lp.querySelector('.tll-lp-wait');
+    own.hidden=lp.hidden||!!reading||!!(ogImg&&ogImg.value);
+  }
+  function summary(){
+    var v=(url.value||'').trim();
+    if(lp.hidden||lp.querySelector('.tll-lp-wait')||!/^https?:\/\//i.test(v)){if(lp.hidden){box.hidden=true;last='';}return;}
+    if(v===last)return;last=v;var my=++seq;
+    box.textContent='';box.appendChild(el('p','tll-ls-k','Summary by AI, from the linked article'));box.appendChild(el('p','tll-ls-wait','Reading the article…'));box.hidden=false;
+    fetch(API+encodeURIComponent(v),{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}).then(function(d){
+      if(my!==seq)return;
+      if(!d||!d.ok||!d.summary){box.hidden=true;return;}
+      box.textContent='';box.appendChild(el('p','tll-ls-k',d.label||'Summary by AI, from the linked article'));box.appendChild(el('p','',d.summary));box.hidden=false;
+    });
+  }
+  function tick(){photoCheck();summary();}
+  new MutationObserver(tick).observe(lp,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+  form.addEventListener('change',function(e){if(e.target&&e.target.type==='checkbox')setTimeout(photoCheck,0);});
+  tick();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+setTimeout(run,1600);setTimeout(run,3500);
+})();
+
 /* tll-byline-links-v1 (29 Oct 2026, Nancy on /stories: "When I click the user names here it does not take me to their profile").
    Each story card is one link to the story, so the writer's name and photo inside it went to the story too (a link cannot sit
    inside a link). The name and the small photo in a card byline (.tll-lib-byline-name, .tll-lib-byline-img) now open the writer's
@@ -1995,8 +2052,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    /share-photos, /contact), account and profile editing, login and signup, the map, the Lounge, About and the legal pages
    stay ad-free, and so does any sponsored or hosted story. On those pages every ad request is paused, which also keeps
    Google's Auto ads off them.
-   Placements, at most two per story: one between two sections near the middle (never before the third paragraph) and one
-   after the story ends; on /stories one after the ninth card. Each sits in a quiet frame labeled "Advertisement", with its
+   Placements, at most two per story: one in-article unit between two sections (never before the third paragraph, none on
+   stories under 600 words) and one after the story ends; one below the stories rail on country pages; on /stories one after the ninth card. Each sits in a quiet frame labeled "Annonce" (Phase 0B, 31 Oct), with its
    space held so the page does not jump; an ad slot Google leaves unfilled folds away. Manual units need slot ids from the
    AdSense account (SLOTS below); until then only the ad-free rules apply and Auto ads are calmed by the same frame style.
    Consent: Google's consent message (Funding Choices) decides personalized or not. No data-ms-* element touched. */
@@ -2008,14 +2065,14 @@ var ALLOW=/^\/stories(\/[^/]+)?$|^\/countries\/[^/]+$/.test(P);
 window.adsbygoogle=window.adsbygoogle||[];
 if(!ALLOW){window.adsbygoogle.pauseAdRequests=1;return;}
 var CSS='.tll-ad{display:block;max-width:760px;margin:44px auto;padding:10px 0 0;border-top:1px solid #E0DACE;text-align:center;clear:both}'+
-'.tll-ad::before{content:"Advertisement";display:block;margin:0 0 8px;font:600 10px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660}'+
+'.tll-ad::before{content:"Annonce";display:block;margin:0 0 8px;font:600 10px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660}'+
 '.tll-ad ins{display:block;min-height:250px}.tll-ad.is-empty{display:none}'+
 '.google-auto-placed{max-width:760px;margin:44px auto!important;padding-top:10px;border-top:1px solid #E0DACE}'+
 '.tll-lib-ad{grid-column:1/-1}';
 function css(){if(document.getElementById('tll-ads-v1'))return;var s=document.createElement('style');s.id='tll-ads-v1';s.textContent=CSS;document.head.appendChild(s);}
 function script(){if(document.querySelector('script[src*="adsbygoogle.js"]'))return;var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+CLIENT;document.head.appendChild(s);}
 function sponsored(){var t=(document.querySelector('[data-tll-sponsored]')||{}).textContent||'';return /\S/.test(t)||/\bReklame\b|\bHosted:/i.test((document.querySelector('.tll-story-ledger,.tll-ledger,main')||document.body).innerText.slice(0,4000));}
-function unit(slot,fmt,extra){var w=document.createElement('aside');w.className='tll-ad'+(extra?' '+extra:'');w.setAttribute('aria-label','Advertisement');
+function unit(slot,fmt,extra){var w=document.createElement('aside');w.className='tll-ad'+(extra?' '+extra:'');w.setAttribute('aria-label','Annonce (advertisement)');
   var i=document.createElement('ins');i.className='adsbygoogle';i.setAttribute('data-ad-client',CLIENT);i.setAttribute('data-ad-slot',slot);
   if(fmt==='fluid'){i.setAttribute('data-ad-layout','in-article');i.setAttribute('data-ad-format','fluid');i.style.textAlign='center';}else{i.setAttribute('data-ad-format','auto');i.setAttribute('data-full-width-responsive','true');}
   w.appendChild(i);new MutationObserver(function(){if(i.getAttribute('data-ad-status')==='unfilled')w.classList.add('is-empty');}).observe(i,{attributes:true,attributeFilter:['data-ad-status']});
@@ -2025,16 +2082,20 @@ function story(){
   if(sponsored()){window.adsbygoogle.pauseAdRequests=1;return;}
   var b=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')).filter(function(x){return x.id!=='tll-quick-answers';}).sort(function(x,y){return y.querySelectorAll(':scope>p').length-x.querySelectorAll(':scope>p').length;})[0];
   if(!b||document.querySelector('.tll-ad'))return;
-  var ps=b.querySelectorAll(':scope>p');if(ps.length<6)return;   /* short stories get no mid-story ad */
-  if(SLOTS.inArticle){var hs=[].slice.call(b.querySelectorAll(':scope>h2')).filter(function(h){var before=0,n=h.previousElementSibling;while(n){if(n.tagName==='P')before++;n=n.previousElementSibling;}return before>=3;});
-    var mid=hs.length?hs[Math.floor(hs.length/2)]:ps[Math.floor(ps.length/2)];var w=unit(SLOTS.inArticle,'fluid');mid.parentNode.insertBefore(w,mid);push(w);}
+  var ps=b.querySelectorAll(':scope>p');var words=(b.innerText||'').split(/\s+/).filter(Boolean).length;
+  if(SLOTS.inArticle&&words>=600&&ps.length>=4){   /* Phase 0B: at most one in-article unit, after the third paragraph, none under 600 words */var hs=[].slice.call(b.querySelectorAll(':scope>h2')).filter(function(h){var before=0,n=h.previousElementSibling;while(n){if(n.tagName==='P')before++;n=n.previousElementSibling;}return before>=3;});
+    var mid=hs.length?hs[Math.floor(hs.length/2)]:ps[Math.max(3,Math.floor(ps.length/2))];var w=unit(SLOTS.inArticle,'fluid');mid.parentNode.insertBefore(w,mid);push(w);}
   if(SLOTS.display){var w2=unit(SLOTS.display,'auto');b.parentNode.insertBefore(w2,b.nextSibling);push(w2);}
 }
 function library(){
   if(!SLOTS.display||document.querySelector('.tll-ad'))return;var cards=document.querySelectorAll('a.tll-lib-card');if(cards.length<12)return;
   var c=cards[8],cell=c.closest('.w-dyn-item')||c;var w=unit(SLOTS.display,'auto','tll-lib-ad');cell.parentNode.insertBefore(w,cell.nextSibling);push(w);
 }
-function run(){css();script();if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/stories')library();}
+function country(){
+  if(!SLOTS.display||document.querySelector('.tll-ad'))return;var lists=document.querySelectorAll('main .w-dyn-list,.w-dyn-list');var l=lists[lists.length-1];if(!l)return;
+  var w=unit(SLOTS.display,'auto');l.parentNode.insertBefore(w,l.nextSibling);push(w);
+}
+function run(){css();script();if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/stories')library();else if(/^\/countries\//.test(P))country();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,600);});else setTimeout(run,600);
 })();
 
