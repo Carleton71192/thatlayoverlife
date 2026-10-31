@@ -49,6 +49,7 @@ import { handleExport } from './export.js';
 import { handlePros } from './pros.js';
 import { handleSettings } from './settings.js';
 import { handlePaw } from './paw.js';
+import { handleMetrics, runMetricsSnapshot } from './metrics.js';
 import { handleStamps, handleStampsPublic, runPursuitCounts } from './stamps.js';
 import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
@@ -74,6 +75,7 @@ const MEMBER_ROUTES = {
   '/stamps/show': handleStamps,
   '/album/settings': handleAlbumSettings,
   '/export': handleExport,
+  '/metrics': handleMetrics,
 };
 
 const EDGE_CACHE_SECONDS = 300;
@@ -246,6 +248,11 @@ export default {
       runSiteStats(env)
         .then((line) => console.log(line))
         .catch((error) => console.error(`site-stats failed: ${error?.message || error}`)),
+    );
+    ctx.waitUntil(
+      runMetricsSnapshot(env)
+        .then((line) => console.log(line))
+        .catch((error) => console.error(`metrics failed: ${error?.message || error}`)),
     );
     ctx.waitUntil(
       runPursuitCounts(env)
