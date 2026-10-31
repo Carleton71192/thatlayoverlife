@@ -8,6 +8,7 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev/pros';
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-pro-label{display:inline-block;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;border:1.5px solid #C8325B;border-radius:2px;padding:3px 8px;margin:0 0 12px}'+
 '.tll-pro-box{max-width:680px;margin:36px auto;padding:16px 18px;border:1px solid #E0DACE;border-left:3px solid #067A79;border-radius:4px;background:#fff;display:flex;gap:14px;align-items:center;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}'+
+'.tll-pro-rek{color:#0A0B14;border-color:#0A0B14;margin-right:8px}.tll-pro-rek a{color:inherit}'+
 '.tll-pro-box img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}.tll-pro-box p{margin:0}.tll-pro-k{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79}'+
 '.tll-pro-box a{color:#0A0B14;font-weight:600;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}'+
 '.tll-pro-badge{display:inline-flex;gap:6px;align-items:center;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;background:#0A0B14;color:#FDF9F3;border-radius:999px;padding:6px 10px;margin:8px 0}'+
@@ -19,7 +20,11 @@ function css(){if(document.getElementById('tll-pros-v1'))return;var s=el('style'
 function story(pros){
   var main=document.querySelector('main')||document.body,by=main.querySelector('a[href^="/contributors/"]');if(!by)return;
   var slug=(by.getAttribute('href').split('/')[2]||'').replace(/[?#].*$/,''),p=pros.filter(function(x){return x.slug===slug;})[0];if(!p||document.querySelector('.tll-pro-label'))return;css();
-  var h1=main.querySelector('h1');if(h1)h1.parentNode.insertBefore(el('div','tll-pro-label','From the Pros'),h1);
+  var h1=main.querySelector('h1'),CAT={'move-pros':'Move pros','pet-travel-pros':'Pet travel pros','road-warrior':'Road warrior'};
+  if(h1){var lab=el('div','tll-pro-label','From the Pros'+(CAT[p.category]?' · '+CAT[p.category]:''));
+    /* Paid or hosted, or a piece about the pro's own paid service: "Reklame for [name]" comes first, the name linked, rel sponsored. */
+    if(p.sponsored&&!document.querySelector('.tll-pro-rek')){var rk=el('div','tll-pro-label tll-pro-rek');rk.appendChild(document.createTextNode('Reklame for '));if(p.url){var ra=el('a','',p.linkName);ra.href=p.url;ra.target='_blank';ra.rel='sponsored noopener noreferrer';rk.appendChild(ra);}else rk.appendChild(document.createTextNode(p.linkName));h1.parentNode.insertBefore(rk,h1);h1.parentNode.insertBefore(document.createTextNode(' '),h1);}
+    h1.parentNode.insertBefore(lab,h1);}
   var box=el('aside','tll-pro-box');box.setAttribute('aria-label','About the writer');if(p.avatar){var im=el('img');im.src=p.avatar;im.alt='';box.appendChild(im);}
   var t=el('div');t.appendChild(el('p','tll-pro-k','From the Pros'));var line=el('p');line.appendChild(document.createTextNode(p.name+(p.line?', '+p.line:'')+'. '));
   if(p.url){var a=el('a','',p.linkName);a.href=p.url;a.rel=p.rel;a.target='_blank';line.appendChild(a);}t.appendChild(line);box.appendChild(t);

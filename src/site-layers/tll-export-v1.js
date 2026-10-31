@@ -16,6 +16,7 @@ var CSS='.tll-exp{max-width:760px;margin:24px auto;padding:16px 18px;border:1px 
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?ms.getMemberCookie():'';}catch(e){return'';}}
 function lib(){return window.JSZip?Promise.resolve(window.JSZip):new Promise(function(res,rej){var s=document.createElement('script');s.src=JSZIP;s.crossOrigin='anonymous';s.onload=function(){res(window.JSZip);};s.onerror=rej;document.head.appendChild(s);});}
+function cname(c){c=String(c||'').toUpperCase();try{return new Intl.DisplayNames(['en'],{type:'region'}).of(c)||c;}catch(e){return c;}}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function csv(rows,cols){var q=function(v){v=v==null?'':Array.isArray(v)?v.join(' '):String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};return cols.join(',')+'\n'+rows.map(function(r){return cols.map(function(c){return q(r[c]);}).join(',');}).join('\n')+'\n';}
 function storyPage(s){return '<!doctype html><meta charset="utf-8"><title>'+esc(s.title)+'</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}small{color:#5F5A54}</style>'+
@@ -34,13 +35,19 @@ function run(){
     Promise.all([lib(),fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok()},body:'{}'}).then(function(r){return r.json();}),mapData()]).then(function(v){
       var Z=v[0],d=v[1],map=v[2];if(!d||!d.ok)throw new Error((d&&d.error)||'The download could not start.');
       var zip=new Z(),root=zip.folder('that-layover-life');
-      root.file('README.txt','That Layover Life: your copy\nExported '+d.exportedAt+'\nProfile: '+d.profileLink+'\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it) and map-summary.json\n- photos/: every photo, in folders by story, collection, stamp and pet\n\nPrivate collections and stamps are included: this copy is only for you.\n');
+      root.file('README.txt','That Layover Life: your copy\nExported '+d.exportedAt+'\nProfile: '+d.profileLink+'\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: every photo, in folders by story, collection, stamp and pet\n\nPrivate collections and stamps are included: this copy is only for you.\n');
       root.file('profile.json',JSON.stringify(d.profile,null,2));
       var st=root.folder('stories');st.file('stories.json',JSON.stringify(d.stories,null,2));d.stories.forEach(function(s){st.file(s.slug+'.html',storyPage(s));});
       root.file('collections.json',JSON.stringify(d.collections,null,2));root.file('collections.csv',csv(d.collections,['collection','country','city','year','caption','shownOnProfile','photos']));
-      root.file('stamps.json',JSON.stringify(d.stamps,null,2));root.file('stamps.csv',csv(d.stamps,['pursuit','what','country','city','month','year','shownOnProfile','photo']));
+      root.file('stamps.json',JSON.stringify(d.stamps,null,2));root.file('stamps.csv',csv(d.stamps,['pursuit','what','country','city','month','year','workTrip','shownOnProfile','photo']));
       root.file('pets.json',JSON.stringify(d.pets,null,2));root.file('companions.json',JSON.stringify(d.companions,null,2));
       var mf=root.folder('map');mf.file('map-summary.json',JSON.stringify(d.mapSummary,null,2));if(map)mf.file('my-map.json',JSON.stringify(map,null,2));
+      /* Expat build: places lived (from the profile) and every country marked on the map, as spreadsheets. */
+      var pl=(d.placesLived||[]).map(function(x){return {country:cname(x.c),code:String(x.c||'').toUpperCase(),years:x.years||'',placesIKnowWell:x.knows||'',homeNow:x.now===true?'yes':''};});
+      root.file('places-lived.json',JSON.stringify(pl,null,2));root.file('places-lived.csv',csv(pl,['country','code','years','placesIKnowWell','homeNow']));
+      if(map&&map.states){var N=window.__tllN2A||{},rows=[];Object.keys(map.states).forEach(function(num){var e=map.states[num]||{};Object.keys(e).forEach(function(t){var tr=(map.travelers||[]).filter(function(x){return x.id===t;})[0];var a2=N[num]||'';
+        rows.push({country:a2?cname(a2):num,code:a2||num,traveler:tr?tr.name:t,mark:e[t]==='lived'?'Lived':e[t]==='visited'?'Stayed':e[t]==='layover'?'Layover':e[t]});});});
+        mf.file('countries.csv',csv(rows,['country','code','traveler','mark']));}
       var ph=root.folder('photos'),missing=[],done=0,list=d.photos||[];
       var one=function(p){return fetch(p.url,{mode:'cors'}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(blob){ph.file(p.folder+'/'+p.name+'.'+ext(blob.type,p.url),blob);})
         .catch(function(){missing.push(p.folder+'/'+p.name+': '+p.url);}).then(function(){done++;msg.textContent='Photos '+done+' of '+list.length+'…';});};
@@ -48,7 +55,7 @@ function run(){
       return Promise.all(workers).then(function(){if(missing.length)ph.file('not-downloaded.txt','These photos could not be downloaded, so here are their links:\n'+missing.join('\n')+'\n');
         msg.textContent='Packing the zip…';return zip.generateAsync({type:'blob'});}).then(function(blob){
         var a=el('a');a.href=URL.createObjectURL(blob);a.download='that-layover-life-'+((d.profile&&d.profile.slug)||'me')+'-'+d.exportedAt.slice(0,10)+'.zip';document.body.appendChild(a);a.click();
-        setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);b.disabled=false;
+        setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);b.disabled=false;try{window.gtag&&gtag('event','download_complete',{division:'tll',photos:list.length-missing.length});}catch(e){}
         msg.textContent='Done. '+d.stories.length+(d.stories.length===1?' story, ':' stories, ')+(list.length-missing.length)+((list.length-missing.length)===1?' photo':' photos')+(missing.length?' ('+missing.length+' listed as links)':'')+'.';});
     }).catch(function(e){b.disabled=false;msg.textContent=(e&&e.message)||'The download did not finish. Try again.';});
   });

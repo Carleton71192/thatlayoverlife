@@ -86,7 +86,11 @@ export async function handleAlbum(request, env, { fetchImpl = fetch } = {}) {
     .sort((a, b) => String(b.fieldData?.['published-date'] || '').localeCompare(String(a.fieldData?.['published-date'] || '')));
   let settings = {};
   try { settings = JSON.parse((env.WIRE_KV && (await env.WIRE_KV.get(`album:${person.id}`))) || '{}'); } catch { settings = {}; }
-  return send({ ok: true, name: person.fieldData?.name || '', model: MODELS.includes(settings.model) ? settings.model : 'seven', mapCounts: settings.counts || null, continents: buildAlbum({ stories: own, items: shownItems, stamps: shownStamps }) }, 600);
+  const model = MODELS.includes(settings.model) ? settings.model : 'seven';
+  let desks = [];
+  try { desks = JSON.parse(person.fieldData?.desks || '[]'); } catch { desks = []; }
+  if (!Array.isArray(desks)) desks = [];
+  return send({ ok: true, name: person.fieldData?.name || '', model, mapCounts: settings.counts || null, homes: homesView(desks, settings, model), moves: movesShow(desks, settings, own), continents: buildAlbum({ stories: own, items: shownItems, stamps: shownStamps }) }, 600);
 }
 
 /** Pure: validates {counts?, model?}; counts are whole numbers 0..80 for the seven keys. */
@@ -103,8 +107,52 @@ export function settingsFrom(body) {
     if (!MODELS.includes(body.model)) return { error: 'unknown model' };
     out.model = body.model;
   }
+  // Expat build (31 Oct): homes per continent (numbers only, from countries marked Lived on the map) and the member's opt-ins.
+  if (body && body.homes !== undefined) {
+    const c = body.homes;
+    if (!c || typeof c !== 'object' || Array.isArray(c) || Object.keys(c).some((k) => !KEYS.includes(k)) || KEYS.some((k) => !(Number.isInteger(c[k]) && c[k] >= 0 && c[k] <= 80))) return { error: 'homes must be whole numbers for the seven continents' };
+    out.homes = Object.fromEntries(KEYS.map((k) => [k, c[k]]));
+  }
+  for (const k of ['moves', 'movedBack', 'showHomeBase', 'coffee']) {
+    if (body && body[k] !== undefined) { if (typeof body[k] !== 'boolean') return { error: `${k} must be true or false` }; out[k] = body[k]; }
+  }
+  if (body && body.moveLines !== undefined) {
+    const m = body.moveLines;
+    if (!m || typeof m !== 'object' || Array.isArray(m) || Object.keys(m).length > 20 || Object.keys(m).some((k) => !/^[a-z]{2}$/.test(k))) return { error: 'moveLines must map country codes to one line' };
+    out.moveLines = Object.fromEntries(Object.entries(m).map(([k, v]) => [k, String(v || '').replace(/[<>]/g, '').trim().slice(0, 90)]).filter(([, v]) => v));
+  }
   if (!Object.keys(out).length) return { error: 'nothing to save' };
   return { settings: out };
+}
+
+// Which continents a model merges, for "Lived on 2 continents".
+const MERGE = { seven: {}, americas: { 'north-america': 'americas', 'south-america': 'americas' }, eurasia: { europe: 'eurasia', asia: 'eurasia' }, olympic: { 'north-america': 'americas', 'south-america': 'americas', antarctica: null } };
+const firstYear = (y) => { const m = /(19|20)\d\d/.exec(String(y || '')); return m ? Number(m[0]) : 9999; };
+
+/** Pure: the public "Lived in" view. Places I have lived come from the profile's own desks; the one marked now (today's home)
+ *  is left out unless the member switched Show home base on. Counts come from the map's Lived marks (numbers only). */
+export function homesView(desks, settings, model = 'seven') {
+  const homes = settings.homes || null;
+  const total = homes ? KEYS.reduce((n, k) => n + homes[k], 0) : 0;
+  const places = desks.filter((d) => settings.showHomeBase === true || d.now !== true).map((d) => ({ c: d.c, years: String(d.years || '').slice(0, 40), knows: String(d.knows || '').slice(0, 160) }));
+  const conts = new Set();
+  if (homes) for (const k of KEYS) if (homes[k] > 0) { const m = MERGE[model] || {}; const g = k in m ? m[k] : k; if (g) conts.add(g); }
+  const badges = [];
+  if (total >= 2 || desks.length >= 2) badges.push('first-move-abroad');
+  if (conts.size >= 2) badges.push('lived-on-two-continents');
+  if (settings.movedBack === true) badges.push('moved-back');
+  return { total, perContinent: homes, places, badges };
+}
+
+/** Pure: the opt-in "My moves" show, one slide per home in order: country, years, one photo from the member's own stories there, one line. */
+export function movesShow(desks, settings, stories) {
+  if (settings.moves !== true) return null;
+  const lines = settings.moveLines || {};
+  const slides = desks.filter((d) => settings.showHomeBase === true || d.now !== true).slice().sort((a, b) => firstYear(a.years) - firstYear(b.years)).map((d) => {
+    const s = stories.find((x) => bylineCountries(x.fieldData?.['byline-location'])[0] === d.c && x.fieldData?.['hero-image']?.url);
+    return { c: d.c, years: String(d.years || '').slice(0, 40), line: lines[d.c] || '', img: s ? s.fieldData['hero-image'].url : '', alt: s ? s.fieldData['hero-image'].alt || '' : '', href: s ? `/stories/${s.fieldData.slug}` : '' };
+  });
+  return slides.length ? slides : null;
 }
 
 /** POST /album/settings (member): the map's per-continent counts (numbers only, never the countries) and the continent model. */
@@ -114,7 +162,8 @@ export async function handleAlbumSettings(request, env, { fetchImpl = fetch, now
   if (auth instanceof Response) return auth;
   let body = null;
   try { body = await request.json(); } catch { body = null; }
-  const checked = settingsFrom(body);
+  const readOnly = body && typeof body === 'object' && !Array.isArray(body) && body.read === true;
+  const checked = readOnly ? { settings: {} } : settingsFrom(body);
   if (checked.error) return reply({ error: checked.error }, 400);
   if (!(await rateLimit(env, 'album-settings', auth.memberId, 60, now))) return reply({ error: 'Try again a little later.' }, 429);
   const me = await findContributor(env, fetchImpl, auth.memberId);
@@ -122,7 +171,17 @@ export async function handleAlbumSettings(request, env, { fetchImpl = fetch, now
   const key = `album:${me.id}`;
   let cur = {};
   try { cur = JSON.parse((await env.WIRE_KV.get(key)) || '{}'); } catch { cur = {}; }
-  const next = { ...cur, ...checked.settings, at: new Date(now).toISOString() };
-  await env.WIRE_KV.put(key, JSON.stringify(next));
-  return reply({ ok: true, model: next.model || 'seven', counts: next.counts || null });
+  const next = readOnly ? cur : { ...cur, ...checked.settings, at: new Date(now).toISOString() };
+  if (!readOnly) await env.WIRE_KV.put(key, JSON.stringify(next));
+  // The Living Library reads one small index instead of every member's settings.
+  if (!readOnly && 'coffee' in checked.settings && (cur.coffee === true) !== (next.coffee === true)) {
+    let idx = [];
+    try { idx = JSON.parse((await env.WIRE_KV.get('coffee:index')) || '[]'); } catch { idx = []; }
+    idx = idx.filter((x) => x !== me.id);
+    if (next.coffee === true) idx.push(me.id);
+    await env.WIRE_KV.put('coffee:index', JSON.stringify(idx.slice(-2000)));
+  }
+  let desks = [];
+  try { desks = JSON.parse(me.fieldData?.desks || '[]'); } catch { desks = []; }
+  return reply({ ok: true, model: next.model || 'seven', counts: next.counts || null, homes: next.homes || null, moves: next.moves === true, movedBack: next.movedBack === true, showHomeBase: next.showHomeBase === true, coffee: next.coffee === true, moveLines: next.moveLines || {}, desks: Array.isArray(desks) ? desks : [] });
 }

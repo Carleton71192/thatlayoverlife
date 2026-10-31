@@ -58,7 +58,11 @@
    script src/site-layers/tll-division-v1.js (31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting)
    script src/site-layers/tll-paw-v1.js (31 Oct Value Playbook Phase 8: Paw Passport waitlist and QR landing, staged behind ?preview=paw until the trademark is clear)
    script src/site-layers/tll-metrics-v1.js (31 Oct Value Playbook Phase 9: owner-only investor metrics on /account with snapshot download)
+   script src/site-layers/tll-series-v1.js (31 Oct Nancy: every story series (labels, chips, story boxes, Trip Kit, pet note))
+   script src/site-layers/tll-expat-v1.js (31 Oct Nancy: expat build (Lived in, My moves, Living Library, For Expats; staged))
+   script src/site-layers/tll-pet-passport-v1.js (31 Oct Nancy: pet build (Paw Passport page, editor, landing; staged))
    script src/site-layers/tll-work-trips-v1.js (31 Oct Nancy: That Work Trip Life (map, series labels, Trip Kit; hub staged))
+   script src/site-layers/tll-ux-v1.js (31 Oct Nancy: user flows (story end block, first-stamp welcome, On this day, events; staged))
    script src/site-layers/tll-ads-v1.js (31 Oct Nancy: AdSense, tastefully (story pages, library, countries only))
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
@@ -2567,7 +2571,8 @@ setTimeout(run,4000);
    Photos come from GET /album: the member's live stories plus the collections and stamps they chose to show. Nothing private.
    No data-ms-* element touched. */
 (function(){
-var m=/^\/contributors\/([^/]+)\/?$/.exec(location.pathname);if(!m)return;var SLUG=m[1];
+/* Pet passports (/pets/<slug>) borrow the projector for their slide show; the album itself shows on profiles only. */
+var m=/^\/contributors\/([^/]+)\/?$/.exec(location.pathname),PROJECTOR_ONLY=!m&&/^\/pets\/[^/]+\/?$/.test(location.pathname);if(!m&&!PROJECTOR_ONLY)return;var SLUG=m?m[1]:'';
 /* STAGED until Nancy approves: shows with ?preview=album (remembered in this browser; ?preview=off clears) or a shared ?play= link. Flip PUBLIC to true to launch. */
 var PUBLIC=true,q=new URLSearchParams(location.search);try{if(q.get('preview')==='album')localStorage.setItem('tll-preview-album','1');if(q.get('preview')==='off')localStorage.removeItem('tll-preview-album');}catch(e){}
 var on=PUBLIC||q.get('preview')==='album';try{on=on||localStorage.getItem('tll-preview-album')==='1';}catch(e){}if(!on)return;
@@ -2595,6 +2600,7 @@ function css(){if(document.getElementById('tll-album-v1'))return;var s=el('style
 function sized(u,w){return /res\.cloudinary\.com/.test(u)?u.replace('/upload/','/upload/c_limit,w_'+w+',q_auto,f_auto/'):u;}
 var audio=null,sound=false;
 function click(){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();var n=audio.sampleRate*0.06,b=audio.createBuffer(1,n,audio.sampleRate),d=b.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,6)*0.6;var s=audio.createBufferSource();s.buffer=b;s.connect(audio.destination);s.start();}catch(e){}}
+window.__tllAlbumShow=function(c,name){return show(c,name);};
 function show(c,name){
   var i=0,ss=el('div','tll-ss');ss.setAttribute('role','dialog');ss.setAttribute('aria-modal','true');ss.setAttribute('aria-label',name+', '+c.name+' slide show');
   var stage=el('div','tll-ss-stage'),img=el('img');stage.appendChild(img);ss.appendChild(stage);
@@ -2616,7 +2622,7 @@ function show(c,name){
   try{var u=new URL(location.href);u.searchParams.set('play',c.key);history.replaceState(null,'',u);window.gtag&&gtag('event','slideshow_open',{division:'tll',continent:c.key});}catch(e){}
 }
 function group(d){var model=d.model||'seven',mc=d.mapCounts||null,by={};d.continents.forEach(function(c){by[c.key]=c;});
-  function merge(key,name,keys){var ps=[],n=0,m=0,cv=null;keys.forEach(function(k){var c=by[k];if(!c)return;ps=ps.concat(c.photos);n+=c.countries;if(mc)m+=mc[k]||0;cv=cv||c.cover;});return{key:key,name:name,photos:ps,countries:n,map:mc?m:null,cover:cv};}
+  var hc=window.__tllExpatOn&&d.homes&&d.homes.perContinent||null;function merge(key,name,keys){var ps=[],n=0,m=0,h=0,cv=null;keys.forEach(function(k){var c=by[k];if(hc)h+=hc[k]||0;if(!c)return;ps=ps.concat(c.photos);n+=c.countries;if(mc)m+=mc[k]||0;cv=cv||c.cover;});return{key:key,name:name,photos:ps,countries:n,map:mc?m:null,homes:h,cover:cv};}
   var one=function(k){return merge(k,by[k]?by[k].name:k,[k]);};
   var L={seven:[one('africa'),one('antarctica'),one('asia'),one('europe'),one('north-america'),one('oceania'),one('south-america')],
     americas:[one('africa'),merge('america','America',['north-america','south-america']),one('antarctica'),one('asia'),one('europe'),one('oceania')],
@@ -2634,9 +2640,9 @@ function run(){
     d.continents.forEach(function(c){var b;
       if(c.photos.length){b=el('button','tll-alb-mount');b.type='button';b.setAttribute('aria-label','Play '+c.name+', '+c.photos.length+' photos');
         var im=el('img');im.src=sized(c.cover.img,600);im.alt='';im.loading='lazy';b.appendChild(im);b.appendChild(el('span','tll-alb-play','▶ Play'));
-        var tp=el('span','tll-alb-tape');tp.appendChild(el('b','',c.name));var nC=c.map!=null&&c.map>0?c.map:c.countries;tp.appendChild(el('small','',c.photos.length+(c.photos.length===1?' photo':' photos')+' · '+nC+(nC===1?' country':' countries')));b.appendChild(tp);
+        var tp=el('span','tll-alb-tape');tp.appendChild(el('b','',c.name));var nC=c.map!=null&&c.map>0?c.map:c.countries;tp.appendChild(el('small','',c.photos.length+(c.photos.length===1?' photo':' photos')+' · '+nC+(nC===1?' country':' countries')+(c.homes?' · '+c.homes+(c.homes===1?' home':' homes'):'')));b.appendChild(tp);
         b.onclick=function(){show(c,d.name);};}
-      else{b=el('div','tll-alb-mount');var e=el('div','tll-alb-empty');if(c.key==='antarctica')e.innerHTML=PENGUIN;e.appendChild(el('span','',c.map?'No photos yet':'Not yet'));b.appendChild(e);var te=el('span','tll-alb-tape');te.appendChild(el('b','',c.name));if(c.map)te.appendChild(el('small','',c.map+(c.map===1?' country':' countries')));b.appendChild(te);}
+      else{b=el('div','tll-alb-mount');var e=el('div','tll-alb-empty');if(c.key==='antarctica')e.innerHTML=PENGUIN;e.appendChild(el('span','',c.map?'No photos yet':'Not yet'));b.appendChild(e);var te=el('span','tll-alb-tape');te.appendChild(el('b','',c.name));if(c.map)te.appendChild(el('small','',c.map+(c.map===1?' country':' countries')+(c.homes?' · '+c.homes+(c.homes===1?' home':' homes'):'')));b.appendChild(te);}
       grid.appendChild(b);});
     sec.appendChild(grid);
     var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);
@@ -2644,13 +2650,14 @@ function run(){
     var want=new URLSearchParams(location.search).get('play');if(want){var c=d.continents.filter(function(x){return x.key===want&&x.photos.length;})[0];if(c)show(c,d.name);}
   }).catch(function(){});
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,700);});else setTimeout(run,700);
+if(!PROJECTOR_ONLY){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,700);});else setTimeout(run,700);}
 })();
 
 /* tll-album-settings-v1 (31 Oct 2026, Nancy: "Yes make the posted change"; "some people see 6 continents and other 7. It's cultural.").
    /the-map: after each map save (the page's own POST /map-snapshot), counts the countries a member has lived in or visited per
    continent from the saved map in this browser and sends only those seven numbers to the Worker (POST /album/settings), so the
-   album can say "Africa · 9 countries". The country list itself never leaves the map.
+   album can say "Africa · 9 countries". Since 31 Oct it also sends how many of those were marked Lived (seven more numbers) for
+   "Lived in" and the album's home marks. The country list itself never leaves the map.
    /edit-profile: "05D · Your album" asks how the member counts continents (7, 6 with one America, 6 with Eurasia, or the 5 of the
    Olympic rings). The first time, the choice is suggested from the browser language; nothing is saved until the member picks.
    No data-ms-* element touched. */
@@ -2664,12 +2671,13 @@ function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?m
 function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return null;});}).catch(function(){return null;});}
 function counts(){var d;try{d=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){d=null;}if(!d||!d.states)return null;
   var people=(d.travelers||[]).filter(function(t){return t&&!t.pet;}).map(function(t){return t.id;});
-  var out={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0};
+  var out={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0},homes={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0};
   Object.keys(d.states).forEach(function(code){var s=d.states[code]||{},k=BY[code];if(!k)return;
-    var hit=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&(s[id]==='lived'||s[id]==='visited');});if(hit&&out[k]<80)out[k]++;});
-  return out;}
+    var hit=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&(s[id]==='lived'||s[id]==='visited');});if(hit&&out[k]<80)out[k]++;
+    var home=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&s[id]==='lived';});if(home&&homes[k]<80)homes[k]++;});
+  out.__homes=homes;return out;}
 if(P==='/the-map'&&!window.__tllAlbumCounts){window.__tllAlbumCounts=1;var f0=window.fetch;
-  window.fetch=function(u,o){var p=f0.apply(this,arguments);try{if(String(u).indexOf('/map-snapshot')>-1&&o&&String(o.method).toUpperCase()==='POST')p.then(function(r){if(r&&r.ok){var c=counts();if(c)post('/album/settings',{counts:c});}}).catch(function(){});}catch(e){}return p;};}
+  window.fetch=function(u,o){var p=f0.apply(this,arguments);try{if(String(u).indexOf('/map-snapshot')>-1&&o&&String(o.method).toUpperCase()==='POST')p.then(function(r){if(r&&r.ok){var c=counts();if(c){var h=c.__homes;delete c.__homes;post('/album/settings',{counts:c,homes:h});}}}).catch(function(){});}catch(e){}return p;};}
 var OPTS=[['seven','7 continents','North and South America apart, as taught in the US, UK, China and India'],['americas','6 continents, one America','As taught across Latin America, Spain, Portugal, France, Italy and Greece'],['eurasia','6 continents, with Eurasia','Europe and Asia as one, as taught in Russia and parts of Eastern Europe'],['olympic','5 continents, the Olympic rings','The five inhabited continents, America as one, no Antarctica']];
 function suggest(){var l=(navigator.language||'en').toLowerCase().slice(0,2);if(['es','pt','fr','it','el','ro','ca'].indexOf(l)>-1)return'americas';if(['ru','be','kk','uk'].indexOf(l)>-1)return'eurasia';return'seven';}
 function editProfile(){
@@ -2711,6 +2719,7 @@ var CSS='.tll-exp{max-width:760px;margin:24px auto;padding:16px 18px;border:1px 
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?ms.getMemberCookie():'';}catch(e){return'';}}
 function lib(){return window.JSZip?Promise.resolve(window.JSZip):new Promise(function(res,rej){var s=document.createElement('script');s.src=JSZIP;s.crossOrigin='anonymous';s.onload=function(){res(window.JSZip);};s.onerror=rej;document.head.appendChild(s);});}
+function cname(c){c=String(c||'').toUpperCase();try{return new Intl.DisplayNames(['en'],{type:'region'}).of(c)||c;}catch(e){return c;}}
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function csv(rows,cols){var q=function(v){v=v==null?'':Array.isArray(v)?v.join(' '):String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};return cols.join(',')+'\n'+rows.map(function(r){return cols.map(function(c){return q(r[c]);}).join(',');}).join('\n')+'\n';}
 function storyPage(s){return '<!doctype html><meta charset="utf-8"><title>'+esc(s.title)+'</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}small{color:#5F5A54}</style>'+
@@ -2729,13 +2738,19 @@ function run(){
     Promise.all([lib(),fetch(API,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok()},body:'{}'}).then(function(r){return r.json();}),mapData()]).then(function(v){
       var Z=v[0],d=v[1],map=v[2];if(!d||!d.ok)throw new Error((d&&d.error)||'The download could not start.');
       var zip=new Z(),root=zip.folder('that-layover-life');
-      root.file('README.txt','That Layover Life: your copy\nExported '+d.exportedAt+'\nProfile: '+d.profileLink+'\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it) and map-summary.json\n- photos/: every photo, in folders by story, collection, stamp and pet\n\nPrivate collections and stamps are included: this copy is only for you.\n');
+      root.file('README.txt','That Layover Life: your copy\nExported '+d.exportedAt+'\nProfile: '+d.profileLink+'\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: every photo, in folders by story, collection, stamp and pet\n\nPrivate collections and stamps are included: this copy is only for you.\n');
       root.file('profile.json',JSON.stringify(d.profile,null,2));
       var st=root.folder('stories');st.file('stories.json',JSON.stringify(d.stories,null,2));d.stories.forEach(function(s){st.file(s.slug+'.html',storyPage(s));});
       root.file('collections.json',JSON.stringify(d.collections,null,2));root.file('collections.csv',csv(d.collections,['collection','country','city','year','caption','shownOnProfile','photos']));
-      root.file('stamps.json',JSON.stringify(d.stamps,null,2));root.file('stamps.csv',csv(d.stamps,['pursuit','what','country','city','month','year','shownOnProfile','photo']));
+      root.file('stamps.json',JSON.stringify(d.stamps,null,2));root.file('stamps.csv',csv(d.stamps,['pursuit','what','country','city','month','year','workTrip','shownOnProfile','photo']));
       root.file('pets.json',JSON.stringify(d.pets,null,2));root.file('companions.json',JSON.stringify(d.companions,null,2));
       var mf=root.folder('map');mf.file('map-summary.json',JSON.stringify(d.mapSummary,null,2));if(map)mf.file('my-map.json',JSON.stringify(map,null,2));
+      /* Expat build: places lived (from the profile) and every country marked on the map, as spreadsheets. */
+      var pl=(d.placesLived||[]).map(function(x){return {country:cname(x.c),code:String(x.c||'').toUpperCase(),years:x.years||'',placesIKnowWell:x.knows||'',homeNow:x.now===true?'yes':''};});
+      root.file('places-lived.json',JSON.stringify(pl,null,2));root.file('places-lived.csv',csv(pl,['country','code','years','placesIKnowWell','homeNow']));
+      if(map&&map.states){var N=window.__tllN2A||{},rows=[];Object.keys(map.states).forEach(function(num){var e=map.states[num]||{};Object.keys(e).forEach(function(t){var tr=(map.travelers||[]).filter(function(x){return x.id===t;})[0];var a2=N[num]||'';
+        rows.push({country:a2?cname(a2):num,code:a2||num,traveler:tr?tr.name:t,mark:e[t]==='lived'?'Lived':e[t]==='visited'?'Stayed':e[t]==='layover'?'Layover':e[t]});});});
+        mf.file('countries.csv',csv(rows,['country','code','traveler','mark']));}
       var ph=root.folder('photos'),missing=[],done=0,list=d.photos||[];
       var one=function(p){return fetch(p.url,{mode:'cors'}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(blob){ph.file(p.folder+'/'+p.name+'.'+ext(blob.type,p.url),blob);})
         .catch(function(){missing.push(p.folder+'/'+p.name+': '+p.url);}).then(function(){done++;msg.textContent='Photos '+done+' of '+list.length+'…';});};
@@ -2743,7 +2758,7 @@ function run(){
       return Promise.all(workers).then(function(){if(missing.length)ph.file('not-downloaded.txt','These photos could not be downloaded, so here are their links:\n'+missing.join('\n')+'\n');
         msg.textContent='Packing the zip…';return zip.generateAsync({type:'blob'});}).then(function(blob){
         var a=el('a');a.href=URL.createObjectURL(blob);a.download='that-layover-life-'+((d.profile&&d.profile.slug)||'me')+'-'+d.exportedAt.slice(0,10)+'.zip';document.body.appendChild(a);a.click();
-        setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);b.disabled=false;
+        setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);b.disabled=false;try{window.gtag&&gtag('event','download_complete',{division:'tll',photos:list.length-missing.length});}catch(e){}
         msg.textContent='Done. '+d.stories.length+(d.stories.length===1?' story, ':' stories, ')+(list.length-missing.length)+((list.length-missing.length)===1?' photo':' photos')+(missing.length?' ('+missing.length+' listed as links)':'')+'.';});
     }).catch(function(e){b.disabled=false;msg.textContent=(e&&e.message)||'The download did not finish. Try again.';});
   });
@@ -2767,6 +2782,7 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev/pros';
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-pro-label{display:inline-block;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;border:1.5px solid #C8325B;border-radius:2px;padding:3px 8px;margin:0 0 12px}'+
 '.tll-pro-box{max-width:680px;margin:36px auto;padding:16px 18px;border:1px solid #E0DACE;border-left:3px solid #067A79;border-radius:4px;background:#fff;display:flex;gap:14px;align-items:center;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}'+
+'.tll-pro-rek{color:#0A0B14;border-color:#0A0B14;margin-right:8px}.tll-pro-rek a{color:inherit}'+
 '.tll-pro-box img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}.tll-pro-box p{margin:0}.tll-pro-k{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79}'+
 '.tll-pro-box a{color:#0A0B14;font-weight:600;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}'+
 '.tll-pro-badge{display:inline-flex;gap:6px;align-items:center;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;background:#0A0B14;color:#FDF9F3;border-radius:999px;padding:6px 10px;margin:8px 0}'+
@@ -2778,7 +2794,11 @@ function css(){if(document.getElementById('tll-pros-v1'))return;var s=el('style'
 function story(pros){
   var main=document.querySelector('main')||document.body,by=main.querySelector('a[href^="/contributors/"]');if(!by)return;
   var slug=(by.getAttribute('href').split('/')[2]||'').replace(/[?#].*$/,''),p=pros.filter(function(x){return x.slug===slug;})[0];if(!p||document.querySelector('.tll-pro-label'))return;css();
-  var h1=main.querySelector('h1');if(h1)h1.parentNode.insertBefore(el('div','tll-pro-label','From the Pros'),h1);
+  var h1=main.querySelector('h1'),CAT={'move-pros':'Move pros','pet-travel-pros':'Pet travel pros','road-warrior':'Road warrior'};
+  if(h1){var lab=el('div','tll-pro-label','From the Pros'+(CAT[p.category]?' · '+CAT[p.category]:''));
+    /* Paid or hosted, or a piece about the pro's own paid service: "Reklame for [name]" comes first, the name linked, rel sponsored. */
+    if(p.sponsored&&!document.querySelector('.tll-pro-rek')){var rk=el('div','tll-pro-label tll-pro-rek');rk.appendChild(document.createTextNode('Reklame for '));if(p.url){var ra=el('a','',p.linkName);ra.href=p.url;ra.target='_blank';ra.rel='sponsored noopener noreferrer';rk.appendChild(ra);}else rk.appendChild(document.createTextNode(p.linkName));h1.parentNode.insertBefore(rk,h1);h1.parentNode.insertBefore(document.createTextNode(' '),h1);}
+    h1.parentNode.insertBefore(lab,h1);}
   var box=el('aside','tll-pro-box');box.setAttribute('aria-label','About the writer');if(p.avatar){var im=el('img');im.src=p.avatar;im.alt='';box.appendChild(im);}
   var t=el('div');t.appendChild(el('p','tll-pro-k','From the Pros'));var line=el('p');line.appendChild(document.createTextNode(p.name+(p.line?', '+p.line:'')+'. '));
   if(p.url){var a=el('a','',p.linkName);a.href=p.url;a.rel=p.rel;a.target='_blank';line.appendChild(a);}t.appendChild(line);box.appendChild(t);
@@ -2940,14 +2960,346 @@ function run(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,2000);});else setTimeout(run,2000);
 })();
 
+/* tll-series-v1 (31 Oct 2026). Every story series in one layer, read from GET /series and /series/story (Worker).
+   Work trips: The Free Evening, Plus One Day. Expats: The First Friend, The Partner Who Moved Too, Moving Back.
+   Pets: First Trip Together, The Sitter Was the Hero, Cats Who Travel.
+   - Story cards on /stories, /countries/<slug>, /for-expats, /the-paw-passport: a black washi-tape label, e.g. "The First Friend · Copenhagen".
+   - /stories: filter chips, one per series that has stories.
+   - Story pages: the label above the headline; the writer's template fields; their safety note (only if written); a Trip Kit
+     (reklamelink, rel sponsored, no cards); the "Pet-friendly or pet-tolerant?" note (writer's experience, dated, no stars,
+     links nofollow ugc); a LinkedIn share link (no SDK).
+   Nothing shows until a story is tagged with a series theme. No schema added: stories keep Article only. No data-ms-* touched. */
+(function(){
+var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var CSS='.tll-wt-tape{display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 11px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%);margin:0 0 10px;max-width:100%}'+
+'.tll-wt-card-tape{position:absolute;top:10px;left:10px;z-index:3;margin:0;font-size:10px;padding:5px 10px}'+
+'.tll-sr-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;font:400 14px/1.4 "IBM Plex Sans Condensed",system-ui,sans-serif}.tll-sr-chips button{min-height:44px;padding:0 14px;border:1.5px solid #0A0B14;border-radius:999px;background:#fff;color:#0A0B14;font:600 14px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer}.tll-sr-chips button[aria-pressed=true]{background:#0A0B14;color:#FDF9F3}'+
+'.tll-sr-k{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}'+
+'.tll-sr-box{max-width:680px;margin:28px auto;padding:16px 18px;border:1px solid #E0DACE;border-radius:4px;background:#fff;font:400 15px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-sr-box ol{margin:8px 0 0;padding-left:20px}.tll-sr-box p{margin:0 0 6px}.tll-sr-box b{font-weight:600}.tll-sr-box small{display:block;color:#5F5A54;margin-top:8px}'+
+'.tll-sr-box a{color:#0A0B14;font-weight:600;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}'+
+'.tll-sr-kit a{margin-right:14px}.tll-sr-kit i{font-style:normal;font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#5F5A54;margin-left:4px}'+
+'.tll-sr-li{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;background:#0A0B14;color:#FDF9F3!important;text-decoration:none!important;font-weight:600}';
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function css(){if(document.getElementById('tll-series-v1'))return;var s=el('style');s.id='tll-series-v1';s.textContent=CSS;document.head.appendChild(s);}
+function track(n,x){try{window.gtag&&gtag('event',n,Object.assign({division:x&&x.division||'tll'},x||{}));}catch(e){}}
+function tape(text,cls){return el('span','tll-wt-tape'+(cls?' '+cls:''),text);}
+function get(path){return fetch(API+path).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});}
+function div(group){return group==='pets'?'paw-passport':'tll';}
+function line(box,label,val){if(!val)return;var p=el('p');p.appendChild(el('b','',label+': '));p.appendChild(document.createTextNode(val));box.appendChild(p);}
+
+function labelCards(cards){var by={};cards.forEach(function(c){by[c.slug]=c;});
+  Object.keys(by).forEach(function(slug){[].slice.call(document.querySelectorAll('a[href="/stories/'+slug+'"],a[href^="/stories/'+slug+'?"]')).forEach(function(a){
+    if(a.closest('.tll-wt-rail')||a.closest('nav,header,footer,.tll-sr-box'))return;var card=a.closest('.w-dyn-item')||a;if(card.querySelector('.tll-wt-card-tape'))return;
+    if(getComputedStyle(card).position==='static')card.style.position='relative';card.appendChild(tape(by[slug].label,'tll-wt-card-tape'));card.setAttribute('data-tll-series',by[slug].series);});});}
+function chips(series){if(document.getElementById('tll-sr-chips'))return;var have=series.filter(function(s){return s.stories.length;});if(!have.length)return;
+  var first=document.querySelector('main .w-dyn-item a[href^="/stories/"]'),list=first&&first.closest('.w-dyn-list');if(!list)return;
+  var row=el('div','tll-sr-chips');row.id='tll-sr-chips';row.setAttribute('role','group');row.setAttribute('aria-label','Story series');row.appendChild(el('span','tll-sr-k','Series'));var on='';
+  have.forEach(function(s){var b=el('button','',s.name);b.type='button';b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){on=on===s.slug?'':s.slug;
+    [].slice.call(row.querySelectorAll('button')).forEach(function(x){x.setAttribute('aria-pressed',String(x===b&&on!==''));});
+    [].slice.call(list.querySelectorAll('.w-dyn-item')).forEach(function(it){it.hidden=!!on&&it.getAttribute('data-tll-series')!==on;});track('series_filter',{series:on||'all',division:div(s.group)});});row.appendChild(b);});
+  list.parentNode.insertBefore(row,list);}
+
+function fieldsBox(d){var f=d.fields||{},s=d.series,box=el('aside','tll-sr-box'),name=d.label.split(' · ')[0];box.setAttribute('aria-label',name);box.appendChild(el('p','tll-sr-k',name));
+  if(s==='the-free-evening'){var t=[f.time,f.start?'starting from a '+f.start.toLowerCase():''].filter(Boolean).join(', ');if(t)box.appendChild(el('p','',t));
+    if(f.stops&&f.stops.length){var ol=el('ol');f.stops.forEach(function(x){ol.appendChild(el('li','',x.stop+(x.move?' · '+x.move:'')));});box.appendChild(ol);}}
+  else if(s==='plus-one-day'){if(f.extraDays)box.appendChild(el('p','',f.extraDays+(f.extraDays===1?' extra day':' extra days')));line(box,'Who paid for what',f.whoPaid);line(box,'Best decision',f.best);line(box,'Worst decision',f.worst);}
+  else if(s==='the-first-friend'){var a=[f.yearsThere?f.yearsThere+(f.yearsThere===1?' year in':' years in'):'',f.monthsItTook?'it took '+f.monthsItTook+(f.monthsItTook===1?' month':' months'):''].filter(Boolean).join(', ');if(a)box.appendChild(el('p','',a.charAt(0).toUpperCase()+a.slice(1)+'.'));
+    line(box,'Where it happened',f.where);line(box,'What worked',f.worked);line(box,'What did not',f.didNot);}
+  else if(s==='the-partner-who-moved-too'){var m=[f.from&&f.to?f.from+' to '+f.to:'',f.years].filter(Boolean).join(', ');if(m)box.appendChild(el('p','',m));line(box,'What happened to my work',f.work);line(box,'What I wish someone had told me',f.wish);}
+  else if(s==='moving-back'){var mb=[f.from&&f.to?f.from+' back to '+f.to:'',f.yearsAway?f.yearsAway+' away':''].filter(Boolean).join(', ');if(mb)box.appendChild(el('p','',mb));line(box,'The strangest thing about home now',f.strangest);line(box,'What I kept from abroad',f.kept);}
+  else if(s==='the-sitter-was-the-hero'){line(box,'The hero',f.sitter);}
+  else if(s==='cats-who-travel'){line(box,'Carrier or harness',f.carrier);line(box,'Where they hid',f.hid);}
+  if(f.when)box.appendChild(el('small','',(d.group==='pets'?"Writer's experience, ":'Written ')+f.when));
+  return box.children.length>1?box:null;}
+function petBox(b){var box=el('aside','tll-sr-box');box.setAttribute('aria-label','Pet-friendly or pet-tolerant?');box.appendChild(el('p','tll-sr-k','Pet-friendly or pet-tolerant?'));
+  if(b.stayedAt){var p=el('p');p.appendChild(el('b','','Stayed at: '));if(b.url){var a=el('a','',b.stayedAt);a.href=b.url;a.rel=b.rel;a.target='_blank';p.appendChild(a);}else p.appendChild(document.createTextNode(b.stayedAt));if(b.city)p.appendChild(document.createTextNode(', '+b.city));box.appendChild(p);}
+  line(box,'What we paid for the pet',b.paid);line(box,'Size or weight rule',b.sizeRule);line(box,'What made it welcoming',b.welcoming);line(box,'What we would tell the next owner',b.tell);
+  box.appendChild(el('small','',"Writer's experience"+(b.when?', '+b.when:'')+'. No business can pay to change or remove a note.'));return box;}
+function storyPage(slug){get('/series/story?slug='+encodeURIComponent(slug)).then(function(d){if(!d||!d.ok||document.getElementById('tll-sr-story'))return;
+  var main=document.querySelector('main')||document.body,h1=main.querySelector('h1');var bodies=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')),body=bodies.sort(function(a,b){return b.textContent.length-a.textContent.length;})[0];
+  var wrap=el('div');wrap.id='tll-sr-story';css();
+  if(d.series){if(h1&&!document.querySelector('.tll-sr-head-tape')){var t=tape(d.label,'tll-sr-head-tape');h1.parentNode.insertBefore(t,h1);}
+    var fb=fieldsBox(d);if(fb)wrap.appendChild(fb);
+    if(d.safetyNote){var sn=el('aside','tll-sr-box');sn.appendChild(el('p','tll-sr-k','Safety, from the writer'));sn.appendChild(el('p','',d.safetyNote));wrap.appendChild(sn);}
+    var sh=el('div','tll-sr-box'),li=el('a','tll-sr-li','Share on LinkedIn');li.href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname);li.target='_blank';li.rel='noopener';
+    li.addEventListener('click',function(){track('share_click',{channel:'linkedin',series:d.series,division:div(d.group)});});sh.appendChild(li);wrap.appendChild(sh);}
+  /* Linked sponsor label (staged with the expat and pet previews): the existing "Reklame for" label gets the sponsor's name as a link. */
+  var prev=false;try{prev=localStorage.getItem('tll-preview-pets')==='1'||localStorage.getItem('tll-preview-expat')==='1';}catch(e){}
+  if(prev&&d.sponsor){var rk=document.querySelector('[data-tll-reklame]');if(!rk&&h1){rk=el('div','tll-reklame');rk.setAttribute('data-tll-reklame','1');rk.setAttribute('lang','da');h1.parentNode.insertBefore(rk,h1);}
+    if(rk&&!rk.querySelector('a')){rk.textContent='Reklame for ';var sa=el('a','',d.sponsor.name);sa.href=d.sponsor.url;sa.target='_blank';sa.rel=d.sponsor.rel;sa.style.color='inherit';sa.addEventListener('click',function(){track('revenue_click',{slot:'sponsor_label',division:div(d.group)});});rk.appendChild(sa);}}
+  if(d.petBox)wrap.appendChild(petBox(d.petBox));
+  if(d.tripKit&&d.tripKit.length){var k=el('aside','tll-sr-box tll-sr-kit');k.appendChild(el('p','tll-sr-k','Trip Kit · reklamelink'));var p=el('p');
+    d.tripKit.forEach(function(x){var a=el('a','',x.label);a.href=x.url;a.rel=x.rel;a.target='_blank';a.addEventListener('click',function(){track('revenue_click',{slot:'trip_kit',label:x.label,division:'tll'});});p.appendChild(a);});
+    p.appendChild(el('i','','reklamelink'));k.appendChild(p);wrap.appendChild(k);}
+  if(!wrap.children.length)return;var share=document.querySelector('.tll-story-share-row');if(share)share.parentNode.insertBefore(wrap,share);else if(body)body.insertAdjacentElement('afterend',wrap);else main.appendChild(wrap);});}
+
+function run(){var m;
+  if((m=/^\/stories\/([^/]+)$/.exec(P))){storyPage(m[1]);return;}
+  if(!(P==='/stories'||/^\/countries\/[^/]+$/.test(P)||P==='/for-expats'||P==='/the-paw-passport'||P==='/pursuits/work-trips'))return;
+  get('/series').then(function(d){if(!d||!d.ok)return;var cards=[];d.series.forEach(function(s){cards=cards.concat(s.stories);});if(!cards.length)return;css();
+    labelCards(cards);if(P==='/stories')chips(d.series);setTimeout(function(){labelCards(cards);},2500);window.__tllSeries=d;});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1200);});else setTimeout(run,1200);
+})();
+
+/* tll-expat-v1 (31 Oct 2026, expat build on the Value Playbook: "The move, the first friend and the partner who moved too").
+   STAGED: EX_PUBLIC false; shows with ?preview=expat (remembered in this browser; ?preview=off clears).
+   /contributors/<slug>  "Lived in [n]" beside the map numbers (from countries marked Lived on the map, never typed; hidden when the
+                         member shows ranges), tap for Places I have lived with years (today's home only if they switched Show home
+                         base on). Milestone badges, never a ranking. "My moves" slide show, only if the member switched it on.
+                         Person JSON-LD keeps the country of the home base, never the city.
+   /edit-profile         "05E · Your moves": Show home base, Open to coffee with newcomers (the Living Library), My moves, Moved back,
+                         and one optional line per home for the show.
+   /for-expats           The landing in one scroll: hero, three promises, the three series rows, the Living Library (opted-in members
+                         only, shuffled per session, no contact details on cards, Get in touch after sign-in, Report on every card),
+                         practical links, the Layover Club line. Empty parts are left out, never shown empty.
+   Counts are computed, never typed. City or country only. No data-ms-* element touched; nav and footer untouched. */
+(function(){
+var EX_PUBLIC=false,q=new URLSearchParams(location.search).get('preview');
+try{if(q==='expat')localStorage.setItem('tll-preview-expat','1');if(q==='off')localStorage.removeItem('tll-preview-expat');}catch(e){}
+var ON=EX_PUBLIC||q==='expat';try{ON=ON||localStorage.getItem('tll-preview-expat')==='1';}catch(e){}
+window.__tllExpatOn=ON;if(!ON)return;
+var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var FLAGS='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
+var BADGES={'first-move-abroad':'First move abroad','lived-on-two-continents':'Lived on 2 continents','moved-back':'Moved back'};
+var CSS='.tll-ex{font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-ex [hidden]{display:none!important}'+
+'.tll-ex-k{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}'+
+'.tll-ex-flag{font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#C8325B;margin:0 0 8px}'+
+'.tll-ex-stat{background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit;min-height:44px}.tll-ex-stat:focus-visible{outline:2px solid #C8325B;outline-offset:2px}'+
+'.tll-ex-pop{max-width:760px;margin:12px 0;padding:14px 16px;border:1px solid #E0DACE;border-radius:6px;background:#fff}.tll-ex-pop ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}.tll-ex-pop li{display:flex;gap:10px;align-items:center}.tll-ex-pop img{width:24px;height:24px}.tll-ex-pop small{color:#5F5A54;display:block}'+
+'.tll-ex-badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.tll-ex-badge{font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;border:1.5px solid #0A0B14;border-radius:999px;padding:8px 12px}'+
+'.tll-ex-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;border:0;background:#C8325B;color:#fff;text-decoration:none;font:600 15px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer}.tll-ex-btn.ink{background:#0A0B14;color:#FDF9F3}.tll-ex-btn.ghost{background:#fff;color:#0A0B14;border:1.5px solid #0A0B14}'+
+'.tll-ex-sec{background:#FDF9F3}.tll-ex-in{max-width:1120px;margin:0 auto;padding:44px 16px}.tll-ex h2{font:800 clamp(28px,4vw,46px)/1.05 "Playfair Display",Georgia,serif;margin:0 0 12px}.tll-ex h3{font:800 24px/1.15 "Playfair Display",Georgia,serif;margin:0 0 12px}'+
+'.tll-ex-lede{max-width:62ch;color:#3a3833;margin:0 0 16px}.tll-ex-small{font:600 12px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;color:#5F5A54;margin:10px 0 0}'+
+'.tll-ex-prom{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.tll-ex-prom a{display:block;border-top:2px solid #0A0B14;padding:14px 0 0;color:#0A0B14;text-decoration:none}.tll-ex-prom b{display:block;font:800 20px/1.2 "Playfair Display",Georgia,serif;margin:0 0 6px}'+
+'.tll-ex-row{border-top:2px solid #0A0B14;padding:22px 0 0;margin:30px 0 0}.tll-ex-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);gap:14px;overflow-x:auto;padding:6px 0 10px}'+
+'.tll-ex-rail a{position:relative;display:block;border:1px solid #E0DACE;border-radius:6px;background:#fff;color:#0A0B14;text-decoration:none;overflow:hidden}.tll-ex-rail .ph{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#E0DACE}.tll-ex-rail b{display:block;font:800 19px/1.2 "Playfair Display",Georgia,serif;padding:12px}'+
+'.tll-ex-tape{display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 10px/1.3 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%)}.tll-ex-rail .tll-ex-tape{position:absolute;top:10px;left:10px}'+
+'.tll-ex-books{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.tll-ex-book{border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:14px;display:flex;flex-direction:column;gap:6px}'+
+'.tll-ex-book header{display:flex;gap:10px;align-items:center}.tll-ex-book header img{width:48px;height:48px;border-radius:50%;object-fit:cover}.tll-ex-book b{font:800 19px/1.2 "Playfair Display",Georgia,serif}.tll-ex-book small{color:#5F5A54;display:block}'+
+'.tll-ex-book .acts{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}.tll-ex-book .rep{font-size:13px;color:#5F5A54}'+
+'.tll-ex details{border:1px dashed #C8B9A6;border-radius:6px;padding:12px 14px;background:#fff;margin:0 0 16px}.tll-ex summary{cursor:pointer;font-weight:600;min-height:28px}'+
+'.tll-ex-set label{display:flex;gap:10px;align-items:flex-start;border:1px solid #E0DACE;border-radius:6px;padding:10px 12px;background:#fff;margin:0 0 8px;cursor:pointer}.tll-ex-set input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:#C8325B;flex:none}'+
+'.tll-ex-set input[type=text]{box-sizing:border-box;width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;min-height:44px}'+
+'@media (max-width:760px){.tll-ex-prom{grid-template-columns:1fr}}';
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function css(){if(document.getElementById('tll-expat-v1'))return;var s=el('style');s.id='tll-expat-v1';s.textContent=CSS;document.head.appendChild(s);}
+function track(n,x){try{window.gtag&&gtag('event',n,Object.assign({division:'tll'},x||{}));}catch(e){}}
+function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?ms.getMemberCookie():'';}catch(e){return'';}}
+function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return null;});}).catch(function(){return null;});}
+function get(path){return fetch(API+path).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});}
+function cname(c){c=String(c||'').toUpperCase();try{return new Intl.DisplayNames(['en'],{type:'region'}).of(c)||c;}catch(e){return c;}}
+function plural(n,one,many){return n+' '+(n===1?one:many);}
+
+/* Profile */
+function profile(slug){get('/album?slug='+encodeURIComponent(slug)).then(function(d){if(!d||!d.ok||!d.homes||document.getElementById('tll-ex-lived'))return;css();var h=d.homes;
+  var S=document.querySelector('[data-pf5="stats"]'),ranges=S&&/under 10|-something/.test(S.textContent||'');
+  if(S&&h.total>0&&!ranges){var cell=el('div'),b=el('button','tll-ex-stat');b.type='button';b.id='tll-ex-lived';b.setAttribute('aria-expanded','false');
+    b.appendChild(el('div','pf5-stat-v',String(h.total)));b.appendChild(el('div','pf5-stat-k',h.total===1?'COUNTRY LIVED IN':'COUNTRIES LIVED IN'));cell.appendChild(b);
+    var info=S.querySelector('.pf5-stat-i');if(info)S.insertBefore(cell,info);else S.appendChild(cell);
+    var pop=el('div','tll-ex tll-ex-pop');pop.hidden=true;pop.id='tll-ex-lived-list';b.setAttribute('aria-controls',pop.id);pop.appendChild(el('p','tll-ex-k','Places I have lived'));
+    if(h.places.length){var ul=el('ul');h.places.forEach(function(p){var li=el('li'),im=el('img');im.src=FLAGS+p.c+'.svg';im.alt='';li.appendChild(im);var t=el('div');t.appendChild(document.createTextNode(cname(p.c)));if(p.years)t.appendChild(el('small','',p.years));li.appendChild(t);ul.appendChild(li);});pop.appendChild(ul);}
+    else pop.appendChild(el('p','','Counted from the map. The places and years appear here once they are added on the profile.'));
+    S.insertAdjacentElement('afterend',pop);b.onclick=function(){pop.hidden=!pop.hidden;b.setAttribute('aria-expanded',String(!pop.hidden));};}
+  var head=S||document.querySelector('main h1');
+  if(head&&h.badges&&h.badges.length){var bd=el('div','tll-ex tll-ex-badges');bd.setAttribute('aria-label','Milestones');h.badges.forEach(function(k){bd.appendChild(el('span','tll-ex-badge',BADGES[k]||k));});head.insertAdjacentElement('afterend',bd);}
+  if(d.moves&&window.__tllAlbumShow){var mv=el('div','tll-ex');var btn=el('button','tll-ex-btn ink','▶ My moves');btn.type='button';mv.style.margin='10px 0';mv.appendChild(btn);(head||document.body).insertAdjacentElement('afterend',mv);
+    btn.onclick=function(){track('slideshow_play',{show:'my-moves'});window.__tllAlbumShow({key:'moves',name:'My moves',photos:d.moves.map(function(m){return{img:m.img||FLAGS+m.c+'.svg',alt:m.alt||cname(m.c),line:m.line||cname(m.c),sub:[cname(m.c),m.years].filter(Boolean).join(' · '),href:m.href};})},d.name);};}
+}).catch(function(){});
+  /* Person schema: the home base keeps its country only. */
+  [].slice.call(document.querySelectorAll('script[type="application/ld+json"]')).forEach(function(s){try{var j=JSON.parse(s.textContent);if(j&&j.homeLocation&&j.homeLocation.name){var parts=String(j.homeLocation.name).split(',');j.homeLocation.name=parts[parts.length-1].trim();s.textContent=JSON.stringify(j);}}catch(e){}});
+}
+
+/* Edit profile */
+function editProfile(){var anchor=document.getElementById('tll-alb-set')||document.getElementById('tll-st')||document.getElementById('tll-col');if(!anchor||document.getElementById('tll-ex-set'))return;
+  post('/album/settings',{read:true}).then(function(s){if(!s||!s.ok||document.getElementById('tll-ex-set'))return;css();
+    var sec=el('section','ep-sec tll-ex tll-ex-set');sec.id='tll-ex-set';sec.appendChild(el('h2','ep-eb','05E · Your moves'));
+    sec.appendChild(el('p','ep-lede','For the places you have lived. Everything here is off until you switch it on.'));
+    var msg=el('p','tll-ex-small');msg.setAttribute('aria-live','polite');
+    function sw(key,label,sub){var l=el('label'),i=el('input');i.type='checkbox';i.checked=s[key]===true;l.appendChild(i);var t=el('span');t.appendChild(el('b','',label));if(sub){t.appendChild(el('br'));t.appendChild(el('small','',sub));}l.appendChild(t);
+      i.addEventListener('change',function(){var b={};b[key]=i.checked;i.disabled=true;post('/album/settings',b).then(function(r){i.disabled=false;msg.textContent=r&&r.ok?'Saved.':'That did not save. Try again.';if(!(r&&r.ok))i.checked=!i.checked;});});sec.appendChild(l);}
+    sw('showHomeBase','Show my home base on my profile','City and country only. Off: your profile and cards leave it out.');
+    sw('coffee','Open to coffee with newcomers','Puts your card in the Living Library on For Expats. No contact details on the card; people reach you through your profile after they sign in.');
+    sw('moves','Show "My moves" on my profile','A slide show, one slide per place you have lived, in order.');
+    sw('movedBack','I moved back','Adds the Moved back milestone to your profile.');
+    if(s.desks&&s.desks.length){sec.appendChild(el('p','tll-ex-k','One line per home, for My moves (optional)'));var lines=Object.assign({},s.moveLines||{}),t0=null;
+      s.desks.forEach(function(dk){var l=el('label');l.style.display='block';l.appendChild(el('span','',cname(dk.c)+(dk.years?' · '+dk.years:'')));var i=el('input');i.type='text';i.maxLength=90;i.value=lines[dk.c]||'';i.placeholder='The moving boxes won.';l.appendChild(i);sec.appendChild(l);
+        i.addEventListener('input',function(){lines[dk.c]=i.value;clearTimeout(t0);t0=setTimeout(function(){post('/album/settings',{moveLines:lines}).then(function(r){msg.textContent=r&&r.ok?'Saved.':'That did not save.';});},900);});});}
+    sec.appendChild(msg);anchor.insertAdjacentElement('afterend',sec);});}
+
+/* The Living Library */
+function shuffle(list){var seed;try{seed=sessionStorage.getItem('tll-ll-seed');if(!seed){seed=String(Math.floor(Math.random()*1e9));sessionStorage.setItem('tll-ll-seed',seed);}}catch(e){seed=String(Math.floor(Math.random()*1e9));}
+  var x=Number(seed)||1,a=list.slice();for(var i=a.length-1;i>0;i--){x=(x*1103515245+12345)%2147483648;var j=x%(i+1),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function library(books){var signed=!!tok(),wrap=el('div','tll-ex-row');wrap.id='living-library';wrap.appendChild(el('p','tll-ex-k','The Living Library'));wrap.appendChild(el('h3','','People you can borrow for coffee'));
+  var det=el('details'),sum=el('summary','','Borrow a book: how it works');det.appendChild(sum);
+  [['Every card is a member who moved to this city and said yes to coffee with newcomers. Think of them as a book you can borrow for an hour.'],
+   ['Good to ask: how they made their first friend here, which neighborhood felt like home, what they wish they had known in month one.'],
+   ['Please do not ask for legal, immigration or tax advice, for their address or workplace, or for favors they did not offer. For rules, use the official sources on our guides.'],
+   ['Saying thank you: buy the coffee. Nobody is paid through That Layover Life, so please do not offer money.']].forEach(function(t){det.appendChild(el('p','',t[0]));});
+  wrap.appendChild(det);var g=el('div','tll-ex-books');
+  shuffle(books).forEach(function(b){var c=el('article','tll-ex-book'),h=el('header');if(b.avatar){var im=el('img');im.src=b.avatar;im.alt='';im.loading='lazy';h.appendChild(im);}var hn=el('div');hn.appendChild(el('b','',b.name));
+    var sub=[b.homeCity,b.years?b.years.replace(/now/i,'today'):''].filter(Boolean).join(' · ');if(sub)hn.appendChild(el('small','',sub));h.appendChild(hn);c.appendChild(h);
+    if(b.knowsWell.length)c.appendChild(el('p','','Knows well: '+b.knowsWell.join('; ')));if(b.languages.length)c.appendChild(el('small','','Speaks '+b.languages.join(', ')));if(b.interests.length)c.appendChild(el('small','','Into '+b.interests.join(', ')));
+    if(b.stories.length){var p=el('p');p.appendChild(document.createTextNode('Wrote: '));b.stories.forEach(function(s,i){var a=el('a','',s.title);a.href='/stories/'+s.slug;p.appendChild(a);if(i<b.stories.length-1)p.appendChild(document.createTextNode(' · '));});c.appendChild(p);}
+    var acts=el('div','acts'),go=el('a','tll-ex-btn'+(signed?'':' ghost'),signed?'Get in touch':'Sign in to get in touch');go.href=signed?'/contributors/'+b.slug+'#contact':'/login';go.addEventListener('click',function(){track('living_library_contact',{signed:signed});});acts.appendChild(go);
+    var rep=el('a','rep','Report');rep.href='/contact?subject='+encodeURIComponent('Report a Living Library card: '+b.slug);acts.appendChild(rep);c.appendChild(acts);g.appendChild(c);});
+  wrap.appendChild(g);return wrap;}
+
+/* For Expats landing */
+function landing(){if(document.getElementById('tll-ex-land'))return;Promise.all([get('/series?group=expat'),get('/living-library')]).then(function(v){if(document.getElementById('tll-ex-land'))return;css();
+  var series=(v[0]&&v[0].series||[]).filter(function(s){return s.stories.length;}),books=v[1]&&v[1].books||[];
+  var sec=el('section','tll-ex tll-ex-sec');sec.id='tll-ex-land';var inn=el('div','tll-ex-in');sec.appendChild(inn);
+  if(!EX_PUBLIC)inn.appendChild(el('p','tll-ex-flag','Preview · not live · copy is draft'));
+  inn.appendChild(el('p','tll-ex-k','For people who moved abroad'));inn.appendChild(el('h2','','Your homes count too.'));
+  inn.appendChild(el('p','tll-ex-lede','For the people who fill their passports and have to get a new one. Mark the places you have lived, keep the move as a story, and find the people who did it before you.'));
+  var cta=el('a','tll-ex-btn','Add the places you’ve lived');cta.href='/the-map?mark=lived&utm_source=for-expats&utm_medium=hero&utm_campaign=tll';cta.addEventListener('click',function(){track('signup_start',{from:'for-expats'});});inn.appendChild(cta);
+  inn.appendChild(el('p','tll-ex-small','Free. No card. 16+.'));
+  var pr=el('div','tll-ex-row');pr.appendChild(el('p','tll-ex-k','The expat group without the comment section'));var pg=el('div','tll-ex-prom');
+  var proms=[[series.length?'#tll-ex-series':'/stories','Stories from people who moved','The first friend, the partner who moved too, the move back home, told by the people who lived it.'],
+    ['/countries','Pages with their sources','Practical pages link the official source and say when we last checked it.']];
+  if(books.length)proms.push(['#living-library','People you can borrow for coffee','Members who said yes to coffee with newcomers. No contact details on cards, no paid places.']);
+  proms.forEach(function(p){var a=el('a');a.href=p[0];a.appendChild(el('b','',p[1]));a.appendChild(el('span','',p[2]));pg.appendChild(a);});pr.appendChild(pg);inn.appendChild(pr);
+  if(series.length){var sr=el('div');sr.id='tll-ex-series';series.forEach(function(s){var row=el('div','tll-ex-row');row.appendChild(el('h3','',s.name));var r=el('div','tll-ex-rail');
+    s.stories.slice(0,12).forEach(function(c){var a=el('a');a.href='/stories/'+c.slug;var im=el(c.image?'img':'div','ph');if(c.image){im.src=c.image;im.alt='';im.loading='lazy';}a.appendChild(im);a.appendChild(el('span','tll-ex-tape',c.label));a.appendChild(el('b','',c.title));r.appendChild(a);});row.appendChild(r);sr.appendChild(row);});inn.appendChild(sr);}
+  if(books.length)inn.appendChild(library(books));
+  var pr2=el('div','tll-ex-row');pr2.appendChild(el('p','tll-ex-k','Moving with a pet'));var pa=el('a','tll-ex-btn ghost','The Paw Passport');pa.href='/the-paw-passport?utm_source=for-expats&utm_medium=practical&utm_campaign=paw-passport';
+  pa.addEventListener('click',function(){track('practical_click',{division:'paw-passport',to:'the-paw-passport'});});pr2.appendChild(pa);inn.appendChild(pr2);
+  var club=el('div','tll-ex-row');var cp=el('p','');cp.appendChild(document.createTextNode('That Layover Life stays free because readers chip in. '));var ca=el('a','','The Layover Club');ca.href='/support#layover-club';ca.addEventListener('click',function(){track('revenue_click',{slot:'layover_club',from:'for-expats'});});cp.appendChild(ca);club.appendChild(cp);inn.appendChild(club);
+  var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(sec,an.nextSibling);else main.insertBefore(sec,main.firstChild);});}
+
+function run(){var m;
+  if((m=/^\/contributors\/([^/]+)$/.exec(P)))profile(m[1]);
+  else if(P==='/edit-profile')editProfile();
+  else if(P==='/for-expats')landing();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1800);});else setTimeout(run,1800);
+if(P==='/edit-profile')setTimeout(run,5200);
+})();
+
+/* tll-pet-passport-v1 (31 Oct 2026, pet build: "Pet owners and the Paw Passport"). STAGED: PP_PUBLIC false; shows with
+   ?preview=pets (remembered in this browser; ?preview=off clears).
+   /pets/<slug>        The Paw Passport: stamps by country (counted, never typed), the firsts strip, the pet's own counter with a
+                       flag map, a slide show of photos from stories the pet is tagged in, "Travels with" the owner, Forever
+                       traveler (a small paw mark, opt-in by the owner). Private or members-only passports show a short note and
+                       noindex instead. LinkedIn share link, no SDK.
+   /my-pets            "Passport details" per pet: home city, birthday month, status, who can see it, firsts, the counter.
+   /the-paw-passport   The landing in one scroll: hero, value strip, Paw Passports, the three series, the five newest
+                       "Pet-friendly or pet-tolerant?" notes, Pet travel pros, rules last checked with official links.
+                       The EU guide's Buy button stays hidden until Nancy fills the link and confirms the guide is checked.
+   Never where a pet is now. City or country only, after the trip. No vet, medical or legal advice. Events carry division
+   paw-passport. No data-ms-* element touched; nav and footer untouched. */
+(function(){
+var PP_PUBLIC=false,q=new URLSearchParams(location.search).get('preview');
+try{if(q==='pets')localStorage.setItem('tll-preview-pets','1');if(q==='off')localStorage.removeItem('tll-preview-pets');}catch(e){}
+var ON=PP_PUBLIC||q==='pets';try{ON=ON||localStorage.getItem('tll-preview-pets')==='1';}catch(e){}if(!ON)return;
+var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var FLAGS='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
+var GUIDE_URL='';/* Nancy: the Ko-fi or Stripe link for the EU pet guide, only once it has been checked against Regulation (EU) 2026/131. */
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var FIRSTS=[['train','First train'],['ferry','First ferry'],['flight','First flight'],['snow','First snow'],['beach','First beach'],['border','First border']];
+var CSS='.tll-pp{font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-pp [hidden]{display:none!important}'+
+'.tll-pp-in{max-width:1120px;margin:0 auto;padding:36px 16px}.tll-pp-k{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}'+
+'.tll-pp-flag{font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:#C8325B;margin:0 0 8px}'+
+'.tll-pp h2{font:800 clamp(28px,4vw,46px)/1.05 "Playfair Display",Georgia,serif;margin:0 0 12px}.tll-pp h3{font:800 22px/1.15 "Playfair Display",Georgia,serif;margin:0 0 10px}'+
+'.tll-pp-sec{border-top:2px solid #0A0B14;padding:20px 0 0;margin:28px 0 0}.tll-pp-chips{display:flex;flex-wrap:wrap;gap:8px}.tll-pp-chip{display:inline-flex;gap:6px;align-items:center;border:1px solid #E0DACE;border-radius:999px;padding:6px 10px;background:#fff}.tll-pp-chip img{width:18px;height:18px}'+
+'.tll-pp-firsts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}.tll-pp-first{border:1px dashed #C8B9A6;border-radius:6px;padding:10px;background:#FDF9F3}.tll-pp-first b{display:block}.tll-pp-first small{color:#5F5A54}'+
+'.tll-pp-count{font:800 44px/1 "Playfair Display",Georgia,serif}.tll-pp-paw{display:inline-flex;gap:6px;align-items:center;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;border:1.5px solid #0A0B14;border-radius:999px;padding:7px 12px;margin:0 0 12px}'+
+'.tll-pp-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:4px;border:0;background:#C8325B;color:#fff;text-decoration:none;font:600 15px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer;margin:6px 8px 0 0}.tll-pp-btn.ink{background:#0A0B14;color:#FDF9F3}.tll-pp-btn.ghost{background:#fff;color:#0A0B14;border:1.5px solid #0A0B14}'+
+'.tll-pp-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:12px;overflow-x:auto;padding:6px 0 10px}.tll-pp-rail a{position:relative;display:block;border:1px solid #E0DACE;border-radius:6px;background:#fff;color:#0A0B14;text-decoration:none;overflow:hidden}'+
+'.tll-pp-rail .ph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#E0DACE}.tll-pp-rail b{display:block;font:800 18px/1.2 "Playfair Display",Georgia,serif;padding:10px 12px 2px}.tll-pp-rail small{display:block;padding:0 12px 10px;color:#5F5A54}'+
+'.tll-pp-tape{position:absolute;top:10px;left:10px;display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 10px/1.3 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%)}'+
+'.tll-pp-notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.tll-pp-note{border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:14px}.tll-pp-note p{margin:0 0 6px}.tll-pp-note small{color:#5F5A54}'+
+'.tll-pp-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.tll-pp-strip p{border-top:2px solid #0A0B14;padding:12px 0 0;margin:0;font:800 19px/1.25 "Playfair Display",Georgia,serif}'+
+'.tll-pp-lock{max-width:680px;margin:40px auto;padding:24px;border:1px solid #E0DACE;border-radius:6px;background:#fff;text-align:center}'+
+'.tll-pp-ed{border:1px solid #E0DACE;border-radius:8px;background:#fff;padding:14px;margin:14px 0}.tll-pp-ed label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#5F5A54;margin:0 0 8px}'+
+'.tll-pp-ed input[type=text],.tll-pp-ed input[type=number],.tll-pp-ed select{box-sizing:border-box;width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;color:#0A0B14;min-height:44px}'+
+'.tll-pp-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tll-pp-fr{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:6px;align-items:end;margin:0 0 6px}'+
+'@media (max-width:760px){.tll-pp-strip{grid-template-columns:1fr}.tll-pp-g2,.tll-pp-fr{grid-template-columns:1fr}}';
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function css(){if(document.getElementById('tll-pet-passport-v1'))return;var s=el('style');s.id='tll-pet-passport-v1';s.textContent=CSS;document.head.appendChild(s);}
+function track(n,x){try{window.gtag&&gtag('event',n,Object.assign({division:'paw-passport'},x||{}));}catch(e){}}
+function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?ms.getMemberCookie():'';}catch(e){return'';}}
+function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return null;});}).catch(function(){return null;});}
+function get(path){return fetch(API+path).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});}
+function a2(name){var n=String(name||'').toLowerCase();try{var dn=new Intl.DisplayNames(['en'],{type:'region'});for(var x=65;x<91;x++)for(var y=65;y<91;y++){var c=String.fromCharCode(x,y);if(String(dn.of(c)||'').toLowerCase()===n)return c.toLowerCase();}}catch(e){}return'';}
+function cname(c){try{return new Intl.DisplayNames(['en'],{type:'region'}).of(String(c).toUpperCase())||c;}catch(e){return c;}}
+function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=el('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
+function mount(sec){var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(sec,an.nextSibling);else main.insertBefore(sec,main.firstChild);}
+
+/* The pet's page */
+function petPage(slug){get('/pets/public?slug='+encodeURIComponent(slug)+(tok()?'&member=1':'')).then(function(d){if(!d||!d.ok||document.getElementById('tll-pp-page'))return;css();
+  if(d.private){noindex();var main=document.querySelector('main')||document.body;[].slice.call(main.children).forEach(function(c){c.hidden=true;});
+    var box=el('section','tll-pp tll-pp-lock');box.id='tll-pp-page';box.appendChild(el('h3','',d.membersOnly?'This Paw Passport is for members':'This Paw Passport is private'));
+    if(d.membersOnly){var a=el('a','tll-pp-btn','Sign in');a.href='/login';box.appendChild(a);}main.appendChild(box);return;}
+  var sec=el('section','tll-pp');sec.id='tll-pp-page';var inn=el('div','tll-pp-in');sec.appendChild(inn);if(!PP_PUBLIC)inn.appendChild(el('p','tll-pp-flag','Preview · not live'));
+  if(d.forever)inn.appendChild(el('span','tll-pp-paw','🐾 Forever traveler'));
+  inn.appendChild(el('p','tll-pp-k','Paw Passport'+(d.homeCity?' · '+d.homeCity:'')));
+  var s1=el('div','tll-pp-sec');s1.appendChild(el('h3','',d.count?d.name+', '+d.count+(d.count===1?' country':' countries'):'Stamps'));
+  if(d.countries.length){var ch=el('div','tll-pp-chips');d.countries.forEach(function(n){var c=el('span','tll-pp-chip'),code=a2(n);if(code){var im=el('img');im.src=FLAGS+code+'.svg';im.alt='';c.appendChild(im);}c.appendChild(document.createTextNode(n));ch.appendChild(c);});s1.appendChild(ch);}
+  else s1.appendChild(el('p','','The first stamp goes here after the first trip.'));inn.appendChild(s1);
+  if(d.firsts.length){var s2=el('div','tll-pp-sec');s2.appendChild(el('h3','','Firsts'));var g=el('div','tll-pp-firsts');d.firsts.forEach(function(f){var c=el('div','tll-pp-first');c.appendChild(el('b','',f.label));var sub=[f.where,f.when].filter(Boolean).join(' · ');if(sub)c.appendChild(el('small','',sub));g.appendChild(c);});s2.appendChild(g);inn.appendChild(s2);}
+  if(d.pursuit){var s3=el('div','tll-pp-sec');s3.appendChild(el('p','tll-pp-k',d.pursuit.label));s3.appendChild(el('div','tll-pp-count',String(d.pursuit.count)));
+    if(d.pursuit.countries.length){var pc=el('div','tll-pp-chips');d.pursuit.countries.forEach(function(c){var x=el('span','tll-pp-chip'),im=el('img');im.src=FLAGS+c+'.svg';im.alt='';x.appendChild(im);x.appendChild(document.createTextNode(cname(c)));pc.appendChild(x);});s3.appendChild(pc);}inn.appendChild(s3);}
+  var photos=[];d.album.forEach(function(c){photos=photos.concat(c.photos);});
+  if(photos.length&&window.__tllAlbumShow){var s4=el('div','tll-pp-sec');s4.appendChild(el('h3','','The slide show'));s4.appendChild(el('p','',d.album.map(function(c){return c.name+' · '+c.photos.length;}).join('   ')));
+    var b=el('button','tll-pp-btn ink','▶ Play');b.type='button';b.onclick=function(){track('slideshow_play',{show:'pet'});window.__tllAlbumShow({key:'pet',name:d.name,photos:photos},d.name);};s4.appendChild(b);inn.appendChild(s4);}
+  if(d.stories.length){var s5=el('div','tll-pp-sec');s5.appendChild(el('h3','','In these stories'));var r=el('div','tll-pp-rail');d.stories.forEach(function(st){var a=el('a');a.href='/stories/'+st.slug;var im=el(st.image?'img':'div','ph');if(st.image){im.src=st.image;im.alt='';im.loading='lazy';}a.appendChild(im);a.appendChild(el('b','',st.title));r.appendChild(a);});s5.appendChild(r);inn.appendChild(s5);}
+  var s6=el('div','tll-pp-sec');var tw=el('p');tw.appendChild(document.createTextNode('Travels with '));var oa=el('a','',d.owner.name);oa.href='/contributors/'+d.owner.slug;tw.appendChild(oa);s6.appendChild(tw);
+  var li=el('a','tll-pp-btn ghost','Share on LinkedIn');li.href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.origin+location.pathname);li.target='_blank';li.rel='noopener';li.onclick=function(){track('share_click',{channel:'linkedin',page:'pet'});};s6.appendChild(li);inn.appendChild(s6);
+  mount(sec);});}
+
+/* The editor on /my-pets */
+function editor(){if(document.getElementById('tll-pp-eds'))return;post('/pets/mine').then(function(d){if(!d||!d.ok||!d.pets.length||document.getElementById('tll-pp-eds'))return;css();
+  var wrap=el('section','tll-pp');wrap.id='tll-pp-eds';var inn=el('div','tll-pp-in');wrap.appendChild(inn);inn.appendChild(el('p','tll-pp-k','Passport details'));
+  d.pets.forEach(function(p){var box=el('div','tll-pp-ed');box.appendChild(el('h3','',p.name));var msg=el('p','');msg.setAttribute('aria-live','polite');msg.style.cssText='font-size:13px;color:#5F5A54';
+    function save(b){b.id=p.id;post('/pets/update',b).then(function(r){msg.textContent=r&&r.ok?'Saved.':(r&&r.error)||'That did not save. Try again.';});}
+    function fld(label,node){var l=el('label','',label);l.appendChild(node);return l;}
+    var g=el('div','tll-pp-g2'),hc=el('input');hc.type='text';hc.maxLength=60;hc.value=p.homeCity;hc.placeholder='Copenhagen';hc.onchange=function(){save({homeCity:hc.value});};g.appendChild(fld('Home city',hc));
+    var bm=el('select');bm.appendChild(el('option','','Birthday month (optional)'));MONTHS.forEach(function(m,i){var o=el('option','',m);o.value=String(i+1);if(p.birthdayMonth===i+1)o.selected=true;bm.appendChild(o);});bm.value=p.birthdayMonth?String(p.birthdayMonth):'';bm.onchange=function(){save({birthdayMonth:bm.value||null});};g.appendChild(fld('Birthday month',bm));
+    var vs=el('select');[['public','Everyone'],['members','Members only'],['private','Only me']].forEach(function(o){var x=el('option','',o[1]);x.value=o[0];vs.appendChild(x);});vs.value=p.visibility;vs.onchange=function(){save({visibility:vs.value});};g.appendChild(fld('Who can see this passport',vs));
+    var st=el('select');[['traveling','Traveling'],['forever','Forever traveler']].forEach(function(o){var x=el('option','',o[1]);x.value=o[0];st.appendChild(x);});st.value=p.status;st.onchange=function(){save({status:st.value});};g.appendChild(fld('Status',st));box.appendChild(g);
+    box.appendChild(el('p','','Forever traveler is for a pet who has died. The page stays, with a small paw mark, and we never send birthday reminders.')).style.cssText='font-size:13px;color:#5F5A54';
+    box.appendChild(el('p','tll-pp-k','Firsts'));var firsts=(p.firsts||[]).slice(),rows=el('div');
+    function draw(){rows.textContent='';FIRSTS.concat([['own','Your own first']]).forEach(function(fk){var cur=firsts.filter(function(f){return f.k===fk[0];})[0]||{k:fk[0],label:fk[0]==='own'?'':fk[1],where:'',when:''};var r=el('div','tll-pp-fr');
+      var lab=el('input');lab.type='text';lab.value=fk[0]==='own'?cur.label:fk[1];lab.disabled=fk[0]!=='own';lab.placeholder='First gondola';var wh=el('input');wh.type='text';wh.maxLength=60;wh.value=cur.where;wh.placeholder='City or country';
+      var wn=el('input');wn.type='text';wn.maxLength=20;wn.value=cur.when;wn.placeholder='May 2025';r.appendChild(fld(fk[0]==='own'?'Your own first':'',lab));r.appendChild(fld('Where',wh));r.appendChild(fld('When',wn));
+      [lab,wh,wn].forEach(function(i){i.onchange=function(){firsts=firsts.filter(function(f){return f.k!==fk[0];});if((fk[0]!=='own'||lab.value.trim())&&(wh.value.trim()||wn.value.trim()))firsts.push({k:fk[0],label:lab.value,where:wh.value,when:wn.value});save({firsts:firsts});};});rows.appendChild(r);});}
+    draw();box.appendChild(rows);
+    box.appendChild(el('p','tll-pp-k','Their own counter'));var g2=el('div','tll-pp-g2'),pl=el('input');pl.type='text';pl.maxLength=40;pl.value=p.pursuitLabel;pl.placeholder='Beaches sniffed';var pn=el('input');pn.type='number';pn.min='0';pn.value=String(p.pursuitCount||0);
+    var pcs=el('input');pcs.type='text';pcs.value=p.pursuitCountries;pcs.placeholder='Country codes, e.g. dk, se, de';g2.appendChild(fld('Counter name',pl));g2.appendChild(fld('Count',pn));box.appendChild(g2);box.appendChild(fld('Where it counted (for the flag map)',pcs));
+    pl.onchange=function(){save({pursuitLabel:pl.value});};pn.onchange=function(){save({pursuitCount:Number(pn.value)||0});};pcs.onchange=function(){save({pursuitCountries:pcs.value});};
+    var v=el('a','tll-pp-btn ghost','See the passport');v.href='/pets/'+p.slug;box.appendChild(v);box.appendChild(msg);inn.appendChild(box);});
+  mount(wrap);});}
+
+/* The landing */
+function landing(){if(document.getElementById('tll-pp-land'))return;Promise.all([get('/pets/featured'),get('/series?group=pets'),get('/pets/notes'),get('/pros')]).then(function(v){if(document.getElementById('tll-pp-land'))return;css();
+  var pets=v[0]&&v[0].pets||[],series=(v[1]&&v[1].series||[]).filter(function(s){return s.stories.length;}),notes=v[2]&&v[2].notes||[],pros=(v[3]&&v[3].pros||[]).filter(function(p){return p.category==='pet-travel-pros';});
+  var sec=el('section','tll-pp');sec.id='tll-pp-land';sec.style.background='#FDF9F3';var inn=el('div','tll-pp-in');sec.appendChild(inn);if(!PP_PUBLIC)inn.appendChild(el('p','tll-pp-flag','Preview · not live · hero line is Nancy’s pick'));
+  inn.appendChild(el('p','tll-pp-k','The Paw Passport'));inn.appendChild(el('h2','','Every pet deserves a passport.'));
+  var cta=el('a','tll-pp-btn','Start your pet’s passport');cta.href='/my-pets?utm_source=the-paw-passport&utm_medium=hero&utm_campaign=paw-passport';cta.onclick=function(){track('signup_start',{from:'the-paw-passport'});};inn.appendChild(cta);
+  var strip=el('div','tll-pp-strip');['For the cat who did not want to go, and went anyway.','For the dog who stayed home and still gets the slide show.','For the train ride where he finally fell asleep.'].forEach(function(t){strip.appendChild(el('p','',t));});var ss=el('div','tll-pp-sec');ss.appendChild(strip);inn.appendChild(ss);
+  if(pets.length){var s1=el('div','tll-pp-sec');s1.appendChild(el('h3','','Paw Passports'));var r=el('div','tll-pp-rail');pets.forEach(function(p){var a=el('a');a.href='/pets/'+p.slug;var im=el('img','ph');im.src=p.avatar;im.alt='';im.loading='lazy';a.appendChild(im);a.appendChild(el('b','',p.name+(p.forever?' 🐾':'')));if(p.count)a.appendChild(el('small','',p.count+(p.count===1?' country':' countries')));r.appendChild(a);});s1.appendChild(r);inn.appendChild(s1);}
+  series.forEach(function(s){var row=el('div','tll-pp-sec');row.appendChild(el('h3','',s.name));var r=el('div','tll-pp-rail');s.stories.slice(0,12).forEach(function(c){var a=el('a');a.href='/stories/'+c.slug;var im=el(c.image?'img':'div','ph');if(c.image){im.src=c.image;im.alt='';im.loading='lazy';}a.appendChild(im);a.appendChild(el('span','tll-pp-tape',c.label));a.appendChild(el('b','',c.title));r.appendChild(a);});row.appendChild(r);inn.appendChild(row);});
+  if(notes.length){var s3=el('div','tll-pp-sec');s3.appendChild(el('h3','','Pet-friendly or pet-tolerant?'));var g=el('div','tll-pp-notes');notes.forEach(function(n){var b=n.box,c=el('div','tll-pp-note');var top=[b.stayedAt,b.city].filter(Boolean).join(', ');if(top)c.appendChild(el('b','',top));
+    if(b.welcoming)c.appendChild(el('p','',b.welcoming));c.appendChild(el('small','',"Writer's experience"+(b.when?', '+b.when:'')));var a=el('a','','Read the story');a.href='/stories/'+n.story;a.style.display='block';c.appendChild(a);g.appendChild(c);});s3.appendChild(g);inn.appendChild(s3);}
+  if(pros.length){var s4=el('div','tll-pp-sec');s4.appendChild(el('h3','','Pet travel pros'));var r4=el('div','tll-pp-rail');pros.forEach(function(p){var a=el('a');a.href='/contributors/'+p.slug;if(p.avatar){var im=el('img','ph');im.src=p.avatar;im.alt='';a.appendChild(im);}a.appendChild(el('b','',p.name));if(p.line)a.appendChild(el('small','',p.line));r4.appendChild(a);});s4.appendChild(r4);inn.appendChild(s4);}
+  var s5=el('div','tll-pp-sec');s5.appendChild(el('h3','','The rules, from the source'));var rp=el('p');rp.appendChild(document.createTextNode('Rules last checked 31 October 2026: '));
+  [['EU pet travel rules (EUR-Lex)','https://eur-lex.europa.eu/eli/reg_del/2026/131/oj'],['DSB, pets on the train','https://www.dsb.dk/find-produkter-og-services/medbringe-din-hund-eller-kaledyr/']].forEach(function(l,i){var a=el('a','',l[0]);a.href=l[1];a.target='_blank';a.rel='noopener';rp.appendChild(a);if(!i)rp.appendChild(document.createTextNode(' · '));});s5.appendChild(rp);
+  s5.appendChild(el('p','','We report what the rules say and link them. For your own trip, check with your vet and the operator.'));
+  if(GUIDE_URL){var gb=el('a','tll-pp-btn','Buy the EU pet guide');gb.href=GUIDE_URL;gb.target='_blank';gb.rel='noopener';gb.onclick=function(){track('revenue_click',{slot:'eu_pet_guide'});};s5.appendChild(gb);}inn.appendChild(s5);
+  mount(sec);});}
+
+function run(){var m;if((m=/^\/pets\/([^/]+)$/.exec(P)))petPage(m[1]);else if(P==='/my-pets')editor();else if(P==='/the-paw-passport')landing();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1500);});else setTimeout(run,1500);
+if(P==='/my-pets')setTimeout(run,4500);
+})();
+
 /* tll-work-trips-v1 (31 Oct 2026, That Work Trip Life). Reads GET /work-trips and /work-trips/story from the Worker; while those
    routes are not live nothing shows.
    1. Map: when a member adds a work-trip stamp (tll-stamps-v1 sends tll:stamp-added), the country goes on their map as BEEN for
       them, only where it is not logged yet. Nothing is ever downgraded or removed. Same record the map and Quick log write.
-   2. Series labels, black washi tape: "The Free Evening · City" and "Plus One Day · City" on story cards (/stories, country pages,
-      the hub) and above the headline on the story. /stories gets two filter chips. The story gets the writer's template fields,
-      their safety note (only if they wrote one), a Trip Kit (labeled reklamelink, rel sponsored, no cards) and a LinkedIn button.
-      Nothing shows until a story is tagged with one of the two themes. No schema added: stories keep Article only.
+   2. Series labels, story boxes and the Trip Kit moved to tll-series-v1 (one layer for every series).
    3. The hub on /pursuits/work-trips. STAGED: HUB_PUBLIC false; shows with ?preview=worktrips (remembered, ?preview=off clears).
       Intro, The Free Evening rail, Plus One Day rail, Conference Cities, the stamps wall (year only, "A work trip" unless the member
       gave permission), road warrior picks, How to join, LinkedIn share. Clicks carry division tll.
@@ -2959,6 +3311,7 @@ var HUB_PUBLIC=false,q=new URLSearchParams(location.search).get('preview');
 try{if(q==='worktrips')localStorage.setItem('tll-preview-worktrips','1');if(q==='off')localStorage.removeItem('tll-preview-worktrips');}catch(e){}
 var PREVIEW=q==='worktrips';try{PREVIEW=PREVIEW||localStorage.getItem('tll-preview-worktrips')==='1';}catch(e){}
 var N2A={"004":"AF","248":"AX","008":"AL","012":"DZ","016":"AS","020":"AD","024":"AO","660":"AI","010":"AQ","028":"AG","032":"AR","051":"AM","533":"AW","036":"AU","040":"AT","031":"AZ","044":"BS","048":"BH","050":"BD","052":"BB","112":"BY","056":"BE","084":"BZ","204":"BJ","060":"BM","064":"BT","068":"BO","070":"BA","072":"BW","076":"BR","096":"BN","100":"BG","854":"BF","108":"BI","116":"KH","120":"CM","124":"CA","132":"CV","140":"CF","148":"TD","152":"CL","156":"CN","170":"CO","174":"KM","178":"CG","180":"CD","184":"CK","188":"CR","384":"CI","191":"HR","192":"CU","196":"CY","203":"CZ","208":"DK","262":"DJ","212":"DM","214":"DO","218":"EC","818":"EG","222":"SV","226":"GQ","232":"ER","233":"EE","231":"ET","238":"FK","234":"FO","242":"FJ","246":"FI","250":"FR","254":"GF","258":"PF","266":"GA","270":"GM","268":"GE","276":"DE","288":"GH","292":"GI","300":"GR","304":"GL","308":"GD","320":"GT","324":"GN","624":"GW","328":"GY","332":"HT","340":"HN","344":"HK","348":"HU","352":"IS","356":"IN","360":"ID","364":"IR","368":"IQ","372":"IE","376":"IL","380":"IT","388":"JM","392":"JP","400":"JO","398":"KZ","404":"KE","296":"KI","408":"KP","410":"KR","414":"KW","417":"KG","418":"LA","428":"LV","422":"LB","426":"LS","430":"LR","434":"LY","438":"LI","440":"LT","442":"LU","446":"MO","807":"MK","450":"MG","454":"MW","458":"MY","462":"MV","466":"ML","470":"MT","584":"MH","478":"MR","480":"MU","484":"MX","583":"FM","498":"MD","492":"MC","496":"MN","499":"ME","504":"MA","508":"MZ","104":"MM","516":"NA","520":"NR","524":"NP","528":"NL","540":"NC","554":"NZ","558":"NI","562":"NE","566":"NG","570":"NU","578":"NO","512":"OM","586":"PK","585":"PW","275":"PS","591":"PA","598":"PG","600":"PY","604":"PE","608":"PH","616":"PL","620":"PT","630":"PR","634":"QA","638":"RE","642":"RO","643":"RU","646":"RW","659":"KN","662":"LC","670":"VC","882":"WS","674":"SM","678":"ST","682":"SA","686":"SN","688":"RS","690":"SC","694":"SL","702":"SG","703":"SK","705":"SI","090":"SB","706":"SO","710":"ZA","728":"SS","724":"ES","144":"LK","729":"SD","740":"SR","748":"SZ","752":"SE","756":"CH","760":"SY","158":"TW","762":"TJ","834":"TZ","764":"TH","626":"TL","768":"TG","772":"TK","776":"TO","780":"TT","788":"TN","792":"TR","795":"TM","800":"UG","804":"UA","784":"AE","826":"GB","840":"US","858":"UY","860":"UZ","548":"VU","862":"VE","704":"VN","732":"EH","887":"YE","894":"ZM","716":"ZW","531":"CW","798":"TV","652":"BL","535":"BQ","074":"BV","166":"CC","162":"CX","831":"GG","312":"GP","239":"GS","316":"GU","334":"HM","833":"IM","086":"IO","832":"JE","136":"KY","663":"MF","580":"MP","474":"MQ","500":"MS","574":"NF","666":"PM","612":"PN","654":"SH","744":"SJ","534":"SX","796":"TC","260":"TF","581":"UM","336":"VA","092":"VG","850":"VI","876":"WF","175":"YT","900":"XK"};
+window.__tllN2A=window.__tllN2A||N2A;
 var CSS='.tll-wt-tape{display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 11px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%);margin:0 0 10px;max-width:100%}'+
 '.tll-wt-card-tape{position:absolute;top:10px;left:10px;z-index:3;margin:0;font-size:10px;padding:5px 10px}'+
 '.tll-wt{font:400 16px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14;background:#FDF9F3}.tll-wt [hidden]{display:none!important}'+
@@ -2995,34 +3348,6 @@ window.addEventListener('tll:stamp-added',function(ev){var d=ev.detail||{};if(!d
       var m=document.querySelector('#tll-st .tll-st-msg');if(m)m.textContent+=' '+d.country+' is on your map now.';});
   }).catch(function(){});});
 
-/* 2. Series labels */
-function cardsFor(series){var by={};series.forEach(function(s){s.stories.forEach(function(c){by[c.slug]=c;});});return by;}
-function labelCards(by){Object.keys(by).forEach(function(slug){[].slice.call(document.querySelectorAll('a[href="/stories/'+slug+'"],a[href^="/stories/'+slug+'?"]')).forEach(function(a){
-  if(a.closest('.tll-wt-rail')||a.closest('nav,header,footer'))return;var card=a.closest('.w-dyn-item')||a;if(card.querySelector('.tll-wt-card-tape'))return;
-  if(getComputedStyle(card).position==='static')card.style.position='relative';card.appendChild(tape(by[slug].label,'tll-wt-card-tape'));card.setAttribute('data-tll-series',by[slug].series);});});}
-function chips(series){if(document.getElementById('tll-wt-chips'))return;var have=series.filter(function(s){return s.stories.length;});if(!have.length)return;
-  var first=document.querySelector('main .w-dyn-item a[href^="/stories/"]'),list=first&&first.closest('.w-dyn-list');if(!list)return;
-  var row=el('div','tll-wt-chips');row.id='tll-wt-chips';row.appendChild(el('span','tll-wt-k','Work trips'));var on='';
-  have.forEach(function(s){var b=el('button','',s.name);b.type='button';b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){on=on===s.slug?'':s.slug;
-    [].slice.call(row.querySelectorAll('button')).forEach(function(x){x.setAttribute('aria-pressed',String(x===b&&on!==''));});
-    [].slice.call(list.querySelectorAll('.w-dyn-item')).forEach(function(it){it.hidden=!!on&&it.getAttribute('data-tll-series')!==on;});track('series_filter',{series:on||'all'});});row.appendChild(b);});
-  list.parentNode.insertBefore(row,list);}
-function storyPage(slug){get('/work-trips/story?slug='+encodeURIComponent(slug)).then(function(d){if(!d||!d.ok||document.getElementById('tll-wt-story'))return;
-  var main=document.querySelector('main')||document.body,h1=main.querySelector('h1');var bodies=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')),body=bodies.sort(function(a,b){return b.textContent.length-a.textContent.length;})[0];
-  var wrap=el('div');wrap.id='tll-wt-story';css();
-  if(d.series){if(h1)h1.parentNode.insertBefore(tape(d.label),h1);var f=d.fields||{},box=el('aside','tll-wt-box');box.setAttribute('aria-label',d.series==='the-free-evening'?'The Free Evening':'Plus One Day');
-    if(d.series==='the-free-evening'){box.appendChild(el('p','tll-wt-k','The Free Evening'));var line=[f.time,f.start?'starting from a '+f.start.toLowerCase():''].filter(Boolean).join(', ');if(line)box.appendChild(el('p','',line));
-      if(f.stops&&f.stops.length){var ol=el('ol');f.stops.forEach(function(s){ol.appendChild(el('li','',s.stop+(s.move?' · '+s.move:'')));});box.appendChild(ol);}}
-    else{box.appendChild(el('p','tll-wt-k','Plus One Day'));if(f.extraDays)box.appendChild(el('p','',f.extraDays+(f.extraDays===1?' extra day':' extra days')));
-      if(f.whoPaid)box.appendChild(el('p','','Who paid for what: '+f.whoPaid));if(f.best)box.appendChild(el('p','','Best decision: '+f.best));if(f.worst)box.appendChild(el('p','','Worst decision: '+f.worst));}
-    if(box.children.length>1)wrap.appendChild(box);
-    if(d.safetyNote){var sn=el('aside','tll-wt-box');sn.appendChild(el('p','tll-wt-k','Safety, from the writer'));sn.appendChild(el('p','',d.safetyNote));wrap.appendChild(sn);}
-    var sh=el('div','tll-wt-box');sh.appendChild(liBtn(location.origin+location.pathname,'story'));wrap.appendChild(sh);}
-  if(d.tripKit&&d.tripKit.length){var k=el('aside','tll-wt-box tll-wt-kit');k.appendChild(el('p','tll-wt-k','Trip Kit · reklamelink'));var p=el('p');
-    d.tripKit.forEach(function(x){var a=el('a','',x.label);a.href=x.url;a.rel=x.rel;a.target='_blank';a.addEventListener('click',function(){track('revenue_click',{slot:'trip_kit',label:x.label});});p.appendChild(a);});
-    p.appendChild(el('i','','reklamelink'));k.appendChild(p);wrap.appendChild(k);}
-  if(!wrap.children.length)return;var share=document.querySelector('.tll-story-share-row');if(share)share.parentNode.insertBefore(wrap,share);else if(body)body.insertAdjacentElement('afterend',wrap);else main.appendChild(wrap);});}
-
 /* 3. The hub */
 var INTRO_DRAFT='Work sends you somewhere for three days of meetings. This is for the hours around them: the free evening after the last session, and the one day you add on your own time. Written by members once they are home, never during. Nobody names a company, a client or a colleague unless they have permission.';
 function hub(d){if(document.getElementById('tll-wt-hub'))return;css();var sec=el('section','tll-wt');sec.id='tll-wt-hub';var inn=el('div','tll-wt-in');sec.appendChild(inn);
@@ -3042,11 +3367,113 @@ function hub(d){if(document.getElementById('tll-wt-hub'))return;css();var sec=el
   var sb=el('a','tll-wt-btn li','Write your story');sb.href='/submit?utm_source=work-trips&utm_medium=hub&utm_campaign=tll';j.appendChild(sb);inn.appendChild(j);
   var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(sec,an.nextSibling);else main.appendChild(sec);}
 
-function run(){var m;
-  if((m=/^\/stories\/([^/]+)$/.exec(P))){storyPage(m[1]);return;}
-  var isHub=P==='/pursuits/work-trips',cards=P==='/stories'||/^\/countries\/[^/]+$/.test(P);if(!isHub&&!cards)return;if(isHub&&!(HUB_PUBLIC||PREVIEW))return;
-  get('/work-trips').then(function(d){if(!d||!d.ok)return;css();if(isHub)hub(d);var by=cardsFor(d.series);labelCards(by);if(P==='/stories')chips(d.series);setTimeout(function(){labelCards(by);},2500);});}
+function run(){if(P!=='/pursuits/work-trips'||!(HUB_PUBLIC||PREVIEW))return;
+  get('/work-trips').then(function(d){if(!d||!d.ok)return;css();hub(d);});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1200);});else setTimeout(run,1200);
+})();
+
+/* tll-ux-v1 (31 Oct 2026, "User flows, UX and design system"). STAGED: UX_PUBLIC false; shows with ?preview=ux (remembered in this
+   browser; ?preview=off clears). Goal: every visitor reaches the first stamp on their own map, and every page has a next step.
+   Story pages   Hero photo at most 60vh (50vh on phones) so the story's first line shows on a 390x844 screen. "In this story"
+                 under the dek for stories over 2,500 words (in the body, not pinned). End block before the share row: the next
+                 story, then the join card for visitors ("Start your free map. Free. No card. 16+."). Events story_read_75,
+                 next_story_click.
+   /account      ?welcome=1 (and a member whose map is still empty): three steps with a progress line. 1 home country (from the
+                 browser language, editable), 2 countries been to with Lived / Stayed / Layover, 3 one photo (optional; links to
+                 Share photos). Then the passport reveal: stamps press in (scale .95 to 1, 200ms ease-out, 40ms stagger, at most 12
+                 animated, none with reduced motion). Saved the same way the map and Quick log save. Event first_stamp.
+                 "On this day" (private, only on your own /account): stamps from this month in earlier years.
+   Everywhere    signup_start on links to /signup, story_submit_start on the first keystroke in /submit. gtag only, so events
+                 follow the site's analytics consent. No data-ms-* element touched; nav and footer untouched. */
+(function(){
+var UX_PUBLIC=false,q=new URLSearchParams(location.search).get('preview');
+try{if(q==='ux')localStorage.setItem('tll-preview-ux','1');if(q==='off')localStorage.removeItem('tll-preview-ux');}catch(e){}
+var ON=UX_PUBLIC||q==='ux';try{ON=ON||localStorage.getItem('tll-preview-ux')==='1';}catch(e){}if(!ON)return;
+var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var CSS=':root{--ease-out:cubic-bezier(0.23,1,0.32,1)}'+
+'.tll-story-hero-img{max-height:60vh!important}@media (max-width:600px){.tll-story-hero-img{max-height:50vh!important}}'+
+'.tll-ux{font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-ux [hidden]{display:none!important}'+
+'.tll-ux-k{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}'+
+'.tll-ux-toc{max-width:680px;margin:20px auto;padding:14px 16px;border-left:3px solid #067A79;background:#fff}.tll-ux-toc ol{margin:0;padding-left:20px}.tll-ux-toc a{color:#0A0B14}'+
+'.tll-ux-end{max-width:680px;margin:32px auto;display:grid;gap:12px}.tll-ux-next{display:flex;gap:14px;align-items:center;border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:12px;color:#0A0B14;text-decoration:none;min-height:44px}'+
+'.tll-ux-next img{width:96px;height:72px;object-fit:cover;border-radius:4px;flex:none}.tll-ux-next b{display:block;font:800 20px/1.2 "Playfair Display",Georgia,serif}'+
+'.tll-ux-join{border:1px solid #0A0B14;border-radius:6px;padding:16px;background:#FDF9F3}.tll-ux-join b{display:block;font:800 22px/1.2 "Playfair Display",Georgia,serif;margin:0 0 6px}'+
+'.tll-ux-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:4px;border:0;background:#C8325B;color:#fff;text-decoration:none;font:600 15px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer;transition:transform 140ms var(--ease-out)}'+
+'.tll-ux-btn:active{transform:scale(.97)}.tll-ux-btn.ghost{background:#fff;color:#0A0B14;border:1.5px solid #0A0B14}.tll-ux-btn[disabled]{opacity:.55;cursor:default}'+
+'.tll-ux-wel{position:fixed;inset:0;z-index:9999;background:rgba(10,11,20,.55);display:flex;align-items:flex-end;justify-content:center}'+
+'.tll-ux-sheet{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:#FDF9F3;border-radius:12px 12px 0 0;padding:20px 16px 24px}@media (min-width:700px){.tll-ux-wel{align-items:center}.tll-ux-sheet{border-radius:12px}}'+
+'.tll-ux-prog{height:4px;background:#E0DACE;border-radius:2px;margin:0 0 6px}.tll-ux-prog i{display:block;height:100%;background:#C8325B;border-radius:2px;transition:width 200ms var(--ease-out)}'+
+'.tll-ux-sheet h2{font:800 28px/1.1 "Playfair Display",Georgia,serif;margin:6px 0 12px}.tll-ux-sheet input[type=text],.tll-ux-sheet select{box-sizing:border-box;width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid #E0DACE;border-radius:4px;background:#fff;min-height:44px}'+
+'.tll-ux-rows{display:grid;gap:6px;margin:10px 0;max-height:40vh;overflow:auto}.tll-ux-row{display:flex;align-items:center;gap:8px;justify-content:space-between;border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:6px 8px}'+
+'.tll-ux-chips{display:flex;gap:4px}.tll-ux-chips button{min-height:36px;min-width:44px;padding:0 8px;border:1.5px solid #0A0B14;border-radius:999px;background:#fff;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1px;cursor:pointer}.tll-ux-chips button[aria-pressed=true]{background:#0A0B14;color:#FDF9F3}'+
+'.tll-ux-acts{display:flex;justify-content:space-between;gap:8px;margin-top:14px}'+
+'.tll-ux-stamps{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tll-ux-stamp{font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;border:2px solid #C8325B;color:#C8325B;border-radius:6px;padding:10px;transform:rotate(-2deg)}'+
+'.tll-ux-press{animation:tllPress 200ms var(--ease-out) both}@keyframes tllPress{from{transform:scale(.95) rotate(-2deg);opacity:0}to{transform:scale(1) rotate(-2deg);opacity:1}}'+
+'.tll-ux-otd{max-width:760px;margin:24px auto;padding:16px 18px;border:1px solid #E0DACE;border-left:3px solid #C8325B;border-radius:4px;background:#fff}';
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function css(){if(document.getElementById('tll-ux-v1'))return;var s=el('style');s.id='tll-ux-v1';s.textContent=CSS;document.head.appendChild(s);}
+function track(n,x){try{window.gtag&&gtag('event',n,Object.assign({division:'tll'},x||{}));}catch(e){}}
+function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?ms.getMemberCookie():'';}catch(e){return'';}}
+function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return null;});}).catch(function(){return null;});}
+css();
+
+/* Events everywhere */
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';if(/^\/signup\b/.test(h))track('signup_start',{from:P});},true);
+if(P==='/submit'){var started=false;document.addEventListener('input',function(){if(started)return;started=true;track('story_submit_start');},true);}
+
+/* Story pages */
+function story(){var bodies=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')),body=bodies.sort(function(a,b){return b.textContent.length-a.textContent.length;})[0];if(!body||document.getElementById('tll-ux-end'))return;
+  var words=(body.textContent||'').trim().split(/\s+/).length,heads=[].slice.call(body.querySelectorAll('h2,h3'));
+  if(words>2500&&heads.length>=2&&!document.getElementById('tll-ux-toc')){var t=el('nav','tll-ux tll-ux-toc');t.id='tll-ux-toc';t.setAttribute('aria-label','In this story');t.appendChild(el('p','tll-ux-k','In this story'));var ol=el('ol');
+    heads.forEach(function(h,i){if(!h.id)h.id='s-'+(i+1)+'-'+h.textContent.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40);var li=el('li'),a=el('a','',h.textContent.trim());a.href='#'+h.id;li.appendChild(a);ol.appendChild(li);});t.appendChild(ol);body.insertBefore(t,body.firstChild);}
+  var sent=false;window.addEventListener('scroll',function(){if(sent)return;var r=body.getBoundingClientRect();if(r.height>0&&(innerHeight-r.top)/r.height>=0.75){sent=true;track('story_read_75',{story:P.split('/')[2]});}},{passive:true});
+  var here=P.split('/')[2],links=[].slice.call(document.querySelectorAll('main a[href^="/stories/"]')).filter(function(a){var s=(a.getAttribute('href').split('/')[2]||'').replace(/[?#].*$/,'');return s&&s!==here&&!a.closest('nav,header,footer,.tll-ux-end');});
+  var nx=links.filter(function(a){return a.querySelector('img');})[0]||links[0],end=el('div','tll-ux tll-ux-end');end.id='tll-ux-end';
+  if(nx){var card=el('a','tll-ux-next');card.href=nx.getAttribute('href');var im=nx.querySelector('img');if(im){var i2=el('img');i2.src=im.currentSrc||im.src;i2.alt='';i2.loading='lazy';card.appendChild(i2);}var tx=el('div');tx.appendChild(el('span','tll-ux-k','Next story'));
+    var title=(nx.querySelector('h2,h3,h4,b,strong')||nx).textContent.trim().split('\n')[0].slice(0,120);tx.appendChild(el('b','',title||'Keep reading'));card.appendChild(tx);card.addEventListener('click',function(){track('next_story_click',{from:here});});end.appendChild(card);}
+  if(!tok()){var j=el('div','tll-ux-join');j.appendChild(el('b','','Start your free map.'));j.appendChild(el('p','','Free. No card. 16+.'));var ja=el('a','tll-ux-btn','Join free');ja.href='/signup?utm_source=story&utm_medium=end&utm_campaign=tll';j.appendChild(ja);end.appendChild(j);}
+  if(!end.children.length)return;var share=document.querySelector('.tll-story-share-row');if(share)share.parentNode.insertBefore(end,share);else body.insertAdjacentElement('afterend',end);}
+
+/* Welcome: first stamp in under two minutes */
+function readStates(j){var r=j&&j.tllStates;if(!r||r.v!==2||!r.states){try{r=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){r=null;}}if(!r||r.v!==2||!r.states)r={v:2,travelers:[{id:'t1',name:'Me',color:'#F0507A',pet:false}],states:{}};return r;}
+function names(){var out=[];try{var dn=new Intl.DisplayNames(['en'],{type:'region'}),N=window.__tllN2A||{};Object.keys(N).forEach(function(num){var a=N[num],n=a==='XK'?'Kosovo':dn.of(a);if(n&&n!==a)out.push({num:num,a2:a,name:n});});}catch(e){}return out.sort(function(a,b){return a.name.localeCompare(b.name);});}
+function welcome(force){var ms=window.$memberstackDom;if(!ms||!ms.getMemberJSON||document.getElementById('tll-ux-wel'))return;
+  ms.getMemberJSON().then(function(j){var json=(j&&j.data)||{},rec=readStates(json);if(!force&&Object.keys(rec.states).length)return;if(json.tllWelcomed&&!force)return;
+    var all=names();if(!all.length)return;var me=(rec.travelers.filter(function(t){return !t.pet;})[0]||{id:'t1'}).id,picks={},home='';
+    var reg=(navigator.language||'').split('-')[1];if(reg){var hit=all.filter(function(c){return c.a2===reg.toUpperCase();})[0];if(hit){home=hit.num;picks[hit.num]='lived';}}
+    var wrap=el('div','tll-ux tll-ux-wel');wrap.id='tll-ux-wel';wrap.setAttribute('role','dialog');wrap.setAttribute('aria-modal','true');wrap.setAttribute('aria-labelledby','tll-ux-wel-h');var sh=el('div','tll-ux-sheet');wrap.appendChild(sh);document.body.appendChild(wrap);
+    var step=1;function frame(n,title){sh.textContent='';var pr=el('div','tll-ux-prog'),bar=el('i');bar.style.width=(n*100/3)+'%';pr.appendChild(bar);sh.appendChild(pr);sh.appendChild(el('p','tll-ux-k',n+' of 3'));var h=el('h2','',title);h.id='tll-ux-wel-h';sh.appendChild(h);}
+    function acts(back,next,label,skip){var a=el('div','tll-ux-acts');if(back){var b=el('button','tll-ux-btn ghost','Back');b.type='button';b.onclick=back;a.appendChild(b);}else a.appendChild(el('span'));
+      var nx=el('button','tll-ux-btn',label||'Next');nx.type='button';nx.onclick=next;a.appendChild(nx);if(skip){var s=el('button','tll-ux-btn ghost','Skip');s.type='button';s.onclick=skip;a.insertBefore(s,nx);}sh.appendChild(a);return nx;}
+    function s1(){frame(1,'Where is home?');var sel=el('select');sel.setAttribute('aria-label','Home country');sel.appendChild(el('option','','Pick a country'));all.forEach(function(c){var o=el('option','',c.name);o.value=c.num;sel.appendChild(o);});sel.value=home;sh.appendChild(sel);
+      sh.appendChild(el('p','','The country you call home. You can change it later.')).style.cssText='font-size:13px;color:#5F5A54';
+      acts(null,function(){if(home&&picks[home]==='lived'&&sel.value!==home)delete picks[home];home=sel.value;if(home)picks[home]='lived';s2();});}
+    function s2(){frame(2,'Where have you been?');var find=el('input');find.type='text';find.placeholder='Type a country';find.setAttribute('aria-label','Find a country');sh.appendChild(find);var rows=el('div','tll-ux-rows');sh.appendChild(rows);
+      function draw(){rows.textContent='';var f=find.value.trim().toLowerCase();all.filter(function(c){return f?c.name.toLowerCase().indexOf(f)>-1:picks[c.num];}).slice(0,40).forEach(function(c){var r=el('div','tll-ux-row');r.appendChild(el('span','',c.name));var ch=el('div','tll-ux-chips');
+        [['lived','LIVED'],['visited','STAYED'],['layover','LAYOVER']].forEach(function(m){var b=el('button','',m[1]);b.type='button';b.setAttribute('aria-pressed',String(picks[c.num]===m[0]));b.onclick=function(){if(picks[c.num]===m[0])delete picks[c.num];else picks[c.num]=m[0];draw();};ch.appendChild(b);});r.appendChild(ch);rows.appendChild(r);});
+        if(!rows.children.length)rows.appendChild(el('p','','Type a country, then tap Lived, Stayed or Layover.'));}
+      find.oninput=draw;draw();setTimeout(function(){find.focus();},50);acts(s1,function(){save().then(s3);},'Save my map');}
+    function save(){var e=rec.states;Object.keys(picks).forEach(function(num){var x=Object.assign({},e[num]||{});if(!x[me])x[me]=picks[num];e[num]=x;});var t=Date.now();json.tllStates=rec;json.tllStatesAt=t;json.tllWelcomed=t;
+      return ms.updateMemberJSON({json:json}).then(function(){try{localStorage.setItem('tllStates',JSON.stringify(rec));localStorage.setItem('tllStatesAt',String(t));}catch(e){}if(Object.keys(picks).length)track('first_stamp',{count:Object.keys(picks).length});}).catch(function(){});}
+    function s3(){frame(3,'One photo for your first album page');sh.appendChild(el('p','','Optional. Pick one you took yourself; we take the location out before it uploads.'));var a=el('a','tll-ux-btn ghost','Add a photo');a.href='/share-photos?utm_source=welcome';sh.appendChild(a);
+      acts(null,reveal,'Show my passport',reveal);}
+    function reveal(){sh.textContent='';sh.appendChild(el('p','tll-ux-k','Your passport'));var h=el('h2','','Stamped.');h.id='tll-ux-wel-h';sh.appendChild(h);var box=el('div','tll-ux-stamps');var codes=Object.keys(picks);
+      codes.forEach(function(num,i){var c=all.filter(function(x){return x.num===num;})[0];if(!c)return;var s=el('span','tll-ux-stamp',c.name+' · '+(picks[num]==='lived'?'Lived':picks[num]==='visited'?'Stayed':'Layover'));if(!RM&&i<12){s.classList.add('tll-ux-press');s.style.animationDelay=(i*40)+'ms';}box.appendChild(s);});
+      sh.appendChild(box);if(!codes.length)sh.appendChild(el('p','','Your first stamp goes here. The map is one tap away.'));var a=el('a','tll-ux-btn','See my map');a.href='/the-map';sh.appendChild(a);var c=el('button','tll-ux-btn ghost','Close');c.type='button';c.style.marginLeft='8px';c.onclick=function(){wrap.remove();};sh.appendChild(c);}
+    document.addEventListener('keydown',function k(e){if(e.key==='Escape'&&document.getElementById('tll-ux-wel')){wrap.remove();document.removeEventListener('keydown',k);}});
+    s1();if(force)track('signup_complete');}).catch(function(){});}
+
+/* On this day, private to the member on /account */
+function onThisDay(){if(document.getElementById('tll-ux-otd'))return;post('/stamps/mine').then(function(d){if(!d||!d.ok)return;var now=new Date(),m=now.getMonth()+1,y=now.getFullYear();
+  var hits=(d.stamps||[]).filter(function(s){return s.month===m&&s.year&&s.year<y;});if(!hits.length||document.getElementById('tll-ux-otd'))return;
+  var box=el('section','tll-ux tll-ux-otd');box.id='tll-ux-otd';box.appendChild(el('p','tll-ux-k','On this day · only you see this'));
+  hits.slice(0,3).forEach(function(s){var n=y-s.year;box.appendChild(el('p','',(n===1?'A year ago':n+' years ago')+' this month: '+s.what+', '+[s.city,s.country].filter(Boolean).join(', ')+'.'));});
+  var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(box,an.nextSibling);else main.appendChild(box);});}
+
+function run(){if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/account'){var w=new URLSearchParams(location.search).get('welcome')==='1';setTimeout(function(){welcome(w);},w?0:1500);onThisDay();}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1400);});else setTimeout(run,1400);
 })();
 
 /* tll-ads-v1 (31 Oct 2026, Nancy: "AdSense is on. Can you implement it tastefully?"). Publisher ca-pub-7257230007536660.

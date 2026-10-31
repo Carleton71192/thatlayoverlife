@@ -2,10 +2,7 @@
    routes are not live nothing shows.
    1. Map: when a member adds a work-trip stamp (tll-stamps-v1 sends tll:stamp-added), the country goes on their map as BEEN for
       them, only where it is not logged yet. Nothing is ever downgraded or removed. Same record the map and Quick log write.
-   2. Series labels, black washi tape: "The Free Evening · City" and "Plus One Day · City" on story cards (/stories, country pages,
-      the hub) and above the headline on the story. /stories gets two filter chips. The story gets the writer's template fields,
-      their safety note (only if they wrote one), a Trip Kit (labeled reklamelink, rel sponsored, no cards) and a LinkedIn button.
-      Nothing shows until a story is tagged with one of the two themes. No schema added: stories keep Article only.
+   2. Series labels, story boxes and the Trip Kit moved to tll-series-v1 (one layer for every series).
    3. The hub on /pursuits/work-trips. STAGED: HUB_PUBLIC false; shows with ?preview=worktrips (remembered, ?preview=off clears).
       Intro, The Free Evening rail, Plus One Day rail, Conference Cities, the stamps wall (year only, "A work trip" unless the member
       gave permission), road warrior picks, How to join, LinkedIn share. Clicks carry division tll.
@@ -17,6 +14,7 @@ var HUB_PUBLIC=false,q=new URLSearchParams(location.search).get('preview');
 try{if(q==='worktrips')localStorage.setItem('tll-preview-worktrips','1');if(q==='off')localStorage.removeItem('tll-preview-worktrips');}catch(e){}
 var PREVIEW=q==='worktrips';try{PREVIEW=PREVIEW||localStorage.getItem('tll-preview-worktrips')==='1';}catch(e){}
 var N2A={"004":"AF","248":"AX","008":"AL","012":"DZ","016":"AS","020":"AD","024":"AO","660":"AI","010":"AQ","028":"AG","032":"AR","051":"AM","533":"AW","036":"AU","040":"AT","031":"AZ","044":"BS","048":"BH","050":"BD","052":"BB","112":"BY","056":"BE","084":"BZ","204":"BJ","060":"BM","064":"BT","068":"BO","070":"BA","072":"BW","076":"BR","096":"BN","100":"BG","854":"BF","108":"BI","116":"KH","120":"CM","124":"CA","132":"CV","140":"CF","148":"TD","152":"CL","156":"CN","170":"CO","174":"KM","178":"CG","180":"CD","184":"CK","188":"CR","384":"CI","191":"HR","192":"CU","196":"CY","203":"CZ","208":"DK","262":"DJ","212":"DM","214":"DO","218":"EC","818":"EG","222":"SV","226":"GQ","232":"ER","233":"EE","231":"ET","238":"FK","234":"FO","242":"FJ","246":"FI","250":"FR","254":"GF","258":"PF","266":"GA","270":"GM","268":"GE","276":"DE","288":"GH","292":"GI","300":"GR","304":"GL","308":"GD","320":"GT","324":"GN","624":"GW","328":"GY","332":"HT","340":"HN","344":"HK","348":"HU","352":"IS","356":"IN","360":"ID","364":"IR","368":"IQ","372":"IE","376":"IL","380":"IT","388":"JM","392":"JP","400":"JO","398":"KZ","404":"KE","296":"KI","408":"KP","410":"KR","414":"KW","417":"KG","418":"LA","428":"LV","422":"LB","426":"LS","430":"LR","434":"LY","438":"LI","440":"LT","442":"LU","446":"MO","807":"MK","450":"MG","454":"MW","458":"MY","462":"MV","466":"ML","470":"MT","584":"MH","478":"MR","480":"MU","484":"MX","583":"FM","498":"MD","492":"MC","496":"MN","499":"ME","504":"MA","508":"MZ","104":"MM","516":"NA","520":"NR","524":"NP","528":"NL","540":"NC","554":"NZ","558":"NI","562":"NE","566":"NG","570":"NU","578":"NO","512":"OM","586":"PK","585":"PW","275":"PS","591":"PA","598":"PG","600":"PY","604":"PE","608":"PH","616":"PL","620":"PT","630":"PR","634":"QA","638":"RE","642":"RO","643":"RU","646":"RW","659":"KN","662":"LC","670":"VC","882":"WS","674":"SM","678":"ST","682":"SA","686":"SN","688":"RS","690":"SC","694":"SL","702":"SG","703":"SK","705":"SI","090":"SB","706":"SO","710":"ZA","728":"SS","724":"ES","144":"LK","729":"SD","740":"SR","748":"SZ","752":"SE","756":"CH","760":"SY","158":"TW","762":"TJ","834":"TZ","764":"TH","626":"TL","768":"TG","772":"TK","776":"TO","780":"TT","788":"TN","792":"TR","795":"TM","800":"UG","804":"UA","784":"AE","826":"GB","840":"US","858":"UY","860":"UZ","548":"VU","862":"VE","704":"VN","732":"EH","887":"YE","894":"ZM","716":"ZW","531":"CW","798":"TV","652":"BL","535":"BQ","074":"BV","166":"CC","162":"CX","831":"GG","312":"GP","239":"GS","316":"GU","334":"HM","833":"IM","086":"IO","832":"JE","136":"KY","663":"MF","580":"MP","474":"MQ","500":"MS","574":"NF","666":"PM","612":"PN","654":"SH","744":"SJ","534":"SX","796":"TC","260":"TF","581":"UM","336":"VA","092":"VG","850":"VI","876":"WF","175":"YT","900":"XK"};
+window.__tllN2A=window.__tllN2A||N2A;
 var CSS='.tll-wt-tape{display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 11px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%);margin:0 0 10px;max-width:100%}'+
 '.tll-wt-card-tape{position:absolute;top:10px;left:10px;z-index:3;margin:0;font-size:10px;padding:5px 10px}'+
 '.tll-wt{font:400 16px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14;background:#FDF9F3}.tll-wt [hidden]{display:none!important}'+
@@ -53,34 +51,6 @@ window.addEventListener('tll:stamp-added',function(ev){var d=ev.detail||{};if(!d
       var m=document.querySelector('#tll-st .tll-st-msg');if(m)m.textContent+=' '+d.country+' is on your map now.';});
   }).catch(function(){});});
 
-/* 2. Series labels */
-function cardsFor(series){var by={};series.forEach(function(s){s.stories.forEach(function(c){by[c.slug]=c;});});return by;}
-function labelCards(by){Object.keys(by).forEach(function(slug){[].slice.call(document.querySelectorAll('a[href="/stories/'+slug+'"],a[href^="/stories/'+slug+'?"]')).forEach(function(a){
-  if(a.closest('.tll-wt-rail')||a.closest('nav,header,footer'))return;var card=a.closest('.w-dyn-item')||a;if(card.querySelector('.tll-wt-card-tape'))return;
-  if(getComputedStyle(card).position==='static')card.style.position='relative';card.appendChild(tape(by[slug].label,'tll-wt-card-tape'));card.setAttribute('data-tll-series',by[slug].series);});});}
-function chips(series){if(document.getElementById('tll-wt-chips'))return;var have=series.filter(function(s){return s.stories.length;});if(!have.length)return;
-  var first=document.querySelector('main .w-dyn-item a[href^="/stories/"]'),list=first&&first.closest('.w-dyn-list');if(!list)return;
-  var row=el('div','tll-wt-chips');row.id='tll-wt-chips';row.appendChild(el('span','tll-wt-k','Work trips'));var on='';
-  have.forEach(function(s){var b=el('button','',s.name);b.type='button';b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){on=on===s.slug?'':s.slug;
-    [].slice.call(row.querySelectorAll('button')).forEach(function(x){x.setAttribute('aria-pressed',String(x===b&&on!==''));});
-    [].slice.call(list.querySelectorAll('.w-dyn-item')).forEach(function(it){it.hidden=!!on&&it.getAttribute('data-tll-series')!==on;});track('series_filter',{series:on||'all'});});row.appendChild(b);});
-  list.parentNode.insertBefore(row,list);}
-function storyPage(slug){get('/work-trips/story?slug='+encodeURIComponent(slug)).then(function(d){if(!d||!d.ok||document.getElementById('tll-wt-story'))return;
-  var main=document.querySelector('main')||document.body,h1=main.querySelector('h1');var bodies=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')),body=bodies.sort(function(a,b){return b.textContent.length-a.textContent.length;})[0];
-  var wrap=el('div');wrap.id='tll-wt-story';css();
-  if(d.series){if(h1)h1.parentNode.insertBefore(tape(d.label),h1);var f=d.fields||{},box=el('aside','tll-wt-box');box.setAttribute('aria-label',d.series==='the-free-evening'?'The Free Evening':'Plus One Day');
-    if(d.series==='the-free-evening'){box.appendChild(el('p','tll-wt-k','The Free Evening'));var line=[f.time,f.start?'starting from a '+f.start.toLowerCase():''].filter(Boolean).join(', ');if(line)box.appendChild(el('p','',line));
-      if(f.stops&&f.stops.length){var ol=el('ol');f.stops.forEach(function(s){ol.appendChild(el('li','',s.stop+(s.move?' · '+s.move:'')));});box.appendChild(ol);}}
-    else{box.appendChild(el('p','tll-wt-k','Plus One Day'));if(f.extraDays)box.appendChild(el('p','',f.extraDays+(f.extraDays===1?' extra day':' extra days')));
-      if(f.whoPaid)box.appendChild(el('p','','Who paid for what: '+f.whoPaid));if(f.best)box.appendChild(el('p','','Best decision: '+f.best));if(f.worst)box.appendChild(el('p','','Worst decision: '+f.worst));}
-    if(box.children.length>1)wrap.appendChild(box);
-    if(d.safetyNote){var sn=el('aside','tll-wt-box');sn.appendChild(el('p','tll-wt-k','Safety, from the writer'));sn.appendChild(el('p','',d.safetyNote));wrap.appendChild(sn);}
-    var sh=el('div','tll-wt-box');sh.appendChild(liBtn(location.origin+location.pathname,'story'));wrap.appendChild(sh);}
-  if(d.tripKit&&d.tripKit.length){var k=el('aside','tll-wt-box tll-wt-kit');k.appendChild(el('p','tll-wt-k','Trip Kit · reklamelink'));var p=el('p');
-    d.tripKit.forEach(function(x){var a=el('a','',x.label);a.href=x.url;a.rel=x.rel;a.target='_blank';a.addEventListener('click',function(){track('revenue_click',{slot:'trip_kit',label:x.label});});p.appendChild(a);});
-    p.appendChild(el('i','','reklamelink'));k.appendChild(p);wrap.appendChild(k);}
-  if(!wrap.children.length)return;var share=document.querySelector('.tll-story-share-row');if(share)share.parentNode.insertBefore(wrap,share);else if(body)body.insertAdjacentElement('afterend',wrap);else main.appendChild(wrap);});}
-
 /* 3. The hub */
 var INTRO_DRAFT='Work sends you somewhere for three days of meetings. This is for the hours around them: the free evening after the last session, and the one day you add on your own time. Written by members once they are home, never during. Nobody names a company, a client or a colleague unless they have permission.';
 function hub(d){if(document.getElementById('tll-wt-hub'))return;css();var sec=el('section','tll-wt');sec.id='tll-wt-hub';var inn=el('div','tll-wt-in');sec.appendChild(inn);
@@ -100,9 +70,7 @@ function hub(d){if(document.getElementById('tll-wt-hub'))return;css();var sec=el
   var sb=el('a','tll-wt-btn li','Write your story');sb.href='/submit?utm_source=work-trips&utm_medium=hub&utm_campaign=tll';j.appendChild(sb);inn.appendChild(j);
   var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(sec,an.nextSibling);else main.appendChild(sec);}
 
-function run(){var m;
-  if((m=/^\/stories\/([^/]+)$/.exec(P))){storyPage(m[1]);return;}
-  var isHub=P==='/pursuits/work-trips',cards=P==='/stories'||/^\/countries\/[^/]+$/.test(P);if(!isHub&&!cards)return;if(isHub&&!(HUB_PUBLIC||PREVIEW))return;
-  get('/work-trips').then(function(d){if(!d||!d.ok)return;css();if(isHub)hub(d);var by=cardsFor(d.series);labelCards(by);if(P==='/stories')chips(d.series);setTimeout(function(){labelCards(by);},2500);});}
+function run(){if(P!=='/pursuits/work-trips'||!(HUB_PUBLIC||PREVIEW))return;
+  get('/work-trips').then(function(d){if(!d||!d.ok)return;css();hub(d);});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1200);});else setTimeout(run,1200);
 })();

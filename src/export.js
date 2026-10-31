@@ -42,7 +42,7 @@ export function buildExport({ me, stories = [], items = [], stamps = [], pets = 
     const d = s.fieldData || {};
     const pursuit = name(pursuits, d.pursuit);
     if (d.photo?.url) add(img(d.photo, `stamps/${safe(pursuit)}`, `${safe(d.what)}-${n + 1}`));
-    return { pursuit, what: d.what || '', country: d.name || '', city: d.city || '', month: d.month || null, year: d.year || null, shownOnProfile: d['show-on-profile'] === true, photo: d.photo?.url || null };
+    return { pursuit, what: d.what || '', country: d.name || '', city: d.city || '', month: d.month || null, year: d.year || null, shownOnProfile: d['show-on-profile'] === true, workTrip: d['work-trip'] === true, photo: d.photo?.url || null };
   });
   const myPets = pets.filter((p) => p.fieldData?.owner === me.id || (p.fieldData?.['shared-with'] || []).includes(me.id)).map((p) => {
     const d = p.fieldData || {};
@@ -57,7 +57,7 @@ export function buildExport({ me, stories = [], items = [], stamps = [], pets = 
   delete f['map-snapshot'];
   return {
     exportedAt: new Date(now).toISOString(), site: SITE, profileLink: `${SITE}/contributors/${f.slug}`,
-    profile: f, mapSummary: map, stories: myStories, collections, stamps: myStamps, pets: myPets, companions, photos,
+    profile: f, placesLived: (() => { try { const d = JSON.parse(f.desks || '[]'); return Array.isArray(d) ? d : []; } catch { return []; } })(), mapSummary: map, stories: myStories, collections, stamps: myStamps, pets: myPets, companions, photos,
   };
 }
 

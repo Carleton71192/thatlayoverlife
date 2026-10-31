@@ -1,7 +1,8 @@
 /* tll-album-settings-v1 (31 Oct 2026, Nancy: "Yes make the posted change"; "some people see 6 continents and other 7. It's cultural.").
    /the-map: after each map save (the page's own POST /map-snapshot), counts the countries a member has lived in or visited per
    continent from the saved map in this browser and sends only those seven numbers to the Worker (POST /album/settings), so the
-   album can say "Africa · 9 countries". The country list itself never leaves the map.
+   album can say "Africa · 9 countries". Since 31 Oct it also sends how many of those were marked Lived (seven more numbers) for
+   "Lived in" and the album's home marks. The country list itself never leaves the map.
    /edit-profile: "05D · Your album" asks how the member counts continents (7, 6 with one America, 6 with Eurasia, or the 5 of the
    Olympic rings). The first time, the choice is suggested from the browser language; nothing is saved until the member picks.
    No data-ms-* element touched. */
@@ -15,12 +16,13 @@ function tok(){try{var ms=window.$memberstackDom;return ms&&ms.getMemberCookie?m
 function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return null;});}).catch(function(){return null;});}
 function counts(){var d;try{d=JSON.parse(localStorage.getItem('tllStates')||'null');}catch(e){d=null;}if(!d||!d.states)return null;
   var people=(d.travelers||[]).filter(function(t){return t&&!t.pet;}).map(function(t){return t.id;});
-  var out={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0};
+  var out={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0},homes={africa:0,antarctica:0,asia:0,europe:0,'north-america':0,oceania:0,'south-america':0};
   Object.keys(d.states).forEach(function(code){var s=d.states[code]||{},k=BY[code];if(!k)return;
-    var hit=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&(s[id]==='lived'||s[id]==='visited');});if(hit&&out[k]<80)out[k]++;});
-  return out;}
+    var hit=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&(s[id]==='lived'||s[id]==='visited');});if(hit&&out[k]<80)out[k]++;
+    var home=Object.keys(s).some(function(id){return (!people.length||people.indexOf(id)>-1)&&s[id]==='lived';});if(home&&homes[k]<80)homes[k]++;});
+  out.__homes=homes;return out;}
 if(P==='/the-map'&&!window.__tllAlbumCounts){window.__tllAlbumCounts=1;var f0=window.fetch;
-  window.fetch=function(u,o){var p=f0.apply(this,arguments);try{if(String(u).indexOf('/map-snapshot')>-1&&o&&String(o.method).toUpperCase()==='POST')p.then(function(r){if(r&&r.ok){var c=counts();if(c)post('/album/settings',{counts:c});}}).catch(function(){});}catch(e){}return p;};}
+  window.fetch=function(u,o){var p=f0.apply(this,arguments);try{if(String(u).indexOf('/map-snapshot')>-1&&o&&String(o.method).toUpperCase()==='POST')p.then(function(r){if(r&&r.ok){var c=counts();if(c){var h=c.__homes;delete c.__homes;post('/album/settings',{counts:c,homes:h});}}}).catch(function(){});}catch(e){}return p;};}
 var OPTS=[['seven','7 continents','North and South America apart, as taught in the US, UK, China and India'],['americas','6 continents, one America','As taught across Latin America, Spain, Portugal, France, Italy and Greece'],['eurasia','6 continents, with Eurasia','Europe and Asia as one, as taught in Russia and parts of Eastern Europe'],['olympic','5 continents, the Olympic rings','The five inhabited continents, America as one, no Antarctica']];
 function suggest(){var l=(navigator.language||'en').toLowerCase().slice(0,2);if(['es','pt','fr','it','el','ro','ca'].indexOf(l)>-1)return'americas';if(['ru','be','kk','uk'].indexOf(l)>-1)return'eurasia';return'seven';}
 function editProfile(){

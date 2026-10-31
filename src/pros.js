@@ -6,9 +6,12 @@ import { listLive } from './site-stats.js';
 
 const VISIBILITY_OFF = '1423c8d17c2060776541377f76ea0b31';
 const ROAD_WARRIOR = '7203ed9cbb4a974d00937c5b801ec7e4';
+// Category (31 Oct): pursuit-expert, road-warrior, move-pros, pet-travel-pros. The older Track field still counts for road warriors.
+const CATEGORY = { '120e57de44ff210601a79216c28b43aa': 'pursuit-expert', '0e80aa98b5e2e590c59223e3c8dc9886': 'road-warrior', '3aad9087dfe90d557e80f112ba530bb2': 'move-pros', '18b1bf5824e46ac016fae52027d522c4': 'pet-travel-pros' };
+export const categoryOf = (f) => CATEGORY[f.category] || (f.track === ROAD_WARRIOR ? 'road-warrior' : 'pursuit-expert');
 
 export function relFor(p) {
-  if (p['paid-or-hosted'] === true) return 'sponsored noopener';
+  if (p['paid-or-hosted'] === true) return 'sponsored noopener noreferrer';
   return p.trusted === true ? 'noopener' : 'ugc nofollow noopener';
 }
 
@@ -22,7 +25,7 @@ export function prosList(pros, people, pursuits) {
     return {
       slug: person.fieldData.slug, name: person.fieldData.name, avatar: person.fieldData.avatar?.url || '',
       line: String(f['pro-line'] || '').slice(0, 40), linkName: String(f['link-name'] || person.fieldData.name).slice(0, 60), url, rel: relFor(f),
-      sponsored: f['paid-or-hosted'] === true, track: f.track === ROAD_WARRIOR ? 'road-warrior' : 'pursuit-expert',
+      sponsored: f['paid-or-hosted'] === true, track: categoryOf(f) === 'road-warrior' ? 'road-warrior' : 'pursuit-expert', category: categoryOf(f),
       // Road warriors: the employer is shown only when the pro gave permission to name it.
       employer: f['permission-to-name-employer'] === true ? String(f.employer || '').slice(0, 60) : '', pursuit: hub ? { slug: hub.fieldData.slug, name: hub.fieldData['display-name'] || hub.fieldData.name } : null,
     };

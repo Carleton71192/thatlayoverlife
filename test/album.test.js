@@ -41,3 +41,30 @@ describe('album settings', () => {
     expect(settingsFrom({}).error).toBeTruthy();
   });
 });
+
+import { homesView, movesShow, settingsFrom as sf } from '../src/album.js';
+describe('lived in and my moves', () => {
+  const desks = [{ c: 'dk', years: '2019–now', knows: 'Nørrebro bakeries', now: true }, { c: 'br', years: '2012–2015', now: false }, { c: 'us', years: '1990–2012', now: false }];
+  const homes = { africa: 0, antarctica: 0, asia: 0, europe: 1, 'north-america': 1, oceania: 0, 'south-america': 1 };
+  it('counts homes, hides today\'s home unless switched on, and gives milestone badges', () => {
+    const v = homesView(desks, { homes });
+    expect(v.total).toBe(3);
+    expect(v.places.map((p) => p.c)).toEqual(['br', 'us']);
+    expect(v.badges).toEqual(['first-move-abroad', 'lived-on-two-continents']);
+    expect(homesView(desks, { homes, showHomeBase: true, movedBack: true }).places.length).toBe(3);
+    expect(homesView(desks, { homes, movedBack: true }, 'olympic').badges).toContain('moved-back');
+    expect(homesView([], { homes: { ...homes, europe: 0, 'south-america': 0 } }, 'americas').badges).toEqual([]);
+  });
+  it('my moves is opt-in, in order, one slide per home', () => {
+    expect(movesShow(desks, { moves: false }, [])).toBe(null);
+    const st = [{ fieldData: { slug: 'rio', 'byline-location': 'BRAZIL', 'hero-image': { url: 'https://x/rio.jpg' } } }];
+    const m = movesShow(desks, { moves: true, moveLines: { br: 'Learned to say no to caipirinhas.' } }, st);
+    expect(m.map((x) => x.c)).toEqual(['us', 'br']);
+    expect(m[1]).toMatchObject({ img: 'https://x/rio.jpg', line: 'Learned to say no to caipirinhas.', href: '/stories/rio' });
+  });
+  it('settings validate homes and switches', () => {
+    expect(sf({ homes: homes }).settings.homes.europe).toBe(1);
+    expect(sf({ moves: 'yes' }).error).toBeTruthy();
+    expect(sf({ moveLines: { br: '<b>hi</b>' } }).settings.moveLines.br).toBe('bhi/b');
+  });
+});

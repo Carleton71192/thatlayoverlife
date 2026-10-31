@@ -5,7 +5,7 @@ describe('From the Pros', () => {
   it('link rules: ugc nofollow until trusted, plain once trusted, sponsored when paid or hosted', () => {
     expect(relFor({})).toBe('ugc nofollow noopener');
     expect(relFor({ trusted: true })).toBe('noopener');
-    expect(relFor({ trusted: true, 'paid-or-hosted': true })).toBe('sponsored noopener');
+    expect(relFor({ trusted: true, 'paid-or-hosted': true })).toBe('sponsored noopener noreferrer');
   });
   it('lists published pros with a live, visible profile, one https link anchored on their name', () => {
     const people = [{ id: 'c1', fieldData: { slug: 'jane', name: 'Jane Doe' } }, { id: 'c2', fieldData: { slug: 'off', name: 'Off', visibility: '1423c8d17c2060776541377f76ea0b31' } }];

@@ -65,7 +65,11 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-division-v1.js', '31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting'),
            ('src/site-layers/tll-paw-v1.js', '31 Oct Value Playbook Phase 8: Paw Passport waitlist and QR landing, staged behind ?preview=paw until the trademark is clear'),
            ('src/site-layers/tll-metrics-v1.js', '31 Oct Value Playbook Phase 9: owner-only investor metrics on /account with snapshot download'),
+           ('src/site-layers/tll-series-v1.js', '31 Oct Nancy: every story series (labels, chips, story boxes, Trip Kit, pet note)'),
+           ('src/site-layers/tll-expat-v1.js', '31 Oct Nancy: expat build (Lived in, My moves, Living Library, For Expats; staged)'),
+           ('src/site-layers/tll-pet-passport-v1.js', '31 Oct Nancy: pet build (Paw Passport page, editor, landing; staged)'),
            ('src/site-layers/tll-work-trips-v1.js', '31 Oct Nancy: That Work Trip Life (map, series labels, Trip Kit; hub staged)'),
+           ('src/site-layers/tll-ux-v1.js', '31 Oct Nancy: user flows (story end block, first-stamp welcome, On this day, events; staged)'),
            ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]

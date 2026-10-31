@@ -48,6 +48,9 @@ import { handleAlbum, handleAlbumSettings } from './album.js';
 import { handleExport } from './export.js';
 import { handlePros } from './pros.js';
 import { handleWorkTrips } from './work-trips.js';
+import { handleSeries } from './series.js';
+import { handleLivingLibrary } from './living-library.js';
+import { handlePetPublic, handlePetMember } from './pet-passport.js';
 import { handleSettings } from './settings.js';
 import { handlePaw } from './paw.js';
 import { handleMetrics, runMetricsSnapshot } from './metrics.js';
@@ -71,6 +74,8 @@ const MEMBER_ROUTES = {
   '/collections/delete': handleCollections,
   '/collections/show': handleCollections,
   '/stamps/mine': handleStamps,
+  '/pets/mine': handlePetMember,
+  '/pets/update': handlePetMember,
   '/stamps/add': handleStamps,
   '/stamps/delete': handleStamps,
   '/stamps/show': handleStamps,
@@ -147,6 +152,9 @@ export default {
     if (url.pathname === '/album') return handleAlbum(request, env);
     if (url.pathname === '/pros') return handlePros(request, env);
     if (url.pathname === '/work-trips' || url.pathname === '/work-trips/story') return handleWorkTrips(request, env);
+    if (url.pathname === '/series' || url.pathname === '/series/story') return handleSeries(request, env);
+    if (url.pathname === '/living-library') return handleLivingLibrary(request, env);
+    if (url.pathname === '/pets/public' || url.pathname === '/pets/notes' || url.pathname === '/pets/featured') return handlePetPublic(request, env);
     if (url.pathname === '/settings') return handleSettings(request, env);
     if (url.pathname === '/paw/waitlist' || url.pathname === '/paw/waitlist/export') return handlePaw(request, env);
     if (url.pathname === '/stamps/public' || url.pathname === '/pursuits/status') return handleStampsPublic(request, env);
