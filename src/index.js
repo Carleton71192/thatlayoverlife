@@ -47,6 +47,7 @@ import { handleWhatsNew } from './whats-new.js';
 import { handleAlbum, handleAlbumSettings } from './album.js';
 import { handleExport } from './export.js';
 import { handlePros } from './pros.js';
+import { handleSettings } from './settings.js';
 import { handleStamps, handleStampsPublic, runPursuitCounts } from './stamps.js';
 import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
@@ -141,6 +142,7 @@ export default {
     if (url.pathname === '/whats-new') return handleWhatsNew(request, env);
     if (url.pathname === '/album') return handleAlbum(request, env);
     if (url.pathname === '/pros') return handlePros(request, env);
+    if (url.pathname === '/settings') return handleSettings(request, env);
     if (url.pathname === '/stamps/public' || url.pathname === '/pursuits/status') return handleStampsPublic(request, env);
 
     if (url.pathname === '/lounge') {

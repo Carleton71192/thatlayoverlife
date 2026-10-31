@@ -55,6 +55,7 @@
    script src/site-layers/tll-album-settings-v1.js (31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5))
    script src/site-layers/tll-export-v1.js (31 Oct Value Playbook Phase 4: Download everything on /account, zip built in the browser)
    script src/site-layers/tll-pros-v1.js (31 Oct Value Playbook Phase 6: From the Pros label, author box with one link, pro badge, hub row)
+   script src/site-layers/tll-division-v1.js (31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting)
    script src/site-layers/tll-ads-v1.js (31 Oct Nancy: AdSense, tastefully (story pages, library, countries only))
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)
@@ -2776,6 +2777,37 @@ if(!/^\/(stories|contributors|pursuits)\/[^/]+$/.test(P))return;
 function run(){fetch(API).then(function(r){return r.ok?r.json():null;}).then(function(d){var pros=d&&d.pros||[];if(!pros.length)return;
   if((m=/^\/stories\/([^/]+)$/.exec(P)))story(pros);else if((m=/^\/contributors\/([^/]+)$/.exec(P)))profile(pros,m[1]);else if((m=/^\/pursuits\/([^/]+)$/.exec(P)))hub(pros,m[1]);}).catch(function(){});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,800);});else setTimeout(run,800);
+})();
+
+/* tll-division-v1 (31 Oct 2026, Value Playbook Phase 7: revenue wiring). Two divisions, That Layover Life ("tll") and Paw Passport
+   ("paw-passport"), told apart on every money surface.
+   1. Every page sets the GA4 parameter division (paw-passport on /the-paw-passport, /pets/*, /my-pets and the dog-travel hub;
+      tll everywhere else), so every event carries it.
+   2. A click on a revenue link (rel sponsored, a partner or shop link on a profile, a Ko-fi, tip or shop link, a Pro's author
+      link, a sponsor link) sends a revenue_click event with division, surface and the link's domain, and adds UTM tags
+      (utm_source=thatlayoverlife, utm_medium=<surface>, utm_campaign=<division>) when the link has none. Ads are not touched.
+   3. Elements marked data-tll-entity="legal-name" (registration-number, registered-city-and-country, legal-contact-email,
+      tll-division-name, paw-passport-division-name) are filled from the one Site settings item (GET /settings), so no page
+      carries a typed company name. Empty settings leave the page's own text. No data-ms-* element touched. */
+(function(){
+if(window.__tllDivision)return;window.__tllDivision=1;
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var D=/^\/(the-paw-passport|my-pets|pets\/|pursuits\/dog-travel)/.test(P)?'paw-passport':'tll';
+window.tllDivision=D;
+try{window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){dataLayer.push(arguments);};gtag('set',{division:D});}catch(e){}
+var SHOP=/(^|\.)(ko-fi\.com|buymeacoffee\.com|patreon\.com|gumroad\.com|etsy\.com|shopify\.com|myshopify\.com|amazon\.[a-z.]+|amzn\.to|booking\.com|getyourguide\.[a-z]+|viator\.com)$/i;
+function surface(a){if(a.closest('.tll-pro-box'))return'pro-author';if(a.closest('[data-tll-partner],.tll-pf-partner,.tll-partners'))return'partner';
+  if(/sponsored/.test(a.rel||''))return'sponsored';if(a.hasAttribute('data-tll-kofi'))return'shop';try{if(SHOP.test(new URL(a.href).hostname))return'shop';}catch(e){}return'';}
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href]');if(!a)return;var u;try{u=new URL(a.href,location.href);}catch(x){return;}
+  if(u.hostname===location.hostname||!/^https?:$/.test(u.protocol))return;var s=surface(a);if(!s)return;
+  if(!u.searchParams.has('utm_source')){u.searchParams.set('utm_source','thatlayoverlife');u.searchParams.set('utm_medium',s);u.searchParams.set('utm_campaign',D);a.href=u.toString();}
+  try{gtag('event','revenue_click',{division:D,surface:s,link_domain:u.hostname});}catch(x){}
+},true);
+var marks=document.querySelectorAll('[data-tll-entity]');
+function fill(){var m=document.querySelectorAll('[data-tll-entity]');if(!m.length)return;
+  fetch('https://tll-travel-wire.thatlayoverlife.workers.dev/settings').then(function(r){return r.ok?r.json():null;}).then(function(d){var e=d&&d.entity||{};
+    [].forEach.call(m,function(n){if([].some.call(n.attributes,function(x){return x.name.indexOf('data-ms-')===0;}))return;var v=e[n.getAttribute('data-tll-entity')];if(v)n.textContent=v;});}).catch(function(){});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fill);else fill();
 })();
 
 /* tll-ads-v1 (31 Oct 2026, Nancy: "AdSense is on. Can you implement it tastefully?"). Publisher ca-pub-7257230007536660.

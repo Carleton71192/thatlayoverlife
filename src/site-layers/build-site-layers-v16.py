@@ -62,6 +62,7 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-album-settings-v1.js', '31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5)'),
            ('src/site-layers/tll-export-v1.js', '31 Oct Value Playbook Phase 4: Download everything on /account, zip built in the browser'),
            ('src/site-layers/tll-pros-v1.js', '31 Oct Value Playbook Phase 6: From the Pros label, author box with one link, pro badge, hub row'),
+           ('src/site-layers/tll-division-v1.js', '31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting'),
            ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
