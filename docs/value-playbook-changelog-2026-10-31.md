@@ -39,3 +39,13 @@ For Nancy's approval. Nothing below the line "Needs your yes" is live.
 | Home preview | Dog travel button | /pursuits/dog-travel | /the-paw-passport (UTM campaign paw-passport) | Merged dog travel hub |
 
 Needs your yes or words: hub display names ("That Global Marathon Life" style) and intros; which stories belong to each hub (tick them in the Pursuits item); month on public stamps (stored, hidden today).
+
+## Phase 3: continent album and Slide Show (31 Oct, 16:37 UTC)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| /contributors/* (preview only: ?preview=album) | The album | None | Seven slide mounts with washi-tape labels ("Europe", "23 photos · 4 countries"); "Not yet" in grey; a penguin on an empty Antarctica | Playbook profile item 1 |
+| Same | Slide Show | None | Full screen, one photo per slide, mono caption, story line and link, projector click (off by default), arrows, swipe, Esc, Share link ?play=<continent> | Playbook: "the uncle deck, done right" |
+| Worker | GET /album | None | Photos from live stories plus shown collections and stamps, placed by country | Public data only |
+
+Counts on the tape are photos and countries in the album, not the member's whole map (the map stores totals only). Open questions from the playbook: Slide Show for logged-out visitors (today yes, profiles are public); which continent cover to use (today the newest story's hero).
