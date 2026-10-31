@@ -83,3 +83,14 @@ Invite email and optional badge: docs/pros-invite-kit-2026-10-31.md (draft, your
 | CMS Site settings (one empty item) | Legal name, registration number, city and country, legal email, division names | Typed on pages | One setting, read by GET /settings; elements marked data-tll-entity are filled from it | Entity-neutral pages |
 
 Needs you: fill Site settings when the adviser confirms the entity (sole proprietorship or company, AdSense payee); then I mark the privacy, terms and cookie pages' operator and controller lines with data-tll-entity and propose the wording change for your yes. Today the privacy page says "operated by Nancy Carleton"; that stays until you decide. Ads are not split by division yet: when the Paw Passport pages carry ads, make a separate ad unit for them in AdSense so revenue reports split cleanly.
+
+## Phase 8: Paw Passport waitlist and QR (31 Oct, 17:18 UTC), staged until the trademark search is clear
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| /the-paw-passport (preview: ?preview=paw) | Waitlist card | None | Email, pet name, guide and plush interest, one consent box; "No prices yet" | Playbook Next row: waitlist, no prices |
+| /the-paw-passport?qr=mini or ?qr=big | QR landing | None | "Where did your travel buddy go?": members add a Dog Travel stamp with country, year, photo; others join free or join the waitlist | The QR on each toy turns a purchase into a sign-up |
+| /account (owner only) | Waitlist count and CSV | None | "Paw Passport waitlist: N sign-ups · Download the CSV" | Private list, no CMS collection free |
+| docs/paw-qr | mini.svg, big.svg | None | QR codes with UTM tags | For packaging, after clearance |
+
+Needs you: the trademark clearance search; toy names (today "Mini travel buddy" and "Big travel buddy"); the privacy policy should mention the waitlist (email kept until launch, one email) before it goes public. Webflow is at its 40-collection limit: any new list from now on lives in the Worker or replaces an old collection.
