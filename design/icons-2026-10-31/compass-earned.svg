@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-compass-earned-title">
+  <title id="tll-compass-earned-title">Compass (earned)</title>
+  <defs>
+    <mask id="tll-compass-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="m15.75 8.25-2.25 5.25-5.25 2.25 2.25-5.25z"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-compass-earned-file-mask)"/>
+</svg>

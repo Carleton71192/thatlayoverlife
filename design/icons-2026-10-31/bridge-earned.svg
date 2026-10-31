@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-bridge-earned-title">
+  <title id="tll-bridge-earned-title">Bridge (earned)</title>
+  <defs>
+    <mask id="tll-bridge-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M7 4.5V19M17 4.5V19M2.5 15h19"/>
+    <path d="M7 5c1.5 4 3 5.5 5 5.5s3.5-1.5 5-5.5M2.5 10.5C4.5 9.5 6 7.75 7 5M17 5c1 2.75 2.5 4.5 4.5 5.5"/>
+    <path d="M9.5 9.1V15M12 10.5V15M14.5 9.1V15"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-bridge-earned-file-mask)"/>
+</svg>

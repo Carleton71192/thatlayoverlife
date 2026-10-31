@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-ferry-earned-title">
+  <title id="tll-ferry-earned-title">Ferry (earned)</title>
+  <defs>
+    <mask id="tll-ferry-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.75 13.5h18.5l-2.5 4.5H5.25z"/>
+    <path d="M5.5 13.5V9.75h13v3.75M9 9.75v-3.5h5.25v3.5M11.5 6.25V3.5"/>
+    <path d="M8.75 11.75h.01M12 11.75h.01M15.25 11.75h.01"/>
+    <path d="M2.5 21c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-ferry-earned-file-mask)"/>
+</svg>

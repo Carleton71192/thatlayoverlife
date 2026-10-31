@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-running-shoe-earned-title">
+  <title id="tll-running-shoe-earned-title">Running shoe (earned)</title>
+  <defs>
+    <mask id="tll-running-shoe-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.75 7.75h2.5l2.25 2.5 3-1.5h1.25l3.5 4.25 4.75 1.5a2.5 2.5 0 0 1 1.75 2.4V18H2.75z"/>
+    <path d="M2.75 15.25h18.75"/>
+    <path d="M9.5 12.25l1.5-1M11.75 14l1.5-1.25"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-running-shoe-earned-file-mask)"/>
+</svg>

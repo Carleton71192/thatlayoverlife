@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-suitcase-earned-title">
+  <title id="tll-suitcase-earned-title">Suitcase (earned)</title>
+  <defs>
+    <mask id="tll-suitcase-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="5.5" y="7" width="13" height="12.5" rx="2"/>
+    <path d="M9.75 7V3.75h4.5V7"/>
+    <path d="M9.5 10.25v6M14.5 10.25v6"/>
+    <path d="M8.5 21.25h.01M15.5 21.25h.01"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-suitcase-earned-file-mask)"/>
+</svg>

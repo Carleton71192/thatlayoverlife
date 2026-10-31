@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-postcard-earned-title">
+  <title id="tll-postcard-earned-title">Postcard (earned)</title>
+  <defs>
+    <mask id="tll-postcard-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="2.75" y="5" width="18.5" height="14" rx="1.5"/>
+    <path d="M12.5 8v8"/>
+    <path d="M5.75 10.5h4M5.75 13.5h3"/>
+    <rect x="15" y="8" width="3.5" height="4" rx=".5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-postcard-earned-file-mask)"/>
+</svg>

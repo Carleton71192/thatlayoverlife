@@ -1,0 +1,521 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+<!--
+  That Layover Life stamp icons, sprite (outline + earned).
+  Usage:
+    <svg class="tll-icon" width="24" height="24" role="img" aria-label="Paw">
+      <use href="/icons/sprite.svg#tll-paw"/>
+    </svg>
+    <svg class="tll-icon" width="48" height="48" role="img" aria-label="Paw, earned">
+      <use href="/icons/sprite.svg#tll-paw-earned"/>
+    </svg>
+  Color comes from CSS: .tll-icon { color: #0A0B14 } (ink on light), #00C9C8 (teal on dark), #F0507A (rose, active).
+-->
+
+<symbol id="tll-layover-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Layover clock</title>
+    <circle cx="12" cy="13.5" r="7.5"/>
+    <path d="M10 2.75h4M12 2.75V6M18.25 6.75l1.25-1.25"/>
+    <path d="M12 9.5v4l2.75 1.75"/>
+</symbol>
+<symbol id="tll-layover-clock-earned" viewBox="0 0 24 24" fill="none">
+  <title>Layover clock (earned)</title>
+  <defs>
+    <mask id="tll-layover-clock-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <circle cx="12" cy="13.5" r="7.5"/>
+    <path d="M10 2.75h4M12 2.75V6M18.25 6.75l1.25-1.25"/>
+    <path d="M12 9.5v4l2.75 1.75"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-layover-clock-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-gate-floor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Gate floor</title>
+    <path d="M3 10V5.5A1.5 1.5 0 0 1 4.5 4h2.5a1.5 1.5 0 0 1 1.5 1.5V10M9.25 10V5.5A1.5 1.5 0 0 1 10.75 4h2.5a1.5 1.5 0 0 1 1.5 1.5V10M15.5 10V5.5A1.5 1.5 0 0 1 17 4h2.5A1.5 1.5 0 0 1 21 5.5V10"/>
+    <path d="M2.5 10h19M5 10v3M19 10v3"/>
+    <circle cx="4.75" cy="17.5" r="1.75"/>
+    <path d="M8 18.75h4.25l2.75-2.75 2.75 2.75h2.75"/>
+    <path d="M2.5 21.25h19"/>
+</symbol>
+<symbol id="tll-gate-floor-earned" viewBox="0 0 24 24" fill="none">
+  <title>Gate floor (earned)</title>
+  <defs>
+    <mask id="tll-gate-floor-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M3 10V5.5A1.5 1.5 0 0 1 4.5 4h2.5a1.5 1.5 0 0 1 1.5 1.5V10M9.25 10V5.5A1.5 1.5 0 0 1 10.75 4h2.5a1.5 1.5 0 0 1 1.5 1.5V10M15.5 10V5.5A1.5 1.5 0 0 1 17 4h2.5A1.5 1.5 0 0 1 21 5.5V10"/>
+    <path d="M2.5 10h19M5 10v3M19 10v3"/>
+    <circle cx="4.75" cy="17.5" r="1.75"/>
+    <path d="M8 18.75h4.25l2.75-2.75 2.75 2.75h2.75"/>
+    <path d="M2.5 21.25h19"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-gate-floor-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-passport-stamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Passport stamp</title>
+    <rect x="5" y="2.75" width="14" height="18.5" rx="2"/>
+    <circle cx="12" cy="10.5" r="3.75"/>
+    <path d="M8.25 10.5h7.5M12 6.75c-1.25 1-1.75 2.25-1.75 3.75s.5 2.75 1.75 3.75c1.25-1 1.75-2.25 1.75-3.75s-.5-2.75-1.75-3.75z"/>
+    <path d="M9.5 17.5h5"/>
+</symbol>
+<symbol id="tll-passport-stamp-earned" viewBox="0 0 24 24" fill="none">
+  <title>Passport stamp (earned)</title>
+  <defs>
+    <mask id="tll-passport-stamp-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="5" y="2.75" width="14" height="18.5" rx="2"/>
+    <circle cx="12" cy="10.5" r="3.75"/>
+    <path d="M8.25 10.5h7.5M12 6.75c-1.25 1-1.75 2.25-1.75 3.75s.5 2.75 1.75 3.75c1.25-1 1.75-2.25 1.75-3.75s-.5-2.75-1.75-3.75z"/>
+    <path d="M9.5 17.5h5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-passport-stamp-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-lived-in-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Lived-in key</title>
+    <path d="M2.75 15.75 7.5 11.5l4.75 4.25v5.5h-9.5z"/>
+    <circle cx="7.5" cy="17" r="1.25"/>
+    <path d="M10.25 13 19.75 3.5M16.5 6.75l2.25 2.25M14 9.25l1.75 1.75"/>
+</symbol>
+<symbol id="tll-lived-in-key-earned" viewBox="0 0 24 24" fill="none">
+  <title>Lived-in key (earned)</title>
+  <defs>
+    <mask id="tll-lived-in-key-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.75 15.75 7.5 11.5l4.75 4.25v5.5h-9.5z"/>
+    <circle cx="7.5" cy="17" r="1.25"/>
+    <path d="M10.25 13 19.75 3.5M16.5 6.75l2.25 2.25M14 9.25l1.75 1.75"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-lived-in-key-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Work trip briefcase</title>
+    <rect x="2.75" y="7" width="18.5" height="13" rx="2"/>
+    <path d="M8.75 7V5.25a1.5 1.5 0 0 1 1.5-1.5h3.5a1.5 1.5 0 0 1 1.5 1.5V7"/>
+    <path d="M2.75 12.5h18.5M10.5 11.25v2.5h3v-2.5"/>
+</symbol>
+<symbol id="tll-briefcase-earned" viewBox="0 0 24 24" fill="none">
+  <title>Work trip briefcase (earned)</title>
+  <defs>
+    <mask id="tll-briefcase-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="2.75" y="7" width="18.5" height="13" rx="2"/>
+    <path d="M8.75 7V5.25a1.5 1.5 0 0 1 1.5-1.5h3.5a1.5 1.5 0 0 1 1.5 1.5V7"/>
+    <path d="M2.75 12.5h18.5M10.5 11.25v2.5h3v-2.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-briefcase-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-running-shoe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Running shoe</title>
+    <path d="M2.75 7.75h2.5l2.25 2.5 3-1.5h1.25l3.5 4.25 4.75 1.5a2.5 2.5 0 0 1 1.75 2.4V18H2.75z"/>
+    <path d="M2.75 15.25h18.75"/>
+    <path d="M9.5 12.25l1.5-1M11.75 14l1.5-1.25"/>
+</symbol>
+<symbol id="tll-running-shoe-earned" viewBox="0 0 24 24" fill="none">
+  <title>Running shoe (earned)</title>
+  <defs>
+    <mask id="tll-running-shoe-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.75 7.75h2.5l2.25 2.5 3-1.5h1.25l3.5 4.25 4.75 1.5a2.5 2.5 0 0 1 1.75 2.4V18H2.75z"/>
+    <path d="M2.75 15.25h18.75"/>
+    <path d="M9.5 12.25l1.5-1M11.75 14l1.5-1.25"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-running-shoe-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-cookie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Cookie</title>
+    <path d="M12 3a9 9 0 1 0 9 9 3.25 3.25 0 0 1-4-4 3.25 3.25 0 0 1-5-5z"/>
+    <path d="M8.5 9h.01M8.75 14.75h.01M13.5 16.25h.01M12.25 11.75h.01M16.75 13.25h.01"/>
+</symbol>
+<symbol id="tll-cookie-earned" viewBox="0 0 24 24" fill="none">
+  <title>Cookie (earned)</title>
+  <defs>
+    <mask id="tll-cookie-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M12 3a9 9 0 1 0 9 9 3.25 3.25 0 0 1-4-4 3.25 3.25 0 0 1-5-5z"/>
+    <path d="M8.5 9h.01M8.75 14.75h.01M13.5 16.25h.01M12.25 11.75h.01M16.75 13.25h.01"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-cookie-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Paw</title>
+    <path d="M12 12.5c-2.6 0-5.25 2.9-5.25 5.1 0 1.45 1.05 2.15 2.3 2.15 1.15 0 1.85-.6 2.95-.6s1.8.6 2.95.6c1.25 0 2.3-.7 2.3-2.15 0-2.2-2.65-5.1-5.25-5.1z"/>
+    <ellipse cx="9.25" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="14.75" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="4.75" cy="11" rx="1.6" ry="2.2" transform="rotate(-30 4.75 11)"/>
+    <ellipse cx="19.25" cy="11" rx="1.6" ry="2.2" transform="rotate(30 19.25 11)"/>
+</symbol>
+<symbol id="tll-paw-earned" viewBox="0 0 24 24" fill="none">
+  <title>Paw (earned)</title>
+  <defs>
+    <mask id="tll-paw-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M12 12.5c-2.6 0-5.25 2.9-5.25 5.1 0 1.45 1.05 2.15 2.3 2.15 1.15 0 1.85-.6 2.95-.6s1.8.6 2.95.6c1.25 0 2.3-.7 2.3-2.15 0-2.2-2.65-5.1-5.25-5.1z"/>
+    <ellipse cx="9.25" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="14.75" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="4.75" cy="11" rx="1.6" ry="2.2" transform="rotate(-30 4.75 11)"/>
+    <ellipse cx="19.25" cy="11" rx="1.6" ry="2.2" transform="rotate(30 19.25 11)"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-paw-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-library-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Library book</title>
+    <path d="M4.75 19V5a2 2 0 0 1 2-2h12.5v15H6.75a2 2 0 0 0-2 2 2 2 0 0 0 2 2h12.5v-4"/>
+    <path d="M10 3v7l2.25-1.5L14.5 10V3"/>
+</symbol>
+<symbol id="tll-library-book-earned" viewBox="0 0 24 24" fill="none">
+  <title>Library book (earned)</title>
+  <defs>
+    <mask id="tll-library-book-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M4.75 19V5a2 2 0 0 1 2-2h12.5v15H6.75a2 2 0 0 0-2 2 2 2 0 0 0 2 2h12.5v-4"/>
+    <path d="M10 3v7l2.25-1.5L14.5 10V3"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-library-book-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-labyrinth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Labyrinth</title>
+    <path d="M10.5 3.13A9 9 0 1 0 13.5 3.13"/>
+    <path d="M10.5 17.81A6 6 0 1 1 13.5 17.81"/>
+    <path d="M10.5 9.4A3 3 0 1 0 13.5 9.4"/>
+    <path d="M13.5 3.13v2.95M10.5 17.81v3.06M12 12h.01"/>
+</symbol>
+<symbol id="tll-labyrinth-earned" viewBox="0 0 24 24" fill="none">
+  <title>Labyrinth (earned)</title>
+  <defs>
+    <mask id="tll-labyrinth-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M10.5 3.13A9 9 0 1 0 13.5 3.13"/>
+    <path d="M10.5 17.81A6 6 0 1 1 13.5 17.81"/>
+    <path d="M10.5 9.4A3 3 0 1 0 13.5 9.4"/>
+    <path d="M13.5 3.13v2.95M10.5 17.81v3.06M12 12h.01"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-labyrinth-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-bridge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Bridge</title>
+    <path d="M7 4.5V19M17 4.5V19M2.5 15h19"/>
+    <path d="M7 5c1.5 4 3 5.5 5 5.5s3.5-1.5 5-5.5M2.5 10.5C4.5 9.5 6 7.75 7 5M17 5c1 2.75 2.5 4.5 4.5 5.5"/>
+    <path d="M9.5 9.1V15M12 10.5V15M14.5 9.1V15"/>
+</symbol>
+<symbol id="tll-bridge-earned" viewBox="0 0 24 24" fill="none">
+  <title>Bridge (earned)</title>
+  <defs>
+    <mask id="tll-bridge-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M7 4.5V19M17 4.5V19M2.5 15h19"/>
+    <path d="M7 5c1.5 4 3 5.5 5 5.5s3.5-1.5 5-5.5M2.5 10.5C4.5 9.5 6 7.75 7 5M17 5c1 2.75 2.5 4.5 4.5 5.5"/>
+    <path d="M9.5 9.1V15M12 10.5V15M14.5 9.1V15"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-bridge-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-hiking-boot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Hiking boot</title>
+    <path d="M5.5 3h5.75l.5 6.5 4.75 2a4.75 4.75 0 0 1 3 4.4v1.6H5V3.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M5 17.5h15v2.25a.75.75 0 0 1-.75.75H5.75a.75.75 0 0 1-.75-.75z"/>
+    <path d="M11.4 5.75H13M11.6 8.5h1.6M14.5 12.25l-1 1.5"/>
+</symbol>
+<symbol id="tll-hiking-boot-earned" viewBox="0 0 24 24" fill="none">
+  <title>Hiking boot (earned)</title>
+  <defs>
+    <mask id="tll-hiking-boot-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M5.5 3h5.75l.5 6.5 4.75 2a4.75 4.75 0 0 1 3 4.4v1.6H5V3.5a.5.5 0 0 1 .5-.5z"/>
+    <path d="M5 17.5h15v2.25a.75.75 0 0 1-.75.75H5.75a.75.75 0 0 1-.75-.75z"/>
+    <path d="M11.4 5.75H13M11.6 8.5h1.6M14.5 12.25l-1 1.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-hiking-boot-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-fork-and-knife" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Fork and knife</title>
+    <path d="M5 3v5a2.75 2.75 0 0 0 5.5 0V3M7.75 3v18"/>
+    <path d="M18.5 21V3c-2.25 1.25-3.5 4-3.5 7.5v3.5h3.5"/>
+</symbol>
+<symbol id="tll-fork-and-knife-earned" viewBox="0 0 24 24" fill="none">
+  <title>Fork and knife (earned)</title>
+  <defs>
+    <mask id="tll-fork-and-knife-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M5 3v5a2.75 2.75 0 0 0 5.5 0V3M7.75 3v18"/>
+    <path d="M18.5 21V3c-2.25 1.25-3.5 4-3.5 7.5v3.5h3.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-fork-and-knife-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-ferry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Ferry</title>
+    <path d="M2.75 13.5h18.5l-2.5 4.5H5.25z"/>
+    <path d="M5.5 13.5V9.75h13v3.75M9 9.75v-3.5h5.25v3.5M11.5 6.25V3.5"/>
+    <path d="M8.75 11.75h.01M12 11.75h.01M15.25 11.75h.01"/>
+    <path d="M2.5 21c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>
+</symbol>
+<symbol id="tll-ferry-earned" viewBox="0 0 24 24" fill="none">
+  <title>Ferry (earned)</title>
+  <defs>
+    <mask id="tll-ferry-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.75 13.5h18.5l-2.5 4.5H5.25z"/>
+    <path d="M5.5 13.5V9.75h13v3.75M9 9.75v-3.5h5.25v3.5M11.5 6.25V3.5"/>
+    <path d="M8.75 11.75h.01M12 11.75h.01M15.25 11.75h.01"/>
+    <path d="M2.5 21c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-ferry-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Train</title>
+    <rect x="5.25" y="3" width="13.5" height="14" rx="3"/>
+    <path d="M5.25 10h13.5M12 3v7"/>
+    <path d="M8.75 13.5h.01M15.25 13.5h.01"/>
+    <path d="M8.5 17l-2 4M15.5 17l2 4M7.5 19h9"/>
+</symbol>
+<symbol id="tll-train-earned" viewBox="0 0 24 24" fill="none">
+  <title>Train (earned)</title>
+  <defs>
+    <mask id="tll-train-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="5.25" y="3" width="13.5" height="14" rx="3"/>
+    <path d="M5.25 10h13.5M12 3v7"/>
+    <path d="M8.75 13.5h.01M15.25 13.5h.01"/>
+    <path d="M8.5 17l-2 4M15.5 17l2 4M7.5 19h9"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-train-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Plane</title>
+    <path d="M12 2.75c.8 0 1.4 1.05 1.4 2.5v4.5l7.35 4.25v2.15l-7.35-2.15v3.95l2.1 1.6v1.7L12 20.25l-3.5 1v-1.7l2.1-1.6V14l-7.35 2.15V14l7.35-4.25v-4.5c0-1.45.6-2.5 1.4-2.5z"/>
+</symbol>
+<symbol id="tll-plane-earned" viewBox="0 0 24 24" fill="none">
+  <title>Plane (earned)</title>
+  <defs>
+    <mask id="tll-plane-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M12 2.75c.8 0 1.4 1.05 1.4 2.5v4.5l7.35 4.25v2.15l-7.35-2.15v3.95l2.1 1.6v1.7L12 20.25l-3.5 1v-1.7l2.1-1.6V14l-7.35 2.15V14l7.35-4.25v-4.5c0-1.45.6-2.5 1.4-2.5z"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-plane-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-suitcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Suitcase</title>
+    <rect x="5.5" y="7" width="13" height="12.5" rx="2"/>
+    <path d="M9.75 7V3.75h4.5V7"/>
+    <path d="M9.5 10.25v6M14.5 10.25v6"/>
+    <path d="M8.5 21.25h.01M15.5 21.25h.01"/>
+</symbol>
+<symbol id="tll-suitcase-earned" viewBox="0 0 24 24" fill="none">
+  <title>Suitcase (earned)</title>
+  <defs>
+    <mask id="tll-suitcase-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="5.5" y="7" width="13" height="12.5" rx="2"/>
+    <path d="M9.75 7V3.75h4.5V7"/>
+    <path d="M9.5 10.25v6M14.5 10.25v6"/>
+    <path d="M8.5 21.25h.01M15.5 21.25h.01"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-suitcase-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Map pin</title>
+    <path d="M12 21.25s-6.75-5.75-6.75-11.25a6.75 6.75 0 0 1 13.5 0c0 5.5-6.75 11.25-6.75 11.25z"/>
+    <circle cx="12" cy="10" r="2.5"/>
+</symbol>
+<symbol id="tll-map-pin-earned" viewBox="0 0 24 24" fill="none">
+  <title>Map pin (earned)</title>
+  <defs>
+    <mask id="tll-map-pin-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M12 21.25s-6.75-5.75-6.75-11.25a6.75 6.75 0 0 1 13.5 0c0 5.5-6.75 11.25-6.75 11.25z"/>
+    <circle cx="12" cy="10" r="2.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-map-pin-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Mountain</title>
+    <path d="M2.5 20 9 7.5l3.75 6.75 2.5-3.75L21.5 20z"/>
+    <path d="M6.75 11.85 8 12.75l1.5-1.25 1.6 1.4"/>
+    <circle cx="18" cy="5.5" r="1.75"/>
+</symbol>
+<symbol id="tll-mountain-earned" viewBox="0 0 24 24" fill="none">
+  <title>Mountain (earned)</title>
+  <defs>
+    <mask id="tll-mountain-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M2.5 20 9 7.5l3.75 6.75 2.5-3.75L21.5 20z"/>
+    <path d="M6.75 11.85 8 12.75l1.5-1.25 1.6 1.4"/>
+    <circle cx="18" cy="5.5" r="1.75"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-mountain-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Camera</title>
+    <path d="M4.25 7.5h2.75l1.75-2.75h6.5L17 7.5h2.75a1.5 1.5 0 0 1 1.5 1.5v8.75a1.5 1.5 0 0 1-1.5 1.5H4.25a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5z"/>
+    <circle cx="12" cy="13" r="3.5"/>
+</symbol>
+<symbol id="tll-camera-earned" viewBox="0 0 24 24" fill="none">
+  <title>Camera (earned)</title>
+  <defs>
+    <mask id="tll-camera-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M4.25 7.5h2.75l1.75-2.75h6.5L17 7.5h2.75a1.5 1.5 0 0 1 1.5 1.5v8.75a1.5 1.5 0 0 1-1.5 1.5H4.25a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5z"/>
+    <circle cx="12" cy="13" r="3.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-camera-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-coffee-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Coffee cup</title>
+    <path d="M3.75 9.5h12.5v5.5a5.5 5.5 0 0 1-5.5 5.5h-1.5a5.5 5.5 0 0 1-5.5-5.5z"/>
+    <path d="M16.25 11h1.5a2.5 2.5 0 0 1 0 5h-1.75"/>
+    <path d="M8 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25M12 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25"/>
+</symbol>
+<symbol id="tll-coffee-cup-earned" viewBox="0 0 24 24" fill="none">
+  <title>Coffee cup (earned)</title>
+  <defs>
+    <mask id="tll-coffee-cup-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M3.75 9.5h12.5v5.5a5.5 5.5 0 0 1-5.5 5.5h-1.5a5.5 5.5 0 0 1-5.5-5.5z"/>
+    <path d="M16.25 11h1.5a2.5 2.5 0 0 1 0 5h-1.75"/>
+    <path d="M8 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25M12 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-coffee-cup-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-postcard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Postcard</title>
+    <rect x="2.75" y="5" width="18.5" height="14" rx="1.5"/>
+    <path d="M12.5 8v8"/>
+    <path d="M5.75 10.5h4M5.75 13.5h3"/>
+    <rect x="15" y="8" width="3.5" height="4" rx=".5"/>
+</symbol>
+<symbol id="tll-postcard-earned" viewBox="0 0 24 24" fill="none">
+  <title>Postcard (earned)</title>
+  <defs>
+    <mask id="tll-postcard-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="2.75" y="5" width="18.5" height="14" rx="1.5"/>
+    <path d="M12.5 8v8"/>
+    <path d="M5.75 10.5h4M5.75 13.5h3"/>
+    <rect x="15" y="8" width="3.5" height="4" rx=".5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-postcard-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-shot-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Shot glass</title>
+    <path d="M5.75 9h12.5l-1.45 10.1a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9z"/>
+    <path d="M6.5 13h11M7.6 17h8.8"/>
+    <path d="M12 3.25v2.5M8 4.25l1 1.75M16 4.25l-1 1.75"/>
+</symbol>
+<symbol id="tll-shot-glass-earned" viewBox="0 0 24 24" fill="none">
+  <title>Shot glass (earned)</title>
+  <defs>
+    <mask id="tll-shot-glass-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M5.75 9h12.5l-1.45 10.1a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9z"/>
+    <path d="M6.5 13h11M7.6 17h8.8"/>
+    <path d="M12 3.25v2.5M8 4.25l1 1.75M16 4.25l-1 1.75"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-shot-glass-earned-mask)"/>
+</symbol>
+
+<symbol id="tll-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Compass</title>
+    <circle cx="12" cy="12" r="9"/>
+    <path d="m15.75 8.25-2.25 5.25-5.25 2.25 2.25-5.25z"/>
+</symbol>
+<symbol id="tll-compass-earned" viewBox="0 0 24 24" fill="none">
+  <title>Compass (earned)</title>
+  <defs>
+    <mask id="tll-compass-earned-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="m15.75 8.25-2.25 5.25-5.25 2.25 2.25-5.25z"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-compass-earned-mask)"/>
+</symbol>
+</svg>

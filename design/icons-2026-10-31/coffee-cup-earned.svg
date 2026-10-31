@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-coffee-cup-earned-title">
+  <title id="tll-coffee-cup-earned-title">Coffee cup (earned)</title>
+  <defs>
+    <mask id="tll-coffee-cup-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M3.75 9.5h12.5v5.5a5.5 5.5 0 0 1-5.5 5.5h-1.5a5.5 5.5 0 0 1-5.5-5.5z"/>
+    <path d="M16.25 11h1.5a2.5 2.5 0 0 1 0 5h-1.75"/>
+    <path d="M8 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25M12 3c-.75.75-.75 1.5 0 2.25s.75 1.5 0 2.25"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-coffee-cup-earned-file-mask)"/>
+</svg>

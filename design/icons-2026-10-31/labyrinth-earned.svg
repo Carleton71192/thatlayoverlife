@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-labyrinth-earned-title">
+  <title id="tll-labyrinth-earned-title">Labyrinth (earned)</title>
+  <defs>
+    <mask id="tll-labyrinth-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M10.5 3.13A9 9 0 1 0 13.5 3.13"/>
+    <path d="M10.5 17.81A6 6 0 1 1 13.5 17.81"/>
+    <path d="M10.5 9.4A3 3 0 1 0 13.5 9.4"/>
+    <path d="M13.5 3.13v2.95M10.5 17.81v3.06M12 12h.01"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-labyrinth-earned-file-mask)"/>
+</svg>

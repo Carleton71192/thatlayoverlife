@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-shot-glass-earned-title">
+  <title id="tll-shot-glass-earned-title">Shot glass (earned)</title>
+  <defs>
+    <mask id="tll-shot-glass-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M5.75 9h12.5l-1.45 10.1a1 1 0 0 1-1 .9H8.2a1 1 0 0 1-1-.9z"/>
+    <path d="M6.5 13h11M7.6 17h8.8"/>
+    <path d="M12 3.25v2.5M8 4.25l1 1.75M16 4.25l-1 1.75"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-shot-glass-earned-file-mask)"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-paw-earned-title">
+  <title id="tll-paw-earned-title">Paw (earned)</title>
+  <defs>
+    <mask id="tll-paw-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <path d="M12 12.5c-2.6 0-5.25 2.9-5.25 5.1 0 1.45 1.05 2.15 2.3 2.15 1.15 0 1.85-.6 2.95-.6s1.8.6 2.95.6c1.25 0 2.3-.7 2.3-2.15 0-2.2-2.65-5.1-5.25-5.1z"/>
+    <ellipse cx="9.25" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="14.75" cy="6.5" rx="1.75" ry="2.5"/>
+    <ellipse cx="4.75" cy="11" rx="1.6" ry="2.2" transform="rotate(-30 4.75 11)"/>
+    <ellipse cx="19.25" cy="11" rx="1.6" ry="2.2" transform="rotate(30 19.25 11)"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-paw-earned-file-mask)"/>
+</svg>

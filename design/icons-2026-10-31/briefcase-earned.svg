@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-labelledby="tll-briefcase-earned-title">
+  <title id="tll-briefcase-earned-title">Work trip briefcase (earned)</title>
+  <defs>
+    <mask id="tll-briefcase-earned-file-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+      <circle cx="12" cy="12" r="11" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="2.21" stroke-linecap="round" stroke-linejoin="round" transform="translate(12 12) scale(0.68) translate(-12 -12)">
+    <rect x="2.75" y="7" width="18.5" height="13" rx="2"/>
+    <path d="M8.75 7V5.25a1.5 1.5 0 0 1 1.5-1.5h3.5a1.5 1.5 0 0 1 1.5 1.5V7"/>
+    <path d="M2.75 12.5h18.5M10.5 11.25v2.5h3v-2.5"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="12" cy="12" r="11" fill="currentColor" stroke="none" mask="url(#tll-briefcase-earned-file-mask)"/>
+</svg>
