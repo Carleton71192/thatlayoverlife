@@ -62,3 +62,14 @@ Counts on the tape are photos and countries in the album, not the member's whole
 - Notion database "TLL Feedback" (private until moved): Summary, Page, What happened, Expected, Type, Status (New, Approved, Building, Done, Not doing), Source, From (first name), Received, Effort, Week, Change log, Duplicate of.
 - Scheduled task "TLL weekly feedback triage", Mondays 07:41 Copenhagen: collects the week's Tell the editor and feedback form entries plus reader notes that report a fix, removes spam and duplicates, writes a change log page in the Master To-Do with an Approve tick per item, applies last week's ticks (Status Approved), emails Nancy. It never changes the site; approved items are built in a session like this one.
 - Needs: the Webflow, Notion, Gmail and Memberstack connectors added to the task in claude.ai.
+
+## Phase 6: From the Pros (31 Oct, 17:12 UTC)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| CMS | Pros collection | None | One item per pro: profile, hub, link name, site, pro line, Trusted, Paid or hosted | Separate list, so Stories and Contributors stay under 60 fields |
+| /stories/* by a pro | Label and author box | None | "From the Pros" above the headline; author box with the pro line and one link on their name or brand | Playbook rules 1 and 2 |
+| Link rel | Author box link | None | ugc nofollow until Trusted; plain once trusted; sponsored when paid or hosted | Rules 3 and 5 |
+| /contributors/* of a pro | PRO badge | None | Badge with their pro line under the name | What they get |
+| /pursuits/* | From the Pros row | None | The hub's pros with links to their profiles | A spot in the hub |
+Invite email and optional badge: docs/pros-invite-kit-2026-10-31.md (draft, your words to change).
