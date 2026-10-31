@@ -12,6 +12,8 @@
 //                                       draft item in the Press applications collection (press-apply.js)
 //   POST /map-snapshot                  /the-map writes the count snapshot, same token (map-snapshot.js);
 //                                       for the site owner only, also the sanitized tllStates
+//   POST /intake                        a member's story, link-out or photos, set up and published at once (intake.js)
+//   GET /lounge                         published member photos for the /gallery Lounge (intake.js)
 //   GET /expats-map                     opted-in expats by country and home base, for /for-expats (expats-map.js)
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
 //   POST /translate                     { itemId, target }: a labeled machine translation of a PUBLISHED story for one
@@ -36,12 +38,14 @@ import { handleLinkPreview, linkPreviewCors } from './link-preview.js';
 import { handleTranslate, translateCors } from './translate.js';
 import { runSiteStats } from './site-stats.js';
 import { handleExpatsMap, expatsMapCors } from './expats-map.js';
+import { handleIntake, handleLounge } from './intake.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
 const MEMBER_ROUTES = {
   '/profile/save': handleProfileSave,
   '/press/apply': handlePressApply,
   '/map-snapshot': handleMapSnapshot,
+  '/intake': handleIntake,
   '/hooks/member-updated': handleProfileHook,
 };
 
@@ -104,6 +108,11 @@ export default {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
       if (request.method !== 'POST') return withHeaders(json({ error: 'method not allowed' }, { status: 405 }), cors);
       return withHeaders(await MEMBER_ROUTES[url.pathname](request, env), cors);
+    }
+
+    if (url.pathname === '/lounge') {
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: expatsMapCors(request) });
+      return handleLounge(request, env);
     }
 
     if (url.pathname === '/expats-map') {
