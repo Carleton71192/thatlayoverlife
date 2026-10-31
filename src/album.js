@@ -90,7 +90,7 @@ export async function handleAlbum(request, env, { fetchImpl = fetch } = {}) {
   let desks = [];
   try { desks = JSON.parse(person.fieldData?.desks || '[]'); } catch { desks = []; }
   if (!Array.isArray(desks)) desks = [];
-  return send({ ok: true, name: person.fieldData?.name || '', model, mapCounts: settings.counts || null, homes: homesView(desks, settings, model), moves: movesShow(desks, settings, own), continents: buildAlbum({ stories: own, items: shownItems, stamps: shownStamps }) }, 600);
+  return send({ ok: true, name: person.fieldData?.name || '', showHomeBase: settings.showHomeBase === true, model, mapCounts: settings.counts || null, homes: homesView(desks, settings, model), moves: movesShow(desks, settings, own), continents: buildAlbum({ stories: own, items: shownItems, stamps: shownStamps }) }, 600);
 }
 
 /** Pure: validates {counts?, model?}; counts are whole numbers 0..80 for the seven keys. */

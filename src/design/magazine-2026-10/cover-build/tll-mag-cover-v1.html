@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <style id="tll-mag-cover-v1">
 /* The magazine cover (26 Oct 2026, direction A, Nancy: "I prefer the full page image hero"). Home page only. Restyles the existing
-   [data-h3-hero] block: the cover story's photo full bleed, a chip with the writer's face ("{Name} went to {Place}"), the kicker,
+   [data-h3-hero] block: the cover story's photo full bleed, a chip with the writer's face ("Photo: {Name}, {Place}"; Phase 0, 31 Oct: "went to" read like a live check-in), the kicker,
    the site's own headline in Newsreader, the deck, a button to the cover story and a Join free button (29 Oct), the photo credit with coordinates, and the stamp,
    which lands once on load. No element removed: the eyebrow, the FREE line and the old coordinates are hidden.
    Loads after the page's own styles and after tll-home-hero-phone-v1, so it wins the cascade with the same specificity. */
@@ -104,7 +104,7 @@ function run(){
   if(img){img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
   var h1=hero.querySelector('h1');if(!h1)return;var words=h1.parentNode;var ey=h1.previousElementSibling;if(ey&&ey.tagName==='DIV')ey.classList.add('tll-mg-eyebrow');
   var chip=document.createElement('a');chip.className='tll-mg-chip';chip.href='/contributors/'+COVER.authorSlug;
-  chip.innerHTML='<img src="'+esc(COVER.avatar)+'" alt="" width="36" height="36"><span><b>'+esc(COVER.author)+'</b>went to '+esc(COVER.place)+'</span>';
+  chip.innerHTML='<img src="'+esc(COVER.avatar)+'" alt="" width="36" height="36"><span><b>Photo: '+esc(COVER.author)+'</b>'+esc(COVER.place)+'</span>';
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;

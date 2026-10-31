@@ -1,0 +1,36 @@
+<script>
+(function(){
+  if(window.__tllLiveCounts)return;window.__tllLiveCounts=1;
+  function withData(cb){var ls=null;try{ls=JSON.parse(localStorage.getItem("tllStates")||"null");}catch(e){}
+    if(ls&&ls.v===2&&ls.states)return cb(ls);
+    var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;
+      if(ms){clearInterval(iv);ms.getCurrentMember().then(function(r){if(!r||!r.data)return;return ms.getMemberJSON().then(function(mj){var d=mj&&mj.data&&mj.data.tllStates;if(d&&d.v===2&&d.states)cb(d);});}).catch(function(){});}
+      else if(++n>40)clearInterval(iv);},250);}
+  function texts(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),out=[],x;while(x=w.nextNode())out.push(x);return out;}
+  function apply(d){
+    var n=Object.keys(d.states).length,pct=Math.round(n/195*100),togo=195-n;
+    texts(document.body).forEach(function(t){var s=t.nodeValue;if(!s)return;var o=s;
+      s=s.replace(/\b\d+(?= countries, counted by hand)/,n);
+      s=s.replace(/\b\d+(?= countries, visualized)/,n);
+      s=s.replace(/\b\d+(?= countries on )/,n);
+      s=s.replace(/\b\d+ of 195 · \d+ to go/,n+" of 195 · "+togo+" to go");
+      s=s.replace(/(View all )\d+( visits)/,"$1"+n+"$2");
+      if(s!==o)t.nodeValue=s;});
+    var c=document.getElementById("tll-map-counter");if(c)c.textContent=n+" / 195";
+    var p=document.getElementById("tll-map-pct");if(p)p.textContent=pct+"%";
+    [].slice.call(document.querySelectorAll(".tll-passport-lifer-fill")).forEach(function(f){f.style.width=pct+"%";});
+    [].slice.call(document.querySelectorAll("div,span,p")).forEach(function(e){
+      if(e.children.length===0&&/^countries$/i.test(e.textContent.trim())){
+        var q=e.previousElementSibling;
+        if(q&&/^\d+$/.test(q.textContent.trim()))q.textContent=String(n);
+      }
+      if(e.children.length===0&&/^the lifer progress$/i.test(e.textContent.trim())){
+        var s2=e.nextElementSibling;if(s2&&/^\d+%$/.test(s2.textContent.trim()))s2.textContent=pct+"%";
+      }
+    });
+  }
+  function boot(){withData(apply);}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+  setTimeout(boot,1600);setTimeout(boot,4000);
+})();
+</script>
