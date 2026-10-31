@@ -24,7 +24,21 @@ cover = dict(slug=fd['slug'], title=fd['name'], img=fd['hero-image']['url'], alt
 PEOPLE = [dict(name='Chesney Lish', slug='chesney-lish', avatar=AUTHORS['6ab3fabd46f0ae8633ccb97f'][2], sub='Madrid and Ibiza'),
           dict(name='Barzy Adam', slug='barzy-adam', avatar='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg', sub='Arizona'),
           dict(name='Nancy Carleton', slug='nancy-carleton', avatar=AUTHORS['6a0be79e01ee7eff10102ce9'][2], sub='Editor · Copenhagen')]
+# Rotating cover (31 Oct 2026, Nancy: "I want to see stories rotate"): one cover per week from the stories ticked
+# Cover candidate (the old Weekend Read switch) whose cover photo is a place, never a selfie. candidates.json holds them;
+# refresh it from the CMS when ticks change, then run this and rebuild the site layers bundle. The template picks by week.
+def one(c):
+    a = AUTHORS.get(c['contributor'])
+    if not a: return None
+    loc = (c.get('byline') or '').split(',')[0]
+    w = datetime.datetime.fromisoformat((c.get('published') or '2026-01-01T00:00:00Z').replace('Z', '+00:00'))
+    t = TUNE.get(c['slug'], {})
+    return dict(cover, slug=c['slug'], title=c['title'], img=c['img'], alt=c['alt'], author=a[0], authorSlug=a[1], avatar=a[2],
+                place=t.get('place') or loc.title(), stampPlace=t.get('stampPlace') or loc.upper()[:16], stampDate=w.strftime('%d %b %Y').upper(),
+                stampArc=(c.get('pillar') or '').upper() or 'BY THE PEOPLE WHO WENT', coords=t.get('coords', ''),
+                posPhone=t.get('posPhone', '50% 50%'), posDesk=t.get('posDesk', '50% 50%'), phoneZoom=t.get('phoneZoom', '0%'))
+COVERS = [x for x in (one(c) for c in json.load(open(D / 'candidates.json'))) if x]
 svg = re.search(r"var SVG='(.*?)';\n", (ROOT / 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html').read_text()).group(1)
-out = (D / 'cover.template.html').read_text().replace('/*COVER*/{}', json.dumps(cover, ensure_ascii=False)).replace("/*SVG*/''", "'" + svg + "'").replace('/*PEOPLE*/[]', json.dumps(PEOPLE, ensure_ascii=False)).replace("/*SVG2*/''", "'" + svg + "'")
+out = (D / 'cover.template.html').read_text().replace('/*COVER*/{}', json.dumps(cover, ensure_ascii=False)).replace('/*COVERS*/[]', json.dumps(COVERS, ensure_ascii=False)).replace("/*SVG*/''", "'" + svg + "'").replace('/*PEOPLE*/[]', json.dumps(PEOPLE, ensure_ascii=False)).replace("/*SVG2*/''", "'" + svg + "'")
 (D / 'tll-mag-cover-v1.html').write_text(out)
-print('built tll-mag-cover-v1.html for', cover['slug'], 'by', cover['author'], len(out), 'bytes')
+print('built tll-mag-cover-v1.html with', len(COVERS), 'rotating covers; fallback', cover['slug'], 'by', cover['author'], len(out), 'bytes')

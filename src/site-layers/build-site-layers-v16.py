@@ -51,7 +51,8 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-expats-map-v1.js', '31 Oct Nancy: expats map with flags on /for-expats (opt-in, home base, country level)'),
            ('src/site-layers/tll-story-captions-v1.js', '31 Oct Roberta: photo captions on story pages from Photo placements'),
            ('src/site-layers/tll-intake-v1.js', '31 Oct Nancy: instant set-up of submissions, ending check before send'),
-           ('src/site-layers/tll-lounge-members-v1.js', '31 Oct Nancy: member photos appear in the Lounge')]
+           ('src/site-layers/tll-lounge-members-v1.js', '31 Oct Nancy: member photos appear in the Lounge'),
+           ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
 mag = open(MAG).read()

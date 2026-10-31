@@ -92,7 +92,9 @@ section[data-h3="news"] .tll-mg-letter-stamp svg{display:block;width:100%;height
    Moves: the hero photo's src and alt are swapped, a chip and a kicker go before the h1, the deck text is set, the first button
    points at the cover story, a credit line and the stamp are appended. Runs once. */
 (function(){
-var COVER=/*COVER*/{};
+var COVER=/*COVER*/{};var COVERS=/*COVERS*/[];
+/* one cover per week (weeks start Monday, UTC), the same for every reader that week; the fixed cover above if the list is empty */
+(function(){if(!COVERS.length)return;var d=new Date(),w=Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-Date.UTC(2026,0,5))/604800000),i=((w%COVERS.length)+COVERS.length)%COVERS.length;try{var q=/[?&]cover=(\d+)/.exec(location.search);if(q)i=Math.min(+q[1],COVERS.length-1);}catch(e){}COVER=COVERS[i];})();
 var SVG=/*SVG*/'';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function run(){
