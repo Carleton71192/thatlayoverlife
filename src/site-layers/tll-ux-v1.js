@@ -110,6 +110,20 @@ function onThisDay(){if(document.getElementById('tll-ux-otd'))return;post('/stam
   hits.slice(0,3).forEach(function(s){var n=y-s.year;box.appendChild(el('p','',(n===1?'A year ago':n+' years ago')+' this month: '+s.what+', '+[s.city,s.country].filter(Boolean).join(', ')+'.'));});
   var main=document.querySelector('main')||document.body,h=main.querySelector('h1'),an=h&&(h.closest('section')||h.parentElement);if(an&&an.parentNode)an.parentNode.insertBefore(box,an.nextSibling);else main.appendChild(box);});}
 
-function run(){if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/account'){var w=new URLSearchParams(location.search).get('welcome')==='1';setTimeout(function(){welcome(w);},w?0:1500);onThisDay();}}
+/* /submit: what a story is, above the form (31 Oct, Nancy: "we need to be clearer about what a travel story looks like"). Draft copy
+   in docs/what-a-story-is-2026-10-31.md; shows in the ux preview until she approves. A gentle hint, never a block, when a headline
+   reads like a guide. */
+function whatAStoryIs(){if(document.getElementById('tll-ux-what'))return;var f=document.querySelector('main form')||document.querySelector('form');if(!f)return;
+  var b=el('section','tll-ux');b.id='tll-ux-what';b.style.cssText='max-width:680px;margin:0 auto 28px;padding:18px 20px;border:1px solid #E0DACE;border-left:3px solid #C8325B;border-radius:4px;background:#fff';
+  b.appendChild(el('p','tll-ux-k','What a story looks like here'));var h=el('h2','','You went. Something happened. You tell it.');h.style.cssText='font:800 24px/1.15 "Playfair Display",Georgia,serif;margin:0 0 10px';b.appendChild(h);
+  var ul=el('ul');ul.style.cssText='margin:0 0 10px;padding-left:18px;display:grid;gap:4px';
+  [['One trip, first person.','A weekend, a layover, a year abroad. Not "Thailand" but "the night bus to Chiang Mai."'],['You were there.','Your photos, your dates, your mistakes. No stock photos, no press kits, no "top ten".'],['A place and a time.','City or country, month and year. After the trip, never during.'],['The bit that went sideways.','The missed ferry, the wrong hostel, the kindness you did not expect. That is the story.'],['In your words.','We fix typos. AI writes nothing here, and anything AI made is labeled.']]
+  .forEach(function(x){var li=el('li');li.appendChild(el('b','',x[0]+' '));li.appendChild(document.createTextNode(x[1]));ul.appendChild(li);});b.appendChild(ul);
+  b.appendChild(el('p','','Not sure? Ask: could only you have written it? Then it belongs here.'));
+  var s=el('p','','What we send back: guides, roundups, "best of" lists, hotel or product reviews, anything written to sell something. We will tell you why, kindly, and point you to where it fits.');s.style.cssText='font-size:13px;color:#5F5A54;margin:6px 0 0';b.appendChild(s);
+  f.parentNode.insertBefore(b,f);
+  var title=f.querySelector('input[name*="title" i],input[name*="headline" i],input[id*="title" i]');if(title){var hint=el('p','');hint.style.cssText='font-size:13px;color:#5F5A54;margin:4px 0 0';hint.hidden=true;hint.textContent='Sounds like a guide. Stories here are one trip, told by the person who took it. Keep going if that is what this is.';title.insertAdjacentElement('afterend',hint);
+    title.addEventListener('input',function(){hint.hidden=!/\b(best|top \d|top ten|guide|destination|luxury|ultimate)\b/i.test(title.value);});}}
+function run(){if(P==='/submit')whatAStoryIs();if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/account'){var w=new URLSearchParams(location.search).get('welcome')==='1';setTimeout(function(){welcome(w);},w?0:1500);onThisDay();}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1400);});else setTimeout(run,1400);
 })();
