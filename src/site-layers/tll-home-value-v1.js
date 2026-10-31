@@ -42,7 +42,7 @@ function run(){
   inn.appendChild(el('p','tll-val-lede',"It keeps your trips somewhere that is yours, shows them off the way Grandpa's slide projector did, and puts you next to people who travel the way you do. Free, no card, 16+."));
   var g=el('div','tll-val-grid');LINES.forEach(function(l){var c=el('div','tll-val-card');c.appendChild(el('b','',l[0]));c.appendChild(el('p','',l[1]));g.appendChild(c);});inn.appendChild(g);
   var ask=el('div','tll-val-ask');ask.appendChild(el('strong','','What do you collect?'));
-  PURSUITS.forEach(function(p){var a=el('a','',p[1]);a.href='/pursuits/'+p[0]+'?utm_source=home&utm_medium=value&utm_campaign=tll';a.addEventListener('click',function(){track('value_pursuit_click',{pursuit:p[0]});});ask.appendChild(a);});
+  PURSUITS.forEach(function(p){var a=el('a','',p[1]);a.href=(p[0]==='dog-travel'?'/the-paw-passport':'/pursuits/'+p[0])+'?utm_source=home&utm_medium=value&utm_campaign='+(p[0]==='dog-travel'?'paw-passport':'tll');a.addEventListener('click',function(){track('value_pursuit_click',{pursuit:p[0]});});ask.appendChild(a);});
   var j=el('a','p','Countries, too: join free');j.href='/signup?utm_source=home&utm_medium=value&utm_campaign=tll';j.addEventListener('click',function(){track('value_join_click');});ask.appendChild(j);
   inn.appendChild(ask);
   hero.insertAdjacentElement('afterend',sec);

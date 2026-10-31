@@ -17,9 +17,9 @@ import { rateLimit, reply, verifyMemberToken } from './member-auth.js';
 const PHOTO = /^https:\/\/res\.cloudinary\.com\/idonvlow\/image\/upload\/[^\s"'<>]+$/;
 const MAX_ITEMS = 500;
 const VISIBILITY_OFF = '1423c8d17c2060776541377f76ea0b31';
-const clean = (s, n) => String(s || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s*[—–]\s*/g, ', ').replace(/\s+/g, ' ').trim().slice(0, n);
+export const clean = (s, n) => String(s || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s*[—–]\s*/g, ', ').replace(/\s+/g, ' ').trim().slice(0, n);
 
-async function listAll(env, fetchImpl, collection, live = false) {
+export async function listAll(env, fetchImpl, collection, live = false) {
   const out = [];
   for (let offset = 0; offset < 5000; offset += 100) {
     const page = await webflow(env, fetchImpl, `/collections/${collection}/items${live ? '/live' : ''}?limit=100&offset=${offset}`);
@@ -35,7 +35,7 @@ export async function categories(env, fetchImpl) {
   return list.filter((c) => !c.isArchived).sort((a, b) => (a.fieldData?.order || 99) - (b.fieldData?.order || 99));
 }
 
-async function findCountry(env, fetchImpl, name) {
+export async function findCountry(env, fetchImpl, name) {
   const n = clean(name, 80);
   if (!n || !env.DESTINATIONS_COLLECTION_ID) return null;
   const page = await webflow(env, fetchImpl, `/collections/${env.DESTINATIONS_COLLECTION_ID}/items?limit=100&name=${encodeURIComponent(n)}`);

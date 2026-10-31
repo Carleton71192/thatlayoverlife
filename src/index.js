@@ -44,6 +44,7 @@ import { handleLinkSummary } from './link-summary.js';
 import { handleCrew, handleCrewPublic } from './crew.js';
 import { runEnrich } from './story-enrich.js';
 import { handleWhatsNew } from './whats-new.js';
+import { handleStamps, handleStampsPublic, runPursuitCounts } from './stamps.js';
 import { handleCollections, handleCollectionsPublic, runCollectionCounts } from './collections.js';
 
 /** Routes a signed-in member calls from the site, plus the member webhook. */
@@ -62,6 +63,10 @@ const MEMBER_ROUTES = {
   '/collections/add': handleCollections,
   '/collections/delete': handleCollections,
   '/collections/show': handleCollections,
+  '/stamps/mine': handleStamps,
+  '/stamps/add': handleStamps,
+  '/stamps/delete': handleStamps,
+  '/stamps/show': handleStamps,
 };
 
 const EDGE_CACHE_SECONDS = 300;
@@ -129,6 +134,7 @@ export default {
     if (url.pathname === '/crew/people' || url.pathname === '/crew/public') return handleCrewPublic(request, env);
     if (url.pathname === '/collections/public') return handleCollectionsPublic(request, env);
     if (url.pathname === '/whats-new') return handleWhatsNew(request, env);
+    if (url.pathname === '/stamps/public' || url.pathname === '/pursuits/status') return handleStampsPublic(request, env);
 
     if (url.pathname === '/lounge') {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: expatsMapCors(request) });
@@ -229,6 +235,11 @@ export default {
       runSiteStats(env)
         .then((line) => console.log(line))
         .catch((error) => console.error(`site-stats failed: ${error?.message || error}`)),
+    );
+    ctx.waitUntil(
+      runPursuitCounts(env)
+        .then((line) => console.log(line))
+        .catch((error) => console.error(`pursuits count failed: ${error?.message || error}`)),
     );
     ctx.waitUntil(
       runCollectionCounts(env)
