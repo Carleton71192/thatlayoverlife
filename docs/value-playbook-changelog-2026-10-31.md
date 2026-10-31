@@ -94,3 +94,12 @@ Needs you: fill Site settings when the adviser confirms the entity (sole proprie
 | docs/paw-qr | mini.svg, big.svg | None | QR codes with UTM tags | For packaging, after clearance |
 
 Needs you: the trademark clearance search; toy names (today "Mini travel buddy" and "Big travel buddy"); the privacy policy should mention the waitlist (email kept until launch, one email) before it goes public. Webflow is at its 40-collection limit: any new list from now on lives in the Worker or replaces an old collection.
+
+## Phase 9: investor metrics (31 Oct, 17:21 UTC)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| /account (site owner only) | Investor metrics panel | None | Twelve live counts (travelers, stories, countries covered, writers, stories in 30 days, pets, companion links, collectors, collection pieces, members with stamps, stamps, Paw Passport waitlist), change since the oldest kept day, a travelers and stories line, "Download investor snapshot" (one-page HTML) | Playbook Later row |
+| Worker | POST /metrics, daily snapshot | None | Owner-only; one snapshot a day kept 400 days; totals only | Growth over time without typing numbers |
+
+Not included: traffic (sessions, readers). That needs a GA4 Data API key in the Worker; when you want it, I prepare the steps (a Google Cloud service account with read access to the GA4 property, stored with wrangler secret put).
