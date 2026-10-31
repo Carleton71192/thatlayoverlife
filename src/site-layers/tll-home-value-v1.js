@@ -5,7 +5,7 @@
    then the call to action as one question, "What do you collect?", with the pursuit hubs as answers. Copy is the playbook's own,
    in Nancy's words. Clicks carry division "tll" for GA4 (Phase 7 tagging). No nav or footer touched; no data-ms-* element. */
 (function(){
-var PUBLIC=false;
+var PUBLIC=true;
 var P=location.pathname.replace(/\/+$/,'')||'/';if(P!=='/')return;
 var q=new URLSearchParams(location.search).get('preview');
 try{if(q==='value')localStorage.setItem('tll-preview-value','1');if(q==='off')localStorage.removeItem('tll-preview-value');}catch(e){}
