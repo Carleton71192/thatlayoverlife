@@ -26,3 +26,16 @@ For Nancy's approval. Nothing below the line "Needs your yes" is live.
 ## Still blocked
 
 - The site review doc (tll-site-review-2026-10-29.md) and the other four docs the prompt names are not in the repo or your Drive (only a May 2025 "Site Review" exists). The 12 P0s above were rebuilt from the playbook's own Now row: consent, privacy leaks, buy button. Upload the doc to check nothing is missing.
+
+## Phase 2: pursuits and stamps (31 Oct, 16:28 UTC)
+
+| Page | Element / field | Before | After | Reason |
+|---|---|---|---|---|
+| CMS Pursuits | New fields | Name and slug only | Display name, Intro, Stories (the hub's stories, kept on the pursuit because Stories is at 60 fields), Members, Stamps, Live stories, Writers, Indexable | Hubs need content and the counts behind the index rule |
+| CMS Pursuit stamps | New collection | None | One row per stamp: what, country, city, month, year, photo, Show on profile (drafts only) | Playbook: "what, where, when, one photo" |
+| /edit-profile | 05C · Pursuit stamps | None | Log stamps per pursuit; per-pursuit "Show on my profile", off by default | Same privacy shape as collections |
+| /contributors/* | Pursuits shelf | None | Badge per shown pursuit with stamps and countries counted, stamps with the year only | The site already promises "Stamps show years only" |
+| /pursuits/* | robots meta | Indexable | noindex until 6 live stories from 3 writers and an 80+ character intro | 19 Oct index rule |
+| Home preview | Dog travel button | /pursuits/dog-travel | /the-paw-passport (UTM campaign paw-passport) | Merged dog travel hub |
+
+Needs your yes or words: hub display names ("That Global Marathon Life" style) and intros; which stories belong to each hub (tick them in the Pursuits item); month on public stamps (stored, hidden today).
