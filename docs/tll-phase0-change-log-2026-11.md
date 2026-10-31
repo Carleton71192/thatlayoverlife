@@ -186,3 +186,15 @@ The other pattern hits were history ("the next year" in past tense).
   - **The count:** Nancy's owner-only metrics panel on /account shows this month's count per answer. It's never shown publicly.
   - **For you in GA4:** register `travel_style` as a user-scoped custom dimension.
 - **Site head:** the new consent block is written to the staged site head and verified byte for byte by readback.
+
+## Nancy's answers (31 Oct, late) and what changed before publishing
+
+1. **Approved.** Published as site layers 16.48.3 with the staged head, page code and CMS changes.
+2. **AdSense Consent Mode:** Nancy switches it on in AdSense.
+3. **Ko-fi URL and EU guide check:** on the Monday plan.
+4. **Thailand stub:** explained again below; still noindex and out of the rails until Nancy decides.
+5. **Designer edit (member-data templates):** reminder set for Monday.
+6. **"my son Freed":** a joke about an adult friend, no change. "Signing up for next year": Nancy chose to leave it.
+7. **Cover coordinates:** removed from the home cover byline.
+
+**Redirects:** the three 301s still need adding in Webflow Site settings (the connector has no redirects tool). Until then the site script sends /my-passport to /the-map, /countries to /destinations and /for-affiliates to /creators.

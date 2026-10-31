@@ -113,7 +113,8 @@ function run(){
   /* 29 Oct 2026, Nancy: the hero said free to join but gave no way to join. The second button (hidden until now) becomes Join free. */
   var join=cta&&cta.querySelectorAll('a')[1];if(join&&COVER.join){join.textContent=COVER.join;join.href='/signup';join.classList.add('tll-mg-join');}
   var by=document.createElement('p');by.className='tll-mg-by';var b=document.createElement('b');b.textContent='Photo';by.appendChild(b);
-  by.appendChild(document.createTextNode(' '+COVER.author+' · '+COVER.place+(COVER.coords?' · '+COVER.coords:'')));
+  /* Phase 0 (Nancy, 31 Oct: remove the coordinates; they were precise to about 1 km). */
+  by.appendChild(document.createTextNode(' '+COVER.author+' · '+COVER.place));
   (cta||words).insertAdjacentElement(cta?'afterend':'beforeend',by);
   if(SVG&&COVER.stampPlace){var st=document.createElement('span');st.className='tll-mg-stamp';st.setAttribute('aria-hidden','true');
     st.innerHTML=SVG.replace('{P}',esc(COVER.stampPlace)).replace('{S}',COVER.stampPlace.length>10?'12':'16').replace('{D}',esc(COVER.stampDate||'')).replace('{A}',esc(COVER.stampArc||'BY THE PEOPLE WHO WENT'));hero.appendChild(st);}

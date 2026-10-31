@@ -16,6 +16,10 @@ function css(t,id){if(document.getElementById(id))return;var s=document.createEl
 function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
 function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms&&ms.getCurrentMember){clearInterval(iv);ms.getCurrentMember().then(function(r){cb(!!(r&&r.data));}).catch(function(){cb(false);});}else if(++n>40){clearInterval(iv);cb(false);}},150);}
 
+/* Old addresses (Phase 0, Nancy approved 31 Oct). Real 301s belong in Webflow Site settings; until Nancy adds them this sends people on.
+   /my-passport is a draft page now, so this runs on the 404 page it lands on. */
+var MOVED={'/my-passport':'/the-map','/countries':'/destinations','/for-affiliates':'/creators'};
+if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
 /* Noindex until they have content: /spotlight, /awards, /creators, and contributor profiles with no stories yet. */
 function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=document.createElement('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
 if(/^\/(spotlight|awards|creators)$/.test(P))noindex();
