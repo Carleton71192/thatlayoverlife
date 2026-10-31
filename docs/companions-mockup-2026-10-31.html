@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travel Companions Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,800;1,800&family=IBM+Plex+Sans+Condensed:wght@400;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FDF9F3;--cream:#F7F1E8;--ink:#0A0B14;--muted:#5F5A54;--line:#E0DACE;--rose:#C8325B;--teal:#067A79;--card:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0A0B14;--cream:#12141F;--ink:#F3EEE6;--muted:#B9B2A8;--line:#2A2C38;--rose:#F0507A;--teal:#00C9C8;--card:#171a27}}
+:root[data-theme="dark"]{--paper:#0A0B14;--cream:#12141F;--ink:#F3EEE6;--muted:#B9B2A8;--line:#2A2C38;--rose:#F0507A;--teal:#00C9C8;--card:#171a27}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:48px 16px 80px}
+.ey{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
+h1{font:800 clamp(32px,5vw,52px)/1 "Playfair Display",Georgia,serif;margin:0 0 14px}h1 em{color:var(--rose)}
+h2{font:800 26px/1.15 "Playfair Display",Georgia,serif;margin:48px 0 6px}.lede{color:var(--muted);max-width:66ch;margin:0 0 20px}
+.status{display:inline-block;font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border:1px solid currentColor;border-radius:2px;margin:0 6px 0 0}
+.now{color:var(--muted)}.new{color:var(--rose)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:16px}
+.step{display:flex;flex-direction:column;gap:10px}.step>b{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.phone{border:1px solid var(--line);border-radius:18px;background:var(--cream);padding:16px;min-height:300px}
+.bar{font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;color:var(--teal);text-transform:uppercase;margin:0 0 10px}
+.ph-h{font:800 20px/1.15 "Playfair Display",Georgia,serif;margin:0 0 10px}
+.in{border:1px solid var(--line);border-radius:4px;background:var(--paper);padding:10px 12px;color:var(--muted);font-size:15px;margin:0 0 8px}
+.person{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px;margin:0 0 8px}
+.av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font:600 13px/1 "JetBrains Mono",monospace;color:#fff}
+.a1{background:#067A79}.a2{background:#C8325B}.a3{background:#9A7B4F}
+.person div{flex:1;min-width:0}.person small{display:block;color:var(--muted);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.chip{border:1px solid var(--line);border-radius:999px;padding:5px 10px;font-size:13px;background:var(--paper)}.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btns{display:flex;gap:8px;margin-top:8px}.btn{flex:1;text-align:center;padding:10px;border-radius:4px;font-weight:600;font-size:14px}.btn.p{background:#D63859;color:#fff}.btn.g{border:1.5px solid var(--ink)}
+.wait{font:600 11px/1.4 "JetBrains Mono",monospace;letter-spacing:1px;color:var(--rose);text-transform:uppercase}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.box{border:1px solid var(--line);background:var(--card);border-radius:4px;padding:16px 18px;margin-top:20px}
+.box ol{margin:0;padding-left:20px}.box li{margin:0 0 6px}
+.q{border-left:3px solid var(--rose);padding:10px 14px;background:var(--card);margin:12px 0}
+</style>
+</head>
+<body>
+<main>
+<p class="ey">That Layover Life · Mockup · 31 October 2026</p>
+<h1>Travel companions and <em>shared pets</em></h1>
+<p class="lede">What it looks like when you add someone you travel with, and when two people share a pet. Today, part of this exists and part is only designed. Nothing here is built until you pick.</p>
+<p><span class="status now">Today</span> On /edit-profile, "Your crew" lets you pick another traveler and saves a waiting invite in your own account only: the other person never sees it. Magnus is marked as shared with Jay in the CMS, but your maps do not share him.</p>
+
+<h2>1. Travel companion requests</h2>
+<p class="lede">You invite someone, they accept, and you each appear on the other's profile. Nothing is shared until they say yes.</p>
+<div class="row">
+<div class="step"><b>Step 1 · You invite</b><div class="phone"><p class="bar">Edit profile · 04 Your crew</p><p class="ph-h">Who do you travel with?</p>
+<div class="in">Jay</div>
+<div class="person"><span class="av a1">JC</span><div>Jay Carleton<small>Copenhagen, Denmark</small></div></div>
+<div class="chips"><span class="chip on">Partner</span><span class="chip">Family</span><span class="chip">Travel buddy</span></div>
+<div class="btns"><span class="btn p">Send invite</span></div>
+<p class="note">They get a note on their account and an email. You can cancel any time.</p></div></div>
+<div class="step"><b>Step 2 · They answer</b><div class="phone"><p class="bar">Jay's account</p><p class="ph-h">A travel companion request</p>
+<div class="person"><span class="av a2">NC</span><div>Nancy Carleton wants to add you<small>as her Partner</small></div></div>
+<p class="note">If you accept, you show on each other's profile as "Travels with". Your maps stay your own; you choose what to share trip by trip.</p>
+<div class="btns"><span class="btn p">Accept</span><span class="btn g">Not now</span></div></div></div>
+<div class="step"><b>Step 3 · On both profiles</b><div class="phone"><p class="bar">Nancy's public profile</p><p class="ph-h">Nancy Carleton</p>
+<p class="note" style="margin:0 0 8px">TRAVELS WITH</p>
+<div class="person"><span class="av a1">JC</span><div>Jay Carleton<small>Partner · 7 marathons, 7 continents</small></div></div>
+<div class="person"><span class="av a3">MW</span><div>Magnus Waffles<small>Samoyed · shared with Jay</small></div></div>
+<p class="note">Stories you both tag show on both profiles. Either of you can leave; leaving removes only the link.</p></div></div>
+</div>
+
+<h2>2. Shared pets</h2>
+<p class="lede">One Magnus, owned by two people. His countries live on his own record, so both maps show the same Magnus and neither of you keeps a separate copy.</p>
+<div class="row">
+<div class="step"><b>Step 1 · Share the pet</b><div class="phone"><p class="bar">My pets · Magnus</p><p class="ph-h">Share Magnus with…</p>
+<div class="in">Jay Carleton</div>
+<p class="note">Co-owners can both log Magnus's countries and edit his page.</p>
+<div class="btns"><span class="btn p">Invite co-owner</span></div></div></div>
+<div class="step"><b>Step 2 · Both maps</b><div class="phone"><p class="bar">The map · Nancy and Jay</p><p class="ph-h">Magnus on your map</p>
+<div class="person"><span class="av a3">MW</span><div>Magnus Waffles<small>14 countries · logged by either of you</small></div></div>
+<p class="note">Jay logs Poland for Magnus; it shows on Nancy's map too. Magnus's countries never count toward a person's own total.</p></div></div>
+<div class="step"><b>Step 3 · His page</b><div class="phone"><p class="bar">Paw Passport · Magnus</p><p class="ph-h">Magnus Waffles</p>
+<p class="note" style="margin:0 0 8px">TRAVELS WITH</p>
+<div class="person"><span class="av a2">NC</span><div>Nancy Carleton<small>Co-owner</small></div></div>
+<div class="person"><span class="av a1">JC</span><div>Jay Carleton<small>Co-owner</small></div></div>
+<p class="note">Both owners show only if both say yes.</p></div></div>
+</div>
+
+<div class="box"><p class="ey" style="margin-bottom:8px">The rules (from the 10 October design)</p><ol>
+<li>Invite, then accept. Nothing is shared before a yes, and either side can leave at any time.</li>
+<li>A partner never sees your whole map by default; you share trip by trip or country by country.</li>
+<li>Both owners can edit a shared pet. Nobody can edit another person's countries.</li>
+<li>No accounts for children: a child appears only as a named traveler on a parent's own map.</li>
+<li>Counts stay honest: a shared pet counts on its own Paw Passport, never toward a person's total.</li>
+</ol></div>
+
+<h2>What I need from you</h2>
+<div class="q">1. Companion types to start with: <b>Partner only</b>, or <b>Partner, Family and Travel buddy</b>?</div>
+<div class="q">2. Shared pets: build as shown, with the pet's own record as the single list (recommended)?</div>
+<div class="q">3. Requests notify by a note on the account page plus an email: OK?</div>
+</main>
+</body>
+</html>
