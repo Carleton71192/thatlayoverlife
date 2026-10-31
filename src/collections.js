@@ -16,6 +16,7 @@ import { rateLimit, reply, verifyMemberToken } from './member-auth.js';
 
 const PHOTO = /^https:\/\/res\.cloudinary\.com\/idonvlow\/image\/upload\/[^\s"'<>]+$/;
 const MAX_ITEMS = 500;
+export const MAX_PHOTOS = 6;
 const VISIBILITY_OFF = '1423c8d17c2060776541377f76ea0b31';
 export const clean = (s, n) => String(s || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s*[—–]\s*/g, ', ').replace(/\s+/g, ' ').trim().slice(0, n);
 
@@ -47,7 +48,8 @@ export function view(item, cats) {
   const cat = cats.find((c) => c.id === f.category);
   return {
     id: item.id, category: cat?.fieldData?.slug || '', categoryName: f['own-category-name'] || cat?.fieldData?.name || '',
-    country: f.name || '', city: f.city || '', year: f.year || null, caption: f.caption || '', photo: f.photo?.url || '', shown: f['show-on-profile'] === true,
+    country: f.name || '', city: f.city || '', year: f.year || null, caption: f.caption || '', photo: f.photo?.url || '', photos: [f.photo?.url, ...((Array.isArray(f['more-photos']) ? f['more-photos'] : []).map((x) => x?.url))].filter(Boolean),
+    shown: f['show-on-profile'] === true,
   };
 }
 
@@ -97,8 +99,9 @@ export async function handleCollections(request, env, { fetchImpl = fetch, now =
     const country = await findCountry(env, fetchImpl, b.country);
     if (!country) return reply({ error: 'Pick a country from the list.' }, 400);
     const year = Number(b.year);
-    const photo = String(b.photo || '');
-    if (photo && !PHOTO.test(photo)) return reply({ error: 'That photo could not be used. Try again.' }, 400);
+    const list = (Array.isArray(b.photos) ? b.photos : [b.photo]).map((x) => String(x || '')).filter(Boolean);
+    if (list.length > MAX_PHOTOS || list.some((x) => !PHOTO.test(x))) return reply({ error: `Up to ${MAX_PHOTOS} photos, uploaded from this page.` }, 400);
+    const photo = list[0] || '';
     const existing = await mine();
     if (existing.length >= MAX_ITEMS) return reply({ error: 'That is the most items one profile can hold for now.' }, 400);
     // A new item follows the collection's current choice: shown only if the member already switched this collection on.
@@ -109,6 +112,7 @@ export async function handleCollections(request, env, { fetchImpl = fetch, now =
       owner: me.id, category: cat.id, country: country.id, 'own-category-name': own || null,
       city: clean(b.city, 60) || null, year: year >= 1900 && year <= new Date(now).getUTCFullYear() ? Math.round(year) : null,
       caption: clean(b.caption, 140) || null, 'show-on-profile': shown, ...(photo ? { photo: { url: photo, alt: `${cat.fieldData.name}, ${country.fieldData.name}` } } : {}),
+      ...(list.length > 1 ? { 'more-photos': list.slice(1).map((url, i) => ({ url, alt: `${cat.fieldData.name}, ${country.fieldData.name}, photo ${i + 2}` })) } : {}),
     };
     const made = await webflow(env, fetchImpl, `/collections/${C}/items`, { method: 'POST', body: JSON.stringify({ isDraft: true, isArchived: false, fieldData }) });
     const item = made?.id ? made : made?.items?.[0];

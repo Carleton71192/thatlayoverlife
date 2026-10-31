@@ -17,6 +17,7 @@ var CSS='.tll-col{font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-ser
 '.tll-col-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}'+
 '.tll-col-it{position:relative;border-radius:6px;overflow:hidden;background:#F7F1E8;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end}'+
 '.tll-col-it img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.tll-col-it span{position:relative;display:block;padding:6px 8px;background:linear-gradient(transparent,rgba(10,11,20,.78));color:#fff;font-size:13px;line-height:1.3}'+
+'.tll-col-n{position:absolute;top:6px;left:6px;font:600 11px/1 "JetBrains Mono",monospace;font-style:normal;background:rgba(10,11,20,.7);color:#fff;border-radius:999px;padding:4px 7px}.tll-col-it[role=button]{cursor:pointer}'+
 '.tll-col-it button{position:absolute;top:4px;right:4px;width:32px;height:32px;border:0;border-radius:50%;background:rgba(10,11,20,.7);color:#fff;font-size:18px;line-height:1;cursor:pointer}'+
 '.tll-col-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border:1px dashed #E0DACE;border-radius:8px;padding:12px;margin-top:8px}'+
 '.tll-col-form label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#5F5A54}.tll-col-form .w{grid-column:1/-1}'+
@@ -32,7 +33,10 @@ function post(path,body){var t=tok();if(!t)return Promise.resolve(null);return f
 function countries(){var out=[];try{var dn=new Intl.DisplayNames(['en'],{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=dn.of(c);if(n&&n!==c&&!/^(EU|EZ|UN|QO|XA|XB|ZZ|FX|YU|SU|ZR|TP|UK)$/.test(c))out.push(n);}}catch(e){}return out.filter(function(v,i,s){return s.indexOf(v)===i;}).sort();}
 function clean(file){return new Promise(function(res,rej){var u=URL.createObjectURL(file),im=new Image();im.onload=function(){var w=im.naturalWidth,h=im.naturalHeight,s=Math.min(1,EDGE/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.round(w*s);c.height=Math.round(h*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?res(b):rej('read');},'image/jpeg',0.88);};im.onerror=function(){URL.revokeObjectURL(u);rej('read');};im.src=u;});}
 function upload(file){return clean(file).then(function(blob){var fd=new FormData();fd.append('file',blob,'item.jpg');fd.append('upload_preset',PRESET);fd.append('folder','tll/collections');return fetch(CLOUD,{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(j){if(!j.secure_url)throw 'upload';return j.secure_url;});});}
-function tile(i,onDel){var t=el('div','tll-col-it');if(i.photo){var im=el('img');im.src=i.photo.replace('/upload/','/upload/c_fill,w_400,h_400,q_auto,f_auto/');im.alt=(i.categoryName||'')+', '+i.country;im.loading='lazy';t.appendChild(im);}
+function tile(i,onDel){var t=el('div','tll-col-it'),ph=(i.photos&&i.photos.length?i.photos:(i.photo?[i.photo]:[])),k=0,sz=function(u){return u.replace('/upload/','/upload/c_fill,w_400,h_400,q_auto,f_auto/');};
+  if(ph.length){var im=el('img');im.src=sz(ph[0]);im.alt=(i.categoryName||'')+', '+i.country;im.loading='lazy';t.appendChild(im);
+    if(ph.length>1){var n=el('em','tll-col-n','1/'+ph.length);t.appendChild(n);t.tabIndex=0;t.setAttribute('role','button');t.setAttribute('aria-label','Next photo of '+i.country);
+      var next=function(e){if(e.target.tagName==='BUTTON')return;k=(k+1)%ph.length;im.src=sz(ph[k]);n.textContent=(k+1)+'/'+ph.length;};t.addEventListener('click',next);t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();next(e);}});}}
   t.appendChild(el('span','',[i.country,i.city,i.year].filter(Boolean).join(' · ')+(i.caption?' · '+i.caption:'')));
   if(onDel){var x=el('button','','×');x.type='button';x.setAttribute('aria-label','Remove '+i.country);x.addEventListener('click',onDel);t.appendChild(x);}return t;}
 function groupsOf(items){var g={},order=[];items.forEach(function(i){var k=i.category==='other'?'other:'+i.categoryName.toLowerCase():i.category;if(!g[k]){g[k]={category:i.category,name:i.categoryName,items:[]};order.push(k);}g[k].items.push(i);});return order.map(function(k){return g[k];});}
@@ -55,7 +59,7 @@ function editProfile(){
     var city=el('input');city.maxLength=60;field('City (optional)',city);
     var year=el('input');year.type='number';year.inputMode='numeric';year.min='1900';year.max=String(new Date().getFullYear());field('Year (optional)',year);
     var cap=el('input');cap.maxLength=140;field('A line about it (optional)',cap,true);
-    var file=el('input');file.type='file';file.accept='image/jpeg,image/png,image/webp,image/heic';field('Photo (optional)',file,true);
+    var file=el('input');file.type='file';file.multiple=true;file.accept='image/jpeg,image/png,image/webp,image/heic';field('Photos (optional, up to 6: front, back, on the shelf)',file,true);
     var btn=el('button','tll-col-b','Add to my collections');btn.type='button';f.appendChild(btn);
     var msg=el('p','tll-col-msg');msg.setAttribute('aria-live','polite');f.appendChild(msg);
     sec.appendChild(f);
@@ -72,9 +76,10 @@ function editProfile(){
     btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();add();});
     function add(){
       if(!ctry.value.trim()){msg.textContent='Pick a country.';ctry.focus();return;}
-      btn.disabled=true;msg.textContent=file.files[0]?'Cleaning and uploading the photo…':'Adding…';
-      (file.files[0]?upload(file.files[0]):Promise.resolve('')).then(function(url){
-        return post('/collections/add',{category:cat.value,own:own.value,country:ctry.value,city:city.value,year:year.value,caption:cap.value,photo:url});
+      var files=[].slice.call(file.files||[]);if(files.length>6){msg.textContent='Up to 6 photos per piece. Pick your best 6.';return;}
+      btn.disabled=true;msg.textContent=files.length?'Cleaning and uploading '+(files.length===1?'the photo':files.length+' photos')+'…':'Adding…';
+      files.reduce(function(p,f){return p.then(function(urls){return upload(f).then(function(u){urls.push(u);msg.textContent='Uploaded '+urls.length+' of '+files.length+'…';return urls;});});},Promise.resolve([])).then(function(urls){
+        return post('/collections/add',{category:cat.value,own:own.value,country:ctry.value,city:city.value,year:year.value,caption:cap.value,photos:urls});
       }).then(function(r){btn.disabled=false;if(r&&r.ok){msg.textContent='Added. '+(r.item.shown?'It shows on your profile.':'Private until you switch this collection on.');ctry.value='';city.value='';year.value='';cap.value='';file.value='';refresh();}else msg.textContent=(r&&r.error)||'That did not go through. Try again.';})
       .catch(function(){btn.disabled=false;msg.textContent='The photo could not be uploaded. Try another, or add it without a photo.';});
     }

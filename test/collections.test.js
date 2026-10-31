@@ -49,7 +49,7 @@ describe('collections', () => {
     const s = (await w.pub('nancy-carleton')).shelves;
     expect(s).toHaveLength(1);
     expect(s[0]).toMatchObject({ category: 'magnets', countries: 1 });
-    expect(s[0].items[0]).toEqual({ category: 'magnets', categoryName: 'magnets', country: 'Italy', city: 'Rome', year: 2019, caption: 'From the Trevi stall', photo: PHOTO });
+    expect(s[0].items[0]).toEqual({ category: 'magnets', categoryName: 'magnets', country: 'Italy', city: 'Rome', year: 2019, caption: 'From the Trevi stall', photo: PHOTO, photos: [PHOTO] });
     expect(JSON.stringify(s)).not.toContain('Copenhagen');
     const next = await w.call('/collections/add', 'mem_a', { category: 'magnets', country: 'Japan' });
     expect(next.item.shown).toBe(true); // follows the collection's choice
@@ -64,6 +64,15 @@ describe('collections', () => {
     expect((await w.call('/collections/add', 'mem_a', { category: 'magnets', country: 'Italy', photo: 'https://evil.example/x.jpg' })).status).toBe(400);
     const r = await w.call('/collections/add', 'mem_a', { category: 'other', own: 'Sand — from beaches', country: 'Italy', year: 2099 });
     expect(r.item).toMatchObject({ categoryName: 'Sand, from beaches', year: null });
+  });
+  it('takes up to six photos per item, all from the cleaned upload', async () => {
+    const w = world();
+    const six = [1, 2, 3, 4, 5, 6].map((n) => PHOTO.replace('x.jpg', `p${n}.jpg`));
+    const r = await w.call('/collections/add', 'mem_a', { category: 'postcards', country: 'Japan', photos: six });
+    expect(r.item.photos).toEqual(six);
+    expect(w.items()[0].fieldData['more-photos']).toHaveLength(5);
+    expect((await w.call('/collections/add', 'mem_a', { category: 'postcards', country: 'Japan', photos: [...six, six[0]] })).status).toBe(400);
+    expect((await w.call('/collections/add', 'mem_a', { category: 'postcards', country: 'Japan', photos: [PHOTO, 'https://evil.example/x.jpg'] })).status).toBe(400);
   });
   it('a member deletes only their own items', async () => {
     const w = world();
