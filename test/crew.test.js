@@ -101,6 +101,20 @@ describe('shared pets', () => {
   });
 });
 
+describe('family pets', () => {
+  it('a pet can have any number of co-owners, and any owner can invite the next', async () => {
+    const w = world();
+    const D = 'd'.repeat(24);
+    w.items[D] = { id: D, isDraft: false, fieldData: { name: 'Kid Carleton', slug: 'kid-carleton', 'memberstack-id': 'mem_d', crew: [] } };
+    const one = await w.call('/crew/invite', 'mem_a', { kind: 'pet', pet: PET, to: B });
+    await w.call('/crew/answer', 'mem_b', { id: one.invite.id, accept: true });
+    const two = await w.call('/crew/invite', 'mem_b', { kind: 'pet', pet: PET, to: D });
+    await w.call('/crew/answer', 'mem_d', { id: two.invite.id, accept: true });
+    expect(w.pets[PET].fieldData['shared-with']).toEqual([B, D]);
+    expect((await w.pub('/crew/public?pet=magnus-waffles')).owners.map((o) => o.name)).toEqual(['Nancy Carleton', 'Jay Carleton', 'Kid Carleton']);
+  });
+});
+
 describe('people search', () => {
   it('finds public travelers by name and never returns a place', async () => {
     const w = world();

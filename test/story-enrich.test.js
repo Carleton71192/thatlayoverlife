@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { pickLinks, enrichStory, enqueueEnrich, runEnrich, summaryHtml, STORY_LABEL } from '../src/story-enrich.js';
+import { pickLinks, enrichStory, enqueueEnrich, runEnrich, summaryHtml, STORY_LABEL, LINKS_LABEL } from '../src/story-enrich.js';
 
 const body = '<p>' + 'We walked the Forum at sunrise and stayed until closing time at the park. '.repeat(12) + '</p>';
 
@@ -44,7 +44,7 @@ describe('story enrichment', () => {
     expect(r).toBe('added short-version, links-and-mentions');
     expect(writes[0]['short-version']).toBe(summaryHtml('A day at Pompeii, from sunrise to closing.'));
     expect(writes[0]['short-version']).toContain(STORY_LABEL);
-    expect(writes[0]['links-and-mentions']).toBe('<ul><li><a href="https://pompeiisites.org/en/">Pompeii Archaeological Park: Home</a></li><li><a href="https://pompeiisites.org/en/villa">Pompeii Archaeological Park: Villa of the Mysteries</a></li></ul>');
+    expect(writes[0]['links-and-mentions']).toBe('<ul><li><a href="https://pompeiisites.org/en/">Pompeii Archaeological Park: Home</a></li><li><a href="https://pompeiisites.org/en/villa">Pompeii Archaeological Park: Villa of the Mysteries</a></li></ul><p><em>' + LINKS_LABEL + '</em></p>');
     expect(writes[1]).toEqual({ published: ['st1'] });
   });
   it('never overwrites what is already there and skips link-out stories', async () => {
@@ -62,5 +62,17 @@ describe('story enrichment', () => {
     const { fetchImpl } = fakeWebflow({ name: 'P', body });
     await runEnrich({ ...env, WIRE_KV: KV }, { fetchImpl, client: fakeClient() });
     expect(JSON.parse(kv.get('enrich:queue'))).toEqual(['d']);
+  });
+  it('sweeps live stories still missing a block once the queue is empty, once each', async () => {
+    const kv = new Map([['enrich:queue', '[]']]);
+    const KV = { get: async (k) => kv.get(k) ?? null, put: async (k, v) => { kv.set(k, v); } };
+    const live = [
+      { id: 'full', fieldData: { 'short-version': 'x', 'links-and-mentions': 'y' } },
+      { id: 'out', fieldData: { 'external-url': 'https://x.example' } },
+      { id: 'gap', fieldData: { 'short-version': 'x' } },
+    ];
+    const fetchImpl = async (url, init = {}) => new Response(JSON.stringify(/items\/live/.test(url) ? { items: live } : init.method ? {} : { id: 'gap', isDraft: false, fieldData: { name: 'P', body, 'short-version': 'x' } }), { status: 200 });
+    expect(await runEnrich({ ...env, WIRE_KV: KV }, { fetchImpl, client: fakeClient() })).toBe('enrich: gap added links-and-mentions');
+    expect(await runEnrich({ ...env, WIRE_KV: KV }, { fetchImpl, client: fakeClient() })).toBe('enrich: nothing missing');
   });
 });

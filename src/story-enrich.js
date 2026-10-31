@@ -3,16 +3,20 @@
 //   short-version        a neutral summary of the story, labeled "Summary by AI, from the story."
 //   links-and-mentions   official or reputable pages for the places, venues and events the story names, found with
 //                        Claude's web search. Only URLs that came back as search results are kept, so no link is invented.
-// Stories are queued by /intake (enqueueEnrich) and handled three per run. A field that already has text is left alone.
+// Stories are queued by /intake (enqueueEnrich); when the queue is empty, a sweep finds any live story still missing either
+// field, so this is standing practice for every story. Three per run, each tried once a month. A field with text is left alone.
+// Both blocks carry an AI disclosure line.
 // Needs ANTHROPIC_API_KEY; without it the queue simply waits.
 import Anthropic from '@anthropic-ai/sdk';
 import { webflow } from './profile-sync.js';
+import { listLive } from './site-stats.js';
 import { articleText, cleanSummary } from './link-summary.js';
 
 const MODEL = 'claude-opus-5-5';
 const QUEUE = 'enrich:queue';
 const PER_RUN = 3;
 export const STORY_LABEL = 'Summary by AI, from the story.';
+export const LINKS_LABEL = 'Links found by AI web search for the places in this story. Check details before you go.';
 const BLOCKED = /(tripadvisor|booking\.com|getyourguide|viator|expedia|agoda|hotels\.com|facebook\.com|instagram\.com|tiktok\.com|x\.com|twitter\.com|pinterest|reddit\.com|amazon\.)/i;
 
 const SUMMARY_SYSTEM = [
@@ -100,7 +104,7 @@ export async function findLinks(text, title, env, { client: injected } = {}) {
 }
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-export const linksHtml = (links) => `<ul>${links.map((l) => `<li><a href="${esc(l.url)}">${esc(l.text)}</a></li>`).join('')}</ul>`;
+export const linksHtml = (links) => `<ul>${links.map((l) => `<li><a href="${esc(l.url)}">${esc(l.text)}</a></li>`).join('')}</ul><p><em>${LINKS_LABEL}</em></p>`;
 export const summaryHtml = (s) => `<p>${esc(s)}</p><p><em>${STORY_LABEL}</em></p>`;
 
 /** One queued story: fills only empty fields, then publishes. */
@@ -119,14 +123,29 @@ export async function enrichStory(env, id, { fetchImpl = fetch, client: injected
   return `added ${Object.keys(patch).join(', ')}`;
 }
 
+/** Standing practice: when the queue is empty, look for live stories still missing a summary or links. Each story is tried once. */
+export async function sweep(env, fetchImpl = fetch) {
+  const live = await listLive(env, fetchImpl, env.STORIES_COLLECTION_ID);
+  const ids = [];
+  for (const it of live) {
+    const f = it.fieldData || {};
+    if (f['external-url'] || (f['short-version'] && f['links-and-mentions'])) continue;
+    if (await env.WIRE_KV.get(`enrich:tried:${it.id}`)) continue;
+    ids.push(it.id);
+  }
+  return ids;
+}
+
 export async function runEnrich(env, opts = {}) {
   if (!env.ANTHROPIC_API_KEY || !env.WIRE_KV || !env.WEBFLOW_TOKEN) return 'enrich skipped (not configured)';
   let q = [];
   try { q = JSON.parse((await env.WIRE_KV.get(QUEUE)) || '[]'); } catch { q = []; }
-  if (!q.length) return 'enrich: queue empty';
+  if (!q.length) q = await sweep(env, opts.fetchImpl);
+  if (!q.length) return 'enrich: nothing missing';
   const done = [];
   for (const id of q.slice(0, PER_RUN)) {
     try { done.push(`${id} ${await enrichStory(env, id, opts)}`); } catch (e) { done.push(`${id} failed ${String(e?.message || e).slice(0, 80)}`); }
+    await env.WIRE_KV.put(`enrich:tried:${id}`, '1', { expirationTtl: 60 * 60 * 24 * 30 });
   }
   await env.WIRE_KV.put(QUEUE, JSON.stringify(q.slice(PER_RUN)));
   return `enrich: ${done.join('; ')}`;
