@@ -49,3 +49,10 @@ Needs your yes or words: hub display names ("That Global Marathon Life" style) a
 | Worker | GET /album | None | Photos from live stories plus shown collections and stamps, placed by country | Public data only |
 
 Counts on the tape are photos and countries in the album, not the member's whole map (the map stores totals only). Open questions from the playbook: Slide Show for logged-out visitors (today yes, profiles are public); which continent cover to use (today the newest story's hero).
+
+## Phase 4: Download everything (31 Oct, 17:07 UTC)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| /account | "Your copy · Download everything" card | None | One button builds a zip in the browser: README, profile, stories as readable pages (drafts too), collections and stamps as CSV and JSON, pets, companions, full map and summary, every photo in folders; failed photos listed as links | Playbook: the lost-account fix, before the Instagram line goes on the homepage |
+| Worker | POST /export | None | Member's own records only; internal fields (member id, outreach notes, press check, badge label) removed; 10 an hour | Privacy |
