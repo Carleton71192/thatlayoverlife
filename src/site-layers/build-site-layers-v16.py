@@ -1,11 +1,30 @@
-"""Builds src/site-layers/tll-site-layers-v16.js from its parts. Run from the repo root: python3 src/site-layers/build-site-layers-v16.py
-v16 = v15 plus F1 (29 Oct 2026, Nancy: the old home hero shows for a blink before the cover): the cover style goes into the head at once and moves to the end of the body when the page is parsed, as before; the cover fills the hero as soon as the hero has arrived, before the first paint, instead of waiting for every script on the page.
-v16 also carries v15's 15.1.0 parts: the end-of-story ask (tll-story-ask-v1.js), the /spotlight action tile (tll-open-slots-v1.js) and the people strip's action tile (in the rebuilt cover).
-v15 = v14 plus story photos on five pages (src/site-layers/tll-page-heroes-v1.js: /stories, /travelers, /the-map, /about, /for-expats) and the home cover's Join free button (rebuilt tll-mag-cover-v1.html).
-v14 = v13 plus the 28 Oct UX layer (src/site-layers/tll-ux-1028-v1.js: type floor, success message contrast, Tell the editor clear of the home hero). v13 = v12 plus Consent Mode v2 at the very top (src/site-layers/tll-consent-mode-v2.js; Google tags default to denied, CookieConsent updates analytics_storage). v12 = v11 plus stamps on the library cards and the letter (inside the cover layer) (src/design/magazine-2026-10/story-build/tll-mag-story-v1.html), which runs only on /stories/{slug}:
-its font link goes in the head and its style goes at the END of the body once the DOM is parsed, so it sits after the template's own
-head and footer styles in the cascade and wins every tie."""
-import re, json
+"""Builds the site layers from their parts. Run from anywhere: python3 src/site-layers/build-site-layers-v16.py
+Two kinds of output, deterministic (same inputs, same bytes):
+  src/site-layers/tll-site-layers-v16.js  the core, the one registered site-wide header script (synchronous). In order: the consent
+      fallback, the chunk loader, the nine styles, the layers that must run before the first paint on their page (ux-1028 and
+      mbar-align head CSS, photos-form-v2 on /share-photos, album-settings on /the-map, phase0) or on every page (division,
+      note-typing, account-hash-tabs), the story layer (/stories/{slug}) and the cover layer (home).
+  src/site-layers/chunks/<name>.js  per-path chunks: the layers that only run on those paths, in SCRIPTS order. The loader in the
+      core appends them as script tags (async=false keeps the order and never blocks the parser; integrity from the hashes embedded
+      here; crossorigin anonymous) from the same pinned jsDelivr commit the core was loaded from, read off its own script tag, so no
+      placeholder is needed. Chunks that hold staged layers also get a <name>-preview.js variant, loaded instead of the public one
+      only when a preview flag (?preview=, ?qr=) or a tll-preview-* localStorage key is present, so the public never downloads
+      staged code. Every layer keeps its own path guard, so a chunk on the wrong page does nothing.
+Release step unchanged: commit (core and chunks together, the embedded hashes tie them to one commit), then register the core at
+that commit with its own SRI, as today. One registered script, so Webflow's 15-script limit is untouched.
+Why (1 Nov 2026): the one-file bundle had reached 500 KB, render-blocking on every page, while a page runs 100 to 125 KB of it.
+Each layer's own header comment stays in its source and is left out of the downloads; a one-line source marker takes its place.
+History: v16 = v15 plus F1 (29 Oct 2026, Nancy: the old home hero shows for a blink before the cover): the cover style goes into the
+head at once and moves to the end of the body when the page is parsed; the cover fills the hero as soon as the hero has arrived.
+v15 = v14 plus story photos on five pages and the home cover's Join free button. v14 = v13 plus the 28 Oct UX layer. v13 = v12 plus
+Consent Mode v2 at the very top. v12 = v11 plus stamps on the library cards and the letter (inside the cover layer). The story layer
+runs only on /stories/{slug}: its font link goes in the head and its style goes at the END of the body once the DOM is parsed, so it
+sits after the template's own head and footer styles in the cascade and wins every tie."""
+import re, json, os, hashlib, base64, gzip, glob
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+os.chdir(ROOT)
+OUT = 'src/site-layers/tll-site-layers-v16.js'
+CHUNK_DIR = 'src/site-layers/chunks'
 STYLES = [('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone header'),
           ('src/site-layers/tll-contrast-v1.html', 'tll-contrast-v1', 'contrast'),
           ('src/site-layers/tll-note-phone-v1.html', 'tll-note-phone-v1', 'round note button on phones'),
@@ -74,29 +93,122 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-story-is-v1.js', '31 Oct Nancy: what a story looks like here (/submit, story end, empty search); approved, public'),
            ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
-def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, open(f).read(), re.S).group(1)]
-mag = open(MAG).read()
+COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
+CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
+
+# Core members, by file name: parse-time CSS (ux-1028 head block, mbar-align), parse-time globals that must land before the page's own
+# body script (photos-form-v2 sets window.__tllPhotosForm on /share-photos; album-settings wraps window.fetch on /the-map), the GA4
+# division set (before the GA config), phase0 (parse-time CSS, redirects and noindex), and two delegates too small to fetch separately.
+CORE = ['tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
+        'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1']
+# Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
+# several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
+# site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).
+CHUNKS = [
+    ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
+                      'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1'], []),
+    ('home', r'/^\/(index\.html)?$/', ['tll-home-bands-v1', 'tll-redesign-p0-v1', 'tll-home-value-v1'], []),
+    ('stories', r'/^\/stories$/', ['tll-page-heroes-v1', 'tll-stories-places-v1', 'tll-stories-noimg-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-ads-v1'], []),
+    ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-ads-v1'], ['tll-ux-v1']),
+    ('submit', r'/^\/submit$/', ['tll-submit-ux-v1', 'tll-linkout-preview-v1', 'tll-linkout-summary-v1', 'tll-submit-gallery-v1', 'tll-submit-long-v1',
+                                 'tll-intake-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
+    ('share-photos', r'/^\/share-photos$/', ['tll-photos-caption-v1', 'tll-intake-v1'], []),
+    # work-trips rides along where its country table (window.__tllN2A) or its tll:stamp-added listener is read: /edit-profile (stamps saves),
+    # /account (export) and /pursuits/* (its own hub).
+    ('edit-profile', r'/^\/edit-profile/', ['tll-ep-country-v1', 'tll-ep-ux-v1', 'tll-ep-marks-v1', 'tll-ep-linkstack-v1', 'tll-crew-v1',
+                                           'tll-collections-v1', 'tll-stamps-v1', 'tll-work-trips-v1'], ['tll-expat-v1']),
+    ('profile', r'/^\/contributors\/[^/]+$/', ['tll-profile-count-v1', 'tll-pf-linkstack-v1', 'tll-crew-v1', 'tll-collections-v1', 'tll-stamps-v1',
+                                               'tll-album-v1', 'tll-pros-v1'], ['tll-expat-v1']),
+    ('account', r'/^\/account$/', ['tll-crew-v1', 'tll-export-v1', 'tll-metrics-v1', 'tll-work-trips-v1'], ['tll-ux-v1']),
+    ('map', r'/^\/the-map$/', ['tll-page-heroes-v1', 'tll-redesign-p0-v1'], []),
+    ('for-expats', r'/^\/for-expats$/', ['tll-page-heroes-v1', 'tll-expert-from-v1', 'tll-expats-map-v1', 'tll-series-v1'], ['tll-expat-v1']),
+    ('travelers', r'/^\/travelers$/', ['tll-page-heroes-v1', 'tll-travelers-fix-v1'], []),
+    ('about', r'/^\/about$/', ['tll-page-heroes-v1'], []),
+    ('pursuits', r'/^\/pursuits\/[^/]+$/', ['tll-stamps-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-work-trips-v1'], []),
+    ('pets', r'/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/', ['tll-crew-v1', 'tll-album-v1', 'tll-series-v1'], ['tll-paw-v1', 'tll-pet-passport-v1']),
+    ('countries', r'/^\/countries\/[^/]+$/', ['tll-series-v1', 'tll-ads-v1'], []),
+    ('misc', r'/^\/(spotlight|gallery)$/', ['tll-open-slots-v1', 'tll-lounge-labels-v1', 'tll-lounge-members-v1'], []),
+]
+
+def read(p): return open(p, encoding='utf-8').read()
+def sri(b): return 'sha384-' + base64.b64encode(hashlib.sha384(b).digest()).decode('ascii')
+def gz(b): return gzip.compress(b, 9, mtime=0)
+def kb(b): return '%.1f KB' % (len(b) / 1024.0)
+def layer(p):
+    # The file's own header comment stays in the source; the download carries a one-line marker instead.
+    s = read(p); m = re.match(r'\s*/\*.*?\*/[ \t]*\r?\n?', s, re.S)
+    if m: s = s[m.end():]
+    return '/* %s */\n%s\n' % (p, s.rstrip('\n'))
+BY = {os.path.basename(f)[:-3]: f for f, _ in SCRIPTS}
+ORDER = {f: i for i, (f, _) in enumerate(SCRIPTS)}
+def paths(names):
+    for n in names: assert n in BY, 'unknown layer ' + n
+    return sorted((BY[n] for n in names), key=ORDER.get)
+
+covered = set(CORE)
+for _, _, pub, staged in CHUNKS:
+    assert not (set(pub) | set(staged)) & set(CORE), 'a core layer is also in a chunk'
+    covered |= set(pub) | set(staged)
+assert not [n for n in BY if n not in covered], 'layers in SCRIPTS but in no chunk: ' + str([n for n in BY if n not in covered])
+assert len(set(c[0] for c in CHUNKS)) == len(CHUNKS), 'chunk names must be unique'
+
+# Chunks first: the core embeds their hashes.
+files, hashes = {}, {}
+def chunk(name, rx, names):
+    body = ''.join(layer(p) for p in paths(names))
+    head = ('/* tll-site-layers-v16 chunk %s: loaded by the core loader on paths matching %s, after the core and in this order. Built by '
+            'src/site-layers/build-site-layers-v16.py; each layer keeps its own path guard. No data-ms-* element is touched. */\n') % (name, rx)
+    b = (head + body).encode('utf-8'); files[name] = b; hashes[name] = sri(b)
+for name, rx, pub, staged in CHUNKS:
+    chunk(name, rx, pub)
+    if staged: chunk(name + '-preview', rx, pub + staged)
+rules = []
+for name, rx, pub, staged in CHUNKS:
+    r = "['%s',%s,'%s'" % (name, rx, hashes[name])
+    if staged: r += ",'%s-preview','%s'" % (name, hashes[name + '-preview'])
+    rules.append(r + ']')
+LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file at the same pinned commit, read off this script's own src, so no\n"
+          "   placeholder is needed. async=false keeps the order without blocking the parser; the hashes come from the same build as the chunks.\n"
+          "   A preview flag or a tll-preview-* key switches a chunk to its -preview variant, which also carries the staged layers. */\n"
+          "(function(){\n"
+          "var S=document.currentScript,src=S&&S.src||'';\n"
+          "if(!src){var all=document.querySelectorAll('script[src*=\"tll-site-layers-v16\"]');if(all.length)src=all[all.length-1].src;}\n"
+          "var m=/^(.*\\/)tll-site-layers-v16\\.js(?:[?#].*)?$/.exec(src);if(!m){try{console.warn('tll-site-layers: not served from its pinned URL, chunks skipped');}catch(e){}return;}\n"
+          "var P=location.pathname.replace(/\\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);\n"
+          "try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}\n"
+          "var C=[%s],h=document.head||document.documentElement;\n"
+          "for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}\n"
+          "  var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}\n"
+          "})();\n") % ',\n'.join(rules)
+
+def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, read(f), re.S).group(1)]
+mag = read(MAG)
 mag_css = re.search(r'<style id="tll-mag-story-v1">\n(.*?)</style>', mag, re.S).group(1)
 mag_js = re.search(r'<script id="tll-mag-story-js-v1">\n(.*?)</script>', mag, re.S).group(1)
 mag_font = re.search(r'<link rel="stylesheet" href="([^"]+)">', mag).group(1)
-head = "/* tll-site-layers-v16: one site script, so the site stays within Webflow's 15-script limit. Built by src/site-layers/build-site-layers-v16.py from:\n"
-head += ''.join('   style  %s (%s)\n' % (f, d) for f, _, d in STYLES) + ''.join('   script %s (%s)\n' % (f, d) for f, d in SCRIPTS)
+head = "/* tll-site-layers-v16: the core of the site layers, one registered site-wide header script. Built by src/site-layers/build-site-layers-v16.py.\n"
+head += "   In order: consent fallback, chunk loader, %d styles, then\n" % len(STYLES)
+head += ''.join('   core   %s (%s)\n' % (f, d) for f, d in SCRIPTS if os.path.basename(f)[:-3] in CORE)
 head += '   story  %s (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)\n' % MAG
-head += '   first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults and CookieConsent updates; AdSense readiness, 28 Oct 2026)\n'
+head += '   cover  %s (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)\n' % COVER
+head += '   first  %s (Consent Mode v2 defaults when the head consent tool is missing)\n' % CONSENT
+head += '   Styles: ' + ', '.join('%s (%s)' % (i, d) for _, i, d in STYLES) + '\n'
+head += '   The other layers come in per-path chunks from chunks/ at this same commit, loaded by the chunk loader below:\n'
+for name, rx, pub, staged in CHUNKS:
+    head += '   chunk  %s %s: %s%s\n' % (name, rx, ', '.join(os.path.basename(p)[:-3] for p in paths(pub)),
+                                         (' (+ staged in %s-preview: %s)' % (name, ', '.join(staged)) if staged else ''))
 head += '   No data-ms-* element is touched. */\n'
-consent = open('src/site-layers/tll-consent-mode-v2.js').read()
-loader = "(function(){var L=%s;var h=document.head||document.documentElement;for(var i=0;i<L.length;i++){if(document.getElementById(L[i][0]))continue;var s=document.createElement('style');s.id=L[i][0];s.textContent=L[i][1];h.appendChild(s);}})();\n" % json.dumps([css(f, i) for f, i, _ in STYLES])
+consent = layer(CONSENT)
+styles = "(function(){var L=%s;var h=document.head||document.documentElement;for(var i=0;i<L.length;i++){if(document.getElementById(L[i][0]))continue;var s=document.createElement('style');s.id=L[i][0];s.textContent=L[i][1];h.appendChild(s);}})();\n" % json.dumps([css(f, i) for f, i, _ in STYLES])
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
          "if(!document.querySelector('link[href=\"'+%s+'\"]')){var f=document.createElement('link');f.rel='stylesheet';f.href=%s;(document.head||document.documentElement).appendChild(f);}\n"
          "function place(){var s=document.createElement('style');s.id='tll-mag-story-v1';s.textContent=%s;document.body.appendChild(s);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
          "%s})();\n") % (json.dumps(mag_font), json.dumps(mag_font), json.dumps(mag_css), mag_js)
-COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
-cov = open(COVER).read()
+cov = read(COVER)
 cov_css = re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1)
 cov_js = re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1)
 cov_font = re.search(r'<link rel="stylesheet" href="([^"]+)">', cov).group(1)
-head = head.replace('   No data-ms-* element is touched. */', '   cover  %s (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)\n   No data-ms-* element is touched. */' % COVER)
 OLD_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n})();"
 assert cov_js.count(OLD_RUN) >= 1
 NEW_RUN = ("/* F1: fill the hero as soon as it has arrived (its next sibling exists), before the first paint; the page-parsed event stays as the fallback. */\n"
@@ -112,5 +224,15 @@ cover = ("(function(){if(!/^\\/(index\\.html)?$/.test(location.pathname))return;
          "function place(){document.body.appendChild(CS);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
          "%s})();\n") % (json.dumps(cov_font), json.dumps(cov_font), json.dumps(cov_css), cov_js_early)
-open('src/site-layers/tll-site-layers-v16.js', 'w').write(head + consent + loader + '\n'.join(open(f).read() for f, _ in SCRIPTS) + '\n' + story + cover)
-print('built', len(STYLES), 'styles', len(SCRIPTS), 'scripts + story layer', len(mag_css), 'css bytes + cover layer', len(cov_css), 'css bytes')
+core = (head + consent + LOADER + styles + ''.join(layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
+
+os.makedirs(CHUNK_DIR, exist_ok=True)
+for name, b in files.items():
+    open(os.path.join(CHUNK_DIR, name + '.js'), 'wb').write(b)
+for stale in sorted(glob.glob(os.path.join(CHUNK_DIR, '*.js'))):
+    if os.path.basename(stale)[:-3] not in files: os.remove(stale); print('removed stale chunk', stale)
+open(OUT, 'wb').write(core)
+print('core   %-24s %9s  (%s gzip)  %s' % (os.path.basename(OUT), kb(core), kb(gz(core)), sri(core)))
+for name in files:
+    print('chunk  %-24s %9s  (%s gzip)  %s' % (name + '.js', kb(files[name]), kb(gz(files[name])), hashes[name]))
+print('built core with', len(STYLES), 'styles,', len(CORE), 'core layers, story layer', len(mag_css), 'css bytes, cover layer', len(cov_css), 'css bytes;', len(files), 'chunks')
