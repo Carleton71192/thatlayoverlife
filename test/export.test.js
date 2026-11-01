@@ -39,6 +39,7 @@ describe('download everything', () => {
     expect(csv([{ a: 'x,y', b: ['p', 'q'], c: null }], ['a', 'b', 'c'])).toBe('a,b,c\n"x,y",p q,\n');
     const index = photosPage([{ folder: 'profile', name: 'avatar', url: 'https://x/a.jpg', alt: '' }, { folder: 'stories/b', name: 'cover', url: 'https://x/c.jpg?x=1&y=2', alt: 'Sofia <at> dusk' }, { folder: 'stories/b', name: 'photo-01', url: 'https://x/g.jpg', alt: '' }]);
     expect(index).toContain('<h1>Your photos</h1><p>3 photos, each with its link.');
+    expect(photosPage([{ folder: 'profile', name: 'avatar', url: 'https://x/a.jpg', alt: '' }])).toContain('<h1>Your photos</h1><p>1 photo, with its link. The photos themselves');
     expect(index).toContain('<h2>profile</h2><ul><li><a href="https://x/a.jpg">avatar</a></li></ul>');
     expect(index).toContain('<h2>stories/b</h2><ul><li><a href="https://x/c.jpg?x=1&amp;y=2">cover</a> <small>Sofia &lt;at&gt; dusk</small></li><li><a href="https://x/g.jpg">photo-01</a></li></ul>');
   });
@@ -102,7 +103,7 @@ function world() {
 }
 
 describe('POST /export/prepare and GET /export/zip', () => {
-  it('prepare checks the member, stores a 15-minute job and returns the link, the token and the photo list', async () => {
+  it('prepare checks the member, stores a job for the 60-minute photo window and returns the 15-minute link, the token and the photo list', async () => {
     const w = world();
     const r = await w.prepare({});
     expect(r.status).toBe(200);
@@ -118,8 +119,8 @@ describe('POST /export/prepare and GET /export/zip', () => {
       { folder: 'collections/magnets', name: 'japan-1', url: 'https://evil.example/x.jpg' },
     ]);
     const job = w.kv.get(`export:${token}`);
-    expect(job.ttl).toBe(900);
-    expect(JSON.parse(job.value)).toEqual({ memberId: 'mem_a', contributorId: ME, createdAt: NOW, states: null });
+    expect(job.ttl).toBe(3600);
+    expect(JSON.parse(job.value)).toEqual({ memberId: 'mem_a', contributorId: ME, createdAt: NOW, photoUntil: NOW + 60 * 60 * 1000, states: null });
     // The old JSON route still answers, and both share the ten-an-hour limit.
     const plain = await handleExport(new Request('https://w.example/export', { method: 'POST', headers: { Authorization: 'Bearer mem_a' }, body: '{}' }), w.env, w.opts());
     expect((await plain.json()).stories).toHaveLength(2);
@@ -145,11 +146,16 @@ describe('POST /export/prepare and GET /export/zip', () => {
       'pets.json', 'companions.json', 'map/map-summary.json', 'map/my-map.json', 'map/countries.csv', 'places-lived.json', 'places-lived.csv', 'photos/index.html', 'photos/photos.csv']);
     expect(textOf(by['README.txt'])).toMatch(/^That Layover Life: your copy\nExported 2026-10-31T12:00:00.000Z\nProfile: https:\/\/www.thatlayover.life\/contributors\/nancy-carleton\n/);
     expect(textOf(by['README.txt'])).toContain('- photos/: index.html and photos.csv, every photo with its link');
+    expect(textOf(by['README.txt'])).toContain('- stories/: each story as a page you can open in any browser, plus stories.json (the list of your stories; the text of each story is in its page)\n');
     expect(JSON.parse(textOf(by['profile.json']))).toMatchObject({ name: 'Nancy Carleton', slug: 'nancy-carleton' });
     expect(JSON.parse(textOf(by['profile.json']))['memberstack-id']).toBeUndefined();
     expect(textOf(by['stories/bulgaria.html'])).toContain('<h1>Bulgaria</h1>');
     expect(textOf(by['stories/draft-one.html'])).toContain('<small>Draft</small>');
-    expect(JSON.parse(textOf(by['stories/stories.json'])).map((s) => s.slug)).toEqual(['bulgaria', 'draft-one']);
+    // stories.json is compact and names each story's page instead of carrying the body again.
+    const storiesJson = textOf(by['stories/stories.json']);
+    expect(storiesJson).not.toContain('\n');
+    expect(JSON.parse(storiesJson).map((s) => [s.slug, s.page, s.body, s.status])).toEqual([['bulgaria', 'bulgaria.html', undefined, 'published'], ['draft-one', 'draft-one.html', undefined, 'draft']]);
+    expect(textOf(by['stories/bulgaria.html'])).toContain('<p>Sofia in May.</p>');
     expect(textOf(by['collections.csv'])).toBe('collection,country,city,year,caption,shownOnProfile,photos\nMagnets,Japan,,,,false,https://evil.example/x.jpg\n');
     expect(JSON.parse(textOf(by['pets.json']))).toEqual([{ name: 'Rex', breed: 'Beagle', countries: '', link: 'https://www.thatlayover.life/pets/rex', role: 'owner' }]);
     expect(JSON.parse(textOf(by['map/my-map.json']))).toEqual({ v: 2, travelers: [{ id: 'me', name: 'Nancy', pet: false }], states: { 208: { me: 'visited' }, 392: { me: 'lived' }, 900: { me: 'layover' } } });
@@ -176,7 +182,7 @@ describe('POST /export/prepare and GET /export/zip', () => {
     expect((await handleExportZip(new Request(url, { method: 'POST' }), w.env, w.opts())).status).toBe(405);
   });
 
-  it('the link works for the whole 15 minutes: the zip can be downloaded again and the photo proxy answers, then both are gone', async () => {
+  it('the link works for the whole 15 minutes and the photo proxy for 60: the zip can be downloaded again, then the link ends while the photos go on', async () => {
     const w = world();
     const { url, token } = await w.prepare({});
     const first = await w.zip(url);
@@ -188,6 +194,13 @@ describe('POST /export/prepare and GET /export/zip', () => {
     expect(readZip(await collectBytes(second.body)).length).toBeGreaterThan(10);
     expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 14 * 60 * 1000 })).status).toBe(200);
     expect((await w.zip(url, NOW + 15 * 60 * 1000)).status).toBe(404);
+    // The same token keeps the photo proxy open until photoUntil, 60 minutes from prepare.
+    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 15 * 60 * 1000 })).status).toBe(200);
+    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 59 * 60 * 1000 })).status).toBe(200);
+    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 60 * 60 * 1000 })).status).toBe(404);
+    // A job written without photoUntil falls back to the link's window.
+    w.kv.set(`export:${token}`, { value: JSON.stringify({ memberId: 'mem_a', contributorId: ME, createdAt: NOW, states: null }), ttl: 3600 });
+    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 14 * 60 * 1000 })).status).toBe(200);
     expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 15 * 60 * 1000 })).status).toBe(404);
     expect(w.log.filter((l) => l[0] === 'delete')).toHaveLength(0);
   });
@@ -229,7 +242,7 @@ describe('GET /export/photo', () => {
     expect(res.headers.get('Vary')).toBe('Origin');
     expect(Array.from(await collectBytes(res.body))).toEqual(Array.from(AVATAR));
     expect(w.fetched).toHaveLength(1);
-    expect(w.fetched[0].init).toMatchObject({ redirect: 'manual', headers: { Accept: 'image/*' } });
+    expect(w.fetched[0].init).toMatchObject({ redirect: 'follow', headers: { Accept: 'image/*' } });
     expect(w.fetched[0].init.signal).toBeInstanceOf(AbortSignal);
     expect(w.kv.has(`export:${token}`)).toBe(true);
     // The token still gates it, so another origin gets no Allow-Origin header and the bytes stay unreadable to its page.
@@ -242,12 +255,12 @@ describe('GET /export/photo', () => {
     expect((await w.photo(token, `${CDN}/avatar.jpg`, { method: 'POST' })).status).toBe(405);
   });
 
-  it('refuses without a live token, off the CMS hosts, and when the answer is a redirect, an error, another host or not an image', async () => {
+  it('refuses without a live token, off the CMS hosts, and when the answer is an error, an unfollowed redirect, another host or not an image', async () => {
     const w = world();
     const { token } = await w.prepare({});
     expect((await w.photo(null, `${CDN}/avatar.jpg`)).status).toBe(404);
     expect((await w.photo('f'.repeat(32), `${CDN}/avatar.jpg`)).status).toBe(404);
-    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 15 * 60 * 1000 })).status).toBe(404);
+    expect((await w.photo(token, `${CDN}/avatar.jpg`, { now: NOW + 60 * 60 * 1000 })).status).toBe(404);
     expect((await w.photo(token, 'https://evil.example/x.jpg')).status).toBe(400);
     expect((await w.photo(token, 'http://cdn.prod.website-files.com/avatar.jpg')).status).toBe(400);
     expect((await w.photo(token, 'https://notwebsite-files.com/avatar.jpg')).status).toBe(400);
@@ -255,7 +268,7 @@ describe('GET /export/photo', () => {
     expect((await w.photo(token, `${CDN}/missing.png`)).status).toBe(502);
     expect(w.fetched.map((f) => f.url)).toEqual([`${CDN}/missing.png`]);
     for (const [name, up] of [
-      ['redirect', upstream({ status: 302, type: null, bytes: new Uint8Array(0) })],
+      ['unfollowed redirect', upstream({ status: 302, type: null, bytes: new Uint8Array(0) })],
       ['another host', upstream({ url: 'https://evil.example/moved.jpg' })],
       ['not an image', upstream({ type: 'text/html' })],
       ['no content type', upstream({ type: null })],
@@ -266,8 +279,9 @@ describe('GET /export/photo', () => {
       // The upstream body is cancelled, never left to drain.
       expect([name, up.cancelled.length]).toEqual([name, 1]);
     }
+    // Redirects are followed: a legacy host that lands on the CDN is fine, the second host check is what refused evil.example above.
     const fine = upstream({ url: 'https://cdn.prod.website-files.com/avatar.jpg' });
-    expect((await w.photo(token, `${CDN}/avatar.jpg`, { fetchImpl: async () => fine.response })).status).toBe(200);
+    expect((await w.photo(token, 'https://uploads-ssl.webflow.com/avatar.jpg', { fetchImpl: async () => fine.response })).status).toBe(200);
     expect(fine.cancelled).toHaveLength(0);
   });
 

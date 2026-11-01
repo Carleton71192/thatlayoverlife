@@ -57,6 +57,17 @@ Counts on the tape are photos and countries in the album, not the member's whole
 | /account | "Your copy · Download everything" card | None | One button builds a zip in the browser: README, profile, stories as readable pages (drafts too), collections and stamps as CSV and JSON, pets, companions, full map and summary, every photo in folders; failed photos listed as links | Playbook: the lost-account fix, before the Instagram line goes on the homepage |
 | Worker | POST /export | None | Member's own records only; internal fields (member id, outreach notes, press check, badge label) removed; 10 an hour | Privacy |
 
+## Phase 4, step 1B: Download everything in two steps (1 Nov, staged on a branch, Worker not deployed)
+
+| Page | Element | Before | After | Reason |
+|---|---|---|---|---|
+| /account | "Download everything" button | Built the whole zip in the browser; failed on iPhone with "Load failed" | Asks the Worker to prepare the copy, then follows a link to the records zip (README, profile, story pages, collections, stamps, pets, companions, map, and a photo index with every link). Line: "Your copy is on its way. If nothing happened, tap here. The link works for 15 minutes." | Workers Free plan limits (10 ms CPU, 50 subrequests); the records are small, the photos are not |
+| /account | New button "Download your photos" | None | Fetches each photo through the Worker (same-policy, so iPhone Safari can read it) and saves zip parts of 25 photos: part 1 on the tap, each later part on its own "Save part N of K" button, with "Part N of K is ready to save." while it waits, then "Done. N stories, M photos (K listed as links)." and "M photos in K parts." | Browsers allow one download per tap; a second one without a tap is held behind a prompt (Chrome, Edge) or dropped (iOS Safari) |
+| /account | Card style | The card's CSS was defined but never added, so it showed in Webflow's defaults | The CSS is added once; message lines are hidden while empty | Pre-existing bug, fixed with this change |
+| /account | Error line | A network failure showed the browser's own words ("Failed to fetch", "Load failed") | A Worker message still shows as it is; any other failure reads "The download did not finish. Try again." | The browser's words are not ours; the old fallback line is back |
+| Records zip | README.txt and stories.json | stories.json held every story text again, pretty-printed; README said "photos/: every photo, in folders" | stories.json is the list without the text (each story's page has it; README says so); README says photos/ holds the index and the links | Worker CPU; the photos left the records zip |
+| Worker | POST /export/prepare, GET /export/zip, GET /export/photo | POST /export only | A prepared job behind a token: the records link works 15 minutes, the photo proxy 60; only the site's CMS hosts are fetched, images only, redirects followed and the final host checked | Same privacy shape as before; nothing new is stored |
+
 ## Phase 5: feedback loop into Notion (31 Oct, 17:08 UTC)
 
 - Notion database "TLL Feedback" (private until moved): Summary, Page, What happened, Expected, Type, Status (New, Approved, Building, Done, Not doing), Source, From (first name), Received, Effort, Week, Change log, Duplicate of.

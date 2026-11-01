@@ -60,7 +60,7 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-stamps-v1.js', '31 Oct Value Playbook Phase 2: pursuit stamps and badges, hub noindex until 6 stories from 3 writers'),
            ('src/site-layers/tll-album-v1.js', '31 Oct Value Playbook Phase 3: continent album and Slide Show on profiles, staged behind ?preview=album'),
            ('src/site-layers/tll-album-settings-v1.js', '31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5)'),
-           ('src/site-layers/tll-export-v1.js', '31 Oct Value Playbook Phase 4: Download everything on /account; 1 Nov Phase 1B: records zip from the Worker, photos in parts through /export/photo'),
+           ('src/site-layers/tll-export-v1.js', '31 Oct Value Playbook Phase 4: Download everything on /account; 1 Nov Phase 1B: records zip from the Worker, photos in parts through /export/photo, one tap per part'),
            ('src/site-layers/tll-pros-v1.js', '31 Oct Value Playbook Phase 6: From the Pros label, author box with one link, pro badge, hub row'),
            ('src/site-layers/tll-division-v1.js', '31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting'),
            ('src/site-layers/tll-paw-v1.js', '31 Oct Value Playbook Phase 8: Paw Passport waitlist and QR landing, staged behind ?preview=paw until the trademark is clear'),

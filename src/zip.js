@@ -10,6 +10,9 @@
 //   new Response(readable, { headers: { 'Content-Type': 'application/zip' } });
 //
 // Back-pressure: zipStream writes through a TransformStream, so a slow download slows the producer instead of buffering it.
+// CPU: each entry's local header and name are built as one array, and everything is gathered in a 64 KB buffer before it reaches
+// the stream, so an entry's header, name and bytes go out together and a records zip of a few hundred small files costs tens of
+// stream writes, not hundreds (130 to 380 before this; the src/export.js header has the timings).
 
 const TABLE = (() => {
   const t = new Uint32Array(256);
@@ -40,8 +43,26 @@ export function dosDateTime(now = Date.now()) {
   return { time, date };
 }
 
-function u16(v) { return [v & 0xff, (v >>> 8) & 0xff]; }
-function u32(v) { return [v & 0xff, (v >>> 8) & 0xff, (v >>> 16) & 0xff, (v >>> 24) & 0xff]; }
+/** How many bytes gather before one write reaches the stream; a piece this large or larger goes out on its own, uncopied. */
+export const WRITE_BUFFER = 64 * 1024;
+
+/**
+ * One array from little-endian words and byte runs: an item is [2, value] or [4, value] for a word, or a Uint8Array to copy in.
+ * Builds a whole zip record (a header and its name) in one allocation instead of one spread array per word.
+ */
+function record(items) {
+  let size = 0;
+  for (const it of items) size += it instanceof Uint8Array ? it.length : it[0];
+  const out = new Uint8Array(size);
+  const dv = new DataView(out.buffer);
+  let at = 0;
+  for (const it of items) {
+    if (it instanceof Uint8Array) { out.set(it, at); at += it.length; continue; }
+    if (it[0] === 2) dv.setUint16(at, it[1] & 0xffff, true); else dv.setUint32(at, it[1] >>> 0, true);
+    at += it[0];
+  }
+  return out;
+}
 
 /** Turns a string, bytes, ArrayBuffer, ReadableStream, Blob or async iterable into an async iterable of Uint8Array chunks. */
 async function* chunksOf(data) {
@@ -77,14 +98,28 @@ export class ZipWriter {
     this.entries = [];
     this.stamp = dosDateTime(now);
     this.finished = false;
+    this.buffer = new Uint8Array(WRITE_BUFFER);
+    this.buffered = 0;
   }
 
-  async emit(bytes) {
-    const chunk = bytes instanceof Uint8Array ? bytes : Uint8Array.from(bytes);
-    if (!chunk.length) return;
+  /** Hands what has gathered in the buffer to write(), as a copy: the buffer is reused, the written chunk may still be queued. */
+  async flush() {
+    if (!this.buffered) return;
+    const chunk = this.buffer.slice(0, this.buffered);
+    this.buffered = 0;
     await this.write(chunk);
+  }
+
+  /** Queues bytes at the archive position: small pieces gather in the buffer, a piece the buffer cannot hold goes out after it. */
+  async emit(chunk) {
+    if (!chunk.length) return;
     this.offset += chunk.length;
     if (this.offset > MAX32) throw new Error('zip: archive is over 4 GB, which a classic zip cannot hold');
+    if (this.buffered + chunk.length <= WRITE_BUFFER) { this.buffer.set(chunk, this.buffered); this.buffered += chunk.length; return; }
+    await this.flush();
+    if (chunk.length >= WRITE_BUFFER) { await this.write(chunk); return; }
+    this.buffer.set(chunk, 0);
+    this.buffered = chunk.length;
   }
 
   /**
@@ -104,12 +139,12 @@ export class ZipWriter {
     let crc = known ? crc32(known) : 0;
     let size = known ? known.length : 0;
     if (size > MAX32) throw new Error(`zip: ${name} is over 4 GB`);
-    // Local file header. With a known size the real values go here; otherwise zeros (bit 3) and a data descriptor after the bytes.
-    await this.emit([
-      ...u32(0x04034b50), ...u16(20), ...u16(flags), ...u16(0), ...u16(this.stamp.time), ...u16(this.stamp.date),
-      ...u32(crc), ...u32(size), ...u32(size), ...u16(nameBytes.length), ...u16(0),
-    ]);
-    await this.emit(nameBytes);
+    // Local file header and name as one record. With a known size the real values go here; otherwise zeros (bit 3) and a data
+    // descriptor after the bytes. The record and the bytes meet in the write buffer, so the stream sees them together.
+    await this.emit(record([
+      [4, 0x04034b50], [2, 20], [2, flags], [2, 0], [2, this.stamp.time], [2, this.stamp.date],
+      [4, crc], [4, size], [4, size], [2, nameBytes.length], [2, 0], nameBytes,
+    ]));
     if (known) {
       await this.emit(known);
     } else {
@@ -119,29 +154,29 @@ export class ZipWriter {
         if (size > MAX32) throw new Error(`zip: ${name} is over 4 GB`);
         await this.emit(chunk);
       }
-      await this.emit([...u32(0x08074b50), ...u32(crc), ...u32(size), ...u32(size)]);
+      await this.emit(record([[4, 0x08074b50], [4, crc], [4, size], [4, size]]));
     }
     this.entries.push({ nameBytes, crc, size, headerOffset, flags });
     return { name, size, crc };
   }
 
-  /** Writes the central directory and the end record. Call once, after the last file. */
+  /** Writes the central directory and the end record, then flushes the buffer. Call once, after the last file. */
   async finish() {
     if (this.finished) return;
     this.finished = true;
     const start = this.offset;
     for (const e of this.entries) {
-      await this.emit([
-        ...u32(0x02014b50), ...u16(20), ...u16(20), ...u16(e.flags), ...u16(0), ...u16(this.stamp.time), ...u16(this.stamp.date),
-        ...u32(e.crc), ...u32(e.size), ...u32(e.size), ...u16(e.nameBytes.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0), ...u32(0),
-        ...u32(e.headerOffset),
-      ]);
-      await this.emit(e.nameBytes);
+      await this.emit(record([
+        [4, 0x02014b50], [2, 20], [2, 20], [2, e.flags], [2, 0], [2, this.stamp.time], [2, this.stamp.date],
+        [4, e.crc], [4, e.size], [4, e.size], [2, e.nameBytes.length], [2, 0], [2, 0], [2, 0], [2, 0], [4, 0],
+        [4, e.headerOffset], e.nameBytes,
+      ]));
     }
     const size = this.offset - start;
-    await this.emit([
-      ...u32(0x06054b50), ...u16(0), ...u16(0), ...u16(this.entries.length), ...u16(this.entries.length), ...u32(size), ...u32(start), ...u16(0),
-    ]);
+    await this.emit(record([
+      [4, 0x06054b50], [2, 0], [2, 0], [2, this.entries.length], [2, this.entries.length], [4, size], [4, start], [2, 0],
+    ]));
+    await this.flush();
   }
 }
 

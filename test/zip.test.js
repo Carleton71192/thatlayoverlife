@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ZipWriter, collectBytes, crc32, dosDateTime, entryName, zipStream } from '../src/zip.js';
+import { WRITE_BUFFER, ZipWriter, collectBytes, crc32, dosDateTime, entryName, zipStream } from '../src/zip.js';
 import { readZip, textOf } from './zip-read.js';
 
 const enc = (s) => new TextEncoder().encode(s);
@@ -75,11 +75,13 @@ describe('store-only streaming zip', () => {
   it('streams: bytes come out before the producer is done, and a producer error ends the stream with an error, not a truncated file', async () => {
     let release;
     const gate = new Promise((r) => { release = r; });
-    const readable = zipStream(async (zip) => { await zip.file('first.txt', 'first'); await gate; await zip.file('second.txt', 'second'); }, { now: NOW });
+    // The first entry is larger than the write buffer, so it reaches the stream before the producer waits at the gate.
+    const first = new Uint8Array(WRITE_BUFFER + 1000).fill(7);
+    const readable = zipStream(async (zip) => { await zip.file('first.bin', first); await gate; await zip.file('second.txt', 'second'); }, { now: NOW });
     const reader = readable.getReader();
-    const first = await reader.read();
-    expect(first.done).toBe(false);
-    expect(first.value.length).toBeGreaterThan(0);
+    const head = await reader.read();
+    expect(head.done).toBe(false);
+    expect(head.value.length).toBeGreaterThan(0);
     release();
     reader.releaseLock();
     const rest = await collectBytes(readable);
@@ -87,6 +89,36 @@ describe('store-only streaming zip', () => {
 
     const broken = zipStream(async (zip) => { await zip.file('a.txt', 'a'); throw new Error('photo source died'); }, { now: NOW });
     await expect(collectBytes(broken)).rejects.toThrow('photo source died');
+  });
+
+  it('gathers small entries into writes of about 64 KB: header, name and bytes reach the stream together', async () => {
+    const writes = [];
+    const one = new ZipWriter((c) => { writes.push(c); }, { now: NOW });
+    await one.file('that-layover-life/README.txt', 'hello world\n');
+    expect(writes).toHaveLength(0);
+    await one.finish();
+    // One entry, its central directory and the end record: a single write, and the archive reads back whole.
+    expect(writes).toHaveLength(1);
+    expect(readZip(writes[0]).map((e) => [e.name, textOf(e)])).toEqual([['that-layover-life/README.txt', 'hello world\n']]);
+
+    const many = new ZipWriter((c) => { writes.push(c); }, { now: NOW });
+    writes.length = 0;
+    const line = 'x'.repeat(1000);
+    for (let i = 0; i < 200; i += 1) await many.file(`that-layover-life/stories/story-${i}.html`, line);
+    await many.file('that-layover-life/big.bin', new Uint8Array(WRITE_BUFFER * 2).fill(1));
+    await many.finish();
+    // 200 KB of small entries make four writes, the 128 KB entry goes out on its own after the buffer, then the directory.
+    expect(writes.length).toBeLessThanOrEqual(8);
+    expect(writes.every((c) => c.length <= WRITE_BUFFER * 2)).toBe(true);
+    expect(writes.some((c) => c.length === WRITE_BUFFER * 2)).toBe(true);
+    const total = writes.reduce((n, c) => n + c.length, 0);
+    const bytes = new Uint8Array(total);
+    let at = 0;
+    for (const c of writes) { bytes.set(c, at); at += c.length; }
+    const entries = readZip(bytes);
+    expect(entries).toHaveLength(201);
+    expect(entries.every((e) => e.crcOk)).toBe(true);
+    expect(pythonCheck(bytes).report.bad).toBeNull();
   });
 
   it('cleans entry names and refuses what a zip cannot hold', async () => {

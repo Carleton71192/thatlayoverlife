@@ -12,15 +12,34 @@
 //   GET  /export/zip?t=     the records zip, streamed as it is built (src/zip.js): README, profile, stories, collections, stamps,
 //                           pets, companions, places lived, the map files, and photos/index.html plus photos/photos.csv listing
 //                           every photo with its link. No photo bytes. 404 when the token is missing, wrong or expired.
-//   GET  /export/photo?t=&u= one photo, passed through from the CMS host to the browser: same job token (not consumed), host
-//                           allowlist, image content types only, the upstream body returned as it is. The browser packs the
-//                           photos into zip parts itself (tll-export-v1.js). CORS for the site origins, so fetch can read it.
+//   GET  /export/photo?t=&u= one photo, passed through from the CMS host to the browser: same job token (not consumed, good
+//                           for 60 minutes here against the link's 15), host allowlist on the URL asked for and on the URL the
+//                           bytes came from (redirects followed), image content types only, the upstream body returned as it
+//                           is. The browser packs the photos into zip parts itself (tll-export-v1.js). CORS for the site
+//                           origins, so fetch can read it.
 //
 // Plan assumption (1 Nov 2026): the handoff notes say tll-travel-wire runs on the Cloudflare Workers Free plan, which allows about
-// 10 ms of CPU per request and 50 subrequests. That is why the zip holds records only (small, store-only, a few ms of CRC) and
-// the photos go one per request through /export/photo with no CRC and no copying. Streaming every photo byte through the Worker
-// (the first Phase 1B design) would have failed mid-stream on Free. The token lives for its 15 minutes (KV TTL) and is never
-// deleted on download, so the records zip and the photo proxy keep working for the whole window.
+// 10 ms of CPU per request and 50 subrequests. That is why the zip holds records only (small, store-only) and the photos go one
+// per request through /export/photo with no CRC and no copying. Streaming every photo byte through the Worker (the first Phase
+// 1B design) would have failed mid-stream on Free. The job lives for 60 minutes (KV TTL) and is never deleted on download: the
+// records link is honored for 15 minutes of that (expiresAt) and the photo proxy until photoUntil, the full 60, because a large
+// library on a slow connection needs longer than the link.
+//
+// CPU, measured in Node 22 with scratchpad/time-export.mjs (15 KB story bodies, four photos per story, the zip written to a plain
+// sink; through zipStream in brackets), median of 30 runs:
+//   at de2270a:  10 stories 2.7 ms (4.2), 20 stories 4.7 ms (6.6), 40 stories 9.5 ms (16.3), 60 stories 12.0 ms (13.7),
+//                131 to 381 stream writes; every body was written twice, once pretty-printed in stories.json and once in its page
+//   now:         10 stories 1.5 ms (1.7 to 2.3), 20 stories 2.4 to 3.0 ms (2.8), 40 stories 4.0 to 4.4 ms (4.8 to 5.5), 60 stories
+//                5.8 to 6.6 ms (11), 4 to 17 stream writes, and the zip is about half the size (0.66 MB for 40 stories, was 1.25)
+// Add 1 to 7 ms of JSON.parse for the Webflow pages gather reads. A CPU cutoff on /export/zip would land after the headers are
+// sent, so the browser would get a truncated zip rather than the problem page: the site owner's own export (40 or more long
+// stories) is the one to watch after deploy. Node is not workerd, so these are a guide, not a guarantee.
+//
+// Subrequests: a records zip costs one KV read plus every page of seven site-wide collections (contributors until the member is
+// found, stories, collection items, stamps, pets, categories, pursuits, plus contributors again when the member has a crew):
+// about 9 to 10 today, reaching the Free plan's 50 at roughly 4,000 site-wide records. gather finishes before the first byte, so
+// hitting the limit gives the 502 problem page, not a truncated zip. When the collections grow, filter stories by contributor
+// and items by owner with the Webflow API's field filters instead of listing everything.
 //
 // Phase 1B (1 Nov 2026): the browser version (JSZip, photos fetched cross-origin into memory) failed on iPhone with "Load failed"
 // and could run out of memory on a 100-photo zip. Now the records come as a plain link download and each photo comes through
@@ -34,7 +53,10 @@ import { zipStream } from './zip.js';
 const SITE = 'https://www.thatlayover.life';
 const PRIVATE_FIELDS = ['memberstack-id', 'outreach-status', 'outreach-notes', 'source-list', 'press-verified', 'badge-label', 'currently-in'];
 const ROOT = 'that-layover-life';
+/** How long the records link (GET /export/zip) is honored. */
 export const JOB_TTL_SECONDS = 15 * 60;
+/** How long the photo proxy honors the same token, and the job's KV TTL. */
+export const PHOTO_WINDOW_SECONDS = 60 * 60;
 export const MAX_PREPARE_BYTES = 200 * 1024;
 /** How long /export/photo waits for the CMS host's headers. The body is not timed: the browser is the slow side. */
 export const PHOTO_HEADER_TIMEOUT_MS = 20000;
@@ -127,12 +149,12 @@ export function photosPage(photos) {
   for (const p of photos) { if (!groups.has(p.folder)) groups.set(p.folder, []); groups.get(p.folder).push(p); }
   const n = photos.length;
   return `<!doctype html><meta charset="utf-8"><title>Your photos</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}h2{font-size:17px;margin:24px 0 4px}a{color:#067A79}small{color:#5F5A54}</style>`
-    + `<h1>Your photos</h1><p>${n} ${n === 1 ? 'photo' : 'photos'}, each with its link. The photos themselves come as zip parts from "Download your photos" on your account page.</p>`
+    + `<h1>Your photos</h1><p>${n === 1 ? '1 photo, with its link.' : `${n} photos, each with its link.`} The photos themselves come as zip parts from "Download your photos" on your account page.</p>`
     + [...groups].map(([folder, list]) => `<h2>${esc(folder)}</h2><ul>${list.map((p) => `<li><a href="${esc(p.url)}">${esc(p.name)}</a>${p.alt ? ` <small>${esc(p.alt)}</small>` : ''}</li>`).join('')}</ul>`).join('');
 }
 
 export function readme(d) {
-  return `That Layover Life: your copy\nExported ${d.exportedAt}\nProfile: ${d.profileLink}\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: index.html and photos.csv, every photo with its link, in folders by story, collection, stamp and pet. The photos themselves come as zip parts from "Download your photos" on your account page.\n\nPrivate collections and stamps are included: this copy is only for you.\n`;
+  return `That Layover Life: your copy\nExported ${d.exportedAt}\nProfile: ${d.profileLink}\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json (the list of your stories; the text of each story is in its page)\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: index.html and photos.csv, every photo with its link, in folders by story, collection, stamp and pet. The photos themselves come as zip parts from "Download your photos" on your account page.\n\nPrivate collections and stamps are included: this copy is only for you.\n`;
 }
 
 /** The English country name for an alpha-2 code, or the code when the runtime has no names. */
@@ -236,7 +258,9 @@ export async function writeExportZip(zip, d, map) {
   const json = (v) => JSON.stringify(v, null, 2);
   await file('README.txt', readme(d));
   await file('profile.json', json(d.profile));
-  await file('stories/stories.json', json(d.stories));
+  // stories.json is compact and carries no bodies: every body is in its own page (named here), and writing each one a second
+  // time, pretty-printed, cost more CPU than all the CRCs together (see the header).
+  await file('stories/stories.json', JSON.stringify(d.stories.map(({ body, ...rest }) => ({ ...rest, page: `${safe(rest.slug)}.html` }))));
   for (const s of d.stories) await file(`stories/${safe(s.slug)}.html`, storyPage(s));
   await file('collections.json', json(d.collections));
   await file('collections.csv', csv(d.collections, ['collection', 'country', 'city', 'year', 'caption', 'shownOnProfile', 'photos']));
@@ -267,12 +291,17 @@ function newToken() {
 
 const ready = (env) => env.WEBFLOW_TOKEN && env.MEMBERSTACK_KEY && env.CONTRIBUTORS_COLLECTION_ID && env.WIRE_KV;
 
-/** The job behind a token, or null when the token is missing, wrong or past its 15 minutes. Never consumed: KV's TTL ends it. */
-async function loadJob(env, token, now) {
+/** When the records link stops working: 15 minutes from prepare. */
+export const linkUntil = (job) => job.createdAt + JOB_TTL_SECONDS * 1000;
+/** When the photo proxy stops honoring the token: photoUntil from the job (60 minutes), or the link's window for a job without it. */
+export const photoUntil = (job) => (typeof job.photoUntil === 'number' ? job.photoUntil : linkUntil(job));
+
+/** The job behind a token, or null when the token is missing or wrong or the window (`until`) has closed. Never consumed: KV's TTL ends it. */
+async function loadJob(env, token, now, until = linkUntil) {
   if (!TOKEN.test(token)) return null;
   let job = null;
   try { job = JSON.parse((await env.WIRE_KV.get(`export:${token}`)) || 'null'); } catch { job = null; }
-  if (!isObject(job) || typeof job.memberId !== 'string' || !(job.createdAt + JOB_TTL_SECONDS * 1000 > now)) return null;
+  if (!isObject(job) || typeof job.memberId !== 'string' || typeof job.createdAt !== 'number' || !(until(job) > now)) return null;
   return job;
 }
 
@@ -314,8 +343,8 @@ export async function handleExportPrepare(request, env, { fetchImpl = fetch, now
   const got = await gather(env, fetchImpl, auth.memberId, now);
   if (!got) return reply({ error: 'Your profile page has not been created yet.' }, 404);
   const token = newToken();
-  const job = { memberId: auth.memberId, contributorId: got.me.id, createdAt: now, states: map };
-  await env.WIRE_KV.put(`export:${token}`, JSON.stringify(job), { expirationTtl: JOB_TTL_SECONDS });
+  const job = { memberId: auth.memberId, contributorId: got.me.id, createdAt: now, photoUntil: now + PHOTO_WINDOW_SECONDS * 1000, states: map };
+  await env.WIRE_KV.put(`export:${token}`, JSON.stringify(job), { expirationTtl: PHOTO_WINDOW_SECONDS });
   const url = `${new URL(request.url).origin}/export/zip?t=${token}`;
   const photoList = got.data.photos.map(({ folder, name, url: u }) => ({ folder, name, url: u }));
   return reply({ ok: true, url, token, expiresAt: new Date(now + JOB_TTL_SECONDS * 1000).toISOString(), stories: got.data.stories.length, photos: photoList.length, photoList });
@@ -353,10 +382,13 @@ export function photoCors(request) {
 }
 
 /**
- * GET /export/photo?t=<token>&u=<url>: one photo passed through from a CMS host. The job token gates it (not consumed), the host
- * allowlist is checked on the URL asked for and on the URL the answer came from (redirects are refused), the content type must be
- * an image, and the upstream body is returned as it is: no CRC, no copy, so the Worker's CPU time is next to nothing. Only the
- * wait for headers is timed (20 s); the timer is cleared the moment they arrive, because the browser may read the body slowly.
+ * GET /export/photo?t=<token>&u=<url>: one photo passed through from a CMS host. The job token gates it (not consumed, honored
+ * until photoUntil), the host allowlist is checked on the URL asked for and again on the URL the bytes came from, the content
+ * type must be an image, and the upstream body is returned as it is: no CRC, no copy, so the Worker's CPU time is next to
+ * nothing. Redirects are followed, because Webflow's older asset hosts (uploads-ssl.webflow.com, assets.website-files.com,
+ * assets-global.website-files.com) answer 301 to cdn.prod.website-files.com; the second host check is what keeps a hop off the
+ * allowlist out. Only the wait for headers is timed (20 s); the timer is cleared the moment they arrive, because the browser may
+ * read the body slowly.
  */
 export async function handleExportPhoto(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
   const cors = photoCors(request);
@@ -365,7 +397,7 @@ export async function handleExportPhoto(request, env, { fetchImpl = fetch, now =
   if (request.method !== 'GET') return no('method not allowed', 405);
   if (!ready(env)) return no('Downloads are not switched on yet.', 503);
   const params = new URL(request.url).searchParams;
-  const job = await loadJob(env, params.get('t') || '', now);
+  const job = await loadJob(env, params.get('t') || '', now, photoUntil);
   if (!job) return no('That download link has expired. Go back to your account page and press the button again.', 404);
   const target = params.get('u') || '';
   if (!photoHost(target)) return no('not a site photo', 400);
@@ -373,7 +405,7 @@ export async function handleExportPhoto(request, env, { fetchImpl = fetch, now =
   const timer = controller ? setTimeout(() => controller.abort(), PHOTO_HEADER_TIMEOUT_MS) : null;
   let upstream = null;
   try {
-    upstream = await fetchImpl(target, { headers: { Accept: 'image/*' }, redirect: 'manual', signal: controller ? controller.signal : undefined });
+    upstream = await fetchImpl(target, { headers: { Accept: 'image/*' }, redirect: 'follow', signal: controller ? controller.signal : undefined });
   } catch {
     upstream = null;
   } finally {
@@ -381,8 +413,8 @@ export async function handleExportPhoto(request, env, { fetchImpl = fetch, now =
   }
   if (!upstream) return no('The photo did not answer in time.', 504);
   const drop = (message) => { try { upstream.body?.cancel().catch(() => {}); } catch { /* already gone */ } return no(message, 502); };
-  if (upstream.status >= 300 && upstream.status < 400) return drop('the photo moved');
   if (!upstream.ok || !upstream.body) return drop('the photo did not download');
+  // The URL the bytes came from, after any redirect, must be on the allowlist too (a response without a url is our own test double).
   if (upstream.url && !photoHost(upstream.url)) return drop('the photo came from another host');
   const type = upstream.headers.get('content-type') || '';
   if (!/^image\//i.test(type)) return drop('not an image');
