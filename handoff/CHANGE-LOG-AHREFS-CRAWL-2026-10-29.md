@@ -39,3 +39,12 @@ Not proposed: "Changed pages not submitted to IndexNow" (107). Webflow has no In
 - **Lock:** A1 is a Webflow write, so it waits for the lock, which the cloud session holds now for the page photos.
 
 Reply with the item numbers to approve.
+
+## Approved 1 November 2026
+Nancy: "Approve all" (A1 to A5).
+
+## A1 written and on the subdomain (1 November 2026)
+Written under the usability session's shared lock scope, then published to the subdomain only (task c848f5e3).
+- **What changed:** the Countries template head code now ends with the country structured data, id tll-country-ld-v1. The JSON-LD page setting is cleared.
+- **Check on that-layover-life.webflow.io:** all 197 country pages have one block that parses. Each has its own name, address (/countries/{slug}), country code and description, for example Afghanistan, AF.
+- **Live** waits for Nancy's word, with the usability session's /creators build.
