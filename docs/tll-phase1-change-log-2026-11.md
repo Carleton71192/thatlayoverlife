@@ -1,4 +1,4 @@
-# Phase 1, speed and photos: change log (1 Nov 2026, staged, nothing published, Worker not deployed)
+# Phase 1, speed and photos: change log (1 Nov 2026, staged as site layers 16.50.0, nothing published, Worker not deployed)
 
 **Read for this phase:** Nancy's Phase 1 prompt, the "TLL build order and brand refresh" doc, the saved live code in `scratchpad/p0-1031/`, and the three inventories in `docs/phase1-inventories-2026-11.md`. The project docs the prompt names (performance baseline, photo upload fix, Download everything fix prompt, UX flows Phase 7) are not in the repo or this session; the audit table in the prompt itself was the brief.
 
@@ -22,9 +22,10 @@
 |---|---|
 | One 500 KB file, render-blocking on every page | A 159 KB core in the header, plus chunks loaded per page without blocking the parser |
 | Home page downloads 500 KB of script | Home page downloads about 220 KB in all (core plus the home and site chunks) |
+| Live: 16.49.0 (pin 4fdf0e1d) | Staged: 16.50.0 (pin 8c86c215), registered and applied to the header on 1 Nov 12:32 UTC, waiting on a publish |
 
 - **The core** holds what must run before the first paint: the consent defaults, the nine CSS blocks, the cover layer for the home page, the story layer for story pages, the page-hero photos (so /stories, /travelers, /the-map, /about and /for-expats do not shift), the ad pause for ad-free pages, the Phase 0 redirects and noindex rules, and a two-kilobyte loader.
-- **The chunks** (23 files under `src/site-layers/chunks/`) hold everything that waits for the page anyway: /stories 40 KB, a story page 29 KB, /submit 37 KB, /edit-profile 94 KB, a profile 68 KB, /account 46 KB, the map 19 KB, and so on. Staged layers (expat, pets, UX previews) ride in separate `-preview` chunks that load only when a preview switch is on, so the public never downloads staged code.
+- **The chunks** (23 files under `src/site-layers/chunks/`) hold everything that waits for the page anyway: /stories 40 KB, a story page 29 KB, /submit 37 KB, /edit-profile 94 KB, a profile 68 KB, /account 51 KB (with the rebuilt export), the map 19 KB, and so on. Staged layers (expat, pets, UX previews) ride in separate `-preview` chunks that load only when a preview switch is on, so the public never downloads staged code.
 - **How a chunk loads:** the core reads its own script URL (the pinned jsDelivr commit) and appends the chunk files from the same commit, in order, each with an integrity hash computed at build time, so a chunk can never be swapped or served stale. No change to the release steps.
 - **Nothing in any layer changed for the split** except two one-line fixes the reviewers asked for: the album settings section polls for its anchors instead of relying on two fixed timers, and the pursuit hub noindex now sits in the core so a hub page is safe before its chunk arrives.
 - **Accepted tradeoff:** /travelers can show the retired open-slot tile for a moment on a slow connection before its chunk hides it. The optional next step, moving the cover and story layers into page-level scripts (about 30 KB core), needs Webflow registrations against the 15-script cap and waits for Nancy.
@@ -83,7 +84,7 @@ Phase 0 replaced the ad script in the site head, but the home page's own head co
 
 1. Allow `www.thatlayover.life` (and ideally `cdn.jsdelivr.net`, `cdn.prod.website-files.com`, `res.cloudinary.com`) under Network access for this environment, so the baseline and the after numbers can be measured.
 2. Approve the /account card strings and the styled card (see `scratchpad/shots-1031/export_*.png`).
-3. Deploy the Worker, then say go for the publish. The new core is registered as a staged version and applied; it goes live only with a publish.
+3. Deploy the Worker, then say go for the publish. The new core is registered as 16.50.0 and applied to the header; it goes live only with a publish. Any publish by anyone carries it, so the lock file says what to do if a publish is needed before your go.
 4. After publish, on the subdomain first: open the home page (the cover fills before paint as before), a story page, /travelers, /the-map (save still posts continent counts), and run one export with more than 25 photos on an iPhone and a Mac.
 5. A session for the fonts and the home page footer scripts.
 
