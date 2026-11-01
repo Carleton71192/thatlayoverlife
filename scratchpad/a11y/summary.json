@@ -1,0 +1,1096 @@
+[
+ {
+  "page": "home",
+  "width": 390,
+  "critical": 1,
+  "serious": 2,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "label:criticalx1",
+   "link-name:seriousx1",
+   "region:moderatex11"
+  ],
+  "incomplete": [
+   "aria-prohibited-attrx1",
+   "color-contrastx107"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "1",
+  "smallAfterFloor": 30,
+  "coveredByNote": 0,
+  "noRing": 2,
+  "errors": 1
+ },
+ {
+  "page": "home",
+  "width": 1440,
+  "critical": 1,
+  "serious": 2,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "label:criticalx1",
+   "link-name:seriousx1",
+   "region:moderatex11"
+  ],
+  "incomplete": [
+   "aria-prohibited-attrx1",
+   "color-contrastx47"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "1",
+  "smallAfterFloor": 30,
+  "coveredByNote": 0,
+  "noRing": 2,
+  "errors": 1
+ },
+ {
+  "page": "home-1028",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "region:moderatex11"
+  ],
+  "incomplete": [
+   "aria-prohibited-attrx1",
+   "color-contrastx82"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 22,
+  "coveredByNote": 6,
+  "noRing": 2,
+  "errors": 1
+ },
+ {
+  "page": "home-1028",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "region:moderatex11"
+  ],
+  "incomplete": [
+   "aria-prohibited-attrx1",
+   "color-contrastx56"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 21,
+  "coveredByNote": 2,
+  "noRing": 2,
+  "errors": 1
+ },
+ {
+  "page": "story-spain",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 36,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex35"
+  ],
+  "incomplete": [
+   "color-contrastx35"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 16,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "story-spain",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 36,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex35"
+  ],
+  "incomplete": [
+   "color-contrastx35"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 16,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "story-ghana",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 40,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex39"
+  ],
+  "incomplete": [
+   "color-contrastx37"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 16,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "story-ghana",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 40,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex39"
+  ],
+  "incomplete": [
+   "color-contrastx37"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 16,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "story-pantanal",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 43,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex42"
+  ],
+  "incomplete": [
+   "color-contrastx36"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 17,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "story-pantanal",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 43,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex42"
+  ],
+  "incomplete": [
+   "color-contrastx36"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "20",
+  "smallAfterFloor": 17,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "stories",
+  "width": 390,
+  "critical": 0,
+  "serious": 3,
+  "moderate": 0,
+  "minor": 2,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "empty-heading:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "scrollable-region-focusable:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx13"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "8",
+  "smallAfterFloor": 6,
+  "coveredByNote": 4,
+  "noRing": 0,
+  "errors": 2
+ },
+ {
+  "page": "stories",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 0,
+  "minor": 2,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "empty-heading:minorx1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx3"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "8",
+  "smallAfterFloor": 5,
+  "coveredByNote": 0,
+  "noRing": 1,
+  "errors": 2
+ },
+ {
+  "page": "the-map",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx6"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 1,
+  "coveredByNote": 4,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "the-map",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx8"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "travelers",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "1",
+  "smallAfterFloor": 1,
+  "coveredByNote": 3,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "travelers",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "1",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "about",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx4"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 2,
+  "coveredByNote": 5,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "about",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx8"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 1,
+  "coveredByNote": 1,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "for-expats",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx7"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "3",
+  "smallAfterFloor": 3,
+  "coveredByNote": 4,
+  "noRing": 0,
+  "errors": 2
+ },
+ {
+  "page": "for-expats",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx3"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "3",
+  "smallAfterFloor": 2,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 2
+ },
+ {
+  "page": "contact",
+  "width": 390,
+  "critical": 0,
+  "serious": 3,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx2",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx6"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 4,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "contact",
+  "width": 1440,
+  "critical": 0,
+  "serious": 2,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx6"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 4,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "support",
+  "width": 390,
+  "critical": 0,
+  "serious": 2,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx7"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "1",
+  "smallAfterFloor": 1,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "support",
+  "width": 1440,
+  "critical": 0,
+  "serious": 2,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx6"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "1",
+  "smallAfterFloor": 1,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "signup",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 15,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex13"
+  ],
+  "incomplete": [
+   "color-contrastx1",
+   "form-field-multiple-labelsx2"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 3,
+  "mains": 0,
+  "floor": "5",
+  "smallAfterFloor": 5,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "signup",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 15,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex13"
+  ],
+  "incomplete": [
+   "color-contrastx1",
+   "form-field-multiple-labelsx2"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 3,
+  "mains": 0,
+  "floor": "5",
+  "smallAfterFloor": 5,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "login",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex10"
+  ],
+  "incomplete": [
+   "color-contrastx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 2,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 4,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "login",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 12,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex10"
+  ],
+  "incomplete": [
+   "color-contrastx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 2,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 4,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "edit-profile",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [
+   "skip-linkx1"
+  ],
+  "unlabeled": 7,
+  "sharedIds": 23,
+  "mains": 0,
+  "floor": "2",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "edit-profile",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 3,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "page-has-heading-one:moderatex1",
+   "region:moderatex1"
+  ],
+  "incomplete": [
+   "skip-linkx1"
+  ],
+  "unlabeled": 7,
+  "sharedIds": 23,
+  "mains": 0,
+  "floor": "2",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "submit",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [],
+  "unlabeled": 1,
+  "sharedIds": 34,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "submit",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [],
+  "unlabeled": 1,
+  "sharedIds": 34,
+  "mains": 1,
+  "floor": "2",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "share-photos",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [
+   "duplicate-id-ariax2"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 12,
+  "mains": 1,
+  "floor": "4",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "share-photos",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [
+   "duplicate-id-ariax2"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 12,
+  "mains": 1,
+  "floor": "4",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "my-pets",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [],
+  "unlabeled": 0,
+  "sharedIds": 6,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "my-pets",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [],
+  "unlabeled": 0,
+  "sharedIds": 6,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "newsletter",
+  "width": 390,
+  "critical": 1,
+  "serious": 2,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "label:criticalx1"
+  ],
+  "incomplete": [
+   "color-contrastx8"
+  ],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "newsletter",
+  "width": 1440,
+  "critical": 1,
+  "serious": 2,
+  "moderate": 1,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "color-contrast:seriousx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "label:criticalx1"
+  ],
+  "incomplete": [],
+  "unlabeled": 1,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "0",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "account",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 2,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "page-has-heading-one:moderatex1"
+  ],
+  "incomplete": [
+   "aria-allowed-rolex1",
+   "skip-linkx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 0,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "account",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 6,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex4"
+  ],
+  "incomplete": [
+   "aria-allowed-rolex1",
+   "color-contrastx1"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "4",
+  "smallAfterFloor": 1,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "the-paw-passport",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 0,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx10"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "3",
+  "smallAfterFloor": 3,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 2
+ },
+ {
+  "page": "the-paw-passport",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 0,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "label-content-name-mismatch:seriousx1"
+  ],
+  "incomplete": [
+   "color-contrastx10"
+  ],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 1,
+  "floor": "3",
+  "smallAfterFloor": 3,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 2
+ },
+ {
+  "page": "destinations",
+  "width": 390,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 15,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex13"
+  ],
+  "incomplete": [],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "7",
+  "smallAfterFloor": 7,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ },
+ {
+  "page": "destinations",
+  "width": 1440,
+  "critical": 0,
+  "serious": 1,
+  "moderate": 15,
+  "minor": 1,
+  "rules": [
+   "aria-allowed-role:minorx1",
+   "heading-order:moderatex1",
+   "label-content-name-mismatch:seriousx1",
+   "landmark-one-main:moderatex1",
+   "region:moderatex13"
+  ],
+  "incomplete": [],
+  "unlabeled": 0,
+  "sharedIds": 0,
+  "mains": 0,
+  "floor": "7",
+  "smallAfterFloor": 7,
+  "coveredByNote": 0,
+  "noRing": 0,
+  "errors": 1
+ }
+]

@@ -1,0 +1,273 @@
+{
+ "page": "home",
+ "url": "http://tll.test/",
+ "width": 390,
+ "fixture": "src/design/magazine-2026-10/cover-build/fixture-home.html",
+ "kind": "fixture",
+ "note": "13 Oct export body with the 26 Oct hero embeds (cover-build fixture); current head CSS; cover layer",
+ "axe": "4.14.0",
+ "ms": 5198,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "label",
+   "impact": "critical",
+   "help": "Form elements must have labels",
+   "tags": [
+    "wcag2a",
+    "wcag412"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "#h3-news-email",
+     "html": "<input id=\"h3-news-email\" autocomplete=\"email\" class=\"w-input\" type=\"email\" name=\"email\" data-name=\"email\" required=\"\">",
+     "summary": "Fix any of the following: Element does not have an implicit (wrapped) <label> Element does not have an explicit <label> aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references"
+    }
+   ]
+  },
+  {
+   "id": "link-name",
+   "impact": "serious",
+   "help": "Links must have discernible text",
+   "tags": [
+    "wcag2a",
+    "wcag244",
+    "wcag412"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".h3-open",
+     "html": "<a class=\"h3-open\" href=\"/submit\" data-h3-open=\"\"></a>",
+     "summary": "Fix all of the following: Element is in tab order and does not have accessible text Fix any of the following: Element does not have text that is visible to screen readers aria-label attribute does not exist or is empty a"
+    }
+   ]
+  },
+  {
+   "id": "region",
+   "impact": "moderate",
+   "help": "All page content should be contained by landmarks",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 11,
+   "nodes": [
+    {
+     "target": ".inline-imgraw-0-1-2-3-4-5",
+     "html": "<img class=\"inline-imgraw-0-1-2-...\" data-tll-parallax=\"hero\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\" src=\"https://cdn.prod.web...\" alt=\"Clear tur",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-mg-chip",
+     "html": "<a class=\"tll-mg-chip\" href=\"/contributors/nancy-carleton\"><img src=\"https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-mg-kicker",
+     "html": "<div class=\"tll-mg-kicker\">This week's cover</div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "h1",
+     "html": "<h1 class=\"inline-h1-0-1-2-3-4-5-6-7-8-9-10-11\">Find your next <em class=\"inline-em-0-1-2-3-4-5-6-7-8-9-10-11-12\">somewhere</em>.</h1>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22",
+     "html": "<p class=\"inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22\">Real places and real opinions, written by the people who went. Free to join, no c",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".h3-hero-cta",
+     "html": "<div class=\"h3 h3-hero-cta\">\n<a class=\"h3-btn h3-btn-rose\" href=\"/stories/doha-layover-dunes-camels-falcons\">Read the cover story</a>\n<a class=\"h3-btn h3-btn-li",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-mg-by",
+     "html": "<p class=\"tll-mg-by\"><b>Photo</b> Nancy Carleton · Qatar</p>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "figure[data-h3-il=\"rio\"]",
+     "html": "<figure class=\"h3 h3-il\" data-h3-il=\"rio\" data-tll-band=\"1\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-embed:nth-child(9)",
+     "html": "<div class=\"w-embed\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-embed:nth-child(11)",
+     "html": "<div class=\"w-embed\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-embed:nth-child(16)",
+     "html": "<div class=\"w-embed\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "aria-prohibited-attr",
+   "impact": "serious",
+   "count": 1,
+   "sample": [
+    ".h3-cards"
+   ]
+  },
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 107,
+   "sample": [
+    ".tll-mg-chip > span",
+    ".tll-mg-chip > span > b",
+    ".tll-mg-kicker",
+    "h1"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Find your next somewhere.",
+   "2 The family slide show, rebuilt for people who never stop going.",
+   "2 Trips that can’t wait for payday.",
+   "2 The library.",
+   "3 La Paz, whale sharks, and a sea lion who chose chaos",
+   "3 Patagonia, measured in Camp Italianos",
+   "3 The annual retreat, or what happens when you put a Mangalitsa fillet a",
+   "3 Ghana asked us to wear all white. We complied. Eventually.",
+   "3 Fourteen days, twelve countries, one EV, and a gal who cannot be histo",
+   "3 Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide",
+   "3 From Sequins to Sloths: Northern Brazil for the Chronically Curious",
+   "3 I Drove Across Denmark to Watch a Million Birds Go to Bed",
+   "2 The people who went.",
+   "2 You went.Write it down.",
+   "2 Track how you see your world.",
+   "2 Every place you have been, in one spot.",
+   "2 Traveling with your bestie, whatever the species.",
+   "2 The Layover Lounge.",
+   "2 Your inbox deserves better than deals.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 0,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#tll-main",
+   "targetExists": true
+  },
+  "fields": 2,
+  "unlabeled": [
+   "input#h3-news-email.w-input[name=email]"
+  ],
+  "shared": [],
+  "floor": "1",
+  "smallAfterFloor": [
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"01 MAR 2024\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"19 SEP 2026\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"19 SEP 2026\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"19 SEP 2026\" (svg)",
+   "9.0px textpath \"CULTURAL INTELLIGENCE\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"19 SEP 2026\" (svg)",
+   "9.0px textpath \"TRAVEL LOGISTICS\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"19 SEP 2026\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"09 OCT 2026\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"30 SEP 2026\" (svg)",
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"29 SEP 2026\" (svg)",
+   "9.0px textpath \"THE LAYOVER LETTER\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"09:00 CPH\" (svg)"
+  ],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 93,
+  "tested": 93,
+  "noRingCount": 2,
+  "noRing": [
+   "input#Search-the-library.inline-input-0-1-2-3.w-input \"Search stories\"",
+   "input#h3-news-email.w-input \"\""
+  ],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

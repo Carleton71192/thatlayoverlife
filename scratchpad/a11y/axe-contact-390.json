@@ -1,0 +1,144 @@
+{
+ "page": "contact",
+ "url": "http://tll.test/contact",
+ "width": 390,
+ "fixture": "pages/contact.html",
+ "kind": "export",
+ "note": "13 Oct export body (Designer markup); current head CSS and 31 Oct page code; Phase 0 layer hides the relay form",
+ "axe": "4.14.0",
+ "ms": 3242,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "help": "Elements must meet minimum color contrast ratio thresholds",
+   "tags": [
+    "wcag2aa",
+    "wcag143"
+   ],
+   "count": 2,
+   "nodes": [
+    {
+     "target": ".tll-contact-faq-card > h3 > em",
+     "html": "<em class=\"tll-text-rose\">already answered</em>",
+     "summary": "Fix any of the following: Element has insufficient color contrast of 4.31 (foreground color: #c8325b, background color: #efeae1, font size: 12.2pt (16.32px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+     "target": ".tll-cta-ghost-dark",
+     "html": "<a class=\"tll-cta-ghost-dark\" href=\"/support\" data-tc=\"1\" style=\"color: rgb(247, 241, 232) !important;\">Need support instead? →</a>",
+     "summary": "Fix any of the following: Element has insufficient color contrast of 2.59 (foreground color: #f7f1e8, background color: #00a9a4, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".tll-contact-door:nth-child(1) > .tll-contact-door-title",
+     "html": "<h3 class=\"tll-contact-door-title\">On assignment?</h3>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 6,
+   "sample": [
+    ".tll-contact-hero-inner > .tll-eyebrow-rose",
+    "h1",
+    "h1 > em",
+    ".tll-lede"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Three doors. Pick one.",
+   "3 On assignment?",
+   "3 Something to propose?",
+   "3 Just saying hi?",
+   "3 Most questions are already answered.",
+   "3 Run by Nancy Carleton from Copenhagen.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 4,
+  "unlabeled": [
+   "input#field.w-input[name=website-url] (hidden)"
+  ],
+  "shared": [
+   "input#field.w-input[name=field]",
+   "input#field.w-input[name=email]",
+   "textarea#field.w-input[name=message]",
+   "input#field.w-input[name=website-url]"
+  ],
+  "floor": "0",
+  "smallAfterFloor": [],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 41,
+  "tested": 41,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

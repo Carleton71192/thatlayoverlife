@@ -1,0 +1,218 @@
+{
+ "page": "signup",
+ "url": "http://tll.test/signup",
+ "width": 1440,
+ "fixture": "pages/signup.html",
+ "kind": "export",
+ "note": "13 Oct export body (Memberstack form markup as the Designer holds it)",
+ "axe": "4.14.0",
+ "ms": 3253,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "landmark-one-main",
+   "impact": "moderate",
+   "help": "Document should have one main landmark",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "html",
+     "html": "<html lang=\"en\" data-wf-page=\"6a0d5c1fa1d71485d8688f7b\" data-wf-site=\"69d6145cf421c777840c1e25\" class=\"tllp-signup\" data-tll-floor=\"5\">",
+     "summary": "Fix all of the following: Document does not have a main landmark"
+    }
+   ]
+  },
+  {
+   "id": "region",
+   "impact": "moderate",
+   "help": "All page content should be contained by landmarks",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 13,
+   "nodes": [
+    {
+     "target": ".tll-auth-brand-col",
+     "html": "<div class=\"tll-auth-brand-col\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-eyebrow-rose",
+     "html": "<div class=\"tll-eyebrow-rose tll-auth-card-eyebrow\" style=\"font-size: 12px;\">· Pick a door, traveler ·</div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "h2",
+     "html": "<h2 class=\"tll-h2 tll-text-midnight tll-auth-card-title\">Sign up in <em class=\"tll-text-rose\">thirty seconds.</em></h2>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-btn-google",
+     "html": "<a class=\"tll-btn tll-btn-google\" data-ms-auth-provider=\"google\" data-ms-plan:add=\"pln_traveler-l97086o\" href=\"#\"><span class=\"tll-google-mark\">G</span><span>Co",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-auth-divider",
+     "html": "<div class=\"tll-auth-divider\"><span style=\"font-size: 12px;\">or with email</span></div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-auth-field:nth-child(1)",
+     "html": "<div class=\"tll-auth-field\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-auth-field:nth-child(2)",
+     "html": "<div class=\"tll-auth-field\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "#au3-l-password",
+     "html": "<label class=\"tll-micro tll-text-mid\" id=\"au3-l-password\" style=\"font-size: 12px;\">Password</label>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "input[minlength=\"8\"]",
+     "html": "<input class=\"tll-auth-input w-input\" id=\"field\" minlength=\"8\" data-ms-member=\"password\" type=\"password\" name=\"password\" data-name=\"password\" required=\"\" aria-l",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "#au3-h-password",
+     "html": "<span class=\"au3-hint\" id=\"au3-h-password\">8 characters or more.</span>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-auth-charter-check",
+     "html": "<label class=\"tll-auth-charter-check\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32",
+     "html": "<div class=\"inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 1,
+   "sample": [
+    ".tll-google-mark"
+   ]
+  },
+  {
+   "id": "form-field-multiple-labels",
+   "impact": "moderate",
+   "count": 2,
+   "sample": [
+    "#checkbox",
+    "#checkbox-2"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Join the Travelers.",
+   "2 Sign up in thirty seconds.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 0,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#tll-main",
+   "targetExists": true
+  },
+  "fields": 5,
+  "unlabeled": [],
+  "shared": [
+   "input#field.tll-auth-input.w-input[name=first-name]",
+   "input#field.tll-auth-input.w-input[name=email]",
+   "input#field.tll-auth-input.w-input[name=password]"
+  ],
+  "floor": "5",
+  "smallAfterFloor": [
+   "11.0px div.tll-eyebrow-teal.tll-auth-eyebrow \"FREE TO JOIN\"",
+   "11.0px div.tll-eyebrow-rose.tll-auth-card-eyebrow \"· Pick a door, traveler ·\"",
+   "11.0px label#au3-l-first-name.tll-micro.tll-text-mid \"First name\"",
+   "11.0px label#au3-l-email.tll-micro.tll-text-mid \"Email\"",
+   "11.0px label#au3-l-password.tll-micro.tll-text-mid \"Password\""
+  ],
+  "under24": [
+   "18x18 input#checkbox.w-checkbox-input[name=Checkbox]",
+   "90x17 a.inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30 \"Terms of Service\"",
+   "90x17 a.inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20 \"Editorial Charter\"",
+   "76x17 a.inline-a-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19 \"Privacy Policy\"",
+   "18x18 input#checkbox-2.w-checkbox-input[name=age-16]"
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 53,
+  "tested": 53,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

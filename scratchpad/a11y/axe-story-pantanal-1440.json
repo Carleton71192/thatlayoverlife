@@ -1,0 +1,213 @@
+{
+ "page": "story-pantanal",
+ "url": "http://tll.test/stories/pantanal-glimmers-in-the-wild",
+ "width": 1440,
+ "fixture": "src/design/magazine-2026-10/story-build/fixture-pantanal-glimmers-in-the-wild.html",
+ "kind": "fixture",
+ "note": "same build, Pantanal story with photo placements",
+ "axe": "4.14.0",
+ "ms": 5236,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "landmark-one-main",
+   "impact": "moderate",
+   "help": "Document should have one main landmark",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "html",
+     "html": "<html lang=\"en\" class=\"tllp-stories\" data-tll-floor=\"20\">",
+     "summary": "Fix all of the following: Document does not have a main landmark"
+    }
+   ]
+  },
+  {
+   "id": "region",
+   "impact": "moderate",
+   "help": "All page content should be contained by landmarks",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 42,
+   "nodes": [
+    {
+     "target": ".tll-story-hero-img",
+     "html": "<img class=\"tll-story-hero-img\" data-tll-parallax=\"hero\" fetchpriority=\"high\" decoding=\"async\" src=\"https://cdn.prod.web...\" alt=\"A jaguar swimming th...\" style",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-mg-cap",
+     "html": "<div class=\"tll-mg-cap\"><span>The second jaguar of the morning, swimming, and entirely unbothered by the boat.</span><span><b>Photo</b> Nancy Carleton</span></d",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20\" href=\"/\">Home</a>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "span[data-tc=\"1\"]:nth-child(2)",
+     "html": "<span data-tc=\"1\" style=\"color: rgb(26, 26, 26) !important;\">→</span>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15",
+     "html": "<a class=\"inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15\" href=\"/stories\">Stories</a>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "span[data-tc=\"1\"]:nth-child(4)",
+     "html": "<span data-tc=\"1\" style=\"color: rgb(26, 26, 26) !important;\">→</span>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "div[data-tll-crumb=\"country\"]",
+     "html": "<div data-tll-crumb=\"country\">Brazil</div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "span[data-tc=\"1\"]:nth-child(6)",
+     "html": "<span data-tc=\"1\" style=\"color: rgb(26, 26, 26) !important;\">→</span>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-story-byline-loc.tll-eyebrow-teal:nth-child(1)",
+     "html": "<div class=\"tll-eyebrow-teal tll-story-byline-loc\">PORTO JOFRE, BRAZIL</div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tll-story-byline-loc.tll-eyebrow-teal:nth-child(3)",
+     "html": "<div class=\"tll-eyebrow-teal tll-story-byline-loc\">Stories From the Road</div>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "h1",
+     "html": "<h1 class=\"tll-display-xl tll-text-bone tll-story-title\">Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</h1>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".st3-author",
+     "html": "<div class=\"st3-author\" data-st3-author=\"1\" data-st3-done=\"1\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 36,
+   "sample": [
+    "textpath[href$=\"#tll-mg-top\"]",
+    "textpath[href$=\"#tll-mg-bottom\"]",
+    "text[y=\"82\"]",
+    "text[y=\"106\"]"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide",
+   "2 Day one: red lightning and the long nothing",
+   "2 The road that ends on purpose",
+   "2 Kilometer 42",
+   "2 The hat",
+   "2 Why the jaguars let you watch",
+   "2 The stork, concluded",
+   "2 Chapada, and down",
+   "2 What I would tell you",
+   "2 Nancy Carleton",
+   "2 Other stories from this frequent traveler",
+   "3 My Unique Experience at Horseshoe Bend",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 0,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#tll-main",
+   "targetExists": true
+  },
+  "fields": 0,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "20",
+  "smallAfterFloor": [
+   "9.0px textpath \"STORIES FROM THE ROAD\" (svg)",
+   "8.0px text \"TLL\" (svg)",
+   "9.5px text \"09 OCT 2026\" (svg)",
+   "10.0px div.tll-eyebrow-teal.tll-aeo-eyebrow \"The short version\"",
+   "10.0px div.tll-eyebrow-rose.tll-aeo-eyebrow \"Quick answers\"",
+   "10.0px span.tll-micro.tll-text-mid \"Share this story\"",
+   "10.5px div.tll-places-label \"Brazil, and you?\"",
+   "10.5px div.tll-places-note \"Log in to save\"",
+   "10.0px div.tll-sl-title \"THE RECEIPTS\"",
+   "10.5px div.tll-ledger-k \"SUBMITTED BY\"",
+   "10.5px div.tll-ledger-k \"EDITED BY\"",
+   "10.5px div.tll-ledger-k \"TRIP\"",
+   "10.5px div.tll-ledger-k \"PUBLISHED\"",
+   "10.5px div.tll-ledger-k \"LAST UPDATED\"",
+   "10.5px div.tll-ledger-k \"WHAT IT COST\"",
+   "10.5px div.tll-ledger-k \"SOURCES\"",
+   "10.5px div.tll-ledger-k \"DISCLOSURE\""
+  ],
+  "under24": [
+   "33x17 a.st3-from-link \"Brazil\"",
+   "156x20 a \"Pitch a layover story →\"",
+   "103x20 a \"send one photo\"",
+   "67x15 a \"Tell the editor\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 80,
+  "tested": 80,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

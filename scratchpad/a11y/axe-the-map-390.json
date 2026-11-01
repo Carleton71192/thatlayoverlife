@@ -1,0 +1,122 @@
+{
+ "page": "the-map",
+ "url": "http://tll.test/the-map",
+ "width": 390,
+ "fixture": "src/pages/heroes-2026-10-29/fixtures/the-map.html",
+ "kind": "fixture",
+ "note": "29 Oct live element tree; current head CSS and page code; the map itself needs d3 from a CDN and does not draw",
+ "axe": "4.14.0",
+ "ms": 3015,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 6,
+   "sample": [
+    ".tll-eyebrow-teal",
+    "h1",
+    "em",
+    ".tll-lede"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Every country, on the map.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 2,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "2",
+  "smallAfterFloor": [
+   "0.0px button.tll-note-pill \"Tell the editor\""
+  ],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\"",
+   "342x17 a.tll-ph-credit \"Photo Nancy Carleton · Sort Sol, Denmark\""
+  ],
+  "pill": {
+   "w": 44,
+   "h": 44,
+   "fixed": "fixed"
+  }
+ },
+ "focus": {
+  "focusable": 42,
+  "tested": 42,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": [
+   "a.inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27.tll-fwm \"That Layover Life, home\" at y=800",
+   "a.inline-a-14-1 \"For affiliates\" at y=749",
+   "a.inline-a-18 \"For brands\" at y=749",
+   "a.inline-a-20 \"hello@thatlayover.life\" at y=764"
+  ]
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

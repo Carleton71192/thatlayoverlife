@@ -1,0 +1,123 @@
+{
+ "page": "about",
+ "url": "http://tll.test/about",
+ "width": 1440,
+ "fixture": "src/pages/heroes-2026-10-29/fixtures/about.html",
+ "kind": "fixture",
+ "note": "29 Oct live element tree; current head CSS",
+ "axe": "4.14.0",
+ "ms": 3282,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 8,
+   "sample": [
+    ".tll-ph-tile:nth-child(1) > .tll-ph-cap",
+    ".tll-ph-tile:nth-child(1) > .tll-ph-cap > b",
+    "a[href$=\"magnus-waffles\"] > .tll-ph-cap",
+    "a[href$=\"magnus-waffles\"] > .tll-ph-cap > b"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 It started with a glass of wine in the lounge.",
+   "2 Why this exists",
+   "2 Who is writing this",
+   "2 The one in charge",
+   "2 How the stories work",
+   "2 What you can do here",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 2,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "2",
+  "smallAfterFloor": [
+   "11.0px p.tll-about-final-eyebrow \"ABOUT THAT LAYOVER LIFE\""
+  ],
+  "under24": [
+   "150x23 a.tll-about-final-link \"The Brand Collective\""
+  ],
+  "pill": {
+   "w": 137,
+   "h": 44,
+   "fixed": "fixed"
+  }
+ },
+ "focus": {
+  "focusable": 51,
+  "tested": 51,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": [
+   "a.tll-ph-tile \"Ibiza, SpainChesney Lish\" at y=580"
+  ]
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

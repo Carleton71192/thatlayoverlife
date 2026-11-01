@@ -1,0 +1,124 @@
+{
+ "page": "for-expats",
+ "url": "http://tll.test/for-expats",
+ "width": 1440,
+ "fixture": "src/pages/heroes-2026-10-29/fixtures/for-expats.html",
+ "kind": "fixture",
+ "note": "29 Oct live element tree; current head CSS",
+ "axe": "4.14.0",
+ "ms": 3684,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 3,
+   "sample": [
+    ".inline-div-2-1-2-3-4",
+    ".inline-div-4-1-2-3-4",
+    ".inline-div-6-1-2-3-4"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Eight years somewhere beats eight days everywhere.",
+   "2 Find the expats in your country.",
+   "2 The experts so far. Plenty of room.",
+   "3 Your city is not listed?",
+   "3 Owns a place",
+   "3 Files the local truth",
+   "3 Answers the mail",
+   "2 Claim your desk.",
+   "2 Run a group? List it.",
+   "2 Bring the local truth.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 15,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "3",
+  "smallAfterFloor": [
+   "11.0px div.inline-div-0-1-2-3-4-5-6 \"FOR EXPATS · THE LOCATION EXPERTS\"",
+   "11.0px div.tllpr-eyebrow \"Become a Location Expert\""
+  ],
+  "under24": [],
+  "pill": {
+   "w": 137,
+   "h": 44,
+   "fixed": "fixed"
+  }
+ },
+ "focus": {
+  "focusable": 63,
+  "tested": 63,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined",
+  "Cannot read properties of undefined (reading 'forEach')"
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "page": "destinations",
+ "url": "http://tll.test/destinations",
+ "width": 390,
+ "fixture": "pages/destinations.html",
+ "kind": "export",
+ "note": "13 Oct export body; ds3 head code",
+ "axe": "4.14.0",
+ "ms": 3461,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "landmark-one-main",
+   "impact": "moderate",
+   "help": "Document should have one main landmark",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "html",
+     "html": "<html lang=\"en\" data-wf-page=\"6a47adad7a97f26b91c7d78e\" data-wf-site=\"69d6145cf421c777840c1e25\" class=\"tllp-destinations\" data-tll-floor=\"7\">",
+     "summary": "Fix all of the following: Document does not have a main landmark"
+    }
+   ]
+  },
+  {
+   "id": "region",
+   "impact": "moderate",
+   "help": "All page content should be contained by landmarks",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 13,
+   "nodes": [
+    {
+     "target": ".tlldx-hero",
+     "html": "<section class=\"tlldx-hero\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tlldx-h2",
+     "html": "<h2 class=\"tlldx-h2\">4 countries, 3 <em class=\"tlldx-accent2\">stories</em>.</h2>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(1) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"media\"] > img[data-ds3=\"img\"][data-cms-field=\"hero-image\"]",
+     "html": "<img data-ds3=\"img\" data-cms-field=\"hero-image\" src=\"https://cdn.prod.web...\" alt=\"The Galata Bridge in...\" loading=\"lazy\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(1) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"body\"]",
+     "html": "<div data-ds3=\"body\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(2) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"media\"] > img[data-ds3=\"img\"][data-cms-field=\"hero-image\"]",
+     "html": "<img data-ds3=\"img\" data-cms-field=\"hero-image\" src=\"https://cdn.prod.web...\" alt=\"Dusty champagne bott...\" loading=\"lazy\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(2) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"body\"]",
+     "html": "<div data-ds3=\"body\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(3) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"media\"] > img[data-ds3=\"img\"][data-cms-field=\"hero-image\"]",
+     "html": "<img data-ds3=\"img\" data-cms-field=\"hero-image\" src=\"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acce3f69fbc479ed1325f1b_6acce271f71844c9c275db",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".w-dyn-item[role=\"listitem\"]:nth-child(3) > a[data-ds3=\"card\"][data-cms-field=\"slug\"][data-wf-missing=\"collection-page\"] > div[data-ds3=\"body\"]",
+     "html": "<div data-ds3=\"body\"><div data-ds3=\"place\" data-cms-field=\"byline-location\">VIETNAM</div><div data-ds3=\"meta\" data-cms-field=\"region\" style=\"font-size: 12px;\">A",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tlldx-grid",
+     "html": "<div class=\"tlldx-grid\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "p[data-tll-atlas=\"kicker\"]",
+     "html": "<p data-tll-atlas=\"kicker\" style=\"font-size: 12px;\">EVERY COUNTRY · BY FLAG · 4</p>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": "ul",
+     "html": "<ul aria-label=\"Every country by flag\" data-tll-atlas=\"grid\" class=\"ds3-on\">",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    },
+    {
+     "target": ".tlldx-guides-note",
+     "html": "<p class=\"tlldx-guides-note\">Empty country? <a class=\"tlldx-guides-link\" href=\"/submit\">Be the first to tell us about it →</a></p>",
+     "summary": "Fix any of the following: Some page content is not contained by landmarks"
+    }
+   ]
+  }
+ ],
+ "incomplete": [],
+ "checks": {
+  "headings": [
+   "1 Every story starts somewhere.",
+   "2 4 countries, 3 stories.",
+   "2 See where the pins drop.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 0,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#tll-main",
+   "targetExists": true
+  },
+  "fields": 0,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "7",
+  "smallAfterFloor": [
+   "11.0px div.tlldx-eyebrow \"THE ATLAS\"",
+   "11.0px p \"EVERY COUNTRY · BY FLAG · 4\"",
+   "10.0px small \"STORY FILED\"",
+   "10.0px small \"STORY FILED\"",
+   "10.0px small \"STORY FILED\"",
+   "10.0px small \"STORY FILED\"",
+   "11.0px div.tlldx-eyebrow \"THE MAP\""
+  ],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 48,
+  "tested": 48,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

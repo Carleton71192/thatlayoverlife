@@ -1,0 +1,146 @@
+{
+ "page": "newsletter",
+ "url": "http://tll.test/newsletter",
+ "width": 390,
+ "fixture": "pages/newsletter.html",
+ "kind": "export",
+ "note": "13 Oct export body",
+ "axe": "4.14.0",
+ "ms": 3122,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "help": "Elements must meet minimum color contrast ratio thresholds",
+   "tags": [
+    "wcag2aa",
+    "wcag143"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".w-button",
+     "html": "<input class=\"tll-btn tll-btn-primary w-button\" type=\"submit\" value=\"Send me the first one\" data-wait=\"Adding you…\">",
+     "summary": "Fix any of the following: Element has insufficient color contrast of 3.07 (foreground color: #f8f2e6, background color: #f0507a, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "label",
+   "impact": "critical",
+   "help": "Form elements must have labels",
+   "tags": [
+    "wcag2a",
+    "wcag412"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "#email",
+     "html": "<input class=\"tll-pen-input w-input\" id=\"email\" type=\"email\" name=\"Email\" data-name=\"Email\" required=\"\">",
+     "summary": "Fix any of the following: Element does not have an implicit (wrapped) <label> Element does not have an explicit <label> aria-label attribute does not exist or is empty aria-labelledby attribute does not exist, references"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 8,
+   "sample": [
+    ".tll-nav-logo-that",
+    ".tll-nav-logo-block",
+    ".tll-nav-logo-life",
+    ".tll-nav-signin"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 The dispatch is coming.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 1,
+  "unlabeled": [
+   "input#email.tll-pen-input.w-input[name=Email]"
+  ],
+  "shared": [],
+  "floor": "0",
+  "smallAfterFloor": [],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 38,
+  "tested": 38,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

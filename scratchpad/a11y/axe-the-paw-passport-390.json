@@ -1,0 +1,101 @@
+{
+ "page": "the-paw-passport",
+ "url": "http://tll.test/the-paw-passport",
+ "width": 390,
+ "fixture": "pages/the-paw-passport.html",
+ "kind": "export",
+ "note": "13 Oct export body",
+ "axe": "4.14.0",
+ "ms": 3303,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [
+  {
+   "id": "color-contrast",
+   "impact": "serious",
+   "count": 10,
+   "sample": [
+    ".tll-paw-pill",
+    "h1",
+    "em",
+    ".tll-paw-sub-1"
+   ]
+  }
+ ],
+ "checks": {
+  "headings": [
+   "1 Your bestie gets a passport too.",
+   "2 Crossing borders with a dog, without the part where you cry at a check",
+   "3 Four ways to get turned back at a border with your dog.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 0,
+  "unlabeled": [],
+  "shared": [],
+  "floor": "3",
+  "smallAfterFloor": [
+   "11.0px div.tll-paw-pill \"Paw Passport · For every travel companio\"",
+   "11.0px div.tll-paw-ex-eyebrow \"Example · so you know what yours looks l\"",
+   "11.0px div.tll-fos-eyebrow \"The Paw Passport · a field guide · PDF\""
+  ],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 40,
+  "tested": 40,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined",
+  "Cannot read properties of undefined (reading 'forEach')"
+ ]
+}

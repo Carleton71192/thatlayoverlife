@@ -1,0 +1,119 @@
+{
+ "page": "my-pets",
+ "url": "http://tll.test/my-pets",
+ "width": 1440,
+ "fixture": "pages/my-pets.html",
+ "kind": "export",
+ "note": "13 Oct export body",
+ "axe": "4.14.0",
+ "ms": 3115,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  },
+  {
+   "id": "page-has-heading-one",
+   "impact": "moderate",
+   "help": "Page should contain a level-one heading",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "html",
+     "html": "<html lang=\"en\" data-wf-page=\"6a0df9ffc4a846ee4db92b63\" data-wf-site=\"69d6145cf421c777840c1e25\" class=\"tllp-my-pets\" data-tll-floor=\"0\">",
+     "summary": "Fix all of the following: Page must have a level-one heading"
+    }
+   ]
+  }
+ ],
+ "incomplete": [],
+ "checks": {
+  "headings": [
+   "2 Sign in to register your bestie.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 12,
+  "unlabeled": [],
+  "shared": [
+   "input#field.tll-pen-input.w-input[name=name]",
+   "input#field.tll-pen-input.w-input[name=breed]",
+   "input#field.tll-pen-input.w-input[name=age]",
+   "textarea#field.tll-pen-input.tll-pen-textarea[name=bio]",
+   "input#field.tll-pen-input.tll-pen-file[name=avatar]",
+   "input#field.tll-pen-input.tll-pen-file[name=pet-gallery]"
+  ],
+  "floor": "0",
+  "smallAfterFloor": [],
+  "under24": [],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 43,
+  "tested": 43,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}

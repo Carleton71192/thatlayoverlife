@@ -1,0 +1,135 @@
+{
+ "page": "submit",
+ "url": "http://tll.test/submit",
+ "width": 390,
+ "fixture": "pages/submit.html",
+ "kind": "export",
+ "note": "13 Oct export body; 29 Oct page code; /submit layers",
+ "axe": "4.14.0",
+ "ms": 3174,
+ "violations": [
+  {
+   "id": "aria-allowed-role",
+   "impact": "minor",
+   "help": "ARIA role should be appropriate for the element",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": "nav",
+     "html": "<nav class=\"tll-nav-v1\" aria-label=\"Main\" role=\"banner\">",
+     "summary": "Fix any of the following: ARIA role banner is not allowed for given element"
+    }
+   ]
+  },
+  {
+   "id": "heading-order",
+   "impact": "moderate",
+   "help": "Heading levels should only increase by one",
+   "tags": [
+    "best-practice"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-h4-0",
+     "html": "<h4 class=\"inline-h4-0\">Navigate</h4>",
+     "summary": "Fix any of the following: Heading order invalid"
+    }
+   ]
+  },
+  {
+   "id": "label-content-name-mismatch",
+   "impact": "serious",
+   "help": "Elements must have their visible text as part of their accessible name",
+   "tags": [
+    "wcag21a",
+    "wcag253"
+   ],
+   "count": 1,
+   "nodes": [
+    {
+     "target": ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27",
+     "html": "<a class=\"inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm\" href=\"/\" aria-label=\"That Layover Life, home\"><span class=",
+     "summary": "Fix any of the following: Text inside the element is not included in the accessible name"
+    }
+   ]
+  }
+ ],
+ "incomplete": [],
+ "checks": {
+  "headings": [
+   "1 Sign in to write your trip.",
+   "4 Navigate",
+   "4 Discover",
+   "4 Contribute",
+   "4 TLL",
+   "4 Guides",
+   "4 Work with us"
+  ],
+  "mains": 1,
+  "skip": {
+   "text": "SKIP TO CONTENT",
+   "href": "#main",
+   "targetExists": true
+  },
+  "fields": 82,
+  "unlabeled": [
+   "input[name=hero-image] (hidden)"
+  ],
+  "shared": [
+   "input#field.tll-pen-input.w-input[name=country]",
+   "input#field.tll-pen-input.w-input[name=city]",
+   "input#field.tll-pen-input.w-input[name=name]",
+   "textarea#field.tll-pen-input.tll-pen-textarea[name=excerpt]",
+   "textarea#field.tll-pen-input.tll-pen-textarea[name=body]",
+   "input#field.tll-pen-input.w-input[name=reading-time]",
+   "input#checkbox.w-checkbox-input[name=theme[]]",
+   "input#checkbox.w-checkbox-input[name=theme[]]",
+   "input#checkbox.w-checkbox-input[name=theme[]]",
+   "input#checkbox.w-checkbox-input[name=theme[]]",
+   "input#checkbox.w-checkbox-input[name=theme[]]",
+   "input#field.tll-pen-input.w-input[name=sensory-anchors]",
+   "input#field.tll-pen-input.w-input[name=pets-along]",
+   "textarea#field.tll-pen-input.tll-pen-textarea[name=pull-quote]",
+   "input#field.tll-pen-input.w-input[name=reader-question]",
+   "input#field.tll-pen-input.w-input[name=sign-off]",
+   "input#field.tll-pen-input.w-input[name=hashtag-set]",
+   "input#field-2.tll-pen-input.w-input[name=affiliation]",
+   "input#field-2.tll-pen-input.w-input[name=disclosure-line]",
+   "input#radio.w-radio-input[name=credit-mode]",
+   "input#radio.w-radio-input[name=credit-mode]",
+   "input#radio.w-radio-input[name=credit-mode]",
+   "input#field-2.tll-pen-input.w-input[name=credit-website]",
+   "input#field-2.tll-pen-input.w-input[name=credit-instagram]",
+   "input#checkbox.w-checkbox-input[name=syndication-newsletter]",
+   "input#checkbox.w-checkbox-input[name=syndication-social]",
+   "input#checkbox.w-checkbox-input[name=syndication-press]",
+   "input#field.tll-pen-input.tll-pen-file[name=hero-image]",
+   "input#field.tll-pen-input.tll-pen-file[name=photo-gallery]",
+   "input#checkbox.w-checkbox-input[name=agree-charter]",
+   "input#field-5.w-input[name=external-url]",
+   "input#field-5.w-input[name=field-5]",
+   "input#field-5.w-input[name=country]",
+   "input#field-5.w-input[name=summary]"
+  ],
+  "floor": "2",
+  "smallAfterFloor": [],
+  "under24": [
+   "121x22 a.tll-nav-logo \"thatLAYOVER LIFE.\""
+  ],
+  "pill": null
+ },
+ "focus": {
+  "focusable": 38,
+  "tested": 38,
+  "noRingCount": 0,
+  "noRing": [],
+  "coveredByNote": []
+ },
+ "pageErrors": [
+  "CookieConsent is not defined"
+ ]
+}
