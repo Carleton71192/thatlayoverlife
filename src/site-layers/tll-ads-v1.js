@@ -6,7 +6,7 @@
    Placements, at most two per story: one in-article unit between two sections (never before the third paragraph, none on
    stories under 600 words) and one after the story ends; one below the stories rail on country pages; on /stories one after the ninth card. Each sits in a quiet frame labeled "Annonce" (Phase 0B, 31 Oct), with its
    space held so the page does not jump; an ad slot Google leaves unfilled folds away. Manual units need slot ids from the
-   AdSense account (SLOTS below); until then the ad script is not loaded at all and only the ad-free rules apply (1 Nov 2026).
+   AdSense account (SLOTS below); until then only the ad-free rules apply and Auto ads are calmed by the same frame style.
    Consent: Google's consent message (Funding Choices) decides personalized or not. No data-ms-* element touched. */
 (function(){
 var CLIENT='ca-pub-7257230007536660';
@@ -48,11 +48,10 @@ function country(){
 }
 /* Phase 0 (31 Oct): the ad script loads only after ad consent from the one consent tool (tll-consent-v3 in the site head). */
 function consented(cb){var C=window.__tllConsent;if(C&&C.ready){if(C.ads)cb();return;}window.addEventListener('tll:consent',function h(e){if(e.detail&&e.detail.ads){window.removeEventListener('tll:consent',h);cb();}});}
-/* 1 Nov 2026 (loading): the script is fetched only on a page that has a slot id to fill (story pages: either unit; the library and
-   country pages: the display unit) and, after consent, only once the browser is idle, 4 s at the latest, so it never competes with
-   the page's own images and fonts. With no slot ids filled nothing is loaded at all; the consent gate above is unchanged. */
-function need(){return /^\/stories\/[^/]+$/.test(P)?!!(SLOTS.inArticle||SLOTS.display):!!SLOTS.display;}
+/* 1 Nov 2026 (loading): after ad consent the script is fetched only once the browser is idle (requestIdleCallback, 4 s at the latest;
+   a 2 s timer where that is missing), so it never competes with the page's own images and fonts. It loads on every allowed page whether
+   or not the slot ids are filled, so Auto ads behave as before; only the manual units above wait for their ids. The consent gate is unchanged. */
 function idle(cb){if(window.requestIdleCallback)window.requestIdleCallback(function(){cb();},{timeout:4000});else setTimeout(cb,2000);}
-function run(){css();if(need())consented(function(){idle(script);});if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/stories')library();else if(/^\/countries\//.test(P))country();}
+function run(){css();consented(function(){idle(script);});if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/stories')library();else if(/^\/countries\//.test(P))country();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,600);});else setTimeout(run,600);
 })();

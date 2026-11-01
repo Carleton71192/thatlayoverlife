@@ -113,10 +113,6 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp
 /* LCP (1 Nov 2026): in the site bundle this runs in the head, so the cover photo is asked for here, before the hero is parsed, at high
    priority; the hero would otherwise start its fetch only after the bundle has run. The page's own hero file still loads once (Designer). */
 (function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
-/* Webflow's responsive variants ({name}-p-500.jpg and up) exist per file, not per bucket (13 Oct export manifest), so a small variant is
-   tried for a small box and the original is put back on the first error; a browser does not try another candidate after a 404. */
-function small(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,'-p-'+w+'.$1'):u;}
-function fallback(img,orig){if(!img||!orig||img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=orig;});}
 function run(){
   var hero=document.querySelector('[data-h3-hero]');if(!hero||hero.dataset.tllCover)return;hero.dataset.tllCover=COVER.slug?'1':'0';if(!COVER.slug)return;
   hero.style.setProperty('--tll-cover-pos-phone',COVER.posPhone||'50% 50%');hero.style.setProperty('--tll-cover-pos-desk',COVER.posDesk||'50% 50%');hero.style.setProperty('--tll-cover-zoom',COVER.phoneZoom||'0%');
@@ -125,9 +121,9 @@ function run(){
   if(img){img.removeAttribute('srcset');img.removeAttribute('sizes');img.loading='eager';img.setAttribute('fetchpriority','high');img.decoding='async';img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
   var h1=hero.querySelector('h1');if(!h1)return;var words=h1.parentNode;var ey=h1.previousElementSibling;if(ey&&ey.tagName==='DIV')ey.classList.add('tll-mg-eyebrow');
   var chip=document.createElement('a');chip.className='tll-mg-chip';chip.href='/contributors/'+COVER.authorSlug;
-  /* eager is written out: the site footer marks every img without a loading attribute as lazy, and the chip sits inside the hero */
-  chip.innerHTML='<img src="'+esc(small(COVER.avatar,500))+'" alt="" width="36" height="36" loading="eager" decoding="async" fetchpriority="low"><span><b>Photo: '+esc(COVER.author)+'</b>'+esc(COVER.place)+'</span>';
-  fallback(chip.querySelector('img'),COVER.avatar);
+  /* eager is written out: the site footer marks every img without a loading attribute as lazy, and the chip sits inside the hero, above the
+     fold, so it keeps the original file (no variant try on a photo painted first) at low priority behind the cover */
+  chip.innerHTML='<img src="'+esc(COVER.avatar)+'" alt="" width="36" height="36" loading="eager" decoding="async" fetchpriority="low"><span><b>Photo: '+esc(COVER.author)+'</b>'+esc(COVER.place)+'</span>';
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
@@ -149,8 +145,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
 var PEOPLE=[{"name": "Chesney Lish", "slug": "chesney-lish", "avatar": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg", "sub": "Madrid and Ibiza"}, {"name": "Barzy Adam", "slug": "barzy-adam", "avatar": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg", "sub": "Arizona"}, {"name": "Nancy Carleton", "slug": "nancy-carleton", "avatar": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg", "sub": "Editor · Copenhagen"}];
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-/* the 72px faces try Webflow's -p-500 variant and fall back to the original on the first error (variants exist per file, see the cover script) */
-function small(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,'-p-'+w+'.$1'):u;}
+/* the 72px faces are lazy and far down the page, so they try Webflow's -p-500 variant (variants exist per file, not per bucket, 13 Oct export
+   manifest; the name is lowercase even for a .JPG original) and fall back to the original on the first error, since a browser does not try
+   another candidate after a 404 */
+function small(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):u;}
 function fallback(img,orig){if(!img||!orig||img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.src=orig;});}
 function run(){
   var anchor=document.querySelector('section.h3-c2,section[data-h3-first100]');if(!anchor||document.querySelector('.tll-mg-people')||!PEOPLE.length)return;

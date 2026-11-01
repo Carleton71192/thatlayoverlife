@@ -33,17 +33,19 @@ var CSS='.tll-alb{max-width:1120px;margin:40px auto;padding:0 16px;font:400 15px
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function css(){if(document.getElementById('tll-album-v1'))return;var s=el('style');s.id='tll-album-v1';s.textContent=CSS;document.head.appendChild(s);}
 /* Loading (1 Nov 2026): each host gets the size it can serve. Cloudinary (member uploads) crops to the square mount (c_fill) or limits the
-   stage to w; a Webflow CMS file (Nancy's story heroes and gallery photos) tries its -p- variant for the mount and goes back to the original
-   on the first error, since variants exist per file and a browser does not try another candidate after a 404. Other hosts pass through. */
+   stage to w; a Webflow CMS file (Nancy's story heroes and gallery photos) tries its -p- variant for the mount (a lowercase name even for a
+   .JPG upload, as Webflow writes it) and goes back to the original on the first error, since variants exist per file and a browser does not
+   try another candidate after a 404. Other hosts pass through. The stage img carries no decoding hint: it swaps src on every slide, and an
+   async decode could paint a blank frame between two photos. */
 function sized(u,w,h){return /res\.cloudinary\.com/.test(u)?u.replace('/upload/','/upload/'+(h?'c_fill,w_'+w+',h_'+h:'c_limit,w_'+w)+',q_auto,f_auto/'):u;}
-function wf(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,'-p-'+w+'.$1'):u;}
+function wf(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):u;}
 function fallback(img,orig){if(img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.src=orig;});}
 var audio=null,sound=false;
 function click(){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();var n=audio.sampleRate*0.06,b=audio.createBuffer(1,n,audio.sampleRate),d=b.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,6)*0.6;var s=audio.createBufferSource();s.buffer=b;s.connect(audio.destination);s.start();}catch(e){}}
 window.__tllAlbumShow=function(c,name){return show(c,name);};
 function show(c,name){
   var i=0,ss=el('div','tll-ss');ss.setAttribute('role','dialog');ss.setAttribute('aria-modal','true');ss.setAttribute('aria-label',name+', '+c.name+' slide show');
-  var stage=el('div','tll-ss-stage'),img=el('img');img.decoding='async';stage.appendChild(img);ss.appendChild(stage);
+  var stage=el('div','tll-ss-stage'),img=el('img');stage.appendChild(img);ss.appendChild(stage);
   var prev=el('button','tll-ss-nav tll-ss-prev','‹'),next=el('button','tll-ss-nav tll-ss-next','›');prev.setAttribute('aria-label','Previous');next.setAttribute('aria-label','Next');ss.appendChild(prev);ss.appendChild(next);
   var cap=el('div','tll-ss-cap'),txt=el('div'),mono=el('p','tll-ss-m'),line=el('p','tll-ss-line'),sub=el('p','tll-ss-sub');txt.appendChild(mono);txt.appendChild(line);txt.appendChild(sub);cap.appendChild(txt);
   var bar=el('div','tll-ss-bar'),read=el('a','','Read the story'),snd=el('button','','Sound off'),share=el('button','','Share'),close=el('button','','Close');

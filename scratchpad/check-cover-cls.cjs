@@ -1,12 +1,13 @@
 // Offline check of the home cover's layout shift and loading attributes (1 Nov 2026). Mirrors the v16 bundle: the cover's font link and
 // style go into the head before the body is parsed, the script runs later. For each width the page is measured with the style in place
 // but the script not yet run, then the script is added and the page measured again; the first element after the hero must not move by
-// more than 2px. The cover img must carry fetchpriority=high, loading=eager and decoding=async, a preload link must exist for it, and every
-// other image the cover layer inserts must be lazy or low priority. Variants are checked twice: served, and answered with 404 so the
-// one-time fallback to the original is exercised. Remote requests are served from local files or aborted.
+// more than 2px. The cover img must carry fetchpriority=high, loading=eager and decoding=async, a preload link must exist for it, the chip
+// avatar (eager, above the fold) must keep its original file, and every other image the cover layer inserts must be lazy or low priority.
+// Variants (the lazy people faces) are checked twice: served, and answered with 404 so the one-time fallback to the original is exercised.
+// Remote requests are served from local files or aborted.
 // Usage (from the repo root): node scratchpad/check-cover-cls.cjs
 //   COVER=<cover html> (default the built tll-mag-cover-v1.html)  TAG=<name for the screenshots, default after>
-//   COMPARE=<tag> diffs this run's screenshots against an earlier run saved under that tag (pixel count and bounding box)
+//   COMPARE=<tag> diffs this run's screenshots against an earlier run saved under that tag (pixel count and bounding box; python3 with Pillow)
 //   STYLE=body puts the cover style at the end of the body instead of the head (the pre-v16 placement and the approved final state), for a before run
 // After the script has run, the style is moved from the head to the end of the body, as the bundle does at DOMContentLoaded, and nothing may move then either.
 const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
@@ -74,14 +75,13 @@ const measure = () => { const hero = document.querySelector('[data-h3-hero]'); c
     const a = await p.evaluate(() => { const hero = document.querySelector('[data-h3-hero]'); const img = hero.querySelector('img[data-tll-parallax="hero"]'); const chip = hero.querySelector('.tll-mg-chip img');
       const pre = [].map.call(document.querySelectorAll('link[rel="preload"][as="image"]'), l => ({ href: l.href, pri: l.getAttribute('fetchpriority') }));
       return { src: img.currentSrc || img.src, pri: img.getAttribute('fetchpriority'), loading: img.getAttribute('loading'), dec: img.getAttribute('decoding'), srcset: img.getAttribute('srcset'), w: img.naturalWidth, preload: pre,
-        chip: chip ? { src: chip.getAttribute('src'), dec: chip.getAttribute('decoding'), pri: chip.getAttribute('fetchpriority'), ok: chip.complete && chip.naturalWidth > 0 } : null,
+        chip: chip ? { src: chip.getAttribute('src'), dec: chip.getAttribute('decoding'), pri: chip.getAttribute('fetchpriority'), loading: chip.getAttribute('loading'), ok: chip.complete && chip.naturalWidth > 0 } : null,
         cards: [].map.call(document.querySelectorAll('.h3-card-ph img'), i => i.getAttribute('loading')), chipOrig: hero.dataset.tllCover }; });
     ok(a.pri === 'high' && a.loading === 'eager' && a.dec === 'async' && !a.srcset, `cover img fetchpriority=${a.pri} loading=${a.loading} decoding=${a.dec} srcset=${a.srcset}`);
     ok(a.w > 0, `cover img loaded (${a.w}px wide): ${a.src.split('/').pop().slice(0, 50)}`);
     ok(a.preload.some(l => l.href === a.src && l.pri === 'high'), `preload link for the cover: ${JSON.stringify(a.preload)}`);
-    ok(a.chip && a.chip.dec === 'async' && a.chip.pri === 'low', `chip avatar decoding=${a.chip && a.chip.dec} fetchpriority=${a.chip && a.chip.pri}`);
-    if (variants === 'served') ok(a.chip && /-p-500\./.test(a.chip.src) && a.chip.ok, `chip avatar uses the -p-500 variant and loaded: ${a.chip && a.chip.src.split('/').pop()}`);
-    else ok(a.chip && !/-p-\d+\./.test(a.chip.src) && a.chip.ok, `chip avatar fell back to the original after a 404 and loaded: ${a.chip && a.chip.src.split('/').pop()}`);
+    ok(a.chip && a.chip.dec === 'async' && a.chip.pri === 'low' && a.chip.loading === 'eager', `chip avatar loading=${a.chip && a.chip.loading} decoding=${a.chip && a.chip.dec} fetchpriority=${a.chip && a.chip.pri}`);
+    ok(a.chip && !/-p-\d+\./.test(a.chip.src) && a.chip.ok, `chip avatar keeps the original file (eager, above the fold) and loaded: ${a.chip && a.chip.src.split('/').pop()}`);
     ok(a.cards.length > 0 && a.cards.every(l => l === 'lazy'), `${a.cards.length} shelf card images are loading=lazy`);
     // the people strip sits far down the page: scroll it in so its lazy faces load, then check them
     await p.evaluate(() => { const s = document.querySelector('.tll-mg-people'); if (s) s.scrollIntoView(); });
@@ -96,11 +96,18 @@ const measure = () => { const hero = document.querySelector('[data-h3-hero]'); c
     await p.close();
   }
   await b.close();
-  if (process.env.COMPARE) { const { PNG } = require('pngjs');
+  // a pixel differs when its summed R, G and B difference is over 30 (Pillow clips each add at 255, which cannot pull a true sum over 30 back under it)
+  if (process.env.COMPARE) { const { spawnSync } = require('child_process');
+    const PY = ['import sys, json', 'from PIL import Image, ImageChops',
+      "a = Image.open(sys.argv[1]).convert('RGB'); b = Image.open(sys.argv[2]).convert('RGB')",
+      'W = min(a.width, b.width); H = min(a.height, b.height)',
+      'r, g, bl = ImageChops.difference(a.crop((0, 0, W, H)), b.crop((0, 0, W, H))).split()',
+      'mask = ImageChops.add(ImageChops.add(r, g), bl).point(lambda v: 255 if v > 30 else 0)',
+      "print(json.dumps({'a': [a.width, a.height], 'b': [b.width, b.height], 'n': mask.histogram()[255], 'total': W * H, 'box': mask.getbbox()}))"].join('\n');
     for (const w of [390, 1440]) for (const kind of ['hero', 'full']) { const A = path.join(OUT, `${process.env.COMPARE}-${w}-${kind}.png`), B = path.join(OUT, `${TAG}-${w}-${kind}.png`);
       if (!fs.existsSync(A) || !fs.existsSync(B)) { console.log(`compare ${w} ${kind}: missing file`); continue; }
-      const a = PNG.sync.read(fs.readFileSync(A)), bb = PNG.sync.read(fs.readFileSync(B)); const W = Math.min(a.width, bb.width), H = Math.min(a.height, bb.height); let n = 0, x0 = W, y0 = H, x1 = -1, y1 = -1;
-      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const i = (y * a.width + x) * 4, j = (y * bb.width + x) * 4; if (Math.abs(a.data[i] - bb.data[j]) + Math.abs(a.data[i + 1] - bb.data[j + 1]) + Math.abs(a.data[i + 2] - bb.data[j + 2]) > 30) { n++; if (x < x0) x0 = x; if (y < y0) y0 = y; if (x > x1) x1 = x; if (y > y1) y1 = y; } }
-      console.log(`compare ${process.env.COMPARE} vs ${TAG} ${w} ${kind}: sizes ${a.width}x${a.height} vs ${bb.width}x${bb.height}, ${n} differing pixels of ${W * H} (${(100 * n / (W * H)).toFixed(3)}%)` + (n ? `, box x ${x0}-${x1} y ${y0}-${y1}` : '')); } }
+      const r = spawnSync('python3', ['-I', '-c', PY, A, B], { encoding: 'utf8' }); if (r.status !== 0) { console.log(`compare ${w} ${kind}: python3 with Pillow failed: ${(r.stderr || '').trim().split('\n').pop()}`); fails++; continue; }
+      const d = JSON.parse(r.stdout); const box = d.box; /* box: [x0, y0, x1, y1) of the differing pixels, or null */
+      console.log(`compare ${process.env.COMPARE} vs ${TAG} ${w} ${kind}: sizes ${d.a[0]}x${d.a[1]} vs ${d.b[0]}x${d.b[1]}, ${d.n} differing pixels of ${d.total} (${(100 * d.n / d.total).toFixed(3)}%)` + (box ? `, box x ${box[0]}-${box[2] - 1} y ${box[1]}-${box[3] - 1}` : '')); } }
   console.log(fails ? `\n${fails} check(s) failed` : '\nall checks passed'); process.exit(fails ? 1 : 0);
 })();
