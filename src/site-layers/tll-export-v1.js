@@ -92,7 +92,7 @@ function run(){
   /* Step two: every photo through the Worker's proxy, four at a time, packed in parts; each part saves on its own tap. */
   pb.addEventListener('click',function(){
     if(!url||!photos.length||state()==='photos')return;
-    set('photos');var list=photos.slice(),total=list.length,missing=[],done=0,okCount=0,allBytes=0,partNo=0,saved=0,stopped=false,live=[],used=Object.create(null);line(pmsg,'Photos 0 of '+total+'…');
+    set('photos');var list=photos.slice(),total=list.length,missing=[],done=0,okCount=0,allBytes=0,partNo=0,saved=0,stopped=false,live=[],flying=0,used=Object.create(null);line(pmsg,'Photos 0 of '+total+'…');
     /* A fatal error stops the run: no more fetches, the ones in flight are cut off, and no worker writes another line. */
     function stop(){stopped=true;withdraw();live.splice(0).forEach(function(c){try{c.abort();}catch(e){}});}
     function progress(){if(!stopped&&!pending)line(pmsg,'Photos '+done+' of '+total+'…');}
@@ -104,8 +104,8 @@ function run(){
       var zip=new Z(),count=0,bytes=0,packing=Promise.resolve();
       function save(blob,n){var a=el('a');a.href=URL.createObjectURL(blob);a.download='that-layover-life-photos-part-'+n+'.zip';document.body.appendChild(a);a.click();saved++;setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},REVOKE_MS);}
       /* Takes the current part off the table at once (a new one starts), packs it after any earlier part is saved, then waits for its own
-         tap; every fetch behind it waits too. K is this part plus the parts the photos still to come should need. */
-      function pack(last){var z=zip,n=++partNo,k=n+Math.ceil(Math.max(0,last?0:total-done-1)/perPart());zip=new Z();count=0;bytes=0;
+         tap; every fetch behind it waits too. K is this part plus the parts the photos still to come (queued or in flight) should need. */
+      function pack(last){var z=zip,n=++partNo,k=n+Math.ceil(Math.max(0,last?0:list.length+flying-1)/perPart());zip=new Z();count=0;bytes=0;
         if(last&&missing.length)z.file('that-layover-life/photos/not-downloaded.txt','These photos could not be downloaded, so here are their links:\n'+missing.join('\n')+'\n');
         packing=packing.then(function(){return z.generateAsync({type:'blob'});}).then(function(blob){if(stopped)return;
           return new Promise(function(res){offer('Save part '+n+' of '+k,function(){save(blob,n);if(done<total)progress();res();});line(pmsg,'Part '+n+' of '+k+' is ready to save.');});});
@@ -113,10 +113,10 @@ function run(){
       function add(p,blob){zip.file(unique('that-layover-life/photos/'+p.folder+'/'+p.name+'.'+ext(blob.type,p.url)),blob);count++;bytes+=blob.size;allBytes+=blob.size;okCount++;
         if(count>=PART_PHOTOS||bytes>=PART_BYTES)pack(false);}
       /* One photo, with 90 s to arrive in full: a stalled body is cut off and the photo is listed as a link like any other failure. */
-      function one(p){var c=window.AbortController?new AbortController():null,t=c?setTimeout(function(){c.abort();},PHOTO_MS):null;if(c)live.push(c);
+      function one(p){var c=window.AbortController?new AbortController():null,t=c?setTimeout(function(){c.abort();},PHOTO_MS):null;if(c)live.push(c);flying++;
         return fetch(API+'/photo?t='+token+'&u='+encodeURIComponent(p.url),c?{signal:c.signal}:{}).then(function(r){if(!r.ok)throw 0;return r.blob();})
           .then(function(blob){if(!stopped)add(p,blob);},function(){missing.push(p.folder+'/'+p.name+': '+p.url);})
-          .then(function(){clearTimeout(t);var i=live.indexOf(c);if(i>=0)live.splice(i,1);if(stopped)return;done++;progress();});}
+          .then(function(){clearTimeout(t);flying--;var i=live.indexOf(c);if(i>=0)live.splice(i,1);if(stopped)return;done++;progress();});}
       /* A worker waits for a part being packed or saved before it fetches the next photo. */
       function next(){if(stopped)return Promise.resolve();var p=list.shift();if(!p)return Promise.resolve();return packing.then(function(){return one(p);}).then(next);}
       var ws=[];for(var i=0;i<WORKERS;i++)ws.push(next());

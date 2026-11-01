@@ -55,7 +55,7 @@ var C=[['site',/^/,'sha384-dFwyiWKuDpIje9Otv4cOb3xCAp0r5UBmOAhKWd1j9OWfjtgoHq/LM
 ['share-photos',/^\/share-photos$/,'sha384-qHMKKfwgA5R2Pth9khIH+rAu6ptChFg7821QVc304wshp1qfJTO8cWj5HNbRcjiH'],
 ['edit-profile',/^\/edit-profile/,'sha384-RV9ll3/Urdih/HNeHJ3OFSx6z35ey/tfeN//YuQHOv78Q8eDuzKK+b36qcpHbxdU','edit-profile-preview','sha384-l+wvumiTLFAKMO1ELGAcqaEDLT4JC+pUhC5EWckOZplvtBNIYKMa86dPpi/BKNUo'],
 ['profile',/^\/contributors\/[^/]+$/,'sha384-KLTnLayISnue/GEWpmveUuWaNKzhojVz+uJu0Q2gGQahc/fz7brWXmX8nKwCnFMw','profile-preview','sha384-IeI7U8CNSQBIHxusnM8PVwzcLvS8Tf/1qtTANma+7XbHQkImWCT87WGn1o7A1Rap'],
-['account',/^\/account$/,'sha384-D0i7l5xZ97+TrBiS9878yMlvI9xCCm3wbPVB9bRsbJ7mPRznBo9vSSyk2y+ZTzzU','account-preview','sha384-FGqxqsvX2yLQwsDMSJ7r6muuNO4NpRagTXsnVBFC6WQjvR0Xu3dCdrLclb2bfzNE'],
+['account',/^\/account$/,'sha384-UwOT6QlhJSkRcbRvJnRDuCZWEEsdI8wI/FyQO3vQe3Kcet1ySXowkOEM2XqA0br/','account-preview','sha384-poM/NLAHiWEyb3QhM8H9ZjSsGfzOxlHYDC3Y1gSOESQft+UFENNhwZMXB7R1kLq9'],
 ['map',/^\/the-map$/,'sha384-VvRBDrxgnKYR6FV1mTnMtDc7GZxGq6OOQ/iNey8tnf+kapWq7cDJIv4tnOMtXWFR'],
 ['for-expats',/^\/for-expats$/,'sha384-mQ1Q2tzCP0sfVoeE1wct5pTMlWR2y1RompqvLtKEDTVJNTunVFM02HU1uM2BSfO1','for-expats-preview','sha384-1CmShDVfQ3vaqZ0aUWaNzgo8YV60T/gmYeO8Sgr87sTDrbrP5CjHcD4v7Gm/Th0u'],
 ['travelers',/^\/travelers$/,'sha384-rpXXIOCIWVV+jwa9aslXVsj5Cmh9xb9e+NPuHlUWeGg8n0j8yLUUcTGeXP+1KbXH'],
