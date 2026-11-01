@@ -6,15 +6,22 @@
 <title>TLL nav and footer variant, prototype (1 Nov 2026)</title>
 <!--
   PROTOTYPE ONLY. Not applied to the site. Built for a session with Nancy (UX Phase 3, items 1 and 2).
-  Sources: the TLL Nav v1 and TLL Site Footer components as saved in src/design/magazine-2026-10/cover-build/fixture-home.html
-  and src/pages/heroes-2026-10-29/fixtures/stories.html; the Designer class values from
-  reports/evidence/webflow-export-2026-10-13/state/styles/styles-full.json; the mobile menu script tll-mobile-nav-js-v1 and
-  the v9 chrome block in scratchpad/p0-1031/after/site-head.html; the Tell the editor widget and footer code in
-  scratchpad/p0-1031/before/site-footer.html and src/components/footer/tll-foot-v1.html; the story end block in
-  src/site-layers/tll-ux-v1.js. Class names and copy are the real ones so the Designer steps in README.md map one to one.
-  Self-contained: the brand fonts are embedded from src/design/magazine-2026-10/type/fonts (Playfair Display 800,
-  IBM Plex Sans Condensed 400/600/700, JetBrains Mono 400/600). No external request is made.
-  Query flags for the render script: ?state=in (logged in), ?menu=open, ?note=open, ?shot=1 (hides the control bar).
+  Sources. Element trees: the TLL Nav v1 and TLL Site Footer components from the 13 Oct export, as saved in
+  src/design/magazine-2026-10/cover-build/fixture-home.html and src/pages/heroes-2026-10-29/fixtures/stories.html
+  (build_fixtures.py line 2: "nav and footer from the 13 Oct export"), with the 20 Oct edits applied from the records:
+  handoff/STATUS.md S91 and S92, src/components/footer/HANDOFF-NOTE-2026-10-20.md and handoff/CHANGE-LOG-PACKET-A-2026-10-19.md
+  (nav: Destinations became The Map after Travelers, Expats added; footer: four columns, stats line under the columns, mail and
+  copyright). The 20 Oct element tree itself, its class names and its heading sizes are not in the saved code, so the footer below
+  is a reconstruction of the recorded content, not a capture. Designer class values: reports/evidence/webflow-export-2026-10-13/
+  state/styles/styles-full.json. Head code: scratchpad/p0-1031/after/site-head.html (tll-mobile-nav-v1, tll-mobile-nav-js-v1,
+  tll-proto-parity-v1, tll-v9-chrome-v1, tll-v9-chrome-js-v1, tll-consistency-v1). Footer code: scratchpad/p0-1031/after/site-footer.html
+  (tll-core-v2-css, tll-note-v1-css, tll-note-v1-js). Footer component embed: src/components/footer/tll-foot-v1.html. Layers:
+  src/site-layers/tll-nav-phone-v1, tll-contrast-v1, tll-note-phone-v1, tll-note-typing-v1, tll-footer-wordmark-v1, tll-masthead-v1,
+  tll-ux-v1.js. Class names and copy are the real ones so the Designer steps in README.md map one to one.
+  Self-contained: the brand fonts are embedded from src/design/magazine-2026-10/type/fonts (Playfair Display 800 and 800 italic,
+  IBM Plex Sans Condensed 400 and 600, JetBrains Mono 400 and 600) and src/pages/home/mobile-proto-2026-10-26/fonts
+  (IBM Plex Sans Condensed 700). No external request is made.
+  Query flags for the render script: ?state=in (logged in), ?menu=open, ?note=open, ?foot=open, ?shot=1 (hides the control bar).
 -->
 <style id="tll-proto-fonts">
 /*FONTS-START*/
@@ -28,7 +35,8 @@
 /*FONTS-END*/
 </style>
 <style id="tll-proto-base">
-/* Page shell for the prototype. Colors from the brand spec: ink #0A0B14, dark #0B1220, cream #FAF7F2, paper #FDF9F3, rose #F0507A, teal #067A79 on light. */
+/* PROTOTYPE SCAFFOLDING. Nothing in this block goes to the site.
+   Page shell colors from the brand spec: ink #0A0B14, dark #0B1220, cream #FAF7F2, paper #FDF9F3, rose #F0507A, teal #067A79 on light. */
 *{box-sizing:border-box}
 html:not(.tll-shot){scroll-behavior:smooth}
 body{margin:0;background:#FAF7F2;color:#0A0B14;font:400 16px/1.55 'IBM Plex Sans Condensed',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -36,15 +44,20 @@ a:focus-visible,button:focus-visible{outline:3px solid #0A0B14;outline-offset:2p
 .tll-skip,.tll-skip:focus{position:absolute;left:-9999px;top:8px;z-index:100000;background:#F0507A;color:#0A0B14;font:700 12px/1.2 'JetBrains Mono',monospace;letter-spacing:1.5px;padding:12px 18px;border-radius:2px;text-transform:uppercase;text-decoration:none}
 .tll-skip:focus{left:12px}
 
-/* Memberstack gating, as the site does it (tll-core-v2-css in the site footer). The prototype toggles html.tll-in instead of Memberstack. */
+/* Memberstack gating, the three site rules from tll-core-v2-css (scratchpad/p0-1031/after/site-footer.html lines 38 to 40), copied as they are. */
 [data-ms-content="members"]{display:none}
 html.ms-loaded [data-ms-content="anonymous"]{display:none}
+html.ms-loaded [data-ms-content="members"]{display:block}
+/* Stand-in for what Memberstack does after that (its show and hide of data-ms-content elements is not in the saved code).
+   The prototype toggles html.tll-in and html.tll-out from the control bar; the site never has these classes. */
 html.ms-loaded.tll-out [data-ms-content="anonymous"]{display:block}
-html.ms-loaded.tll-in [data-ms-content="members"]{display:block}
+html.ms-loaded.tll-out .tll-nav-v1 .tll-nav-anon{display:flex}
+html.tll-out [data-ms-content="members"]{display:none !important}
+html.tll-in [data-ms-content="anonymous"]{display:none !important}
 
 /* Prototype control bar. Not part of the site. Hidden with ?shot=1. */
 .proto-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 16px;background:#FFF3C4;color:#0A0B14;border-bottom:1px solid #E6D38A;font-size:14px}
-.proto-bar strong{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.proto-bar strong{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
 .proto-bar button{min-height:36px;padding:0 12px;border:1.5px solid #0A0B14;border-radius:4px;background:#fff;color:#0A0B14;font:600 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer}
 .proto-bar button[aria-pressed="true"]{background:#0A0B14;color:#fff}
 html.tll-shot .proto-bar{display:none}
@@ -52,7 +65,7 @@ html.tll-shot .proto-bar{display:none}
 /* Stand-in page under the header, so the sticky header has something to pass over. */
 .proto-hero{background:#0B1220;color:#FAF7F2;padding:56px 20px 48px}
 .proto-hero-in,.proto-body{max-width:680px;margin:0 auto}
-.proto-eyebrow{font:600 11px/1.4 'JetBrains Mono',monospace;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}
+.proto-eyebrow{font:600 12px/1.4 'JetBrains Mono',monospace;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}
 .proto-hero h1{font:800 clamp(34px,4.2vw,56px)/1.03 'Playfair Display',Georgia,serif;letter-spacing:-.01em;margin:0 0 14px}
 .proto-hero h1 em{color:#F0507A;font-style:italic}
 .proto-hero p{font-size:17px;line-height:1.6;margin:0;max-width:46ch;color:#FAF7F2;opacity:.92}
@@ -65,71 +78,82 @@ html.tll-shot .proto-bar{display:none}
 
 <style id="tll-nav-v1-variant">
 /* ============================================================
-   TLL Nav v1, variant (UX Phase 3, item 1). Same class names as the live component.
-   What changes: one 56px row on phones that stays in view; one primary action
-   ("Join free" logged out, "Share your story" logged in); the account is an avatar circle;
-   "Share your story" and "Log in" are text links that sit in the menu on phones and on the
-   row on desktop. Colors and fonts are the live ones: ink #0A0B14 at .96, bone #F8F2E6,
-   rose #F0507A (hover #D63859), Playfair Display 800 wordmark, IBM Plex Sans Condensed links,
-   JetBrains Mono on the MENU button.
+   TLL Nav v1, variant (UX Phase 3, item 1). Same class names as the live component. This block is the one that
+   goes into the site head (README step B1); it replaces tll-mobile-nav-v1, the nav rules in tll-v9-chrome-v1 and the
+   nav lockup rules in tll-proto-parity-v1, and the layers tll-nav-phone-v1 and tll-contrast-v1 (nav part).
+   What changes: one 56px row under 992px that stays in view; one primary action ("Join free" logged out, "My map"
+   logged in, per docs/expat-pets-ux-2026-10-31.md line 268); the account is an avatar circle; "Share your story" is a
+   text link for everyone, on the row from 992px and inside the menu below it; "Log in" the same, for visitors.
+   Colors: ink #0A0B14 at .96, bone #F8F2E6, the filled buttons #D63859 with white (4.60:1; #F0507A with white is
+   3.42:1, which is why tll-contrast-v1 already repaints the two live buttons to #D63859), #C8325B on hover, rose
+   #F0507A for the wordmark accent and the menu's Share link on ink (5.57:1). Playfair Display 800 wordmark,
+   IBM Plex Sans Condensed links and buttons, JetBrains Mono on the MENU button.
+   Cascade: Webflow writes its stylesheet before the head code, so every rule here comes after every Designer rule.
+   The Designer values that would otherwise leak through are reset in place and named: .tll-nav-v1 small breakpoint
+   padding 12px 16px and the 1px border-bottom; .tll-nav-inner medium flex-wrap:wrap; .tll-nav-links-row medium
+   width:100%, order:3, padding-top, border-top, justify-content:center; .tll-nav-pen-cta uppercase, letter-spacing
+   .06em, margin-right .5rem, 999px radius, 1px rose border, tiny-breakpoint display:none; .tll-nav-account-link
+   1px border and padding; the "DM Sans" family on .tll-nav-link and .tll-btn (live it is aliased to Plex by
+   tll-proto-parity-v1; the families are set here so nothing depends on the alias).
    ============================================================ */
-.tll-nav-v1{position:sticky;top:0;z-index:50;width:100%;background:rgba(10,11,20,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 -1px 0 rgba(248,242,230,.08);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
-.tll-nav-main{padding:12px 32px}
-.tll-nav-inner{display:flex;align-items:center;justify-content:space-between;column-gap:24px;max-width:1440px;margin:0 auto;min-height:44px}
+.tll-nav-v1{position:sticky;top:0;z-index:50;width:100%;padding:0;border-bottom:0;background:rgba(10,11,20,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 -1px 0 rgba(248,242,230,.08);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
+.tll-nav-main{display:block;padding:12px 32px}
+.tll-nav-inner{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;column-gap:24px;row-gap:0;max-width:1440px;margin:0 auto;min-height:44px}
 .tll-nav-logo{display:inline-flex;align-items:baseline;gap:6px;color:#F7F4EE;text-decoration:none;white-space:nowrap;flex:none;padding:13px 0}
 .tll-nav-logo-that{font:italic 800 14px/1 'Playfair Display',Georgia,serif;opacity:.85;color:#F7F4EE}
 .tll-nav-logo-block{font:800 18px/1 'Playfair Display',Georgia,serif;letter-spacing:.01em;text-transform:uppercase;color:#F7F4EE}
 .tll-nav-v1 .tll-nav-logo .tll-nav-logo-life{color:#F0507A}
-.tll-nav-links-row{display:flex;align-items:center;gap:28px}
-.tll-nav-link{display:inline-flex;align-items:center;min-height:44px;padding:8px 4px;color:#F8F2E6;opacity:.92;font-size:13px;font-weight:600;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:color .2s ease}
-.tll-nav-link:hover{color:#F0507A;opacity:1}
+.tll-nav-links-row{display:flex;align-items:center;gap:28px;width:auto;order:0;padding:0;border-top:0;justify-content:flex-start}
+.tll-nav-v1 .tll-nav-link{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:8px 4px;border:0;border-radius:0;background:transparent;color:#F8F2E6;opacity:.92;font:600 13px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.04em;text-transform:none;text-decoration:none;white-space:nowrap;transition:color .2s ease}
+.tll-nav-v1 .tll-nav-link:hover{color:#F0507A;opacity:1}
 .tll-nav-cta-row{display:flex;align-items:center;gap:16px;margin-left:auto;flex:none}
-html.ms-loaded .tll-nav-anon,html.ms-loaded .tll-nav-member{align-items:center;gap:16px}
-html.ms-loaded.tll-out .tll-nav-anon{display:flex}
-html.ms-loaded.tll-in .tll-nav-member{display:flex}
-.tll-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:0;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:.02em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,transform .15s cubic-bezier(.23,1,.32,1)}
-.tll-btn:active{transform:scale(.97)}
-.tll-btn-primary{background:#F0507A;color:#fff}
-.tll-btn-primary:hover{background:#D63859}
-.tll-nav-v1 .tll-nav-pen-cta{background:#F0507A;color:#fff}
-.tll-nav-v1 .tll-nav-pen-cta:hover{background:#D63859}
-.tll-nav-account-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;text-decoration:none;color:#F8F2E6;flex:none}
-.tll-nav-avatar{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#F0507A;color:#F8F2E6;font:800 14px/1 'Playfair Display',Georgia,serif;transition:box-shadow .15s ease}
-.tll-nav-account-link:hover .tll-nav-avatar{box-shadow:0 0 0 2px #F8F2E6}
-.tll-nav-account-text{display:none}
+.tll-nav-v1 .tll-nav-anon,.tll-nav-v1 .tll-nav-member{align-items:center;gap:16px}
+/* Same condition as the site's own rule (tll-core-v2-css: html.ms-loaded [data-ms-content="members"]{display:block}), flex instead of block. */
+html.ms-loaded .tll-nav-v1 [data-ms-content="members"]{display:flex}
+.tll-nav-v1 .tll-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:0;padding:0 18px;border:0;border-radius:6px;font:700 13px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.02em;text-transform:none;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,transform .15s cubic-bezier(.23,1,.32,1)}
+.tll-nav-v1 .tll-btn:active{transform:scale(.97)}
+.tll-nav-v1 .tll-btn-primary{background:#D63859;color:#fff}
+.tll-nav-v1 .tll-btn-primary:hover{background:#C8325B}
+.tll-nav-v1 .tll-nav-account-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;gap:0;border:0;border-radius:50%;background:transparent;text-decoration:none;color:#F8F2E6;flex:none}
+.tll-nav-v1 .tll-nav-avatar{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#D63859;color:#fff;font:800 14px/1 'Playfair Display',Georgia,serif;transition:box-shadow .15s ease}
+.tll-nav-v1 .tll-nav-account-link:hover .tll-nav-avatar{box-shadow:0 0 0 2px #F8F2E6}
+.tll-nav-v1 .tll-nav-account-text{display:none}
 .tllmm-btn{display:none}
-html.ms-loaded .tll-nav-links-row .tllmm-item{display:none}
+.tll-nav-v1 .tll-nav-links-row .tllmm-item{display:none}
+.tll-nav-v1 .tll-nav-links-row .tllmm-item[hidden]{display:none !important}
 
-@media(min-width:900px) and (max-width:1199px){
-.tll-nav-links-row{gap:14px}
-.tll-nav-inner{column-gap:14px}
-.tll-nav-cta-row,html.ms-loaded .tll-nav-anon,html.ms-loaded .tll-nav-member{gap:10px}
-.tll-btn{padding:0 14px}
+@media(min-width:992px) and (max-width:1199px){
+.tll-nav-main{padding:12px 24px}
+.tll-nav-links-row{gap:12px}
+.tll-nav-inner{column-gap:12px}
+.tll-nav-cta-row,.tll-nav-v1 .tll-nav-anon,.tll-nav-v1 .tll-nav-member{gap:8px}
+.tll-nav-v1 .tll-btn{padding:0 14px}
 }
 
-/* Phones and small tablets (under 900px, the same breakpoint as the live MENU button). One row, 56px, sticky. */
-@media(max-width:899px){
+/* Phones and tablets, under 992px (Webflow's own tablet breakpoint; the live MENU button appears under 900px, see README).
+   One row, 56px, sticky. The six links do not fit one desktop row under 992px at 13px, so the menu takes over there. */
+@media(max-width:991px){
+.tll-nav-v1{padding:0;border-bottom:0}
 .tll-nav-main{height:56px;padding:0 16px;display:flex;align-items:center}
 .tll-nav-inner{width:100%;column-gap:8px;min-height:44px;flex-wrap:nowrap}
 .tll-nav-logo{padding:14px 0;flex:none}
 .tll-nav-logo-block{font-size:15px}
 .tll-nav-logo-that{font-size:13px}
-.tll-nav-links-row{display:none}
+.tll-nav-v1 .tll-nav-links-row{display:none}
 .tll-nav-v1.tllmm-open .tll-nav-links-row{display:flex;flex-direction:column;align-items:stretch;position:absolute;left:0;right:0;top:100%;width:100%;background:#0A0B14;padding:22px 28px 30px;border-top:1px solid #23263c;gap:22px;z-index:60;box-shadow:0 24px 40px rgba(10,11,20,.35)}
 .tll-nav-v1.tllmm-open .tll-nav-links-row a{display:block;padding:0;font-size:18px;min-height:44px;line-height:44px}
 .tll-nav-v1.tllmm-open .tll-nav-links-row .tllmm-item{display:block}
-html.ms-loaded.tll-in .tll-nav-v1.tllmm-open .tll-nav-links-row .tllmm-item[data-ms-content="anonymous"]{display:none}
 .tll-nav-v1 .tllmm-share{color:#F0507A;font-weight:600}
 .tll-nav-cta-row{gap:6px}
-html.ms-loaded .tll-nav-anon,html.ms-loaded .tll-nav-member{gap:6px}
-.tll-nav-cta-row .tll-nav-link{display:none}
+.tll-nav-v1 .tll-nav-anon,.tll-nav-v1 .tll-nav-member{gap:6px}
+.tll-nav-v1 .tll-nav-cta-row .tll-nav-link{display:none}
 .tll-nav-v1 .tll-btn{height:44px;min-height:44px;padding:0 12px;border-radius:0;font-size:13px}
 .tllmm-btn{display:inline-flex;align-items:center;justify-content:center;height:44px;width:62px;padding:0;border:1.5px solid #F7F1E8;border-radius:0;background:transparent;color:#F7F1E8;font:700 12px/1 'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
 .tllmm-btn[aria-expanded="true"]::after{content:" \2715"}
 }
 /* Small phones. 479px and under: the wordmark drops to 13px (today's phone layer zooms it to about 13px under 400px),
-   the buttons to 12px, the close label loses its glyph. 379px and under: the italic "that" steps out so the member row
-   (wordmark, Share your story, avatar, MENU) still fits in one row. 339px and under: the row may wrap, as today. */
+   the buttons to 12px, the close label loses its glyph. 339px and under: the italic "that" steps out so the member row
+   (wordmark, My map, avatar, MENU) still fits in one row. 319px and under: the row may wrap. */
 @media(max-width:479px){
 .tll-nav-logo-block{font-size:13px}
 .tll-nav-logo-that{font-size:12px}
@@ -137,98 +161,112 @@ html.ms-loaded .tll-nav-anon,html.ms-loaded .tll-nav-member{gap:6px}
 .tllmm-btn{width:60px;letter-spacing:1.5px}
 .tllmm-btn[aria-expanded="true"]::after{content:none}
 }
-@media(max-width:379px){
+@media(max-width:339px){
 .tll-nav-logo-that{display:none}
 .tll-nav-v1 .tll-btn{padding:0 8px}
 .tllmm-btn{width:58px;letter-spacing:1px}
 }
-@media(max-width:339px){
+@media(max-width:319px){
 .tll-nav-main{height:auto;min-height:56px;padding:6px 16px}
 .tll-nav-inner{flex-wrap:wrap;row-gap:6px}
 }
-@media(prefers-reduced-motion:reduce){.tll-btn,.tll-nav-link,.tll-nav-avatar{transition:none}.tll-btn:active{transform:none}}
+@media(prefers-reduced-motion:reduce){.tll-nav-v1 .tll-btn,.tll-nav-v1 .tll-nav-link,.tll-nav-v1 .tll-nav-avatar{transition:none}.tll-nav-v1 .tll-btn:active{transform:none}}
 </style>
 
 <style id="tll-foot-variant">
 /* ============================================================
-   TLL Site Footer, variant (UX Phase 3, item 2). Same markup, same links in the same order.
-   Values are the Designer classes (13 Oct export) plus the live footer code tll-foot-v1
-   (desktop grid, phone accordions), tll-footer-wordmark-v1 (wordmark) and tll-masthead-v1
-   (the tagline). The Designer sets the footer in "DM Sans", which the site head aliases to
-   IBM Plex Sans Condensed, so Plex is what renders. The masthead asks for Newsreader, which
-   the site never loads, so it renders in Georgia italic, as live.
-   New: one help row (Help and contact, Tell the editor) above the meta row.
+   TLL Site Footer, variant (UX Phase 3, item 2). The content is the footer as rebuilt and published on 20 Oct 2026
+   (handoff/STATUS.md S92; handoff/CHANGE-LOG-PACKET-A-2026-10-19.md A2.2 to A2.7): wordmark and masthead line, four columns
+   (Read 5, Contribute 5, TLL 5, Legal 4), the stats line under the columns, then mail and the copyright line. The 20 Oct
+   element tree and its class names are not in the saved code, so this block selects by the two hooks the live footer embed
+   tll-foot-v1 already uses (footer[data-tll-canonical-footer], the columns wrapper whose class starts inline-div-7-) and by
+   data-tll-foot attributes for the rest. Values: tll-foot-v1 (grid, 14px links, 32px rows on desktop, 44px rows and 52px
+   accordion headers on phones), tll-footer-wordmark-v1 (wordmark), tll-masthead-v1 (the tagline, which asks for Newsreader;
+   whether Webflow loads Newsreader is not in the saved code, so here it falls back to Georgia italic).
+   New: one help row (Help and contact, Tell the editor) between the stats line and the meta row.
+   Changed for the floors: the column headings are h2 (heading-order, docs/phase2-a11y-audit-2026-11.md line 56) at 12px, and
+   the stats labels are 12px (the 13 Oct Designer values were h4 at 11px and labels at 10px; the 20 Oct values are not in
+   the saved code). The wordmark link carries no aria-label (docs/phase2-a11y-audit-2026-11.md line 191).
    ============================================================ */
 .inline-footer-0-1{padding:64px 24px 34px;background:#0D0F1A;color:#F7F1E8;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
-.inline-div-10-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17{max-width:1120px;margin:0 auto}
-.inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26{display:flex;margin-bottom:30px;padding-bottom:26px;justify-content:space-between;flex-wrap:wrap;align-items:flex-end;gap:24px;border-bottom:1px solid rgba(247,241,232,.14)}
-.inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35{max-width:360px}
+footer[data-tll-canonical-footer] [data-tll-foot="in"]{max-width:1120px;margin:0 auto}
+footer[data-tll-canonical-footer] [data-tll-foot="brand"]{max-width:360px;margin:0 0 30px;padding:0 0 26px;border-bottom:1px solid rgba(247,241,232,.14)}
 body footer a.tll-fwm{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;text-decoration:none;color:#F8F2E6;line-height:1;margin:0 0 4px}
 body footer a.tll-fwm .tll-fwm-that{font:italic 800 18px/1 'Playfair Display',Georgia,serif;opacity:.85;color:#F8F2E6}
 body footer a.tll-fwm .tll-fwm-block{font:800 24px/1 'Playfair Display',Georgia,serif;letter-spacing:.01em;color:#F8F2E6;text-transform:uppercase}
 body footer a.tll-fwm .tll-fwm-life{color:#F0507A;font:inherit}
-.inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15{margin:10px 0 0;color:#B9B3A8;font-size:14px}
-footer p.tll-masthead{font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:400;font-size:18px;line-height:1.4;max-width:34ch;text-wrap:pretty}
-.inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29{display:flex;gap:22px;font-family:'JetBrains Mono',monospace}
-.inline-span-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15,.inline-span-4-1-2-3-4-5-6-7,.inline-span-8-1-2-3-4-5{display:flex;flex-direction:column;gap:2px}
-.inline-strong-0,.inline-strong-1,.inline-strong-3{color:#00C9C8;font-size:20px}
-.inline-span-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15,.inline-span-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14,.inline-span-7-1-2-3-4-5{color:#B9B3A8;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px;margin-bottom:30px}
+footer p.tll-masthead{margin:10px 0 0;color:#B9B3A8;font-family:'Newsreader',Georgia,serif;font-style:italic;font-weight:400;font-size:18px;line-height:1.4;max-width:34ch;text-wrap:pretty}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 32px;margin:0}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div{min-width:0;margin:0}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{margin:0 0 6px;color:#F0507A;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-family:inherit}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] :is(h2,h4){margin:0 0 6px;color:#F0507A;font:700 12px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{display:block;font-size:14px;line-height:1.3;min-height:32px;margin:0;padding:6px 0;color:#C9C3B8;text-decoration:none}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] a:hover{color:#F7F1E8}
+/* Stats line under the columns. The live counts embed (tll-live-counts-v3, label "countries in our stories") rewrites the figures at load; the digits here are stand-ins. */
+footer[data-tll-canonical-footer] [data-tll-foot="stats"]{display:flex;flex-wrap:wrap;gap:6px 22px;margin:26px 0 0;padding:22px 0 0;border-top:1px solid rgba(247,241,232,.14);font-family:'JetBrains Mono',monospace}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"]>span{display:inline-flex;align-items:baseline;gap:6px}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"] strong{color:#00C9C8;font-size:20px;font-weight:600}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"] span span{color:#B9B3A8;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
 /* New help row: the same place on every page that carries the footer component. */
-.tll-foot-help{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;padding:14px 0 6px;border-top:1px solid rgba(247,241,232,.14)}
+.tll-foot-help{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;margin:14px 0 0;padding:8px 0 6px;border-top:1px solid rgba(247,241,232,.14)}
 .tll-foot-help a{display:inline-flex;align-items:center;min-height:44px;color:#F7F1E8;font-size:15px;font-weight:600;text-decoration:none}
 .tll-foot-help a::before{content:"";width:8px;height:8px;border-radius:50%;background:#F0507A;margin-right:10px}
 .tll-foot-help a:hover{text-decoration:underline;text-underline-offset:4px}
-.inline-div-9-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19{display:flex;padding-top:22px;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:14px;border-top:1px solid rgba(247,241,232,.14)}
-.inline-span-9-1-2-3-4{color:#8A857B;font-size:12px}
-.inline-div-8-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21{display:flex;flex-wrap:wrap;gap:4px 16px}
-.inline-a-20,.inline-a-21,.inline-a-22{display:inline-flex;align-items:center;min-height:44px;color:#C9C3B8;font-size:13px;text-decoration:none}
-.inline-a-20:hover,.inline-a-21:hover,.inline-a-22:hover{color:#F7F1E8}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"]{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;padding-top:14px;border-top:1px solid rgba(247,241,232,.14)}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"] a{display:inline-flex;align-items:center;min-height:44px;color:#C9C3B8;font-size:14px;text-decoration:none}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"] a:hover{color:#F7F1E8}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"] span{color:#8A857B;font-size:12px}
 @media(max-width:767px){
 .inline-footer-0-1{padding:48px 20px 28px}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]{display:block;margin-bottom:0}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div{border-top:1px solid rgba(247,241,232,.14)}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{display:flex;align-items:center;justify-content:space-between;min-height:52px;margin:0;cursor:pointer}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4::after{content:"+";font-weight:400;font-size:18px}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div[data-tll-open="true"] h4::after{content:"\2013"}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] :is(h2,h4){display:flex;align-items:center;justify-content:space-between;min-height:52px;margin:0;cursor:pointer}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] :is(h2,h4)::after{content:"+";font-weight:400;font-size:18px}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div[data-tll-open="true"] :is(h2,h4)::after{content:"\2013"}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"]>div:not([data-tll-open="true"])>a{display:none}
 footer[data-tll-canonical-footer] [class^="inline-div-7-"] a{min-height:44px;padding:10px 0}
-footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4:focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
-.tll-foot-help{padding:6px 0 2px}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] :is(h2,h4):focus-visible{outline:3px solid #00C9C8;outline-offset:2px}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"]{margin-top:0;padding-top:18px}
+.tll-foot-help{margin-top:10px;padding:4px 0 2px}
 }
 </style>
 
 <style id="tll-note-v1-css">
-/* Tell the editor (Packet A, 19 Oct 2026), kept as live except the floating pill, which is gone. The card opens from the
-   footer link and the story end link instead. Form ids, names and copy are the live ones. */
+/* Tell the editor (Packet A, 19 Oct 2026), the live block from scratchpad/p0-1031/after/site-footer.html with two changes:
+   the floating pill is hidden (the card opens from the footer link and the story end link instead), and the eyebrow keeps
+   12px against the site head rule [class*=eyebrow]{font-size:11px !important} in tll-consistency-v1 (12px floor).
+   The hidden-while-consent rule is kept. Form ids, names and copy are the live ones. */
 #tll-note{position:fixed;left:calc(16px + env(safe-area-inset-left));bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;max-width:calc(100vw - 32px);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif;color:#F7F1E8}
+html.show--consent #tll-note,html.show--preferences #tll-note,html.tll-note-hidden #tll-note{display:none !important}
 #tll-note .tll-note-pill{display:none}
 #tll-note .tll-note-card{display:none;position:relative;width:360px;max-width:100%;max-height:calc(100vh - 32px - env(safe-area-inset-bottom) - env(safe-area-inset-top));overflow:auto;background:#0A0B14;border:1px solid #23263c;border-radius:4px;padding:18px;box-shadow:0 12px 32px rgba(10,11,20,.45)}
 #tll-note[data-open="true"] .tll-note-card{display:grid;gap:10px}
-#tll-note .tll-note-eyebrow{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8}
+#tll-note .tll-note-eyebrow{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;font-size:12px !important;letter-spacing:1.5px;text-transform:uppercase;color:#00C9C8}
 #tll-note .tll-note-title{font:800 20px/1.15 'Playfair Display',Georgia,serif;color:#F7F1E8;margin:0}
 #tll-note .tll-note-close{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:transparent;color:#F7F1E8;font-size:18px;cursor:pointer;border-radius:50%}
+#tll-note .tll-note-close:focus-visible{outline:3px solid #00C9C8;outline-offset:-3px}
 #tll-note .w-form{margin:0}
 #tll-note form{display:grid;gap:10px}
 #tll-note label{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}
-#tll-note textarea,#tll-note input[type=email]{width:100%;min-height:48px;padding:12px;border:1.5px solid #23263c;border-radius:4px;background:#12141F;color:#F7F1E8;font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;margin:0}
+#tll-note textarea,#tll-note input[type=email],#tll-note input[type=text]{width:100%;min-height:48px;padding:12px;border:1.5px solid #23263c;border-radius:4px;background:#12141F;color:#F7F1E8;font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;box-sizing:border-box;margin:0}
 #tll-note textarea{min-height:110px;resize:vertical}
 #tll-note textarea:focus,#tll-note input:focus{outline:none;border-color:#00C9C8;box-shadow:0 0 0 3px rgba(0,201,200,.28)}
+/* The next two rules live in the footer component embed tll-foot-v1, not in the site footer code. */
 #tll-note [data-tll-note-desk]{font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#9496AC}
 #tll-note input[type=hidden]{display:none}
-#tll-note input[type=submit]{min-height:48px;padding:0 22px;border:0;border-radius:999px;background:#F0507A;color:#0A0B14;font:700 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer}
-#tll-note .w-form-done,#tll-note .w-form-fail{display:none}
+#tll-note input[type=submit],#tll-note .w-button{min-height:48px;padding:0 22px;border:0;border-radius:999px;background:#F0507A;color:#0A0B14;font:700 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif;cursor:pointer;transition:transform 150ms cubic-bezier(.23,1,.32,1)}
+#tll-note input[type=submit]:active{transform:scale(.97)}
+#tll-note input[type=submit]:focus-visible{outline:3px solid #00C9C8;outline-offset:3px}
+#tll-note .w-form-done,#tll-note .w-form-fail{display:none;margin-top:8px;padding:12px;border-radius:4px;font:400 14px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;text-align:left}
+#tll-note .w-form-done{background:#12141F;color:#F7F1E8;border:1px solid #067A79}
+#tll-note .w-form-fail{background:#12141F;color:#F7F1E8;border:1px solid #D63859}
+@media(prefers-reduced-motion:reduce){#tll-note input[type=submit]{transition:none !important}#tll-note input[type=submit]:active{transform:none !important}}
 </style>
 
 <style id="tll-ux-end-css">
 /* Story end block, as tll-ux-v1.js builds it (Phase 1, staged): Next story, then the join card for visitors.
-   New: a "Tell the editor" line at the end of the block. */
+   New: a "Tell the editor" line at the end of the block, and the "Next story" label at 12px (the layer has .tll-ux-k at 11px, line 24). */
 .tll-ux{font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}
-.tll-ux-k{display:block;font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}
+.tll-ux-k{display:block;font:600 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}
 .tll-ux-end{max-width:680px;margin:32px auto;display:grid;gap:12px;padding:0 20px}
 .tll-ux-next{display:flex;gap:14px;align-items:center;border:1px solid #E0DACE;border-radius:6px;background:#fff;padding:12px;color:#0A0B14;text-decoration:none;min-height:44px}
 .tll-ux-next .tll-ux-next-img{width:96px;height:72px;border-radius:4px;flex:none;background:linear-gradient(135deg,#1d5e5d,#00C9C8)}
@@ -240,7 +278,6 @@ footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4:focus-visible{outl
 .tll-ux-note{margin:0;font-size:15px;color:#3a3a3a}
 .tll-ux-note a{display:inline-flex;align-items:center;min-height:44px;color:#067A79;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
 .tll-ux-note a:hover{color:#0A0B14}
-html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
 </style>
 </head>
 <body>
@@ -250,31 +287,34 @@ html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
   <span>Not on the site. View as:</span>
   <button type="button" data-proto-state="out" aria-pressed="true">Logged out</button>
   <button type="button" data-proto-state="in" aria-pressed="false">Logged in</button>
-  <span>Resize under 900px for the phone header.</span>
+  <span>Resize under 992px for the phone header.</span>
 </div>
 
 <a class="tll-skip" href="#main">SKIP TO CONTENT</a>
 
 <!-- component: TLL Nav v1 (variant) -->
+<!-- Links: the 20 Oct state (STATUS S91, handoff note, Packet A A1.1): Destinations became The Map after Travelers, Expats added.
+     The 13 Oct export has five links; the six below are to be confirmed in the Designer. -->
 <nav class="tll-nav-v1" aria-label="Main">
   <div class="tll-nav-main">
     <div class="tll-nav-inner">
       <a class="tll-nav-logo" href="/"><span class="tll-nav-logo-that">that</span><span class="tll-nav-logo-block">LAYOVER <span class="tll-nav-logo-life">LIFE.</span></span></a>
       <div class="tll-nav-links-row" id="tll-nav-links">
         <a class="tll-nav-link" href="/stories">Stories</a>
-        <a class="tll-nav-link" href="/destinations">Destinations</a>
         <a class="tll-nav-link" href="/travelers">Travelers</a>
+        <a class="tll-nav-link" href="/the-map">The Map</a>
+        <a class="tll-nav-link" href="/for-expats">Expats</a>
         <a class="tll-nav-link" href="/the-paw-passport">Paw Passport</a>
         <a class="tll-nav-link" href="/about">About</a>
       </div>
       <div class="tll-nav-cta-row">
+        <a class="tll-nav-link tll-nav-pen-cta" href="/submit">Share your story</a>
         <div class="tll-nav-anon" data-ms-content="anonymous">
-          <a class="tll-nav-link tll-nav-pen-link" href="/submit">Share your story</a>
           <a class="tll-nav-link tll-nav-signin" href="/login">Log in</a>
           <a class="tll-btn tll-btn-primary tll-nav-signup" href="/signup">Join free</a>
         </div>
         <div class="tll-nav-member" data-ms-content="members">
-          <a class="tll-btn tll-btn-primary tll-nav-pen-cta" href="/submit">Share your story</a>
+          <a class="tll-btn tll-btn-primary tll-nav-map-cta" href="/the-map">My map</a>
           <a class="tll-nav-account-link" href="/account" aria-label="Account"><span class="tll-nav-avatar" data-ms-member="first-letter">N</span><span class="tll-nav-account-text" data-ms-member="first-name">Account</span></a>
         </div>
       </div>
@@ -288,12 +328,12 @@ html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
     <div class="proto-hero-in">
       <p class="proto-eyebrow">Prototype · Nav and footer variant · 1 Nov 2026</p>
       <h1>One row. One <em>action.</em></h1>
-      <p>Scroll and the header stays. Open the menu for the rest. On a phone the bar is 56px tall with 44px targets inside it; on a desktop the same links sit on one row.</p>
+      <p>Scroll and the header stays. Open the menu for the rest. On a phone the bar is 56px tall with 44px targets inside it; from 992px the same links sit on one row.</p>
     </div>
   </section>
   <article class="proto-body">
     <h2>What a story page would look <em>like</em></h2>
-    <p>This page stands in for any page on the site. The text here is filler for the scroll only; the nav, the story end block and the footer are the real markup with the real class names.</p>
+    <p>This page stands in for any page on the site. The text here is filler for the scroll only; the nav, the story end block and the footer are the real class names and the real copy.</p>
     <p>The floating "Tell the editor" pill is gone from the corner. Its form stays exactly where it is, and opens from the link at the end of this block and from the footer, so a reader who spots a wrong flag still reaches Nancy's desk in one tap.</p>
     <p>Everything else is as it is today: the same colors, the same three fonts, the same footer links in the same order.</p>
   </article>
@@ -307,42 +347,38 @@ html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
   <div class="proto-spacer"></div>
 </main>
 
-<!-- component: TLL Site Footer (variant: same links, same order, plus the help row) -->
+<!-- component: TLL Site Footer (variant). Content as published 20 Oct 2026 (STATUS S92, Packet A A2.2 to A2.7), plus the help row.
+     The 20 Oct element tree is not in the saved code: the wrapper class starting inline-div-7- and data-tll-canonical-footer are
+     the two hooks the live embed tll-foot-v1 uses; the data-tll-foot attributes are new. Link targets are the planned ones
+     (A2.2 to A2.5); the hrefs as built are not in the saved code. Stats digits are stand-ins for the live counts embed. -->
 <footer class="inline-footer-0-1" data-tll-canonical-footer="1">
-  <div class="inline-div-10-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17">
-    <div class="inline-div-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26">
-      <div class="inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35">
-        <a class="inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27 tll-fwm" href="/" aria-label="That Layover Life, home"><span class="tll-fwm-that">that</span><span class="tll-fwm-block">LAYOVER <span class="tll-fwm-life">LIFE.</span></span></a>
-        <p class="inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15 tll-masthead" data-tll-masthead="1">Written by the people who went. Travel stories from members around the world, edited in Copenhagen.</p>
-      </div>
-      <div class="inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29">
-        <span class="inline-span-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15"><strong class="inline-strong-0">6</strong><span class="inline-span-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15">stories</span></span>
-        <span class="inline-span-4-1-2-3-4-5-6-7"><strong class="inline-strong-1">87</strong><span class="inline-span-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14">countries</span></span>
-        <span class="inline-span-8-1-2-3-4-5"><strong class="inline-strong-3">1</strong><span class="inline-span-7-1-2-3-4-5">pet</span></span>
-      </div>
+  <div data-tll-foot="in">
+    <div data-tll-foot="brand">
+      <a class="tll-fwm" href="/"><span class="tll-fwm-that">that</span><span class="tll-fwm-block">LAYOVER <span class="tll-fwm-life">LIFE.</span></span></a>
+      <p class="tll-masthead" data-tll-masthead="1">Written by the people who went. Travel stories from members around the world, edited in Copenhagen.</p>
     </div>
     <div class="inline-div-7-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21">
-      <div class="inline-div-3-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24"><h4 class="inline-h4-0">Navigate</h4><a class="inline-a-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17" href="/">Home</a><a class="inline-a-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16" href="/stories">Stories</a><a class="inline-a-3-1-2-3-4-5-6-7-8-9-10-11" href="/the-map">The Map</a><a class="inline-a-4-1-2-3-4-5-6-7-8-9-10-11" href="/travelers">Travelers</a></div>
-      <div class="inline-div-4-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22"><h4 class="inline-h4-1">Discover</h4><a class="inline-a-5-1-2-3-4-5-6-7-8-9" href="/destinations">Destinations</a><a class="inline-a-5-1-2-3-4-5-6-7-8-9" href="/travel-wire">The Travel Wire</a><a class="inline-a-6-1-2" href="/pets">Pets we travel with</a><a class="inline-a-7-1-2" href="/gallery">The Layover Lounge</a><a class="inline-a-8-1-2" href="/spotlight">Spotlight</a><a class="inline-a-9-1" href="/contact">Contact</a></div>
-      <div class="inline-div-5-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21"><h4 class="inline-h4-2">Contribute</h4><a class="inline-a-10-1" href="/submit">Share your story</a><a class="inline-a-11-1" href="/share-photos">Share photos</a><a class="inline-a-12-1" href="/for-expats">For expats</a><a class="inline-a-13-1" href="/for-press">For press</a><a class="inline-a-14-1" href="/for-affiliates">For affiliates</a></div>
-      <div class="inline-div-6-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21"><h4 class="inline-h4-3">TLL</h4><a class="inline-a-15-1" href="/privacy">Privacy policy</a><a class="inline-a-16-1" href="/terms">Terms of service</a><a class="inline-a-17-1" href="/editorial-charter">Editorial charter</a><a class="inline-a-18" href="/community-guidelines">Community guidelines</a><a class="inline-a-19" data-tll-cookie-prefs="1" href="#">Cookie preferences</a></div>
-      <div class="inline-div-6-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21" data-tll-foot="col"><h4 class="inline-h4-3">Guides</h4><a class="inline-a-18" href="/copenhagen-stopover">Copenhagen stopover</a><a class="inline-a-18" href="/ees-etias-layover">EES and ETIAS on a layover</a><a class="inline-a-18" href="/awards">The Layover Awards</a></div>
-      <div class="inline-div-6-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21" data-tll-foot="col"><h4 class="inline-h4-3">Work with us</h4><a class="inline-a-18" href="/for-brands">For brands</a><a class="inline-a-18" href="/support#layover-club">The Layover Club</a><a class="inline-a-18" href="/editorial-charter#rule-08">How paid work works</a></div>
+      <div data-tll-foot="col"><h2>Read</h2><a href="/stories">Stories</a><a href="/stories#by-place">Destinations</a><a href="/the-map">The Map</a><a href="/travelers">Travelers</a><a href="/gallery">The Layover Lounge</a></div>
+      <div data-tll-foot="col"><h2>Contribute</h2><a href="/submit">Share your story</a><a href="/share-photos">Share photos</a><a href="/for-expats">For expats</a><a href="/creators">For creators</a><a href="/for-press">For press</a></div>
+      <div data-tll-foot="col"><h2>TLL</h2><a href="/about">About</a><a href="/editorial-charter">Editorial charter</a><a href="/faq">FAQ</a><a href="/contact">Contact</a><a href="/for-brands">For brands</a></div>
+      <div data-tll-foot="col"><h2>Legal</h2><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="#" data-tll-cookie-prefs="1">Cookies</a><a href="/community-guidelines">Community guidelines</a></div>
     </div>
+    <p data-tll-foot="stats"><span><strong>87</strong><span>countries in our stories</span></span><span><strong>53</strong><span>stories</span></span><span><strong>10</strong><span>travelers</span></span><span><strong>1</strong><span>pet</span></span></p>
     <!-- NEW: help row, the same place on every page -->
     <div class="tll-foot-help" data-tll-foot="help">
       <a href="/contact">Help and contact</a>
       <a href="#tll-note-card" data-tll-note-open="1">Tell the editor</a>
     </div>
-    <div class="inline-div-9-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19">
-      <span class="inline-span-9-1-2-3-4">© 2026 That Layover Life · Copenhagen, Denmark · Run by humans, supervised by one Samoyed</span>
-      <div class="inline-div-8-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21"><a class="inline-a-20" data-tll-foot="mail" href="mailto:hello@thatlayover.life">hello@thatlayover.life</a><a class="inline-a-20" href="https://instagram.com/thatlayoverlife">Instagram</a><a class="inline-a-21" href="/newsletter">Newsletter</a><a class="inline-a-22" href="https://linkedin.com/company/thatlayoverlife">LinkedIn</a></div>
+    <div data-tll-foot="meta">
+      <a data-tll-foot="mail" href="mailto:hello@thatlayover.life">hello@thatlayover.life</a>
+      <span>© 2026 That Layover Life · Copenhagen</span>
     </div>
   </div>
 </footer>
 <!-- /component: TLL Site Footer -->
 
-<!-- Tell the editor: the live widget minus the floating pill. Same form, same ids and names. -->
+<!-- Tell the editor: the live widget (footer component root d654a9bb-4e8d-350e-33b3-281d6cf99bb7, form element 47a85add-df88-fb59-0e68-b0e1a6383bc5,
+     STATUS S92) minus the floating pill. Same form, same ids and names. -->
 <div id="tll-note" data-open="false" data-tll-note="1">
   <button class="tll-note-pill" type="button" aria-expanded="false" aria-controls="tll-note-card" hidden>Tell the editor</button>
   <div class="tll-note-card" id="tll-note-card" role="dialog" aria-labelledby="tll-note-title">
@@ -367,30 +403,34 @@ html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
 
 <script>
 /* Prototype script. Three parts mirror the live code:
-   1. tll-mobile-nav-js-v1 (updated): the MENU button, and on phones the anonymous text links copied into the menu.
+   1. tll-mobile-nav-js-v1 (updated): the MENU button; "Share your story" copied into the menu for everyone and "Log in" for
+      visitors. The "Log in" copy carries no data-ms-content: each time the menu opens, the script reads whether the anonymous
+      block is displayed (whatever Memberstack did to it) and hides or shows the copy to match. Escape closes and returns focus;
+      a link pick closes (which menu() in tll-v9-chrome-js-v1 does today).
    2. tll-note-v1-js (updated): the card opens from any [data-tll-note-open] link instead of the pill.
-   3. tll-foot-v1: footer accordions on phones.
+   3. tll-foot-v1: footer accordions on phones (h2 or h4 headings).
    The state toggle stands in for Memberstack. */
 (function(){
   var q=new URLSearchParams(location.search),html=document.documentElement;
   function setState(s){html.classList.toggle('tll-in',s==='in');html.classList.toggle('tll-out',s!=='in');
-    [].forEach.call(document.querySelectorAll('[data-proto-state]'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-proto-state')===s?'true':'false');});}
-  setState(q.get('state')==='in'?'in':'out');
+    [].forEach.call(document.querySelectorAll('[data-proto-state]'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-proto-state')===s?'true':'false');});sync();}
   if(q.get('shot')==='1')html.classList.add('tll-shot');
   [].forEach.call(document.querySelectorAll('[data-proto-state]'),function(b){b.addEventListener('click',function(){setState(b.getAttribute('data-proto-state'));});});
 
   /* 1. Nav */
-  var nav=document.querySelector('.tll-nav-v1'),row=nav.querySelector('.tll-nav-links-row'),cta=nav.querySelector('.tll-nav-cta-row');
+  var nav=document.querySelector('.tll-nav-v1'),row=nav.querySelector('.tll-nav-links-row'),cta=nav.querySelector('.tll-nav-cta-row'),anon=cta.querySelector('.tll-nav-anon'),copies=[];
   if(!row.id)row.id='tll-nav-links';
-  [].forEach.call(cta.querySelectorAll('.tll-nav-anon .tll-nav-link'),function(a){
-    var c=a.cloneNode(true);c.classList.add('tllmm-item');if(c.classList.contains('tll-nav-pen-link'))c.classList.add('tllmm-share');
-    c.setAttribute('data-ms-content','anonymous');row.appendChild(c);});
+  [].forEach.call(cta.querySelectorAll('.tll-nav-pen-cta, .tll-nav-anon .tll-nav-link'),function(a){
+    var c=a.cloneNode(true);c.classList.add('tllmm-item');c.classList.remove('tll-nav-pen-cta');if(a.classList.contains('tll-nav-pen-cta'))c.classList.add('tllmm-share');
+    if(a.closest('.tll-nav-anon')){c.setAttribute('data-tllmm-anon','1');copies.push(c);}row.appendChild(c);});
+  function sync(){var on=anon&&getComputedStyle(anon).display!=='none';copies.forEach(function(c){if(on)c.removeAttribute('hidden');else c.setAttribute('hidden','');});}
   var b=document.createElement('button');b.type='button';b.className='tllmm-btn';b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',row.id);b.textContent='MENU';cta.appendChild(b);
   function lab(){var o=nav.classList.contains('tllmm-open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'CLOSE':'MENU';}
-  b.addEventListener('click',function(){nav.classList.toggle('tllmm-open');lab();});
+  b.addEventListener('click',function(){sync();nav.classList.toggle('tllmm-open');lab();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('tllmm-open')){nav.classList.remove('tllmm-open');lab();b.focus();}});
   row.addEventListener('click',function(e){if(e.target.closest('a')){nav.classList.remove('tllmm-open');lab();}});
-  if(q.get('menu')==='open'){nav.classList.add('tllmm-open');lab();}
+  setState(q.get('state')==='in'?'in':'out');
+  if(q.get('menu')==='open'){sync();nav.classList.add('tllmm-open');lab();}
 
   /* 2. Tell the editor */
   var W=document.getElementById('tll-note'),card=W.querySelector('.tll-note-card'),close=W.querySelector('.tll-note-close'),ta=W.querySelector('textarea'),page=W.querySelector('input[name="page"]'),eyebrow=W.querySelector('.tll-note-eyebrow'),last=null;
@@ -404,7 +444,7 @@ html.ms-loaded.tll-in .tll-ux-end [data-ms-content="anonymous"]{display:none}
 
   /* 3. Footer accordions on phones */
   var F=document.querySelector('footer[data-tll-canonical-footer]'),cols=F.querySelector('[class^="inline-div-7-"]'),mq=window.matchMedia('(max-width:767px)');
-  [].forEach.call(cols.children,function(col){var h=col.querySelector('h4');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.setAttribute('aria-expanded','false');
+  [].forEach.call(cols.children,function(col){var h=col.querySelector('h2,h4');if(!h)return;h.setAttribute('role','button');h.setAttribute('tabindex','0');h.setAttribute('aria-expanded','false');
     function t(){var o=col.getAttribute('data-tll-open')==='true';col.setAttribute('data-tll-open',o?'false':'true');h.setAttribute('aria-expanded',o?'false':'true');}
     h.addEventListener('click',function(){if(mq.matches)t();});h.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&mq.matches){e.preventDefault();t();}});});
   if(q.get('foot')==='open'){[].forEach.call(cols.children,function(col){col.setAttribute('data-tll-open','true');});}

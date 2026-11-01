@@ -2,8 +2,16 @@
    node design/nav-footer-variant-2026-11/render.cjs
    1. Embeds the brand fonts into index.html (between the FONTS markers), so the prototype makes no external request.
    2. Builds "today" in memory from the saved code (nothing is written for it) and renders before.png at 390.
-   3. Renders index.html at 390 and 1440 in each state and writes after-390.png and after-1440.png as labeled sheets.
-   4. Prints the counts used in README.md: header height, link counts, computed position.
+      Today = the 13 Oct component trees with the 20 Oct edits applied from the records (nav: Destinations became The Map after
+      Travelers, Expats added; footer: the four columns, stats line, mail and copyright of STATUS S92), the 13 Oct Designer class
+      values, the 31 Oct site head and footer code (scratchpad/p0-1031/after/), the footer component embed tll-foot-v1 and the six
+      v16 layers that touch the nav, the footer or the note widget (tll-nav-phone-v1, tll-contrast-v1, tll-note-phone-v1,
+      tll-footer-wordmark-v1, tll-masthead-v1, tll-note-typing-v1). The 20 Oct element tree is not in the saved code, so the
+      footer is the content on record, not a capture.
+   3. Renders index.html at 390 and 1440 in each state and writes after-390.png and after-1440.png as labeled sheets. The variant
+      is rendered with the 13 Oct Designer class values placed before the head blocks, as Webflow loads its stylesheet before the
+      head code, so the measurements are of the live cascade and not of the prototype alone.
+   4. Prints the counts used in README.md: header height, link counts, computed position, text under 12px, overflow.
    Reads only: the fixtures, the saved head and footer code, the Designer style export, the font files. Writes only inside this folder. */
 'use strict';
 const fs = require('fs'), path = require('path');
@@ -47,14 +55,26 @@ if (next !== index) { fs.writeFileSync(INDEX, next); index = next; console.log('
 /* ---------- 2. "today" page, assembled from the saved code ---------- */
 const styleById = (src, id) => (src.match(new RegExp(`<style id="${id}">[\\s\\S]*?</style>`)) || [''])[0];
 const scriptById = (src, id) => (src.match(new RegExp(`<script id="${id}">[\\s\\S]*?</script>`)) || [''])[0];
+const layerStyle = (f) => R(`src/site-layers/${f}`).match(/<style[\s\S]*?<\/style>/)[0];
 const head = R('scratchpad/p0-1031/after/site-head.html');
-const foot = R('scratchpad/p0-1031/before/site-footer.html');
+const foot = R('scratchpad/p0-1031/after/site-footer.html');
 const footComp = R('src/components/footer/tll-foot-v1.html');
 const fixtureHome = R('src/design/magazine-2026-10/cover-build/fixture-home.html');
 const fixtureStories = R('src/pages/heroes-2026-10-29/fixtures/stories.html');
 
-const navMarkup = fixtureHome.match(/<!-- component: TLL Nav v1 -->[\s\S]*?<!-- \/component: TLL Nav v1 -->/)[0];
-let footerMarkup = fixtureStories.match(/<footer class="inline-footer-0-1"[\s\S]*?<\/footer>/)[0].replace(/<script[\s\S]*?<\/script>/g, '');
+/* Nav: the 13 Oct tree, then the 20 Oct edits on record (STATUS S91, HANDOFF-NOTE-2026-10-20.md, Packet A A1.1). */
+let navMarkup = fixtureHome.match(/<!-- component: TLL Nav v1 -->[\s\S]*?<!-- \/component: TLL Nav v1 -->/)[0];
+const dest = '<a class="tll-nav-link" href="/destinations">Destinations</a>', trav = '<a class="tll-nav-link" href="/travelers">Travelers</a>';
+if (!navMarkup.includes(dest) || !navMarkup.includes(trav)) throw new Error('nav fixture changed');
+navMarkup = navMarkup.replace(dest, '').replace(trav, trav + '<a class="tll-nav-link" href="/the-map">The Map</a><a class="tll-nav-link" href="/for-expats">Expats</a>');
+
+/* Footer: the prototype's reconstruction of the 20 Oct content, minus the help row, with h4 headings (as the 13 Oct tree and
+   tll-foot-v1 have them) and the aria-label that tll-footer-wordmark-v1.js writes today. */
+let footerMarkup = index.match(/<footer class="inline-footer-0-1"[\s\S]*?<\/footer>/)[0];
+footerMarkup = footerMarkup.replace(/\s*<!-- NEW: help row[^\n]*\n\s*<div class="tll-foot-help"[\s\S]*?<\/div>\n/, '\n')
+  .replace(/<h2>/g, '<h4>').replace(/<\/h2>/g, '</h4>')
+  .replace('<a class="tll-fwm" href="/">', '<a class="tll-fwm" href="/" aria-label="That Layover Life, home">');
+if (footerMarkup.includes('tll-foot-help')) throw new Error('help row still present');
 function balanced(src, start) {
   const i = src.indexOf(start); if (i < 0) throw new Error('not found ' + start);
   let depth = 0, j = i; const re = /<\/?div\b[^>]*>/g; re.lastIndex = i; let m;
@@ -74,24 +94,47 @@ function val(v) {
 }
 const BP = { medium: '(max-width:991px)', small: '(max-width:767px)', tiny: '(max-width:479px)' };
 const PROP = { 'grid-column-gap': 'column-gap', 'grid-row-gap': 'row-gap' };
-const classesUsed = new Set();
-for (const m of (navMarkup + footerMarkup).matchAll(/class="([^"]+)"/g)) m[1].split(/\s+/).forEach((c) => c && classesUsed.add('.' + c));
-['.tll-btn', '.tll-btn-primary', '.tll-btn-ghost-rose'].forEach((c) => classesUsed.add(c));
-let designerCss = '', designerCount = 0; const bpCss = { medium: '', small: '', tiny: '' };
-for (const s of styles) {
-  if (!classesUsed.has(s.selector)) continue; designerCount++;
-  const p = s.properties || {}; const decl = (o) => Object.entries(o || {}).map(([k, v]) => `${PROP[k] || k}:${val(v)}`).join(';');
-  if (p.base && p.base.properties) designerCss += `${s.selector}{${decl(p.base.properties)}}\n`;
-  for (const bp of Object.keys(BP)) { const b = p.breakpoints && p.breakpoints[bp]; if (b && b.properties && Object.keys(b.properties).length) bpCss[bp] += `${s.selector}{${decl(b.properties)}}\n`; }
+function designerCssFor(markup, extra) {
+  const used = new Set();
+  for (const m of markup.matchAll(/class="([^"]+)"/g)) m[1].split(/\s+/).forEach((c) => c && used.add('.' + c));
+  (extra || []).forEach((c) => used.add(c));
+  let css = '', n = 0; const bp = { medium: '', small: '', tiny: '' };
+  for (const s of styles) {
+    if (!used.has(s.selector)) continue; n++;
+    const p = s.properties || {}; const decl = (o) => Object.entries(o || {}).map(([k, v]) => `${PROP[k] || k}:${val(v)}`).join(';');
+    if (p.base && p.base.properties) css += `${s.selector}{${decl(p.base.properties)}}\n`;
+    for (const b of Object.keys(BP)) { const x = p.breakpoints && p.breakpoints[b]; if (x && x.properties && Object.keys(x.properties).length) bp[b] += `${s.selector}{${decl(x.properties)}}\n`; }
+  }
+  /* Webflow writes every breakpoint block after all base rules, largest breakpoint first. */
+  for (const b of Object.keys(BP)) css += `@media ${BP[b]}{\n${bp[b]}}\n`;
+  return { css, n };
 }
-/* Webflow writes every breakpoint block after all base rules, largest breakpoint first. */
-for (const bp of Object.keys(BP)) designerCss += `@media ${BP[bp]}{\n${bpCss[bp]}}\n`;
+const todayDesigner = designerCssFor(navMarkup + footerMarkup, ['.tll-btn', '.tll-btn-primary', '.tll-btn-ghost-rose']);
+const variantMarkup = index.match(/<!-- component: TLL Nav v1 \(variant\) -->[\s\S]*?<\/footer>/)[0];
+const variantDesigner = designerCssFor(variantMarkup, ['.tll-btn', '.tll-btn-primary']);
 
 const parityCss = styleById(head, 'tll-proto-parity-v1').replace(/@font-face\{[^}]*\}/g, '');
+/* The 13 Oct Designer values for the footer parts whose 20 Oct classes are not in the saved code: the brand band (.inline-div-2-...),
+   the counts (.inline-strong-0 20px teal, labels .inline-span-1-... 10px), the headings (.inline-h4-0 11px rose), the meta row
+   (.inline-span-9-... 12px, links .inline-a-20 13px). Read from styles-full.json by those selectors. */
+const pick = (sel) => { const s = styles.find((x) => x.selector === sel); return s && s.properties && s.properties.base ? Object.entries(s.properties.base.properties || {}).map(([k, v]) => `${PROP[k] || k}:${val(v)}`).join(';') : ''; };
+const todayFooterCss = `<style id="today-footer-13-oct-values">
+footer[data-tll-canonical-footer] [data-tll-foot="in"]{${pick('.inline-div-10-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17')}}
+footer[data-tll-canonical-footer] [data-tll-foot="brand"]{${pick('.inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35')};margin-bottom:30px;padding-bottom:26px;border-bottom:1px solid rgba(247,241,232,.14)}
+footer[data-tll-canonical-footer] [data-tll-foot="brand"] p{${pick('.inline-p-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15')}}
+footer[data-tll-canonical-footer] [class^="inline-div-7-"] h4{${pick('.inline-h4-0')}}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"]{${pick('.inline-div-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29')};margin:26px 0 0;padding-top:22px;border-top:1px solid rgba(247,241,232,.14)}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"]>span{${pick('.inline-span-2-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15')}}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"] strong{${pick('.inline-strong-0')}}
+footer[data-tll-canonical-footer] [data-tll-foot="stats"] span span{${pick('.inline-span-1-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15')}}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"]{${pick('.inline-div-9-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19')}}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"] a{${pick('.inline-a-20')}}
+footer[data-tll-canonical-footer] [data-tll-foot="meta"] span{${pick('.inline-span-9-1-2-3-4')}}
+</style>`;
 const todayHtml = `<!DOCTYPE html><html lang="en" class="ms-loaded"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>today</title>
 <style>${brandFontCss}\n${aliasFontCss}</style>
 <style id="webflow-base">*{box-sizing:border-box}body{margin:0;background:#FAF7F2;color:#0A0B14;font:400 16px/1.55 'DM Sans',sans-serif}a{color:inherit}h4{margin:10px 0;font-size:18px;line-height:24px;font-weight:700}.w-condition-invisible{display:none}</style>
-<style id="designer-13-oct">${designerCss}</style>
+<style id="designer-13-oct">${todayDesigner.css}</style>
 ${styleById(foot, 'tll-core-v2-css')}
 ${styleById(head, 'tll-consistency-v1')}
 ${styleById(head, 'tll-mobile-nav-v1')}
@@ -99,24 +142,31 @@ ${parityCss}
 ${styleById(head, 'tll-v9-chrome-v1')}
 ${styleById(foot, 'tll-note-v1-css')}
 ${styleById(footComp, 'tll-foot-v1')}
-${R('src/site-layers/tll-nav-phone-v1.html').match(/<style[\s\S]*?<\/style>/)[0]}
-${R('src/site-layers/tll-footer-wordmark-v1.html').match(/<style[\s\S]*?<\/style>/)[0]}
-${R('src/site-layers/tll-masthead-v1.html').match(/<style[\s\S]*?<\/style>/)[0]}
-<style id="today-standin">.proto-hero{background:#0B1220;color:#FAF7F2;padding:56px 20px 48px}.proto-hero-in,.proto-body{max-width:680px;margin:0 auto}.proto-eyebrow{font:600 11px/1.4 'JetBrains Mono',monospace;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}.proto-hero h1{font:800 clamp(34px,4.2vw,56px)/1.03 'Playfair Display',Georgia,serif;margin:0 0 14px}.proto-hero h1 em{color:#F0507A}.proto-hero p{font-size:17px;line-height:1.6;margin:0;max-width:46ch}.proto-body{padding:36px 20px 40px}.proto-body p{font-size:17px;line-height:1.7;color:#3a3a3a}</style>
+${todayFooterCss}
+${layerStyle('tll-nav-phone-v1.html')}
+${layerStyle('tll-contrast-v1.html')}
+${layerStyle('tll-note-phone-v1.html')}
+${layerStyle('tll-footer-wordmark-v1.html')}
+${layerStyle('tll-masthead-v1.html')}
+<style id="today-standin">.proto-hero{background:#0B1220;color:#FAF7F2;padding:56px 20px 48px}.proto-hero-in,.proto-body{max-width:680px;margin:0 auto}.proto-eyebrow{font:600 12px/1.4 'JetBrains Mono',monospace;letter-spacing:3px;text-transform:uppercase;color:#00C9C8;margin:0 0 14px}.proto-hero h1{font:800 clamp(34px,4.2vw,56px)/1.03 'Playfair Display',Georgia,serif;margin:0 0 14px}.proto-hero h1 em{color:#F0507A}.proto-hero p{font-size:17px;line-height:1.6;margin:0;max-width:46ch}.proto-body{padding:36px 20px 40px}.proto-body p{font-size:17px;line-height:1.7;color:#3a3a3a}</style>
 </head><body>
 ${navMarkup}
-<main id="main"><section class="proto-hero"><div class="proto-hero-in"><p class="proto-eyebrow">Today · Nav and footer as saved 29 to 31 Oct 2026</p><h1>One row. One <em>action.</em></h1><p>The same stand-in page, with the live nav, footer and Tell the editor pill, so the two renders compare like for like.</p></div></section><article class="proto-body"><p>Filler for the scroll only.</p><p>On phones the live nav is not sticky: the Designer sets it sticky, but the v9 chrome block sets position relative under 900px.</p></article></main>
+<main id="main"><section class="proto-hero"><div class="proto-hero-in"><p class="proto-eyebrow">Today · 13 Oct trees with the 20 Oct edits on record · 31 Oct site code</p><h1>One row. One <em>action.</em></h1><p>The same stand-in page, with the live nav, footer and Tell the editor pill, so the two renders compare like for like.</p></div></section><article class="proto-body"><p>Filler for the scroll only.</p><p>On phones the live nav is not sticky: the Designer sets it sticky, but the v9 chrome block sets position relative under 900px.</p></article></main>
 ${footerMarkup}
 ${noteMarkup}
 ${scriptById(head, 'tll-mobile-nav-js-v1')}
 ${scriptById(head, 'tll-v9-chrome-js-v1')}
 ${scriptById(foot, 'tll-note-v1-js')}
+<script>${R('src/site-layers/tll-note-typing-v1.js')}</script>
 <script>${R('src/site-layers/tll-footer-wordmark-v1.js')}</script>
 <script>${R('src/site-layers/tll-masthead-v1.js')}</script>
 <script>/* wordmark(), from tll-proto-parity-js-v1 */(function(){[].forEach.call(document.querySelectorAll('.tll-nav-logo-block'),function(b){var t=b.textContent.trim();if(/^LAYOVER LIFE\\.?$/i.test(t))b.innerHTML='LAYOVER <span class="tll-nav-logo-life">LIFE.</span>';});})();</script>
 <script>/* footer accordions, from tll-foot-v1 */${(footComp.match(/<script>([\s\S]*?)<\/script>/) || ['', ''])[1].split('/* The Data API')[0]}</script>
 <script>(function(){var q=new URLSearchParams(location.search);if(q.get('state')==='in'){document.documentElement.classList.add('tll-in');var s=document.createElement('style');s.textContent='html.tll-in [data-ms-content="anonymous"]{display:none !important}html.tll-in [data-ms-content="members"]{display:block !important}';document.head.appendChild(s);}else{var s2=document.createElement('style');s2.textContent='html [data-ms-content="members"]{display:none !important}html [data-ms-content="anonymous"]{display:block !important}';document.head.appendChild(s2);}if(q.get('menu')==='open')window.addEventListener('load',function(){var b=document.querySelector('.tllmm-btn');if(b)b.click();});})();</script>
 </body></html>`;
+
+/* The variant under the live cascade: the Designer stylesheet first, then the head blocks. Served in memory; index.html is not changed. */
+const variantHtml = index.replace('<style id="tll-proto-base">', `<style id="designer-13-oct">${variantDesigner.css}</style>\n<style id="tll-proto-base">`);
 
 /* ---------- 3. render helpers ---------- */
 const SCALE = 2;
@@ -140,11 +190,11 @@ async function sheet(browser, width, panels, out) {
   }, { imgs, labels: panels.map((x) => x.label), width, scale: SCALE });
   fs.writeFileSync(out, Buffer.from(data.split(',')[1], 'base64')); await p.close(); console.log('wrote', path.relative(ROOT, out));
 }
-async function open(browser, width, height, url, html) {
+async function open(browser, width, height, host, url, html) {
   const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: SCALE });
   page.on('console', (m) => { if (m.type() === 'error') console.log('  [page error]', m.text().slice(0, 120)); });
-  if (html) { await page.route('http://today.local/**', (route) => route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: html })); await page.goto('http://today.local' + url, { waitUntil: 'load' }); }
-  else await page.goto(url, { waitUntil: 'load' });
+  await page.route(`http://${host}/**`, (route) => route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: html }));
+  await page.goto(`http://${host}` + url, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(250);
   return page;
 }
@@ -161,11 +211,14 @@ async function measure(page, label) {
     const rowVisible = navAll.filter(vis).map((a) => (a.textContent.trim() || a.getAttribute('aria-label')) + '(' + Math.round(a.getBoundingClientRect().width) + 'x' + Math.round(a.getBoundingClientRect().height) + ')');
     const menuLinks = [...nav.querySelectorAll('.tll-nav-links-row a')].filter(vis).map((a) => a.textContent.trim());
     const foot = document.querySelector('footer'); const footLinks = [...foot.querySelectorAll('a')];
-    const footVisibleCols = footLinks.filter(vis).length;
-    const small = [...document.querySelectorAll('nav *, footer *')].filter((e) => e.children.length === 0 && e.textContent.trim() && vis(e)).map((e) => parseFloat(getComputedStyle(e).fontSize)).filter((s) => s < 12);
-    const inner = nav.querySelector('.tll-nav-inner').getBoundingClientRect(); const cta = nav.querySelector('.tll-nav-cta-row'); const ctaBoxes = [...cta.querySelectorAll('a,button')].filter(vis).map((e) => e.getBoundingClientRect()); const logoBox = nav.querySelector('.tll-nav-logo').getBoundingClientRect(); const gapAfterLogo = Math.round(Math.min(...ctaBoxes.map((b) => b.left)) - logoBox.right); const rowRight = Math.round(Math.max(...ctaBoxes.map((b) => b.right)));
+    const leaf = (root) => [...root.querySelectorAll('*')].filter((e) => e.children.length === 0 && e.textContent.trim() && vis(e));
+    const small = [...leaf(nav), ...leaf(foot), ...leaf(document.getElementById('tll-note') || foot)].filter((e) => parseFloat(getComputedStyle(e).fontSize) < 12).map((e) => e.textContent.trim().slice(0, 24) + ':' + getComputedStyle(e).fontSize);
+    const cta = nav.querySelector('.tll-nav-cta-row'); const ctaBoxes = [...cta.querySelectorAll('a,button')].filter(vis).map((e) => e.getBoundingClientRect()); const logoBox = nav.querySelector('.tll-nav-logo').getBoundingClientRect();
+    const rowRight = Math.round(Math.max(...ctaBoxes.map((b) => b.right))); const leftover = Math.round(innerWidth - rowRight - (ctaBoxes.length ? parseFloat(getComputedStyle(nav.querySelector('.tll-nav-main')).paddingRight) : 0));
     const overflow = navAll.filter(vis).filter((a) => { const b = a.getBoundingClientRect(); return b.right > innerWidth + .5 || b.left < -.5 || a.scrollWidth > a.clientWidth + 1; }).map((a) => a.textContent.trim());
-    return { navHeight: Math.round(r.height * 10) / 10, position: cs.position, rowVisible, menuLinks, footAnchors: footLinks.length, footVisibleCols, smallText: small.length, innerRight: Math.round(inner.right), rowRight, gapAfterLogo, overflow, scrollW: document.documentElement.scrollWidth };
+    const under44 = navAll.filter(vis).filter((a) => a.getBoundingClientRect().height < 43.5).map((a) => (a.textContent.trim() || a.getAttribute('aria-label')) + ':' + Math.round(a.getBoundingClientRect().height));
+    const bg = (sel) => { const e = document.querySelector(sel); return e && vis(e) ? getComputedStyle(e).backgroundColor + '/' + getComputedStyle(e).color : null; };
+    return { navHeight: Math.round(r.height * 10) / 10, position: cs.position, rowVisible, menuLinks, footAnchors: footLinks.length, smallText: small, under44, logoW: Math.round(logoBox.width), leftover, overflow, scrollW: document.documentElement.scrollWidth, primary: bg('.tll-nav-signup') || bg('.tll-nav-map-cta') || bg('.tll-nav-pen-cta'), avatar: bg('.tll-nav-avatar') };
   });
   console.log(`[${label}]`, JSON.stringify(m));
   return m;
@@ -174,73 +227,75 @@ async function measure(page, label) {
 (async () => {
   const browser = await chromium.launch();
   const report = {};
+  const T = (u) => open(browser, ...u);
   /* before, 390 */
   {
     const panels = [];
-    let p = await open(browser, 390, 844, '/stories', todayHtml);
+    let p = await T([390, 844, 'today.local', '/stories', todayHtml]);
     report.beforeOut = await measure(p, 'today 390 logged out');
     panels.push({ label: 'Today, 390, logged out', png: await shotTop(p, 300) }); await p.close();
-    p = await open(browser, 390, 844, '/stories?menu=open', todayHtml);
+    p = await T([390, 844, 'today.local', '/stories?menu=open', todayHtml]);
     await p.waitForTimeout(150); await measure(p, 'today 390 menu open');
     panels.push({ label: 'Today, 390, menu open', png: await shotTop(p, 560) }); await p.close();
-    p = await open(browser, 390, 844, '/stories?state=in', todayHtml);
+    p = await T([390, 844, 'today.local', '/stories?state=in', todayHtml]);
     report.beforeIn = await measure(p, 'today 390 logged in');
     panels.push({ label: 'Today, 390, logged in', png: await shotTop(p, 300) }); await p.close();
-    p = await open(browser, 390, 844, '/stories', todayHtml);
+    p = await T([390, 844, 'today.local', '/stories', todayHtml]);
     panels.push({ label: 'Today, 390, footer (accordions closed)', png: await shotEl(p, 'footer') });
-    panels.push({ label: 'Today, 390, page bottom, floating pill', png: await shotBottom(p) }); await p.close();
+    panels.push({ label: 'Today, 390, page bottom, floating note button', png: await shotBottom(p) }); await p.close();
     await sheet(browser, 390, panels, path.join(DIR, 'before.png'));
-    p = await open(browser, 1440, 900, '/stories', todayHtml); report.before1440 = await measure(p, 'today 1440 logged out'); await p.close();
-    p = await open(browser, 1440, 900, '/stories?state=in', todayHtml); await measure(p, 'today 1440 logged in'); await p.close();
+    p = await T([1440, 900, 'today.local', '/stories', todayHtml]); report.before1440 = await measure(p, 'today 1440 logged out'); await p.close();
+    p = await T([1440, 900, 'today.local', '/stories?state=in', todayHtml]); await measure(p, 'today 1440 logged in'); await p.close();
+    for (const w of [900, 991]) { p = await T([w, 800, 'today.local', '/stories', todayHtml]); await measure(p, `today ${w} logged out`); await p.close(); }
   }
   /* after, 390 */
-  const url = 'file://' + INDEX;
+  const V = (w, h, params) => T([w, h, 'variant.local', qs('/stories/ghana-easter-everyone-wears-white', params), variantHtml]);
   {
     const panels = [];
-    let p = await open(browser, 390, 844, qs(url, { shot: 1 }));
+    let p = await V(390, 844, { shot: 1 });
     report.afterOut = await measure(p, 'variant 390 logged out');
     panels.push({ label: 'Variant, 390, logged out', png: await shotTop(p, 300) }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1, menu: 'open' }));
+    p = await V(390, 844, { shot: 1, menu: 'open' });
     report.afterOutMenu = await measure(p, 'variant 390 logged out, menu open');
-    panels.push({ label: 'Variant, 390, logged out, menu open', png: await shotTop(p, 560) }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1, state: 'in' }));
+    panels.push({ label: 'Variant, 390, logged out, menu open', png: await shotTop(p, 600) }); await p.close();
+    p = await V(390, 844, { shot: 1, state: 'in' });
     report.afterIn = await measure(p, 'variant 390 logged in');
     panels.push({ label: 'Variant, 390, logged in', png: await shotTop(p, 300) }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1, state: 'in', menu: 'open' }));
+    p = await V(390, 844, { shot: 1, state: 'in', menu: 'open' });
     report.afterInMenu = await measure(p, 'variant 390 logged in, menu open');
-    panels.push({ label: 'Variant, 390, logged in, menu open', png: await shotTop(p, 480) }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1 }));
+    panels.push({ label: 'Variant, 390, logged in, menu open', png: await shotTop(p, 560) }); await p.close();
+    p = await V(390, 844, { shot: 1 });
     await p.evaluate(() => window.scrollTo(0, 600)); await p.waitForTimeout(200);
     panels.push({ label: 'Variant, 390, scrolled, header stays', png: await shotTop(p, 140) });
     panels.push({ label: 'Variant, 390, story end block', png: await shotEl(p, '#tll-ux-end') });
     panels.push({ label: 'Variant, 390, footer (accordions closed)', png: await shotEl(p, 'footer') }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1, foot: 'open' }));
+    p = await V(390, 844, { shot: 1, foot: 'open' });
     panels.push({ label: 'Variant, 390, footer, every column open', png: await shotEl(p, 'footer') }); await p.close();
-    p = await open(browser, 390, 844, qs(url, { shot: 1, note: 'open' }));
+    p = await V(390, 844, { shot: 1, note: 'open' });
     panels.push({ label: 'Variant, 390, Tell the editor open', png: await shotBottom(p) }); await p.close();
     await sheet(browser, 390, panels, path.join(DIR, 'after-390.png'));
   }
   /* after, 1440 */
   {
     const panels = [];
-    let p = await open(browser, 1440, 900, qs(url, { shot: 1 }));
+    let p = await V(1440, 900, { shot: 1 });
     report.after1440Out = await measure(p, 'variant 1440 logged out');
     panels.push({ label: 'Variant, 1440, logged out', png: await shotTop(p, 420) }); await p.close();
-    p = await open(browser, 1440, 900, qs(url, { shot: 1, state: 'in' }));
+    p = await V(1440, 900, { shot: 1, state: 'in' });
     report.after1440In = await measure(p, 'variant 1440 logged in');
     panels.push({ label: 'Variant, 1440, logged in', png: await shotTop(p, 160) }); await p.close();
-    p = await open(browser, 1440, 900, qs(url, { shot: 1 }));
+    p = await V(1440, 900, { shot: 1 });
     panels.push({ label: 'Variant, 1440, story end block and footer', png: await (async () => { await p.evaluate(() => document.getElementById('tll-ux-end').scrollIntoView()); await p.waitForTimeout(150); return p.screenshot({ fullPage: false }); })() });
     panels.push({ label: 'Variant, 1440, footer', png: await shotEl(p, 'footer') }); await p.close();
-    p = await open(browser, 1440, 900, qs(url, { shot: 1, note: 'open' }));
+    p = await V(1440, 900, { shot: 1, note: 'open' });
     panels.push({ label: 'Variant, 1440, Tell the editor open', png: await shotBottom(p) }); await p.close();
     await sheet(browser, 1440, panels, path.join(DIR, 'after-1440.png'));
   }
   /* extra widths, measured only */
-  for (const w of [320, 360, 430, 768, 899, 900, 1024]) {
-    for (const st of ['out', 'in']) for (const menu of ['closed', 'open']) { const p = await open(browser, w, 800, qs(url, { shot: 1, state: st, menu })); await measure(p, `variant ${w} ${st} menu ${menu}`); await p.close(); }
+  for (const w of [320, 340, 360, 430, 768, 991, 992, 1024, 1199]) {
+    for (const st of ['out', 'in']) for (const menu of ['closed', 'open']) { const p = await V(w, 800, { shot: 1, state: st, menu }); await measure(p, `variant ${w} ${st} menu ${menu}`); await p.close(); }
   }
   await browser.close();
-  console.log('designer classes used in the today render:', designerCount);
+  console.log('designer classes used: today', todayDesigner.n, '| variant', variantDesigner.n);
   console.log('REPORT ' + JSON.stringify(report));
 })().catch((e) => { console.error(e); process.exit(1); });
