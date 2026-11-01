@@ -5,6 +5,8 @@
    "Lived in" and the album's home marks. The country list itself never leaves the map.
    /edit-profile: "05D · Your album" asks how the member counts continents (7, 6 with one America, 6 with Eurasia, or the 5 of the
    Olympic rings). The first time, the choice is suggested from the browser language; nothing is saved until the member picks.
+   1 Nov 2026 (split build): the /edit-profile section polls for its anchors every 500 ms for up to 15 s, since they now arrive with the
+   edit-profile chunk; it still prefers the stamps section and falls back to the collections or crew section after 2.5 s.
    No data-ms-* element touched. */
 (function(){
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
@@ -43,5 +45,5 @@ function editProfile(){
     sec.appendChild(box);sec.appendChild(msg);anchor.insertAdjacentElement('afterend',sec);
   });
 }
-if(P==='/edit-profile'){var go=function(){editProfile();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(go,2200);});else setTimeout(go,2200);setTimeout(go,5000);}
+if(P==='/edit-profile'){var n=0,poll=function(){var iv=setInterval(function(){n++;var st=document.getElementById('tll-st'),any=st||document.getElementById('tll-col')||document.getElementById('ep-crew');if(st||(any&&n>=5)||n>=30){clearInterval(iv);editProfile();}},500);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',poll);else poll();}
 })();

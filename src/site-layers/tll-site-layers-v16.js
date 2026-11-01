@@ -3,33 +3,37 @@
    core   src/components/member-bar/tll-account-hash-tabs-v1.js (member bar SETTINGS and CONTRIBUTIONS open their /account tab)
    core   src/site-layers/tll-note-typing-v1.js (note button steps aside while typing)
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
+   core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
+   core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
+   core   src/site-layers/tll-lounge-labels-v1.js (29 Oct Nancy: /gallery tile labels small, in the corner, off the photo)
+   core   src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    core   src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
    core   src/site-layers/tll-photos-form-v2.js (29 Oct Nancy: /share-photos takes 30 photos and PNG)
    core   src/site-layers/tll-album-settings-v1.js (31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5))
    core   src/site-layers/tll-division-v1.js (31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting)
    core   src/site-layers/tll-phase0-v1.js (31 Oct Nancy: Phase 0 fixes (contact relay, support headline, search, map buttons, shelf count, Thailand stub))
+   core   src/site-layers/tll-ads-v1.js (31 Oct Nancy: AdSense, tastefully (story pages, library, countries only))
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults when the head consent tool is missing)
    Styles: tll-nav-phone-v1 (phone header), tll-contrast-v1 (contrast), tll-note-phone-v1 (round note button on phones), tll-photos-tap-v1 (/share-photos drop zone tap on iPhones), tll-home-coords-v1 (home photo coordinates inside the screen on phones), tll-footer-wordmark-v1 (footer wordmark matches the header), tll-tap-colors-v1 (/account Stories tab: ink text and a rose underline on hover and tap, no rose or teal text), tll-shelf-ring-v1 (home library rail: room for the avatar ring on phones), tll-masthead-v1 (footer masthead line in Newsreader italic)
    The other layers come in per-path chunks from chunks/ at this same commit, loaded by the chunk loader below:
    chunk  site /^/: tll-footer-wordmark-v1, tll-masthead-v1, tll-hover-v1, tll-byline-links-v1, tll-story-fixes-1029-v1, tll-email-hello-v1, tll-ep-help-v1, tll-whats-new-v1
-   chunk  home /^\/(index\.html)?$/: tll-home-bands-v1, tll-redesign-p0-v1, tll-home-value-v1
-   chunk  stories /^\/stories$/: tll-page-heroes-v1, tll-stories-places-v1, tll-stories-noimg-v1, tll-series-v1, tll-story-is-v1, tll-ads-v1
-   chunk  story /^\/stories\/[^/]+$/: tll-story-ask-v1, tll-story-captions-v1, tll-pros-v1, tll-series-v1, tll-story-is-v1, tll-ads-v1 (+ staged in story-preview: tll-ux-v1)
+   chunk  home /^\/(index\.html)?$/: tll-redesign-p0-v1, tll-home-value-v1
+   chunk  stories /^\/stories$/: tll-stories-places-v1, tll-series-v1, tll-story-is-v1
+   chunk  story /^\/stories\/[^/]+$/: tll-story-ask-v1, tll-story-captions-v1, tll-pros-v1, tll-series-v1, tll-story-is-v1 (+ staged in story-preview: tll-ux-v1)
    chunk  submit /^\/submit$/: tll-submit-ux-v1, tll-linkout-preview-v1, tll-linkout-summary-v1, tll-submit-gallery-v1, tll-submit-long-v1, tll-intake-v1, tll-story-is-v1 (+ staged in submit-preview: tll-ux-v1)
    chunk  share-photos /^\/share-photos$/: tll-photos-caption-v1, tll-intake-v1
    chunk  edit-profile /^\/edit-profile/: tll-ep-country-v1, tll-ep-ux-v1, tll-ep-marks-v1, tll-ep-linkstack-v1, tll-crew-v1, tll-collections-v1, tll-stamps-v1, tll-work-trips-v1 (+ staged in edit-profile-preview: tll-expat-v1)
    chunk  profile /^\/contributors\/[^/]+$/: tll-profile-count-v1, tll-pf-linkstack-v1, tll-crew-v1, tll-collections-v1, tll-stamps-v1, tll-album-v1, tll-pros-v1 (+ staged in profile-preview: tll-expat-v1)
    chunk  account /^\/account$/: tll-crew-v1, tll-export-v1, tll-metrics-v1, tll-work-trips-v1 (+ staged in account-preview: tll-ux-v1)
-   chunk  map /^\/the-map$/: tll-page-heroes-v1, tll-redesign-p0-v1
-   chunk  for-expats /^\/for-expats$/: tll-page-heroes-v1, tll-expert-from-v1, tll-expats-map-v1, tll-series-v1 (+ staged in for-expats-preview: tll-expat-v1)
-   chunk  travelers /^\/travelers$/: tll-page-heroes-v1, tll-travelers-fix-v1
-   chunk  about /^\/about$/: tll-page-heroes-v1
+   chunk  map /^\/the-map$/: tll-redesign-p0-v1
+   chunk  for-expats /^\/for-expats$/: tll-expert-from-v1, tll-expats-map-v1, tll-series-v1 (+ staged in for-expats-preview: tll-expat-v1)
+   chunk  travelers /^\/travelers$/: tll-travelers-fix-v1
    chunk  pursuits /^\/pursuits\/[^/]+$/: tll-stamps-v1, tll-pros-v1, tll-series-v1, tll-work-trips-v1
    chunk  pets /^\/(pets\/[^/]+|my-pets|the-paw-passport)$/: tll-crew-v1, tll-album-v1, tll-series-v1 (+ staged in pets-preview: tll-paw-v1, tll-pet-passport-v1)
-   chunk  countries /^\/countries\/[^/]+$/: tll-series-v1, tll-ads-v1
-   chunk  misc /^\/(spotlight|gallery)$/: tll-open-slots-v1, tll-lounge-labels-v1, tll-lounge-members-v1
+   chunk  countries /^\/countries\/[^/]+$/: tll-series-v1
+   chunk  misc /^\/(spotlight|gallery)$/: tll-open-slots-v1, tll-lounge-members-v1
    No data-ms-* element is touched. */
 /* src/site-layers/tll-consent-mode-v2.js */
 window.dataLayer=window.dataLayer||[];if(typeof window.gtag!=='function'){window.gtag=function(){dataLayer.push(arguments);};}
@@ -44,22 +48,21 @@ var m=/^(.*\/)tll-site-layers-v16\.js(?:[?#].*)?$/.exec(src);if(!m){try{console.
 var P=location.pathname.replace(/\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);
 try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}
 var C=[['site',/^/,'sha384-dFwyiWKuDpIje9Otv4cOb3xCAp0r5UBmOAhKWd1j9OWfjtgoHq/LMItGo29rBudu'],
-['home',/^\/(index\.html)?$/,'sha384-OIXe9FQHgwyZStgOaEgBRl4hSu1COVIOzMsJITtBooFbav2irm2vhWbxynkw1Q84'],
-['stories',/^\/stories$/,'sha384-dYaYaDlZG7g3PK9aA3f+IxtX8brRL4QO/RjumyDLc+X4fO3yLOYKNT5wHe5ZDM6b'],
-['story',/^\/stories\/[^/]+$/,'sha384-BKdJnhn8nRGFvqs3DqjpLLWlXyKJAzoMDslROyYx5hjAA6EtROsf/meRvNJc/Cdi','story-preview','sha384-JFUA6mpY9/lLXbRnQdWHSEA8+g7H/2GAzU3mmuT43dWiPxWT8w8pFkU6OmS3L6PL'],
+['home',/^\/(index\.html)?$/,'sha384-YorJpf5W031EuzuN1a50x9bD6HYdkkt/AR0oUqlPjlBgNOf6Y5Hjj8QSvyDoIkJi'],
+['stories',/^\/stories$/,'sha384-rJxlUUvI2K+RHh/+K5CltP2I0ORv+wyvlkn/P2NgEKoyqJIYGlJdoDMaKK25nI9B'],
+['story',/^\/stories\/[^/]+$/,'sha384-uat5wHDC+hS2VKK5rxkb0YXR5JKlv3YnA2q7Fvu1njKONSREPayHtuHzFfC+BOgj','story-preview','sha384-hWQZeY6IaLUSV+7828X/oLBYdF65P6S0UPvSwKHQntzeGJaiFdhf8u8gXAaPKphZ'],
 ['submit',/^\/submit$/,'sha384-CdhEoOZYYqHH/qKamFNjc4/2JLWetzMJxj3HfAmX9ekzyLQ0EqYC+Knpfaag2zQI','submit-preview','sha384-nlqyQrRl0tChFc+hVngmT1bujJGiwK93obVs3qSnvjNM9vqVIlHMICrkxgz4JgRl'],
 ['share-photos',/^\/share-photos$/,'sha384-qHMKKfwgA5R2Pth9khIH+rAu6ptChFg7821QVc304wshp1qfJTO8cWj5HNbRcjiH'],
 ['edit-profile',/^\/edit-profile/,'sha384-RV9ll3/Urdih/HNeHJ3OFSx6z35ey/tfeN//YuQHOv78Q8eDuzKK+b36qcpHbxdU','edit-profile-preview','sha384-l+wvumiTLFAKMO1ELGAcqaEDLT4JC+pUhC5EWckOZplvtBNIYKMa86dPpi/BKNUo'],
 ['profile',/^\/contributors\/[^/]+$/,'sha384-mDk2TMDohJx9zeXkNImDkvonunqjeabOQGv24qCa/qdA6oBBAbYJQAyh0VipNREs','profile-preview','sha384-t19W41gnsAOsQcaHgTco6Ecxw8Tq8HCmVP7XALrUT4hVCwdaTDt5M6ZIqTY110VV'],
 ['account',/^\/account$/,'sha384-D0i7l5xZ97+TrBiS9878yMlvI9xCCm3wbPVB9bRsbJ7mPRznBo9vSSyk2y+ZTzzU','account-preview','sha384-FGqxqsvX2yLQwsDMSJ7r6muuNO4NpRagTXsnVBFC6WQjvR0Xu3dCdrLclb2bfzNE'],
-['map',/^\/the-map$/,'sha384-CsUIgVXAA/WpGurM2gbtwfyP3Whmo5R4tbeETjXNgEGCsHhMZjZvw02BZspObVfQ'],
-['for-expats',/^\/for-expats$/,'sha384-elSJ3q9NRMLYrtXT5Pnr1Zf8s0nWsQIaUCrt0d7oBPcq4ZMNEkEKStL+/LzOgeWE','for-expats-preview','sha384-vZQF/gN5rz623ABoEAphniS/CN1sN04krs14n/bs4bJ4PXrPcaBH+9oybOdUFfLS'],
-['travelers',/^\/travelers$/,'sha384-5lMG7vsqEq3AnOENCXRPeEFs4hGY9R0wpexm8y6s7v7C2TezA0qGRxiiRmTVSaC4'],
-['about',/^\/about$/,'sha384-yzE9EuXay6SUBvs8I9nQkARmfZKWEKbiPnsr1vUNps6LrcZQSUEq13JL02oKwt6O'],
+['map',/^\/the-map$/,'sha384-VvRBDrxgnKYR6FV1mTnMtDc7GZxGq6OOQ/iNey8tnf+kapWq7cDJIv4tnOMtXWFR'],
+['for-expats',/^\/for-expats$/,'sha384-mQ1Q2tzCP0sfVoeE1wct5pTMlWR2y1RompqvLtKEDTVJNTunVFM02HU1uM2BSfO1','for-expats-preview','sha384-1CmShDVfQ3vaqZ0aUWaNzgo8YV60T/gmYeO8Sgr87sTDrbrP5CjHcD4v7Gm/Th0u'],
+['travelers',/^\/travelers$/,'sha384-rpXXIOCIWVV+jwa9aslXVsj5Cmh9xb9e+NPuHlUWeGg8n0j8yLUUcTGeXP+1KbXH'],
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-jv0rCVfZ9J2rY9m40ysbl4aaFlwjZaPJw0egOZqBtIrnIZPr+1X6aFaoatFB5cDR'],
 ['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-r+/N5YiHagis9z4Z4upneiVU86EnFa2fQBnYbixH2MqyV6tFz4wKoreWQFMZzKbs','pets-preview','sha384-+MUDdfCxGoVJh4PhCjc2OxgIClNDn0NKmovwmTAeInWyBsHrw9L04uihM5Kw6cnl'],
-['countries',/^\/countries\/[^/]+$/,'sha384-PMPqre886pCvHvsONpsxCG5y9/g45DqjzUhJrtDMeWQQpG4iXPlLUiGC2wVuplK1'],
-['misc',/^\/(spotlight|gallery)$/,'sha384-KavvsAgCNjFludBiYXXcFrNIC5yJZoUV4GVOA3/jdU0WWavBnE68EuibCmO/AKjl']],h=document.head||document.documentElement;
+['countries',/^\/countries\/[^/]+$/,'sha384-wjF/6Jz7sd6qNH2Th5/LyTBydqCsWzsG+2hdHH93ydQAve04lzmO2YdQI7PVhaer'],
+['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj']],h=document.head||document.documentElement;
 for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}
   var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}
 })();
@@ -104,6 +107,211 @@ function run(){style('tll-ux-1028',TAIL,document.body);
   var hero=document.querySelector('[data-h3-hero]');if(!hero){W.classList.add('tll-note-out');return;}
   var t=0;function upd(){t=0;var r=hero.getBoundingClientRect();W.classList.toggle('tll-note-out',!(r.bottom>innerHeight-76&&r.top<innerHeight));}
   upd();addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(upd);},{passive:true});addEventListener('resize',upd);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+/* src/site-layers/tll-page-heroes-v1.js */
+(function(){
+var path=location.pathname.replace(/\/+$/,'')||'/';
+var PAGES={'/stories':1,'/travelers':1,'/the-map':1,'/about':1,'/for-expats':1};
+if(!PAGES[path])return;
+var C='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/';
+var P={
+ ibiza:{src:C+'6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg',alt:'Sunset over the sea from a beach bar in Ibiza, the sun low behind a thatched roof',place:'Ibiza, Spain',by:'Chesney Lish',href:'/stories/spain-madrid-wedding-ibiza',pos:'50% 88%'},
+ jaguar:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',alt:'A jaguar swimming across a river in the Pantanal',place:'Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild',pos:'42% 60%'},
+ antarctica:{src:C+'6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg',alt:'The sun over a snowfield and mountains on a landing in Antarctica',place:'Antarctica',by:'Nancy Carleton',href:'/stories/antarctica-marathon',pos:'60% 50%'},
+ fitzroy:{src:C+'6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg',alt:'The granite peaks of Fitz Roy above green hills in Patagonia',place:'Patagonia',by:'Nancy Carleton',href:'/stories/patagonia-w-trek-christmas-new-year',pos:'62% 40%'},
+ sortsol:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',alt:'A murmuration of starlings at sunset during Sort Sol in Denmark',place:'Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark',pos:'42% 40%'},
+ bulgaria:{src:C+'6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg',alt:'A yellow building and wisteria on a quiet tree-lined street in Bulgaria',place:'Bulgaria',by:'Nancy Carleton',href:'/stories/balkans-ev-road-trip-twelve-countries',pos:'50% 45%'},
+ montenegro:{src:C+'6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg',alt:'The Montenegro coast at sunset from a wooded hillside',place:'Montenegro',by:'Nancy Carleton',href:'/stories/montenegro-budva-switchback-roads',pos:'50% 50%'},
+ lapaz:{src:C+'6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg',alt:'A sea lion swimming toward the camera off La Paz',place:'La Paz, Mexico',by:'Nancy Carleton',href:'/stories/la-paz-mexico-whale-sharks',pos:'40% 50%'},
+ ghana:{src:C+'6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg',alt:'Three children sitting together on a bench in Ghana',place:'Ghana',by:'Nancy Carleton',href:'/stories/ghana-easter-everyone-wears-white',pos:'55% 50%'},
+ magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%'}
+};
+var FACES=[
+ {name:'Chesney Lish',href:'/contributors/chesney-lish',src:C+'6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg',pos:'50% 25%'},
+ {name:'Barzy Adam',href:'/contributors/barzy-adam',src:C+'6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg',pos:'50% 30%'},
+ {name:'Magnus',href:'/pets/magnus-waffles',src:P.magnus.src,pos:'50% 30%'},
+ {name:'Nancy Carleton',href:'/contributors/nancy-carleton',src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg',pos:'50% 35%'}
+];
+var CSS=
+/* shared: tiles, captions, credit */
+".tll-ph-tile{display:block;position:relative;text-decoration:none!important;color:inherit!important;-webkit-tap-highlight-color:transparent}"+
+".tll-ph-img{display:block;position:relative;overflow:hidden;border-radius:2px;background:#E9E2D6}"+
+".tll-ph-img img{display:block;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:cover;opacity:0;transition:opacity 400ms cubic-bezier(.23,1,.32,1),transform 600ms cubic-bezier(.23,1,.32,1)}"+
+".tll-ph-img img.tll-ph-in{opacity:1}"+
+"@media (hover:hover) and (pointer:fine){.tll-ph-tile:hover .tll-ph-img img{transform:scale(1.03)}}"+
+".tll-ph-tile:focus-visible{outline:3px solid #C8325B;outline-offset:3px}"+
+".tll-ph-cap{display:block;margin:10px 0 0;font:500 12px/1.45 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#5F5A54;text-align:left}"+
+".tll-ph-cap b{display:block;font-weight:600;color:#1A1A1A}"+
+".tll-ph-label{margin:0 0 16px;font:600 12px/1.4 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#C8325B}"+
+"@media (prefers-reduced-motion:reduce){.tll-ph-img img{transition:none;opacity:1}.tll-ph-tile:hover .tll-ph-img img{transform:none}}"+
+/* /stories: four covers under the title */
+".tll-ph-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:960px;margin:36px auto 12px;padding:0 24px;box-sizing:border-box}"+
+".tll-ph-row .tll-ph-img{aspect-ratio:4/5}"+
+".tll-ph-row.tll-ph-row-below{margin:28px auto 8px}"+
+"@media (max-width:767px){.tll-ph-row{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;margin:22px 0 6px;padding:0 24px 6px;scroll-padding:0 24px;scrollbar-width:none}"+
+".tll-ph-row::-webkit-scrollbar{display:none}.tll-ph-row>.tll-ph-tile{flex:0 0 46%;scroll-snap-align:start}.tll-ph-row .tll-ph-cap b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tll-ph-row .tll-ph-img{aspect-ratio:3/4}}"+
+/* /travelers: the writers' faces */
+".tll-ph-faces{display:flex;gap:14px;margin:0 0 28px;padding:0;list-style:none}"+
+".tll-ph-faces li{margin:0;padding:0;list-style:none}"+
+".tll-ph-faces .tll-ph-img{width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px #F7F1E8,0 0 0 3.5px #C8325B}"+
+".tll-ph-faces .tll-ph-cap{margin-top:8px;width:72px;margin-left:-4px;text-align:center;letter-spacing:.02em;text-transform:none;font-size:12px;color:#1A1A1A}"+
+".tll-ph-faces .tll-ph-cap b{font-weight:600}"+
+"@media (min-width:1200px){"+
+".tll-travelers-hero .tll-travelers-hero-inner.tll-ph-grid{max-width:1232px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 300px;column-gap:72px;align-items:center}"+
+".tll-travelers-hero .tll-travelers-hero-inner.tll-ph-grid{grid-template-rows:1fr auto auto auto 1fr}"+
+".tll-ph-grid>:not(.tll-ph-faces){grid-column:1}.tll-ph-grid>:nth-child(2){grid-row:2}.tll-ph-grid>:nth-child(3){grid-row:3}.tll-ph-grid>:nth-child(4){grid-row:4}"+
+".tll-ph-grid>.tll-ph-faces{grid-column:2;grid-row:1/-1;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 18px;margin:0}"+
+".tll-ph-grid>.tll-ph-faces li:nth-child(even){transform:translateY(36px)}"+
+".tll-ph-grid>.tll-ph-faces .tll-ph-img{width:100%;height:auto;aspect-ratio:4/5;border-radius:2px;box-shadow:none}"+
+".tll-ph-grid>.tll-ph-faces .tll-ph-cap{width:auto;margin:8px 0 0;text-align:left}}"+
+/* /the-map: a story photo behind the hero */
+".tll-ph-hasbg{position:relative!important;isolation:isolate;overflow:hidden;border-radius:0!important}"+
+".tll-ph-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;background:#0A0B14}"+
+".tll-ph-bg .tll-ph-img{position:absolute;inset:0;border-radius:0;background:#0A0B14}"+
+".tll-ph-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,11,20,.95) 0%,rgba(10,11,20,.88) 42%,rgba(10,11,20,.5) 100%),linear-gradient(0deg,#0A0B14 0%,rgba(10,11,20,0) 34%)}"+
+".tll-ph-credit{position:absolute;right:24px;bottom:18px;z-index:1;font:500 12px/1.4 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#C9C2B8!important;text-decoration:none!important}"+
+".tll-ph-credit b{color:#F7F1E8;font-weight:600}"+
+".tll-ph-credit:hover b,.tll-ph-credit:focus-visible b{text-decoration:underline;text-decoration-color:#F0507A;text-underline-offset:3px}"+
+".tll-ph-credit:focus-visible{outline:3px solid #F0507A;outline-offset:3px}"+
+"@media (max-width:767px){html body section.tll-map-hero.tll-ph-hasbg{padding-top:244px!important;padding-bottom:64px!important}.tll-ph-bg .tll-ph-img{bottom:auto;height:270px}"+
+".tll-ph-bg::after{background:linear-gradient(180deg,rgba(10,11,20,.1) 0,rgba(10,11,20,.35) 130px,rgba(10,11,20,.9) 225px,#0A0B14 268px)}"+
+".tll-ph-credit{bottom:20px;left:24px;right:24px}}"+
+/* /about: a filmstrip along the bottom of the hero */
+".tll-ph-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:56px 0 0;padding:0}"+
+".tll-ph-strip .tll-ph-tile{height:320px}"+
+".tll-ph-strip .tll-ph-img{height:100%;border-radius:0;background:#1A1C28}"+
+".tll-ph-strip .tll-ph-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,20,0) 52%,rgba(10,11,20,.86) 100%);pointer-events:none}"+
+".tll-ph-strip .tll-ph-cap{position:absolute;left:16px;right:16px;bottom:14px;margin:0;z-index:1;color:#D9D3C9}"+
+".tll-ph-strip .tll-ph-cap b{color:#F7F1E8}"+
+".tll-ph-strip .tll-ph-tile:focus-visible{outline-color:#F0507A;outline-offset:-3px}"+
+"@media (max-width:767px){.tll-ph-strip{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-top:40px;scrollbar-width:none}"+
+".tll-ph-strip::-webkit-scrollbar{display:none}.tll-ph-strip>.tll-ph-tile{flex:0 0 72%;height:240px;scroll-snap-align:start}}"+
+/* /for-expats: a photo beside the hero, a row of three after the directory */
+"@media (min-width:1100px){"+
+"section.tll-ph-split{max-width:1072px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 320px;column-gap:56px;align-items:center}"+
+"section.tll-ph-split h1{font-size:clamp(56px,5.2vw,76px)!important;line-height:1!important}}"+
+".tll-ph-side .tll-ph-img{aspect-ratio:4/5}"+
+"@media (max-width:1099px){.tll-ph-side{margin-top:32px}.tll-ph-side .tll-ph-img{aspect-ratio:4/3}}"+
+".tll-ph-band{max-width:1072px;margin:0 auto;padding:56px 24px 8px;box-sizing:border-box}"+
+".tll-ph-band .tll-ph-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}"+
+".tll-ph-band .tll-ph-img{aspect-ratio:3/2}"+
+"@media (max-width:767px){.tll-ph-band{padding:40px 0 4px}.tll-ph-band .tll-ph-label{padding:0 24px}"+
+".tll-ph-band .tll-ph-three{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;padding:0 24px 6px;scroll-padding:0 24px;scrollbar-width:none}"+
+".tll-ph-band .tll-ph-three::-webkit-scrollbar{display:none}.tll-ph-band .tll-ph-three>.tll-ph-tile{flex:0 0 72%;scroll-snap-align:start}}";
+
+function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
+function img(p,eager){var i=document.createElement('img');i.src=p.src;i.alt=p.alt||'';i.decoding='async';if(!eager)i.loading='lazy';
+  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  if(i.complete&&i.naturalWidth)on();else{i.addEventListener('load',on);i.addEventListener('error',on);}return i;}
+function frame(p,eager){var f=el('span','tll-ph-img');f.appendChild(img(p,eager));return f;}
+function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
+function tile(p,eager){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager));a.appendChild(cap(p));return a;}
+
+function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
+  /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
+     (?q=) shows its results first with no photos above them. "on the shelf" reads "in the library" (house words). */
+  var w=document.createTreeWalker(h1.closest('section')||h1.parentNode,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/next story on the shelf/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace('next story on the shelf','next story in the library');}
+  if(document.querySelector('.tll-ph-row'))return;
+  if(/[?&]q=[^&]/.test(location.search))return;
+  var bar=document.querySelector('section.tllsb-bar');
+  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar));});
+  if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
+function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
+  var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
+  FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true));
+    var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
+  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
+function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
+  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
+  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
+function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false));});hero.appendChild(s);}
+function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
+  var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
+  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true)) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
+  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
+  var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
+  var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false));});band.appendChild(three);
+  dir.insertAdjacentElement('afterend',band);}
+
+function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}
+  try{({'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats})[path]();}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+/* src/site-layers/tll-home-bands-v1.js */
+(function(){
+if(!/^\/(index\.html)?$/.test(location.pathname))return;
+var C='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/';
+var B={
+ rio:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',w:2400,h:1350,
+  alt:'A jaguar swimming across the Cuiaba River in the Pantanal',pos:'50% 42%',label:'In the library · Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild'},
+ montenegro:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',w:2400,h:1350,
+  alt:'A murmuration of starlings at sunset during Sort Sol, cars parked below',pos:'50% 40%',label:'On the map · Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark'}
+};
+var CSS=".h3-il[data-tll-band] figcaption{padding:0!important;background:none!important}"+
+".h3-il[data-tll-band] figcaption a{display:inline-block;padding:8px 12px;background:rgba(10,11,20,.72);color:#F7F1E8!important;text-decoration:none!important}"+
+".h3-il[data-tll-band] figcaption b{font-weight:600}"+
+".h3-il[data-tll-band] figcaption a:hover b,.h3-il[data-tll-band] figcaption a:focus-visible b{text-decoration:underline;text-decoration-color:#F0507A;text-underline-offset:3px}"+
+".h3-il[data-tll-band] figcaption a:focus-visible{outline:3px solid #F0507A;outline-offset:3px}";
+function swap(){
+  if(!document.getElementById('tll-home-bands-v1')){var s=document.createElement('style');s.id='tll-home-bands-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  Object.keys(B).forEach(function(k){
+    var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band'))return;
+    var p=B[k],i=f.querySelector('img'),c=f.querySelector('figcaption');if(!i||!c)return;
+    f.setAttribute('data-tll-band','1');
+    i.removeAttribute('srcset');i.removeAttribute('sizes');i.src=p.src;i.alt=p.alt;i.width=p.w;i.height=p.h;i.style.objectPosition=p.pos;
+    var a=document.createElement('a');a.href=p.href;a.appendChild(document.createTextNode(p.label+' · '));
+    var b=document.createElement('b');b.textContent=p.by;a.appendChild(b);c.textContent='';c.appendChild(a);
+  });
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',swap);else swap();
+})();
+/* src/site-layers/tll-lounge-labels-v1.js */
+(function(){
+if(!/^\/gallery\/?$/.test(location.pathname))return;
+var CSS="html body .tll-lounge-credit,html body .tll-lounge-open{position:absolute!important;left:10px!important;bottom:10px!important;right:auto!important;top:auto!important;"+
+"max-width:calc(100% - 20px)!important;width:auto!important;box-sizing:border-box!important;margin:0!important;padding:4px 7px!important;"+
+"font:600 10px/1.3 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace!important;letter-spacing:.08em!important;text-transform:uppercase;"+
+"white-space:normal!important;overflow-wrap:anywhere;"+
+"background:rgba(10,11,20,.62)!important;color:#F7F1E8!important;border-radius:2px!important}"+
+"@media (max-width:767px){html body .tll-lounge-credit,html body .tll-lounge-open{left:8px!important;bottom:8px!important;max-width:calc(100% - 16px)!important;font-size:9.5px!important;padding:3px 6px!important}}";
+function add(){if(document.getElementById('tll-lounge-labels-v1'))return;var s=document.createElement('style');s.id='tll-lounge-labels-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();
+})();
+/* src/site-layers/tll-stories-noimg-v1.js */
+(function(){
+if(!/^\/stories\/?$/.test(location.pathname))return;
+var CSS=".tll-noimg{display:flex!important;align-items:flex-end;justify-content:flex-start;box-sizing:border-box;padding:18px 20px;background:#0A0B14!important;color:#F7F1E8;"+
+"font:italic 800 clamp(22px,2.4vw,34px)/1.05 'Playfair Display',Georgia,serif;width:100%;aspect-ratio:4/3;overflow:hidden}"+
+".tll-noimg span{display:block;max-width:100%;overflow-wrap:anywhere}"+
+"[data-tll-lead] .tll-noimg{aspect-ratio:3/2;font-size:clamp(34px,4vw,60px)}";
+function noPhoto(img){if(!img)return true;var s=img.getAttribute('src')||'';
+  return !s||/placeholder/i.test(s)||img.classList.contains('w-dyn-bind-empty')||(img.complete&&img.naturalWidth===0);}
+function cardImg(k){return k.querySelector('.tll-lib-card > img.tll-lib-img, .tll-lib-card img.tll-lib-img:not(.tll-lib-byline-img)');}
+function panel(k){
+  var img=cardImg(k);if(!img||!noPhoto(img)||k.querySelector('.tll-noimg'))return;
+  var c=k.querySelector('[data-tll-country]');var place=(c&&c.textContent.trim())||'';
+  var p=document.createElement('div');p.className='tll-noimg';p.setAttribute('aria-hidden','true');
+  var t=document.createElement('span');t.textContent=place;p.appendChild(t);
+  img.style.display='none';img.insertAdjacentElement('afterend',p);k.setAttribute('data-tll-noimg','1');}
+function visible(k){return k.offsetParent!==null&&getComputedStyle(k).display!=='none'&&!k.hasAttribute('data-tll-q-miss');}
+var busy=false;
+function lead(){
+  var g=document.querySelector('.tll-lib-grid');if(!g||busy)return;
+  var kids=[].slice.call(g.children).filter(visible);if(kids.length<2)return;
+  kids.forEach(panel);
+  if(!kids[0].hasAttribute('data-tll-noimg'))return;
+  var first=null;for(var i=1;i<kids.length;i++){if(!kids[i].hasAttribute('data-tll-noimg')){first=kids[i];break;}}
+  if(!first)return;
+  busy=true;g.insertBefore(first,kids[0]);busy=false;
+  document.dispatchEvent(new Event('tll:lib-filtered'));}
+function run(){
+  if(!document.getElementById('tll-stories-noimg-v1')){var s=document.createElement('style');s.id='tll-stories-noimg-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  var g=document.querySelector('.tll-lib-grid');if(!g)return;
+  [].forEach.call(g.querySelectorAll('img.tll-lib-img'),function(i){i.addEventListener('error',function(){setTimeout(lead,0);});});
+  var t;new MutationObserver(function(){if(busy)return;clearTimeout(t);t=setTimeout(lead,60);}).observe(g,{childList:true,attributes:true,attributeFilter:['style','data-tll-q-miss']});
+  setTimeout(lead,0);setTimeout(lead,700);setTimeout(lead,1600);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();
 /* src/site-layers/tll-mbar-align-v1.js */
@@ -409,7 +617,7 @@ function editProfile(){
     sec.appendChild(box);sec.appendChild(msg);anchor.insertAdjacentElement('afterend',sec);
   });
 }
-if(P==='/edit-profile'){var go=function(){editProfile();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(go,2200);});else setTimeout(go,2200);setTimeout(go,5000);}
+if(P==='/edit-profile'){var n=0,poll=function(){var iv=setInterval(function(){n++;var st=document.getElementById('tll-st'),any=st||document.getElementById('tll-col')||document.getElementById('ep-crew');if(st||(any&&n>=5)||n>=30){clearInterval(iv);editProfile();}},500);};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',poll);else poll();}
 })();
 /* src/site-layers/tll-division-v1.js */
 (function(){
@@ -445,9 +653,10 @@ function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstack
    /my-passport is a draft page now, so this runs on the 404 page it lands on. */
 var MOVED={'/my-passport':'/the-map','/countries':'/destinations','/for-affiliates':'/creators'};
 if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
-/* Noindex until they have content: /spotlight, /awards, /creators, and contributor profiles with no stories yet. */
+/* Noindex until they have content: /spotlight, /awards, /creators, contributor profiles with no stories yet and, from 1 Nov, pending pursuit
+   hubs (/pursuits/{slug}) at parse time, before the pursuits chunk arrives; tll-stamps-v1 reuses this meta and lifts it when the hub is indexable. */
 function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=document.createElement('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
-if(/^\/(spotlight|awards|creators)$/.test(P))noindex();
+if(/^\/(spotlight|awards|creators)$|^\/pursuits\/[^/]+$/.test(P))noindex();
 if(/^\/contributors\/[^/]+$/.test(P)){var emp=function(){var e=document.querySelector('[data-pf5="stories-empty"]'),l=document.querySelector('[data-pf5="stories-list"]');
   if((e&&getComputedStyle(e).display!=='none')||(l&&!l.querySelector('a[href^="/stories/"]')))noindex();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(emp,800);});else setTimeout(emp,800);}
@@ -497,6 +706,50 @@ if(P==='/'){var shelf=function(){var sec=document.querySelector('[data-h3-shelf]
     var n=new Set([].slice.call(track.querySelectorAll('a[href^="/stories/"]')).map(function(a){return a.getAttribute('href');})).size;if(!n)return;
     var w=document.createTreeWalker(note,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue,o=s;s=s.replace(/\b0?\d+(?=\s*stor(y|ies)\b)/i,(n<10?'0':'')+n).replace(/\bstor(y|ies)\b/i,n===1?'newest story':'newest stories');if(s!==o)t.nodeValue=s;}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(shelf,600);});else setTimeout(shelf,600);setTimeout(shelf,2500);}
+})();
+/* src/site-layers/tll-ads-v1.js */
+(function(){
+var CLIENT='ca-pub-7257230007536660';
+var SLOTS={inArticle:'',display:''};   /* fill from AdSense > Ads > By ad unit: an In-article unit and a Display (responsive) unit */
+var P=location.pathname.replace(/\/+$/,'')||'/';
+var ALLOW=/^\/stories(\/[^/]+)?$|^\/countries\/[^/]+$/.test(P);
+window.adsbygoogle=window.adsbygoogle||[];
+if(!ALLOW){window.adsbygoogle.pauseAdRequests=1;return;}
+var CSS='.tll-ad{display:block;max-width:760px;margin:44px auto;padding:10px 0 0;border-top:1px solid #E0DACE;text-align:center;clear:both}'+
+'.tll-ad::before{content:"Annonce";display:block;margin:0 0 8px;font:600 10px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660}'+
+'.tll-ad ins{display:block;min-height:250px}.tll-ad.is-empty{display:none}'+
+'.google-auto-placed{max-width:760px;margin:44px auto!important;padding-top:10px;border-top:1px solid #E0DACE}'+
+'.tll-lib-ad{grid-column:1/-1}';
+function css(){if(document.getElementById('tll-ads-v1'))return;var s=document.createElement('style');s.id='tll-ads-v1';s.textContent=CSS;document.head.appendChild(s);}
+function script(){if(document.querySelector('script[src*="adsbygoogle.js"]'))return;var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+CLIENT;document.head.appendChild(s);}
+function sponsored(){var t=(document.querySelector('[data-tll-sponsored]')||{}).textContent||'';return /\S/.test(t)||/\bReklame\b|\bHosted:/i.test((document.querySelector('.tll-story-ledger,.tll-ledger,main')||document.body).innerText.slice(0,4000));}
+function unit(slot,fmt,extra){var w=document.createElement('aside');w.className='tll-ad'+(extra?' '+extra:'');w.setAttribute('aria-label','Annonce (advertisement)');
+  var i=document.createElement('ins');i.className='adsbygoogle';i.setAttribute('data-ad-client',CLIENT);i.setAttribute('data-ad-slot',slot);
+  if(fmt==='fluid'){i.setAttribute('data-ad-layout','in-article');i.setAttribute('data-ad-format','fluid');i.style.textAlign='center';}else{i.setAttribute('data-ad-format','auto');i.setAttribute('data-full-width-responsive','true');}
+  w.appendChild(i);new MutationObserver(function(){if(i.getAttribute('data-ad-status')==='unfilled')w.classList.add('is-empty');}).observe(i,{attributes:true,attributeFilter:['data-ad-status']});
+  return w;}
+function push(w){try{(window.adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){w.classList.add('is-empty');}}
+function story(){
+  if(sponsored()){window.adsbygoogle.pauseAdRequests=1;return;}
+  var b=[].slice.call(document.querySelectorAll('.tll-body,.tll-story-body')).filter(function(x){return x.id!=='tll-quick-answers';}).sort(function(x,y){return y.querySelectorAll(':scope>p').length-x.querySelectorAll(':scope>p').length;})[0];
+  if(!b||document.querySelector('.tll-ad'))return;
+  var ps=b.querySelectorAll(':scope>p');var words=(b.innerText||'').split(/\s+/).filter(Boolean).length;
+  if(SLOTS.inArticle&&words>=600&&ps.length>=4){   /* Phase 0B: at most one in-article unit, after the third paragraph, none under 600 words */var hs=[].slice.call(b.querySelectorAll(':scope>h2')).filter(function(h){var before=0,n=h.previousElementSibling;while(n){if(n.tagName==='P')before++;n=n.previousElementSibling;}return before>=3;});
+    var mid=hs.length?hs[Math.floor(hs.length/2)]:ps[Math.max(3,Math.floor(ps.length/2))];var w=unit(SLOTS.inArticle,'fluid');mid.parentNode.insertBefore(w,mid);push(w);}
+  if(SLOTS.display){var w2=unit(SLOTS.display,'auto');b.parentNode.insertBefore(w2,b.nextSibling);push(w2);}
+}
+function library(){
+  if(!SLOTS.display||document.querySelector('.tll-ad'))return;var cards=document.querySelectorAll('a.tll-lib-card');if(cards.length<12)return;
+  var c=cards[8],cell=c.closest('.w-dyn-item')||c;var w=unit(SLOTS.display,'auto','tll-lib-ad');cell.parentNode.insertBefore(w,cell.nextSibling);push(w);
+}
+function country(){
+  if(!SLOTS.display||document.querySelector('.tll-ad'))return;var lists=document.querySelectorAll('main .w-dyn-list,.w-dyn-list');var l=lists[lists.length-1];if(!l)return;
+  var w=unit(SLOTS.display,'auto');l.parentNode.insertBefore(w,l.nextSibling);push(w);
+}
+/* Phase 0 (31 Oct): the ad script loads only after ad consent from the one consent tool (tll-consent-v3 in the site head). */
+function consented(cb){var C=window.__tllConsent;if(C&&C.ready){if(C.ads)cb();return;}window.addEventListener('tll:consent',function h(e){if(e.detail&&e.detail.ads){window.removeEventListener('tll:consent',h);cb();}});}
+function run(){css();consented(script);if(/^\/stories\/[^/]+$/.test(P))story();else if(P==='/stories')library();else if(/^\/countries\//.test(P))country();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,600);});else setTimeout(run,600);
 })();
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;
 if(!document.querySelector('link[href="'+"https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter+Tight:wght@400;500;600&display=swap"+'"]')){var f=document.createElement('link');f.rel='stylesheet';f.href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Inter+Tight:wght@400;500;600&display=swap";(document.head||document.documentElement).appendChild(f);}

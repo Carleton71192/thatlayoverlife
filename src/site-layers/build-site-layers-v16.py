@@ -2,7 +2,8 @@
 Two kinds of output, deterministic (same inputs, same bytes):
   src/site-layers/tll-site-layers-v16.js  the core, the one registered site-wide header script (synchronous). In order: the consent
       fallback, the chunk loader, the nine styles, the layers that must run before the first paint on their page (ux-1028 and
-      mbar-align head CSS, photos-form-v2 on /share-photos, album-settings on /the-map, phase0) or on every page (division,
+      mbar-align head CSS, photos-form-v2 on /share-photos, album-settings on /the-map, phase0, and since the 1 Nov review the
+      ads pause, page-heroes, stories-noimg, home-bands and lounge-labels; see CORE below) or on every page (division,
       note-typing, account-hash-tabs), the story layer (/stories/{slug}) and the cover layer (home).
   src/site-layers/chunks/<name>.js  per-path chunks: the layers that only run on those paths, in SCRIPTS order. The loader in the
       core appends them as script tags (async=false keeps the order and never blocks the parser; integrity from the hashes embedded
@@ -99,17 +100,34 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 # Core members, by file name: parse-time CSS (ux-1028 head block, mbar-align), parse-time globals that must land before the page's own
 # body script (photos-form-v2 sets window.__tllPhotosForm on /share-photos; album-settings wraps window.fetch on /the-map), the GA4
 # division set (before the GA config), phase0 (parse-time CSS, redirects and noindex), and two delegates too small to fetch separately.
+# Added after the 1 Nov review of the split (the core is written in SCRIPTS order, so these sit after phase0, ahead of the story and
+# cover sections):
+#   ads             its pause line (window.adsbygoogle.pauseAdRequests=1 off the ad pages) must run synchronously on every page: the home
+#                   page head still carries the AdSense tag, and only a pause set before that script runs keeps Auto ads off the home page.
+#                   The ad script itself stays behind ad consent inside the layer. Dropped from the stories, story and countries chunks.
+#   page-heroes     hero photos above the fold on /stories, /travelers, /the-map, /about and /for-expats; from a chunk they would shift
+#                   in after the first paint. Kept out of those chunks (the about chunk had nothing else and is gone).
+#   stories-noimg   the lead card swap on /stories, same reason.
+#   home-bands      the home band photos, above the fold on phones, same reason.
+#   lounge-labels   the /gallery label CSS, in place before the page script paints its labels.
+# Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
+# of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
+# chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
-        'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1']
+        'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1',
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-lounge-labels-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).
+# Preview note (1 Nov): tll-ux-v1 rides only in the story, submit and account preview chunks, so its site-wide signup_start tracking
+# (clicks on links to /signup) now runs only on story, /submit and /account previews, not on every page as under the one-file bundle.
+# Staged code (UX_PUBLIC=false), so the public is unaffected; preview testers' signup_start counts cover those three pages only.
 CHUNKS = [
     ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
                       'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1'], []),
-    ('home', r'/^\/(index\.html)?$/', ['tll-home-bands-v1', 'tll-redesign-p0-v1', 'tll-home-value-v1'], []),
-    ('stories', r'/^\/stories$/', ['tll-page-heroes-v1', 'tll-stories-places-v1', 'tll-stories-noimg-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-ads-v1'], []),
-    ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-ads-v1'], ['tll-ux-v1']),
+    ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1', 'tll-home-value-v1'], []),
+    ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1'], []),
+    ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
     ('submit', r'/^\/submit$/', ['tll-submit-ux-v1', 'tll-linkout-preview-v1', 'tll-linkout-summary-v1', 'tll-submit-gallery-v1', 'tll-submit-long-v1',
                                  'tll-intake-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
     ('share-photos', r'/^\/share-photos$/', ['tll-photos-caption-v1', 'tll-intake-v1'], []),
@@ -120,14 +138,13 @@ CHUNKS = [
     ('profile', r'/^\/contributors\/[^/]+$/', ['tll-profile-count-v1', 'tll-pf-linkstack-v1', 'tll-crew-v1', 'tll-collections-v1', 'tll-stamps-v1',
                                                'tll-album-v1', 'tll-pros-v1'], ['tll-expat-v1']),
     ('account', r'/^\/account$/', ['tll-crew-v1', 'tll-export-v1', 'tll-metrics-v1', 'tll-work-trips-v1'], ['tll-ux-v1']),
-    ('map', r'/^\/the-map$/', ['tll-page-heroes-v1', 'tll-redesign-p0-v1'], []),
-    ('for-expats', r'/^\/for-expats$/', ['tll-page-heroes-v1', 'tll-expert-from-v1', 'tll-expats-map-v1', 'tll-series-v1'], ['tll-expat-v1']),
-    ('travelers', r'/^\/travelers$/', ['tll-page-heroes-v1', 'tll-travelers-fix-v1'], []),
-    ('about', r'/^\/about$/', ['tll-page-heroes-v1'], []),
+    ('map', r'/^\/the-map$/', ['tll-redesign-p0-v1'], []),
+    ('for-expats', r'/^\/for-expats$/', ['tll-expert-from-v1', 'tll-expats-map-v1', 'tll-series-v1'], ['tll-expat-v1']),
+    ('travelers', r'/^\/travelers$/', ['tll-travelers-fix-v1'], []),
     ('pursuits', r'/^\/pursuits\/[^/]+$/', ['tll-stamps-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-work-trips-v1'], []),
     ('pets', r'/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/', ['tll-crew-v1', 'tll-album-v1', 'tll-series-v1'], ['tll-paw-v1', 'tll-pet-passport-v1']),
-    ('countries', r'/^\/countries\/[^/]+$/', ['tll-series-v1', 'tll-ads-v1'], []),
-    ('misc', r'/^\/(spotlight|gallery)$/', ['tll-open-slots-v1', 'tll-lounge-labels-v1', 'tll-lounge-members-v1'], []),
+    ('countries', r'/^\/countries\/[^/]+$/', ['tll-series-v1'], []),
+    ('misc', r'/^\/(spotlight|gallery)$/', ['tll-open-slots-v1', 'tll-lounge-members-v1'], []),
 ]
 
 def read(p): return open(p, encoding='utf-8').read()
@@ -151,6 +168,7 @@ for _, _, pub, staged in CHUNKS:
     covered |= set(pub) | set(staged)
 assert not [n for n in BY if n not in covered], 'layers in SCRIPTS but in no chunk: ' + str([n for n in BY if n not in covered])
 assert len(set(c[0] for c in CHUNKS)) == len(CHUNKS), 'chunk names must be unique'
+for name, _, pub, _ in CHUNKS: assert pub, 'chunk %s has no public layer left: drop it from CHUNKS' % name
 
 # Chunks first: the core embeds their hashes.
 files, hashes = {}, {}

@@ -7,6 +7,8 @@
    /the-map          "Open full screen" (it opened a panel with no map) is hidden; "Edit my destinations" shows to members only.
    Home              The shelf note counts the cards it really shows, never a typed number.
    Everywhere        The Thailand stub stays out of rails and featured spots and carries noindex.
+   /pursuits/*       1 Nov: noindex, follow from parse time while a hub is pending (the split build moved tll-stamps-v1 into a chunk);
+                     tll-stamps-v1 lifts it to index, follow when the Worker says the hub is indexable.
    No data-ms-* element touched; nav and footer components untouched. */
 (function(){
 var P=location.pathname.replace(/\/+$/,'')||'/';
@@ -20,9 +22,10 @@ function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstack
    /my-passport is a draft page now, so this runs on the 404 page it lands on. */
 var MOVED={'/my-passport':'/the-map','/countries':'/destinations','/for-affiliates':'/creators'};
 if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
-/* Noindex until they have content: /spotlight, /awards, /creators, and contributor profiles with no stories yet. */
+/* Noindex until they have content: /spotlight, /awards, /creators, contributor profiles with no stories yet and, from 1 Nov, pending pursuit
+   hubs (/pursuits/{slug}) at parse time, before the pursuits chunk arrives; tll-stamps-v1 reuses this meta and lifts it when the hub is indexable. */
 function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=document.createElement('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
-if(/^\/(spotlight|awards|creators)$/.test(P))noindex();
+if(/^\/(spotlight|awards|creators)$|^\/pursuits\/[^/]+$/.test(P))noindex();
 if(/^\/contributors\/[^/]+$/.test(P)){var emp=function(){var e=document.querySelector('[data-pf5="stories-empty"]'),l=document.querySelector('[data-pf5="stories-list"]');
   if((e&&getComputedStyle(e).display!=='none')||(l&&!l.querySelector('a[href^="/stories/"]')))noindex();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(emp,800);});else setTimeout(emp,800);}
