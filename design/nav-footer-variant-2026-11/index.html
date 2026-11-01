@@ -99,9 +99,9 @@ html.tll-shot .proto-bar{display:none}
 .tll-nav-v1{position:sticky;top:0;z-index:50;width:100%;padding:0;border-bottom:0;background:rgba(10,11,20,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 -1px 0 rgba(248,242,230,.08);font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}
 .tll-nav-main{display:block;padding:12px 32px}
 .tll-nav-inner{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;column-gap:24px;row-gap:0;max-width:1440px;margin:0 auto;min-height:44px}
-.tll-nav-logo{display:inline-flex;align-items:baseline;gap:6px;color:#F7F4EE;text-decoration:none;white-space:nowrap;flex:none;padding:13px 0}
-.tll-nav-logo-that{font:italic 800 14px/1 'Playfair Display',Georgia,serif;opacity:.85;color:#F7F4EE}
-.tll-nav-logo-block{font:800 18px/1 'Playfair Display',Georgia,serif;letter-spacing:.01em;text-transform:uppercase;color:#F7F4EE}
+.tll-nav-logo{display:inline-flex;align-items:baseline;gap:6px;height:44px;padding:0;color:#F7F4EE;text-decoration:none;white-space:nowrap;flex:none}
+.tll-nav-logo-that{font:italic 800 14px/44px 'Playfair Display',Georgia,serif;opacity:.85;color:#F7F4EE}
+.tll-nav-logo-block{font:800 18px/44px 'Playfair Display',Georgia,serif;letter-spacing:.01em;text-transform:uppercase;color:#F7F4EE}
 .tll-nav-v1 .tll-nav-logo .tll-nav-logo-life{color:#F0507A}
 .tll-nav-links-row{display:flex;align-items:center;gap:28px;width:auto;order:0;padding:0;border-top:0;justify-content:flex-start}
 .tll-nav-v1 .tll-nav-link{display:inline-flex;align-items:center;min-height:44px;margin:0;padding:8px 4px;border:0;border-radius:0;background:transparent;color:#F8F2E6;opacity:.92;font:600 13px/1.2 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:.04em;text-transform:none;text-decoration:none;white-space:nowrap;transition:color .2s ease}
@@ -136,7 +136,7 @@ html.ms-loaded .tll-nav-v1 [data-ms-content="members"]{display:flex}
 .tll-nav-v1{padding:0;border-bottom:0}
 .tll-nav-main{height:56px;padding:0 16px;display:flex;align-items:center}
 .tll-nav-inner{width:100%;column-gap:8px;min-height:44px;flex-wrap:nowrap}
-.tll-nav-logo{padding:14px 0;flex:none}
+.tll-nav-logo{flex:none}
 .tll-nav-logo-block{font-size:15px}
 .tll-nav-logo-that{font-size:13px}
 .tll-nav-v1 .tll-nav-links-row{display:none}
@@ -152,8 +152,8 @@ html.ms-loaded .tll-nav-v1 [data-ms-content="members"]{display:flex}
 .tllmm-btn[aria-expanded="true"]::after{content:" \2715"}
 }
 /* Small phones. 479px and under: the wordmark drops to 13px (today's phone layer zooms it to about 13px under 400px),
-   the buttons to 12px, the close label loses its glyph. 339px and under: the italic "that" steps out so the member row
-   (wordmark, My map, avatar, MENU) still fits in one row. 319px and under: the row may wrap. */
+   the buttons to 12px, the close label loses its glyph. 349px and under: the italic "that" steps out so the member row
+   (wordmark, My map, avatar, MENU) still fits in one row (at 340px it is 3px short with it). 319px and under: the row may wrap. */
 @media(max-width:479px){
 .tll-nav-logo-block{font-size:13px}
 .tll-nav-logo-that{font-size:12px}
@@ -161,7 +161,7 @@ html.ms-loaded .tll-nav-v1 [data-ms-content="members"]{display:flex}
 .tllmm-btn{width:60px;letter-spacing:1.5px}
 .tllmm-btn[aria-expanded="true"]::after{content:none}
 }
-@media(max-width:339px){
+@media(max-width:349px){
 .tll-nav-logo-that{display:none}
 .tll-nav-v1 .tll-btn{padding:0 8px}
 .tllmm-btn{width:58px;letter-spacing:1px}
