@@ -15,3 +15,6 @@ map-2.0/source/private/*
 handoff/claude-design-source/**/TLL Site Prototype*(standalone).html
 reports/mobile-2026-10/audit/*.png
 __pycache__/
+
+# Claude Code worktrees and session files
+.claude/
