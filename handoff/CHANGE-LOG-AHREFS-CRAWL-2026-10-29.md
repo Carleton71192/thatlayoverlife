@@ -48,3 +48,33 @@ Written under the usability session's shared lock scope, then published to the s
 - **What changed:** the Countries template head code now ends with the country structured data, id tll-country-ld-v1. The JSON-LD page setting is cleared.
 - **Check on that-layover-life.webflow.io:** all 197 country pages have one block that parses. Each has its own name, address (/countries/{slug}), country code and description, for example Afghanistan, AF.
 - **Live** waits for Nancy's word, with the usability session's /creators build.
+
+## A2 to A5: what I found (1 November 2026, from a fresh crawl of www and the Ahrefs issue lists)
+- **A2 titles and descriptions:** the drafts for your approval are in handoff/SEO-TITLES-DESCRIPTIONS-2026-11-01.md: 14 titles, 24 descriptions and one fallback line.
+- **A3 links that go through a redirect:**
+  - 58 story pages carry href="/countries" on the From line's country link (L8, unbound on purpose). It is hidden, and the page script writes the real country. Its fallback is /countries, which is the meta refresh to /destinations. Fix: point that fallback at /destinations in the Stories template (one link setting, no words). Your 301 /countries to /destinations in Site settings clears the meta refresh itself.
+  - Your story "Marathons on all 7 continents" links to https://thatlayover.life/stories/antarctica-marathon, the apex address, which redirects to www. Fix: change that one link to /stories/antarctica-marathon in the story body. The link changes, the words do not.
+- **A4 speed:** the 28 slow pages are a server timing at crawl time, not page weight.
+  - Ahrefs measured 1.0 to 3.0 seconds to the first byte on 66 KB pages. Today I measure 0.09 seconds median and 0.41 seconds at most, on all 113 indexable pages.
+  - 18 of the 28 are noindex country pages.
+  - The pattern fits Webflow's cache being cold just after a publish. Nothing on the pages to change. If the Thursday crawl keeps landing right after a publish, move the scheduled crawl to a quiet day in Ahrefs.
+- **A5 structured data:**
+  - "Article page missing Article schema" (4) is Ahrefs guessing that /stories, /the-paw-passport, /for-expats and /pillars/paw-passport are articles. They are collection pages, so Article would be wrong. No change.
+  - "FAQ page missing FAQPage schema" (1) is /support, which is a contact page. No change.
+  - **"Google rich results validation error" (8)** is the same fault as A1 on the writer pages (7) and the pet page (1). Their template JSON-LD setting sends an empty Person or Thing at /contributors/ or /pets/. The profile block in their head code then points at a person that does not exist.
+
+## A6, proposed: the same fix as A1 on the other six templates
+Today's check of every live page finds the empty structured-data block on:
+- Writers (9 pages)
+- Pillars (4)
+- Paw Passport entries (4)
+- Layover guides (2)
+- Marathon Diaries (2)
+- Pets (1)
+
+Each template's JSON-LD setting holds CMS fields that Webflow leaves empty. The fix is A1's:
+- Move each block into that template's head code, word for word.
+- Drop a second breadcrumb where the head code already has one.
+- Clear the setting.
+
+No words change. It needs the lock, a subdomain test of every page, then your look.
