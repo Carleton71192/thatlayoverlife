@@ -198,3 +198,7 @@ The other pattern hits were history ("the next year" in past tense).
 7. **Cover coordinates:** removed from the home cover byline.
 
 **Redirects:** the three 301s still need adding in Webflow Site settings (the connector has no redirects tool). Until then the site script sends /my-passport to /the-map, /countries to /destinations and /for-affiliates to /creators.
+
+## Found after publishing (1 Nov, staged, not yet live)
+
+- **Home page head still loaded the AdSense script before consent.** Phase 0 replaced the ad script in the site-wide head, but the home page's own head code (added 28 Oct, "Home page first") kept its own copy of the tag. The Phase 1 reviewers caught it. The tag and the duplicate verification meta are removed from the home page head; the site head's verification tag and consent tool cover it. This is staged and goes live with the next publish, so until then the home page still makes ad requests before a choice.

@@ -1,0 +1,383 @@
+# Phase 2A design system inventory (1 November 2026, before any change)
+
+A report, not a change. Nothing in the site, Webflow or the repo code was edited for this document. The sandbox cannot reach thatlayover.life or any CDN, so every count below comes from saved code in this repo, and each section says which files it read.
+
+**What was read**
+
+- Live site code as of 31 October: `scratchpad/p0-1031/after/site-head.html` (the current head, 47 KB), `after/site-footer.html`, `after/storytpl-head.html`, and the page code in `scratchpad/p0-1031/before/` (home, stories, story template, map, contact, support, my-passport heads and footers).
+- Page heads saved 28 October: `src/seo/live-2026-10-28/` (awards, for-brands, creators, contributors template, cookies, site head and footer).
+- The newest saved page embeds under `src/pages/**` (home embeds `live-2026-10-28/embeds`, submit `live-2026-10-29`, account `live-2026-10-27`, auth `au3-*`, profile `v3`, travelers, for-expats, about, the-map and stories code in `heroes-2026-10-29/code`, country and destinations `v3`, edit-profile `live-2026-10-28/after`, share-photos `live-2026-10-23`, creators `live-2026-11-01`).
+- Browser layers: every `src/site-layers/*.js` and `*.html` plus `v9-1/` and `v9-b/`, skipping the built `tll-site-layers-v*.js` bundles and the build scripts (96 files).
+- Magazine prototypes: `src/design/magazine-2026-10/` (cover and story builds, templates, type specimens, fixtures).
+- Webflow Designer element trees saved by the API: `src/pages/heroes-2026-10-29/trees/*.json` (about, for-expats, stories, the-map, travelers, 29 Oct), `src/pages/stories-template/tree-2026-10-26.json`, `src/pages/destinations/v3/tree-after.json`.
+- The Designer stylesheet from the 13 October Webflow export: `handoff/claude-design-source/webflow-export-2026-10-13/css/tll-webflow.css` (1.03 MB, 4,650 rules) and `css/fonts.css`, plus its 18 exported pages. This is the only copy of the Designer's own CSS in the repo. It is 18 days older than the page code, so its numbers are labeled "Designer, 13 Oct" and may have drifted.
+- Context: `docs/tll-site-user-flow-2026-10-31.md`, `docs/tll-phase0-change-log-2026-11.md`, `docs/expat-pets-ux-2026-10-31.md`, `docs/copy-audit-2026-10-31/`, `src/design/magazine-2026-10/README.md`.
+
+The "current set" used for the rule-level counts is 185 files: 84 page-code files, 96 layer files and 5 magazine files, parsed into 3,997 CSS rules. Fixtures and "before" copies were used only for the class census in section 6.
+
+---
+
+## 1. Fonts: every family loaded or referenced
+
+### How type loads today
+
+| Loader | Where | What it loads |
+|---|---|---|
+| Google Fonts link | `scratchpad/p0-1031/after/site-head.html` line 45 (the same link sits in 31 saved copies of the head) | Playfair Display 800 and 800 italic; JetBrains Mono 400 and 600. **IBM Plex Sans Condensed is not in this link.** |
+| `tll-proto-parity-v1` alias block, 10 `@font-face` rules | `after/site-head.html` lines 157 to 166 | `'DM Sans'` (4 rules), `'Inter'` (2) and `'Syne'` (2) all point at IBM Plex Sans Condensed woff2 files on fonts.gstatic.com; `'Recoleta'` (2) points at Playfair Display files. Comment: "Font aliases so legacy families render in brand fonts." So Plex reaches the page only under other families' names. |
+| `:root{--_typography---font--heading-font:'Playfair Display'}` | `after/site-head.html` line 170 | Overrides the Designer's heading variable (which is Teko, see below). |
+| Webflow project fonts (Designer) | `webflow-export-2026-10-13/css/fonts.css` | Six Google imports: Teko 400/700, Playfair Display 400/700/800 and italics, JetBrains Mono 400/600, IBM Plex Sans 400, IBM Plex Sans Condensed 400/500/600/700, Dancing Script 700. Whether these are still the project's settings today is a Designer setting, not in the 31 Oct saved code. |
+| The map page's own link | `src/pages/the-map/live-2026-10-25/embed-682054d4-after.html` line 2 | Playfair 800, IBM Plex Sans Condensed 400 to 700, JetBrains Mono 400 to 700 (a second loader on one page). |
+| Magazine prototypes | `src/design/magazine-2026-10/cover/cover.html`, `story/story.html`, `story-build/tll-mag-story-v1.html` | Newsreader, Inter Tight, Fraunces, Instrument Serif, Instrument Sans (plus Playfair and JetBrains); `cover-local.html` has 14 local `@font-face`, `story-local.html` 6, `src/pages/home/mobile-proto-2026-10-26/home-phone-proto-local.html` 9. |
+| webfont.js / `WebFont.load` | none | 0 hits in the saved head, page code or layers. Webflow's own loader runs in the Designer-generated page head, which is not saved here. |
+
+### Every family, with a verdict against the four in the spec
+
+Counts are `font-family` occurrences in the current set (185 files) unless marked "Designer, 13 Oct" (rules in `tll-webflow.css`).
+
+| Family | Loaded by | Referenced where | Keep or remove |
+|---|---|---|---|
+| **Playfair Display** | Head link; Designer fonts.css; alias target of "Recoleta" | 91 direct uses plus the `--h3-head`, `--s3-head`, `--ct3-head`, `--ds3-serif`, `--pf3-head`, `--st3-f-head`, `--pr3-head`, `--fh` variables (about 160 more); h1, h2 and `.heading-8` forced to Playfair 800 in the head; 59 Designer rules | **Keep** (headlines, 800, italic rose word). |
+| **IBM Plex Sans Condensed** | Only via the alias files (as DM Sans, Inter, Syne), the Designer project fonts, and the map embed's link | 4 direct uses in page code (head lines 169, 193, 194; footer 63 to 137) plus the `--*-body` variables in every v3 page and layer; 8 Designer rules; the Designer body variable in Tablet and Mobile modes | **Keep** (body). Needs to load under its own name. |
+| **JetBrains Mono** | Head link; Designer fonts.css | 95 direct uses plus `--*-mono` variables (about 360 more); 207 Designer rules | **Keep** (eyebrows, counts, captions). Today it is also used on buttons and form labels, which the proposal stops. |
+| **Syne** | Never loaded as Syne. The head aliases it to Plex files | Consent panel `#cc-main` (head line 48); library card titles `.tll-library-grid a[data-tll-card] h3{font-family:'Syne','Playfair Display'}` (`before/stories-footer.html` line 13); country page `[data-tll-cx-h2]`, `.tlldir-name` and two more (`src/pages/country/v3/live-head-after.html` lines 21 to 46); 48 Designer rules, all on pasted `inline-h1-*`, `inline-h2-*`, `inline-div-*` blocks | **Keep only in the wordmark**, which today it is not: the Designer wordmark is Druk Wide (below) and the head rewrites the nav lockup to Playfair 800 ("Nav lockup: Playfair wordmark, rose LIFE.", head line 172). Remove the five code uses and the 48 Designer uses. |
+| Inter | Alias to Plex in the head | Relay form inputs (`before/contact-head.html` line 12, `font:400 15px 'Inter'`), link-out inputs (`src/pages/submit/live-2026-10-29/page-head-live.html` line 19), the country page as a fallback after Syne, 5 uses in `before/map-footer.html`; 48 Designer rules, mostly `inline-*` | **Remove.** |
+| DM Sans | Alias to Plex in the head; never loaded as DM Sans | Head `.tllpx-sub` fallback (line 169); `src/pages/account/live-2026-10-20/script-worldmap.js` (2); the Designer body variable `--_typography---tll-font-body: 'DM Sans'` and 280 Designer rules | **Remove.** The Designer's default body face. |
+| Recoleta | Never loaded; aliased to Playfair files | Head `.tll-shelf-title{font-family:"Recoleta","Playfair Display";font-weight:500}` (line 58); the Designer display variable `--_typography---tll-font-display: Recoleta,'DM Serif Display'` and 121 Designer rules | **Remove.** |
+| DM Serif Display | Not loaded anywhere in saved code | 58 Designer rules (map counters, traveler titles) | **Remove.** Falls back to Georgia today. |
+| Druk Wide Web Heavy | Not loaded | Designer wordmark variable `--_typography---tll-font-wordmark`, `.tll-nav-logo-block`, `.tll-footer-wordmark`, avatar placeholders (8 Designer rules) | **Remove.** Falls back to Archivo Black or Arial Black unless the head override wins. |
+| Teko | Designer fonts.css Google import | The Designer heading variable in every typography mode (`--_typography---font--heading-font: Teko`); 0 direct rules; overridden by the head | **Remove** the import and the variable. |
+| Dancing Script | Designer fonts.css Google import | 6 Designer rules on `inline-span-*` blocks | **Remove.** |
+| IBM Plex Sans (not Condensed) | Designer fonts.css Google import | Fallback position only (`'IBM Plex Sans Condensed','IBM Plex Sans'`) | **Remove** the import. |
+| Newsreader | Magazine prototypes only (Google link and local files) | `src/site-layers/tll-masthead-v1.html` sets the footer masthead line in Newsreader italic `!important`, but nothing on the live site loads it, so it renders in Georgia; magazine `--display` and `--mg-head` | **Decision needed.** The 26 Oct magazine decision was Newsreader ("I like candidate 1"); the Phase 2 spec says Playfair. See Needs Nancy. |
+| Inter Tight, Fraunces, Instrument Serif, Instrument Sans | Magazine prototypes only | `cover.html`, `story.html`, `type/specimens.html`, `cover-local`, `story-local` | **Remove** from anything that goes live; they stay in the prototype folder. |
+| Georgia, Arial, system-ui, ui-monospace, Menlo, Consolas, SF Mono, Roboto, Segoe UI, Times New Roman, Archivo Black, Bowlby One, Arial Black | fallbacks | stacks only | Not families; fine as fallbacks. |
+
+Totals: 17 named web families are loaded or referenced; 4 are in the spec. Of the 13 to remove, 7 exist only in the Designer (Teko, DM Serif Display, Druk Wide, Dancing Script, IBM Plex Sans, and the DM Sans and Recoleta variables), which makes them Designer changes.
+
+Two facts worth stating plainly: the alias block means a reader never sees DM Sans, Inter, Syne or Recoleta, so the site already renders in three families; and the body face is loaded by trick, not by name, so removing the alias block without adding Plex to the project fonts would drop the body to system-ui.
+
+---
+
+## 2. Button styles
+
+Method: every CSS rule in the current set whose selector names a button, CTA, pill or chip (`btn`, `button`, `cta`, `.tll-st-b`, `[data-tll-club]`, `.tlldir-contact`, `.w-button`, `[data-tll-aw=btn-*]`, `[data-tll-br=btn-*]`, `.tll-ux-btn`, `.tll-ex-btn`, `.tll-pp-btn`, `.tll-wt-btn`, chips and filter toggles) and sets a base look (padding, background, border, radius or height). Hover, focus and pressed rules were folded into their base. Data: `/tmp` parse of the 185 files; the Designer numbers are from `tll-webflow.css`.
+
+**Counts**
+
+- 199 base button rules, 172 distinct selectors, 66 distinct class stems, in 58 files.
+- Designer, 13 Oct: 10 `.tll-btn*` classes (`.tll-btn`, `-primary`, `-secondary`, `-ghost`, `-ghost-1`, `-ghost-cream`, `-ghost-rose`, `-pill`, `-google`, `-disabled`) plus `.tll-cta-rose`, `.tll-about-final-button` (three variants), `.tll-mod-cta`, `.tll-nav-pen-cta`, `.tll-nav-signup`, `.tll-nav-signin`, and the kit's `.button`; 153 button-ish class names in all.
+- Background hexes on buttons: ink #0A0B14 (19), rose #F0507A (12), rose #D63859 (12), rose #C8325B (7), paper #FDF9F3 (3), teal #00C9C8 (2), teal #067A79 (2), marigold #D98A2B (2), rose #C8425E (2), cream, white. Four roses and two teals for one primary button, plus the Designer's own `--_colors---tll-teal` #00DCD3 and `tll-teal-dim` #00A9A4.
+- Heights: 44px (52 rules), 48px (8), 40px (6), 36px (5), 52px (3), 32px (2), 46px, 42px. Sixteen rules sit under the 44px target.
+- Radius: 999px pill (30), 4px (22), 0 (11), 50% (6), 7px (4), 6px, 26px, 2px, 8px, 12px, 30px, 22px, 16px: 14 values.
+- Case: 174 sentence case, 19 uppercase, 6 mono (uppercase mono with 2px tracking is the relay, link-out and search submit style).
+- Rose fills with white text: 34; rose fills with ink text: 8.
+
+**Grouped by look** (rules, files, where)
+
+| Look | Rules | Files | Examples (file: selector) |
+|---|---|---|---|
+| Filled rose | 44 | 32 | `after/site-head.html` `.tll-nav-pen-cta` #F0507A 6px; `src/seo/live-2026-10-28/awards-head-head.html` `[data-tll-aw=btn-rose]` #F0507A 7px 13px; `for-brands-head-head.html` `[data-tll-br=btn-rose]` #F0507A 8px 15px; `before/contact-head.html` relay submit #D63859 999px uppercase mono; `before/support-head.html` `[data-tll-club="join"]` #D63859 6px; `src/pages/submit/live-2026-10-29/page-head-live.html` link-out submit #D63859 999px mono; `src/pages/account/live-2026-10-20/page-head-2026-10-20-before.html` `.a3-cta-rose` #D63859; layers `tll-ux-v1.js` `.tll-ux-btn`, `tll-expat-v1.js` `.tll-ex-btn`, `tll-pet-passport-v1.js` `.tll-pp-btn`, `tll-work-trips-v1.js` `.tll-wt-btn`, `tll-stamps-v1.js` `.tll-st-b`, `tll-paw-v1.js`, `tll-export-v1.js` all #C8325B, 4px, 44px; `tll-share-v1.js` `#tllShare .tsh-btn` #F0507A with ink text and a 1.5px ink border, 999px; `after/site-footer.html` `#tll-note` submit #F0507A ink text 999px 48px; `src/pages/travelers/after-2026-10-20/tv-head-d8735ad4.html` `.tv-open-cta` #F0507A ink text; magazine `.btn` var(--rose) 52px; Designer `.tll-btn-primary` rose on bone, `.tll-about-final-button` #C8325B 8px. |
+| Filled ink | 26 | 21 | `contributors-template-code-head.html` `.pf5-btn` #0A0B14 44px no radius; `account footer` `.tll-log-row button` ink 999px; `country head` `.tllcx-cta` ink 4px; `destinations head` `.tlldx-cta-inner` ink 4px; layers `tll-metrics-v1.js`, `tll-ep-ux-v1.js` `.tll-eps-btn` ink 0 radius; pressed chips (`[aria-pressed=true]`) in `tll-crew`, `tll-series`, `tll-ux`, `tll-work-trips`, `tll-share`, creators, travelers; Designer `.tll-btn-secondary` midnight. |
+| Filled teal | 8 | 7 | `account head` `.a3-cta` #00C9C8 with #06302f text 4px; `country head` `.tll-btn-primary` var(--ct3-teal-l); `destinations head` `.tlldx-btn-primary`; the home search submit styled three ways in three files (`before/home-head.html` #067A79 white 26px; `after/site-head.html` #00C9C8 #06302f 26px; `after/site-footer.html` var(--tll-teal-l)); story footer `.tll-place-btn-been-on`; Designer `.tll-cta-rose` is teal-dim #00A9A4 despite its name, 999px uppercase; Designer `.tll-btn-pill` #00DCD3. |
+| Outlined | 27 | 21 | 1.5px ink on light: `awards` `[data-tll-aw=btn-ghost]` 7px, `contributors` `.pf5-btn-line`, `share-photos footer` `.tll-btn-ghost`, `tll-whats-new-v1.js`, `tll-share-v1.js` `.tsh-seg button` 999px, `tll-story-translate-v1.js` `.tll-tr-pill` 40px; 1.5px cream on dark: `for-brands` `[data-tll-br=btn-ghost]` 8px, `for-expats` `[data-tll-btn=ghost]`, `support` `[data-tll-club="tip"]`, `account` `.a3-btn-edit`, the mobile menu `.tllmm-btn` (two different rules in the head: 999px 40px, and 2px 44px); 1px teal #067A79 pill `.tlldir-contact` (creators, country; hidden since Phase 0); 1.5px #3a3d55 `.tll-btn-ghost-rose` (country), `.tlldx-btn-ghost`; Designer `.tll-btn-ghost` 1px line, `.tll-btn-ghost-1`, `-cream`, `-rose` 1.5px. |
+| Filled cream or white with a line | 17 | 14 | `.tll-ex-btn.ghost`, `.tll-pp-btn.ghost`, `.tll-ux-btn.ghost` (white, 1.5px ink), unpressed chips in `tll-series`, `tll-work-trips`, `tll-crew` (999px, 36 to 44px), `.st3-tw-chip` 30px radius, `tll-share-v1.js` menu buttons 12px radius, `for-expats` quick finder 16px radius. |
+| Ghost (no fill, no border) | 61 | 32 | Mostly sizing rules: the global `.tll-btn,.w-button{min-height:44px}` and `.tll-nav-v1 a,.w-button,.tll-btn,button:not(.tllmm-btn){min-height:44px}` in the head and `tll-v9-chrome-v1.html`; `.tll-eps-btn--ghost`, `.tsh-btn.ghost`, `.mp3-views button` (transparent, uppercase), `.h3-toggle button` 40px, `.sw button` 36px (magazine). |
+| Text link styled as a button | 5 | 4 | `tll-ep-linkstack-v1.js` `.tll-ls-add` #C8325B 44px; `map footer` `.mp3-cta` teal uppercase 44px; `share-photos footer` `.tll-pen-disclosure` #067A79 11px uppercase, `.tll-photos-remove` #C8325B; `home embed 84f7180f` `.h3-filed button`. |
+| Tinted alpha / glass | 3 | 3 | `tll-collections-v1.js` `.tll-col-it button` rgba ink .7 32px circle; magazine `.cover .chip` rgba ink .6 999px 48px. |
+| Marigold | 2 | 2 | `account head` `.tll-pickin-card-midnight .tll-mod-cta` #D98A2B; `travelers footer` strava chip #D98A2B. |
+
+Nine looks, four roses, two teals, 14 radii, eight heights, three cases. The newest layers (expat, pets, work trips, UX, stamps) already agree with each other: #C8325B fill, white text, 4px radius, 44px, Plex, 0.97 press; the older page code and the Designer do not.
+
+**Proposed single set**
+
+| | Primary | Secondary | Text link |
+|---|---|---|---|
+| Fill | rose `#D63859` (white text reads 4.6:1, AA; `#F0507A` with white reads 3.4:1 and fails body-size text) | transparent | none |
+| Text | white, IBM Plex Sans Condensed 600 15px, sentence case, no tracking | ink `#0A0B14` on light, cream `#FAF7F2` on dark | teal `#067A79` on light (4.8:1 on cream), `#00C9C8` on dark; underline, offset 3px |
+| Border | none | 1.5px solid, same as the text color | none |
+| Radius | 4px | 4px | n/a |
+| Sizes | 44px (padding 0 20px) default; 48px (0 24px, 16px text) for hero and form submit | same | min 44px tap height as an inline-flex |
+| Hover | fill `#C8325B` | background rgba(10,11,20,.06) on light, rgba(250,247,242,.10) on dark | underline thickens to 2px |
+| Active | transform scale(.97), 150ms | same | none |
+| Focus-visible | 3px outline, offset 2px: `#067A79` on light, `#00C9C8` on dark | same | same |
+| Disabled | `aria-disabled="true"`, opacity .45, no pointer events (the support Club rule already does this) | same | same |
+| Loading | label swaps to a present-tense word ("Saving") inside an `aria-live="polite"` span; no spinner | | |
+
+Chips are a separate component (999px pill, 44px tall, 1.5px line, pressed = ink fill), and the uppercase mono button goes away: mono is for eyebrows, not for things you press.
+
+---
+
+## 3. Card styles
+
+Method: rules whose selector names a card, rail, shelf, tile, album mount or related item and set a radius, shadow, aspect ratio or fill plus padding. Data: the current set; Designer card rules from `tll-webflow.css`.
+
+**Counts**
+
+- 89 card rules, 73 distinct selectors, in 39 files.
+- Radius: 4px (21), 50% avatars (14), 0 (9), var(--r) (4), 14px (3), 999px (3), 12px (3), 6px (3), 11px (2), 16px (2), 8px (2), var(--mg-r): 12 values.
+- Shadows on 23 of 89 rules; borders mostly 1px #E0DACE (12), with 1.5px #E0DACE, 1px #23263c, 1px #232744, 1px var(--track), dashed #c9b89a also present.
+- Photo ratios: 4/3 (7), 16/10 (3), 4/5 (3), 3/4 (3), 3/2 (1): five ratios.
+- Avatar rings: 1.5px #F0507A (`.tll-lib-byline-img`, `.h3-card-by img`), 2px #F0507A (`.tllx-card img`), 1px #E0DACE (`.tll-shelf-by img`), cream plus rose double ring (`.tll-ph-img` faces), inset 4px #2b2f5x (`.tll-rail-card:before`): five ring styles.
+- Designer, 13 Oct: 203 card-ish class names, among them a family `.tll-card` (16px radius, white, 24px padding, `transition: all 0.2s ease`), `.tll-card-destination` 6px, `.tll-card-layover` 4px bone, `.tll-card-marathon` 4px with a 3px rose left edge, `.tll-card-pet` 6px blush, `.tll-card-contributor` 6px paper, `.tll-contributor-card` 24px radius on rgba white .55, `.tll-profile-tile` 18px radius #EFEAE1, `.tll-lib-card` 10px radius white with a 1px #E0DACE line, `.tll-story-card` and `.tll-traveler-card` with `transition: all`.
+
+**Story cards** (9 families)
+
+| Family | File | Look |
+|---|---|---|
+| `.tll-lib-card` library card | Designer base; overridden in `before/stories-head.html` (`.tll-lib-card{background:transparent;border:0;border-radius:0}`, `.tll-lib-img{aspect-ratio:4/3;background:#0A0B14}`) and `before/stories-footer.html` (7fr/5fr grid, lead card 3/2, title block pulled up 30px over the photo on a cream panel, title in Syne then Playfair) | Flat, borderless, photo on ink, overlapping title |
+| `.tll-shelf-card` home shelf | `after/site-head.html` lines 55 to 60 | White, 14px radius, shadow 0 1px 4px, hover lift 4px with a 0 12px 30px shadow, photo 16/10, title "Recoleta" 500 21px |
+| `.h3-card` and `.h3-card-ph` (the h3 home) | `src/pages/home/live-2026-10-28/embeds/84f7180f.html` | Width clamp(260px,26vw,380px), 78vw on phones, photo 4/5 on ink, ink tag, avatar ring 1.5px rose; `.h3-mcard` cream 4/3 |
+| `.tll-shelf-*` shelf parts | `home embed cd17db29.html` | Avatar ring 1px line, flag circle, time pill rgba ink .72 999px |
+| `.tll-related-card` keep reading | `after/storytpl-head.html`; Designer flex column with `transition: transform 0.25s` | Width 100%; magazine v1 wraps the image at var(--mg-r) |
+| Series rails `.tll-ex-rail a`, `.tll-pp-rail a`, `.tll-wt-rail a` | `tll-expat-v1.js`, `tll-pet-passport-v1.js`, `tll-work-trips-v1.js` | White, 1px #E0DACE, 6px radius; placeholder #E0DACE at 16/10 (expat, work) or 4/3 (pets) |
+| Album mounts and magazine tiles | `tll-album-v1.js` `.tll-alb-mount img` cover; `src/design/magazine-2026-10/cover/template.html` `.card .ph` 4/5 then 3/4, `.dtiles a` 4/3 then 3/4, var(--r) | Photo tiles on ink2 |
+| Page hero tiles `.tll-ph-img` | `tll-page-heroes-v1.js` | 2px radius, #E9E2D6, 4/5 on desktop and 3/4 in the phone swipe row |
+| Page cards `.h3-ex-card`, `.tllx-card`, `.tlldx-card`, `[data-ds3=card]`, `.tllcx-filed-card`, `[data-tll-aw=card]`, `[data-tll-br=card]` | home embed 9992aa7f, for-expats head, destinations head, country head, awards, brands | Paper or white, 1px line, 24px or 18 to 22px padding, radius 0, 4, 11, 12 or 16px |
+
+**People cards** (8 families)
+
+| Family | File | Look |
+|---|---|---|
+| `.tlldir-card` directory (creators, country expats) | `src/seo/live-2026-10-28/creators-code-head-after.html`, `country/v3/live-head-after.html` | White, 1.5px #E0DACE, 16px radius, 18 to 20px padding, teal outlined `.tlldir-contact` pill (hidden in Phase 0) |
+| `.tll-contributor-card` | Designer | 24px radius, rgba white .55, 28px padding, centered |
+| `.tll-trav-card-dark` travelers | `src/pages/heroes-2026-10-29/code/travelers-footer.html`, `tll-v9-tags-travelers-v1.html` | 0 radius, no shadow, padding 84px 24px 24px; link chips as 26px ink circles tinted per network (Instagram rose, YouTube #C8425E, TikTok teal text, Strava marigold) |
+| `.tll-tf-tile` | `tll-travelers-fix-v1.js` | Paper, 1px line, 24px padding |
+| `.tll-crew-card`, `.tll-pro-card`, `.tll-lsp-card`, `.tll-wn-card` | `tll-crew-v1.js`, `tll-pros-v1.js`, `tll-pf-linkstack-v1.js`, `tll-whats-new-v1.js` | White or paper, 1px #E0DACE, radius 4px (three) or 8px (pros) |
+| `[data-pf5="card-img"]` profile template | `contributors-template-code-head.html` | 4/3 on ink, no-image variant #12141F |
+| `.tll-profile-tile` | Designer 18px radius #EFEAE1; `src/pages/profile/v3/profile-head-full.html` restyles to 4px cream with a 1px line | Two looks for one tile |
+| Faces row `.tll-ph-faces .tll-ph-img` | `tll-page-heroes-v1.js` | 64px circle, double ring cream then rose |
+
+**Proposed: one story card, one person card**
+
+Story card: the whole card is one link. Photo 4/5 on an ink placeholder, 4px radius, no border, no shadow; 12px below it a mono eyebrow (12px, teal, "Place · Country"); title Playfair 800 20px/1.2 ink, two lines max; byline row with a 28px avatar in a 1.5px rose ring and the name in Plex 14px #3a3a3a; an optional time pill only when the story is new. Hover and focus: transform translateY(-2px) in 200ms, nothing else moves; focus ring 3px teal. A landscape variant is not a variant: rails use the same card at a narrower width. The 4/3, 3/4, 3/2 and 16/10 ratios go.
+
+Person card: paper `#FDF9F3`, 1px `#E0DACE`, 4px radius, 20px padding. 64px avatar circle, cream then rose ring; name Playfair 800 18px; one mono line in teal that only states what the member switched on (places lived, countries, or nothing); up to two flags; one text link "See their map". No contact chips (the relay is gone since Phase 0), no social tint colors, no translucent fills.
+
+---
+
+## 4. Hero treatments
+
+Method: rules on hero, cover and masthead selectors with a viewport height or a fill plus padding, in the current set; the Designer base from `tll-webflow.css`; the element trees for which section class each page uses.
+
+**Count: 12 distinct treatments in the saved code, built on 21 Designer `.tll-*-hero` section classes** (`about-final`, `about`, `account`, `contact`, `dest`, `faq`, `legal`, `library`, `map`, `mypets`, `passport`, `paw`, `pet`, `photos`, `profile`, `share`, `spot-mag`, `story`, `support`, `traveler`, `travelers`), with 33 different `clamp()` headline sizes across the current set (five for one story title alone).
+
+| # | Treatment | Where | What it is |
+|---|---|---|---|
+| 1 | Home cover (photo, dark) | `src/pages/home/live-2026-10-28/embeds/13326a8e.html`, `84f7180f.html`; scrim in `src/site-layers/v9-1/02-hero-scrim-v1.html` (also inlined in the head); `before/home-head.html` `[data-tll-flow="hero"]{min-height:100vh}` | Full-bleed photo, `min-height:calc(100svh - 96px)` on phones, content at the bottom, gradient scrim to .72 ink, h1 `clamp(52px,13.4vw,64px)/.88`, the line "Free, forever. No card, no paywall.", two 48px square buttons. The magazine cover prototype (`cover-build/tll-mag-cover-v1.html`) is the same at `min(88vh,860px)` with the stamp landing once. |
+| 2 | Story hero (photo, dark, 88vh) | `after/storytpl-head.html` lines 165 to 175 (same block as `v9-b/j13-story-v1.html`); Designer base `.tll-story-hero{min-height:72vh}` and 60vh on phones | `min(88vh,980px)` desktop, `min(76vh,720px)` phone, photo absolute, overlay gradient .45 to .15 to .92 ink, title at the bottom at `clamp(44px,6.4vw,112px)/.9/-.035em`, mono teal meta row. The magazine story (`story-build/tll-mag-story-v1.html`) zeroes this hero and puts the photo under the headline on cream. |
+| 3 | Library hero (light, text, photo row) | Designer `.tll-library-hero` 80/48 with a paper to bone gradient; overridden in `before/stories-footer.html` (`padding-top:clamp(28px,6vh,72px)`, bottom 6 to 8px, title `clamp(44px,6.4vw,112px)/.92` ink with an italic rose em); `tll-page-heroes-v1.js` adds four story covers (4/5) under the title | Cream, huge title, covers row |
+| 4 | Directory hero (light, text, faces) | `src/pages/heroes-2026-10-29/code/travelers-head.html` `.tll-travelers-hero{background:#F7F1E8;padding-top:10vh;padding-bottom:6vh}`, title max 14ch, teal eyebrow #067A79; Designer 6rem/4rem; `tll-page-heroes-v1.js` adds the faces row | Cream, faces |
+| 5 | Map hero (dark, photo behind) | Designer `.tll-section-dark.tll-map-hero` 5rem/4rem; `tll-page-heroes-v1.js` places a story photo behind under a deep scrim with a credit | Ink with photo |
+| 6 | About hero (dark, filmstrip) | Designer `.tll-about-hero` 6rem/5rem on `.tll-section-dark`, and `.tll-about-final-hero` 88/64 #0A0B14; `heroes-2026-10-29/code/about-head.html` (612 bytes, five rules); the layer adds a four-photo filmstrip along the bottom | Ink with photos |
+| 7 | Audience landings (dark, plain) | `src/seo/live-2026-10-28/awards-head-head.html` `[data-tll-aw=hero]` 64px 28px 44px, h1 `clamp(34px,4.2vw,52px)`, marigold eyebrow #D98A2B; `for-brands-head-head.html` `[data-tll-br=hero]` 78px 28px 60px, h1 `clamp(34px,4.6vw,52px)`, teal eyebrow in a chip; /for-expats hero is Designer markup with a staged rework in `tll-expat-v1.js`; the Paw Passport `.tll-paw-hero` (Designer) is a 340px band with a Montenegro photo as `background-image`, centered | Three paddings, three title sizes, three eyebrow styles |
+| 8 | Country hero (dark, 300px) | `src/pages/country/v3/live-head-after.html` `.tllcx-hero{min-height:300px;padding:72px 24px 32px;background:var(--ct3-ink)}`, flex-end | Ink band |
+| 9 | Profile hero (light, flat) | `contributors-template-code-head.html` `[data-tll-prof="hero"]{background:#F7F1E8;padding:0}`; `v9-b/j14-profile-tag-v1.html` hero-grid padding 46px 32px 30px 92px; Designer `.tll-profile-hero` 64/36 gradient centered | Cream |
+| 10 | Member pages (dark, plain) | `account head` `.tll-account-hero{padding:40px 0 36px;background:#0A0B14}` (Designer 96/80); `src/pages/auth/au3-auth.css` `.tll-auth-section` ink, `min-height:70vh`, 48px 16px 64px, a centered 420px card; /share-photos hero de-banded to paper with padding 0 (`share-photos/live-2026-10-23/page-footer-after.html` line 11); /profile pr3 paper with no gradient; /my-pets and /my-passport Designer 5rem/4rem | Four paddings |
+| 11 | Light gradient heroes (Designer only) | `.tll-support-hero` 64/40, `.tll-legal-hero` 64/32, `.tll-contact-hero` 64/32, `.tll-faq-hero` 64/40, `.tll-dest-hero` 64/48, `.tll-pet-hero` 64/40: `linear-gradient(180deg,#EFEAE1,#F7F4EE)`, centered text | Not in the 31 Oct page code: `before/support-head.html` holds only the Club band and `cookies-head-head.html` only a canonical. Their copy and layout live in the Designer. The support headline was white on cream until Phase 0 set it to ink. |
+| 12 | Spotlight magazine hero | Designer `.tll-spot-mag-hero` 420px, 18px radius card with a gradient | A card pretending to be a hero |
+
+Also in the Designer: 24 `ix_hero-*` classes from an interactions kit (`ix_hero-intro-slide-up-100vh`, `ix_parallax-scale-out-hero` and so on), none referenced by the saved page code.
+
+**Proposed: one hero, two variants**
+
+Shared: the container, the eyebrow (JetBrains Mono 600 12px, .18em, uppercase), the H1 (Playfair 800, `clamp(40px,6.4vw,96px)/.92/-.03em`, one italic word in rose `#F0507A`), the lede (Plex 17px/1.5, max 46ch), one primary button and one text link, and the credit line (mono 12px: "Photo: Name", place) when there is a photo. Padding 64px 0 40px on desktop, 48px 0 32px on phones. No parallax; no vh-locked heights above 72vh.
+
+- **Photo variant:** base `#0B1220`, photo `object-fit:cover` with a per-photo focal point, scrim only over the bottom 40% (`rgba(10,11,20,0)` to `.72`), `min-height:clamp(420px,72vh,840px)` on desktop and `calc(100svh - 56px)` capped at 640px on phones, content bottom-left, eyebrow `#00C9C8`, text cream. Used by the home cover, the story page, the map, the about page and the Paw Passport. Under reduced motion nothing moves.
+- **Plain variant:** cream `#FAF7F2`, eyebrow `#067A79`, H1 ink, lede `#3a3a3a`. Used by the library, directory, country, profile, audience landings, member pages, support, legal, contact and FAQ. The library covers row and the directory faces row become one optional "photo row" module under the hero, not a third variant. The dark plain band is retired as a hero; it stays as the Club or join band component at the foot of pages.
+
+---
+
+## 5. Gated pages and sign-in walls
+
+Memberstack gating works site-wide through three rules in the site footer (`after/site-footer.html` lines 38 to 40): `[data-ms-content="members"]` hidden until `html.ms-loaded`, then `anonymous` blocks hidden. What each wall looks like is page markup in the Designer plus the page code below.
+
+| Page | What the saved code shows | Gaps against the template |
+|---|---|---|
+| **/submit** | `src/pages/submit/live-2026-10-29/page-head-live.html`: the share fork (two 14px-radius picks, "Write it here" ink-filled and "Link to it" rose-outlined, hover lift .15s), the link-out card (14px radius, white, 1px rgba line, mono uppercase labels, inputs in 'Inter' on #FBF7F0 8px radius, a 999px uppercase mono submit in #D63859); `form-story-export-2026-10-13.html`: one form of 7 fieldsets (Set the scene, The story, The details, The hook, Sign off, the sponsor box, photos) with 40 `<label>` and 37 `<input>`, `data-tll-step="1"` and `"2"` already on the fieldsets but never used to split; placeholders repeated ("The place, the guide, the company" five times). The user-flow doc: "/submit is one long form." | No sign-in wall in the saved submit code: 0 `data-ms-content` hits in head, footer or embeds, and the copy sheet's only Submit wall string is "Sign in to edit this story." The wall is Designer markup. Mono uppercase labels (10px, 1.5px tracking) are under the 12px floor; errors are not inline in the form export. |
+| **/share-photos** | `src/pages/share-photos/live-2026-10-23/page-footer-after.html`, rules 175 to 186: the signed-out gate `[data-ms-content=anonymous] .tll-container` on paper, max-width 640, padding 9vh 28px 12vh, mono teal eyebrow, display h2 with an italic rose em (#C8325B), a 56ch lede, `.tll-photos-preview` rows (64px thumb, a mono teal word, a 15px line: a picture of what you get), a public line, then `a.tll-btn.tll-btn-primary` (#D63859, 48px, 4px) and `a.tll-btn.tll-btn-ghost` (1.5px ink); focus ring 3px ink. `src/pages/share-photos/v3/contract.md` documents labels, inline `span.tll-pen-error` elements and `aria-invalid` on the signed-in form. | The closest thing to the template that exists. Two buttons, not one; the preview copy is Designer markup (the CSS is saved, the words are not). |
+| **/account** | `src/pages/account/tll-acct-gate-v2.html`: the anonymous block is hidden until Memberstack answers (`html:not(.tll-anon) [data-ms-content="anonymous"]{display:none}`, 6-second fallback) so the gate never flashes on login. `account/live-2026-10-27/page-footer-2026-10-27-after.html` lines 189 to 200: the A13 script writes "Behind the sign-in" (copy sheet proposes "Members only") and three lines, "Your map, counted out of 249.", "Your lists and your Layover Wrapped.", "Your share card, and who gets to see it.", plus "Back to the stories →" as a teal underlined 44px link. `page-head-2026-10-20-before.html` rules 211 to 216: `.tll-account-gateout-card` 4px radius, 1px #E0DACE, no shadow, Playfair title; hero `.tll-account-hero` ink. The buttons `.tll-account-gateout-buttons` are Designer markup. | The three "what you get" lines already exist in words; they need the picture. Dark hero above a light card. |
+| **/profile** (legacy) | `src/pages/profile/v3/profile-head-full.html` (pr3, 11 Oct): noindex; paper page, Playfair title with an italic rose word, 4px cream tiles with a 1px line, `.tll-cta-rose` #D63859 at 44px; Memberstack sections untouched. The user-flow doc: "Legacy profile page, next step /account; check whether still needed." | Recommend retiring it (301 to /account) rather than templating it. |
+| **/awards** | `src/seo/live-2026-10-28/awards-head-head.html`: ink hero (64px 28px 44px, marigold eyebrow #D98A2B at 11px, h1 `clamp(34px,4.2vw,52px)` with a rose em), a 3fr/2fr grid, a white 12px-radius card holding the Memberstack member form `[data-tll-aw=memb]` (mono 9px teal labels, 7px-radius inputs on #FBF7F0, an 8px verify box, a #F0507A 7px send button at 13px, teal success and #C8425E error messages), a rules card in ink and a "mine" card in white; `btn-rose` and `btn-ghost` at 7px radius. Staged noindex. | The anonymous block is Designer markup. 9px and 8.5px labels and counters are under the 12px floor. Its own button radius (7px) and card radius (12px). |
+| **/signup, /login, /forgot-password** | `src/pages/auth/au3-auth.css` and `au3-head-block.html` (Sign-in 3.0, approved 12 Oct): ink section, `min-height:70vh`, a centered 420px column; mono teal eyebrow (11px, 3px tracking); headline Playfair `clamp(28px,6vw,40px)` with a rose em; sub 16px #9496AC; card #12141F with a 1px #232744 line, 4px radius, 26px padding; Google button transparent with a 1px #2b2f52 line at 44px; divider in mono; inputs 4px radius, 16px text, `border-color .15s`; `[aria-invalid=true]` border #FF7093; `.w-form-fail` #2a0f18 with a #FF7093 line; submit hover #FF7093. `au3-auth.js` line 60 holds the inline messages: "Enter your email address.", "That email address is missing something. Check it and try again.", "Enter your password.", "Your password needs 8 characters or more.", "Enter your first name.", "Tick this box to agree before you join.", "Tick this box to confirm you are 16 or older."; a "Show password" toggle. | Labeled fields and inline errors already exist here. Two off-palette hexes (#FF7093, #9496AC). The 16+ rule exists as a checkbox, not as the promise line. |
+
+The promise line exists in four wordings: "Free, forever. No card, no paywall." (home hero, `13326a8e.html` line 6), "Free to join, no card, no paywall." (magazine cover), "Free, no card, 16+." (`tll-home-value-v1.js` line 42), "Free. No card. 16+." (`tll-expat-v1.js` line 113). "Join free" is the site-wide CTA (copy sheet, Site-wide; `tll-paw-v1.js` "Join free to add the stamp"; the home cover's second button).
+
+**Proposed: the one gated template**
+
+1. Cream page, no hero band. Max-width 640px, padding 64px 0 on desktop and 40px 0 on phones.
+2. Eyebrow in mono teal naming the page ("Share a story", "Your account").
+3. H1 in Playfair 800 with one italic rose word, under eight words: "Your map is behind the *sign-in*." or the page's own line.
+4. A picture of what you get: three rows, each a 64px image or icon in a 4px tile, a mono teal word, and one 15px line (the share-photos `.tll-photos-preview` pattern and the account gate's three lines, reused as is).
+5. **Join free** as the only filled button (primary, 48px, `/signup?next=` the current path). "Sign in" is a text link beside it.
+6. Under the button, in mono 12px #6B6660: **Free. No card. 16+.**
+7. Forms, where the page has one after sign-in: a visible label above every field (Plex 600 14px ink, sentence case; never the placeholder as the label), inputs 44px on paper with a 1px line and 4px radius, teal focus ring, and an inline error under the field (rose text `#C8325B`, 13px, `aria-invalid="true"` on the control, `role="alert"` on the message) using the au3 strings as the reference list.
+8. The gate never flashes: the `tll-acct-gate-v2` wait-for-Memberstack rule becomes the shared one.
+
+---
+
+## 6. Class sprawl
+
+Three sources, counted separately because they cover different things.
+
+**A. The saved page HTML in scope** (`src/pages/**/*.html`, `src/seo/live-2026-10-28/**/*.html`, the fixtures in `src/pages/heroes-2026-10-29/fixtures/`, `src/design/magazine-2026-10/*/fixture-*.html`, `src/pages/home/live-2026-10-28/ux/fixture-home-current.html` and the phone prototype): 445 files, 1,105 distinct class names.
+
+- 110 distinct `inline-*` classes, 765 occurrences across the copies; 95 of them carry a chain of two or more numbers (527 occurrences); the longest chain has 47 numbers. These appear only in the 21 fixture and mock files, which are renderings of the Designer trees. The custom-code embeds never use them.
+- Three `-copy` classes: `tll-inarticle-copy`, `tll-library-empty-copy`, `tll-persp-copy` (plus `tlldx-ctacopy` in the destinations code).
+- Webflow default names in these files: only `heading-8` (referenced from the head's Playfair override), and the generic `body`, `grid`, `field`.
+
+**B. The saved Designer element trees** (7 pages: about, for-expats, stories, the-map, travelers from 29 Oct; the story template from 26 Oct; destinations): 2,135 elements, 631 distinct classes, 1,133 class uses.
+
+- 207 `inline-*` classes (every one used once), 162 with chains of two or more numbers, longest 32. Travelers carries 92 of the uses, the map 44, for-expats 23, about 20, the story template 19 (the breadcrumb: `inline-div-0-1-...-26` wrapping `inline-a-0-1-...-20`), stories 9, destinations 0.
+- Three `-copy` classes (`tll-library-empty-copy`, `tll-spot-footer-copy`, `tll-inarticle-copy`); two one-number classes (`tll-text-marigold-1`, `tll-text-teal-1`); zero `div-block-N` style defaults.
+
+**C. The Designer stylesheet, 13 Oct** (`tll-webflow.css`, 4,650 rules): 3,773 distinct class names.
+
+- 1,050 `inline-*` classes, 896 with chains of two or more numbers, longest 47.
+- 282 classes ending in a single number; 48 Webflow default names: `heading-2` to `heading-8`, `link-2` to `link-17`, `paragraph-2` to `paragraph-7`, `text-block-2` to `text-block-8`, plus `button`, `container`, `form`, `image`, `list`, `nav`, `section`.
+- 23 `-copy` classes, all `tll-*-copy` (contact, support, pet, profile tile, footer, region CTA and so on).
+- 454 template-kit classes that nothing in the saved page code references: 62 `ix_*` interaction classes, 115 `sg_*` style-guide classes, and `padding_`, `margin_`, `is-*`, `radius_`, `text-*` utilities.
+- In the 18 exported pages: 887 distinct classes used, 1,226 `inline-*` uses; worst pages the-paw-passport (98), my-passport (85), index (79), signup (72), travelers (66), submit, share-photos and my-pets (65 each).
+
+Where `inline-*` comes from: Webflow creates these names when HTML with inline styles is pasted into the Designer, one class per element per style chain. They sit in the nav and footer components and in page bodies.
+
+**Duplicate style blocks in the custom code** (current set, 185 files, 3,997 rules)
+
+- 9 identical `<style>` blocks saved in two places each (a layer file and the site or page head): `tll-v9-chrome-v1`, `tll-v9-type-v1`, `tll-v91-hero-scrim-v1`, `tll-v91-motion-v1`, `tll-v9-j13-v1` (story head), `tll-flow-v1` (home head and the layer, and the same id again in the stories head), `tll-story-extras-v1` (submit lounge embed and the form export), `tll-acct-gate-v2` (account head and its embed), `tll-v9-tags-v1` (travelers head). 11 style ids are used in more than one file.
+- 265 identical declaration bodies repeated across files or under three or more selectors. The worst: the focus ring `outline:3px solid <color>;outline-offset:2px` written 14 times in #D63859, 11 in #0A0B14, 5 in var(--ct3-ink), 4 in #C8325B, 4 in #F0507A, 3 in #00C9C8 (one ring, ten colors across the set); the mono eyebrow `font:600 11px/1.4 "JetBrains Mono"...;letter-spacing:1.5px;text-transform:uppercase` under ten layer-local names (`.tll-ex-k`, `.tll-pp-k`, `.tll-sr-k`, `.tll-si-k`, `.tll-alb-k`, `.tll-exp-k`, `.tll-met-k`, `.tll-paw-k` and two more); the flag label under four (`.tll-ex-flag`, `.tll-paw-flag`, `.tll-pp-flag`, `.tll-wt-flag`); the whole `.tll-atlas` block (10 rules) in three files; `object-fit:cover` image rules under nine names.
+- Designer, 13 Oct: 426 identical declaration blocks under different selectors; one footer link style is repeated under 36 `inline-a-*` names, one eyebrow under 24 `inline-div-3-*` names, one flex rule under 24 `inline-div-10-*` names.
+
+**The ten worst examples**
+
+1. `inline-div-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30-31-32-33-34-35-36-37-38-39-40-41-42-43-44-45-46` (47 numbers): home fixture and `fixture-home-current.html`; one Designer rule.
+2. `inline-div-1-1-2-...-40` (41 numbers): same pages.
+3. `inline-div-0-1-2-...-35` (36 numbers): 10 uses in fixtures, 18 uses across the 18 exported pages (it is in the shared footer).
+4. `inline-div-1-1-2-...-29` (30 numbers): 10 fixture uses, 18 export uses (footer).
+5. `inline-a-0-1-2-...-27` (28 numbers): 10 uses, footer links.
+6. `inline-div-6-1-2-...-21` (22 numbers): the most used chain, 30 fixture uses.
+7. `inline-a-18`: 70 fixture uses, the footer link class.
+8. `inline-div-0-1-...-26` wrapping `inline-a-0-1-...-20` and `inline-a-1-1-...-15`: the story breadcrumb (`tree-2026-10-26.txt` lines 9 to 13), on every story.
+9. One footer link style duplicated under 36 `inline-a-*` classes in the Designer stylesheet (`display:block;margin-bottom:9px;color:#d8d4cd;font-size:14px`).
+10. `link-2` to `link-17`: sixteen numbered default link classes, with `text-block-2` to `-8`, `paragraph-2` to `-7`, `heading-2` to `-8` beside them (Designer, 13 Oct).
+
+---
+
+## 7. Motion
+
+Method: every `transition:`, `animation:` and `@keyframes` in the current set (page code, layers, magazine) and in the Designer stylesheet; GSAP, Lottie, anime.js and Webflow `ix2` references; reduced-motion guards per file.
+
+**Counts, custom code and layers:** 160 motion declarations in 37 files: 139 `transition`, 14 `animation`, 7 `@keyframes`. 0 GSAP, Lottie or `Webflow.require('ix2')` references in saved code. Webflow interactions, if any exist, live in the Designer and are not in the repo; the 13 Oct export carries 62 `ix_*` kit classes but no interactions data.
+
+**Keyframes**
+
+| Name | File | What | Against the tokens |
+|---|---|---|---|
+| `tllTick` 50s linear infinite | `before/home-head.html`, `src/site-layers/tll-flow-v1.css.html` | marquee | infinite and linear; set to none under reduced motion (allowed as a marquee only if it stays paused there) |
+| `tll-photos-row-in` 180ms cubic-bezier(.23,1,.32,1) | `share-photos/live-2026-10-23/page-footer-after.html` | new file row | within tokens |
+| `tllTrShim` 900ms linear infinite | `tll-story-translate-v1.js` | translation shimmer | infinite, 900ms |
+| `tllPress` 200ms var(--ease-out) | `tll-ux-v1.js` | press scale | within tokens |
+| `tllMgLand` and `land` 420ms cubic-bezier(.2,.9,.3,1.2) with a 250ms delay | `cover-build/tll-mag-cover-v1.html`, `cover/template.html` | the stamp lands | 420ms and an overshoot easing (prototype only) |
+
+**Transitions, custom code (139)**
+
+- Properties: transform 64, border-color 39, background-color 35, opacity 24, color 24, box-shadow 14, background 10, text-decoration-color 5, grid-template-rows 2, visibility 2, filter, fill, width. 99 of 139 transition something other than transform or opacity, in 33 files (color and border fades on hover, box-shadow lifts on `.tll-shelf-card`, `.tll-rail-save`, `#tll-note .tll-note-card`).
+- `transition: all`: 0 in custom code.
+- Durations outside 150 to 250ms: 27 (100ms x7, 120ms x10, 140ms, 260ms x2, 300ms, 400ms, 500ms x4, 520ms x6, 600ms x2). The 520ms ones are `.tll-flow-reveal{transition:opacity .52s,transform .52s}` in the home head, the stories head and the flow layer.
+- Easings: `ease-out` 100, `ease` 86, `cubic-bezier(.23,1,.32,1)` 20 (the token, used by the newest layers), `cubic-bezier(.2,.7,.2,1)` 10, `linear` 5, the overshoot 2.
+- Reduced motion: 34 of the 37 files with motion carry a `prefers-reduced-motion` or `tllReduced` guard; 3 do not: `src/pages/submit/live-2026-10-29/page-head-live.html` (the fork hover lift, `transition:transform .15s`), `page-footer-live.html`, and the home founders embed `a0d1cd97.html`.
+
+**Designer, 13 Oct:** 130 transitions, 49 of them `all` (`all 0.2s ease` x19, `all 0.25s ease` x15, `all 0.2s` x14), durations 0.2s x116, 0.25s x22, .18s x6, 0.3s x4, 1s x2, 0.5s x2, 0.4s x2; 0 keyframes; 0 `prefers-reduced-motion` blocks. Every Designer transition breaks at least one token (property, or no reduced-motion rule).
+
+**What breaks the tokens (transform and opacity only, 150 to 250ms, reduced motion respected):** the 99 color, border and shadow transitions; the 27 off-duration transitions; the two infinite animations; the overshoot easing; all 49 Designer `all` transitions and the 1s, 0.5s and 0.4s ones; the three unguarded files; and the Designer stylesheet as a whole, which has no reduced-motion rule.
+
+---
+
+## Proposed single system
+
+**Type**
+
+| Role | Face | Size and leading | Notes |
+|---|---|---|---|
+| Display H1 | Playfair Display 800 | `clamp(40px,6.4vw,96px)` / .92 / -.03em | cover, library, story; one italic rose word |
+| Page H1 | Playfair Display 800 | `clamp(34px,4.2vw,56px)` / 1.02 / -.02em | every other page; replaces 33 clamp() sizes with two |
+| H2 | Playfair Display 800 | `clamp(28px,3.4vw,44px)` / 1.08 | |
+| H3 and card titles | Playfair Display 800 | 22px and 20px / 1.2 | |
+| Lede | IBM Plex Sans Condensed 400 | 17px / 1.5, max 46ch | |
+| Body | IBM Plex Sans Condensed 400 and 600 | 16px / 1.55 UI and reading; 15px cards; 14px meta and labels | |
+| Small | IBM Plex Sans Condensed 400 | 13px / 1.45 for help and error text; 12px is the floor | 309 rules in 70 files sit under 12px today (8px x2, 8.5px x5, 9px x24, 9.5px x7, 10px x100, 10.5px x35, 11px x132, 11.5px x4) |
+| Eyebrow, counts, captions | JetBrains Mono 600 | 12px / 1.4, .18em, uppercase | never on buttons or form labels |
+| Wordmark | Syne 800 | nav 18px, footer 28px | the only Syne; see Needs Nancy |
+
+**Color variables** (one name per value; every pair below passes WCAG AA at the size it is used)
+
+```
+--ink        #0A0B14   text on light
+--dark       #0B1220   dark surfaces
+--cream      #FAF7F2   page
+--paper      #FDF9F3   cards, inputs
+--line       #E0DACE   1px lines
+--text-2     #3a3a3a   secondary text
+--muted      #6B6660   captions on light (5.3:1 on cream)
+--rose       #F0507A   the italic word, rose on dark, large text only on light
+--rose-deep  #D63859   primary button fill (4.6:1 with white)
+--rose-text  #C8325B   rose text and errors on light (5.2:1 on cream)
+--teal       #067A79   eyebrows, links, focus on light (4.8:1 on cream)
+--teal-bright #00C9C8  eyebrows, links, focus on dark (9:1 on #0B1220)
+--white      #FFFFFF   button text
+```
+
+Retired: #C8425E, #FF7093, #9496AC, #06302f, #00DCD3, #00A9A4, #F7F4EE, #EFEAE1, #F8F2E6, #FBF7F0, #F7F1E8 (the code's cream today; the spec says #FAF7F2), #D98A2B and #F4B942 as button or eyebrow colors (marigold stays only as a stamp accent if Nancy wants it).
+
+**Spacing** in 8px steps: 8, 16, 24, 32, 48, 64, 96 (section). 4px exists as a hairline only. The Designer already holds this scale as `--_sizes---tll-space-1` to `-12` (4 to 160px); the custom code does not use it, and 1,438 of its 2,162 padding, margin and gap pixel values (67%) are off the grid (12px x241, 10px x224, 6px x188, 14px x172, 18px x122). Containers: 1280px site, 680px reading, 640px walls, 420px sign-in (all already in the Designer or the auth block).
+
+**Radius:** `--r: 4px` for buttons, inputs, cards and photos; `--r-pill: 999px` for chips; `50%` for avatars; 0 only for full-bleed. 30 values today.
+
+**Buttons:** the primary, secondary and text link in section 2, two sizes (44 and 48px), six states, one focus ring (3px, offset 2px, teal on light, bright teal on dark).
+
+**Cards:** the story card and the person card in section 3; 4/5 photo, 4px radius, no shadow, one hover (2px rise).
+
+**Hero:** the photo and plain variants in section 4, with the photo row as a module.
+
+**Gated template:** section 5, with Join free as the only filled button and "Free. No card. 16+." under it.
+
+**Motion tokens**
+
+```
+--ease-out: cubic-bezier(.23,1,.32,1)
+--t-fast: 150ms   press, focus
+--t-base: 200ms   hover lift, chip toggle
+--t-slow: 250ms   entrance (opacity 0 to 1 with an 8px rise)
+```
+
+Transform and opacity only; colors and borders change without a transition. No infinite animation except the marquee, which stops under reduced motion. No overshoot. One `@media (prefers-reduced-motion: reduce)` rule sets `animation:none; transition:none` and removes every transform, in the head, once.
+
+---
+
+## Needs Nancy (Designer changes, or decisions)
+
+1. **Project fonts:** remove Teko, Dancing Script and IBM Plex Sans from the Webflow project fonts; keep Playfair Display (800 and 800 italic), IBM Plex Sans Condensed (400, 600) and JetBrains Mono (400, 600). Add Syne 800 only if the wordmark decision below is Syne. Until Plex loads under its own name in the Designer, the alias block in the head has to stay.
+2. **Designer variables:** `--_typography---font--heading-font` Teko to Playfair Display; `tll-font-body` DM Sans to IBM Plex Sans Condensed; `tll-font-display` Recoleta and DM Serif Display to Playfair Display; `tll-font-wordmark` Druk Wide to the wordmark decision; colors `tll-teal` #00DCD3 to #00C9C8, `tll-teal-dim` #00A9A4 to #067A79, `tll-bone` and `tll-paper` to the one cream and paper, `tll-border` #E8E2D6 to #E0DACE. After that, the head's `:root` heading override and the Recoleta and Syne rewrites can be deleted from code.
+3. **Decide the wordmark:** the spec says Syne; the live lockup is Playfair 800 with a rose "LIFE." written by the head; the Designer says Druk Wide. One answer.
+4. **Decide the primary button color:** rose `#D63859` with white text is proposed here; "Pick the button color" is still open in the user-flow doc, and the earlier prompt asked for teal with ink text, which the brand kit allows only on dark.
+5. **Decide the magazine face:** Newsreader was chosen on 26 Oct for the magazine system; the Phase 2 spec says Playfair. If Newsreader stands, it is a fifth family and needs a project font; if Playfair stands, `tll-masthead-v1` and the magazine templates change.
+6. **Confirm the cream:** the spec says #FAF7F2; the code and the Designer use #F7F1E8 (and #F7F4EE, #EFEAE1, #F8F2E6). One value.
+7. **The `inline-*` classes:** 1,050 in the Designer, 207 in the seven saved trees. They sit in the nav and footer components and on the paw passport, my-passport, signup, home and travelers pages. Cleaning them is Designer work: re-class the elements, then run the Style Manager's clean-up for the unused ones. The API cannot rename classes.
+8. **Template-kit leftovers:** delete the 62 `ix_*` interaction classes, the 115 `sg_*` style-guide classes (and the `/style-guide` draft page), the `padding_`, `margin_`, `is-*` utilities, and the default `link-2` to `link-17`, `text-block-2` to `-8`, `paragraph-2` to `-7`, `heading-2` to `-8`.
+9. **Heroes:** collapse the 21 `.tll-*-hero` section classes into one hero component with the two variants. Seven of them (support, legal, contact, FAQ, destinations, pets, profile) exist only in the Designer, with the gradient and centered text, and the support and legal page copy lives there too.
+10. **Buttons in the Designer:** collapse the 10 `.tll-btn*` classes, `.tll-cta-rose` (which is teal), `.tll-about-final-button` and its two variants, `.tll-mod-cta` and the kit's `.button` into the three proposed; remove `transition: all` from all 49 rules and add the reduced-motion rule to the Designer's custom code or a utility class.
+11. **Interactions:** list any Webflow interactions (ix2) still attached to elements; none can be seen from the saved code.
+12. **Nav and footer:** the wordmark, the Join free button and the footer's `inline-a-*` link classes are in shared components, which by the standing rule change only in a session together.
+13. **The walls:** the anonymous blocks on /submit, /awards and the buttons on the /account gate are Memberstack-gated Designer markup. Placing the template there (H1, the three-row picture, Join free, "Free. No card. 16+.") is a Designer edit per page.
+14. **/profile:** retire it with a 301 to /account instead of restyling it.
+15. **Small type in the Designer:** `.tll-eyebrow-teal` and `.tll-eyebrow-rose` are 12px in the Designer but the page code sets eyebrows and labels at 8.5 to 11px in 70 files; the floor is a code change, but the awards and brands labels (9px) and the Designer `inline-*` spans need checking in the Designer after re-classing.
+
+---
+
+## Limits
+
+- The sandbox cannot reach thatlayover.life, the Webflow CDN or Google Fonts, so nothing was rendered or measured in a browser; every number is from saved code.
+- The Designer stylesheet is the 13 October export (`handoff/claude-design-source/webflow-export-2026-10-13/`), 18 days older than the 31 October page code; classes, fonts and variables may have changed since. The element trees cover seven pages (26 to 29 Oct) and the export covers 18 pages; the other roughly 70 pages and templates have no saved Designer markup here (support, legal, FAQ, pets, pursuits, press, brands bodies among them), so their heroes, walls and copy are described only where a page head or the Designer stylesheet shows them.
+- Webflow interactions (ix2) and today's project font settings are not in any saved file.
+- Buttons, cards and heroes were found by parsing CSS rules with a selector match, then read by hand; a style set only by JavaScript at runtime, or by Designer settings with no class, is not counted. Chips and toggles were counted with buttons and are called out as such.
+- The current set is the newest saved copy per page; where a page has only a "before" copy from 31 October, that copy is the live code.
+- Contrast ratios in the proposal were computed from the hex values, not measured on rendered pages.

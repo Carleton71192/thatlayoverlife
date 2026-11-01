@@ -1,0 +1,103 @@
+<!-- Google AdSense (28 Oct 2026, publisher pub-7257230007536660): account verification and the AdSense script. Home page first; site-wide after approval. -->
+<meta name="google-adsense-account" content="ca-pub-7257230007536660">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257230007536660" crossorigin="anonymous"></script>
+<link rel="canonical" href="https://www.thatlayover.life/">
+<meta property="og:url" content="https://www.thatlayover.life/">
+<style id="tll-home-search-v3">
+/* 2026-09-23: the search bar drew two pills. The site-level prototype rule styles form.tll-home-search as the pill,
+   and the Webflow form wrapper (.w-form) drew the same border around it. Wrapper goes flat; the form keeps the pill.
+   If the class-adding script never runs, the wrapper keeps its own pill, so no-JS still renders one clean bar. */
+.w-form:has(> form.tll-home-search){background:transparent !important;border:0 !important;border-radius:0 !important;padding:0 !important;box-shadow:none !important;display:block !important}
+form.tll-home-search{max-width:none;width:100%;gap:10px;padding:6px 6px 6px 22px}
+form.tll-home-search input[type=text]{font-size:16px;height:46px}
+form.tll-home-search input[type=text]::placeholder{color:#6B6660}
+/* Teal on a light surface is #067A79, not #00C9C8 */
+form.tll-home-search input[type=submit]{background:#067A79 !important;color:#fff !important;height:46px;padding:0 26px;border-radius:26px;font-size:13px;letter-spacing:.4px;white-space:nowrap;transition:background .15s ease}
+form.tll-home-search input[type=submit]:hover{background:#05605F !important}
+form.tll-home-search input[type=submit]:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+@media(max-width:560px){form.tll-home-search{padding-left:16px}form.tll-home-search input[type=submit]{padding:0 16px;font-size:12px}}
+</style>
+<style id="tll-home-search-mobile-v4">
+/* 2026-09-29: under 600px the site-wide craft-polish rule sets every .w-input to width:100% !important, which starved the
+   search input inside the flex pill and let the Search button fill the whole bar. Pin the input and button widths here. */
+@media(max-width:600px){
+form:has(> #Search-the-library),form.tll-home-search{display:flex !important;flex-wrap:nowrap !important;align-items:center !important;gap:6px !important;padding:5px 5px 5px 14px !important}
+#Search-the-library,form.tll-home-search input[type=text]{width:auto !important;flex:1 1 auto !important;min-width:0 !important;height:42px !important;font-size:16px !important}
+form:has(> #Search-the-library) input[type=submit],form.tll-home-search input[type=submit]{width:auto !important;flex:0 0 auto !important;height:42px !important;min-height:0 !important;padding:0 16px !important;font-size:12px !important;line-height:42px !important}
+}
+</style>
+<script id="tll-home-search-placeholder-v1">
+/* 2026-09-29: the Designer API cannot set a placeholder, and the site script only rewrites one that already starts with "Search". Set it here. */
+(function(){function p(){var i=document.getElementById('Search-the-library');if(i&&!i.getAttribute('placeholder'))i.setAttribute('placeholder','Search a country, a layover, a feeling…');}
+if(document.readyState!=='loading')p();else document.addEventListener('DOMContentLoaded',p);})();
+</script>
+<style id="tll-flow-v1">
+/* TLL long-scroll layer v1 (30 Sep 2026, Readymag brief). Additive: no element removed, no binding touched. Kit v2.1 tokens only. */
+[data-tll-flow="hero"]{min-height:100vh;display:flex;align-items:flex-end}
+[data-tll-flow="hero"] h1{font-size:clamp(46px,8.4vw,132px)!important;line-height:.96!important;letter-spacing:-.02em;max-width:12ch}
+.tll-flow-ticker{border-top:1px solid #23263c;border-bottom:1px solid #23263c;overflow:hidden;white-space:nowrap;padding:12px 0;background:#0A0B14}
+.tll-flow-ticker .t{display:inline-block;animation:tllTick 50s linear infinite}
+.tll-flow-ticker span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#00C9C8;margin-right:40px}
+@keyframes tllTick{to{transform:translateX(-50%)}}
+.tll-flow-man{position:relative;height:240vh;background:#FDF9F3;color:#1A1A1A}
+.tll-flow-man .pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.tll-flow-man .l{position:absolute;left:24px;right:24px;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(40px,8vw,128px);line-height:1.02;letter-spacing:-.02em;opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);margin:0}
+.tll-flow-man .l em{font-style:italic;color:#F0507A}.tll-flow-man .l.on{opacity:1;transform:none}
+.tll-flow-man .c{position:absolute;left:24px;top:32px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#067A79}
+.tll-flow-reveal{opacity:0;transform:translateY(22px);transition:opacity .52s cubic-bezier(.2,.7,.2,1),transform .52s cubic-bezier(.2,.7,.2,1)}
+.tll-flow-reveal.in{opacity:1;transform:none}
+[data-tll-flow="section"] h2{font-size:clamp(34px,5vw,84px)!important;line-height:1.02!important;letter-spacing:-.02em}
+.tll-flow-rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.tll-flow-rail a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:#7d7f96;display:flex;align-items:center;gap:8px;mix-blend-mode:difference}
+.tll-flow-rail a::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.tll-flow-rail a.on{color:#F0507A}.tll-flow-rail a span{opacity:0;transition:opacity .16s}.tll-flow-rail a.on span,.tll-flow-rail:hover a span{opacity:1}
+@media(max-width:900px){.tll-flow-rail{display:none}.tll-flow-man{height:auto}.tll-flow-man .pin{height:auto;display:block;padding:72px 24px}.tll-flow-man .l{position:static;opacity:1;transform:none;margin:0 0 12px}.tll-flow-man .c{display:none}}
+.tll-atlas{background:#FDF9F3;color:#1A1A1A;padding:80px 24px 0}
+.tll-atlas .in{max-width:1180px;margin:0 auto}
+.tll-atlas .e{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#067A79}
+.tll-atlas h2{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(32px,5vw,84px);line-height:1.02;letter-spacing:-.02em;max-width:14ch;margin:10px 0 0;color:#1A1A1A}
+.tll-atlas p{color:#6B6660;max-width:52ch;margin:14px 0 30px}
+.tll-atlas .list{columns:3;column-gap:32px;border-top:1px solid #E0DACE}
+@media(max-width:800px){.tll-atlas .list{columns:1}}
+.tll-atlas .k{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #E0DACE;break-inside:avoid;text-decoration:none;color:#1A1A1A}
+.tll-atlas .k .n{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:20px}
+.tll-atlas .k .s{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#6B6660;white-space:nowrap}
+.tll-atlas .k.has .n{color:#C8325B}.tll-atlas .k.has .s{color:#067A79}
+.tll-atlas .k:hover .n{text-decoration:underline;text-decoration-color:#00C9C8;text-underline-offset:3px}
+.tll-atlas .more{padding:40px 0 60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6B6660}
+@media(prefers-reduced-motion:reduce){.tll-flow-ticker .t{animation:none}.tll-flow-reveal,.tll-flow-man .l{opacity:1;transform:none;transition:none}.tll-flow-man{height:auto}.tll-flow-man .pin{height:auto;position:static;display:block;padding:72px 24px}.tll-flow-man .l{position:static;margin:0 0 12px}}
+</style>
+<style id="tll-home-hero-cap-v1">
+/* 6 Oct 2026 (Nancy): the hero title stays at the left edge of the container and clear of the boat in the photo. 118px cap, 760px max width:
+   "Find your next" ends around 55% of the width at 1920 and 46% at 1440; the boat starts near 61%. Two lines at every width. */
+.tllp-home h1:not(.tll-story-title){font-size:clamp(46px,6.4vw,118px) !important;max-width:min(78vw,760px) !important}
+</style>
+<script id="tll-live-writers-v1">
+/* Live writer count (8 Oct 2026). The "Doors opening" heading used to be typed: "One writer so far." It now counts the
+   published contributor profiles in /sitemap.xml, the same way the story count works, so no number is hardcoded.
+   Zero profiles leaves the heading alone. Cached once per visit in sessionStorage. */
+(function(){
+var W=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
+function apply(n){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue;if(/^\s*(\w+) writers? so far\./.test(s)){t.nodeValue=s.replace(/^(\s*)(\w+) writers? so far\./,'$1'+(n<W.length?W[n]:String(n))+(n===1?' writer':' writers')+' so far.');}}}
+function run(){var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}
+fetch('/sitemap.xml',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(x){var m=x.match(/<loc>[^<]*\/contributors\/[^<]+<\/loc>/g);var n=m?m.length:0;if(!n)return;try{sessionStorage.setItem('tllWriterN',String(n));}catch(e){}apply(n);}).catch(function(){});}
+if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>
+<style id="tll-home-search-left-v5">
+/* 19 Oct 2026 (Claude Design packet 1.6, Nancy: "that search bar is not responsive"): the field sits in the same left column as the
+   "Search it" text, runs the full width, and the hint fits at 390px. Try chips reach 44px. */
+[data-h3="search"] > div,[data-h3="search"] .w-form,[data-h3="search"] form:has(#Search-the-library){width:100% !important;max-width:1240px !important;margin-left:0 !important;margin-right:0 !important;justify-content:flex-start !important;text-align:left !important}
+[data-h3="search"] > div{margin:0 auto !important}
+[data-h3="search"] #Search-the-library{font-size:clamp(22px,3.6vw,64px) !important;text-overflow:ellipsis}
+[data-h3="search"] #Search-the-library::placeholder{font-size:.78em !important}
+.h3-try a{min-height:44px !important}
+@media(max-width:480px){[data-h3="search"] #Search-the-library{font-size:20px !important}[data-h3="search"] #Search-the-library::placeholder{font-size:16px !important}}
+</style>
+<style id="tll-home-search-left-v6">
+/* H2 (27 Oct 2026, Nancy: "On the search bar it is still smooshed"): v5 missed the box around the form, a Designer class capped at 640px and centered,
+   one level deeper than v5 expects. It now runs the full column, in line with "Search it" and the Try chips, so the whole hint shows. */
+[data-h3="search"] div:has(> .w-form #Search-the-library){max-width:none !important;width:100% !important;margin-left:0 !important;margin-right:0 !important}
+/* Phones: the 19 Oct sizes from v5 (field 20px, hint 16px) were overridden by tll-home3-v1, which loads later; "html" makes these win, so the hint fits at 375px. */
+@media(max-width:480px){html [data-h3="search"] #Search-the-library{font-size:20px !important}html [data-h3="search"] #Search-the-library::placeholder{font-size:16px !important}}
+</style>
