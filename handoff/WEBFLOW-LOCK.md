@@ -228,3 +228,4 @@ One session edits Webflow at a time. Whoever holds this file's lock is the only 
     - One publish, to the webflow.io subdomain only (task c848f5e3-e83a-4d74-b6e6-e950d01cc1e5).
     - Check: all 197 country pages on the subdomain have one structured-data block that parses, with their own name, address, country code and description.
     - Nothing else written. No custom-domain publish. The lock stays with the usability session.
+- Write complete, 1 November 2026 about 08:36 UTC, usability session: /creators list source, card and photo bindings, footer code; published to the subdomain only (task e47c1450, carrying the Webflow build session's A1). Lock held until www on Nancy's word.

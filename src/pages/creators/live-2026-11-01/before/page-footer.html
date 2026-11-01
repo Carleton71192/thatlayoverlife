@@ -1,0 +1,71 @@
+<!-- tll-dir-js-v1 -->
+<script>
+(function(){
+  var root=document.querySelector('[data-tll-dir-page]'); if(!root) return;
+  var MODE=root.getAttribute('data-tll-dir-page');
+  var NOUN={expats:'EXPAT',creators:'CREATOR',press:'JOURNALIST'}[MODE]||'MEMBER';
+  var srcNodes=[].slice.call(document.querySelectorAll('[data-tll-dir]'));
+  var people=srcNodes.map(function(n){
+    var d=n.dataset, links=[];
+    try{links=JSON.parse(d.links||'[]')}catch(e){links=[]}
+    var flags=(d.flags||'').split(/\s+/);
+    return {name:d.name||'',slug:d.slug||'',lives:d.lives||'',city:d.city||'',since:d.since||'',knows:d.knows||'',tags:d.tags||'',langs:d.langs||'',roles:d.roles||'',affil:d.affil||'',regions:d.regions||'',monet:d.monet||'',links:links,cmode:(d.cmode||'').toLowerCase(),ig:d.ig||'',wa:d.wa||'',photo:d.photo||(n.querySelector('img')&&n.querySelector('img').getAttribute('src'))||'',flags:flags,relay:flags.indexOf('relay')>-1,verified:flags.indexOf('verified')>-1};
+  }).filter(function(p){return p.name});
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  shuffle(people);
+  var grid=root.querySelector('[data-tll-dir-grid]'), count=root.querySelector('[data-tll-dir-count]'), search=root.querySelector('[data-tll-dir-search]'), tagrow=root.querySelector('[data-tll-dir-tags]');
+  var state={q:'',lives:false,lived:false,contact:false,tag:''};
+  var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var BADGE={instagram:['IG','ig'],tiktok:['TT','tt'],youtube:['YT','yt'],strava:['SS','ss'],newsletter:['NL',''],website:['WEB',''],blog:['WEB',''],other:['LINK','']};
+  function contactHref(p){
+    if(p.cmode==='none') return '';
+    if(p.ig) return 'https://www.instagram.com/'+encodeURIComponent(p.ig.replace(/^@/,''));
+    if(p.wa&&/^https:\/\/wa\.me\/message\//i.test(p.wa)) return p.wa;
+    if(p.relay) return '/contact?relay='+encodeURIComponent(p.slug);
+    return '';
+  }
+  function card(p){
+    var sub='';
+    if(MODE==='expats'){ sub='Lives in '+esc(p.lives)+(p.since?' since '+esc(p.since):'')+(p.knows?' · Knows '+esc(p.knows):''); }
+    else { sub=esc(p.roles||NOUN.charAt(0)+NOUN.slice(1).toLowerCase())+(p.regions?' · Covers '+esc(p.regions):''); }
+    var tags=p.tags?p.tags.split(',').map(function(t){return t.trim()}).filter(Boolean).slice(0,5).map(function(t){return '<span class="tlldir-tag">'+esc(t)+'</span>'}).join(''):'';
+    if(MODE==='creators'&&p.monet) tags+='<span class="tlldir-tag tlldir-tag--amber">'+esc(p.monet)+'</span>';
+    if(MODE==='press'&&p.verified) tags+='<span class="tlldir-tag tlldir-tag--teal">✓ Verified press</span>';
+    if(MODE==='press'&&p.affil) tags+='<span class="tlldir-tag">'+esc(p.affil)+'</span>';
+    var links=p.links.slice(0,4).map(function(l){var b=BADGE[l.type]||BADGE.other;return '<a class="tlldir-badge tlldir-badge--'+b[1]+'" href="'+esc(l.url)+'" target="_blank" rel="noopener nofollow ugc" aria-label="'+esc(l.type)+'">'+b[0]+'</a>'}).join('');
+    var ch=contactHref(p);
+    var contact=ch?'<a class="tlldir-contact" href="'+esc(ch)+'"'+(/^https?:/.test(ch)?' target="_blank" rel="noopener nofollow ugc"':'')+'>Contact open</a>':'';
+    var av=p.photo?'<img src="'+esc(p.photo)+'" alt="" loading="lazy">':esc(p.name.charAt(0));
+    var nm=p.slug?'<a href="/contributors/'+esc(p.slug)+'">'+esc(p.name)+'</a>':esc(p.name);
+    return '<article class="tlldir-card"><div class="tlldir-top"><div class="tlldir-avatar">'+av+'</div><div><h3 class="tlldir-name">'+nm+'</h3><p class="tlldir-sub">'+sub+'</p></div></div>'+(tags?'<div class="tlldir-tags">'+tags+'</div>':'')+'<div class="tlldir-links">'+links+contact+'</div><a class="tlldir-report" href="mailto:hello@thatlayover.life?subject='+encodeURIComponent('REPORT · '+p.name+' · /'+MODE)+'">Report this profile</a></article>';
+  }
+  var INVITE={expats:['Your name here','Lives in Portugal · Knows Spain','Remote work,Bureaucracy + paperwork','Lived abroad? Switch on "I\'m an expat" in your profile.','/edit-profile'],creators:['Your name here','Video creator · Covers the Balkans','Road trips,Food scene','You make travel things? Switch on "I\'m a creator".','/edit-profile'],press:['Your name here','Journalist · Covers Northern Europe','Outlets: 3 linked','On a masthead? Switch on "I\'m press".','/edit-profile']}[MODE];
+  function invite(){return '<article class="tlldir-card tlldir-card--invite"><span class="tlldir-sample">Sample · not a member</span><div class="tlldir-top"><div class="tlldir-plus">+</div><div><h3 class="tlldir-name">'+INVITE[0]+'</h3><p class="tlldir-sub">'+INVITE[1]+'</p></div></div><div class="tlldir-tags">'+INVITE[2].split(',').map(function(t){return '<span class="tlldir-tag">'+t+'</span>'}).join('')+'</div><p class="tlldir-sub">'+INVITE[3]+'</p><a class="tlldir-invite-link" href="'+INVITE[4]+'">Put yourself on the map →</a></article>'}
+  function apply(){
+    var q=state.q.trim().toLowerCase();
+    var out=people.filter(function(p){
+      if(q){var hay=[p.name,p.lives,p.city,p.knows,p.tags,p.langs,p.roles,p.regions,p.affil].join(' ').toLowerCase(); if(hay.indexOf(q)<0) return false;}
+      if(state.lives&&!p.lives) return false;
+      if(state.lived&&!p.knows) return false;
+      if(state.contact&&!contactHref(p)) return false;
+      if(state.tag&&p.tags.toLowerCase().indexOf(state.tag.toLowerCase())<0) return false;
+      return true;
+    });
+    var n=out.length;
+    if(count) count.innerHTML='<span>'+n+' '+NOUN+(n===1?'':'S')+' on the map · shuffled</span><span>No rankings. No counts that rank people.</span>';
+    var html=out.map(card).join('');
+    if(n<3) html+=invite();
+    grid.innerHTML=html;
+  }
+  if(tagrow){
+    var seen={}; people.forEach(function(p){p.tags.split(',').forEach(function(t){t=t.trim(); if(t) seen[t]=1})});
+    var tags=Object.keys(seen).sort();
+    tagrow.innerHTML=tags.map(function(t){return '<button type="button" class="tlldir-chip" aria-pressed="false" data-tag="'+esc(t)+'">'+esc(t)+'</button>'}).join('');
+    if(tagrow.previousElementSibling) tagrow.previousElementSibling.style.display=tags.length?'':'none';
+    tagrow.addEventListener('click',function(e){var b=e.target.closest('[data-tag]'); if(!b) return; var on=b.getAttribute('aria-pressed')==='true'; [].forEach.call(tagrow.children,function(c){c.setAttribute('aria-pressed','false')}); state.tag=on?'':b.dataset.tag; if(!on) b.setAttribute('aria-pressed','true'); apply();});
+  }
+  root.querySelectorAll('[data-tll-dir-filter]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.tllDirFilter; state[k]=!state[k]; b.setAttribute('aria-pressed',String(state[k])); apply();})});
+  if(search) search.addEventListener('input',function(){state.q=search.value; apply();});
+  apply();
+})();
+</script>
