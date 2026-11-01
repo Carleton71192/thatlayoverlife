@@ -220,12 +220,12 @@ describe('POST /export/prepare and GET /export/zip', () => {
   });
 });
 
-/** An upstream answer whose body records whether it was cancelled. */
+/** An upstream answer whose body records whether it was canceled. */
 function upstream({ status = 200, type = 'image/jpeg', bytes = AVATAR, url = '' } = {}) {
-  const cancelled = [];
-  const body = new ReadableStream({ start(c) { c.enqueue(bytes); c.close(); }, cancel(reason) { cancelled.push(reason ?? 'cancelled'); } });
+  const canceled = [];
+  const body = new ReadableStream({ start(c) { c.enqueue(bytes); c.close(); }, cancel(reason) { canceled.push(reason ?? 'canceled'); } });
   const headers = new Headers(); if (type) headers.set('content-type', type);
-  return { response: { status, ok: status >= 200 && status < 300, url, headers, body }, cancelled };
+  return { response: { status, ok: status >= 200 && status < 300, url, headers, body }, canceled };
 }
 
 describe('GET /export/photo', () => {
@@ -276,13 +276,13 @@ describe('GET /export/photo', () => {
       const res = await w.photo(token, `${CDN}/avatar.jpg`, { fetchImpl: async () => up.response });
       expect([name, res.status]).toEqual([name, 502]);
       expect([name, res.headers.get('Access-Control-Allow-Origin')]).toEqual([name, SITE]);
-      // The upstream body is cancelled, never left to drain.
-      expect([name, up.cancelled.length]).toEqual([name, 1]);
+      // The upstream body is canceled, never left to drain.
+      expect([name, up.canceled.length]).toEqual([name, 1]);
     }
     // Redirects are followed: a legacy host that lands on the CDN is fine, the second host check is what refused evil.example above.
     const fine = upstream({ url: 'https://cdn.prod.website-files.com/avatar.jpg' });
     expect((await w.photo(token, 'https://uploads-ssl.webflow.com/avatar.jpg', { fetchImpl: async () => fine.response })).status).toBe(200);
-    expect(fine.cancelled).toHaveLength(0);
+    expect(fine.canceled).toHaveLength(0);
   });
 
   it('times only the wait for headers: 20 s without them is 504, and once they arrive the body may take as long as it takes', async () => {
