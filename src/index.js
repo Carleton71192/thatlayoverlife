@@ -21,6 +21,12 @@
 //                                       reader; the original is never changed (translate.js, multilingual Phase 1)
 //   GET /link-preview?url=              a submitted article's own share photo, title and description for the
 //                                       /submit link-out form; photos only, never ads (link-preview.js)
+//   POST /export                        a member's own records as JSON (export.js)
+//   POST /export/prepare                {states?}: checks the member, stores a 15-minute job, returns the zip link
+//                                       and the photo list
+//   GET /export/zip?t=                  the member's records as a zip, streamed as it is built; the link works
+//                                       for the job's 15 minutes
+//   GET /export/photo?t=&u=             one photo passed through from a CMS host for the browser to pack
 // The member routes and the member webhook answer CORS preflights for the site's
 // three origins only (member-auth.js). Cron (every 30 min) runs the same ingest as /refresh.
 
@@ -45,7 +51,7 @@ import { handleCrew, handleCrewPublic } from './crew.js';
 import { runEnrich } from './story-enrich.js';
 import { handleWhatsNew } from './whats-new.js';
 import { handleAlbum, handleAlbumSettings } from './album.js';
-import { handleExport } from './export.js';
+import { handleExport, handleExportPhoto, handleExportPrepare, handleExportZip, photoCors } from './export.js';
 import { handlePros } from './pros.js';
 import { handleWorkTrips } from './work-trips.js';
 import { handleSeries } from './series.js';
@@ -84,6 +90,7 @@ const MEMBER_ROUTES = {
   '/stamps/private': handleStamps,
   '/album/settings': handleAlbumSettings,
   '/export': handleExport,
+  '/export/prepare': handleExportPrepare,
   '/metrics': handleMetrics,
 };
 
@@ -160,6 +167,13 @@ export default {
     if (url.pathname === '/pets/public' || url.pathname === '/pets/notes' || url.pathname === '/pets/featured') return handlePetPublic(request, env);
     if (url.pathname === '/settings') return handleSettings(request, env);
     if (url.pathname === '/paw/waitlist' || url.pathname === '/paw/waitlist/export') return handlePaw(request, env);
+    // A browser navigation, not an XHR: the token in the link is the only key, so no CORS and no Bearer header.
+    if (url.pathname === '/export/zip') return handleExportZip(request, env);
+    // A fetch from the account page: the same token, plus CORS for the site origins so the page can read the bytes.
+    if (url.pathname === '/export/photo') {
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: photoCors(request) });
+      return handleExportPhoto(request, env);
+    }
     if (url.pathname === '/stamps/public' || url.pathname === '/pursuits/status') return handleStampsPublic(request, env);
 
     if (url.pathname === '/lounge') {

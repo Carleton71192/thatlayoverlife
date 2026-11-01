@@ -1,17 +1,82 @@
-// POST /export (31 Oct 2026, Value Playbook Phase 4: "Download everything: stories, photos and map as a zip, from the account
-// page. It backs up the Instagram promise."). Member only, and only the member's own records: the profile, every story they
-// wrote (drafts included, so nothing is lost), their collections and stamps (private ones too: it is their own copy), the pets
-// they own or share, the companions they travel with (names and profile links only) and the photo links. The browser then
-// downloads the photos and builds the zip, so no large file passes through the Worker. Ten exports an hour per member.
+// Download everything (31 Oct 2026, Value Playbook Phase 4: "Download everything: stories, photos and map as a zip, from the
+// account page. It backs up the Instagram promise."). Member only, and only the member's own records: the profile, every story
+// they wrote (drafts included, so nothing is lost), their collections and stamps (private ones too: it is their own copy), the
+// pets they own or share, the companions they travel with (names and profile links only) and the photos.
+//
+//   POST /export            the manifest as JSON (kept for tools and tests). Ten exports an hour per member.
+//   POST /export/prepare    {states?} -> {ok, url, token, expiresAt, stories, photos, photoList}. Checks the member, gathers the
+//                           records once so any problem shows in the card, stores a small job under export:<token> in WIRE_KV
+//                           for 15 minutes and returns the download link plus the list of photos (folder, name, url) the browser
+//                           fetches itself. `states` is the member's full map (tllStates v2) from the browser, 200 KB at most,
+//                           so the zip can hold map/my-map.json and map/countries.csv.
+//   GET  /export/zip?t=     the records zip, streamed as it is built (src/zip.js): README, profile, stories, collections, stamps,
+//                           pets, companions, places lived, the map files, and photos/index.html plus photos/photos.csv listing
+//                           every photo with its link. No photo bytes. 404 when the token is missing, wrong or expired.
+//   GET  /export/photo?t=&u= one photo, passed through from the CMS host to the browser: same job token (not consumed, good
+//                           for 60 minutes here against the link's 15), host allowlist on the URL asked for and on the URL the
+//                           bytes came from (redirects followed), image content types only, the upstream body returned as it
+//                           is. The browser packs the photos into zip parts itself (tll-export-v1.js). CORS for the site
+//                           origins, so fetch can read it.
+//
+// Plan assumption (1 Nov 2026): the handoff notes say tll-travel-wire runs on the Cloudflare Workers Free plan, which allows about
+// 10 ms of CPU per request and 50 subrequests. That is why the zip holds records only (small, store-only) and the photos go one
+// per request through /export/photo with no CRC and no copying. Streaming every photo byte through the Worker (the first Phase
+// 1B design) would have failed mid-stream on Free. The job lives for 60 minutes (KV TTL) and is never deleted on download: the
+// records link is honored for 15 minutes of that (expiresAt) and the photo proxy until photoUntil, the full 60, because a large
+// library on a slow connection needs longer than the link.
+//
+// CPU, measured in Node 22 with scratchpad/time-export.mjs (15 KB story bodies, four photos per story, the zip written to a plain
+// sink; through zipStream in brackets), median of 30 runs:
+//   at de2270a:  10 stories 2.7 ms (4.2), 20 stories 4.7 ms (6.6), 40 stories 9.5 ms (16.3), 60 stories 12.0 ms (13.7),
+//                131 to 381 stream writes; every body was written twice, once pretty-printed in stories.json and once in its page
+//   now:         10 stories 1.5 ms (1.7 to 2.3), 20 stories 2.4 to 3.0 ms (2.8), 40 stories 4.0 to 4.4 ms (4.8 to 5.5), 60 stories
+//                5.8 to 6.6 ms (11), 4 to 17 stream writes, and the zip is about half the size (0.66 MB for 40 stories, was 1.25)
+// Add 1 to 7 ms of JSON.parse for the Webflow pages gather reads. A CPU cutoff on /export/zip would land after the headers are
+// sent, so the browser would get a truncated zip rather than the problem page: the site owner's own export (40 or more long
+// stories) is the one to watch after deploy. Node is not workerd, so these are a guide, not a guarantee.
+//
+// Subrequests: a records zip costs one KV read plus every page of seven site-wide collections (contributors until the member is
+// found, stories, collection items, stamps, pets, categories, pursuits, plus contributors again when the member has a crew):
+// about 9 to 10 today, reaching the Free plan's 50 at roughly 4,000 site-wide records. gather finishes before the first byte, so
+// hitting the limit gives the 502 problem page, not a truncated zip. When the collections grow, filter stories by contributor
+// and items by owner with the Webflow API's field filters instead of listing everything.
+//
+// Phase 1B (1 Nov 2026): the browser version (JSZip, photos fetched cross-origin into memory) failed on iPhone with "Load failed"
+// and could run out of memory on a 100-photo zip. Now the records come as a plain link download and each photo comes through
+// a same-policy, CORS-safe proxy, packed in parts of 25 so memory stays small.
 import { findContributor } from './profile-sync.js';
-import { rateLimit, reply, verifyMemberToken } from './member-auth.js';
+import { ALLOWED_ORIGINS, rateLimit, reply, verifyMemberToken, withHeaders } from './member-auth.js';
 import { listAll } from './collections.js';
+import { NUMERIC_TO_ALPHA2 } from './iso-numeric.js';
+import { zipStream } from './zip.js';
 
 const SITE = 'https://www.thatlayover.life';
 const PRIVATE_FIELDS = ['memberstack-id', 'outreach-status', 'outreach-notes', 'source-list', 'press-verified', 'badge-label', 'currently-in'];
+const ROOT = 'that-layover-life';
+/** How long the records link (GET /export/zip) is honored. */
+export const JOB_TTL_SECONDS = 15 * 60;
+/** How long the photo proxy honors the same token, and the job's KV TTL. */
+export const PHOTO_WINDOW_SECONDS = 60 * 60;
+export const MAX_PREPARE_BYTES = 200 * 1024;
+/** How long /export/photo waits for the CMS host's headers. The body is not timed: the browser is the slow side. */
+export const PHOTO_HEADER_TIMEOUT_MS = 20000;
+// Only the hosts the CMS stores photos on. Anything else is listed as a link, never fetched from inside the Worker.
+const PHOTO_HOST = /(^|\.)website-files\.com$|^uploads(-ssl)?\.webflow\.com$|^res\.cloudinary\.com$/;
+const TOKEN = /^[0-9a-f]{32}$/;
+const DEPTHS = new Set(['lived', 'visited', 'layover']);
+const CODE = /^\d{3}$/;
+const TRAVELER_ID = /^[A-Za-z0-9_-]{1,24}$/;
+const KOSOVO_ALIASES = new Set(['undefined', 'XK', 'xk']);
+const MAX_TRAVELERS = 20;
+const MAX_STATES = 300;
+// Codes the map draws that the ISO table (src/iso-numeric.js, copied from the map engine) does not carry.
+const EXTRA_ALPHA2 = { 900: 'XK' };
+// Names Intl.DisplayNames does not have in every runtime.
+const EXTRA_NAMES = { XK: 'Kosovo' };
 
 const img = (x, folder, name) => (x?.url ? { url: x.url, folder, name, alt: x.alt || '' } : null);
 const safe = (s) => String(s || 'item').toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'item';
+const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
 /** Pure: the export manifest from the member's own records. */
 export function buildExport({ me, stories = [], items = [], stamps = [], pets = [], people = [], cats = [], pursuits = [], now = Date.now() }) {
@@ -61,17 +126,298 @@ export function buildExport({ me, stories = [], items = [], stamps = [], pets = 
   };
 }
 
-export async function handleExport(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
-  if (!env.WEBFLOW_TOKEN || !env.MEMBERSTACK_KEY || !env.CONTRIBUTORS_COLLECTION_ID || !env.WIRE_KV) return reply({ error: 'Downloads are not switched on yet.' }, 503);
-  const auth = await verifyMemberToken(request, env, { fetchImpl });
-  if (auth instanceof Response) return auth;
-  if (!(await rateLimit(env, 'export', auth.memberId, 10, now))) return reply({ error: 'That is ten downloads in an hour. Try again a little later.' }, 429);
-  const me = await findContributor(env, fetchImpl, auth.memberId);
-  if (!me) return reply({ error: 'Your profile page has not been created yet.' }, 404);
+/* The files inside the zip. These used to live in the browser layer (tll-export-v1.js); the zip holds exactly what it made. */
+
+export const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** A spreadsheet-friendly CSV: header row, quoted when a value holds a comma, quote or line break. */
+export function csv(rows, cols) {
+  const q = (v) => { v = v == null ? '' : Array.isArray(v) ? v.join(' ') : String(v); return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; };
+  return `${cols.join(',')}\n${rows.map((r) => cols.map((c) => q(r[c])).join(',')).join('\n')}\n`;
+}
+
+/** One story as a page that opens in any browser. */
+export function storyPage(s) {
+  return `<!doctype html><meta charset="utf-8"><title>${esc(s.title)}</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}small{color:#5F5A54}</style>`
+    + `<h1>${esc(s.title)}</h1><p><small>${esc([s.place, s.trip, s.status === 'draft' ? 'Draft' : ''].filter(Boolean).join(' · '))}</small></p>${s.excerpt ? `<p><em>${esc(s.excerpt)}</em></p>` : ''}${s.body || ''}${s.signOff ? `<p>${esc(s.signOff)}</p>` : ''}`
+    + `${s.link ? `<p><small>Online: <a href="${esc(s.link)}">${esc(s.link)}</a></small></p>` : ''}${s.externalUrl ? `<p><small>Published at: <a href="${esc(s.externalUrl)}">${esc(s.externalUrl)}</a></small></p>` : ''}`;
+}
+
+/** photos/index.html: every photo with its link, grouped by folder, as a page that opens in any browser. */
+export function photosPage(photos) {
+  const groups = new Map();
+  for (const p of photos) { if (!groups.has(p.folder)) groups.set(p.folder, []); groups.get(p.folder).push(p); }
+  const n = photos.length;
+  return `<!doctype html><meta charset="utf-8"><title>Your photos</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}h2{font-size:17px;margin:24px 0 4px}a{color:#067A79}small{color:#5F5A54}</style>`
+    + `<h1>Your photos</h1><p>${n === 1 ? '1 photo, with its link.' : `${n} photos, each with its link.`} The photos themselves come as zip parts from "Download your photos" on your account page.</p>`
+    + [...groups].map(([folder, list]) => `<h2>${esc(folder)}</h2><ul>${list.map((p) => `<li><a href="${esc(p.url)}">${esc(p.name)}</a>${p.alt ? ` <small>${esc(p.alt)}</small>` : ''}</li>`).join('')}</ul>`).join('');
+}
+
+export function readme(d) {
+  return `That Layover Life: your copy\nExported ${d.exportedAt}\nProfile: ${d.profileLink}\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json (the list of your stories; the text of each story is in its page)\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: index.html and photos.csv, every photo with its link, in folders by story, collection, stamp and pet. The photos themselves come as zip parts from "Download your photos" on your account page.\n\nPrivate collections and stamps are included: this copy is only for you.\n`;
+}
+
+/** The English country name for an alpha-2 code, or the code when the runtime has no names. */
+let regionNames = null;
+export function countryName(code) {
+  const c = String(code || '').toUpperCase();
+  if (EXTRA_NAMES[c]) return EXTRA_NAMES[c];
+  try { regionNames = regionNames || new Intl.DisplayNames(['en'], { type: 'region' }); return regionNames.of(c) || c; } catch { return c; }
+}
+
+/** GET /export/zip is a browser navigation, so a problem is shown as a small page with a way back, not raw JSON. */
+function problemPage(status, message) {
+  const html = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>That Layover Life</title>`
+    + `<style>body{max-width:560px;margin:60px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}a{color:#067A79}</style>`
+    + `<p>${esc(message)}</p><p><a href="${SITE}/account">Back to your account</a></p>`;
+  return new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } });
+}
+
+/** File extension for a photo from its content type, then its URL; jpg when neither says. */
+export function photoExt(type, url) {
+  const t = String(type || '');
+  if (/png/.test(t)) return 'png';
+  if (/webp/.test(t)) return 'webp';
+  if (/gif/.test(t)) return 'gif';
+  const m = /\.(jpe?g|png|webp|gif)(\?|$)/i.exec(url || '');
+  return m ? m[1].toLowerCase().replace('jpeg', 'jpg') : 'jpg';
+}
+
+/**
+ * Checks the member's map from the browser: {v:2, travelers:[{id,name?,color?,pet?}], states:{"<3 digits>":{"<traveler id>":depth}}}.
+ * Returns { map } with only those fields, or { error }. Names are kept: this copy is the member's own.
+ */
+export function checkStates(raw) {
+  if (!isObject(raw) || raw.v !== 2 || !isObject(raw.states) || (raw.travelers !== undefined && !Array.isArray(raw.travelers))) {
+    return { error: 'states must be a tllStates v2 record: {v:2, states, travelers}' };
+  }
+  const travelers = [];
+  const seen = new Set();
+  for (const t of raw.travelers || []) {
+    if (travelers.length >= MAX_TRAVELERS) break;
+    if (!isObject(t) || typeof t.id !== 'string' || !TRAVELER_ID.test(t.id) || seen.has(t.id)) continue;
+    seen.add(t.id);
+    const out = { id: t.id };
+    if (typeof t.name === 'string') out.name = t.name.replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 60);
+    if (typeof t.color === 'string' && /^#[0-9A-Fa-f]{3,8}$/.test(t.color)) out.color = t.color;
+    out.pet = t.pet === true;
+    travelers.push(out);
+  }
+  const states = {};
+  for (const [rawKey, entry] of Object.entries(raw.states)) {
+    const key = KOSOVO_ALIASES.has(rawKey) ? '900' : rawKey;
+    if (!CODE.test(key) || !isObject(entry)) continue;
+    const kept = states[key] || {};
+    for (const [tid, depth] of Object.entries(entry)) if (seen.has(tid) && DEPTHS.has(depth) && !kept[tid]) kept[tid] = depth;
+    if (!Object.keys(kept).length) continue;
+    if (!states[key] && Object.keys(states).length >= MAX_STATES) continue;
+    states[key] = kept;
+  }
+  return { map: { v: 2, travelers, states } };
+}
+
+/** Rows for map/countries.csv: one per country and traveler, with the mark as the map words it. */
+export function countryRows(map) {
+  const rows = [];
+  const mark = { lived: 'Lived', visited: 'Stayed', layover: 'Layover' };
+  for (const [num, entry] of Object.entries(map?.states || {})) {
+    for (const [tid, depth] of Object.entries(entry || {})) {
+      const tr = (map.travelers || []).find((x) => x.id === tid);
+      const a2 = NUMERIC_TO_ALPHA2[num] || EXTRA_ALPHA2[num] || '';
+      rows.push({ country: a2 ? countryName(a2) : num, code: a2 || num, traveler: tr?.name || tid, mark: mark[depth] || depth });
+    }
+  }
+  return rows;
+}
+
+export function zipFileName(d) {
+  return `that-layover-life-${safe(d.profile?.slug || 'me')}-${d.exportedAt.slice(0, 10)}.zip`;
+}
+
+/** Every record the zip needs, in one pass over the member's collections. Null when the member has no profile page. */
+export async function gather(env, fetchImpl, memberId, now) {
+  const me = await findContributor(env, fetchImpl, memberId);
+  if (!me) return null;
   const get = (id) => (id ? listAll(env, fetchImpl, id) : Promise.resolve([]));
   const [stories, items, stamps, pets, people, cats, pursuits] = await Promise.all([
     get(env.STORIES_COLLECTION_ID), get(env.COLLECTION_ITEMS_ID), get(env.STAMPS_COLLECTION_ID), get(env.PETS_COLLECTION_ID),
     (me.fieldData?.crew || []).length ? get(env.CONTRIBUTORS_COLLECTION_ID) : Promise.resolve([]), get(env.COLLECTION_CATEGORIES_ID), get(env.PURSUITS_COLLECTION_ID),
   ]);
-  return reply({ ok: true, ...buildExport({ me, stories, items, stamps, pets, people, cats, pursuits, now }) });
+  return { me, data: buildExport({ me, stories, items, stamps, pets, people, cats, pursuits, now }) };
+}
+
+/**
+ * Writes every record of the member's copy into `zip` (a ZipWriter): small text files only, so the Worker's CPU time stays in
+ * the milliseconds. The photos are listed (photos/index.html and photos/photos.csv) with their links; their bytes come through
+ * GET /export/photo and are packed in the browser.
+ */
+export async function writeExportZip(zip, d, map) {
+  const used = new Set();
+  const unique = (name) => { let n = name, i = 2; while (used.has(n)) { n = name.replace(/(\.[^./]+)?$/, `-${i}$1`); i += 1; } used.add(n); return n; };
+  const file = (name, data) => zip.file(unique(`${ROOT}/${name}`), data);
+  const json = (v) => JSON.stringify(v, null, 2);
+  await file('README.txt', readme(d));
+  await file('profile.json', json(d.profile));
+  // stories.json is compact and carries no bodies: every body is in its own page (named here), and writing each one a second
+  // time, pretty-printed, cost more CPU than all the CRCs together (see the header).
+  await file('stories/stories.json', JSON.stringify(d.stories.map(({ body, ...rest }) => ({ ...rest, page: `${safe(rest.slug)}.html` }))));
+  for (const s of d.stories) await file(`stories/${safe(s.slug)}.html`, storyPage(s));
+  await file('collections.json', json(d.collections));
+  await file('collections.csv', csv(d.collections, ['collection', 'country', 'city', 'year', 'caption', 'shownOnProfile', 'photos']));
+  await file('stamps.json', json(d.stamps));
+  await file('stamps.csv', csv(d.stamps, ['pursuit', 'what', 'country', 'city', 'month', 'year', 'workTrip', 'shownOnProfile', 'photo']));
+  await file('pets.json', json(d.pets));
+  await file('companions.json', json(d.companions));
+  await file('map/map-summary.json', json(d.mapSummary));
+  if (map) {
+    await file('map/my-map.json', json(map));
+    await file('map/countries.csv', csv(countryRows(map), ['country', 'code', 'traveler', 'mark']));
+  }
+  // Expat build: places lived (from the profile) as a spreadsheet and JSON.
+  const pl = (d.placesLived || []).map((x) => ({ country: countryName(x.c), code: String(x.c || '').toUpperCase(), years: x.years || '', placesIKnowWell: x.knows || '', homeNow: x.now === true ? 'yes' : '' }));
+  await file('places-lived.json', json(pl));
+  await file('places-lived.csv', csv(pl, ['country', 'code', 'years', 'placesIKnowWell', 'homeNow']));
+  const photos = d.photos || [];
+  await file('photos/index.html', photosPage(photos));
+  await file('photos/photos.csv', csv(photos, ['folder', 'name', 'url']));
+  return { photos: photos.length };
+}
+
+function newToken() {
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+}
+
+const ready = (env) => env.WEBFLOW_TOKEN && env.MEMBERSTACK_KEY && env.CONTRIBUTORS_COLLECTION_ID && env.WIRE_KV;
+
+/** When the records link stops working: 15 minutes from prepare. */
+export const linkUntil = (job) => job.createdAt + JOB_TTL_SECONDS * 1000;
+/** When the photo proxy stops honoring the token: photoUntil from the job (60 minutes), or the link's window for a job without it. */
+export const photoUntil = (job) => (typeof job.photoUntil === 'number' ? job.photoUntil : linkUntil(job));
+
+/** The job behind a token, or null when the token is missing or wrong or the window (`until`) has closed. Never consumed: KV's TTL ends it. */
+async function loadJob(env, token, now, until = linkUntil) {
+  if (!TOKEN.test(token)) return null;
+  let job = null;
+  try { job = JSON.parse((await env.WIRE_KV.get(`export:${token}`)) || 'null'); } catch { job = null; }
+  if (!isObject(job) || typeof job.memberId !== 'string' || typeof job.createdAt !== 'number' || !(until(job) > now)) return null;
+  return job;
+}
+
+/** The hostname of a photo URL when it is https on one of the CMS hosts, else an empty string. */
+function photoHost(url) {
+  try { const u = new URL(url); return u.protocol === 'https:' && PHOTO_HOST.test(u.hostname) ? u.hostname : ''; } catch { return ''; }
+}
+
+export async function handleExport(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  if (!ready(env)) return reply({ error: 'Downloads are not switched on yet.' }, 503);
+  const auth = await verifyMemberToken(request, env, { fetchImpl });
+  if (auth instanceof Response) return auth;
+  if (!(await rateLimit(env, 'export', auth.memberId, 10, now))) return reply({ error: 'That is ten downloads in an hour. Try again a little later.' }, 429);
+  const got = await gather(env, fetchImpl, auth.memberId, now);
+  if (!got) return reply({ error: 'Your profile page has not been created yet.' }, 404);
+  return reply({ ok: true, ...got.data });
+}
+
+/** POST /export/prepare: checks everything that can go wrong before the browser follows the link. */
+export async function handleExportPrepare(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  if (!ready(env)) return reply({ error: 'Downloads are not switched on yet.' }, 503);
+  const auth = await verifyMemberToken(request, env, { fetchImpl });
+  if (auth instanceof Response) return auth;
+  const declared = Number(request.headers.get('Content-Length') || 0);
+  if (declared > MAX_PREPARE_BYTES) return reply({ error: 'Your map is too large to include. Try again without it.' }, 413);
+  let text = '';
+  try { text = await request.text(); } catch { text = ''; }
+  if (text.length > MAX_PREPARE_BYTES) return reply({ error: 'Your map is too large to include. Try again without it.' }, 413);
+  let body = {};
+  try { body = text.trim() ? JSON.parse(text) : {}; } catch { return reply({ error: 'bad body' }, 400); }
+  if (!isObject(body)) return reply({ error: 'bad body' }, 400);
+  let map = null;
+  if (body.states != null) {
+    const checked = checkStates(body.states);
+    if (checked.error) return reply({ error: checked.error }, 400);
+    map = checked.map;
+  }
+  if (!(await rateLimit(env, 'export', auth.memberId, 10, now))) return reply({ error: 'That is ten downloads in an hour. Try again a little later.' }, 429);
+  const got = await gather(env, fetchImpl, auth.memberId, now);
+  if (!got) return reply({ error: 'Your profile page has not been created yet.' }, 404);
+  const token = newToken();
+  const job = { memberId: auth.memberId, contributorId: got.me.id, createdAt: now, photoUntil: now + PHOTO_WINDOW_SECONDS * 1000, states: map };
+  await env.WIRE_KV.put(`export:${token}`, JSON.stringify(job), { expirationTtl: PHOTO_WINDOW_SECONDS });
+  const url = `${new URL(request.url).origin}/export/zip?t=${token}`;
+  const photoList = got.data.photos.map(({ folder, name, url: u }) => ({ folder, name, url: u }));
+  return reply({ ok: true, url, token, expiresAt: new Date(now + JOB_TTL_SECONDS * 1000).toISOString(), stories: got.data.stories.length, photos: photoList.length, photoList });
+}
+
+/** GET /export/zip?t=<token>: the records zip, streamed. A browser navigation, so no CORS and no Bearer token: the token is the key. */
+export async function handleExportZip(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  if (request.method !== 'GET') return reply({ error: 'method not allowed' }, 405);
+  if (!ready(env)) return reply({ error: 'Downloads are not switched on yet.' }, 503);
+  const job = await loadJob(env, new URL(request.url).searchParams.get('t') || '', now);
+  if (!job) return problemPage(404, 'That download link has expired. Go back to your account page and press the button again.');
+  // Gather before the first byte goes out, so a Webflow problem is a clean error and not a broken download.
+  let got = null;
+  try { got = await gather(env, fetchImpl, job.memberId, now); } catch { got = null; }
+  if (!got || got.me.id !== job.contributorId) return problemPage(502, 'The download could not start. Go back to your account page and try again.');
+  const map = job.states ? (checkStates(job.states).map || null) : null;
+  const body = zipStream((zip) => writeExportZip(zip, got.data, map), { now });
+  return new Response(body, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/zip',
+      'Content-Disposition': `attachment; filename="${zipFileName(got.data)}"`,
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+    },
+  });
+}
+
+/** CORS for GET /export/photo: the page reads the bytes with fetch, so the site's origins get Allow-Origin; anyone else gets none. */
+export function photoCors(request) {
+  const origin = request.headers.get('Origin') || '';
+  const headers = { 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Max-Age': '86400', Vary: 'Origin' };
+  if (ALLOWED_ORIGINS.includes(origin)) headers['Access-Control-Allow-Origin'] = origin;
+  return headers;
+}
+
+/**
+ * GET /export/photo?t=<token>&u=<url>: one photo passed through from a CMS host. The job token gates it (not consumed, honored
+ * until photoUntil), the host allowlist is checked on the URL asked for and again on the URL the bytes came from, the content
+ * type must be an image, and the upstream body is returned as it is: no CRC, no copy, so the Worker's CPU time is next to
+ * nothing. Redirects are followed, because Webflow's older asset hosts (uploads-ssl.webflow.com, assets.website-files.com,
+ * assets-global.website-files.com) answer 301 to cdn.prod.website-files.com; the second host check is what keeps a hop off the
+ * allowlist out. Only the wait for headers is timed (20 s); the timer is cleared the moment they arrive, because the browser may
+ * read the body slowly.
+ */
+export async function handleExportPhoto(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  const cors = photoCors(request);
+  const no = (message, status) => withHeaders(reply({ error: message }, status), cors);
+  if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+  if (request.method !== 'GET') return no('method not allowed', 405);
+  if (!ready(env)) return no('Downloads are not switched on yet.', 503);
+  const params = new URL(request.url).searchParams;
+  const job = await loadJob(env, params.get('t') || '', now, photoUntil);
+  if (!job) return no('That download link has expired. Go back to your account page and press the button again.', 404);
+  const target = params.get('u') || '';
+  if (!photoHost(target)) return no('not a site photo', 400);
+  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timer = controller ? setTimeout(() => controller.abort(), PHOTO_HEADER_TIMEOUT_MS) : null;
+  let upstream = null;
+  try {
+    upstream = await fetchImpl(target, { headers: { Accept: 'image/*' }, redirect: 'follow', signal: controller ? controller.signal : undefined });
+  } catch {
+    upstream = null;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+  if (!upstream) return no('The photo did not answer in time.', 504);
+  const drop = (message) => { try { upstream.body?.cancel().catch(() => {}); } catch { /* already gone */ } return no(message, 502); };
+  if (!upstream.ok || !upstream.body) return drop('the photo did not download');
+  // The URL the bytes came from, after any redirect, must be on the allowlist too (a response without a url is our own test double).
+  if (upstream.url && !photoHost(upstream.url)) return drop('the photo came from another host');
+  const type = upstream.headers.get('content-type') || '';
+  if (!/^image\//i.test(type)) return drop('not an image');
+  // No Content-Length is forwarded: the runtime frames the body, which stays right if a host ever sends an encoded image.
+  return new Response(upstream.body, { status: 200, headers: { ...cors, 'Content-Type': type, 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff' } });
 }
