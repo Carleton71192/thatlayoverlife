@@ -64,7 +64,11 @@ Phase 0 replaced the ad script in the site head, but the home page's own head co
 
 **Visible changes on /account (for approval):** the card is now styled (a 31 Oct bug left its CSS uninjected); new strings for the new states: "Your copy is on its way.", "Download your photos", "Save part N of K", "Part N of K is ready to save.", "N photos in K parts."; the README's stories and photos lines changed to describe the two-step copy. The old lines ("Gathering your stories and records…", "Photos N of M…", "Done. N stories, M photos (K listed as links).", "The download did not finish. Try again.") are kept word for word.
 
+**Worker strings, also new (for approval):** the README in the records zip describes the two-step copy; `photos/index.html` says "Your photos" and "N photos, each with its link." with the line "The photos themselves come as zip parts from "Download your photos" on your account page."; a browser that opens an old link sees a small page, "That download link has expired. Go back to your account page and press the button again." (or "The download could not start. Go back to your account page and try again.") with a "Back to your account" link; two JSON errors the card can show: "Your map is too large to include. Try again without it." and, for one photo that times out, that photo is listed as a link instead.
+
 **Events:** `download_complete` now marks the records link being followed (no photo count); a new `photos_complete` carries photos, parts and links.
+
+**Third review round (1 Nov, afternoon):** every part, part 1 included, saves on its own tap; a finished or failed card keeps its lines when the link expires; duplicate photo names inside a part get -2, -3 like the Worker's zip; the part count K is steady across a run; JSZip gets 60 s to arrive, then the fallback line shows and the buttons free up. 310 unit tests and a 101-check Playwright run against a mocked Worker, all green.
 
 ## 6. Not done in this phase, and why
 
