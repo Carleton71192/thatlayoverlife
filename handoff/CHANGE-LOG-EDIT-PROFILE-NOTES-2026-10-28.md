@@ -46,3 +46,6 @@ Changes from the log as written:
 - Once a press application is sent, the form hides and the line reads "Sent {date}. Reviewed within 48 hours." There is no resend from the page yet.
 
 Found in the build and fixed: on the signed-in page, the site's contrast repair could paint dark text on the directory switches as they turned ON, so ON read dark on dark. The page now keeps the switches' own colors.
+
+## Live on www, 1 November 2026
+Nancy: "Publish to www". It was already there: the whole-site publish of 31 October 2026, 18:38 UTC, carried this build. Checked on 1 November against the after files: every embed identical except the 07 Directories lede, which a later session reworded ("Places you know, not where you are now."). The Worker with from-place, makes, partners and POST /press/apply was deployed on 29 October (version ddfb4b78), so the public page fields and Send for review work now.
