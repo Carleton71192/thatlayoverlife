@@ -52,14 +52,20 @@ describe('store-only streaming zip', () => {
       ['that-layover-life/README.txt', 12, 0], ['that-layover-life/photos/a/b.bin', 300000, 0], ['that-layover-life/empty.txt', 0, 0],
       ['that-layover-life/parts.csv', 7, 0], ['that-layover-life/ünïcode.txt', 2, 0],
     ]);
-    expect(report.entries[0]).toMatchObject({ text: 'hello world\n', crc: crc32(enc('hello world\n')), flags: 0x0808, when: [2026, 11, 1, 10, 20, 30] });
+    expect(report.entries[0]).toMatchObject({ text: 'hello world\n', crc: crc32(enc('hello world\n')), flags: 0x0800, when: [2026, 11, 1, 10, 20, 30] });
+    expect(report.entries[1].flags).toBe(0x0808);
     expect(report.entries[3].text).toBe('one,two');
     if (unzip !== 'skipped') expect(unzip).toMatch(/No errors detected/);
 
-    // Our own reader sees the same, and the data descriptor after each entry carries the real CRC and size.
+    // Our own reader sees the same. A string or empty entry has its real CRC and size in the local header and no descriptor;
+    // a stream or async iterable entry has zeros there and the data descriptor after the bytes carries the real values.
     const entries = readZip(bytes);
     expect(entries.every((e) => e.crcOk)).toBe(true);
-    expect(entries.map((e) => e.descriptor)).toEqual(entries.map((e) => ({ crc: e.crc, size: e.size })));
+    expect(entries.map((e) => e.flags)).toEqual([0x0800, 0x0808, 0x0800, 0x0808, 0x0800]);
+    for (const e of entries) {
+      if (e.flags & 8) expect([e.localCrc, e.localSize, e.descriptor]).toEqual([0, 0, { crc: e.crc, size: e.size }]);
+      else expect([e.localCrc, e.localSize, e.descriptor]).toEqual([e.crc, e.size, null]);
+    }
     const photo = entries.find((e) => e.name === 'that-layover-life/photos/a/b.bin');
     expect(photo.data.length).toBe(300000);
     expect(photo.data.every((b, i) => b === ((i * 7) & 0xff))).toBe(true);

@@ -25,11 +25,15 @@ export function readZip(bytes) {
     const local = dv.getUint32(at + 42, true);
     const name = decoder.decode(bytes.subarray(at + 46, at + 46 + nameLen));
     if (dv.getUint32(local, true) !== 0x04034b50) throw new Error(`zip: bad local header for ${name}`);
+    // The local header's own flags, CRC and size: real values for a known-size entry, zeros plus a data descriptor for a stream.
+    const flags = dv.getUint16(local + 6, true);
+    const localCrc = dv.getUint32(local + 14, true);
+    const localSize = dv.getUint32(local + 22, true);
     const dataStart = local + 30 + dv.getUint16(local + 26, true) + dv.getUint16(local + 28, true);
     const data = bytes.subarray(dataStart, dataStart + size);
     const dd = dataStart + size;
-    const descriptor = dv.getUint32(dd, true) === 0x08074b50 ? { crc: dv.getUint32(dd + 4, true), size: dv.getUint32(dd + 8, true) } : null;
-    entries.push({ name, method, size, crc, data, crcOk: crc32(data) === crc, descriptor });
+    const descriptor = flags & 8 && dv.getUint32(dd, true) === 0x08074b50 ? { crc: dv.getUint32(dd + 4, true), size: dv.getUint32(dd + 8, true) } : null;
+    entries.push({ name, method, size, crc, data, crcOk: crc32(data) === crc, flags, localCrc, localSize, descriptor });
     at += 46 + nameLen + extraLen + commentLen;
   }
   if (at - cdOffset !== cdSize) throw new Error('zip: central directory size does not match');

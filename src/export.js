@@ -4,18 +4,29 @@
 // pets they own or share, the companions they travel with (names and profile links only) and the photos.
 //
 //   POST /export            the manifest as JSON (kept for tools and tests). Ten exports an hour per member.
-//   POST /export/prepare    {states?} -> {ok, url, expiresAt, stories, photos}. Checks the member, gathers the records once so
-//                           any problem shows in the card, stores a small job under export:<token> in WIRE_KV for 15 minutes
-//                           and returns the download link. `states` is the member's full map (tllStates v2) from the browser,
-//                           200 KB at most, so the zip can hold map/my-map.json and map/countries.csv.
-//   GET  /export/zip?t=     the zip itself, streamed as it is built (src/zip.js), photos fetched here four at a time. 404 when
-//                           the token is missing, wrong or expired. The token is deleted when the zip finishes, so a link
-//                           downloads once; a download that broke off can be retried until the 15 minutes run out.
+//   POST /export/prepare    {states?} -> {ok, url, token, expiresAt, stories, photos, photoList}. Checks the member, gathers the
+//                           records once so any problem shows in the card, stores a small job under export:<token> in WIRE_KV
+//                           for 15 minutes and returns the download link plus the list of photos (folder, name, url) the browser
+//                           fetches itself. `states` is the member's full map (tllStates v2) from the browser, 200 KB at most,
+//                           so the zip can hold map/my-map.json and map/countries.csv.
+//   GET  /export/zip?t=     the records zip, streamed as it is built (src/zip.js): README, profile, stories, collections, stamps,
+//                           pets, companions, places lived, the map files, and photos/index.html plus photos/photos.csv listing
+//                           every photo with its link. No photo bytes. 404 when the token is missing, wrong or expired.
+//   GET  /export/photo?t=&u= one photo, passed through from the CMS host to the browser: same job token (not consumed), host
+//                           allowlist, image content types only, the upstream body returned as it is. The browser packs the
+//                           photos into zip parts itself (tll-export-v1.js). CORS for the site origins, so fetch can read it.
 //
-// Phase 1B (1 Nov 2026): the Worker makes the zip. The browser version (JSZip, photos fetched cross-origin into memory) failed
-// on iPhone with "Load failed" and could run out of memory on a 100-photo zip. Now the browser only follows a link.
+// Plan assumption (1 Nov 2026): the handoff notes say tll-travel-wire runs on the Cloudflare Workers Free plan, which allows about
+// 10 ms of CPU per request and 50 subrequests. That is why the zip holds records only (small, store-only, a few ms of CRC) and
+// the photos go one per request through /export/photo with no CRC and no copying. Streaming every photo byte through the Worker
+// (the first Phase 1B design) would have failed mid-stream on Free. The token lives for its 15 minutes (KV TTL) and is never
+// deleted on download, so the records zip and the photo proxy keep working for the whole window.
+//
+// Phase 1B (1 Nov 2026): the browser version (JSZip, photos fetched cross-origin into memory) failed on iPhone with "Load failed"
+// and could run out of memory on a 100-photo zip. Now the records come as a plain link download and each photo comes through
+// a same-policy, CORS-safe proxy, packed in parts of 25 so memory stays small.
 import { findContributor } from './profile-sync.js';
-import { rateLimit, reply, verifyMemberToken } from './member-auth.js';
+import { ALLOWED_ORIGINS, rateLimit, reply, verifyMemberToken, withHeaders } from './member-auth.js';
 import { listAll } from './collections.js';
 import { NUMERIC_TO_ALPHA2 } from './iso-numeric.js';
 import { zipStream } from './zip.js';
@@ -25,8 +36,8 @@ const PRIVATE_FIELDS = ['memberstack-id', 'outreach-status', 'outreach-notes', '
 const ROOT = 'that-layover-life';
 export const JOB_TTL_SECONDS = 15 * 60;
 export const MAX_PREPARE_BYTES = 200 * 1024;
-const PHOTO_WORKERS = 4;
-const PHOTO_TIMEOUT_MS = 30000;
+/** How long /export/photo waits for the CMS host's headers. The body is not timed: the browser is the slow side. */
+export const PHOTO_HEADER_TIMEOUT_MS = 20000;
 // Only the hosts the CMS stores photos on. Anything else is listed as a link, never fetched from inside the Worker.
 const PHOTO_HOST = /(^|\.)website-files\.com$|^uploads(-ssl)?\.webflow\.com$|^res\.cloudinary\.com$/;
 const TOKEN = /^[0-9a-f]{32}$/;
@@ -36,6 +47,10 @@ const TRAVELER_ID = /^[A-Za-z0-9_-]{1,24}$/;
 const KOSOVO_ALIASES = new Set(['undefined', 'XK', 'xk']);
 const MAX_TRAVELERS = 20;
 const MAX_STATES = 300;
+// Codes the map draws that the ISO table (src/iso-numeric.js, copied from the map engine) does not carry.
+const EXTRA_ALPHA2 = { 900: 'XK' };
+// Names Intl.DisplayNames does not have in every runtime.
+const EXTRA_NAMES = { XK: 'Kosovo' };
 
 const img = (x, folder, name) => (x?.url ? { url: x.url, folder, name, alt: x.alt || '' } : null);
 const safe = (s) => String(s || 'item').toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'item';
@@ -106,14 +121,25 @@ export function storyPage(s) {
     + `${s.link ? `<p><small>Online: <a href="${esc(s.link)}">${esc(s.link)}</a></small></p>` : ''}${s.externalUrl ? `<p><small>Published at: <a href="${esc(s.externalUrl)}">${esc(s.externalUrl)}</a></small></p>` : ''}`;
 }
 
+/** photos/index.html: every photo with its link, grouped by folder, as a page that opens in any browser. */
+export function photosPage(photos) {
+  const groups = new Map();
+  for (const p of photos) { if (!groups.has(p.folder)) groups.set(p.folder, []); groups.get(p.folder).push(p); }
+  const n = photos.length;
+  return `<!doctype html><meta charset="utf-8"><title>Your photos</title><style>body{max-width:680px;margin:40px auto;padding:0 16px;font:17px/1.6 Georgia,serif;color:#0A0B14}h2{font-size:17px;margin:24px 0 4px}a{color:#067A79}small{color:#5F5A54}</style>`
+    + `<h1>Your photos</h1><p>${n} ${n === 1 ? 'photo' : 'photos'}, each with its link. The photos themselves come as zip parts from "Download your photos" on your account page.</p>`
+    + [...groups].map(([folder, list]) => `<h2>${esc(folder)}</h2><ul>${list.map((p) => `<li><a href="${esc(p.url)}">${esc(p.name)}</a>${p.alt ? ` <small>${esc(p.alt)}</small>` : ''}</li>`).join('')}</ul>`).join('');
+}
+
 export function readme(d) {
-  return `That Layover Life: your copy\nExported ${d.exportedAt}\nProfile: ${d.profileLink}\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: every photo, in folders by story, collection, stamp and pet\n\nPrivate collections and stamps are included: this copy is only for you.\n`;
+  return `That Layover Life: your copy\nExported ${d.exportedAt}\nProfile: ${d.profileLink}\n\nInside:\n- profile.json: your profile as it is saved\n- stories/: each story as a page you can open in any browser, plus stories.json\n- collections.csv and stamps.csv: open in Excel, Numbers or Google Sheets (JSON copies too)\n- pets.json, companions.json\n- map/: my-map.json (your full map, every country and how you know it), countries.csv (Lived, Stayed, Layover) and map-summary.json\n- places-lived.csv and .json: the places you have lived, with years\n- photos/: index.html and photos.csv, every photo with its link, in folders by story, collection, stamp and pet. The photos themselves come as zip parts from "Download your photos" on your account page.\n\nPrivate collections and stamps are included: this copy is only for you.\n`;
 }
 
 /** The English country name for an alpha-2 code, or the code when the runtime has no names. */
 let regionNames = null;
 export function countryName(code) {
   const c = String(code || '').toUpperCase();
+  if (EXTRA_NAMES[c]) return EXTRA_NAMES[c];
   try { regionNames = regionNames || new Intl.DisplayNames(['en'], { type: 'region' }); return regionNames.of(c) || c; } catch { return c; }
 }
 
@@ -175,7 +201,7 @@ export function countryRows(map) {
   for (const [num, entry] of Object.entries(map?.states || {})) {
     for (const [tid, depth] of Object.entries(entry || {})) {
       const tr = (map.travelers || []).find((x) => x.id === tid);
-      const a2 = NUMERIC_TO_ALPHA2[num] || '';
+      const a2 = NUMERIC_TO_ALPHA2[num] || EXTRA_ALPHA2[num] || '';
       rows.push({ country: a2 ? countryName(a2) : num, code: a2 || num, traveler: tr?.name || tid, mark: mark[depth] || depth });
     }
   }
@@ -198,40 +224,12 @@ export async function gather(env, fetchImpl, memberId, now) {
   return { me, data: buildExport({ me, stories, items, stamps, pets, people, cats, pursuits, now }) };
 }
 
-/** Bytes of a fetched photo, stopping quietly when the connection breaks so the zip stays readable. */
-async function* bodyChunks(body, onBreak) {
-  const reader = body.getReader();
-  try {
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) return;
-      if (value?.length) yield value;
-    }
-  } catch (error) {
-    onBreak(error);
-  } finally {
-    try { reader.releaseLock(); } catch { /* already released */ }
-  }
-}
-
-async function fetchPhoto(p, fetchImpl) {
-  let host = '';
-  try { const u = new URL(p.url); host = u.protocol === 'https:' ? u.hostname : ''; } catch { host = ''; }
-  if (!host || !PHOTO_HOST.test(host)) return { p, response: null };
-  try {
-    const signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(PHOTO_TIMEOUT_MS) : undefined;
-    const response = await fetchImpl(p.url, { headers: { Accept: 'image/*' }, signal });
-    return { p, response: response.ok && response.body ? response : null };
-  } catch {
-    return { p, response: null };
-  }
-}
-
 /**
- * Writes every file of the member's copy into `zip` (a ZipWriter). Photos are fetched four at a time, in order, and each one
- * streams through as it arrives. A photo that will not download is listed in photos/not-downloaded.txt, never silently lost.
+ * Writes every record of the member's copy into `zip` (a ZipWriter): small text files only, so the Worker's CPU time stays in
+ * the milliseconds. The photos are listed (photos/index.html and photos/photos.csv) with their links; their bytes come through
+ * GET /export/photo and are packed in the browser.
  */
-export async function writeExportZip(zip, d, map, { fetchImpl = fetch } = {}) {
+export async function writeExportZip(zip, d, map) {
   const used = new Set();
   const unique = (name) => { let n = name, i = 2; while (used.has(n)) { n = name.replace(/(\.[^./]+)?$/, `-${i}$1`); i += 1; } used.add(n); return n; };
   const file = (name, data) => zip.file(unique(`${ROOT}/${name}`), data);
@@ -255,24 +253,10 @@ export async function writeExportZip(zip, d, map, { fetchImpl = fetch } = {}) {
   const pl = (d.placesLived || []).map((x) => ({ country: countryName(x.c), code: String(x.c || '').toUpperCase(), years: x.years || '', placesIKnowWell: x.knows || '', homeNow: x.now === true ? 'yes' : '' }));
   await file('places-lived.json', json(pl));
   await file('places-lived.csv', csv(pl, ['country', 'code', 'years', 'placesIKnowWell', 'homeNow']));
-
   const photos = d.photos || [];
-  const missing = [];
-  const inflight = [];
-  let next = 0;
-  const fill = () => { while (inflight.length < PHOTO_WORKERS && next < photos.length) inflight.push(fetchPhoto(photos[next++], fetchImpl)); };
-  fill();
-  while (inflight.length) {
-    const { p, response } = await inflight.shift();
-    fill();
-    const label = `${p.folder}/${p.name}: ${p.url}`;
-    if (!response) { missing.push(label); continue; }
-    let broke = false;
-    await file(`photos/${p.folder}/${p.name}.${photoExt(response.headers.get('content-type'), p.url)}`, bodyChunks(response.body, () => { broke = true; }));
-    if (broke) missing.push(`${label} (incomplete)`);
-  }
-  if (missing.length) await file('photos/not-downloaded.txt', `These photos could not be downloaded, so here are their links:\n${missing.join('\n')}\n`);
-  return { photos: photos.length - missing.length, missing: missing.length };
+  await file('photos/index.html', photosPage(photos));
+  await file('photos/photos.csv', csv(photos, ['folder', 'name', 'url']));
+  return { photos: photos.length };
 }
 
 function newToken() {
@@ -282,6 +266,20 @@ function newToken() {
 }
 
 const ready = (env) => env.WEBFLOW_TOKEN && env.MEMBERSTACK_KEY && env.CONTRIBUTORS_COLLECTION_ID && env.WIRE_KV;
+
+/** The job behind a token, or null when the token is missing, wrong or past its 15 minutes. Never consumed: KV's TTL ends it. */
+async function loadJob(env, token, now) {
+  if (!TOKEN.test(token)) return null;
+  let job = null;
+  try { job = JSON.parse((await env.WIRE_KV.get(`export:${token}`)) || 'null'); } catch { job = null; }
+  if (!isObject(job) || typeof job.memberId !== 'string' || !(job.createdAt + JOB_TTL_SECONDS * 1000 > now)) return null;
+  return job;
+}
+
+/** The hostname of a photo URL when it is https on one of the CMS hosts, else an empty string. */
+function photoHost(url) {
+  try { const u = new URL(url); return u.protocol === 'https:' && PHOTO_HOST.test(u.hostname) ? u.hostname : ''; } catch { return ''; }
+}
 
 export async function handleExport(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
   if (!ready(env)) return reply({ error: 'Downloads are not switched on yet.' }, 503);
@@ -319,33 +317,22 @@ export async function handleExportPrepare(request, env, { fetchImpl = fetch, now
   const job = { memberId: auth.memberId, contributorId: got.me.id, createdAt: now, states: map };
   await env.WIRE_KV.put(`export:${token}`, JSON.stringify(job), { expirationTtl: JOB_TTL_SECONDS });
   const url = `${new URL(request.url).origin}/export/zip?t=${token}`;
-  return reply({ ok: true, url, expiresAt: new Date(now + JOB_TTL_SECONDS * 1000).toISOString(), stories: got.data.stories.length, photos: got.data.photos.length });
+  const photoList = got.data.photos.map(({ folder, name, url: u }) => ({ folder, name, url: u }));
+  return reply({ ok: true, url, token, expiresAt: new Date(now + JOB_TTL_SECONDS * 1000).toISOString(), stories: got.data.stories.length, photos: photoList.length, photoList });
 }
 
-/** GET /export/zip?t=<token>: the zip, streamed. A browser navigation, so no CORS and no Bearer token: the token is the key. */
+/** GET /export/zip?t=<token>: the records zip, streamed. A browser navigation, so no CORS and no Bearer token: the token is the key. */
 export async function handleExportZip(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
   if (request.method !== 'GET') return reply({ error: 'method not allowed' }, 405);
   if (!ready(env)) return reply({ error: 'Downloads are not switched on yet.' }, 503);
-  const gone = () => problemPage(404, 'That download link has expired. Go back to your account page and press the button again.');
-  const token = new URL(request.url).searchParams.get('t') || '';
-  if (!TOKEN.test(token)) return gone();
-  const key = `export:${token}`;
-  let job = null;
-  try { job = JSON.parse((await env.WIRE_KV.get(key)) || 'null'); } catch { job = null; }
-  if (!isObject(job) || typeof job.memberId !== 'string' || !(job.createdAt + JOB_TTL_SECONDS * 1000 > now)) {
-    if (job) await env.WIRE_KV.delete(key).catch(() => {});
-    return gone();
-  }
+  const job = await loadJob(env, new URL(request.url).searchParams.get('t') || '', now);
+  if (!job) return problemPage(404, 'That download link has expired. Go back to your account page and press the button again.');
   // Gather before the first byte goes out, so a Webflow problem is a clean error and not a broken download.
   let got = null;
   try { got = await gather(env, fetchImpl, job.memberId, now); } catch { got = null; }
   if (!got || got.me.id !== job.contributorId) return problemPage(502, 'The download could not start. Go back to your account page and try again.');
   const map = job.states ? (checkStates(job.states).map || null) : null;
-  const body = zipStream((zip) => writeExportZip(zip, got.data, map, { fetchImpl }), {
-    now,
-    // Single use: the token goes once the last byte is written. A download that breaks off keeps it until the 15 minutes end.
-    after: () => env.WIRE_KV.delete(key).catch(() => {}),
-  });
+  const body = zipStream((zip) => writeExportZip(zip, got.data, map), { now });
   return new Response(body, {
     status: 200,
     headers: {
@@ -355,4 +342,50 @@ export async function handleExportZip(request, env, { fetchImpl = fetch, now = D
       'X-Content-Type-Options': 'nosniff',
     },
   });
+}
+
+/** CORS for GET /export/photo: the page reads the bytes with fetch, so the site's origins get Allow-Origin; anyone else gets none. */
+export function photoCors(request) {
+  const origin = request.headers.get('Origin') || '';
+  const headers = { 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Max-Age': '86400', Vary: 'Origin' };
+  if (ALLOWED_ORIGINS.includes(origin)) headers['Access-Control-Allow-Origin'] = origin;
+  return headers;
+}
+
+/**
+ * GET /export/photo?t=<token>&u=<url>: one photo passed through from a CMS host. The job token gates it (not consumed), the host
+ * allowlist is checked on the URL asked for and on the URL the answer came from (redirects are refused), the content type must be
+ * an image, and the upstream body is returned as it is: no CRC, no copy, so the Worker's CPU time is next to nothing. Only the
+ * wait for headers is timed (20 s); the timer is cleared the moment they arrive, because the browser may read the body slowly.
+ */
+export async function handleExportPhoto(request, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  const cors = photoCors(request);
+  const no = (message, status) => withHeaders(reply({ error: message }, status), cors);
+  if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+  if (request.method !== 'GET') return no('method not allowed', 405);
+  if (!ready(env)) return no('Downloads are not switched on yet.', 503);
+  const params = new URL(request.url).searchParams;
+  const job = await loadJob(env, params.get('t') || '', now);
+  if (!job) return no('That download link has expired. Go back to your account page and press the button again.', 404);
+  const target = params.get('u') || '';
+  if (!photoHost(target)) return no('not a site photo', 400);
+  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timer = controller ? setTimeout(() => controller.abort(), PHOTO_HEADER_TIMEOUT_MS) : null;
+  let upstream = null;
+  try {
+    upstream = await fetchImpl(target, { headers: { Accept: 'image/*' }, redirect: 'manual', signal: controller ? controller.signal : undefined });
+  } catch {
+    upstream = null;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+  if (!upstream) return no('The photo did not answer in time.', 504);
+  const drop = (message) => { try { upstream.body?.cancel().catch(() => {}); } catch { /* already gone */ } return no(message, 502); };
+  if (upstream.status >= 300 && upstream.status < 400) return drop('the photo moved');
+  if (!upstream.ok || !upstream.body) return drop('the photo did not download');
+  if (upstream.url && !photoHost(upstream.url)) return drop('the photo came from another host');
+  const type = upstream.headers.get('content-type') || '';
+  if (!/^image\//i.test(type)) return drop('not an image');
+  // No Content-Length is forwarded: the runtime frames the body, which stays right if a host ever sends an encoded image.
+  return new Response(upstream.body, { status: 200, headers: { ...cors, 'Content-Type': type, 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff' } });
 }
