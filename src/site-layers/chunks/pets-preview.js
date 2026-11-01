@@ -182,7 +182,14 @@ var CSS='.tll-alb{max-width:1120px;margin:40px auto;padding:0 16px;font:400 15px
 '.tll-ss-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:96px;border:0;background:transparent;color:#F3EEE6;font-size:40px;cursor:pointer}.tll-ss-prev{left:0}.tll-ss-next{right:0}';
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function css(){if(document.getElementById('tll-album-v1'))return;var s=el('style');s.id='tll-album-v1';s.textContent=CSS;document.head.appendChild(s);}
-function sized(u,w){return /res\.cloudinary\.com/.test(u)?u.replace('/upload/','/upload/c_limit,w_'+w+',q_auto,f_auto/'):u;}
+/* Loading (1 Nov 2026): each host gets the size it can serve. Cloudinary (member uploads) crops to the square mount (c_fill) or limits the
+   stage to w; a Webflow CMS file (Nancy's story heroes and gallery photos) tries its -p- variant for the mount (a lowercase name even for a
+   .JPG upload, as Webflow writes it) and goes back to the original on the first error, since variants exist per file and a browser does not
+   try another candidate after a 404. Other hosts pass through. The stage img carries no decoding hint: it swaps src on every slide, and an
+   async decode could paint a blank frame between two photos. */
+function sized(u,w,h){return /res\.cloudinary\.com/.test(u)?u.replace('/upload/','/upload/'+(h?'c_fill,w_'+w+',h_'+h:'c_limit,w_'+w)+',q_auto,f_auto/'):u;}
+function wf(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):u;}
+function fallback(img,orig){if(img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.src=orig;});}
 var audio=null,sound=false;
 function click(){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();var n=audio.sampleRate*0.06,b=audio.createBuffer(1,n,audio.sampleRate),d=b.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,6)*0.6;var s=audio.createBufferSource();s.buffer=b;s.connect(audio.destination);s.start();}catch(e){}}
 window.__tllAlbumShow=function(c,name){return show(c,name);};
@@ -224,7 +231,8 @@ function run(){
     var grid=el('div','tll-alb-grid');
     d.continents.forEach(function(c){var b;
       if(c.photos.length){b=el('button','tll-alb-mount');b.type='button';b.setAttribute('aria-label','Play '+c.name+', '+c.photos.length+' photos');
-        var im=el('img');im.src=sized(c.cover.img,600);im.alt='';im.loading='lazy';b.appendChild(im);b.appendChild(el('span','tll-alb-play','▶ Play'));
+        /* the mount is a square of 150 to 170px, reserved by its aspect-ratio; 400 covers it at 2x */
+        var im=el('img');im.src=wf(sized(c.cover.img,400,400),500);im.alt='';im.loading='lazy';im.decoding='async';fallback(im,c.cover.img);b.appendChild(im);b.appendChild(el('span','tll-alb-play','▶ Play'));
         var tp=el('span','tll-alb-tape');tp.appendChild(el('b','',c.name));var nC=c.map!=null&&c.map>0?c.map:c.countries;tp.appendChild(el('small','',c.photos.length+(c.photos.length===1?' photo':' photos')+' · '+nC+(nC===1?' country':' countries')+(c.homes?' · '+c.homes+(c.homes===1?' home':' homes'):'')));b.appendChild(tp);
         b.onclick=function(){show(c,d.name);};}
       else{b=el('div','tll-alb-mount');var e=el('div','tll-alb-empty');if(c.key==='antarctica')e.innerHTML=PENGUIN;e.appendChild(el('span','',c.map?'No photos yet':'Not yet'));b.appendChild(e);var te=el('span','tll-alb-tape');te.appendChild(el('b','',c.name));if(c.map)te.appendChild(el('small','',c.map+(c.map===1?' country':' countries')+(c.homes?' · '+c.homes+(c.homes===1?' home':' homes'):'')));b.appendChild(te);}
