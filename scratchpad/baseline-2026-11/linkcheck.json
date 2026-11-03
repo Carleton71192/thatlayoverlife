@@ -1,0 +1,44 @@
+{
+ "sitemapUrls": 110,
+ "internalLinksChecked": 319,
+ "bad": {
+  "https://thatlayover.life/stories/antarctica-marathon": {
+   "code": 0,
+   "final": "https://thatlayover.life/stories/antarctica-marathon",
+   "from": [
+    "https://www.thatlayover.life/stories/marathon-on-all-7-continents"
+   ]
+  },
+  "https://www.thatlayover.life/contributors/'+esc(p.slug)+'": {
+   "code": 404,
+   "final": "https://www.thatlayover.life/contributors/'+esc(p.slug)+'",
+   "from": [
+    "https://www.thatlayover.life/countries/antarctica",
+    "https://www.thatlayover.life/countries/bulgaria",
+    "https://www.thatlayover.life/countries/denmark",
+    "https://www.thatlayover.life/countries/ghana",
+    "https://www.thatlayover.life/countries/kosovo"
+   ]
+  },
+  "https://www.thatlayover.life/countries/'+esc(slug)+'": {
+   "code": 404,
+   "final": "https://www.thatlayover.life/countries/'+esc(slug)+'",
+   "from": [
+    "https://www.thatlayover.life/for-expats"
+   ]
+  },
+  "https://www.thatlayover.life/stories/'+encodeURIComponent(sSlug)+'": {
+   "code": 403,
+   "final": "https://www.thatlayover.life/stories/'+encodeURIComponent(sSlug)+'",
+   "from": [
+    "https://www.thatlayover.life/countries/antarctica",
+    "https://www.thatlayover.life/countries/bulgaria",
+    "https://www.thatlayover.life/countries/denmark",
+    "https://www.thatlayover.life/countries/ghana",
+    "https://www.thatlayover.life/countries/kosovo"
+   ]
+  }
+ },
+ "redirected": {},
+ "sitemapNot200": {}
+}
