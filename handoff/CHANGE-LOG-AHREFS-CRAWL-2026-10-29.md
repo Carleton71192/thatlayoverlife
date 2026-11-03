@@ -96,3 +96,18 @@ Nancy: "Approve T1 to T15, D1 to D24, approve A6".
 
 ### A3
 - The marathon-on-all-7-continents story has three links to https://thatlayover.life/stories/antarctica-marathon: two in the body and one in Links and mentions. All three become /stories/antarctica-marathon. The words do not change.
+
+## Nancy's answers, 3 November 2026
+"1 yes, 2 yes, 3 leave it": T7 and D1 written, T15 not done.
+
+## Written and on the subdomain (3 November 2026, task 689be39f)
+- **A2:** 30 stories' SEO titles and descriptions (T1 to T6, T8 to T14, D2 to D24), the Boryana entry's name (T7) and Nancy's Bio short (D1).
+- **A3:** the marathons story's three links now point to /stories/antarctica-marathon. The stories' From-line fallback link is /destinations.
+- **A6:** structured data in the head code of Pillars, Paw Passport, Layover guides and Marathon Diaries. The JSON-LD setting is cleared on those four and on Writers and Pets.
+- **Checked on that-layover-life.webflow.io:**
+  - All 34 story lines, the T7 title and the D1 description come out word for word.
+  - The marathons story has no thatlayover.life links left.
+  - On 20 pages across the six templates the structured data parses, with no empty values. Names, headlines and dates are filled; dates come out as 2026-05-27T07:41:58.554Z.
+  - Writer pages carry one block (profile page and breadcrumb). The person data still comes from the profile script.
+- Before and after files and the check scripts are in src/seo/ahrefs-a2-a6-2026-11-03/.
+- **Live** waits for Nancy's word. The next custom-domain publish also carries A1 and the /creators MAKES change (S131). It would also carry staged site layers 16.50.0 unless Phase 1 is approved or 16.49.0 is re-applied first.
