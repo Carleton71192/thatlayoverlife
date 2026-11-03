@@ -78,3 +78,21 @@ Each template's JSON-LD setting holds CMS fields that Webflow leaves empty. The 
 - Clear the setting.
 
 No words change. It needs the lock, a subdomain test of every page, then your look.
+
+## Approved 3 November 2026
+Nancy: "Approve T1 to T15, D1 to D24, approve A6".
+
+### Where each line lives in Webflow (checked 3 November 2026)
+- **T1 to T6, T8 to T14 and D2 to D24:** each story's own SEO title and SEO description fields. All 36 current values match the "Now" column word for word. Ready to write.
+- **T7 (Boryana, Paw Passport):** the page title is built from the entry's name plus " · Paw Passport", and the name is also the page headline. Shortening the title means renaming the headline too. Waiting for Nancy.
+- **D1 (Nancy's writer page):** the description is the Bio short field, which is also her card line on /travelers and the home page. Writing D1 shortens the card line to the same words. Waiting for Nancy.
+- **T15 (writers with no bio):** Webflow's description setting cannot fall back to another line when a field is empty. The only way is to write the line into Bio short for the three writers, which would show on their cards as their bio. Waiting for Nancy.
+
+### A6, adjusted after reading each template
+- **Writers:** the profile script already writes the person data with the name each writer chose (full, first or pen name). Copying the setting into the head would put the real name in the page. Fix: clear the setting only. The head code keeps its profile page and breadcrumb.
+- **Pets:** the head code already carries the pet and its breadcrumb. Fix: clear the setting only.
+- **Pillars, Paw Passport, Layover guides, Marathon Diaries:** the A1 fix. The setting's data goes into the head code word for word, and the setting is cleared. No breadcrumb is duplicated, because these heads had none.
+- The field values on every live item hold no quotation marks, so the data stays valid.
+
+### A3
+- The marathon-on-all-7-continents story has three links to https://thatlayover.life/stories/antarctica-marathon: two in the body and one in Links and mentions. All three become /stories/antarctica-marathon. The words do not change.
