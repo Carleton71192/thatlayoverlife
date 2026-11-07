@@ -1,4 +1,4 @@
-# Phase 1, speed and photos: change log (1 Nov 2026, staged as site layers 16.50.0, nothing published, Worker not deployed)
+# Phase 1, speed and photos: change log (1 Nov 2026, staged as site layers 16.50.1 since 7 Nov, nothing published, Worker not deployed)
 
 **Read for this phase:** Nancy's Phase 1 prompt, the "TLL build order and brand refresh" doc, the saved live code in `scratchpad/p0-1031/`, and the three inventories in `docs/phase1-inventories-2026-11.md`. The project docs the prompt names (performance baseline, photo upload fix, Download everything fix prompt, UX flows Phase 7) are not in the repo or this session; the audit table in the prompt itself was the brief.
 
@@ -88,6 +88,15 @@ Phase 0 replaced the ad script in the site head, but the home page's own head co
 4. After publish, on the subdomain first: open the home page (the cover fills before paint as before), a story page, /travelers, /the-map (save still posts continent counts), and run one export with more than 25 photos on an iPhone and a Mac.
 5. A session for the fonts and the home page footer scripts.
 
+## 7 November: measured on the live site
+
+The network opened on 7 Nov, so Phase 1 was measured against the real pages (docs/baseline-audit-2026-11-07.md). Two things changed as a result:
+
+- **The home page layout shift was not fixed by 16.50.0 on the live site.** The fixture used for the offline check predated the home value section, which was inserted after the first paint and pushed the page down about 1,000 px. 16.50.1 inserts it before the first paint. Measured on www with the script swapped in: layout shift 0.85 to 0.19, first paint 3.1 s to 2.1 s, largest image 9.2 s to 7.6 s, our script 135 KB to 47 KB.
+- **/stories gets slightly worse (0.39 to 0.47)** because the page now paints before its own late styles. The fix is page code on /stories and waits for Nancy (see the audit).
+
+The Phase 1 gate (home layout shift under 0.1, Lighthouse mobile 50 or more) is not met yet. What remains: the phone header wrapping while Memberstack loads (a nav rule, needs Nancy), the unused Designer fonts (fonts session), and full-size photos (photo pipeline).
+
 ## Rollback
 
-Re-apply site layers 16.49.0 (the one-file bundle) in Webflow; the Worker's old `POST /export` route is unchanged, so the old layer keeps working.
+Re-apply site layers 16.49.0 (the one-file bundle) in Webflow (16.50.1 is the staged version since 7 Nov); the Worker's old `POST /export` route is unchanged, so the old layer keeps working.
