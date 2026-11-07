@@ -97,6 +97,17 @@ The network opened on 7 Nov, so Phase 1 was measured against the real pages (doc
 
 The Phase 1 gate (home layout shift under 0.1, Lighthouse mobile 50 or more) is not met yet. What remains: the phone header wrapping while Memberstack loads (a nav rule, needs Nancy), the unused Designer fonts (fonts session), and full-size photos (photo pipeline).
 
+## 7 November, afternoon: staged after the publish (need Nancy's go)
+
+Found by the live audit and its reviewers, all staged in Webflow, read back byte for byte, none published:
+
+1. **Consent outside the EEA (site head, one line).** Since 31 Oct, visitors outside the EEA and UK got "GDPR does not apply" from Google with no event status, so the site never treated it as an answer: GA4, Ahrefs and AdSense never loaded for them. Now that answer counts. Checked from this non-EU machine: before, no analytics and no ad request on any page; after, consent resolves and the three tags load. EU behaviour unchanged.
+2. **Old cookie banner library (site footer).** The 23 KB CookieConsent library and its run block, switched off since 31 Oct, no longer load. 48 test loads: no page errors, "Cookie settings" still reopens Google's message, GA4 events helper intact.
+3. **Member blocks hidden from the first paint (site head).** The rules that hide the members' Account pill until sign-in is known sat in the footer; on a phone the header wrapped to two rows and snapped back. Home layout shift 0.16 to 0.12.
+4. **/stories page code.** Two style blocks moved to the head, the search form merged into the filter row before the first paint, the Share yours block inserted before the first paint (script 1.1.0 in the page head), and the Search button no longer fills the form on phones (the search input was 0 px wide since 25 Sep). Layout shift 390 px 0.46 to 0.22, 1440 px 0.30 to 0.15.
+
+Rollback for each is in handoff/WEBFLOW-LOCK.md. Details and checks: scratchpad/p1-pagecode-1107/.
+
 ## Rollback
 
 Re-apply site layers 16.49.0 (the one-file bundle) in Webflow (16.50.1 is the staged version since 7 Nov); the Worker's old `POST /export` route is unchanged, so the old layer keeps working.

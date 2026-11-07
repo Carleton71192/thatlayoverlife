@@ -400,5 +400,11 @@ footer a[href]{padding-top:10px;padding-bottom:10px}
   window.addEventListener('load',run);
 })();
 </script>
-
-
+<style id="tll-ms-blocks-early-v1">
+/* 7 Nov 2026 (baseline audit): the member and anonymous blocks are hidden or shown by tll-core-v2-css in the site FOOTER, which the phone
+   parses about 1.5 s after the header; until then both the Log in and Sign up pair and the Account pill showed and the header wrapped to
+   two rows, then snapped back (home layout shift 0.05). The same three rules now also sit here, so they apply from the first paint. */
+[data-ms-content="members"]{display:none}
+html.ms-loaded [data-ms-content="anonymous"]{display:none}
+html.ms-loaded [data-ms-content="members"]{display:block}
+</style>
