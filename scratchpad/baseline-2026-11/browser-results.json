@@ -1,0 +1,1663 @@
+[
+ {
+  "page": "/",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 14086
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 13690
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 13692
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 11610
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 13196
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 98,
+     "targets": [
+      ".tll-val-ey",
+      "#tll-val-h",
+      "#tll-val-h > em",
+      ".tll-val-lede"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 11,
+     "targets": [
+      ".inline-imgraw-0-1-2-3-4-5",
+      ".tll-mg-chip",
+      ".tll-mg-kicker",
+      "h1"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 88,
+     "targets": [
+      ".tll-val-ey",
+      "#tll-val-h",
+      "#tll-val-h > em",
+      ".tll-val-lede"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 11,
+     "targets": [
+      ".inline-imgraw-0-1-2-3-4-5",
+      ".tll-mg-chip",
+      ".tll-mg-kicker",
+      "h1"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/rum.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/stories",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 34901
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 35219
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 19574
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 21550
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 15391
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "aria-hidden-focus",
+     "impact": "serious",
+     "help": "ARIA hidden element must not be focusable or contain focusable elements",
+     "n": 57,
+     "targets": [
+      ".tll-lib-byline-img[data-tll-bl=\"/contributors/roberta-bianchi\"][alt=\"\"]",
+      ".tll-lib-byline-img[data-tll-bl=\"/contributors/luke-luby\"][alt=\"\"]",
+      "#new-orleans-short-girl-wedding-krewe-of-boo > .tll-lib-body > .tll-lib-byline[data-tll-byline=\"card\"][title=\"Open the p",
+      "#luxembourg-schengen-road-trip > .tll-lib-body > .tll-lib-byline[data-tll-byline=\"card\"][title=\"Open the profile\"] > .tl"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 7,
+     "targets": [
+      ".tll-eyebrow-teal",
+      ".tll-display-m",
+      ".tll-body-l",
+      ".tll-cta-ghost"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-unique",
+     "impact": "moderate",
+     "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+     "n": 1,
+     "targets": [
+      ".tllsb-form > form[name=\"\"][data-name=\"Html Form\"][aria-label=\"Html Form\"]"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "aria-hidden-focus",
+     "impact": "serious",
+     "help": "ARIA hidden element must not be focusable or contain focusable elements",
+     "n": 57,
+     "targets": [
+      ".tll-lib-byline-img[data-tll-bl=\"/contributors/roberta-bianchi\"][alt=\"\"]",
+      ".tll-lib-byline-img[data-tll-bl=\"/contributors/luke-luby\"][alt=\"\"]",
+      "#new-orleans-short-girl-wedding-krewe-of-boo > .tll-lib-body > .tll-lib-byline[data-tll-byline=\"card\"][title=\"Open the p",
+      "#luxembourg-schengen-road-trip > .tll-lib-body > .tll-lib-byline[data-tll-byline=\"card\"][title=\"Open the profile\"] > .tl"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 196,
+     "targets": [
+      "#unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city > .tll-lib-body > .tll-lib-meta",
+      "#unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city > .tll-lib-body > .tll-lib-title",
+      "#unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city > .tll-lib-body > .tll-lib-lede",
+      "div[aria-label=\"Roberta Bianchi, writer page\"]"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-unique",
+     "impact": "moderate",
+     "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+     "n": 1,
+     "targets": [
+      ".tllsb-form > form[name=\"\"][data-name=\"Html Form\"][aria-label=\"Html Form\"]"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "%c%d font-size:0;color:transparent NaN",
+   "%c%d font-size:0;color:transparent NaN",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "%c%o font-size:0;color:transparent {}",
+   "%c%o font-size:0;color:transparent {}",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Fetch API cannot load data:,. Refused to connect because it violates the document's Content Security Policy."
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/osd.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/stories/antarctica-marathon",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 20416
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 19643
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 13910
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 13582
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 14156
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 3,
+     "targets": [
+      "a[data-tll-place-toggle=\"been\"]",
+      "a[data-tll-place-toggle=\"want\"]",
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 39,
+     "targets": [
+      ".tll-story-hero-img",
+      ".tll-mg-cap",
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20",
+      "span[data-tc=\"1\"]:nth-child(2)"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 107,
+     "targets": [
+      "a[data-st3-slug=\"stories-from-the-road\"]",
+      ".tll-aeo-eyebrow.tll-eyebrow-teal",
+      ".tll-aeo-box-teal > .w-richtext.tll-body > p",
+      ".tll-reading-column > .w-richtext.tll-body > p:nth-child(2)"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 39,
+     "targets": [
+      ".tll-story-hero-img",
+      ".tll-mg-cap",
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20",
+      "span[data-tc=\"1\"]:nth-child(2)"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/show_companion_ad.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/the-map",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 7747
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 7425
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 5896
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 5803
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 6005
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      ".tll-nav-v1",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 69,
+     "targets": [
+      "#tllm-sample > span:nth-child(1)",
+      "#tllm-sample > span:nth-child(2)",
+      "#tllm-sample > a[href$=\"signup\"]",
+      "#tllm-sample > a[href$=\"login\"]"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 6,
+     "targets": [
+      ".tllm-onchips > .tllm-chip[aria-label=\"Countries, 30, logged\"][data-id=\"countries\"]",
+      ".tllm-cell[role=\"button\"][data-tll-tap=\"1\"]:nth-child(1)",
+      ".tllm-cell[role=\"button\"][data-tll-tap=\"1\"]:nth-child(2)",
+      ".tllm-cell[role=\"button\"][data-tll-tap=\"1\"]:nth-child(3)"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      ".tll-nav-v1",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 12,
+     "targets": [
+      ".tll-text-teal-1",
+      ".tll-map-explainer-card:nth-child(3) > .tll-map-explainer-label > .mp3-xh",
+      ".tll-map-explainer-card:nth-child(3) > .tll-map-explainer-body",
+      "a[target=\"_blank\"]"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 6,
+     "targets": [
+      ".tllm-onchips > .tllm-chip[aria-label=\"Countries, 30, logged\"][data-id=\"countries\"]",
+      ".tllm-cell[role=\"button\"]:nth-child(1)",
+      ".tllm-cell[role=\"button\"]:nth-child(2)",
+      ".tllm-cell[role=\"button\"]:nth-child(3)"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/lidar.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/the-paw-passport",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 4713
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 4555
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 3067
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 2890
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 2944
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 35,
+     "targets": [
+      ".tll-paw-ex-eyebrow",
+      ".tll-paw-ex-name",
+      "div:nth-child(1) > .tll-paw-ex-num",
+      ".tll-trav-quote"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 30,
+     "targets": [
+      ".tll-fos-eyebrow",
+      "h2",
+      ".tll-guide-intro",
+      "h3"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/google_top_exp.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/login",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 1762
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 1722
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 1737
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 1721
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 1721
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 6,
+     "targets": [
+      ".tll-auth-brand-col",
+      ".tll-eyebrow-rose",
+      "h2",
+      ".tll-btn-google"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 6,
+     "targets": [
+      ".tll-auth-brand-col",
+      ".tll-eyebrow-rose",
+      "h2",
+      ".tll-btn-google"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "%c%d font-size:0;color:transparent NaN",
+   "%c%d font-size:0;color:transparent NaN",
+   "%c%o font-size:0;color:transparent {}",
+   "%c%o font-size:0;color:transparent {}",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Fetch API cannot load data:,. Refused to connect because it violates the document's Content Security Policy."
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/google_top_exp.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/signup",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 1992
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 1928
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 1882
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 1852
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 1852
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 6,
+     "targets": [
+      ".tll-auth-brand-col",
+      ".tll-eyebrow-rose",
+      "h2",
+      ".tll-btn-google"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "landmark-one-main",
+     "impact": "moderate",
+     "help": "Document should have one main landmark",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    },
+    {
+     "id": "region",
+     "impact": "moderate",
+     "help": "All page content should be contained by landmarks",
+     "n": 6,
+     "targets": [
+      ".tll-auth-brand-col",
+      ".tll-eyebrow-rose",
+      "h2",
+      ".tll-btn-google"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Refused to connect to 'data:,' because it violates the following Content Security Policy directive: \"connect-src 'self' https://hagen.challenges.cloudflare.com https://brunhild.challenges.cloudflare.c",
+   "Fetch API cannot load data:,. Refused to connect because it violates the document's Content Security Policy.",
+   "%c%d font-size:0;color:transparent NaN",
+   "%c%d font-size:0;color:transparent NaN",
+   "%c%o font-size:0;color:transparent {}",
+   "%c%o font-size:0;color:transparent {}"
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/osd.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/submit",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 1492
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 1452
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 1351
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 1400
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 1429
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "page-has-heading-one",
+     "impact": "moderate",
+     "help": "Page should contain a level-one heading",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "page-has-heading-one",
+     "impact": "moderate",
+     "help": "Page should contain a level-one heading",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/rum.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/share-photos",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 1551
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 1511
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 1353
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 1358
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 1432
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "page-has-heading-one",
+     "impact": "moderate",
+     "help": "Page should contain a level-one heading",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "page-has-heading-one",
+     "impact": "moderate",
+     "help": "Page should contain a level-one heading",
+     "n": 1,
+     "targets": [
+      "html"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/lidar.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/for-expats",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 6413
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 6315
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 5411
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 5541
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 5055
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 39,
+     "targets": [
+      ".tll-rv[data-tll-x=\"inner\"] > div[data-tll-x=\"eyebrow\"]",
+      ".tll-rv[data-tll-x=\"inner\"] > h2",
+      ".tll-rv[data-tll-x=\"inner\"] > h2 > em",
+      "a[data-tll-x=\"finder-go\"]"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "label",
+     "impact": "critical",
+     "help": "Form elements must have labels",
+     "n": 2,
+     "targets": [
+      "#checkbox",
+      "#xg-check"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 38,
+     "targets": [
+      "section[data-tll-x=\"dir\"] > div[data-tll-x=\"inner\"] > .tll-rv[data-tll-x=\"eyebrow\"] > div",
+      "h2[data-tll-x=\"dir-h2\"]",
+      "a[data-tll-x=\"dir-fallback\"]",
+      ".w-inline-block > h3"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 1,
+     "targets": [
+      ".inline-a-0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27"
+     ]
+    },
+    {
+     "id": "label",
+     "impact": "critical",
+     "help": "Form elements must have labels",
+     "n": 2,
+     "targets": [
+      "#checkbox",
+      "#xg-check"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/rum.js?fcd=true"
+   ]
+  }
+ },
+ {
+  "page": "/travelers",
+  "widths": {
+   "360": {
+    "vw": 360,
+    "sw": 360,
+    "overflow": false,
+    "wide": [],
+    "h": 7432
+   },
+   "390": {
+    "vw": 390,
+    "sw": 390,
+    "overflow": false,
+    "wide": [],
+    "h": 7706
+   },
+   "768": {
+    "vw": 768,
+    "sw": 768,
+    "overflow": false,
+    "wide": [],
+    "h": 5252
+   },
+   "1024": {
+    "vw": 1024,
+    "sw": 1024,
+    "overflow": false,
+    "wide": [],
+    "h": 4174
+   },
+   "1440": {
+    "vw": 1440,
+    "sw": 1440,
+    "overflow": false,
+    "wide": [],
+    "h": 3855
+   }
+  },
+  "axe": {
+   "390": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 39,
+     "targets": [
+      "button[data-tv-filter=\"everyone\"]",
+      "button[data-tv-filter=\"everyone\"] > span[data-tv-n=\"\"]",
+      "button[data-tv-filter=\"expats\"]",
+      "button[data-tv-filter=\"expats\"] > span[data-tv-n=\"\"]"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 10,
+     "targets": [
+      "a[data-st3-slug=\"barzy-adam\"]",
+      "a[data-st3-slug=\"zain-m\"]",
+      "a[data-st3-slug=\"luke-luby\"]",
+      "a[data-st3-slug=\"mariam-atef\"]"
+     ]
+    }
+   ],
+   "1440": [
+    {
+     "id": "aria-allowed-role",
+     "impact": "minor",
+     "help": "ARIA role should be appropriate for the element",
+     "n": 5,
+     "targets": [
+      "nav",
+      ".inline-h4-0",
+      ".inline-h4-2",
+      ".inline-h4-1"
+     ]
+    },
+    {
+     "id": "color-contrast",
+     "impact": "serious",
+     "help": "Elements must meet minimum color contrast ratio thresholds",
+     "n": 31,
+     "targets": [
+      "a[data-st3-slug=\"barzy-adam\"] > .tv-photo > .tv-label",
+      "a[data-st3-slug=\"barzy-adam\"] > .tv-body > .tv-name",
+      "a[data-st3-slug=\"barzy-adam\"] > .tv-body > .tv-line",
+      "a[data-st3-slug=\"zain-m\"] > .tv-photo > .tv-label"
+     ]
+    },
+    {
+     "id": "label-content-name-mismatch",
+     "impact": "serious",
+     "help": "Elements must have their visible text as part of their accessible name",
+     "n": 10,
+     "targets": [
+      "a[data-st3-slug=\"barzy-adam\"]",
+      "a[data-st3-slug=\"zain-m\"]",
+      "a[data-st3-slug=\"luke-luby\"]",
+      "a[data-st3-slug=\"mariam-atef\"]"
+     ]
+    }
+   ]
+  },
+  "preConsent": {
+   "390": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   },
+   "1440": {
+    "ga4": 0,
+    "ahrefs": 0,
+    "adsense": 1,
+    "fundingchoices": 14
+   }
+  },
+  "consoleErrors": [],
+  "status": 200,
+  "preConsentSample": {
+   "adsense": [
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?fcd=true"
+   ]
+  }
+ }
+]

@@ -115,7 +115,8 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1',
-        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-lounge-labels-v1']
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-lounge-labels-v1',
+        'tll-home-value-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).
@@ -125,7 +126,7 @@ CORE = ['tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll
 CHUNKS = [
     ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
                       'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1'], []),
-    ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1', 'tll-home-value-v1'], []),
+    ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1'], []),
     ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1'], []),
     ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
     ('submit', r'/^\/submit$/', ['tll-submit-ux-v1', 'tll-linkout-preview-v1', 'tll-linkout-summary-v1', 'tll-submit-gallery-v1', 'tll-submit-long-v1',

@@ -48,6 +48,14 @@ function run(){
   inn.appendChild(ask);
   hero.insertAdjacentElement('afterend',sec);
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+/* 7 Nov 2026 (baseline audit): inserted at DOMContentLoaded, the section landed after the phone had painted the cover and pushed
+   "01 · The stories" about 1,000 px down (layout shift 0.70 on the live home page). Now it goes in as soon as the parser has
+   created the hero, before the first paint; DOMContentLoaded and the 1.5 s timer stay as fallbacks. This layer is in the core. */
+if(document.readyState==='loading'){
+  if(window.MutationObserver){var mo=new MutationObserver(function(){if(document.querySelector('[data-h3-hero]')){run();if(document.getElementById('tll-val'))mo.disconnect();}});
+    mo.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',function(){mo.disconnect();});}
+  document.addEventListener('DOMContentLoaded',run);
+}else run();
 setTimeout(run,1500);
 })();
