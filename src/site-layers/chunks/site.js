@@ -47,8 +47,11 @@ function wire(){
   [].forEach.call(names,function(n){
     var card=n.closest('.tll-lib-byline')||n.parentElement;var href=hrefFor(card);if(!href)return;
     [n,card.querySelector('.tll-lib-byline-img')].forEach(function(el){if(!el||el.getAttribute('data-tll-bl'))return;
-      el.setAttribute('data-tll-bl',href);el.setAttribute('role','link');el.setAttribute('tabindex','0');
-      if(el===n)el.setAttribute('aria-label',nameOf(n)+', writer page');else el.setAttribute('aria-hidden','true');});
+      el.setAttribute('data-tll-bl',href);
+      /* 7 Nov 2026 (baseline audit, axe aria-hidden-focus on 57 cards): only the name is a keyboard link; the photo stays clickable
+         for mouse and touch but is not focusable, since it is hidden from screen readers and the name already carries the link. */
+      if(el===n){el.setAttribute('role','link');el.setAttribute('tabindex','0');el.setAttribute('aria-label',nameOf(n)+', writer page');}
+      else el.setAttribute('aria-hidden','true');});
   });
 }
 function go(e){var t=e.target.closest&&e.target.closest('[data-tll-bl]');if(!t)return;
