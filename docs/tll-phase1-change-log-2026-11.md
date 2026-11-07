@@ -1,4 +1,4 @@
-# Phase 1, speed and photos: change log (1 Nov 2026, staged as site layers 16.50.1 since 7 Nov, nothing published, Worker not deployed)
+# Phase 1, speed and photos: change log (1 Nov 2026; PUBLISHED 7 Nov 2026 as site layers 16.50.2; Worker not deployed)
 
 **Read for this phase:** Nancy's Phase 1 prompt, the "TLL build order and brand refresh" doc, the saved live code in `scratchpad/p0-1031/`, and the three inventories in `docs/phase1-inventories-2026-11.md`. The project docs the prompt names (performance baseline, photo upload fix, Download everything fix prompt, UX flows Phase 7) are not in the repo or this session; the audit table in the prompt itself was the brief.
 
