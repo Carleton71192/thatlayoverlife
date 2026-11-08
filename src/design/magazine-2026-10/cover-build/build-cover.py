@@ -15,7 +15,7 @@ when = datetime.datetime.fromisoformat(fd['published-date'].replace('Z', '+00:00
 t = TUNE.get(COVER_SLUG, {})
 cover = dict(slug=fd['slug'], title=fd['name'], img=fd['hero-image']['url'], alt=fd['hero-image'].get('alt') or '', w=1440, h=1920,
              author=a[0], authorSlug=a[1], avatar=a[2], place=t.get('place') or (fd.get('byline-location') or '').split(',')[0].title(),
-             stampPlace=t.get('stampPlace') or (fd.get('byline-location') or '').split(',')[0].upper()[:16],
+             stampPlace=t.get('stampPlace') or (fd.get('byline-location') or '').split(',')[0].upper(),
              stampDate=when.strftime('%d %b %Y').upper(), stampArc=(fd.get('pillar-name') or '').upper() or 'BY THE PEOPLE WHO WENT',
              coords=t.get('coords', ''), posPhone=t.get('posPhone', '50% 50%'), posDesk=t.get('posDesk', '50% 50%'), phoneZoom=t.get('phoneZoom', '0%'),
              kicker="This week's cover", dek='Real places and real opinions, written by the people who went. Free to join, no card, no paywall.',
@@ -34,7 +34,7 @@ def one(c):
     w = datetime.datetime.fromisoformat((c.get('published') or '2026-01-01T00:00:00Z').replace('Z', '+00:00'))
     t = TUNE.get(c['slug'], {})
     return dict(cover, slug=c['slug'], title=c['title'], img=c['img'], alt=c['alt'], author=a[0], authorSlug=a[1], avatar=a[2],
-                place=t.get('place') or loc.title(), stampPlace=t.get('stampPlace') or loc.upper()[:16], stampDate=w.strftime('%d %b %Y').upper(),
+                place=t.get('place') or loc.title(), stampPlace=t.get('stampPlace') or loc.upper(), stampDate=w.strftime('%d %b %Y').upper(),
                 stampArc=(c.get('pillar') or '').upper() or 'BY THE PEOPLE WHO WENT', coords=t.get('coords', ''),
                 posPhone=t.get('posPhone', '50% 50%'), posDesk=t.get('posDesk', '50% 50%'), phoneZoom=t.get('phoneZoom', '0%'))
 COVERS = [x for x in (one(c) for c in json.load(open(D / 'candidates.json'))) if x]

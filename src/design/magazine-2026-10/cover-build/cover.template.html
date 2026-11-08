@@ -110,6 +110,12 @@ var COVER=/*COVER*/{};var COVERS=/*COVERS*/[];
 (function(){if(!COVERS.length)return;var d=new Date(),w=Math.floor((Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate())-Date.UTC(2026,0,5))/604800000),i=((w%COVERS.length)+COVERS.length)%COVERS.length;try{var q=/[?&]cover=(\d+)/.exec(location.search);if(q)i=Math.min(+q[1],COVERS.length-1);}catch(e){}COVER=COVERS[i];})();
 var SVG=/*SVG*/'';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+/* 8 Nov 2026 (Nancy: "That stamp is kind of a mess"): long place names were cut at 16 letters (TEXAS HILL COUNT). Names up to 10
+   letters stay on one line at 16px; longer ones break at a space onto two lines at 11px, so the whole name fits inside the inner ring. */
+function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16';var y='106';var txt=esc(p);
+  if(p.length>10){var i=p.lastIndexOf(' ',13);if(i<4)i=p.indexOf(' ');if(i>0){txt='<tspan x="100" dy="0">'+esc(p.slice(0,i))+'</tspan><tspan x="100" dy="12">'+esc(p.slice(i+1))+'</tspan>';y='100';}
+    else if(p.length>14){s='9';}}
+  return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 /* LCP (1 Nov 2026): in the site bundle this runs in the head, so the cover photo is asked for here, before the hero is parsed, at high
    priority; the hero would otherwise start its fetch only after the bundle has run. The page's own hero file still loads once (Designer). */
 (function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
@@ -136,7 +142,7 @@ function run(){
   by.appendChild(document.createTextNode(' '+COVER.author+' · '+COVER.place));
   (cta||words).insertAdjacentElement(cta?'afterend':'beforeend',by);
   if(SVG&&COVER.stampPlace){var st=document.createElement('span');st.className='tll-mg-stamp';st.setAttribute('aria-hidden','true');
-    st.innerHTML=SVG.replace('{P}',esc(COVER.stampPlace)).replace('{S}',COVER.stampPlace.length>10?'12':'16').replace('{D}',esc(COVER.stampDate||'')).replace('{A}',esc(COVER.stampArc||'BY THE PEOPLE WHO WENT'));hero.appendChild(st);}
+    st.innerHTML=stampText(SVG,COVER.stampPlace).replace('{D}',esc(COVER.stampDate||'')).replace('{A}',esc(COVER.stampArc||'BY THE PEOPLE WHO WENT'));hero.appendChild(st);}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();
@@ -145,6 +151,12 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
 var PEOPLE=/*PEOPLE*/[];
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+/* 8 Nov 2026 (Nancy: "That stamp is kind of a mess"): long place names were cut at 16 letters (TEXAS HILL COUNT). Names up to 10
+   letters stay on one line at 16px; longer ones break at a space onto two lines at 11px, so the whole name fits inside the inner ring. */
+function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16';var y='106';var txt=esc(p);
+  if(p.length>10){var i=p.lastIndexOf(' ',13);if(i<4)i=p.indexOf(' ');if(i>0){txt='<tspan x="100" dy="0">'+esc(p.slice(0,i))+'</tspan><tspan x="100" dy="12">'+esc(p.slice(i+1))+'</tspan>';y='100';}
+    else if(p.length>14){s='9';}}
+  return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 /* the 72px faces are lazy and far down the page, so they try Webflow's -p-500 variant (variants exist per file, not per bucket, 13 Oct export
    manifest; the name is lowercase even for a .JPG original) and fall back to the original on the first error, since a browser does not try
    another candidate after a 404 */
@@ -167,8 +179,14 @@ var SVG=/*SVG2*/'';
 if(!SVG)return;
 var MON=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+/* 8 Nov 2026 (Nancy: "That stamp is kind of a mess"): long place names were cut at 16 letters (TEXAS HILL COUNT). Names up to 10
+   letters stay on one line at 16px; longer ones break at a space onto two lines at 11px, so the whole name fits inside the inner ring. */
+function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16';var y='106';var txt=esc(p);
+  if(p.length>10){var i=p.lastIndexOf(' ',13);if(i<4)i=p.indexOf(' ');if(i>0){txt='<tspan x="100" dy="0">'+esc(p.slice(0,i))+'</tspan><tspan x="100" dy="12">'+esc(p.slice(i+1))+'</tspan>';y='100';}
+    else if(p.length>14){s='9';}}
+  return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 function stamp(place,date,arc,cls){var st=document.createElement('span');st.className=cls;st.setAttribute('aria-hidden','true');
-  st.innerHTML=SVG.replace('{P}',esc(place)).replace('{S}',place.length>10?'12':'16').replace('{D}',esc(date)).replace('{A}',esc(arc));return st;}
+  st.innerHTML=stampText(SVG,place).replace('{D}',esc(date)).replace('{A}',esc(arc));return st;}
 function cards(){var n=0;[].forEach.call(document.querySelectorAll('.h3-card'),function(c){var ph=c.querySelector('.h3-card-ph');if(!ph||ph.querySelector('.tll-mg-card-stamp'))return;
   var loc=(c.getAttribute('data-loc')||'').split(',')[0].trim().toUpperCase().slice(0,16);if(!loc)return;
   var d=(c.getAttribute('data-date')||'').match(/^(\d{4})-(\d{2})-(\d{2})/),date=d?d[3]+' '+MON[+d[2]-1]+' '+d[1]:'';
