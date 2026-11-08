@@ -13,6 +13,7 @@
    core   src/site-layers/tll-album-settings-v1.js (31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5))
    core   src/site-layers/tll-division-v1.js (31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting)
    core   src/site-layers/tll-phase0-v1.js (31 Oct Nancy: Phase 0 fixes (contact relay, support headline, search, map buttons, shelf count, Thailand stub))
+   core   src/site-layers/tll-drafted-v1.js (8 Nov Nancy: the empty pages are drafts; footer, pill, account card and edit-profile links to them hidden)
    core   src/site-layers/tll-ads-v1.js (31 Oct Nancy: AdSense, tastefully (story pages, library, countries only))
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
@@ -725,12 +726,15 @@ function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstack
 
 /* Old addresses (Phase 0, Nancy approved 31 Oct). Real 301s belong in Webflow Site settings; until Nancy adds them this sends people on.
    /my-passport is a draft page now, so this runs on the 404 page it lands on. */
-var MOVED={'/my-passport':'/the-map','/countries':'/destinations','/for-affiliates':'/creators'};
+/* 8 Nov: the empty pages are drafts (Nancy), so their addresses and /for-affiliates go to the nearest live page. /my-passport has its
+   Webflow 301 now and is out of this map. */
+var MOVED={'/countries':'/destinations','/for-affiliates':'/travelers','/newsletter':'/','/creators':'/travelers','/awards':'/stories',
+  '/spotlight':'/travelers','/pets':'/the-paw-passport','/pillars/paw-passport':'/the-paw-passport'};
 if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
-/* Noindex until they have content: /spotlight, /awards, /creators, contributor profiles with no stories yet and, from 1 Nov, pending pursuit
+/* Noindex until they have content: /spotlight, /awards, /creators, /travel-wire (8 Nov: other publishers' headlines; kept, out of the index), contributor profiles with no stories yet and, from 1 Nov, pending pursuit
    hubs (/pursuits/{slug}) at parse time, before the pursuits chunk arrives; tll-stamps-v1 reuses this meta and lifts it when the hub is indexable. */
 function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=document.createElement('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
-if(/^\/(spotlight|awards|creators)$|^\/pursuits\/[^/]+$/.test(P))noindex();
+if(/^\/(spotlight|awards|creators|travel-wire)$|^\/pursuits\/[^/]+$/.test(P))noindex();
 if(/^\/contributors\/[^/]+$/.test(P)){var emp=function(){var e=document.querySelector('[data-pf5="stories-empty"]'),l=document.querySelector('[data-pf5="stories-list"]');
   if((e&&getComputedStyle(e).display!=='none')||(l&&!l.querySelector('a[href^="/stories/"]')))noindex();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(emp,800);});else setTimeout(emp,800);}
@@ -780,6 +784,20 @@ if(P==='/'){var shelf=function(){var sec=document.querySelector('[data-h3-shelf]
     var n=new Set([].slice.call(track.querySelectorAll('a[href^="/stories/"]')).map(function(a){return a.getAttribute('href');})).size;if(!n)return;
     var w=document.createTreeWalker(note,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var s=t.nodeValue,o=s;s=s.replace(/\b0?\d+(?=\s*stor(y|ies)\b)/i,(n<10?'0':'')+n).replace(/\bstor(y|ies)\b/i,n===1?'newest story':'newest stories');if(s!==o)t.nodeValue=s;}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(shelf,600);});else setTimeout(shelf,600);setTimeout(shelf,2500);}
+})();
+/* src/site-layers/tll-drafted-v1.js */
+(function(){
+var P=location.pathname.replace(/\/+$/,'')||'/';
+if(document.getElementById('tll-drafted-v1'))return;
+var s=document.createElement('style');s.id='tll-drafted-v1';
+s.textContent='footer a[href="/awards"],footer a[href="/spotlight"],footer a[href="/creators"],'+
+  '[data-tll-fyp="travelers"] a.tll-fyp-pill[href="/creators"],a.tll-fyp-pill[href="/creators"],'+
+  '.tll-account-settings-grid a.tll-account-settings-card[href="/newsletter"],'+
+  '.ep-dir a.ep-mono[href="/creators"]{display:none!important}';
+document.head.appendChild(s);
+if(/^\/edit-profile/.test(P)){var fix=function(){[].slice.call(document.querySelectorAll('[data-ep-makes] p.ep-note, p.ep-note')).forEach(function(p){
+    var w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(t.nodeValue.indexOf('/creators')>-1)t.nodeValue=t.nodeValue.split('/creators').join('/travelers');}});};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();setTimeout(fix,1500);}
 })();
 /* src/site-layers/tll-ads-v1.js */
 (function(){

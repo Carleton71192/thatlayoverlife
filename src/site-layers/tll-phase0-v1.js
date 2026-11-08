@@ -20,12 +20,15 @@ function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstack
 
 /* Old addresses (Phase 0, Nancy approved 31 Oct). Real 301s belong in Webflow Site settings; until Nancy adds them this sends people on.
    /my-passport is a draft page now, so this runs on the 404 page it lands on. */
-var MOVED={'/my-passport':'/the-map','/countries':'/destinations','/for-affiliates':'/creators'};
+/* 8 Nov: the empty pages are drafts (Nancy), so their addresses and /for-affiliates go to the nearest live page. /my-passport has its
+   Webflow 301 now and is out of this map. */
+var MOVED={'/countries':'/destinations','/for-affiliates':'/travelers','/newsletter':'/','/creators':'/travelers','/awards':'/stories',
+  '/spotlight':'/travelers','/pets':'/the-paw-passport','/pillars/paw-passport':'/the-paw-passport'};
 if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
-/* Noindex until they have content: /spotlight, /awards, /creators, contributor profiles with no stories yet and, from 1 Nov, pending pursuit
+/* Noindex until they have content: /spotlight, /awards, /creators, /travel-wire (8 Nov: other publishers' headlines; kept, out of the index), contributor profiles with no stories yet and, from 1 Nov, pending pursuit
    hubs (/pursuits/{slug}) at parse time, before the pursuits chunk arrives; tll-stamps-v1 reuses this meta and lifts it when the hub is indexable. */
 function noindex(){var m=document.querySelector('meta[name="robots"]');if(!m){m=document.createElement('meta');m.name='robots';document.head.appendChild(m);}m.content='noindex, follow';}
-if(/^\/(spotlight|awards|creators)$|^\/pursuits\/[^/]+$/.test(P))noindex();
+if(/^\/(spotlight|awards|creators|travel-wire)$|^\/pursuits\/[^/]+$/.test(P))noindex();
 if(/^\/contributors\/[^/]+$/.test(P)){var emp=function(){var e=document.querySelector('[data-pf5="stories-empty"]'),l=document.querySelector('[data-pf5="stories-list"]');
   if((e&&getComputedStyle(e).display!=='none')||(l&&!l.querySelector('a[href^="/stories/"]')))noindex();};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(emp,800);});else setTimeout(emp,800);}
