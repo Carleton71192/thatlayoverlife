@@ -84,3 +84,19 @@ Taken down by the session (reversible, CMS drafts): the Copenhagen recap (blocke
 | info | /about, /pets/magnus-waffles, /support, /contact, /faq, /for-expats, / | Checked and compliant: every home reference is city or country granularity, no live-location text, no future dates. The only named-third-party detail outside the four rules is a bartender in the Sofia guide. |  |
 
 Known flags from 31 Oct still live and unchanged: Amsterdam ("my son Freed", also in the AEO box) and Sort Sol ("We are signing up for next year", plus "going out again next weekend"). Also noted outside the four rules: the pen-name contributor Zain is rendered as "Zain M" in the server-side title, Open Graph tags, h1, URL slug and the /travelers card (the client script renames too late for crawlers); the public Strava link on Nancy's profile can turn a city-level home into a street-level one if her activity privacy zones are not set.
+
+## Blocker 1: the consent test Nancy runs from a Danish IP (the session cannot; its machine is outside the EEA)
+
+Why the session cannot run it: Google's Funding Choices decides by IP whether European rules apply. From this machine it answers "gdprApplies false", so the site loads GA4, Ahrefs and the ad script at once (by design since 7 Nov). Only a visitor inside the EEA, the UK or Switzerland gets the message and the hold.
+
+Steps (Chrome, incognito window, Copenhagen connection, about five minutes):
+1. Open DevTools (Cmd+Option+I), Network tab, tick "Preserve log". Application tab, Cookies, note that thatlayover.life has none.
+2. Load https://www.thatlayover.life/ and wait for the consent message. Do not click anything yet.
+3. Network tab, filter by "google". Expected: requests to fundingchoicesmessages.google.com only (the message itself). Expected absent: googletagmanager.com, google-analytics.com, pagead2.googlesyndication.com, doubleclick.net, analytics.ahrefs.com (filter "ahrefs" too).
+4. Application tab, Cookies for www.thatlayover.life: expected none of _ga, _ga_T1K83PRL1R, __gads, __gpi, __eoi. FCCDCF or FCNEC may appear once the message is shown (they store the choice; the policy says so).
+5. Console tab, type `dataLayer.filter(x=>x[0]==='consent')` and press Enter. Expected: one "default" entry with everything denied except functionality and security, and no "update" entry yet.
+6. Click "Consent" (accept all) in the message. Expected within a few seconds: googletagmanager.com and google-analytics.com requests, analytics.ahrefs.com, and on a story page pagead2.googlesyndication.com; cookies _ga and _ga_T1K83PRL1R appear; the dataLayer now has an "update" entry with analytics_storage and ad_storage granted.
+7. Scroll to the footer and click "Cookie settings". Expected: the message reopens with the purposes listed, no console error. Click "Manage options", switch everything off, confirm. Reload a story page: no new ad request, no new GA request.
+8. Repeat step 2 to 4 once with "Do not consent": nothing beyond fundingchoicesmessages should load after the choice either.
+
+Pass means: steps 3, 4 and 5 show nothing from Google or Ahrefs before the choice, and step 7 reopens the message. If step 3 shows googletagmanager before the click, send the session the Network list and it will find the leak.
