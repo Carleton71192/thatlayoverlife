@@ -1,6 +1,6 @@
 # claude/
 
-Nancy's prompt files for Claude Code sessions on That Layover Life, saved here on 9 November 2026 so every session reads the same text. Order of execution:
+Nancy's prompt files for Claude Code sessions on That Layover Life, saved here on 9 November 2026 so every session reads the same text. The master runbook is `tll-fix-sequence-2026-11-09.md` (Prompts 1 to 6); it supersedes the order below where they differ. Files:
 
 1. `tll-cc-blockers-2026-11-09.md`: the six launch blockers plus counts (legal first). Running now in the cloud session.
 2. `tll-design-review-2026-11-09.md`: the 9 Nov review list (must fix 1 to 5, should fix 6 to 8).
