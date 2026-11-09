@@ -50,8 +50,8 @@ Today's gaps on this path:
 | `/stories/<slug>` Story (template) | Readers | The story, trip facts box, share row, keep reading, reader notes, the ask | Next story; Join free; share | **Live.** The false "Reklame for the traveler" label is staged off. Staged: Next story card, join card, "In this story", hero cap, series boxes, Trip Kit, pet note. |
 | `/countries` and `/countries/<slug>` | Readers planning or remembering | A country hub with its stories | A story; Been here / Want to go | **Live.** Recommended: a 301 from /countries to /destinations, set in Webflow. |
 | `/destinations` and `/destinations/<slug>` | Readers | Destinations list and pages | A story | **Live.** Overlaps with /countries; Nancy to choose one. |
-| `/travel-wire` | Readers | Travel news feed | A story | Live |
-| `/pillars/<slug>` | Readers | Stories by editorial pillar | A story | Live |
+| `/travel-wire` | Readers | Travel news feed | A story | Live, noindex since 9 Nov (other publishers' headlines) |
+| `/pillars/<slug>` | Readers | Stories by editorial pillar | A story | Live; the paw-passport pillar unpublished 9 Nov (empty) |
 | `/collections/<slug>` | Readers | Themed sets of stories ("travel vibes") | A story | Live, noindex |
 | `/themes/<slug>` | Readers | Theme pages (Desert Glow, Salty Air…), plus the 8 new series themes | A story | Live; the new series themes are drafts |
 | `/layovers/<slug>` | Readers | Layover guides (7 items) | A story | Live |
@@ -64,10 +64,10 @@ Today's gaps on this path:
 | `/travelers` | Readers, members | Directory of members, with filter chips | A profile | Live |
 | `/contributors/<slug>` Profile | Readers | Stamp strip, flags, stories, pets, crew, collections, album, links | Follow their stories; start your own map | **Live.** The continent album is live. Staged: home base hidden unless switched on, "Countries lived in", My moves, milestones, noindex on empty profiles, relay contact buttons removed. |
 | `/profile` | Members | Legacy profile page | `/account` | Live; check whether still needed |
-| `/pets` "Pets We Travel With" | Readers | Pet directory | A pet page | Live |
+| `/pets` "Pets We Travel With" | Readers | Pet directory | A pet page | Draft since 9 Nov (one-pet roster); 301 to /the-paw-passport pending |
 | `/pets/<slug>` | Readers | The pet's Paw Passport | Owner profile; the pet's stories | **Live** template. The staged Paw Passport adds stamps, firsts, counter, slide show, Forever traveler and privacy. |
-| `/spotlight` | Readers | Featured members | A profile | Live; staged noindex until it has content |
-| `/creators` | Creators | Creator directory | A profile | Live; staged noindex. Recommended 301 from /for-affiliates to /creators. |
+| `/spotlight` | Readers | Featured members | A profile | Draft since 9 Nov (no feature yet); 301 to /travelers pending |
+| `/creators` | Creators | Creator directory | A profile | Draft since 9 Nov (one card plus a sample tile); 301 to /travelers pending, /for-affiliates to /travelers too |
 | `/expats` | Expats | Expat directory | A profile | Draft; /for-expats is the live page |
 | `/press` | Journalists | Press directory | A profile | Draft |
 | `/directory/<slug>`, `/expat-groups/<slug>`, `/resources/<slug>`, `/interest-tags/<slug>` | Expats | Directory records | Back to /for-expats | Live templates; check each is needed |
@@ -83,7 +83,7 @@ Today's gaps on this path:
 | `/paw-passport/<slug>` | Readers | Magnus Diary entries | Magnus's pet page | Live |
 | `/for-press`, `/press-trips` | Journalists, hosts | Press info; hosted trips board | Apply | /for-press live, /press-trips draft |
 | `/for-brands`, `/for-affiliates`, `/partners/<slug>` | Brands | How paid work works | Contact | Live |
-| `/awards` and `/award-nominations` | Readers | The Layover Awards | Nominate | /awards live (staged noindex); nominations template draft |
+| `/awards` and `/award-nominations` | Readers | The Layover Awards | Nominate | /awards draft since 9 Nov (until the awards run, December); 301 to /stories pending; nominations template draft |
 | `/copenhagen-stopover`, `/ees-etias-layover` | Readers | Practical guides | A story | Drafts |
 
 ### Members (signed in)
@@ -109,7 +109,7 @@ Today's gaps on this path:
 | `/contact` | Contact Nancy | Live. The member-to-member relay form is staged removed. |
 | `/faq`, `/community-guidelines`, `/editorial-charter` | Rules and promises | Live. Charter to add: "No business can pay to edit or remove a pet note". |
 | `/privacy`, `/terms`, `/cookies` | Legal | Live. Must be updated to match the new consent setup; draft text is in the Phase 0 change log. |
-| `/newsletter` | Newsletter sign-up | Live |
+| `/newsletter` | Newsletter sign-up | Draft since 9 Nov (the home and /stories forms stay); 301 to / pending |
 | `/404` | Not found | Live; voice refresh copy proposed ("This page took a different connection.") |
 | `/style-guide`, `/map-2-preview`, `/spotlight-crew`, `/spotlight-index`, `/travelers-archive` | Internal or old | Drafts |
 
@@ -153,7 +153,7 @@ Today's gaps on this path:
 **Phase 0:**
 - Approve publishing the staged Phase 0 fixes.
 - The Ko-fi URL and EU guide check.
-- 301s: /my-passport to /the-map, /countries to /destinations, /for-affiliates to /creators.
+- 301s: /my-passport to /the-map (live), /countries to /destinations (live), /for-affiliates to /travelers, /newsletter to /, /creators to /travelers, /awards to /stories, /spotlight to /travelers, /pets to /the-paw-passport, /pillars/paw-passport to /the-paw-passport (the last seven pending, 9 Nov).
 - Remove bound fields from the member-data templates.
 - Policy text.
 - The two privacy flags in stories (a child's name, a future plan).

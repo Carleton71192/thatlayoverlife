@@ -8,11 +8,12 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 const BASE = (process.argv[2] || 'https://www.thatlayover.life').replace(/\/$/, '');
 const V = '?v=' + Date.now();
-const ROUTES = ['/', '/stories', '/travelers', '/the-paw-passport', '/about', '/share', '/travel-wire', '/spotlight', '/faq', '/support',
-  '/for-expats', '/for-press', '/for-affiliates', '/my-pets', '/pets', '/the-map', '/editorial-charter', '/community-guidelines',
+// 9 Nov 2026: /newsletter, /creators, /awards, /spotlight, /pets and /for-affiliates are drafts or gone (AdSense review); not checked here.
+const ROUTES = ['/', '/stories', '/travelers', '/the-paw-passport', '/about', '/share', '/travel-wire', '/faq', '/support',
+  '/for-expats', '/for-press', '/my-pets', '/the-map', '/editorial-charter', '/community-guidelines',
   '/privacy', '/terms', '/forgot-password', '/contact', '/cookies', '/share-photos', '/login', '/signup', '/account', '/gallery',
-  '/destinations', '/countries', '/for-brands', '/awards', '/guides/copenhagen-stopover', '/guides/ees-etias-layover',
-  '/expats', '/creators', '/press', '/press-trips', '/editor-desk'];
+  '/destinations', '/countries', '/for-brands', '/guides/copenhagen-stopover', '/guides/ees-etias-layover',
+  '/expats', '/press', '/press-trips', '/editor-desk'];
 const EXEMPT_PET = [/paw-passport/i, /chip-first/i, /\/guides\//i];
 const MONTHS = 'January|February|March|April|May|June|July|August|September|October|November|December';
 const CHECKS = [
