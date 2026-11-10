@@ -195,3 +195,17 @@ function run(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,1400);});else setTimeout(run,1400);
 })();
+/* src/site-layers/tll-note-footer-v1.js */
+(function(){
+var CSS='html.tll-note-footer #tll-note:not([data-open="true"]):not(:focus-within){opacity:0;visibility:hidden;pointer-events:none;transition:opacity 200ms ease,visibility 0s linear 200ms}'+
+'@media (prefers-reduced-motion:reduce){html.tll-note-footer #tll-note:not([data-open="true"]):not(:focus-within){transition:none}}';
+function style(){if(document.getElementById('tll-note-footer-v1'))return;var s=document.createElement('style');s.id='tll-note-footer-v1';s.textContent=CSS;(document.head||document.documentElement).appendChild(s);}
+style();
+function run(){
+  if(!window.IntersectionObserver||!document.getElementById('tll-note'))return;
+  var f=document.querySelector('footer[data-tll-canonical-footer]');
+  if(!f){var all=document.querySelectorAll('footer');f=all.length?all[all.length-1]:null;}
+  if(!f)return;
+  new IntersectionObserver(function(es){for(var i=0;i<es.length;i++)document.documentElement.classList.toggle('tll-note-footer',es[i].isIntersecting);},{threshold:0}).observe(f);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();

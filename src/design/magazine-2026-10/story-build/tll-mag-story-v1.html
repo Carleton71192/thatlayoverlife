@@ -137,6 +137,9 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp
 function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16';var y='106';var txt=esc(p);
   if(p.length>10){var i=p.lastIndexOf(' ',13);if(i<4)i=p.indexOf(' ');if(i>0){txt='<tspan x="100" dy="0">'+esc(p.slice(0,i))+'</tspan><tspan x="100" dy="12">'+esc(p.slice(i+1))+'</tspan>';y='100';}
     else if(p.length>14){s='9';}}
+  /* 10 Nov 2026 (week-one hygiene, item 9): every stamp carried the same filter and path ids (tll-mg-ink, -top, -bottom), 59 copies on the home
+     page. Each copy now gets its own suffix from one page-wide counter, so url(#...) and the textPath href point at their own defs. */
+  var u=(window.__tllMgN=(window.__tllMgN||0)+1);svg=svg.replace(/tll-mg-(ink|top|bottom)/g,'tll-mg-$1-'+u);
   return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 function txt(el){return el&&!el.classList.contains('w-dyn-bind-empty')?el.textContent.trim():'';}
 function run(){

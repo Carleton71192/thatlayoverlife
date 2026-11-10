@@ -1,7 +1,7 @@
 """Builds the site layers from their parts. Run from anywhere: python3 src/site-layers/build-site-layers-v16.py
 Two kinds of output, deterministic (same inputs, same bytes):
   src/site-layers/tll-site-layers-v16.js  the core, the one registered site-wide header script (synchronous). In order: the consent
-      fallback, the chunk loader, the nine styles, the layers that must run before the first paint on their page (ux-1028 and
+      fallback, the chunk loader, the ten styles, the layers that must run before the first paint on their page (ux-1028 and
       mbar-align head CSS, photos-form-v2 on /share-photos, album-settings on /the-map, phase0, and since the 1 Nov review the
       ads pause, page-heroes, stories-noimg, home-bands and lounge-labels; see CORE below) or on every page (division,
       note-typing, account-hash-tabs), the story layer (/stories/{slug}) and the cover layer (home).
@@ -34,7 +34,8 @@ STYLES = [('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone h
           ('src/site-layers/tll-footer-wordmark-v1.html', 'tll-footer-wordmark-v1', 'footer wordmark matches the header'),
           ('src/site-layers/tll-tap-colors-v1.html', 'tll-tap-colors-v1', '/account Stories tab: ink text and a rose underline on hover and tap, no rose or teal text'),
           ('src/site-layers/tll-shelf-ring-v1.html', 'tll-shelf-ring-v1', 'home library rail: room for the avatar ring on phones'),
-          ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Newsreader italic')]
+          ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Newsreader italic'),
+          ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields')]
 SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar SETTINGS and CONTRIBUTIONS open their /account tab'),
            ('src/site-layers/tll-note-typing-v1.js', 'note button steps aside while typing'),
            ('src/components/edit-profile-fixes/tll-ep-country-v1.js', '/edit-profile country field reads "Portland, Oregon, USA"; pen name note copy'),
@@ -93,7 +94,10 @@ SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar
            ('src/site-layers/tll-phase0-v1.js', '31 Oct Nancy: Phase 0 fixes (contact relay, support headline, search, map buttons, shelf count, Thailand stub)'),
            ('src/site-layers/tll-drafted-v1.js', '8 Nov Nancy: the empty pages are drafts; footer, pill, account card and edit-profile links to them hidden'),
            ('src/site-layers/tll-story-is-v1.js', '31 Oct Nancy: what a story looks like here (/submit, story end, empty search); approved, public'),
-           ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)')]
+           ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)'),
+           ('src/site-layers/tll-stories-count-v1.js', '10 Nov week one item 3: /stories headline count from tllCounts.s (the footer figure), cards until then; words to twenty, digits above'),
+           ('src/site-layers/tll-stories-strip-v1.js', '10 Nov week one item 5: the four-cover strip under the /stories search bar is hidden at parse time (it repeated the grid)'),
+           ('src/site-layers/tll-note-footer-v1.js', '10 Nov hygiene: the Tell the editor pill fades out while the footer is on screen')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
 CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
@@ -126,9 +130,9 @@ CORE = ['tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll
 # Staged code (UX_PUBLIC=false), so the public is unaffected; preview testers' signup_start counts cover those three pages only.
 CHUNKS = [
     ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
-                      'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1'], []),
+                      'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1', 'tll-note-footer-v1'], []),
     ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1'], []),
-    ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1'], []),
+    ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-stories-count-v1', 'tll-stories-strip-v1'], []),
     ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
     ('submit', r'/^\/submit$/', ['tll-submit-ux-v1', 'tll-linkout-preview-v1', 'tll-linkout-summary-v1', 'tll-submit-gallery-v1', 'tll-submit-long-v1',
                                  'tll-intake-v1', 'tll-story-is-v1'], ['tll-ux-v1']),

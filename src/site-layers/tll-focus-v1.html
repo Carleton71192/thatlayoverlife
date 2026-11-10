@@ -1,0 +1,16 @@
+<style id="tll-focus-v1">
+/* tll-focus-v1 (10 Nov 2026, week-one hygiene, item 9): one visible keyboard focus ring site-wide. Links, buttons, role=button and
+   role=link controls (the card bylines) and form fields show a 2px rose (#C8325B) outline with a 2px offset when focus comes from the keyboard (:focus-visible). A mouse or tap
+   focus (:focus without -visible) gets nothing from this style, so the ring never appears on click.
+   Why !important and the html body prefix: the site head code already carries two site-wide rings that fight each other, both
+   !important (tll-a11y-focus-v1: 3px #F0507A; tll-v9-chrome-v1: 3px ink plus a teal halo), and a third without (tll-craft-polish: 2px
+   #F0507A). A plain a:focus-visible rule here never paints. This rule, with !important and the id in :not() for specificity, wins over
+   those site-wide blocks and over the page-level rings on the home chapters (.h3 ..., tll-home3-v1) and the /stories cards and chips
+   (tll-s3-stories-v1, tll-lib-fixfirst-v1, tll-lib-chips-css-v1), and clears the 6px teal halo (box-shadow) the v9 chrome block adds.
+   Those blocks can come off the site and page code once this is live. The Tell the editor note (#tll-note) is left out and keeps its
+   own teal ring and drop shadow on its dark card (rose on ink is about 3:1, teal is clearer); the second rule restates that teal ring so
+   the site-wide !important blocks cannot paint bright rose on it. Nothing removed; no data-ms-* element touched. */
+html body :is(a,button,[role=button],[role=link],input,select,textarea):not(#tll-note *):focus-visible{outline:2px solid #C8325B !important;outline-offset:2px !important;box-shadow:none !important}
+html body #tll-note a:focus-visible,html body #tll-note button:focus-visible,html body #tll-note input:focus-visible,html body #tll-note textarea:focus-visible{outline:3px solid #00C9C8 !important;outline-offset:3px !important}
+html body #tll-note .tll-note-close:focus-visible{outline-offset:-3px !important}
+</style>

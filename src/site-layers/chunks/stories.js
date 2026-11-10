@@ -129,3 +129,32 @@ function run(){if(P==='/submit')submit();else if(/^\/stories\/[^/]+$/.test(P))st
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,900);});else setTimeout(run,900);
 setTimeout(run,3000);
 })();
+/* src/site-layers/tll-stories-count-v1.js */
+(function(){
+if(!/^\/stories\/?$/.test(location.pathname))return;
+var W=['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+function word(n){n=Math.max(0,Math.floor(+n||0));return n<=20?W[n]:String(n);}
+function fromCards(){var s={};[].forEach.call(document.querySelectorAll('.tll-lib-grid a.tll-lib-card[href*="/stories/"],a.tll-lib-card[href*="/stories/"]'),function(a){var h=(a.getAttribute('href')||'').split('?')[0].replace(/\/$/,'');if(h)s[h]=1;});return Object.keys(s).length;}
+function fromCounts(){var c=window.tllCounts;var n=c&&+c.s;return n>0?n:0;}
+var span=null,rest=null;
+function split(){
+  var h=document.querySelector('h1.tll-library-title');if(!h)return false;
+  span=h.querySelector('[data-tll-count]');if(span){rest=span.nextSibling;return true;}
+  var t=h.firstChild;while(t&&t.nodeType!==3&&!t.textContent.trim())t=t.nextSibling;if(!t||t.nodeType!==3)return false;
+  var m=t.nodeValue.match(/^(\s*)([A-Za-z-]+|\d+)(\s+stor(?:y|ies)\b)/);if(!m)return false;
+  span=document.createElement('span');span.setAttribute('data-tll-count','');span.textContent=m[2];
+  t.nodeValue=t.nodeValue.slice(m[1].length+m[2].length);h.insertBefore(span,t);rest=t;return true;}
+function put(n){if(!n||!span)return;var w=word(n);if(span.textContent!==w)span.textContent=w;
+  if(rest&&rest.nodeType===3){var v=rest.nodeValue,want=n===1?' story':' stories',m=v.match(/^\s+stor(?:y|ies)\b/);if(m&&m[0]!==want)rest.nodeValue=want+v.slice(m[0].length);}}
+function run(){if(!split())return;put(fromCounts()||fromCards());
+  document.addEventListener('tll:counts',function(){put(fromCounts());});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
+/* src/site-layers/tll-stories-strip-v1.js */
+(function(){
+if(!/^\/stories\/?$/.test(location.pathname))return;
+if(document.getElementById('tll-stories-strip-v1'))return;
+var s=document.createElement('style');s.id='tll-stories-strip-v1';
+s.textContent='html body .tll-ph-row,html body .tll-ph-row.tll-ph-row-below{display:none}';
+(document.head||document.documentElement).appendChild(s);
+})();
