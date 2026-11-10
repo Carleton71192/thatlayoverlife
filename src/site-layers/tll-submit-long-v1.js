@@ -20,7 +20,7 @@ function run(){
   var tm=0;ta.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(function(){sync(ta);},400);});
   if(ta.form)ta.form.addEventListener('submit',function(){sync(ta);},true);
   var p=document.createElement('p');p.className='tll-long-hint';p.textContent='Write as long as the story needs. Long stories arrive in full.';
-  p.style.cssText='margin:6px 0 0;font:400 13px/1.45 "IBM Plex Sans Condensed","Inter Tight",system-ui,sans-serif;color:#5F5A54';
+  p.style.cssText='margin:6px 0 0;font:400 13px/1.45 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#5F5A54';
   ta.insertAdjacentElement('afterend',p);sync(ta);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();

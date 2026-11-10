@@ -1,0 +1,44 @@
+<style id="tll-buttons-v1">
+/* 10 Nov 2026, week-one quick wins item 1 (claude/tll-fix-sequence-2026-11-09.md, Prompt 2): one button set for the whole site.
+   Three kinds, from the brief: filled rose (#D63859, white text), outlined (1.5px line in the text color: ink on light, cream on
+   dark), and a text link with its arrow. Every button: IBM Plex Sans Condensed 600, 16px, no tracking, no capitals, square corners
+   (border-radius 0; the 6px nav corners and the 999px pills are gone), 48px tall, 24px of side padding. Nav buttons are the compact
+   size (40px, 15px type) so the header keeps its height; the nav component itself is untouched, these are site-code overrides.
+   Applied to the classes found on the home page, /stories, a story page and /the-paw-passport (9 Nov inventory, review item 6):
+     filled rose   .h3-btn.h3-btn-rose, .tll-cta-rose, .tll-library-news-submit, .tllsb-btn, form .w-button (Send, Send it, Search),
+                   .tll-btn.tll-btn-primary (nav Sign up)
+     outlined      .h3-btn.h3-btn-line, .h3-btn.h3-btn-ink (was filled ink: the set has one fill, rose), .tll-cta-ghost,
+                   .tll-place-btn (Been here / Want to go), .tll-btn.tll-btn-ghost-rose (nav Share your story), .tll-btn (others)
+     text link     .h3-shelf-all, .tll-mg-people .tll-mg-all, .tll-link-arrow (for new layers)
+   Not buttons, so not touched: the filter chips (.h3-chip, .tll-shelf-chip, .tll-filter-chip-on), the Tell the editor pill, the
+   mobile menu button (.tllmm-btn), the cookie banner (#cc-main) and Memberstack's own modals. The home search form keeps its field
+   but loses its pill shape so the square button sits inside it. Every rule carries html body for specificity over page code. */
+html body .h3-btn,html body .tll-btn,html body form .w-button,html body .tll-cta-rose,html body .tll-cta-ghost,html body .tllsb-btn,html body .tll-library-news-submit,html body .tll-place-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;min-height:48px !important;height:auto !important;padding:0 24px !important;margin-top:0;margin-bottom:0;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-weight:600 !important;font-size:16px !important;line-height:1.1 !important;letter-spacing:0 !important;text-transform:none !important;text-decoration:none !important;border-radius:0 !important;border-width:1.5px !important;border-style:solid !important;cursor:pointer;white-space:nowrap}
+html body form .w-button{min-width:0}
+/* filled rose */
+html body .h3-btn.h3-btn-rose,html body .tll-cta-rose,html body .tll-library-news-submit,html body .tllsb-btn,html body form .w-button,html body .tll-btn.tll-btn-primary,html body .tll-nav-v1 a.tll-nav-signup{background:#D63859 !important;color:#FFFFFF !important;border-color:#D63859 !important}
+html body .h3-btn.h3-btn-rose:hover,html body .tll-cta-rose:hover,html body .tll-library-news-submit:hover,html body .tllsb-btn:hover,html body form .w-button:hover,html body .tll-btn.tll-btn-primary:hover,html body .tll-nav-v1 a.tll-nav-signup:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}
+/* outlined: the line and the text take the color of the words around them (ink on cream, cream on the dark sections and the nav) */
+html body .h3-btn.h3-btn-line,html body .h3-btn.h3-btn-ink,html body .tll-cta-ghost,html body .tll-place-btn,html body .tll-btn:not(.tll-btn-primary):not(.tll-nav-signup){background:transparent !important;color:inherit !important;border-color:currentColor !important;box-shadow:none !important}
+html body .h3-btn.h3-btn-line.h3-on-light,html body .tll-place-btn,html body .tll-btn.tll-btn-ghost-rose{color:#0A0B14 !important}
+html body .tll-cta-ghost,html body .tll-nav-v1 .tll-btn:not(.tll-nav-signup),html body .tll-nav-v1 a.tll-nav-pen-cta{color:#F7F1E8 !important;border-color:#F7F1E8 !important}
+html body .h3-btn.h3-btn-line:hover,html body .h3-btn.h3-btn-ink:hover,html body .tll-cta-ghost:hover,html body .tll-place-btn:hover,html body .tll-btn:not(.tll-btn-primary):not(.tll-nav-signup):hover,html body .tll-nav-v1 a.tll-nav-pen-cta:hover{background:color-mix(in srgb,currentColor 12%,transparent) !important}
+/* the story page's own layer (tll-st3-story-v1) shapes [data-tll-places] [data-tll-place-toggle] with !important, so the pair is repeated here with more weight */
+html body [data-tll-places] [data-tll-place-toggle].tll-place-btn,html body .tll-place-btn[data-tll-place-toggle]{min-height:44px !important;padding:0 18px !important;border-radius:0 !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;border:1.5px solid currentColor !important;background:transparent !important;color:#0A0B14 !important}
+html body .tll-place-btn[aria-pressed="true"],html body [data-tll-places] [data-tll-place-toggle].tll-place-btn[aria-pressed="true"]{background:#0A0B14 !important;color:#F7F1E8 !important;border-color:#0A0B14 !important}
+/* the nav pair: compact, square, Sign up filled, Share your story outlined; the component is untouched */
+html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:40px !important;padding:0 16px !important;font-size:15px !important;border-radius:0 !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important}
+/* the search buttons sit inside their fields: square field, square button. The home page's own rules carry an id (form:has(#Search-the-library))
+   and the news form and the note form carry !important, so these three repeat the set with enough specificity to win. */
+html body form.tll-home-search{border-radius:0 !important}
+html body form.tll-home-search input[type=submit].w-button,html body [data-h3="search"] form:has(#Search-the-library) input[type=submit].w-button{min-height:44px !important;height:auto !important;padding:0 20px !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;line-height:1.1 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important}
+html body form.tll-home-search input[type=submit].w-button:hover,html body [data-h3="search"] form:has(#Search-the-library) input[type=submit].w-button:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}
+html body [data-h3="news-form"] input[type=submit].w-button,html body #tll-note input[type=submit].w-button{min-height:48px !important;padding:0 24px !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important}
+html body [data-h3="news-form"] input[type=submit].w-button:hover,html body #tll-note input[type=submit].w-button:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}
+html.tllp-stories body .tll-library-filters .tll-lib-searchslot .tllsb-btn,html body .tllsb-btn.w-button{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important;padding:0 20px !important;min-height:44px !important}
+html.tllp-stories body .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover,html body .tllsb-btn.w-button:hover{background:#C8325B !important;color:#FFFFFF !important}
+/* the text link with its arrow: body face, 600, a rose underline; the arrow is in the text */
+html body .h3-shelf-all,html body .tll-mg-people .tll-mg-all,html body .tll-link-arrow{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;color:#0A0B14 !important;text-decoration:underline !important;text-decoration-color:#C8325B !important;text-decoration-thickness:2px !important;text-underline-offset:4px !important}
+html body .h3-shelf-all:hover,html body .tll-mg-people .tll-mg-all:hover,html body .tll-link-arrow:hover{color:#C8325B !important}
+@media(max-width:600px){html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{padding:0 12px !important;font-size:14px !important}}
+</style>

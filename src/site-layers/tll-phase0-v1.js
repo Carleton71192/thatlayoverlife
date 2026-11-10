@@ -20,10 +20,10 @@ function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstack
 
 /* Old addresses (Phase 0, Nancy approved 31 Oct). Real 301s belong in Webflow Site settings; until Nancy adds them this sends people on.
    /my-passport is a draft page now, so this runs on the 404 page it lands on. */
-/* 8 Nov: the empty pages are drafts (Nancy), so their addresses and /for-affiliates go to the nearest live page. /my-passport has its
-   Webflow 301 now and is out of this map. */
+/* 8 Nov: the empty pages are drafts (Nancy), so their addresses and /for-affiliates go to the nearest live page. 10 Nov: all of these
+   have Webflow 301s now (Nancy's combined import); this map stays as the fallback in case an import replaces the list again. */
 var MOVED={'/countries':'/destinations','/for-affiliates':'/travelers','/newsletter':'/','/creators':'/travelers','/awards':'/stories',
-  '/spotlight':'/travelers','/pets':'/the-paw-passport','/pillars/paw-passport':'/the-paw-passport'};
+  '/spotlight':'/travelers','/pets':'/the-paw-passport','/pillars/paw-passport':'/the-paw-passport','/my-passport':'/the-map'};
 if(MOVED[P]){location.replace(MOVED[P]+(location.search||''));}
 /* Noindex until they have content: /spotlight, /awards, /creators, /travel-wire (8 Nov: other publishers' headlines; kept, out of the index), contributor profiles with no stories yet and, from 1 Nov, pending pursuit
    hubs (/pursuits/{slug}) at parse time, before the pursuits chunk arrives; tll-stamps-v1 reuses this meta and lifts it when the hub is indexable. */

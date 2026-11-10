@@ -8,9 +8,9 @@
 var CSS=".ep-i[data-tll-help]{cursor:pointer;-webkit-tap-highlight-color:transparent}"+
 ".ep-i[data-tll-help]:focus-visible{outline:3px solid #C8325B;outline-offset:2px;border-radius:50%}"+
 ".tll-help-note{display:block;margin:8px 0 2px;padding:10px 12px;max-width:520px;border-left:3px solid #067A79;background:#E8F4F3;color:#0A0B14;"+
-"font:400 14px/1.45 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;letter-spacing:0;text-transform:none;border-radius:2px}"+
+"font:400 14px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:0;text-transform:none;border-radius:2px}"+
 ".tll-help-note[hidden]{display:none!important}"+
-".tll-tagline-hint{margin:6px 0 0;font:400 13px/1.45 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;color:#5F5A54}";
+".tll-tagline-hint{margin:6px 0 0;font:400 13px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}";
 var n=0,open=null;
 function close(){if(!open)return;open.note.hidden=true;open.mark.setAttribute('aria-expanded','false');open=null;}
 function wire(mark){

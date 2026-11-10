@@ -14,14 +14,14 @@ var LANGS=[['en','English'],['es','Español'],['pt-BR','Português (Brasil)'],['
 var CSS=".tll-sl{margin:0 0 22px}.tll-sl label{display:block}"+
 ".tll-sl-k{display:block;margin:0 0 6px;font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#0A0B14}"+
 ".tll-sl-k b{color:#C8325B;font-weight:600;margin-left:8px}"+
-".tll-sl select,.tll-sl input[type=text],.tll-sl textarea{width:100%;box-sizing:border-box;min-height:48px;padding:10px 12px;border:1.5px solid #E0DACE;border-radius:4px;background:#FDF9F3;font:400 16px/1.4 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;color:#0A0B14}"+
+".tll-sl select,.tll-sl input[type=text],.tll-sl textarea{width:100%;box-sizing:border-box;min-height:48px;padding:10px 12px;border:1.5px solid #E0DACE;border-radius:4px;background:#FDF9F3;font:400 16px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
 ".tll-sl textarea{min-height:160px}"+
 ".tll-sl select:focus,.tll-sl input:focus,.tll-sl textarea:focus{outline:3px solid #C8325B;outline-offset:1px}"+
-".tll-sl-help{margin:6px 0 0;font:400 14px/1.45 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;color:#5F5A54}"+
+".tll-sl-help{margin:6px 0 0;font:400 14px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}"+
 ".tll-sl-check{display:flex!important;gap:10px;align-items:flex-start;cursor:pointer;min-height:44px}"+
 ".tll-sl-check input{width:20px;height:20px;margin:2px 0 0;accent-color:#C8325B;flex:0 0 auto}"+
-".tll-sl-check span{font:600 16px/1.4 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;color:#0A0B14}"+
-".tll-sl details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font:600 15px/1.4 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif;color:#067A79}"+
+".tll-sl-check span{font:600 16px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
+".tll-sl details summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font:600 15px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#067A79}"+
 ".tll-sl [hidden]{display:none!important}";
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function guessFromBrowser(){var l=(navigator.languages&&navigator.languages[0])||navigator.language||'en';var b=l.toLowerCase().split('-')[0];

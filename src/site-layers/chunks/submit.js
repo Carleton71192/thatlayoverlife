@@ -29,7 +29,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
 if(!/^\/submit\/?$/.test(location.pathname))return;
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev/link-preview?url=';
-var CSS=".tll-lp{margin:10px 0 18px;border:1.5px solid #E0DACE;border-radius:4px;background:#FDF9F3;overflow:hidden;font:400 14px/1.45 'Inter Tight',system-ui,sans-serif;color:#0A0B14}"+
+var CSS=".tll-lp{margin:10px 0 18px;border:1.5px solid #E0DACE;border-radius:4px;background:#FDF9F3;overflow:hidden;font:400 14px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
 ".tll-lp[hidden]{display:none!important}"+
 ".tll-lp-wait,.tll-lp-err{padding:12px 14px;color:#5F5A54}"+
 ".tll-lp-err{color:#9B2747}"+
@@ -38,7 +38,7 @@ var CSS=".tll-lp{margin:10px 0 18px;border:1.5px solid #E0DACE;border-radius:4px
 ".tll-lp-img{display:block;width:100%;height:100%;min-height:112px;object-fit:cover;background:#E9E2D6}"+
 ".tll-lp-body{padding:12px 14px;min-width:0}"+
 ".tll-lp-site{font:600 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#067A79;margin:0 0 4px}"+
-".tll-lp-title{font:700 16px/1.25 'Inter Tight',system-ui,sans-serif;margin:0 0 4px;overflow-wrap:anywhere}"+
+".tll-lp-title{font:700 16px/1.25 'IBM Plex Sans Condensed',system-ui,sans-serif;margin:0 0 4px;overflow-wrap:anywhere}"+
 ".tll-lp-desc{margin:0;color:#3a3a3a;overflow-wrap:anywhere}"+
 ".tll-lp-foot{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding:10px 14px;border-top:1px solid #E0DACE;font-size:13px;color:#5F5A54}"+
 ".tll-lp-foot label{display:inline-flex;align-items:center;gap:8px;color:#0A0B14;cursor:pointer;min-height:32px}"+
@@ -176,7 +176,7 @@ var CSS=
 ".tll-cp label,.tll-cap-lab{display:block;font:600 13px/1.3 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#0A0B14}"+
 ".tll-cp small,.tll-cap-help{display:block;margin:2px 0 0;font:400 12px/1.4 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}"+
 /* autosave line */
-"html body .tllst-save{font:400 13px/1.45 'IBM Plex Sans Condensed','Inter Tight',system-ui,sans-serif!important;letter-spacing:0!important;text-transform:none!important;color:#5F5A54!important;margin-top:10px!important}"+
+"html body .tllst-save{font:400 13px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif!important;letter-spacing:0!important;text-transform:none!important;color:#5F5A54!important;margin-top:10px!important}"+
 "html body .tllst-save b{font-weight:600;color:#0A0B14}"+
 "html body .tllst-save .tll-sg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#067A79;margin-right:8px;vertical-align:1px}";
 
@@ -312,7 +312,7 @@ function run(){
   var tm=0;ta.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(function(){sync(ta);},400);});
   if(ta.form)ta.form.addEventListener('submit',function(){sync(ta);},true);
   var p=document.createElement('p');p.className='tll-long-hint';p.textContent='Write as long as the story needs. Long stories arrive in full.';
-  p.style.cssText='margin:6px 0 0;font:400 13px/1.45 "IBM Plex Sans Condensed","Inter Tight",system-ui,sans-serif;color:#5F5A54';
+  p.style.cssText='margin:6px 0 0;font:400 13px/1.45 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#5F5A54';
   ta.insertAdjacentElement('afterend',p);sync(ta);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();

@@ -19,8 +19,10 @@ History: v16 = v15 plus F1 (29 Oct 2026, Nancy: the old home hero shows for a bl
 head at once and moves to the end of the body when the page is parsed; the cover fills the hero as soon as the hero has arrived.
 v15 = v14 plus story photos on five pages and the home cover's Join free button. v14 = v13 plus the 28 Oct UX layer. v13 = v12 plus
 Consent Mode v2 at the very top. v12 = v11 plus stamps on the library cards and the letter (inside the cover layer). The story layer
-runs only on /stories/{slug}: its font link goes in the head and its style goes at the END of the body once the DOM is parsed, so it
-sits after the template's own head and footer styles in the cascade and wins every tie."""
+runs only on /stories/{slug}: its style goes at the END of the body once the DOM is parsed, so it sits after the template's own head
+and footer styles in the cascade and wins every tie. 10 Nov 2026 (type system): the story and cover layers no longer carry a Google
+Fonts link (Newsreader and Inter Tight are gone; Playfair Display and JetBrains Mono come from the site head, Plex from Webflow), so
+the build injects no font link; tll-buttons-v1 joins STYLES as the one button set."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -34,7 +36,8 @@ STYLES = [('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone h
           ('src/site-layers/tll-footer-wordmark-v1.html', 'tll-footer-wordmark-v1', 'footer wordmark matches the header'),
           ('src/site-layers/tll-tap-colors-v1.html', 'tll-tap-colors-v1', '/account Stories tab: ink text and a rose underline on hover and tap, no rose or teal text'),
           ('src/site-layers/tll-shelf-ring-v1.html', 'tll-shelf-ring-v1', 'home library rail: room for the avatar ring on phones'),
-          ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Newsreader italic'),
+          ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Playfair Display italic'),
+          ('src/site-layers/tll-buttons-v1.html', 'tll-buttons-v1', 'one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600'),
           ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields')]
 SCRIPTS = [('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar SETTINGS and CONTRIBUTIONS open their /account tab'),
            ('src/site-layers/tll-note-typing-v1.js', 'note button steps aside while typing'),
@@ -209,11 +212,11 @@ def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, read(f
 mag = read(MAG)
 mag_css = re.search(r'<style id="tll-mag-story-v1">\n(.*?)</style>', mag, re.S).group(1)
 mag_js = re.search(r'<script id="tll-mag-story-js-v1">\n(.*?)</script>', mag, re.S).group(1)
-mag_font = re.search(r'<link rel="stylesheet" href="([^"]+)">', mag).group(1)
+assert 'fonts.googleapis' not in mag and "'Newsreader'" not in mag_css and "'Inter Tight'" not in mag_css, 'the story layer carries no font request of its own (10 Nov 2026)'
 head = "/* tll-site-layers-v16: the core of the site layers, one registered site-wide header script. Built by src/site-layers/build-site-layers-v16.py.\n"
 head += "   In order: consent fallback, chunk loader, %d styles, then\n" % len(STYLES)
 head += ''.join('   core   %s (%s)\n' % (f, d) for f, d in SCRIPTS if os.path.basename(f)[:-3] in CORE)
-head += '   story  %s (the magazine story page: Newsreader, the byline in the head, the stamp on the photo; /stories/{slug} only)\n' % MAG
+head += '   story  %s (the magazine story page: Playfair Display 800 and Plex, the byline in the head, the stamp on the photo; /stories/{slug} only)\n' % MAG
 head += '   cover  %s (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)\n' % COVER
 head += '   first  %s (Consent Mode v2 defaults when the head consent tool is missing)\n' % CONSENT
 head += '   Styles: ' + ', '.join('%s (%s)' % (i, d) for _, i, d in STYLES) + '\n'
@@ -225,14 +228,13 @@ head += '   No data-ms-* element is touched. */\n'
 consent = layer(CONSENT)
 styles = "(function(){var L=%s;var h=document.head||document.documentElement;for(var i=0;i<L.length;i++){if(document.getElementById(L[i][0]))continue;var s=document.createElement('style');s.id=L[i][0];s.textContent=L[i][1];h.appendChild(s);}})();\n" % json.dumps([css(f, i) for f, i, _ in STYLES])
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
-         "if(!document.querySelector('link[href=\"'+%s+'\"]')){var f=document.createElement('link');f.rel='stylesheet';f.href=%s;(document.head||document.documentElement).appendChild(f);}\n"
          "function place(){var s=document.createElement('style');s.id='tll-mag-story-v1';s.textContent=%s;document.body.appendChild(s);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
-         "%s})();\n") % (json.dumps(mag_font), json.dumps(mag_font), json.dumps(mag_css), mag_js)
+         "%s})();\n") % (json.dumps(mag_css), mag_js)
 cov = read(COVER)
 cov_css = re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1)
 cov_js = re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1)
-cov_font = re.search(r'<link rel="stylesheet" href="([^"]+)">', cov).group(1)
+assert 'fonts.googleapis' not in cov and "'Newsreader'" not in cov_css and "'Inter Tight'" not in cov_css, 'the cover layer carries no font request of its own (10 Nov 2026)'
 OLD_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n})();"
 assert cov_js.count(OLD_RUN) >= 1
 NEW_RUN = ("/* F1: fill the hero as soon as it has arrived (its next sibling exists), before the first paint; the page-parsed event stays as the fallback. */\n"
@@ -242,12 +244,11 @@ NEW_RUN = ("/* F1: fill the hero as soon as it has arrived (its next sibling exi
            "document.addEventListener('DOMContentLoaded',function(){if(mo){mo.disconnect();mo=null;}run();});})();\n})();")
 cov_js_early = cov_js.replace(OLD_RUN, NEW_RUN, 1)
 cover = ("(function(){if(!/^\\/(index\\.html)?$/.test(location.pathname))return;if(document.getElementById('tll-mag-cover-v1'))return;\n"
-         "if(!document.querySelector('link[href=\"'+%s+'\"]')){var f=document.createElement('link');f.rel='stylesheet';f.href=%s;(document.head||document.documentElement).appendChild(f);}\n"
          "/* F1: the style goes in at once, so the cover is styled from the first paint; it moves to the end of the body once the page is parsed, as in v9 to v15. */\n"
          "var CS=document.createElement('style');CS.id='tll-mag-cover-v1';CS.textContent=%s;(document.head||document.documentElement).appendChild(CS);\n"
          "function place(){document.body.appendChild(CS);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
-         "%s})();\n") % (json.dumps(cov_font), json.dumps(cov_font), json.dumps(cov_css), cov_js_early)
+         "%s})();\n") % (json.dumps(cov_css), cov_js_early)
 core = (head + consent + LOADER + styles + ''.join(layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
 
 os.makedirs(CHUNK_DIR, exist_ok=True)
