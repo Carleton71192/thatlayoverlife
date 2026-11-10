@@ -14,3 +14,13 @@ The page script (Travelers v2), the site layers, the chips and their counts, the
 
 ## Notes for you
 - Ticking only Other reads "MAKES OTHER" here and on the profile page. If you want "MAKES OTHER THINGS" on both, that is one word in each place.
+
+## On the subdomain, 10 November 2026
+R1 to R3 are on https://that-layover-life.webflow.io/travelers, carried by the Webflow build session's subdomain publish (task f8e9f526, about 13:15 UTC) with its portfolio items and the staged site work. Not on www; that waits for your word.
+Checked on the subdomain:
+- The served page footer code matches src/pages/travelers/live-2026-11-10/after/page-footer.html byte for byte.
+- Zain's card carries photos, video and words, and the other seven people cards carry nothing.
+- Zain's card reads "MAKES PHOTOS · VIDEO · WORDS" under the one line, on a 375 px phone and at desktop width. The phone shows no sideways scroll.
+- /travelers?q=video shows Zain with "1 match." and "1 OF 8".
+- The screen reader label reads "Zain M. Makes photos, video, words. Open the profile".
+- The page has no failed requests or errors from site code.
