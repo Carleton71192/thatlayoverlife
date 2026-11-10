@@ -516,6 +516,8 @@ if(!PROJECTOR_ONLY){if(document.readyState==='loading')document.addEventListener
 /* src/site-layers/tll-pros-v1.js */
 (function(){
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev/pros';
+var ROUTE_LIVE=false,pv=/[?&]preview=wire(&|$)/.test(location.search);try{pv=pv||localStorage.getItem('tll-preview-wire')==='1';}catch(e){}
+if(!ROUTE_LIVE&&!pv)return;
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-pro-label{display:inline-block;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;border:1.5px solid #C8325B;border-radius:2px;padding:3px 8px;margin:0 0 12px}'+
 '.tll-pro-box{max-width:680px;margin:36px auto;padding:16px 18px;border:1px solid #E0DACE;border-left:3px solid #067A79;border-radius:4px;background:#fff;display:flex;gap:14px;align-items:center;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}'+

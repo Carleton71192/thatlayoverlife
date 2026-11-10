@@ -2,6 +2,8 @@
 /* src/site-layers/tll-series-v1.js */
 (function(){
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
+var ROUTES_LIVE=false,pv=/[?&]preview=wire(&|$)/.test(location.search);try{pv=pv||localStorage.getItem('tll-preview-wire')==='1';}catch(e){}
+if(!ROUTES_LIVE&&!pv)return;
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-wt-tape{display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 11px/1.3 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%);margin:0 0 10px;max-width:100%}'+
 '.tll-wt-card-tape{position:absolute;top:10px;left:10px;z-index:3;margin:0;font-size:10px;padding:5px 10px}'+

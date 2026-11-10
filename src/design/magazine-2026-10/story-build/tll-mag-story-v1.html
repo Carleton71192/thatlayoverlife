@@ -166,6 +166,10 @@ function run(){
     st.innerHTML=stampText(SVG,place).replace('{D}',esc(date)).replace('{A}',esc(arc));var fg=hero.querySelector('.tll-mg-fig');(fg||c).appendChild(st);}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+/* 10 Nov 2026 (Lighthouse baseline, landmark-one-main): the story template has no <main>. The story's own container,
+   article.tll-story-article, takes role="main" in place; nothing is wrapped or moved. Skipped when the page already has a main. */
+function main(){if(document.querySelector('main,[role="main"]'))return;var a=document.querySelector('article.tll-story-article');if(a)a.setAttribute('role','main');}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',main);else main();
 })();
 
 /* Captions under inline photos, from the photo's own CMS alt text (never invented). The photos are placed by a later script, so this watches for them. */

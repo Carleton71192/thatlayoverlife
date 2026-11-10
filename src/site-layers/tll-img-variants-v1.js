@@ -66,6 +66,8 @@ function guess(img){
   if(has(img,'tll-lib-img')){var it=img.closest&&img.closest('.tll-lib-grid>*');if(it&&!it.previousElementSibling)return LEAD;}
   for(i=0;i<BY.length;i++)if(has(img,BY[i][0]))return BY[i][1];
   for(i=0;i<BYP.length;i++)if(has(p,BYP[i][0]))return BYP[i][1];
+  /* review 10 Nov: classless CMS card photos on /destinations and contributor pages are about 300px wide on desktop, full column on phones */
+  if(!img.getAttribute('class')&&/^\/(destinations$|contributors\/)/.test(location.pathname.replace(/\/+$/,''))&&img.closest&&img.closest('.w-dyn-item'))return '(min-width:991px) 300px, calc(100vw - 32px)';
   var w=parseInt(img.getAttribute('width'),10);
   return w>0&&w<=160?w+'px':'100vw';
 }
@@ -88,9 +90,11 @@ function apply(img,sz,src,moved){
   if(mine&&img.getAttribute('data-tll-v')===src&&img.getAttribute('srcset')===ss){
     /* the same photo moved by a script (a story photo into the body column): its box changed, so its sizes follow while it is lazy and
        not yet fetched (a lazy image is fetched only near the screen, after the move) */
-    if(moved&&!sz&&lazy(img)&&!img.complete){var g=guess(img);if(g!==img.getAttribute('sizes'))img.setAttribute('sizes',g);}
+    if(moved&&!sz&&img.getAttribute('data-tll-vs')==null&&lazy(img)&&!img.complete){var g=guess(img);if(g!==img.getAttribute('sizes'))img.setAttribute('sizes',g);}
     return true;}
   var s=sz||guess(img);
+  /* review 10 Nov: sizes a layer passed survive the later move scan (they were reset to 100vw on /about, /for-expats, /stories) */
+  if(sz)img.setAttribute('data-tll-vs','');else img.removeAttribute('data-tll-vs');
   img.setAttribute('data-tll-v',src);img.setAttribute('sizes',s);img.setAttribute('srcset',ss);
   return true;
 }
@@ -98,7 +102,7 @@ function hero(img){
   if(!has(img,'tll-story-hero-img'))return false;
   if(img.getAttribute('data-tll-hero'))return true;img.setAttribute('data-tll-hero','1');
   if(!ms(img)){
-    if(!img.getAttribute('srcset')||img.getAttribute('data-tll-v')!=null){var ss=srcset(img.getAttribute('src'));
+    if(lazy(img)&&(!img.getAttribute('srcset')||img.getAttribute('data-tll-v')!=null)){var ss=srcset(img.getAttribute('src'));
       if(ss){img.setAttribute('data-tll-v',img.getAttribute('src'));img.setAttribute('sizes',guess(img));img.setAttribute('srcset',ss);}}
     img.setAttribute('loading','eager');img.setAttribute('fetchpriority','high');
   }
@@ -119,7 +123,7 @@ function scan(n){
 document.addEventListener('error',function(e){
   var i=e.target;if(!i||i.nodeName!=='IMG'||i.getAttribute('data-tll-v')==null||!i.getAttribute('srcset'))return;
   var src=i.getAttribute('src');if(i.currentSrc&&i.currentSrc===src)return;
-  i.setAttribute('data-tll-vx',src);i.removeAttribute('srcset');i.removeAttribute('sizes');i.removeAttribute('data-tll-v');
+  i.setAttribute('data-tll-vx',src);i.removeAttribute('srcset');i.removeAttribute('sizes');i.removeAttribute('data-tll-v');i.removeAttribute('data-tll-vs');
 },true);
 if(window.MutationObserver){
   new MutationObserver(function(recs){

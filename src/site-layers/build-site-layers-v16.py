@@ -101,7 +101,8 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-ads-v1.js', '31 Oct Nancy: AdSense, tastefully (story pages, library, countries only)'),
            ('src/site-layers/tll-stories-count-v1.js', '10 Nov week one item 3: /stories headline count from tllCounts.s (the footer figure), cards until then; words to twenty, digits above'),
            ('src/site-layers/tll-stories-strip-v1.js', '10 Nov week one item 5: the four-cover strip under the /stories search bar is hidden at parse time (it repeated the grid)'),
-           ('src/site-layers/tll-note-footer-v1.js', '10 Nov hygiene: the Tell the editor pill fades out while the footer is on screen')]
+           ('src/site-layers/tll-note-footer-v1.js', '10 Nov hygiene: the Tell the editor pill fades out while the footer is on screen'),
+           ('src/site-layers/tll-pwa-hold-v1.js', '10 Nov Lighthouse: the footer PWA client HEAD /sw.js is answered locally with a 404 until the PWA Worker is live (no console 404, nothing registered)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
 CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
@@ -121,13 +122,14 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #   lounge-labels   the /gallery label CSS, in place before the page script paints its labels.
 #   img-variants    (10 Nov, week one item 4) first in the core: its MutationObserver must see each img as the parser adds it, before a
 #                   lazy photo is fetched, and page-heroes, home-bands and the cover call its window.__tllImgV before they set a src.
+#   pwa-hold        (10 Nov) wraps window.fetch before the footer PWA client's window-load HEAD /sw.js, on every page.
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
         'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-lounge-labels-v1',
-        'tll-home-value-v1']
+        'tll-home-value-v1', 'tll-pwa-hold-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).

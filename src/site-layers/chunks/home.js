@@ -3,11 +3,14 @@
 (function(){
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var SOON=/^(moving guides|visa trackers|lifestyle hubs|city hubs)$/i;
+function unlink(a){var d=document.createElement('div');d.className=a.className.replace(/(^|\s)tll-rv(-in)?(?=\s|$)/g,' ').trim();
+  [].forEach.call(a.attributes,function(x){if(!/^(href|class|target|rel|download|hreflang|ping|referrerpolicy|type|aria-disabled|tabindex)$/i.test(x.name))d.setAttribute(x.name,x.value);});
+  while(a.firstChild)d.appendChild(a.firstChild);a.parentNode.replaceChild(d,a);return d;}
 function expats(){
-  var cards=[].filter.call(document.querySelectorAll('a.h3-ex-card'),function(a){var b=a.querySelector('b');return b&&SOON.test(b.textContent.trim());});
+  var cards=[].filter.call(document.querySelectorAll('a.h3-ex-card'),function(a){var b=a.querySelector('b');return b&&SOON.test(b.textContent.trim())&&![].some.call(a.attributes,function(x){return /^data-ms-/i.test(x.name);});});
   if(!cards.length||document.querySelector('.tll-soon-line'))return;
-  cards.forEach(function(a){a.removeAttribute('href');a.setAttribute('aria-disabled','true');a.setAttribute('data-tll-soon','');
-    var t=document.createElement('em');t.className='tll-soon-tag';t.textContent='Coming soon';a.insertBefore(t,a.firstChild);});
+  cards=cards.map(function(a){var d=unlink(a);d.setAttribute('data-tll-soon','');
+    var t=document.createElement('em');t.className='tll-soon-tag';t.textContent='Coming soon';d.insertBefore(t,d.firstChild);return d;});
   var form=document.getElementById('wf-form-The-Layover-Letter')||document.getElementById('h3-news-email');
   var line=document.createElement('p');line.className='tll-soon-line';
   line.innerHTML='Guides, visa dates and city hubs are on the way. <a href="#'+(form?form.id:'h3b-letter')+'">Get the Sunday letter and hear when they open →</a>';
@@ -33,7 +36,7 @@ function mapPage(){
   }).catch(function(){});
 }
 function css(){if(document.getElementById('tll-redesign-p0-v1'))return;var s=document.createElement('style');s.id='tll-redesign-p0-v1';
-  s.textContent='.h3-ex-card[data-tll-soon]{cursor:default}.h3-ex-card[data-tll-soon]:hover{transform:none}.tll-soon-tag{display:inline-block;align-self:flex-start;width:max-content;margin:0 0 8px;padding:2px 8px;border-radius:2px;background:#0A0B14;color:#FDF9F3;font:600 11px/1.5 "JetBrains Mono",ui-monospace,monospace;font-style:normal;letter-spacing:1.5px;text-transform:uppercase}'+
+  s.textContent='.h3-ex-card[data-tll-soon]{cursor:default}.h3-ex-card[data-tll-soon]:hover{transform:none;border-color:var(--h3-line,#E0DACE)}.tll-soon-tag{display:inline-block;align-self:flex-start;width:max-content;margin:0 0 8px;padding:2px 8px;border-radius:2px;background:#0A0B14;color:#FDF9F3;font:600 11px/1.5 "JetBrains Mono",ui-monospace,monospace;font-style:normal;letter-spacing:1.5px;text-transform:uppercase}'+
   '.tll-soon-line{margin:14px 0 0;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif}.tll-soon-line a{color:inherit;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}';
   document.head.appendChild(s);}
 function run(){if(P==='/'){css();expats();shelf();band();}if(P==='/the-map')mapPage();}

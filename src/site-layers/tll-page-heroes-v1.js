@@ -119,7 +119,7 @@ function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;re
 function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
   i.src=p.src;i.alt=p.alt||'';i.decoding='async';
   i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
-  i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset'))on();});
+  i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset')&&(!i.currentSrc||i.currentSrc===i.getAttribute('src')))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
 function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}

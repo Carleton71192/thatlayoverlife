@@ -2,9 +2,14 @@
    Story pages by a pro: a "From the Pros" label above the headline and an author box after the story with their pro line and
    ONE link, anchored on their name or brand, with the rel the Worker decided (ugc nofollow until trusted, sponsored when paid
    or hosted). Profiles of a pro: a PRO badge with their line. Pursuit hubs: a "From the Pros" row of the pros in that hub.
-   Nothing shows while no pro is published. No data-ms-* element touched; nav and footer untouched. */
+   Nothing shows while no pro is published. No data-ms-* element touched; nav and footer untouched.
+   10 Nov 2026 (Lighthouse baseline): the deployed Worker has no /pros route yet (it answers 404, logged as a console error on every
+   story page). Until it does, ROUTE_LIVE stays false and the layer sends no request at all. Set it to true once
+   GET /pros answers 200 on tll-travel-wire, then rebuild. ?preview=wire or localStorage tll-preview-wire=1 calls the route anyway. */
 (function(){
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev/pros';
+var ROUTE_LIVE=false,pv=/[?&]preview=wire(&|$)/.test(location.search);try{pv=pv||localStorage.getItem('tll-preview-wire')==='1';}catch(e){}
+if(!ROUTE_LIVE&&!pv)return;
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-pro-label{display:inline-block;font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#C8325B;border:1.5px solid #C8325B;border-radius:2px;padding:3px 8px;margin:0 0 12px}'+
 '.tll-pro-box{max-width:680px;margin:36px auto;padding:16px 18px;border:1px solid #E0DACE;border-left:3px solid #067A79;border-radius:4px;background:#fff;display:flex;gap:14px;align-items:center;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}'+
