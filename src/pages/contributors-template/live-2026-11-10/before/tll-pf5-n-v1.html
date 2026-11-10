@@ -1,0 +1,43 @@
+<style id="tll-pf5-n-v1-css">
+.pf5-partners{display:flex;flex-wrap:wrap;gap:8px;flex-basis:100%;width:100%}
+.pf5-tag{display:inline-block;margin:0 6px 0 4px;padding:1px 5px;border:1px solid currentColor;border-radius:2px;font-size:10px;line-height:1.4;letter-spacing:.12em;opacity:.8;vertical-align:middle}
+</style>
+<script id="tll-pf5-n-v1">
+/* TLL public profile, Nancy's notes N3, N7 and N9 (28 October 2026, handoff/CHANGE-LOG-EDIT-PROFILE-NOTES-2026-10-28.md).
+   An HtmlEmbed beside the data root. Runs after tll-pf5-profile-js-v1 (page footer code) and reads three more CMS-bound attributes on [data-pf5="root"]:
+   data-from-place (N3: "FROM AUSTIN, TEXAS" on the flags label), data-makes (N7: "MAKES PHOTOS · WORDS", only while
+   Make things is on) and data-partners (N9: one JSON value {store, links:[{name,url}], open}; the store and partner
+   links sit under the member's links with a PARTNER tag on each, and "OPEN TO PARTNERSHIPS" when the switch is on).
+   Never touches data-ms-* elements. */
+(function(){
+  if(window.__tllPf5n) return; window.__tllPf5n=1;
+  var D=document, root=D.querySelector('[data-pf5="root"]'); if(!root) return;
+  function A(n){ var v=root.getAttribute('data-'+n); return v==null?'':String(v).trim(); }
+  function on(k){ var f=D.querySelector('[data-pf5-flag="'+k+'"]'); return !!(f&&!f.classList.contains('w-condition-invisible')); }
+  function el(t,c,x){ var e=D.createElement(t); if(c) e.className=c; if(x!=null) e.textContent=x; return e; }
+  function url(u){ u=String(u||'').trim(); return /^https?:\/\/\S+$/i.test(u)?u:''; }
+  function bit(meta,t){ var l=meta.lastChild; if(l&&!(l.classList&&l.classList.contains('pf5-flags'))) meta.appendChild(el('span',null,'·')); meta.appendChild(el('span',null,t)); }
+  function partners(){ try{ var p=JSON.parse(A('partners')||'null'); return p&&typeof p==='object'&&!Array.isArray(p)?p:null; }catch(e){ return null; } }
+  function run(){
+    var meta=D.querySelector('[data-pf5="meta"]'), place=A('from-place').toUpperCase(), P=partners();
+    if(meta){
+      var g=meta.querySelector('.pf5-flags'), lab=g&&g.firstChild, n=g?g.querySelectorAll('img.pf5-flag').length:0;
+      if(lab) lab.textContent='FROM'+(place?' '+place:'')+(n>1?' · HAS LIVED IN':'');
+      else if(place) bit(meta,'FROM '+place);
+      var makes=A('makes').split(',').map(function(m){ return m.trim().toUpperCase(); }).filter(Boolean);
+      if(makes.length&&on('creators')) bit(meta,'MAKES '+makes.join(' · '));
+      if(P&&P.open===true) bit(meta,'OPEN TO PARTNERSHIPS');
+    }
+    var B=D.querySelector('[data-pf5="buttons"]'); if(!B||!P||B.querySelector('.pf5-partners')) return;
+    var list=[]; if(url(P.store)) list.push(['Store',url(P.store)]);
+    (Array.isArray(P.links)?P.links:[]).slice(0,3).forEach(function(l){ var u=url(l&&l.url), nm=String((l&&l.name)||'').trim(); if(u&&nm) list.push([nm,u]); });
+    if(!list.length) return;
+    var w=el('div','pf5-partners');
+    list.forEach(function(x){ var a=el('a','pf5-btn pf5-btn-line',x[0]); a.href=x[1]; a.target='_blank'; a.rel='sponsored noopener'; a.appendChild(el('span','pf5-tag','PARTNER')); var s=el('span',null,'↗'); s.setAttribute('aria-hidden','true'); a.appendChild(s); w.appendChild(a); });
+    var edit=B.querySelector('.pf5-edit'); if(edit) B.insertBefore(w,edit); else B.appendChild(w);
+  }
+  /* after tll-pf5-profile-js-v1 has drawn the hero, whichever loads first */
+  function later(){ setTimeout(run,0); }
+  if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',later); else later();
+})();
+</script>

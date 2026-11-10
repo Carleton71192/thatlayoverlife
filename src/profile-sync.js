@@ -234,8 +234,13 @@ export function coerce(slug, raw) {
       }))
       .filter((l) => STACK_TYPES.includes(l.t) && (l.t === 'contact' || /^https:\/\//i.test(l.url)))
       .slice(0, STACK_MAX);
-    if (!store && !links.length && !open && !stack.length) return null;
-    return JSON.stringify(stack.length ? { store, links, open, stack } : { store, links, open });
+    // M2 (10 Nov 2026, handoff/CHANGE-LOG-MAKES-PORTFOLIO-2026-11-10.md): one portfolio link, shown on the public page while Make things is on.
+    const portfolio = url(value.portfolio).slice(0, 200);
+    const keep = /^https:\/\/[^\s]+\.[^\s]+$/i.test(portfolio) && portfolio.length < 200 ? portfolio : '';
+    if (!store && !links.length && !open && !stack.length && !keep) return null;
+    const out = stack.length ? { store, links, open, stack } : { store, links, open };
+    if (keep) out.portfolio = keep;
+    return JSON.stringify(out);
   }
   if (slug === 'bio-long') {
     if (text === '') return null;

@@ -34,3 +34,14 @@ Not touched: /creators (drafted since 9 Nov), the Directory collection, Memberst
 
 1. Approve M1 to M3 as written, or change the words (label, note, SEE THE WORK).
 2. Should the box ask for the link before they can turn Make things on, or stay optional? Proposed: optional.
+
+## Approved 10 November 2026
+
+Nancy: "Approve M1 to M3 as written, keep it optional".
+
+## Written and on the subdomain (publish f8e9f526, 10 November 2026 about 13:15 UTC)
+
+- M1 and M2 on /edit-profile, M3 on the profile template, read back identical and served identical on https://that-layover-life.webflow.io. www unchanged.
+- The refusal message for a bad link is "One link only, with no spaces." (the other link boxes have none to reuse).
+- The Worker change is on branch worker/portfolio-on-b305b3b: the code live since 29 October plus this change only. A deploy from the working branch would also ship ten days of other Worker work (work trips, Download everything, stamps, new scheduled jobs), so it is not used. This session's permission check blocked the deploy; Nancy runs it. Until then the link saves to the member's account and shows in the box, but not on the public page.
+- Files and tests: src/pages/edit-profile/live-2026-11-10/README.md.
