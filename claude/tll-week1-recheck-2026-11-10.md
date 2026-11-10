@@ -7,9 +7,9 @@ Session: cloud Claude Code session_01GTTttGvX2VTwovAB2g1cLf. Prompt: claude/tll-
 | # | Item | Status | Notes |
 | --- | --- | --- | --- |
 | 1 | Type and component system | staged (layers) | 16.52.0: magazine cover and story layers on Playfair 800, Plex and JetBrains Mono; the Newsreader and Inter Tight requests gone; one button set (tll-buttons-v1: filled rose #D63859, outlined ink, text link; square corners). Webflow Styles remap and the Project settings font list stay Designer steps for Nancy (list below). |
-| 2 | Scroll-reveal | staged | tllReveal 1.2.0 registered and applied: 250 ms, from 0.6 and 8 px, 10% in view, reduced motion honored. Measured: landing opacity 0.6 (was 0.01), settled 300 to 420 ms (was 830 to 1,145). |
+| 2 | Scroll-reveal | staged (1.2.1) | tllReveal 1.2.0 registered and applied: 250 ms, from 0.6 and 8 px, 10% in view, reduced motion honored. Measured: landing opacity 0.6 (was 0.01), settled 300 to 420 ms (was 830 to 1,145). |
 | 3 | Counts | staged | /stories H1 now reads the same sitemap tally as the home label ("57 stories, all worth the detour."); home reads "6 STORIES HERE · 57 PUBLISHED SO FAR" with the new build. How "places" is counted is in claude/tll-p0-recheck-2026-11-09.md for Nancy to decide; logic unchanged. |
-| 4 | Images | investigating | Audit rerunning (the first agents ran out of credits). |
+| 4 | Images | staged | 16.53.0: CMS photos get a srcset from their smaller site-bucket copies; the cover and bands keep theirs; the story hero loads first. Scrolled image weight: /stories 31 MB to 3.8 MB on desktop and 10.6 MB on phones. Alt text unchanged; gallery alts still filename-like (plan in progress). |
 | 5 | Library | staged | Featured slot editor-picked (live since 10 Nov); search input 248 px at 390; the repeating photo strip (.tll-ph-row) hidden by 16.52.0. |
 | 6 | Index countries with stories | staged | 43 country items with a live story switched into the sitemap (Brazil and Argentina included), which also lifts Webflow's static noindex; 49 indexable country pages after publish. /countries 301 live. Footer Destinations link now /destinations (staged). |
 | 7 | Hubs for orphans | investigating | Build spec rerunning with a critic pass; only one diary is live after the 9 Nov privacy unpublishes. |
@@ -72,3 +72,4 @@ Image audit: no image on home, /stories, a story or /the-paw-passport gets a res
 
 - Brand kit v2.4 (handoff/TLL-BrandKit-v2.1.html, uploaded to Drive as TLL-BrandKit-v2.4.html): the week-one rules, checked against the code, with 29 older lines tagged. Rule 8: LinkedIn hashtags 5 to 8 (Nancy).
 - Cowork content prompt v1.3 (handoff/Cowork_ContentGen_Prompt_v1.3.md, uploaded to Drive): TLL synced from the kit; every other brand block unchanged.
+| Site scripts | tllsitelayersv16 16.53.0 (pin f23fa65) in place of 16.52.0; tllReveal 1.2.1 in place of 1.2.0 | 16.52.0; 1.2.0 |
