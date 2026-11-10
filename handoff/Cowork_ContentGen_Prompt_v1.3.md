@@ -4,7 +4,7 @@
 **Owner:** Nancy Carleton
 **Brand kits referenced:** Damgaard v12 (DS, DG, CR) · TBC [pending kit upload] · TLL v2.4 (10 November 2026) · Lub Bub [pending] · Nancy Carleton [pending]
 **Changes in v1.2:** Cowork now generates actual graphics (SVG, ready for PNG conversion) inline with every post. Brand-locked specs for all seven brands baked in. Sunday becomes review-and-schedule, not build.
-**Changes in v1.3:** TLL synced from Brand Kit v2.4. The interim TLL palette (Sky, Cream, Punchy red) is replaced by the kit palette. TLL fonts, logo, voice, never list, layout patterns and hard rules are synced; the tagline and the Midnight hex stay as the kit's working values until Nancy confirms them. The interim "Country count card" is replaced by a map count card that only carries a number Nancy gives in the session. No other brand block changed.
+**Changes in v1.3:** TLL synced from Brand Kit v2.4. The interim TLL palette (Sky, Cream, Punchy red) is replaced by the kit palette. TLL fonts, logo, voice, never list, layout patterns and hard rules are synced; the tagline and the Midnight hex stay as the kit's working values until Nancy confirms them. LinkedIn hashtags: 5 to 8 (Nancy, 10 November 2026). The interim "Country count card" is replaced by a map count card that only carries a number Nancy gives in the session. No other brand block changed.
 
 ---
 
@@ -248,7 +248,7 @@ Use these exact values. Do not approximate hex codes. Do not substitute fonts. D
 - Every post: a flag emoji and a hook in the first line, at least one named character with one defining detail (only a real person Nancy names in this session; otherwise ask), at least three sensory anchors, at least one parenthetical aside, a question that invites reader stories, a signed sign-off.
 - LinkedIn: 150 to 300 words, tightened, one reflective line. Structure: flag emoji and hook, brief context, the named character and the moment, one reflective line, Magnus if natural, the question, the sign-off, the hashtag set.
 - Hashtags: one your grandma would call you about. Never one that could appear on any travel brand's post.
-- Hashtag count, NANCY TO CONFIRM: the kit gives four counts (section 03: 5 to 10 with 2 or 3 unhinged; section 09: 2 or 3 unhinged; LinkedIn section: 5 to 8 with 1 or 2 unhinged; Master Content Rules: 3 to 5 with 1 or 2 unhinged). Until Nancy picks one, use 5 to 8 with 1 or 2 unhinged on LinkedIn, the channel rule, and note "Hashtag count pending Nancy" in the post's production notes.
+- Hashtag count on LinkedIn: 5 to 8, with 1 or 2 unhinged (Nancy, 10 November 2026). Other channels follow the kit's channel table.
 - US English. Dates in Copenhagen order with the month spelled out: "28 September 2026". Never "September 28, 2026", never numeric.
 - Overuse limits: "real" and "actually" at most once per post; "actually" only where it carries a joke. At most one triad per post.
 
