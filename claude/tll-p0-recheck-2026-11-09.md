@@ -115,7 +115,7 @@ Before any choice, an EEA visitor will also see requests to fonts.googleapis.com
 | --- | --- |
 | No Google requests before consent (Danish IP) | Not testable from this machine (outside the EEA). The exact test is above; the gate fails closed when the consent message is blocked, checked here. |
 | Cookie settings opens the panel | For EEA visitors it reopens Google's message (checked 7 Nov); no console error on click. Outside the EEA there is no message to reopen. |
-| /visits/* and /my-passport do not return 200 | /visits/nancy-carleton-luxembourg-city-2026 returns 404 (item unpublished). /my-passport returns 404 on 10 Nov: the 9 Nov redirect import replaced the 3 Nov rows, and the combined file docs/redirects/webflow-301-import-2026-11-09-combined.csv still needs importing (it carries all 13 redirects). |
+| /visits/* and /my-passport do not return 200 | /visits/nancy-carleton-luxembourg-city-2026 returns 404 (item unpublished). /my-passport returns 301 to /the-map since Nancy imported the combined 13-row redirect file on 10 Nov (all 13 checked live). |
 | Guide buyable from /the-paw-passport and the home page | Blocked on the Ko-fi product URL. |
 | /contact has no relay form | Element and head code removed, staged for the publish. |
 | Thailand stub gone from /stories | Gone from the library (57 cards) and every rail; the URL is 404; it leaves the sitemap at the next publish. |
@@ -124,7 +124,7 @@ Before any choice, an EEA visitor will also see requests to fonts.googleapis.com
 
 ## Nancy's steps to close Prompt 1
 
-1. Published 10 Nov (task aa5b0651). Still to do: import docs/redirects/webflow-301-import-2026-11-09-combined.csv in Site settings, Publishing, 301 redirects, then publish once, so /my-passport, /countries and the four Magnus diary addresses redirect again.
+1. Published 10 Nov (task aa5b0651); the combined 13-row redirect file imported and published by Nancy the same morning, all 13 checked live.
 2. Send the Ko-fi product URL for the €9 guide; the session wires both buttons and releases the layer.
 3. Designer: password-protect the Visits, Bookmarks, Comments, Photo submissions, Press applications and Pet notes templates (Pages panel, settings cog beside each template, Password).
 4. AdSense, Privacy and messaging: confirm the European regulations message is on and turn on Consent Mode support (the probe reported it NOT_CONFIGURED).
