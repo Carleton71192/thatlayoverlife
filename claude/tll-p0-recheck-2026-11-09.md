@@ -6,11 +6,11 @@ Session: cloud Claude Code session_01GTTttGvX2VTwovAB2g1cLf, prompt claude/tll-c
 
 | # | Item | Status | Evidence |
 | --- | --- | --- | --- |
-| 1 | Consent before ads | in progress | Decision stands (31 Oct): Google's certified message is the only consent UI, wired to Consent Mode v2; TLL's CookieConsent banner retired (its library left the footer 7 Nov). /cookies and /privacy rewritten to what loads. Verification from a Danish IP is Nancy's step; the test is written below. From this non-EEA machine Google reports gdprApplies false and GA4, Ahrefs and AdSense load at once, by design since 7 Nov. |
+| 1 | Consent before ads | done as far as the session can; two steps for Nancy | Decision stands (31 Oct): Google's certified message is the only consent UI, wired to Consent Mode v2; TLL's CookieConsent banner retired (its library left the footer 7 Nov). /cookies and /privacy rewritten to what loads. Verification from a Danish IP is Nancy's step; the test is written below. From this non-EEA machine Google reports gdprApplies false and GA4, Ahrefs and AdSense load at once, by design since 7 Nov. |
 | 2 | Footer Cookie settings | checked | `a[data-tll-cookie-prefs]` calls Google's showRevocationMessage; no console error on click. For a visitor outside the EEA, UK and Switzerland there is no message to reopen, so nothing shows (documented on /cookies). |
 | 3 | Marathon diary privacy | done | Item unpublished (404 live); flags and replacements below; sweep of all stories and pages in progress. |
 | 4 | Member data templates | done as far as the API allows | The one live Visits item is unpublished (/visits/nancy-carleton-luxembourg-city-2026 returns 404; the record stays as a draft; nothing on the site read the collection). Bookmarks, Comments, Photo submissions, Press applications and Pet notes have zero items, so no URL serves; Photo placements pages already 404. The API refuses to draft collection template pages, so Nancy password-protects the six templates in the Designer (Pages panel, settings cog beside each template, Password) to close them for good. |
-| 5 | Guide buyable | blocked on Nancy | The Ko-fi product URL is not in the project (only ko-fi.com/thatlayoverlife, the profile). Buttons prepared; the URL is needed. |
+| 5 | Guide buyable | blocked on the Ko-fi product URL | Not in the project (only the profile ko-fi.com/thatlayoverlife exists). The wiring is written and syntax-checked in src/site-layers/tll-kofi-v1.js: set the URL, add the layer to CORE, release. The home "Moving guides" card already reads Coming soon, has no href and no hover, so nothing to change there. |
 | 6 | Contact relay and Thailand stub | done (staged) | Relay section and its head code removed on /contact (three mailto doors kept); stub unpublished (404 live; it leaves the sitemap at the next publish). Featured slot is editor-picked: tick "Featured in the library" on one story in the CMS; the lead card moves to the front; with no tick the newest story with a photo leads as before. |
 | C | Counts | traced; two fixes staged, two for Nancy | Home chapter label ("6 stories here · 58 published so far") and the shelf note already bind to the footer's tllCounts and the DOM, nothing typed. The home JSON-LD founder entry carried "87 countries, 7 continents marathoned, 464 cities": removed (staged). The footer component's raw HTML still carries typed 87 / 6 / 1 / 1 (the script rewrites them on screen; a Designer blanking is Nancy's step). The map header 89 countries and 90 of 249 places come from the Worker record by the 19 Oct count rule (claude/COUNT-RULES-2026-10-19.md): places = every ISO 3166-1 entry plus Kosovo with Lived or Stayed, Antarctica included, layovers excluded; the list has 250 entries while the counter divides by 249. 87 is the old hand-typed figure, 88 the bio's. The footer's 54 is story coverage, a different number by design. The "58 published" count reads the sitemap, which still lists the unpublished stub until the next publish. |
 
@@ -108,3 +108,26 @@ The map counts places by the rule in claude/COUNT-RULES-2026-10-19.md: every ent
 ## Consent test, corrected expectation (from the critic's re-run)
 
 Before any choice, an EEA visitor will also see requests to fonts.googleapis.com, fonts.gstatic.com and ajax.googleapis.com (Webflow's font loader), plus one pagead2.googlesyndication.com/pagead/osd.js?fcd=true fetched by the consent message itself. Those are not a fail. A fail is googletagmanager.com, google-analytics.com, analytics.ahrefs.com, adsbygoogle.js or doubleclick.net before the click. With the consent message blocked, nothing gated loads at all (the gate fails closed). One more thing for Nancy in AdSense, Privacy and messaging: the probe reported Consent Mode support as NOT_CONFIGURED; turn it on so Google's own tags read the choice.
+
+## Acceptance, 9 and 10 November
+
+| Check | Result |
+| --- | --- |
+| No Google requests before consent (Danish IP) | Not testable from this machine (outside the EEA). The exact test is above; the gate fails closed when the consent message is blocked, checked here. |
+| Cookie settings opens the panel | For EEA visitors it reopens Google's message (checked 7 Nov); no console error on click. Outside the EEA there is no message to reopen. |
+| /visits/* and /my-passport do not return 200 | /visits/nancy-carleton-luxembourg-city-2026 returns 404 (item unpublished). /my-passport returns 301 to /the-map again since Nancy re-imported the combined redirect file on 9 Nov. |
+| Guide buyable from /the-paw-passport and the home page | Blocked on the Ko-fi product URL. |
+| /contact has no relay form | Element and head code removed, staged for the publish. |
+| Thailand stub gone from /stories | Gone from the library (57 cards) and every rail; the URL is 404; it leaves the sitemap at the next publish. |
+| /support H1 and the New Orleans label | H1 "Six doors. Pick yours." in ink; the New Orleans card reads NEW ORLEANS, LOUISIANA. |
+| Kilimanjaro search | Desktop and 390px: the one Kilimanjaro story is the only card left; the input is 248px wide on a phone. |
+
+## Nancy's steps to close Prompt 1
+
+1. Publish the site (the staged /contact, /cookies, /privacy, /stories and home JSON-LD changes go live; the sitemap drops the three unpublished URLs).
+2. Send the Ko-fi product URL for the €9 guide; the session wires both buttons and releases the layer.
+3. Designer: password-protect the Visits, Bookmarks, Comments, Photo submissions, Press applications and Pet notes templates (Pages panel, settings cog beside each template, Password).
+4. AdSense, Privacy and messaging: confirm the European regulations message is on and turn on Consent Mode support (the probe reported it NOT_CONFIGURED).
+5. Run the Danish-IP consent test above and send the Network list if anything from Google besides fonts and the message loads before the click.
+6. Designer, when convenient: blank the four typed footer numbers; decide the privacy edits on the marathon recap and the story lines listed above.
+7. Search Console: request removal of the three dead URLs (the stub, the Copenhagen recap, the Tokyo pre-race page) once the sitemap no longer lists them.
