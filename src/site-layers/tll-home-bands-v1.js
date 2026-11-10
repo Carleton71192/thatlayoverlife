@@ -22,7 +22,11 @@ function swap(){
     var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band'))return;
     var p=B[k],i=f.querySelector('img'),c=f.querySelector('figcaption');if(!i||!c)return;
     f.setAttribute('data-tll-band','1');
-    i.removeAttribute('srcset');i.removeAttribute('sizes');i.src=p.src;i.alt=p.alt;i.width=p.w;i.height=p.h;i.style.objectPosition=p.pos;
+    /* 10 Nov 2026 (week one item 4): the band no longer drops to the 2400 px original on every screen. Its srcset comes from the photo's
+       site-bucket twin variants (tll-img-variants-v1, full width), written before src so the photo is fetched once; with no variants
+       known the srcset is cleared and the original loads as before. */
+    var V=window.__tllImgV;if(!(V&&V.apply(i,'100vw',p.src))){i.removeAttribute('srcset');i.removeAttribute('sizes');}
+    i.src=p.src;i.alt=p.alt;i.width=p.w;i.height=p.h;i.style.objectPosition=p.pos;
     var a=document.createElement('a');a.href=p.href;a.appendChild(document.createTextNode(p.label+' · '));
     var b=document.createElement('b');b.textContent=p.by;a.appendChild(b);c.textContent='';c.appendChild(a);
   });

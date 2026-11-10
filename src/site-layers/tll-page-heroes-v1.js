@@ -15,29 +15,33 @@ if(!PAGES[path])return;
 var C='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/';
 var P={
  ibiza:{src:C+'6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg',alt:'Sunset over the sea from a beach bar in Ibiza, the sun low behind a thatched roof',place:'Ibiza, Spain',by:'Chesney Lish',href:'/stories/spain-madrid-wedding-ibiza',pos:'50% 88%'},
- jaguar:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',alt:'A jaguar swimming across a river in the Pantanal',place:'Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild',pos:'42% 60%',nov:1},
+ jaguar:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',alt:'A jaguar swimming across a river in the Pantanal',place:'Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild',pos:'42% 60%'},
  antarctica:{src:C+'6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg',alt:'The sun over a snowfield and mountains on a landing in Antarctica',place:'Antarctica',by:'Nancy Carleton',href:'/stories/antarctica-marathon',pos:'60% 50%'},
  fitzroy:{src:C+'6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg',alt:'The granite peaks of Fitz Roy above green hills in Patagonia',place:'Patagonia',by:'Nancy Carleton',href:'/stories/patagonia-w-trek-christmas-new-year',pos:'62% 40%'},
- sortsol:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',alt:'A murmuration of starlings at sunset during Sort Sol in Denmark',place:'Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark',pos:'42% 40%',nov:1},
+ sortsol:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',alt:'A murmuration of starlings at sunset during Sort Sol in Denmark',place:'Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark',pos:'42% 40%'},
  bulgaria:{src:C+'6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg',alt:'A yellow building and wisteria on a quiet tree-lined street in Bulgaria',place:'Bulgaria',by:'Nancy Carleton',href:'/stories/balkans-ev-road-trip-twelve-countries',pos:'50% 45%'},
  montenegro:{src:C+'6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg',alt:'The Montenegro coast at sunset from a wooded hillside',place:'Montenegro',by:'Nancy Carleton',href:'/stories/montenegro-budva-switchback-roads',pos:'50% 50%'},
  lapaz:{src:C+'6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg',alt:'A sea lion swimming toward the camera off La Paz',place:'La Paz, Mexico',by:'Nancy Carleton',href:'/stories/la-paz-mexico-whale-sharks',pos:'40% 50%'},
  ghana:{src:C+'6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg',alt:'Three children sitting together on a bench in Ghana',place:'Ghana',by:'Nancy Carleton',href:'/stories/ghana-easter-everyone-wears-white',pos:'55% 50%'},
- magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%',nov:1}
+ magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%'}
 };
-/* Loading (1 Nov 2026). Webflow's responsive variants ({name}-p-500.jpg and up) exist per file, not per bucket (13 Oct export manifest:
-   nov marks a file listed there without variants: jaguar, Sort Sol, Magnus), so a lazy tile below the fold tries a variant sized for its box
-   and puts the original back on the first error, since a browser does not try another candidate after a 404. The variant name is lowercase
-   even for a .JPG original, as Webflow writes it. An eager image keeps the original: a failed try would only delay a photo painted first.
-   The two photos painted above the fold (/the-map backdrop, /for-expats side tile) also ask for high priority and are preloaded from here,
-   which in the site bundle runs in the head, before the body is parsed; on /for-expats only from 1100px up, where the tile sits beside the
-   copy, since below that it is placed after the copy and is often outside the first screen. */
-function variant(p,w,eager){return w&&!eager&&!p.nov&&/^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(p.src)?p.src.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):p.src;}
-if(path==='/the-map'||(path==='/for-expats'&&window.matchMedia&&window.matchMedia('(min-width:1100px)').matches)){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=P.sortsol.src;pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
+/* Loading (10 Nov 2026, week one item 4; was 1 Nov). Each photo carries a srcset of its Webflow variants from tll-img-variants-v1
+   (window.__tllImgV, in the core ahead of this layer): CMS files take their site-bucket twin's -p-500 to -p-2000, and the table there knows
+   which widths exist, so jaguar, Sort Sol and Magnus (marked as having none until now) get theirs too. The 1 Nov try of {CMS URL}-p-{w}
+   always failed (the CMS bucket has no variants) and cost a 403 per tile before the original. src stays the original, the fallback; a
+   missing variant drops the srcset and the original loads once. The two photos painted above the fold (/the-map backdrop, /for-expats
+   side tile) ask for high priority and are preloaded from here with the same srcset and sizes, so the preload and the img are one
+   request; on /for-expats only from 1100px up, where the tile sits beside the copy, since below that it is after the copy. */
+var V=window.__tllImgV||null;
+var SZ={row:'(max-width:767px) 46vw, 220px',faces:'(min-width:1200px) 141px, 64px',map:'100vw',side:'(min-width:1100px) 320px, 100vw',strip:'(max-width:767px) 72vw, 25vw',band:'(max-width:767px) 72vw, 340px'};
+function preload(p,sz){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=p.src;var ss=V&&V.srcset(p.src);if(ss){pl.setAttribute('imagesrcset',ss);pl.setAttribute('imagesizes',sz);}
+  pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
+if(path==='/the-map')preload(P.sortsol,SZ.map);
+else if(path==='/for-expats'&&window.matchMedia&&window.matchMedia('(min-width:1100px)').matches)preload(P.sortsol,SZ.side);
 var FACES=[
  {name:'Chesney Lish',href:'/contributors/chesney-lish',src:C+'6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg',pos:'50% 25%'},
  {name:'Barzy Adam',href:'/contributors/barzy-adam',src:C+'6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg',pos:'50% 30%'},
- {name:'Magnus',href:'/pets/magnus-waffles',src:P.magnus.src,pos:'50% 30%',nov:1},
+ {name:'Magnus',href:'/pets/magnus-waffles',src:P.magnus.src,pos:'50% 30%'},
  {name:'Nancy Carleton',href:'/contributors/nancy-carleton',src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg',pos:'50% 35%'}
 ];
 var CSS=
@@ -108,16 +112,18 @@ var CSS=
 ".tll-ph-band .tll-ph-three::-webkit-scrollbar{display:none}.tll-ph-band .tll-ph-three>.tll-ph-tile{flex:0 0 72%;scroll-snap-align:start}}";
 
 function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
-/* w: the Webflow variant width to try for a lazy image (0, or an eager image, keeps the original); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
+/* sz: the sizes for the srcset (the box width); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
+   loading and the srcset are written before src, so the browser asks for one file.
    loading is always written: the site footer (tll-core-v2) marks every img without one as lazy at DOMContentLoaded and on load, which would
    catch the two eager photos. */
-function img(p,eager,w,pri){var i=document.createElement('img');var src=variant(p,w,eager);i.src=src;i.alt=p.alt||'';i.decoding='async';i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);
-  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}var tried=false;
-  i.addEventListener('load',on);i.addEventListener('error',function(){if(!tried&&src!==p.src){tried=true;i.src=p.src;return;}on();});
+function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
+  i.src=p.src;i.alt=p.alt||'';i.decoding='async';
+  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset'))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
-function frame(p,eager,w,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,w,pri));return f;}
+function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
-function tile(p,eager,w,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,w,pri));a.appendChild(cap(p));return a;}
+function tile(p,eager,sz,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,sz,pri));a.appendChild(cap(p));return a;}
 
 function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
   /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
@@ -126,28 +132,28 @@ function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)
   if(document.querySelector('.tll-ph-row'))return;
   if(/[?&]q=[^&]/.test(location.search))return;
   var bar=document.querySelector('section.tllsb-bar');
-  /* tiles are about 220px wide on desktop and 46vw on phones (360px at 2x), so -p-500 covers both; under the search bar the row is lazy and tries it, in the hero (no bar) it is eager and keeps the originals */
-  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,500));});
+  /* tiles are about 220px wide on desktop and 46vw on phones; under the search bar the row is lazy, in the hero (no bar) it is eager */
+  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,SZ.row));});
   if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
 function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
-  /* above the fold, so eager and the original file, but low priority: the h1 is the page's largest paint, not these 64px circles */
-  FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos,nov:f.nov},true,0,'low'));
+  /* above the fold, so eager, but low priority: the h1 is the page's largest paint, not these 64px circles */
+  FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true,SZ.faces,'low'));
     var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
   inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
 function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
-  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,0,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
+  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
   var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
 function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
-  /* 320px cells, 72vw on phones (about 560px at 2x): -p-800 */
-  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,800));});hero.appendChild(s);}
+  /* a quarter of the width, 72vw on phones */
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);}
 function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
   var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
-  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,0,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
+  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
   var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
   var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
-  /* roughly 340px columns, 72vw on phones: -p-800 */
-  var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,800));});band.appendChild(three);
+  /* roughly 340px columns, 72vw on phones */
+  var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,SZ.band));});band.appendChild(three);
   dir.insertAdjacentElement('afterend',band);}
 
 function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}

@@ -1,5 +1,6 @@
 /* tll-site-layers-v16: the core of the site layers, one registered site-wide header script. Built by src/site-layers/build-site-layers-v16.py.
    In order: consent fallback, chunk loader, 11 styles, then
+   core   src/site-layers/tll-img-variants-v1.js (10 Nov week one item 4: CMS photos get a srcset from their site-bucket twin variants, the story hero loads first)
    core   src/components/member-bar/tll-account-hash-tabs-v1.js (member bar SETTINGS and CONTRIBUTIONS open their /account tab)
    core   src/site-layers/tll-note-typing-v1.js (note button steps aside while typing)
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
@@ -56,19 +57,131 @@ var C=[['site',/^/,'sha384-9ULtKo8HR6zktJWt0Wihybu52d0nP3YjwXF/3X4VTnLsbKtEYY+zW
 ['submit',/^\/submit$/,'sha384-vecbBUt+ELSUum+uEwPfQ36sTT0zPkbkh/6dZAwlLyEFC+16V3PwZAEQ6boRpTOA','submit-preview','sha384-0ZrABamYYX6228IlzPMq40VTCaj9DNpykXMO7FsD9rSl6U2ROYr/qw+QdF3BRUm9'],
 ['share-photos',/^\/share-photos$/,'sha384-qHMKKfwgA5R2Pth9khIH+rAu6ptChFg7821QVc304wshp1qfJTO8cWj5HNbRcjiH'],
 ['edit-profile',/^\/edit-profile/,'sha384-yJNKXMkFEN8QX2X+oNINDpRhZzX9wNguoLNiac0TIj/tTwc8tlhJ51sArMdoawrp','edit-profile-preview','sha384-ZqZmatLSojBvn7ytJMp0BtVGkeUJTVPVMT+EzHjGuaNT1OmuuFZlY1MjrlWRuolV'],
-['profile',/^\/contributors\/[^/]+$/,'sha384-KLTnLayISnue/GEWpmveUuWaNKzhojVz+uJu0Q2gGQahc/fz7brWXmX8nKwCnFMw','profile-preview','sha384-IeI7U8CNSQBIHxusnM8PVwzcLvS8Tf/1qtTANma+7XbHQkImWCT87WGn1o7A1Rap'],
+['profile',/^\/contributors\/[^/]+$/,'sha384-dLA9oOZrJMrtn80G0MYv0EjapOErXZaCNKMOulpF9oKUVLunKGHdgWZCOCOA1p7y','profile-preview','sha384-jhRPHzIdBZfYZvLfcxkrMqcDrhk43X+F/0slQZKki6dam4c68UcFF3gVm3IK0zNT'],
 ['account',/^\/account$/,'sha384-UwOT6QlhJSkRcbRvJnRDuCZWEEsdI8wI/FyQO3vQe3Kcet1ySXowkOEM2XqA0br/','account-preview','sha384-poM/NLAHiWEyb3QhM8H9ZjSsGfzOxlHYDC3Y1gSOESQft+UFENNhwZMXB7R1kLq9'],
 ['map',/^\/the-map$/,'sha384-kRWCuCcoGVoehlwbU4v9AGgK6C9cAcW8FXsZc4rIsfOEPspK4XXA+obJNxr0tNqn'],
 ['for-expats',/^\/for-expats$/,'sha384-mQ1Q2tzCP0sfVoeE1wct5pTMlWR2y1RompqvLtKEDTVJNTunVFM02HU1uM2BSfO1','for-expats-preview','sha384-1CmShDVfQ3vaqZ0aUWaNzgo8YV60T/gmYeO8Sgr87sTDrbrP5CjHcD4v7Gm/Th0u'],
 ['travelers',/^\/travelers$/,'sha384-5M2lOzRkwk4MHu694JhLwBdeOv3KzqAlSeSu381ASnbCt8xt+uz4ZShDYu0R60Pk'],
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-jv0rCVfZ9J2rY9m40ysbl4aaFlwjZaPJw0egOZqBtIrnIZPr+1X6aFaoatFB5cDR'],
-['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-aqxqW5w1tO5rIyq4a/ardEEzLGgFx3kDJcrPgbXC11xxKsrhzInxIyz6XGdgYzp5','pets-preview','sha384-uRv5csO6s19dcqfemtoO1fd3Yf8JhD7RTMhzWwxlcz+GBpOBdP8WKtdY++UXA0mY'],
+['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-jLmlDXxUsccwHiOZ4QJ28LnKU8jXhoLBg2Af4z3+fTW3AMVH7FK7wvHLGXwuMkgl','pets-preview','sha384-KxgTNUXNcTmHLwi6l1u/x9NN7vANXxZWqROwxcnGY7QvskvJsTJxGx0Ez21KEd3b'],
 ['countries',/^\/countries\/[^/]+$/,'sha384-wjF/6Jz7sd6qNH2Th5/LyTBydqCsWzsG+2hdHH93ydQAve04lzmO2YdQI7PVhaer'],
 ['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj']],h=document.head||document.documentElement;
 for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}
   var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}
 })();
 (function(){var L=[["tll-nav-phone-v1", "/* 26 Oct 2026: one button shape in the header on phones (Nancy's 23 Oct critique, point 1; prototype 3.4 header).\n   Square corners and one 44px height for Sign up, the account button and MENU, and a single row from 360px up (320px phones wrap to two tidy rows).\n   Only the links are restyled. No data-ms-* element is touched (the round avatar letter stays as Memberstack sets it). */\n@media (max-width:767px){\nbody .tll-nav-v1 .tll-nav-main{padding:6px 0 !important}\nbody .tll-nav-v1 .tll-nav-inner{align-items:center !important;column-gap:8px !important}\nbody .tll-nav-v1 .tll-nav-logo{flex:0 1 auto;min-width:0}\nbody .tll-nav-v1 .tll-nav-cta-row{margin-left:auto !important;gap:6px !important;align-items:center !important}\nbody .tll-nav-v1 .tll-nav-signin{min-height:44px !important;display:inline-flex !important;align-items:center !important;padding:0 4px !important;margin-right:-8px !important}\nbody .tll-nav-v1 .tll-nav-signup,body .tll-nav-v1 .tll-nav-account-link,body .tll-nav-v1 .tllmm-btn{box-sizing:border-box !important;height:44px !important;min-height:44px !important;border-radius:0 !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}\nbody .tll-nav-v1 .tll-nav-signup{padding:0 14px !important;font-size:13px !important}\nbody .tll-nav-v1 .tll-nav-account-link{padding:0 12px 0 8px !important;border:1.5px solid #F7F1E8 !important;gap:8px !important}\nbody .tll-nav-v1 .tllmm-btn{padding:0 12px !important;min-width:68px !important;border:1.5px solid #F7F1E8 !important;font-size:12px !important;letter-spacing:2px !important}\n}\n@media (max-width:399px){\nbody .tll-nav-v1 .tll-nav-logo{zoom:.86}\nbody .tll-nav-v1 .tll-nav-signup{padding:0 10px !important}\nbody .tll-nav-v1 .tllmm-btn{padding:0 8px !important;min-width:60px !important;letter-spacing:1px !important}\n}\n"], ["tll-contrast-v1", "/* 26 Oct 2026: three text-contrast failures found by an axe check (WCAG AA needs 4.5:1 for small text).\n   1. Header \"Sign up\" and \"Share your story\": cream or white on #F0507A (3.07 and 3.42). Now white on #D63859 (4.6), the\n      look most pages already had; only the home page on desktop used the lighter rose.\n   2. /stories \"Share your story\" button (.tll-cta-rose): cream on teal #00A9A4 (2.59). Now white on #D63859 (4.6).\n   3. Rose words on light backgrounds (.tll-text-rose, #F0507A on cream, 3.07). Now #C8325B (4.64), the site rule for rose\n      text on light. Rose on dark sections keeps the bright #F0507A. Links only; no data-ms-* element is touched. */\nbody .tll-nav-v1 a.tll-nav-signup,body .tll-nav-v1 a.tll-nav-pen-cta{background-color:#D63859 !important;color:#FFFFFF !important}\nbody .tll-nav-v1 a.tll-nav-signup:hover,body .tll-nav-v1 a.tll-nav-pen-cta:hover{background-color:#C8325B !important;color:#FFFFFF !important}\nbody a.tll-cta-rose{background-color:#D63859 !important;color:#FFFFFF !important}\nbody a.tll-cta-rose:hover{background-color:#C8325B !important}\nbody .tll-text-rose{color:#C8325B}\nbody :is(.tll-section-dark,.tll-nav-v1,footer,.tll-footer-v1,.tll-story-hero,.tlldx-hero,.tllpx-hero,.tllec-hero,.tll-support-hero,.tll-auth-section,[data-h3-hero]) .tll-text-rose{color:#F0507A}\n"], ["tll-note-phone-v1", "/* 26 Oct 2026: the floating \"Tell the editor\" pill covered page content on phones (the /account tab strip, the Languages\n   field on /edit-profile). Prototype 3.4 already set the answer: under 960px the pill is a 44px round button with the dot\n   only (the words stay for screen readers). It also steps aside while a form field outside the note has focus. */\n@media (max-width:959px){\nbody #tll-note .tll-note-pill{font-size:0 !important;gap:0 !important;padding:0 !important;width:44px !important;height:44px !important;min-height:44px !important;justify-content:center !important;letter-spacing:0 !important}\nbody #tll-note .tll-note-pill::before{width:10px !important;height:10px !important}\n}\nhtml.tll-typing #tll-note:not([data-open=\"true\"]){display:none !important}\n"], ["tll-photos-tap-v1", "/* 26 Oct 2026, Nancy on an iPhone: \"Tap to add photo doesn't work\" on /share-photos. The file input sat hidden inside the drop\n   zone (1px, clipped, pointer-events none) and relied on the label passing the tap on, which iPhone browsers do not always do.\n   Now the input itself covers the whole drop zone, fully transparent, so a tap lands on the real file input on every phone.\n   Drag and drop and the keyboard still work; the focus ring shows on the drop zone. */\nbody [data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop{position:relative !important}\nbody [data-tll-form=share-photos] fieldset.tll-pen-fieldset label.tll-photos-drop input.tll-photos-drop-input{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;min-height:0 !important;margin:0 !important;padding:0 !important;border:0 !important;opacity:0 !important;clip-path:none !important;overflow:hidden !important;cursor:pointer !important;pointer-events:auto !important;z-index:2 !important;font-size:16px !important;display:block !important}\nbody [data-tll-form=share-photos] label.tll-photos-drop:has(> input.tll-photos-drop-input:focus-visible){outline:3px solid #F0507A;outline-offset:2px}\n"], ["tll-home-coords-v1", "/* 26 Oct 2026, Nancy: the coordinates on the home photo were half off the screen on her phone. The 20 Oct coordinates embed\n   (h3-hero-coords-v3) sets them to position:static under 900px; the phone hero layer moves them top-right but never reset that,\n   so they sat flush against the right edge and the last letters were cut. Top-right, 16px in from the edges, on phones. */\n@media (max-width:767px){\nbody:not(.tll-none) [data-h3-hero] .h3-hero-coords{position:absolute !important;margin:0 !important;top:16px !important;right:16px !important;left:auto !important;max-width:calc(100% - 32px) !important;white-space:nowrap !important;overflow:visible !important;text-overflow:clip !important;text-align:right !important}\n}\n"], ["tll-footer-wordmark-v1", "/* 26 Oct 2026, Nancy: \"What's going on with the logo\" (site footer). The footer link was plain text \"that LAYOVER LIFE\" in\n   generic classes: a big sans \"that\", a small rose \"LAYOVER LIFE\". Now it is the header wordmark at footer size:\n   italic serif \"that\", Playfair \"LAYOVER\", rose \"LIFE.\". The words are rebuilt by tll-footer-wordmark-v1.js. */\nbody footer a.tll-fwm{display:inline-flex !important;align-items:baseline !important;gap:6px !important;white-space:nowrap !important;text-decoration:none !important;color:#F8F2E6 !important;font-size:inherit !important;line-height:1 !important;margin:0 0 4px !important}\nbody footer a.tll-fwm .tll-fwm-that{font:italic 400 18px/1 'DM Serif Display','Playfair Display',Georgia,serif !important;opacity:.85;color:#F8F2E6 !important;letter-spacing:0 !important;text-transform:none !important}\nbody footer a.tll-fwm .tll-fwm-block{font:800 24px/1 'Playfair Display',Georgia,serif !important;letter-spacing:.01em !important;color:#F8F2E6 !important;text-transform:uppercase !important}\nbody footer a.tll-fwm .tll-fwm-life{color:#F0507A !important;font:inherit !important}\n"], ["tll-tap-colors-v1", "/* 26 Oct 2026, Nancy on the /account Stories tab: \"Not a fan of the light blue on hover click.\"\n   The row title's hover was bright rose (#F0507A) on cream, which fails contrast (3.07:1). The site's contrast layer then recolors it\n   from its palette, and the result on an iPhone long-press was a pale teal. The magazine rule instead: text stays ink, the underline\n   goes rose (#C8325B on light). Same for the Edit and Share links in that tab. No element or script changes; CSS only, after the\n   script's own styles by specificity. */\nbody .tms-row .tms-t:hover,body .tms-row .tms-t:focus-visible,body .tms-row:hover .tms-t,body .tms-row:active .tms-t{color:#0A0B14 !important;text-decoration:underline;text-decoration-color:#C8325B;text-decoration-thickness:2px;text-underline-offset:4px}\nbody .tms-act:hover,body .tms-act:focus-visible{color:#0A0B14 !important;text-decoration-color:#C8325B;text-decoration-thickness:2px;text-underline-offset:3px}\nbody .tms-act:focus-visible{outline-color:#C8325B}\nbody .tms-row:hover,body .tms-row:active{border-color:#0A0B14 !important}\n@media(hover:none){body .tms-row:hover .tms-t,body .tms-row .tms-t:hover{text-decoration-color:transparent}body .tms-row:active .tms-t{text-decoration-color:#C8325B}}\n"], ["tll-shelf-ring-v1", "/* 26 Oct 2026, Nancy on the home library on her phone: \"The user circles are getting cut off.\" The 40px avatar's rose ring is a\n   box-shadow drawn outside its box, and on phones the story rail (.h3-track) is the scroll container, so it clips the ring at its\n   left and top edges on the first card. Three pixels of padding on those sides, pulled back by the same negative margin, keep every\n   card exactly where it was and give the ring room. Desktop (the pinned rail) was never clipped. CSS only. */\n.h3-shelf:not(.is-pinned) .h3-track{padding-left:3px;padding-top:3px;margin-left:-3px;margin-top:-3px;scroll-padding-left:3px}\n"], ["tll-masthead-v1", "/* 26 Oct 2026: the masthead line in the footer, in italic. The script tll-masthead-v1.js writes the text.\n   10 Nov 2026: Playfair Display 800 italic (the type system; the site head loads it on every page, so the Georgia fallback that\n   showed on every page but the home and story pages is gone with the Newsreader request). */\nfooter p.tll-masthead{font-family:'Playfair Display',Georgia,serif !important;font-style:italic;font-weight:800 !important;font-size:18px !important;line-height:1.4 !important;letter-spacing:0 !important;text-transform:none !important;max-width:34ch;text-wrap:pretty}\n"], ["tll-buttons-v1", "/* 10 Nov 2026, week-one quick wins item 1 (claude/tll-fix-sequence-2026-11-09.md, Prompt 2): one button set for the whole site.\n   Three kinds, from the brief: filled rose (#D63859, white text), outlined (1.5px line in the text color: ink on light, cream on\n   dark), and a text link with its arrow. Every button: IBM Plex Sans Condensed 600, 16px, no tracking, no capitals, square corners\n   (border-radius 0; the 6px nav corners and the 999px pills are gone), 48px tall, 24px of side padding. Nav buttons are the compact\n   size (40px, 15px type) so the header keeps its height; the nav component itself is untouched, these are site-code overrides.\n   Applied to the classes found on the home page, /stories, a story page and /the-paw-passport (9 Nov inventory, review item 6):\n     filled rose   .h3-btn.h3-btn-rose, .tll-cta-rose, .tll-library-news-submit, .tllsb-btn, form .w-button (Send, Send it, Search),\n                   .tll-btn.tll-btn-primary (nav Sign up)\n     outlined      .h3-btn.h3-btn-line, .h3-btn.h3-btn-ink (was filled ink: the set has one fill, rose), .tll-cta-ghost,\n                   .tll-place-btn (Been here / Want to go), .tll-btn.tll-btn-ghost-rose (nav Share your story), .tll-btn (others)\n     text link     .h3-shelf-all, .tll-mg-people .tll-mg-all, .tll-link-arrow (for new layers)\n   Not buttons, so not touched: the filter chips (.h3-chip, .tll-shelf-chip, .tll-filter-chip-on), the Tell the editor pill, the\n   mobile menu button (.tllmm-btn), the cookie banner (#cc-main) and Memberstack's own modals. The home search form keeps its field\n   but loses its pill shape so the square button sits inside it. Every rule carries html body for specificity over page code. */\nhtml body .h3-btn,html body .tll-btn,html body form .w-button,html body .tll-cta-rose,html body .tll-cta-ghost,html body .tllsb-btn,html body .tll-library-news-submit,html body .tll-place-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;min-height:48px !important;height:auto !important;padding:0 24px !important;margin-top:0;margin-bottom:0;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-weight:600 !important;font-size:16px !important;line-height:1.1 !important;letter-spacing:0 !important;text-transform:none !important;text-decoration:none !important;border-radius:0 !important;border-width:1.5px !important;border-style:solid !important;cursor:pointer;white-space:nowrap}\nhtml body form .w-button{min-width:0}\n/* filled rose */\nhtml body .h3-btn.h3-btn-rose,html body .tll-cta-rose,html body .tll-library-news-submit,html body .tllsb-btn,html body form .w-button,html body .tll-btn.tll-btn-primary,html body .tll-nav-v1 a.tll-nav-signup{background:#D63859 !important;color:#FFFFFF !important;border-color:#D63859 !important}\nhtml body .h3-btn.h3-btn-rose:hover,html body .tll-cta-rose:hover,html body .tll-library-news-submit:hover,html body .tllsb-btn:hover,html body form .w-button:hover,html body .tll-btn.tll-btn-primary:hover,html body .tll-nav-v1 a.tll-nav-signup:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}\n/* outlined: the line and the text take the color of the words around them (ink on cream, cream on the dark sections and the nav) */\nhtml body .h3-btn.h3-btn-line,html body .h3-btn.h3-btn-ink,html body .tll-cta-ghost,html body .tll-place-btn,html body .tll-btn:not(.tll-btn-primary):not(.tll-nav-signup){background:transparent !important;color:inherit !important;border-color:currentColor !important;box-shadow:none !important}\nhtml body .h3-btn.h3-btn-line.h3-on-light,html body .tll-place-btn,html body .tll-btn.tll-btn-ghost-rose{color:#0A0B14 !important}\nhtml body .tll-cta-ghost,html body .tll-nav-v1 .tll-btn:not(.tll-nav-signup),html body .tll-nav-v1 a.tll-nav-pen-cta{color:#F7F1E8 !important;border-color:#F7F1E8 !important}\nhtml body .h3-btn.h3-btn-line:hover,html body .h3-btn.h3-btn-ink:hover,html body .tll-cta-ghost:hover,html body .tll-place-btn:hover,html body .tll-btn:not(.tll-btn-primary):not(.tll-nav-signup):hover,html body .tll-nav-v1 a.tll-nav-pen-cta:hover{background:color-mix(in srgb,currentColor 12%,transparent) !important}\n/* the story page's own layer (tll-st3-story-v1) shapes [data-tll-places] [data-tll-place-toggle] with !important, so the pair is repeated here with more weight */\nhtml body [data-tll-places] [data-tll-place-toggle].tll-place-btn,html body .tll-place-btn[data-tll-place-toggle]{min-height:44px !important;padding:0 18px !important;border-radius:0 !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;border:1.5px solid currentColor !important;background:transparent !important;color:#0A0B14 !important}\nhtml body .tll-place-btn[aria-pressed=\"true\"],html body [data-tll-places] [data-tll-place-toggle].tll-place-btn[aria-pressed=\"true\"]{background:#0A0B14 !important;color:#F7F1E8 !important;border-color:#0A0B14 !important}\n/* the nav pair: compact, square, Sign up filled, Share your story outlined; the component is untouched */\nhtml body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:40px !important;padding:0 16px !important;font-size:15px !important;border-radius:0 !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important}\n/* the search buttons sit inside their fields: square field, square button. The home page's own rules carry an id (form:has(#Search-the-library))\n   and the news form and the note form carry !important, so these three repeat the set with enough specificity to win. */\nhtml body form.tll-home-search{border-radius:0 !important}\nhtml body form.tll-home-search input[type=submit].w-button,html body [data-h3=\"search\"] form:has(#Search-the-library) input[type=submit].w-button{min-height:44px !important;height:auto !important;padding:0 20px !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;line-height:1.1 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important}\nhtml body form.tll-home-search input[type=submit].w-button:hover,html body [data-h3=\"search\"] form:has(#Search-the-library) input[type=submit].w-button:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}\nhtml body [data-h3=\"news-form\"] input[type=submit].w-button,html body #tll-note input[type=submit].w-button{min-height:48px !important;padding:0 24px !important;font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important}\nhtml body [data-h3=\"news-form\"] input[type=submit].w-button:hover,html body #tll-note input[type=submit].w-button:hover{background:#C8325B !important;border-color:#C8325B !important;color:#FFFFFF !important}\nhtml.tllp-stories body .tll-library-filters .tll-lib-searchslot .tllsb-btn,html body .tllsb-btn.w-button{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:15px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;background:#D63859 !important;color:#FFFFFF !important;border:1.5px solid #D63859 !important;border-radius:0 !important;padding:0 20px !important;min-height:44px !important}\nhtml.tllp-stories body .tll-library-filters .tll-lib-searchslot .tllsb-btn:hover,html body .tllsb-btn.w-button:hover{background:#C8325B !important;color:#FFFFFF !important}\n/* the text link with its arrow: body face, 600, a rose underline; the arrow is in the text */\nhtml body .h3-shelf-all,html body .tll-mg-people .tll-mg-all,html body .tll-link-arrow{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:16px !important;font-weight:600 !important;letter-spacing:0 !important;text-transform:none !important;color:#0A0B14 !important;text-decoration:underline !important;text-decoration-color:#C8325B !important;text-decoration-thickness:2px !important;text-underline-offset:4px !important}\nhtml body .h3-shelf-all:hover,html body .tll-mg-people .tll-mg-all:hover,html body .tll-link-arrow:hover{color:#C8325B !important}\n@media(max-width:600px){html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{padding:0 12px !important;font-size:14px !important}}\n"], ["tll-focus-v1", "/* tll-focus-v1 (10 Nov 2026, week-one hygiene, item 9): one visible keyboard focus ring site-wide. Links, buttons, role=button and\n   role=link controls (the card bylines) and form fields show a 2px rose (#C8325B) outline with a 2px offset when focus comes from the keyboard (:focus-visible). A mouse or tap\n   focus (:focus without -visible) gets nothing from this style, so the ring never appears on click.\n   Why !important and the html body prefix: the site head code already carries two site-wide rings that fight each other, both\n   !important (tll-a11y-focus-v1: 3px #F0507A; tll-v9-chrome-v1: 3px ink plus a teal halo), and a third without (tll-craft-polish: 2px\n   #F0507A). A plain a:focus-visible rule here never paints. This rule, with !important and the id in :not() for specificity, wins over\n   those site-wide blocks and over the page-level rings on the home chapters (.h3 ..., tll-home3-v1) and the /stories cards and chips\n   (tll-s3-stories-v1, tll-lib-fixfirst-v1, tll-lib-chips-css-v1), and clears the 6px teal halo (box-shadow) the v9 chrome block adds.\n   Those blocks can come off the site and page code once this is live. The Tell the editor note (#tll-note) is left out and keeps its\n   own teal ring and drop shadow on its dark card (rose on ink is about 3:1, teal is clearer); the second rule restates that teal ring so\n   the site-wide !important blocks cannot paint bright rose on it. Nothing removed; no data-ms-* element touched. */\nhtml body :is(a,button,[role=button],[role=link],input,select,textarea):not(#tll-note *):focus-visible{outline:2px solid #C8325B !important;outline-offset:2px !important;box-shadow:none !important}\nhtml body #tll-note a:focus-visible,html body #tll-note button:focus-visible,html body #tll-note input:focus-visible,html body #tll-note textarea:focus-visible{outline:3px solid #00C9C8 !important;outline-offset:3px !important}\nhtml body #tll-note .tll-note-close:focus-visible{outline-offset:-3px !important}\n"]];var h=document.head||document.documentElement;for(var i=0;i<L.length;i++){if(document.getElementById(L[i][0]))continue;var s=document.createElement('style');s.id=L[i][0];s.textContent=L[i][1];h.appendChild(s);}})();
+/* src/site-layers/tll-img-variants-v1.js */
+(function(){
+if(window.__tllImgV)return;
+var H='https://cdn.prod.website-files.com/',SITE='69d6145cf421c777840c1e25',W=[500,800,1080,1600,2000];
+/* The last six hex digits of each twin's id, grouped by how many variants it has (0 to 4); every other twin has all five. */
+/*TABLE*/var T={0:'18c14062300e62a66787095ebc8683f600baf8ce14',1:'0198b807e83f0c8dd90f01e11f64a0215a0023764124db7831a08633818334db0335690b36c0283d2d9d3fe51e3fe8db41f7da458a1245ac464beadf4c9b234c9bc750ff3653a18a551c3e5acf487c2d597d6e087d9a6e7fce8b817a158c5ca58c5d708e866a9d88b8a66e82b0e948bfc72bceaf18e2bd06e3bee3e51d60e6d68ee72224f24e74f43f38f7718af857c1f9ccc7fa1e85',2:'001dfb037114052c2107a2720d359f0f0b2e1009c1102dcc1035d8135b1e136ef516046c17e95c1f21571f645420f5382159b421f42923012023013534260034c391354df235675e37d85c37f5f9382d3f382e6239312e3b7ca93f928843115a4418ed4d9cf04fafba4fafea50c10c50c128530fa2530fc0531fc154acbf54ad1655b1ed55b42c55b651581e515857b55fb4b864b8bf6602d968e9786b3b446bae946baed46c6e6c72e7b17d58a185671586d0c688b2da8fe65a91904894866e95ae7796014598c2f79d9ce09e45a39e76a9a1162fa678baa9b77eab99f2ab9a8bafccc6afcdaab844e4c6953ccbe17ecc283dcca402cfdba9cfdbbecfdbd3d13568d1ba6ad524ccd57c2ad91a6bda1ab4de66e5de71f2e290f9e6e704e6e801e6f062f12d34f24e2df303c3f339e6f33c27f74124f814caf814dff8335af833ddf89cdef9627bfb4bfbfc5a45fe713dff3224ff98a5ffec99',3:'01913d023f5a032a12032a800348a8048bfe064c9106e83907395007396508bbee0a59f80b3cfd0b3d4e0bc9330bc9540bfa330c1fb70c6b300c74500c74650db1330db2bb0e3d4e0e3d820f0b190f50fe0f6a160f6d2c0f73a20fc529100a06102db7141053175c201a66571b0d2d1db5871eb40f1f1d4521594e216f1421765921f3282212ba229a6522b02d23baea249faa24a04724f7cb2539cd2633a32633b82969eb29b1a02a09262acb7c2adcd62b604a2b9b182c0d952dfde82e989c2edc6b304e4c30670431954c31dc5d33811c3542da3544cf354505354522368c26377d8837f98f3888b139964a3a531c3a567d3b5e3b3ef6a73fd3093fd3b841de77448422448eb04a14534b08c34b507c4e96ac50aed250ff2151196351d7875476b459e01a5b0dae5b9f285cb9235d20d65ddb215eada85f04e15fb3a85fc6fc649fda6602c466b4c668c68568e2686b129b6b7a296c6dfd6c6e03729d0b75dc4a76356d76d1d2776d93776dd777f3137860d578951078981179b85b79d3cc7a23717ac8d27ac90a7c2e0f7dd03c7df7fe7e0c457fcea080d05784d16584d5168741e489128c8b51978bea868bebb18ce2878d612b8db7338eb05e9189ec91af9494868396dce5973a089a94ee9a9b329ac1179dce889e309d9ec0d49fd9249fe774a076bba11611a287e6a35076a4445daa6698abcab9ac7431af0ee2b1bdb2bbb440bc541fbe0d90c268f2c4377ec47b10c4a981c56705c70f00c954c0c9affccbdb97cbf1c7cd33cecd4d95cd53cfcdb6abceaf3cceaf51cf3b40cf3c01cf3c55cf715cd0a761d0c047d0c162d4b6d1d4b6e6d50005d52ea8d9e153da685add5fa8dd6084dd7861ddd108de52a3deb450debc8bdfe7e6dfe822dfe847e0e61ce10f79e2bcb4e2bce0e31152e3361be70065e902a5e902e2e916dfeb31aded9740ed976aed97f4eeed4befc57cf000d2f29319f2932ef29343f31807f3183df43aedf6603df7a934f7b458f8216ef8df87fb731afbba1afbfee0fc40c4fdcd47fe1098',4:'00922e01bbd70225e804f01c0ae5680b4cec0bb7520bfa120c1fcc0cf92c13e2ac1f2d3823761526d7062846612ac2012e521633146f332f9035b9c436ad2d3a29f8426aeb4351af465be347866e479cc34a09344bd3534e816850ce4751255451d772530f835acf5e5bb8065f050d602ca862101767612b6781ac68a6da6a2fc36b215a6e6d9872a49874814475db4f7c82d57db4597db87a7e1ed584c43e85d35d892be18be8d38beaa9914aec91afdb98270e9a42bc9a8d50a077a7ab9c43ac71c8ac722dafa073b1daf6b4593ab48a9db8f4a0b92154c43793c947c2cc83decf71cfd0c155d40880d438d1d49fbbd4e542d56a4ad71eded8a9c7da0551db18e5dc5947dea16ddfeff7e093a4e116ace8941ceeed0befddecf213e6fd661c'};/*/TABLE*/
+var N={};(function(){for(var c in T){var s=T[c];for(var i=0;i+6<=s.length;i+=6)N[s.substr(i,6)]=+c;}})();
+var RC=/^https:\/\/cdn\.prod\.website-files\.com\/6a0b29c6d081332e921900d8\/[0-9a-f]{24}_(?:[0-9a-f]{24}_)*([0-9a-f]{24})_([^\/?#]+)\.(?:jpe?g|png)$/i;
+var RS=/^https:\/\/cdn\.prod\.website-files\.com\/69d6145cf421c777840c1e25\/([0-9a-f]{24})_([^\/?#]+)\.(?:jpe?g|png)$/i;
+function twin(u){
+  if(typeof u!=='string')return null;var m=RC.exec(u),cms=!!m;
+  if(!m){m=RS.exec(u);if(!m||/-p-\d+$/.test(m[2]))return null;}
+  var id=m[1].toLowerCase(),n=N[id.slice(-6)];
+  if(n==null){if(!cms)return null;n=W.length;}
+  if(!n)return null;
+  return {base:H+SITE+'/'+id+'_'+m[2].replace(/%25/g,'%'),n:n};
+}
+function srcset(u){
+  var t=twin(u);if(!t)return '';var s=[];
+  for(var i=0;i<t.n;i++)s.push(t.base+'-p-'+W[i]+'.jpg '+W[i]+'w');
+  /* the variants stop below the photo's own width, so the original is the next size up */
+  if(t.n<W.length)s.push(u+' '+W[t.n]+'w');
+  return s.join(', ');
+}
+/* one URL for a box w device pixels wide (for code that writes a single src): the smallest variant that covers it, else the original */
+function pick(u,w){
+  var t=twin(u);if(!t)return u;
+  for(var i=0;i<t.n;i++)if(W[i]>=w)return t.base+'-p-'+W[i]+'.jpg';
+  return t.n<W.length?u:t.base+'-p-'+W[t.n-1]+'.jpg';
+}
+/* sizes by class (the img's own class, else its parent's); the library lead card (first in the grid) is wider from 768px up */
+var BY=[['tll-story-hero-img','(min-width:1280px) 1200px, calc(100vw - 32px)'],['tll-lib-byline-img','24px'],['st3-author-img','44px'],['st3-cc-img','60px'],
+  ['tll-lib-img','(min-width:1280px) 385px, (min-width:768px) 47vw, calc(100vw - 48px)'],['tll-related-img','(min-width:991px) 840px, calc(100vw - 40px)'],
+  ['tll-gallery-img','(min-width:900px) 300px, (min-width:600px) 33vw, 50vw'],['tll-paw-ex-img','(min-width:767px) 280px, calc(100vw - 32px)']];
+var BYP=[['h3-card-by','40px'],['h3-card-ph','(min-width:991px) 26vw, 80vw'],['h3-pc','(min-width:1440px) 220px, (min-width:991px) 15vw, 44vw'],
+  ['tll-mg-chip','36px'],['h3-c5-ph','(min-width:991px) 50vw, 100vw']];
+var INLINE='(min-width:991px) 880px, calc(100vw - 48px)';
+var LEAD='(min-width:1280px) 700px, (min-width:991px) 55vw, (min-width:768px) 95vw, calc(100vw - 48px)';
+function has(e,c){return !!e&&(' '+(e.getAttribute('class')||'')+' ').indexOf(' '+c+' ')>=0;}
+function guess(img){
+  var i,p=img.parentElement;
+  if(img.closest&&img.closest('.tll-inline-photo'))return INLINE;
+  if(has(img,'tll-lib-img')){var it=img.closest&&img.closest('.tll-lib-grid>*');if(it&&!it.previousElementSibling)return LEAD;}
+  for(i=0;i<BY.length;i++)if(has(img,BY[i][0]))return BY[i][1];
+  for(i=0;i<BYP.length;i++)if(has(p,BYP[i][0]))return BYP[i][1];
+  var w=parseInt(img.getAttribute('width'),10);
+  return w>0&&w<=160?w+'px':'100vw';
+}
+function ms(el){
+  for(var e=el;e&&e.nodeType===1;e=e.parentNode){var a=e.attributes;for(var i=0;i<a.length;i++)if(a[i].name.lastIndexOf('data-ms-',0)===0)return true;}
+  return false;
+}
+function lazy(img){return (img.getAttribute('loading')||'').toLowerCase()==='lazy';}
+/* apply(img[, sizes[, src]]): writes srcset and sizes for src (default: the img's own src). A layer about to set src passes the new URL
+   first, so the browser fetches once, from the srcset. Returns true when a srcset is in place. */
+function apply(img,sz,src,moved){
+  if(!img||img.nodeName!=='IMG')return false;
+  var layer=src!=null;src=layer?String(src):img.getAttribute('src');if(!src)return false;
+  if(img.getAttribute('data-tll-vx')===src)return false;
+  var mine=img.getAttribute('data-tll-v')!=null;
+  if(!layer&&!mine&&img.getAttribute('srcset'))return false;
+  if(ms(img))return false;
+  var ss=srcset(src);
+  if(!ss){if(mine||layer){img.removeAttribute('srcset');img.removeAttribute('sizes');img.removeAttribute('data-tll-v');}return false;}
+  if(mine&&img.getAttribute('data-tll-v')===src&&img.getAttribute('srcset')===ss){
+    /* the same photo moved by a script (a story photo into the body column): its box changed, so its sizes follow while it is lazy and
+       not yet fetched (a lazy image is fetched only near the screen, after the move) */
+    if(moved&&!sz&&lazy(img)&&!img.complete){var g=guess(img);if(g!==img.getAttribute('sizes'))img.setAttribute('sizes',g);}
+    return true;}
+  var s=sz||guess(img);
+  img.setAttribute('data-tll-v',src);img.setAttribute('sizes',s);img.setAttribute('srcset',ss);
+  return true;
+}
+function hero(img){
+  if(!has(img,'tll-story-hero-img'))return false;
+  if(img.getAttribute('data-tll-hero'))return true;img.setAttribute('data-tll-hero','1');
+  if(!ms(img)){
+    if(!img.getAttribute('srcset')||img.getAttribute('data-tll-v')!=null){var ss=srcset(img.getAttribute('src'));
+      if(ss){img.setAttribute('data-tll-v',img.getAttribute('src'));img.setAttribute('sizes',guess(img));img.setAttribute('srcset',ss);}}
+    img.setAttribute('loading','eager');img.setAttribute('fetchpriority','high');
+  }
+  return true;
+}
+function consider(img,moved){
+  if(img.getAttribute('data-tll-v')!=null&&img.getAttribute('srcset')){apply(img,null,null,moved);return;}
+  if(hero(img))return;
+  if(!lazy(img)||img.getAttribute('srcset'))return;
+  apply(img);
+}
+function scan(n){
+  if(n.nodeType!==1)return;
+  if(n.nodeName==='IMG'){consider(n,true);return;}
+  if(n.firstElementChild){var l=n.getElementsByTagName('img');for(var i=0;i<l.length;i++)consider(l[i],true);}
+}
+/* a variant that fails (a width Webflow did not build): drop the srcset, the original loads once */
+document.addEventListener('error',function(e){
+  var i=e.target;if(!i||i.nodeName!=='IMG'||i.getAttribute('data-tll-v')==null||!i.getAttribute('srcset'))return;
+  var src=i.getAttribute('src');if(i.currentSrc&&i.currentSrc===src)return;
+  i.setAttribute('data-tll-vx',src);i.removeAttribute('srcset');i.removeAttribute('sizes');i.removeAttribute('data-tll-v');
+},true);
+if(window.MutationObserver){
+  new MutationObserver(function(recs){
+    for(var r=0;r<recs.length;r++){var x=recs[r];
+      if(x.type==='attributes'){if(x.target.nodeName==='IMG')consider(x.target);continue;}
+      for(var j=0;j<x.addedNodes.length;j++)scan(x.addedNodes[j]);}
+  }).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});
+}
+/* once the page is parsed: every img again, in case one was missed */
+function pass(){var l=document.images;for(var i=0;i<l.length;i++)consider(l[i]);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',pass);else pass();
+window.__tllImgV={twin:twin,srcset:srcset,pick:pick,apply:apply,sizes:guess};
+})();
 /* src/components/member-bar/tll-account-hash-tabs-v1.js */
 (function(){
   if(window.__tllHashTabs) return; window.__tllHashTabs=1;
@@ -119,29 +232,33 @@ if(!PAGES[path])return;
 var C='https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/';
 var P={
  ibiza:{src:C+'6ad72dc3c7e76f61648a3c30_6ad72d77eeadeeb5b887095e_chesney-lish-spain-hero.jpeg',alt:'Sunset over the sea from a beach bar in Ibiza, the sun low behind a thatched roof',place:'Ibiza, Spain',by:'Chesney Lish',href:'/stories/spain-madrid-wedding-ibiza',pos:'50% 88%'},
- jaguar:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',alt:'A jaguar swimming across a river in the Pantanal',place:'Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild',pos:'42% 60%',nov:1},
+ jaguar:{src:C+'6ac86ab8eaf54b2878f9344b_6ac86a1e460d26e52c3f8d09_pantanal-hero-jaguar-swimming-the-cuiaba-river.jpeg',alt:'A jaguar swimming across a river in the Pantanal',place:'Pantanal, Brazil',by:'Nancy Carleton',href:'/stories/pantanal-glimmers-in-the-wild',pos:'42% 60%'},
  antarctica:{src:C+'6ab3d9bc5c183888afac103a_6ab3d9295c183888afabcab9_antarctica-hero-landing-in-the-sun.jpeg',alt:'The sun over a snowfield and mountains on a landing in Antarctica',place:'Antarctica',by:'Nancy Carleton',href:'/stories/antarctica-marathon',pos:'60% 50%'},
  fitzroy:{src:C+'6a3e79b1f2ea14b30d7a5e0f_6a0e0225995b48deb53b96e8_Fitz%2520Roy.jpeg',alt:'The granite peaks of Fitz Roy above green hills in Patagonia',place:'Patagonia',by:'Nancy Carleton',href:'/stories/patagonia-w-trek-christmas-new-year',pos:'62% 40%'},
- sortsol:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',alt:'A murmuration of starlings at sunset during Sort Sol in Denmark',place:'Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark',pos:'42% 40%',nov:1},
+ sortsol:{src:C+'6aba3d42f18f65b8d06aea74_6aba3cbc0a48f32b1687edfc_sortsol-hero-murmuration-over-the-cars.jpeg',alt:'A murmuration of starlings at sunset during Sort Sol in Denmark',place:'Sort Sol, Denmark',by:'Nancy Carleton',href:'/stories/sort-sol-black-sun-denmark',pos:'42% 40%'},
  bulgaria:{src:C+'6aae867b7b616826932f4447_6a1183262f8a632aeff43aed_Bulgaria.jpeg',alt:'A yellow building and wisteria on a quiet tree-lined street in Bulgaria',place:'Bulgaria',by:'Nancy Carleton',href:'/stories/balkans-ev-road-trip-twelve-countries',pos:'50% 45%'},
  montenegro:{src:C+'6a0e027dbb2d090c01c473b4_6a0e02265e2392e5fc632431_Montenegro%2520coast.jpeg',alt:'The Montenegro coast at sunset from a wooded hillside',place:'Montenegro',by:'Nancy Carleton',href:'/stories/montenegro-budva-switchback-roads',pos:'50% 50%'},
  lapaz:{src:C+'6aae867b7b616826932f4444_6a0e022469c0ce59398ce287_La%2520Paz%2520Mexico.jpeg',alt:'A sea lion swimming toward the camera off La Paz',place:'La Paz, Mexico',by:'Nancy Carleton',href:'/stories/la-paz-mexico-whale-sharks',pos:'40% 50%'},
  ghana:{src:C+'6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg',alt:'Three children sitting together on a bench in Ghana',place:'Ghana',by:'Nancy Carleton',href:'/stories/ghana-easter-everyone-wears-white',pos:'55% 50%'},
- magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%',nov:1}
+ magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%'}
 };
-/* Loading (1 Nov 2026). Webflow's responsive variants ({name}-p-500.jpg and up) exist per file, not per bucket (13 Oct export manifest:
-   nov marks a file listed there without variants: jaguar, Sort Sol, Magnus), so a lazy tile below the fold tries a variant sized for its box
-   and puts the original back on the first error, since a browser does not try another candidate after a 404. The variant name is lowercase
-   even for a .JPG original, as Webflow writes it. An eager image keeps the original: a failed try would only delay a photo painted first.
-   The two photos painted above the fold (/the-map backdrop, /for-expats side tile) also ask for high priority and are preloaded from here,
-   which in the site bundle runs in the head, before the body is parsed; on /for-expats only from 1100px up, where the tile sits beside the
-   copy, since below that it is placed after the copy and is often outside the first screen. */
-function variant(p,w,eager){return w&&!eager&&!p.nov&&/^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(p.src)?p.src.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):p.src;}
-if(path==='/the-map'||(path==='/for-expats'&&window.matchMedia&&window.matchMedia('(min-width:1100px)').matches)){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=P.sortsol.src;pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
+/* Loading (10 Nov 2026, week one item 4; was 1 Nov). Each photo carries a srcset of its Webflow variants from tll-img-variants-v1
+   (window.__tllImgV, in the core ahead of this layer): CMS files take their site-bucket twin's -p-500 to -p-2000, and the table there knows
+   which widths exist, so jaguar, Sort Sol and Magnus (marked as having none until now) get theirs too. The 1 Nov try of {CMS URL}-p-{w}
+   always failed (the CMS bucket has no variants) and cost a 403 per tile before the original. src stays the original, the fallback; a
+   missing variant drops the srcset and the original loads once. The two photos painted above the fold (/the-map backdrop, /for-expats
+   side tile) ask for high priority and are preloaded from here with the same srcset and sizes, so the preload and the img are one
+   request; on /for-expats only from 1100px up, where the tile sits beside the copy, since below that it is after the copy. */
+var V=window.__tllImgV||null;
+var SZ={row:'(max-width:767px) 46vw, 220px',faces:'(min-width:1200px) 141px, 64px',map:'100vw',side:'(min-width:1100px) 320px, 100vw',strip:'(max-width:767px) 72vw, 25vw',band:'(max-width:767px) 72vw, 340px'};
+function preload(p,sz){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=p.src;var ss=V&&V.srcset(p.src);if(ss){pl.setAttribute('imagesrcset',ss);pl.setAttribute('imagesizes',sz);}
+  pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
+if(path==='/the-map')preload(P.sortsol,SZ.map);
+else if(path==='/for-expats'&&window.matchMedia&&window.matchMedia('(min-width:1100px)').matches)preload(P.sortsol,SZ.side);
 var FACES=[
  {name:'Chesney Lish',href:'/contributors/chesney-lish',src:C+'6ad65e8f2780d19349de64e9_6ad65e66249074db2462a667_chesney-lish-avatar.jpeg',pos:'50% 25%'},
  {name:'Barzy Adam',href:'/contributors/barzy-adam',src:C+'6ad72dc2c7c33fe2b4d53be9_6ad72d778e0db3aa7718c140_barzy-adam-avatar.jpeg',pos:'50% 30%'},
- {name:'Magnus',href:'/pets/magnus-waffles',src:P.magnus.src,pos:'50% 30%',nov:1},
+ {name:'Magnus',href:'/pets/magnus-waffles',src:P.magnus.src,pos:'50% 30%'},
  {name:'Nancy Carleton',href:'/contributors/nancy-carleton',src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg',pos:'50% 35%'}
 ];
 var CSS=
@@ -212,16 +329,18 @@ var CSS=
 ".tll-ph-band .tll-ph-three::-webkit-scrollbar{display:none}.tll-ph-band .tll-ph-three>.tll-ph-tile{flex:0 0 72%;scroll-snap-align:start}}";
 
 function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
-/* w: the Webflow variant width to try for a lazy image (0, or an eager image, keeps the original); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
+/* sz: the sizes for the srcset (the box width); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
+   loading and the srcset are written before src, so the browser asks for one file.
    loading is always written: the site footer (tll-core-v2) marks every img without one as lazy at DOMContentLoaded and on load, which would
    catch the two eager photos. */
-function img(p,eager,w,pri){var i=document.createElement('img');var src=variant(p,w,eager);i.src=src;i.alt=p.alt||'';i.decoding='async';i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);
-  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}var tried=false;
-  i.addEventListener('load',on);i.addEventListener('error',function(){if(!tried&&src!==p.src){tried=true;i.src=p.src;return;}on();});
+function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
+  i.src=p.src;i.alt=p.alt||'';i.decoding='async';
+  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset'))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
-function frame(p,eager,w,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,w,pri));return f;}
+function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
-function tile(p,eager,w,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,w,pri));a.appendChild(cap(p));return a;}
+function tile(p,eager,sz,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,sz,pri));a.appendChild(cap(p));return a;}
 
 function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
   /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
@@ -230,28 +349,28 @@ function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)
   if(document.querySelector('.tll-ph-row'))return;
   if(/[?&]q=[^&]/.test(location.search))return;
   var bar=document.querySelector('section.tllsb-bar');
-  /* tiles are about 220px wide on desktop and 46vw on phones (360px at 2x), so -p-500 covers both; under the search bar the row is lazy and tries it, in the hero (no bar) it is eager and keeps the originals */
-  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,500));});
+  /* tiles are about 220px wide on desktop and 46vw on phones; under the search bar the row is lazy, in the hero (no bar) it is eager */
+  var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,SZ.row));});
   if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
 function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
-  /* above the fold, so eager and the original file, but low priority: the h1 is the page's largest paint, not these 64px circles */
-  FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos,nov:f.nov},true,0,'low'));
+  /* above the fold, so eager, but low priority: the h1 is the page's largest paint, not these 64px circles */
+  FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true,SZ.faces,'low'));
     var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
   inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
 function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
-  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,0,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
+  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
   var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
 function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
-  /* 320px cells, 72vw on phones (about 560px at 2x): -p-800 */
-  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,800));});hero.appendChild(s);}
+  /* a quarter of the width, 72vw on phones */
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);}
 function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
   var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
-  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,0,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
+  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
   var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
   var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
-  /* roughly 340px columns, 72vw on phones: -p-800 */
-  var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,800));});band.appendChild(three);
+  /* roughly 340px columns, 72vw on phones */
+  var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,SZ.band));});band.appendChild(three);
   dir.insertAdjacentElement('afterend',band);}
 
 function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}
@@ -279,7 +398,11 @@ function swap(){
     var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band'))return;
     var p=B[k],i=f.querySelector('img'),c=f.querySelector('figcaption');if(!i||!c)return;
     f.setAttribute('data-tll-band','1');
-    i.removeAttribute('srcset');i.removeAttribute('sizes');i.src=p.src;i.alt=p.alt;i.width=p.w;i.height=p.h;i.style.objectPosition=p.pos;
+    /* 10 Nov 2026 (week one item 4): the band no longer drops to the 2400 px original on every screen. Its srcset comes from the photo's
+       site-bucket twin variants (tll-img-variants-v1, full width), written before src so the photo is fetched once; with no variants
+       known the srcset is cleared and the original loads as before. */
+    var V=window.__tllImgV;if(!(V&&V.apply(i,'100vw',p.src))){i.removeAttribute('srcset');i.removeAttribute('sizes');}
+    i.src=p.src;i.alt=p.alt;i.width=p.w;i.height=p.h;i.style.objectPosition=p.pos;
     var a=document.createElement('a');a.href=p.href;a.appendChild(document.createTextNode(p.label+' · '));
     var b=document.createElement('b');b.textContent=p.by;a.appendChild(b);c.textContent='';c.appendChild(a);
   });
@@ -925,18 +1048,26 @@ function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16
   return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 /* LCP (1 Nov 2026): in the site bundle this runs in the head, so the cover photo is asked for here, before the hero is parsed, at high
    priority; the hero would otherwise start its fetch only after the bundle has run. The page's own hero file still loads once (Designer). */
-(function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+/* 10 Nov 2026 (week one item 4): when the cover photo has Webflow variants (its site-bucket twin, tll-img-variants-v1), the preload carries
+   the same srcset and sizes as the img below, so the browser fetches one file sized for the screen, once. */
+(function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;var V=window.__tllImgV,ss=V&&V.srcset(COVER.img);if(ss){l.setAttribute('imagesrcset',ss);l.setAttribute('imagesizes','100vw');}l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 function run(){
   var hero=document.querySelector('[data-h3-hero]');if(!hero||hero.dataset.tllCover)return;hero.dataset.tllCover=COVER.slug?'1':'0';if(!COVER.slug)return;
   hero.style.setProperty('--tll-cover-pos-phone',COVER.posPhone||'50% 50%');hero.style.setProperty('--tll-cover-pos-desk',COVER.posDesk||'50% 50%');hero.style.setProperty('--tll-cover-zoom',COVER.phoneZoom||'0%');
   var img=hero.querySelector('img[data-tll-parallax="hero"]');
-  /* the cover is the page's largest paint: eager, high priority, async decode, the original file (no variant guesswork on the LCP path) */
-  if(img){img.removeAttribute('srcset');img.removeAttribute('sizes');img.loading='eager';img.setAttribute('fetchpriority','high');img.decoding='async';img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
+  /* the cover is the page's largest paint: eager, high priority, async decode. 10 Nov 2026 (week one item 4): no more guesswork and no
+     more stripping either; the srcset holds only the variants Webflow built for the photo's twin (tll-img-variants-v1), full width, the
+     same as the preload above, and is written before src. A photo with no variants keeps the original, as before. */
+  if(img){img.loading='eager';img.setAttribute('fetchpriority','high');img.decoding='async';var V=window.__tllImgV;if(!(V&&V.apply(img,'100vw',COVER.img))){img.removeAttribute('srcset');img.removeAttribute('sizes');}img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
   var h1=hero.querySelector('h1');if(!h1)return;var words=h1.parentNode;var ey=h1.previousElementSibling;if(ey&&ey.tagName==='DIV')ey.classList.add('tll-mg-eyebrow');
   var chip=document.createElement('a');chip.className='tll-mg-chip';chip.href='/contributors/'+COVER.authorSlug;
   /* eager is written out: the site footer marks every img without a loading attribute as lazy, and the chip sits inside the hero, above the
      fold, so it keeps the original file (no variant try on a photo painted first) at low priority behind the cover */
-  chip.innerHTML='<img src="'+esc(COVER.avatar)+'" alt="" width="36" height="36" loading="eager" decoding="async" fetchpriority="low"><span><b>Photo: '+esc(COVER.author)+'</b>'+esc(COVER.place)+'</span>';
+  /* 10 Nov 2026 (week one item 4): the 36px face takes the smallest Webflow variant that exists (tll-img-variants-v1), not the full file;
+     the original comes back if that variant fails */
+  var V=window.__tllImgV,av=V?V.pick(COVER.avatar,120):COVER.avatar;
+  chip.innerHTML='<img src="'+esc(av)+'" alt="" width="36" height="36" loading="eager" decoding="async" fetchpriority="low"><span><b>Photo: '+esc(COVER.author)+'</b>'+esc(COVER.place)+'</span>';
+  if(av!==COVER.avatar){var ci=chip.querySelector('img');ci.addEventListener('error',function h(){ci.removeEventListener('error',h);ci.src=COVER.avatar;});}
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
@@ -971,10 +1102,10 @@ function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16
      page. Each copy now gets its own suffix from one page-wide counter, so url(#...) and the textPath href point at their own defs. */
   var u=(window.__tllMgN=(window.__tllMgN||0)+1);svg=svg.replace(/tll-mg-(ink|top|bottom)/g,'tll-mg-$1-'+u);
   return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
-/* the 72px faces are lazy and far down the page, so they try Webflow's -p-500 variant (variants exist per file, not per bucket, 13 Oct export
-   manifest; the name is lowercase even for a .JPG original) and fall back to the original on the first error, since a browser does not try
-   another candidate after a 404 */
-function small(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):u;}
+/* the 72px faces are lazy and far down the page, so they take a Webflow variant about 500px wide. 10 Nov 2026 (week one item 4): the
+   variant comes from tll-img-variants-v1, which maps a CMS file to its site-bucket twin and knows which widths exist (the old guess,
+   {CMS URL}-p-500, always failed on CMS files). A photo without a variant keeps its original; the fallback below stays for the rare miss. */
+function small(u,w){var V=window.__tllImgV;return V?V.pick(u,w):u;}
 function fallback(img,orig){if(!img||!orig||img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.src=orig;});}
 function run(){
   var anchor=document.querySelector('section.h3-c2,section[data-h3-first100]');if(!anchor||document.querySelector('.tll-mg-people')||!PEOPLE.length)return;

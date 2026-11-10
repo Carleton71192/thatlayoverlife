@@ -454,7 +454,9 @@ function css(){if(document.getElementById('tll-album-v1'))return;var s=el('style
    try another candidate after a 404. Other hosts pass through. The stage img carries no decoding hint: it swaps src on every slide, and an
    async decode could paint a blank frame between two photos. */
 function sized(u,w,h){return /res\.cloudinary\.com/.test(u)?u.replace('/upload/','/upload/'+(h?'c_fill,w_'+w+',h_'+h:'c_limit,w_'+w)+',q_auto,f_auto/'):u;}
-function wf(u,w){return /^https:\/\/cdn\.prod\.website-files\.com\/[^?#]+\.(jpe?g|png)$/i.test(u)?u.replace(/\.(jpe?g|png)$/i,function(m,e){return '-p-'+w+'.'+e.toLowerCase();}):u;}
+/* 10 Nov 2026 (week one item 4): a Webflow file's variant comes from tll-img-variants-v1 (the CMS file's site-bucket twin, only widths
+   that exist), so the old guess {CMS URL}-p-{w}, which always failed on CMS files, is gone; a file without a known variant keeps its original. */
+function wf(u,w){var V=window.__tllImgV;return V?V.pick(u,w):u;}
 function fallback(img,orig){if(img.getAttribute('src')===orig)return;img.addEventListener('error',function h(){img.removeEventListener('error',h);img.src=orig;});}
 var audio=null,sound=false;
 function click(){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();var n=audio.sampleRate*0.06,b=audio.createBuffer(1,n,audio.sampleRate),d=b.getChannelData(0);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,6)*0.6;var s=audio.createBufferSource();s.buffer=b;s.connect(audio.destination);s.start();}catch(e){}}
