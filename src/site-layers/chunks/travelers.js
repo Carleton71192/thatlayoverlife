@@ -56,31 +56,52 @@ function words(){var q=document.querySelector('input[data-tll-trav-search]');ret
 function people(){return [].slice.call(document.querySelectorAll('[data-tll-roster-grid] [data-tll-trav-card]')).filter(function(c){
   var it=c.closest('.w-dyn-item');return c.getAttribute('data-tll-trav-card')!=='pet'&&!(it&&it.classList.contains('tll-tf-gone'));});}
 var busy=false;
+/* tally: the one source for the count line and the search note, from numbers read off the cards (people shown, people in the pressed
+   chip, pets matching the search). Outside a search the line counts the pressed chip's people and the note is empty; in a search the line
+   reads "shown OF total" with the matching pets appended, and matches is everything on the page, people and pets, for the note. */
+function tally(vis,total,petsN,searching){
+  if(!searching)return {line:total+(total===1?' CARD':' CARDS'),matches:0,searching:false};
+  var line=vis+' OF '+total;if(petsN)line+=' · '+petsN+(petsN===1?' PET':' PETS');
+  return {line:line,matches:vis+petsN,searching:true};}
+var NOBODY='Nobody by that name yet. If you know them, <a href="/signup">send them the signup link</a>.';
+/* The page script writes the note from its own count (people and pets together, pets only under its Pets chip); it is rewritten here from
+   what is actually visible, so the line, the note and the cards agree. */
+function note(t){var n=document.querySelector('[data-tll-trav-search-note]');if(!n)return;
+  if(!t.searching){if(!n.hidden||n.textContent){n.hidden=true;n.textContent='';}return;}
+  n.hidden=false;
+  if(!t.matches){if(!n.querySelector('a[href="/signup"]'))n.innerHTML=NOBODY;return;}
+  var s=t.matches+(t.matches===1?' match.':' matches.');if(n.textContent!==s)n.textContent=s;}
 /* Counts come from the cards on the page: people only, now that pets have their own block. */
 function counts(){if(busy)return;busy=true;try{
   var ps=people();
   ['everyone','expats','creators','press'].forEach(function(f){var n=ps.filter(function(c){return f==='everyone'||on(c,f);}).length;
     var sp=document.querySelector('[data-tv-filter="'+f+'"] [data-tv-n]');if(sp&&sp.textContent!==' · '+n)sp.textContent=' · '+n;});
+  var petsN=pets();
   var line=document.querySelector('[data-tv-countline]');if(line){var cur=current(),w=words();
     var total=ps.filter(function(c){return cur==='everyone'||on(c,cur);}).length;
     var vis=ps.filter(function(c){var it=c.closest('.w-dyn-item');return !(it&&it.classList.contains('tv-hide'));}).length;
-    var t=w.length?vis+' OF '+total:total+(total===1?' CARD':' CARDS');if(line.textContent!==t)line.textContent=t;}
-  pets();}finally{busy=false;}}
-/* The pets block follows the search box, not the chips. */
-function pets(){var box=document.querySelector('.tll-tf-pets');if(!box)return;var w=words(),n=0;
+    var t=tally(vis,total,petsN,w.length>0);if(line.textContent!==t.line)line.textContent=t.line;note(t);}
+  }finally{busy=false;}}
+/* The pets block follows the search box, not the chips. Returns how many pet cards are showing. */
+function pets(){var box=document.querySelector('.tll-tf-pets');if(!box)return 0;var w=words(),n=0;
   [].forEach.call(box.querySelectorAll('.w-dyn-item'),function(it){if(it.classList.contains('tll-tf-gone'))return;var c=it.querySelector('[data-tll-trav-card]');
     var t=c?((c.getAttribute('aria-label')||'')+' '+(c.textContent||'')).toLowerCase():'';var ok=!!c&&w.every(function(x){return t.indexOf(x)>-1;});
     it.classList.toggle('tll-tf-pno',!ok);if(ok)n++;});
-  box.hidden=!n;}
+  box.hidden=!n;return n;}
+/* Brings the Travel companions block into view (the pets deep link and the hidden Pets chip land here). */
+function goPets(){var box=document.querySelector('.tll-tf-pets');if(!box||box.hidden)return;
+  box.setAttribute('tabindex','-1');try{box.focus({preventScroll:true});}catch(e){}box.scrollIntoView({block:'start'});}
+var wantPets=false;
 function separate(){var grid=document.querySelector('[data-tll-roster-grid]'),list=grid&&grid.querySelector('[data-tv-list="pets"]');
   var ev=document.querySelector('[data-tv-filter="everyone"]');if(ev){var tn=ev.firstChild;if(tn&&tn.nodeType===3&&/everyone/i.test(tn.nodeValue))tn.nodeValue='People';}
   var q=document.querySelector('input[data-tll-trav-search]');if(q&&/breed/i.test(q.getAttribute('placeholder')||''))q.setAttribute('placeholder','Name, city or country');
   var lt=document.querySelector('[data-tll-trav-search-text]');if(lt&&/pet/i.test(lt.getAttribute('data-tll-trav-search-text')))lt.setAttribute('data-tll-trav-search-text','Find a traveler');
-  var pp=document.querySelector('[data-tv-filter="pets"][aria-pressed="true"]');if(pp&&ev)ev.click();
+  var pp=document.querySelector('[data-tv-filter="pets"][aria-pressed="true"]');if(pp&&ev){wantPets=true;ev.click();}
   if(list&&!document.querySelector('.tll-tf-pets')){var box=document.createElement('div');box.className='tll-tf-pets';
     box.innerHTML='<div class="tll-tf-pets-head"><h2 class="tll-tf-pets-h">Travel companions</h2><a class="tll-tf-pets-a" href="/the-paw-passport">The Paw Passport →</a></div><div class="tll-tf-pets-grid"></div>';
     box.querySelector('.tll-tf-pets-grid').appendChild(list);grid.parentNode.insertBefore(box,grid.nextSibling);}
   empties();counts();
+  if(wantPets&&document.querySelector('.tll-tf-pets')){wantPets=false;setTimeout(goPets,400);}
   var line=document.querySelector('[data-tv-countline]');
   if(line&&!line.__tllTf){line.__tllTf=1;new MutationObserver(function(){counts();}).observe(line,{childList:true,characterData:true,subtree:true});}
   if(q&&!q.__tllTf){q.__tllTf=1;q.addEventListener('input',function(){setTimeout(counts,200);});q.addEventListener('search',function(){setTimeout(counts,0);});}}
@@ -97,6 +118,8 @@ function placeTile(){var open=document.querySelector('[data-tv-open]');if(!open|
   new MutationObserver(function(){mirror(open);}).observe(open,{attributes:true,attributeFilter:['class']});
   document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-tv-filter]'))setTimeout(paint,0);});}
 function run(){style();chips();placeTile();setTimeout(separate,0);
+  if(!document.__tllTfPets){document.__tllTfPets=1;document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-tv-filter="pets"]');if(!b)return;
+    var ev=document.querySelector('[data-tv-filter="everyone"]');setTimeout(function(){if(ev)ev.click();counts();goPets();},0);});}
   var grid=document.querySelector('[data-tll-roster-grid]');
   if(grid&&!grid.__tllTf){grid.__tllTf=1;new MutationObserver(function(ms){for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];
     if(n.nodeType===1&&(n.classList.contains('tll-trav-linkchips')||n.querySelector('.tll-trav-linkchips'))){chips(grid);return;}}}).observe(grid,{childList:true,subtree:true});}}

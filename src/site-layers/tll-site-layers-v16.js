@@ -60,7 +60,7 @@ var C=[['site',/^/,'sha384-XLfN0eE3QRWbDpjyZebAfdtvfo1P2ez7ASVjhK2JNTKmT+esZjAnc
 ['account',/^\/account$/,'sha384-UwOT6QlhJSkRcbRvJnRDuCZWEEsdI8wI/FyQO3vQe3Kcet1ySXowkOEM2XqA0br/','account-preview','sha384-poM/NLAHiWEyb3QhM8H9ZjSsGfzOxlHYDC3Y1gSOESQft+UFENNhwZMXB7R1kLq9'],
 ['map',/^\/the-map$/,'sha384-VvRBDrxgnKYR6FV1mTnMtDc7GZxGq6OOQ/iNey8tnf+kapWq7cDJIv4tnOMtXWFR'],
 ['for-expats',/^\/for-expats$/,'sha384-mQ1Q2tzCP0sfVoeE1wct5pTMlWR2y1RompqvLtKEDTVJNTunVFM02HU1uM2BSfO1','for-expats-preview','sha384-1CmShDVfQ3vaqZ0aUWaNzgo8YV60T/gmYeO8Sgr87sTDrbrP5CjHcD4v7Gm/Th0u'],
-['travelers',/^\/travelers$/,'sha384-rpXXIOCIWVV+jwa9aslXVsj5Cmh9xb9e+NPuHlUWeGg8n0j8yLUUcTGeXP+1KbXH'],
+['travelers',/^\/travelers$/,'sha384-5M2lOzRkwk4MHu694JhLwBdeOv3KzqAlSeSu381ASnbCt8xt+uz4ZShDYu0R60Pk'],
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-jv0rCVfZ9J2rY9m40ysbl4aaFlwjZaPJw0egOZqBtIrnIZPr+1X6aFaoatFB5cDR'],
 ['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-aqxqW5w1tO5rIyq4a/ardEEzLGgFx3kDJcrPgbXC11xxKsrhzInxIyz6XGdgYzp5','pets-preview','sha384-uRv5csO6s19dcqfemtoO1fd3Yf8JhD7RTMhzWwxlcz+GBpOBdP8WKtdY++UXA0mY'],
 ['countries',/^\/countries\/[^/]+$/,'sha384-wjF/6Jz7sd6qNH2Th5/LyTBydqCsWzsG+2hdHH93ydQAve04lzmO2YdQI7PVhaer'],
