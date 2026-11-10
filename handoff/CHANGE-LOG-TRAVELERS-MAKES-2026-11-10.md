@@ -24,3 +24,8 @@ Checked on the subdomain:
 - /travelers?q=video shows Zain with "1 match." and "1 OF 8".
 - The screen reader label reads "Zain M. Makes photos, video, words. Open the profile".
 - The page has no failed requests or errors from site code.
+
+## Live on www, 10 November 2026
+Published to www, the apex and the subdomain about 16:10 UTC (task 0ae07002) on your word. The same publish carried the portfolio link (S135) and the cloud session's staged work, including site layers 16.53.0. On www the /travelers page code matches the repo copy byte for byte. Zain's card shows the MAKES line, and the label and a ?q=video link work. His profile, the home page and /stories load with no failed requests.
+
+One thing found on the way, not caused by this change: the site layers are served from the GitHub repository through jsDelivr. At about 538 MB the repository is over jsDelivr's 50 MB limit, so a layers file that is not yet cached near a visitor can be refused. It happened once on Zain's profile page and cleared after the file was cached. The lasting fix is to serve the layers from somewhere under the limit, and it is in the lock log for the session that owns the layers.
