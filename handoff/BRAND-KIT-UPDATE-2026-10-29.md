@@ -27,3 +27,8 @@ Also tag two older lines in the kit:
 ## v2.3, 31 October 2026
 
 Section "v2.3 updates" added (one body face: IBM Plex Sans Condensed; three faces only; emphasis rule; counts labeled and never typed; Coming soon rule). Title now v2.3. The Google Drive copy still needs Nancy to upload this file (the connector cannot edit it).
+
+
+## v2.4, 10 November 2026
+
+Section "v2.4 updates" added after v2.3: one square button set (filled #D63859 with white labels, outlined, text link; sizes 48, 44 and 40px), the keyboard focus ring, motion limits, the three faces and their weights, library counts, one place for each story list, an accessibility floor. Every rule was checked against the built code (release 16.52.0) by three independent reviews, and 29 older lines that disagree now carry a [v2.4] tag, most of them in the Claude Design section. The cover, footer and version history now read v2.4. Uploaded to Drive as a new file, TLL-BrandKit-v2.4.html, in the "That Layover life" folder; the v2.1 file there is untouched.
