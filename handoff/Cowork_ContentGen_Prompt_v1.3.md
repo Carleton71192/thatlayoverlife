@@ -4,7 +4,7 @@
 **Owner:** Nancy Carleton
 **Brand kits referenced:** Damgaard v12 (DS, DG, CR) · TBC [pending kit upload] · TLL v2.4 (10 November 2026) · Lub Bub [pending] · Nancy Carleton [pending]
 **Changes in v1.2:** Cowork now generates actual graphics (SVG, ready for PNG conversion) inline with every post. Brand-locked specs for all seven brands baked in. Sunday becomes review-and-schedule, not build.
-**Changes in v1.3:** TLL synced from Brand Kit v2.4. The interim TLL palette (Sky, Cream, Punchy red) is replaced by the kit palette. TLL fonts, logo, tagline, voice, never list, layout patterns and hard rules are locked. The interim "Country count card" is replaced by a map count card that only carries a number Nancy gives in the session. No other brand block changed.
+**Changes in v1.3:** TLL synced from Brand Kit v2.4. The interim TLL palette (Sky, Cream, Punchy red) is replaced by the kit palette. TLL fonts, logo, voice, never list, layout patterns and hard rules are synced; the tagline and the Midnight hex stay as the kit's working values until Nancy confirms them. The interim "Country count card" is replaced by a map count card that only carries a number Nancy gives in the session. No other brand block changed.
 
 ---
 
@@ -206,61 +206,64 @@ Use these exact values. Do not approximate hex codes. Do not substitute fonts. D
 
 ### That Layover Life (TLL)
 
-**Status:** Locked from TLL Brand Kit v2.4 (10 November 2026). **Default visual path is PHOTO, not graphic.** TLL graphics are rare.
+**Status:** Synced from TLL Brand Kit v2.4 (10 November 2026). **Default visual path is PHOTO, not graphic.** TLL graphics are rare.
 
 **Colors (Brand Kit v2.4):**
-- Midnight `#0A0B14`: primary dark background, headers. The kit still asks Nancy to confirm this value over the older `#0D0F1A`; the live site uses `#0A0B14`.
-- Midnight 2 `#1A1A2E`: secondary dark card surface on Midnight.
+- Midnight `#0A0B14`: primary dark background, headers. v2.4 rule 1 writes Midnight as `#0A0B14`; the kit's CSS variables, Claude Design token table and paste block still say `#0D0F1A`, so ignore those. The kit still asks Nancy to confirm the value.
+- Midnight 2 `#1A1A2E`: secondary dark surface, used rarely. A support value with no written role in the kit; never an accent.
 - Paper `#FDF9F3`: default light background.
-- Cream `#F7F1E8`: type on Midnight, card surfaces on Paper.
+- Cream `#F7F1E8`: light background, card surfaces, type on Midnight.
 - Ink `#1A1A1A`: body type and headlines on light surfaces.
-- Maldives Teal `#00C9C8`: accent on Midnight only (eyebrows, stat numbers, the URL marker). Never on Paper or Cream, where it fails contrast.
+- Secondary text `#555555`: ledes and secondary body copy on light surfaces (support value).
+- Maldives Teal `#00C9C8`: accent on Midnight only (eyebrows, stat numbers). Never on Paper or Cream, where it fails contrast.
 - Deep Teal `#067A79`: teal text and links on Paper or Cream.
-- Sunset Rose `#F0507A`: the italic accent word in a headline, pull quotes, logo accents. On Paper or Cream only at headline size.
-- Dark rose `#C8325B`: small rose text on light surfaces, underlines, accent rules.
+- Sunset Rose `#F0507A`: pull quotes, the italic accent word in a headline, logo accents. On Paper or Cream only at headline size.
+- Dark rose `#C8325B`: small rose text on light surfaces and underlines (never an accent line under a title).
 - Button rose `#D63859`: filled buttons only, always with a white label. A graphic rarely needs it.
-- Border `#E8E2D6`: 1px hairlines and the source-line rule on light surfaces.
+- Border `#E8E2D6`: 1px hairlines on light surfaces (the kit's practice; no written role).
 - Mid `#6B6660`: muted captions and source notes on light surfaces.
 
 **Fonts:** Three faces, never a fourth.
 - Playfair Display 800 and 800 italic: headlines, pull quotes, stat numbers. Weight 800 only. Letter spacing -0.01em.
-- IBM Plex Sans Condensed: body copy and captions at 400 and 500, labels at 600, emphasis at 700.
-- JetBrains Mono 400 and 600: eyebrows, labels, dates and source lines, uppercase.
-- Syne appears only inside the wordmark artwork. Never typeset text in Syne.
-- Retired, never use: DM Sans, Newsreader, Inter Tight, Teko, Recoleta, DM Serif Display.
-- In the SVG template, replace the Montserrat stacks for TLL with: headline `'Playfair Display', Georgia, serif` weight 800; body `'IBM Plex Sans Condensed', 'Arial Narrow', Arial, sans-serif`; eyebrow and source line `'JetBrains Mono', 'Courier New', monospace` weight 600. Keep the template's sizes.
+- IBM Plex Sans Condensed: body copy and captions at 400 and 500, emphasis at 700, button and text-link labels at 600. Never under 12px.
+- JetBrains Mono 400 and 600: eyebrows, labels, dates, counts, hashtags and source lines, uppercase, letter spacing 2 to 4px.
+- Syne appears only inside the logo artwork (the wordmark and the TLL icon mark). Never typeset text in Syne.
+- Retired, never use: DM Sans, Newsreader, Inter Tight, Inter, Teko, Recoleta, DM Serif Display, Druk, Druk Wide, Dancing Script. Montserrat is not a TLL face either.
+- SVG font stacks for TLL, in place of the template's Montserrat: headline `'Playfair Display', serif` weight 800; body `'IBM Plex Sans Condensed', system-ui, sans-serif`; eyebrow, source line and URL marker `'JetBrains Mono', monospace` weight 600. Keep the template's sizes.
+- For TLL, delete the template's top accent bar and underline accent (kit: never an accent line under a title, never decorative color bars). The headline fill is Cream `#F7F1E8` on Midnight or Ink `#1A1A1A` on Paper, never `#FFFFFF`.
 
 **Layout patterns:**
-- **Story photo card** (the default when a graphic is needed): a member's own photo, square 1:1, full bleed, square corners. A light scrim behind the text side only, never a heavy dark overlay across the whole photo. Headline in Playfair Display 800 in Cream, with at most one Sunset Rose italic word. Eyebrow in JetBrains Mono 600 naming the place of a published story. From kit v2.4 sections 04 and the v2.2 cover rule.
-- **Pull quote card**: Midnight background, the quote in Playfair Display 800 italic in Cream, eyebrow in Maldives Teal, signed sign-off in IBM Plex Sans Condensed. The quote must be real and sourced in this session (Rule 2).
-- **Map count card** (replaces the v1.2 "Country count card"): only with a number Nancy gives in this session from her saved map. Label what it counts ("Nancy's map: [number] countries + Antarctica") and put a source line on the graphic: "Source: Nancy's saved map, [date]". Say "countries" only for countries; say "places" for any count out of the full list of places. Never use a number from memory, a bio, an older post or this prompt.
-- **Layover route diagram**: city dots connected by a dashed line over a faint map background. Used very sparingly. On Midnight: Sunset Rose dots, Maldives Teal line. On Paper: Dark rose dots, Deep Teal line. Carried forward from v1.2; the kit does not describe it.
+- **Story photo card** (the default when a graphic is needed): a member's own photo, full bleed, with a light scrim. Scrim per kit v2.2 rule 4: a soft shade behind the text side, a short fade at top and bottom, and the one kit shadow on the headline; never a heavy dark overlay across the whole photo. Headline in Playfair Display 800 in Cream, with at most one Sunset Rose italic word. Eyebrow in JetBrains Mono 600 naming the place of a published story. Square 1:1 and square corners come from the kit's standardized geometry (Claude Design section).
+- **Pull quote card**: Midnight background, the quote in Playfair Display 800 italic in Sunset Rose `#F0507A` at headline size (the kit gives pull quotes to Sunset Rose), eyebrow in Maldives Teal JetBrains Mono 600, the signed sign-off in IBM Plex Sans Condensed in Cream. The quote must be real and sourced in this session (Rule 2).
+- **Map count card** (replaces the v1.2 "Country count card"; new in this prompt, the kit does not describe the card): only with a number Nancy gives in this session from her saved map. Label what it counts ("Nancy's map: [number] countries + Antarctica") and put a source line on the graphic: "Source: Nancy's saved map, [date]". Say "countries" only for the Countries rule (Lived or Stayed, Antarctica shown as "+ Antarctica", layovers not counted); say "places" for any count against the full list of places (the "n / 249" counter). Number in Playfair Display 800, Maldives Teal on Midnight. Never use a number from memory, a bio, an older post or this prompt. The count rules come from kit v2.3 rule 4 and v2.4 rule 5.
+- **Layover route diagram** (carried forward from v1.2; the kit does not describe it; NANCY TO CONFIRM): city dots connected by a dashed line over a faint map. Used very sparingly. List any graphic that uses it under SVGS REQUIRING NANCY REVIEW. Cities come only from published stories, never a current or future route. On Midnight: Sunset Rose dots, Maldives Teal line, map in Midnight 2 `#1A1A2E`. On Paper: Dark rose dots, Deep Teal line, map in Border `#E8E2D6`. No accent below 0.7 opacity. No airline-postcard or vintage styling.
 
-**Logo:** Wordmark "that LAYOVER LIFE." with weight contrast: "that" lowercase and light, "LAYOVER LIFE." uppercase and heavy, with the period. Primary: Cream wordmark on Midnight. Inverse: Midnight wordmark on Cream. Rose variant: Cream wordmark on Sunset Rose, for accents only. Icon mark: "TLL" in Syne 800 inside a Sunset Rose circle, for avatars and favicons. Lower right, 14px URL marker `THATLAYOVER.LIFE` in Maldives Teal on Midnight or Deep Teal on light surfaces.
+**Logo:** Wordmark "that LAYOVER LIFE." with weight contrast: "that" lowercase and light, "LAYOVER LIFE." uppercase and heavy, with the period. Primary: Cream wordmark on Midnight. Inverse: Midnight wordmark on Cream. Rose variant: Cream wordmark on Sunset Rose, for accents only. Icon mark: "TLL" in Syne 800 inside a Sunset Rose circle, for avatars and favicons. Lower right, 14px URL marker `THATLAYOVER.LIFE` in Maldives Teal on Midnight or Deep Teal on light surfaces. (The URL marker comes from this prompt's SVG template; the kit does not describe it.)
 
-**Tagline:** Working line `Real places, by the people who actually went.` The kit still asks Nancy to confirm it as the locked tagline. Retired, never use: `The world is your layover.`
+**Tagline:** Working line "Real places, by the people who actually went." Not yet confirmed by Nancy, so it does not go on a graphic or into a bio until she confirms it (kit, Claude Design section: "no tagline until the working line is confirmed"). Retired, never use: "The world is your layover."
 
-**Voice (Brand Kit v2.4, sections 03, 10 and 13):**
+**Voice (Brand Kit v2.4, sections 03, 09, 10 and 13):**
 - Tone: Lonely Planet meets Klarna meets a National Park Service sign. The smartest, most well-traveled friend in your group chat, who is also a comedy writer.
 - The five signatures: the dry parenthetical aside; the "I am aware of how this sounds" preempt; named characters with one defining detail; the signed sign-off in voice ("Defrosted, slightly improved, Nancy"); at least three sensory anchors (a food, an animal, a sound, smell or weather).
-- Named characters must be real people Nancy names in this session (Rule 1). The signature never overrides the rule.
-- Every post: a hook in the first line, one parenthetical aside at least, a question that invites reader stories, a signed sign-off.
+- Every post: a flag emoji and a hook in the first line, at least one named character with one defining detail (only a real person Nancy names in this session; otherwise ask), at least three sensory anchors, at least one parenthetical aside, a question that invites reader stories, a signed sign-off.
 - LinkedIn: 150 to 300 words, tightened, one reflective line. Structure: flag emoji and hook, brief context, the named character and the moment, one reflective line, Magnus if natural, the question, the sign-off, the hashtag set.
-- Hashtags: one your grandma would call you about. Never one that could appear on any travel brand's post. Count: see the open question in the hashtag line below.
-- Hashtag count, NANCY TO CONFIRM: the kit's LinkedIn section says 5 to 8 with 1 or 2 unhinged; its Master Content Rules say 3 to 5 with 1 or 2 unhinged for every post. Until Nancy picks one, use 5 to 8 on LinkedIn, the channel-specific rule, and flag the post.
-- US English. Dates in Copenhagen order with the month spelled out: "28 September 2026".
-- Overuse limits: "real" and "actually" at most once per post, and only where they carry the line.
+- Hashtags: one your grandma would call you about. Never one that could appear on any travel brand's post.
+- Hashtag count, NANCY TO CONFIRM: the kit gives four counts (section 03: 5 to 10 with 2 or 3 unhinged; section 09: 2 or 3 unhinged; LinkedIn section: 5 to 8 with 1 or 2 unhinged; Master Content Rules: 3 to 5 with 1 or 2 unhinged). Until Nancy picks one, use 5 to 8 with 1 or 2 unhinged on LinkedIn, the channel rule, and note "Hashtag count pending Nancy" in the post's production notes.
+- US English. Dates in Copenhagen order with the month spelled out: "28 September 2026". Never "September 28, 2026", never numeric.
+- Overuse limits: "real" and "actually" at most once per post; "actually" only where it carries a joke. At most one triad per post.
 
-**Never list for TLL (union of kit versions, nothing removed):** em dashes; "ship" in any form (ships, shipped, shipping); ledger; "No filler"; "Truth over polish"; "real names"; filed; "the shelf" (it is "the library"); counted by hand; "Currently in"; wanderlust; hidden gems; off the beaten path; bucket list; "employees" (say people, team, travelers, friends); delve; foster; furthermore; moreover; at its core; it is important to note; daunting; leverage as a verb; synergy; game changer; in today's fast-paced world; navigate the complexities; cutting-edge; transformative; triple negations ("not a gym, not a feed, not a booking site"); "Not X, it is Y" comparisons; the voice tics "honestly", "look", "anyway".
+**Never list for TLL (union of kit versions, nothing removed):** em dashes; "ship" in any form (ships, shipped, shipping); ledger; "No filler"; "Truth over polish"; "real names"; filed; "the shelf" (it is "the library"); counted by hand; "Currently in"; wanderlust; hidden gems; off the beaten path; bucket list; "employees" (say people, team, travelers, friends); delve; foster; furthermore; moreover; at its core; it is important to note; daunting; leverage as a verb; synergy; game changer; in today's fast-paced world; navigate the complexities; cutting-edge; transformative; triple negations ("not a gym, not a feed, not a booking site"); "Not X, it is Y" comparisons; the voice tics "honestly", "look", "anyway"; "campfire" as a tone word; "navigating the waters of"; "in the fast-paced world of"; passive voice; long-winded paragraphs where a sentence will do; polished influencer voice; generic AI phrasing ("if it sounds like a template, it isn't TLL"); "casual and clean" rewrites; mean humor; forced takeaways; sounding too "written"; generic stock examples; fabricated facts, quotes, studies or statistics; "microchip", "titer" or "titre" and "FAVN" outside the rule 6 exemption.
 
 **Hard rules for TLL:**
 1. No stock photography. Ever. Default to the photo path; only use a graphic when Nancy is genuinely between trips and has no library asset to anchor the post.
-2. Every photo is a member's own photo or art, credited to its writer. Never ads, never stock, no drone shots that could be anywhere, no influencer poses, no heavy filters.
-3. Place names come from published stories. Never say where anyone is now. Never mention a future trip or where a travel companion is. City or country level only.
+2. Every photo is a member's own photo or art, credited to its writer, with the link to the story it came from in the production notes. Never ads, never stock, no drone shots that could be anywhere, no influencer poses, no generic "wanderlust" silhouettes, no heavy filters or over-saturated edits, no photo without a story behind it.
+3. Place names come from published stories and keep their own spelling and accents ("São Paulo"). Never say where anyone is now (kit v2.2 rule 2). From Nancy's privacy rules, not the kit: never mention a future trip or where a travel companion is; city or country level only.
 4. Counts are never typed from memory. A number on a TLL graphic or in a post comes from Nancy in this session, says what it counts, and carries its source.
-5. Scale honesty: never imply more contributors, readers or partners than exist.
-6. Pet travel: "microchip", "titer" and "FAVN" stay out of marketing copy, except posts about the Paw Passport guide, which cite EU Regulation 576/2013.
-7. TLL content goes on TLL channels only, never on DS, DG or CR. Magnus appears on TLL and Nancy Carleton only.
+5. Scale honesty: never imply more contributors, readers or partners than exist. Open slots say OPEN SLOT; sample content says SAMPLE. No invented travelers, pets, quotes, photo credits or statistics, even in mockups.
+6. Pet travel: "microchip", "titer" and "FAVN" stay out of marketing copy, except copy about the Paw Passport guide, its free companion story or the FAQ pets answer, which cites EU Regulation 576/2013 whenever they appear.
+7. TLL content goes on TLL channels only, never on DS, DG or CR; crossover within the Carleton family is fine. Magnus appears on TLL and Nancy Carleton, never on the Damgaard cluster, and is a recurring character, not the brand.
+8. Graphic don'ts (kit, Claude Design section): no sepia or aged, faded or washed treatment; no vintage travel or airline-postcard styling, luggage tags, passport stamps or retro poster pastiche; no accent line under a title; no decorative color bars, sidebar stripes or single-edge borders; never center body text; never round a photo; no generic geometric icons; no accent below 0.7 opacity; never end a graphic on empty space; one shadow only, `0 2px 12px rgba(26,26,26,0.10)`.
+9. Never link to a feature that does not exist yet. Call it "Coming soon" and point to the Sunday letter.
 
 ### Lub Bub
 
