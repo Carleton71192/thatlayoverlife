@@ -1,0 +1,34 @@
+<!-- tll-trav-makes-v1 · /travelers (10 November 2026, Nancy: "MAKES on /travelers"; handoff/CHANGE-LOG-TRAVELERS-MAKES-2026-11-10.md).
+     Each people card in the roster list carries data-tll-makes, bound to the member's Makes field. While Make things is on (the card's
+     data-tv-on="creators" marker is not w-condition-invisible, the same test the page script uses for the Make things chip), a line
+     "MAKES PHOTOS · VIDEO · WORDS" goes under the one line, as the profile page writes it for values saved from Edit profile. Only the five
+     Makes values (photos, video, words, sound, other) are shown, once each, in the saved order. Pets, members with Make things off and
+     members who picked nothing get no line. The card's label for screen readers names what they make too. The search box finds these
+     words; if the page opened with a search (?q=), the search runs again once the lines are in.
+     Additive: the page script (Travelers v2) and the site layers are untouched. -->
+<style id="tll-trav-makes-v1">
+.tv-card .tv-makes{display:block;margin:2px 0 0;font:400 12px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79}
+</style>
+<script>
+(function(){
+  var KNOWN=['photos','video','words','sound','other'];
+  function on(c){var m=c.querySelector('[data-tv-on="creators"]');return !!m&&!m.classList.contains('w-condition-invisible');}
+  function paint(){
+    var added=0;
+    [].forEach.call(document.querySelectorAll('[data-tll-trav-card]'),function(c){
+      if(c.getAttribute('data-tll-trav-card')==='pet'||c.querySelector('.tv-makes'))return;
+      var seen={},m=String(c.getAttribute('data-tll-makes')||'').toLowerCase().split(/[\s,]+/).filter(function(x){if(KNOWN.indexOf(x)<0||seen[x])return false;seen[x]=1;return true;});
+      if(!m.length||!on(c))return;
+      var p=document.createElement('div');p.className='tv-makes';p.textContent='MAKES '+m.map(function(x){return x.toUpperCase();}).join(' · ');
+      var line=c.querySelector('.tv-line'),body=c.querySelector('.tv-body');
+      if(line&&line.parentNode)line.parentNode.insertBefore(p,line.nextSibling);else if(body)body.appendChild(p);else return;
+      var nm=(c.getAttribute('data-name')||'').trim(),al=c.getAttribute('aria-label')||'';
+      if(nm&&/\. Open the profile$/.test(al))c.setAttribute('aria-label',nm+'. Makes '+m.join(', ')+'. Open the profile');
+      added++;
+    });
+    var q=document.querySelector('input[data-tll-trav-search]');
+    if(added&&q&&q.value.trim()){try{q.dispatchEvent(new Event('search'));}catch(e){}}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',paint);else paint();
+})();
+</script>
