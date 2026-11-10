@@ -122,6 +122,17 @@ Webflow changes made the same afternoon (all unpublished, in the Designer): Engl
 
 `index.html` now loads the Ahrefs Web Analytics tag (`analytics.ahrefs.com/analytics.js`, data-key for the Valideringseksperterne project 10342547) in the head, async. Re-upload `index.html` alone, then in Ahrefs open Project settings, Web Analytics, Verify installation. Ahrefs states the script sets no cookies and collects no personal data, so it runs without a consent banner; add one line to the cookie policy page the footer links to, naming Ahrefs Web Analytics as a cookieless visitor counter, so the policy stays complete. This is the only third-party request the page makes; everything else (fonts, photos, portraits) is self-hosted.
 
+## Update 10 Nov 2026: Ahrefs crawl of 3 Nov
+
+Ahrefs Site Audit (project 10342547, crawl emailed 3 Nov): health 95, 4 URLs, 1 error, 3 warnings, 4 notices. The schema errors show the 6 Oct file with JSON-LD is what is live; the 27 Oct update (Ahrefs tag, hreflang) is still waiting for Simply access. Issue detail could not be opened (Site Audit API returns "Insufficient plan"), so the reading below is from the email summary and the file.
+
+- Error, "Canonical URL has no incoming internal links": the page is self-canonical but nothing links to `/`. Fixed in the waiting file: the header brand is now `<a class="brand" href="/">`.
+- "Structured data has schema.org validation error" (2): `inLanguage` sat on the ProfessionalService and Service nodes; schema.org only defines it for creative works, events and a few others. Removed from both; WebSite keeps it.
+- "3XX redirect" (2), "HTTP to HTTPS redirect" (2), "Redirected page has no incoming internal links": the http and www variants redirecting to https://valideringseksperterne.dk/. Expected; no action.
+- "Organization schema missing or incomplete" (notice): most likely the missing logo. The .dk has no logo file, so left as is.
+
+Verification after the edit: JSON-LD parses, axe 0 violations at 1440, 768 and 375, no horizontal overflow, header unchanged visually.
+
 ## Upload steps (Simply, damgaardsolutions.dk hotel)
 
 The .dk site is served from the stand-alone folder `/valideringseksperterne.dk` on the NON-hyphenated `damgaardsolutions.dk` web hotel (server linux244, IP 93.191.156.127). That folder sits next to `public_html`, not inside it. Do not touch `public_html`, which serves damgaardsolutions.dk itself.
