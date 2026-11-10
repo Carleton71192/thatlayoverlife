@@ -32,3 +32,17 @@ Shuffled on every load, never ranked, "N CREATORS ON THE MAP · SHUFFLED" with "
 
 ## Built on the subdomain, 1 November 2026
 K1 to K7 are on https://that-layover-life.webflow.io/creators (publish e47c1450, about 08:36 UTC). Not on www; that waits for your look and your word. The one member with Make things on shows "MAKES PHOTOS · VIDEO · WORDS" with an IG link and no contact button (contact mode Email). Files and element ids: src/pages/creators/live-2026-11-01/README.md. Before the write, a review with four lenses confirmed 22 findings, including one that would have sent visitors to the relay form removed on 31 October; all are fixed in what was written.
+
+## Live on www, 3 November 2026
+The Webflow build session published the whole site to www, the apex and the subdomain on your word ("Publish www", task 9574c01c, about 11:35 UTC). That publish carried K1 to K7 with its own Ahrefs changes, and it checked the /creators footer script on www. The four Designer-text lines above were not changed.
+
+## Off the site since 9 November 2026
+For the AdSense "Low value content" review, /creators was set to draft (docs/adsense-low-value-audit-2026-11-08.md: "Draft until three real creator cards exist") and taken off www with the publish of 9 November (task a1c61ad5, "Publish. Keep going."). /creators is now a 301 to /travelers, and site layers 16.51.0 hide the footer link, the /travelers Creators pill and the /edit-profile creators link.
+
+What stays in Webflow: the draft page keeps the list bound to Contributors, the card bindings and the footer script tll-dir-js-v2, so K1 to K7 come back as they were. Bringing the page back takes four steps:
+- Set /creators back to published in Webflow.
+- Remove the /creators 301 in Site settings, Publishing.
+- Drop /creators from tll-drafted-v1 and from the forwards in tll-phase0-v1 in the site layers.
+- Lift the old noindex on /creators in the site layers, then publish.
+
+The four Designer-text lines above are worth changing at the same time.
