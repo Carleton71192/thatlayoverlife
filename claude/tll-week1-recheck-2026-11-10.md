@@ -51,3 +51,24 @@ The layers now speak Playfair Display 800, IBM Plex Sans Condensed and JetBrains
 | Repeating photo strip on /stories | hidden | hidden |
 
 Fonts actually fetched after the change: Playfair Display, IBM Plex Sans Condensed and JetBrains Mono from Google, plus Teko from Webflow's own font loader. The other names in the browser's font list (DM Sans, Syne, Recoleta, DM Serif Display, Inter) are aliases pointing at the Plex and Playfair files, so they add no download.
+
+## Lighthouse baseline, before (10 Nov, live site, nothing staged published)
+
+Lighthouse 13.6 mobile, default throttling, median of three runs per page.
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT | Bytes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Home | 30 | 97 | 96 | 92 | 14.1 s | 0 | 2,023 ms | 2.3 MB |
+| Story (Luxembourg) | 43 | 99 | 96 | 100 | 15.6 s | 0.11 | 510 ms | 2.7 MB |
+| /the-map | 29 | 96 | 77 | 100 | 9.2 s | 0 | 7,409 ms | 2.1 MB |
+
+Target from Prompt 2: Performance 80 or more, Accessibility 95 or more. Biggest costs, in order: full-size images (story heroes up to 850 KB, the home Morocco hero 534 KB), render-blocking requests (about 2.3 s on the story and the map), and JavaScript on /the-map (about 7 s of blocking time).
+
+Fonts before: home and story pages pull six families (Plex, Teko, Playfair, JetBrains Mono, Inter Tight, Newsreader); 16.52.0 drops Inter Tight and Newsreader, which leaves four until Nancy removes Teko in Site settings.
+
+Image audit: no image on home, /stories, a story or /the-paw-passport gets a responsive size. Scrolled to the bottom, /stories loads about 31 MB of images. Every CMS photo has a smaller copy in the site's own asset bucket; a layer that points at those copies is in progress.
+
+## Brand kit and Cowork prompt (10 Nov)
+
+- Brand kit v2.4 (handoff/TLL-BrandKit-v2.1.html, uploaded to Drive as TLL-BrandKit-v2.4.html): the week-one rules, checked against the code, with 29 older lines tagged. Rule 8: LinkedIn hashtags 5 to 8 (Nancy).
+- Cowork content prompt v1.3 (handoff/Cowork_ContentGen_Prompt_v1.3.md, uploaded to Drive): TLL synced from the kit; every other brand block unchanged.
