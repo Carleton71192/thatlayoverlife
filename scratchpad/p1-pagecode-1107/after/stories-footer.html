@@ -129,8 +129,14 @@
 <script id="tll-lib-lead-v1">
 /* Lead story: the first visible card in the grid, re-marked whenever the chips script or search re-orders or filters the grid. */
 (function(){
-  function mark(){var g=document.querySelector('.tll-lib-grid'); if(!g) return; var kids=[].slice.call(g.children), lead=null;
-    kids.forEach(function(k){ if(!lead&&k.offsetParent!==null&&!k.hasAttribute('data-tll-q-miss')&&getComputedStyle(k).display!=='none') lead=k; });
+  /* 9 Nov 2026: editor-picked lead. A card whose hidden [data-tll-pick] marker is rendered (the Stories switch "Featured in the
+     library" is on; Webflow adds w-condition-invisible when it is off) moves to the front of the grid and leads, as long as the
+     chips or a search have not hidden it. With no pick, or the pick filtered out, the first visible card leads as before. */
+  function vis(k){ return k.offsetParent!==null&&!k.hasAttribute('data-tll-q-miss')&&getComputedStyle(k).display!=='none'; }
+  function mark(){var g=document.querySelector('.tll-lib-grid'); if(!g) return; var kids=[].slice.call(g.children), lead=null, pick=null;
+    kids.forEach(function(k){ if(!pick&&vis(k)&&k.querySelector('[data-tll-pick]:not(.w-condition-invisible)')) pick=k; });
+    if(pick&&g.firstElementChild!==pick){ g.insertBefore(pick,g.firstElementChild); kids=[].slice.call(g.children); }
+    kids.forEach(function(k){ if(!lead&&vis(k)) lead=k; });
     kids.forEach(function(k){ if(k===lead) k.setAttribute('data-tll-lead','1'); else k.removeAttribute('data-tll-lead'); });}
   function merge(){ var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;
     var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }
