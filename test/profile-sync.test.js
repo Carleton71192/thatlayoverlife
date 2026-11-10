@@ -119,6 +119,16 @@ describe('N3, N4, N7, N9 fields (28 Oct 2026)', () => {
     expect(coerce('makes', ['sound', 'video'])).toBe('video,sound');
     expect(coerce('makes', '')).toBeNull();
   });
+  it('keeps one https portfolio link in partners (M2)', () => {
+    expect(JSON.parse(coerce('partners', { portfolio: 'nancy.example/work' })).portfolio).toBe('https://nancy.example/work');
+    expect(JSON.parse(coerce('partners', { store: 'shop.example', portfolio: 'https://nancy.example/work' }))).toEqual({ store: 'https://shop.example', links: [], open: false, portfolio: 'https://nancy.example/work' });
+    expect(coerce('partners', { portfolio: 'http://nancy.example/work' })).toBeNull();
+    expect(coerce('partners', { portfolio: 'not a link' })).toBeNull();
+    expect(coerce('partners', { portfolio: 'localhost' })).toBeNull();
+    expect(coerce('partners', { portfolio: `https://a.example/${'x'.repeat(220)}` })).toBeNull();
+    expect(JSON.parse(coerce('partners', { stack: [{ t: 'web', label: 'Site', url: 'https://a.example' }], portfolio: 'a.example/w' }))).toMatchObject({ stack: [{ t: 'web' }], portfolio: 'https://a.example/w' });
+  });
+
   it('keeps partners as one JSON value with up to three links', () => {
     const raw = JSON.stringify({ store: 'shop.example', open: 'on', links: [
       { name: ' Osprey ', url: 'osprey.com/ref' }, { name: '', url: 'x.com' }, { name: 'Bad', url: 'two words' },
