@@ -10,14 +10,20 @@
 //              countries, theme, and automatic checks in notes-to-editor (ends mid-sentence, cut off by the form, missing
 //              photo, few hashtags, reader question without a question mark).
 //   linkout -> a DRAFT link-out Stories item pointing at the external article; it waits for the editor too.
-//   photos  -> one published Photo submissions item per photo, shown in the /gallery Lounge (GET /lounge).
+//   photos  -> one DRAFT Photo submissions item per photo (11 Nov 2026, Nancy: photo submissions land as Draft and only
+//              approved photos ever show). Stage Received, review-status pending, never published from here. The item name,
+//              slug and alt text carry the place, never the member's name; the credit follows the member's byline rule.
+//              Only photos from the site's own upload folder are accepted (PHOTO_SOURCE).
+// GET /lounge   always an empty list since the same day: nothing a member sends is shown before the editor approved it,
+//               and the approved photos will come from a native CMS list on the page, not from this route.
 // Expat and press applications are not published here: they wait for Nancy in the next-day report.
 // Never writes headlines, bodies or captions: every word comes from the member's form. 20 intakes per member per hour.
 import { verifyMemberToken, rateLimit, memberCors, reply } from './member-auth.js';
-import { webflow, slugify, uniqueSlug, findContributor, applyMember } from './profile-sync.js';
+import { webflow, slugify, uniqueSlug, findContributor, applyMember, OPTION_IDS } from './profile-sync.js';
 import { bylineCountries } from './site-stats.js';
 import { summarizeLink } from './link-summary.js';
 import { enqueueEnrich } from './story-enrich.js';
+import { displayName } from './living-library.js';
 
 const MEMBERSTACK_API = 'https://admin.memberstack.com';
 export const INTAKE_LIMIT_PER_HOUR = 20;
@@ -27,13 +33,69 @@ export const REGION_IDS = {
   europe: '147a690dc0bb9b392de8f76e596b8618', 'middle east': '2e0e976094dd2b15d1722227f4bd2bcc', 'middle-east': '2e0e976094dd2b15d1722227f4bd2bcc',
   oceania: '2d61f02c72f97e50d2e47529e1df47e5', antarctica: '237262f269ed78e2c26130a142667c73',
 };
+// Photo submissions "Moderation stage" options, read from the collection schema on 11 Nov 2026 (field
+// f76724de18554e100b8bdd6408e3292d: Received, In review, Approved, Published, Rejected, Removed). Intake only ever writes
+// Received. Published is kept for the approval step; nothing here sets it.
+export const PHOTO_STAGE_RECEIVED = '40172504257c7cf7b75f51cc09adf798';
 export const PHOTO_STAGE_PUBLISHED = 'afc4f7d5343f799bd5c9888b5b80c7dc';
+/** The collection's own help text for review-status: "Pending, approved, rejected, or removed; default to pending in intake". */
+export const PHOTO_REVIEW_PENDING = 'pending';
+/** The one place a member photo may come from: the cloud and folder the /share-photos send script uploads to
+ *  (src/pages/share-photos/v3/tll-photo-send-v1.js: api.cloudinary.com/v1_1/idonvlow/image/upload, folder tll/photos).
+ *  That script redraws each photo in the browser, which removes location data; a link to any other cloud, folder, or to a
+ *  transformed or fetched image did not come through it and is not accepted. */
+export const PHOTO_SOURCE = Object.freeze({ cloud: 'idonvlow', folder: 'tll/photos' });
+const PHOTO_URL = new RegExp(`^https://res\\.cloudinary\\.com/${PHOTO_SOURCE.cloud}/image/upload/(?:v\\d+/)?${PHOTO_SOURCE.folder}/[A-Za-z0-9_-]+\\.(?:jpe?g|png|webp)$`);
 const CAPTION_MAX = 200;
 
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const clean = (v, max = 4000) => String(v ?? '').replace(/\r/g, '').trim().slice(0, max);
 const urls = (v) => String(v || '').split(/[\n,]+/).map((u) => u.trim()).filter((u) => /^https:\/\/res\.cloudinary\.com\/\S+$/i.test(u));
 const fileSlug = (u) => String(u).split('/').pop().split('?')[0].replace(/\.(jpe?g|png|webp|avif|gif)$/i, '').toLowerCase();
+
+/** Member photo links from the form's "photos" field: only the site's own upload folder (PHOTO_SOURCE), each link once. */
+export function photoUrls(v) {
+  return [...new Set(String(v || '').split(/[\n,]+/).map((u) => u.trim()).filter((u) => PHOTO_URL.test(u)))];
+}
+
+/** The credit line for a photo, from the member's own byline rule on their profile (credit-mode Full, First or Pen, as
+ *  src/living-library.js reads it) and the choice on the photo form (named, pen-name, anonymous). Full gives the name on
+ *  the member record, First its first word, Pen the pen name. A member who chose a pen name and has none on the profile
+ *  gets no credit, never the real name. Null means no credit. */
+export function photoCredit(profile, choice) {
+  const f = profile || {};
+  const mode = String(choice || '').trim().toLowerCase();
+  if (mode === 'anonymous') return null;
+  const pen = clean(f['pen-name'], 60);
+  if (mode === 'pen-name' || f['credit-mode'] === OPTION_IDS['credit-mode'].Pen) return pen || null;
+  return clean(displayName(f), 60) || null;
+}
+
+/** Photo submissions fieldData for one photo of a batch. It is created as a draft and waits for the editor. */
+export function buildPhoto(fields, { url, index, batch, now, memberId, contributor }) {
+  const city = clean(fields.city, 80); const country = clean(fields.country, 80);
+  const place = [city, country].filter(Boolean).join(', ');
+  const choice = clean(fields['credit-mode'], 40).toLowerCase();
+  const at = new Date(now).toISOString();
+  return {
+    // Place, batch and number only. The member's name is never in the name, the slug or the alt text: a slug becomes a URL.
+    // The place is cut to 40 characters in the slug so the batch and the number always fit and two photos never collide.
+    name: `${place || 'Photo'} · ${batch} · ${index + 1}`, slug: `${slugify(place).slice(0, 40).replace(/-+$/, '') || 'photo'}-${batch}-${index + 1}`,
+    'submitted-at': at, country: country || null, city: city || null,
+    year: /^\d{4}$/.test(String(fields.year || '')) ? Number(fields.year) : null, caption: clean(fields.caption, 1000) || null,
+    // No radio is ticked when the page loads, so an empty choice is recorded as it is and not as "named".
+    'credit-preference': choice || 'not chosen', 'contributor-credit': photoCredit(contributor?.fieldData, choice),
+    // social-opt-in is recorded false for now: the page serves "On our Instagram and LinkedIn" and "On the homepage" already
+    // ticked (found 11 Nov 2026), so a tick proves nothing. The Webflow form copy keeps what was sent. It can be read again
+    // once the boxes are served unticked and the form carries a wording version.
+    'gallery-opt-in': true, 'social-opt-in': false, 'press-interest-opt-in': String(fields['syndication-press']) === 'true',
+    'rights-confirmed': String(fields['agree-rights']) === 'true', 'license-accepted': String(fields['agree-licence']) === 'true', 'people-consent-confirmed': String(fields['agree-people']) === 'true',
+    'consent-recorded-at': at, 'uploader-member-id': memberId, 'contributor-profile': contributor?.id || null,
+    // Waits for review. gallery-published-at is left unset on purpose: nothing has been published.
+    'moderation-stage': PHOTO_STAGE_RECEIVED, 'review-status': PHOTO_REVIEW_PENDING, 'batch-id': batch,
+    'pet-names': clean(fields['pets-along'], 200) || null, photo: { url, alt: clean(fields.caption, 200) || place || 'Photo' },
+  };
+}
 
 /** The full body: body-part-1..12 joined when present (the form keeps only about 5,000 characters of one field). */
 export function fullBody(fields) {
@@ -170,15 +232,9 @@ async function storySlugs(env, fetchImpl) {
   return all.filter(Boolean);
 }
 
-async function createPublished(env, fetchImpl, collection, fieldData) {
-  const made = await webflow(env, fetchImpl, `/collections/${collection}/items`, { method: 'POST', body: JSON.stringify({ isDraft: false, isArchived: false, fieldData }) });
-  const id = made?.id || made?.items?.[0]?.id;
-  if (id) await webflow(env, fetchImpl, `/collections/${collection}/items/publish`, { method: 'POST', body: JSON.stringify({ itemIds: [id] }) });
-  return id;
-}
-
-/** A draft item, not published: stories and link-outs wait for the editor (11 Nov 2026, Nancy: a human reads every story
- *  before it goes live). */
+/** A draft item, not published: stories, link-outs and photos wait for the editor (11 Nov 2026, Nancy: a human reads every
+ *  story before it goes live; photo submissions land as Draft). There is no create-and-publish helper in this file any
+ *  more, on purpose: nothing a member sends goes live from here. */
 async function createDraft(env, fetchImpl, collection, fieldData) {
   const made = await webflow(env, fetchImpl, `/collections/${collection}/items`, { method: 'POST', body: JSON.stringify({ isDraft: true, isArchived: false, fieldData }) });
   return made?.id || made?.items?.[0]?.id;
@@ -205,28 +261,19 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
     if (!contributor) return reply({ error: 'Your profile page is not ready yet. Your submission is saved.' }, 404);
     const memberName = contributor.fieldData?.name || '';
     if (kind === 'photos') {
-      const list = urls(fields.photos).slice(0, 30);
+      const list = photoUrls(fields.photos).slice(0, 30);
       if (!list.length) return reply({ error: 'No photos arrived.' }, 400);
+      if (!['agree-rights', 'agree-licence', 'agree-people'].every((k) => String(fields[k]) === 'true')) return reply({ error: 'The three promises must be ticked.' }, 400);
       const place = [clean(fields.city, 80), clean(fields.country, 80)].filter(Boolean).join(', ');
       const ids = [];
       const batch = `b${now.toString(36)}`;
-      for (const [i, url] of list.entries()) {
-        const fd = {
-          name: `${memberName || 'Member'} · ${place || 'Photo'} · ${i + 1}`, slug: slugify(`${memberName}-${place}-${batch}-${i + 1}`),
-          'submitted-at': new Date(now).toISOString(), country: clean(fields.country, 80) || null, city: clean(fields.city, 80) || null,
-          year: /^\d{4}$/.test(String(fields.year || '')) ? Number(fields.year) : null, caption: clean(fields.caption, 1000) || null,
-          'credit-preference': clean(fields['credit-mode'], 40) || 'named', 'contributor-credit': memberName || null,
-          'gallery-opt-in': true, 'social-opt-in': String(fields['syndication-social']) === 'true', 'press-interest-opt-in': String(fields['syndication-press']) === 'true',
-          'rights-confirmed': String(fields['agree-rights']) === 'true', 'license-accepted': String(fields['agree-licence']) === 'true', 'people-consent-confirmed': String(fields['agree-people']) === 'true',
-          'consent-recorded-at': new Date(now).toISOString(), 'uploader-member-id': memberId, 'contributor-profile': contributor.id,
-          'moderation-stage': PHOTO_STAGE_PUBLISHED, 'review-status': 'published, review next day', 'batch-id': batch, 'gallery-published-at': new Date(now).toISOString(),
-          'pet-names': clean(fields['pets-along'], 200) || null, photo: { url, alt: clean(fields.caption, 200) || `${place} photo by ${memberName}` },
-        };
-        if (!(fd['rights-confirmed'] && fd['license-accepted'] && fd['people-consent-confirmed'])) return reply({ error: 'The three promises must be ticked.' }, 400);
-        ids.push(await createPublished(env, fetchImpl, env.PHOTO_SUBMISSIONS_COLLECTION_ID, fd));
+      for (const [index, url] of list.entries()) {
+        ids.push(await createDraft(env, fetchImpl, env.PHOTO_SUBMISSIONS_COLLECTION_ID, buildPhoto(fields, { url, index, batch, now, memberId, contributor })));
       }
-      await logIntake(env, { kind, memberId, name: memberName, ids, place, at: new Date(now).toISOString() }, now);
-      return reply({ ok: true, kind, ids });
+      await logIntake(env, { kind, memberId, name: memberName, ids, place, held: true, at: new Date(now).toISOString() }, now);
+      // No `ok` in this answer on purpose, as for stories: the /share-photos layer that is live until the next site code
+      // release prints its old "in the Lounge" line whenever it sees ok. Without ok it prints its plain "Saved" line.
+      return reply({ saved: true, held: true, kind, ids });
     }
     const taken = await storySlugs(env, fetchImpl);
     const title = clean(kind === 'story' ? fields.name : (fields['Field 5'] || fields.title), 200);
@@ -264,22 +311,12 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
   }
 }
 
-/** GET /lounge: published member photos for the /gallery Lounge, newest first. Public fields only. */
-export async function handleLounge(request, env, { fetchImpl = fetch, cache = globalThis.caches?.default } = {}) {
-  const cors = memberCors(request);
-  const json = (b, s = 200, extra = {}) => new Response(JSON.stringify(b), { status: s, headers: { 'Content-Type': 'application/json; charset=utf-8', ...cors, ...extra } });
-  if (!env.WEBFLOW_TOKEN || !env.PHOTO_SUBMISSIONS_COLLECTION_ID) return json({ photos: [] }, 200, { 'Cache-Control': 'no-store' });
-  const key = new Request('https://cache.local/lounge/v1');
-  if (cache) { const hit = await cache.match(key); if (hit) return json(await hit.json(), 200, { 'Cache-Control': 'public, max-age=300' }); }
-  const page = await webflow(env, fetchImpl, `/collections/${env.PHOTO_SUBMISSIONS_COLLECTION_ID}/items/live?limit=100`);
-  const photos = (page?.items || [])
-    .filter((i) => i.fieldData?.['moderation-stage'] === PHOTO_STAGE_PUBLISHED && i.fieldData?.['gallery-opt-in'] && i.fieldData?.photo?.url && !i.fieldData?.['removal-requested'])
-    .sort((a, b) => String(b.fieldData['submitted-at']).localeCompare(String(a.fieldData['submitted-at'])))
-    .map((i) => { const f = i.fieldData; const initials = String(f['contributor-credit'] || '').split(/\s+/).map((w) => w[0] || '').join('').toUpperCase().slice(0, 3);
-      return { img: f.photo.url, alt: f.photo.alt || '', place: [f.city, f.country].filter(Boolean).join(', '), country: f.country || '', credit: f['credit-preference'] === 'anonymous' ? '' : initials, caption: f.caption || '' }; });
-  const body = { photos };
-  if (cache) await cache.put(key, new Response(JSON.stringify(body), { headers: { 'Cache-Control': 'max-age=300' } }));
-  return json(body, 200, { 'Cache-Control': 'public, max-age=300' });
+/** GET /lounge: always an empty list (11 Nov 2026). It used to return the member photos this Worker had published; photos
+ *  now wait for the editor as drafts, and approved photos will reach the page through a native CMS list. The route stays
+ *  so the Lounge layer that is live on /gallery (tll-lounge-members-v1) keeps getting a valid answer and adds nothing. It
+ *  reads nothing from the CMS, so no item, whatever its stage, can come back through it. */
+export async function handleLounge(request) {
+  return new Response(JSON.stringify({ photos: [] }), { status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8', ...memberCors(request), 'Cache-Control': 'no-store' } });
 }
 
 export { memberCors as intakeCors };

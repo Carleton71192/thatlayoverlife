@@ -4,13 +4,23 @@
       shows the ending and asks the writer to finish it; a second press of Send sends it as it is.
    2. After Webflow accepts a form (its success box shows), the same fields go to the Worker's POST /intake with the member's
       Memberstack token. Since 11 Nov 2026 a story or link-out is saved as a draft for the editor (a human reads every story
-      before it goes live) and photos still go to the Lounge at once; all are linked to the member's profile. If that step
-      fails nothing is lost: the Webflow copy is set up by hand.
+      before it goes live); it is linked to the member's profile. If that step fails nothing is lost: the Webflow copy is set
+      up by hand.
+   3. Photos (11 Nov 2026, Nancy: photo submissions land as Draft and only approved photos ever show). While HOLD_PHOTOS is
+      true a photo send is NOT posted to the Worker at all: the Worker that is live today would publish each photo at once,
+      with the member's name in the address, while the page says a person looks first. The Webflow form copy is the record
+      and reaches the editor as a form notification. The member sees the page's own done box, which already says a person
+      looks at every photo first; only if that sentence is ever missing does this layer add "Saved. It is with the editor."
+      Nothing here says the photos are on the site, with the hold on or off, whatever the Worker answers.
+      Set HOLD_PHOTOS to false only after the Worker with the photo hold is deployed (check: GET /lounge answers an empty
+      list, and a test send lands as a draft). The page then posts photos again and still shows nothing more than the saved
+      line, so the page and the Worker can be released in either order.
    Expat and press applications are not sent here; Nancy approves them from the next-day report.
    Field names unchanged; nothing removed; no data-ms-* element touched. */
 (function(){
 var P=location.pathname.replace(/\/+$/,'');if(P!=='/submit'&&P!=='/share-photos')return;
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev/intake';
+var HOLD_PHOTOS=true;
 var CSS='.tll-end-note{margin:8px 0 0;padding:10px 12px;border-left:3px solid #C8325B;background:#FBEFF2;color:#0A0B14;font:400 14px/1.45 "IBM Plex Sans Condensed",system-ui,sans-serif;border-radius:2px}'+
 '.tll-end-note b{font-weight:600}.tll-intake-msg{margin:12px 0 0;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-intake-msg a{color:#0A0B14;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}';
 function css(){if(document.getElementById('tll-intake-v1'))return;var s=document.createElement('style');s.id='tll-intake-v1';s.textContent=CSS;document.head.appendChild(s);}
@@ -31,17 +41,27 @@ function endCheck(form){
   ta.addEventListener('input',function(){var n=form.querySelector('.tll-end-note');if(n&&/[.!?…"”')\]]$/.test(lastLine(ta.value)))n.remove();});
 }
 var SAVED='Saved. It is with the editor.';
+/* The done box on /share-photos reads "A human looks at every photo before it goes up". If it says so, a second line would
+   only repeat it. */
+function promised(done){return /looks at every photo|with the editor/i.test(done.textContent||'');}
+function photos(form,done){
+  if(!promised(done)){var m=document.createElement('p');m.className='tll-intake-msg';m.textContent=SAVED;done.appendChild(m);}
+  if(HOLD_PHOTOS)return;
+  var tok=token();if(!tok)return;
+  /* The answer changes nothing on the page: held or not, an old Worker or a new one, the member reads the same thing. */
+  try{fetch(API,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok},body:JSON.stringify({kind:'photos',fields:fields(form)})}).catch(function(){});}catch(e){}
+}
 function watch(form){
   if(form.__tllIntake)return;form.__tllIntake=1;var kind=kindOf(form);if(!kind)return;
   var wrap=form.closest('.w-form')||form.parentNode,done=wrap&&wrap.querySelector('.w-form-done');if(!done)return;
   var sent=false;
   new MutationObserver(function(){if(sent||getComputedStyle(done).display==='none')return;sent=true;
+    if(kind==='photos'){photos(form,done);return;}
     var tok=token(),data=fields(form);if(!tok)return;
-    var msg=document.createElement('p');msg.className='tll-intake-msg';msg.textContent=kind==='photos'?'Setting it up on the site…':'Sending it to the editor…';done.appendChild(msg);
+    var msg=document.createElement('p');msg.className='tll-intake-msg';msg.textContent='Sending it to the editor…';done.appendChild(msg);
     fetch(API,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok},body:JSON.stringify({kind:kind,fields:data})})
     .then(function(r){return r.json().catch(function(){return{};}).then(function(j){return{ok:r.ok&&j.ok,j:j};});})
     .then(function(x){if(!x.ok){msg.textContent=SAVED;return;}
-      if(kind==='photos'){msg.innerHTML='Your photos are in the Lounge. <a href="/gallery">See them →</a>';return;}
       /* 11 Nov 2026 (Nancy: a human reads every story before it goes live): the Worker now saves stories and link-outs as
          drafts and answers held:true; the page's own message already says it is with the editor, so this line steps aside.
          An older Worker that still answers with a url keeps the old line, so the two can be released in either order. */
