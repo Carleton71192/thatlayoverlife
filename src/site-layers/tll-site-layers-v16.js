@@ -847,7 +847,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var STUB='the-art-of-wellbeing-thailand-luxury-health-destination-2026';
-var INDEX='https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@3fe8983ca837580596badbe3c3d8173470780d19/src/data/story-search-index.json';
+/* 11 Nov 2026: loaded from the slim layers-release branch; the main branch is over jsDelivr's 50 MB package limit */
+var INDEX='https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@44ded907d8bc464d4b40b48d237cbf6b8bc5377c/src/data/story-search-index.json';
 function css(t,id){if(document.getElementById(id))return;var s=document.createElement('style');s.id=id;s.textContent=t;document.head.appendChild(s);}
 function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
 function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms&&ms.getCurrentMember){clearInterval(iv);ms.getCurrentMember().then(function(r){cb(!!(r&&r.data));}).catch(function(){cb(false);});}else if(++n>40){clearInterval(iv);cb(false);}},150);}
