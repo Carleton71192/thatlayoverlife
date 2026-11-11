@@ -13,8 +13,19 @@ function run(){
   if(document.getElementById('tll-country-list'))inp.setAttribute('list','tll-country-list');
   grid.appendChild(wrap);
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
-setTimeout(run,1200);
+var NAMES=[['le-name','name-or-pen-name'],['le-links','published-links']];
+function names(){
+  for(var i=0;i<NAMES.length;i++){var inp=document.querySelector('#tll-expert-apply form input#'+NAMES[i][0]),want=NAMES[i][1];if(!inp)continue;
+    if(inp.getAttribute('name')!==want)inp.setAttribute('name',want);
+    if(inp.getAttribute('data-name')!==want)inp.setAttribute('data-name',want);}
+}
+function both(){names();run();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',both);else both();
+setTimeout(both,1200);
+/* The form can arrive, or be drawn again, after this chunk has run. */
+if(window.MutationObserver)new MutationObserver(names).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['name','data-name']});
+/* Capture on the document: before Webflow's submit handler, which is delegated on the document in the bubble phase. */
+document.addEventListener('submit',names,true);
 })();
 /* src/site-layers/tll-expats-map-v1.js */
 (function(){
