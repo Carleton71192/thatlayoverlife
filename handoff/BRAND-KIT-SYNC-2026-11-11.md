@@ -119,9 +119,11 @@ NANCY ACTION REQUIRED
     - Naming a platform neutrally (for example an import source). The kit bans naming and roasting; v1.4 bans a platform in a comparison or a joke and is silent on a plain factual mention.
     - "One concrete image or aside per line": does it bind every line of a 150 to 300 word LinkedIn post, or only standalone lines such as hooks, headlines, bios and captions? v1.4 quotes the kit and does not narrow it.
     - "Story pins with the washi-tape place label": named in 06B with no spec. v1.4 tells Cowork not to build it until you give one.
+    - Four readings in the Positioning block that go a step past the kit's words; confirm or drop each: (a) positioning rule 2: Cowork asks which live page a TLL post points to when no link is given; (b) positioning rule 3: every TLL post carries a named author, the trip date and checkable facts from the session; (c) the niche order is used to propose topics when the topic is open; (d) long drafts are cut before anything is added.
+    - Hard rule 9 still says to point to "the Sunday letter", as the kit does. The site dropped "Sunday" from the letter lines on 11 November 2026 ("Get the letter and hear when they open"). If the letter has no fixed day now, the kit and this rule should say "the letter".
     - The 06B figures (the three survey percentages, the two growth numbers). The kit links a source for each, several of them secondhand ("via PPC Land", "via Bike Magazin", "via SGB Online", Wikipedia). The links were not opened or verified in this sync. v1.4 keeps the figures out of posts unless you give figure and source in the session.
 12. Left untouched outside the TLL block, as instructed, but worth a later pass: the Nancy Carleton, TBC and Lub Bub flag lines still say "so v1.3 can lock these specs"; the title line, several shared sections and the Nancy Carleton interim sign-off still contain em dashes; the layover route diagram is still NANCY TO CONFIRM.
-13. Kit housekeeping: in the version history the v2.6 entry sits between v1.0 and v2.0 and v2.5 sits above v2.4; in section 12 the v2.6 block sits above the v2.5 and v2.4 blocks. Nothing was committed, pushed or uploaded in this sync, and the Drive copy was not touched.
+13. Kit housekeeping: in the version history the v2.6 entry sits between v1.0 and v2.0 and v2.5 sits above v2.4; in section 12 the v2.6 block sits above the v2.5 and v2.4 blocks. Both files are committed on the branch claude/new-session-zxm063 of the site repo. The Drive copy of the kit was not touched.
 
 NEXT STEPS
 ----------
