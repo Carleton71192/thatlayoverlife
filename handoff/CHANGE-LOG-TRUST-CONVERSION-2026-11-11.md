@@ -84,7 +84,7 @@ Checked on the test site on 11 November 2026. No work needed unless noted.
 
 ## Part 3. The changes, numbered
 
-How each one is built: **Webflow** = a write through the API, staged. **Layers** = site layers source, one new release (16.55.0) registered in place of 16.54.0. **Worker** = code prepared, deploy on your word. **Designer** = I try the API first; if Webflow will not take it, it is a few clicks for you and I write them out.
+How each one is built: **Webflow** = a write through the API, staged. **Layers** = site layers source, one new release (16.56.0) registered in place of the one in the header at that moment (16.55.0 since about 14:05 UTC on 11 November 2026, from the Lounge postcards session). **Worker** = code prepared, deploy on your word. **Designer** = I try the API first; if Webflow will not take it, it is a few clicks for you and I write them out.
 
 ### A. Numbers
 
@@ -215,7 +215,7 @@ Two things for you on /terms that I do not change: it still says "Last updated: 
 
 ### H. Release
 
-**22. Site layers 16.55.0.** Built from the layer changes above, tests run, copied to the slim release branch, registered in the site header in place of 16.54.0. Rollback: 16.54.0. Note: another session's Lounge postcard layer is in the same source tree (staged behind `?preview=lounge`); a build picks it up too, so I check with that session before building.
+**22. Site layers 16.56.0.** Built from the layer changes above on top of 16.55.0 (the Lounge postcards release, which holds its deck behind `?preview=lounge`), tests run, copied to the slim release branch, registered in the site header in place of 16.55.0. Rollback: 16.55.0. I check with the Lounge postcards session before building, since we share the source tree.
 
 **23. Translation queue.** The site has one language today and no translated pages, so there is nothing to hold back. I list every changed English line in `docs/translation-queue-2026-11-11.md` for when translations exist.
 
