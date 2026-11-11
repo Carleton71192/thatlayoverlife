@@ -254,7 +254,10 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
       await createDraft(env, fetchImpl, env.PHOTO_PLACEMENTS_COLLECTION_ID, { name: slug, slug, story: id, 'photo-placement': built.placement });
     }
     await logIntake(env, { kind, memberId, name: memberName, id, slug, title, held: true, checks: built.checks || [], at: new Date(now).toISOString() }, now);
-    return reply({ ok: true, kind, id, slug, held: true, checks: built.checks || [] });
+    // No `ok` and no `url` in this answer on purpose: the /submit layer that is live on www until site layers 16.56.0 is
+    // published prints "It is live" with a link whenever it sees ok, which is no longer true. Without ok both the old and
+    // the new layer print their plain "Saved" line, and the page's own message says it is with the editor.
+    return reply({ saved: true, held: true, kind, id, slug, checks: built.checks || [] });
   } catch (error) {
     console.log(`intake ${JSON.stringify({ member: memberId, kind, error: String(error?.message || error) })}`);
     return reply({ error: 'Saved, and we will set it up by hand.' }, 502);
