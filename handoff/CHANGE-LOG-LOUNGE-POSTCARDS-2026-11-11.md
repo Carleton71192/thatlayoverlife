@@ -175,3 +175,11 @@ Also in: the deck already takes in member tiles from today's `tll-lounge-members
 2. Register that build in Webflow as site layers 16.55.0 in place of the staged 16.54.0, logged in `handoff/WEBFLOW-LOCK.md`.
 3. Publish to the subdomain only. That publish also carries whatever other sessions have staged.
 4. Safari check in the iOS Simulator, then your iPhone at `https://that-layover-life.webflow.io/gallery?preview=lounge`.
+
+## On the subdomain (11 November 2026, about 14:05 UTC)
+
+- The built layers are on the release branch (commit e15493c). Site layers 16.55.0 is registered in Webflow and applied in the site header in place of 16.54.0. Published to the subdomain only, task c761910d, on your word ("register and publish the subdomain"). www and the apex are unchanged.
+- Preview: `https://that-layover-life.webflow.io/gallery?preview=lounge` (deck in place of the grid) and `https://that-layover-life.webflow.io/gallery?preview=lounge-above` (deck above the grid). Without the flag the test site's /gallery is as before.
+- Checked on the subdomain itself: 31 checks pass in Chromium and 31 in WebKit at 390 px and 1440 px (`src/pages/gallery/deck-2026-11-11/live.mjs`), and five other pages load their layers with no failed file. With an iPhone 14 profile in Safari's engine: card 342 by 428 px, a 100 px touch swipe springs back, a 160 px one throws, a mostly up and down one leaves the card, tapping Next works, no page errors.
+- Not done: the iOS Simulator check. This Mac has no full Xcode install, so the Simulator cannot run. The WebKit runs above stand in for it. How a real finger shares the swipe between the card and the page scroll can only be seen on your iPhone.
+- Rollback: site layers 16.54.0 back in the header, then a subdomain publish.
