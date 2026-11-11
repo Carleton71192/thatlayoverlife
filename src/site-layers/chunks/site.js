@@ -13,7 +13,7 @@
 })();
 /* src/site-layers/tll-masthead-v1.js */
 (function(){
-  var LINE='Written by the people who went. Travel stories from members around the world, edited in Copenhagen.';
+  var LINE='Travel stories from members around the world, edited in Copenhagen with a Samoyed on the editor\'s feet.';
   function run(){
     [].forEach.call(document.querySelectorAll('footer a[href="/"] + p'),function(p){
       if(p.dataset.tllMasthead)return;p.dataset.tllMasthead='1';p.textContent=LINE;p.classList.add('tll-masthead');});
