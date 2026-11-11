@@ -37,7 +37,7 @@
    chunk  pursuits /^\/pursuits\/[^/]+$/: tll-stamps-v1, tll-pros-v1, tll-series-v1, tll-work-trips-v1
    chunk  pets /^\/(pets\/[^/]+|my-pets|the-paw-passport)$/: tll-crew-v1, tll-album-v1, tll-series-v1 (+ staged in pets-preview: tll-paw-v1, tll-pet-passport-v1)
    chunk  countries /^\/countries\/[^/]+$/: tll-series-v1
-   chunk  misc /^\/(spotlight|gallery)$/: tll-open-slots-v1, tll-lounge-members-v1
+   chunk  misc /^\/(spotlight|gallery)$/: tll-open-slots-v1, tll-lounge-members-v1 (+ staged in misc-preview: tll-lounge-deck-v1)
    No data-ms-* element is touched. */
 /* src/site-layers/tll-consent-mode-v2.js */
 window.dataLayer=window.dataLayer||[];if(typeof window.gtag!=='function'){window.gtag=function(){dataLayer.push(arguments);};}
@@ -66,7 +66,7 @@ var C=[['site',/^/,'sha384-DpqA9Ru2NnCg5tvYOzVOOIEMCkMFQipLh5AvWyQMTHFmy3h/uVSkQ
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-xVEkdzcX8jR4AOW1eRUGfRoKTvzwixR8KCfQIAyvlmj51Ma2EP3DyHyAYa+jEp2Q'],
 ['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-TuR0lzUVTtZ0G1fkQm+P0LBwqrNiYnM1DVusZInhiDtYbizmScJW1pQYeye1UJPC','pets-preview','sha384-eMt3BB11tu/hV/MRxuQHutpPVFu8smDJSG5Z6yYpBAW4b9hYBqI07cc9HiWmYKZz'],
 ['countries',/^\/countries\/[^/]+$/,'sha384-I0ADpRWbi7LOkRL/AVmTuJOMYrlx+zqLIsznUmkKcXuK/O3UaFvtPo+bXVf4xFfA'],
-['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj']],h=document.head||document.documentElement;
+['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj','misc-preview','sha384-QumyymXygS2k5h3muiCdOnkuKm8nlyrThYzpaXSuNGziCX423rjS7n8FNsyMYQGI']],h=document.head||document.documentElement;
 for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}
   var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}
 })();
