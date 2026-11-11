@@ -61,6 +61,7 @@ async function dragBy(page, dx, o = {}) { await page.evaluate(() => document.que
 const shot = async (page, name) => { if (!/^(before|drag)/.test(name)) await page.evaluate(() => { const c = document.querySelector('[data-tll-lounge-chips]'); scrollTo(0, c.getBoundingClientRect().top + scrollY - (innerWidth < 768 ? 150 : 110)); }); await page.waitForTimeout(120); await page.screenshot({ path: path.join(DIR, `${name}.png`) }); };
 const mainHtml = (page) => page.evaluate(() => document.querySelector('main').innerHTML);
 
+const pageReqs = [];
 for (const w of [390, 1440]) {
   const T = `[${ENGINE} ${w}] `;
   /* 1. Without the flag: today's Lounge, and the new code is not downloaded. Compared with the committed build on the same saved page. */
@@ -73,7 +74,8 @@ for (const w of [390, 1440]) {
     eq(await b.page.evaluate(() => [!!document.querySelector('.tll-deck'), !!document.getElementById('tll-lounge-deck-v1'), typeof window.__tllLoungeDeck, document.querySelectorAll('[data-tll-loc]').length]), [false, false, 'undefined', 17], T + '1 no flag: no deck, 17 tiles');
     await b.page.evaluate(() => { const c = document.querySelector('[data-tll-lounge-chips]'); scrollTo(0, c.getBoundingClientRect().top + scrollY - (innerWidth < 768 ? 150 : 110)); });
     await shot(b.page, `before-${ENGINE}-${w}`);
-    var baseReqs = b.reqs.slice(), baseErrs = b.errs.slice(); await a.ctx.close(); await b.ctx.close(); }
+    /* What the page asks for by itself: both no-flag runs together, at every width so far (a font can come from the browser's memory cache in a later run and so not be asked for again). */
+    pageReqs.push(...a.reqs, ...b.reqs); var baseReqs = pageReqs.slice(), baseErrs = b.errs.slice(); await a.ctx.close(); await b.ctx.close(); }
 
   /* 2 to 8, 11, 12 on one page. */
   { const { ctx, page, reqs, errs } = await open({ w, q: '?preview=lounge' });

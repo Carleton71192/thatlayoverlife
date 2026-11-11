@@ -183,3 +183,26 @@ Also in: the deck already takes in member tiles from today's `tll-lounge-members
 - Checked on the subdomain itself: 31 checks pass in Chromium and 31 in WebKit at 390 px and 1440 px (`src/pages/gallery/deck-2026-11-11/live.mjs`), and five other pages load their layers with no failed file. With an iPhone 14 profile in Safari's engine: card 342 by 428 px, a 100 px touch swipe springs back, a 160 px one throws, a mostly up and down one leaves the card, tapping Next works, no page errors.
 - Not done: the iOS Simulator check. This Mac has no full Xcode install, so the Simulator cannot run. The WebKit runs above stand in for it. How a real finger shares the swipe between the card and the page scroll can only be seen on your iPhone.
 - Rollback: site layers 16.54.0 back in the header, then a subdomain publish.
+
+## Review (11 November 2026, after the subdomain publish)
+
+An independent review of the deck code ran while you had the preview: three reviewers, each with a different focus, and a second checker who tried to disprove each finding. Eight faults held up, none of them visible without the preview flag. All eight are fixed in commit 5ce3911, each with its own test (Chromium 122 checks pass, WebKit 116, the repo's 364 unit tests).
+
+| # | What went wrong | Now |
+|---|---|---|
+| R1 | A second finger on the card took over the swipe: the card could stay crooked, or a pinch to zoom threw the card away. | A second finger puts the card back and starts nothing. Two fingers zoom the page as usual. |
+| R2 | With the keyboard, one press of Enter too many on Previous went forward again, and on Next it pressed Start again. | The extra press does nothing. Focus rests on the card. |
+| R3 | Member photos arriving late rebuilt the deck under the visitor: a swipe in progress was lost, the end card reset, keyboard focus was dropped. | They wait for the swipe to finish, keep the visitor's place and focus, and stay out of a filtered deck. |
+| R4 | On a Mac, a ctrl-click on a photo left the card following the mouse with no button down, and the next click was lost. | No drag starts, and the next click works. |
+| R5 | With a phone on its side or on a small laptop, the card was taller than the screen. | The card shrinks so the whole postcard shows (220 by 275 px on a phone on its side). The buttons may still need a short scroll there. |
+| R6 | A flick made after resting a finger on the card sprang back. | It throws the card. |
+| R7 | "See all as a grid" could leave "Back to the deck" off the screen. | Whichever one gets focus is scrolled into view, clear of the header. |
+| R8 | A chip pressed before the deck had loaded was ignored (the deck showed all 17). | The deck starts on the chip already pressed. |
+
+One change to the wording above: on the end card, focus now goes to the card ("That is all 17.") and not straight to Start again, which is what R2 needed.
+
+**Where each site stands (about 15:00 UTC):**
+
+- Test site: serves site layers 16.57.0 (another session's release, built just before these fixes). The deck there is the first build, without R1 to R8.
+- www: another session's publish at 14:06 UTC carried 16.55.0. Without the flag www /gallery is unchanged and the deck code is not downloaded, but `https://www.thatlayover.life/gallery?preview=lounge` now shows the deck there too (first build). That is how every staged layer on this site works; say if you want it off www until you approve it.
+- The fixes reach the test site with the next site layers release built from the repo, whoever makes it, or with a release of their own on your word.
