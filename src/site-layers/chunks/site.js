@@ -209,3 +209,26 @@ function run(){
   new IntersectionObserver(function(es){for(var i=0;i<es.length;i++)document.documentElement.classList.toggle('tll-note-footer',es[i].isIntersecting);},{threshold:0}).observe(f);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();
+/* src/site-layers/tll-p0-closeout-v1.js */
+(function(){
+var P=location.pathname.replace(/\/+$/,'')||'/';
+if(P==='/submit'||P==='/share-photos'){
+  var clear=function(){[].forEach.call(document.querySelectorAll('input[placeholder],textarea[placeholder]'),function(i){
+    if(/^\s*example text\s*$/i.test(i.getAttribute('placeholder')||''))i.setAttribute('placeholder','');});};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',clear);else clear();
+  window.addEventListener('load',clear);setTimeout(clear,1500);
+}
+var outside=false,n=0;
+(function ask(){
+  if(typeof window.__tcfapi==='function'){try{window.__tcfapi('addEventListener',2,function(tc,ok){if(!ok||!tc)return;
+    if(tc.gdprApplies===false)outside=true;else if(tc.gdprApplies===true)outside=false;});}catch(e){}}
+  else if(++n<150)setTimeout(ask,100);
+})();
+/* window, capture: runs before the head script's document listener, and only steps in when outside is true. */
+window.addEventListener('click',function(e){
+  if(!outside||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  var a=e.target&&e.target.closest&&e.target.closest('a[data-tll-cookie-prefs]');if(!a)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  if(P!=='/cookies')location.assign('/cookies');else window.scrollTo(0,0);
+},true);
+})();
