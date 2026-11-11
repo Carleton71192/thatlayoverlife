@@ -47,6 +47,7 @@ html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) > div:has(> h1){pa
 html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) h1:not(.tll-story-title) + p{min-height:calc(3 * 1.45em)}
 /* 11 Nov 2026: the deck is two lines from 371px up (three only below that), so the room held in advance is two lines there. */
 @media(min-width:371px){html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) h1:not(.tll-story-title) + p{min-height:calc(2 * 1.45em)}}
+html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) p[data-tll-hero-promise]{margin-top:8px !important} /* 11 Nov 2026: before the fill the promise line had a 16px top margin and 8px after it, an 8px jump of the headline */
 html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) .h3-hero-cta{margin-bottom:93.5px !important}
 @media(min-width:768px){
 html body:not(.tll-none) [data-h3-hero]{min-height:min(88vh,860px) !important;--tll-cover-pos:var(--tll-cover-pos-desk,50% 50%);--tll-cover-zoom:0%}

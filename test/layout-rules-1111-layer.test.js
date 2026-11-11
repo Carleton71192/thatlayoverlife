@@ -37,6 +37,12 @@ describe('tll-mag-cover-v1 room held for the hero deck before the cover fills it
       expect(s.indexOf(TWO)).toBeGreaterThan(s.indexOf(THREE));
     });
   }
+  const PROMISE = 'html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) p[data-tll-hero-promise]{margin-top:8px !important}';
+  for (const f of ['cover.template.html', 'tll-mag-cover-v1.html']) {
+    it(`${f}: the promise line keeps the same 8px top margin before the fill as after it`, () => {
+      expect(count(read(...DIR, f), PROMISE)).toBe(1);
+    });
+  }
   it('the generated cover is the template with only its data filled in around the rules', () => {
     const tpl = read(...DIR, 'cover.template.html'); const out = read(...DIR, 'tll-mag-cover-v1.html');
     const css = (s) => /<style id="tll-mag-cover-v1">\n([\s\S]*?)<\/style>/.exec(s)[1];
