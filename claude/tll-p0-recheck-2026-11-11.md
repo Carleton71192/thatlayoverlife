@@ -26,7 +26,7 @@ Session: cloud Claude Code session_01GTTttGvX2VTwovAB2g1cLf, prompt claude/tll-r
 | --- | --- | --- |
 | www | https://www.thatlayover.life, what visitors get | Published 11 Nov 2026 17:07:23 UTC (task 854f1234, on Nancy's word "Hold that one line back, then publish www"). Site code 16.58.0, pin 3066315b. All 139 sitemap pages carry this stamp and this pin |
 | Test copy | https://that-layover-life.webflow.io | Same publish, same stamp, same pin. Same pages. Two differences by design: its robots file closes it to search engines, and Google's consent tool never answers on that address, so consent, analytics and ads cannot be tried there |
-| Designer | What is staged in Webflow | Webflow reported "last updated 17:07:32 UTC" at 17:30 UTC, so nothing had been staged after the publish when this was read. The home "Layover guides" row redesign is being built by this session and is not staged yet |
+| Designer | What is staged in Webflow | Webflow reported "last updated 17:07:32 UTC" at 17:30 UTC, so as far as that stamp shows nothing had been staged after the publish when this was read. The home "Layover guides" row redesign is being built by this session and is not staged yet |
 
 Nancy's two answers are taken as final: the Sunday letter is cut, and the Copenhagen marathon diary is a draft. Still not known: the Ko-fi product link and price, and the Search Console verification id.
 
