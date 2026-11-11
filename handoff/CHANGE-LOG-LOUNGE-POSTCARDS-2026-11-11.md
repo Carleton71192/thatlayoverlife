@@ -146,3 +146,9 @@ iPhone: after the tests pass, the layer goes to the subdomain behind the flag. A
 1. Approve as written: group 1 built and put behind `?preview=lounge` for your iPhone check, group 2 when W4 is deployed, group 3 as proposed (deck in place of the grid, fixed order, no flip, no side panel).
 2. Change it: tell me which items or words (L12 to L16 are the open choices).
 3. Not now.
+
+## Approved 11 November 2026
+
+Nancy: "Approve as written, build group 1 behind the preview".
+
+So: L1 to L9 are built behind `?preview=lounge`. Group 3 stands as proposed (deck in place of the grid, fixed order, the words in L14, no flip, no side panel). Group 2 waits for W4. Nothing goes to www without your word.
