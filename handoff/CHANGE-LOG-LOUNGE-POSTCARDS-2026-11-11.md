@@ -152,3 +152,26 @@ iPhone: after the tests pass, the layer goes to the subdomain behind the flag. A
 Nancy: "Approve as written, build group 1 behind the preview".
 
 So: L1 to L9 are built behind `?preview=lounge`. Group 3 stands as proposed (deck in place of the grid, fixed order, the words in L14, no flip, no side panel). Group 2 waits for W4. Nothing goes to www without your word.
+
+## Built 11 November 2026 (in the repo, not yet on the subdomain)
+
+- L1 to L9 are built: `src/site-layers/tll-lounge-deck-v1.js`, commit 5d3f7bb. It rides in the preview-only chunk (`chunks/misc-preview.js`) and runs only with `?preview=lounge` or `?preview=lounge-above`. The public /gallery chunk is byte for byte unchanged.
+- Tests (`src/pages/gallery/deck-2026-11-11/t.mjs`, on the saved live /gallery of 11 November 2026, at 390 px and 1440 px): Chromium 97 checks pass, WebKit (Safari's engine) 94 pass, covering test plan items 1 to 12 and the 404 half of 13. The repo's 353 unit tests pass. Screenshots are in the same folder (before, after, drag, end, grid, still, above).
+- Measured: phone card 342 by 428 px with 24 px margins; desktop card 420 by 525 px, centered; the deck shows within half a second; no sideways scroll after a throw; an up and down swipe on the card scrolls the page.
+
+Three places where the build differs from the wording above, for you to see in the preview:
+
+1. **L8, buttons.** The log named DM Sans and teal from the brand kit file. Since 10 November 2026 the live site uses one button set (IBM Plex Sans Condensed, square corners, ink outline, rose fill, rose focus ring), so the deck uses that set. Labels and the counter are JetBrains Mono as written; the end card line is Playfair Display, the site's heading face. No font is loaded that the page did not already load.
+2. **L2, button words on phones.** Under 480 px the buttons read "Previous" and "Next" so the row fits; wider screens read "Previous photo" and "Next photo", and screen readers hear the full names at every size.
+3. **L4, reduced motion.** The two cards beneath sit straight, a small step down, so it still reads as a stack.
+
+Also in: the deck already takes in member tiles from today's `tll-lounge-members-v1` (first in the deck, under All only, their own label), so L11 holds for the deck. L10 (the member's caption shown on the card, `tll-lounge-members-v2`) is not built.
+
+**W4 is live.** The Worker was deployed at 13:28 UTC on 11 November 2026 (version 2244060e). `GET /lounge` now answers 200 with no photos yet. Group 2 no longer waits on the deploy; it waits on your word and on a first member photo to test with.
+
+**Still to do before your iPhone check:**
+
+1. Push the built layers to the slim release branch (`bash tools/release-layers.sh` from the repo folder). This session's permission check blocked that push, as it blocked the Worker deploy on 10 November. Nancy runs it, or allows it.
+2. Register that build in Webflow as site layers 16.55.0 in place of the staged 16.54.0, logged in `handoff/WEBFLOW-LOCK.md`.
+3. Publish to the subdomain only. That publish also carries whatever other sessions have staged.
+4. Safari check in the iOS Simulator, then your iPhone at `https://that-layover-life.webflow.io/gallery?preview=lounge`.
