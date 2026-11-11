@@ -91,7 +91,7 @@ html body:not(.tll-none) [data-h3-hero] .tll-mg-stamp{width:150px;right:var(--h3
 @media(min-width:768px){.tll-mg-faces{grid-template-columns:repeat(4,1fr);gap:32px}}
 
 /* Stamps on the library cards and on the letter (26 Oct build list: "stamp on cards"). Each card carries data-loc and data-date, so
-   the stamp is drawn from them; the letter's stamp reads SUNDAY. Decorative, aria-hidden, no pointer events. */
+   the stamp is drawn from them; the letter's stamp names no day or time (11 Nov 2026). Decorative, aria-hidden, no pointer events. */
 .h3-card-ph .tll-mg-card-stamp{position:absolute;right:10px;top:10px;width:58px;color:#0A0B14;background:rgba(247,241,232,.82);border-radius:50%;z-index:2;pointer-events:none;transform:rotate(-6deg)}
 .h3-card-ph .tll-mg-card-stamp svg{display:block;width:100%;height:auto}
 @media(min-width:768px){.h3-card-ph .tll-mg-card-stamp{width:68px;right:12px;top:12px}}
@@ -210,7 +210,7 @@ function cards(){var n=0;[].forEach.call(document.querySelectorAll('.h3-card'),f
   var loc=(c.getAttribute('data-loc')||'').split(',')[0].trim().toUpperCase().slice(0,16);if(!loc)return;
   var d=(c.getAttribute('data-date')||'').match(/^(\d{4})-(\d{2})-(\d{2})/),date=d?d[3]+' '+MON[+d[2]-1]+' '+d[1]:'';
   var arc=(c.getAttribute('data-pillar')||'').trim().toUpperCase()||'BY THE PEOPLE WHO WENT';ph.appendChild(stamp(loc,date,arc,'tll-mg-card-stamp'));n++;});return n;}
-function letter(){var s=document.querySelector('section[data-h3="news"]');if(!s||s.querySelector('.tll-mg-letter-stamp'))return;s.appendChild(stamp('SUNDAY','09:00 CPH','THE LAYOVER LETTER','tll-mg-letter-stamp'));}
+function letter(){var s=document.querySelector('section[data-h3="news"]');if(!s||s.querySelector('.tll-mg-letter-stamp'))return;s.appendChild(stamp('','','THE LAYOVER LETTER','tll-mg-letter-stamp'));}
 function run(){cards();letter();var t=document.querySelector('.h3-track');if(t&&window.MutationObserver){var mo=new MutationObserver(function(){cards();});mo.observe(t,{childList:true,subtree:true});setTimeout(function(){mo.disconnect();},15000);}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 })();

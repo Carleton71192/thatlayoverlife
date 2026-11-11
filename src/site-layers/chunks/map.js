@@ -13,7 +13,7 @@ function expats(){
     var t=document.createElement('em');t.className='tll-soon-tag';t.textContent='Coming soon';d.insertBefore(t,d.firstChild);return d;});
   var form=document.getElementById('wf-form-The-Layover-Letter')||document.getElementById('h3-news-email');
   var line=document.createElement('p');line.className='tll-soon-line';
-  line.innerHTML='Guides, visa dates and city hubs are on the way. <a href="#'+(form?form.id:'h3b-letter')+'">Get the Sunday letter and hear when they open →</a>';
+  line.innerHTML='Guides, visa dates and city hubs are on the way. <a href="#'+(form?form.id:'h3b-letter')+'">Get the letter and hear when they open →</a>';
   var last=cards[cards.length-1];last.parentNode.parentNode.insertBefore(line,last.parentNode.nextSibling);
 }
 function shelf(){[].forEach.call(document.querySelectorAll('.h3-card[href*="/stories/horseshoe-bend-arizona"]'),function(c){c.style.display='none';c.setAttribute('aria-hidden','true');c.setAttribute('tabindex','-1');});}
