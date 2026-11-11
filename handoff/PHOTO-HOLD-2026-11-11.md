@@ -6,7 +6,7 @@ For Nancy. Nothing in this note is live yet. Nothing was deployed, released or p
 
 - Since the Worker deploy of 11 November, 13:28 UTC, a photo a member sends on /share-photos would go public within minutes, with nobody looking at it first. The page tells the member the opposite.
 - No photo has gone through that path yet. The Photo submissions collection holds 0 items.
-- The fix is built and tested (421 tests pass). It has two parts. Either part alone closes the gap. Both are needed for the full fix.
+- The fix is built and tested (421 tests pass). It has two parts. Part 1 stops the page from sending photos to the Worker. Part 2 is the real lock: until the Worker is deployed, it would still publish a photo sent to it directly. Please do not wait with the deploy.
 - **Part 2 needs you:** one command on your Mac deploys the Worker. Until Part 1 or Part 2 is live, the first member photo still goes public unreviewed.
 
 ## What was wrong
@@ -53,7 +53,7 @@ Once Part 2 is live and checked, the hold line in Part 1 can be set to `false` i
 
 ## Before you deploy
 
-1. An independent review of this change is still running. Deploy only after handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**.
+1. The independent review of this change passed on 11 November 2026 (reviewed at commit 9728ca9), and handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**. Before you deploy, run `git diff --stat af5de76 -- src ':!src/site-layers' ':!src/pages'`: it must list only `src/intake.js` and `src/index.js`.
 2. Please do not add fields to the Photo submissions collection, or rename it, before the Worker is deployed. If Webflow refuses to publish single items after a structure change, the Worker that is live today leaves each photo "queued to publish", and the next site publish by anyone puts it live.
 
 ## The deploy, on your Mac
@@ -75,7 +75,7 @@ npx vitest run
 npx wrangler deploy
 ```
 
-`npx vitest run` must end with "421 passed". Compared with the Worker that is live now (commit `af5de76`), this deploy changes two files only: `src/intake.js` and one comment line in `src/index.js`. No new secret, no new setting.
+`npx vitest run` must end with 0 failed. Compared with the Worker that is live now (commit `af5de76`), this deploy changes two files only: `src/intake.js` and one comment line in `src/index.js`. No new secret, no new setting.
 
 ## The check after the deploy
 
@@ -91,7 +91,7 @@ Expected answer, exactly:
 
 Today, before the deploy, the same command answers `{"photos":[]}` without `"held":true`, because no photo exists yet. So the word `held` is what tells you the new Worker is live.
 
-A fuller check, if you want one: sign in on www, send one of your own photos on /share-photos, then look in Webflow under CMS, Photo submissions. One Draft item, stage Received, no name in its title. Nothing new on /gallery.
+A fuller check, if you want one: sign in on www, send one of your own photos on /share-photos, then look in Webflow under CMS, Photo submissions. One Draft item, stage Received, no name in its title. Nothing new on /gallery. This fuller check works only while the page still sends photos to the Worker (site code 16.58.0, or a later release with the hold line set to false). With the hold line on, your photo stays in the Webflow form inbox and no draft appears; the curl answer above is the check.
 
 ## What a member sees
 
