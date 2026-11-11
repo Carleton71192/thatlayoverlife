@@ -14,7 +14,7 @@
 //                                       for the site owner only, also the sanitized tllStates
 //   POST /intake                        a member's story, link-out or photos, set up and published at once (intake.js)
 //   GET /link-summary?url=              AI summary of a linked article for link-out cards (link-summary.js)
-//   GET /lounge                         always an empty list since 11 Nov 2026: member photos wait for the editor (intake.js)
+//   GET /lounge                         always {"photos":[],"held":true} since 11 Nov 2026: member photos wait for the editor (intake.js)
 //   GET /expats-map                     opted-in expats by country and home base, for /for-expats (expats-map.js)
 //   GET /owner-map                      the site owner's sanitized map for the visitors' view (owner-map.js)
 //   POST /translate                     { itemId, target }: a labeled machine translation of a PUBLISHED story for one

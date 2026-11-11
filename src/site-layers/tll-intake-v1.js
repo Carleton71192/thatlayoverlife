@@ -12,9 +12,9 @@
       and reaches the editor as a form notification. The member sees the page's own done box, which already says a person
       looks at every photo first; only if that sentence is ever missing does this layer add "Saved. It is with the editor."
       Nothing here says the photos are on the site, with the hold on or off, whatever the Worker answers.
-      Set HOLD_PHOTOS to false only after the Worker with the photo hold is deployed (check: GET /lounge answers an empty
-      list, and a test send lands as a draft). The page then posts photos again and still shows nothing more than the saved
-      line, so the page and the Worker can be released in either order.
+      Set HOLD_PHOTOS to false only after the Worker with the photo hold is deployed (check: GET /lounge answers
+      {"photos":[],"held":true}; the Worker before it answers {"photos":[]} without held). The page then posts photos again
+      and still shows nothing more than the saved line, so the page and the Worker can be released in either order.
    Expat and press applications are not sent here; Nancy approves them from the next-day report.
    Field names unchanged; nothing removed; no data-ms-* element touched. */
 (function(){

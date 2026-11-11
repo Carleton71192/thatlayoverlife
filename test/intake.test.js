@@ -262,10 +262,10 @@ describe('GET /lounge answers an empty list', () => {
       const env = { WEBFLOW_TOKEN: 't', PHOTO_SUBMISSIONS_COLLECTION_ID: 'photos' };
       const r = await handleLounge(new Request('https://w/lounge', { headers: { Origin: 'https://www.thatlayover.life' } }), env);
       expect(r.status).toBe(200);
-      expect(await r.json()).toEqual({ photos: [] });
+      expect(await r.text()).toBe('{"photos":[],"held":true}'); // held marks the Worker with the hold: the one before it also answered an empty list
       expect(r.headers.get('Access-Control-Allow-Origin')).toBe('https://www.thatlayover.life');
       expect(r.headers.get('Cache-Control')).toBe('no-store');
-      expect(await (await handleLounge(new Request('https://w/lounge'), {})).json()).toEqual({ photos: [] });
+      expect(await (await handleLounge(new Request('https://w/lounge'), {})).json()).toEqual({ photos: [], held: true });
       expect(asked).toBe(0);
     } finally { globalThis.fetch = realFetch; }
   });

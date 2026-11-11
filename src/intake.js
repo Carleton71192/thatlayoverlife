@@ -14,8 +14,8 @@
 //              approved photos ever show). Stage Received, review-status pending, never published from here. The item name,
 //              slug and alt text carry the place, never the member's name; the credit follows the member's byline rule.
 //              Only photos from the site's own upload folder are accepted (PHOTO_SOURCE).
-// GET /lounge   always an empty list since the same day: nothing a member sends is shown before the editor approved it,
-//               and the approved photos will come from a native CMS list on the page, not from this route.
+// GET /lounge   always {"photos":[],"held":true} since the same day: nothing a member sends is shown before the editor
+//               approved it, and the approved photos will come from a native CMS list on the page, not from this route.
 // Expat and press applications are not published here: they wait for Nancy in the next-day report.
 // Never writes headlines, bodies or captions: every word comes from the member's form. 20 intakes per member per hour.
 import { verifyMemberToken, rateLimit, memberCors, reply } from './member-auth.js';
@@ -314,9 +314,11 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
 /** GET /lounge: always an empty list (11 Nov 2026). It used to return the member photos this Worker had published; photos
  *  now wait for the editor as drafts, and approved photos will reach the page through a native CMS list. The route stays
  *  so the Lounge layer that is live on /gallery (tll-lounge-members-v1) keeps getting a valid answer and adds nothing. It
- *  reads nothing from the CMS, so no item, whatever its stage, can come back through it. */
+ *  reads nothing from the CMS, so no item, whatever its stage, can come back through it.
+ *  `held: true` is there for the check after a deploy: the Worker before this change also answered an empty list while the
+ *  collection was empty, so the empty list alone does not show which Worker is live. The layer reads `photos` only. */
 export async function handleLounge(request) {
-  return new Response(JSON.stringify({ photos: [] }), { status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8', ...memberCors(request), 'Cache-Control': 'no-store' } });
+  return new Response(JSON.stringify({ photos: [], held: true }), { status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8', ...memberCors(request), 'Cache-Control': 'no-store' } });
 }
 
 export { memberCors as intakeCors };
