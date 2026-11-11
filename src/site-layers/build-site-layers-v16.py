@@ -201,11 +201,13 @@ for name, rx, pub, staged in CHUNKS:
     rules.append(r + ']')
 LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file at the same pinned commit, read off this script's own src, so no\n"
           "   placeholder is needed. async=false keeps the order without blocking the parser; the hashes come from the same build as the chunks.\n"
+          "   window.__tllLayersBase is that folder, so other files of the same release (the story search index) load from the same commit.\n"
           "   A preview flag or a tll-preview-* key switches a chunk to its -preview variant, which also carries the staged layers. */\n"
           "(function(){\n"
           "var S=document.currentScript,src=S&&S.src||'';\n"
           "if(!src){var all=document.querySelectorAll('script[src*=\"tll-site-layers-v16\"]');if(all.length)src=all[all.length-1].src;}\n"
           "var m=/^(.*\\/)tll-site-layers-v16\\.js(?:[?#].*)?$/.exec(src);if(!m){try{console.warn('tll-site-layers: not served from its pinned URL, chunks skipped');}catch(e){}return;}\n"
+          "window.__tllLayersBase=m[1];\n"
           "var P=location.pathname.replace(/\\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);\n"
           "try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}\n"
           "var C=[%s],h=document.head||document.documentElement;\n"
