@@ -85,7 +85,7 @@ No member-data address serves a page and none is in the sitemap. /my-passport is
 
 | Row | Page | Element | Before | After | Why |
 | --- | --- | --- | --- | --- | --- |
-| M1 | Worker and site code (the photo hold, built by this session, in review) | Member photo path from /share-photos | A member photo is published at once, with the member's name in its address, and shown on /gallery | Photos are saved as drafts for Nancy, with no name in the address; nothing reaches /gallery until she approves | The page promises a person looks first. The review passed at about 17:50 UTC. Takes effect with the Worker deploy on Nancy's Mac (can be done now), or with the next www publish, which carries site code 16.59.0 (being staged about 17:55 UTC). Steps and undo: handoff/PHOTO-HOLD-2026-11-11.md |
+| M1 | Worker and site code (the photo hold, built by this session, review passed) | Member photo path from /share-photos | A member photo is published at once, with the member's name in its address, and shown on /gallery | Photos are saved as drafts for Nancy, with no name in the address; nothing reaches /gallery until she approves | The page promises a person looks first. The review passed at about 17:50 UTC. The Worker deploy on Nancy's Mac is the real lock (can be done now) and is required before the site is safe to promote. The next www publish carries site code 16.59.0 (staged in the site header since 17:47 UTC; www still runs 16.58.0), which is a stopgap for the normal form path only. Steps and undo: handoff/PHOTO-HOLD-2026-11-11.md |
 | M2 | /share-photos (page 6a0dfca3f9fa5b751d154257) | The two checkboxes "On our Instagram and LinkedIn" (field syndication-social) and "On the homepage" (field syndication-rotation) | Served already ticked | Served unticked | A tick the member did not make is not consent. Only the Designer has the switch (part 8) |
 | M3 | CMS template pages | Visits, Comments, Press applications and Pet Notes templates, and Bookmarks if row G0 is not taken | No lock; the only protection is that the collection has no live item | Draft switch on (or a password) | Removes the question for good. The tools cannot set a page password, and the log says the API refused to draft a template page, so these are Designer clicks (part 8) |
 
@@ -381,7 +381,7 @@ Two cautions. First, rows 2 and 3 are invisible to a visitor, but under the prom
 Done and live on www since 17:07 UTC. Do not redo, rewrite or "fix again":
 
 - The six letter lines, the Magnus line, the footer's four empty numbers, the home structured data descriptions, the two /account lines, the /stories label (handoff/CHANGE-LOG-P0-CLOSEOUT-2026-11-11.md).
-- Site code 16.58.0 is what www serves (release 3066315bf6155033298bb13a239133fdb44bdf7f). Site code 16.59.0 is being staged in the site header at about 17:55 UTC (release caac45afd2fd327396d5964ac6577877abe79c5a, the page half of the photo hold; rollback is 16.58.0). Do not re-apply 16.55.0 to 16.58.0 over it.
+- Site code 16.58.0 is what www serves (release 3066315bf6155033298bb13a239133fdb44bdf7f). Site code 16.59.0 is staged in the site header, since 17:47 UTC (release caac45afd2fd327396d5964ac6577877abe79c5a, the page half of the photo hold; rollback is 16.58.0). Do not re-apply 16.55.0 to 16.58.0 over it.
 - The outside-Europe cookie link behavior and the "Example Text" clearing on /submit and /share-photos (tll-p0-closeout-v1).
 - The AI first-read sentences are held back on /editorial-charter, /faq and /submit on Nancy's word. They go back only when the morning review is running again, and that is the trust and conversion session's call.
 
@@ -415,7 +415,7 @@ Never in this run:
 
 ## 11. Order of work, with the check after each
 
-1. The photo hold goes live: Nancy's Worker deploy (check: the Worker's /lounge address answers with "held":true), or the next www publish with site code 16.59.0 (check: the page code pin on www reads caac45af).
+1. The photo hold goes live: Nancy's Worker deploy, which is the real lock and is required (check: the Worker's /lounge address answers with "held":true). The next www publish with site code 16.59.0 is a stopgap for the normal form path only and does not replace the deploy (check: the page code pin on www reads caac45af).
 2. Nancy's Copenhagen check and AdSense clicks. Check: the 10 steps pass, or the Network list comes back.
 3. Lighthouse and axe "before" on the three pages.
 4. Stage part 9 rows 1 to 3. Check: read each back; a test copy publish; the hidden link's href; the staged sitemap flags.
