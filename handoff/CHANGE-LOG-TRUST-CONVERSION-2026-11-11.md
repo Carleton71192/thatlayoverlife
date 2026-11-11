@@ -2,7 +2,9 @@
 
 Source: your prompt of 11 November 2026, saved as `claude/tll-trust-conversion-fixes-prompt-2026-11-11.md`.
 
-Status: **nothing below is written to Webflow yet.** Everything so far was read only: the test site (that-layover-life.webflow.io, the 13:48 UTC publish), the Webflow CMS, and the repo. Each numbered item waits for your yes. Nothing goes to www without your word.
+Status, 11 November 2026 about 14:40 UTC: **you approved A1, B1, C, D1 and E1, and the build is staged in Webflow (Part 6 at the end). Nothing is published by this session and nothing is on www.** What still waits for you is listed in Part 6.
+
+Original status, kept for the record: nothing below was written to Webflow when this was first sent; everything then was read only.
 
 The funding sheet for you to confirm is `handoff/funding-backfill-2026-11-11.csv` (63 rows, no Webflow write behind it).
 
@@ -263,3 +265,56 @@ None showed "That search did not run."
 5. Your word on N = 9 for /submit.
 
 Then I log my scope in the lock log, build in this order (fields, copy, template, page, layers), stage everything, ask the session holding the test-site publish to publish it, check every edited page at 390 and 1440, and report. www stays yours.
+
+---
+
+## Part 6. Built and staged (11 November 2026, after your "A1, B1, C yes, D1, E1")
+
+Nothing here is published by this session. www is untouched. Release: **site layers 16.56.0** (release commit `e56c5ec`, source commit `408e9d2`, 354 tests pass, all 25 files checked on the CDN).
+
+### Staged in Webflow
+
+| Item | What is staged |
+|---|---|
+| 1 | Footer: the four typed numbers are gone from the page itself (the row is empty until the script fills it). Binding the row to the Site stats item is not done; see "Not done" below. |
+| 2 | Travelers by your rule: the footer script (v3.3) counts the distinct bylines on /stories, 6 today. The Worker's count uses the same rule once deployed. |
+| 3 | RV1, RV2, RV4 (with 9), RV5, RV6 as in the table. RV3 unchanged. |
+| 4 | Every line in the table, plus three found while building: a second "publishes the moment" paragraph on /about, and the /about and /submit structured-data descriptions (spotted by another session). |
+| 5, 6, 7 | AI1 and AI3 with your B1 wording, AI2 as written. |
+| 9 | The "Charter rule 08" words are out of the story template chip and out of the Commissioned help text. The switch itself goes after the Worker deploy (the live Worker still writes it). |
+| 10 | Funding field added (five values, not required yet). The chip on the story page and a line on the /stories card are wired to it. No story has a value yet, so no label shows anywhere until the sheet is confirmed. |
+| 12 | "Reklame · Sponsored by {name}" on sponsored stories (through the layers), and in the field help texts. The /for-brands line waits for your wording. |
+| 13 | Charter: version line, h3 headings with ids rule-1 to rule-7, numerals 1 to 7, the corrections link under rule 7, "Who edits", "Changes". /about: the credential paragraph. |
+| 14 | Reading time. Correction to Part 2: the cards already showed "9 min" to a person; the unit was drawn by CSS, so anything reading the text saw a bare 9. The text itself now says "9 min read" on /stories cards, "Keep reading" cards and the home rail. |
+| 15 | /submit subhead with 9. |
+| 16 | Home hero line, in the cover and in the plain hero. |
+| 17 | /for-press P1 and P2. |
+| 18 | "Last updated" row shows only when the story has a date (through the layers). |
+| 19 | Traveled month and year on /stories cards where the writer's switch is on and the date is a plain month and year. |
+| 20 | /corrections page with title, intro and empty state; noindex and out of the sitemap; linked from the footer Legal group and charter rule 7. |
+| 22 | Site layers 16.56.0 in the header in place of 16.55.0. Rollback: 16.55.0. |
+| 23 | `docs/translation-queue-2026-11-11.md`. |
+
+A correction to Part 2 as well: the /stories headline did still carry the typed word "Six" in the page itself, with a script replacing it. The page now reads "Stories, all worth the detour." and the layer puts the live count in front, so no typed number is left.
+
+### Prepared, waiting for your word
+
+- **Worker deploy** (commit `408e9d2`): stories and link-only cards from /submit are saved as drafts for you, and travelers are counted by your rule. **This has to be deployed before the staged copy goes to www**, or www will say a human reads first while stories still go up at once. The lock log carries that hold for every session.
+
+### Waiting for your answer
+
+1. The three /terms lines (8a, 8b, 8c). Not written.
+2. The /for-brands line (item 12). Not written.
+3. The funding sheet. No value is written on any story until you confirm it.
+4. Wording I staged that is mine, for your eye: the FAQ answer "How do I get published", and the B1 sentences.
+5. N = 9 on /submit (staged; say if you want another number).
+
+### Not done, and why
+
+- **After the Worker deploy:** delete the Commissioned switch and its two hidden markers, add "Correction note", show it on stories, and list corrections on /corrections (item 21 and the list in item 20). The field slot only frees up once the Worker stops writing the switch.
+- **Footer bound to the Site stats item** (item 1, the fuller fix): it needs a collection list inside the footer, which is on every page. I chose the safe step (no typed numbers) and left the list for a careful pass or a few Designer clicks.
+- **"Keep reading" and "Traveled with" by Webflow's own conditional visibility** (item 18): the API can only bind visibility to a switch field, not to "this list is empty". Both blocks are already hidden for readers by script when empty. Designer steps if you want it native: select the block, Settings, Conditional visibility, "Related stories is set" (or "Human co-travelers is set" / "Pet co-travelers is set").
+- **The process note under "Last updated"** (item 18): not moved. The Disclosure row holds real disclosure lines on six stories, so your condition for removing it ("if it only holds the process note") is not met. The note stays where it is.
+- **Story template code** still contains the old "Reklame for" wording and the published-date fallback in its own script. Readers get the new behavior from the layers; the template code can be tidied at the source in a later pass.
+- **The hidden rule 08 draft on the charter page** ("Paid work never buys a verdict", marked DRAFT · EDITOR TO APPROVE) is not served and I left it alone. It is the one place the words "rule 08" still exist in Webflow. Say if you want it deleted or turned into a real rule 8.
+- **390 and 1440 checks:** not possible until the staged work is on the test site. I have asked the session that holds the test-site publish.
