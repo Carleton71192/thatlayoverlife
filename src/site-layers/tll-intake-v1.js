@@ -3,8 +3,9 @@
    1. Before sending a story: if the last line does not end a sentence (no . ! ? or closing quote), a note under the story box
       shows the ending and asks the writer to finish it; a second press of Send sends it as it is.
    2. After Webflow accepts a form (its success box shows), the same fields go to the Worker's POST /intake with the member's
-      Memberstack token, which publishes the story, link-out or photos at once and links them to the member's profile. The
-      success box then says where it is live. If that step fails nothing is lost: the Webflow copy is set up in the daily round.
+      Memberstack token. Since 11 Nov 2026 a story or link-out is saved as a draft for the editor (a human reads every story
+      before it goes live) and photos still go to the Lounge at once; all are linked to the member's profile. If that step
+      fails nothing is lost: the Webflow copy is set up by hand.
    Expat and press applications are not sent here; Nancy approves them from the next-day report.
    Field names unchanged; nothing removed; no data-ms-* element touched. */
 (function(){
@@ -29,19 +30,24 @@ function endCheck(form){
   },true);
   ta.addEventListener('input',function(){var n=form.querySelector('.tll-end-note');if(n&&/[.!?…"”')\]]$/.test(lastLine(ta.value)))n.remove();});
 }
+var SAVED='Saved. It is with the editor.';
 function watch(form){
   if(form.__tllIntake)return;form.__tllIntake=1;var kind=kindOf(form);if(!kind)return;
   var wrap=form.closest('.w-form')||form.parentNode,done=wrap&&wrap.querySelector('.w-form-done');if(!done)return;
   var sent=false;
   new MutationObserver(function(){if(sent||getComputedStyle(done).display==='none')return;sent=true;
     var tok=token(),data=fields(form);if(!tok)return;
-    var msg=document.createElement('p');msg.className='tll-intake-msg';msg.textContent='Setting it up on the site…';done.appendChild(msg);
+    var msg=document.createElement('p');msg.className='tll-intake-msg';msg.textContent=kind==='photos'?'Setting it up on the site…':'Sending it to the editor…';done.appendChild(msg);
     fetch(API,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tok},body:JSON.stringify({kind:kind,fields:data})})
     .then(function(r){return r.json().catch(function(){return{};}).then(function(j){return{ok:r.ok&&j.ok,j:j};});})
-    .then(function(x){if(!x.ok){msg.textContent='Saved. It goes live as soon as the editor sets it up.';return;}
+    .then(function(x){if(!x.ok){msg.textContent=SAVED;return;}
       if(kind==='photos'){msg.innerHTML='Your photos are in the Lounge. <a href="/gallery">See them →</a>';return;}
+      /* 11 Nov 2026 (Nancy: a human reads every story before it goes live): the Worker now saves stories and link-outs as
+         drafts and answers held:true; the page's own message already says it is with the editor, so this line steps aside.
+         An older Worker that still answers with a url keeps the old line, so the two can be released in either order. */
+      if(x.j.held||!x.j.url){msg.remove();return;}
       msg.innerHTML='';msg.appendChild(document.createTextNode('It is live. '));var a=document.createElement('a');a.href=x.j.url;a.textContent='Read it on the site →';msg.appendChild(a);})
-    .catch(function(){msg.textContent='Saved. It goes live as soon as the editor sets it up.';});
+    .catch(function(){msg.textContent=SAVED;});
   }).observe(done,{attributes:true,attributeFilter:['style','class']});
 }
 function run(){css();[].forEach.call(document.querySelectorAll('form'),function(f){if(P==='/submit'&&kindOf(f)==='story')endCheck(f);if(kindOf(f))watch(f);});}

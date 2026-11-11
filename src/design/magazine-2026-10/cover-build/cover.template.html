@@ -143,6 +143,8 @@ function run(){
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
+  /* 11 Nov 2026 (Nancy, trust prompt 4.2): one promise line between the headline and the subhead, in the subhead's own style. If the page already carries it ([data-tll-hero-promise], placed under the subhead in the Designer), it is moved up; otherwise it is made here. */
+  if(dek&&dek.tagName==='P'){var pr=words.querySelector('[data-tll-hero-promise]');if(!pr){pr=document.createElement('p');pr.className=dek.className;pr.setAttribute('data-tll-hero-promise','1');pr.textContent='True trip stories from the people who actually went. Every byline a real person, every hosted trip labeled at the top.';}if(pr.nextElementSibling!==dek)words.insertBefore(pr,dek);}
   var cta=hero.querySelector('.h3-hero-cta'),btn=cta&&cta.querySelector('a');
   if(btn){btn.textContent=COVER.button||'Read the cover story';btn.href='/stories/'+COVER.slug;}
   /* 29 Oct 2026, Nancy: the hero said free to join but gave no way to join. The second button (hidden until now) becomes Join free. */

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildStory, bodyHtml, storyChecks, fullBody, handleIntake } from '../src/intake.js';
+import { buildStory, buildLinkout, bodyHtml, storyChecks, fullBody, handleIntake } from '../src/intake.js';
 
 const roberta = {
   name: 'Unmatchable Pompeii', country: 'Italy', city: 'Pompei', region: 'europe', 'Field 5': 'November 2022',
@@ -20,7 +20,9 @@ describe('intake: stories', () => {
     expect(fd['hero-image']).toEqual({ url: roberta['hero-image'], alt: 'Vesuvius behind' });
     expect(fd['photo-gallery'][1].alt).toBe('The Forum | at 9am');
     expect(b.placement).toBe('The Art of Arriving First | g2\nCaption: g2 | The Forum / at 9am');
-    expect(fd.status).toBe('40fb8550c58a86ae03f3dfb83bf691e3');
+    expect(fd.status).toBe('c63cc532cbf4f9e4752ec46d3316348a'); // In Review: a human reads it before it goes live (11 Nov 2026)
+    expect('commissioned' in fd).toBe(false);
+    expect(fd['notes-to-editor']).toMatch(/waits for the editor/);
     expect(fd.syndication).toBe('social');
     expect(b.countryCodes).toEqual(['it']);
   });
@@ -33,6 +35,11 @@ describe('intake: stories', () => {
   it('joins body parts and escapes HTML', () => {
     expect(fullBody({ body: 'x', 'body-part-1': 'Hello ', 'body-part-2': 'world.' })).toBe('Hello world.');
     expect(bodyHtml('A <b> & "c".')).toBe('<p>A &lt;b&gt; &amp; &quot;c&quot;.</p>');
+  });
+  it('sets a link-out up as In Review too, without the retired commissioned field', () => {
+    const fd = buildLinkout({ 'Field 5': 'A piece elsewhere', 'external-url': 'https://example.com/a', summary: 'One line.', country: 'Denmark' }, { contributorId: 'c1', slug: 'a-piece-elsewhere', now: Date.UTC(2026, 10, 11), memberName: 'Zain' }).fieldData;
+    expect(fd.status).toBe('c63cc532cbf4f9e4752ec46d3316348a');
+    expect('commissioned' in fd).toBe(false);
   });
   it('refuses without a signed-in member', async () => {
     const r = await handleIntake(new Request('https://w/intake', { method: 'POST', body: '{}' }), { WEBFLOW_TOKEN: 't', MEMBERSTACK_KEY: 'k', STORIES_COLLECTION_ID: 's' });

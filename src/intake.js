@@ -5,11 +5,11 @@
 //   {"kind":"story"|"linkout"|"photos","fields":{...the form's own field names and values...}}
 // The page sends this right after Webflow accepted the form, so the Webflow Forms copy stays the record. The verified member
 // is the only author: their Contributors item is found (or created from their Memberstack profile) and linked.
-//   story   -> a published Stories item with the writer's words unchanged (paragraphs; short lines on their own become
+//   story   -> a DRAFT Stories item (status In Review, 11 Nov 2026: a human reads every story before it goes live) with the writer's words unchanged (paragraphs; short lines on their own become
 //              headings), hero and gallery from their uploads, captions and placements (Photo placements row), region,
 //              countries, theme, and automatic checks in notes-to-editor (ends mid-sentence, cut off by the form, missing
 //              photo, few hashtags, reader question without a question mark).
-//   linkout -> a published link-out Stories item pointing at the external article.
+//   linkout -> a DRAFT link-out Stories item pointing at the external article; it waits for the editor too.
 //   photos  -> one published Photo submissions item per photo, shown in the /gallery Lounge (GET /lounge).
 // Expat and press applications are not published here: they wait for Nancy in the next-day report.
 // Never writes headlines, bodies or captions: every word comes from the member's form. 20 intakes per member per hour.
@@ -21,7 +21,7 @@ import { enqueueEnrich } from './story-enrich.js';
 
 const MEMBERSTACK_API = 'https://admin.memberstack.com';
 export const INTAKE_LIMIT_PER_HOUR = 20;
-export const STORIES = { status: { Published: '40fb8550c58a86ae03f3dfb83bf691e3' } };
+export const STORIES = { status: { Published: '40fb8550c58a86ae03f3dfb83bf691e3', InReview: 'c63cc532cbf4f9e4752ec46d3316348a' } };
 export const REGION_IDS = {
   africa: 'b26135c02cc190fdaa35f3ad21155d6c', americas: 'b88f7cae88de6d134d2001cf4d834a8c', asia: 'a1e06f7a3091709d901b9be349d2beef',
   europe: '147a690dc0bb9b392de8f76e596b8618', 'middle east': '2e0e976094dd2b15d1722227f4bd2bcc', 'middle-east': '2e0e976094dd2b15d1722227f4bd2bcc',
@@ -103,11 +103,10 @@ export function buildStory(fields, { contributorId, slug, now }) {
     city: city || null,
     'trip-when': clean(fields['Field 5'] || fields['trip-when'], 80) || null,
     region: REGION_IDS[String(fields.region || '').toLowerCase()] || null,
-    status: STORIES.status.Published,
+    status: STORIES.status.InReview,
     syndication: synd.join(', ') || null,
     'hero-caption': clean(fields['cover-caption'], CAPTION_MAX) || null,
-    commissioned: false,
-    'notes-to-editor': `<p>Set up automatically from /submit on ${new Date(now).toISOString().slice(0, 16).replace('T', ' ')} UTC. The writer's words are unchanged.</p>${checks.length ? `<p>Checks: ${checks.map(esc).join('; ')}.</p>` : '<p>Checks: none.</p>'}`,
+    'notes-to-editor': `<p>Set up as a draft from /submit on ${new Date(now).toISOString().slice(0, 16).replace('T', ' ')} UTC. The writer's words are unchanged. It waits for the editor: read it, set Funding, then publish.</p>${checks.length ? `<p>Checks: ${checks.map(esc).join('; ')}.</p>` : '<p>Checks: none.</p>'}`,
   };
   if (hero) fd['hero-image'] = { url: hero, alt: clean(fields['cover-caption'], CAPTION_MAX) || title };
   if (gallery.length) fd['photo-gallery'] = gallery.slice(0, 25).map((url, i) => ({ url, alt: capFor(i + 1) || `${title}, photo ${i + 1}` }));
@@ -130,9 +129,9 @@ export function buildLinkout(fields, { contributorId, slug, now, memberName }) {
     name: title, slug, excerpt: summary || title, body: `<p>${esc(summary || title)}</p>`, contributor: contributorId,
     'sign-off': memberName || 'The writer', 'hashtag-set': `#${country.replace(/\s+/g, '') || 'Travel'} #ThatLayoverLife`,
     'reader-question': `Have you been to ${country || 'this place'}?`, 'seo-title': title.slice(0, 70), 'seo-description': (summary || title).slice(0, 160),
-    'published-date': new Date(now).toISOString(), 'submitted-at': new Date(now).toISOString(), status: STORIES.status.Published,
-    'external-url': url, 'byline-location': country.toUpperCase() || null, region: null, commissioned: false,
-    'notes-to-editor': `<p>Link-out set up automatically from /submit on ${new Date(now).toISOString().slice(0, 10)}. Points to ${esc(url)}.</p>`,
+    'published-date': new Date(now).toISOString(), 'submitted-at': new Date(now).toISOString(), status: STORIES.status.InReview,
+    'external-url': url, 'byline-location': country.toUpperCase() || null, region: null,
+    'notes-to-editor': `<p>Link-out set up as a draft from /submit on ${new Date(now).toISOString().slice(0, 10)}. Points to ${esc(url)}. It waits for the editor.</p>`,
   };
   // Cover: the article's own share photo when it passed the photo check; else the member's own photo; else none (the card
   // shows the ink panel with the country, never a stock or ad image).
@@ -176,6 +175,13 @@ async function createPublished(env, fetchImpl, collection, fieldData) {
   const id = made?.id || made?.items?.[0]?.id;
   if (id) await webflow(env, fetchImpl, `/collections/${collection}/items/publish`, { method: 'POST', body: JSON.stringify({ itemIds: [id] }) });
   return id;
+}
+
+/** A draft item, not published: stories and link-outs wait for the editor (11 Nov 2026, Nancy: a human reads every story
+ *  before it goes live). */
+async function createDraft(env, fetchImpl, collection, fieldData) {
+  const made = await webflow(env, fetchImpl, `/collections/${collection}/items`, { method: 'POST', body: JSON.stringify({ isDraft: true, isArchived: false, fieldData }) });
+  return made?.id || made?.items?.[0]?.id;
 }
 
 async function logIntake(env, entry, now) {
@@ -242,13 +248,13 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
       if (wanted.length) { const themes = await webflow(env, fetchImpl, `/collections/${env.THEMES_COLLECTION_ID}/items?limit=100`); fd.theme = (themes?.items || []).filter((t) => wanted.includes(t.fieldData?.slug)).map((t) => t.id); }
     }
     if (!fd.region) { fd.region = REGION_IDS.europe; (built.checks = built.checks || []).push('Region not chosen, set to Europe; check it'); fd['notes-to-editor'] = `${fd['notes-to-editor'] || ''}<p>Region not chosen; set to Europe for now.</p>`; }
-    const id = await createPublished(env, fetchImpl, env.STORIES_COLLECTION_ID, fd);
-    if (kind === 'story') await enqueueEnrich(env, id).catch(() => {}); // AI summary and links, next 30-minute run
+    const id = await createDraft(env, fetchImpl, env.STORIES_COLLECTION_ID, fd);
+    if (kind === 'story') await enqueueEnrich(env, id).catch(() => {}); // AI summary and links on the draft, next 30-minute run
     if (kind === 'story' && built.placement && env.PHOTO_PLACEMENTS_COLLECTION_ID) {
-      await createPublished(env, fetchImpl, env.PHOTO_PLACEMENTS_COLLECTION_ID, { name: slug, slug, story: id, 'photo-placement': built.placement });
+      await createDraft(env, fetchImpl, env.PHOTO_PLACEMENTS_COLLECTION_ID, { name: slug, slug, story: id, 'photo-placement': built.placement });
     }
-    await logIntake(env, { kind, memberId, name: memberName, id, slug, title, checks: built.checks || [], at: new Date(now).toISOString() }, now);
-    return reply({ ok: true, kind, id, slug, url: `/stories/${slug}`, checks: built.checks || [] });
+    await logIntake(env, { kind, memberId, name: memberName, id, slug, title, held: true, checks: built.checks || [], at: new Date(now).toISOString() }, now);
+    return reply({ ok: true, kind, id, slug, held: true, checks: built.checks || [] });
   } catch (error) {
     console.log(`intake ${JSON.stringify({ member: memberId, kind, error: String(error?.message || error) })}`);
     return reply({ error: 'Saved, and we will set it up by hand.' }, 502);

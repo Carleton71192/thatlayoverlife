@@ -33,5 +33,8 @@ describe('/stories headline count words', () => {
     expect(src).toContain("/^\\/stories\\/?$/.test(location.pathname)");
     expect(src).toContain('window.tllCounts');
     expect(src).toContain("addEventListener('tll:counts'");
+    // 11 Nov 2026: the Designer H1 holds no typed number; the layer puts the count in front of "Stories, all worth the detour."
+    expect(src).toContain('/^(\\s*)Stories\\b/');
+    expect(src).not.toMatch(/Six stories/);
   });
 });

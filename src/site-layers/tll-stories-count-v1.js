@@ -1,5 +1,7 @@
-/* tll-stories-count-v1 (10 Nov 2026, week-one item 3: the /stories headline count). The Designer H1 reads "Six stories, all worth the
-   detour." (a typed word) and two hosted page scripts rewrite it on load: tllstorycountv2 (sitemap count, cached per visit) and
+/* tll-stories-count-v1 (10 Nov 2026, week-one item 3: the /stories headline count). 11 Nov 2026 (Nancy: no typed numbers): the
+   Designer H1 no longer carries a typed count; it reads "Stories, all worth the detour." and this layer puts the live count in
+   front of it ("57 stories, all worth the detour."), so a reader without scripts sees no number instead of an old one. Before that
+   the H1 held a typed number word and two hosted page scripts rewrote it on load: tllstorycountv2 (sitemap count, cached per visit) and
    tllstorycountv3 (count of the cards in the grid), so the headline could disagree with the footer and the home chapter, which read
    window.tllCounts.s from tll-live-counts-v3. Now the number comes from tllCounts.s when the footer has published it (and again on
    every tll:counts event), and from the story cards in the grid until then. Words up to twenty, digits above (house rule: counts are
@@ -12,15 +14,19 @@ var W=['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Te
 function word(n){n=Math.max(0,Math.floor(+n||0));return n<=20?W[n]:String(n);}
 function fromCards(){var s={};[].forEach.call(document.querySelectorAll('.tll-lib-grid a.tll-lib-card[href*="/stories/"],a.tll-lib-card[href*="/stories/"]'),function(a){var h=(a.getAttribute('href')||'').split('?')[0].replace(/\/$/,'');if(h)s[h]=1;});return Object.keys(s).length;}
 function fromCounts(){var c=window.tllCounts;var n=c&&+c.s;return n>0?n:0;}
-var span=null,rest=null;
+var span=null,rest=null,bare=false;
 function split(){
   var h=document.querySelector('h1.tll-library-title');if(!h)return false;
   span=h.querySelector('[data-tll-count]');if(span){rest=span.nextSibling;return true;}
   var t=h.firstChild;while(t&&t.nodeType!==3&&!t.textContent.trim())t=t.nextSibling;if(!t||t.nodeType!==3)return false;
-  var m=t.nodeValue.match(/^(\s*)([A-Za-z-]+|\d+)(\s+stor(?:y|ies)\b)/);if(!m)return false;
+  var m=t.nodeValue.match(/^(\s*)([A-Za-z-]+|\d+)(\s+stor(?:y|ies)\b)/);
+  if(!m){var f=t.nodeValue.match(/^(\s*)Stories\b/);if(!f)return false; /* the count-free Designer text: "Stories, all worth the " */
+    span=document.createElement('span');span.setAttribute('data-tll-count','');span.hidden=true;
+    t.nodeValue=' stories'+t.nodeValue.slice(f[0].length);h.insertBefore(span,t);rest=t;bare=true;return true;}
   span=document.createElement('span');span.setAttribute('data-tll-count','');span.textContent=m[2];
   t.nodeValue=t.nodeValue.slice(m[1].length+m[2].length);h.insertBefore(span,t);rest=t;return true;}
-function put(n){if(!n||!span)return;var w=word(n);if(span.textContent!==w)span.textContent=w;
+function put(n){if(!span)return;if(!n){if(bare&&span.hidden&&rest&&rest.nodeType===3)rest.nodeValue=rest.nodeValue.replace(/^\s*stories\b/,'Stories');return;}
+  var w=word(n);if(span.textContent!==w)span.textContent=w;if(span.hidden){span.hidden=false;if(rest&&rest.nodeType===3)rest.nodeValue=rest.nodeValue.replace(/^\s*Stories\b/,' stories');}
   if(rest&&rest.nodeType===3){var v=rest.nodeValue,want=n===1?' story':' stories',m=v.match(/^\s+stor(?:y|ies)\b/);if(m&&m[0]!==want)rest.nodeValue=want+v.slice(m[0].length);}}
 function run(){if(!split())return;put(fromCounts()||fromCards());
   document.addEventListener('tll:counts',function(){put(fromCounts());});}

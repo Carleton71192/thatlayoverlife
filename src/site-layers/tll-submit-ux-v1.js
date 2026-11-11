@@ -24,7 +24,11 @@ function hints(){[].forEach.call(document.querySelectorAll('form textarea[name],
   var lab=i.closest('label'),sp=lab&&lab.querySelector('.tll-pen-helptext');if(sp&&!(i.name==='body'&&/Autosaves/.test(sp.textContent)&&false))sp.textContent=i.name==='body'?h[0]+' '+((sp.textContent.match(/Autosaves[^.]*\.(?: Drafts[^.]*\.)?/)||[''])[0]):h[0];
   if(h[1]&&!i.getAttribute('placeholder'))i.setAttribute('placeholder',h[1]);});}
 /* tester Shahzain: "A human looks within 48 hours" reads oddly; the success message (a plain div the API cannot edit) now says "reviews it". */
-function looks(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/A human looks within 48 hours/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace(/A human looks within 48 hours/g,'A human reviews it within 48 hours');}}
+/* 11 Nov 2026 (Nancy: one story about review, a human reads every story before it goes live): the two link-out lines sit in
+   an HTML form the API cannot edit, so they are brought into line here. */
+function looks(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){var v=t.nodeValue;if(!/48 hours/.test(v))continue;
+  v=v.replace(/A human looks within 48 hours/g,'A human reads it, usually within 48 hours').replace(/A human reviews it within 48 hours/g,'A human reads it before it goes live, usually within 48 hours');
+  if(v!==t.nodeValue)t.nodeValue=v;}}
 function all(){run();hints();looks();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();
 })();

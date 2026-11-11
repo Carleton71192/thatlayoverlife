@@ -23,9 +23,9 @@
    Styles: tll-nav-phone-v1 (phone header), tll-contrast-v1 (contrast), tll-note-phone-v1 (round note button on phones), tll-photos-tap-v1 (/share-photos drop zone tap on iPhones), tll-home-coords-v1 (home photo coordinates inside the screen on phones), tll-footer-wordmark-v1 (footer wordmark matches the header), tll-tap-colors-v1 (/account Stories tab: ink text and a rose underline on hover and tap, no rose or teal text), tll-shelf-ring-v1 (home library rail: room for the avatar ring on phones), tll-masthead-v1 (footer masthead line in Playfair Display italic), tll-buttons-v1 (one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600), tll-focus-v1 (10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields)
    The other layers come in per-path chunks from chunks/ at this same commit, loaded by the chunk loader below:
    chunk  site /^/: tll-footer-wordmark-v1, tll-masthead-v1, tll-hover-v1, tll-byline-links-v1, tll-story-fixes-1029-v1, tll-email-hello-v1, tll-ep-help-v1, tll-whats-new-v1, tll-note-footer-v1
-   chunk  home /^\/(index\.html)?$/: tll-redesign-p0-v1
-   chunk  stories /^\/stories$/: tll-stories-places-v1, tll-series-v1, tll-story-is-v1, tll-stories-count-v1, tll-stories-strip-v1
-   chunk  story /^\/stories\/[^/]+$/: tll-story-ask-v1, tll-story-captions-v1, tll-pros-v1, tll-series-v1, tll-story-is-v1 (+ staged in story-preview: tll-ux-v1)
+   chunk  home /^\/(index\.html)?$/: tll-redesign-p0-v1, tll-trust-v1
+   chunk  stories /^\/stories$/: tll-stories-places-v1, tll-series-v1, tll-story-is-v1, tll-trust-v1, tll-stories-count-v1, tll-stories-strip-v1
+   chunk  story /^\/stories\/[^/]+$/: tll-story-ask-v1, tll-story-captions-v1, tll-pros-v1, tll-series-v1, tll-story-is-v1, tll-trust-v1 (+ staged in story-preview: tll-ux-v1)
    chunk  submit /^\/submit$/: tll-submit-ux-v1, tll-linkout-preview-v1, tll-linkout-summary-v1, tll-submit-gallery-v1, tll-submit-long-v1, tll-intake-v1, tll-story-is-v1 (+ staged in submit-preview: tll-ux-v1)
    chunk  share-photos /^\/share-photos$/: tll-photos-caption-v1, tll-intake-v1
    chunk  edit-profile /^\/edit-profile/: tll-ep-country-v1, tll-ep-ux-v1, tll-ep-marks-v1, tll-ep-linkstack-v1, tll-crew-v1, tll-collections-v1, tll-stamps-v1, tll-work-trips-v1 (+ staged in edit-profile-preview: tll-expat-v1)
@@ -52,11 +52,11 @@ var m=/^(.*\/)tll-site-layers-v16\.js(?:[?#].*)?$/.exec(src);if(!m){try{console.
 var P=location.pathname.replace(/\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);
 try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}
 var C=[['site',/^/,'sha384-DpqA9Ru2NnCg5tvYOzVOOIEMCkMFQipLh5AvWyQMTHFmy3h/uVSkQXQ5qJ4Qgm/C'],
-['home',/^\/(index\.html)?$/,'sha384-Cs2fwadNjTkLuL1Hf8HVTz3/nCa5ZP0fhs7fklYwC96eDqIOJ3AyM1iHDGM/JoQY'],
-['stories',/^\/stories$/,'sha384-QqHx/BRq1P9zzMsj0YRVlMWKlk8Y3AhRuikAsQHcYSaFNwYpyS3QfqAgd77A0sgd'],
-['story',/^\/stories\/[^/]+$/,'sha384-Wk+7V/XvSTrhq4bh7SqUOW+PmG3iAjTg0IzOEpBAPzLo2BjKVHvjC3HuMkYhh3MZ','story-preview','sha384-cmOg66cIs7apFdhHNY7cqRprCiENCq01MjspEwwIUfxK6L0TvqaENdTtDpmZWW8L'],
-['submit',/^\/submit$/,'sha384-NJUFlmpedjzwTpOQV7UaT6EeJC8VfnJqrF5gz5XYwtTE4tlS0JA3FXdzmjvlTn1t','submit-preview','sha384-FBiQ8FusP0Xb0hYk1c3dytDU4z5HoJ8IAwPwR6UPIKDGj5tywbumspZq4bXE+I+x'],
-['share-photos',/^\/share-photos$/,'sha384-qHMKKfwgA5R2Pth9khIH+rAu6ptChFg7821QVc304wshp1qfJTO8cWj5HNbRcjiH'],
+['home',/^\/(index\.html)?$/,'sha384-xX7ZWk6c1KoCUnX1tvxGXE64sQsj3uZ0euj0wO4F1iMmQlqQXFE/Ev01C8wlQDPn'],
+['stories',/^\/stories$/,'sha384-aSI9sT6c9GEPOu1nB93jJC97kGhbNMT/MYJ+L0p7c0aDynfCCyDxT8WFnXTNPYaR'],
+['story',/^\/stories\/[^/]+$/,'sha384-cHR4yWPZB5uo/H9ONOAdZlRHuK2XVgOMWC12FUr8zGkFJQw/+X0lOLFopiyIJkR/','story-preview','sha384-oMo0zkWoKCAmIxwKYn+k15xh2KEXXS+SbnHrISCeY5fw1E47srSTOGK1Rh4vfl6R'],
+['submit',/^\/submit$/,'sha384-0XXGW+uPtb30Vv2mg7ol5lMb8hIJoD7Zd8TNA8Fnj2tmCD0oMu71qZnV+8T+cpPa','submit-preview','sha384-eyP6Wzv0iTNeUBIuGFLZj0baHPb7JuS4bWytvcPm0gGtncvduWY57meK6Q0Z5zp8'],
+['share-photos',/^\/share-photos$/,'sha384-bJ956tZkWnwCoAypy9gGKxgT50wj4ZPc1WghE0G3oV7k043B+/HCjF3uD1ENMbl5'],
 ['edit-profile',/^\/edit-profile/,'sha384-yJNKXMkFEN8QX2X+oNINDpRhZzX9wNguoLNiac0TIj/tTwc8tlhJ51sArMdoawrp','edit-profile-preview','sha384-ZqZmatLSojBvn7ytJMp0BtVGkeUJTVPVMT+EzHjGuaNT1OmuuFZlY1MjrlWRuolV'],
 ['profile',/^\/contributors\/[^/]+$/,'sha384-9q1zFCBwOM0+3QnZxePntmtxid46sUZ5Vw0C8n0neZhwFfyImbU/5O+QOY+i22TF','profile-preview','sha384-8imBbnjUUjpdRAOv3rIlP6vZ86cdKl7YapwJUTXVdwXOl3FuMLeRfE0ad5CGqyBy'],
 ['account',/^\/account$/,'sha384-UwOT6QlhJSkRcbRvJnRDuCZWEEsdI8wI/FyQO3vQe3Kcet1ySXowkOEM2XqA0br/','account-preview','sha384-poM/NLAHiWEyb3QhM8H9ZjSsGfzOxlHYDC3Y1gSOESQft+UFENNhwZMXB7R1kLq9'],
@@ -1094,6 +1094,8 @@ function run(){
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
   var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
+  /* 11 Nov 2026 (Nancy, trust prompt 4.2): one promise line between the headline and the subhead, in the subhead's own style. If the page already carries it ([data-tll-hero-promise], placed under the subhead in the Designer), it is moved up; otherwise it is made here. */
+  if(dek&&dek.tagName==='P'){var pr=words.querySelector('[data-tll-hero-promise]');if(!pr){pr=document.createElement('p');pr.className=dek.className;pr.setAttribute('data-tll-hero-promise','1');pr.textContent='True trip stories from the people who actually went. Every byline a real person, every hosted trip labeled at the top.';}if(pr.nextElementSibling!==dek)words.insertBefore(pr,dek);}
   var cta=hero.querySelector('.h3-hero-cta'),btn=cta&&cta.querySelector('a');
   if(btn){btn.textContent=COVER.button||'Read the cover story';btn.href='/stories/'+COVER.slug;}
   /* 29 Oct 2026, Nancy: the hero said free to join but gave no way to join. The second button (hidden until now) becomes Join free. */

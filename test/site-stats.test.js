@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { bylineCountries, computeStats, runSiteStats } from '../src/site-stats.js';
 
 const story = (loc, extra = {}) => ({ isDraft: false, isArchived: false, fieldData: { 'byline-location': loc }, ...extra });
+const by = (s, id) => ({ ...s, fieldData: { ...s.fieldData, contributor: id } });
 
 describe('site stats', () => {
   it('reads bylines like the browser script', () => {
@@ -13,10 +14,12 @@ describe('site stats', () => {
   });
   it('counts live items and distinct countries', () => {
     const s = computeStats({
-      stories: [story('TORREVIEJA, SPAIN'), story('MADRID, SPAIN'), story('POMPEI, ITALY'), story('X, JAPAN', { isDraft: true })],
-      contributors: [{}, {}, { isArchived: true }, { fieldData: { visibility: '1423c8d17c2060776541377f76ea0b31' } }],
+      stories: [by(story('TORREVIEJA, SPAIN'), 'a'), by(story('MADRID, SPAIN'), 'a'), by(story('POMPEI, ITALY'), 'b'), by(story('X, JAPAN', { isDraft: true }), 'c'), by(story('Y, PERU', { isDraft: true }), 'anon')],
+      // a and b wrote live stories; c has only a draft; d has a profile and no story; one archived; the house Anonymous profile is Off.
+      contributors: [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }, { id: 'e', isArchived: true }, { id: 'anon', fieldData: { visibility: '1423c8d17c2060776541377f76ea0b31' } }],
       pets: [{}],
     });
+    // Travelers (11 Nov 2026): public profiles with at least one live story.
     expect(s).toEqual({ stories: 3, travelers: 2, pets: 1, countries: 2 });
   });
   it('writes once, then skips when nothing changed', async () => {

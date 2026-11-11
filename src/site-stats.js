@@ -3,8 +3,8 @@
 // JavaScript and the first paint all saw wrong figures. The Worker's 30-minute job now counts the live CMS and
 // writes the numbers to the one item in the Site stats collection, which the footer binds to. The counting rules
 // match the browser script tll-live-counts-v3.2 exactly, so the two never disagree:
-//   stories, travelers, pets: published (live) items in Stories, Contributors and Pets (travelers leave out
-//   profiles set to visibility Off, such as the house Anonymous profile);
+//   stories, pets: published (live) items in Stories and Pets; travelers (11 Nov 2026): live Contributors that are
+//   the writer of at least one live story (profiles set to visibility Off, such as the house Anonymous profile, left out);
 //   countries: distinct countries named in the live stories' byline-location ("BALKANS" = 12, "SEVEN CONTINENTS" = 8).
 // Writes only when a number changed. Needs SITE_STATS_COLLECTION_ID and SITE_STATS_ITEM_ID in [vars] and the
 // WEBFLOW_TOKEN secret; without them the step is skipped.
@@ -66,8 +66,10 @@ export function computeStats({ stories = [], contributors = [], pets = [] }) {
   const live = (list) => list.filter((i) => !i.isDraft && !i.isArchived);
   const set = new Set();
   for (const s of live(stories)) bylineCountries(s.fieldData?.['byline-location']).forEach((c) => set.add(c));
-  // Profiles set to visibility Off (the house Anonymous profile) are not travelers.
-  const shown = live(contributors).filter((c) => c.fieldData?.visibility !== VISIBILITY_OFF);
+  // Travelers (11 Nov 2026, Nancy's rule): public profiles with at least one live story. Profiles set to visibility Off
+  // (the house Anonymous profile) are not travelers, and neither is a profile with no story on the site yet.
+  const writers = new Set(live(stories).map((s) => s.fieldData?.contributor).filter(Boolean));
+  const shown = live(contributors).filter((c) => c.fieldData?.visibility !== VISIBILITY_OFF && writers.has(c.id));
   return { stories: live(stories).length, travelers: shown.length, pets: live(pets).length, countries: set.size };
 }
 
