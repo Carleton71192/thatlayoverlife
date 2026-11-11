@@ -33,7 +33,7 @@ For Nancy. Nothing in this note is live yet. Nothing was deployed, released or p
 - **What it does:**
   - Each photo is saved as a **Draft** item in Photo submissions. The Worker never publishes it.
   - Moderation stage is **Received**, Review status is **pending**, and "Gallery published at" stays empty.
-  - The item name is the place, a batch code and a number, for example "Sofia, Bulgaria · bmhv1abc · 1". The slug and the alt text are built the same way. No member name in any of the three.
+  - The item name is the place, a batch code and a number, for example "Sofia, Bulgaria · bmwcfc5c0 · 1". The slug and the alt text are built the same way. No member name in any of the three.
   - The credit follows the member's own byline rule from the profile: full name, first name, or pen name. "Anonymous Traveler" gives no credit. A member who picked a pen name and has none on the profile gets no credit, never the real name. If no credit choice arrived, "Credit preference" reads "not chosen".
   - "Social opt-in" is recorded as off for now, whatever the box said. The Webflow form copy still holds what was sent. "Press interest opt-in" is recorded as sent, because that box is served unticked.
   - Only photo links from your own Cloudinary account (`idonvlow`), folder `tll/photos`, are accepted. That is the folder the page's own upload uses.
@@ -97,22 +97,22 @@ A fuller check, if you want one: sign in on www, send one of your own photos on 
 
 - **Today (neither part live):** the thank-you box, then "Setting it up on the site…", then a line saying the photos are in the Lounge with a link to /gallery.
 - **After Part 1 (site code release):** the page's own thank-you box and nothing else: "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published."
-- **After Part 2 only (Worker deployed, site code still 16.58.0):** the same thank-you box, then one more line: "Saved. It is with the editor."
+- **After Part 2 only (Worker deployed, site code still 16.58.0):** the same thank-you box, then for a moment "Setting it up on the site…", which turns into: "Saved. It is with the editor."
 
 I added no new sentence. The thank-you box already makes the promise in your words, so a second line would only repeat it. If that sentence is ever removed from the box, the page adds "Saved. It is with the editor.", the same line /submit uses.
 
 ## How you find a held photo
 
-- **Today, and with Part 1 only:** the Webflow form notification email for /share-photos (the form is named "Html Form" in Webflow, under Site settings, Forms). The "photos" field holds one Cloudinary link per photo. The CMS stays empty.
+- **Today, and with Part 1 only:** the Webflow form notification email for /share-photos. The same entry is in Webflow under Site settings, Forms, where the form is named "Html Form". The "photos" field holds one Cloudinary link per photo. The CMS stays empty.
 - **After the Worker deploy, when the page is sending photos to it:** Webflow, CMS, Photo submissions. Each photo is one item marked Draft, named by place, with the photo, the caption, the credit, the three promises and the member's profile linked. Photos sent together share a "Batch ID".
-- **For now, leave approved photos as drafts.** The page that will show approved photos is not built yet, so publishing an item does not put it in the Lounge. To turn one down, set Moderation stage to Rejected or delete the draft.
+- **Please do not publish a photo item yet.** The page that will show approved photos is not built, so publishing does not put the photo in the Lounge. It only gives the item a public web address and a line in the sitemap. Mark the ones you like (Moderation stage Approved) and leave them as drafts. To turn one down, set Moderation stage to Rejected or delete the draft.
 
 ## How to undo each part
 
 Undoing either part while the other is not live brings back instant publishing. Please undo only one at a time.
 
 - **Part 1:** in `src/site-layers/tll-intake-v1.js` change `var HOLD_PHOTOS=true;` to `var HOLD_PHOTOS=false;`, run `python3 src/site-layers/build-site-layers-v16.py` and `npx vitest run`, then release the site code as usual. Or put site layers 16.58.0 back in the site header (pin `3066315b`). Do this only when the Worker with the hold is live.
-- **Part 2:** in the Cloudflare dashboard open Workers, `tll-travel-wire`, Deployments, and roll back to the version before this deploy (today that is `040dddfb`). Or run `npx wrangler rollback` in the repo folder. Drafts already created stay in the CMS as drafts; delete them there if you do not want them.
+- **Part 2:** in the Cloudflare dashboard open Workers, `tll-travel-wire`, Deployments, and roll back to the version before this deploy (`040dddfb` when today's audit ran; `npx wrangler deployments list` shows the current one, so note it before you deploy). Or run `npx wrangler rollback` in the repo folder. Drafts already created stay in the CMS as drafts; delete them there if you do not want them.
 
 ## Still open, yours to decide
 
