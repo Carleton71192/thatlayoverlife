@@ -297,9 +297,19 @@ Nothing here is published by this session. www is untouched. Release: **site lay
 
 A correction to Part 2 as well: the /stories headline did still carry the typed word "Six" in the page itself, with a script replacing it. The page now reads "Stories, all worth the detour." and the layer puts the live count in front, so no typed number is left.
 
-### Prepared, waiting for your word
+### Worker: deployed on your word ("deploy the Worker"), 11 November 2026 about 14:39 UTC
 
-- **Worker deploy** (commit `408e9d2`): stories and link-only cards from /submit are saved as drafts for you, and travelers are counted by your rule. **This has to be deployed before the staged copy goes to www**, or www will say a human reads first while stories still go up at once. The lock log carries that hold for every session.
+- Version `040dddfb`, from a clean copy of commit `af5de76`. Stories and link-only cards from /submit are now saved as drafts for you (status In Review) instead of going live. Photos for the Lounge still go up at once, as before. Travelers are counted by your rule at the next half-hour run.
+- I deployed twice, a minute apart. The first version answered a held story in a way the /submit page still live on www would have shown as "It is live" with a dead link. The second answers so that both the old and the new page show a plain "Saved" line. No story was submitted in between that I can see.
+- Checked after: the public routes answer 200 and /intake refuses a request without a sign-in, as before. Not tested: a real signed-in submission. The first story a member sends is the real test; it should appear in Webflow as a draft.
+- Rollback: `npx wrangler rollback 321d3a46-050a-4502-b1e6-e844c7350d1d`.
+- Until you publish www, the live site still says stories "publish the moment they pass the submission rules". That is now the untrue line, so the www publish is worth doing soon after you have looked at the test site.
+- Your reading queue: new stories arrive as drafts in the Stories collection with a note at the top of "Notes to editor". Read, set Funding, publish.
+
+### After the deploy (staged)
+
+- The Commissioned switch is deleted, with the three hidden markers that were bound to it (on /stories, the Stories template and the Contributors template) and a second chip link that could never show.
+- "Correction note" is added to Stories and wired to the story page: when it is filled, the story shows "Correction, {date}: {note}" above "Last updated" (the date comes from "Last updated").
 
 ### Waiting for your answer
 
@@ -311,7 +321,7 @@ A correction to Part 2 as well: the /stories headline did still carry the typed 
 
 ### Not done, and why
 
-- **After the Worker deploy:** delete the Commissioned switch and its two hidden markers, add "Correction note", show it on stories, and list corrections on /corrections (item 21 and the list in item 20). The field slot only frees up once the Worker stops writing the switch.
+- **The list on /corrections** (item 20): the empty state is there; the list of corrected stories is being wired. See the report for where it ended.
 - **Footer bound to the Site stats item** (item 1, the fuller fix): it needs a collection list inside the footer, which is on every page. I chose the safe step (no typed numbers) and left the list for a careful pass or a few Designer clicks.
 - **"Keep reading" and "Traveled with" by Webflow's own conditional visibility** (item 18): the API can only bind visibility to a switch field, not to "this list is empty". Both blocks are already hidden for readers by script when empty. Designer steps if you want it native: select the block, Settings, Conditional visibility, "Related stories is set" (or "Human co-travelers is set" / "Pet co-travelers is set").
 - **The process note under "Last updated"** (item 18): not moved. The Disclosure row holds real disclosure lines on six stories, so your condition for removing it ("if it only holds the process note") is not met. The note stays where it is.
