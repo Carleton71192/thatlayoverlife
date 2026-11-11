@@ -2,7 +2,7 @@
 
 Source: your priorities doc of 11 November 2026 ("Tier 1: P0 fix prompt, then one merged pass") and the P0 prompt of 9 November 2026 (`claude/tll-cc-blockers-2026-11-09.md`).
 
-Status: **nothing was written to Webflow for this.** Everything below is a read-only check of www.thatlayover.life as published on 11 November 2026 at 14:06 UTC (task 3d68e41b, layers 16.55.0). Each P item waits for your yes. Nothing goes to www without your word.
+Status, updated 11 November 2026 after your "Approve P1 to P5, cut both": **built and on the test site (that-layover-life.webflow.io). www is untouched.** What was built, what was not, and one correction to the first version of this log are in Part 6 at the end. Parts 1 to 5 are the check of www as published on 11 November 2026 at 14:06 UTC (task 3d68e41b, layers 16.55.0), as you approved them. Nothing goes to www without your word.
 
 ## Short answer
 
@@ -18,8 +18,8 @@ Checked on 11 November 2026 between 14:15 and 14:35 UTC. "In a browser" means a 
 | # | Item | Today | Evidence |
 |---|---|---|---|
 | 1 | Paw Passport guide: Ko-fi link and price | **Open. Waits on you.** | /the-paw-passport: the guide block says "What happened at the border at 11pm with a Samoyed in the back is the part you pay for." There is no price, no button and no Ko-fi link anywhere on the page. Home: the button "Get the guide · €9" is in the page and hidden, with no link behind it. The only Ko-fi link on the site is the tip jar on /support. The wiring is ready and needs one thing: the product link. |
-| 2 | Footer "Cookie settings" | **Both reports are true. Works as built, with one gap.** | The link is `href="#"` and carries `data-tll-cookie-prefs`. A script catches the click and asks Google to reopen its consent message. Clicked from here (outside Europe): no error, the page does not jump, and nothing opens, because Google has no message for visitors outside the EEA, the UK and Switzerland. So a visitor in the US clicks it and sees nothing happen. Inside Europe it reopens the message (last checked 7 November 2026; I cannot repeat that from this machine). Fix for the gap: P5. |
-| 3 | First-visit consent in Europe | **Open. Only you can test it.** | This machine is outside the EEA, so Google answers "rules do not apply" and loads everything at once, by design. The test is in Part 3, step 4. |
+| 2 | Footer "Cookie settings" | **Both reports are true. Works as built, with one gap.** | The link is `href="#"` and carries `data-tll-cookie-prefs`. A script catches the click and asks Google to reopen its consent message. Clicked from this Mac: no error, the page does not jump, and nothing opens. Correction (see Part 6): this Mac counts as Europe for Google, so that click should have reopened the message, and it did not in my automated browser. Outside the EEA, the UK and Switzerland Google has no message at all, so a visitor in the US clicks it and sees nothing happen either. Fix for that part: P5. Whether the message opens for a real visitor in Europe is step 4 in Part 3. |
+| 3 | First-visit consent in Europe | **Half checked. One part only you can see.** | Correction (see Part 6): this Mac is in Europe as far as Google is concerned, so I ran the first half myself. Before any choice, nothing from Google Analytics, Google ads or Ahrefs loads, and no tracking cookie is set. That part passes. But in my automated browser Google's consent message never appeared, so there was nothing to click. It needs your eyes in a normal browser: Part 3, step 4. |
 | 4 | Footer numbers | **Right for a visitor. Wrong in the page code.** | In a browser: "54 countries in our stories · 57 stories · 9 travelers · 1 pet". In the page code, on every page: "87 countries in our stories · 6 stories · 1 traveler · 1 pet". The label already reads "countries in our stories", so the page code is claiming 87, which is not true of the stories. The trust and conversion session has this (its item 1: the numbers come from the Site stats item, and travelers become 6 by your rule D1). I do not touch it. |
 | 5 | Home "Layover guides" row, /layovers, /marathon-diaries | **Closed.** | /layovers answers 200 and shows the Copenhagen and Sofia guides. The home row shows both cards, and in a browser they open /layovers/cph-copenhagen-6h and /layovers/sof-sofia-3h (both 200). /marathon-diaries answers 404 ("page not found"). That is correct today: all five marathon diaries are drafts, none is live, and no page on the site links to /marathon-diaries. A list page comes back when a diary does. Small leftovers are in Part 4. |
 | 6 | Magnus "35 kg places" | **Right for a visitor. Wrong in the page code. Cause found.** | In a browser, both places read "35 kg · 14 places". In the page code they read "Magnus · Samoyed · 35 kg ·  places" and "Samoyed · 35 kg ·  places · advisory capacity". Cause: the word "places" is typed into the page inside a hidden wrapper, and a script fetches the number from Magnus's pet page and then un-hides it. Anything that reads the page without running scripts (search engines, link previews, an audit tool) gets the word with no number. A visitor would see the same if the fetch of his page failed. Fix: P1. |
@@ -164,3 +164,60 @@ My recommendation: cut the sentence now, and bring it back when the badge is giv
 - P6 a to c: home HtmlEmbed c0c4bf75 and the form's success block; f: /stories, the tll-eyebrow-rose text in section tll-library-newsletter; g: home story row embed (h3-shelf-more); d and e: site layers (core letter stamp; chunks home.js and map.js line tll-soon-line).
 - /submit contributor block as read from Webflow at 14:25 UTC: fieldset 990be92f, legend block 26eddbfb hidden, labels f3eb05d3 "Name", 8af1d8bf "Email", 746a6b03 "Instagram", help blocks 3aaca6b9, 339dac4f, fdfe577c hidden, trip-when input 4245d48c named "trip-when". The Worker reads `fields['Field 5'] || fields['trip-when']` (src/intake.js line 104), so the rename is safe. A second, hidden trip-when label bc7df393 holds a required input "Field 4"; hidden elements are not served.
 - Tools used for the check are in the session scratchpad; the headless browser blocked analytics and ad requests so the check left no visits in the numbers.
+
+## Part 6. Build record (11 November 2026, after "Approve P1 to P5, cut both")
+
+On the test site since 14:52 UTC (publish task fcc32f7f, test address only). www still serves the 14:06 UTC publish.
+
+### Done and checked on the test site, at 390 and 1440
+
+| Item | What you see on that-layover-life.webflow.io | Checked |
+|---|---|---|
+| P1 | Home, chapters 04 and 06: "35 kg · 14 places". In the page code: "Magnus · Samoyed · 35 kg", no stray "places". | Page code compared with the saved copies, character for character. |
+| P2 | /account: "A human reads every story before it goes live, usually within 48 hours. Your byline stays yours." and "Share your first story. A human reads it before it goes live, usually within 48 hours." | In the page code. Not looked at signed in. |
+| P3 | Home: the three descriptions for search engines now say "read by a human before it goes live". | The whole block matches the saved copy; only those three lines differ from www. |
+| P4 | /submit and /share-photos: no "Example Text" in any box. Real hints such as "Sofia, Doha, somewhere unspellable" are still there. | In a browser with the form un-hidden. Not looked at signed in. |
+| P5, part a | The new code stands aside in Europe: with it running against www's real consent tool, "Cookie settings" behaves exactly as before. | 7 tests for the logic, and a private run against www. The outside-Europe path cannot be clicked from this Mac. |
+| P6 a, b, c | Home, chapter 07: "One story, when it's worth it. Lounge wine optional." / "No schedule we'd break. Unsubscribe anytime." / after signing up: "You're in. One story, when it's worth it." | Page code and browser. |
+| P6 d | The stamp on chapter 07 no longer says SUNDAY or 09:00 CPH. | Browser. See the note below. |
+| P6 e | "Guides, visa dates and city hubs are on the way. Get the letter and hear when they open →" | Browser. |
+| P6 f | /stories: the label over the sign-up box reads "THE LAYOVER LETTER". | Page code and browser. |
+| P7 | Home, chapter 06 ends at "Write it." The badge sentence is gone. | Page code and browser. |
+
+Also on the test site, from other sessions: /submit step 3 now has real labels (Name, Email, Instagram) and none of the placeholder sentences.
+
+No sideways scroll, no repeated ids, no script errors, no failed layer file on home, /stories, /submit or /share-photos. Site layers are 16.57.0 (364 tests pass).
+
+Pictures: `src/pages/home/live-2026-11-11/p0-closeout/shots/`. Before and after copies of the three home blocks and the search-engine block are beside them.
+
+### Not done
+
+- **P5, part b, the footer link itself** (from "#" to "/cookies"). The footer needs you present. Two clicks in the Designer: footer, select "Cookie settings", Link settings, Page, Cookies.
+- **P6 g, "More landing weekly."** It sits inside the largest block of code on the home page (31,635 characters), which the copy session still has open. Rewriting that block from here risked undoing its work for three words. It is still on the test site and on www. It goes in when that block is free, or tell me to take it now.
+
+### Three things for your eyes
+
+1. **The stamp.** With SUNDAY and 09:00 CPH gone, the middle of the round stamp holds only a small "TLL". Picture: `shots/home-1440-ch07.png`. If it looks bare, the first design of this stamp had "ONE STORY · NO DEALS"; say the word and I put that in the middle.
+2. **"WHAT FOUNDERS GET".** This small label sits under the two buttons in chapter 06, above the roster. With the badge sentence gone it promises something it does not name. Picture: `shots/home-390-ch06.png`. I left it, because it was not in what you approved. Cut it, or keep it?
+3. **Google's consent message may not be showing in Europe.** See the correction below.
+
+### Correction to the first version of this log
+
+I wrote that this machine is outside Europe. That was wrong: it was true of the cloud session's machine on 9 November 2026, not of your Mac in Copenhagen. From here Google answers that European rules apply. So I could run the first half of the consent test, in an automated browser:
+
+- Before any choice: no Google Analytics, no Google ads, no Ahrefs. Only fonts and Google's own consent files load. Cookies: Cloudflare's and Google's consent cookie, nothing else. Consent is set to "denied" by default. **This is the part that matters legally, and it passes.**
+- But **no consent message appeared**, in two tries, one with an ordinary browser signature and a 15 second wait. Picture: `shots/www-first-visit-no-consent-message.jpg`. With no message nobody in Europe can say yes, so analytics and ads would stay off for every European visitor, and "Cookie settings" has nothing to reopen.
+- I cannot tell from here whether Google simply hides the message from automated browsers, or whether it is not showing for anyone. That is why step 4 in Part 3 is now the most useful five minutes on this list: open www in a private window and see whether the message comes up at all. If it does not, the place to look is AdSense, Privacy and messaging: is the European regulations message published for thatlayover.life (Part 3, step 3).
+
+### Before www
+
+- P2 and P3 say a human reads every story before it goes live. That became true at about 14:39 UTC, when the Worker change that saves new stories as drafts was deployed by the trust and conversion session. Its other caution stands: its staged copy says an AI tool gives each story a first read, and that read has to be running.
+- A www publish carries everything staged by every session, not only this log.
+- Rollback for this log: site layers back to 16.56.0 in the header; the three home blocks and the search-engine block from `p0-closeout/before/`; the two /account lines, the /stories label and the sign-up message from the "Before" columns above.
+
+### For the build (sessions)
+
+- Home 69d6145df421c777840c1e46: HtmlEmbeds a4c1009d, a0d1cd97, c0c4bf75 (settings key code), success block 3ab123c7 (settings key text; set_text is refused), page JSON-LD through the schema markup action. /account 6a0d5c23c57426a9c563e8de: paragraphs 148fc877-086d-5622-a83d-de293c9a76ee and ...7707. /stories 69d61469f421c777840c204d: span 2a4d384b-bbeb-eaf7-7cce-2edaf3976c0b.
+- Layers 16.57.0: source commit 64ae219, release commit b612f924952355813836e3a918176d4c2d98df84 on layers-release, core sha384-bTVDCJd5sduxgUn6lW43ELg7NfYoQZhWLYeEW4X7Nto94lx3Lz4h+pIFKIOmW7fF. New layer src/site-layers/tll-p0-closeout-v1.js (site chunk), test test/p0-closeout-layer.test.js. It holds the trust and conversion cover fix d7f9298.
+- Google's consent tool does not load on the webflow.io address (no __tcfapi there), so anything that depends on it can only be exercised on www.
+- Found, not changed: the site head carries a COPY table that rewrites old sentences into "Reviewed by a human within 48 hours..." wording; its patterns no longer match the new copy, so it does nothing today, but it is stale. The home structured data still uses "filed" and "files" in three descriptions and links /pillars/layover-guides.

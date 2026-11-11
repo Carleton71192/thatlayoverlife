@@ -1,0 +1,172 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@id": "https://www.thatlayover.life/#organization",
+   "@type": "Organization",
+   "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DK",
+    "addressLocality": "Copenhagen"
+   },
+   "alternateName": "TLL",
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "availableLanguage": [
+     "English"
+    ],
+    "contactType": "editorial",
+    "email": "hello@thatlayover.life"
+   },
+   "description": "A community travel magazine. Every byline a real person, every story read by a human before it goes live. Based in Copenhagen, Denmark.",
+   "founder": {
+    "@id": "https://www.thatlayover.life/#nancy-carleton"
+   },
+   "foundingDate": "2026-05-20",
+   "knowsAbout": [
+    "Travel writing",
+    "Editorial standards",
+    "Cross-border pet travel",
+    "Marathon travel",
+    "EV travel routing",
+    "European travel",
+    "Cultural pattern writing",
+    "Anonymous travel writing"
+   ],
+   "name": "That Layover Life",
+   "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
+   "sameAs": [
+    "https://instagram.com/thatlayoverlife",
+    "https://thatlayover.substack.com",
+    "https://linkedin.com/company/thatlayoverlife"
+   ],
+   "url": "https://www.thatlayover.life/"
+  },
+  {
+   "@id": "https://www.thatlayover.life/#nancy-carleton",
+   "@type": "Person",
+   "description": "Founder of That Layover Life. An American expat in Denmark who has run a marathon on every continent and travels with a Samoyed named Magnus.",
+   "image": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg",
+   "jobTitle": "Founder and editor",
+   "knowsAbout": [
+    "Marathon travel",
+    "Race-week city guides",
+    "Seven continents marathon",
+    "Cross-border pet travel",
+    "EU pet passport",
+    "EV travel routing",
+    "Long-haul expat life",
+    "Layover guides"
+   ],
+   "name": "Nancy Carleton",
+   "nationality": {
+    "@type": "Country",
+    "name": "United States"
+   },
+   "owns": {
+    "@id": "https://www.thatlayover.life/#magnus"
+   },
+   "sameAs": [
+    "https://www.thatlayover.life/contributors/nancy-carleton"
+   ],
+   "url": "https://www.thatlayover.life/contributors/nancy-carleton",
+   "worksFor": {
+    "@id": "https://www.thatlayover.life/#organization"
+   }
+  },
+  {
+   "@id": "https://www.thatlayover.life/#magnus",
+   "@type": "Thing",
+   "description": "Samoyed. A large white dog with a complete EU pet passport who crosses European borders from the back seat of a small Honda, and files the logistics his humans forget.",
+   "image": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast.jpg",
+   "name": "Magnus 🐻‍❄️ Waffles",
+   "url": "https://www.thatlayover.life/the-paw-passport"
+  },
+  {
+   "@id": "https://www.thatlayover.life/#website",
+   "@type": "WebSite",
+   "description": "A library of travel stories, written by the people who actually got on the plane. Edited lightly, read by a human before it goes live. Every byline a real person.",
+   "inLanguage": "en",
+   "name": "That Layover Life",
+   "potentialAction": {
+    "@type": "SearchAction",
+    "query-input": "required name=search_term_string",
+    "target": {
+     "@type": "EntryPoint",
+     "urlTemplate": "https://www.thatlayover.life/stories?q={search_term_string}"
+    }
+   },
+   "publisher": {
+    "@id": "https://www.thatlayover.life/#organization"
+   },
+   "url": "https://www.thatlayover.life/"
+  },
+  {
+   "@id": "https://www.thatlayover.life/#editorial-pillars",
+   "@type": "ItemList",
+   "description": "Every story on That Layover Life is filed under one of five editorial pillars: Stories From the Road, Layover Guides, Paw Passport, Travel Logistics, and Cultural Intelligence.",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "description": "The flagship pillar. Long-form posts about specific places at specific times, written by named travelers who were actually in the room.",
+     "name": "Stories From the Road",
+     "position": 1,
+     "url": "https://www.thatlayover.life/pillars/stories-from-the-road"
+    },
+    {
+     "@type": "ListItem",
+     "description": "What to do with 3, 6, 9, or 12 plus hours in a city. Written by people who have done the layover and lived to file the report.",
+     "name": "Layover Guides",
+     "position": 2,
+     "url": "https://www.thatlayover.life/pillars/layover-guides"
+    },
+    {
+     "@type": "ListItem",
+     "description": "Magnus 🐻‍❄️ files reports. Pet-travel logistics for households with a passport for their bestie, any species.",
+     "name": "Paw Passport",
+     "position": 3,
+     "url": "https://www.thatlayover.life/the-paw-passport"
+    },
+    {
+     "@type": "ListItem",
+     "description": "Visas, AHCs, EV charging, real wifi, customs surprises. The unsexy intel that actually saves the trip.",
+     "name": "Travel Logistics",
+     "position": 4,
+     "url": "https://www.thatlayover.life/pillars/travel-logistics"
+    },
+    {
+     "@type": "ListItem",
+     "description": "What travel teaches about how the world actually works. The Swedish 37-hour week. The customs officer in Pristina.",
+     "name": "Cultural Intelligence",
+     "position": 5,
+     "url": "https://www.thatlayover.life/pillars/cultural-intelligence"
+    }
+   ],
+   "itemListOrder": "https://schema.org/ItemListUnordered",
+   "name": "The five editorial pillars of That Layover Life",
+   "numberOfItems": 5
+  },
+  {
+   "@id": "https://www.thatlayover.life/#webpage",
+   "@type": "WebPage",
+   "about": {
+    "@id": "https://www.thatlayover.life/#organization"
+   },
+   "description": "That Layover Life publishes travel stories from named travelers (Magnus 🐻‍❄️ Waffles included). Read by a human before they go live, free to read.",
+   "hasPart": {
+    "@id": "https://www.thatlayover.life/#editorial-pillars"
+   },
+   "inLanguage": "en",
+   "isAccessibleForFree": true,
+   "isPartOf": {
+    "@id": "https://www.thatlayover.life/#website"
+   },
+   "name": "That Layover Life · Real places, by people who actually went",
+   "primaryImageOfPage": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e0225995b48deb53b96e8_Fitz%20Roy.jpg",
+   "publisher": {
+    "@id": "https://www.thatlayover.life/#organization"
+   },
+   "url": "https://www.thatlayover.life/"
+  }
+ ]
+}
