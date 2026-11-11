@@ -39,7 +39,7 @@ function run(){
   if(!PUBLIC)inn.appendChild(el('p','tll-val-flag','Preview · not live'));
   inn.appendChild(el('p','tll-val-ey','Why That Layover Life'));
   var h=el('h2');h.id='tll-val-h';h.appendChild(document.createTextNode('The family slide show, rebuilt for people who '));h.appendChild(el('em','','never stop going.'));inn.appendChild(h);
-  inn.appendChild(el('p','tll-val-lede',"It keeps your trips somewhere that is yours, shows them off the way Grandpa's slide projector did, and puts you next to people who travel the way you do. Free, no card, 16+."));
+  inn.appendChild(el('p','tll-val-lede',"It keeps your trips somewhere that is yours and puts you next to people who travel the way you do. Free to join if you're 16 or older."));
   var g=el('div','tll-val-grid');LINES.forEach(function(l){var c=el('div','tll-val-card');c.appendChild(el('b','',l[0]));c.appendChild(el('p','',l[1]));g.appendChild(c);});inn.appendChild(g);
   var ask=el('div','tll-val-ask');ask.appendChild(el('strong','','What do you collect?'));
   PURSUITS.forEach(function(p){var a=el('a','',p[1]);/* Phase 0 (31 Oct): the pursuit hubs are not built yet (/pursuits/* answered 404), so these open the library search instead. */

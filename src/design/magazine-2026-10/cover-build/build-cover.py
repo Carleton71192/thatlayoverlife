@@ -18,7 +18,7 @@ cover = dict(slug=fd['slug'], title=fd['name'], img=fd['hero-image']['url'], alt
              stampPlace=t.get('stampPlace') or (fd.get('byline-location') or '').split(',')[0].upper(),
              stampDate=when.strftime('%d %b %Y').upper(), stampArc=(fd.get('pillar-name') or '').upper() or 'BY THE PEOPLE WHO WENT',
              coords=t.get('coords', ''), posPhone=t.get('posPhone', '50% 50%'), posDesk=t.get('posDesk', '50% 50%'), phoneZoom=t.get('phoneZoom', '0%'),
-             kicker="This week's cover", dek='Real places and real opinions, written by the people who went. Free to join, no card, no paywall.',
+             kicker="This week's cover", dek='Travel stories from people who left the airport. (Most of them, anyway.) Free to join.',
              button='Read the cover story', join='Join free')
 # the people strip: the contributors as the live library rail names them, with what they went to; Nancy is one byline among them
 PEOPLE = [dict(name='Chesney Lish', slug='chesney-lish', avatar=AUTHORS['6ab3fabd46f0ae8633ccb97f'][2], sub='Madrid and Ibiza'),
