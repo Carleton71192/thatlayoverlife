@@ -1,0 +1,1158 @@
+{
+ "_about": "The only file to edit when adding a collection. Each entry becomes a chip in the layer switcher and a card under the map. The number shown is always counted from data/<id>.json; the denominator is the world total, with its as-of date. Pin shape is set per shelf so color is never the only signal. Captions marked [COPY NEEDED] are placeholders for Nancy's words. Reconciled with the Claude Design file TLL Map Layers (7 October 2026): 36 lists in five shelves, caption bank with templated numbers, source badges. 20 October 2026 (B3): every number is counted live from the member record (tllStates) or the logbook (tllLog, tllParks); counts.json and extremes.json are no longer read. A list with \"hidden_until_loggable\": true keeps its data file but is off the page for everyone (chips, drawer, cards, pins) until members have a way to log it; set it to false to bring the list back.",
+ "shelves": [
+  {
+   "id": "places",
+   "name": "Places",
+   "pin_shape": "circle",
+   "color": "#F7F1E8"
+  },
+  {
+   "id": "wonders",
+   "name": "Wonders and heritage",
+   "pin_shape": "diamond",
+   "color": "#00C9C8"
+  },
+  {
+   "id": "motion",
+   "name": "In motion",
+   "pin_shape": "triangle",
+   "color": "#FF7093"
+  },
+  {
+   "id": "lines",
+   "name": "Lines and extremes",
+   "pin_shape": "square",
+   "color": "#F7F1E8"
+  },
+  {
+   "id": "human",
+   "name": "The human layer",
+   "pin_shape": "ring",
+   "color": "#F7F1E8"
+  }
+ ],
+ "sources": {
+  "placesbeen": {
+   "label": "FROM PLACES BEEN",
+   "synced": "2026-10-06"
+  },
+  "member": {
+   "label": "FROM THE MEMBER RECORD"
+  },
+  "hand": {
+   "label": ""
+  },
+  "strava": {
+   "label": "FROM STRAVA",
+   "connected": false
+  },
+  "flighty": {
+   "label": "FROM FLIGHTY",
+   "connected": false
+  },
+  "polarsteps": {
+   "label": "FROM POLARSTEPS",
+   "connected": false
+  },
+  "logbook": {
+   "label": "FROM THE LOGBOOK"
+  }
+ },
+ "rulebooks": [
+  {
+   "of": 249,
+   "who": "ISO country codes plus Kosovo. Nancy’s rulebook, 7 October 2026.",
+   "count": "codes"
+  },
+  {
+   "of": 195,
+   "who": "UN members plus two observers.",
+   "count": "un_or_observer"
+  },
+  {
+   "of": 193,
+   "who": "UN members only.",
+   "count": "un_only"
+  },
+  {
+   "of": 330,
+   "who": "Travelers’ Century Club. A fuel stop counts if you set foot.",
+   "count": null
+  }
+ ],
+ "collections": [
+  {
+   "id": "countries",
+   "name": "Countries",
+   "shelf": "places",
+   "default_on": true,
+   "verb": "logged",
+   "denominator": 249,
+   "denominator_label": "ISO country codes plus Kosovo",
+   "as_of": "2026-10-07",
+   "what_counts": "Set foot outside the airport. Layovers count separately.",
+   "caption": "Lit in Rose. Argued about at dinner.",
+   "depth_values": [
+    "Lived",
+    "Stayed",
+    "Layover only"
+   ],
+   "source": "member",
+   "captions": [
+    "Lit in Rose. Argued about at dinner.",
+    "Halfway is {half}. You can see it from here.",
+    "{n} down. The other {rest} are already in a spreadsheet."
+   ]
+  },
+  {
+   "id": "cities",
+   "name": "Cities",
+   "shelf": "places",
+   "default_on": false,
+   "verb": "slept in or stood in",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "One night, or the center at ground level.",
+   "caption": "Slept in or stood in. A train window does not count, however long you stared.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "cities",
+   "captions": [
+    "Slept in or stood in. A train window does not count, however long you stared.",
+    "{US} of them are in the US. The rest took more paperwork.",
+    "Enough to forget a few. That is what the list is for."
+   ]
+  },
+  {
+   "id": "airports",
+   "name": "Airports",
+   "shelf": "places",
+   "default_on": false,
+   "verb": "connected through",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "Connected through or flew from. Duty free optional.",
+   "caption": "Connected through. Nobody asked about the gate change.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "airports",
+   "captions": [
+    "Connected through. Nobody asked about the gate change.",
+    "{large} large, {medium} medium, {small} small. You remember the small ones.",
+    "The brand’s namesake, {n} times over."
+   ]
+  },
+  {
+   "id": "us-national-parks",
+   "name": "US parks",
+   "shelf": "places",
+   "default_on": false,
+   "verb": "been inside",
+   "denominator": 63,
+   "denominator_label": "designated national parks",
+   "as_of": "2026-10-07",
+   "what_counts": "Past the gate and inside. Driving past the sign does not count.",
+   "caption": "{n} of {of}. The other {rest} are not going anywhere.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "usParks",
+   "captions": [
+    "{n} of {of}. The other {rest} are not going anywhere.",
+    "Inside, not driven past. The ranger would know.",
+    "From Denali to the Everglades. The middle needs work."
+   ]
+  },
+  {
+   "id": "parks-everywhere",
+   "name": "Parks, everywhere",
+   "shelf": "places",
+   "default_on": false,
+   "verb": "been inside",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "Same rule as the US list: past the gate and inside.",
+   "caption": "Teide counts. So does Muir Woods. The rule is past the gate and inside.",
+   "source": "logbook",
+   "count_from": "logbook",
+   "logbook_count": "parksEverywhere",
+   "captions": [
+    "Teide counts. So does Muir Woods. The rule is past the gate and inside.",
+    "{parks} parks and {monuments} monuments in {countries} countries. New Zealand overperforms.",
+    "Paparoa is on here. Look it up, then look at flights."
+   ]
+  },
+  {
+   "id": "ports",
+   "hidden_until_loggable": true,
+   "name": "Ports",
+   "shelf": "places",
+   "default_on": false,
+   "verb": "sailed from",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "Boarded or left a boat here.",
+   "caption": "Three in Brazil, one in Baja. All left by water.",
+   "source": "placesbeen",
+   "captions": [
+    "Three in Brazil, one in Baja. All left by water.",
+    "Sailed from. Arriving by boat is slower, and that is the point.",
+    "Belém, Manaus, Salvador, La Paz. Short list, long crossings."
+   ]
+  },
+  {
+   "id": "unesco",
+   "hidden_until_loggable": true,
+   "name": "UNESCO",
+   "shelf": "wonders",
+   "default_on": false,
+   "verb": "stood in",
+   "denominator": 1273,
+   "denominator_label": "inscribed sites",
+   "as_of": "2025-07",
+   "what_counts": "Stood inside the listed property.",
+   "caption": "{n} of {of}. About {pct} percent of the planet’s homework.",
+   "link_base": "https://whc.unesco.org/en/list/",
+   "source": "placesbeen",
+   "captions": [
+    "{n} of {of}. About {pct} percent of the planet’s homework.",
+    "Stood in, not flown over. The list grows every July, so the share shrinks on its own.",
+    "Probably a floor. Several landmarks here sit inside sites not yet ticked."
+   ],
+   "as_of_label": "AS OF JULY 2025 · THE LIST GROWS EVERY JULY"
+  },
+  {
+   "id": "landmarks",
+   "hidden_until_loggable": true,
+   "name": "Landmarks",
+   "shelf": "wonders",
+   "default_on": false,
+   "verb": "saw with own eyes",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "Saw it in person, from wherever you were standing.",
+   "caption": "{built} built, {natural} natural. Seen with your own eyes, not your phone’s.",
+   "source": "placesbeen",
+   "captions": [
+    "{built} built, {natural} natural. Seen with your own eyes, not your phone’s.",
+    "Includes Las Vegas, which is a landmark in the sense that it is very visible.",
+    "The Little Mermaid counts. Everyone says she is smaller in person. She is."
+   ]
+  },
+  {
+   "id": "new7",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "New 7 Wonders",
+   "verb": "stood at",
+   "denominator": 7,
+   "source": "placesbeen",
+   "as_of": "2007-07-07",
+   "default_on": false,
+   "captions": [
+    "{n} of {of}, plus Giza, which predates the vote and outranks it.",
+    "Petra, the Great Wall and the Colosseum. Not yet.",
+    "Stood at. The crowd stood there too."
+   ],
+   "caption": "{n} of {of}, plus Giza, which predates the vote and outranks it.",
+   "what_counts": "Stood at the site.",
+   "set_of": "new7wonders"
+  },
+  {
+   "id": "nat7",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Natural Wonders",
+   "verb": "witnessed",
+   "denominator": 7,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "captions": [
+    "{n} of {of}. Parícutin is a volcano in a Mexican cornfield. It is waiting.",
+    "Witnessed. The aurora counts once, however many nights you stood outside.",
+    "One left, and it is the one nobody has heard of."
+   ],
+   "caption": "{n} of {of}. Parícutin is a volcano in a Mexican cornfield. It is waiting.",
+   "what_counts": "Witnessed it in person.",
+   "set_of": "seven-natural-wonders"
+  },
+  {
+   "id": "nature7",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Wonders of Nature",
+   "verb": "stood at",
+   "denominator": 7,
+   "source": "placesbeen",
+   "as_of": "2011-11-11",
+   "default_on": false,
+   "captions": [
+    "{n} of {of}. Iguazu counts once, though you saw both sides.",
+    "Jeju and Komodo. Not yet.",
+    "Stood at, or floated through in Puerto Princesa’s case."
+   ],
+   "caption": "{n} of {of}. Iguazu counts once, though you saw both sides.",
+   "what_counts": "Stood at the site.",
+   "set_of": "new7-nature"
+  },
+  {
+   "id": "volcanoes",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Decade Volcanoes",
+   "verb": "stood near",
+   "denominator": 16,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Stood on or at the foot of one of the sixteen.",
+   "computed": "pins_named",
+   "match": [
+    "Mount Etna",
+    "Teide National Park",
+    "Mount Rainier National Park"
+   ]
+  },
+  {
+   "id": "spa",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Great Spa Towns",
+   "verb": "been inside",
+   "denominator": 11,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "One night, or the center at ground level.",
+   "computed": "pins_named",
+   "match": [
+    "City of Bath"
+   ]
+  },
+  {
+   "id": "dkheritage",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Danish heritage",
+   "verb": "stood in",
+   "denominator": null,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "UNESCO sites in Denmark.",
+   "computed": "unesco_country",
+   "match": [
+    "DK"
+   ]
+  },
+  {
+   "id": "vikings",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Viking ring forts",
+   "verb": "been inside",
+   "denominator": 5,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Past the gate and inside the ring.",
+   "items": [
+    [
+     "TRE",
+     "Trelleborg",
+     55.39,
+     11.27,
+     "DK",
+     false
+    ],
+    [
+     "FYR",
+     "Fyrkat",
+     56.62,
+     9.77,
+     "DK",
+     false
+    ],
+    [
+     "AGG",
+     "Aggersborg",
+     57.0,
+     9.26,
+     "DK",
+     false
+    ],
+    [
+     "NON",
+     "Nonnebakken",
+     55.4,
+     10.39,
+     "DK",
+     false
+    ],
+    [
+     "BOR",
+     "Borgring",
+     55.46,
+     12.12,
+     "DK",
+     false
+    ]
+   ]
+  },
+  {
+   "id": "wine",
+   "hidden_until_loggable": true,
+   "shelf": "wonders",
+   "name": "Wine Capitals",
+   "verb": "tasted in",
+   "denominator": 11,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Tasted in a Great Wine Capital.",
+   "items": []
+  },
+  {
+   "id": "marathons",
+   "hidden_until_loggable": true,
+   "name": "Continents run",
+   "shelf": "motion",
+   "default_on": false,
+   "verb": "ran",
+   "denominator": 7,
+   "as_of": "2026-10-07",
+   "source": "hand",
+   "what_counts": "42.195 km, finished. Trail counts, the half that missed the cutoff does not.",
+   "caption": "{n} of {of}. The rarest tick on this page, and the sorest.",
+   "captions": [
+    "{n} of {of}. The rarest tick on this page, and the sorest.",
+    "Antarctica included. The set is closed.",
+    "Ran. All seven. The stamps are full for a reason."
+   ],
+   "set_of": "continents-marathoned",
+   "count_from": "set"
+  },
+  {
+   "id": "majors",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Marathon Majors",
+   "verb": "ran",
+   "denominator": 7,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Finished one of the seven Abbott World Marathon Majors.",
+   "as_of_label": "AS OF 2026: 7 RACES · 8 FROM MAY 2027",
+   "items": [
+    [
+     "TOK",
+     "Tokyo",
+     35.68,
+     139.69,
+     "JP",
+     false
+    ],
+    [
+     "BOS",
+     "Boston",
+     42.36,
+     -71.06,
+     "US",
+     false
+    ],
+    [
+     "LON",
+     "London",
+     51.5,
+     -0.12,
+     "GB",
+     false
+    ],
+    [
+     "BER",
+     "Berlin",
+     52.52,
+     13.4,
+     "DE",
+     true,
+     "marathons: Berlin Marathon (2021)"
+    ],
+    [
+     "CHI",
+     "Chicago",
+     41.88,
+     -87.63,
+     "US",
+     false
+    ],
+    [
+     "NYC",
+     "New York City",
+     40.71,
+     -74.0,
+     "US",
+     false
+    ],
+    [
+     "SYD",
+     "Sydney",
+     -33.87,
+     151.21,
+     "AU",
+     false
+    ]
+   ]
+  },
+  {
+   "id": "superhalfs",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "SuperHalfs",
+   "verb": "ran",
+   "denominator": 6,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Finished one of the six SuperHalfs.",
+   "items": [
+    [
+     "LIS",
+     "Lisbon",
+     38.72,
+     -9.14,
+     "PT",
+     false
+    ],
+    [
+     "PRG",
+     "Prague",
+     50.08,
+     14.43,
+     "CZ",
+     false
+    ],
+    [
+     "BER",
+     "Berlin",
+     52.52,
+     13.4,
+     "DE",
+     false
+    ],
+    [
+     "CPH",
+     "Copenhagen",
+     55.68,
+     12.57,
+     "DK",
+     true,
+     "running log: Copenhagen Half"
+    ],
+    [
+     "CDF",
+     "Cardiff",
+     51.48,
+     -3.18,
+     "GB",
+     false
+    ],
+    [
+     "VAL",
+     "Valencia",
+     39.47,
+     -0.38,
+     "ES",
+     false
+    ]
+   ]
+  },
+  {
+   "id": "heat",
+   "hidden_until_loggable": true,
+   "name": "Photos and runs",
+   "shelf": "motion",
+   "default_on": false,
+   "verb": "rounded",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "type": "heat",
+   "what_counts": "Hexes about 400 km across from runs and photo points. No points, no tracks. The home hex is dropped before drawing.",
+   "caption": "[COPY NEEDED]",
+   "pin_shape": "hex",
+   "source": "strava"
+  },
+  {
+   "id": "flights",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Flight arcs",
+   "verb": "flew",
+   "denominator": null,
+   "source": "flighty",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "From a flight log export. Arcs between airports already on the map.",
+   "items": []
+  },
+  {
+   "id": "trains",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Trains and ferries",
+   "verb": "rode",
+   "denominator": null,
+   "source": "polarsteps",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "From a Polarsteps export.",
+   "items": []
+  },
+  {
+   "id": "bridges",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Bridges",
+   "verb": "crossed",
+   "denominator": null,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Crossed it, both ways optional.",
+   "items": []
+  },
+  {
+   "id": "metros",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Metros",
+   "verb": "rode",
+   "denominator": null,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Rode at least one line.",
+   "items": []
+  },
+  {
+   "id": "bathing",
+   "hidden_until_loggable": true,
+   "shelf": "motion",
+   "name": "Bathing traditions",
+   "verb": "tried",
+   "denominator": 5,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Sauna, onsen, hammam, banya, sento.",
+   "items": []
+  },
+  {
+   "id": "extremes",
+   "shelf": "lines",
+   "name": "Extremes",
+   "verb": "reached",
+   "denominator": null,
+   "source": "member",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "The four furthest countries on your map, each at the center of its shape.",
+   "computed": "extremes"
+  },
+  {
+   "id": "crossed",
+   "shelf": "lines",
+   "name": "Lines crossed",
+   "verb": "crossed",
+   "denominator": 2,
+   "source": "member",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Equator and prime meridian, by country: crossed when your map holds countries on both sides.",
+   "computed": "crossed"
+  },
+  {
+   "id": "timezones",
+   "hidden_until_loggable": true,
+   "shelf": "lines",
+   "name": "Time zones",
+   "verb": "stood in",
+   "denominator": 38,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Needs a time-zone boundary set.",
+   "computed": "placeholder",
+   "_note": "B3.4 (20 Oct 2026): time zones, the polar circles and the tropics need place coordinates the record does not hold. Hidden until a member can log a place with coordinates."
+  },
+  {
+   "id": "mountains",
+   "hidden_until_loggable": true,
+   "shelf": "lines",
+   "name": "Mountains",
+   "verb": "stood on",
+   "denominator": null,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Summits reached, however you got there.",
+   "items": [
+    [
+     "TOU",
+     "Mount Toubkal",
+     31.06,
+     -7.915,
+     "MA",
+     true,
+     "running log: summit, 4,167 m; coordinates approximate"
+    ],
+    [
+     "LAN",
+     "Mount Langley",
+     36.523,
+     -118.239,
+     "US",
+     true,
+     "running log: summit, 4,276 m; coordinates approximate"
+    ],
+    [
+     "STH",
+     "Mount St. Helens",
+     46.191,
+     -122.195,
+     "US",
+     true,
+     "running log: summit, 2,549 m; coordinates approximate"
+    ]
+   ],
+   "_note": "Mt. Hood is in the log as \"confirm if completed\" and is left out until Nancy confirms. Everest Base Camp, Rainbow Mountain and Huayna Potosí camp were treks, not summits."
+  },
+  {
+   "id": "magnus",
+   "hidden_until_loggable": true,
+   "name": "Magnus Waffles 🐻‍❄️",
+   "shelf": "human",
+   "default_on": false,
+   "verb": "sniffed",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "All four paws on the ground, past border control.",
+   "caption": "35 kg of Samoyed, {n} countries, zero complaints on record.",
+   "pin_shape": "paw",
+   "source": "member",
+   "captions": [
+    "35 kg of Samoyed, {n} countries, zero complaints on record.",
+    "{n} countries sniffed. Each border checked personally, nose first.",
+    "He does not know what a country is. He has been to {n}."
+   ]
+  },
+  {
+   "id": "moments",
+   "hidden_until_loggable": true,
+   "name": "Moments",
+   "shelf": "human",
+   "default_on": false,
+   "verb": "remembered",
+   "denominator": null,
+   "as_of": "2026-10-07",
+   "what_counts": "One line, one place. Nancy's own categories, below. Each moment needs a city and one sentence before it gets a pin.",
+   "caption": "[COPY NEEDED]",
+   "pin_shape": "square",
+   "source": "hand",
+   "prompts": [
+    "souvenir acquired",
+    "code-switching",
+    "danced, because",
+    "idiom confusion",
+    "got a freebie",
+    "upgraded",
+    "found a new travel buddy",
+    "downgraded",
+    "sweating in customs",
+    "lost baggage",
+    "pickpockets",
+    "live music",
+    "street festival",
+    "street food",
+    "coffee shop mug acquired",
+    "tiny spoon",
+    "stray dogs",
+    "so many cats",
+    "collected magnet",
+    "jet lagged",
+    "local drinks"
+   ],
+   "prompts_note": "Categories from Nancy, 2026-10-07. Two edits for on-page copy: 'tiny spoon!' loses its exclamation mark (copy rule), 'Starbucks mug acquired' is written as 'coffee shop mug acquired' so a brand name does not sit in site copy. Use the original wording in data/moments.json rows if preferred; rows carry a `prompt` field matching one of these."
+  },
+  {
+   "id": "auroras",
+   "hidden_until_loggable": true,
+   "shelf": "human",
+   "name": "Auroras and eclipses",
+   "verb": "stood under",
+   "denominator": null,
+   "source": "placesbeen",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Stood under it.",
+   "computed": "pins_named",
+   "match": [
+    "Aurora Borealis"
+   ]
+  },
+  {
+   "id": "weddings",
+   "hidden_until_loggable": true,
+   "shelf": "human",
+   "name": "Weddings abroad",
+   "verb": "attended",
+   "denominator": null,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Attended, abroad.",
+   "items": []
+  },
+  {
+   "id": "friends",
+   "hidden_until_loggable": true,
+   "shelf": "human",
+   "name": "Friends visited",
+   "verb": "visited",
+   "denominator": null,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Visited a friend where they live.",
+   "items": []
+  },
+  {
+   "id": "beds",
+   "hidden_until_loggable": true,
+   "shelf": "human",
+   "name": "Beds by type",
+   "verb": "slept in",
+   "denominator": 5,
+   "source": "hand",
+   "as_of": "2026-10-07",
+   "default_on": false,
+   "what_counts": "Hostel bunk, sleeper train, tent, overnight ferry, airport floor.",
+   "items": []
+  }
+ ],
+ "sets_of_seven": [
+  {
+   "id": "new7wonders",
+   "name": "New 7 Wonders of the World",
+   "as_of": "2007-07-07",
+   "items": [
+    {
+     "name": "Great Wall of China",
+     "country": "CN",
+     "done": false,
+     "code": "GRW",
+     "latitude": 40.43,
+     "longitude": 116.57
+    },
+    {
+     "name": "Petra",
+     "country": "JO",
+     "done": false,
+     "code": "PET",
+     "latitude": 30.33,
+     "longitude": 35.44
+    },
+    {
+     "name": "Christ the Redeemer",
+     "country": "BR",
+     "done": true,
+     "source": "places_been:Christ the Redeemer Statue",
+     "code": "CHR",
+     "latitude": -22.95,
+     "longitude": -43.21
+    },
+    {
+     "name": "Machu Picchu",
+     "country": "PE",
+     "done": true,
+     "source": "places_been:Machu Picchu",
+     "code": "MAC",
+     "latitude": -13.16,
+     "longitude": -72.55
+    },
+    {
+     "name": "Chichen Itza",
+     "country": "MX",
+     "done": true,
+     "source": "places_been:Chichen Itza",
+     "code": "CHI",
+     "latitude": 20.68,
+     "longitude": -88.57
+    },
+    {
+     "name": "Colosseum",
+     "country": "IT",
+     "done": false,
+     "code": "COL",
+     "latitude": 41.89,
+     "longitude": 12.49
+    },
+    {
+     "name": "Taj Mahal",
+     "country": "IN",
+     "done": true,
+     "source": "places_been:Taj Mahal",
+     "code": "TAJ",
+     "latitude": 27.18,
+     "longitude": 78.04
+    }
+   ],
+   "verb": "stood at",
+   "honorary": {
+    "code": "GIZ",
+    "name": "Giza Pyramids (honorary)",
+    "latitude": 29.98,
+    "longitude": 31.13,
+    "country": "EG",
+    "done": true,
+    "source": "places_been:Giza Pyramids",
+    "_why": "Predates the 2007 vote; outside the row, per the design."
+   }
+  },
+  {
+   "id": "seven-natural-wonders",
+   "name": "Seven Natural Wonders",
+   "as_of": "",
+   "_note": "Nancy, 7 Oct 2026: keep this list (the usual 1997 CNN list). Parícutin is the one not pinned.",
+   "items": [
+    {
+     "name": "Grand Canyon",
+     "country": "US",
+     "done": true,
+     "source": "places_been:Grand Canyon",
+     "code": "GCA",
+     "latitude": 36.1,
+     "longitude": -112.1
+    },
+    {
+     "name": "Great Barrier Reef",
+     "country": "AU",
+     "done": true,
+     "source": "places_been:Great Barrier Reef",
+     "code": "GBR",
+     "latitude": -18.29,
+     "longitude": 147.7
+    },
+    {
+     "name": "Harbor of Rio de Janeiro",
+     "country": "BR",
+     "done": true,
+     "source": "places_been:Harbor of Rio de Janeiro",
+     "code": "RIO",
+     "latitude": -22.9,
+     "longitude": -43.17
+    },
+    {
+     "name": "Mount Everest",
+     "country": "NP",
+     "done": true,
+     "source": "places_been:Mount Everest",
+     "code": "EVE",
+     "latitude": 27.99,
+     "longitude": 86.93
+    },
+    {
+     "name": "Aurora",
+     "country": "NO",
+     "done": true,
+     "source": "places_been:Aurora Borealis",
+     "code": "AUR",
+     "latitude": 69.65,
+     "longitude": 18.96
+    },
+    {
+     "name": "Parícutin",
+     "country": "MX",
+     "done": false,
+     "code": "PAR",
+     "latitude": 19.49,
+     "longitude": -102.25
+    },
+    {
+     "name": "Victoria Falls",
+     "country": "ZM",
+     "done": true,
+     "source": "places_been:Victoria Falls",
+     "code": "VIC",
+     "latitude": -17.92,
+     "longitude": 25.86
+    }
+   ],
+   "verb": "witnessed"
+  },
+  {
+   "id": "new7-nature",
+   "name": "New 7 Wonders of Nature",
+   "as_of": "2011-11-11",
+   "items": [
+    {
+     "name": "Amazon rainforest",
+     "country": "BR",
+     "done": true,
+     "source": "places_been:Central Amazon Conservation Complex, Manaus",
+     "code": "AMZ",
+     "latitude": -2.33,
+     "longitude": -62.01
+    },
+    {
+     "name": "Hạ Long Bay",
+     "country": "VN",
+     "done": true,
+     "source": "places_been:Hạ Long Bay",
+     "code": "HAL",
+     "latitude": 20.91,
+     "longitude": 107.18
+    },
+    {
+     "name": "Iguazú Falls",
+     "country": "AR",
+     "done": true,
+     "source": "places_been:Iguazu National Park",
+     "code": "IGU",
+     "latitude": -25.69,
+     "longitude": -54.44
+    },
+    {
+     "name": "Jeju Island",
+     "country": "KR",
+     "done": false,
+     "code": "JEJ",
+     "latitude": 33.36,
+     "longitude": 126.53
+    },
+    {
+     "name": "Komodo Island",
+     "country": "ID",
+     "done": false,
+     "code": "KOM",
+     "latitude": -8.55,
+     "longitude": 119.49
+    },
+    {
+     "name": "Puerto Princesa Underground River",
+     "country": "PH",
+     "done": true,
+     "source": "places_been:Puerto-Princesa Subterranean River National Park",
+     "code": "PPR",
+     "latitude": 10.19,
+     "longitude": 118.93
+    },
+    {
+     "name": "Table Mountain",
+     "country": "ZA",
+     "done": true,
+     "source": "Nancy, 7 Oct 2026: ticked",
+     "code": "TAB",
+     "latitude": -33.96,
+     "longitude": 18.4
+    }
+   ],
+   "verb": "stood at"
+  },
+  {
+   "id": "continents-marathoned",
+   "name": "Continents marathoned",
+   "as_of": "2026-10-07",
+   "items": [
+    {
+     "name": "Africa",
+     "done": true,
+     "source": "marathons: Sanlam Cape Town Marathon (2024)",
+     "code": "AF",
+     "latitude": -33.93,
+     "longitude": 18.42
+    },
+    {
+     "name": "Antarctica",
+     "done": true,
+     "source": "marathons: Antarctica Marathon (2023)",
+     "code": "AN",
+     "latitude": -62.2,
+     "longitude": -58.9
+    },
+    {
+     "name": "Asia",
+     "done": true,
+     "source": "marathons: Vietnam Trail Marathon (2022)",
+     "code": "AS",
+     "latitude": 20.84,
+     "longitude": 104.63
+    },
+    {
+     "name": "Europe",
+     "done": true,
+     "source": "marathons: Berlin Marathon (2021)",
+     "code": "EU",
+     "latitude": 52.52,
+     "longitude": 13.41
+    },
+    {
+     "name": "North America",
+     "done": true,
+     "source": "marathons: Rock 'n' Roll Marathon, San Diego (2007)",
+     "code": "NA",
+     "latitude": 32.72,
+     "longitude": -117.16
+    },
+    {
+     "name": "Oceania",
+     "done": true,
+     "source": "marathons: Buller Gorge Marathon (2024)",
+     "code": "OC",
+     "latitude": -41.75,
+     "longitude": 171.6
+    },
+    {
+     "name": "South America",
+     "done": true,
+     "source": "marathons: São Paulo Marathon (2023)",
+     "code": "SA",
+     "latitude": -23.55,
+     "longitude": -46.64
+    }
+   ],
+   "_source": "Nancy's marathon list, 7 October 2026; every item points at a row in data/marathons.json",
+   "verb": "ran"
+  }
+ ],
+ "embeds": {
+  "_about": "Official third-party embeds in brand frames. Only past trips. Fill `id` (Strava activity id, digits) or `src` (the iframe URL Polarsteps gives under Share, Embed). Leave empty to show the placeholder frame.",
+  "items": [
+   {
+    "id": "strava-1",
+    "type": "strava",
+    "label": "A run, from Strava",
+    "strava_activity_id": "",
+    "note": "[EMBED NEEDED] Strava's embed only takes an activity, not a profile. Nancy's profile share link (strava.app.link, 2026-10-07) is on file but cannot be embedded. Paste the digits from one public activity URL, strava.com/activities/<digits>, from a past trip away from home."
+   },
+   {
+    "id": "polarsteps-1",
+    "type": "polarsteps",
+    "label": "A trip, from Polarsteps",
+    "src": "",
+    "note": "[EMBED NEEDED] In Polarsteps, open the trip, Share, Embed, copy the iframe src. Past trips only."
+   }
+  ]
+ },
+ "empty_copy": {
+  "chip": "Not yet.",
+  "card_zero": "0 of {of}. The list is ready when you are.",
+  "popover_no_story": "No story from here yet.",
+  "map_all_off": "Every layer is off. Here is the planet, unannotated.",
+  "human": "Nothing here yet. The first line is the hardest to write.",
+  "heat": "No photos or runs synced. Rounded on purpose, once there is something to round.",
+  "source_never": "not connected. The map waits politely.",
+  "list_zero": "nothing logged yet. The list is ready when you are."
+ }
+}

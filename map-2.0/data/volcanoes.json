@@ -1,0 +1,49 @@
+{
+ "collection": "volcanoes",
+ "count": 3,
+ "generated_from": "places_been_export.csv",
+ "rows": [
+  {
+   "name": "Teide National Park",
+   "collection": "volcanoes",
+   "latitude": 28.27139,
+   "longitude": -16.64361,
+   "country": "ES",
+   "verb": "stood near",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/?search=Teide+National+Park",
+   "depth": "",
+   "source": "places_been:186590",
+   "type": "UNESCO natural"
+  },
+  {
+   "name": "Mount Etna",
+   "collection": "volcanoes",
+   "latitude": 37.75611,
+   "longitude": 14.99667,
+   "country": "IT",
+   "verb": "stood near",
+   "year": "",
+   "note": "",
+   "link": "https://whc.unesco.org/en/list/?search=Mount+Etna",
+   "depth": "",
+   "source": "places_been:186243",
+   "type": "UNESCO natural"
+  },
+  {
+   "name": "Mount Rainier National Park",
+   "collection": "volcanoes",
+   "latitude": 46.85,
+   "longitude": -121.75,
+   "country": "US",
+   "verb": "stood near",
+   "year": "",
+   "note": "",
+   "link": "",
+   "depth": "",
+   "source": "places_been:186874",
+   "type": "National park"
+  }
+ ]
+}
