@@ -13,8 +13,10 @@
 (function(){
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var STUB='the-art-of-wellbeing-thailand-luxury-health-destination-2026';
-/* 11 Nov 2026: loaded from the slim layers-release branch; the main branch is over jsDelivr's 50 MB package limit */
-var INDEX='https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@44ded907d8bc464d4b40b48d237cbf6b8bc5377c/src/data/story-search-index.json';
+/* 11 Nov 2026: the story search index ships in the same release commit as the core (the slim layers-release branch; the main
+   branch is over jsDelivr's 50 MB package limit). The core's chunk loader sets window.__tllLayersBase to its own folder, so the
+   index always matches the release that is live and no pin is written here. Without it (core not loaded from its URL) no index. */
+var INDEX=null;try{if(window.__tllLayersBase)INDEX=new URL('../data/story-search-index.json',window.__tllLayersBase).href;}catch(e){}
 function css(t,id){if(document.getElementById(id))return;var s=document.createElement('style');s.id=id;s.textContent=t;document.head.appendChild(s);}
 function norm(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
 function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms&&ms.getCurrentMember){clearInterval(iv);ms.getCurrentMember().then(function(r){cb(!!(r&&r.data));}).catch(function(){cb(false);});}else if(++n>40){clearInterval(iv);cb(false);}},150);}
@@ -56,7 +58,7 @@ if(P==='/support')css('main h1,.tll-support-hero h1,h1{color:#0A0B14!important}'
 if(P==='/stories'){
   css('@media (max-width:767px){.tll-lib-searchslot{flex-wrap:wrap;width:100%;min-width:0}.tll-lib-searchslot .tllsb-form{flex:1 1 100%;min-width:220px;width:100%}.tll-lib-searchslot .tllsb-input,.tllsb-input{min-width:0;width:100%!important;font-size:16px!important}}','tll-p0-search');
   var q=new URLSearchParams(location.search).get('q');
-  if(q&&q.trim()){var words=norm(q).split(/\s+/).filter(function(w){return w.length>2;});
+  if(q&&q.trim()&&INDEX){var words=norm(q).split(/\s+/).filter(function(w){return w.length>2;});
     fetch(INDEX).then(function(r){return r.ok?r.json():null;}).then(function(ix){if(!ix||!words.length)return;
       function apply(){var cards=[].slice.call(document.querySelectorAll('[data-tll-card]'));if(!cards.length)return;var hits=0;
         cards.forEach(function(c){var a=c.matches('a[href^="/stories/"]')?c:c.querySelector('a[href^="/stories/"]');var slug=a?(a.getAttribute('href').split('/')[2]||'').replace(/[?#].*$/,''):'';
