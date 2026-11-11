@@ -4,6 +4,8 @@ For Nancy. This list deploys nothing. No secrets were set or read, and nothing c
 
 Update, 11 November 2026 about 13:20 UTC: on your "deploy the Worker", the Webflow build session deployed W1 (the portfolio link) alone from branch `worker/portfolio-on-b305b3b`, commit `cfa29cc`, as version `bed3342a`. That is now the live baseline for this list. Logged in handoff/WEBFLOW-LOCK.md (commit `93fa740`).
 
+Update, 11 November 2026 about 13:35 UTC, Webflow build session: **the next-morning check is not working.** No "TLL daily submissions report" task exists on this Mac. The daily `tll-morning-review` task (reads every story published in the last 24 hours and can hold one) starts each morning and shows as succeeded, but its runs of 9, 10 and 11 November stopped at their first tool call, waiting for a permission no one was there to give, and `review-log/` holds no reports. Fix that before W4 (instant set-up) goes live, or new stories go live with nobody reading them the next morning.
+
 ## In short
 
 - The live Worker (`tll-travel-wire`) runs commit `cfa29cc`: the code you deployed on 29 October 2026 (`b305b3b`) plus the portfolio rule (W1), deployed 11 November 2026.
@@ -86,7 +88,7 @@ Status key:
 2. **Next: W2 to W20 in one deploy**, after your yes on this list. Splitting them further would mean new branches that remove code, which then have to be tested again in combinations nobody has run; the 353 tests cover them together. Before that deploy:
    - Say whether the AFAR feed should stay off (it goes live as off from this folder).
    - Decide whether W4 (instant publishing) goes live now. If not, a session can make a branch without it, test it and dry-run it.
-   - Check the next-day submissions report task has its connectors.
+   - Fix the morning review so it runs unattended and writes its report (see the update at the top).
    - Set ANTHROPIC_API_KEY yourself (`npx wrangler secret put ANTHROPIC_API_KEY`) only if you want W5 and W6 on now.
    - Deploy from a committed copy of the branch, not the working folder, so only reviewed code goes live; run `npm ci` first because of the new AI package.
    - Watch the first 30-minute run with `npx wrangler tail`.
