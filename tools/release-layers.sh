@@ -2,6 +2,7 @@
 # Copy the built site layers to the slim layers-release branch and push it, so jsDelivr serves them under its 50 MB
 # package limit (the working branch is over 500 MB because of design screenshots). Run after
 # python3 src/site-layers/build-site-layers-v16.py and npx vitest run, from the repository root.
+# Optional: RELEASE_TRAILER (text appended to the commit message, e.g. attribution lines).
 # Prints the release commit and the core's SRI for Webflow's tllsitelayersv16 registration.
 set -euo pipefail
 ROOT=$(git rev-parse --show-toplevel)
@@ -18,7 +19,9 @@ cp "$ROOT"/src/site-layers/chunks/*.js src/site-layers/chunks/
 git -C "$ROOT" show HEAD:src/data/story-search-index.json > src/data/story-search-index.json
 git add -A
 if git diff --cached --quiet; then echo "layers-release already matches $SRC_REV"; else
-  git commit -qm "layers-release: built layers from $SRC_REV"; git push -q origin layers-release; fi
+  git commit -qm "layers-release: built layers from $SRC_REV${RELEASE_TRAILER:+
+
+$RELEASE_TRAILER}"; git push -q origin layers-release; fi
 PIN=$(git rev-parse HEAD)
 echo "PIN=$PIN"
 echo "URL=https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@$PIN/src/site-layers/tll-site-layers-v16.js"
