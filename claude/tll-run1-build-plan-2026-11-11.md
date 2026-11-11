@@ -9,6 +9,7 @@ Companion to claude/tll-p0-recheck-2026-11-11.md. Prompt: claude/tll-run1-launch
 - **The Guides collection cannot simply be created.** The site is at Webflow's cap of 40 collections. The smallest way through is row G0: you rename the empty "Bookmarks" collection to "Guides" in the Designer (about one minute), and the session rebuilds its fields. Nothing is lost: it has 0 items and nothing on the site uses it.
 - **Two things outrank everything here** and are not Run 1 builds: the photo hold (handoff/PHOTO-HOLD-2026-11-11.md) and the cookie check from your Mac in Copenhagen (part 7).
 - What can be staged today without you, and what waits on you, is in part 9.
+- Two things moved while this was being written (lock log, about 17:40 to 17:55 UTC): the photo hold's review passed, so your Worker deploy can happen now; and the /layovers canonical fix is already staged.
 - Every "before" below was read on www or in the Designer today and checked again on www after the 17:07 publish. Every proposed line a visitor would read follows the house rules.
 
 ## 1. At a glance
@@ -21,7 +22,7 @@ Companion to claude/tll-p0-recheck-2026-11-11.md. Prompt: claude/tll-run1-launch
 | 4 Member data | The photo path; two ticked boxes; template locks | None in this plan (the photo hold is built elsewhere) | Worker deploy, Designer clicks (part 8) | No |
 | 5 Guides | Everything | Collection fields, two items, card, home link, GA4 line (2.5, parts 3 to 5) | Row G0, Ko-fi link, price, cover image, five small choices | Repo work; one hidden link |
 | 6 Thailand stub | Nothing | None | Nothing | Optional sitemap flag (row S4) |
-| 7 Search Console | Verification id; three sitemap rows; /layovers canonical | Sitemap flags, one head tag (2.7) | The id, or yes to DNS | Yes (rows S1 to S5) |
+| 7 Search Console | Verification id; three sitemap rows; /layovers canonical (staged, not live) | Sitemap flags (2.7) | The id, or yes to DNS | Yes (rows S1, S2, S4, S5) |
 | 8 Counts | Label wording; her own number | Footer labels (2.8) | Wording; decisions E1 to E4; present for the footer | No |
 | 9 Newsletter | One line | One line in one embed (row W1) | Nothing (already approved) | Yes |
 
@@ -84,7 +85,7 @@ No member-data address serves a page and none is in the sitemap. /my-passport is
 
 | Row | Page | Element | Before | After | Why |
 | --- | --- | --- | --- | --- | --- |
-| M1 | Worker and site code (the photo hold, built by this session, in review) | Member photo path from /share-photos | A member photo is published at once, with the member's name in its address, and shown on /gallery | Photos are saved as drafts for Nancy, with no name in the address; nothing reaches /gallery until she approves | The page promises a person looks first. Takes effect with the Worker deploy on Nancy's Mac or with the next site code release, after the log says "photo hold review passed". Steps and undo: handoff/PHOTO-HOLD-2026-11-11.md |
+| M1 | Worker and site code (the photo hold, built by this session, in review) | Member photo path from /share-photos | A member photo is published at once, with the member's name in its address, and shown on /gallery | Photos are saved as drafts for Nancy, with no name in the address; nothing reaches /gallery until she approves | The page promises a person looks first. The review passed at about 17:50 UTC. Takes effect with the Worker deploy on Nancy's Mac (can be done now), or with the next www publish, which carries site code 16.59.0 (being staged about 17:55 UTC). Steps and undo: handoff/PHOTO-HOLD-2026-11-11.md |
 | M2 | /share-photos (page 6a0dfca3f9fa5b751d154257) | The two checkboxes "On our Instagram and LinkedIn" (field syndication-social) and "On the homepage" (field syndication-rotation) | Served already ticked | Served unticked | A tick the member did not make is not consent. Only the Designer has the switch (part 8) |
 | M3 | CMS template pages | Visits, Comments, Press applications and Pet Notes templates, and Bookmarks if row G0 is not taken | No lock; the only protection is that the collection has no live item | Draft switch on (or a password) | Removes the question for good. The tools cannot set a page password, and the log says the API refused to draft a template page, so these are Designer clicks (part 8) |
 
@@ -156,7 +157,7 @@ robots.txt on www is one line pointing to the sitemap and blocks nothing. No cha
 | --- | --- | --- | --- | --- | --- |
 | S1 | Three live contributor profiles with no published story | Contributors 6a0b29c7a7b1840afe9390a5, items 6ae323584689182a2265ccc4, 6ae33eaa0a497974856d7d86, 6ae323584689182a2265ccc0 | Sitemap flag on | Sitemap flag off | The site code marks such profiles "noindex, follow" after scripts run (rendered again today: exactly these three of the nine). Search Console would report "Submitted URL marked noindex". Switch each back on when its first story publishes |
 | S2 | Seven staged contributor items that are not live | Contributors items 6af475b898ad12c34fca4356, 6ad5f2344ded27f4aa01efe3, and five placeholder items 6a0e0b633e617e14f22248a5, 6a0e0b633e617e14f22248a3, 6a0e0b633e617e14f22248a1, 6a0e0b633e617e14f222489f, 6a0e0b633e617e14f222489d | Sitemap flag on (read 17:30 UTC) | Sitemap flag off | Each would be one more case if it goes live with no story |
-| S3 | /layovers (page 6af30dd790b8264ba30602cb) | Page head code | In the sitemap since 17:07. No canonical tag, in the page code or after scripts | A self canonical and og:url in the page head code: https://www.thatlayover.life/layovers | Every other sitemap page has a correct self canonical (138 of 139 checked today). Already on this session's /layovers list; do it once |
+| S3 | /layovers (page 6af30dd790b8264ba30602cb) | Page head code | On www: in the sitemap since 17:07, with no canonical tag in the page code or after scripts | Already staged at about 17:40 UTC by this session's /layovers work (a self canonical and og:url for https://www.thatlayover.life/layovers, plus the share image). No further write; it goes live with the next publish | Every other sitemap page has a correct self canonical (138 of 139 checked today). Listed here so nobody stages it twice |
 | S4 | Thailand stub draft | Stories item 6ae32ce61ed3557855012cb8 | Sitemap flag on | Sitemap flag off | Second guard; matters only if it is republished |
 | S5 | Five Marathons drafts | Items 6a16a04aa8d1d5f4ec9bc44d, 6a0d45971ff3d99429290f4b, 6a2645a665b8c83fff8a314e, 6a0d45971ff3d99429290f4e, 6a0cc5317e83888edcfbd1ff | Sitemap flag on | Sitemap flag off | Same |
 | S6 | New Guides items, when they exist | Guides collection | n/a | Sitemap flag off | The template is noindex (row G2) |
@@ -352,16 +353,17 @@ Each is still listed in the change log she approves before a publish.
 
 1. **W1:** "More on the way." in home embed 94ce12c0. Already approved under "cut both".
 2. **S1, S2, S4, S5:** the sitemap flags (three live profiles, seven staged contributor items, the stub draft, five Marathons drafts). No visitor sees a change; the prompt's item 7 asks for exactly this.
-3. **S3:** the /layovers canonical and og:url in the page head code.
-4. **G6, first half:** the hidden home guide link's href from "#" to "/the-paw-passport#guide", still hidden. No visible change; it removes one of the two href="#" on home and suits both routes.
-5. **Repo only, no Webflow write, no release, no deploy:** the Guide card CSS and price formatter with tests; the tll-division-v1 change (G9); the blocked-consent-tool fallback (L1); the Guides field list (part 3), the two items' values (G3) and the GA4 line (G8) as ready requests.
-6. **Read only:** Lighthouse and axe "before" runs on the homepage, /the-paw-passport and /stories/vietnam-ninja-duckies.
+3. **G6, first half:** the hidden home guide link's href from "#" to "/the-paw-passport#guide", still hidden. No visible change; it removes one of the two href="#" on home and suits both routes.
+4. **Repo only, no Webflow write, no release, no deploy:** the Guide card CSS and price formatter with tests; the tll-division-v1 change (G9); the blocked-consent-tool fallback (L1); the Guides field list (part 3), the two items' values (G3) and the GA4 line (G8) as ready requests.
+5. **Read only:** Lighthouse and axe "before" runs on the homepage, /the-paw-passport and /stories/vietnam-ninja-duckies.
 
-Two cautions. First, rows 2 to 4 are invisible to a visitor, but under the prompt's rule they still need her tick before the next www publish; once staged, they hold www for every session until she gives it. Second, no site code release and no Worker deploy from the repo until the lock log says "photo hold review passed", so the repo work in row 5 stays unreleased until then.
+Already staged since this plan was first drafted, so not in the list: row S3 (the /layovers canonical tag).
+
+Two cautions. First, rows 2 and 3 are invisible to a visitor, but under the prompt's rule they still need her tick before the next www publish; once staged, they hold www for every session until she gives it. Second, the repo work in row 4 stays unreleased: a new site code release needs its own independent review first, as the last two did.
 
 ### Waits on Nancy (most useful first)
 
-1. **The photo hold:** the Worker deploy on her Mac once the log says "photo hold review passed" (row M1).
+1. **The photo hold:** the Worker deploy on her Mac (row M1). The review has passed, so it can be done now.
 2. **The two ticked boxes** on /share-photos (row M2, part 8 A).
 3. **The Copenhagen consent check** and, if no message shows, the AdSense clicks (part 7).
 4. **Privacy:** what to do about the public repository; sweep hits 1 to 4; the recap rewrite or leave it a draft.
@@ -379,7 +381,7 @@ Two cautions. First, rows 2 to 4 are invisible to a visitor, but under the promp
 Done and live on www since 17:07 UTC. Do not redo, rewrite or "fix again":
 
 - The six letter lines, the Magnus line, the footer's four empty numbers, the home structured data descriptions, the two /account lines, the /stories label (handoff/CHANGE-LOG-P0-CLOSEOUT-2026-11-11.md).
-- Site code 16.58.0 in the site header (release 3066315bf6155033298bb13a239133fdb44bdf7f; rollback is 16.57.0, release b612f924952355813836e3a918176d4c2d98df84). Do not re-apply 16.55.0, 16.56.x or 16.57.0 over it.
+- Site code 16.58.0 is what www serves (release 3066315bf6155033298bb13a239133fdb44bdf7f). Site code 16.59.0 is being staged in the site header at about 17:55 UTC (release caac45afd2fd327396d5964ac6577877abe79c5a, the page half of the photo hold; rollback is 16.58.0). Do not re-apply 16.55.0 to 16.58.0 over it.
 - The outside-Europe cookie link behavior and the "Example Text" clearing on /submit and /share-photos (tll-p0-closeout-v1).
 - The AI first-read sentences are held back on /editorial-charter, /faq and /submit on Nancy's word. They go back only when the morning review is running again, and that is the trust and conversion session's call.
 
@@ -413,10 +415,10 @@ Never in this run:
 
 ## 11. Order of work, with the check after each
 
-1. The photo hold goes live (review passes, then Nancy's deploy). Check: the Worker's /lounge address answers with "held":true.
+1. The photo hold goes live: Nancy's Worker deploy (check: the Worker's /lounge address answers with "held":true), or the next www publish with site code 16.59.0 (check: the page code pin on www reads caac45af).
 2. Nancy's Copenhagen check and AdSense clicks. Check: the 10 steps pass, or the Network list comes back.
 3. Lighthouse and axe "before" on the three pages.
-4. Stage part 9 rows 1 to 4. Check: read each back; a test copy publish; the hidden link's href; the staged sitemap flags.
+4. Stage part 9 rows 1 to 3. Check: read each back; a test copy publish; the hidden link's href; the staged sitemap flags.
 5. With Nancy's approvals: the policy rows (2.1); the footer proposals with her present (2.2 and 2.8). Check: /cookies and /privacy text on the test copy; the cookie link's href in the page code and after scripts; the footer numbers with scripts off.
 6. With row G0: fields, items as drafts, the template, the card, the GA4 line (G1 to G9). Check: the list in 2.5, on the test copy for layout and links, and against www with a stand-in consent tool for the event.
 7. With the Ko-fi link and price: go-live (G10) and row P7. Check: acceptance 3, by Nancy clicking through once.
@@ -428,9 +430,9 @@ Never in this run:
 1. Staging only. Each write: read the element first, compare it with the "before" here, write, read back. For HtmlEmbeds and the site head or footer code, replace only the named line and keep every other byte (the embed overwrite protocol in the lock log).
 2. Write a scope line in handoff/WEBFLOW-LOCK.md before the first write, and a "write complete" line after. On a 429 or a multiplayer conflict wait 30 seconds and retry, one call at a time.
 3. Change log (page, element, before, after, why) approved by Nancy before anything publishes. Nancy publishes, or says the word. Publishes at least 75 seconds apart.
-4. A www publish carries everything staged by every session. At 17:30 UTC, as far as Webflow's last-updated stamp shows, nothing was staged beyond what www already has. A row staged before Nancy has approved it holds www for everyone, so say so in the lock log when staging one.
+4. A www publish carries everything staged by every session. Staged and not yet on www at about 17:55 UTC (lock log): the /layovers head code, site code 16.59.0, and the home "Layover guides" row, which is mid-rebuild and must not reach www half done. So no www publish until that row is finished. A row staged before Nancy has approved it holds www for everyone, so say so in the lock log when staging one.
 5. Footer and nav components only with Nancy present. This run allows exactly two footer changes: 2.2 and 2.8.
-6. No site code release and no Worker deploy from the repo HEAD until the lock log says "photo hold review passed".
+6. The photo hold review passed at about 17:50 UTC, so the Worker can be deployed from this branch by Nancy (the Worker diff against commit af5de76 must list only src/intake.js and src/index.js). Any further site code release needs its own independent review before it is registered.
 7. The site is at 40 of 40 collections. Nobody creates one. Guides starts only after row G0.
 8. Google's consent tool does not answer on the webflow.io address, so nothing that depends on consent or Google Analytics can be tried on the test copy. Use a stand-in consent tool in a test browser against www, and Nancy's Copenhagen check.
 9. Lighthouse and axe on the homepage, /the-paw-passport and one story (/stories/vietnam-ninja-duckies) before the first write and after the last one. They have not been run in any pass today.
