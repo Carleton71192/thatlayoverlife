@@ -29,8 +29,8 @@ const eq = (a, b, name) => ok(JSON.stringify(a) === JSON.stringify(b), name, a);
 const browser = await pw[ENGINE].launch();
 async function open(o = {}) {
   const w = o.w || 390, mobile = w < 768;
-  const ctx = await browser.newContext({ viewport: { width: w, height: mobile ? 844 : 900 }, hasTouch: mobile && ENGINE === 'chromium', reducedMotion: o.still ? 'reduce' : 'no-preference', deviceScaleFactor: 1 });
-  const reqs = [], errs = [];
+  const ctx = await browser.newContext({ viewport: { width: w, height: o.h || (mobile ? 844 : 900) }, hasTouch: mobile && ENGINE === 'chromium', reducedMotion: o.still ? 'reduce' : 'no-preference', deviceScaleFactor: 1 });
+  const reqs = [], errs = []; let releaseMembers; const gate = new Promise((res) => { releaseMembers = res; });
   await ctx.addInitScript(() => { window.__deckAt = null; window.__dcl = null;
     document.addEventListener('DOMContentLoaded', () => { window.__dcl = performance.now(); const s = document.createElement('style'); s.textContent = '#cc-main{display:none!important}'; document.head.appendChild(s); });
     new MutationObserver(() => { if (window.__deckAt === null && document.querySelector('.tll-deck .tll-deck-card')) window.__deckAt = performance.now(); }).observe(document, { childList: true, subtree: true }); });
@@ -38,22 +38,24 @@ async function open(o = {}) {
     if (u.split('?')[0].replace(/\/$/, '') === PAGE) return r.fulfill({ body: html(o), contentType: 'text/html; charset=utf-8' });
     if (u.startsWith('https://layers.test/')) { const m = /^https:\/\/layers\.test\/(old|new)\/(.*)$/.exec(u); let body;
       try { body = m[1] === 'old' ? oldFile(m[2]) : fs.readFileSync(path.join(ROOT, m[2])); } catch (e) { return r.fulfill({ status: 404, body: 'not found', headers: { 'Access-Control-Allow-Origin': '*' } }); }
+      if (o.chunkDelay && /misc-preview\.js$/.test(u)) await new Promise((res) => setTimeout(res, o.chunkDelay));
       return r.fulfill({ body, contentType: 'application/javascript; charset=utf-8', headers: { 'Access-Control-Allow-Origin': '*' } }); }
+    if (/workers\.dev\/lounge/.test(u) && o.membersGate) await gate; /* the test decides when the member photos arrive */
     if (/workers\.dev\/lounge/.test(u)) return o.members ? r.fulfill({ body: JSON.stringify(MEMBERS), contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' } })
       : r.fulfill({ status: 404, body: '{"error":"not found"}', contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' } });
     if (BLOCK.test(u)) return r.abort();
     return r.continue(); });
   const page = await ctx.newPage();
   page.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); }); page.on('pageerror', (e) => errs.push('pageerror: ' + e.message));
-  await page.goto(PAGE + (o.q || ''), { waitUntil: 'load' }); await page.waitForTimeout(o.members ? 1500 : 900);
-  return { ctx, page, reqs, errs };
+  await page.goto(PAGE + (o.q || ''), { waitUntil: o.until || 'load' }); await page.waitForTimeout(o.wait || (o.members ? 1500 : 900));
+  return { ctx, page, reqs, errs, releaseMembers };
 }
 const TOP = '.tll-deck-stage .tll-deck-card:not([aria-hidden="true"])';
 const count = (page) => page.locator('.tll-deck-count').innerText();
 const state = (page) => page.evaluate(() => { const c = document.querySelector('.tll-deck-stage .tll-deck-card:not([aria-hidden="true"])'); const cr = c && c.querySelector('.tll-deck-credit');
   return { count: document.querySelector('.tll-deck-count').textContent, label: c && c.getAttribute('aria-label'), credit: cr && cr.textContent, text: c && c.innerText.trim(), live: document.querySelector('.tll-deck-sr').textContent, cards: document.querySelectorAll('.tll-deck-stage .tll-deck-card').length }; });
 async function dragBy(page, dx, o = {}) { await page.evaluate(() => document.querySelector('.tll-deck').scrollIntoView({ block: 'start' })); await page.waitForTimeout(80); const b = await page.locator(TOP).boundingBox(); const x = b.x + b.width / 2, y = b.y + b.height / 2; const n = o.fast ? 3 : 10;
-  await page.mouse.move(x, y); await page.mouse.down();
+  await page.mouse.move(x, y); await page.mouse.down(); if (o.hold) await page.waitForTimeout(o.hold);
   for (let i = 1; i <= n; i++) { await page.mouse.move(x + dx * i / n, y + (o.dy || 0) * i / n); await page.waitForTimeout(o.fast ? 8 : 35); }
   if (o.mid) await o.mid(); if (!o.fast) await page.waitForTimeout(220); await page.mouse.up(); await page.waitForTimeout(600); }
 const shot = async (page, name) => { if (!/^(before|drag)/.test(name)) await page.evaluate(() => { const c = document.querySelector('[data-tll-lounge-chips]'); scrollTo(0, c.getBoundingClientRect().top + scrollY - (innerWidth < 768 ? 150 : 110)); }); await page.waitForTimeout(120); await page.screenshot({ path: path.join(DIR, `${name}.png`) }); };
@@ -62,7 +64,8 @@ const mainHtml = (page) => page.evaluate(() => document.querySelector('main').in
 for (const w of [390, 1440]) {
   const T = `[${ENGINE} ${w}] `;
   /* 1. Without the flag: today's Lounge, and the new code is not downloaded. Compared with the committed build on the same saved page. */
-  { const a = await open({ w, old: true }), b = await open({ w });
+  /* The comparison page stays open until its own fonts are in (the page's JetBrains Mono file can arrive late), so a late font of the page's own is not counted against the deck. */
+  { const a = await open({ w, old: true }), b = await open({ w, wait: 3500 }); await b.page.evaluate(() => document.fonts.ready); await b.page.waitForTimeout(500);
     const ha = await mainHtml(a.page), hb = await mainHtml(b.page);
     ok(ha === hb, T + '1 no flag: main is identical with the committed build and with this build'); 
     ok(b.reqs.some((u) => /\/new\/src\/site-layers\/chunks\/misc\.js$/.test(u)), T + '1 no flag: public misc chunk loaded');
@@ -118,7 +121,8 @@ for (const w of [390, 1440]) {
     eq(await page.evaluate(() => [].map.call(document.querySelectorAll('.tll-deck [data-deck="prev"],.tll-deck [data-deck="next"]'), (b) => b.getAttribute('aria-label'))), ['Previous photo', 'Next photo'], T + '8 button names');
     s = await state(page);
     eq([s.text.replace(/\s+/g, ' '), s.live, s.count, await page.locator('.tll-deck [data-deck="next"]').isDisabled()], ['That is all 17. Start again Add yours', 'That is all 17.', '', true], T + '4 end card after card 17');
-    eq(await page.evaluate(() => { const a = document.querySelector('.tll-deck-card.is-end a'); return [a.getAttribute('href'), document.activeElement.textContent]; }), ['/share-photos', 'Start again'], T + '4 end card links to /share-photos; focus on Start again');
+    eq(await page.evaluate(() => { const a = document.querySelector('.tll-deck-card.is-end a'); return [a.getAttribute('href'), document.activeElement.classList.contains('is-end'), document.activeElement.getAttribute('aria-label')]; }), ['/share-photos', true, 'That is all 17.'], T + '4 end card links to /share-photos; focus on the end card itself');
+    await page.keyboard.press('Enter'); await page.waitForTimeout(300); s = await state(page); eq(s.text.replace(/\s+/g, ' '), 'That is all 17. Start again Add yours', T + 'R2 one Enter too many on Next does nothing (it used to press Start again)');
     await shot(page, `end-${ENGINE}-${w}`);
     await page.locator('.tll-deck [data-deck="restart"]').click(); await page.waitForTimeout(450); eq(await count(page), '1 of 17', T + '4 Start again');
 
@@ -179,6 +183,55 @@ for (const w of [390, 1440]) {
     await ctx.close(); }
 }
 
+/* Regression checks for the review of 11 November 2026 (handoff/CHANGE-LOG-LOUNGE-POSTCARDS-2026-11-11.md, "Review"). */
+{ const T = `[${ENGINE} review] `;
+  { const { ctx, page } = await open({ w: 1440, q: '?preview=lounge' });
+    for (let i = 0; i < 2; i++) { await page.locator('.tll-deck [data-deck="next"]').click(); await page.waitForTimeout(420); }
+    await page.locator('.tll-deck [data-deck="prev"]').focus(); for (let i = 0; i < 3; i++) { await page.keyboard.press('Enter'); await page.waitForTimeout(420); }
+    eq([await count(page), await page.evaluate((sel) => document.activeElement === document.querySelector(sel), TOP)], ['1 of 17', true], T + 'R2 one Enter too many on Previous stays on card 1, focus on the card');
+    /* R6: a flick after resting on the card */
+    await dragBy(page, 70, { fast: true, hold: 300 }); eq(await count(page), '2 of 17', T + 'R6 a flick after a 300 ms rest still throws');
+    await dragBy(page, 100, { hold: 300 }); eq(await count(page), '2 of 17', T + 'R6 a slow 100 px drag after a rest still springs back');
+    /* R4: a mouse press with no release (a context menu took it), then the mouse moves with no button down */
+    await page.evaluate(() => document.querySelector('.tll-deck').scrollIntoView({ block: 'start' })); const b = await page.locator(TOP).boundingBox(); const x = b.x + b.width / 2, y = b.y + b.height / 2;
+    await page.evaluate(([x, y]) => document.querySelector('.tll-deck-stage .tll-deck-card:not([aria-hidden="true"]) .tll-deck-face').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, pointerId: 1, pointerType: 'mouse', isPrimary: true, button: 0, buttons: 1, clientX: x, clientY: y })), [x, y]);
+    await page.mouse.move(x + 10, y); await page.mouse.move(x + 120, y, { steps: 6 }); await page.waitForTimeout(500);
+    eq(await page.evaluate((sel) => { const c = document.querySelector(sel); return [getComputedStyle(c).transform, c.classList.contains('is-drag')]; }, TOP), ['matrix(1, 0, 0, 1, 0, 0)', false], T + 'R4 a press that never got its release does not glue the card to the cursor');
+    await page.locator('.tll-deck [data-deck="next"]').click(); await page.waitForTimeout(450); eq(await count(page), '3 of 17', T + 'R4 the next click is not eaten');
+    await page.keyboard.down('Control'); await page.mouse.move(x, y); await page.mouse.down(); await page.mouse.move(x + 180, y, { steps: 8 }); await page.mouse.up(); await page.keyboard.up('Control'); await page.waitForTimeout(500); eq(await count(page), '3 of 17', T + 'R4 a ctrl-click starts no drag');
+    await ctx.close(); }
+  /* R7: See all as a grid with the top of the deck scrolled out of view */
+  for (const [w, h] of [[390, 664], [1366, 650]]) { const { ctx, page } = await open({ w, h, q: '?preview=lounge' });
+    await page.evaluate(() => { const l = document.querySelector('.tll-deck [data-deck="grid"]').getBoundingClientRect(); scrollBy(0, l.bottom - innerHeight + 120); }); await page.waitForTimeout(150);
+    await page.locator('.tll-deck [data-deck="grid"]').click(); await page.waitForTimeout(300);
+    const vis = (sel) => page.evaluate((sel) => { const r = document.querySelector(sel).getBoundingClientRect(); const e = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return [r.top >= 77 && r.bottom <= innerHeight, !!e && !!e.closest(sel), document.activeElement === document.querySelector(sel)]; }, sel);
+    eq(await vis('.tll-deck-backbar [data-deck="deck"]'), [true, true, true], T + `R7 ${w}x${h} Back to the deck is on screen and has focus after See all as a grid`);
+    await page.evaluate(() => scrollBy(0, 500)); await page.locator('.tll-deck-backbar [data-deck="deck"]').focus({ preventScroll: true }); await page.keyboard.press('Enter'); await page.waitForTimeout(300);
+    eq(await vis('.tll-deck [data-deck="grid"]'), [true, true, true], T + `R7 ${w}x${h} See all as a grid is on screen and has focus after Back to the deck`); await ctx.close(); }
+  /* R5: short screens */
+  for (const [w, h, cw, ch] of [[844, 390, 220, 275], [1366, 650, 368, 460], [320, 568, 272, 340]]) { const { ctx, page } = await open({ w, h, q: '?preview=lounge' });
+    eq(await page.evaluate((sel) => { const c = document.querySelector(sel).getBoundingClientRect(); return [Math.round(c.width), Math.round(c.height), c.height < innerHeight, document.documentElement.scrollWidth <= innerWidth]; }, TOP), [cw, ch, true, true], T + `R5 ${w}x${h}: the whole card fits the screen`); await ctx.close(); }
+  /* R8: a chip pressed before the deck layer arrived */
+  { const { ctx, page } = await open({ w: 390, q: '?preview=lounge', chunkDelay: 3000, until: 'domcontentloaded', wait: 1200 });
+    eq(!!(await page.$('.tll-deck')), false, T + 'R8 (set-up) the deck has not arrived yet'); await page.locator('[data-tll-lounge-chips] button[data-val="Asia"]').click(); await page.waitForSelector('.tll-deck .tll-deck-card', { timeout: 15000 }); await page.waitForTimeout(300);
+    const s = await state(page); eq([s.count, s.credit], ['1 of 3', 'NC · VIETNAM'], T + 'R8 the deck starts on the chip already pressed'); await ctx.close(); }
+  /* R3: member photos that arrive late */
+  { const { ctx, page, releaseMembers } = await open({ w: 1440, q: '?preview=lounge', members: true, membersGate: true, wait: 900 });
+    await page.locator('.tll-deck [data-deck="next"]').click(); await page.waitForTimeout(420); await page.locator(TOP).focus(); eq(await count(page), '2 of 17', T + 'R3 (set-up) no member photos yet'); releaseMembers(); await page.waitForTimeout(900);
+    let s = await state(page); eq([s.count, s.credit, await page.evaluate((sel) => document.activeElement === document.querySelector(sel), TOP)], ['4 of 19', 'NC · VIETNAM', true], T + 'R3 late member photos: same card, new count, focus kept'); await ctx.close(); }
+  { const { ctx, page, releaseMembers } = await open({ w: 1440, q: '?preview=lounge', members: true, membersGate: true, wait: 900 });
+    await page.locator('[data-tll-lounge-chips] button[data-val="Africa"]').click(); await page.locator('.tll-deck [data-deck="next"]').click(); await page.waitForTimeout(420); await page.locator('.tll-deck [data-deck="restart"]').focus(); releaseMembers(); await page.waitForTimeout(900);
+    let s = await state(page); eq([s.text.replace(/\s+/g, ' '), await page.evaluate(() => document.activeElement.textContent)], ['That is all 1. Start again Add yours', 'Start again'], T + 'R3 late member photos leave a filtered deck, its end card and focus alone');
+    await page.locator('[data-tll-lounge-chips] button[data-val="all"]').click(); await page.waitForTimeout(300); s = await state(page); eq([s.count, s.credit], ['1 of 19', 'JC · LISBON, PORTUGAL'], T + 'R3 they are in the deck when All is pressed again'); await ctx.close(); }
+  { const { ctx, page, releaseMembers } = await open({ w: 1440, q: '?preview=lounge', members: true, membersGate: true, wait: 900 });
+    for (let i = 0; i < 2; i++) { await page.locator('.tll-deck [data-deck="next"]').click(); await page.waitForTimeout(420); }
+    await page.evaluate(() => document.querySelector('.tll-deck').scrollIntoView({ block: 'start' })); const b = await page.locator(TOP).boundingBox(); const x = b.x + b.width / 2, y = b.y + b.height / 2;
+    await page.mouse.move(x, y); await page.mouse.down(); await page.mouse.move(x + 170, y, { steps: 8 }); await page.waitForTimeout(200); releaseMembers(); await page.waitForTimeout(900);
+    const held = await page.evaluate((sel) => [document.querySelector(sel).classList.contains('is-drag'), document.querySelector('.tll-deck-count').textContent], TOP);
+    await page.mouse.up(); await page.waitForTimeout(700); const s = await state(page);
+    eq([held, s.count, s.credit], [[true, '3 of 17'], '6 of 19', 'NC · GHANA'], T + 'R3 late member photos wait for a swipe in progress; the release still throws the card'); await ctx.close(); }
+}
+
 /* 10. phone, real touch (Chromium only): up and down scrolls the page, sideways throws the card. */
 if (ENGINE === 'chromium') {
   const { ctx, page } = await open({ w: 390, q: '?preview=lounge' }); const cdp = await ctx.newCDPSession(page);
@@ -191,6 +244,14 @@ if (ENGINE === 'chromium') {
   eq([await count(page), await page.evaluate((v) => Math.abs(scrollY - v) < 3, y0)], ['2 of 17', true], '[chromium 390 touch] 10 a sideways swipe throws the card and does not scroll the page');
   await touch('touchStart', x2); for (let i = 1; i <= 10; i++) { await touch('touchMove', x2 + 9 * i); await page.waitForTimeout(30); } await page.waitForTimeout(200); await touch('touchEnd'); await page.waitForTimeout(600);
   eq(await count(page), '2 of 17', '[chromium 390 touch] 3 a 90 px swipe springs back');
+  /* R1: a second finger. Finger 1 drags 160 px, finger 2 touches the card, both lift: the card goes back, nothing is thrown or stuck. */
+  const pts = (a) => cdp.send('Input.dispatchTouchEvent', { type: a.type, touchPoints: a.p.map(([px, py, id]) => ({ x: px, y: py, id })) });
+  await pts({ type: 'touchStart', p: [[x2, yy, 1]] }); for (let i = 1; i <= 8; i++) { await pts({ type: 'touchMove', p: [[x2 + 20 * i, yy, 1]] }); await page.waitForTimeout(30); }
+  await pts({ type: 'touchStart', p: [[x2 + 160, yy, 1], [x2 + 100, yy + 60, 2]] }); await page.waitForTimeout(120); await pts({ type: 'touchMove', p: [[x2 + 160, yy, 1], [x2 + 100, yy + 110, 2]] }); await page.waitForTimeout(120); await pts({ type: 'touchEnd', p: [] }); await page.waitForTimeout(700);
+  eq(await page.evaluate((sel) => { const c = document.querySelector(sel); return [document.querySelector('.tll-deck-count').textContent, getComputedStyle(c).transform, c.classList.contains('is-drag')]; }, TOP), ['2 of 17', 'matrix(1, 0, 0, 1, 0, 0)', false], '[chromium 390 touch] R1 a second finger cancels the swipe: card back in place, nothing thrown');
+  await touch('touchStart', x2); for (let i = 1; i <= 10; i++) { await touch('touchMove', x2 - 17 * i); await page.waitForTimeout(30); } await page.waitForTimeout(200); await touch('touchEnd'); await page.waitForTimeout(600);
+  eq(await count(page), '3 of 17', '[chromium 390 touch] R1 a one-finger swipe works again afterwards');
+  eq(await page.evaluate((sel) => getComputedStyle(document.querySelector(sel)).touchAction, TOP), 'pan-y pinch-zoom', '[chromium 390 touch] R1 two fingers may zoom the page');
   await ctx.close();
 }
 await browser.close();

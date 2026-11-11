@@ -17,10 +17,11 @@ var CSS=
 "html body .tll-deck{box-sizing:border-box;margin:0 0 30px;padding:14px 0 6px;overflow:hidden;text-align:center;color:#0A0B14}"+
 "@supports (overflow:clip){html body .tll-deck{overflow-x:clip;overflow-y:visible}}"+
 "html body .tll-deck[hidden],html body .tll-deck-backbar[hidden],html body .tll-deck-grid-off{display:none!important}"+
-P+".tll-deck-stage{position:relative;width:100%;max-width:420px;aspect-ratio:4/5;margin:0 auto 34px}"+
+/* The card is 420 px wide at most, and smaller on a short screen (a phone on its side, a small laptop) so the whole postcard shows. */
+P+".tll-deck-stage{position:relative;width:100%;max-width:420px;max-width:min(420px,max(220px,calc((100vh - 190px)*.8)));aspect-ratio:4/5;margin:0 auto 34px}"+
 P+".tll-deck-card{position:absolute;left:0;top:0;width:100%;height:100%;box-sizing:border-box;margin:0;padding:10px;background:#FFFFFF;border-radius:3px;"+
   "box-shadow:0 1px 2px rgba(10,11,20,.2),0 16px 28px -14px rgba(10,11,20,.5);transition:transform .34s cubic-bezier(.2,.8,.2,1),opacity .3s ease;"+
-  "touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab}"+
+  "touch-action:pan-y;touch-action:pan-y pinch-zoom;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;cursor:grab}"+
 P+".tll-deck-card.is-drag{transition:none;cursor:grabbing}"+
 P+".tll-deck-card.is-spring{transition:transform .44s cubic-bezier(.3,1.5,.5,1)}"+
 P+".tll-deck-card.is-end{cursor:default}"+
@@ -58,7 +59,7 @@ P+".tll-deck-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;ove
 var TILT=[2.5,-3,3.5,-2,4,-2.5];
 var MQ=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):null,STILL=!!(MQ&&MQ.matches);
 var grid,root,stage,bar,prevB,nextB,count,live,gridB,backbar,backB;
-var items=[],list=[],idx=0,filter='all',cards={},side={},drag=null,swallow=false,moved=false;
+var items=[],list=[],idx=0,filter='all',cards={},side={},drag=null,swallow=false,moved=false,pend=false;
 
 function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
 function btn(cls,act,text){var b=el('button',cls,text);b.type='button';b.setAttribute('data-deck',act);return b;}
@@ -121,9 +122,11 @@ function update(announce,focusCard){
   var text=say(),a=document.activeElement;
   prevB.disabled=idx<=0;nextB.disabled=idx>=list.length;
   if(announce)live.textContent=text;
-  /* Focus follows the deck: a card that had focus hands it to the new top card; a button that has just been switched off hands it on. */
-  if(focusCard||(a===nextB&&nextB.disabled)){var top=cards[idx],t=top&&(top.getAttribute('tabindex')==='0'?top:top.querySelector('button,a'));if(t)t.focus({preventScroll:true});}
-  else if(a===prevB&&prevB.disabled)nextB.focus({preventScroll:true});
+  /* Focus follows the deck: a card that had focus hands it to the new top card. A button that has just been switched off hands it to
+     the top card itself, never to another button, so one press of Enter too many does nothing (it used to press Next or Start again). */
+  var off=(a===nextB&&nextB.disabled)||(a===prevB&&prevB.disabled),top=cards[idx],t;
+  if(top&&(focusCard||off)){t=off||top.getAttribute('tabindex')==='0'?top:top.querySelector('button,a');
+    if(t===top&&!top.hasAttribute('tabindex'))top.setAttribute('tabindex','-1');if(t)t.focus({preventScroll:true});}
 }
 /* d: +1 the top card leaves (sign: the side it leaves by), -1 the last card to leave comes back from that side. */
 function go(d,sign){
@@ -142,8 +145,8 @@ function go(d,sign){
   layout();update(true,onCard);
 }
 function rebuild(keep){
-  var cur=keep&&list[idx]?list[idx].tile:null,k;
-  pick();idx=0;side={};
+  var cur=keep&&list[idx]?list[idx].tile:null,k,atEnd=keep&&idx>=list.length;
+  pick();idx=atEnd?list.length:0;side={};
   if(cur)for(k=0;k<list.length;k++)if(list[k].tile===cur){idx=k;break;}
   for(k in cards){drop(cards[k]);delete cards[k];}
   layout();
@@ -159,9 +162,21 @@ function order(){
   if(backbar){if(backbar.nextElementSibling!==grid)p.insertBefore(backbar,grid);if(root.nextElementSibling!==backbar)p.insertBefore(root,backbar);}
   else if(root.nextElementSibling!==grid)p.insertBefore(root,grid);
 }
+/* Bring a control that has just been given focus into view, clear of the sticky header; no scroll when it already is. */
+function reveal(e){var r=e.getBoundingClientRect(),h=window.innerHeight;if(r.top<96)window.scrollBy(0,r.top-96);else if(r.bottom>h-16)window.scrollBy(0,r.bottom-h+16);}
 function showGrid(on){
   root.hidden=on;backbar.hidden=!on;grid.classList.toggle('tll-deck-grid-off',!on);
-  if(on)backB.focus({preventScroll:true});else{fit();gridB.focus({preventScroll:true});}
+  if(on){backB.focus({preventScroll:true});reveal(backB);}else{fit();gridB.focus({preventScroll:true});reveal(gridB);}
+}
+/* The one place a drag is let go of: tiles that arrived during it (member photos) are taken in right after. */
+function letGo(){var d=drag;drag=null;if(pend)setTimeout(sync,0);return d;}
+function cancelDrag(){var d=letGo();if(d&&d.on){try{d.el.releasePointerCapture(d.id);}catch(x){}d.el.classList.remove('is-drag');if(cards[idx]===d.el)d.el.style.transform=at(idx,0);}}
+/* Tiles added later (member photos) join the deck: at the front while the visitor has not moved a card yet, otherwise around the card
+   they are on (or the end card). Not during a drag, not into a filtered deck (member photos show under All only), and focus stays put. */
+function sync(){
+  if(drag){pend=true;return;}pend=false;
+  var had=stage.contains(document.activeElement);collect();if(filter!=='all')return;
+  rebuild(moved);update(false,had);
 }
 
 function build(){
@@ -177,6 +192,8 @@ function build(){
   var add=el('a','tll-deck-add','+ ADD YOURS');add.href=SHARE;links.appendChild(add);root.appendChild(links);
   live=el('p','tll-deck-sr');live.setAttribute('aria-live','polite');live.setAttribute('aria-atomic','true');root.appendChild(live);
   if(!ABOVE){backbar=el('div','tll-deck-backbar');backbar.hidden=true;backB=btn('tll-deck-link','deck','Back to the deck');backbar.appendChild(backB);grid.classList.add('tll-deck-grid-off');}
+  /* A chip the visitor pressed before this layer arrived still counts. */
+  var on=document.querySelector('[data-tll-lounge-chips] button[aria-pressed="true"]');if(on)filter=on.getAttribute('data-val')||'all';
   order();collect();pick();fit();layout();update(false);
 
   root.addEventListener('click',function(e){
@@ -198,22 +215,29 @@ function build(){
   });
   stage.addEventListener('dragstart',function(e){e.preventDefault();});
   stage.addEventListener('pointerdown',function(e){
-    if(e.pointerType==='mouse'&&e.button!==0)return;
+    /* A second finger ends the swipe in progress (the card goes back) and starts none; two fingers are for zooming the page. */
+    if(e.isPrimary===false||(drag&&e.pointerId!==drag.id)){cancelDrag();return;}
+    if(e.pointerType==='mouse'&&(e.button!==0||e.ctrlKey))return;
     var c=cards[idx];if(!c||idx>=list.length||!c.contains(e.target)||e.target.closest('a,button'))return;
     swallow=false;drag={id:e.pointerId,x:e.clientX,y:e.clientY,dx:0,on:false,el:c,trail:[[e.timeStamp,e.clientX]]};
   });
   window.addEventListener('pointermove',function(e){
-    if(!drag||e.pointerId!==drag.id)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
-    if(!drag.on){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;if(Math.abs(dx)<=Math.abs(dy)){drag=null;return;}
+    if(!drag||e.pointerId!==drag.id)return;
+    /* A mouse press whose release never came (a context menu took it): no button is down any more, so there is no drag. */
+    if(e.pointerType==='mouse'&&!(e.buttons&1)){cancelDrag();return;}
+    var dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+    if(!drag.on){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;if(Math.abs(dx)<=Math.abs(dy)){letGo();return;}
       drag.on=true;try{drag.el.setPointerCapture(drag.id);}catch(x){}drag.el.classList.remove('is-spring');drag.el.classList.add('is-drag');}
-    drag.dx=dx;drag.trail.push([e.timeStamp,e.clientX]);if(drag.trail.length>6)drag.trail.shift();
+    drag.dx=dx;drag.trail.push([e.timeStamp,e.clientX]);if(drag.trail.length>12)drag.trail.shift();
     if(!STILL)drag.el.style.transform='translate('+dx+'px,'+(dy*0.25)+'px) rotate('+(dx/18)+'deg)';
   });
   function end(e){
-    if(!drag||e.pointerId!==drag.id)return;var d=drag;drag=null;if(!d.on)return;
+    if(!drag||e.pointerId!==drag.id)return;var d=letGo();if(!d.on)return;
     try{d.el.releasePointerCapture(d.id);}catch(x){}
     d.el.classList.remove('is-drag');
-    var a=d.trail[0],z=d.trail[d.trail.length-1],dt=z[0]-a[0],v=dt>0&&e.timeStamp-z[0]<120?(z[1]-a[1])/dt:0;
+    /* Speed over the last 100 ms of the move only, so resting a finger on the card first does not slow a flick down. */
+    var z=d.trail[d.trail.length-1],a=z,q;for(q=0;q<d.trail.length;q++)if(z[0]-d.trail[q][0]<=100){a=d.trail[q];break;}
+    var dt=z[0]-a[0],v=dt>0&&e.timeStamp-z[0]<120?(z[1]-a[1])/dt:0;
     var far=Math.abs(d.dx)>=FAR,flick=Math.abs(v)>0.65&&Math.abs(d.dx)>=48&&(v>0)===(d.dx>0);
     if(e.type==='pointerup'&&(far||flick)&&cards[idx]===d.el){swallow=e.pointerType==='mouse';go(1,d.dx>0?1:-1);if(swallow)setTimeout(function(){swallow=false;},60);return;}
     if(!STILL){d.el.classList.add('is-spring');setTimeout(function(){d.el.classList.remove('is-spring');},460);}
@@ -224,11 +248,10 @@ function build(){
   window.addEventListener('resize',function(){if(!root.hidden)fit();});
   if(MQ){var onMq=function(ev){STILL=!!ev.matches;root.classList.toggle('tll-deck--still',STILL);layout();};if(MQ.addEventListener)MQ.addEventListener('change',onMq);else if(MQ.addListener)MQ.addListener(onMq);}
   if(window.MutationObserver){
-    /* Tiles added later (member photos) join the deck: at the front while the visitor has not moved a card yet, otherwise around the
-       card they are on. The chip row, when the page script adds it after this, goes back above the deck. */
+    /* Tiles added later go through sync() above. The chip row, when the page script adds it after this, goes back above the deck. */
     new MutationObserver(function(muts){
       for(var i=0;i<muts.length;i++)for(var j=0;j<muts[i].addedNodes.length;j++){var n=muts[i].addedNodes[j];
-        if(n.nodeType===1&&n.hasAttribute('data-tll-loc')){collect();rebuild(moved);update(false);return;}}
+        if(n.nodeType===1&&n.hasAttribute('data-tll-loc')){sync();return;}}
     }).observe(grid,{childList:true});
     new MutationObserver(order).observe(grid.parentNode,{childList:true});
   }
