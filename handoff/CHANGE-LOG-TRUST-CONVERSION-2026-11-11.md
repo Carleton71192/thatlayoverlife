@@ -321,10 +321,23 @@ A correction to Part 2 as well: the /stories headline did still carry the typed 
 
 ### Not done, and why
 
-- **The list on /corrections** (item 20): the empty state is there; the list of corrected stories is being wired. See the report for where it ended.
+- **The list on /corrections** (item 20): not built. Webflow accepted the list's source (Stories) and sort (newest "Last updated" first) but refused the filter "Correction note is set" twice with a conflict, possibly because the field was minutes old. An unfiltered list must not publish, so I took the list off again; the page shows the title, intro and empty state. To finish it, either I retry in a quiet moment, or in the Designer: add a Collection List under the intro, source Stories, filter "Correction note is set", sort "Last updated" newest first, and put the date, the story name (linked) and the note in the item.
 - **Footer bound to the Site stats item** (item 1, the fuller fix): it needs a collection list inside the footer, which is on every page. I chose the safe step (no typed numbers) and left the list for a careful pass or a few Designer clicks.
 - **"Keep reading" and "Traveled with" by Webflow's own conditional visibility** (item 18): the API can only bind visibility to a switch field, not to "this list is empty". Both blocks are already hidden for readers by script when empty. Designer steps if you want it native: select the block, Settings, Conditional visibility, "Related stories is set" (or "Human co-travelers is set" / "Pet co-travelers is set").
 - **The process note under "Last updated"** (item 18): not moved. The Disclosure row holds real disclosure lines on six stories, so your condition for removing it ("if it only holds the process note") is not met. The note stays where it is.
 - **Story template code** still contains the old "Reklame for" wording and the published-date fallback in its own script. Readers get the new behavior from the layers; the template code can be tidied at the source in a later pass.
 - **The hidden rule 08 draft on the charter page** ("Paid work never buys a verdict", marked DRAFT · EDITOR TO APPROVE) is not served and I left it alone. It is the one place the words "rule 08" still exist in Webflow. Say if you want it deleted or turned into a real rule 8.
 - **390 and 1440 checks:** not possible until the staged work is on the test site. I have asked the session that holds the test-site publish.
+
+### Checks at 390 and 1440 (test site, signed out, 11 November 2026)
+
+The test site was published by another session with layers 16.56.0. Checked there with the app's built-in browser, which can show a 390 screen.
+
+- **No sideways scroll** at 390 or 1440 on /editorial-charter, home, /stories, three story pages, /faq, /for-press, /about and /corrections.
+- **Numbers:** footer reads 54 countries, 57 stories, 6 travelers, 1 pet. /stories reads "57 stories, all worth the detour."
+- **Orphan words at 390** (reported, not shortened): charter rule 3, "Read by a human within 48 hours, then published. Edited lightly." ends with "lightly." alone on a fourth line; the version line wraps with "2026" alone on the second line. Both sit on one line at 1440.
+- **/stories cards:** the 34 cards that now show a traveled date have a two-line top line at both sizes ("STORIES FROM THE ROAD · 10 MIN READ · OCTOBER 2026"). It was one line before. Nothing overlaps.
+- **Home hero at 390 by 844:** the promise line sits between the headline and the subhead, and both buttons are on the first screen ("Read the cover story" ends at 697, "Join free" at 757). In 16.56.0 the promise line came out larger than the subhead, because the old style rule only reached the first paragraph under the headline. 16.56.1 gives both the same hero body style; it is staged and not on the test site yet, and it will push the buttons about 30 px lower (still inside 844). On a phone with Safari's bars showing, "Join free" was already below the fold before this change.
+- **Story pages:** "Last updated" is gone where the story has no date and shows "12 October 2026" on the one story that has one. Related cards read "12 min read". The end block carries the new line.
+- **/for-press:** the new charter link was bright teal on a white card, unreadable. Fixed with the site's rose link style, staged, not on the test site yet.
+- **Not tested:** the funding label and the correction line with real values (no story has either yet), a signed-in submission through the new Worker, and anything signed in.
