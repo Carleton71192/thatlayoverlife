@@ -21,11 +21,21 @@ html body:not(.tll-none) [data-h3-hero] .tll-mg-chip img{width:36px;height:36px;
 html body:not(.tll-none) [data-h3-hero] .tll-mg-chip b{display:block;font-weight:500;font-size:15px}
 html body:not(.tll-none) [data-h3-hero] .tll-mg-chip:hover b,html body:not(.tll-none) [data-h3-hero] .tll-mg-chip:focus-visible b{text-decoration:underline;text-decoration-color:#F0507A;text-underline-offset:3px}
 html body:not(.tll-none) [data-h3-hero] .tll-mg-chip:focus-visible{outline:3px solid #F0507A;outline-offset:2px}
+/* 12 Nov 2026 (Nancy saw a rose frame around the whole words block in Chrome on her Mac): the site's a11y script makes this block the
+   skip-link target (id tll-main, tabindex="-1"), and the head's craft polish rule [tabindex]:focus-visible draws a 2px #F0507A outline
+   on any focused tabindex element, this one included (a script focus or the skip link). A tabindex="-1" container is a jump target, not
+   a control, so it shows no ring on focus of either kind. Only the container: the links and buttons inside keep tll-focus-v1's 2px
+   #C8325B ring. */
+html body:not(.tll-none) [data-h3-hero] > div:has(> h1)[tabindex="-1"]:is(:focus,:focus-visible){outline:none !important;box-shadow:none !important}
 html body:not(.tll-none) [data-h3-hero] .tll-mg-kicker{display:block !important;font:600 12px/1.3 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#F7F1E8;opacity:1;margin:0 0 12px}
 html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title){font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:clamp(42px,11vw,58px) !important;line-height:1 !important;letter-spacing:-.01em !important;max-width:12ch !important;margin:0 !important;padding:0 !important;color:#F7F1E8 !important;text-wrap:balance}
 html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) em{font-style:italic;color:inherit}
-html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise],html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise] + p{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:19px !important;line-height:1.45 !important;max-width:36ch !important;margin:16px 0 0 !important;color:#F7F1E8 !important;text-wrap:pretty}
-html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise] + p{margin-top:8px !important} /* 11 Nov 2026: the promise line and the subhead share the hero body style; the old rule reached only the first paragraph after the headline */
+html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise]{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important;font-size:19px !important;line-height:1.45 !important;max-width:36ch !important;margin:16px 0 0 !important;color:#F7F1E8 !important;text-wrap:pretty}
+/* 12 Nov 2026 (Nancy, option A: "A"): one paragraph under the headline, the promise line, ending "Free to join." The subhead the
+   Designer keeps under the headline (and the deck the script used to write into it) is not shown: in a words block that holds a
+   promise line every other paragraph beside the headline is hidden, from the first paint, whichever comes first in the markup (the
+   promise line is no longer moved). The 16px gap above the promise line is the same before and after the script. */
+html body:not(.tll-none) [data-h3-hero] > div:has(> h1):has(> p[data-tll-hero-promise]) > p:not([data-tll-hero-promise]){display:none !important}
 html body:not(.tll-none) [data-h3-hero] .h3-hero-cta{display:flex !important;flex-direction:column !important;gap:12px !important;margin:24px 0 0 !important;position:relative;z-index:3}
 html body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn{flex:none !important;width:100% !important;min-height:48px !important;box-sizing:border-box !important;justify-content:center !important;border-radius:0 !important;font:600 16px/1 'IBM Plex Sans Condensed',system-ui,sans-serif !important;letter-spacing:0 !important;background:#D63859 !important;color:#fff !important;border-color:transparent !important}
 html body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn:hover{background:#C8325B !important}
@@ -45,15 +55,17 @@ html body:not(.tll-none) [data-h3-hero] .tll-mg-stamp svg{display:block;width:10
 /* Layout shift (1 Nov 2026; Lighthouse on the home page: CLS 0.70, the words block moved after load). The hero height above is fixed from
    the first paint (this style sits in the head), so nothing under the hero moves when the cover fills it. Inside the hero the words block
    is bottom-anchored, so until the script has run (no data-tll-cover yet) the room its pieces will take is held in advance: the chip and
-   the kicker above the h1 (48 + 18 and 16.9 + 12, measured), the deck's third line, and under the buttons the Join button on phones
+   the kicker above the h1 (48 + 18 and 16.9 + 12, measured), the promise line's last line, and under the buttons the Join button on phones
    where the buttons stack (48 + 12; the credit line's 14 + 19.5 went with the line on 12 Nov 2026). The page's eyebrow is hidden at every width, not only on phones, since
-   the script hides it anyway. Pre-run only; once the script runs the real elements take that room and the final page is unchanged. */
+   the script hides it anyway. Pre-run only; once the script runs the real elements take that room and the final page is unchanged.
+   12 Nov 2026 (option A): the deck's room is gone with the deck (the subhead is hidden from the first paint, above). The promise line
+   holds the lines it will have once the script has ended it with "Free to join." (the Designer's text lacks those words until the
+   Webflow change; once it has them the floor equals the text and does nothing). */
 html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) > div:has(> h1) > div:has(+ h1){display:none !important}
 html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) > div:has(> h1){padding-top:95px !important}
-html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) h1:not(.tll-story-title) + p{min-height:calc(3 * 1.45em)}
-/* 11 Nov 2026: the deck is two lines from 371px up (three only below that), so the room held in advance is two lines there. */
-@media(min-width:371px){html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) h1:not(.tll-story-title) + p{min-height:calc(2 * 1.45em)}}
-html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) p[data-tll-hero-promise]{margin-top:8px !important} /* 11 Nov 2026: before the fill the promise line had a 16px top margin and 8px after it, an 8px jump of the headline */
+html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) p[data-tll-hero-promise]{min-height:calc(3 * 1.45em)}
+/* measured 12 Nov 2026 in Plex: with "Free to join." the line runs to four lines below 390px (three from 390 up); without it, four lines only below 355px */
+@media(max-width:389px){html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) p[data-tll-hero-promise]{min-height:calc(4 * 1.45em)}}
 html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) .h3-hero-cta{margin-bottom:60px !important}
 @media(min-width:768px){
 html body:not(.tll-none) [data-h3-hero]{min-height:min(88vh,860px) !important;--tll-cover-pos:var(--tll-cover-pos-desk,50% 50%);--tll-cover-zoom:0%}
@@ -66,10 +78,10 @@ html body:not(.tll-none) [data-h3-hero]:not([data-tll-cover]) .h3-hero-cta{margi
 html body:not(.tll-none) [data-h3-hero] > div:empty{background-image:none !important}
 html body:not(.tll-none) [data-h3-hero]::after{--tll-shade-x:calc(max(var(--h3-g,48px),50% - 620px) + clamp(420px,36vw,580px));background:linear-gradient(90deg,rgba(10,11,20,.8) 0,rgba(10,11,20,.62) var(--tll-shade-x),rgba(10,11,20,.53) calc(var(--tll-shade-x) + 8.5%),rgba(10,11,20,.31) calc(var(--tll-shade-x) + 17%),rgba(10,11,20,.09) calc(var(--tll-shade-x) + 25.5%),rgba(10,11,20,0) calc(var(--tll-shade-x) + 34%)),linear-gradient(180deg,rgba(10,11,20,.3) 0%,rgba(10,11,20,0) 18%,rgba(10,11,20,0) 60%,rgba(10,11,20,.5) 100%) !important}
 html body:not(.tll-none) [data-h3-hero] > img[data-tll-parallax="hero"]{filter:brightness(1.14) saturate(1.06)}
-html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title),html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] .tll-mg-kicker{text-shadow:0 1px 2px rgba(10,11,20,.35),0 2px 24px rgba(10,11,20,.45)}
+html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title),html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise],html body:not(.tll-none) [data-h3-hero] .tll-mg-kicker{text-shadow:0 1px 2px rgba(10,11,20,.35),0 2px 24px rgba(10,11,20,.45)}
 html body:not(.tll-none) [data-h3-hero] > div:has(> h1){max-width:calc(1240px + 2*var(--h3-g,48px)) !important;margin:0 auto !important;padding:0 var(--h3-g,48px) 56px !important}
 html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title){font-size:clamp(52px,5.4vw,86px) !important}
-html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise],html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise] + p{font-size:20px !important}
+html body:not(.tll-none) [data-h3-hero] h1:not(.tll-story-title) + p,html body:not(.tll-none) [data-h3-hero] p[data-tll-hero-promise]{font-size:20px !important}
 html body:not(.tll-none) [data-h3-hero] .h3-hero-cta{flex-direction:row !important}
 html body:not(.tll-none) [data-h3-hero] .h3-hero-cta .h3-btn{width:auto !important;min-width:240px;padding:0 28px !important}
 html body:not(.tll-none) [data-h3-hero] .tll-mg-stamp{width:150px;right:var(--h3-g,48px) !important;top:32px !important}
@@ -167,9 +179,16 @@ function run(){
   if(av!==COVER.avatar){var ci=chip.querySelector('img');ci.addEventListener('error',function h(){ci.removeEventListener('error',h);ci.src=COVER.avatar;});}
   var kick=document.createElement('div');kick.className='tll-mg-kicker';kick.textContent=COVER.kicker||"This week's cover";
   words.insertBefore(chip,h1);words.insertBefore(kick,h1);
-  var dek=h1.nextElementSibling;if(dek&&dek.tagName==='P'&&COVER.dek)dek.textContent=COVER.dek;
-  /* 11 Nov 2026 (Nancy, trust prompt 4.2): one promise line between the headline and the subhead, in the subhead's own style. If the page already carries it ([data-tll-hero-promise], placed under the subhead in the Designer), it is moved up; otherwise it is made here. */
-  if(dek&&dek.tagName==='P'){var pr=words.querySelector('[data-tll-hero-promise]');if(!pr){pr=document.createElement('p');pr.className=dek.className;pr.setAttribute('data-tll-hero-promise','1');pr.textContent='True trip stories from the people who actually went. Every byline a real person, every hosted trip labeled at the top.';}if(pr.nextElementSibling!==dek)words.insertBefore(pr,dek);}
+  /* 11 Nov 2026 (Nancy, trust prompt 4.2): one promise line under the headline, in the hero body style.
+     12 Nov 2026 (Nancy, option A: "A"): the promise line is the one paragraph and ends "Free to join."; the subhead goes. COVER.dek (one
+     text for all 24 covers, "Travel stories from people who left the airport. (Most of them, anyway.) Free to join.") is no longer written
+     anywhere. The Designer's line ([data-tll-hero-promise], under the subhead) stays where it is and gets the ending if it lacks it (a text
+     node, so any inline markup in it stays); the style above hides the subhead. With no line in the page, the subhead itself becomes the
+     line (no new element, nothing moves); with neither, one is made under the headline. */
+  var FREE='Free to join.',pr=words.querySelector(':scope > p[data-tll-hero-promise]');
+  if(pr){var pt=pr.textContent.replace(/\s+$/,'');if(pt.slice(-FREE.length)!==FREE)pr.appendChild(document.createTextNode((pt.length<pr.textContent.length?'':' ')+FREE));}
+  else{pr=h1.nextElementSibling;if(!pr||pr.tagName!=='P'){var any=words.querySelector(':scope > p');pr=document.createElement('p');if(any)pr.className=any.className;h1.insertAdjacentElement('afterend',pr);}
+    pr.setAttribute('data-tll-hero-promise','1');pr.textContent='True trip stories from the people who actually went. Every byline a real person, every hosted trip labeled at the top. '+FREE;}
   var cta=hero.querySelector('.h3-hero-cta'),btn=cta&&cta.querySelector('a');
   if(btn){btn.textContent=COVER.button||'Read the cover story';btn.href='/stories/'+COVER.slug;}
   /* 29 Oct 2026, Nancy: the hero said free to join but gave no way to join. The second button (hidden until now) becomes Join free. */
