@@ -61,8 +61,9 @@ em.accent{font-style:italic;color:var(--rose)}
 .wrap{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
 
 /* ---------- top ---------- */
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px;border-bottom:1px solid var(--hairline)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;width:calc(100% - 2 * var(--gutter));max-width:calc(1200px - 2 * var(--gutter));border-bottom:1px solid var(--hairline)}
 .wordmark{display:inline-flex;align-items:baseline;gap:8px;color:var(--ink);text-decoration:none;min-height:44px;align-items:center}
+.wordmark{flex-shrink:0;white-space:nowrap}
 .wordmark .that{font-family:var(--serif);font-style:italic;font-weight:800;font-size:22px;letter-spacing:-0.01em}
 .wordmark .ll{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
 .top .mono{color:var(--muted);text-align:right}
@@ -110,7 +111,7 @@ em.accent{font-style:italic;color:var(--rose)}
   background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-weight:600;font-size:15px;line-height:1.2;text-align:left;
   padding:10px 10px 12px;min-height:64px;cursor:pointer;
-  display:flex;flex-direction:column;gap:4px;justify-content:center;
+  display:flex;flex-direction:column;gap:4px;justify-content:flex-start;
 }
 .tab:last-child{border-right:0}
 .tab .n{font-family:var(--mono);font-size:12px;letter-spacing:.16em;font-weight:600;color:var(--muted)}
@@ -145,7 +146,7 @@ em.accent{font-style:italic;color:var(--rose)}
 .path-card .state{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted)}
 .path-card:has(input:checked) .state{color:var(--ink)}
 .credit{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.4}
-.credit a{color:var(--deep-teal)}
+.credit a{color:var(--deep-teal);padding:13px 0}
 
 /* checklist */
 .group{border:0;margin:20px 0 0;padding:0;min-width:0}
@@ -210,6 +211,7 @@ em.accent{font-style:italic;color:var(--rose)}
 .foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--hairline)}
 .foot .mono{color:var(--muted)}
 .foot p.txt{margin-top:10px;max-width:70ch;font-size:16px;line-height:1.6;color:var(--text-2)}
+.foot p.txt a{padding:12px 0}
 .proto-link{
   position:fixed;right:12px;bottom:12px;z-index:20;
   display:inline-flex;align-items:center;min-height:44px;padding:0 12px;
@@ -221,6 +223,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
 
 /* short screens: let the preview scroll away */
 @media (max-height:600px){ .preview{position:static} }
+@media (max-width:959px){ #map{max-height:26vh} }
 
 @media (min-width:600px){
   .intro h1{font-size:44px}
@@ -228,7 +231,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
 }
 @media (min-width:960px){
   :root{--gutter:32px}
-  .top{padding-top:24px;padding-bottom:24px}
+  .top{padding:24px 0}
   .intro{padding-top:56px;padding-bottom:36px}
   .intro h1{font-size:60px;max-width:17ch}
   .intro .dek{font-size:20px}
@@ -259,8 +262,6 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
 </head>
 <body>
 
-<a class="proto-link" href="../index.html">All prototypes</a>
-
 <header class="wrap top">
   <a class="wordmark" href="https://www.thatlayover.life/" aria-label="That Layover Life, home"><span class="that">that</span><span class="ll">Layover Life</span></a>
   <span class="mono">Prototype · Onboarding widget</span>
@@ -279,7 +280,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
   <section class="widget" aria-label="Onboarding preview">
 
     <!-- PREVIEW -->
-    <aside class="preview on-dark" aria-label="Sample map preview">
+    <section class="preview on-dark" aria-label="Sample map preview">
       <div class="preview-head">
         <span class="mono" id="pvLabel">Travel Map</span>
         <span class="tag-sample">Sample</span>
@@ -296,7 +297,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
       </div>
       <ol class="marks" id="marks" aria-hidden="true"></ol>
       <p class="preview-note">Sample map. Not a record of your trips.</p>
-    </aside>
+    </section>
 
     <!-- FLOW -->
     <div class="flow">
@@ -382,10 +383,12 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
 
   <section class="foot" aria-labelledby="footH">
     <p class="mono" id="footH">What is real on this page</p>
-    <p class="txt">The photos come from TLL stories, and each credit links to its story. Most of the lines under Living abroad are from the <a href="https://www.thatlayover.life/for-expats">For Expats</a> page, and the Paw Passport ones borrow from <a href="https://www.thatlayover.life/the-paw-passport">The Paw Passport</a>. The dotted map is a sample that reacts to your ticks. It knows nothing about you.</p>
+    <p class="txt">The photos come from TLL stories, and each credit links to its story. Most lines under Living abroad are quoted from the <a href="https://www.thatlayover.life/for-expats">For Expats</a> page, and a few Paw Passport lines borrow phrases from <a href="https://www.thatlayover.life/the-paw-passport">The Paw Passport</a>. The other lines were written for this prototype, and the dotted map is a sample that only reacts to your ticks.</p>
   </section>
 
 </main>
+
+<nav aria-label="Prototypes"><a class="proto-link" href="../index.html">All prototypes</a></nav>
 
 <script>
 (function () {
@@ -410,7 +413,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
           { t: 'You have left the airport on a layover just to eat something.', src: 'plain' },
           { t: 'You have run for a gate and made it.', src: 'plain' },
           { t: 'You have crossed a border on foot.', src: 'plain' },
-          { t: 'You have connected through an airport you had to look up afterwards.', src: 'plain' }
+          { t: 'You have connected through an airport you had to look up afterward.', src: 'plain' }
         ]},
         { name: 'Living abroad', items: [
           { t: 'You have lived somewhere you were not born.', src: 'plain' },
@@ -434,7 +437,7 @@ noscript p{margin:16px 0;padding:12px;border:1.5px solid var(--ink);font-size:16
           { t: 'You have crossed a border with your pet.', src: 'paw-passport' },
           { t: 'You have taken the ferry because your pet does not fit under a seat.', src: 'plain' },
           { t: 'You have shared a train carriage with your pet and a stranger’s opinions.', src: 'plain' },
-          { t: 'You have driven further than is reasonable so nobody had to ride in the hold.', src: 'plain' },
+          { t: 'You have driven farther than is reasonable so nobody had to ride in the hold.', src: 'plain' },
           { t: 'You have booked a hotel that welcomes large dogs, then asked what large means.', src: 'plain' }
         ]},
         { name: 'Once you are there', items: [

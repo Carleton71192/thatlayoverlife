@@ -40,6 +40,7 @@ body {
   line-height: 1.65;
 }
 a { color: inherit; }
+img { max-width: 100%; height: auto; }
 
 /* Brand primitives. These stay in plain CSS because production has no Tailwind. */
 .on-dark { background: var(--midnight); color: var(--paper); }
@@ -79,7 +80,8 @@ a { color: inherit; }
 .opt-title { display: block; font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; }
 .opt-meta { display: block; margin-top: 6px; }
 .opt-note { display: block; margin-top: 4px; font-size: 16px; line-height: 1.45; color: var(--secondary); }
-.opt-plain { border-top: 0; padding: 0; }
+.opt-plain { display: inline-flex; align-items: center; min-height: 44px; border-top: 0; padding: 0; }
+.opt.link-arrow { text-decoration: underline; text-decoration-color: var(--rose-small); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .opt-plain:hover { background: transparent; }
 .opt-plain[aria-selected="true"] { background: transparent; outline-offset: 4px; }
 .opt.chip { display: inline-flex; border: 1px solid var(--ink); padding: 0 18px; min-height: 48px; }
@@ -87,17 +89,21 @@ a { color: inherit; }
 .opt.chip[aria-selected="true"] { outline-offset: 2px; }
 .opt.btn { display: inline-flex; padding: 0 20px; }
 .opt.btn[aria-selected="true"] { outline-offset: 2px; }
+#omni-note, .opt-title, .opt-note { overflow-wrap: anywhere; }
 mark { background: transparent; color: var(--deep-teal); font: inherit; }
 .tag-soon { display: inline-block; padding: 2px 10px; border: 1px solid var(--muted); border-radius: 999px; color: var(--muted); font-family: var(--font-mono); font-weight: 600; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
 
 .photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0; background: var(--midnight-2); }
 .card-title { font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 1.2; letter-spacing: -0.01em; text-decoration: none; }
+.brand-link { display: inline-flex; align-items: center; min-height: 44px; }
+/* Bigger hit area without moving the layout. */
+.card-title, .credit-link { display: inline-block; padding: 10px 0; margin: -10px 0; }
 .card-title:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
 
 .stat { font-family: var(--font-display); font-weight: 800; font-size: 72px; line-height: 1; letter-spacing: -0.01em; }
 .key { display: inline-block; min-width: 64px; font-family: var(--font-mono); font-weight: 600; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
 
-.proto-link { position: fixed; right: 12px; bottom: 12px; z-index: 50; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-weight: 600; font-size: 14px; line-height: 1; text-decoration: none; }
+.proto-link { position: fixed; right: 12px; bottom: 12px; z-index: 50; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-weight: 600; font-size: 14px; line-height: 1; text-decoration: none; }
 .proto-link:hover { background: var(--cream); }
 .proto-link:focus-visible { outline: 2px solid var(--rose-small); outline-offset: 2px; }
 
@@ -132,14 +138,14 @@ if (window.tailwind) {
 </script>
 </head>
 <body>
-<a class="proto-link" href="../index.html">All prototypes</a>
+<nav aria-label="Prototypes"><a class="proto-link" href="../index.html">All prototypes</a></nav>
 
 <main>
   <!-- The bar, on Midnight -->
   <section class="on-dark pb-16 md:pb-24" aria-labelledby="page-title">
     <div class="max-w-page mx-auto px-4 md:px-10">
       <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-5">
-        <a class="display text-[22px] no-underline text-paper" href="https://www.thatlayover.life/">That Layover Life</a>
+        <a class="display brand-link text-[22px] no-underline text-paper" href="https://www.thatlayover.life/">That Layover Life</a>
         <span class="mono text-cream">Search prototype · <span data-fill="today"></span></span>
       </div>
 
@@ -212,7 +218,7 @@ if (window.tailwind) {
       <div class="mt-14 md:mt-20 pt-10 border-0 border-t border-solid border-hairline grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
         <div>
           <h3 class="display m-0 text-[28px]">When nothing matches</h3>
-          <p class="m-0 mt-4 max-w-measure">The search no longer ends on an error page. The bar checks your spelling first, then offers <span data-fill="pick-count"></span> places drawn at random from the stories. TLL keeps no reading numbers, so nothing here claims to be trending.</p>
+          <p class="m-0 mt-4 max-w-measure">The search no longer ends on an error page. The bar checks your spelling first, then offers <span data-fill="pick-count"></span> places drawn at random from the stories. TLL has no numbers on what people read most, so the picks are random and the label says so.</p>
           <p class="m-0 mt-5"><button type="button" class="btn btn-outline" data-try="qzx">Show the gate state</button></p>
         </div>
         <div>
@@ -406,8 +412,9 @@ if (window.tailwind) {
   }
 
   /* ---------- Random places for the gate state ---------- */
-  function randomPlaces(n) {
+  function randomPlaces(n, avoid) {
     var seen = {}, pool = [];
+    (avoid || []).forEach(function (p) { seen[p] = 1; });
     STORIES.forEach(function (s) { if (s.p && !seen[s.p]) { seen[s.p] = 1; pool.push(s.p); } });
     for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
     return pool.slice(0, n);
@@ -484,7 +491,7 @@ if (window.tailwind) {
       '<div id="g-expat" class="pb-3"><span class="eyebrow block">Expat hubs' + SEP + 'coming soon</span>' +
       '<span class="block mt-1 text-[16px] leading-[1.45] text-secondary">' + esc(EXPAT_LINE) + '</span></div>' +
       res.expat.map(expatRow).join('') +
-      '<div class="pt-4 border-0 border-t border-solid border-hairline"><a class="opt opt-plain link-arrow inline-block text-[16px]" role="option" aria-selected="false" tabindex="-1" href="' + EXPAT_PAGE + '">Go to For expats →</a></div>' +
+      '<div class="pt-4 border-0 border-t border-solid border-hairline"><a class="opt opt-plain link-arrow text-[16px]" role="option" aria-selected="false" tabindex="-1" href="' + EXPAT_PAGE + '">Read the For expats page →</a></div>' +
       '</div>');
 
     list.className = res.stories.length ? 'grid grid-cols-1 gap-y-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-x-12 lg:items-start' : 'grid grid-cols-1 gap-y-10 max-w-[760px]';
@@ -503,7 +510,7 @@ if (window.tailwind) {
       '<p class="m-0 mt-4 max-w-measure">Nothing in the library answers to \u201C' + esc(res.q.trim()) + '\u201D. Try exploring these instead.</p>';
     var html = '';
     if (fix) {
-      html += '<div class="mt-5"><div class="opt opt-plain link-arrow inline-block" role="option" aria-selected="false" data-act="query" data-q="' + esc(fix) + '">Did you mean ' + esc(fix) + '?</div></div>';
+      html += '<div class="mt-5"><div class="opt opt-plain link-arrow" role="option" aria-selected="false" data-act="query" data-q="' + esc(fix) + '">Did you mean ' + esc(fix) + '?</div></div>';
     }
     html += '<div role="group" aria-labelledby="g-places" class="mt-8">' +
       '<div id="g-places" class="eyebrow pb-3">' + plural(state.picks.length, 'place', 'places') + ', picked at random from the library</div>' +
@@ -583,6 +590,15 @@ if (window.tailwind) {
     var want = typeof keep === 'number' ? keep : (state.mode === 'results' ? 0 : -1);
     setActive(Math.min(want, state.opts.length - 1), typeof keep === 'number');
     if (prev !== state.mode) enter(sheet);
+    if (typeof keep !== 'number') keepTopInView();
+  }
+
+  /* After a new query, if the reader had scrolled down a long list, bring the top of the answer back under the bar. */
+  function keepTopInView() {
+    var bar = form.querySelector('.sticky');
+    var under = bar ? bar.getBoundingClientRect().bottom : 0;
+    var top = sheet.getBoundingClientRect().top;
+    if (top < under) window.scrollBy(0, top - under - 8);
   }
 
   function setQuery(q, focus) {
@@ -602,7 +618,7 @@ if (window.tailwind) {
       setQuery(el.getAttribute('data-q'));
     } else if (act === 'shuffle') {
       var first = state.opts.indexOf(list.querySelector('.chip'));
-      state.picks = randomPlaces(PICKS); render(first < 0 ? 0 : first);
+      state.picks = randomPlaces(PICKS, state.picks); render(first < 0 ? 0 : first);
     } else if (act === 'soon') {
       announce(el.getAttribute('data-name') + ' is coming soon. It has no page yet.');
     } else if (el.tagName === 'A') {
@@ -669,7 +685,7 @@ if (window.tailwind) {
   fill('hub-count', EXPAT.filter(function (e) { return e.u; }).length);
   fill('photo-count', photoSlugs.length);
   fill('pick-count', PICKS);
-  fill('today', '11 Nov 2026');
+  fill('today', 'Nov 11, 2026');
 
   document.getElementById('omni-tries').insertAdjacentHTML('beforeend', TRIES.map(function (t) {
     return '<button type="button" class="chip" data-try="' + esc(t) + '">' + esc(t) + '</button>';
@@ -682,7 +698,7 @@ if (window.tailwind) {
     var url = SITE + '/stories/' + s.s, p = PHOTOS[slug];
     return '<article>' +
       '<a href="' + esc(url) + '" tabindex="-1" aria-hidden="true"><img class="photo" src="' + p.src + '" alt="" width="520" height="520"></a>' +
-      '<p class="m-0 mt-2 text-[14px] leading-[1.4] text-cream"><a class="underline underline-offset-4" href="' + esc(url) + '" aria-label="Photo: ' + esc(s.by) + '. ' + esc(p.alt) + '">Photo: ' + esc(s.by) + '</a></p>' +
+      '<p class="m-0 mt-2 text-[14px] leading-[1.4] text-cream"><a class="credit-link underline underline-offset-4" href="' + esc(url) + '" aria-label="Photo: ' + esc(s.by) + '. ' + esc(p.alt) + '">Photo: ' + esc(s.by) + '</a></p>' +
       '<h2 class="m-0 mt-3"><a class="card-title text-paper" href="' + esc(url) + '">' + esc(s.t) + '</a></h2>' +
       '<p class="mono m-0 mt-2 text-teal">' + esc(s.p) + SEP + esc(s.by) + SEP + esc(s.m) + ' min read</p>' +
       '</article>';

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Prototypes, November</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<style>
+/* Layout idea: a magazine contents page. One column of numbered entries, each a row with the open link and the owner's questions folded under it. */
+:root{
+  --paper:#FDF9F3; --cream:#F7F1E8; --ink:#0A0B14; --muted:#4A4B57; --rule:#E2D8CA;
+  --accent:#C8325B; --accent-strong:#D63859; --tag:#067A79;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A0B14; --cream:#13151F; --ink:#F7F1E8; --muted:#B9B3AA; --rule:#2A2C38;
+    --accent:#F0507A; --accent-strong:#F0507A; --tag:#00C9C8; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A0B14; --cream:#13151F; --ink:#F7F1E8; --muted:#B9B3AA; --rule:#2A2C38;
+  --accent:#F0507A; --accent-strong:#F0507A; --tag:#00C9C8; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:400 18px/1.55 var(--body)}
+.wrap{max-width:880px;margin:0 auto;padding:40px 20px 72px}
+header{display:grid;gap:12px;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+.eyebrow{font:600 13px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tag)}
+h1{font:800 clamp(36px,7vw,60px)/1.02 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1 em{color:var(--accent);font-style:italic}
+.lede{margin:0;max-width:62ch;color:var(--muted)}
+ol{list-style:none;margin:0;padding:0;counter-reset:n}
+li.entry{counter-increment:n;display:grid;grid-template-columns:56px 1fr;gap:4px 16px;padding:26px 0;border-bottom:1px solid var(--rule)}
+li.entry::before{content:counter(n,decimal-leading-zero);font:600 14px/1.9 var(--mono);color:var(--accent)}
+.body{display:grid;gap:10px;min-width:0}
+h2{font:800 clamp(24px,4vw,30px)/1.15 var(--display);margin:0;text-wrap:balance}
+h2 a{color:inherit;text-decoration:none}
+h2 a:hover,h2 a:focus-visible{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:4px}
+.where{font:500 13px/1.4 var(--mono);color:var(--tag);letter-spacing:.04em;text-transform:uppercase}
+.desc{margin:0;max-width:64ch}
+.row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.open{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;background:var(--accent-strong);color:#fff;font:600 16px/1 var(--body);text-decoration:none;border-radius:2px}
+.open:hover{filter:brightness(1.06)}
+.waiting{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px dashed var(--muted);color:var(--muted);font:500 15px/1.2 var(--body)}
+details{border-left:2px solid var(--rule);padding-left:14px}
+summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font:600 16px/1.3 var(--body);color:var(--ink)}
+summary:hover{color:var(--accent)}
+details ul{margin:2px 0 8px;padding-left:20px;display:grid;gap:6px;max-width:64ch;color:var(--muted);font-size:17px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+footer{margin-top:32px;color:var(--muted);font-size:15px;display:grid;gap:8px;max-width:64ch}
+code{font:500 14px var(--mono)}
+@media (max-width:520px){li.entry{grid-template-columns:1fr}li.entry::before{line-height:1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">That Layover Life · Mock-ups · Nov 12, 2026</div>
+  <h1>Prototypes from <em>your briefs</em></h1>
+  <p class="lede">Each one is a working page you can click through. None of them is on the site. Each was built by one agent and then checked and fixed by a second at phone, tablet and desktop widths. Your questions sit under each one.</p>
+</header>
+
+<ol>
+<li class="entry"><div class="body">
+  <div class="where">Search · /stories or the nav</div>
+  <h2><a href="smart-omnibar/index.html">Smart search bar</a></h2>
+  <p class="desc">Search the whole library as you type. Results come back sorted into stories, the two layover guides and the expat hubs marked coming soon. It works fully from the keyboard. When nothing matches it says "Stuck at the gate?", offers a spelling fix and three random places from the library.</p>
+  <div class="row"><a class="open" href="smart-omnibar/index.html">Open the search bar</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Where it lives: the /stories search, a nav search, or both.</li>
+    <li>Keep matching words inside story text? "visa" finds 8 stories, but passing mentions show up too.</li>
+    <li>Show the expat "coming soon" group on every search, or only on expat searches.</li>
+    <li>Keep "Been there yourself? Share your story" on the no-results state.</li>
+    <li>Approve adding title, place, country and date to the search index file.</li>
+    <li>Search from one letter, or start at two.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Onboarding · Home and /signup</div>
+  <h2><a href="onboarding-widget/index.html">Onboarding widget</a></h2>
+  <p class="desc">A visitor picks Travel Map or Paw Passport and ticks the lines that are true for them. A dotted world map lights up and "Your profile is N% live" climbs. It ends at a "Claim your map" block that links to the real signup page. Nothing ticked is saved.</p>
+  <div class="row"><a class="open" href="onboarding-widget/index.html">Open the widget</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Approve the new copy, which is marked DRAFT: the headline "Start with what you have already survived." and the tick lines.</li>
+    <li>Is "Your profile is N% live" fine on a preview where no profile exists yet?</li>
+    <li>Should the chosen path carry over to /signup?</li>
+    <li>Where it lives, and which site layer it joins to stay under the script cap.</li>
+    <li>Are the two story photos the right ones?</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Layout · /stories</div>
+  <h2><a href="editorial-grid/index.html">Editorial grid for /stories</a></h2>
+  <p class="desc">All 57 real stories in one column on a phone, opening into uneven magazine bands on wider screens. Titles and footers line up across each band, however long the titles run. A "Today" tab shows the current live layout for comparison.</p>
+  <div class="row"><a class="open" href="editorial-grid/index.html">Open the grid</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Big cards by position, or by a CMS "pick" flag (only Pompeii has one today).</li>
+    <li>Fix the live text that breaks house style: an em dash in the Pompeii excerpt, two exclamation marks in titles, "centre" in the Southern Africa excerpt.</li>
+    <li>Show excerpts on every card, or only on the lead card.</li>
+    <li>Add a photo credit field to Stories, or keep crediting the contributor.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Browse · /stories and /layovers</div>
+  <h2><a href="intent-tags/index.html">Departures board</a></h2>
+  <p class="desc">The library sorted like an airport departures board, with three boards: by duration, by objective and by country. Rows marked Boarding open real stories and the live layover guides. Rows marked Later say "Coming soon" and don't link anywhere. It still works with scripts turned off.</p>
+  <div class="row"><a class="open" href="intent-tags/index.html">Open the board</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>The Ko-fi link for the €9 pet guide.</li>
+    <li>Rename "Pet relocation"? No story is about moving a pet. One idea is "Travel with a dog".</li>
+    <li>Which stories go under each objective (a field you would set in the CMS).</li>
+    <li>Should the duration rows list stories (Doha 8 hours, Istanbul 3) as well as guides?</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Story pages · mid-story block</div>
+  <h2><a href="layover-bridge/index.html">Layover bridge</a></h2>
+  <p class="desc">A block partway through a story that asks two things about the story's country: add it to your map, and do you have a layover at its airport. On the Sort Sol story it opens the CPH guide's three-line summary. On the São Paulo story it says GRU has no guide yet and invites someone to write one.</p>
+  <div class="row"><a class="open" href="layover-bridge/index.html">Open the bridge</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>What "Add to your map" saves: Want to go, Been here, or something new. If it never reaches the map, the button should say "list".</li>
+    <li>How a story picks its airport. Brazil has several, so a per-story airport field is suggested.</li>
+    <li>Show "No layover guide for this airport yet" on every story without a guide, or only where a layover makes sense.</li>
+    <li>Fix "centre" and "harbour" in the live CPH guide.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Pet guide · Paw Passport to Ko-fi</div>
+  <h2><a href="guide-conversion-flow/index.html">Pet guide sales flow</a></h2>
+  <p class="desc">A plan for selling the €9 EU pet travel guide. It follows every place Magnus Waffles appears, through the Ko-fi checkout and back to the Paw Passport, with the exact copy for each step. It includes a clickable phone and desktop mock-up of the guide block and a list of the events to measure.</p>
+  <div class="row"><a class="open" href="guide-conversion-flow/index.html">Open the flow</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Ko-fi details: the product link, the price, whether to show "incl. 25% moms", the page count, the update promise, a refund line.</li>
+    <li>Confirm the guide follows regulation 2026/131 and the date you last checked it.</li>
+    <li>Which stories get the end-of-story link.</li>
+    <li>The byline: the block says "By Nancy Carleton, with Magnus Waffles". The live page doesn't name the author.</li>
+    <li>The page code still has the old 12, 3 and 13 counts for readers without scripts.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Expat · Copenhagen guide</div>
+  <h2><a href="moving-guides/index.html">The Line Counter: Copenhagen paperwork</a></h2>
+  <p class="desc">A paperwork guide for new arrivals in Copenhagen. Pick EU/EEA or not and it lists every office and deadline in order, each with its official source and a tick box. A visa-date tracker works out your next deadline in your own browser. The dates are marked SAMPLE until a Location Expert checks them.</p>
+  <div class="row"><a class="open" href="moving-guides/index.html">Open the guide</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>The facts come from search excerpts. A Copenhagen Location Expert has to open every source link before the SAMPLE strip comes off.</li>
+    <li>Emergency pet care has no official link. Could a Danish veterinary authority page count as a source?</li>
+    <li>Point "Become a Location Expert" straight at the application section.</li>
+    <li>Keep the tracker in the browser, or make it a member feature with email reminders.</li>
+    <li>The URL, and where the guide sits in the nav.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Motion · Home and story cards</div>
+  <h2><a href="micro-interactions/index.html">Two small effects</a></h2>
+  <p class="desc">Point at the home cover's coordinates and a "View map" badge follows the pointer to the map link. Save a story or read to the end and the magazine's postmark stamps its card. Both run on real stories and come as separate CSS and JS blocks, ready to go into a site layer.</p>
+  <div class="row"><a class="open" href="micro-interactions/index.html">Open the effects</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>A badge cursor or a compass cursor (badge recommended).</li>
+    <li>Saving stories needs storage through the Worker and a Save button on each card.</li>
+    <li>Which corner the stamp takes on home cards, where a decorative stamp already sits.</li>
+    <li>Can a story get the read-to-end stamp without being saved first?</li>
+    <li>The stamp's own lettering is about 5 to 9px. It's decorative, but it is under the 12px rule.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Type · whole site</div>
+  <h2><a href="fluid-type-system/index.html">Fluid type system</a></h2>
+  <p class="desc">Type sizes that scale smoothly from a 360px phone to a 1920px monitor, with the math shown for each size. A table maps the site's current font settings to the new names. Resize the window and a live bar shows the real sizes and characters per line.</p>
+  <div class="row"><a class="open" href="fluid-type-system/index.html">Open the type system</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Cover headline: keep it at 148px as an exception, or accept the system's 112px cap. The cap means browser zoom can still double every size.</li>
+    <li>Shrink section titles from 34–64px to 28–48px, or keep them big.</li>
+    <li>Let story subheads grow to about 42px on desktop, or keep 28px.</li>
+    <li>Confirm the kit's letter spacing (-0.01em) wins over the tighter live values.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Search engines · page code</div>
+  <h2><a href="schema-templates/index.html">Structured data templates</a></h2>
+  <p class="desc">A reference page for the hidden data search engines read, with templates for stories, layover guides and the expat Q&amp;A. Each sits next to what the live page sends today. It says plainly which Google rich results no longer exist, and a form fills a template the way Webflow does.</p>
+  <div class="row"><a class="open" href="schema-templates/index.html">Open the templates</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>Add a Contributors field for the Founding numbers.</li>
+    <li>Give Layovers a published-date field.</li>
+    <li>Which index the layover breadcrumb names: /pillars/layover-guides or /layovers.</li>
+    <li>Keep the Quick-answers FAQ data on story pages (suggested: keep).</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Members · sharing</div>
+  <h2><a href="founding-badge/index.html">Founding badge</a></h2>
+  <p class="desc">A member presses "Make my badge" and the browser draws their founding badge as an image for a Story, a square post or X. There are two designs, the Traveler badge and the Paw Passport stamp. The share step only offers what that browser can actually do, and nothing is posted for the member.</p>
+  <div class="row"><a class="open" href="founding-badge/index.html">Open the badge maker</a></div>
+  <details><summary>Your decisions</summary><ul>
+    <li>What happens to a number when a member deletes their account (suggested: retired, never reused).</li>
+    <li>Make "No location" the default?</li>
+    <li>The other questions are in the prototype's README in the repo.</li>
+  </ul></details>
+</div></li>
+
+<li class="entry"><div class="body">
+  <div class="where">Members · /account</div>
+  <h2>Dashboard canvas</h2>
+  <p class="desc">The member dashboard drawn as one canvas. It is still being checked by a second agent, and this page will link to it when that check is done.</p>
+  <div class="row"><span class="waiting">Still in review</span></div>
+</div></li>
+</ol>
+
+<footer>
+  <p>The source for each prototype, including its README with the full notes, is in the repo under <code>prototypes/2026-11-11/</code>.</p>
+  <p>Story titles, places and photos are real, read from the live site on Nov 11 and 12. Anything invented is marked SAMPLE or DRAFT on the page itself.</p>
+</footer>
+</div>
+</body>
+</html>

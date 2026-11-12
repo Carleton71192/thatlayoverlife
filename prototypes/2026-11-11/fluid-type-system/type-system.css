@@ -1,0 +1,288 @@
+/* ==========================================================================
+   TLL fluid type system, draft 1 (November 12, 2026)
+   Fits TLL Brand Kit v2.4. Prototype only: nothing on the live site loads this.
+
+   WHAT IS IN HERE
+   1. Faces          three families, nothing else
+   2. Fluid steps    the size scale, each one a clamp() with its math shown
+   3. Rhythm         line heights, tracking, weights
+   4. Measures       line length caps in ch
+   5. Aliases        the names pages should use (story title, card title...)
+   6. Base rules     element defaults inside .tll-type
+   7. Role classes   one class per alias, for markup that cannot use elements
+
+   HOW THE CLAMPS WORK
+   Every fluid step runs from a size at a 360px viewport (a small iPhone in
+   CSS pixels) to a size at a 1920px viewport (a big desktop monitor), in a
+   straight line, and holds flat outside that range.
+
+     slope      = (max px - min px) / (1920 - 360)        = (max - min) / 1560
+     intercept  = min px - slope x 360                    (in px, then / 16 for rem)
+     size       = clamp(min rem, intercept rem + slope x 100 vw, max rem)
+
+   Check any step by hand: at a 390px window, size = intercept + slope x 390.
+
+   WHY REM AND NOT PX OR PURE VW
+   - The floor, the ceiling and the intercept are rem, so a reader who sets a
+     bigger default font size in the browser gets bigger type everywhere.
+   - The middle term always has a rem part. A vw-only size ignores browser
+     zoom (zooming narrows the viewport, so the vw part shrinks while you try
+     to enlarge it). The rem part keeps growing with zoom.
+   - Rule used for every step: max <= 2.5 x min. With that ratio, zooming to
+     the browser's 500% always reaches at least twice the 100% size, which is
+     what WCAG 1.4.4 (resize text to 200%) asks for. The specimen page
+     checks this live in the width calculator.
+   - Root is the browser default (16px = 1rem). Nothing here sets html
+     font-size, so 0.75rem is 12px for most readers and more for anyone who
+     asked for more. The kit's floor is 12px; meta is the only step at it.
+
+   WHAT IS NOT FLUID ON PURPOSE
+   Story body is a fixed 18px (1.125rem) with a 1.65 line height. The kit
+   fixes it, and long reading at a steady size beats a size that creeps.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. FACES
+     Playfair Display 800 and 800 italic only. IBM Plex Sans Condensed 400,
+     500, 600, 700. JetBrains Mono 400 and 600. Never a fourth face.
+     The fallbacks are what the live site already uses.
+     ------------------------------------------------------------------------ */
+  --tll-face-display: 'Playfair Display', Georgia, serif;
+  --tll-face-text: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  --tll-face-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ------------------------------------------------------------------------
+     2. FLUID STEPS (360px -> 1920px viewport, 1rem = 16px)
+     Names describe size, not use. Pages use the aliases in section 5.
+     ------------------------------------------------------------------------ */
+
+  /* display-xl: 46px at 360 -> 112px at 1920. slope = (112 - 46) / 1560 = 0.042308 -> 4.2308vw.
+     intercept = 46 - 0.042308 x 360 = 30.7692px = 1.9231rem. Zoom: 112/46 = 2.43 (2.5 or less). */
+  --tll-step-display-xl: clamp(2.875rem, 1.9231rem + 4.2308vw, 7rem);
+
+  /* display-l: 36px at 360 -> 80px at 1920. slope = (80 - 36) / 1560 = 0.028205 -> 2.8205vw.
+     intercept = 36 - 0.028205 x 360 = 25.8462px = 1.6154rem. Zoom: 80/36 = 2.22 (2.5 or less). */
+  --tll-step-display-l: clamp(2.25rem, 1.6154rem + 2.8205vw, 5rem);
+
+  /* display-m: 28px at 360 -> 48px at 1920. slope = (48 - 28) / 1560 = 0.012821 -> 1.2821vw.
+     intercept = 28 - 0.012821 x 360 = 23.3846px = 1.4615rem. Zoom: 48/28 = 1.71 (2.5 or less). */
+  --tll-step-display-m: clamp(1.75rem, 1.4615rem + 1.2821vw, 3rem);
+
+  /* title: 20px at 360 -> 28px at 1920. slope = (28 - 20) / 1560 = 0.005128 -> 0.5128vw.
+     intercept = 20 - 0.005128 x 360 = 18.1538px = 1.1346rem. Zoom: 28/20 = 1.40 (2.5 or less). */
+  --tll-step-title: clamp(1.25rem, 1.1346rem + 0.5128vw, 1.75rem);
+
+  /* deck: 18px at 360 -> 23px at 1920. slope = (23 - 18) / 1560 = 0.003205 -> 0.3205vw.
+     intercept = 18 - 0.003205 x 360 = 16.8462px = 1.0529rem. Zoom: 23/18 = 1.28 (2.5 or less). */
+  --tll-step-deck: clamp(1.125rem, 1.0529rem + 0.3205vw, 1.4375rem);
+
+  /* story: fixed. 18px = 1.125rem at every width (kit rule). Not a clamp. */
+  --tll-step-story: 1.125rem;
+
+  /* body: 15px at 360 -> 16px at 1920. slope = (16 - 15) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 15 - 0.000641 x 360 = 14.7692px = 0.9231rem. Zoom: 16/15 = 1.07 (2.5 or less). */
+  --tll-step-body: clamp(0.9375rem, 0.9231rem + 0.0641vw, 1rem);
+
+  /* small: 13px at 360 -> 14px at 1920. slope = (14 - 13) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 13 - 0.000641 x 360 = 12.7692px = 0.7981rem. Zoom: 14/13 = 1.08 (2.5 or less). */
+  --tll-step-small: clamp(0.8125rem, 0.7981rem + 0.0641vw, 0.875rem);
+
+  /* meta: 12px at 360 -> 13px at 1920. slope = (13 - 12) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 12 - 0.000641 x 360 = 11.7692px = 0.7356rem. Zoom: 13/12 = 1.08 (2.5 or less).
+     This is the kit's floor. Nothing in the system goes smaller. */
+  --tll-step-meta: clamp(0.75rem, 0.7356rem + 0.0641vw, 0.8125rem);
+
+  /* data-l: 16px at 360 -> 22px at 1920. slope = (22 - 16) / 1560 = 0.003846 -> 0.3846vw.
+     intercept = 16 - 0.003846 x 360 = 14.6154px = 0.9135rem. Zoom: 22/16 = 1.38 (2.5 or less).
+     For a Mono figure that has to be read across a room: 42.2 KM, 35 KG. */
+  --tll-step-data-l: clamp(1rem, 0.9135rem + 0.3846vw, 1.375rem);
+
+  /* ------------------------------------------------------------------------
+     3. RHYTHM
+     Line heights are unitless so they follow the size. Display tracking is
+     the kit's -0.01em (the live tll-v9-type-v1 layer uses -0.035em on h1;
+     this system brings it back to the kit). Mono tracking sits inside the
+     kit's 0.12em to 0.2em band.
+     ------------------------------------------------------------------------ */
+  --tll-lh-display: 0.98;   /* display-xl: tight, it is a poster line */
+  --tll-lh-headline: 1.04;  /* display-l and display-m */
+  --tll-lh-title: 1.12;     /* card titles, two or three lines */
+  --tll-lh-deck: 1.42;
+  --tll-lh-story: 1.65;     /* kit rule for story body */
+  --tll-lh-body: 1.55;
+  --tll-lh-meta: 1.5;
+
+  --tll-track-display: -0.01em;
+  --tll-track-eyebrow: 0.14em;  /* matches the home cover kicker */
+  --tll-track-data: 0.12em;     /* figures, codes, coordinates */
+  --tll-track-label: 0.2em;     /* widest, for one-word labels only */
+
+  --tll-weight-display: 800;
+  --tll-weight-text: 400;
+  --tll-weight-text-strong: 600;  /* buttons and text-link labels (kit v2.4) */
+  --tll-weight-mono: 400;
+  --tll-weight-mono-strong: 600;
+
+  /* ------------------------------------------------------------------------
+     4. MEASURES
+     ch is the width of the "0" in the element's own font, so a measure in ch
+     must sit on the element that carries the font. Measured in Chromium on
+     November 12: at 18px a "0" in Plex Sans Condensed is about 9.7px wide, while
+     the average character of story text (spaces included) is about 7.3px.
+     So 52ch is about 505px and holds about 66 characters a line (59 to 73
+     on the Antarctica text), inside the kit's 60 to 75. (A 680px column at 18px holds about 91.) The specimen
+     page counts this live. Headlines are capped so a long title balances
+     into lines instead of one runaway line on a monitor.
+     ------------------------------------------------------------------------ */
+  --tll-measure-story: 52ch;
+  --tll-measure-deck: 46ch;
+  --tll-measure-body: 58ch;   /* about 76 characters of interface copy */
+  --tll-measure-headline: 22ch;
+  --tll-measure-cover: 16ch;
+
+  /* ------------------------------------------------------------------------
+     5. ALIASES: the names pages should use
+     Change a role's size here, once, and every page that uses it follows.
+     ------------------------------------------------------------------------ */
+  --tll-cover-title: var(--tll-step-display-xl);     /* home cover, landing H1 */
+  --tll-story-title: var(--tll-step-display-l);      /* story page H1 */
+  --tll-section-title: var(--tll-step-display-m);    /* section and rail titles */
+  --tll-story-subhead: var(--tll-step-display-m);    /* h2 inside story text (28px today, fixed) */
+  --tll-card-title: var(--tll-step-title);           /* story cards, guide names */
+  --tll-deck: var(--tll-step-deck);                  /* the line under a title */
+  --tll-story-body: var(--tll-step-story);           /* story text, 18px fixed */
+  --tll-ui: var(--tll-step-body);                    /* interface and page copy */
+  --tll-caption: var(--tll-step-small);              /* captions, credits, help text */
+  --tll-eyebrow: var(--tll-step-meta);               /* Mono 600 caps above titles */
+  --tll-data: var(--tll-step-meta);                  /* Mono figures: 12 MIN, 35 KG */
+  --tll-data-l: var(--tll-step-data-l);              /* Mono figures, read from afar */
+}
+
+/* --------------------------------------------------------------------------
+   6. BASE RULES
+   Scoped to .tll-type and wrapped in :where() so they carry zero
+   specificity: any page rule wins, and nothing leaks into Webflow pages
+   that have not opted in.
+   -------------------------------------------------------------------------- */
+:where(.tll-type) {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(.tll-type) :where(h1, h2, h3) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;          /* even lines, no orphan word on its own */
+  overflow-wrap: break-word;   /* a 15-letter word on a 360px phone still fits */
+  margin: 0;
+}
+:where(.tll-type) :where(h1) { font-size: var(--tll-story-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h2) { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h3) { font-size: var(--tll-card-title); line-height: var(--tll-lh-title); }
+
+:where(.tll-type) :where(p, li) {
+  text-wrap: pretty;           /* fewer single-word last lines in paragraphs */
+  hyphens: manual;             /* no automatic hyphens: they break names */
+}
+
+/* Playfair has no 400 or 700 in this system, so a stray <strong> inside a
+   headline must not ask the browser to fake a bolder weight. */
+:where(.tll-type) :where(h1, h2, h3) :where(strong, b) { font-weight: inherit; }
+
+/* --------------------------------------------------------------------------
+   7. ROLE CLASSES
+   Use these where the element is not the role (a <p> that is an eyebrow, a
+   <span> that is data). Each sets size, face and rhythm, never color.
+   -------------------------------------------------------------------------- */
+.tll-type-cover-title,
+.tll-type-story-title,
+.tll-type-section-title,
+.tll-type-card-title {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.tll-type-cover-title   { font-size: var(--tll-cover-title);   line-height: var(--tll-lh-display);  max-inline-size: var(--tll-measure-cover); }
+.tll-type-story-title   { font-size: var(--tll-story-title);   line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-section-title { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-card-title    { font-size: var(--tll-card-title);    line-height: var(--tll-lh-title); }
+
+/* The one rose italic word a headline may have. Color comes from the page
+   (Sunset Rose #F0507A is for headline sizes only, never for small text). */
+.tll-type-accent {
+  font-style: italic;
+  font-weight: var(--tll-weight-display);
+  color: var(--tll-type-accent-color, #F0507A);
+}
+
+.tll-type-deck {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-deck);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-deck);
+  max-inline-size: var(--tll-measure-deck);
+  text-wrap: pretty;
+}
+
+/* Story body: 18px, 1.65, capped at the story measure. The cap is set on
+   the paragraph, not the column, so photos and pull quotes can run wider. */
+.tll-type-story-body {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-story-body);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-story);
+}
+.tll-type-story-body > :where(p, ul, ol, blockquote) {
+  max-inline-size: var(--tll-measure-story);
+  text-wrap: pretty;
+}
+.tll-type-story-body > :where(h2) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  font-size: var(--tll-story-subhead);
+  line-height: var(--tll-lh-headline);
+  letter-spacing: var(--tll-track-display);
+  max-inline-size: var(--tll-measure-headline);
+  text-wrap: balance;
+  margin: 1.4em 0 0.5em;
+}
+
+.tll-type-ui {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  line-height: var(--tll-lh-body);
+  max-inline-size: var(--tll-measure-body);
+}
+
+.tll-type-caption {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-caption);
+  line-height: var(--tll-lh-meta);
+}
+
+/* Mono roles. Uppercase, tracked, tabular. JetBrains Mono figures are all
+   one width already; tabular-nums keeps that true if the stack falls back,
+   and slashed-zero tells 0 from O in codes like a gate or a flight. */
+.tll-type-eyebrow,
+.tll-type-data,
+.tll-type-data-l {
+  font-family: var(--tll-face-mono);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  line-height: var(--tll-lh-meta);
+}
+.tll-type-eyebrow { font-size: var(--tll-eyebrow); font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-eyebrow); }
+.tll-type-data    { font-size: var(--tll-data);    font-weight: var(--tll-weight-mono);        letter-spacing: var(--tll-track-data); }
+.tll-type-data-l  { font-size: var(--tll-data-l);  font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-data); line-height: 1.2; }
+
+/* Figures inside Plex text (a count in a sentence) borrow the same rule. */
+.tll-type-num { font-variant-numeric: tabular-nums; }

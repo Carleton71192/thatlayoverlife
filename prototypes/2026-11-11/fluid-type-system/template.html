@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Type System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<style>
+/* Page tokens (Brand Kit v2.4). One theme by choice: Paper, with Midnight bands. */
+:root {
+  color-scheme: light;
+  --c-midnight: #0A0B14;
+  --c-midnight-2: #1A1A2E;
+  --c-paper: #FDF9F3;
+  --c-cream: #F7F1E8;
+  --c-cream-80: rgba(247, 241, 232, 0.8);
+  --c-cream-line: rgba(247, 241, 232, 0.22);
+  --c-ink: #1A1A1A;
+  --c-text-2: #555555;
+  --c-muted: #6B6660;
+  --c-hairline: #E8E2D6;
+  --c-teal: #00C9C8;        /* on Midnight only */
+  --c-teal-deep: #067A79;   /* teal text and links on light */
+  --c-rose: #F0507A;        /* headline size only */
+  --c-rose-text: #C8325B;   /* small rose text, underlines, focus */
+  --c-rose-btn: #D63859;
+  --c-white: #FFFFFF;
+  --tll-type-accent-color: var(--c-rose);
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 3.5rem);
+  --ease: cubic-bezier(.23, 1, .32, 1);
+}
+</style>
+<style id="tll-type-system">
+/*@@TYPE_SYSTEM@@*/
+</style>
+<style>
+/* Specimen page layout. Not part of the type system. */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--c-paper); }
+body { margin: 0; background: var(--c-paper); color: var(--c-ink); overflow-x: hidden; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--c-teal-deep); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--c-rose-text); outline-offset: 2px; }
+.dark :focus-visible { outline: 3px solid var(--c-teal); outline-offset: 2px; }
+.wrap { width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--gutter); }
+.mono { font-family: var(--tll-face-mono); text-transform: uppercase; letter-spacing: var(--tll-track-data); font-size: var(--tll-data); font-variant-numeric: tabular-nums; }
+.muted { color: var(--c-muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+section { scroll-margin-top: 3.5rem; padding-block: clamp(3rem, 2rem + 4vw, 6.5rem); }
+section + section { border-top: 1px solid var(--c-hairline); }
+section.dark + section { border-top: 0; }
+.sec-head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.sec-head h2 { color: var(--c-ink); }
+.sec-head .lead { color: var(--c-text-2); }
+.eyebrow { color: var(--c-teal-deep); margin: 0; }
+.dark .eyebrow { color: var(--c-teal); }
+
+/* Buttons: filled, outlined, text link. Square, 48px, Plex 600, sentence case. */
+.btn { font-family: var(--tll-face-text); font-weight: 600; font-size: 1rem; line-height: 1; min-height: 48px; padding: 0 1.25rem; border-radius: 0; display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; text-decoration: none; }
+.btn-fill { background: var(--c-rose-btn); color: var(--c-white); border: 1.5px solid var(--c-rose-btn); }
+.btn-fill:hover { background: var(--c-rose-text); border-color: var(--c-rose-text); }
+.btn-line { background: transparent; color: var(--c-ink); border: 1.5px solid var(--c-ink); }
+.btn-line:hover { background: var(--c-cream); }
+.tlink { font-family: var(--tll-face-text); font-weight: 600; color: var(--c-ink); text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: 5px; background: none; border: 0; padding: 0; cursor: pointer; font-size: 1rem; min-height: 44px; display: inline-flex; align-items: center; }
+.dark .tlink { color: var(--c-cream); }
+.chip { font-family: var(--tll-face-mono); font-size: var(--tll-data); letter-spacing: var(--tll-track-data); text-transform: uppercase; border: 1.5px solid var(--c-ink); background: transparent; color: var(--c-ink); border-radius: 999px; min-height: 44px; padding: 0 .9rem; cursor: pointer; font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--c-midnight); color: var(--c-cream); border-color: var(--c-midnight); }
+
+/* Readout bar */
+.readout { position: sticky; top: 0; z-index: 20; background: var(--c-midnight); color: var(--c-cream); border-bottom: 1px solid var(--c-midnight-2); }
+.readout .wrap { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; padding-block: .55rem; align-items: baseline; }
+.readout .mono { font-size: var(--tll-data); }
+.readout b { color: var(--c-teal); font-weight: 600; }
+.readout .k { color: var(--c-cream-80); }
+@media (max-width: 640px) { .readout .wrap { gap: .1rem .9rem; } .readout .opt { display: none; } }
+
+/* Intro */
+.intro { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5.5rem) clamp(2.5rem, 2rem + 3vw, 5rem); }
+.intro h1 { font-size: var(--tll-story-title); color: var(--c-ink); margin-top: 1.25rem; max-inline-size: 18ch; }
+.intro .tll-type-deck { color: var(--c-text-2); margin-top: 1.25rem; }
+.intro .tll-type-ui { color: var(--c-text-2); margin-top: 1rem; }
+.jump { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; margin-top: 1.75rem; padding: 0; list-style: none; }
+.facts { margin-top: 1.5rem; color: var(--c-muted); }
+
+/* Cover band */
+.dark { background: var(--c-midnight); color: var(--c-cream); }
+.cover-grid { display: grid; gap: 2rem; align-items: end; }
+@media (min-width: 960px) { .cover-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3.5rem; } }
+.cover-title { color: var(--c-cream); margin: 1.25rem 0 0; }
+.cover .tll-type-deck { color: var(--c-cream-80); margin-top: 1.5rem; }
+.cover .meta { color: var(--c-cream-80); margin-top: 1.5rem; }
+.cover .meta b { color: var(--c-cream); font-weight: 600; }
+.cover .tll-type-cover-title a { color: inherit; text-decoration: none; }
+.cover .tll-type-cover-title a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--c-teal); text-underline-offset: .12em; }
+.photo { margin: 0; }
+@media (max-width: 959px) { .photo { max-width: 30rem; } }
+.photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0; }
+.photo figcaption { margin-top: .6rem; color: var(--c-cream-80); }
+.photo figcaption a { color: var(--c-cream); text-decoration-color: var(--c-teal); }
+.speclabel { color: var(--c-teal); margin: 0; }
+
+/* Scale rows */
+.controls { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; margin-bottom: .75rem; }
+.status { color: var(--c-muted); margin: 0 0 2rem; min-height: 1.5em; }
+.steps { border-top: 1px solid var(--c-ink); }
+.step { display: grid; gap: 1rem 2.5rem; padding-block: 1.75rem 2rem; border-bottom: 1px solid var(--c-hairline); }
+.step:last-child { border-bottom: 0; }
+@media (min-width: 900px) { .step { grid-template-columns: 19rem minmax(0, 1fr); } }
+.spec { display: grid; gap: .3rem; align-content: start; color: var(--c-text-2); }
+.spec .name { color: var(--c-ink); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); }
+.spec .now b { color: var(--c-ink); font-weight: 600; }
+.spec code { font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: none; letter-spacing: 0; color: var(--c-ink); background: var(--c-cream); padding: .35rem .5rem; overflow-wrap: anywhere; display: block; margin-top: .3rem; }
+.spec details { margin-top: .3rem; }
+.spec summary { cursor: pointer; font-family: var(--tll-face-text); font-weight: 600; font-size: .9375rem; color: var(--c-ink); text-transform: none; letter-spacing: 0; min-height: 44px; display: flex; align-items: center; text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: 5px; list-style: none; }
+.spec summary::-webkit-details-marker { display: none; }
+.spec summary::after { content: " +"; white-space: pre; }
+.spec details[open] summary::after { content: " \2212"; }
+.spec .math { font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: none; letter-spacing: 0; line-height: 1.6; color: var(--c-ink); margin: .25rem 0 0; }
+.sample { min-width: 0; color: var(--c-ink); }
+.sample a { color: inherit; text-decoration: none; }
+.sample a:hover { text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: .14em; }
+.sample .src { color: var(--c-muted); margin-top: .9rem; }
+.sample .src a { color: var(--c-teal-deep); text-decoration: underline; }
+.sample p { margin: 0; }
+.sample .tll-type-story-body p, .sample .tll-type-deck { color: var(--c-ink); }
+.sample .tll-type-data { color: var(--c-text-2); margin-top: .4rem; }
+.sample .tll-type-data.src { margin-top: .9rem; }
+.sample .tll-type-eyebrow { color: var(--c-teal-deep); }
+
+/* Calculator */
+.calc-top { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+.calc-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; }
+.calc-row label { font-weight: 600; }
+input, button, select { font: inherit; }
+input[type="range"] { width: min(100%, 36rem); accent-color: var(--c-rose-btn); min-height: 44px; }
+input[type="number"] { font-family: var(--tll-face-mono); font-size: 1rem; width: 6.5rem; min-height: 44px; padding: 0 .6rem; border: 1.5px solid var(--c-ink); border-radius: 0; background: var(--c-paper); color: var(--c-ink); font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; vertical-align: top; padding: .75rem .75rem .75rem 0; border-bottom: 1px solid var(--c-hairline); }
+thead th { font-family: var(--tll-face-mono); font-size: var(--tll-eyebrow); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); text-transform: uppercase; color: var(--c-muted); border-bottom: 1px solid var(--c-ink); }
+.calc td.n { font-family: var(--tll-face-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.calc td.z { white-space: normal; }
+.calc td.z span { display: inline-block; }
+@media (max-width: 640px) { .calc th, .calc td { padding-right: .5rem; } .calc th:last-child, .calc td:last-child { padding-right: 0; } }
+.calc th.n { text-align: right; }
+.calc td:first-child { white-space: nowrap; font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: uppercase; letter-spacing: var(--tll-track-data); }
+.ok { color: var(--c-teal-deep); }
+.bad { color: var(--c-rose-text); }
+.note { color: var(--c-text-2); margin-top: 1.25rem; }
+
+/* Story page specimen */
+.story { display: grid; gap: 1.25rem; }
+.story > p { margin: 0; }
+.story .tll-type-story-title { color: var(--c-ink); }
+.story .tll-type-deck { color: var(--c-text-2); }
+.story .byline { color: var(--c-text-2); }
+.story .byline b { color: var(--c-ink); font-weight: 600; }
+.story .tll-type-story-body { color: var(--c-ink); margin-top: 1rem; }
+.story .tll-type-story-body p { margin: 0 0 1.1em; }
+.story .tll-type-story-body p.first::first-letter { font-family: var(--tll-face-display); font-weight: 800; font-size: 3.6em; line-height: .85; float: left; padding: .08em .1em 0 0; }
+.measure-out { color: var(--c-muted); border-top: 1px solid var(--c-hairline); padding-top: .9rem; margin-top: .5rem; max-inline-size: 62rem; }
+.measure-out b { color: var(--c-ink); font-weight: 600; }
+.measure-out b.ok { color: var(--c-teal-deep); }
+.measure-out b.bad { color: var(--c-rose-text); }
+.toggle-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .75rem; }
+.show-measure .tll-type-story-body p { outline: 1px dashed var(--c-teal-deep); outline-offset: 4px; }
+
+/* Technical data */
+.data-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 960px) { .data-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 4rem; } }
+.sheet { margin: 0; border-top: 1px solid var(--c-ink); }
+.sheet > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: .25rem 1.5rem; padding-block: .9rem; border-bottom: 1px solid var(--c-hairline); }
+@media (min-width: 640px) { .sheet > div { grid-template-columns: 13rem minmax(0, 1fr); align-items: baseline; } }
+.sheet dt { color: var(--c-muted); }
+.sheet dd { margin: 0; color: var(--c-ink); }
+.sheet dd .tll-type-data-l { display: inline; }
+.sheet dd small { display: block; font-family: var(--tll-face-text); font-size: var(--tll-caption); text-transform: none; letter-spacing: 0; color: var(--c-text-2); margin-top: .25rem; }
+.times { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--c-ink); }
+.times li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; border-bottom: 1px solid var(--c-hairline); align-items: baseline; }
+.times a { display: block; padding-block: .7rem; min-height: 44px; color: var(--c-ink); text-decoration: none; font-family: var(--tll-face-text); font-weight: 500; }
+.times a:hover { text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; }
+.times .tll-type-data { text-align: right; color: var(--c-ink); }
+.times-h { margin: 0 0 .75rem; color: var(--c-muted); }
+.lib { margin-top: 2rem; color: var(--c-text-2); }
+.lib b { color: var(--c-ink); font-weight: 600; }
+
+/* Mapping */
+.map h3 { margin: 2.5rem 0 1rem; font-size: var(--tll-card-title); color: var(--c-ink); }
+.map td code, .map th code { font-family: var(--tll-face-mono); font-size: var(--tll-data); color: var(--c-ink); overflow-wrap: anywhere; }
+.map td { font-size: var(--tll-caption); color: var(--c-text-2); }
+.map td:first-child code { font-weight: 600; }
+.map td.today code { display: inline-block; margin: 0 .35rem .2rem 0; background: var(--c-cream); padding: .1rem .35rem; }
+@media (max-width: 760px) {
+  .map table, .map tbody, .map tr, .map td { display: block; width: 100%; }
+  .map thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .map tr { border-bottom: 1px solid var(--c-hairline); padding-block: .75rem; }
+  .map td { border: 0; padding: .2rem 0; }
+  .map td::before { content: attr(data-h); display: block; font-family: var(--tll-face-mono); font-size: var(--tll-eyebrow); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); text-transform: uppercase; color: var(--c-muted); margin-top: .35rem; }
+}
+
+/* Stylesheet */
+.code-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+pre.css { margin: 0; background: var(--c-midnight); color: var(--c-cream); padding: 1.25rem; max-height: 34rem; overflow: auto; font-family: var(--tll-face-mono); font-size: var(--tll-data); line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; border-radius: 0; }
+
+footer { border-top: 1px solid var(--c-hairline); padding-block: 2rem 5rem; color: var(--c-muted); }
+
+/* Fixed corner link */
+.corner { position: fixed; right: 12px; bottom: 12px; z-index: 30; background: var(--c-paper); color: var(--c-ink); border: 1.5px solid var(--c-ink); font-family: var(--tll-face-text); font-weight: 600; font-size: .9375rem; min-height: 44px; padding: 0 .9rem; display: inline-flex; align-items: center; text-decoration: none; }
+.corner:hover { background: var(--c-cream); }
+</style>
+</head>
+<body class="tll-type">
+
+<aside class="readout" aria-label="Live width readout">
+  <div class="wrap mono">
+    <span><span class="k">Window</span> <b id="r-w">0</b> px</span>
+    <span><span class="k">1 rem</span> <b id="r-rem">16</b> px</span>
+    <span><span class="k">Story title</span> <b id="r-title">0</b> px</span>
+    <span class="opt"><span class="k">Deck</span> <b id="r-deck">0</b> px</span>
+    <span><span class="k">Story body</span> <b id="r-body">18</b> px</span>
+    <span><span class="k">Line</span> <b id="r-cpl">0</b> characters</span>
+  </div>
+</aside>
+
+<main>
+<header class="wrap intro">
+  <p class="tll-type-eyebrow eyebrow">TLL type system · draft 1 · November 12, 2026</p>
+  <h1>Drag the window and watch the type <em class="tll-type-accent">behave</em></h1>
+  <p class="tll-type-deck">Every size on this page comes from one stylesheet, <span style="white-space:nowrap">type-system.css</span>, and the bar at the top reads the real numbers off the page while you resize. Nothing here is a picture of a size.</p>
+  <p class="tll-type-ui">Playfair Display does the shouting. The receipts go in JetBrains Mono, and everything you actually read sits in IBM Plex Sans Condensed, which never drops under 12px, however small the phone.</p>
+  <p class="tll-type-data facts">Fluid from 360 to 1920 px with a rem term in every clamp · story body fixed at 18 px / 1.65</p>
+  <ul class="jump">
+    <li><a class="tlink" href="#scale">The scale ↓</a></li>
+    <li><a class="tlink" href="#calc">Pick a width ↓</a></li>
+    <li><a class="tlink" href="#story">The story page ↓</a></li>
+    <li><a class="tlink" href="#data">Technical data ↓</a></li>
+    <li><a class="tlink" href="#map">Today's variables ↓</a></li>
+    <li><a class="tlink" href="#css">The stylesheet ↓</a></li>
+  </ul>
+</header>
+
+<section class="dark cover" aria-labelledby="cover-h">
+  <div class="wrap cover-grid">
+    <div>
+      <p class="tll-type-eyebrow speclabel" id="cover-h">Specimen · cover title · display-xl on Midnight</p>
+      <p class="tll-type-eyebrow eyebrow" style="margin-top:2rem">King George Island, Antarctica</p>
+      <p class="tll-type-cover-title cover-title"><a href="https://www.thatlayover.life/stories/antarctica-marathon">Whiskey on 10,000-Year-Old Ice and Chasing the <em class="tll-type-accent">Impossible</em>: The Antarctica Marathon</a></p>
+      <p class="tll-type-deck">The honeymoon that became a four-year cancellation saga, and then the coldest, strangest, most beautiful race I have ever run. Four attempts, one pandemic, and an apartment marathon I recommend to nobody.</p>
+      <p class="tll-type-data meta"><b>Nancy Carleton</b> · Stories From the Road · September 23, 2026 · 12 min</p>
+    </div>
+    <figure class="photo">
+      <img src="@@PHOTO@@" width="900" height="507" alt="Sun bursting over a snow peak on King George Island, a vessel at anchor in the bay and a line of people walking ashore across the snow">
+      <figcaption class="tll-type-caption"><a href="https://www.thatlayover.life/stories/antarctica-marathon">Photo: Nancy Carleton</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="scale" aria-labelledby="scale-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">01 · The scale</p>
+      <h2 id="scale-h">The scale</h2>
+      <p class="tll-type-ui lead">Every step but one stretches with the window. Story body holds at 18px, because the kit says so and because text that changes size mid-paragraph feels like reading on a bus.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Headline specimens">
+      <button type="button" class="btn btn-fill" id="b-rand">Try another real title</button>
+      <button type="button" class="btn btn-line" id="b-long">Longest title</button>
+      <button type="button" class="btn btn-line" id="b-short">Shortest title</button>
+      <button type="button" class="tlink" id="b-reset">← Back to the specimens</button>
+    </div>
+    <p class="tll-type-data status" id="status" aria-live="polite">Specimen titles, one per step · @@COUNT@@ stories in the library to try</p>
+    <div class="steps">
+@@STEPS@@
+    </div>
+  </div>
+</section>
+
+<section id="calc" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">02 · Pick a width</p>
+      <h2 id="calc-h">Pick a width</h2>
+      <p class="tll-type-ui lead">For when you are reading this on a phone and cannot drag anything. Choose a width and the table does the arithmetic from the same clamp values the page is using right now.</p>
+    </div>
+    <div class="calc-top">
+      <div class="calc-row">
+        <label for="w-range">Width</label>
+        <input type="range" id="w-range" min="360" max="1920" step="1" value="1440">
+        <input type="number" id="w-num" min="360" max="1920" step="1" value="1440" aria-label="Width in pixels">
+        <span class="mono muted">px</span>
+      </div>
+      <div class="chips" role="group" aria-label="Common widths">
+        <button type="button" class="chip" data-w="360">360</button>
+        <button type="button" class="chip" data-w="390">390 phone</button>
+        <button type="button" class="chip" data-w="768">768 tablet</button>
+        <button type="button" class="chip" data-w="1024">1024</button>
+        <button type="button" class="chip" data-w="1440" aria-pressed="true">1440 laptop</button>
+        <button type="button" class="chip" data-w="1920">1920 monitor</button>
+      </div>
+    </div>
+    <table class="calc">
+      <caption class="sr">Size of each step at the chosen width, at your window, and the zoom check</caption>
+      <thead><tr><th scope="col">Step</th><th scope="col" class="n" id="th-w">At 1440</th><th scope="col" class="n">At your window</th><th scope="col" class="n">Zoom check</th></tr></thead>
+      <tbody id="calc-body">@@CALC_ROWS@@</tbody>
+    </table>
+    <p class="tll-type-ui note">The zoom column is the most each size grows when you zoom the browser up to 500% at that width, as a multiple of its normal size. WCAG asks that 2× be reachable. A size made only of vw would stall well short of it, which is why every step here keeps a rem term.</p>
+  </div>
+</section>
+
+<section id="story" aria-labelledby="story-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">03 · The story page</p>
+      <h2 id="story-h">The story page</h2>
+      <p class="tll-type-ui lead">Paragraphs from near the top of the Antarctica story, quoted as published and set the way a story page would set them. The counter underneath measures the actual characters on each full line, so you can watch the 60 to 75 rule hold as the window changes.</p>
+    </div>
+    <article class="story" id="story-specimen">
+      <p class="tll-type-eyebrow eyebrow">King George Island, Antarctica</p>
+      <p class="tll-type-story-title" id="story-title">Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon</p>
+      <p class="tll-type-deck" id="story-deck">The honeymoon that became a four-year cancellation saga, and then the coldest, strangest, most beautiful race I have ever run. Four attempts, one pandemic, and an apartment marathon I recommend to nobody.</p>
+      <p class="tll-type-data byline"><b>Nancy Carleton</b> · September 23, 2026 · 12 min</p>
+      <div class="tll-type-story-body" id="story-body">
+        <p class="first">Nobody tells you this, but the running is not the hard part of the Antarctica Marathon. The hard part is showing up at the start line at all. We needed four attempts, four years, a global pandemic, a military quarantine, and one full marathon run inside my own apartment in Copenhagen. By the time my shoes hit that gravel, Antarctica owed me money.</p>
+        <h2>What the Antarctica Marathon actually is</h2>
+        <p>It is a true 42.2km marathon on King George Island in the South Shetlands, run on rough gravel and dirt roads connecting four research bases: Bellingshausen (Russia), Artigas (Uruguay), Frei (Chile), and Great Wall (China). Marathon Tours &amp; Travel runs it in late February or early March. Because the island is small and the ice is not exactly flexible, it is always a looped course. Ours had six loops, though the number varies by year and weather.</p>
+        <p>There is also a half marathon (4.5-hour limit) and a 10K (2 hours). The full marathon has a 6-hour cutoff, and most runners take more than 5 hours to finish, which should tell you how tough the course really is.</p>
+      </div>
+      <p class="tll-type-data measure-out" id="measure-out">Measuring the line length…</p>
+      <div class="toggle-row">
+        <button type="button" class="btn btn-line" id="b-measure" aria-pressed="false">Outline the measure</button>
+        <a class="tlink" href="https://www.thatlayover.life/stories/antarctica-marathon">Read the whole story →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="data" aria-labelledby="data-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">04 · Technical data</p>
+      <h2 id="data-h">Technical data</h2>
+      <p class="tll-type-ui lead">Mono carries anything you might need to copy down at a gate. It sits in capitals with wide tracking, and every figure is the same width, so a column of minutes lines up on its own.</p>
+    </div>
+    <div class="data-grid">
+      <dl class="sheet">
+        <div><dt class="tll-type-eyebrow">Read time</dt><dd><span class="tll-type-data-l">12 min</span><small>Whiskey on 10,000-Year-Old Ice, <a href="https://www.thatlayover.life/stories/antarctica-marathon">the Antarctica story</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Read time</dt><dd><span class="tll-type-data-l">4 min</span><small><a href="https://www.thatlayover.life/stories/unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city">Unmatchable Pompeii</a>, by Roberta Bianchi</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Race distance</dt><dd><span class="tll-type-data-l">42.2 km</span><small>King George Island, as the Antarctica story gives it</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Paw Passport</dt><dd><span class="tll-type-data-l">35 kg</span><small><a href="https://www.thatlayover.life/pets/magnus-waffles">Magnus Waffles</a>, Samoyed, the editor's dog</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Checked bag</dt><dd><span class="tll-type-data-l">23 kg</span><small>"Your checked bag is 23 kg of snacks from home." From <a href="https://www.thatlayover.life/for-expats">/for-expats</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Coordinates</dt><dd><span class="tll-type-data">12.17° N 68.99° W · Curaçao</span><small>The home cover photo's location line</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Coordinates</dt><dd><span class="tll-type-data">38.98° N 1.43° E · Ibiza</span><small>Photo line for Chesney Lish on the home page</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Layover guide</dt><dd><span class="tll-type-data-l">CPH · 6 h</span><small><a href="https://www.thatlayover.life/layovers/cph-copenhagen-6h">The 6-Hour Copenhagen Reset (from CPH)</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Layover guide</dt><dd><span class="tll-type-data-l">SOF · 3 h</span><small><a href="https://www.thatlayover.life/layovers/sof-sofia-3h">Three Hours in Sofia, If You Must (from SOF)</a></small></dd></div>
+      </dl>
+      <div>
+        <p class="tll-type-eyebrow times-h">Newest in the library, minutes to read</p>
+        <ol class="times" id="times">@@TIMES@@</ol>
+        <p class="tll-type-data lib" id="lib">@@LIB@@</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="map" class="map" aria-labelledby="map-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">05 · Today's variables</p>
+      <h2 id="map-h">From today's variables to these</h2>
+      <p class="tll-type-ui lead">The faces already hold the same values under a different prefix on every template, so adopting those is search and replace. Sizes are mostly hard-coded today, so the second table says where each one lives now and what moves when it switches over.</p>
+    </div>
+    <h3>Faces</h3>
+    <table>
+      <thead><tr><th scope="col">New token</th><th scope="col">Replaces</th><th scope="col">Where</th><th scope="col">What changes</th></tr></thead>
+      <tbody>
+        <tr><td data-h="New token"><code>--tll-face-display</code></td><td class="today" data-h="Replaces"><code>--h3-head</code><code>--st3-f-head</code><code>--ct3-head</code><code>--s3-head</code><code>--ds3-serif</code><code>--pf3-head</code><code>--pr3-head</code><code>--mg-head</code><code>---font--heading-font</code></td><td data-h="Where">Home, story, country and layovers, stories, destinations, profiles, the magazine layer, Webflow's own variable</td><td data-h="What changes">Nothing visible. Every one already reads 'Playfair Display', Georgia, serif.</td></tr>
+        <tr><td data-h="New token"><code>--tll-face-text</code></td><td class="today" data-h="Replaces"><code>--h3-body</code><code>--st3-f-body</code><code>--ct3-body</code><code>--s3-body</code><code>--ds3-body</code><code>--pf3-body</code><code>--pr3-body</code><code>--mg-text-f</code></td><td data-h="Where">Same templates</td><td data-h="What changes">Nothing visible. <code>--st3-f-body</code> and <code>--mg-text-f</code> skip the 'IBM Plex Sans' fallback; the new token keeps it.</td></tr>
+        <tr><td data-h="New token"><code>--tll-face-mono</code></td><td class="today" data-h="Replaces"><code>--h3-mono</code><code>--st3-f-mono</code><code>--ct3-mono</code><code>--s3-mono</code><code>--ds3-mono</code><code>--pf3-mono</code><code>--pr3-mono</code><code>--mg-mono</code></td><td data-h="Where">Same templates</td><td data-h="What changes">Nothing visible.</td></tr>
+      </tbody>
+    </table>
+    <h3>Sizes and measures</h3>
+    <table>
+      <thead><tr><th scope="col">New token</th><th scope="col">Today</th><th scope="col">Where</th><th scope="col">What changes</th></tr></thead>
+      <tbody>
+        <tr><td data-h="New token"><code>--tll-cover-title</code> display-xl, 46 → 112</td><td class="today" data-h="Today"><code>h1 clamp(44px, 6.4vw, 112px)</code><code>-0.035em</code><code>home h1 clamp(46px, 7.6vw, 148px)</code></td><td data-h="Where">tll-v9-type-v1 layer</td><td data-h="What changes">Tracking goes back to the kit's -0.01em. The home cover tops out at 112px instead of 148px unless you keep a cover-only exception.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-title</code> display-l, 36 → 80</td><td class="today" data-h="Today"><code>.tll-story-title clamp(34px, 8.5vw, 48px)</code><code>from 900px: clamp(46px, 4.9vw, 72px)</code></td><td data-h="Where">tll-mag-story-v1, site layers v16</td><td data-h="What changes">One rule instead of two. 36px on a 360 phone instead of 34px; about 66px at 1440 instead of 71px.</td></tr>
+        <tr><td data-h="New token"><code>--tll-step-display-l</code></td><td class="today" data-h="Today"><code>--h3g-fs clamp(34px, 4.2vw, 60px)</code></td><td data-h="Where">Home layover guides board (embed 94ce12c0)</td><td data-h="What changes">Guide titles become story-title sized. Closest step; Nancy may prefer display-m here.</td></tr>
+        <tr><td data-h="New token"><code>--tll-section-title</code> display-m, 28 → 48</td><td class="today" data-h="Today"><code>h2 clamp(34px, 5vw, 64px)</code><code>-0.025em</code><code>--h3-lab clamp(28px, 3.4vw, 44px)</code></td><td data-h="Where">tll-v9-type-v1 layer; home rail labels (embed 94ce12c0)</td><td data-h="What changes">Rail labels barely move. Generic h2s get smaller so they sit a step under the story title.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-subhead</code> display-m</td><td class="today" data-h="Today"><code>story h2 28px</code><code>story h3 24px</code></td><td data-h="Where">tll-mag-story-v1</td><td data-h="What changes">Same 28px on phones, about 42px at 1440.</td></tr>
+        <tr><td data-h="New token"><code>--tll-card-title</code> title, 20 → 28</td><td class="today" data-h="Today"><code>.h3-card-title clamp(21px, 1.8vw, 28px)</code><code>--h3g-nm clamp(20px, 2.3vw, 34px)</code></td><td data-h="Where">home3.css; home guides board</td><td data-h="What changes">Within a pixel of today. Gains a rem term, so it grows with zoom.</td></tr>
+        <tr><td data-h="New token"><code>--tll-deck</code> deck, 18 → 23</td><td class="today" data-h="Today"><code>hero subhead 19px</code><code>h1 + p 17px</code></td><td data-h="Where">Hero rule in site layers v16; tll-v9-type-v1</td><td data-h="What changes">One fluid size replaces two fixed ones.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-body</code> 18px fixed</td><td class="today" data-h="Today"><code>.tll-body 18px / 1.65</code></td><td data-h="Where">tll-mag-story-v1 (the older st3 rule still says 16px and is overridden)</td><td data-h="What changes">Nothing visible. Rename, and the stale 16px rule can go.</td></tr>
+        <tr><td data-h="New token"><code>--tll-measure-story</code> 52ch</td><td class="today" data-h="Today"><code>--st3-col: 680px</code></td><td data-h="Where">style-st3-story-v1</td><td data-h="What changes">A px column holds a different number of letters whenever the size changes; ch follows the font. <span id="col680">At 18px, 680px holds about @@C680@@ characters a line.</span></td></tr>
+        <tr><td data-h="New token"><code>--tll-eyebrow</code> meta, Mono 600, 0.14em</td><td class="today" data-h="Today"><code>.h3-ey 11px, 0.22em</code><code>.tll-eyebrow-teal 11px, then 12px</code></td><td data-h="Where">home3.css; site layers v16</td><td data-h="What changes">11px goes up to the kit's 12px floor.</td></tr>
+        <tr><td data-h="New token"><code>--tll-data</code> meta, Mono 400, 0.12em</td><td class="today" data-h="Today"><code>.h3-hero-coords 11px (10px on phones), 0.2em</code><code>.tll-story-meta-divider 12px</code></td><td data-h="Where">home3.css; site layers v16</td><td data-h="What changes">The 10px and 11px coordinates go up to 12px.</td></tr>
+        <tr><td data-h="New token"><code>--tll-caption</code> small, 13 → 14</td><td class="today" data-h="Today"><code>.tll-aeo-box 14px and 15px</code></td><td data-h="Where">style-st3-story-v1</td><td data-h="What changes">One size for captions, credits and box text.</td></tr>
+        <tr><td data-h="New token"><code>--tll-ui</code> body, 15 → 16</td><td class="today" data-h="Today"><code>15px and 16px, hard-coded per template</code></td><td data-h="Where">Most templates</td><td data-h="What changes">Moves from fixed to a one-pixel stretch.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="css" aria-labelledby="css-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">06 · The stylesheet</p>
+      <h2 id="css-h">The stylesheet</h2>
+      <p class="tll-type-ui lead">This is the exact CSS the page is using. The same file sits beside this page as type-system.css, comments and all.</p>
+    </div>
+    <div class="code-actions">
+      <button type="button" class="btn btn-line" id="b-copy">Copy the CSS</button>
+      <span class="tll-type-data muted" id="copy-status" aria-live="polite"></span>
+    </div>
+    <pre class="css" id="css-pre" tabindex="0" aria-label="type-system.css">@@CSS_ESCAPED@@</pre>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="tll-type-caption">Prototype for That Layover Life. Nothing here is loaded by the live site. Story titles, places, contributors and minutes come from the live library as read on November 12, 2026; quoted lines link to where they live.</p>
+  </div>
+</footer>
+
+<nav aria-label="Prototypes"><a class="corner" href="../index.html">All prototypes</a></nav>
+
+<script>
+const STORIES = @@STORIES@@;
+const SPECIMENS = @@SPECIMENS@@;
+(function () {
+  const root = document.documentElement;
+  const $ = (id) => document.getElementById(id);
+  const URL_BASE = 'https://www.thatlayover.life/stories/';
+
+  /* Read a step straight from the CSS custom property, so the page never
+     keeps its own copy of the numbers. */
+  function stepDef(name) {
+    const v = getComputedStyle(root).getPropertyValue('--tll-step-' + name).trim();
+    const m = v.match(/clamp\(\s*([\d.]+)rem\s*,\s*([\d.]+)rem\s*\+\s*([\d.]+)vw\s*,\s*([\d.]+)rem\s*\)/);
+    if (m) return { min: +m[1], b: +m[2], vw: +m[3], max: +m[4] };
+    const f = v.match(/([\d.]+)rem/);
+    return f ? { fixed: +f[1] } : null;
+  }
+  function sizeAt(d, w, remPx) {
+    if (!d) return NaN;
+    if (d.fixed != null) return d.fixed * remPx;
+    const pref = d.b * remPx + d.vw * w / 100;
+    return Math.min(Math.max(pref, d.min * remPx), d.max * remPx);
+  }
+  function zoomReach(d, w, remPx) {
+    const base = sizeAt(d, w, remPx);
+    let best = 1;
+    for (let z = 1; z <= 5.0001; z += 0.05) best = Math.max(best, z * sizeAt(d, w / z, remPx) / base);
+    return best;
+  }
+  const fmt = (n) => (Math.round(n * 10) / 10).toFixed(1).replace(/\.0$/, '');
+  const remPx = () => parseFloat(getComputedStyle(root).fontSize) || 16;
+  const px = (el) => el ? parseFloat(getComputedStyle(el).fontSize) : NaN;
+
+  const rows = Array.from(document.querySelectorAll('.step'));
+  const defs = {};
+  rows.forEach((r) => { defs[r.dataset.step] = stepDef(r.dataset.step); });
+
+  /* Characters per full line, measured from the rendered text. */
+  function charsPerLine(container) {
+    const counts = [];
+    container.querySelectorAll('p').forEach((p) => {
+      const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      let top = null, n = 0; const lines = [];
+      const lh = parseFloat(getComputedStyle(p).lineHeight) || 30;
+      let node;
+      while ((node = walker.nextNode())) {
+        for (let i = 0; i < node.length; i++) {
+          range.setStart(node, i); range.setEnd(node, i + 1);
+          const rects = range.getClientRects();
+          if (!rects.length) continue;
+          if (rects[0].height > lh * 1.3) { n++; continue; } /* a drop cap is one letter, not a line */
+          const t = rects[0].top;
+          if (top === null || t - top > 4) { if (top !== null) lines.push(n); top = t; n = 0; }
+          n++;
+        }
+      }
+      if (top !== null) lines.push(n);
+      lines.pop(); /* the last line of a paragraph is short by nature */
+      counts.push(...lines);
+    });
+    if (!counts.length) return null;
+    return { avg: counts.reduce((a, b) => a + b, 0) / counts.length, min: Math.min(...counts), max: Math.max(...counts), n: counts.length };
+  }
+
+  /* 680px column at 18px, for the mapping table. */
+  function measure680() {
+    const body = $('story-body');
+    const probe = body.cloneNode(true);
+    probe.removeAttribute('id');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:0;width:680px;visibility:hidden';
+    probe.querySelectorAll('p').forEach((p) => { p.style.maxInlineSize = 'none'; p.classList.remove('first'); });
+    document.body.appendChild(probe);
+    const r = charsPerLine(probe);
+    probe.remove();
+    if (r) $('col680').textContent = 'At 18px, 680px holds about ' + Math.round(r.avg) + ' characters a line.';
+  }
+
+  function update() {
+    const w = window.innerWidth, rp = remPx();
+    $('r-w').textContent = w;
+    $('r-rem').textContent = fmt(rp);
+    $('r-title').textContent = fmt(px($('story-title')));
+    $('r-deck').textContent = fmt(px($('story-deck')));
+    $('r-body').textContent = fmt(px(document.querySelector('#story-body p')));
+    rows.forEach((r) => {
+      const s = r.querySelector('[data-measure]');
+      const d = defs[r.dataset.step];
+      r.querySelector('[data-now]').textContent = fmt(px(s));
+      const m = r.querySelector('[data-live-math]');
+      if (m && d && d.fixed == null) {
+        m.textContent = 'At your ' + w + 'px window: ' + fmt(d.b * rp) + ' + ' + d.vw + ' × ' + w + ' / 100 = ' +
+          fmt(d.b * rp + d.vw * w / 100) + 'px, held between ' + fmt(d.min * rp) + ' and ' + fmt(d.max * rp) + ' = ' + fmt(sizeAt(d, w, rp)) + 'px.';
+      }
+    });
+    const c = charsPerLine($('story-body'));
+    if (c) {
+      const p = document.querySelector('#story-body p');
+      const cap = parseFloat(getComputedStyle(p).maxInlineSize);
+      const pw = p.getBoundingClientRect().width;
+      const screenBound = pw < cap - 1;
+      const inside = c.avg >= 60 && c.avg <= 75;
+      $('r-cpl').textContent = Math.round(c.avg);
+      let verdict;
+      if (screenBound) {
+        verdict = 'the screen is narrower than the ' + Math.round(cap) + 'px cap, so the phone sets the line here · the cap takes over from about a ' +
+          (Math.ceil((cap + (w - pw)) / 10) * 10) + 'px window';
+      } else {
+        verdict = 'capped at ' + Math.round(cap) + 'px · kit range 60 to 75 · <b class="' + (inside ? 'ok' : 'bad') + '">' + (inside ? 'inside' : 'outside') + '</b>';
+      }
+      $('measure-out').innerHTML = 'Measured: <b>' + Math.round(c.avg) + '</b> characters a line on average, ' + c.min + ' to ' + c.max +
+        ', over ' + c.n + ' full lines · ' + verdict;
+    }
+    renderCalc();
+  }
+
+  /* Width calculator */
+  let calcW = 1440;
+  function renderCalc() {
+    const rp = remPx(), w = window.innerWidth;
+    $('th-w').textContent = 'At ' + calcW;
+    const tb = $('calc-body');
+    tb.innerHTML = '';
+    rows.forEach((r) => {
+      const name = r.dataset.step, d = defs[name];
+      const z = zoomReach(d, calcW, rp);
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + name + '</td><td class="n">' + fmt(sizeAt(d, calcW, rp)) + ' px</td><td class="n">' + fmt(sizeAt(d, w, rp)) +
+        ' px</td><td class="n z ' + (z >= 2 ? 'ok' : 'bad') + '"><span>' + z.toFixed(2) + '×</span> <span>' + (z >= 2 ? 'reaches 2×' : 'short of 2×') + '</span></td>';
+      tb.appendChild(tr);
+    });
+  }
+  function setCalc(w) {
+    calcW = Math.min(1920, Math.max(360, Math.round(+w || 360)));
+    $('w-range').value = calcW; $('w-num').value = calcW;
+    document.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(+c.dataset.w === calcW)));
+    renderCalc();
+  }
+  $('w-range').addEventListener('input', (e) => setCalc(e.target.value));
+  $('w-num').addEventListener('change', (e) => { const v = e.target.value.trim(); if (v === '' || !isFinite(+v)) { e.target.value = calcW; return; } setCalc(v); });
+  document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => setCalc(c.dataset.w)));
+
+  /* Title stress tests */
+  const titleRows = rows.filter((r) => r.querySelector('[data-title]'));
+  function showTitle(s, label) {
+    titleRows.forEach((r) => {
+      const a = r.querySelector('[data-title]');
+      a.textContent = s.t; a.href = URL_BASE + s.s;
+      r.querySelector('[data-src]').textContent = [s.by, s.p, s.m + ' min'].join(' · ');
+    });
+    $('status').textContent = label + ' · ' + s.t.length + ' characters';
+    requestAnimationFrame(update);
+  }
+  let last = -1;
+  $('b-rand').addEventListener('click', () => {
+    let i; do { i = Math.floor(Math.random() * STORIES.length); } while (i === last && STORIES.length > 1);
+    last = i; showTitle(STORIES[i], 'Random pick from the library');
+  });
+  $('b-long').addEventListener('click', () => showTitle(STORIES.reduce((a, b) => (b.t.length > a.t.length ? b : a)), 'Longest title in the library'));
+  $('b-short').addEventListener('click', () => showTitle(STORIES.reduce((a, b) => (b.t.length < a.t.length ? b : a)), 'Shortest title in the library'));
+  $('b-reset').addEventListener('click', () => {
+    titleRows.forEach((r) => {
+      const sp = SPECIMENS[r.dataset.step]; const s = STORIES.find((x) => x.s === sp);
+      const a = r.querySelector('[data-title]'); a.textContent = s.t; a.href = URL_BASE + s.s;
+      r.querySelector('[data-src]').textContent = [s.by, s.p, s.m + ' min'].join(' · ');
+    });
+    $('status').textContent = 'Specimen titles, one per step · ' + STORIES.length + ' stories in the library to try';
+    requestAnimationFrame(update);
+  });
+
+  /* Measure outline */
+  $('b-measure').addEventListener('click', (e) => {
+    const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+    e.currentTarget.textContent = on ? 'Hide the outline' : 'Outline the measure';
+    $('story-specimen').classList.toggle('show-measure', on);
+  });
+
+  /* Copy CSS */
+  $('b-copy').addEventListener('click', () => {
+    const css = $('tll-type-system').textContent.trim() + '\n';
+    const fallback = () => {
+      const sel = window.getSelection(); const r = document.createRange();
+      r.selectNodeContents($('css-pre')); sel.removeAllRanges(); sel.addRange(r);
+      $('copy-status').textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+    };
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(css).then(() => { $('copy-status').textContent = 'Copied to your clipboard.'; }, fallback);
+      } else fallback();
+    } catch (err) { fallback(); }
+  });
+
+  let raf = 0;
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
+  update();
+  measure680();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { update(); measure680(); });
+})();
+</script>
+</body>
+</html>

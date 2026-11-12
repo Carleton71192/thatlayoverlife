@@ -1,0 +1,260 @@
+// TLL JSON-LD templates, annotated. Nov 12, 2026. Prototype, not live.
+// JSON-LD cannot carry comments, so this file is for reading. Paste from schema-templates.json or webflow-head-code.html.
+// Each comment sits above the line it explains: the CMS field the value comes from, what the live page does today, and what changes.
+
+// ===== STORY (Stories collection template, /stories/<slug>): Article + BreadcrumbList =====
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      // SLUG ← Stories · slug. Today: Same. Used in @id, url, mainEntityOfPage and the breadcrumb.
+      "@id": "https://www.thatlayover.life/stories/{{SLUG}}#article",
+      // SLUG: same field as above
+      "url": "https://www.thatlayover.life/stories/{{SLUG}}",
+      // SLUG: same field as above
+      "mainEntityOfPage": "https://www.thatlayover.life/stories/{{SLUG}}",
+      // NAME ← Stories · name. Today: Same (headline is the story title, not the SEO title). Google wants headline to match the title on the page. Webflow writes ' as &#39;; the tidy step turns it back.
+      "headline": "{{NAME}}",
+      // EXCERPT ← Stories · excerpt. Today: Same. A line break typed into the excerpt would make the block invalid JSON; the tidy step flattens it.
+      "description": "{{EXCERPT}}",
+      "image": [
+        // HERO_IMAGE ← Stories · hero-image. Today: Same, as a single string. Now an array of one, which is the shape Google's Article docs show.
+        "{{HERO_IMAGE}}"
+      ],
+      // PUBLISHED_DATE ← Stories · published-date. Today: Same. ISO 8601 with time zone, as Webflow writes it.
+      "datePublished": "{{PUBLISHED_DATE}}",
+      // DATE_MODIFIED ← Stories · last-updated, else published-date. Today: Head code writes published-date; the inline script tll-st3-owner-edit-v1 swaps in last-updated when it is later. Keep that arrangement: head code cannot fall back from an empty field. The tidy step also copies datePublished into an empty dateModified.
+      "dateModified": "{{DATE_MODIFIED}}",
+      // READING_TIME ← Stories · reading-time (Number, minutes). Today: Not emitted. New. Becomes timeRequired, e.g. PT9M. The Worker sets it on publish (words ÷ 220, rounded up, at least 1). Empty would read PTM; the tidy step drops it. No Google feature reads timeRequired.
+      "timeRequired": "PT{{READING_TIME}}M",
+      "author": {
+        "@type": "Person",
+        // CONTRIBUTOR_SLUG ← Stories · contributor → Contributors · slug. Today: Same, in author.url. New: author.@id matches the #person id the profile page already uses, so the story and the profile point at one person.
+        "@id": "https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}#person",
+        // CONTRIBUTOR_NAME ← Stories · contributor → Contributors · name. Today: Same. Google's author guidance: name plus a url to the author page. Both are there.
+        "name": "{{CONTRIBUTOR_NAME}}",
+        // CONTRIBUTOR_SLUG: same field as above
+        "url": "https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}",
+        "memberOf": {
+          // founder badge as a role inside TLL; schema.org-valid, no Google rich result
+          "@type": "OrganizationRole",
+          // CONTRIBUTOR_BADGE ← Stories · contributor → Contributors · badge (Option: Contributor, Frequent, Editor, Founder). Today: Not emitted. The founder badge. No schema.org property earns a rich result for it, so it is carried as a role: author.memberOf → OrganizationRole.roleName, inside TLL. The Founding 01 to 03 numbers are typed into the home page only; no CMS field holds them (see README).
+          "roleName": "{{CONTRIBUTOR_BADGE}}",
+          "memberOf": {
+            // constant: the Organization node on the home page
+            "@id": "https://www.thatlayover.life/#organization"
+          }
+        }
+      },
+      "editor": {
+        "@type": "Person",
+        // EDITED_BY ← Stories · edited-by. Today: Not emitted. New: editor (Person). Empty on most stories; the tidy step drops a Person with no name.
+        "name": "{{EDITED_BY}}"
+      },
+      "sponsor": {
+        "@type": "Organization",
+        // SPONSOR_NAME ← Stories · sponsor-name-2. Today: Not emitted. New: sponsor (Organization), only when a host or sponsor is named. The disclosure sentence itself stays on the page; no schema.org property carries it.
+        "name": "{{SPONSOR_NAME}}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        // constant: the Organization node on the home page
+        "@id": "https://www.thatlayover.life/#organization",
+        "name": "That Layover Life",
+        "url": "https://www.thatlayover.life/"
+      },
+      "contentLocation": {
+        "@type": "Place",
+        // BYLINE_LOCATION ← Stories · byline-location. Today: Same, in contentLocation.name (stored in capitals, e.g. NEW ORLEANS, LOUISIANA). Harmless in capitals. Title case in the CMS would read better in any tool that shows it.
+        "name": "{{BYLINE_LOCATION}}",
+        "address": {
+          "@type": "PostalAddress",
+          // COUNTRY ← Stories · country-2 → Countries · name. Today: Not emitted. New: contentLocation.address.addressCountry. The brief lists a field called countries; the Oct 13 CMS export and the Worker have country-2, a single reference. If a multi-reference countries field exists, head code cannot loop over it, so this stays one country.
+          "addressCountry": "{{COUNTRY}}"
+        }
+      },
+      // constant: the editorial charter, already on the Organization node
+      "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
+      "isPartOf": {
+        // constant: the WebSite node on the home page
+        "@id": "https://www.thatlayover.life/#website"
+      },
+      // constant
+      "inLanguage": "en",
+      // constant: no story is paywalled
+      "isAccessibleForFree": true,
+      "breadcrumb": {
+        // SLUG: same field as above
+        "@id": "https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      // SLUG: same field as above
+      "@id": "https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.thatlayover.life/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stories",
+          "item": "https://www.thatlayover.life/stories"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          // NAME: same field as above
+          "name": "{{NAME}}",
+          // SLUG: same field as above
+          "item": "https://www.thatlayover.life/stories/{{SLUG}}"
+        }
+      ]
+    }
+  ]
+}
+
+// ===== LAYOVER GUIDE (Layovers collection template, /layovers/<slug>): Article about a City and an Airport =====
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      // SLUG ← Layovers · slug. Today: Same.
+      "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#article",
+      // SLUG: same field as above
+      "url": "https://www.thatlayover.life/layovers/{{SLUG}}",
+      // SLUG: same field as above
+      "mainEntityOfPage": "https://www.thatlayover.life/layovers/{{SLUG}}",
+      // NAME ← Layovers · name. Today: Uses seo-title, e.g. "Copenhagen 6-hour layover from CPH · That Layover Life". Change: headline should be the title on the page (the H1 is the name), without the site name.
+      "headline": "{{NAME}}",
+      // SEO_DESCRIPTION ← Layovers · seo-description. Today: Same.
+      "description": "{{SEO_DESCRIPTION}}",
+      "image": [
+        // HERO_IMAGE ← Layovers · hero-image. Today: Same, as a single string.
+        "{{HERO_IMAGE}}"
+      ],
+      // LAST_UPDATED ← Layovers · last-updated. Today: Same, in dateModified. There is no published-date field on Layovers, so datePublished is left out rather than guessed. Adding one is a decision (see README).
+      "dateModified": "{{LAST_UPDATED}}",
+      "author": {
+        "@type": "Person",
+        // AUTHOR_SLUG ← Layovers · author → Contributors · slug. Today: Not emitted. New. The Layovers collection has an author reference (Oct 13 export), not in the brief's field list. Both live guides point at Nancy Carleton.
+        "@id": "https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}#person",
+        // AUTHOR_NAME ← Layovers · author → Contributors · name. Today: Not emitted. New. Today the guides carry no author at all, which is the largest gap.
+        "name": "{{AUTHOR_NAME}}",
+        // AUTHOR_SLUG: same field as above
+        "url": "https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}"
+      },
+      "about": [
+        {
+          "@type": "City",
+          // CITY ← Layovers · city. Today: about is the plain string "Copenhagen". Change: about becomes a typed City.
+          "name": "{{CITY}}"
+        },
+        {
+          "@type": "Airport",
+          // AIRPORT_CODE ← Layovers · airport-code. Today: Not emitted. New: an Airport with iataCode, also in about. time-window (3h, 6h, 9h, 12h+) is not mapped: timeRequired means time to read or work through the page, and 12h+ is not a duration.
+          "iataCode": "{{AIRPORT_CODE}}"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        // constant: the Organization node on the home page
+        "@id": "https://www.thatlayover.life/#organization",
+        "name": "That Layover Life",
+        "url": "https://www.thatlayover.life/"
+      },
+      "isPartOf": {
+        // constant: the WebSite node on the home page
+        "@id": "https://www.thatlayover.life/#website"
+      },
+      // constant
+      "inLanguage": "en",
+      // constant: no story is paywalled
+      "isAccessibleForFree": true,
+      "breadcrumb": {
+        // SLUG: same field as above
+        "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      // SLUG: same field as above
+      "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.thatlayover.life/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          // constant; today it links /pillars/layover-guides, while /layovers is the guide index (decision in README)
+          "name": "Layover Guides",
+          "item": "https://www.thatlayover.life/pillars/layover-guides"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          // NAME: same field as above
+          "name": "{{NAME}}",
+          // SLUG: same field as above
+          "item": "https://www.thatlayover.life/layovers/{{SLUG}}"
+        }
+      ]
+    }
+  ]
+}
+
+// ===== FAQ (expat paperwork Q&A; /faq today): FAQPage =====
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  // PAGE_URL ← Page URL (no collection yet) [Coming soon]. Today: /faq: same URL and the same #webpage id. Moving guides have no pages and no collection yet. On story pages the FAQ block is built by the script from Quick answers and uses #faq, because the page itself is the Article.
+  "@id": "{{PAGE_URL}}#webpage",
+  // PAGE_URL: same field as above
+  "url": "{{PAGE_URL}}",
+  // PAGE_NAME ← Page name [Coming soon]. Today: /faq: "FAQ · That Layover Life".
+  "name": "{{PAGE_NAME}}",
+  // PAGE_DESCRIPTION ← Page meta description [Coming soon]. Today: /faq: same.
+  "description": "{{PAGE_DESCRIPTION}}",
+  // LAST_UPDATED ← Moving guide · last-updated (proposed) [Coming soon]. Today: /faq: not emitted. Empty on /faq, so the tidy step drops it.
+  "dateModified": "{{LAST_UPDATED}}",
+  "about": {
+    "@type": "City",
+    // CITY ← Moving guide · city (proposed) [Coming soon]. Today: /faq: not emitted. General FAQ has no city; dropped when empty.
+    "name": "{{CITY}}"
+  },
+  "isPartOf": {
+    // constant: the WebSite node on the home page
+    "@id": "https://www.thatlayover.life/#website"
+  },
+  "publisher": {
+    // constant: the Organization node on the home page
+    "@id": "https://www.thatlayover.life/#organization"
+  },
+  // constant
+  "inLanguage": "en",
+  // constant: no story is paywalled
+  "isAccessibleForFree": true,
+  // one Question per Quick answers pair; the script repeats this block
+  "mainEntity": [
+    {
+      "@type": "Question",
+      // QUESTION ← Quick answers (RichText): each bold line or h3/h4 [Script, not a binding]. Today: Story pages: tll FAQ schema v1 builds this from the rendered Quick answers block. /faq: written by hand into the page head. Repeats once per question. Webflow head code cannot loop a RichText field into JSON, so the script that already does this for stories is the injection point.
+      "name": "{{QUESTION}}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        // ANSWER ← Quick answers (RichText): the paragraphs under each question [Script, not a binding]. Today: As above. Google requires the answer text to be visible on the page; reading it from the rendered block guarantees that.
+        "text": "{{ANSWER}}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,529 @@
+{
+ "capturedAt": "2026-11-12T15:39:21.688Z",
+ "note": "application/ld+json blocks after the page scripts ran (Chromium, networkidle). \"source\" says whether the block is in the server HTML or added by a script.",
+ "pages": {
+  "/stories/new-orleans-short-girl-wedding-krewe-of-boo": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": "tll-article-ld-v2",
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Article",
+       "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#article",
+       "url": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo",
+       "mainEntityOfPage": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo",
+       "headline": "La Petite's Guide to New Orleans",
+       "description": "Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.",
+       "image": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg",
+       "datePublished": "2026-10-26T20:40:00.000Z",
+       "dateModified": "2026-10-26T20:40:00.000Z",
+       "author": {
+        "@type": "Person",
+        "name": "Nancy Carleton",
+        "url": "https://www.thatlayover.life/contributors/nancy-carleton"
+       },
+       "publisher": {
+        "@type": "Organization",
+        "name": "That Layover Life",
+        "url": "https://www.thatlayover.life/"
+       },
+       "contentLocation": {
+        "@type": "Place",
+        "name": "NEW ORLEANS, LOUISIANA"
+       },
+       "inLanguage": "en",
+       "isAccessibleForFree": true
+      },
+      {
+       "@type": "BreadcrumbList",
+       "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://www.thatlayover.life/"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Stories",
+         "item": "https://www.thatlayover.life/stories"
+        },
+        {
+         "@type": "ListItem",
+         "position": 3,
+         "name": "La Petite's Guide to New Orleans",
+         "item": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo"
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   },
+   {
+    "source": "added by the Quick answers script (tll FAQ schema v1)",
+    "id": null,
+    "json": {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#faq",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "How much is the bus from New Orleans airport to downtown?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The RTA 202 Airport Express costs $1.25 and the fare is good to anywhere in the city of New Orleans. Rideshares from the airport to Orleans Parish start at about $36."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "When is the Krewe of Boo parade?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a Saturday in late October. In 2026 it rolled on October 24 at 6:30 PM, starting on Elysian Fields Avenue in the Marigny, cutting through the French Quarter and turning onto Canal Street."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "What is a second line?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A New Orleans brass band parade. The first line is the band and the hosts who organized it; the second line is everyone who falls in behind and dances along. Weddings and funerals both end in second lines."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Where does the second line tradition come from?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From New Orleans' social aid and pleasure clubs, Black neighborhood associations formed after the Civil War that helped members with loans, burial costs and insurance and paraded through their neighborhoods once a year. Clubs still parade on Sundays through much of the year."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Why are medians called neutral grounds in New Orleans?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canal Street's median once divided the Creole French Quarter from the American sector upriver and belonged to neither side. The name spread to every median in the city."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Who are the Muff-A-Lottas?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A New Orleans women's dance krewe formed in 2009, named after the muffuletta sandwich and dressed as 1950s-style waitresses. They march in Carnival parades and the Krewe of Boo."
+       }
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ],
+  "/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": "tll-article-ld-v2",
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Article",
+       "@id": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#article",
+       "url": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+       "mainEntityOfPage": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+       "headline": "Torrevieja Street Food Market 2026: Rocking Out With Some Great Food",
+       "description": "The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn't an event to turn your nose up at.",
+       "image": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg",
+       "datePublished": "2026-10-29T10:50:00.000Z",
+       "dateModified": "2026-10-29T10:50:00.000Z",
+       "author": {
+        "@type": "Person",
+        "name": "Luke Luby",
+        "url": "https://www.thatlayover.life/contributors/luke-luby"
+       },
+       "publisher": {
+        "@type": "Organization",
+        "name": "That Layover Life",
+        "url": "https://www.thatlayover.life/"
+       },
+       "contentLocation": {
+        "@type": "Place",
+        "name": "TORREVIEJA, SPAIN"
+       },
+       "inLanguage": "en",
+       "isAccessibleForFree": true
+      },
+      {
+       "@type": "BreadcrumbList",
+       "@id": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://www.thatlayover.life/"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Stories",
+         "item": "https://www.thatlayover.life/stories"
+        },
+        {
+         "@type": "ListItem",
+         "position": 3,
+         "name": "Torrevieja Street Food Market 2026: Rocking Out With Some Great Food",
+         "item": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food"
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ],
+  "/stories/kuala-lumpur-fomo-is-real": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": "tll-article-ld-v2",
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Article",
+       "@id": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#article",
+       "url": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real",
+       "mainEntityOfPage": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real",
+       "headline": "FOMO Is Real, Y'all",
+       "description": "Jay went to Kuala Lumpur without me, and I could not let it go. One shared carry-on, two days, 272 rainbow steps, monkey babies all over, and the reason a city is named for mud.",
+       "image": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd1cf4d98070e2e2fc6ffe_6acd1ca32f79b5d09f39c993_tll-my-hero-batu-caves-nancy-jay.jpeg",
+       "datePublished": "2022-07-03T12:00:00.000Z",
+       "dateModified": "2022-07-03T12:00:00.000Z",
+       "author": {
+        "@type": "Person",
+        "name": "Nancy Carleton",
+        "url": "https://www.thatlayover.life/contributors/nancy-carleton"
+       },
+       "publisher": {
+        "@type": "Organization",
+        "name": "That Layover Life",
+        "url": "https://www.thatlayover.life/"
+       },
+       "contentLocation": {
+        "@type": "Place",
+        "name": "KUALA LUMPUR, MALAYSIA"
+       },
+       "inLanguage": "en",
+       "isAccessibleForFree": true
+      },
+      {
+       "@type": "BreadcrumbList",
+       "@id": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#breadcrumb",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://www.thatlayover.life/"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Stories",
+         "item": "https://www.thatlayover.life/stories"
+        },
+        {
+         "@type": "ListItem",
+         "position": 3,
+         "name": "FOMO Is Real, Y'all",
+         "item": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real"
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   },
+   {
+    "source": "added by the Quick answers script (tll FAQ schema v1)",
+    "id": null,
+    "json": {
+     "@context": "https://schema.org",
+     "@type": "FAQPage",
+     "@id": "https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#faq",
+     "mainEntity": [
+      {
+       "@type": "Question",
+       "name": "Why is it called Kuala Lumpur?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Malay, kuala means the place where two rivers meet and lumpur means mud. The city began around 1857 at the muddy confluence of the Klang and Gombak rivers, where tin miners landed."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "How many steps are there at Batu Caves?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "272 steps lead up to the Temple Cave. They were repainted in rainbow colors in 2018."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "How tall is the Lord Murugan statue at Batu Caves?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "42.7 meters (140 feet). It was unveiled in 2006."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "What is pewter made of?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mostly tin. Royal Selangor's pewter is 92 to 97 percent tin, with small amounts of copper and antimony to strengthen it."
+       }
+      },
+      {
+       "@type": "Question",
+       "name": "Do US citizens need a visa for Malaysia?",
+       "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, for stays of up to 90 days, but every visitor must complete the free Malaysia Digital Arrival Card online within three days before arrival."
+       }
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ],
+  "/layovers/cph-copenhagen-6h": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": "tll-layover-ld-v1",
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Article",
+       "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#article",
+       "headline": "Copenhagen 6-hour layover from CPH · That Layover Life",
+       "description": "Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.",
+       "image": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg",
+       "dateModified": "2026-09-23T00:00:00.000Z",
+       "url": "https://www.thatlayover.life/layovers/cph-copenhagen-6h",
+       "mainEntityOfPage": "https://www.thatlayover.life/layovers/cph-copenhagen-6h",
+       "isPartOf": {
+        "@id": "https://www.thatlayover.life/#website"
+       },
+       "publisher": {
+        "@id": "https://www.thatlayover.life/#organization"
+       },
+       "inLanguage": "en",
+       "isAccessibleForFree": true,
+       "about": "Copenhagen",
+       "breadcrumb": {
+        "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb"
+       }
+      },
+      {
+       "@type": "BreadcrumbList",
+       "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://www.thatlayover.life/"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Layover Guides",
+         "item": "https://www.thatlayover.life/pillars/layover-guides"
+        },
+        {
+         "@type": "ListItem",
+         "position": 3,
+         "name": "The 6-Hour Copenhagen Reset (from CPH)",
+         "item": "https://www.thatlayover.life/layovers/cph-copenhagen-6h"
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ],
+  "/layovers/sof-sofia-3h": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": "tll-layover-ld-v1",
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@type": "Article",
+       "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#article",
+       "headline": "3-hour Sofia layover · SOF tarator and rakia · That Layover Life",
+       "description": "Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.",
+       "image": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg",
+       "dateModified": "2026-05-19T00:00:00.000Z",
+       "url": "https://www.thatlayover.life/layovers/sof-sofia-3h",
+       "mainEntityOfPage": "https://www.thatlayover.life/layovers/sof-sofia-3h",
+       "isPartOf": {
+        "@id": "https://www.thatlayover.life/#website"
+       },
+       "publisher": {
+        "@id": "https://www.thatlayover.life/#organization"
+       },
+       "inLanguage": "en",
+       "isAccessibleForFree": true,
+       "about": "Sofia",
+       "breadcrumb": {
+        "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb"
+       }
+      },
+      {
+       "@type": "BreadcrumbList",
+       "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "position": 1,
+         "name": "Home",
+         "item": "https://www.thatlayover.life/"
+        },
+        {
+         "@type": "ListItem",
+         "position": 2,
+         "name": "Layover Guides",
+         "item": "https://www.thatlayover.life/pillars/layover-guides"
+        },
+        {
+         "@type": "ListItem",
+         "position": 3,
+         "name": "Three Hours in Sofia, If You Must (from SOF)",
+         "item": "https://www.thatlayover.life/layovers/sof-sofia-3h"
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ],
+  "/faq": [
+   {
+    "source": "server HTML (page head custom code)",
+    "id": null,
+    "json": {
+     "@context": "https://schema.org",
+     "@graph": [
+      {
+       "@id": "https://www.thatlayover.life/faq#webpage",
+       "@type": "FAQPage",
+       "breadcrumb": {
+        "@id": "https://www.thatlayover.life/faq#breadcrumb"
+       },
+       "description": "Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.",
+       "inLanguage": "en",
+       "isAccessibleForFree": true,
+       "isPartOf": {
+        "@id": "https://www.thatlayover.life/#website"
+       },
+       "mainEntity": [
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A travel magazine written by the people who took the trips: repeat travelers, expats, and anyone who turns a six-hour connection into a story. Stories go live after the editor in Copenhagen reads them, usually within 48 hours. Free to read."
+         },
+         "name": "What is That Layover Life?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes to both, and it stays free for travelers. A paid tier may add premium features later, but existing accounts always keep a free option and we never paywall published stories."
+         },
+         "name": "Is it free to read and to contribute?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not to write stories. Every story is written by the person who took the trip. Nancy reads every story and makes every call."
+         },
+         "name": "Do you use AI?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sign in, click Share your story, and fill the form. You choose your credit per story (named, pen name, or Anonymous Traveler), and you keep your copyright. A human reads every story before it goes live, usually within 48 hours. The rules it has to pass: 300 words or more, your own photo, a place, links that work. The editor can correct it under the Charter and never rewrites your voice."
+         },
+         "name": "How do I get published, and do I keep my byline?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, labeled. Affiliate and personal links are welcome as long as they're disclosed, never hidden. Press and affiliate status is a profile field, so it surfaces at the top of every piece."
+         },
+         "name": "Can I include my own links and affiliate links?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, with the paperwork in order: an EU pet passport, and a microchip implanted before the rabies shot, because a vaccination given first does not count. Then wait 21 days after the primary rabies vaccination before you travel. That wait is the rule that catches people, not the paperwork. Inside the EU you do not need a rabies titer test. Coming into the EU from some non-EU countries you do, and it can take months, so plan backward from the border. The Paw Passport page covers the logistics, verified large-dog-friendly hotels included."
+         },
+         "name": "Can I travel with my dog in the EU?"
+        },
+        {
+         "@type": "Question",
+         "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, disclosure-first. Every hosted or gifted trip is labeled at the top of the story, never buried in a footnote. Press travelers and tourism boards are welcome through the For Press door."
+         },
+         "name": "Do you accept press and tourism-board trips?"
+        }
+       ],
+       "name": "FAQ · That Layover Life",
+       "publisher": {
+        "@id": "https://www.thatlayover.life/#organization"
+       },
+       "url": "https://www.thatlayover.life/faq"
+      },
+      {
+       "@id": "https://www.thatlayover.life/faq#breadcrumb",
+       "@type": "BreadcrumbList",
+       "itemListElement": [
+        {
+         "@type": "ListItem",
+         "item": "https://www.thatlayover.life/",
+         "name": "Home",
+         "position": 1
+        },
+        {
+         "@type": "ListItem",
+         "item": "https://www.thatlayover.life/faq",
+         "name": "FAQ",
+         "position": 2
+        }
+       ]
+      }
+     ]
+    },
+    "parseError": null
+   }
+  ]
+ }
+}

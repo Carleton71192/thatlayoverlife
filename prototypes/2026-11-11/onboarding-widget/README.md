@@ -11,9 +11,9 @@ A single-file prototype (`index.html`) of a three-step onboarding widget for Tha
 | Tabbed mock interface with things to check off | Step two is a checklist in two labeled groups per path. |
 | Vector map that updates as boxes are ticked | Inline SVG, 1,163 dots sampled from Natural Earth land (public domain). Ticking lights the map west to east, and unticking dims it again. |
 | "Your Profile is 40% Live" | The readout is computed from the ticks (`ticked / total`). Four of ten gives 40%. No number on the page is typed, including the step numbers and the "worth 10%" line. |
-| Editorial look, monochrome accents, photography placeholders | Brand Kit v2.4 tokens in one `:root` block. Paper and Cream surfaces, Ink controls, one Midnight panel carrying the only teal. Two real story photos in step one and a labeled PHOTO slot in step three. |
+| Editorial look, monochrome accents, photography placeholders | Brand Kit v2.4 tokens in one `:root` block. The controls are Ink on Paper and Cream, and the only teal sits on the one Midnight panel. Two real story photos in step one and a labeled PHOTO slot in step three. |
 | Claim CTA block | Step three: headline, a computed summary, one filled button to `https://www.thatlayover.life/signup`, and one text link. |
-| Fully responsive, self-contained | One HTML file. The only external load is the Google Fonts stylesheet. Checked at 390 and 1440 with no sideways scroll and no console errors. On phones the map panel sticks to the top so it stays in view while you tick. |
+| Fully responsive, self-contained | One HTML file. The only external load is the Google Fonts stylesheet. Checked at 390, 768 and 1440: nothing scrolls sideways, and the console and axe-core both come back clean. On phones and tablets the map panel sticks to the top so it stays in view while you tick, and its height is capped so the list still has room. |
 
 ## Where I departed from the brief's wording, and why
 
@@ -53,3 +53,16 @@ Production is Webflow plus site-layer scripts, with a 15-script cap and no Tailw
 - **Copy:** the lists should live where Nancy can edit them. A small CMS collection (line, path, group, order) rendered into the page and read by the script would do it. The percentage logic does not change with the number of lines.
 - **Handing off to signup:** today nothing carries over. If Nancy wants it to, the script could pass the chosen path to /signup as a query parameter so the welcome screen opens on the map or on pet registration. That needs a decision and a small change in the account layer.
 - **Analytics:** the natural events are path chosen, first tick, reached step three and CTA click, sent only after consent through the existing consent-mode layer.
+
+## Review pass (12 Nov)
+
+A second reviewer used the page by keyboard and by pointer at 390, 768 and 1440, ran axe-core on every step, and changed these:
+
+- Two checklist lines now use US spelling ("afterward", "farther").
+- The footer note now says which lines are quoted and which were written for this prototype. It had implied every Paw Passport line came from /the-paw-passport, and it dropped a third "nothing is saved" line.
+- The map panel is a plain section instead of a nested `aside`, and the "All prototypes" link sits in its own `nav` at the end of the page, so it is no longer the first stop for the Tab key.
+- The step numbers in the tab row line up when one label wraps to two lines at 390.
+- The wordmark no longer breaks over two lines at 390, and the header rule now starts on the same left edge as the content at 1440.
+- The sticky map is capped at about a quarter of the screen height below 960px. At 768 it had taken half the screen.
+- The photo credit and footer links get a taller tap area without changing the layout.
+

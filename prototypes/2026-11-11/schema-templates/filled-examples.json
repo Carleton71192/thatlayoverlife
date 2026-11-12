@@ -1,0 +1,605 @@
+{
+  "built": "2026-11-12",
+  "note": "Each template filled with one real page's values by text substitution, parsed, then tidied. Values and sources are in data.cjs.",
+  "examples": [
+    {
+      "id": "story-nola",
+      "short": "New Orleans",
+      "template": "story",
+      "label": "Story · La Petite's Guide to New Orleans",
+      "page": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo",
+      "from": {
+        "NAME": "Live Article block, written the way Webflow writes it (&#39;) to show the tidy step",
+        "DATE_MODIFIED": "Empty: the page shows no Last updated line",
+        "READING_TIME": "Reading time shown on the page",
+        "CONTRIBUTOR_BADGE": "Contributors · badge in the Oct 13 CMS export",
+        "EDITED_BY": "The Receipts box on the page",
+        "SPONSOR_NAME": "Empty: the disclosure reads \"Paid for by the traveler, flights on points\"",
+        "COUNTRY": "The country of the byline place; country-2 itself was not read for this build"
+      },
+      "values": {
+        "SLUG": "new-orleans-short-girl-wedding-krewe-of-boo",
+        "NAME": "La Petite&#39;s Guide to New Orleans",
+        "EXCERPT": "Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.",
+        "HERO_IMAGE": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg",
+        "PUBLISHED_DATE": "2026-10-26T20:40:00.000Z",
+        "DATE_MODIFIED": "",
+        "READING_TIME": "9",
+        "CONTRIBUTOR_SLUG": "nancy-carleton",
+        "CONTRIBUTOR_NAME": "Nancy Carleton",
+        "CONTRIBUTOR_BADGE": "Founder",
+        "EDITED_BY": "Nancy Carleton",
+        "SPONSOR_NAME": "",
+        "BYLINE_LOCATION": "NEW ORLEANS, LOUISIANA",
+        "COUNTRY": "United States"
+      },
+      "rawParses": true,
+      "checks": [
+        "parses",
+        "no placeholder left",
+        "dates are ISO 8601",
+        "URLs are absolute https"
+      ],
+      "diffVsLive": {
+        "added": [
+          "timeRequired",
+          "editor",
+          "publishingPrinciples",
+          "isPartOf",
+          "breadcrumb"
+        ],
+        "changed": [
+          "image",
+          "author",
+          "publisher",
+          "contentLocation"
+        ],
+        "dropped": [],
+        "liveFound": true
+      },
+      "jsonld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#article",
+            "url": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo",
+            "mainEntityOfPage": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo",
+            "headline": "La Petite's Guide to New Orleans",
+            "description": "Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.",
+            "image": [
+              "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg"
+            ],
+            "datePublished": "2026-10-26T20:40:00.000Z",
+            "timeRequired": "PT9M",
+            "author": {
+              "@type": "Person",
+              "@id": "https://www.thatlayover.life/contributors/nancy-carleton#person",
+              "name": "Nancy Carleton",
+              "url": "https://www.thatlayover.life/contributors/nancy-carleton",
+              "memberOf": {
+                "@type": "OrganizationRole",
+                "roleName": "Founder",
+                "memberOf": {
+                  "@id": "https://www.thatlayover.life/#organization"
+                }
+              }
+            },
+            "editor": {
+              "@type": "Person",
+              "name": "Nancy Carleton"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://www.thatlayover.life/#organization",
+              "name": "That Layover Life",
+              "url": "https://www.thatlayover.life/"
+            },
+            "contentLocation": {
+              "@type": "Place",
+              "name": "NEW ORLEANS, LOUISIANA",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "United States"
+              }
+            },
+            "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
+            "isPartOf": {
+              "@id": "https://www.thatlayover.life/#website"
+            },
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "breadcrumb": {
+              "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb"
+            },
+            "dateModified": "2026-10-26T20:40:00.000Z"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.thatlayover.life/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Stories",
+                "item": "https://www.thatlayover.life/stories"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "La Petite's Guide to New Orleans",
+                "item": "https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "story-torrevieja",
+      "short": "Torrevieja",
+      "template": "story",
+      "label": "Story · Torrevieja Street Food Market 2026",
+      "page": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+      "from": {
+        "CONTRIBUTOR_BADGE": "Empty here: no badge shows on his profile, so this example shows the role being dropped",
+        "EDITED_BY": "Empty: the Receipts box shows only Submitted by",
+        "COUNTRY": "The country in the byline"
+      },
+      "values": {
+        "SLUG": "torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+        "NAME": "Torrevieja Street Food Market 2026: Rocking Out With Some Great Food",
+        "EXCERPT": "The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn&#39;t an event to turn your nose up at.",
+        "HERO_IMAGE": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg",
+        "PUBLISHED_DATE": "2026-10-29T10:50:00.000Z",
+        "DATE_MODIFIED": "",
+        "READING_TIME": "3",
+        "CONTRIBUTOR_SLUG": "luke-luby",
+        "CONTRIBUTOR_NAME": "Luke Luby",
+        "CONTRIBUTOR_BADGE": "",
+        "EDITED_BY": "",
+        "SPONSOR_NAME": "",
+        "BYLINE_LOCATION": "TORREVIEJA, SPAIN",
+        "COUNTRY": "Spain"
+      },
+      "rawParses": true,
+      "checks": [
+        "parses",
+        "no placeholder left",
+        "dates are ISO 8601",
+        "URLs are absolute https"
+      ],
+      "diffVsLive": {
+        "added": [
+          "timeRequired",
+          "publishingPrinciples",
+          "isPartOf",
+          "breadcrumb"
+        ],
+        "changed": [
+          "image",
+          "author",
+          "publisher",
+          "contentLocation"
+        ],
+        "dropped": [],
+        "liveFound": true
+      },
+      "jsonld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#article",
+            "url": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+            "mainEntityOfPage": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food",
+            "headline": "Torrevieja Street Food Market 2026: Rocking Out With Some Great Food",
+            "description": "The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn't an event to turn your nose up at.",
+            "image": [
+              "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg"
+            ],
+            "datePublished": "2026-10-29T10:50:00.000Z",
+            "timeRequired": "PT3M",
+            "author": {
+              "@type": "Person",
+              "@id": "https://www.thatlayover.life/contributors/luke-luby#person",
+              "name": "Luke Luby",
+              "url": "https://www.thatlayover.life/contributors/luke-luby"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://www.thatlayover.life/#organization",
+              "name": "That Layover Life",
+              "url": "https://www.thatlayover.life/"
+            },
+            "contentLocation": {
+              "@type": "Place",
+              "name": "TORREVIEJA, SPAIN",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "Spain"
+              }
+            },
+            "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
+            "isPartOf": {
+              "@id": "https://www.thatlayover.life/#website"
+            },
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "breadcrumb": {
+              "@id": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb"
+            },
+            "dateModified": "2026-10-29T10:50:00.000Z"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.thatlayover.life/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Stories",
+                "item": "https://www.thatlayover.life/stories"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Torrevieja Street Food Market 2026: Rocking Out With Some Great Food",
+                "item": "https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "layover-cph",
+      "short": "CPH",
+      "template": "layover",
+      "label": "Layover · The 6-Hour Copenhagen Reset (from CPH)",
+      "page": "https://www.thatlayover.life/layovers/cph-copenhagen-6h",
+      "from": {
+        "AUTHOR_SLUG": "Layovers · author in the Oct 13 CMS export",
+        "AUTHOR_NAME": "Layovers · author in the Oct 13 CMS export",
+        "CITY": "Layovers · city",
+        "AIRPORT_CODE": "Layovers · airport-code"
+      },
+      "values": {
+        "SLUG": "cph-copenhagen-6h",
+        "NAME": "The 6-Hour Copenhagen Reset (from CPH)",
+        "SEO_DESCRIPTION": "Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.",
+        "HERO_IMAGE": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg",
+        "LAST_UPDATED": "2026-09-23T00:00:00.000Z",
+        "AUTHOR_SLUG": "nancy-carleton",
+        "AUTHOR_NAME": "Nancy Carleton",
+        "CITY": "Copenhagen",
+        "AIRPORT_CODE": "CPH"
+      },
+      "rawParses": true,
+      "checks": [
+        "parses",
+        "no placeholder left",
+        "dates are ISO 8601",
+        "URLs are absolute https"
+      ],
+      "diffVsLive": {
+        "added": [
+          "author"
+        ],
+        "changed": [
+          "headline",
+          "image",
+          "about",
+          "publisher"
+        ],
+        "dropped": [],
+        "liveFound": true
+      },
+      "jsonld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#article",
+            "url": "https://www.thatlayover.life/layovers/cph-copenhagen-6h",
+            "mainEntityOfPage": "https://www.thatlayover.life/layovers/cph-copenhagen-6h",
+            "headline": "The 6-Hour Copenhagen Reset (from CPH)",
+            "description": "Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.",
+            "image": [
+              "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg"
+            ],
+            "dateModified": "2026-09-23T00:00:00.000Z",
+            "author": {
+              "@type": "Person",
+              "@id": "https://www.thatlayover.life/contributors/nancy-carleton#person",
+              "name": "Nancy Carleton",
+              "url": "https://www.thatlayover.life/contributors/nancy-carleton"
+            },
+            "about": [
+              {
+                "@type": "City",
+                "name": "Copenhagen"
+              },
+              {
+                "@type": "Airport",
+                "iataCode": "CPH"
+              }
+            ],
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://www.thatlayover.life/#organization",
+              "name": "That Layover Life",
+              "url": "https://www.thatlayover.life/"
+            },
+            "isPartOf": {
+              "@id": "https://www.thatlayover.life/#website"
+            },
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "breadcrumb": {
+              "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.thatlayover.life/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Layover Guides",
+                "item": "https://www.thatlayover.life/pillars/layover-guides"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "The 6-Hour Copenhagen Reset (from CPH)",
+                "item": "https://www.thatlayover.life/layovers/cph-copenhagen-6h"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "layover-sof",
+      "short": "SOF",
+      "template": "layover",
+      "label": "Layover · Three Hours in Sofia, If You Must (from SOF)",
+      "page": "https://www.thatlayover.life/layovers/sof-sofia-3h",
+      "from": {
+        "AUTHOR_SLUG": "Layovers · author in the Oct 13 CMS export",
+        "AUTHOR_NAME": "Layovers · author in the Oct 13 CMS export"
+      },
+      "values": {
+        "SLUG": "sof-sofia-3h",
+        "NAME": "Three Hours in Sofia, If You Must (from SOF)",
+        "SEO_DESCRIPTION": "Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.",
+        "HERO_IMAGE": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg",
+        "LAST_UPDATED": "2026-05-19T00:00:00.000Z",
+        "AUTHOR_SLUG": "nancy-carleton",
+        "AUTHOR_NAME": "Nancy Carleton",
+        "CITY": "Sofia",
+        "AIRPORT_CODE": "SOF"
+      },
+      "rawParses": true,
+      "checks": [
+        "parses",
+        "no placeholder left",
+        "dates are ISO 8601",
+        "URLs are absolute https"
+      ],
+      "diffVsLive": {
+        "added": [
+          "author"
+        ],
+        "changed": [
+          "headline",
+          "image",
+          "about",
+          "publisher"
+        ],
+        "dropped": [],
+        "liveFound": true
+      },
+      "jsonld": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#article",
+            "url": "https://www.thatlayover.life/layovers/sof-sofia-3h",
+            "mainEntityOfPage": "https://www.thatlayover.life/layovers/sof-sofia-3h",
+            "headline": "Three Hours in Sofia, If You Must (from SOF)",
+            "description": "Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.",
+            "image": [
+              "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg"
+            ],
+            "dateModified": "2026-05-19T00:00:00.000Z",
+            "author": {
+              "@type": "Person",
+              "@id": "https://www.thatlayover.life/contributors/nancy-carleton#person",
+              "name": "Nancy Carleton",
+              "url": "https://www.thatlayover.life/contributors/nancy-carleton"
+            },
+            "about": [
+              {
+                "@type": "City",
+                "name": "Sofia"
+              },
+              {
+                "@type": "Airport",
+                "iataCode": "SOF"
+              }
+            ],
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://www.thatlayover.life/#organization",
+              "name": "That Layover Life",
+              "url": "https://www.thatlayover.life/"
+            },
+            "isPartOf": {
+              "@id": "https://www.thatlayover.life/#website"
+            },
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "breadcrumb": {
+              "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.thatlayover.life/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Layover Guides",
+                "item": "https://www.thatlayover.life/pillars/layover-guides"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Three Hours in Sofia, If You Must (from SOF)",
+                "item": "https://www.thatlayover.life/layovers/sof-sofia-3h"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "faq-site",
+      "short": "/faq",
+      "template": "faq",
+      "label": "FAQ · /faq (the only live FAQ page)",
+      "page": "https://www.thatlayover.life/faq",
+      "from": {
+        "PAGE_NAME": "The name in the live FAQPage block",
+        "LAST_UPDATED": "Empty: /faq has no date field",
+        "CITY": "Empty: not a city page"
+      },
+      "values": {
+        "PAGE_URL": "https://www.thatlayover.life/faq",
+        "PAGE_NAME": "FAQ · That Layover Life",
+        "PAGE_DESCRIPTION": "Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.",
+        "LAST_UPDATED": "",
+        "CITY": ""
+      },
+      "questions": 7,
+      "rawParses": true,
+      "checks": [
+        "parses",
+        "no placeholder left",
+        "dates are ISO 8601",
+        "URLs are absolute https"
+      ],
+      "diffVsLive": {
+        "added": [],
+        "changed": [],
+        "dropped": [
+          "breadcrumb"
+        ],
+        "liveFound": true
+      },
+      "jsonld": {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://www.thatlayover.life/faq#webpage",
+        "url": "https://www.thatlayover.life/faq",
+        "name": "FAQ · That Layover Life",
+        "description": "Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.",
+        "isPartOf": {
+          "@id": "https://www.thatlayover.life/#website"
+        },
+        "publisher": {
+          "@id": "https://www.thatlayover.life/#organization"
+        },
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is That Layover Life?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A travel magazine written by the people who took the trips: repeat travelers, expats, and anyone who turns a six-hour connection into a story. Stories go live after the editor in Copenhagen reads them, usually within 48 hours. Free to read."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it free to read and to contribute?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes to both, and it stays free for travelers. A paid tier may add premium features later, but existing accounts always keep a free option and we never paywall published stories."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you use AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not to write stories. Every story is written by the person who took the trip. Nancy reads every story and makes every call."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get published, and do I keep my byline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sign in, click Share your story, and fill the form. You choose your credit per story (named, pen name, or Anonymous Traveler), and you keep your copyright. A human reads every story before it goes live, usually within 48 hours. The rules it has to pass: 300 words or more, your own photo, a place, links that work. The editor can correct it under the Charter and never rewrites your voice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I include my own links and affiliate links?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, labeled. Affiliate and personal links are welcome as long as they're disclosed, never hidden. Press and affiliate status is a profile field, so it surfaces at the top of every piece."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I travel with my dog in the EU?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, with the paperwork in order: an EU pet passport, and a microchip implanted before the rabies shot, because a vaccination given first does not count. Then wait 21 days after the primary rabies vaccination before you travel. That wait is the rule that catches people, not the paperwork. Inside the EU you do not need a rabies titer test. Coming into the EU from some non-EU countries you do, and it can take months, so plan backward from the border. The Paw Passport page covers the logistics, verified large-dog-friendly hotels included."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you accept press and tourism-board trips?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, disclosure-first. Every hosted or gifted trip is labeled at the top of the story, never buried in a footnote. Press travelers and tourism boards are welcome through the For Press door."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Schema Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<style>
+:root{
+  --midnight:#0A0B14; --midnight-2:#1A1A2E; --paper:#FDF9F3; --cream:#F7F1E8; --ink:#1A1A1A;
+  --text-2:#555555; --muted:#6B6660; --line:#E8E2D6; --teal:#00C9C8; --teal-deep:#067A79;
+  --rose:#F0507A; --rose-text:#C8325B; --btn:#D63859; --btn-hover:#C8325B; --white:#FFFFFF;
+  --cream-soft:rgba(247,241,232,.78); --line-dark:rgba(247,241,232,.22);
+  --head:'Playfair Display',Georgia,serif;
+  --body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --t:250ms;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;overflow-x:hidden}
+a{color:var(--teal-deep);text-decoration:underline;text-decoration-color:var(--rose-text);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2px solid var(--rose-text);outline-offset:2px}
+.dark :focus-visible,.code :focus-visible,.code:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+@media(min-width:760px){.wrap{padding:0 40px}}
+.eyebrow,.label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--head);font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.08;margin:0}
+h1{font-size:clamp(38px,6vw,72px);max-width:15ch}
+h2{font-size:clamp(30px,3.6vw,44px);max-width:22ch}
+h3{font-size:24px;line-height:1.2}
+h1 em,h2 em{font-style:italic;color:var(--rose)}
+p{margin:0 0 16px}
+.measure{max-width:66ch}
+.dek{font-size:20px;line-height:1.55;color:var(--text-2);max-width:62ch;margin-top:20px}
+
+/* masthead */
+.mast{border-bottom:1px solid var(--line);padding:14px 0}
+.mast .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.mast a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--head);font-weight:800;font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.mast a:hover{color:var(--teal-deep)}
+
+.hero{padding:48px 0 40px}
+@media(min-width:760px){.hero{padding:80px 0 56px}}
+.hero .eyebrow{margin-bottom:18px}
+.stats{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.stat{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.stat b{font-weight:600;color:var(--ink)}
+.stat .ok{color:var(--teal-deep)}
+.stat .bad{color:var(--rose-text)}
+
+section{padding:48px 0;border-top:1px solid var(--line)}
+@media(min-width:760px){section{padding:72px 0}}
+.sec-head{margin-bottom:28px}
+.sec-head .eyebrow{margin-bottom:12px}
+.sec-head p{margin-top:14px;color:var(--text-2);max-width:66ch}
+
+/* verdict cards */
+.verdicts{display:grid;gap:16px}
+@media(min-width:900px){.verdicts{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--white);border:1px solid var(--line);padding:24px}
+.card .label{display:block;margin-bottom:10px}
+.card h3{margin-bottom:12px}
+.card p{font-size:17px;color:var(--text-2)}
+.card p:last-child{margin-bottom:0}
+.card .warn{color:var(--rose-text);font-weight:600}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;font-family:var(--body);font-weight:600;font-size:16px;border-radius:0;cursor:pointer;text-decoration:none;transition:background-color var(--t),color var(--t)}
+.btn-fill{background:var(--btn);color:var(--white);border:0}
+.btn-fill:hover{background:var(--btn-hover);color:var(--white)}
+.btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-compact{min-height:44px;padding:0 16px;font-size:15px}
+.code-wrap .btn-line{color:var(--cream);border-color:var(--cream)}
+.code-wrap .btn-line:hover{background:var(--cream);color:var(--midnight)}
+
+/* tabs and chips */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tab{min-height:48px;padding:0 18px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--body);font-weight:600;font-size:16px;cursor:pointer;border-radius:0}
+.tab[aria-selected="true"]{background:var(--midnight);border-color:var(--midnight);color:var(--cream)}
+.tab:not([aria-selected="true"]):hover{background:var(--cream)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.chip{min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--white);color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip:not([aria-pressed="true"]):hover{border-color:var(--ink)}
+
+.panel{animation:rise var(--t) ease-out}
+@keyframes rise{from{opacity:.6;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}.btn,.tab,.chip{transition:none}}
+.panel-intro{max-width:70ch;color:var(--text-2);margin-bottom:20px}
+
+.tpl-grid{display:grid;gap:24px}
+@media(min-width:1100px){.tpl-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start}}
+@media(min-width:1100px){.tpl-grid>div:first-child,.fill-grid>.code-wrap{position:sticky;top:16px}}
+@media(max-width:759px){pre.code{max-height:440px}}
+
+/* code */
+.code-wrap{background:var(--midnight);color:var(--cream)}
+.code-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line-dark)}
+.code-bar .label{color:var(--cream-soft)}
+.code-bar .copied{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);min-width:7ch}
+pre.code{margin:0;padding:16px;font-family:var(--mono);font-size:13px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;max-height:620px;overflow-y:auto;color:var(--cream)}
+pre.code .ph{color:var(--teal);font-weight:600}
+pre.code .cm{color:var(--cream-soft);font-style:italic}
+pre.code .wf{color:var(--teal)}
+.code-note{padding:12px 16px;border-top:1px solid var(--line-dark);font-size:15px;color:var(--cream-soft)}
+.code-note b{color:var(--cream);font-weight:600}
+.soon{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;padding:2px 8px}
+.code-wrap .soon{color:var(--teal)}
+
+/* field map */
+.map{border-top:1px solid var(--line)}
+.map-row{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
+.map-row .ph{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--teal-deep)}
+.map-row .src{font-weight:600;color:var(--ink);margin:2px 0 6px}
+.map-row .today,.map-row .note{color:var(--text-2);margin:0 0 4px}
+.map-row .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+
+/* fill form */
+.fill-grid{display:grid;gap:24px}
+@media(min-width:1100px){.fill-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-2);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:10px 12px;font-family:var(--body);font-size:16px;color:var(--ink);background:var(--white);border:1.5px solid var(--line);border-radius:0}
+.field textarea{min-height:88px;resize:vertical;line-height:1.5}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{border-color:var(--ink)}
+.field .from{font-size:14px;color:var(--muted);margin:4px 0 0}
+.checks{display:flex;flex-direction:column;gap:6px;margin:6px 0 18px}
+.check{display:flex;gap:10px;align-items:center;min-height:44px;font-size:16px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--btn);margin:0}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.verdict{padding:14px 16px;border-top:1px solid var(--line-dark);font-size:16px}
+.verdict .ok{color:var(--teal);font-weight:600}
+.verdict .bad{color:var(--cream);font-weight:600}
+.verdict ul{margin:8px 0 0;padding-left:20px}
+.qa-group{border:1px solid var(--line);padding:14px 14px 2px;margin-bottom:14px;background:var(--white)}
+.qa-group .label{display:block;margin-bottom:8px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:16px;line-height:1.5}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:14px 12px 14px 0;border-bottom:1px solid var(--line)}
+.tbl th{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+.tbl .yes{color:var(--teal-deep);font-weight:600}
+.tbl .no{color:var(--rose-text);font-weight:600}
+@media(max-width:899px){
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr{border-bottom:1px solid var(--line);padding:12px 0}
+  .tbl td{border:0;padding:3px 0;white-space:normal}
+  .tbl td:first-child{white-space:normal;font-size:18px}
+  .tbl td[data-k]::before{content:attr(data-k);display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+}
+.reco{margin-top:28px;background:var(--white);border:1px solid var(--line);padding:24px}
+.reco p:last-child{margin-bottom:0}
+
+.findings{counter-reset:f;list-style:none;padding:0;margin:24px 0 0;max-width:76ch}
+.findings li{counter-increment:f;position:relative;padding:0 0 18px 48px;margin:0 0 18px;border-bottom:1px solid var(--line)}
+.findings li::before{content:counter(f,decimal-leading-zero);position:absolute;left:0;top:2px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--muted)}
+.findings b{font-weight:600}
+
+.facts{display:grid;gap:16px}
+@media(min-width:900px){.facts{grid-template-columns:1fr 1fr}}
+.fact{border-top:1.5px solid var(--ink);padding-top:14px}
+.fact h3{font-size:22px;margin-bottom:8px}
+.fact p{font-size:17px;color:var(--text-2)}
+.fact .label{display:block;margin-bottom:6px}
+
+.steps{padding-left:22px;max-width:72ch}
+.steps li{margin-bottom:12px}
+code.inl{font-family:var(--mono);font-size:.82em;background:var(--cream);padding:1px 5px;overflow-wrap:anywhere}
+
+footer{background:var(--midnight);color:var(--cream);padding:48px 0 96px}
+footer .eyebrow{color:var(--cream-soft);margin-bottom:12px}
+footer p,footer li{font-size:16px;color:var(--cream-soft)}
+footer a{color:var(--teal);text-decoration-color:var(--teal)}
+footer a:hover{color:var(--cream)}
+footer ul{padding-left:18px;margin:0 0 20px}
+footer :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+.corner{position:fixed;right:12px;bottom:12px;z-index:10;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;background:var(--midnight);color:var(--cream);font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--line-dark)}
+.corner:hover{color:var(--teal)}
+.corner:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<nav aria-label="Prototypes"><a class="corner" href="../index.html">All prototypes</a></nav>
+
+<header class="mast">
+  <div class="wrap">
+    <a href="https://www.thatlayover.life/">That Layover Life</a>
+    <span class="eyebrow">Prototype · not live</span>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Schema templates · November 12, 2026</p>
+    <h1>Structured data, minus the <em>wishful</em> thinking.</h1>
+    <p class="dek">One JSON-LD template for each kind of page in the brief, checked against what thatlayover.life already emits and filled with a real page to prove it parses. Google's current rules decided what went in, which is also why one template arrives with bad news attached.</p>
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </div>
+</div>
+
+<section id="verdicts">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">01 · The short version</p>
+      <h2>What each page should say about itself</h2>
+    </div>
+    <div class="verdicts">
+      <article class="card">
+        <span class="label">Stories</span>
+        <h3>Article, extended</h3>
+        <p>Stories already emit a clean Article. The template keeps it and adds the reading time as <code class="inl">timeRequired</code>, the founder badge as a role inside TLL, the editor, and the sponsor when there is one.</p>
+        <p>Google's Article docs have no required properties. Author, dates, headline and image help it read the page correctly. None of the additions buys a special snippet.</p>
+      </article>
+      <article class="card">
+        <span class="label">Layover guides</span>
+        <h3>Article about a City and an Airport</h3>
+        <p>TravelAction describes the act of flying somewhere, not a page about it, and Google does nothing with it. The guides stay Articles and finally get an author and a typed City and Airport.</p>
+        <p>Today they carry the SEO title as the headline and no author at all.</p>
+      </article>
+      <article class="card">
+        <span class="label">Expat paperwork Q&amp;A</span>
+        <h3>FAQPage, for meaning only</h3>
+        <p class="warn">Google stopped showing FAQ rich results for every site on May 7, 2026.</p>
+        <p>From August 2023 until then, only well-known government and health sites qualified, so TLL never would have. The markup is still valid and still describes the page. Nobody should wait for the dropdowns.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="templates">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">02 · The templates</p>
+      <h2>Three templates and the notes JSON-LD cannot hold</h2>
+      <p>Each template parses as JSON with <code class="inl">{{PLACEHOLDER}}</code> tokens. JSON-LD cannot hold comments, so the annotated view and the field map say where every value comes from in the Webflow CMS.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Template" id="tabs"></div>
+    <div id="tab-panels"></div>
+  </div>
+</section>
+
+<section id="fill">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 · Fill one yourself</p>
+      <h2>Change a value and watch it <em>break</em></h2>
+      <p>The fields start with a real page's values. Fill writes them into the template as text, the way Webflow does, then parses the result and runs the tidy step. Clear a field to see what an empty CMS field does.</p>
+    </div>
+    <div class="fill-grid">
+      <form id="fill-form" novalidate>
+        <div class="field">
+          <label for="ex-pick">Start from</label>
+          <select id="ex-pick"></select>
+        </div>
+        <div id="fill-fields"></div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="opt-webflow" checked> Write it the way Webflow does (an apostrophe becomes &amp;#39;)</label>
+          <label class="check"><input type="checkbox" id="opt-tidy" checked> Run the tidy step</label>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn btn-fill">Fill and check</button>
+          <button type="button" class="btn btn-line" id="fill-reset">Reset to the real values</button>
+        </div>
+      </form>
+      <div class="code-wrap dark">
+        <div class="code-bar">
+          <span class="label" id="fill-label">Result</span>
+          <span class="copied" id="fill-copied" aria-live="polite"></span>
+          <button type="button" class="btn btn-line btn-compact" id="fill-copy">Copy result</button>
+        </div>
+        <pre class="code" id="fill-out" tabindex="0" role="region" aria-label="Filled JSON-LD"></pre>
+        <div class="verdict" id="fill-verdict" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="layover">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">04 · The layover question</p>
+      <h2>Four candidates for six hours in Copenhagen</h2>
+      <p>The brief offered TravelAction or a custom Guide. Here is how each candidate fits the Layovers collection and what Google does with it.</p>
+    </div>
+    <table class="tbl">
+      <thead><tr><th scope="col">Type</th><th scope="col">What it describes</th><th scope="col">Google feature</th><th scope="col">Fit with the CMS</th><th scope="col">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>TravelAction</td><td data-k="What it describes">An act: someone moving from one place to another, with an agent, a start and an end. It is an Action, the family used for buttons like Reserve or Order, not a kind of content.</td><td data-k="Google feature">None for this type.</td><td data-k="Fit with the CMS">Would claim the page is a trip somebody took, which it is not.</td><td data-k="Verdict" class="no">No</td></tr>
+        <tr><td>HowTo</td><td data-k="What it describes">Steps toward a result, with totalTime. The hour-by-hour walk-through is the closest shape, and time-window would map to totalTime.</td><td data-k="Google feature">Removed. HowTo rich results left mobile in August 2023 and desktop in September 2023.</td><td data-k="Fit with the CMS">The walk-through is one RichText field, so steps would need a script to split it.</td><td data-k="Verdict" class="no">Not now</td></tr>
+        <tr><td>Guide</td><td data-k="What it describes">A schema.org type in the pending area for a page that recommends products or services, with reviewAspect. It is built for buying guides.</td><td data-k="Google feature">None.</td><td data-k="Fit with the CMS">Pending terms can change, and a layover plan is not a product review.</td><td data-k="Verdict" class="no">No</td></tr>
+        <tr><td>Article + about</td><td data-k="What it describes">A written piece about a City and an Airport (Airport carries the IATA code). This is what the guides already are.</td><td data-k="Google feature">Article markup helps Google read headline, author, dates and image. No special snippet is promised.</td><td data-k="Fit with the CMS">Every value is a field: name, city, airport-code, author, hero-image, last-updated.</td><td data-k="Verdict" class="yes">Use this</td></tr>
+      </tbody>
+    </table>
+    <div class="reco">
+      <p class="label">Recommendation</p>
+      <p class="measure">Keep Article, which the live guides already use, and change three things: the headline becomes the guide's name instead of the SEO title with the site name stuck on, the author comes from the Layovers author reference, and <code class="inl">about</code> becomes a typed City plus an Airport with its IATA code. That is the most a search engine can learn from these pages without promising a feature that does not exist.</p>
+      <p class="measure">TouristTrip is the schema.org type that would describe the itinerary itself. It earns nothing in Google either, and the CMS has no list of stops to fill it from, so it waits until there is one.</p>
+    </div>
+  </div>
+</section>
+
+<section id="google">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">05 · What Google does with it</p>
+      <h2>The honest version of rich snippet findability</h2>
+      <p>The brief asked for markup that maximizes rich snippets. For these three page types, Google offers fewer snippets than it used to. Here is what each piece earns.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="label">Article</span><h3>It helps Google read the byline</h3><p>Google's Article documentation lists no required properties and recommends author (with a url), datePublished, dateModified, headline and image. It uses them to show the right title, date and byline. There is no Article-only snippet to chase.</p></div>
+      <div class="fact"><span class="label">FAQPage</span><h3>Gone for every site since May 7, 2026</h3><p>As quoted from Google's own notice by several search news sites: "As of May 7, 2026, FAQ rich results are no longer appearing in Google Search." The Rich Results Test and the Search Console report for FAQ were scheduled to go in June 2026. Test FAQ markup with the Schema Markup Validator instead.</p></div>
+      <div class="fact"><span class="label">Founder badge</span><h3>Accurate markup with no payoff in search</h3><p>No schema.org property turns a badge into a rich result. The template carries it as <code class="inl">author.memberOf</code>, an OrganizationRole inside TLL with the badge as roleName. Nancy's own Person node on the home page already says jobTitle "Founder and editor", which is the right place for a job.</p></div>
+      <div class="fact"><span class="label">Read time</span><h3>timeRequired, for whoever reads it</h3><p>Reading time maps to <code class="inl">timeRequired</code> as an ISO 8601 duration, so 9 minutes is <code class="inl">PT9M</code>. It is valid schema.org. Google shows no read time from it.</p></div>
+    </div>
+    <p class="measure" style="margin-top:24px;color:var(--text-2);font-size:16px">The build machine could not open developers.google.com, so the FAQ dates come from search results quoting Google's notice. Open <a href="https://developers.google.com/search/docs/appearance/structured-data/faqpage">Google's FAQ page</a> and <a href="https://developers.google.com/search/docs/appearance/structured-data/article">Article page</a> once before anyone quotes them.</p>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">06 · What the site emits today</p>
+      <h2>Read off the live pages, after their scripts ran</h2>
+      <p id="live-intro"></p>
+    </div>
+    <table class="tbl" id="live-table">
+      <thead><tr><th scope="col">Page</th><th scope="col">Block</th><th scope="col">Where it comes from</th><th scope="col">Types</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <ol class="findings">
+      <li><b>Layover headlines are SEO titles.</b> The guides send "Copenhagen 6-hour layover from CPH · That Layover Life" as the headline, while the page's H1 is "The 6-Hour Copenhagen Reset (from CPH)". The template uses the name.</li>
+      <li><b>Layover guides have no author and no datePublished, and about is a bare string.</b> The Layovers collection has an author reference; it is simply not bound. There is no published-date field, so the template leaves datePublished out instead of guessing.</li>
+      <li><b>Story pages carry two blocks.</b> The Article and breadcrumb sit in the page head. A FAQPage is added after load by the script that reads the Quick answers box. Both are valid. The FAQ one earns no snippet now, and it does no harm.</li>
+      <li><b>Webflow writes apostrophes as &amp;#39;.</b> In the raw page, the Kuala Lumpur story's headline reads FOMO Is Real, Y&amp;#39;all. The inline script tll-ld-unescape-v1 fixes this for the story block only, and only for crawlers that run scripts. The proposed tidy step covers the layover block too and drops fields the CMS left empty.</li>
+      <li><b>dateModified is the published date</b> unless the owner-edit script finds a Last updated date on the page. That arrangement works and the template keeps it.</li>
+      <li><b>Two indexes for layover guides.</b> The breadcrumb points at /pillars/layover-guides. The newer /layovers page also answers with its own canonical. One of them should be the breadcrumb.</li>
+      <li><b>The publisher is written out on every story</b> without the @id the home page uses for the same Organization. The template adds the @id so the two join up.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="on-site">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">07 · Putting it on the site</p>
+      <h2>Two head blocks and one small script</h2>
+    </div>
+    <ol class="steps">
+      <li>Stories collection template, Page settings, Custom code, inside head: replace the block <code class="inl">tll-article-ld-v2</code> with the story template, keeping the id so the owner-edit script still finds it. Insert each field with Webflow's field picker.</li>
+      <li>Layovers collection template, same place: replace <code class="inl">tll-layover-ld-v1</code> with the layover template.</li>
+      <li>Replace the inline <code class="inl">tll-ld-unescape-v1</code> with <code class="inl">tll-ld-unescape-v2</code> (the tidy step on this page) in both template heads. It is inline page code, so it does not count against the 15-script cap.</li>
+      <li>FAQ: nothing to bind. Story pages keep building FAQPage from Quick answers. Moving guides get the same treatment when they exist. <span class="soon">Coming soon</span></li>
+      <li>Check three published pages in the <a href="https://validator.schema.org/">Schema Markup Validator</a> and the Article ones in Google's Rich Results Test.</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="eyebrow">Sources</p>
+    <ul>
+      <li>Live JSON-LD read from thatlayover.life on November 12, 2026: two stories with Quick answers, one without, both layover guides, and /faq.</li>
+      <li>Webflow CMS field names from the October 13, 2026 export in the repo and the Worker's field list.</li>
+      <li><a href="https://developers.google.com/search/docs/appearance/structured-data/article">Google Search Central: Article structured data</a></li>
+      <li><a href="https://developers.google.com/search/docs/appearance/structured-data/faqpage">Google Search Central: FAQ structured data</a></li>
+      <li><a href="https://developers.google.com/search/blog/2023/08/howto-faq-changes">Google Search Central blog, August 2023: changes to HowTo and FAQ rich results</a></li>
+      <li><a href="https://schema.org/Guide">schema.org/Guide</a>, <a href="https://schema.org/TravelAction">schema.org/TravelAction</a>, <a href="https://schema.org/Airport">schema.org/Airport</a>, <a href="https://schema.org/OrganizationRole">schema.org/OrganizationRole</a></li>
+    </ul>
+    <p>Prototype. Nothing on this page is loaded by thatlayover.life.</p>
+  </div>
+</footer>
+
+<script>
+/*TIDY-START*/
+/* TLL JSON-LD tidy (prototype). Proposed as tll-ld-unescape-v2, replacing the inline tll-ld-unescape-v1
+   that runs on story pages today. Same job as v1 (turn Webflow's &#39; back into ') plus three more:
+   1. drops values a CMS field left empty ("", "PTM" from an empty reading time, a Person with no name),
+   2. copies datePublished into dateModified when dateModified ended up empty,
+   3. runs on every block TLL writes (story, layover, FAQ), not only #tll-article-ld-v2.
+   Works in the browser and in Node (the prototype's build step uses the same function). */
+(function (root) {
+  var NEEDS = {
+    Person: ["name"], Organization: ["name"], OrganizationRole: ["roleName"],
+    Place: ["name"], City: ["name"], Airport: ["iataCode"], PostalAddress: ["addressCountry"],
+    Question: ["name", "acceptedAnswer"], Answer: ["text"]
+  };
+  var ENT = { "&#39;": "'", "&#x27;": "'", "&quot;": '"', "&#34;": '"', "&amp;": "&", "&lt;": "<", "&gt;": ">", "&nbsp;": " " };
+  function decode(s) {
+    if (s.indexOf("&") < 0) return s;
+    return s.replace(/&(#39|#x27|quot|#34|amp|lt|gt|nbsp);/g, function (m) { return ENT[m]; });
+  }
+  function empty(v) {
+    return v === undefined || v === null || v === "" || (Array.isArray(v) && v.length === 0);
+  }
+  function clean(v) {
+    if (typeof v === "string") {
+      var s = decode(v).replace(/\s+/g, " ").trim();
+      if (s === "PTM" || s.indexOf("{{") > -1) return "";
+      return s;
+    }
+    if (Array.isArray(v)) return v.map(clean).filter(function (x) { return !empty(x); });
+    if (v && typeof v === "object") {
+      var out = {};
+      Object.keys(v).forEach(function (k) {
+        var c = clean(v[k]);
+        if (!empty(c)) out[k] = c;
+      });
+      var need = NEEDS[out["@type"]];
+      if (need && need.some(function (k) { return empty(out[k]); })) return "";
+      if (out.datePublished && !out.dateModified) out.dateModified = out.datePublished;
+      return out;
+    }
+    return v;
+  }
+  function tidyText(text) {
+    /* Control characters (a line break typed into an Excerpt) make the whole block invalid JSON. */
+    return clean(JSON.parse(String(text).replace(/[\u0000-\u001F]+/g, " ")));
+  }
+  function run(doc) {
+    var list = doc.querySelectorAll('script[type="application/ld+json"]');
+    Array.prototype.forEach.call(list, function (s) {
+      try { s.textContent = JSON.stringify(tidyText(s.textContent)); } catch (e) { /* leave it as it was */ }
+    });
+  }
+  var api = { clean: clean, tidyText: tidyText, run: run, decode: decode };
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+  else root.TLLTidy = api;
+})(typeof globalThis !== "undefined" ? globalThis : this);
+/*TIDY-END*/
+</script>
+<script>
+/*DATA-START*/
+var DATA = {"templates":{"story":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/{{SLUG}}#article","url":"https://www.thatlayover.life/stories/{{SLUG}}","mainEntityOfPage":"https://www.thatlayover.life/stories/{{SLUG}}","headline":"{{NAME}}","description":"{{EXCERPT}}","image":["{{HERO_IMAGE}}"],"datePublished":"{{PUBLISHED_DATE}}","dateModified":"{{DATE_MODIFIED}}","timeRequired":"PT{{READING_TIME}}M","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}#person","name":"{{CONTRIBUTOR_NAME}}","url":"https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}","memberOf":{"@type":"OrganizationRole","roleName":"{{CONTRIBUTOR_BADGE}}","memberOf":{"@id":"https://www.thatlayover.life/#organization"}}},"editor":{"@type":"Person","name":"{{EDITED_BY}}"},"sponsor":{"@type":"Organization","name":"{{SPONSOR_NAME}}"},"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"{{BYLINE_LOCATION}}","address":{"@type":"PostalAddress","addressCountry":"{{COUNTRY}}"}},"publishingPrinciples":"https://www.thatlayover.life/editorial-charter","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"{{NAME}}","item":"https://www.thatlayover.life/stories/{{SLUG}}"}]}]},"layover":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/layovers/{{SLUG}}#article","url":"https://www.thatlayover.life/layovers/{{SLUG}}","mainEntityOfPage":"https://www.thatlayover.life/layovers/{{SLUG}}","headline":"{{NAME}}","description":"{{SEO_DESCRIPTION}}","image":["{{HERO_IMAGE}}"],"dateModified":"{{LAST_UPDATED}}","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}#person","name":"{{AUTHOR_NAME}}","url":"https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}"},"about":[{"@type":"City","name":"{{CITY}}"},{"@type":"Airport","iataCode":"{{AIRPORT_CODE}}"}],"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Layover Guides","item":"https://www.thatlayover.life/pillars/layover-guides"},{"@type":"ListItem","position":3,"name":"{{NAME}}","item":"https://www.thatlayover.life/layovers/{{SLUG}}"}]}]},"faq":{"@context":"https://schema.org","@type":"FAQPage","@id":"{{PAGE_URL}}#webpage","url":"{{PAGE_URL}}","name":"{{PAGE_NAME}}","description":"{{PAGE_DESCRIPTION}}","dateModified":"{{LAST_UPDATED}}","about":{"@type":"City","name":"{{CITY}}"},"isPartOf":{"@id":"https://www.thatlayover.life/#website"},"publisher":{"@id":"https://www.thatlayover.life/#organization"},"inLanguage":"en","isAccessibleForFree":true,"mainEntity":[{"@type":"Question","name":"{{QUESTION}}","acceptedAnswer":{"@type":"Answer","text":"{{ANSWER}}"}}]}},"annotations":{"story":[{"ph":"SLUG","field":"Stories · slug","wf":"{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}","today":"Same.","note":"Used in @id, url, mainEntityOfPage and the breadcrumb."},{"ph":"NAME","field":"Stories · name","wf":"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}","today":"Same (headline is the story title, not the SEO title).","note":"Google wants headline to match the title on the page. Webflow writes ' as &#39;; the tidy step turns it back."},{"ph":"EXCERPT","field":"Stories · excerpt","wf":"{{wf {\"path\":\"excerpt\",\"type\":\"PlainText\"} }}","today":"Same.","note":"A line break typed into the excerpt would make the block invalid JSON; the tidy step flattens it."},{"ph":"HERO_IMAGE","field":"Stories · hero-image","wf":"{{wf {\"path\":\"hero-image\",\"type\":\"ImageRef\"} }}","today":"Same, as a single string.","note":"Now an array of one, which is the shape Google's Article docs show."},{"ph":"PUBLISHED_DATE","field":"Stories · published-date","wf":"{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}","today":"Same.","note":"ISO 8601 with time zone, as Webflow writes it."},{"ph":"DATE_MODIFIED","field":"Stories · last-updated, else published-date","wf":"{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}","today":"Head code writes published-date; the inline script tll-st3-owner-edit-v1 swaps in last-updated when it is later.","note":"Keep that arrangement: head code cannot fall back from an empty field. The tidy step also copies datePublished into an empty dateModified."},{"ph":"READING_TIME","field":"Stories · reading-time (Number, minutes)","wf":"{{wf {\"path\":\"reading-time\",\"type\":\"Number\"} }}","today":"Not emitted.","note":"New. Becomes timeRequired, e.g. PT9M. The Worker sets it on publish (words ÷ 220, rounded up, at least 1). Empty would read PTM; the tidy step drops it. No Google feature reads timeRequired."},{"ph":"CONTRIBUTOR_SLUG","field":"Stories · contributor → Contributors · slug","wf":"{{wf {\"path\":\"contributor:slug\",\"type\":\"PlainText\"} }}","today":"Same, in author.url.","note":"New: author.@id matches the #person id the profile page already uses, so the story and the profile point at one person."},{"ph":"CONTRIBUTOR_NAME","field":"Stories · contributor → Contributors · name","wf":"{{wf {\"path\":\"contributor:name\",\"type\":\"PlainText\"} }}","today":"Same.","note":"Google's author guidance: name plus a url to the author page. Both are there."},{"ph":"CONTRIBUTOR_BADGE","field":"Stories · contributor → Contributors · badge (Option: Contributor, Frequent, Editor, Founder)","wf":"{{wf {\"path\":\"contributor:badge\",\"type\":\"Option\"} }}","today":"Not emitted.","note":"The founder badge. No schema.org property earns a rich result for it, so it is carried as a role: author.memberOf → OrganizationRole.roleName, inside TLL. The Founding 01 to 03 numbers are typed into the home page only; no CMS field holds them (see README)."},{"ph":"EDITED_BY","field":"Stories · edited-by","wf":"{{wf {\"path\":\"edited-by\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New: editor (Person). Empty on most stories; the tidy step drops a Person with no name."},{"ph":"SPONSOR_NAME","field":"Stories · sponsor-name-2","wf":"{{wf {\"path\":\"sponsor-name-2\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New: sponsor (Organization), only when a host or sponsor is named. The disclosure sentence itself stays on the page; no schema.org property carries it."},{"ph":"BYLINE_LOCATION","field":"Stories · byline-location","wf":"{{wf {\"path\":\"byline-location\",\"type\":\"PlainText\"} }}","today":"Same, in contentLocation.name (stored in capitals, e.g. NEW ORLEANS, LOUISIANA).","note":"Harmless in capitals. Title case in the CMS would read better in any tool that shows it."},{"ph":"COUNTRY","field":"Stories · country-2 → Countries · name","wf":"{{wf {\"path\":\"country-2:name\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New: contentLocation.address.addressCountry. The brief lists a field called countries; the Oct 13 CMS export and the Worker have country-2, a single reference. If a multi-reference countries field exists, head code cannot loop over it, so this stays one country."}],"layover":[{"ph":"SLUG","field":"Layovers · slug","wf":"{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}","today":"Same.","note":""},{"ph":"NAME","field":"Layovers · name","wf":"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}","today":"Uses seo-title, e.g. \"Copenhagen 6-hour layover from CPH · That Layover Life\".","note":"Change: headline should be the title on the page (the H1 is the name), without the site name."},{"ph":"SEO_DESCRIPTION","field":"Layovers · seo-description","wf":"{{wf {\"path\":\"seo-description\",\"type\":\"PlainText\"} }}","today":"Same.","note":""},{"ph":"HERO_IMAGE","field":"Layovers · hero-image","wf":"{{wf {\"path\":\"hero-image\",\"type\":\"ImageRef\"} }}","today":"Same, as a single string.","note":""},{"ph":"LAST_UPDATED","field":"Layovers · last-updated","wf":"{{wf {\"path\":\"last-updated\",\"type\":\"Date\"} }}","today":"Same, in dateModified.","note":"There is no published-date field on Layovers, so datePublished is left out rather than guessed. Adding one is a decision (see README)."},{"ph":"AUTHOR_SLUG","field":"Layovers · author → Contributors · slug","wf":"{{wf {\"path\":\"author:slug\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New. The Layovers collection has an author reference (Oct 13 export), not in the brief's field list. Both live guides point at Nancy Carleton."},{"ph":"AUTHOR_NAME","field":"Layovers · author → Contributors · name","wf":"{{wf {\"path\":\"author:name\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New. Today the guides carry no author at all, which is the largest gap."},{"ph":"CITY","field":"Layovers · city","wf":"{{wf {\"path\":\"city\",\"type\":\"PlainText\"} }}","today":"about is the plain string \"Copenhagen\".","note":"Change: about becomes a typed City."},{"ph":"AIRPORT_CODE","field":"Layovers · airport-code","wf":"{{wf {\"path\":\"airport-code\",\"type\":\"PlainText\"} }}","today":"Not emitted.","note":"New: an Airport with iataCode, also in about. time-window (3h, 6h, 9h, 12h+) is not mapped: timeRequired means time to read or work through the page, and 12h+ is not a duration."}],"faq":[{"ph":"PAGE_URL","field":"Page URL (no collection yet)","wf":"Coming soon","today":"/faq: same URL and the same #webpage id.","note":"Moving guides have no pages and no collection yet. On story pages the FAQ block is built by the script from Quick answers and uses #faq, because the page itself is the Article."},{"ph":"PAGE_NAME","field":"Page name","wf":"Coming soon","today":"/faq: \"FAQ · That Layover Life\".","note":""},{"ph":"PAGE_DESCRIPTION","field":"Page meta description","wf":"Coming soon","today":"/faq: same.","note":""},{"ph":"LAST_UPDATED","field":"Moving guide · last-updated (proposed)","wf":"Coming soon","today":"/faq: not emitted.","note":"Empty on /faq, so the tidy step drops it."},{"ph":"CITY","field":"Moving guide · city (proposed)","wf":"Coming soon","today":"/faq: not emitted.","note":"General FAQ has no city; dropped when empty."},{"ph":"QUESTION","field":"Quick answers (RichText): each bold line or h3/h4","wf":"Script, not a binding","today":"Story pages: tll FAQ schema v1 builds this from the rendered Quick answers block. /faq: written by hand into the page head.","note":"Repeats once per question. Webflow head code cannot loop a RichText field into JSON, so the script that already does this for stories is the injection point."},{"ph":"ANSWER","field":"Quick answers (RichText): the paragraphs under each question","wf":"Script, not a binding","today":"As above.","note":"Google requires the answer text to be visible on the page; reading it from the rendered block guarantees that."}]},"examples":[{"id":"story-nola","short":"New Orleans","template":"story","label":"Story · La Petite's Guide to New Orleans","page":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo","from":{"NAME":"Live Article block, written the way Webflow writes it (&#39;) to show the tidy step","DATE_MODIFIED":"Empty: the page shows no Last updated line","READING_TIME":"Reading time shown on the page","CONTRIBUTOR_BADGE":"Contributors · badge in the Oct 13 CMS export","EDITED_BY":"The Receipts box on the page","SPONSOR_NAME":"Empty: the disclosure reads \"Paid for by the traveler, flights on points\"","COUNTRY":"The country of the byline place; country-2 itself was not read for this build"},"values":{"SLUG":"new-orleans-short-girl-wedding-krewe-of-boo","NAME":"La Petite&#39;s Guide to New Orleans","EXCERPT":"Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.","HERO_IMAGE":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg","PUBLISHED_DATE":"2026-10-26T20:40:00.000Z","DATE_MODIFIED":"","READING_TIME":"9","CONTRIBUTOR_SLUG":"nancy-carleton","CONTRIBUTOR_NAME":"Nancy Carleton","CONTRIBUTOR_BADGE":"Founder","EDITED_BY":"Nancy Carleton","SPONSOR_NAME":"","BYLINE_LOCATION":"NEW ORLEANS, LOUISIANA","COUNTRY":"United States"},"rawParses":true,"checks":["parses","no placeholder left","dates are ISO 8601","URLs are absolute https"],"diffVsLive":{"added":["timeRequired","editor","publishingPrinciples","isPartOf","breadcrumb"],"changed":["image","author","publisher","contentLocation"],"dropped":[],"liveFound":true},"jsonld":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#article","url":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo","mainEntityOfPage":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo","headline":"La Petite's Guide to New Orleans","description":"Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.","image":["https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg"],"datePublished":"2026-10-26T20:40:00.000Z","timeRequired":"PT9M","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/nancy-carleton#person","name":"Nancy Carleton","url":"https://www.thatlayover.life/contributors/nancy-carleton","memberOf":{"@type":"OrganizationRole","roleName":"Founder","memberOf":{"@id":"https://www.thatlayover.life/#organization"}}},"editor":{"@type":"Person","name":"Nancy Carleton"},"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"NEW ORLEANS, LOUISIANA","address":{"@type":"PostalAddress","addressCountry":"United States"}},"publishingPrinciples":"https://www.thatlayover.life/editorial-charter","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb"},"dateModified":"2026-10-26T20:40:00.000Z"},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"La Petite's Guide to New Orleans","item":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo"}]}]}},{"id":"story-torrevieja","short":"Torrevieja","template":"story","label":"Story · Torrevieja Street Food Market 2026","page":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food","from":{"CONTRIBUTOR_BADGE":"Empty here: no badge shows on his profile, so this example shows the role being dropped","EDITED_BY":"Empty: the Receipts box shows only Submitted by","COUNTRY":"The country in the byline"},"values":{"SLUG":"torrevieja-street-food-market-2026-rocking-out-with-some-great-food","NAME":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","EXCERPT":"The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn&#39;t an event to turn your nose up at.","HERO_IMAGE":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg","PUBLISHED_DATE":"2026-10-29T10:50:00.000Z","DATE_MODIFIED":"","READING_TIME":"3","CONTRIBUTOR_SLUG":"luke-luby","CONTRIBUTOR_NAME":"Luke Luby","CONTRIBUTOR_BADGE":"","EDITED_BY":"","SPONSOR_NAME":"","BYLINE_LOCATION":"TORREVIEJA, SPAIN","COUNTRY":"Spain"},"rawParses":true,"checks":["parses","no placeholder left","dates are ISO 8601","URLs are absolute https"],"diffVsLive":{"added":["timeRequired","publishingPrinciples","isPartOf","breadcrumb"],"changed":["image","author","publisher","contentLocation"],"dropped":[],"liveFound":true},"jsonld":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#article","url":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food","mainEntityOfPage":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food","headline":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","description":"The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn't an event to turn your nose up at.","image":["https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg"],"datePublished":"2026-10-29T10:50:00.000Z","timeRequired":"PT3M","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/luke-luby#person","name":"Luke Luby","url":"https://www.thatlayover.life/contributors/luke-luby"},"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"TORREVIEJA, SPAIN","address":{"@type":"PostalAddress","addressCountry":"Spain"}},"publishingPrinciples":"https://www.thatlayover.life/editorial-charter","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb"},"dateModified":"2026-10-29T10:50:00.000Z"},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","item":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food"}]}]}},{"id":"layover-cph","short":"CPH","template":"layover","label":"Layover · The 6-Hour Copenhagen Reset (from CPH)","page":"https://www.thatlayover.life/layovers/cph-copenhagen-6h","from":{"AUTHOR_SLUG":"Layovers · author in the Oct 13 CMS export","AUTHOR_NAME":"Layovers · author in the Oct 13 CMS export","CITY":"Layovers · city","AIRPORT_CODE":"Layovers · airport-code"},"values":{"SLUG":"cph-copenhagen-6h","NAME":"The 6-Hour Copenhagen Reset (from CPH)","SEO_DESCRIPTION":"Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.","HERO_IMAGE":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg","LAST_UPDATED":"2026-09-23T00:00:00.000Z","AUTHOR_SLUG":"nancy-carleton","AUTHOR_NAME":"Nancy Carleton","CITY":"Copenhagen","AIRPORT_CODE":"CPH"},"rawParses":true,"checks":["parses","no placeholder left","dates are ISO 8601","URLs are absolute https"],"diffVsLive":{"added":["author"],"changed":["headline","image","about","publisher"],"dropped":[],"liveFound":true},"jsonld":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#article","url":"https://www.thatlayover.life/layovers/cph-copenhagen-6h","mainEntityOfPage":"https://www.thatlayover.life/layovers/cph-copenhagen-6h","headline":"The 6-Hour Copenhagen Reset (from CPH)","description":"Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.","image":["https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg"],"dateModified":"2026-09-23T00:00:00.000Z","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/nancy-carleton#person","name":"Nancy Carleton","url":"https://www.thatlayover.life/contributors/nancy-carleton"},"about":[{"@type":"City","name":"Copenhagen"},{"@type":"Airport","iataCode":"CPH"}],"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Layover Guides","item":"https://www.thatlayover.life/pillars/layover-guides"},{"@type":"ListItem","position":3,"name":"The 6-Hour Copenhagen Reset (from CPH)","item":"https://www.thatlayover.life/layovers/cph-copenhagen-6h"}]}]}},{"id":"layover-sof","short":"SOF","template":"layover","label":"Layover · Three Hours in Sofia, If You Must (from SOF)","page":"https://www.thatlayover.life/layovers/sof-sofia-3h","from":{"AUTHOR_SLUG":"Layovers · author in the Oct 13 CMS export","AUTHOR_NAME":"Layovers · author in the Oct 13 CMS export"},"values":{"SLUG":"sof-sofia-3h","NAME":"Three Hours in Sofia, If You Must (from SOF)","SEO_DESCRIPTION":"Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.","HERO_IMAGE":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg","LAST_UPDATED":"2026-05-19T00:00:00.000Z","AUTHOR_SLUG":"nancy-carleton","AUTHOR_NAME":"Nancy Carleton","CITY":"Sofia","AIRPORT_CODE":"SOF"},"rawParses":true,"checks":["parses","no placeholder left","dates are ISO 8601","URLs are absolute https"],"diffVsLive":{"added":["author"],"changed":["headline","image","about","publisher"],"dropped":[],"liveFound":true},"jsonld":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#article","url":"https://www.thatlayover.life/layovers/sof-sofia-3h","mainEntityOfPage":"https://www.thatlayover.life/layovers/sof-sofia-3h","headline":"Three Hours in Sofia, If You Must (from SOF)","description":"Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.","image":["https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg"],"dateModified":"2026-05-19T00:00:00.000Z","author":{"@type":"Person","@id":"https://www.thatlayover.life/contributors/nancy-carleton#person","name":"Nancy Carleton","url":"https://www.thatlayover.life/contributors/nancy-carleton"},"about":[{"@type":"City","name":"Sofia"},{"@type":"Airport","iataCode":"SOF"}],"publisher":{"@type":"Organization","@id":"https://www.thatlayover.life/#organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"isPartOf":{"@id":"https://www.thatlayover.life/#website"},"inLanguage":"en","isAccessibleForFree":true,"breadcrumb":{"@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Layover Guides","item":"https://www.thatlayover.life/pillars/layover-guides"},{"@type":"ListItem","position":3,"name":"Three Hours in Sofia, If You Must (from SOF)","item":"https://www.thatlayover.life/layovers/sof-sofia-3h"}]}]}},{"id":"faq-site","short":"/faq","template":"faq","label":"FAQ · /faq (the only live FAQ page)","page":"https://www.thatlayover.life/faq","from":{"PAGE_NAME":"The name in the live FAQPage block","LAST_UPDATED":"Empty: /faq has no date field","CITY":"Empty: not a city page"},"values":{"PAGE_URL":"https://www.thatlayover.life/faq","PAGE_NAME":"FAQ · That Layover Life","PAGE_DESCRIPTION":"Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.","LAST_UPDATED":"","CITY":""},"questions":7,"rawParses":true,"checks":["parses","no placeholder left","dates are ISO 8601","URLs are absolute https"],"diffVsLive":{"added":[],"changed":[],"dropped":["breadcrumb"],"liveFound":true},"jsonld":{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.thatlayover.life/faq#webpage","url":"https://www.thatlayover.life/faq","name":"FAQ · That Layover Life","description":"Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"publisher":{"@id":"https://www.thatlayover.life/#organization"},"inLanguage":"en","isAccessibleForFree":true,"mainEntity":[{"@type":"Question","name":"What is That Layover Life?","acceptedAnswer":{"@type":"Answer","text":"A travel magazine written by the people who took the trips: repeat travelers, expats, and anyone who turns a six-hour connection into a story. Stories go live after the editor in Copenhagen reads them, usually within 48 hours. Free to read."}},{"@type":"Question","name":"Is it free to read and to contribute?","acceptedAnswer":{"@type":"Answer","text":"Yes to both, and it stays free for travelers. A paid tier may add premium features later, but existing accounts always keep a free option and we never paywall published stories."}},{"@type":"Question","name":"Do you use AI?","acceptedAnswer":{"@type":"Answer","text":"Not to write stories. Every story is written by the person who took the trip. Nancy reads every story and makes every call."}},{"@type":"Question","name":"How do I get published, and do I keep my byline?","acceptedAnswer":{"@type":"Answer","text":"Sign in, click Share your story, and fill the form. You choose your credit per story (named, pen name, or Anonymous Traveler), and you keep your copyright. A human reads every story before it goes live, usually within 48 hours. The rules it has to pass: 300 words or more, your own photo, a place, links that work. The editor can correct it under the Charter and never rewrites your voice."}},{"@type":"Question","name":"Can I include my own links and affiliate links?","acceptedAnswer":{"@type":"Answer","text":"Yes, labeled. Affiliate and personal links are welcome as long as they're disclosed, never hidden. Press and affiliate status is a profile field, so it surfaces at the top of every piece."}},{"@type":"Question","name":"Can I travel with my dog in the EU?","acceptedAnswer":{"@type":"Answer","text":"Yes, with the paperwork in order: an EU pet passport, and a microchip implanted before the rabies shot, because a vaccination given first does not count. Then wait 21 days after the primary rabies vaccination before you travel. That wait is the rule that catches people, not the paperwork. Inside the EU you do not need a rabies titer test. Coming into the EU from some non-EU countries you do, and it can take months, so plan backward from the border. The Paw Passport page covers the logistics, verified large-dog-friendly hotels included."}},{"@type":"Question","name":"Do you accept press and tourism-board trips?","acceptedAnswer":{"@type":"Answer","text":"Yes, disclosure-first. Every hosted or gifted trip is labeled at the top of the story, never buried in a footnote. Press travelers and tourism boards are welcome through the For Press door."}}]}}],"live":{"/stories/new-orleans-short-girl-wedding-krewe-of-boo":[{"source":"server HTML (page head custom code)","id":"tll-article-ld-v2","types":["Article","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#article","url":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo","mainEntityOfPage":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo","headline":"La Petite's Guide to New Orleans","description":"Tippy toes on Canal Street: a wedding, a Halloween parade and a swamp, seen mostly from the back row.","image":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6adfb9519a9ba4a4df4ddecf_6adfb8c46abb1496ea92496b_nola-hero-krewe-of-boo-canal-street.jpeg","datePublished":"2026-10-26T20:40:00.000Z","dateModified":"2026-10-26T20:40:00.000Z","author":{"@type":"Person","name":"Nancy Carleton","url":"https://www.thatlayover.life/contributors/nancy-carleton"},"publisher":{"@type":"Organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"NEW ORLEANS, LOUISIANA"},"inLanguage":"en","isAccessibleForFree":true},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"La Petite's Guide to New Orleans","item":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo"}]}]}},{"source":"added by the Quick answers script (tll FAQ schema v1)","id":null,"types":["FAQPage"],"json":{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo#faq","mainEntity":[{"@type":"Question","name":"How much is the bus from New Orleans airport to downtown?","acceptedAnswer":{"@type":"Answer","text":"The RTA 202 Airport Express costs $1.25 and the fare is good to anywhere in the city of New Orleans. Rideshares from the airport to Orleans Parish start at about $36."}},{"@type":"Question","name":"When is the Krewe of Boo parade?","acceptedAnswer":{"@type":"Answer","text":"On a Saturday in late October. In 2026 it rolled on October 24 at 6:30 PM, starting on Elysian Fields Avenue in the Marigny, cutting through the French Quarter and turning onto Canal Street."}},{"@type":"Question","name":"What is a second line?","acceptedAnswer":{"@type":"Answer","text":"A New Orleans brass band parade. The first line is the band and the hosts who organized it; the second line is everyone who falls in behind and dances along. Weddings and funerals both end in second lines."}},{"@type":"Question","name":"Where does the second line tradition come from?","acceptedAnswer":{"@type":"Answer","text":"From New Orleans' social aid and pleasure clubs, Black neighborhood associations formed after the Civil War that helped members with loans, burial costs and insurance and paraded through their neighborhoods once a year. Clubs still parade on Sundays through much of the year."}},{"@type":"Question","name":"Why are medians called neutral grounds in New Orleans?","acceptedAnswer":{"@type":"Answer","text":"Canal Street's median once divided the Creole French Quarter from the American sector upriver and belonged to neither side. The name spread to every median in the city."}},{"@type":"Question","name":"Who are the Muff-A-Lottas?","acceptedAnswer":{"@type":"Answer","text":"A New Orleans women's dance krewe formed in 2009, named after the muffuletta sandwich and dressed as 1950s-style waitresses. They march in Carnival parades and the Krewe of Boo."}}]}}],"/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food":[{"source":"server HTML (page head custom code)","id":"tll-article-ld-v2","types":["Article","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#article","url":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food","mainEntityOfPage":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food","headline":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","description":"The Torrevieja Street Food Market in the Parque de las Naciones in October 2026 was a sight to behold and certainly wasn't an event to turn your nose up at.","image":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6ae323f4b56dc5d88cc6e62e_uwjpidtfgp3gwxuzeefz.jpeg","datePublished":"2026-10-29T10:50:00.000Z","dateModified":"2026-10-29T10:50:00.000Z","author":{"@type":"Person","name":"Luke Luby","url":"https://www.thatlayover.life/contributors/luke-luby"},"publisher":{"@type":"Organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"TORREVIEJA, SPAIN"},"inLanguage":"en","isAccessibleForFree":true},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","item":"https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food"}]}]}}],"/stories/kuala-lumpur-fomo-is-real":[{"source":"server HTML (page head custom code)","id":"tll-article-ld-v2","types":["Article","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#article","url":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real","mainEntityOfPage":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real","headline":"FOMO Is Real, Y'all","description":"Jay went to Kuala Lumpur without me, and I could not let it go. One shared carry-on, two days, 272 rainbow steps, monkey babies all over, and the reason a city is named for mud.","image":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6acd1cf4d98070e2e2fc6ffe_6acd1ca32f79b5d09f39c993_tll-my-hero-batu-caves-nancy-jay.jpeg","datePublished":"2022-07-03T12:00:00.000Z","dateModified":"2022-07-03T12:00:00.000Z","author":{"@type":"Person","name":"Nancy Carleton","url":"https://www.thatlayover.life/contributors/nancy-carleton"},"publisher":{"@type":"Organization","name":"That Layover Life","url":"https://www.thatlayover.life/"},"contentLocation":{"@type":"Place","name":"KUALA LUMPUR, MALAYSIA"},"inLanguage":"en","isAccessibleForFree":true},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Stories","item":"https://www.thatlayover.life/stories"},{"@type":"ListItem","position":3,"name":"FOMO Is Real, Y'all","item":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real"}]}]}},{"source":"added by the Quick answers script (tll FAQ schema v1)","id":null,"types":["FAQPage"],"json":{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#faq","mainEntity":[{"@type":"Question","name":"Why is it called Kuala Lumpur?","acceptedAnswer":{"@type":"Answer","text":"In Malay, kuala means the place where two rivers meet and lumpur means mud. The city began around 1857 at the muddy confluence of the Klang and Gombak rivers, where tin miners landed."}},{"@type":"Question","name":"How many steps are there at Batu Caves?","acceptedAnswer":{"@type":"Answer","text":"272 steps lead up to the Temple Cave. They were repainted in rainbow colors in 2018."}},{"@type":"Question","name":"How tall is the Lord Murugan statue at Batu Caves?","acceptedAnswer":{"@type":"Answer","text":"42.7 meters (140 feet). It was unveiled in 2006."}},{"@type":"Question","name":"What is pewter made of?","acceptedAnswer":{"@type":"Answer","text":"Mostly tin. Royal Selangor's pewter is 92 to 97 percent tin, with small amounts of copper and antimony to strengthen it."}},{"@type":"Question","name":"Do US citizens need a visa for Malaysia?","acceptedAnswer":{"@type":"Answer","text":"No, for stays of up to 90 days, but every visitor must complete the free Malaysia Digital Arrival Card online within three days before arrival."}}]}}],"/layovers/cph-copenhagen-6h":[{"source":"server HTML (page head custom code)","id":"tll-layover-ld-v1","types":["Article","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#article","headline":"Copenhagen 6-hour layover from CPH · That Layover Life","description":"Six hours from CPH by someone who lives there. The M2 metro, smørrebrød at Schønnemann, the Wednesday cinnamon roll, the sauna swim, and the Round Tower.","image":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a13ea7c5a528723c5ec9a90_6a0cb9cfa916b3a0a762300e_1ogGpPdJtm0VTPcOxKRmJrvMZxvgGGYiX%253Dw2400.jpeg","dateModified":"2026-09-23T00:00:00.000Z","url":"https://www.thatlayover.life/layovers/cph-copenhagen-6h","mainEntityOfPage":"https://www.thatlayover.life/layovers/cph-copenhagen-6h","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"publisher":{"@id":"https://www.thatlayover.life/#organization"},"inLanguage":"en","isAccessibleForFree":true,"about":"Copenhagen","breadcrumb":{"@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/layovers/cph-copenhagen-6h#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Layover Guides","item":"https://www.thatlayover.life/pillars/layover-guides"},{"@type":"ListItem","position":3,"name":"The 6-Hour Copenhagen Reset (from CPH)","item":"https://www.thatlayover.life/layovers/cph-copenhagen-6h"}]}]}}],"/layovers/sof-sofia-3h":[{"source":"server HTML (page head custom code)","id":"tll-layover-ld-v1","types":["Article","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#article","headline":"3-hour Sofia layover · SOF tarator and rakia · That Layover Life","description":"Three hours from SOF, planned tight. Tarator at Made in Home, the cathedral from across the road, and a candlelit shot of rakia at Hambara.","image":"https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0cc5157e83888edcfbbeee_6a0cba798dfcb5ee54bc8683_1erBLlFASwqo2hhlBzbQgdr_hEqf4rg6q%253Dw2400.jpeg","dateModified":"2026-05-19T00:00:00.000Z","url":"https://www.thatlayover.life/layovers/sof-sofia-3h","mainEntityOfPage":"https://www.thatlayover.life/layovers/sof-sofia-3h","isPartOf":{"@id":"https://www.thatlayover.life/#website"},"publisher":{"@id":"https://www.thatlayover.life/#organization"},"inLanguage":"en","isAccessibleForFree":true,"about":"Sofia","breadcrumb":{"@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://www.thatlayover.life/layovers/sof-sofia-3h#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatlayover.life/"},{"@type":"ListItem","position":2,"name":"Layover Guides","item":"https://www.thatlayover.life/pillars/layover-guides"},{"@type":"ListItem","position":3,"name":"Three Hours in Sofia, If You Must (from SOF)","item":"https://www.thatlayover.life/layovers/sof-sofia-3h"}]}]}}],"/faq":[{"source":"server HTML (page head custom code)","id":null,"types":["FAQPage","BreadcrumbList"],"json":{"@context":"https://schema.org","@graph":[{"@id":"https://www.thatlayover.life/faq#webpage","@type":"FAQPage","breadcrumb":{"@id":"https://www.thatlayover.life/faq#breadcrumb"},"description":"Questions, answered straight. What TLL is, whether it's free, how to publish and keep your byline, affiliate links, EU dog travel, and press trips.","inLanguage":"en","isAccessibleForFree":true,"isPartOf":{"@id":"https://www.thatlayover.life/#website"},"mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"A travel magazine written by the people who took the trips: repeat travelers, expats, and anyone who turns a six-hour connection into a story. Stories go live after the editor in Copenhagen reads them, usually within 48 hours. Free to read."},"name":"What is That Layover Life?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes to both, and it stays free for travelers. A paid tier may add premium features later, but existing accounts always keep a free option and we never paywall published stories."},"name":"Is it free to read and to contribute?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Not to write stories. Every story is written by the person who took the trip. Nancy reads every story and makes every call."},"name":"Do you use AI?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Sign in, click Share your story, and fill the form. You choose your credit per story (named, pen name, or Anonymous Traveler), and you keep your copyright. A human reads every story before it goes live, usually within 48 hours. The rules it has to pass: 300 words or more, your own photo, a place, links that work. The editor can correct it under the Charter and never rewrites your voice."},"name":"How do I get published, and do I keep my byline?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes, labeled. Affiliate and personal links are welcome as long as they're disclosed, never hidden. Press and affiliate status is a profile field, so it surfaces at the top of every piece."},"name":"Can I include my own links and affiliate links?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes, with the paperwork in order: an EU pet passport, and a microchip implanted before the rabies shot, because a vaccination given first does not count. Then wait 21 days after the primary rabies vaccination before you travel. That wait is the rule that catches people, not the paperwork. Inside the EU you do not need a rabies titer test. Coming into the EU from some non-EU countries you do, and it can take months, so plan backward from the border. The Paw Passport page covers the logistics, verified large-dog-friendly hotels included."},"name":"Can I travel with my dog in the EU?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes, disclosure-first. Every hosted or gifted trip is labeled at the top of the story, never buried in a footnote. Press travelers and tourism boards are welcome through the For Press door."},"name":"Do you accept press and tourism-board trips?"}],"name":"FAQ · That Layover Life","publisher":{"@id":"https://www.thatlayover.life/#organization"},"url":"https://www.thatlayover.life/faq"},{"@id":"https://www.thatlayover.life/faq#breadcrumb","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.thatlayover.life/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.thatlayover.life/faq","name":"FAQ","position":2}]}]}}]},"capturedAt":"2026-11-12T15:39:21.688Z","annotated":{"story":"{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      // SLUG ← Stories · slug. Today: Same. Used in @id, url, mainEntityOfPage and the breadcrumb.\n      \"@id\": \"https://www.thatlayover.life/stories/{{SLUG}}#article\",\n      // SLUG: same field as above\n      \"url\": \"https://www.thatlayover.life/stories/{{SLUG}}\",\n      // SLUG: same field as above\n      \"mainEntityOfPage\": \"https://www.thatlayover.life/stories/{{SLUG}}\",\n      // NAME ← Stories · name. Today: Same (headline is the story title, not the SEO title). Google wants headline to match the title on the page. Webflow writes ' as &#39;; the tidy step turns it back.\n      \"headline\": \"{{NAME}}\",\n      // EXCERPT ← Stories · excerpt. Today: Same. A line break typed into the excerpt would make the block invalid JSON; the tidy step flattens it.\n      \"description\": \"{{EXCERPT}}\",\n      \"image\": [\n        // HERO_IMAGE ← Stories · hero-image. Today: Same, as a single string. Now an array of one, which is the shape Google's Article docs show.\n        \"{{HERO_IMAGE}}\"\n      ],\n      // PUBLISHED_DATE ← Stories · published-date. Today: Same. ISO 8601 with time zone, as Webflow writes it.\n      \"datePublished\": \"{{PUBLISHED_DATE}}\",\n      // DATE_MODIFIED ← Stories · last-updated, else published-date. Today: Head code writes published-date; the inline script tll-st3-owner-edit-v1 swaps in last-updated when it is later. Keep that arrangement: head code cannot fall back from an empty field. The tidy step also copies datePublished into an empty dateModified.\n      \"dateModified\": \"{{DATE_MODIFIED}}\",\n      // READING_TIME ← Stories · reading-time (Number, minutes). Today: Not emitted. New. Becomes timeRequired, e.g. PT9M. The Worker sets it on publish (words ÷ 220, rounded up, at least 1). Empty would read PTM; the tidy step drops it. No Google feature reads timeRequired.\n      \"timeRequired\": \"PT{{READING_TIME}}M\",\n      \"author\": {\n        \"@type\": \"Person\",\n        // CONTRIBUTOR_SLUG ← Stories · contributor → Contributors · slug. Today: Same, in author.url. New: author.@id matches the #person id the profile page already uses, so the story and the profile point at one person.\n        \"@id\": \"https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}#person\",\n        // CONTRIBUTOR_NAME ← Stories · contributor → Contributors · name. Today: Same. Google's author guidance: name plus a url to the author page. Both are there.\n        \"name\": \"{{CONTRIBUTOR_NAME}}\",\n        // CONTRIBUTOR_SLUG: same field as above\n        \"url\": \"https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}\",\n        \"memberOf\": {\n          // founder badge as a role inside TLL; schema.org-valid, no Google rich result\n          \"@type\": \"OrganizationRole\",\n          // CONTRIBUTOR_BADGE ← Stories · contributor → Contributors · badge (Option: Contributor, Frequent, Editor, Founder). Today: Not emitted. The founder badge. No schema.org property earns a rich result for it, so it is carried as a role: author.memberOf → OrganizationRole.roleName, inside TLL. The Founding 01 to 03 numbers are typed into the home page only; no CMS field holds them (see README).\n          \"roleName\": \"{{CONTRIBUTOR_BADGE}}\",\n          \"memberOf\": {\n            // constant: the Organization node on the home page\n            \"@id\": \"https://www.thatlayover.life/#organization\"\n          }\n        }\n      },\n      \"editor\": {\n        \"@type\": \"Person\",\n        // EDITED_BY ← Stories · edited-by. Today: Not emitted. New: editor (Person). Empty on most stories; the tidy step drops a Person with no name.\n        \"name\": \"{{EDITED_BY}}\"\n      },\n      \"sponsor\": {\n        \"@type\": \"Organization\",\n        // SPONSOR_NAME ← Stories · sponsor-name-2. Today: Not emitted. New: sponsor (Organization), only when a host or sponsor is named. The disclosure sentence itself stays on the page; no schema.org property carries it.\n        \"name\": \"{{SPONSOR_NAME}}\"\n      },\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        // constant: the Organization node on the home page\n        \"@id\": \"https://www.thatlayover.life/#organization\",\n        \"name\": \"That Layover Life\",\n        \"url\": \"https://www.thatlayover.life/\"\n      },\n      \"contentLocation\": {\n        \"@type\": \"Place\",\n        // BYLINE_LOCATION ← Stories · byline-location. Today: Same, in contentLocation.name (stored in capitals, e.g. NEW ORLEANS, LOUISIANA). Harmless in capitals. Title case in the CMS would read better in any tool that shows it.\n        \"name\": \"{{BYLINE_LOCATION}}\",\n        \"address\": {\n          \"@type\": \"PostalAddress\",\n          // COUNTRY ← Stories · country-2 → Countries · name. Today: Not emitted. New: contentLocation.address.addressCountry. The brief lists a field called countries; the Oct 13 CMS export and the Worker have country-2, a single reference. If a multi-reference countries field exists, head code cannot loop over it, so this stays one country.\n          \"addressCountry\": \"{{COUNTRY}}\"\n        }\n      },\n      // constant: the editorial charter, already on the Organization node\n      \"publishingPrinciples\": \"https://www.thatlayover.life/editorial-charter\",\n      \"isPartOf\": {\n        // constant: the WebSite node on the home page\n        \"@id\": \"https://www.thatlayover.life/#website\"\n      },\n      // constant\n      \"inLanguage\": \"en\",\n      // constant: no story is paywalled\n      \"isAccessibleForFree\": true,\n      \"breadcrumb\": {\n        // SLUG: same field as above\n        \"@id\": \"https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb\"\n      }\n    },\n    {\n      \"@type\": \"BreadcrumbList\",\n      // SLUG: same field as above\n      \"@id\": \"https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb\",\n      \"itemListElement\": [\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 1,\n          \"name\": \"Home\",\n          \"item\": \"https://www.thatlayover.life/\"\n        },\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 2,\n          \"name\": \"Stories\",\n          \"item\": \"https://www.thatlayover.life/stories\"\n        },\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 3,\n          // NAME: same field as above\n          \"name\": \"{{NAME}}\",\n          // SLUG: same field as above\n          \"item\": \"https://www.thatlayover.life/stories/{{SLUG}}\"\n        }\n      ]\n    }\n  ]\n}","layover":"{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Article\",\n      // SLUG ← Layovers · slug. Today: Same.\n      \"@id\": \"https://www.thatlayover.life/layovers/{{SLUG}}#article\",\n      // SLUG: same field as above\n      \"url\": \"https://www.thatlayover.life/layovers/{{SLUG}}\",\n      // SLUG: same field as above\n      \"mainEntityOfPage\": \"https://www.thatlayover.life/layovers/{{SLUG}}\",\n      // NAME ← Layovers · name. Today: Uses seo-title, e.g. \"Copenhagen 6-hour layover from CPH · That Layover Life\". Change: headline should be the title on the page (the H1 is the name), without the site name.\n      \"headline\": \"{{NAME}}\",\n      // SEO_DESCRIPTION ← Layovers · seo-description. Today: Same.\n      \"description\": \"{{SEO_DESCRIPTION}}\",\n      \"image\": [\n        // HERO_IMAGE ← Layovers · hero-image. Today: Same, as a single string.\n        \"{{HERO_IMAGE}}\"\n      ],\n      // LAST_UPDATED ← Layovers · last-updated. Today: Same, in dateModified. There is no published-date field on Layovers, so datePublished is left out rather than guessed. Adding one is a decision (see README).\n      \"dateModified\": \"{{LAST_UPDATED}}\",\n      \"author\": {\n        \"@type\": \"Person\",\n        // AUTHOR_SLUG ← Layovers · author → Contributors · slug. Today: Not emitted. New. The Layovers collection has an author reference (Oct 13 export), not in the brief's field list. Both live guides point at Nancy Carleton.\n        \"@id\": \"https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}#person\",\n        // AUTHOR_NAME ← Layovers · author → Contributors · name. Today: Not emitted. New. Today the guides carry no author at all, which is the largest gap.\n        \"name\": \"{{AUTHOR_NAME}}\",\n        // AUTHOR_SLUG: same field as above\n        \"url\": \"https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}\"\n      },\n      \"about\": [\n        {\n          \"@type\": \"City\",\n          // CITY ← Layovers · city. Today: about is the plain string \"Copenhagen\". Change: about becomes a typed City.\n          \"name\": \"{{CITY}}\"\n        },\n        {\n          \"@type\": \"Airport\",\n          // AIRPORT_CODE ← Layovers · airport-code. Today: Not emitted. New: an Airport with iataCode, also in about. time-window (3h, 6h, 9h, 12h+) is not mapped: timeRequired means time to read or work through the page, and 12h+ is not a duration.\n          \"iataCode\": \"{{AIRPORT_CODE}}\"\n        }\n      ],\n      \"publisher\": {\n        \"@type\": \"Organization\",\n        // constant: the Organization node on the home page\n        \"@id\": \"https://www.thatlayover.life/#organization\",\n        \"name\": \"That Layover Life\",\n        \"url\": \"https://www.thatlayover.life/\"\n      },\n      \"isPartOf\": {\n        // constant: the WebSite node on the home page\n        \"@id\": \"https://www.thatlayover.life/#website\"\n      },\n      // constant\n      \"inLanguage\": \"en\",\n      // constant: no story is paywalled\n      \"isAccessibleForFree\": true,\n      \"breadcrumb\": {\n        // SLUG: same field as above\n        \"@id\": \"https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb\"\n      }\n    },\n    {\n      \"@type\": \"BreadcrumbList\",\n      // SLUG: same field as above\n      \"@id\": \"https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb\",\n      \"itemListElement\": [\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 1,\n          \"name\": \"Home\",\n          \"item\": \"https://www.thatlayover.life/\"\n        },\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 2,\n          // constant; today it links /pillars/layover-guides, while /layovers is the guide index (decision in README)\n          \"name\": \"Layover Guides\",\n          \"item\": \"https://www.thatlayover.life/pillars/layover-guides\"\n        },\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 3,\n          // NAME: same field as above\n          \"name\": \"{{NAME}}\",\n          // SLUG: same field as above\n          \"item\": \"https://www.thatlayover.life/layovers/{{SLUG}}\"\n        }\n      ]\n    }\n  ]\n}","faq":"{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  // PAGE_URL ← Page URL (no collection yet) [Coming soon]. Today: /faq: same URL and the same #webpage id. Moving guides have no pages and no collection yet. On story pages the FAQ block is built by the script from Quick answers and uses #faq, because the page itself is the Article.\n  \"@id\": \"{{PAGE_URL}}#webpage\",\n  // PAGE_URL: same field as above\n  \"url\": \"{{PAGE_URL}}\",\n  // PAGE_NAME ← Page name [Coming soon]. Today: /faq: \"FAQ · That Layover Life\".\n  \"name\": \"{{PAGE_NAME}}\",\n  // PAGE_DESCRIPTION ← Page meta description [Coming soon]. Today: /faq: same.\n  \"description\": \"{{PAGE_DESCRIPTION}}\",\n  // LAST_UPDATED ← Moving guide · last-updated (proposed) [Coming soon]. Today: /faq: not emitted. Empty on /faq, so the tidy step drops it.\n  \"dateModified\": \"{{LAST_UPDATED}}\",\n  \"about\": {\n    \"@type\": \"City\",\n    // CITY ← Moving guide · city (proposed) [Coming soon]. Today: /faq: not emitted. General FAQ has no city; dropped when empty.\n    \"name\": \"{{CITY}}\"\n  },\n  \"isPartOf\": {\n    // constant: the WebSite node on the home page\n    \"@id\": \"https://www.thatlayover.life/#website\"\n  },\n  \"publisher\": {\n    // constant: the Organization node on the home page\n    \"@id\": \"https://www.thatlayover.life/#organization\"\n  },\n  // constant\n  \"inLanguage\": \"en\",\n  // constant: no story is paywalled\n  \"isAccessibleForFree\": true,\n  // one Question per Quick answers pair; the script repeats this block\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      // QUESTION ← Quick answers (RichText): each bold line or h3/h4 [Script, not a binding]. Today: Story pages: tll FAQ schema v1 builds this from the rendered Quick answers block. /faq: written by hand into the page head. Repeats once per question. Webflow head code cannot loop a RichText field into JSON, so the script that already does this for stories is the injection point.\n      \"name\": \"{{QUESTION}}\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        // ANSWER ← Quick answers (RichText): the paragraphs under each question [Script, not a binding]. Today: As above. Google requires the answer text to be visible on the page; reading it from the rendered block guarantees that.\n        \"text\": \"{{ANSWER}}\"\n      }\n    }\n  ]\n}"},"head":{"story":"\u003cscript type=\"application/ld+json\" id=\"tll-article-ld-v2\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Article\",\"@id\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#article\",\"url\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\",\"mainEntityOfPage\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\",\"headline\":\"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}\",\"description\":\"{{wf {\"path\":\"excerpt\",\"type\":\"PlainText\"} }}\",\"image\":[\"{{wf {\"path\":\"hero-image\",\"type\":\"ImageRef\"} }}\"],\"datePublished\":\"{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}\",\"dateModified\":\"{{wf {\"path\":\"published-date\",\"type\":\"Date\"} }}\",\"timeRequired\":\"PT{{wf {\"path\":\"reading-time\",\"type\":\"Number\"} }}M\",\"author\":{\"@type\":\"Person\",\"@id\":\"https://www.thatlayover.life/contributors/{{wf {\"path\":\"contributor:slug\",\"type\":\"PlainText\"} }}#person\",\"name\":\"{{wf {\"path\":\"contributor:name\",\"type\":\"PlainText\"} }}\",\"url\":\"https://www.thatlayover.life/contributors/{{wf {\"path\":\"contributor:slug\",\"type\":\"PlainText\"} }}\",\"memberOf\":{\"@type\":\"OrganizationRole\",\"roleName\":\"{{wf {\"path\":\"contributor:badge\",\"type\":\"Option\"} }}\",\"memberOf\":{\"@id\":\"https://www.thatlayover.life/#organization\"}}},\"editor\":{\"@type\":\"Person\",\"name\":\"{{wf {\"path\":\"edited-by\",\"type\":\"PlainText\"} }}\"},\"sponsor\":{\"@type\":\"Organization\",\"name\":\"{{wf {\"path\":\"sponsor-name-2\",\"type\":\"PlainText\"} }}\"},\"publisher\":{\"@type\":\"Organization\",\"@id\":\"https://www.thatlayover.life/#organization\",\"name\":\"That Layover Life\",\"url\":\"https://www.thatlayover.life/\"},\"contentLocation\":{\"@type\":\"Place\",\"name\":\"{{wf {\"path\":\"byline-location\",\"type\":\"PlainText\"} }}\",\"address\":{\"@type\":\"PostalAddress\",\"addressCountry\":\"{{wf {\"path\":\"country-2:name\",\"type\":\"PlainText\"} }}\"}},\"publishingPrinciples\":\"https://www.thatlayover.life/editorial-charter\",\"isPartOf\":{\"@id\":\"https://www.thatlayover.life/#website\"},\"inLanguage\":\"en\",\"isAccessibleForFree\":true,\"breadcrumb\":{\"@id\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb\"}},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://www.thatlayover.life/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stories\",\"item\":\"https://www.thatlayover.life/stories\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}\",\"item\":\"https://www.thatlayover.life/stories/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\"}]}]}\u003c/script>","layover":"\u003cscript type=\"application/ld+json\" id=\"tll-layover-ld-v1\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Article\",\"@id\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#article\",\"url\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\",\"mainEntityOfPage\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\",\"headline\":\"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}\",\"description\":\"{{wf {\"path\":\"seo-description\",\"type\":\"PlainText\"} }}\",\"image\":[\"{{wf {\"path\":\"hero-image\",\"type\":\"ImageRef\"} }}\"],\"dateModified\":\"{{wf {\"path\":\"last-updated\",\"type\":\"Date\"} }}\",\"author\":{\"@type\":\"Person\",\"@id\":\"https://www.thatlayover.life/contributors/{{wf {\"path\":\"author:slug\",\"type\":\"PlainText\"} }}#person\",\"name\":\"{{wf {\"path\":\"author:name\",\"type\":\"PlainText\"} }}\",\"url\":\"https://www.thatlayover.life/contributors/{{wf {\"path\":\"author:slug\",\"type\":\"PlainText\"} }}\"},\"about\":[{\"@type\":\"City\",\"name\":\"{{wf {\"path\":\"city\",\"type\":\"PlainText\"} }}\"},{\"@type\":\"Airport\",\"iataCode\":\"{{wf {\"path\":\"airport-code\",\"type\":\"PlainText\"} }}\"}],\"publisher\":{\"@type\":\"Organization\",\"@id\":\"https://www.thatlayover.life/#organization\",\"name\":\"That Layover Life\",\"url\":\"https://www.thatlayover.life/\"},\"isPartOf\":{\"@id\":\"https://www.thatlayover.life/#website\"},\"inLanguage\":\"en\",\"isAccessibleForFree\":true,\"breadcrumb\":{\"@id\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb\"}},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://www.thatlayover.life/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Layover Guides\",\"item\":\"https://www.thatlayover.life/pillars/layover-guides\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"{{wf {\"path\":\"name\",\"type\":\"PlainText\"} }}\",\"item\":\"https://www.thatlayover.life/layovers/{{wf {\"path\":\"slug\",\"type\":\"PlainText\"} }}\"}]}]}\u003c/script>"}};
+/*DATA-END*/
+</script>
+<script>
+(function(){
+  var PH = /\{\{([A-Z_]+)\}\}/g;
+  var NAMES = { story: "Story", layover: "Layover guide", faq: "Expat Q&A" };
+  var INTRO = {
+    story: "For /stories/<slug>, from the Stories collection. Same shape as the live block, plus reading time, the founder badge, editor, sponsor and country.",
+    layover: "For /layovers/<slug>, from the Layovers collection. Article, with the guide's name as headline, an author, and a typed City and Airport.",
+    faq: "For the expat paperwork Q&A on moving guides, which do not exist yet. The question block repeats once per pair. It was tested on /faq, the one live FAQ page, which already emits the same thing by hand and can keep its own block and breadcrumb."
+  };
+  function $(s, r){ return (r || document).querySelector(s); }
+  function el(tag, attrs, html){ var e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(function(k){ e.setAttribute(k, attrs[k]); }); if (html != null) e.innerHTML = html; return e; }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function jsonEsc(s){ return JSON.stringify(String(s)).slice(1, -1); }
+  function webflowEsc(s){ return String(s).replace(/&/g,"&amp;").replace(/'/g,"&#39;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function pretty(o){ return JSON.stringify(o, null, 2); }
+  function hl(text){
+    return esc(text)
+      .replace(/^(\s*)(\/\/.*)$/gm, '$1<span class="cm">$2</span>')
+      .replace(/\{\{wf [^]*?\} \}\}/g, function(m){ return '<span class="wf">' + m + '</span>'; })
+      .replace(/\{\{[A-Z_]+\}\}/g, function(m){ return '<span class="ph">' + m + '</span>'; });
+  }
+
+  /* fill: text substitution into the template, like Webflow's head code */
+  function fill(name, values, qa, asWebflow){
+    var t = JSON.parse(JSON.stringify(DATA.templates[name]));
+    if (qa && t.mainEntity){
+      var pattern = JSON.stringify(t.mainEntity[0]);
+      t.mainEntity = qa.map(function(p){
+        var q = asWebflow ? webflowEsc(p.q) : p.q, a = asWebflow ? webflowEsc(p.a) : p.a;
+        return JSON.parse(pattern.replace("{{QUESTION}}", jsonEsc(q)).replace("{{ANSWER}}", jsonEsc(a)));
+      });
+    }
+    return JSON.stringify(t, null, 2).replace(PH, function(_, k){
+      var v = values[k] == null ? "" : String(values[k]);
+      return jsonEsc(asWebflow ? webflowEsc(v) : v);
+    });
+  }
+  function mainNode(j){ var n = j["@graph"] || [j]; for (var i = 0; i < n.length; i++) if (n[i]["@type"] === "Article" || n[i]["@type"] === "FAQPage") return n[i]; return n[0]; }
+  function check(name, obj){
+    var errs = [], s = JSON.stringify(obj);
+    if (s.indexOf("{{") > -1) errs.push("A placeholder was left unfilled.");
+    if (/&#39;|&quot;|&amp;/.test(s)) errs.push("HTML entities are still in the text (&#39; and friends). Search engines would show them as typed.");
+    (function walk(v, p){
+      if (typeof v === "string"){
+        if (/^(datePublished|dateModified)$/.test(p) && isNaN(Date.parse(v))) errs.push(p + " is not a date: " + v);
+        if (p === "timeRequired" && !/^PT\d+M$/.test(v)) errs.push("timeRequired is not an ISO 8601 duration: " + v);
+        if (/^(url|item|image|mainEntityOfPage)$/.test(p) && !/^https:\/\/\S+$/.test(v)) errs.push(p + " is not an absolute https URL: " + (v || "(empty)"));
+        if (v === "" ) errs.push(p + " is empty.");
+      } else if (Array.isArray(v)) v.forEach(function(x){ walk(x, p); });
+      else if (v && typeof v === "object") Object.keys(v).forEach(function(k){ walk(v[k], k); });
+    })(obj, "");
+    if (/thatlayover\.life\/(stories|layovers)\/(#|"|$)/.test(s)) errs.push("The slug is empty, so every URL in the block points at the index page instead of this one.");
+    var m = mainNode(obj);
+    if (name !== "faq"){
+      ["headline","image","author"].forEach(function(k){ if (!m[k]) errs.push("The Article has no " + k + "."); });
+      if (name === "story" && !m.datePublished) errs.push("The story has no datePublished.");
+    } else {
+      if (!m.mainEntity || !m.mainEntity.length) errs.push("The FAQPage has no questions.");
+    }
+    return errs;
+  }
+  function run(name, values, qa, asWebflow, doTidy){
+    var text = fill(name, values, qa, asWebflow), obj, errs;
+    try { obj = doTidy ? TLLTidy.tidyText(text) : JSON.parse(text); }
+    catch (e){ return { text: text, ok: false, errs: ["Does not parse: " + e.message] }; }
+    errs = check(name, obj);
+    return { text: pretty(obj), ok: errs.length === 0, errs: errs, obj: obj };
+  }
+  function liveFor(page){ var p = new URL(page).pathname; return DATA.live[p] || []; }
+
+  /* copy with fallback */
+  function copy(text, statusEl){
+    function done(msg){ statusEl.textContent = msg; setTimeout(function(){ statusEl.textContent = ""; }, 2200); }
+    function fallback(){
+      try {
+        var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly",""); ta.style.position = "fixed"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select(); var ok = document.execCommand("copy"); document.body.removeChild(ta);
+        done(ok ? "Copied" : "Select and copy");
+      } catch (e){ done("Select and copy"); }
+    }
+    try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(function(){ done("Copied"); }, fallback); else fallback(); }
+    catch (e){ fallback(); }
+  }
+
+  /* stats, computed */
+  (function(){
+    var pass = 0, total = DATA.examples.length;
+    DATA.examples.forEach(function(ex){
+      var vals = {}; Object.keys(ex.values).forEach(function(k){ vals[k] = TLLTidy.decode(String(ex.values[k])); });
+      var r = run(ex.template, vals, ex.template === "faq" ? qaOf(ex) : null, true, true);
+      if (r.ok) pass++;
+    });
+    var pages = Object.keys(DATA.live), blocks = 0;
+    pages.forEach(function(p){ blocks += DATA.live[p].length; });
+    var tplCount = Object.keys(DATA.templates).length;
+    $("#stats").innerHTML =
+      '<span class="stat"><b>' + tplCount + '</b> templates</span>' +
+      '<span class="stat"><b class="' + (pass === total ? "ok" : "bad") + '">' + pass + ' of ' + total + '</b> real pages fill, parse and pass</span>' +
+      '<span class="stat"><b>' + blocks + '</b> live blocks read on <b>' + pages.length + '</b> pages</span>';
+  })();
+  function qaOf(ex){
+    var blocks = DATA.live["/faq"] || [];
+    for (var i = 0; i < blocks.length; i++){ var nodes = blocks[i].json && (blocks[i].json["@graph"] || [blocks[i].json]) || [];
+      for (var j = 0; j < nodes.length; j++) if (nodes[j]["@type"] === "FAQPage") return nodes[j].mainEntity.map(function(q){ return { q: q.name, a: q.acceptedAnswer.text }; }); }
+    return [];
+  }
+
+  /* templates section: tabs, view chips, code, field map */
+  var tabs = $("#tabs"), panels = $("#tab-panels"), names = Object.keys(DATA.templates), state = {};
+  names.forEach(function(name, i){
+    var b = el("button", { type: "button", role: "tab", id: "tab-" + name, "aria-controls": "panel-" + name, "aria-selected": i === 0 ? "true" : "false", tabindex: i === 0 ? "0" : "-1", "class": "tab" }, esc(NAMES[name]));
+    b.addEventListener("click", function(){ selectTab(name, true); });
+    b.addEventListener("keydown", function(e){
+      var idx = names.indexOf(name);
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft"){ e.preventDefault(); var n = names[(idx + (e.key === "ArrowRight" ? 1 : names.length - 1)) % names.length]; selectTab(n, true); $("#tab-" + n).focus(); }
+    });
+    tabs.appendChild(b);
+    var p = el("div", { role: "tabpanel", id: "panel-" + name, "aria-labelledby": "tab-" + name, "class": "panel" });
+    if (i !== 0) p.hidden = true;
+    buildPanel(p, name);
+    panels.appendChild(p);
+  });
+  function selectTab(name){
+    names.forEach(function(n){
+      var on = n === name; $("#tab-" + n).setAttribute("aria-selected", on ? "true" : "false"); $("#tab-" + n).setAttribute("tabindex", on ? "0" : "-1");
+      var p = $("#panel-" + n); p.hidden = !on; if (on){ p.classList.remove("panel"); void p.offsetWidth; p.classList.add("panel"); }
+    });
+  }
+  function views(name){
+    var v = [
+      { id: "tpl", label: "Template", text: function(){ return pretty(DATA.templates[name]); }, note: "Parses as JSON. Replace each {{TOKEN}} with the field named in the map." },
+      { id: "ann", label: "Annotated", text: function(){ return DATA.annotated[name]; }, note: "For reading only: JSON-LD cannot contain comments. Each comment sits above the line it explains." }
+    ];
+    if (DATA.head[name]) v.push({ id: "wf", label: "Webflow head code", text: function(){ return DATA.head[name]; }, note: "Paste into the collection template's head custom code. Use Webflow's field picker for each {{wf ...}} token; Webflow stores the quotes as &quot;." });
+    else v.push({ id: "wf", label: "Webflow head code", text: function(){ return "Coming soon. Moving guides have no collection yet, and Quick answers is a RichText field that head code cannot loop into JSON. Story pages already build this block with the Quick answers script (tll FAQ schema v1); moving guides would use the same script."; }, note: "<span class=\"soon\">Coming soon</span>", plain: true });
+    DATA.examples.filter(function(ex){ return ex.template === name; }).forEach(function(ex){
+      v.push({ id: "ex-" + ex.id, label: "Filled: " + ex.short, text: function(){ return pretty(ex.jsonld); },
+        note: "<b>Filled with " + esc(ex.label.split(" · ")[1]) + "</b>, real values from <a href=\"" + ex.page + "\">the live page</a>, then tidied. Checks: " + esc(ex.checks.join(", ")) + "." + (ex.questions ? " " + ex.questions + " questions, as on the page." : "") });
+      v.push({ id: "live-" + ex.id, label: "Live today: " + ex.short, text: function(){ return liveFor(ex.page).map(function(b){ return "// " + (b.id ? "#" + b.id + " · " : "") + b.source + "\n" + pretty(b.json); }).join("\n\n"); },
+        note: diffNote(ex) });
+    });
+    return v;
+  }
+  function diffNote(ex){
+    var d = ex.diffVsLive;
+    if (!d.liveFound) return "No matching live block on this page.";
+    function list(a){ return a.length ? a.map(function(k){ return "<b>" + esc(k) + "</b>"; }).join(", ") : "none"; }
+    return "Compared with the proposal: new " + list(d.added) + ". Changed " + list(d.changed) + ". Dropped " + list(d.dropped) + ".";
+  }
+  function buildPanel(p, name){
+    p.appendChild(el("p", { "class": "panel-intro" }, esc(INTRO[name])));
+    var grid = el("div", { "class": "tpl-grid" });
+    var left = el("div"), right = el("div");
+    var vs = views(name);
+    var chips = el("div", { "class": "chips", role: "group", "aria-label": NAMES[name] + " views" });
+    var wrap = el("div", { "class": "code-wrap dark" });
+    var bar = el("div", { "class": "code-bar" });
+    var lab = el("span", { "class": "label" }, "Template");
+    var copied = el("span", { "class": "copied", "aria-live": "polite" });
+    var cbtn = el("button", { type: "button", "class": "btn btn-line btn-compact" }, "Copy this");
+    bar.appendChild(lab); bar.appendChild(copied); bar.appendChild(cbtn);
+    var pre = el("pre", { "class": "code", tabindex: "0", role: "region", "aria-label": NAMES[name] + " code" });
+    var note = el("div", { "class": "code-note" });
+    wrap.appendChild(bar); wrap.appendChild(pre); wrap.appendChild(note);
+    var current = vs[0];
+    function show(v){
+      current = v; lab.textContent = v.label;
+      var t = v.text(); pre.innerHTML = v.plain ? esc(t) : hl(t); note.innerHTML = v.note;
+      Array.prototype.forEach.call(chips.children, function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-v") === v.id ? "true" : "false"); });
+    }
+    vs.forEach(function(v){ var c = el("button", { type: "button", "class": "chip", "data-v": v.id, "aria-pressed": "false" }, esc(v.label)); c.addEventListener("click", function(){ show(v); }); chips.appendChild(c); });
+    cbtn.addEventListener("click", function(){ copy(current.text(), copied); });
+    left.appendChild(chips); left.appendChild(wrap);
+    right.appendChild(el("p", { "class": "label", style: "margin-bottom:8px" }, "Field map · " + DATA.annotations[name].length + " placeholders"));
+    var map = el("div", { "class": "map" });
+    DATA.annotations[name].forEach(function(r){
+      var row = el("div", { "class": "map-row" });
+      row.innerHTML = '<div class="ph">{{' + esc(r.ph) + '}}</div><div class="src">' + esc(r.field) + '</div>' +
+        '<p class="today"><span class="k">Today</span>' + esc(r.today) + '</p>' + (r.note ? '<p class="note"><span class="k">Note</span>' + esc(r.note) + '</p>' : '');
+      map.appendChild(row);
+    });
+    right.appendChild(map);
+    grid.appendChild(left); grid.appendChild(right); p.appendChild(grid);
+    show(vs[0]);
+  }
+
+  /* fill form */
+  var pick = $("#ex-pick"), fields = $("#fill-fields"), form = $("#fill-form"), cur = null;
+  DATA.examples.forEach(function(ex, i){ var o = el("option", { value: String(i) }, esc(ex.label)); pick.appendChild(o); });
+  function decodeForInput(v){ return TLLTidy.decode(String(v)); }
+  function renderFields(){
+    var ex = DATA.examples[+pick.value]; cur = ex; fields.innerHTML = "";
+    DATA.annotations[ex.template].forEach(function(r){
+      if (r.ph === "QUESTION" || r.ph === "ANSWER") return;
+      var id = "f-" + r.ph, f = el("div", { "class": "field" });
+      var long = /EXCERPT|DESCRIPTION/.test(r.ph);
+      f.appendChild(el("label", { "for": id }, esc(r.ph.replace(/_/g, " ").toLowerCase())));
+      var inp = el(long ? "textarea" : "input", { id: id, name: r.ph, autocomplete: "off", spellcheck: "false" });
+      inp.value = decodeForInput(ex.values[r.ph] || "");
+      f.appendChild(inp);
+      var from = (ex.from && ex.from[r.ph]) || r.field;
+      f.appendChild(el("p", { "class": "from" }, esc(from)));
+      fields.appendChild(f);
+    });
+    if (ex.template === "faq"){
+      qaOf(ex).forEach(function(p, i){
+        var g = el("div", { "class": "qa-group" });
+        g.appendChild(el("span", { "class": "label" }, "Question " + (i + 1) + " of " + qaOf(ex).length));
+        g.appendChild(fieldEl("q" + i, "Question", p.q, false));
+        g.appendChild(fieldEl("a" + i, "Answer", p.a, true));
+        fields.appendChild(g);
+      });
+    }
+    doFill();
+  }
+  function fieldEl(id, label, val, long){
+    var f = el("div", { "class": "field" });
+    f.appendChild(el("label", { "for": "f-" + id }, esc(label)));
+    var inp = el(long ? "textarea" : "input", { id: "f-" + id, autocomplete: "off", spellcheck: "false" }); inp.value = val; f.appendChild(inp); return f;
+  }
+  function doFill(){
+    var ex = cur, values = {};
+    DATA.annotations[ex.template].forEach(function(r){ var i = $("#f-" + r.ph); if (i) values[r.ph] = i.value; });
+    var qa = null;
+    if (ex.template === "faq"){ qa = []; var i = 0; while ($("#f-q" + i)){ qa.push({ q: $("#f-q" + i).value, a: $("#f-a" + i).value }); i++; } }
+    var r = run(ex.template, values, qa, $("#opt-webflow").checked, $("#opt-tidy").checked);
+    $("#fill-out").innerHTML = hl(r.text);
+    $("#fill-label").textContent = "Result · " + ex.label.split(" · ")[1];
+    $("#fill-verdict").innerHTML = r.ok
+      ? '<span class="ok">Parses. Nothing left to fix.</span> No placeholder left, dates and URLs in shape.'
+      : '<span class="bad">' + r.errs.length + (r.errs.length === 1 ? " problem" : " problems") + '.</span><ul>' + r.errs.map(function(e){ return "<li>" + esc(e) + "</li>"; }).join("") + "</ul>";
+  }
+  pick.addEventListener("change", renderFields);
+  form.addEventListener("submit", function(e){ e.preventDefault(); doFill(); });
+  form.addEventListener("input", function(e){ if (e.target !== pick) doFill(); });
+  $("#opt-webflow").addEventListener("change", doFill);
+  $("#opt-tidy").addEventListener("change", doFill);
+  $("#fill-reset").addEventListener("click", renderFields);
+  $("#fill-copy").addEventListener("click", function(){ copy($("#fill-out").textContent, $("#fill-copied")); });
+  renderFields();
+
+  /* live table, computed */
+  var tb = $("#live-table tbody"), n = 0, pages = Object.keys(DATA.live);
+  pages.forEach(function(p){ DATA.live[p].forEach(function(b){ n++;
+    var tr = el("tr");
+    tr.innerHTML = '<td><a href="https://www.thatlayover.life' + p + '">' + esc(p) + '</a></td><td data-k="Block">' + esc(b.id ? "#" + b.id : "no id") + '</td><td data-k="Where it comes from">' + esc(b.source) + '</td><td data-k="Types">' + esc(b.types.join(", ")) + '</td>';
+    tb.appendChild(tr); }); });
+  $("#live-intro").textContent = n + " blocks on " + pages.length + " pages, read in Chromium on " + new Date(DATA.capturedAt).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }) + ". Each block is in the templates section under Live today, beside the proposal.";
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Type System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<style>
+/* Page tokens (Brand Kit v2.4). One theme by choice: Paper, with Midnight bands. */
+:root {
+  color-scheme: light;
+  --c-midnight: #0A0B14;
+  --c-midnight-2: #1A1A2E;
+  --c-paper: #FDF9F3;
+  --c-cream: #F7F1E8;
+  --c-cream-80: rgba(247, 241, 232, 0.8);
+  --c-cream-line: rgba(247, 241, 232, 0.22);
+  --c-ink: #1A1A1A;
+  --c-text-2: #555555;
+  --c-muted: #6B6660;
+  --c-hairline: #E8E2D6;
+  --c-teal: #00C9C8;        /* on Midnight only */
+  --c-teal-deep: #067A79;   /* teal text and links on light */
+  --c-rose: #F0507A;        /* headline size only */
+  --c-rose-text: #C8325B;   /* small rose text, underlines, focus */
+  --c-rose-btn: #D63859;
+  --c-white: #FFFFFF;
+  --tll-type-accent-color: var(--c-rose);
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 3.5rem);
+  --ease: cubic-bezier(.23, 1, .32, 1);
+}
+</style>
+<style id="tll-type-system">
+/* ==========================================================================
+   TLL fluid type system, draft 1 (November 12, 2026)
+   Fits TLL Brand Kit v2.4. Prototype only: nothing on the live site loads this.
+
+   WHAT IS IN HERE
+   1. Faces          three families, nothing else
+   2. Fluid steps    the size scale, each one a clamp() with its math shown
+   3. Rhythm         line heights, tracking, weights
+   4. Measures       line length caps in ch
+   5. Aliases        the names pages should use (story title, card title...)
+   6. Base rules     element defaults inside .tll-type
+   7. Role classes   one class per alias, for markup that cannot use elements
+
+   HOW THE CLAMPS WORK
+   Every fluid step runs from a size at a 360px viewport (a small iPhone in
+   CSS pixels) to a size at a 1920px viewport (a big desktop monitor), in a
+   straight line, and holds flat outside that range.
+
+     slope      = (max px - min px) / (1920 - 360)        = (max - min) / 1560
+     intercept  = min px - slope x 360                    (in px, then / 16 for rem)
+     size       = clamp(min rem, intercept rem + slope x 100 vw, max rem)
+
+   Check any step by hand: at a 390px window, size = intercept + slope x 390.
+
+   WHY REM AND NOT PX OR PURE VW
+   - The floor, the ceiling and the intercept are rem, so a reader who sets a
+     bigger default font size in the browser gets bigger type everywhere.
+   - The middle term always has a rem part. A vw-only size ignores browser
+     zoom (zooming narrows the viewport, so the vw part shrinks while you try
+     to enlarge it). The rem part keeps growing with zoom.
+   - Rule used for every step: max <= 2.5 x min. With that ratio, zooming to
+     the browser's 500% always reaches at least twice the 100% size, which is
+     what WCAG 1.4.4 (resize text to 200%) asks for. The specimen page
+     checks this live in the width calculator.
+   - Root is the browser default (16px = 1rem). Nothing here sets html
+     font-size, so 0.75rem is 12px for most readers and more for anyone who
+     asked for more. The kit's floor is 12px; meta is the only step at it.
+
+   WHAT IS NOT FLUID ON PURPOSE
+   Story body is a fixed 18px (1.125rem) with a 1.65 line height. The kit
+   fixes it, and long reading at a steady size beats a size that creeps.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. FACES
+     Playfair Display 800 and 800 italic only. IBM Plex Sans Condensed 400,
+     500, 600, 700. JetBrains Mono 400 and 600. Never a fourth face.
+     The fallbacks are what the live site already uses.
+     ------------------------------------------------------------------------ */
+  --tll-face-display: 'Playfair Display', Georgia, serif;
+  --tll-face-text: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  --tll-face-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ------------------------------------------------------------------------
+     2. FLUID STEPS (360px -> 1920px viewport, 1rem = 16px)
+     Names describe size, not use. Pages use the aliases in section 5.
+     ------------------------------------------------------------------------ */
+
+  /* display-xl: 46px at 360 -> 112px at 1920. slope = (112 - 46) / 1560 = 0.042308 -> 4.2308vw.
+     intercept = 46 - 0.042308 x 360 = 30.7692px = 1.9231rem. Zoom: 112/46 = 2.43 (2.5 or less). */
+  --tll-step-display-xl: clamp(2.875rem, 1.9231rem + 4.2308vw, 7rem);
+
+  /* display-l: 36px at 360 -> 80px at 1920. slope = (80 - 36) / 1560 = 0.028205 -> 2.8205vw.
+     intercept = 36 - 0.028205 x 360 = 25.8462px = 1.6154rem. Zoom: 80/36 = 2.22 (2.5 or less). */
+  --tll-step-display-l: clamp(2.25rem, 1.6154rem + 2.8205vw, 5rem);
+
+  /* display-m: 28px at 360 -> 48px at 1920. slope = (48 - 28) / 1560 = 0.012821 -> 1.2821vw.
+     intercept = 28 - 0.012821 x 360 = 23.3846px = 1.4615rem. Zoom: 48/28 = 1.71 (2.5 or less). */
+  --tll-step-display-m: clamp(1.75rem, 1.4615rem + 1.2821vw, 3rem);
+
+  /* title: 20px at 360 -> 28px at 1920. slope = (28 - 20) / 1560 = 0.005128 -> 0.5128vw.
+     intercept = 20 - 0.005128 x 360 = 18.1538px = 1.1346rem. Zoom: 28/20 = 1.40 (2.5 or less). */
+  --tll-step-title: clamp(1.25rem, 1.1346rem + 0.5128vw, 1.75rem);
+
+  /* deck: 18px at 360 -> 23px at 1920. slope = (23 - 18) / 1560 = 0.003205 -> 0.3205vw.
+     intercept = 18 - 0.003205 x 360 = 16.8462px = 1.0529rem. Zoom: 23/18 = 1.28 (2.5 or less). */
+  --tll-step-deck: clamp(1.125rem, 1.0529rem + 0.3205vw, 1.4375rem);
+
+  /* story: fixed. 18px = 1.125rem at every width (kit rule). Not a clamp. */
+  --tll-step-story: 1.125rem;
+
+  /* body: 15px at 360 -> 16px at 1920. slope = (16 - 15) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 15 - 0.000641 x 360 = 14.7692px = 0.9231rem. Zoom: 16/15 = 1.07 (2.5 or less). */
+  --tll-step-body: clamp(0.9375rem, 0.9231rem + 0.0641vw, 1rem);
+
+  /* small: 13px at 360 -> 14px at 1920. slope = (14 - 13) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 13 - 0.000641 x 360 = 12.7692px = 0.7981rem. Zoom: 14/13 = 1.08 (2.5 or less). */
+  --tll-step-small: clamp(0.8125rem, 0.7981rem + 0.0641vw, 0.875rem);
+
+  /* meta: 12px at 360 -> 13px at 1920. slope = (13 - 12) / 1560 = 0.000641 -> 0.0641vw.
+     intercept = 12 - 0.000641 x 360 = 11.7692px = 0.7356rem. Zoom: 13/12 = 1.08 (2.5 or less).
+     This is the kit's floor. Nothing in the system goes smaller. */
+  --tll-step-meta: clamp(0.75rem, 0.7356rem + 0.0641vw, 0.8125rem);
+
+  /* data-l: 16px at 360 -> 22px at 1920. slope = (22 - 16) / 1560 = 0.003846 -> 0.3846vw.
+     intercept = 16 - 0.003846 x 360 = 14.6154px = 0.9135rem. Zoom: 22/16 = 1.38 (2.5 or less).
+     For a Mono figure that has to be read across a room: 42.2 KM, 35 KG. */
+  --tll-step-data-l: clamp(1rem, 0.9135rem + 0.3846vw, 1.375rem);
+
+  /* ------------------------------------------------------------------------
+     3. RHYTHM
+     Line heights are unitless so they follow the size. Display tracking is
+     the kit's -0.01em (the live tll-v9-type-v1 layer uses -0.035em on h1;
+     this system brings it back to the kit). Mono tracking sits inside the
+     kit's 0.12em to 0.2em band.
+     ------------------------------------------------------------------------ */
+  --tll-lh-display: 0.98;   /* display-xl: tight, it is a poster line */
+  --tll-lh-headline: 1.04;  /* display-l and display-m */
+  --tll-lh-title: 1.12;     /* card titles, two or three lines */
+  --tll-lh-deck: 1.42;
+  --tll-lh-story: 1.65;     /* kit rule for story body */
+  --tll-lh-body: 1.55;
+  --tll-lh-meta: 1.5;
+
+  --tll-track-display: -0.01em;
+  --tll-track-eyebrow: 0.14em;  /* matches the home cover kicker */
+  --tll-track-data: 0.12em;     /* figures, codes, coordinates */
+  --tll-track-label: 0.2em;     /* widest, for one-word labels only */
+
+  --tll-weight-display: 800;
+  --tll-weight-text: 400;
+  --tll-weight-text-strong: 600;  /* buttons and text-link labels (kit v2.4) */
+  --tll-weight-mono: 400;
+  --tll-weight-mono-strong: 600;
+
+  /* ------------------------------------------------------------------------
+     4. MEASURES
+     ch is the width of the "0" in the element's own font, so a measure in ch
+     must sit on the element that carries the font. Measured in Chromium on
+     November 12: at 18px a "0" in Plex Sans Condensed is about 9.7px wide, while
+     the average character of story text (spaces included) is about 7.3px.
+     So 52ch is about 505px and holds about 66 characters a line (59 to 73
+     on the Antarctica text), inside the kit's 60 to 75. (A 680px column at 18px holds about 91.) The specimen
+     page counts this live. Headlines are capped so a long title balances
+     into lines instead of one runaway line on a monitor.
+     ------------------------------------------------------------------------ */
+  --tll-measure-story: 52ch;
+  --tll-measure-deck: 46ch;
+  --tll-measure-body: 58ch;   /* about 76 characters of interface copy */
+  --tll-measure-headline: 22ch;
+  --tll-measure-cover: 16ch;
+
+  /* ------------------------------------------------------------------------
+     5. ALIASES: the names pages should use
+     Change a role's size here, once, and every page that uses it follows.
+     ------------------------------------------------------------------------ */
+  --tll-cover-title: var(--tll-step-display-xl);     /* home cover, landing H1 */
+  --tll-story-title: var(--tll-step-display-l);      /* story page H1 */
+  --tll-section-title: var(--tll-step-display-m);    /* section and rail titles */
+  --tll-story-subhead: var(--tll-step-display-m);    /* h2 inside story text (28px today, fixed) */
+  --tll-card-title: var(--tll-step-title);           /* story cards, guide names */
+  --tll-deck: var(--tll-step-deck);                  /* the line under a title */
+  --tll-story-body: var(--tll-step-story);           /* story text, 18px fixed */
+  --tll-ui: var(--tll-step-body);                    /* interface and page copy */
+  --tll-caption: var(--tll-step-small);              /* captions, credits, help text */
+  --tll-eyebrow: var(--tll-step-meta);               /* Mono 600 caps above titles */
+  --tll-data: var(--tll-step-meta);                  /* Mono figures: 12 MIN, 35 KG */
+  --tll-data-l: var(--tll-step-data-l);              /* Mono figures, read from afar */
+}
+
+/* --------------------------------------------------------------------------
+   6. BASE RULES
+   Scoped to .tll-type and wrapped in :where() so they carry zero
+   specificity: any page rule wins, and nothing leaks into Webflow pages
+   that have not opted in.
+   -------------------------------------------------------------------------- */
+:where(.tll-type) {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(.tll-type) :where(h1, h2, h3) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;          /* even lines, no orphan word on its own */
+  overflow-wrap: break-word;   /* a 15-letter word on a 360px phone still fits */
+  margin: 0;
+}
+:where(.tll-type) :where(h1) { font-size: var(--tll-story-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h2) { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h3) { font-size: var(--tll-card-title); line-height: var(--tll-lh-title); }
+
+:where(.tll-type) :where(p, li) {
+  text-wrap: pretty;           /* fewer single-word last lines in paragraphs */
+  hyphens: manual;             /* no automatic hyphens: they break names */
+}
+
+/* Playfair has no 400 or 700 in this system, so a stray <strong> inside a
+   headline must not ask the browser to fake a bolder weight. */
+:where(.tll-type) :where(h1, h2, h3) :where(strong, b) { font-weight: inherit; }
+
+/* --------------------------------------------------------------------------
+   7. ROLE CLASSES
+   Use these where the element is not the role (a <p> that is an eyebrow, a
+   <span> that is data). Each sets size, face and rhythm, never color.
+   -------------------------------------------------------------------------- */
+.tll-type-cover-title,
+.tll-type-story-title,
+.tll-type-section-title,
+.tll-type-card-title {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.tll-type-cover-title   { font-size: var(--tll-cover-title);   line-height: var(--tll-lh-display);  max-inline-size: var(--tll-measure-cover); }
+.tll-type-story-title   { font-size: var(--tll-story-title);   line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-section-title { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-card-title    { font-size: var(--tll-card-title);    line-height: var(--tll-lh-title); }
+
+/* The one rose italic word a headline may have. Color comes from the page
+   (Sunset Rose #F0507A is for headline sizes only, never for small text). */
+.tll-type-accent {
+  font-style: italic;
+  font-weight: var(--tll-weight-display);
+  color: var(--tll-type-accent-color, #F0507A);
+}
+
+.tll-type-deck {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-deck);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-deck);
+  max-inline-size: var(--tll-measure-deck);
+  text-wrap: pretty;
+}
+
+/* Story body: 18px, 1.65, capped at the story measure. The cap is set on
+   the paragraph, not the column, so photos and pull quotes can run wider. */
+.tll-type-story-body {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-story-body);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-story);
+}
+.tll-type-story-body > :where(p, ul, ol, blockquote) {
+  max-inline-size: var(--tll-measure-story);
+  text-wrap: pretty;
+}
+.tll-type-story-body > :where(h2) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  font-size: var(--tll-story-subhead);
+  line-height: var(--tll-lh-headline);
+  letter-spacing: var(--tll-track-display);
+  max-inline-size: var(--tll-measure-headline);
+  text-wrap: balance;
+  margin: 1.4em 0 0.5em;
+}
+
+.tll-type-ui {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  line-height: var(--tll-lh-body);
+  max-inline-size: var(--tll-measure-body);
+}
+
+.tll-type-caption {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-caption);
+  line-height: var(--tll-lh-meta);
+}
+
+/* Mono roles. Uppercase, tracked, tabular. JetBrains Mono figures are all
+   one width already; tabular-nums keeps that true if the stack falls back,
+   and slashed-zero tells 0 from O in codes like a gate or a flight. */
+.tll-type-eyebrow,
+.tll-type-data,
+.tll-type-data-l {
+  font-family: var(--tll-face-mono);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  line-height: var(--tll-lh-meta);
+}
+.tll-type-eyebrow { font-size: var(--tll-eyebrow); font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-eyebrow); }
+.tll-type-data    { font-size: var(--tll-data);    font-weight: var(--tll-weight-mono);        letter-spacing: var(--tll-track-data); }
+.tll-type-data-l  { font-size: var(--tll-data-l);  font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-data); line-height: 1.2; }
+
+/* Figures inside Plex text (a count in a sentence) borrow the same rule. */
+.tll-type-num { font-variant-numeric: tabular-nums; }
+
+</style>
+<style>
+/* Specimen page layout. Not part of the type system. */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--c-paper); }
+body { margin: 0; background: var(--c-paper); color: var(--c-ink); overflow-x: hidden; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--c-teal-deep); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--c-rose-text); outline-offset: 2px; }
+.dark :focus-visible { outline: 3px solid var(--c-teal); outline-offset: 2px; }
+.wrap { width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: var(--gutter); }
+.mono { font-family: var(--tll-face-mono); text-transform: uppercase; letter-spacing: var(--tll-track-data); font-size: var(--tll-data); font-variant-numeric: tabular-nums; }
+.muted { color: var(--c-muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+section { scroll-margin-top: 3.5rem; padding-block: clamp(3rem, 2rem + 4vw, 6.5rem); }
+section + section { border-top: 1px solid var(--c-hairline); }
+section.dark + section { border-top: 0; }
+.sec-head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem); }
+.sec-head h2 { color: var(--c-ink); }
+.sec-head .lead { color: var(--c-text-2); }
+.eyebrow { color: var(--c-teal-deep); margin: 0; }
+.dark .eyebrow { color: var(--c-teal); }
+
+/* Buttons: filled, outlined, text link. Square, 48px, Plex 600, sentence case. */
+.btn { font-family: var(--tll-face-text); font-weight: 600; font-size: 1rem; line-height: 1; min-height: 48px; padding: 0 1.25rem; border-radius: 0; display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; text-decoration: none; }
+.btn-fill { background: var(--c-rose-btn); color: var(--c-white); border: 1.5px solid var(--c-rose-btn); }
+.btn-fill:hover { background: var(--c-rose-text); border-color: var(--c-rose-text); }
+.btn-line { background: transparent; color: var(--c-ink); border: 1.5px solid var(--c-ink); }
+.btn-line:hover { background: var(--c-cream); }
+.tlink { font-family: var(--tll-face-text); font-weight: 600; color: var(--c-ink); text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: 5px; background: none; border: 0; padding: 0; cursor: pointer; font-size: 1rem; min-height: 44px; display: inline-flex; align-items: center; }
+.dark .tlink { color: var(--c-cream); }
+.chip { font-family: var(--tll-face-mono); font-size: var(--tll-data); letter-spacing: var(--tll-track-data); text-transform: uppercase; border: 1.5px solid var(--c-ink); background: transparent; color: var(--c-ink); border-radius: 999px; min-height: 44px; padding: 0 .9rem; cursor: pointer; font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--c-midnight); color: var(--c-cream); border-color: var(--c-midnight); }
+
+/* Readout bar */
+.readout { position: sticky; top: 0; z-index: 20; background: var(--c-midnight); color: var(--c-cream); border-bottom: 1px solid var(--c-midnight-2); }
+.readout .wrap { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; padding-block: .55rem; align-items: baseline; }
+.readout .mono { font-size: var(--tll-data); }
+.readout b { color: var(--c-teal); font-weight: 600; }
+.readout .k { color: var(--c-cream-80); }
+@media (max-width: 640px) { .readout .wrap { gap: .1rem .9rem; } .readout .opt { display: none; } }
+
+/* Intro */
+.intro { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5.5rem) clamp(2.5rem, 2rem + 3vw, 5rem); }
+.intro h1 { font-size: var(--tll-story-title); color: var(--c-ink); margin-top: 1.25rem; max-inline-size: 18ch; }
+.intro .tll-type-deck { color: var(--c-text-2); margin-top: 1.25rem; }
+.intro .tll-type-ui { color: var(--c-text-2); margin-top: 1rem; }
+.jump { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; margin-top: 1.75rem; padding: 0; list-style: none; }
+.facts { margin-top: 1.5rem; color: var(--c-muted); }
+
+/* Cover band */
+.dark { background: var(--c-midnight); color: var(--c-cream); }
+.cover-grid { display: grid; gap: 2rem; align-items: end; }
+@media (min-width: 960px) { .cover-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3.5rem; } }
+.cover-title { color: var(--c-cream); margin: 1.25rem 0 0; }
+.cover .tll-type-deck { color: var(--c-cream-80); margin-top: 1.5rem; }
+.cover .meta { color: var(--c-cream-80); margin-top: 1.5rem; }
+.cover .meta b { color: var(--c-cream); font-weight: 600; }
+.cover .tll-type-cover-title a { color: inherit; text-decoration: none; }
+.cover .tll-type-cover-title a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--c-teal); text-underline-offset: .12em; }
+.photo { margin: 0; }
+@media (max-width: 959px) { .photo { max-width: 30rem; } }
+.photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 0; }
+.photo figcaption { margin-top: .6rem; color: var(--c-cream-80); }
+.photo figcaption a { color: var(--c-cream); text-decoration-color: var(--c-teal); }
+.speclabel { color: var(--c-teal); margin: 0; }
+
+/* Scale rows */
+.controls { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: center; margin-bottom: .75rem; }
+.status { color: var(--c-muted); margin: 0 0 2rem; min-height: 1.5em; }
+.steps { border-top: 1px solid var(--c-ink); }
+.step { display: grid; gap: 1rem 2.5rem; padding-block: 1.75rem 2rem; border-bottom: 1px solid var(--c-hairline); }
+.step:last-child { border-bottom: 0; }
+@media (min-width: 900px) { .step { grid-template-columns: 19rem minmax(0, 1fr); } }
+.spec { display: grid; gap: .3rem; align-content: start; color: var(--c-text-2); }
+.spec .name { color: var(--c-ink); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); }
+.spec .now b { color: var(--c-ink); font-weight: 600; }
+.spec code { font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: none; letter-spacing: 0; color: var(--c-ink); background: var(--c-cream); padding: .35rem .5rem; overflow-wrap: anywhere; display: block; margin-top: .3rem; }
+.spec details { margin-top: .3rem; }
+.spec summary { cursor: pointer; font-family: var(--tll-face-text); font-weight: 600; font-size: .9375rem; color: var(--c-ink); text-transform: none; letter-spacing: 0; min-height: 44px; display: flex; align-items: center; text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: 5px; list-style: none; }
+.spec summary::-webkit-details-marker { display: none; }
+.spec summary::after { content: " +"; white-space: pre; }
+.spec details[open] summary::after { content: " \2212"; }
+.spec .math { font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: none; letter-spacing: 0; line-height: 1.6; color: var(--c-ink); margin: .25rem 0 0; }
+.sample { min-width: 0; color: var(--c-ink); }
+.sample a { color: inherit; text-decoration: none; }
+.sample a:hover { text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; text-underline-offset: .14em; }
+.sample .src { color: var(--c-muted); margin-top: .9rem; }
+.sample .src a { color: var(--c-teal-deep); text-decoration: underline; }
+.sample p { margin: 0; }
+.sample .tll-type-story-body p, .sample .tll-type-deck { color: var(--c-ink); }
+.sample .tll-type-data { color: var(--c-text-2); margin-top: .4rem; }
+.sample .tll-type-data.src { margin-top: .9rem; }
+.sample .tll-type-eyebrow { color: var(--c-teal-deep); }
+
+/* Calculator */
+.calc-top { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+.calc-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; }
+.calc-row label { font-weight: 600; }
+input, button, select { font: inherit; }
+input[type="range"] { width: min(100%, 36rem); accent-color: var(--c-rose-btn); min-height: 44px; }
+input[type="number"] { font-family: var(--tll-face-mono); font-size: 1rem; width: 6.5rem; min-height: 44px; padding: 0 .6rem; border: 1.5px solid var(--c-ink); border-radius: 0; background: var(--c-paper); color: var(--c-ink); font-variant-numeric: tabular-nums; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; vertical-align: top; padding: .75rem .75rem .75rem 0; border-bottom: 1px solid var(--c-hairline); }
+thead th { font-family: var(--tll-face-mono); font-size: var(--tll-eyebrow); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); text-transform: uppercase; color: var(--c-muted); border-bottom: 1px solid var(--c-ink); }
+.calc td.n { font-family: var(--tll-face-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.calc td.z { white-space: normal; }
+.calc td.z span { display: inline-block; }
+@media (max-width: 640px) { .calc th, .calc td { padding-right: .5rem; } .calc th:last-child, .calc td:last-child { padding-right: 0; } }
+.calc th.n { text-align: right; }
+.calc td:first-child { white-space: nowrap; font-family: var(--tll-face-mono); font-size: var(--tll-data); text-transform: uppercase; letter-spacing: var(--tll-track-data); }
+.ok { color: var(--c-teal-deep); }
+.bad { color: var(--c-rose-text); }
+.note { color: var(--c-text-2); margin-top: 1.25rem; }
+
+/* Story page specimen */
+.story { display: grid; gap: 1.25rem; }
+.story > p { margin: 0; }
+.story .tll-type-story-title { color: var(--c-ink); }
+.story .tll-type-deck { color: var(--c-text-2); }
+.story .byline { color: var(--c-text-2); }
+.story .byline b { color: var(--c-ink); font-weight: 600; }
+.story .tll-type-story-body { color: var(--c-ink); margin-top: 1rem; }
+.story .tll-type-story-body p { margin: 0 0 1.1em; }
+.story .tll-type-story-body p.first::first-letter { font-family: var(--tll-face-display); font-weight: 800; font-size: 3.6em; line-height: .85; float: left; padding: .08em .1em 0 0; }
+.measure-out { color: var(--c-muted); border-top: 1px solid var(--c-hairline); padding-top: .9rem; margin-top: .5rem; max-inline-size: 62rem; }
+.measure-out b { color: var(--c-ink); font-weight: 600; }
+.measure-out b.ok { color: var(--c-teal-deep); }
+.measure-out b.bad { color: var(--c-rose-text); }
+.toggle-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .75rem; }
+.show-measure .tll-type-story-body p { outline: 1px dashed var(--c-teal-deep); outline-offset: 4px; }
+
+/* Technical data */
+.data-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 960px) { .data-grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 4rem; } }
+.sheet { margin: 0; border-top: 1px solid var(--c-ink); }
+.sheet > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: .25rem 1.5rem; padding-block: .9rem; border-bottom: 1px solid var(--c-hairline); }
+@media (min-width: 640px) { .sheet > div { grid-template-columns: 13rem minmax(0, 1fr); align-items: baseline; } }
+.sheet dt { color: var(--c-muted); }
+.sheet dd { margin: 0; color: var(--c-ink); }
+.sheet dd .tll-type-data-l { display: inline; }
+.sheet dd small { display: block; font-family: var(--tll-face-text); font-size: var(--tll-caption); text-transform: none; letter-spacing: 0; color: var(--c-text-2); margin-top: .25rem; }
+.times { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--c-ink); }
+.times li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; border-bottom: 1px solid var(--c-hairline); align-items: baseline; }
+.times a { display: block; padding-block: .7rem; min-height: 44px; color: var(--c-ink); text-decoration: none; font-family: var(--tll-face-text); font-weight: 500; }
+.times a:hover { text-decoration: underline; text-decoration-color: var(--c-rose-text); text-decoration-thickness: 2px; }
+.times .tll-type-data { text-align: right; color: var(--c-ink); }
+.times-h { margin: 0 0 .75rem; color: var(--c-muted); }
+.lib { margin-top: 2rem; color: var(--c-text-2); }
+.lib b { color: var(--c-ink); font-weight: 600; }
+
+/* Mapping */
+.map h3 { margin: 2.5rem 0 1rem; font-size: var(--tll-card-title); color: var(--c-ink); }
+.map td code, .map th code { font-family: var(--tll-face-mono); font-size: var(--tll-data); color: var(--c-ink); overflow-wrap: anywhere; }
+.map td { font-size: var(--tll-caption); color: var(--c-text-2); }
+.map td:first-child code { font-weight: 600; }
+.map td.today code { display: inline-block; margin: 0 .35rem .2rem 0; background: var(--c-cream); padding: .1rem .35rem; }
+@media (max-width: 760px) {
+  .map table, .map tbody, .map tr, .map td { display: block; width: 100%; }
+  .map thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .map tr { border-bottom: 1px solid var(--c-hairline); padding-block: .75rem; }
+  .map td { border: 0; padding: .2rem 0; }
+  .map td::before { content: attr(data-h); display: block; font-family: var(--tll-face-mono); font-size: var(--tll-eyebrow); font-weight: 600; letter-spacing: var(--tll-track-eyebrow); text-transform: uppercase; color: var(--c-muted); margin-top: .35rem; }
+}
+
+/* Stylesheet */
+.code-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+pre.css { margin: 0; background: var(--c-midnight); color: var(--c-cream); padding: 1.25rem; max-height: 34rem; overflow: auto; font-family: var(--tll-face-mono); font-size: var(--tll-data); line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; border-radius: 0; }
+
+footer { border-top: 1px solid var(--c-hairline); padding-block: 2rem 5rem; color: var(--c-muted); }
+
+/* Fixed corner link */
+.corner { position: fixed; right: 12px; bottom: 12px; z-index: 30; background: var(--c-paper); color: var(--c-ink); border: 1.5px solid var(--c-ink); font-family: var(--tll-face-text); font-weight: 600; font-size: .9375rem; min-height: 44px; padding: 0 .9rem; display: inline-flex; align-items: center; text-decoration: none; }
+.corner:hover { background: var(--c-cream); }
+</style>
+</head>
+<body class="tll-type">
+
+<aside class="readout" aria-label="Live width readout">
+  <div class="wrap mono">
+    <span><span class="k">Window</span> <b id="r-w">0</b> px</span>
+    <span><span class="k">1 rem</span> <b id="r-rem">16</b> px</span>
+    <span><span class="k">Story title</span> <b id="r-title">0</b> px</span>
+    <span class="opt"><span class="k">Deck</span> <b id="r-deck">0</b> px</span>
+    <span><span class="k">Story body</span> <b id="r-body">18</b> px</span>
+    <span><span class="k">Line</span> <b id="r-cpl">0</b> characters</span>
+  </div>
+</aside>
+
+<main>
+<header class="wrap intro">
+  <p class="tll-type-eyebrow eyebrow">TLL type system · draft 1 · November 12, 2026</p>
+  <h1>Drag the window and watch the type <em class="tll-type-accent">behave</em></h1>
+  <p class="tll-type-deck">Every size on this page comes from one stylesheet, <span style="white-space:nowrap">type-system.css</span>, and the bar at the top reads the real numbers off the page while you resize. Nothing here is a picture of a size.</p>
+  <p class="tll-type-ui">Playfair Display does the shouting. The receipts go in JetBrains Mono, and everything you actually read sits in IBM Plex Sans Condensed, which never drops under 12px, however small the phone.</p>
+  <p class="tll-type-data facts">Fluid from 360 to 1920 px with a rem term in every clamp · story body fixed at 18 px / 1.65</p>
+  <ul class="jump">
+    <li><a class="tlink" href="#scale">The scale ↓</a></li>
+    <li><a class="tlink" href="#calc">Pick a width ↓</a></li>
+    <li><a class="tlink" href="#story">The story page ↓</a></li>
+    <li><a class="tlink" href="#data">Technical data ↓</a></li>
+    <li><a class="tlink" href="#map">Today's variables ↓</a></li>
+    <li><a class="tlink" href="#css">The stylesheet ↓</a></li>
+  </ul>
+</header>
+
+<section class="dark cover" aria-labelledby="cover-h">
+  <div class="wrap cover-grid">
+    <div>
+      <p class="tll-type-eyebrow speclabel" id="cover-h">Specimen · cover title · display-xl on Midnight</p>
+      <p class="tll-type-eyebrow eyebrow" style="margin-top:2rem">King George Island, Antarctica</p>
+      <p class="tll-type-cover-title cover-title"><a href="https://www.thatlayover.life/stories/antarctica-marathon">Whiskey on 10,000-Year-Old Ice and Chasing the <em class="tll-type-accent">Impossible</em>: The Antarctica Marathon</a></p>
+      <p class="tll-type-deck">The honeymoon that became a four-year cancellation saga, and then the coldest, strangest, most beautiful race I have ever run. Four attempts, one pandemic, and an apartment marathon I recommend to nobody.</p>
+      <p class="tll-type-data meta"><b>Nancy Carleton</b> · Stories From the Road · September 23, 2026 · 12 min</p>
+    </div>
+    <figure class="photo">
+      <img src="data:image/jpeg;base64,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" width="900" height="507" alt="Sun bursting over a snow peak on King George Island, a vessel at anchor in the bay and a line of people walking ashore across the snow">
+      <figcaption class="tll-type-caption"><a href="https://www.thatlayover.life/stories/antarctica-marathon">Photo: Nancy Carleton</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="scale" aria-labelledby="scale-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">01 · The scale</p>
+      <h2 id="scale-h">The scale</h2>
+      <p class="tll-type-ui lead">Every step but one stretches with the window. Story body holds at 18px, because the kit says so and because text that changes size mid-paragraph feels like reading on a bus.</p>
+    </div>
+    <div class="controls" role="group" aria-label="Headline specimens">
+      <button type="button" class="btn btn-fill" id="b-rand">Try another real title</button>
+      <button type="button" class="btn btn-line" id="b-long">Longest title</button>
+      <button type="button" class="btn btn-line" id="b-short">Shortest title</button>
+      <button type="button" class="tlink" id="b-reset">← Back to the specimens</button>
+    </div>
+    <p class="tll-type-data status" id="status" aria-live="polite">Specimen titles, one per step · 57 stories in the library to try</p>
+    <div class="steps">
+      <div class="step" data-step="display-xl">
+        <div class="spec mono">
+          <span class="name">display-xl</span>
+          <span>Used as cover-title</span>
+          <span>46 → 112 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>91.7</b> px</span>
+          <code>clamp(2.875rem, 1.9231rem + 4.2308vw, 7rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (112 − 46) / (1920 − 360) = 0.042308 → 4.230769vw<br>intercept = 46 − 0.042308 × 360 = 30.77px = 1.923077rem<br>zoom rule: 112 / 46 = 2.43, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-cover-title" data-measure><a data-title href="https://www.thatlayover.life/stories/kilimanjaro-someone-was-already-awake">Someone Was Already Awake</a></p>
+        <p class="tll-type-data src" data-src>Nancy Carleton · TANZANIA · 9 min</p>
+        </div>
+      </div>
+      <div class="step" data-step="display-l">
+        <div class="spec mono">
+          <span class="name">display-l</span>
+          <span>Used as story-title</span>
+          <span>36 → 80 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>66.5</b> px</span>
+          <code>clamp(2.25rem, 1.6154rem + 2.8205vw, 5rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (80 − 36) / (1920 − 360) = 0.028205 → 2.820513vw<br>intercept = 36 − 0.028205 × 360 = 25.85px = 1.615385rem<br>zoom rule: 80 / 36 = 2.22, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-story-title" data-measure><a data-title href="https://www.thatlayover.life/stories/sort-sol-black-sun-denmark">I Drove Across Denmark to Watch a Million Birds Go to Bed</a></p>
+        <p class="tll-type-data src" data-src>Nancy Carleton · RUDBØL, DENMARK · 8 min</p>
+        </div>
+      </div>
+      <div class="step" data-step="display-m">
+        <div class="spec mono">
+          <span class="name">display-m</span>
+          <span>Used as section-title, story-subhead</span>
+          <span>28 → 48 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>41.8</b> px</span>
+          <code>clamp(1.75rem, 1.4615rem + 1.2821vw, 3rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (48 − 28) / (1920 − 360) = 0.012821 → 1.282051vw<br>intercept = 28 − 0.012821 × 360 = 23.38px = 1.461538rem<br>zoom rule: 48 / 28 = 1.71, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-section-title" data-measure><a data-title href="https://www.thatlayover.life/stories/el-salvador-ice-cream-over-a-lake-of-acid">Ice Cream Over a Lake of Acid</a></p>
+        <p class="tll-type-data src" data-src>Nancy Carleton · SANTA ANA, EL SALVADOR · 5 min</p>
+        </div>
+      </div>
+      <div class="step" data-step="title">
+        <div class="spec mono">
+          <span class="name">title</span>
+          <span>Used as card-title</span>
+          <span>20 → 28 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>25.5</b> px</span>
+          <code>clamp(1.25rem, 1.1346rem + 0.5128vw, 1.75rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (28 − 20) / (1920 − 360) = 0.005128 → 0.512821vw<br>intercept = 20 − 0.005128 × 360 = 18.15px = 1.134615rem<br>zoom rule: 28 / 20 = 1.40, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-card-title" data-measure><a data-title href="https://www.thatlayover.life/stories/eswatini-lesotho-how-many-goats-small-car">How Many Goats Can Fit in a Small Car?</a></p>
+        <p class="tll-type-data src" data-src>Nancy Carleton · ESWATINI AND LESOTHO · 6 min</p>
+        </div>
+      </div>
+      <div class="step" data-step="deck">
+        <div class="spec mono">
+          <span class="name">deck</span>
+          <span>Used as deck</span>
+          <span>18 → 23 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>21.5</b> px</span>
+          <code>clamp(1.125rem, 1.0529rem + 0.3205vw, 1.4375rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (23 − 18) / (1920 − 360) = 0.003205 → 0.320513vw<br>intercept = 18 − 0.003205 × 360 = 16.85px = 1.052885rem<br>zoom rule: 23 / 18 = 1.28, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-deck" data-measure>A last-minute trip to the German border for Sort Sol, the marshland murmuration that only does the famous part when something tries to eat it. Plus the falcon that never showed, and the correct way to cross the Fyn bridge.</p>
+        <p class="tll-type-caption src">The deck of <a href="https://www.thatlayover.life/stories/sort-sol-black-sun-denmark">I Drove Across Denmark to Watch a Million Birds Go to Bed</a>, by Nancy Carleton</p>
+        </div>
+      </div>
+      <div class="step" data-step="story">
+        <div class="spec mono">
+          <span class="name">story</span>
+          <span>Used as story-body</span>
+          <span>18 px at every width</span>
+          <span class="now">At this window <b data-now>18</b> px</span>
+          <code>1.125rem</code>
+          <details><summary>Show the math</summary><p class="math">Fixed at 1.125rem, which is 18px at the default root.<br>Line height 1.65. Not fluid: the kit fixes story text at 18px.</p></details>
+        </div>
+        <div class="sample">
+        <div class="tll-type-story-body"><p data-measure>The Drake Passage crossing was described to us as “gentle.” The waves only reached sixty feet.</p></div>
+        <p class="tll-type-caption src">Quoted from <a href="https://www.thatlayover.life/stories/antarctica-marathon">the Antarctica story</a>, by Nancy Carleton</p>
+        </div>
+      </div>
+      <div class="step" data-step="body">
+        <div class="spec mono">
+          <span class="name">body</span>
+          <span>Used as ui</span>
+          <span>15 → 16 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>15.7</b> px</span>
+          <code>clamp(0.9375rem, 0.9231rem + 0.0641vw, 1rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (16 − 15) / (1920 − 360) = 0.000641 → 0.064103vw<br>intercept = 15 − 0.000641 × 360 = 14.77px = 0.923077rem<br>zoom rule: 16 / 15 = 1.07, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-ui" data-measure>The paperwork, in the order it happens. From someone who cried in that line.</p>
+        <p class="tll-type-caption src">Lines from <a href="https://www.thatlayover.life/for-expats">/for-expats</a></p>
+        </div>
+      </div>
+      <div class="step" data-step="small">
+        <div class="spec mono">
+          <span class="name">small</span>
+          <span>Used as caption</span>
+          <span>13 → 14 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>13.7</b> px</span>
+          <code>clamp(0.8125rem, 0.7981rem + 0.0641vw, 0.875rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (14 − 13) / (1920 − 360) = 0.000641 → 0.064103vw<br>intercept = 13 − 0.000641 × 360 = 12.77px = 0.798077rem<br>zoom rule: 14 / 13 = 1.08, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-caption" data-measure>Magnus · Samoyed · 35 kg</p>
+        <p class="tll-type-caption src">The caption under <a href="https://www.thatlayover.life/pets/magnus-waffles">Magnus Waffles</a> on the home page</p>
+        </div>
+      </div>
+      <div class="step" data-step="meta">
+        <div class="spec mono">
+          <span class="name">meta</span>
+          <span>Used as eyebrow, data</span>
+          <span>12 → 13 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>12.7</b> px</span>
+          <code>clamp(0.75rem, 0.7356rem + 0.0641vw, 0.8125rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (13 − 12) / (1920 − 360) = 0.000641 → 0.064103vw<br>intercept = 12 − 0.000641 × 360 = 11.77px = 0.735577rem<br>zoom rule: 13 / 12 = 1.08, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-eyebrow" data-measure>King George Island, Antarctica</p>
+        <p class="tll-type-data">Stories From the Road · September 23, 2026 · 12 min</p>
+        <p class="tll-type-caption src">Place line and card meta from <a href="https://www.thatlayover.life/stories/antarctica-marathon">the Antarctica story</a></p>
+        </div>
+      </div>
+      <div class="step" data-step="data-l">
+        <div class="spec mono">
+          <span class="name">data-l</span>
+          <span>Used as data-l</span>
+          <span>16 → 22 px · 360 → 1920</span>
+          <span class="now">At this window <b data-now>20.2</b> px</span>
+          <code>clamp(1rem, 0.9135rem + 0.3846vw, 1.375rem)</code>
+          <details><summary>Show the math</summary><p class="math">slope = (22 − 16) / (1920 − 360) = 0.003846 → 0.384615vw<br>intercept = 16 − 0.003846 × 360 = 14.62px = 0.913462rem<br>zoom rule: 22 / 16 = 1.38, under 2.5<br><span data-live-math></span></p></details>
+        </div>
+        <div class="sample">
+        <p class="tll-type-data-l" data-measure>42.2 km</p>
+        <p class="tll-type-caption src">Race distance, from <a href="https://www.thatlayover.life/stories/antarctica-marathon">the Antarctica story</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calc" aria-labelledby="calc-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">02 · Pick a width</p>
+      <h2 id="calc-h">Pick a width</h2>
+      <p class="tll-type-ui lead">For when you are reading this on a phone and cannot drag anything. Choose a width and the table does the arithmetic from the same clamp values the page is using right now.</p>
+    </div>
+    <div class="calc-top">
+      <div class="calc-row">
+        <label for="w-range">Width</label>
+        <input type="range" id="w-range" min="360" max="1920" step="1" value="1440">
+        <input type="number" id="w-num" min="360" max="1920" step="1" value="1440" aria-label="Width in pixels">
+        <span class="mono muted">px</span>
+      </div>
+      <div class="chips" role="group" aria-label="Common widths">
+        <button type="button" class="chip" data-w="360">360</button>
+        <button type="button" class="chip" data-w="390">390 phone</button>
+        <button type="button" class="chip" data-w="768">768 tablet</button>
+        <button type="button" class="chip" data-w="1024">1024</button>
+        <button type="button" class="chip" data-w="1440" aria-pressed="true">1440 laptop</button>
+        <button type="button" class="chip" data-w="1920">1920 monitor</button>
+      </div>
+    </div>
+    <table class="calc">
+      <caption class="sr">Size of each step at the chosen width, at your window, and the zoom check</caption>
+      <thead><tr><th scope="col">Step</th><th scope="col" class="n" id="th-w">At 1440</th><th scope="col" class="n">At your window</th><th scope="col" class="n">Zoom check</th></tr></thead>
+      <tbody id="calc-body"><tr><td>display-xl</td><td class="n">91.7 px</td><td class="n">…</td><td class="n z ok"><span>2.51×</span> <span>reaches 2×</span></td></tr><tr><td>display-l</td><td class="n">66.5 px</td><td class="n">…</td><td class="n z ok"><span>2.71×</span> <span>reaches 2×</span></td></tr><tr><td>display-m</td><td class="n">41.8 px</td><td class="n">…</td><td class="n z ok"><span>3.35×</span> <span>reaches 2×</span></td></tr><tr><td>title</td><td class="n">25.5 px</td><td class="n">…</td><td class="n z ok"><span>3.92×</span> <span>reaches 2×</span></td></tr><tr><td>deck</td><td class="n">21.5 px</td><td class="n">…</td><td class="n z ok"><span>4.19×</span> <span>reaches 2×</span></td></tr><tr><td>story</td><td class="n">18 px</td><td class="n">…</td><td class="n z ok"><span>5.00×</span> <span>reaches 2×</span></td></tr><tr><td>body</td><td class="n">15.7 px</td><td class="n">…</td><td class="n z ok"><span>4.78×</span> <span>reaches 2×</span></td></tr><tr><td>small</td><td class="n">13.7 px</td><td class="n">…</td><td class="n z ok"><span>4.75×</span> <span>reaches 2×</span></td></tr><tr><td>meta</td><td class="n">12.7 px</td><td class="n">…</td><td class="n z ok"><span>4.73×</span> <span>reaches 2×</span></td></tr><tr><td>data-l</td><td class="n">20.2 px</td><td class="n">…</td><td class="n z ok"><span>3.97×</span> <span>reaches 2×</span></td></tr></tbody>
+    </table>
+    <p class="tll-type-ui note">The zoom column is the most each size grows when you zoom the browser up to 500% at that width, as a multiple of its normal size. WCAG asks that 2× be reachable. A size made only of vw would stall well short of it, which is why every step here keeps a rem term.</p>
+  </div>
+</section>
+
+<section id="story" aria-labelledby="story-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">03 · The story page</p>
+      <h2 id="story-h">The story page</h2>
+      <p class="tll-type-ui lead">Paragraphs from near the top of the Antarctica story, quoted as published and set the way a story page would set them. The counter underneath measures the actual characters on each full line, so you can watch the 60 to 75 rule hold as the window changes.</p>
+    </div>
+    <article class="story" id="story-specimen">
+      <p class="tll-type-eyebrow eyebrow">King George Island, Antarctica</p>
+      <p class="tll-type-story-title" id="story-title">Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon</p>
+      <p class="tll-type-deck" id="story-deck">The honeymoon that became a four-year cancellation saga, and then the coldest, strangest, most beautiful race I have ever run. Four attempts, one pandemic, and an apartment marathon I recommend to nobody.</p>
+      <p class="tll-type-data byline"><b>Nancy Carleton</b> · September 23, 2026 · 12 min</p>
+      <div class="tll-type-story-body" id="story-body">
+        <p class="first">Nobody tells you this, but the running is not the hard part of the Antarctica Marathon. The hard part is showing up at the start line at all. We needed four attempts, four years, a global pandemic, a military quarantine, and one full marathon run inside my own apartment in Copenhagen. By the time my shoes hit that gravel, Antarctica owed me money.</p>
+        <h2>What the Antarctica Marathon actually is</h2>
+        <p>It is a true 42.2km marathon on King George Island in the South Shetlands, run on rough gravel and dirt roads connecting four research bases: Bellingshausen (Russia), Artigas (Uruguay), Frei (Chile), and Great Wall (China). Marathon Tours &amp; Travel runs it in late February or early March. Because the island is small and the ice is not exactly flexible, it is always a looped course. Ours had six loops, though the number varies by year and weather.</p>
+        <p>There is also a half marathon (4.5-hour limit) and a 10K (2 hours). The full marathon has a 6-hour cutoff, and most runners take more than 5 hours to finish, which should tell you how tough the course really is.</p>
+      </div>
+      <p class="tll-type-data measure-out" id="measure-out">Measuring the line length…</p>
+      <div class="toggle-row">
+        <button type="button" class="btn btn-line" id="b-measure" aria-pressed="false">Outline the measure</button>
+        <a class="tlink" href="https://www.thatlayover.life/stories/antarctica-marathon">Read the whole story →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="data" aria-labelledby="data-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">04 · Technical data</p>
+      <h2 id="data-h">Technical data</h2>
+      <p class="tll-type-ui lead">Mono carries anything you might need to copy down at a gate. It sits in capitals with wide tracking, and every figure is the same width, so a column of minutes lines up on its own.</p>
+    </div>
+    <div class="data-grid">
+      <dl class="sheet">
+        <div><dt class="tll-type-eyebrow">Read time</dt><dd><span class="tll-type-data-l">12 min</span><small>Whiskey on 10,000-Year-Old Ice, <a href="https://www.thatlayover.life/stories/antarctica-marathon">the Antarctica story</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Read time</dt><dd><span class="tll-type-data-l">4 min</span><small><a href="https://www.thatlayover.life/stories/unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city">Unmatchable Pompeii</a>, by Roberta Bianchi</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Race distance</dt><dd><span class="tll-type-data-l">42.2 km</span><small>King George Island, as the Antarctica story gives it</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Paw Passport</dt><dd><span class="tll-type-data-l">35 kg</span><small><a href="https://www.thatlayover.life/pets/magnus-waffles">Magnus Waffles</a>, Samoyed, the editor's dog</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Checked bag</dt><dd><span class="tll-type-data-l">23 kg</span><small>"Your checked bag is 23 kg of snacks from home." From <a href="https://www.thatlayover.life/for-expats">/for-expats</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Coordinates</dt><dd><span class="tll-type-data">12.17° N 68.99° W · Curaçao</span><small>The home cover photo's location line</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Coordinates</dt><dd><span class="tll-type-data">38.98° N 1.43° E · Ibiza</span><small>Photo line for Chesney Lish on the home page</small></dd></div>
+        <div><dt class="tll-type-eyebrow">Layover guide</dt><dd><span class="tll-type-data-l">CPH · 6 h</span><small><a href="https://www.thatlayover.life/layovers/cph-copenhagen-6h">The 6-Hour Copenhagen Reset (from CPH)</a></small></dd></div>
+        <div><dt class="tll-type-eyebrow">Layover guide</dt><dd><span class="tll-type-data-l">SOF · 3 h</span><small><a href="https://www.thatlayover.life/layovers/sof-sofia-3h">Three Hours in Sofia, If You Must (from SOF)</a></small></dd></div>
+      </dl>
+      <div>
+        <p class="tll-type-eyebrow times-h">Newest in the library, minutes to read</p>
+        <ol class="times" id="times"><li><a href="https://www.thatlayover.life/stories/unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city">Unmatchable Pompeii: How I Designed my Perfect Day in the Roman City</a><span class="tll-type-data">4 min</span></li><li><a href="https://www.thatlayover.life/stories/torrevieja-street-food-market-2026-rocking-out-with-some-great-food">Torrevieja Street Food Market 2026: Rocking Out With Some Great Food</a><span class="tll-type-data">3 min</span></li><li><a href="https://www.thatlayover.life/stories/new-orleans-short-girl-wedding-krewe-of-boo">La Petite's Guide to New Orleans</a><span class="tll-type-data">9 min</span></li><li><a href="https://www.thatlayover.life/stories/luxembourg-schengen-road-trip">I’ve Been in Schengen for Years. This Weekend I Actually Went.</a><span class="tll-type-data">10 min</span></li><li><a href="https://www.thatlayover.life/stories/even-brave-boys-get-scared">Even Brave Boys Get Scared</a><span class="tll-type-data">1 min</span></li><li><a href="https://www.thatlayover.life/stories/mexico-holy-mole-teotihuacan-cenotes-pink-lagoons">Holy Mole</a><span class="tll-type-data">6 min</span></li><li><a href="https://www.thatlayover.life/stories/sao-paulo-first-nfl-game-brazil">Friday Night Lights, São Paulo Edition</a><span class="tll-type-data">5 min</span></li><li><a href="https://www.thatlayover.life/stories/pantanal-glimmers-in-the-wild">Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide</a><span class="tll-type-data">7 min</span></li></ol>
+        <p class="tll-type-data lib" id="lib">The library, counted from the data in this page · <b>57</b> stories · <b>339</b> min of reading · <b>6</b> contributors</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="map" class="map" aria-labelledby="map-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">05 · Today's variables</p>
+      <h2 id="map-h">From today's variables to these</h2>
+      <p class="tll-type-ui lead">The faces already hold the same values under a different prefix on every template, so adopting those is search and replace. Sizes are mostly hard-coded today, so the second table says where each one lives now and what moves when it switches over.</p>
+    </div>
+    <h3>Faces</h3>
+    <table>
+      <thead><tr><th scope="col">New token</th><th scope="col">Replaces</th><th scope="col">Where</th><th scope="col">What changes</th></tr></thead>
+      <tbody>
+        <tr><td data-h="New token"><code>--tll-face-display</code></td><td class="today" data-h="Replaces"><code>--h3-head</code><code>--st3-f-head</code><code>--ct3-head</code><code>--s3-head</code><code>--ds3-serif</code><code>--pf3-head</code><code>--pr3-head</code><code>--mg-head</code><code>---font--heading-font</code></td><td data-h="Where">Home, story, country and layovers, stories, destinations, profiles, the magazine layer, Webflow's own variable</td><td data-h="What changes">Nothing visible. Every one already reads 'Playfair Display', Georgia, serif.</td></tr>
+        <tr><td data-h="New token"><code>--tll-face-text</code></td><td class="today" data-h="Replaces"><code>--h3-body</code><code>--st3-f-body</code><code>--ct3-body</code><code>--s3-body</code><code>--ds3-body</code><code>--pf3-body</code><code>--pr3-body</code><code>--mg-text-f</code></td><td data-h="Where">Same templates</td><td data-h="What changes">Nothing visible. <code>--st3-f-body</code> and <code>--mg-text-f</code> skip the 'IBM Plex Sans' fallback; the new token keeps it.</td></tr>
+        <tr><td data-h="New token"><code>--tll-face-mono</code></td><td class="today" data-h="Replaces"><code>--h3-mono</code><code>--st3-f-mono</code><code>--ct3-mono</code><code>--s3-mono</code><code>--ds3-mono</code><code>--pf3-mono</code><code>--pr3-mono</code><code>--mg-mono</code></td><td data-h="Where">Same templates</td><td data-h="What changes">Nothing visible.</td></tr>
+      </tbody>
+    </table>
+    <h3>Sizes and measures</h3>
+    <table>
+      <thead><tr><th scope="col">New token</th><th scope="col">Today</th><th scope="col">Where</th><th scope="col">What changes</th></tr></thead>
+      <tbody>
+        <tr><td data-h="New token"><code>--tll-cover-title</code> display-xl, 46 → 112</td><td class="today" data-h="Today"><code>h1 clamp(44px, 6.4vw, 112px)</code><code>-0.035em</code><code>home h1 clamp(46px, 7.6vw, 148px)</code></td><td data-h="Where">tll-v9-type-v1 layer</td><td data-h="What changes">Tracking goes back to the kit's -0.01em. The home cover tops out at 112px instead of 148px unless you keep a cover-only exception.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-title</code> display-l, 36 → 80</td><td class="today" data-h="Today"><code>.tll-story-title clamp(34px, 8.5vw, 48px)</code><code>from 900px: clamp(46px, 4.9vw, 72px)</code></td><td data-h="Where">tll-mag-story-v1, site layers v16</td><td data-h="What changes">One rule instead of two. 36px on a 360 phone instead of 34px; about 66px at 1440 instead of 71px.</td></tr>
+        <tr><td data-h="New token"><code>--tll-step-display-l</code></td><td class="today" data-h="Today"><code>--h3g-fs clamp(34px, 4.2vw, 60px)</code></td><td data-h="Where">Home layover guides board (embed 94ce12c0)</td><td data-h="What changes">Guide titles become story-title sized. Closest step; Nancy may prefer display-m here.</td></tr>
+        <tr><td data-h="New token"><code>--tll-section-title</code> display-m, 28 → 48</td><td class="today" data-h="Today"><code>h2 clamp(34px, 5vw, 64px)</code><code>-0.025em</code><code>--h3-lab clamp(28px, 3.4vw, 44px)</code></td><td data-h="Where">tll-v9-type-v1 layer; home rail labels (embed 94ce12c0)</td><td data-h="What changes">Rail labels barely move. Generic h2s get smaller so they sit a step under the story title.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-subhead</code> display-m</td><td class="today" data-h="Today"><code>story h2 28px</code><code>story h3 24px</code></td><td data-h="Where">tll-mag-story-v1</td><td data-h="What changes">Same 28px on phones, about 42px at 1440.</td></tr>
+        <tr><td data-h="New token"><code>--tll-card-title</code> title, 20 → 28</td><td class="today" data-h="Today"><code>.h3-card-title clamp(21px, 1.8vw, 28px)</code><code>--h3g-nm clamp(20px, 2.3vw, 34px)</code></td><td data-h="Where">home3.css; home guides board</td><td data-h="What changes">Within a pixel of today. Gains a rem term, so it grows with zoom.</td></tr>
+        <tr><td data-h="New token"><code>--tll-deck</code> deck, 18 → 23</td><td class="today" data-h="Today"><code>hero subhead 19px</code><code>h1 + p 17px</code></td><td data-h="Where">Hero rule in site layers v16; tll-v9-type-v1</td><td data-h="What changes">One fluid size replaces two fixed ones.</td></tr>
+        <tr><td data-h="New token"><code>--tll-story-body</code> 18px fixed</td><td class="today" data-h="Today"><code>.tll-body 18px / 1.65</code></td><td data-h="Where">tll-mag-story-v1 (the older st3 rule still says 16px and is overridden)</td><td data-h="What changes">Nothing visible. Rename, and the stale 16px rule can go.</td></tr>
+        <tr><td data-h="New token"><code>--tll-measure-story</code> 52ch</td><td class="today" data-h="Today"><code>--st3-col: 680px</code></td><td data-h="Where">style-st3-story-v1</td><td data-h="What changes">A px column holds a different number of letters whenever the size changes; ch follows the font. <span id="col680">At 18px, 680px holds about … characters a line.</span></td></tr>
+        <tr><td data-h="New token"><code>--tll-eyebrow</code> meta, Mono 600, 0.14em</td><td class="today" data-h="Today"><code>.h3-ey 11px, 0.22em</code><code>.tll-eyebrow-teal 11px, then 12px</code></td><td data-h="Where">home3.css; site layers v16</td><td data-h="What changes">11px goes up to the kit's 12px floor.</td></tr>
+        <tr><td data-h="New token"><code>--tll-data</code> meta, Mono 400, 0.12em</td><td class="today" data-h="Today"><code>.h3-hero-coords 11px (10px on phones), 0.2em</code><code>.tll-story-meta-divider 12px</code></td><td data-h="Where">home3.css; site layers v16</td><td data-h="What changes">The 10px and 11px coordinates go up to 12px.</td></tr>
+        <tr><td data-h="New token"><code>--tll-caption</code> small, 13 → 14</td><td class="today" data-h="Today"><code>.tll-aeo-box 14px and 15px</code></td><td data-h="Where">style-st3-story-v1</td><td data-h="What changes">One size for captions, credits and box text.</td></tr>
+        <tr><td data-h="New token"><code>--tll-ui</code> body, 15 → 16</td><td class="today" data-h="Today"><code>15px and 16px, hard-coded per template</code></td><td data-h="Where">Most templates</td><td data-h="What changes">Moves from fixed to a one-pixel stretch.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="css" aria-labelledby="css-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="tll-type-eyebrow eyebrow">06 · The stylesheet</p>
+      <h2 id="css-h">The stylesheet</h2>
+      <p class="tll-type-ui lead">This is the exact CSS the page is using. The same file sits beside this page as type-system.css, comments and all.</p>
+    </div>
+    <div class="code-actions">
+      <button type="button" class="btn btn-line" id="b-copy">Copy the CSS</button>
+      <span class="tll-type-data muted" id="copy-status" aria-live="polite"></span>
+    </div>
+    <pre class="css" id="css-pre" tabindex="0" aria-label="type-system.css">/* ==========================================================================
+   TLL fluid type system, draft 1 (November 12, 2026)
+   Fits TLL Brand Kit v2.4. Prototype only: nothing on the live site loads this.
+
+   WHAT IS IN HERE
+   1. Faces          three families, nothing else
+   2. Fluid steps    the size scale, each one a clamp() with its math shown
+   3. Rhythm         line heights, tracking, weights
+   4. Measures       line length caps in ch
+   5. Aliases        the names pages should use (story title, card title...)
+   6. Base rules     element defaults inside .tll-type
+   7. Role classes   one class per alias, for markup that cannot use elements
+
+   HOW THE CLAMPS WORK
+   Every fluid step runs from a size at a 360px viewport (a small iPhone in
+   CSS pixels) to a size at a 1920px viewport (a big desktop monitor), in a
+   straight line, and holds flat outside that range.
+
+     slope      = (max px - min px) / (1920 - 360)        = (max - min) / 1560
+     intercept  = min px - slope x 360                    (in px, then / 16 for rem)
+     size       = clamp(min rem, intercept rem + slope x 100 vw, max rem)
+
+   Check any step by hand: at a 390px window, size = intercept + slope x 390.
+
+   WHY REM AND NOT PX OR PURE VW
+   - The floor, the ceiling and the intercept are rem, so a reader who sets a
+     bigger default font size in the browser gets bigger type everywhere.
+   - The middle term always has a rem part. A vw-only size ignores browser
+     zoom (zooming narrows the viewport, so the vw part shrinks while you try
+     to enlarge it). The rem part keeps growing with zoom.
+   - Rule used for every step: max &lt;= 2.5 x min. With that ratio, zooming to
+     the browser's 500% always reaches at least twice the 100% size, which is
+     what WCAG 1.4.4 (resize text to 200%) asks for. The specimen page
+     checks this live in the width calculator.
+   - Root is the browser default (16px = 1rem). Nothing here sets html
+     font-size, so 0.75rem is 12px for most readers and more for anyone who
+     asked for more. The kit's floor is 12px; meta is the only step at it.
+
+   WHAT IS NOT FLUID ON PURPOSE
+   Story body is a fixed 18px (1.125rem) with a 1.65 line height. The kit
+   fixes it, and long reading at a steady size beats a size that creeps.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. FACES
+     Playfair Display 800 and 800 italic only. IBM Plex Sans Condensed 400,
+     500, 600, 700. JetBrains Mono 400 and 600. Never a fourth face.
+     The fallbacks are what the live site already uses.
+     ------------------------------------------------------------------------ */
+  --tll-face-display: 'Playfair Display', Georgia, serif;
+  --tll-face-text: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif;
+  --tll-face-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ------------------------------------------------------------------------
+     2. FLUID STEPS (360px -&gt; 1920px viewport, 1rem = 16px)
+     Names describe size, not use. Pages use the aliases in section 5.
+     ------------------------------------------------------------------------ */
+
+  /* display-xl: 46px at 360 -&gt; 112px at 1920. slope = (112 - 46) / 1560 = 0.042308 -&gt; 4.2308vw.
+     intercept = 46 - 0.042308 x 360 = 30.7692px = 1.9231rem. Zoom: 112/46 = 2.43 (2.5 or less). */
+  --tll-step-display-xl: clamp(2.875rem, 1.9231rem + 4.2308vw, 7rem);
+
+  /* display-l: 36px at 360 -&gt; 80px at 1920. slope = (80 - 36) / 1560 = 0.028205 -&gt; 2.8205vw.
+     intercept = 36 - 0.028205 x 360 = 25.8462px = 1.6154rem. Zoom: 80/36 = 2.22 (2.5 or less). */
+  --tll-step-display-l: clamp(2.25rem, 1.6154rem + 2.8205vw, 5rem);
+
+  /* display-m: 28px at 360 -&gt; 48px at 1920. slope = (48 - 28) / 1560 = 0.012821 -&gt; 1.2821vw.
+     intercept = 28 - 0.012821 x 360 = 23.3846px = 1.4615rem. Zoom: 48/28 = 1.71 (2.5 or less). */
+  --tll-step-display-m: clamp(1.75rem, 1.4615rem + 1.2821vw, 3rem);
+
+  /* title: 20px at 360 -&gt; 28px at 1920. slope = (28 - 20) / 1560 = 0.005128 -&gt; 0.5128vw.
+     intercept = 20 - 0.005128 x 360 = 18.1538px = 1.1346rem. Zoom: 28/20 = 1.40 (2.5 or less). */
+  --tll-step-title: clamp(1.25rem, 1.1346rem + 0.5128vw, 1.75rem);
+
+  /* deck: 18px at 360 -&gt; 23px at 1920. slope = (23 - 18) / 1560 = 0.003205 -&gt; 0.3205vw.
+     intercept = 18 - 0.003205 x 360 = 16.8462px = 1.0529rem. Zoom: 23/18 = 1.28 (2.5 or less). */
+  --tll-step-deck: clamp(1.125rem, 1.0529rem + 0.3205vw, 1.4375rem);
+
+  /* story: fixed. 18px = 1.125rem at every width (kit rule). Not a clamp. */
+  --tll-step-story: 1.125rem;
+
+  /* body: 15px at 360 -&gt; 16px at 1920. slope = (16 - 15) / 1560 = 0.000641 -&gt; 0.0641vw.
+     intercept = 15 - 0.000641 x 360 = 14.7692px = 0.9231rem. Zoom: 16/15 = 1.07 (2.5 or less). */
+  --tll-step-body: clamp(0.9375rem, 0.9231rem + 0.0641vw, 1rem);
+
+  /* small: 13px at 360 -&gt; 14px at 1920. slope = (14 - 13) / 1560 = 0.000641 -&gt; 0.0641vw.
+     intercept = 13 - 0.000641 x 360 = 12.7692px = 0.7981rem. Zoom: 14/13 = 1.08 (2.5 or less). */
+  --tll-step-small: clamp(0.8125rem, 0.7981rem + 0.0641vw, 0.875rem);
+
+  /* meta: 12px at 360 -&gt; 13px at 1920. slope = (13 - 12) / 1560 = 0.000641 -&gt; 0.0641vw.
+     intercept = 12 - 0.000641 x 360 = 11.7692px = 0.7356rem. Zoom: 13/12 = 1.08 (2.5 or less).
+     This is the kit's floor. Nothing in the system goes smaller. */
+  --tll-step-meta: clamp(0.75rem, 0.7356rem + 0.0641vw, 0.8125rem);
+
+  /* data-l: 16px at 360 -&gt; 22px at 1920. slope = (22 - 16) / 1560 = 0.003846 -&gt; 0.3846vw.
+     intercept = 16 - 0.003846 x 360 = 14.6154px = 0.9135rem. Zoom: 22/16 = 1.38 (2.5 or less).
+     For a Mono figure that has to be read across a room: 42.2 KM, 35 KG. */
+  --tll-step-data-l: clamp(1rem, 0.9135rem + 0.3846vw, 1.375rem);
+
+  /* ------------------------------------------------------------------------
+     3. RHYTHM
+     Line heights are unitless so they follow the size. Display tracking is
+     the kit's -0.01em (the live tll-v9-type-v1 layer uses -0.035em on h1;
+     this system brings it back to the kit). Mono tracking sits inside the
+     kit's 0.12em to 0.2em band.
+     ------------------------------------------------------------------------ */
+  --tll-lh-display: 0.98;   /* display-xl: tight, it is a poster line */
+  --tll-lh-headline: 1.04;  /* display-l and display-m */
+  --tll-lh-title: 1.12;     /* card titles, two or three lines */
+  --tll-lh-deck: 1.42;
+  --tll-lh-story: 1.65;     /* kit rule for story body */
+  --tll-lh-body: 1.55;
+  --tll-lh-meta: 1.5;
+
+  --tll-track-display: -0.01em;
+  --tll-track-eyebrow: 0.14em;  /* matches the home cover kicker */
+  --tll-track-data: 0.12em;     /* figures, codes, coordinates */
+  --tll-track-label: 0.2em;     /* widest, for one-word labels only */
+
+  --tll-weight-display: 800;
+  --tll-weight-text: 400;
+  --tll-weight-text-strong: 600;  /* buttons and text-link labels (kit v2.4) */
+  --tll-weight-mono: 400;
+  --tll-weight-mono-strong: 600;
+
+  /* ------------------------------------------------------------------------
+     4. MEASURES
+     ch is the width of the &quot;0&quot; in the element's own font, so a measure in ch
+     must sit on the element that carries the font. Measured in Chromium on
+     November 12: at 18px a &quot;0&quot; in Plex Sans Condensed is about 9.7px wide, while
+     the average character of story text (spaces included) is about 7.3px.
+     So 52ch is about 505px and holds about 66 characters a line (59 to 73
+     on the Antarctica text), inside the kit's 60 to 75. (A 680px column at 18px holds about 91.) The specimen
+     page counts this live. Headlines are capped so a long title balances
+     into lines instead of one runaway line on a monitor.
+     ------------------------------------------------------------------------ */
+  --tll-measure-story: 52ch;
+  --tll-measure-deck: 46ch;
+  --tll-measure-body: 58ch;   /* about 76 characters of interface copy */
+  --tll-measure-headline: 22ch;
+  --tll-measure-cover: 16ch;
+
+  /* ------------------------------------------------------------------------
+     5. ALIASES: the names pages should use
+     Change a role's size here, once, and every page that uses it follows.
+     ------------------------------------------------------------------------ */
+  --tll-cover-title: var(--tll-step-display-xl);     /* home cover, landing H1 */
+  --tll-story-title: var(--tll-step-display-l);      /* story page H1 */
+  --tll-section-title: var(--tll-step-display-m);    /* section and rail titles */
+  --tll-story-subhead: var(--tll-step-display-m);    /* h2 inside story text (28px today, fixed) */
+  --tll-card-title: var(--tll-step-title);           /* story cards, guide names */
+  --tll-deck: var(--tll-step-deck);                  /* the line under a title */
+  --tll-story-body: var(--tll-step-story);           /* story text, 18px fixed */
+  --tll-ui: var(--tll-step-body);                    /* interface and page copy */
+  --tll-caption: var(--tll-step-small);              /* captions, credits, help text */
+  --tll-eyebrow: var(--tll-step-meta);               /* Mono 600 caps above titles */
+  --tll-data: var(--tll-step-meta);                  /* Mono figures: 12 MIN, 35 KG */
+  --tll-data-l: var(--tll-step-data-l);              /* Mono figures, read from afar */
+}
+
+/* --------------------------------------------------------------------------
+   6. BASE RULES
+   Scoped to .tll-type and wrapped in :where() so they carry zero
+   specificity: any page rule wins, and nothing leaks into Webflow pages
+   that have not opted in.
+   -------------------------------------------------------------------------- */
+:where(.tll-type) {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:where(.tll-type) :where(h1, h2, h3) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;          /* even lines, no orphan word on its own */
+  overflow-wrap: break-word;   /* a 15-letter word on a 360px phone still fits */
+  margin: 0;
+}
+:where(.tll-type) :where(h1) { font-size: var(--tll-story-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h2) { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+:where(.tll-type) :where(h3) { font-size: var(--tll-card-title); line-height: var(--tll-lh-title); }
+
+:where(.tll-type) :where(p, li) {
+  text-wrap: pretty;           /* fewer single-word last lines in paragraphs */
+  hyphens: manual;             /* no automatic hyphens: they break names */
+}
+
+/* Playfair has no 400 or 700 in this system, so a stray &lt;strong&gt; inside a
+   headline must not ask the browser to fake a bolder weight. */
+:where(.tll-type) :where(h1, h2, h3) :where(strong, b) { font-weight: inherit; }
+
+/* --------------------------------------------------------------------------
+   7. ROLE CLASSES
+   Use these where the element is not the role (a &lt;p&gt; that is an eyebrow, a
+   &lt;span&gt; that is data). Each sets size, face and rhythm, never color.
+   -------------------------------------------------------------------------- */
+.tll-type-cover-title,
+.tll-type-story-title,
+.tll-type-section-title,
+.tll-type-card-title {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  letter-spacing: var(--tll-track-display);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.tll-type-cover-title   { font-size: var(--tll-cover-title);   line-height: var(--tll-lh-display);  max-inline-size: var(--tll-measure-cover); }
+.tll-type-story-title   { font-size: var(--tll-story-title);   line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-section-title { font-size: var(--tll-section-title); line-height: var(--tll-lh-headline); max-inline-size: var(--tll-measure-headline); }
+.tll-type-card-title    { font-size: var(--tll-card-title);    line-height: var(--tll-lh-title); }
+
+/* The one rose italic word a headline may have. Color comes from the page
+   (Sunset Rose #F0507A is for headline sizes only, never for small text). */
+.tll-type-accent {
+  font-style: italic;
+  font-weight: var(--tll-weight-display);
+  color: var(--tll-type-accent-color, #F0507A);
+}
+
+.tll-type-deck {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-deck);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-deck);
+  max-inline-size: var(--tll-measure-deck);
+  text-wrap: pretty;
+}
+
+/* Story body: 18px, 1.65, capped at the story measure. The cap is set on
+   the paragraph, not the column, so photos and pull quotes can run wider. */
+.tll-type-story-body {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-story-body);
+  font-weight: var(--tll-weight-text);
+  line-height: var(--tll-lh-story);
+}
+.tll-type-story-body &gt; :where(p, ul, ol, blockquote) {
+  max-inline-size: var(--tll-measure-story);
+  text-wrap: pretty;
+}
+.tll-type-story-body &gt; :where(h2) {
+  font-family: var(--tll-face-display);
+  font-weight: var(--tll-weight-display);
+  font-size: var(--tll-story-subhead);
+  line-height: var(--tll-lh-headline);
+  letter-spacing: var(--tll-track-display);
+  max-inline-size: var(--tll-measure-headline);
+  text-wrap: balance;
+  margin: 1.4em 0 0.5em;
+}
+
+.tll-type-ui {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-ui);
+  line-height: var(--tll-lh-body);
+  max-inline-size: var(--tll-measure-body);
+}
+
+.tll-type-caption {
+  font-family: var(--tll-face-text);
+  font-size: var(--tll-caption);
+  line-height: var(--tll-lh-meta);
+}
+
+/* Mono roles. Uppercase, tracked, tabular. JetBrains Mono figures are all
+   one width already; tabular-nums keeps that true if the stack falls back,
+   and slashed-zero tells 0 from O in codes like a gate or a flight. */
+.tll-type-eyebrow,
+.tll-type-data,
+.tll-type-data-l {
+  font-family: var(--tll-face-mono);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings: &quot;tnum&quot; 1, &quot;zero&quot; 1;
+  line-height: var(--tll-lh-meta);
+}
+.tll-type-eyebrow { font-size: var(--tll-eyebrow); font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-eyebrow); }
+.tll-type-data    { font-size: var(--tll-data);    font-weight: var(--tll-weight-mono);        letter-spacing: var(--tll-track-data); }
+.tll-type-data-l  { font-size: var(--tll-data-l);  font-weight: var(--tll-weight-mono-strong); letter-spacing: var(--tll-track-data); line-height: 1.2; }
+
+/* Figures inside Plex text (a count in a sentence) borrow the same rule. */
+.tll-type-num { font-variant-numeric: tabular-nums; }
+</pre>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="tll-type-caption">Prototype for That Layover Life. Nothing here is loaded by the live site. Story titles, places, contributors and minutes come from the live library as read on November 12, 2026; quoted lines link to where they live.</p>
+  </div>
+</footer>
+
+<nav aria-label="Prototypes"><a class="corner" href="../index.html">All prototypes</a></nav>
+
+<script>
+const STORIES = [{"s":"unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city","t":"Unmatchable Pompeii: How I Designed my Perfect Day in the Roman City","p":"POMPEI, ITALY","by":"Roberta Bianchi","m":4,"d":"2026-10-29"},{"s":"torrevieja-street-food-market-2026-rocking-out-with-some-great-food","t":"Torrevieja Street Food Market 2026: Rocking Out With Some Great Food","p":"TORREVIEJA, SPAIN","by":"Luke Luby","m":3,"d":"2026-10-29"},{"s":"new-orleans-short-girl-wedding-krewe-of-boo","t":"La Petite's Guide to New Orleans","p":"NEW ORLEANS, LOUISIANA","by":"Nancy Carleton","m":9,"d":"2026-10-26"},{"s":"luxembourg-schengen-road-trip","t":"I’ve Been in Schengen for Years. This Weekend I Actually Went.","p":"SCHENGEN, LUXEMBOURG","by":"Nancy Carleton","m":10,"d":"2026-10-19"},{"s":"even-brave-boys-get-scared","t":"Even Brave Boys Get Scared","p":"SÃO PAULO, BRAZIL","by":"Jay Carleton","m":1,"d":"2026-10-19"},{"s":"istanbul-me-and-my-champagne-vacay","t":"Me and My Champagne Vacay in Istanbul","p":"ISTANBUL, TÜRKIYE","by":"Nancy Carleton","m":6,"d":"2022-04-16"},{"s":"champagne-reims-patience-grasshopper","t":"Patience, Grasshopper","p":"REIMS, CHAMPAGNE, FRANCE","by":"Nancy Carleton","m":6,"d":"2022-04-11"},{"s":"phuket-singapore-eat-drank-relax-be-happy","t":"Eat, Drank, Relax, Be Happy","p":"PHUKET TO SINGAPORE","by":"Nancy Carleton","m":6,"d":"2022-06-05"},{"s":"cabo-san-lucas-final-fiesta-bachelorette","t":"Final Fiesta","p":"CABO SAN LUCAS, MEXICO","by":"Nancy Carleton","m":4,"d":"2022-06-22"},{"s":"kuala-lumpur-fomo-is-real","t":"FOMO Is Real, Y'all","p":"KUALA LUMPUR, MALAYSIA","by":"Nancy Carleton","m":5,"d":"2022-07-03"},{"s":"laos-slowest-race-in-vientiane","t":"The Slowest Race in Vientiane","p":"VIENTIANE, LAOS","by":"Nancy Carleton","m":5,"d":"2022-07-11"},{"s":"agra-taj-mahal-keep-calm-and-curry-on","t":"Keep Calm and Curry On","p":"AGRA, INDIA","by":"Nancy Carleton","m":6,"d":"2022-07-26"},{"s":"vietnam-thailand-noodle-week","t":"Noodle Week","p":"HANOI TO BANGKOK","by":"Nancy Carleton","m":5,"d":"2022-06-01"},{"s":"vietnam-weekends-monkeys-in-sweaters","t":"Monkeys in Sweaters","p":"VIETNAM","by":"Nancy Carleton","m":5,"d":"2022-08-01"},{"s":"angkor-wat-most-indiana-jones-thing","t":"The Most Indiana Jones Thing I Have Ever Done","p":"SIEM REAP, CAMBODIA","by":"Nancy Carleton","m":6,"d":"2022-08-27"},{"s":"egypt-history-101-by-us","t":"Egypt History 101 (by Us)","p":"EGYPT","by":"Nancy Carleton","m":6,"d":"2022-10-31"},{"s":"sao-paulo-world-cup-2022-ilhabela","t":"Cerveja, Bandeira, Batuque e Torcida","p":"SÃO PAULO, BRAZIL","by":"Nancy Carleton","m":6,"d":"2022-12-18"},{"s":"uruguay-tiradentes-wine-yards","t":"Uruguay Would Rather You Didn't Know","p":"PUNTA DEL ESTE, URUGUAY","by":"Nancy Carleton","m":5,"d":"2023-04-23"},{"s":"lisbon-sun-sails-city-built-to-stand-back-up","t":"Sun, Sails, and a City Built to Stand Back Up","p":"LISBON, PORTUGAL","by":"Nancy Carleton","m":4,"d":"2023-05-07"},{"s":"croatia-te-amo-velho-birthday-week","t":"Te Amo, Velho: A Birthday Week in Croatia","p":"CROATIA AND BOSNIA AND HERZEGOVINA","by":"Nancy Carleton","m":8,"d":"2023-05-09"},{"s":"rio-carnaval-2023-o-brasil-e-lindo-maravilhoso","t":"O Brasil É Lindo Maravilhoso","p":"RIO DE JANEIRO, BRAZIL","by":"Nancy Carleton","m":5,"d":"2023-02-20"},{"s":"costa-rica-the-layover-was-the-vacation","t":"The Layover Was the Vacation","p":"COSTA RICA","by":"Nancy Carleton","m":6,"d":"2023-07-16"},{"s":"mexico-holy-mole-teotihuacan-cenotes-pink-lagoons","t":"Holy Mole","p":"MEXICO","by":"Nancy Carleton","m":6,"d":"2026-10-12"},{"s":"oregon-pacific-northwest-epic-trip","t":"Celebrating an Epic Trip in the Pac NW!","p":"PORTLAND, OREGON","by":"Nancy Carleton","m":4,"d":"2023-06-27"},{"s":"amsterdam-stroopwafel-time","t":"Stroopwafel Time","p":"AMSTERDAM, NETHERLANDS","by":"Nancy Carleton","m":5,"d":"2023-08-09"},{"s":"east-coast-road-trip-portland-maine-to-ohio","t":"From Portland to Mayfield Heights, Mostly Unphotographed","p":"ACADIA NATIONAL PARK, MAINE","by":"Nancy Carleton","m":6,"d":"2023-09-18"},{"s":"colombia-definitely-not-columbia","t":"Farewell, Colombia (Definitely Not Columbia)","p":"BOGOTÁ, COLOMBIA","by":"Nancy Carleton","m":6,"d":"2023-11-07"},{"s":"chile-santiago-chilean-kazakh-wedding","t":"Si la amistad es un tesoro","p":"SANTIAGO, CHILE","by":"Nancy Carleton","m":7,"d":"2023-11-25"},{"s":"bali-extended-layover-edition","t":"Bali, Indonesia: Extended Layover Edition","p":"BALI, INDONESIA","by":"Nancy Carleton","m":5,"d":"2024-02-13"},{"s":"vietnam-year-of-the-dragon","t":"The Year of the Dragon","p":"VIETNAM","by":"Nancy Carleton","m":6,"d":"2024-02-28"},{"s":"doha-layover-dunes-camels-falcons","t":"Patience, Iago, Patience!","p":"QATAR","by":"Nancy Carleton","m":5,"d":"2024-03-01"},{"s":"texas-hill-country-boot-scootin-eclipse","t":"A Boot Scootin' Eclipse","p":"TEXAS HILL COUNTRY","by":"Nancy Carleton","m":6,"d":"2024-04-10"},{"s":"el-salvador-ice-cream-over-a-lake-of-acid","t":"Ice Cream Over a Lake of Acid","p":"SANTA ANA, EL SALVADOR","by":"Nancy Carleton","m":5,"d":"2024-04-13"},{"s":"aruba-curacao-dushi-detour","t":"A Delightful \"Dushi\" Detour to Aruba and Curaçao","p":"ARUBA AND CURAÇAO","by":"Nancy Carleton","m":7,"d":"2024-08-04"},{"s":"morocco-toubkal-peaks-mules-uno-vengeance","t":"Moroccan Adventure: Peaks, Sugared Up Mules, & UNO Vengeance","p":"MOROCCO","by":"Nancy Carleton","m":5,"d":"2024-08-02"},{"s":"la-tomatina-bunol-i-wore-white","t":"I Wore White to the World's Biggest Food Fight","p":"IBIZA, VALENCIA AND BUÑOL, SPAIN","by":"Nancy Carleton","m":7,"d":"2024-08-30"},{"s":"sao-paulo-first-nfl-game-brazil","t":"Friday Night Lights, São Paulo Edition","p":"SÃO PAULO, BRAZIL","by":"Nancy Carleton","m":5,"d":"2026-10-12"},{"s":"paraguay-poor-monday","t":"Poor Monday","p":"PARAGUAY","by":"Nancy Carleton","m":5,"d":"2025-09-13"},{"s":"eswatini-lesotho-how-many-goats-small-car","t":"How Many Goats Can Fit in a Small Car?","p":"ESWATINI AND LESOTHO","by":"Nancy Carleton","m":6,"d":"2024-10-27"},{"s":"portuguese-coastal-camino-260-km","t":"Obrigada, F*: 260 km on the Portuguese Coastal Camino","p":"PORTUGAL AND SPAIN","by":"Nancy Carleton","m":9,"d":"2025-08-08"},{"s":"kilimanjaro-someone-was-already-awake","t":"Someone Was Already Awake","p":"TANZANIA","by":"Nancy Carleton","m":9,"d":"2025-08-07"},{"s":"pantanal-glimmers-in-the-wild","t":"Glimmers in the Wild: 120 Wooden Bridges, Jaguars, and No Guide","p":"PORTO JOFRE, BRAZIL","by":"Nancy Carleton","m":7,"d":"2026-10-09"},{"s":"horseshoe-bend-arizona","t":"My Unique Experience at Horseshoe Bend","p":"ARIZONA, USA","by":"Barzy Adam","m":1,"d":"2024-09-30"},{"s":"sort-sol-black-sun-denmark","t":"I Drove Across Denmark to Watch a Million Birds Go to Bed","p":"RUDBØL, DENMARK","by":"Nancy Carleton","m":8,"d":"2026-09-29"},{"s":"northern-brazil-sequins-to-sloths","t":"From Sequins to Sloths: Northern Brazil for the Chronically Curious","p":"SALVADOR, BRAZIL","by":"Nancy Carleton","m":6,"d":"2026-09-30"},{"s":"spain-madrid-wedding-ibiza","t":"Spain: A Wedding and an Adventure","p":"MADRID, SPAIN","by":"Chesney Lish","m":4,"d":"2024-09-27"},{"s":"la-paz-mexico-whale-sharks","t":"La Paz, whale sharks, and a sea lion who chose chaos","p":"MEXICO","by":"Nancy Carleton","m":3,"d":"2026-09-19"},{"s":"patagonia-w-trek-christmas-new-year","t":"Patagonia, measured in Camp Italianos","p":"CHILE AND ARGENTINA","by":"Nancy Carleton","m":6,"d":"2026-09-19"},{"s":"montenegro-budva-switchback-roads","t":"The annual retreat, or what happens when you put a Mangalitsa fillet and a switchback road in a blender","p":"MONTENEGRO","by":"Nancy Carleton","m":3,"d":"2026-09-19"},{"s":"ghana-easter-everyone-wears-white","t":"Ghana asked us to wear all white. We complied. Eventually.","p":"GHANA","by":"Nancy Carleton","m":3,"d":"2026-09-19"},{"s":"balkans-ev-road-trip-twelve-countries","t":"Fourteen days, twelve countries, one EV, and a gal who cannot be historically trusted to charge her own phone","p":"BALKANS","by":"Nancy Carleton","m":9,"d":"2026-09-19"},{"s":"southern-africa-safari","t":"Skip the Impalas","p":"SOUTH AFRICA, ZIMBABWE, ZAMBIA AND BOTSWANA","by":"Nancy Carleton","m":7,"d":"2024-06-23"},{"s":"nepal-everest-base-camp-dal-bhat-power","t":"Dal Bhat Power, 24 Hour","p":"SAGARMATHA NATIONAL PARK, NEPAL","by":"Nancy Carleton","m":10,"d":"2022-10-08"},{"s":"antarctica-marathon","t":"Whiskey on 10,000-Year-Old Ice and Chasing the Impossible: The Antarctica Marathon","p":"KING GEORGE ISLAND, ANTARCTICA","by":"Nancy Carleton","m":12,"d":"2026-09-23"},{"s":"new-zealand-is-oceania-too","t":"New Zealand Is Oceania, Too","p":"WESTPORT, NEW ZEALAND","by":"Nancy Carleton","m":8,"d":"2024-02-17"},{"s":"vietnam-ninja-duckies","t":"Ninja Duckies","p":"VIETNAM","by":"Nancy Carleton","m":7,"d":"2022-09-10"},{"s":"marathon-on-all-7-continents","t":"7 Continents, 7 Marathons, Our Running Story","p":"SEVEN CONTINENTS","by":"Nancy Carleton","m":10,"d":"2024-10-24"}];
+const SPECIMENS = {"display-xl":"kilimanjaro-someone-was-already-awake","display-l":"sort-sol-black-sun-denmark","display-m":"el-salvador-ice-cream-over-a-lake-of-acid","title":"eswatini-lesotho-how-many-goats-small-car"};
+(function () {
+  const root = document.documentElement;
+  const $ = (id) => document.getElementById(id);
+  const URL_BASE = 'https://www.thatlayover.life/stories/';
+
+  /* Read a step straight from the CSS custom property, so the page never
+     keeps its own copy of the numbers. */
+  function stepDef(name) {
+    const v = getComputedStyle(root).getPropertyValue('--tll-step-' + name).trim();
+    const m = v.match(/clamp\(\s*([\d.]+)rem\s*,\s*([\d.]+)rem\s*\+\s*([\d.]+)vw\s*,\s*([\d.]+)rem\s*\)/);
+    if (m) return { min: +m[1], b: +m[2], vw: +m[3], max: +m[4] };
+    const f = v.match(/([\d.]+)rem/);
+    return f ? { fixed: +f[1] } : null;
+  }
+  function sizeAt(d, w, remPx) {
+    if (!d) return NaN;
+    if (d.fixed != null) return d.fixed * remPx;
+    const pref = d.b * remPx + d.vw * w / 100;
+    return Math.min(Math.max(pref, d.min * remPx), d.max * remPx);
+  }
+  function zoomReach(d, w, remPx) {
+    const base = sizeAt(d, w, remPx);
+    let best = 1;
+    for (let z = 1; z <= 5.0001; z += 0.05) best = Math.max(best, z * sizeAt(d, w / z, remPx) / base);
+    return best;
+  }
+  const fmt = (n) => (Math.round(n * 10) / 10).toFixed(1).replace(/\.0$/, '');
+  const remPx = () => parseFloat(getComputedStyle(root).fontSize) || 16;
+  const px = (el) => el ? parseFloat(getComputedStyle(el).fontSize) : NaN;
+
+  const rows = Array.from(document.querySelectorAll('.step'));
+  const defs = {};
+  rows.forEach((r) => { defs[r.dataset.step] = stepDef(r.dataset.step); });
+
+  /* Characters per full line, measured from the rendered text. */
+  function charsPerLine(container) {
+    const counts = [];
+    container.querySelectorAll('p').forEach((p) => {
+      const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      let top = null, n = 0; const lines = [];
+      const lh = parseFloat(getComputedStyle(p).lineHeight) || 30;
+      let node;
+      while ((node = walker.nextNode())) {
+        for (let i = 0; i < node.length; i++) {
+          range.setStart(node, i); range.setEnd(node, i + 1);
+          const rects = range.getClientRects();
+          if (!rects.length) continue;
+          if (rects[0].height > lh * 1.3) { n++; continue; } /* a drop cap is one letter, not a line */
+          const t = rects[0].top;
+          if (top === null || t - top > 4) { if (top !== null) lines.push(n); top = t; n = 0; }
+          n++;
+        }
+      }
+      if (top !== null) lines.push(n);
+      lines.pop(); /* the last line of a paragraph is short by nature */
+      counts.push(...lines);
+    });
+    if (!counts.length) return null;
+    return { avg: counts.reduce((a, b) => a + b, 0) / counts.length, min: Math.min(...counts), max: Math.max(...counts), n: counts.length };
+  }
+
+  /* 680px column at 18px, for the mapping table. */
+  function measure680() {
+    const body = $('story-body');
+    const probe = body.cloneNode(true);
+    probe.removeAttribute('id');
+    probe.style.cssText = 'position:absolute;left:-9999px;top:0;width:680px;visibility:hidden';
+    probe.querySelectorAll('p').forEach((p) => { p.style.maxInlineSize = 'none'; p.classList.remove('first'); });
+    document.body.appendChild(probe);
+    const r = charsPerLine(probe);
+    probe.remove();
+    if (r) $('col680').textContent = 'At 18px, 680px holds about ' + Math.round(r.avg) + ' characters a line.';
+  }
+
+  function update() {
+    const w = window.innerWidth, rp = remPx();
+    $('r-w').textContent = w;
+    $('r-rem').textContent = fmt(rp);
+    $('r-title').textContent = fmt(px($('story-title')));
+    $('r-deck').textContent = fmt(px($('story-deck')));
+    $('r-body').textContent = fmt(px(document.querySelector('#story-body p')));
+    rows.forEach((r) => {
+      const s = r.querySelector('[data-measure]');
+      const d = defs[r.dataset.step];
+      r.querySelector('[data-now]').textContent = fmt(px(s));
+      const m = r.querySelector('[data-live-math]');
+      if (m && d && d.fixed == null) {
+        m.textContent = 'At your ' + w + 'px window: ' + fmt(d.b * rp) + ' + ' + d.vw + ' × ' + w + ' / 100 = ' +
+          fmt(d.b * rp + d.vw * w / 100) + 'px, held between ' + fmt(d.min * rp) + ' and ' + fmt(d.max * rp) + ' = ' + fmt(sizeAt(d, w, rp)) + 'px.';
+      }
+    });
+    const c = charsPerLine($('story-body'));
+    if (c) {
+      const p = document.querySelector('#story-body p');
+      const cap = parseFloat(getComputedStyle(p).maxInlineSize);
+      const pw = p.getBoundingClientRect().width;
+      const screenBound = pw < cap - 1;
+      const inside = c.avg >= 60 && c.avg <= 75;
+      $('r-cpl').textContent = Math.round(c.avg);
+      let verdict;
+      if (screenBound) {
+        verdict = 'the screen is narrower than the ' + Math.round(cap) + 'px cap, so the phone sets the line here · the cap takes over from about a ' +
+          (Math.ceil((cap + (w - pw)) / 10) * 10) + 'px window';
+      } else {
+        verdict = 'capped at ' + Math.round(cap) + 'px · kit range 60 to 75 · <b class="' + (inside ? 'ok' : 'bad') + '">' + (inside ? 'inside' : 'outside') + '</b>';
+      }
+      $('measure-out').innerHTML = 'Measured: <b>' + Math.round(c.avg) + '</b> characters a line on average, ' + c.min + ' to ' + c.max +
+        ', over ' + c.n + ' full lines · ' + verdict;
+    }
+    renderCalc();
+  }
+
+  /* Width calculator */
+  let calcW = 1440;
+  function renderCalc() {
+    const rp = remPx(), w = window.innerWidth;
+    $('th-w').textContent = 'At ' + calcW;
+    const tb = $('calc-body');
+    tb.innerHTML = '';
+    rows.forEach((r) => {
+      const name = r.dataset.step, d = defs[name];
+      const z = zoomReach(d, calcW, rp);
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + name + '</td><td class="n">' + fmt(sizeAt(d, calcW, rp)) + ' px</td><td class="n">' + fmt(sizeAt(d, w, rp)) +
+        ' px</td><td class="n z ' + (z >= 2 ? 'ok' : 'bad') + '"><span>' + z.toFixed(2) + '×</span> <span>' + (z >= 2 ? 'reaches 2×' : 'short of 2×') + '</span></td>';
+      tb.appendChild(tr);
+    });
+  }
+  function setCalc(w) {
+    calcW = Math.min(1920, Math.max(360, Math.round(+w || 360)));
+    $('w-range').value = calcW; $('w-num').value = calcW;
+    document.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(+c.dataset.w === calcW)));
+    renderCalc();
+  }
+  $('w-range').addEventListener('input', (e) => setCalc(e.target.value));
+  $('w-num').addEventListener('change', (e) => { const v = e.target.value.trim(); if (v === '' || !isFinite(+v)) { e.target.value = calcW; return; } setCalc(v); });
+  document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => setCalc(c.dataset.w)));
+
+  /* Title stress tests */
+  const titleRows = rows.filter((r) => r.querySelector('[data-title]'));
+  function showTitle(s, label) {
+    titleRows.forEach((r) => {
+      const a = r.querySelector('[data-title]');
+      a.textContent = s.t; a.href = URL_BASE + s.s;
+      r.querySelector('[data-src]').textContent = [s.by, s.p, s.m + ' min'].join(' · ');
+    });
+    $('status').textContent = label + ' · ' + s.t.length + ' characters';
+    requestAnimationFrame(update);
+  }
+  let last = -1;
+  $('b-rand').addEventListener('click', () => {
+    let i; do { i = Math.floor(Math.random() * STORIES.length); } while (i === last && STORIES.length > 1);
+    last = i; showTitle(STORIES[i], 'Random pick from the library');
+  });
+  $('b-long').addEventListener('click', () => showTitle(STORIES.reduce((a, b) => (b.t.length > a.t.length ? b : a)), 'Longest title in the library'));
+  $('b-short').addEventListener('click', () => showTitle(STORIES.reduce((a, b) => (b.t.length < a.t.length ? b : a)), 'Shortest title in the library'));
+  $('b-reset').addEventListener('click', () => {
+    titleRows.forEach((r) => {
+      const sp = SPECIMENS[r.dataset.step]; const s = STORIES.find((x) => x.s === sp);
+      const a = r.querySelector('[data-title]'); a.textContent = s.t; a.href = URL_BASE + s.s;
+      r.querySelector('[data-src]').textContent = [s.by, s.p, s.m + ' min'].join(' · ');
+    });
+    $('status').textContent = 'Specimen titles, one per step · ' + STORIES.length + ' stories in the library to try';
+    requestAnimationFrame(update);
+  });
+
+  /* Measure outline */
+  $('b-measure').addEventListener('click', (e) => {
+    const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+    e.currentTarget.textContent = on ? 'Hide the outline' : 'Outline the measure';
+    $('story-specimen').classList.toggle('show-measure', on);
+  });
+
+  /* Copy CSS */
+  $('b-copy').addEventListener('click', () => {
+    const css = $('tll-type-system').textContent.trim() + '\n';
+    const fallback = () => {
+      const sel = window.getSelection(); const r = document.createRange();
+      r.selectNodeContents($('css-pre')); sel.removeAllRanges(); sel.addRange(r);
+      $('copy-status').textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.';
+    };
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(css).then(() => { $('copy-status').textContent = 'Copied to your clipboard.'; }, fallback);
+      } else fallback();
+    } catch (err) { fallback(); }
+  });
+
+  let raf = 0;
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
+  update();
+  measure680();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { update(); measure680(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+{
+  "story": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://www.thatlayover.life/stories/{{SLUG}}#article",
+        "url": "https://www.thatlayover.life/stories/{{SLUG}}",
+        "mainEntityOfPage": "https://www.thatlayover.life/stories/{{SLUG}}",
+        "headline": "{{NAME}}",
+        "description": "{{EXCERPT}}",
+        "image": ["{{HERO_IMAGE}}"],
+        "datePublished": "{{PUBLISHED_DATE}}",
+        "dateModified": "{{DATE_MODIFIED}}",
+        "timeRequired": "PT{{READING_TIME}}M",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}#person",
+          "name": "{{CONTRIBUTOR_NAME}}",
+          "url": "https://www.thatlayover.life/contributors/{{CONTRIBUTOR_SLUG}}",
+          "memberOf": {
+            "@type": "OrganizationRole",
+            "roleName": "{{CONTRIBUTOR_BADGE}}",
+            "memberOf": { "@id": "https://www.thatlayover.life/#organization" }
+          }
+        },
+        "editor": { "@type": "Person", "name": "{{EDITED_BY}}" },
+        "sponsor": { "@type": "Organization", "name": "{{SPONSOR_NAME}}" },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.thatlayover.life/#organization",
+          "name": "That Layover Life",
+          "url": "https://www.thatlayover.life/"
+        },
+        "contentLocation": {
+          "@type": "Place",
+          "name": "{{BYLINE_LOCATION}}",
+          "address": { "@type": "PostalAddress", "addressCountry": "{{COUNTRY}}" }
+        },
+        "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
+        "isPartOf": { "@id": "https://www.thatlayover.life/#website" },
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "breadcrumb": { "@id": "https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.thatlayover.life/stories/{{SLUG}}#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thatlayover.life/" },
+          { "@type": "ListItem", "position": 2, "name": "Stories", "item": "https://www.thatlayover.life/stories" },
+          { "@type": "ListItem", "position": 3, "name": "{{NAME}}", "item": "https://www.thatlayover.life/stories/{{SLUG}}" }
+        ]
+      }
+    ]
+  },
+  "layover": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#article",
+        "url": "https://www.thatlayover.life/layovers/{{SLUG}}",
+        "mainEntityOfPage": "https://www.thatlayover.life/layovers/{{SLUG}}",
+        "headline": "{{NAME}}",
+        "description": "{{SEO_DESCRIPTION}}",
+        "image": ["{{HERO_IMAGE}}"],
+        "dateModified": "{{LAST_UPDATED}}",
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}#person",
+          "name": "{{AUTHOR_NAME}}",
+          "url": "https://www.thatlayover.life/contributors/{{AUTHOR_SLUG}}"
+        },
+        "about": [
+          { "@type": "City", "name": "{{CITY}}" },
+          { "@type": "Airport", "iataCode": "{{AIRPORT_CODE}}" }
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.thatlayover.life/#organization",
+          "name": "That Layover Life",
+          "url": "https://www.thatlayover.life/"
+        },
+        "isPartOf": { "@id": "https://www.thatlayover.life/#website" },
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "breadcrumb": { "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.thatlayover.life/layovers/{{SLUG}}#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thatlayover.life/" },
+          { "@type": "ListItem", "position": 2, "name": "Layover Guides", "item": "https://www.thatlayover.life/pillars/layover-guides" },
+          { "@type": "ListItem", "position": 3, "name": "{{NAME}}", "item": "https://www.thatlayover.life/layovers/{{SLUG}}" }
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "{{PAGE_URL}}#webpage",
+    "url": "{{PAGE_URL}}",
+    "name": "{{PAGE_NAME}}",
+    "description": "{{PAGE_DESCRIPTION}}",
+    "dateModified": "{{LAST_UPDATED}}",
+    "about": { "@type": "City", "name": "{{CITY}}" },
+    "isPartOf": { "@id": "https://www.thatlayover.life/#website" },
+    "publisher": { "@id": "https://www.thatlayover.life/#organization" },
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "{{QUESTION}}",
+        "acceptedAnswer": { "@type": "Answer", "text": "{{ANSWER}}" }
+      }
+    ]
+  }
+}
