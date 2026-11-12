@@ -24,3 +24,9 @@ Home embeds:
 ## Waiting for Nancy
 
 Eleven choices with before and after pictures: https://claude.ai/artifact/DSHBV6EnyfzhhYqRxdEwHy
+
+## Nancy's answers (12 November 2026, in chat, verbatim)
+
+"Design audit answers. 1: B; 2: Whole; 3: Text side; 4: Chip; 5: Payday + Write it down; 6: Three sizes; 7: Crop; 8a: One style; 8b: Text link; 9: Stories first; 10: Add."
+
+Every answer is the recommended option. Being built on top of the plain repairs (cover layer: 3, 4, 6; story layer: 1, 2, 10; value layer and three home embeds: 5, 7, 8a, 8b, 9), each change reviewed by a second reader, then checked on the test site before any www publish. For 8b the value_join_click count is compared for two weeks before and after. For 9 the page jump on phones is measured first; if it cannot be kept small, 9 is held back and Nancy is told.
