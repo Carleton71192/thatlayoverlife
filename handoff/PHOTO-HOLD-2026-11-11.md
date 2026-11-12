@@ -53,7 +53,7 @@ Once Part 2 is live and checked, the hold line in Part 1 can be set to `false` i
 
 ## Before you deploy
 
-1. The independent review of this change passed on 11 November 2026 (reviewed at commit 9728ca9), and handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**. Before you deploy, run `git diff --stat af5de76 -- src ':!src/site-layers' ':!src/pages'`: it must list only `src/intake.js` and `src/index.js`.
+1. The independent review of this change passed on 11 November 2026 (reviewed at commit 9728ca9), and handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**. Before you deploy, run `git diff --stat af5de76 -- src ':!src/site-layers' ':!src/pages' ':!src/design'`: it must list only `src/intake.js` and `src/index.js`. (Corrected 12 November: the earlier line left out `':!src/design'` and so also listed two home cover design files, which the Worker does not use.)
 2. Please do not add fields to the Photo submissions collection, or rename it, before the Worker is deployed. If Webflow refuses to publish single items after a structure change, the Worker that is live today leaves each photo "queued to publish", and the next site publish by anyone puts it live.
 
 ## The deploy, on your Mac
