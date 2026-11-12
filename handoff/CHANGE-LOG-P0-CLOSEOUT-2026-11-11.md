@@ -221,3 +221,40 @@ I wrote that this machine is outside Europe. That was wrong: it was true of the 
 - Layers 16.57.0: source commit 64ae219, release commit b612f924952355813836e3a918176d4c2d98df84 on layers-release, core sha384-bTVDCJd5sduxgUn6lW43ELg7NfYoQZhWLYeEW4X7Nto94lx3Lz4h+pIFKIOmW7fF. New layer src/site-layers/tll-p0-closeout-v1.js (site chunk), test test/p0-closeout-layer.test.js. It holds the trust and conversion cover fix d7f9298.
 - Google's consent tool does not load on the webflow.io address (no __tcfapi there), so anything that depends on it can only be exercised on www.
 - Found, not changed: the site head carries a COPY table that rewrites old sentences into "Reviewed by a human within 48 hours..." wording; its patterns no longer match the new copy, so it does nothing today, but it is stale. The home structured data still uses "filed" and "files" in three descriptions and links /pillars/layover-guides.
+
+## Part 7. 12 November 2026: your answers, and what was found
+
+Your words: "Consent did not open in Incognito", "Do not love the stamp", "Remove what founders get", "Need to build the Ko Fi stuff".
+
+### Done, on the test site only (09:22 UTC; www untouched)
+
+- Home, chapter 06: "WHAT FOUNDERS GET" removed. The chapter now ends with the two buttons, then the roster.
+- Home, chapter 07: the round stamp is gone. Pictures: `src/pages/home/live-2026-11-12/p0-closeout/shots/`.
+- The test publish also carried another session's staged design repairs to the test site (not to www).
+
+### Why the consent message does not open
+
+I looked in AdSense (read only, nothing changed):
+
+- **Sites: thatlayover.life says "Needs attention · Low value content"** (since 6 November 2026).
+- Privacy and messaging: your European message for thatlayover.life exists and is switched on, but AdSense counts **0 messages shown**.
+- On www, Google sends no European message at all, only the parts it uses for US visitors.
+
+So the message is set up correctly. My reading is that Google does not show it while the site is not approved. Until that changes:
+
+- Nothing tracks a European visitor before they choose. That part is right.
+- But nobody in Europe can say yes either, so Google Analytics, Ahrefs and ads never run for visitors in Europe, the UK and Switzerland. Your visitor numbers miss most of your audience.
+- "Cookie settings" has nothing to open for them.
+
+Two ways forward, your call:
+
+1. **Get the site approved.** AdSense, Sites, thatlayover.life, fix what "low value content" points to, then "Request review". The session that owns consent and the Run 1 launch plan already has the low-value work in hand (/creators and other thin pages were taken down on 9 November for this review).
+2. **Meanwhile, count visits without cookies.** A separate change: analytics that store nothing on the visitor's device and need no consent. That is a decision for you and the consent owner, not something I start.
+
+### Ko-fi
+
+Nothing on the site can be built until the guide is for sale on Ko-fi:
+
+- Your public Ko-fi shop shows no product today, and there is no guide PDF in the project files.
+- The site side is ready and already approved by you on 12 November (the guide card plan, rows G1 to G9, with the cloud session).
+- What only you can do, in order: (1) finish the guide PDF if it is not done, (2) on Ko-fi, Shop, add it as a product with its price, (3) paste the product link (ko-fi.com/s/...) here or to the cloud session, (4) in the Designer rename the empty "Bookmarks" collection to "Guides" (row G0, about one minute).
