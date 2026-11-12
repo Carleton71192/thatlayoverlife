@@ -22,13 +22,17 @@ Consent Mode v2 at the very top. v12 = v11 plus stamps on the library cards and 
 runs only on /stories/{slug}: its style goes at the END of the body once the DOM is parsed, so it sits after the template's own head
 and footer styles in the cascade and wins every tie. 10 Nov 2026 (type system): the story and cover layers no longer carry a Google
 Fonts link (Newsreader and Inter Tight are gone; Playfair Display and JetBrains Mono come from the site head, Plex from Webflow), so
-the build injects no font link; tll-buttons-v1 joins STYLES as the one button set."""
+the build injects no font link; tll-buttons-v1 joins STYLES as the one button set. 12 Nov 2026 (font loading jump on phones):
+tll-font-fallbacks-v1 goes first in STYLES (metric-matched local fallback faces TLLSansA, TLLSansR, TLLSerifG, TLLSerifN, TLLSerifT), and
+fallbacks() below puts their names into every font stack of the layers as they are built, right after the web font, so a layer's source
+keeps its plain stack and the download carries the fallbacks."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
 OUT = 'src/site-layers/tll-site-layers-v16.js'
 CHUNK_DIR = 'src/site-layers/chunks'
-STYLES = [('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone header'),
+STYLES = [('src/site-layers/tll-font-fallbacks-v1.html', 'tll-font-fallbacks-v1', 'fallback faces sized like Plex and Playfair, so text keeps its lines when the web fonts arrive'),
+          ('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone header'),
           ('src/site-layers/tll-contrast-v1.html', 'tll-contrast-v1', 'contrast'),
           ('src/site-layers/tll-note-phone-v1.html', 'tll-note-phone-v1', 'round note button on phones'),
           ('src/site-layers/tll-photos-tap-v1.html', 'tll-photos-tap-v1', '/share-photos drop zone tap on iPhones'),
@@ -168,11 +172,21 @@ def read(p): return open(p, encoding='utf-8').read()
 def sri(b): return 'sha384-' + base64.b64encode(hashlib.sha384(b).digest()).decode('ascii')
 def gz(b): return gzip.compress(b, 9, mtime=0)
 def kb(b): return '%.1f KB' % (len(b) / 1024.0)
+# 12 Nov 2026 (font loading jump): every quoted IBM Plex Sans Condensed, DM Sans (an alias of the Plex files in the site head) or
+# Playfair Display that a comma follows, in CSS or in CSS held in a JS string (quotes may be escaped), gets the metric-matched fallback
+# names of tll-font-fallbacks-v1 right after it. Unquoted names (only prose in comments) and stacks that already carry them are left as
+# they are. Mono stacks are untouched (JetBrains Mono needs no fallback face). Where DM Sans directly follows IBM Plex Sans Condensed, the
+# names go after DM Sans, not between the two: until Webflow's font loader has added the Plex faces, the DM Sans alias is the stack's
+# first loadable font, and asking for it at the first layout is what starts the Plex download early (names in front of it delayed the
+# Plex files by about 0.15 s on slow 4G in the measurements).
+FALLBACK_RX = re.compile(r"""(\\?['"])(IBM Plex Sans Condensed|DM Sans|Playfair Display)\1(?!\s*,\s*TLLS)(?!\s*,\s*\\?['"]DM Sans)(?=\s*,)""")
+def fallbacks(s):
+    return FALLBACK_RX.sub(lambda m: m.group(0) + (',TLLSerifG,TLLSerifN,TLLSerifT' if m.group(2) == 'Playfair Display' else ',TLLSansA,TLLSansR'), s)
 def layer(p):
     # The file's own header comment stays in the source; the download carries a one-line marker instead.
     s = read(p); m = re.match(r'\s*/\*.*?\*/[ \t]*\r?\n?', s, re.S)
     if m: s = s[m.end():]
-    return '/* %s */\n%s\n' % (p, s.rstrip('\n'))
+    return '/* %s */\n%s\n' % (p, fallbacks(s.rstrip('\n')))
 BY = {os.path.basename(f)[:-3]: f for f, _ in SCRIPTS}
 ORDER = {f: i for i, (f, _) in enumerate(SCRIPTS)}
 def paths(names):
@@ -216,10 +230,10 @@ LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file
           "  var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}\n"
           "})();\n") % ',\n'.join(rules)
 
-def css(f, i): return [i, re.search(r'<style id="%s">\n(.*)</style>' % i, read(f), re.S).group(1)]
+def css(f, i): return [i, fallbacks(re.search(r'<style id="%s">\n(.*)</style>' % i, read(f), re.S).group(1))]
 mag = read(MAG)
-mag_css = re.search(r'<style id="tll-mag-story-v1">\n(.*?)</style>', mag, re.S).group(1)
-mag_js = re.search(r'<script id="tll-mag-story-js-v1">\n(.*?)</script>', mag, re.S).group(1)
+mag_css = fallbacks(re.search(r'<style id="tll-mag-story-v1">\n(.*?)</style>', mag, re.S).group(1))
+mag_js = fallbacks(re.search(r'<script id="tll-mag-story-js-v1">\n(.*?)</script>', mag, re.S).group(1))
 assert 'fonts.googleapis' not in mag and "'Newsreader'" not in mag_css and "'Inter Tight'" not in mag_css, 'the story layer carries no font request of its own (10 Nov 2026)'
 head = "/* tll-site-layers-v16: the core of the site layers, one registered site-wide header script. Built by src/site-layers/build-site-layers-v16.py.\n"
 head += "   In order: consent fallback, chunk loader, %d styles, then\n" % len(STYLES)
@@ -240,8 +254,8 @@ story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))ret
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
          "%s})();\n") % (json.dumps(mag_css), mag_js)
 cov = read(COVER)
-cov_css = re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1)
-cov_js = re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1)
+cov_css = fallbacks(re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1))
+cov_js = fallbacks(re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1))
 assert 'fonts.googleapis' not in cov and "'Newsreader'" not in cov_css and "'Inter Tight'" not in cov_css, 'the cover layer carries no font request of its own (10 Nov 2026)'
 OLD_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n})();"
 assert cov_js.count(OLD_RUN) >= 1

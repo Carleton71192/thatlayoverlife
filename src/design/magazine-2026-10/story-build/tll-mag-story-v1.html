@@ -33,7 +33,9 @@
 .tll-story-hero .tll-story-meta-divider:empty::before{content:"\00b7"}
 .tll-story-hero .tll-story-reading-time{display:none !important}
 h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !important;font-size:clamp(34px,8.5vw,48px) !important;line-height:1.04 !important;letter-spacing:-.01em !important;color:var(--mg-ink) !important;text-shadow:none !important;margin:14px 0 0 !important;text-wrap:balance;max-width:none !important}
-.tll-story-excerpt{font-family:var(--mg-text-f) !important;font-weight:400 !important;font-size:20px !important;line-height:1.45 !important;color:var(--mg-text) !important;max-width:44ch !important;margin:18px 0 0 !important}
+/* 12 Nov 2026 (font loading jump): the excerpt and desktop title widths are in em, not ch (a ch shrinks while the fallback font shows):
+   44ch of IBM Plex Sans Condensed ("0" = 0.54em) = 23.76em, 16ch of Playfair Display 800 ("0" = 0.66em) = 10.56em. */
+.tll-story-excerpt{font-family:var(--mg-text-f) !important;font-weight:400 !important;font-size:20px !important;line-height:1.45 !important;color:var(--mg-text) !important;max-width:23.76em !important;margin:18px 0 0 !important}
 .tll-story-hero .tll-story-author-top{display:none !important}
 .tll-story-hero [data-tll-hero-caption]{display:none !important}
 /* the byline, moved into the head by the script */
@@ -54,7 +56,7 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 @media(min-width:900px){
   .tll-story-hero-content{padding:48px var(--mg-m) 32px !important}
   .tll-mg-stamp{width:150px;right:24px;top:24px}
-  h1.tll-story-title{font-size:clamp(46px,4.9vw,72px) !important;line-height:1.02 !important;max-width:16ch !important}
+  h1.tll-story-title{font-size:clamp(46px,4.9vw,72px) !important;line-height:1.02 !important;max-width:10.56em !important}
   .tll-story-excerpt{font-size:22px !important}
   .tll-story-hero-img{max-height:min(85vh,820px)}
 }

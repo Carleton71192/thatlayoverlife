@@ -1,0 +1,402 @@
+{
+ "note": "Exact find and replace inside each named <style> or <script> block, in apply_order within the block, replacing every occurrence (occurrences_in_block counts them at that step). Only fallback names are inserted after the web font name, and ch widths become the same length in em. Nothing else changes. Checked against www on 12 Nov 2026 (core 6ebffe0).",
+ "needs": "the layers core with style tll-font-fallbacks-v1 (this build). Without it the inserted names resolve to nothing and every stack behaves as today, so the order of the two releases does not matter.",
+ "edits": [
+  {
+   "where": "Home page, the code holding <style id=tll-home-hero-phone-v1> (in the body)",
+   "style_or_script_id": "tll-home-hero-phone-v1",
+   "priority": 1,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif !important"
+  },
+  {
+   "where": "Home page, the code holding <style id=tll-home-hero-phone-v1> (in the body)",
+   "style_or_script_id": "tll-home-hero-phone-v1",
+   "priority": 1,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "max-width:46ch !important",
+   "replace": "max-width:24.84em !important"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "--h3-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif",
+   "replace": "--h3-body:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,'IBM Plex Sans',system-ui,sans-serif"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "line-height:1.55;color:var(--h3-text2);max-width:52ch;",
+   "replace": "line-height:1.55;color:var(--h3-text2);max-width:28.08em;"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 3,
+   "occurrences_in_block": 1,
+   "find": "margin:clamp(36px,6vh,64px) 0 0;max-width:20ch}",
+   "replace": "margin:clamp(36px,6vh,64px) 0 0;max-width:13.2em}"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 4,
+   "occurrences_in_block": 1,
+   "find": "font-family:'Playfair Display',Georgia,serif",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 5,
+   "occurrences_in_block": 1,
+   "find": "--h3-head:'Playfair Display',Georgia,serif",
+   "replace": "--h3-head:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 6,
+   "occurrences_in_block": 1,
+   "find": "color:var(--h3-text2);max-width:46ch;",
+   "replace": "color:var(--h3-text2);max-width:24.84em;"
+  },
+  {
+   "where": "Home page, the embed holding <style id=tll-home3-v1>",
+   "style_or_script_id": "tll-home3-v1",
+   "priority": 1,
+   "apply_order": 7,
+   "occurrences_in_block": 1,
+   "find": "margin:26px 0 0;max-width:22ch}",
+   "replace": "margin:26px 0 0;max-width:14.52em}"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-parity-v1",
+   "priority": 1,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed','DM Sans',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-parity-v1",
+   "priority": 1,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "--_typography---font--heading-font:'Playfair Display',Georgia,serif",
+   "replace": "--_typography---font--heading-font:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-parity-v1",
+   "priority": 1,
+   "apply_order": 3,
+   "occurrences_in_block": 2,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-parity-v1",
+   "priority": 1,
+   "apply_order": 4,
+   "occurrences_in_block": 3,
+   "find": "font-family:'Playfair Display',Georgia,serif !important",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif !important"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-type-v1",
+   "priority": 1,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:'Playfair Display',Georgia,serif !important",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif !important"
+  },
+  {
+   "where": "Home page, the embed holding <style id=h3b-expats>",
+   "style_or_script_id": "h3b-expats",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "gap:12px;max-width:56ch}",
+   "replace": "gap:12px;max-width:30.24em}"
+  },
+  {
+   "where": "Home page, the embed holding <style id=h3b-letter>",
+   "style_or_script_id": "h3b-letter",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": ".h3-c7-lede{color:#0A0B14;max-width:52ch}",
+   "replace": ".h3-c7-lede{color:#0A0B14;max-width:28.08em}"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-proto-parity-js-v1",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:\"Playfair Display\",Georgia,serif",
+   "replace": "font-family:\"Playfair Display\",TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Site settings > Custom code > Head code",
+   "style_or_script_id": "tll-shelf-fix",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:\"Recoleta\",\"Playfair Display\",Georgia,serif",
+   "replace": "font-family:\"Recoleta\",\"Playfair Display\",TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Stories template, the code holding <style id=tll-st3-story-v1> (in the body)",
+   "style_or_script_id": "tll-st3-story-v1",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "--st3-f-body:'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "--st3-f-body:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Stories template, the code holding <style id=tll-st3-story-v1> (in the body)",
+   "style_or_script_id": "tll-st3-story-v1",
+   "priority": 2,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "--st3-f-head:'Playfair Display',Georgia,serif",
+   "replace": "--st3-f-head:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Stories template, the code holding <style id=tll-st3-story-v1> (in the body)",
+   "style_or_script_id": "tll-st3-story-v1",
+   "priority": 2,
+   "apply_order": 3,
+   "occurrences_in_block": 1,
+   "find": "margin:0 0 8px;max-width:60ch}",
+   "replace": "margin:0 0 8px;max-width:32.4em}"
+  },
+  {
+   "where": "Stories template, the embed holding <script id=tll-story-extras-v1>",
+   "style_or_script_id": "tll-story-extras-v1",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font:800 clamp(22px,2.4vw,30px)/1.15 \"Playfair Display\",Georgia,serif",
+   "replace": "font:800 clamp(22px,2.4vw,30px)/1.15 \"Playfair Display\",TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "/travelers page settings > Custom code > Head code",
+   "style_or_script_id": "tll-v9-b04-hero-v1",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-size:15px !important;max-width:60ch}",
+   "replace": "font-size:15px !important;max-width:32.4em}"
+  },
+  {
+   "where": "/travelers page settings > Custom code > Head code",
+   "style_or_script_id": "tll-v9-b04-hero-v1",
+   "priority": 2,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "color:#0A0B14 !important;max-width:14ch}",
+   "replace": "color:#0A0B14 !important;max-width:9.24em}"
+  },
+  {
+   "where": "Stories template page settings > Custom code > Head code",
+   "style_or_script_id": "tll-v9-j13-v1",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed',sans-serif !important",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,sans-serif !important"
+  },
+  {
+   "where": "/travelers page, the embed holding <style id=tv-v2-css>",
+   "style_or_script_id": "tv-v2-css",
+   "priority": 2,
+   "apply_order": 1,
+   "occurrences_in_block": 4,
+   "find": "font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed','DM Sans',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "/travelers page, the embed holding <style id=tv-v2-css>",
+   "style_or_script_id": "tv-v2-css",
+   "priority": 2,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "font-family:'Playfair Display',Georgia,serif !important",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif !important"
+  },
+  {
+   "where": "/travelers page, the embed holding <style id=tv-v2-css>",
+   "style_or_script_id": "tv-v2-css",
+   "priority": 2,
+   "apply_order": 3,
+   "occurrences_in_block": 3,
+   "find": "font-family:'Playfair Display',Georgia,serif",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-a11y-motion-v1",
+   "priority": 3,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font:700 15px/1.2 \"IBM Plex Sans Condensed\",system-ui,sans-serif",
+   "replace": "font:700 15px/1.2 \"IBM Plex Sans Condensed\",TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Home page settings > Custom code > Head code",
+   "style_or_script_id": "tll-flow-v1",
+   "priority": 3,
+   "apply_order": 1,
+   "occurrences_in_block": 3,
+   "find": "font-family:'Playfair Display',Georgia,serif",
+   "replace": "font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-forms-v2",
+   "priority": 3,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif !important",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,'IBM Plex Sans',system-ui,sans-serif !important"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-forms-v2",
+   "priority": 3,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,'IBM Plex Sans',system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-forms-v2",
+   "priority": 3,
+   "apply_order": 3,
+   "occurrences_in_block": 2,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif !important"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-forms-v2",
+   "priority": 3,
+   "apply_order": 4,
+   "occurrences_in_block": 3,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-note-v1-css",
+   "priority": 3,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font:400 15px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:400 15px/1.5 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-note-v1-css",
+   "priority": 3,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "font:400 14px/1.5 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:400 14px/1.5 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-note-v1-css",
+   "priority": 3,
+   "apply_order": 3,
+   "occurrences_in_block": 2,
+   "find": "font:700 14px/1 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:700 14px/1 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-note-v1-css",
+   "priority": 3,
+   "apply_order": 4,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-note-v1-css",
+   "priority": 3,
+   "apply_order": 5,
+   "occurrences_in_block": 1,
+   "find": "font:800 20px/1.15 'Playfair Display',Georgia,serif",
+   "replace": "font:800 20px/1.15 'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-pwa-v1-css",
+   "priority": 3,
+   "apply_order": 1,
+   "occurrences_in_block": 1,
+   "find": "font:600 16px/1 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:600 16px/1 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-pwa-v1-css",
+   "priority": 3,
+   "apply_order": 2,
+   "occurrences_in_block": 1,
+   "find": "font:500 15px/1 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:500 15px/1 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-pwa-v1-css",
+   "priority": 3,
+   "apply_order": 3,
+   "occurrences_in_block": 1,
+   "find": "font:600 15px/1 'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font:600 15px/1 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-pwa-v1-css",
+   "priority": 3,
+   "apply_order": 4,
+   "occurrences_in_block": 1,
+   "find": "font-family:'IBM Plex Sans Condensed',system-ui,sans-serif",
+   "replace": "font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif"
+  },
+  {
+   "where": "Site settings > Custom code > Footer code",
+   "style_or_script_id": "tll-pwa-v1-css",
+   "priority": 3,
+   "apply_order": 5,
+   "occurrences_in_block": 1,
+   "find": "font:800 28px/1.1 'Playfair Display',Georgia,serif",
+   "replace": "font:800 28px/1.1 'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif"
+  }
+ ]
+}
