@@ -681,5 +681,6 @@ describe('cli', () => {
   it('usage errors exit 2', () => {
     expect(run(['inject'], tmpdir()).status).toBe(2);
     expect(run(['nonsense'], tmpdir()).status).toBe(2);
+    expect(run(['inject', 'x.md', '--rule', 'bogus'], tmpdir()).status).toBe(2);
   });
 });

@@ -63,6 +63,7 @@ function loadContributors(file) {
 function cmdInject(files, flags) {
   if (!files.length) { console.error('inject: give one or more .md or .html files (a glob is fine)'); return 2; }
   const contributors = loadContributors(flags.contributors);
+  if (flags.rule !== undefined && flags.rule !== 'replace' && flags.rule !== 'skip') { console.error(`inject: --rule must be replace or skip, not "${flags.rule}"`); console.error(USAGE); return 2; }
   const rule = flags.rule === 'skip' ? 'skip' : 'replace';
   let changed = 0, skipped = 0, incomplete = 0, refused = 0;
   for (const f of files) {
