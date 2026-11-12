@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import {
-  SITE, MARK_START, MARK_END, auditStory, buildMeta, contributorsFromExport, countWords, escapeAttr, injectHead, injectMarkdown,
-  injectStory, isoDuration, jsonForScript, mapBadge, parseFrontMatter, parseStory, placeName, readHead, readingMinutes, renderMeta,
-  splitSources, sponsorOf, storyUrlsFromSitemap, summarize, toCsv, toIsoDate, webflowTemplate,
+  SITE, MARK_START, MARK_END, StoryMetaError, absoluteUrl, auditStory, buildMeta, contributorsFromExport, countWords, escapeAttr,
+  injectHead, injectMarkdown, injectStory, isoDuration, jsonForScript, mapBadge, maskHtml, parseFrontMatter, parseStory, placeName,
+  readHead, readingMinutes, renderMeta, splitSources, sponsorOf, storyUrlsFromSitemap, summarize, tidyScript, toCsv, toIsoDate,
+  webflowTemplate,
 } from '../tools/story-meta/lib.mjs';
+import { decodeEntities } from '../src/text.js';
 
 const root = new URL('..', import.meta.url);
 const readJson = (p) => JSON.parse(readFileSync(new URL(p, root), 'utf8'));
@@ -176,19 +182,26 @@ describe('reading time', () => {
 });
 
 describe('author badge', () => {
-  it('roles go to jobTitle, other badges to description, all to the visible byline', () => {
-    expect(mapBadge('Founder')).toEqual({ jobTitle: 'Founder', visible: 'Founder' });
-    expect(mapBadge('editor')).toEqual({ jobTitle: 'editor', visible: 'editor' });
-    expect(mapBadge('Location Expert')).toEqual({ description: 'Location Expert at That Layover Life', visible: 'Location Expert' });
-    expect(mapBadge('Founding member')).toEqual({ description: 'Founding member at That Layover Life', visible: 'Founding member' });
+  const role = (roleName) => ({ '@type': 'OrganizationRole', roleName, memberOf: { '@id': 'https://www.thatlayover.life/#organization' } });
+  it('every badge is an OrganizationRole at the site organization, and goes to the visible byline', () => {
+    expect(mapBadge('Founder')).toEqual({ memberOf: role('Founder'), visible: 'Founder' });
+    expect(mapBadge('Frequent')).toEqual({ memberOf: role('Frequent'), visible: 'Frequent' });
+    expect(mapBadge('Location Expert')).toEqual({ memberOf: role('Location Expert'), visible: 'Location Expert' });
     expect(mapBadge('')).toEqual({ visible: '' });
   });
-  it('the badge never becomes a head tag', () => {
+  it('the badge never becomes a head tag, and the author joins up with the contributor page Person', () => {
     const meta = buildMeta(parseStory(MD));
     expect(meta.visible.authorBadge).toBe('Location Expert');
     expect(meta.tags.some((t) => (t.content || '').includes('Location Expert'))).toBe(false);
     const author = meta.jsonLd['@graph'][0].author;
-    expect(author).toEqual({ '@type': 'Person', name: 'Ana Tester', url: 'https://www.thatlayover.life/contributors/ana-tester', description: 'Location Expert at That Layover Life' });
+    expect(author).toEqual({
+      '@type': 'Person',
+      '@id': 'https://www.thatlayover.life/contributors/ana-tester#person',
+      name: 'Ana Tester',
+      url: 'https://www.thatlayover.life/contributors/ana-tester',
+      memberOf: role('Location Expert'),
+    });
+    expect(JSON.stringify(meta.jsonLd)).not.toMatch(/jobTitle/);
   });
 });
 
@@ -225,6 +238,28 @@ describe('buildMeta', () => {
     expect(tag('article:modified_time')).toEqual(['2026-10-09T06:00:00.000Z']);
     expect(tag('article:tag')).toEqual(['Brazil', 'SaoPaulo']);
     expect(tag('twitter:data2')).toEqual(['3 min read']);
+  });
+  it('breadcrumb sits on the WebPage, not on the Article', () => {
+    const a = meta.jsonLd['@graph'][0];
+    expect(a.breadcrumb).toBeUndefined();
+    expect(a.mainEntityOfPage).toEqual({
+      '@type': 'WebPage',
+      '@id': 'https://www.thatlayover.life/stories/test-sao-paulo',
+      breadcrumb: { '@id': 'https://www.thatlayover.life/stories/test-sao-paulo#breadcrumb' },
+    });
+    expect(meta.jsonLd['@graph'][1]['@id']).toBe('https://www.thatlayover.life/stories/test-sao-paulo#breadcrumb');
+    expect(a.isPartOf).toEqual({ '@id': 'https://www.thatlayover.life/#website' });
+  });
+  it('a relative image path becomes an absolute address; a non-web address is dropped', () => {
+    const story = { ...parseStory(MD), image: { url: '../img/hero.jpg', alt: 'Hero' } };
+    const m = buildMeta({ ...story, canonical: 'https://www.thatlayover.life/stories/x/y' });
+    expect(m.tags.find((t) => t.key === 'og:image').content).toBe('https://www.thatlayover.life/stories/img/hero.jpg');
+    expect(m.jsonLd['@graph'][0].image).toEqual(['https://www.thatlayover.life/stories/img/hero.jpg']);
+    const bad = buildMeta({ ...story, image: { url: 'data:image/png;base64,AAAA', alt: 'x' } });
+    expect(bad.tags.some((t) => t.key === 'og:image' || t.key === 'og:image:alt')).toBe(false);
+    expect(bad.tags.find((t) => t.key === 'twitter:card').content).toBe('summary');
+    expect(absoluteUrl('/a.jpg', 'https://www.thatlayover.life/stories/s')).toBe('https://www.thatlayover.life/a.jpg');
+    expect(absoluteUrl('file:///tmp/a.jpg', 'https://www.thatlayover.life/')).toBe('');
   });
   it('the Article has timeRequired, a place without coordinates, citations and no sponsor', () => {
     const a = meta.jsonLd['@graph'][0];
@@ -320,9 +355,37 @@ describe('injectMarkdown', () => {
   });
   it('adds front matter to a file without it', () => {
     const md = '# Just a title\n\nSome words here.\n';
-    const once = injectStory(md, { kind: 'md' }).text;
+    const meta = buildMeta({ ...parseStory(md), slug: 'just-a-title', datePublished: '2026-11-12' });
+    const once = injectMarkdown(md, meta);
     expect(once.startsWith('---\nhead: |\n')).toBe(true);
-    expect(injectStory(once, { kind: 'md' }).text).toBe(once);
+    expect(once.endsWith('---\n# Just a title\n\nSome words here.\n')).toBe(true);
+    expect(injectMarkdown(once, meta)).toBe(once);
+  });
+  it('keeps CRLF line endings, inside and outside the front matter', () => {
+    const crlf = MD.replace(/\n/g, '\r\n');
+    const { text, missing, error } = injectStory(crlf, { kind: 'md' });
+    expect([missing, error]).toEqual([[], '']);
+    expect(text).not.toMatch(/[^\r]\n/);
+    expect(text.startsWith(crlf.slice(0, crlf.indexOf('author:')))).toBe(true);
+    expect(text.endsWith(crlf.slice(crlf.indexOf('\r\n---\r\n# Heading')))).toBe(true);
+    expect(parseFrontMatter(text).data.head.startsWith(MARK_START)).toBe(true);
+    expect(injectStory(text, { kind: 'md' }).text).toBe(text);
+  });
+  it('never replaces a head: field it did not write', () => {
+    const md = MD.replace('slug: test-sao-paulo', 'slug: test-sao-paulo\nhead: |\n  <link rel="preload" href="/a.css">');
+    expect(() => injectMarkdown(md, buildMeta(parseStory(md)))).toThrow(StoryMetaError);
+    const r = injectStory(md, { kind: 'md' });
+    expect(r.error).toMatch(/head: field/);
+    expect(r.text).toBe(md);
+    const inline = MD.replace('slug: test-sao-paulo', 'slug: test-sao-paulo\nhead: <meta name="x" content="y">');
+    expect(injectStory(inline, { kind: 'md' }).text).toBe(inline);
+  });
+  it('a head: field with a start marker and no end marker is refused', () => {
+    const once = injectStory(MD, { kind: 'md' }).text;
+    const broken = once.replace(`  ${MARK_END}\n`, '');
+    const r = injectStory(broken, { kind: 'md' });
+    expect(r.error).toMatch(/damaged tll-meta markers/);
+    expect(r.text).toBe(broken);
   });
 });
 
@@ -377,7 +440,9 @@ describe('webflow-template', () => {
   it('writes bindings the way the existing template head code does', () => {
     expect(t.code).toContain('href="https://www.thatlayover.life/stories/{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}"');
     expect(t.code).toContain('"timeRequired":"PT{{wf {&quot;path&quot;:&quot;reading-time&quot;,&quot;type&quot;:&quot;Number&quot;} }}M"');
-    expect(t.code).toContain('"dateModified":"{{wf {&quot;path&quot;:&quot;last-updated&quot;,&quot;type&quot;:&quot;Date&quot;} }}"');
+    expect(t.code).toContain('"dateModified":"{{wf {&quot;path&quot;:&quot;published-date&quot;,&quot;type&quot;:&quot;Date&quot;} }}"');
+    expect(t.code).not.toContain('last-updated');
+    expect(t.code).toContain('"roleName":"{{wf {&quot;path&quot;:&quot;contributor:badge&quot;,&quot;type&quot;:&quot;Option&quot;} }}"');
     expect(t.code).not.toMatch(/@@wf:/);
   });
   it('leaves out what Webflow already writes from Page settings', () => {
@@ -387,10 +452,204 @@ describe('webflow-template', () => {
     expect(t.code.match(/og:type/g)).toHaveLength(1);
     expect(t.webflowEmits.map((x) => x[0])).toContain('og:type');
   });
-  it('is one block between the markers, with the tidy script pointed at the new JSON-LD id', () => {
+  it('is one block between the markers, keeping the id tll-article-ld-v2 that the live owner-edit script looks up', () => {
     expect(t.code.startsWith(MARK_START)).toBe(true);
     expect(t.code.endsWith(MARK_END)).toBe(true);
-    expect(t.code).toContain('id="tll-article-ld-v3"');
-    expect(t.code).toContain('getElementById("tll-article-ld-v3")');
+    expect(t.code).toContain('<script type="application/ld+json" id="tll-article-ld-v2">');
+    expect(t.code).toContain('getElementById("tll-article-ld-v2")');
+    const ownerEdit = readFileSync(new URL('src/pages/story/v3/embed-st3-owner-edit-v1.html', root), 'utf8');
+    expect(ownerEdit).toContain("q('#tll-article-ld-v2')");
+  });
+  it('the tidy script never touches dateModified', () => {
+    expect(tidyScript()).not.toMatch(/dateModified/);
+    expect(t.code).toContain('<script id="tll-ld-tidy-v1">');
+    expect(t.code).not.toContain('tll-ld-unescape');
+  });
+
+});
+
+describe('front matter edge cases', () => {
+  it('splits inline lists on commas outside quotes only', () => {
+    expect(parseFrontMatter('---\ntags: [one, "two, three", \'it\'\'s, fine\']\n---\n').data.tags).toEqual(['one', 'two, three', "it's, fine"]);
+  });
+  it('folds a quoted value that runs over several lines, without its quotes', () => {
+    const { data } = parseFrontMatter('---\ntitle: "A long\n  title, continued"\nslug: x\n---\n');
+    expect(data).toEqual({ title: 'A long title, continued', slug: 'x' });
+  });
+  it('keeps a key whose value holds U+2028 or U+2029', () => {
+    const { data } = parseFrontMatter('---\nimage_alt: one two three\nslug: x\n---\n');
+    expect(data.image_alt).toBe('one two three');
+    expect(data.slug).toBe('x');
+  });
+});
+
+describe('injectHead: hostile heads', () => {
+  const meta = buildMeta(parseStory(PAGE()));
+  const HOSTILE = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>var s = "<meta property='og:title' content='in a string'>"; var t = "</head>";</script>
+  <style>/* <meta property="og:type" content="website"> */ .a{}</style>
+  <!-- <meta property="og:image" content="commented"> <link rel="canonical" href="https://old.example/"> -->
+  <meta property="og:title" content="Real tag">
+</head>
+<body><h1>T</h1></body></html>`;
+  it('masking keeps length and lines, and blanks only script, style and comment text', () => {
+    const m = maskHtml(HOSTILE);
+    expect(m.length).toBe(HOSTILE.length);
+    expect(m.split('\n').length).toBe(HOSTILE.split('\n').length);
+    expect(m).not.toContain('in a string');
+    expect(m).not.toContain('commented');
+    expect(m).toContain('<meta property="og:title" content="Real tag">');
+    expect(maskHtml(`a ${MARK_START} b ${MARK_END}`)).toBe(`a ${MARK_START} b ${MARK_END}`);
+  });
+  it('leaves scripts, styles and comments in the head exactly as they were', () => {
+    const out = injectHead(HOSTILE, meta);
+    expect(out).toContain(`<script>var s = "<meta property='og:title' content='in a string'>"; var t = "</head>";</script>`);
+    expect(out).toContain('<style>/* <meta property="og:type" content="website"> */ .a{}</style>');
+    expect(out).toContain('<!-- <meta property="og:image" content="commented"> <link rel="canonical" href="https://old.example/"> -->');
+    expect(out).not.toContain('content="Real tag"');
+    expect(out.indexOf(MARK_END)).toBeLessThan(out.indexOf('\n</head>'));
+    expect(out.indexOf(MARK_START)).toBeGreaterThan(out.indexOf('<!-- <meta'));
+    expect(readHead(out).tags.get('og:title')).toEqual([meta.tags.find((t) => t.key === 'og:title').content]);
+    expect(injectHead(out, meta)).toBe(out);
+  });
+  it('a page with <body> and no <head> gets a head before <body>', () => {
+    const page = '<!doctype html>\n<html lang="en">\n<body><h1>T</h1></body>\n</html>\n';
+    const out = injectHead(page, meta);
+    expect(out.startsWith(`<!doctype html>\n<html lang="en">\n<head>\n${MARK_START}\n`)).toBe(true);
+    expect(out).toContain(`${MARK_END}\n</head>\n<body><h1>T</h1></body>\n</html>\n`);
+    expect(injectHead(out, meta)).toBe(out);
+  });
+  it('damaged markers are reported and nothing is changed', () => {
+    const once = injectHead(PAGE(), meta);
+    const noEnd = once.replace(MARK_END, '');
+    const swapped = once.replace(MARK_START, '@@S@@').replace(MARK_END, MARK_START).replace('@@S@@', MARK_END);
+    const twice = once.replace('</head>', `${MARK_START}\n${MARK_END}\n</head>`);
+    const noStart = once.replace(MARK_START, '');
+    for (const bad of [noEnd, swapped, twice, noStart]) {
+      expect(() => injectHead(bad, meta)).toThrow(StoryMetaError);
+      const r = injectStory(bad, { kind: 'html' });
+      expect(r.error).toMatch(/damaged tll-meta markers/);
+      expect(r.text).toBe(bad);
+    }
+  });
+});
+
+describe('injectStory: required fields', () => {
+  it('refuses a page with no slug, and a story with no title or date; the text comes back unchanged', () => {
+    const noSlug = PAGE().replace(/<link rel="canonical"[^>]*>/, '');
+    const r = injectStory(noSlug, { kind: 'html' });
+    expect(r.missing).toEqual(['slug']);
+    expect(r.text).toBe(noSlug);
+    const withSlug = injectStory(noSlug, { kind: 'html', slug: 'from-file' });
+    expect(withSlug.missing).toEqual([]);
+    expect(withSlug.text).toContain('href="https://www.thatlayover.life/stories/from-file"');
+    const untitled = '---\nslug: x\ndate: 2026-11-12\n---\nNo heading here.\n';
+    expect(injectStory(untitled, { kind: 'md' })).toMatchObject({ missing: ['title'], text: untitled });
+    const undated = '---\ntitle: T\nslug: x\n---\nWords.\n';
+    expect(injectStory(undated, { kind: 'md' })).toMatchObject({ missing: ['datePublished'], text: undated });
+  });
+  it('never makes a slug up from the title', () => {
+    expect(parseStory('---\ntitle: Some Title\n---\n').slug).toBe('');
+    expect(parseStory('<html><head></head><body><h1>Some Title</h1></body></html>').slug).toBe('');
+  });
+});
+
+describe('the template, filled the way Webflow fills it', () => {
+  // Webflow puts the CMS value in place of each binding, with HTML entities for quotes, apostrophes and ampersands.
+  const fill = (code, values) => code.replace(/\{\{wf \{&quot;path&quot;:&quot;([a-z0-9:-]+)&quot;,&quot;type&quot;:&quot;[A-Za-z]+&quot;\} \}\}/g,
+    (_, p) => String(values[p] ?? '').replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;'));
+  const values = {
+    slug: 'kuala-lumpur-fomo-is-real', name: "FOMO Is Real, Y'all", excerpt: 'Food & friends', 'hero-image': 'https://cdn.example.com/h.jpg',
+    'published-date': '2024-10-24T00:00:00.000Z', 'contributor:name': 'Nancy Carleton', 'contributor:slug': 'nancy-carleton',
+    'contributor:badge': 'Founder', 'reading-time': 6, 'byline-location': 'KUALA LUMPUR, MALAYSIA',
+  };
+  // Runs the tidy script against a stand-in document: the textarea decodes entities as a browser would.
+  const runTidy = (code) => {
+    const ld = { textContent: code.match(/<script type="application\/ld\+json" id="tll-article-ld-v2">([\s\S]*?)<\/script>/)[1] };
+    const doc = {
+      getElementById: (id) => (id === 'tll-article-ld-v2' ? ld : null),
+      createElement: () => { let v = ''; return { set innerHTML(x) { v = decodeEntities(x); }, get value() { return v; } }; },
+    };
+    const body = code.match(/<script id="tll-ld-tidy-v1">([\s\S]*?)<\/script>/)[1];
+    new Function('document', body)(doc);
+    return JSON.parse(ld.textContent);
+  };
+  const code = webflowTemplate().code;
+  it('decodes entities and keeps dateModified equal to the published date', () => {
+    const a = runTidy(fill(code, values))['@graph'][0];
+    expect(a.headline).toBe("FOMO Is Real, Y'all");
+    expect(a.description).toBe('Food & friends');
+    expect(a.dateModified).toBe('2024-10-24T00:00:00.000Z');
+    expect(a.datePublished).toBe(a.dateModified);
+    expect(a.timeRequired).toBe('PT6M');
+    expect(a.author.memberOf.roleName).toBe('Founder');
+    expect(a.mainEntityOfPage.breadcrumb['@id']).toBe('https://www.thatlayover.life/stories/kuala-lumpur-fomo-is-real#breadcrumb');
+  });
+  it('drops "PTM" from an empty reading time and the role from an empty badge', () => {
+    const a = runTidy(fill(code, { ...values, 'reading-time': '', 'contributor:badge': '' }))['@graph'][0];
+    expect(a.timeRequired).toBeUndefined();
+    expect(a.author.memberOf).toBeUndefined();
+    expect(a.author.name).toBe('Nancy Carleton');
+  });
+  it('repairs a line break typed into a CMS field', () => {
+    const a = runTidy(fill(code, { ...values, excerpt: 'Line one\nline two' }))['@graph'][0];
+    expect(a.description).toBe('Line one line two');
+  });
+});
+
+describe('cli', () => {
+  const cli = fileURLToPath(new URL('tools/story-meta/cli.mjs', root));
+  const run = (args, cwd) => spawnSync(process.execPath, [cli, ...args], { cwd, encoding: 'utf8' });
+  const fresh = () => {
+    const dir = mkdtempSync(join(tmpdir(), 'story-meta-cli-'));
+    writeFileSync(join(dir, 'good.md'), MD);
+    writeFileSync(join(dir, 'empty.md'), '---\nexcerpt: no title\n---\nWords.\n');
+    writeFileSync(join(dir, 'damaged.html'), injectStory(PAGE(), { kind: 'html' }).text.replace(MARK_END, ''));
+    mkdirSync(join(dir, 'stories', 'foo'), { recursive: true });
+    writeFileSync(join(dir, 'stories', 'foo', 'index.md'), '---\ntitle: Foo\ndate: 2026-11-12\n---\nWords.\n');
+    return dir;
+  };
+  const read = (dir, f) => readFileSync(join(dir, f), 'utf8');
+  it('--check and --dry-run write nothing; --check exits 1 when a file is out of date, 0 once written', () => {
+    const dir = fresh();
+    const check = run(['inject', 'good.md', '--check'], dir);
+    expect([check.status, check.stdout]).toEqual([1, expect.stringContaining('out of date  good.md')]);
+    expect(read(dir, 'good.md')).toBe(MD);
+    const dry = run(['inject', 'good.md', '--dry-run'], dir);
+    expect([dry.status, dry.stdout]).toEqual([0, expect.stringContaining('would update  good.md')]);
+    expect(read(dir, 'good.md')).toBe(MD);
+    expect(run(['inject', 'good.md'], dir).status).toBe(0);
+    expect(read(dir, 'good.md')).not.toBe(MD);
+    expect(run(['inject', 'good.md', '--check'], dir).status).toBe(0);
+  });
+  it('a file missing a required field is listed and left alone; --check exits 1 for it', () => {
+    const dir = fresh();
+    const w = run(['inject', 'empty.md'], dir);
+    expect([w.status, w.stdout]).toEqual([0, expect.stringContaining('missing  empty.md  (needs title, slug, datePublished')]);
+    expect(read(dir, 'empty.md')).toBe('---\nexcerpt: no title\n---\nWords.\n');
+    expect(run(['inject', 'empty.md', '--check'], dir).status).toBe(1);
+  });
+  it('damaged markers: exit 1 in every mode, file untouched', () => {
+    const dir = fresh();
+    const before = read(dir, 'damaged.html');
+    for (const extra of [[], ['--dry-run'], ['--check']]) {
+      const r = run(['inject', 'damaged.html', ...extra], dir);
+      expect([r.status, r.stderr]).toEqual([1, expect.stringContaining('damaged tll-meta markers')]);
+    }
+    expect(read(dir, 'damaged.html')).toBe(before);
+  });
+  it('the slug comes from the file name only with --slug-from-filename, and index.md takes its folder name', () => {
+    const dir = fresh();
+    const plain = run(['inject', 'stories/foo/index.md'], dir);
+    expect(plain.stdout).toContain('needs slug');
+    expect(run(['inject', 'stories/foo/index.md', '--slug-from-filename'], dir).status).toBe(0);
+    expect(read(dir, 'stories/foo/index.md')).toContain('href="https://www.thatlayover.life/stories/foo"');
+  });
+  it('usage errors exit 2', () => {
+    expect(run(['inject'], tmpdir()).status).toBe(2);
+    expect(run(['nonsense'], tmpdir()).status).toBe(2);
   });
 });

@@ -13,13 +13,17 @@ exports[`buildMeta > snapshot: a real story from the index (Ghana, as the CMS ho
         },
         "articleSection": "Cultural Intelligence",
         "author": {
+          "@id": "https://www.thatlayover.life/contributors/nancy-carleton#person",
           "@type": "Person",
-          "jobTitle": "Founder",
+          "memberOf": {
+            "@type": "OrganizationRole",
+            "memberOf": {
+              "@id": "https://www.thatlayover.life/#organization",
+            },
+            "roleName": "Founder",
+          },
           "name": "Nancy Carleton",
           "url": "https://www.thatlayover.life/contributors/nancy-carleton",
-        },
-        "breadcrumb": {
-          "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#breadcrumb",
         },
         "contentLocation": {
           "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#place",
@@ -35,10 +39,16 @@ exports[`buildMeta > snapshot: a real story from the index (Ghana, as the CMS ho
         ],
         "inLanguage": "en",
         "isAccessibleForFree": true,
+        "isPartOf": {
+          "@id": "https://www.thatlayover.life/#website",
+        },
         "keywords": "Ghana, WestAfrica, EasterInWhite, MountAfadjato, BukaAccra, HibiscusIsAPersonality, MonkeysOnArrival",
         "mainEntityOfPage": {
           "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
           "@type": "WebPage",
+          "breadcrumb": {
+            "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#breadcrumb",
+          },
         },
         "publisher": {
           "@id": "https://www.thatlayover.life/#organization",
@@ -50,6 +60,7 @@ exports[`buildMeta > snapshot: a real story from the index (Ghana, as the CMS ho
           "name": "That Layover Life",
           "url": "https://www.thatlayover.life/",
         },
+        "publishingPrinciples": "https://www.thatlayover.life/editorial-charter",
         "timeRequired": "PT3M",
         "url": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
         "wordCount": 463,

@@ -1,4 +1,4 @@
-// Story share tags and structured data, as pure functions (12 Nov 2026).
+// Story share tags and structured data, as pure functions (November 12, 2026).
 //
 // parseStory(input)        Markdown with front matter, a story HTML page, a Webflow CMS item (JSON) or a row of
 //                          src/data/story-search-index.json, into one plain story object.
@@ -21,8 +21,10 @@ export const SITE = Object.freeze({
   language: 'en',
   storiesPath: '/stories/',
   contributorsPath: '/contributors/',
-  // The 512 px web clip the site already serves as its icon (live head, 12 Nov 2026). Used as the publisher logo.
+  // The 512 px web clip the site already serves as its icon (live head, November 12, 2026). Used as the publisher logo.
   logo: 'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0dea106bf47c697c1967c3_tll-webclip.png',
+  // The editorial charter page (answers 200 on November 12, 2026). Used as publishingPrinciples.
+  publishingPrinciples: 'https://www.thatlayover.life/editorial-charter',
 });
 
 export const MARK_START = '<!-- tll-meta:start -->';
@@ -120,17 +122,19 @@ export function placeName(raw) {
 /* ------------------------------------------------------------------ author badge */
 
 // The badge is the label on a contributor (CMS option Contributor, Frequent, Editor, Founder; the proposed Founding member and
-// Location Expert). schema.org has no property for it that produces a rich result. Roles at That Layover Life go to
-// author.jobTitle; every other badge goes to author.description. Both are plain descriptive fields that search engines may
-// read and do not display. The badge itself is meant for the visible byline, which is why buildMeta also returns it in
+// Location Expert). It says what the person is at That Layover Life, which schema.org models as a Role: author.memberOf is an
+// OrganizationRole whose roleName is the badge and whose memberOf is the site's #organization. That holds for every badge
+// ("Frequent" is not a job, so jobTitle would be wrong for it), and one template binding covers all of them. No badge
+// produces a rich result. The badge itself is meant for the visible byline, which is why buildMeta also returns it in
 // meta.visible.authorBadge and never as a head tag.
-export const ROLE_BADGES = new Set(['founder', 'editor', 'contributor']);
-
 export function mapBadge(badge, site = SITE) {
   const b = clean(badge);
   if (!b) return { visible: '' };
-  if (ROLE_BADGES.has(b.toLowerCase())) return { jobTitle: b, visible: b };
-  return { description: `${b} at ${site.name}`, visible: b };
+  const origin = site.origin.replace(/\/$/, '');
+  return {
+    memberOf: { '@type': 'OrganizationRole', roleName: b, memberOf: { '@id': `${origin}/#organization` } },
+    visible: b,
+  };
 }
 
 /* ------------------------------------------------------------------ binding tokens (webflow-template) */
@@ -156,17 +160,43 @@ function attrsOf(tag) {
   return out;
 }
 
+/**
+ * The same text, same length, with the inside of every <script>, <style> and <!-- comment --> blanked (newlines kept), so a
+ * search for </head>, <meta>, <link> or a script tag only finds real markup. The open and close tags of scripts and styles
+ * stay, so a JSON-LD script can still be found (its text is then read from the original at the same offsets). Comments that
+ * are exactly one of `keep` (the tll-meta markers) stay too.
+ */
+export function maskHtml(html, keep = [MARK_START, MARK_END]) {
+  const s = String(html ?? '');
+  const blank = (t) => t.replace(/[^\n]/g, ' ');
+  return s.replace(/<!--[\s\S]*?(?:-->|$)|(<(script|style)\b[^>]*>)([\s\S]*?)(<\/\2\s*>|$)/gi, (m, open, name, inner, close) => {
+    if (!open) return keep.includes(m) ? m : blank(m);
+    return open + blank(inner) + close;
+  });
+}
+
+/** Where the head is: { open, start, end } offsets in the text (start after <head ...>, end at </head>), from masked text. */
+function headRange(src, masked = maskHtml(src)) {
+  const ho = masked.match(/<head\b[^>]*>/i);
+  const hc = masked.search(/<\/head\s*>/i);
+  const bo = masked.search(/<body\b/i);
+  if (!ho && hc < 0) return bo >= 0 ? { kind: 'body-only', start: bo, end: bo } : { kind: 'fragment', start: 0, end: src.length };
+  const start = ho ? ho.index + ho[0].length : 0;
+  const end = hc >= 0 ? hc : (bo >= start ? bo : src.length);
+  return { kind: 'head', start, end };
+}
+
 function headOf(html) {
   const s = String(html ?? '');
-  const a = s.search(/<head\b[^>]*>/i);
-  const b = s.search(/<\/head>/i);
-  if (a < 0 && b < 0) return /<body\b/i.test(s) ? '' : s;
-  return s.slice(a < 0 ? 0 : a, b < 0 ? s.length : b);
+  const masked = maskHtml(s);
+  const r = headRange(s, masked);
+  return { text: s.slice(r.start, r.end), masked: masked.slice(r.start, r.end) };
 }
 function bodyOf(html) {
   const s = String(html ?? '');
-  const a = s.search(/<body\b[^>]*>/i);
-  const out = a < 0 ? s.slice(Math.max(0, s.search(/<\/head>/i))) : s.slice(a);
+  const masked = maskHtml(s);
+  const a = masked.search(/<body\b[^>]*>/i);
+  const out = a < 0 ? s.slice(Math.max(0, masked.search(/<\/head\s*>/i))) : s.slice(a);
   return out.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<!--[\s\S]*?-->/g, '');
 }
 
@@ -205,7 +235,8 @@ function firstText(html, test) {
 
 /** Share tags and JSON-LD already in a page head: { tags: Map(key -> [values]), canonical: [hrefs], title, ld: [{raw, data}] }. */
 export function readHead(html) {
-  const head = headOf(html);
+  // Tags are matched in masked text, so a <meta> written inside a script string or a comment is not read as a tag.
+  const { text: headText, masked: head } = headOf(html);
   const tags = new Map();
   for (const t of head.match(/<meta\b[^>]*>/gi) || []) {
     const a = attrsOf(t);
@@ -219,16 +250,26 @@ export function readHead(html) {
     const a = attrsOf(t);
     if ((a.rel || '').toLowerCase().split(/\s+/).includes('canonical') && a.href) canonical.push(a.href);
   }
-  const title = clean((head.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '');
-  const ld = [];
-  const re = /<script\b[^>]*type\s*=\s*["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi;
-  let m;
-  while ((m = re.exec(String(html ?? '')))) {
+  const tm = head.match(/<title[^>]*>/i);
+  const title = tm ? clean((headText.slice(tm.index + tm[0].length).match(/^([\s\S]*?)<\/title>/i) || [])[1] || '') : '';
+  const ld = ldScripts(String(html ?? '')).map(({ inner }) => {
     let data = null;
-    try { data = JSON.parse(m[1]); } catch { data = null; }
-    ld.push({ raw: m[1], data });
-  }
+    try { data = JSON.parse(inner); } catch { data = null; }
+    return { raw: inner, data };
+  });
   return { tags, canonical, title, ld };
+}
+
+/** Every <script type="application/ld+json"> in the text: { start, end, inner }, found in masked text, read from the original. */
+function ldScripts(src, masked = maskHtml(src)) {
+  const out = [];
+  const re = /<script\b[^>]*type\s*=\s*["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script\s*>/gi;
+  for (const m of masked.matchAll(re)) {
+    const innerStart = m.index + m[0].indexOf('>') + 1;
+    const innerEnd = m.index + m[0].length - (m[0].match(/<\/script\s*>$/i)[0].length);
+    out.push({ start: m.index, end: m.index + m[0].length, inner: src.slice(innerStart, innerEnd) });
+  }
+  return out;
 }
 
 const ARTICLE_TYPES = new Set(['Article', 'BlogPosting', 'NewsArticle', 'Report', 'TechArticle']);
@@ -282,7 +323,6 @@ function finishReading(story, given, from, words) {
   return story;
 }
 
-const slugify = (s) => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const slugFromUrl = (u) => { try { return new URL(u, SITE.origin).pathname.split('/').filter(Boolean).pop() || ''; } catch { return ''; } };
 const splitTags = (v) => (Array.isArray(v) ? v : String(v ?? '').split(/[,\s]+/)).map((x) => clean(x).replace(/^#/, '')).filter(Boolean);
 
@@ -363,7 +403,7 @@ function parseCmsItem(item, opts) {
   return finishReading(s, fd['reading-time'], 'field', countWords(plain(fd.body)));
 }
 
-// The Contributors collection's Badge option ids, from the CMS schema export of 13 Oct 2026
+// The Contributors collection's Badge option ids, from the CMS schema export of October 13, 2026
 // (reports/evidence/webflow-export-2026-10-13/state/cms-schemas/6a0b29c7a7b1840afe9390a5.json). Used when an export has no schema.
 export const BADGE_OPTIONS = Object.freeze({
   ab7ef16d027983c24537c49b36fb5070: 'Contributor',
@@ -387,40 +427,82 @@ export function contributorsFromExport(collection, schema) {
 
 /* Markdown with front matter. The parser reads the subset a story file needs: key: value, quoted values, inline [a, b] lists,
    "- item" lists, one level of nested keys (author: then indented name:, badge:), and | or > blocks. */
+/** For a value starting with a quote: the index of its closing quote, or -1 when it does not close. null when not quoted. */
+function quotedEnd(s) {
+  const q = s[0];
+  if (q !== '"' && q !== "'") return null;
+  for (let k = 1; k < s.length; k++) {
+    const c = s[k];
+    if (q === '"' && c === '\\') { k++; continue; }
+    if (c !== q) continue;
+    if (q === "'" && s[k + 1] === "'") { k++; continue; }
+    return k;
+  }
+  return -1;
+}
+
+/** The items of an inline [a, "b, c"] list: commas inside quotes do not split. */
+function splitFlow(s) {
+  const out = [];
+  let cur = '';
+  for (let k = 0; k < s.length; k++) {
+    const c = s[k];
+    if ((c === '"' || c === "'") && cur.trim() === '') {
+      const end = quotedEnd(s.slice(k));
+      if (end > 0) { cur += s.slice(k, k + end + 1); k += end; continue; }
+    }
+    if (c === ',') { out.push(cur); cur = ''; } else cur += c;
+  }
+  out.push(cur);
+  return out;
+}
+
 export function parseFrontMatter(md) {
   const s = String(md ?? '').replace(/^\uFEFF/, '');
   const m = s.match(/^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/);
   if (!m) return { data: {}, body: s, raw: '' };
   const data = {};
   const lines = m[1].split(/\r?\n/);
+  // Values are matched with [\s\S] rather than ".", so a value holding U+2028 or U+2029 keeps its key.
   const scalar = (v) => {
     const t = v.trim();
     if (!t) return '';
-    if ((t.startsWith('"') && t.endsWith('"')) || (t.startsWith("'") && t.endsWith("'"))) {
-      return t.startsWith('"') ? t.slice(1, -1).replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\\/g, '\\') : t.slice(1, -1).replace(/''/g, "'");
+    const qe = quotedEnd(t);
+    if (qe > 0) {
+      const inner = t.slice(1, qe);
+      return t[0] === '"' ? inner.replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\\/g, '\\') : inner.replace(/''/g, "'");
     }
-    if (t.startsWith('[') && t.endsWith(']')) return t.slice(1, -1).split(',').map((x) => scalar(x)).filter((x) => x !== '');
+    if (t.startsWith('[') && t.endsWith(']')) return splitFlow(t.slice(1, -1)).map((x) => scalar(x)).filter((x) => x !== '');
     if (/^-?\d+(\.\d+)?$/.test(t)) return Number(t);
     if (t === 'true' || t === 'false') return t === 'true';
     if (t === 'null' || t === '~') return null;
-    return t.replace(/\s+#.*$/, '');
+    return t.replace(/\s+#[\s\S]*$/, '');
+  };
+  // A quoted value that does not close on its own line goes on until the closing quote; the lines fold into one with spaces.
+  const unclosed = (t) => quotedEnd(t.trim()) === -1;
+  const readValue = (first, i) => {
+    let v = first;
+    while (unclosed(v) && i + 1 < lines.length) v = `${v.replace(/\s+$/, '')} ${lines[++i].trim()}`;
+    return [v, i];
   };
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const km = line.match(/^([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
+    const km = line.match(/^([A-Za-z_][\w-]*)\s*:\s*([\s\S]*)$/);
     if (!km) continue;
-    const key = km[1], rest = km[2];
-    if (rest === '|' || rest === '>' || rest === '|-' || rest === '>-') {
+    const key = km[1];
+    let rest = km[2];
+    [rest, i] = readValue(rest, i);
+    if (/^[|>]-?$/.test(rest.trim())) {
       const block = [];
       while (i + 1 < lines.length && (/^\s/.test(lines[i + 1]) || lines[i + 1] === '')) block.push(lines[++i].replace(/^ {2}/, ''));
-      data[key] = rest.startsWith('|') ? block.join('\n').replace(/\n+$/, '') : block.join(' ').replace(/\s+/g, ' ').trim();
+      data[key] = rest.trim().startsWith('|') ? block.join('\n').replace(/\n+$/, '') : block.join(' ').replace(/\s+/g, ' ').trim();
     } else if (rest.trim() === '') {
       const list = [], obj = {};
       while (i + 1 < lines.length && /^\s+\S/.test(lines[i + 1])) {
         const l = lines[++i];
-        const li = l.match(/^\s+-\s*(.*)$/);
+        const li = l.match(/^\s+-\s*([\s\S]*)$/);
         if (li) { list.push(scalar(li[1])); continue; }
-        const kv = l.match(/^\s+([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
+        const kv = l.match(/^\s+([A-Za-z_][\w-]*)\s*:\s*([\s\S]*)$/);
         if (kv) obj[kv[1]] = scalar(kv[2]);
       }
       data[key] = list.length ? list : Object.keys(obj).length ? obj : '';
@@ -448,7 +530,9 @@ function parseMarkdown(md, opts) {
   const s = emptyStory('markdown');
   const h1 = (body.match(/^#\s+(.+)$/m) || [])[1] || '';
   s.title = clean(pick('title', 'name') || h1);
-  s.slug = clean(pick('slug') || slugFromUrl(pick('canonical', 'url')) || opts.slug || slugify(s.title));
+  // The slug comes from the story itself (slug, canonical or url), or from opts.slug, which the CLI passes only with
+  // --slug-from-filename. It is never made up from the title or the file name on its own.
+  s.slug = clean(pick('slug') || slugFromUrl(pick('canonical', 'url')) || opts.slug || '');
   s.seoTitle = clean(pick('seo_title', 'seoTitle', 'seo-title'));
   s.excerpt = clean(pick('excerpt', 'description', 'summary'));
   s.seoDescription = clean(pick('seo_description', 'seoDescription', 'seo-description'));
@@ -494,7 +578,7 @@ function parseHtml(html, opts) {
     || (link ? plain(link.inner) : '') || clean(meta('author')) || ldText(art.author?.name ? art.author.name : art.author);
   const url = link?.attrs.href || clean(art.author?.url || '');
   const badge = firstText(body, (n, a) => hasClass(a, 'st3-cc-badge') || 'data-tll-author-badge' in a || hasClass(a, 'author-badge'))
-    || clean(art.author?.jobTitle || '');
+    || clean(art.author?.memberOf?.roleName || art.author?.jobTitle || '');
   s.author = { name, slug: slugFromUrl(url), url: url ? new URL(url, SITE.origin).href : '', badge };
 
   // Reading time: a meta tag, then the page's own reading-time element or "N min read" in the byline, then the word count.
@@ -528,7 +612,7 @@ function parseHtml(html, opts) {
     || (bylineText.match(/\b(\d{1,2} [A-Z][a-z]+ \d{4}|[A-Z][a-z]+ \d{1,2}, \d{4})\b/) || [])[1]);
   s.dateModified = toIsoDate(meta('article:modified_time') || firstText(body, (n, a) => a['data-tll-lg'] === 'updated'));
   s.canonical = head.canonical[0] || meta('og:url') || '';
-  s.slug = slugFromUrl(s.canonical) || opts.slug || slugify(s.title);
+  s.slug = slugFromUrl(s.canonical) || opts.slug || '';
   if (!s.canonical && s.slug) s.canonical = `${SITE.origin}${SITE.storiesPath}${s.slug}`;
   const loc = findAll(body, (n, a) => 'data-st3-byline' in a, 1)[0];
   s.place = placeName(loc?.attrs['data-st3-byline'] || firstText(body, (n, a) => hasClass(a, 'tll-story-byline-loc') || 'data-tll-place' in a)
@@ -570,7 +654,10 @@ export function buildMeta(story, site = SITE) {
   const badge = mapBadge(author.badge, site);
   const rt = st.readingTime;
   const hasRt = isToken(rt) || Number(rt) > 0;
-  const img = st.image || {};
+  // og:image must be an absolute address: a relative path is resolved against the story's address, and anything that is
+  // not http(s) afterwards (a data: or file: address) is dropped, with its alt text.
+  const imgUrl = absoluteUrl(st.image?.url, url || `${origin}/`);
+  const img = imgUrl ? { url: imgUrl, alt: st.image?.alt || '' } : {};
   const published = toIsoDate(st.datePublished);
   const modified = toIsoDate(st.dateModified) || published;
 
@@ -604,19 +691,27 @@ export function buildMeta(story, site = SITE) {
     '@type': 'Article',
     '@id': `${url}#article`,
     url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    // breadcrumb is a WebPage property in schema.org, so it sits on the page the Article is the main entity of.
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url, breadcrumb: { '@id': `${url}#breadcrumb` } },
     headline: title,
     description: ldDesc,
     image: img.url ? [img.url] : undefined,
     datePublished: published,
     dateModified: modified,
+    // A contributor page on this site already emits a Person with the id <page>#person, so the author joins up with it.
     author: author.name ? {
-      '@type': 'Person', name: author.name, url: authorUrl || undefined, jobTitle: badge.jobTitle, description: badge.description,
+      '@type': 'Person',
+      '@id': authorUrl.startsWith(`${origin}${site.contributorsPath}`) ? `${authorUrl}#person` : undefined,
+      name: author.name,
+      url: authorUrl || undefined,
+      memberOf: badge.memberOf,
     } : undefined,
     publisher: {
       '@type': 'Organization', '@id': `${origin}/#organization`, name: site.name, url: `${origin}/`,
       logo: site.logo ? { '@type': 'ImageObject', url: site.logo } : undefined,
     },
+    isPartOf: { '@id': `${origin}/#website` },
+    publishingPrinciples: site.publishingPrinciples || undefined,
     inLanguage: st.lang || site.language,
     isAccessibleForFree: true,
     timeRequired: hasRt ? isoDuration(rt) : undefined,
@@ -627,7 +722,6 @@ export function buildMeta(story, site = SITE) {
     about: st.place ? { '@id': placeId } : undefined,
     citation: st.sources?.length ? st.sources.map((x) => (x.url ? { '@type': 'CreativeWork', name: x.name, url: x.url } : x.name)) : undefined,
     sponsor: st.sponsor?.name ? { '@type': 'Organization', name: st.sponsor.name, url: st.sponsor.url || undefined } : undefined,
-    breadcrumb: { '@id': `${url}#breadcrumb` },
   };
   const crumbs = {
     '@type': 'BreadcrumbList',
@@ -645,6 +739,17 @@ export function buildMeta(story, site = SITE) {
     readingTimeLabel: hasRt ? `${rt} min read` : '',
   };
   return { url, tags, jsonLd, visible };
+}
+
+/** An absolute http(s) address for src, resolved against base; '' when there is none. A binding token passes through. */
+export function absoluteUrl(src, base) {
+  const s = clean(src);
+  if (!s) return '';
+  if (isToken(s)) return s;
+  try {
+    const u = new URL(s, base || SITE.origin);
+    return u.protocol === 'https:' || u.protocol === 'http:' ? u.href : '';
+  } catch { return ''; }
 }
 
 /** Drops undefined, empty strings, empty arrays and empty objects, so no tag or JSON field is ever blank. */
@@ -681,70 +786,97 @@ function ownedKeys(meta) {
   return new Set(meta.tags.filter((t) => t.tag === 'meta').map((t) => t.key.toLowerCase()));
 }
 
-function removeSpans(s, spans) {
-  let out = s;
-  for (const [a, b] of [...spans].sort((x, y) => y[0] - x[0])) {
-    // Take the whole line when the tag stood alone on it.
-    const ls = out.lastIndexOf('\n', a - 1) + 1;
-    let le = out.indexOf('\n', b); if (le < 0) le = out.length;
-    if (out.slice(ls, a).trim() === '' && out.slice(b, le).trim() === '') out = out.slice(0, ls) + out.slice(le + (le < out.length ? 1 : 0));
-    else out = out.slice(0, a) + out.slice(b);
+/** A file this tool should not change: damaged markers, or a head: field someone else wrote. The CLI reports it and moves on. */
+export class StoryMetaError extends Error {}
+
+const indicesOf = (s, needle) => { const out = []; for (let i = s.indexOf(needle); i >= 0; i = s.indexOf(needle, i + 1)) out.push(i); return out; };
+
+/** The one start and end marker in text, or null when there are none. Throws when they are damaged (one alone, out of order, or more than one pair). */
+function markerPair(text, where) {
+  const a = indicesOf(text, MARK_START), b = indicesOf(text, MARK_END);
+  if (!a.length && !b.length) return null;
+  if (a.length !== 1 || b.length !== 1 || b[0] < a[0]) {
+    throw new StoryMetaError(`damaged tll-meta markers in ${where} (${a.length} start, ${b.length} end${a.length === 1 && b.length === 1 ? ', end before start' : ''}); fix them by hand, the file was left as it is`);
   }
-  return out;
+  return [a[0], b[0] + MARK_END.length];
+}
+
+/**
+ * Cuts spans out of the original text and its masked copy alike. A tag that stood alone on its line takes the whole line
+ * with it (decided on the original text). Returns [text, masked, at], with `at` moved to match.
+ */
+function cutSpans(text, masked, spans, at = -1) {
+  let o = text, mk = masked;
+  for (const [a, b] of [...spans].sort((x, y) => y[0] - x[0])) {
+    const ls = o.lastIndexOf('\n', a - 1) + 1;
+    let le = o.indexOf('\n', b); if (le < 0) le = o.length;
+    let from = a, to = b;
+    if (o.slice(ls, a).trim() === '' && o.slice(b, le).trim() === '') { from = ls; to = le + (le < o.length ? 1 : 0); }
+    o = o.slice(0, from) + o.slice(to);
+    mk = mk.slice(0, from) + mk.slice(to);
+    if (at >= 0) at = to <= at ? at - (to - from) : (from < at ? from : at);
+  }
+  return [o, mk, at];
 }
 
 /**
  * Puts the block in the head. Idempotent: running it again with the same meta gives the same text.
- *  - With markers already in the head, only the text between them (markers included) is replaced.
+ *  - Everything is found in masked text (see maskHtml), so text inside a script string, a style or a comment is never read
+ *    as a tag, never edited, and a "</head>" inside a script string is not taken for the end of the head.
+ *  - With markers already in the head, only the text between them (markers included) is replaced. A start marker without
+ *    an end, an end before the start, or two pairs: StoryMetaError, and the file stays as it is.
  *  - Without markers, the block goes in just before </head>, at the start of that line.
  *  - Equivalent tags outside the markers (same og:, twitter:, article: or description key, a canonical link, an Article
  *    JSON-LD script): rule "replace" (default) removes them, so the block's value is the only one; rule "skip" keeps them and
  *    leaves that key out of the block. <title>, charset, viewport, icons, styles and scripts are never touched.
- *  - Input without <head> is treated as head code (a fragment, like the Webflow head code box): the block goes at the end.
+ *  - A page with <body> and no <head> gets <head>, the block and </head> just before <body>.
+ *  - Input with neither <head> nor <body> is treated as head code (a fragment, like the Webflow head code box): the block
+ *    goes at the end.
  */
 export function injectHead(html, meta, { rule = 'replace', ldId = LD_ID } = {}) {
   const src = String(html ?? '');
-  const ho = src.match(/<head\b[^>]*>/i);
-  const hc = src.search(/<\/head>/i);
-  const fragment = !ho && hc < 0;
-  const hs = fragment ? 0 : (ho ? ho.index + ho[0].length : 0);
-  const he = fragment ? src.length : (hc < 0 ? src.length : hc);
-  let head = src.slice(hs, he);
+  const masked = maskHtml(src);
+  const r = headRange(src, masked);
+  // The block uses the file's own line ending.
+  const eol = /\r\n/.test(src) ? '\r\n' : '\n';
+  const render = (m, opts) => renderMeta(m, opts).replace(/\n/g, eol);
+  if (r.kind === 'body-only') {
+    return `${src.slice(0, r.start)}<head>${eol}${render(meta, { ldId })}${eol}</head>${eol}${src.slice(r.start)}`;
+  }
+  let head = src.slice(r.start, r.end);
+  let mhead = masked.slice(r.start, r.end);
 
   // 1. Take out the old block, remembering where it was.
   let at = -1;
-  const a = head.indexOf(MARK_START), b = head.indexOf(MARK_END);
-  if (a >= 0 && b > a) {
-    at = a;
-    head = head.slice(0, a) + head.slice(b + MARK_END.length);
+  const pair = markerPair(mhead, 'the head');
+  if (pair) {
+    at = pair[0];
+    head = head.slice(0, pair[0]) + head.slice(pair[1]);
+    mhead = mhead.slice(0, pair[0]) + mhead.slice(pair[1]);
   }
   // 2. Equivalent tags outside the block.
   const keys = ownedKeys(meta);
   const spans = [];
   const skip = new Set();
   let skipCanonical = false, skipLd = false;
-  for (const m of head.matchAll(/<meta\b[^>]*>/gi)) {
+  for (const m of mhead.matchAll(/<meta\b[^>]*>/gi)) {
     const at2 = attrsOf(m[0]);
     const key = (at2.property || at2.name || '').toLowerCase();
     if (!keys.has(key)) continue;
     if (rule === 'skip') skip.add(key); else spans.push([m.index, m.index + m[0].length]);
   }
-  for (const m of head.matchAll(/<link\b[^>]*>/gi)) {
+  for (const m of mhead.matchAll(/<link\b[^>]*>/gi)) {
     const at2 = attrsOf(m[0]);
     if (!(at2.rel || '').toLowerCase().split(/\s+/).includes('canonical')) continue;
     if (rule === 'skip') skipCanonical = true; else spans.push([m.index, m.index + m[0].length]);
   }
-  for (const m of head.matchAll(/<script\b[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
+  for (const x of ldScripts(head, mhead)) {
     let data = null;
-    try { data = JSON.parse(m[1]); } catch { data = null; }
+    try { data = JSON.parse(x.inner); } catch { data = null; }
     if (!articleNode(data)) continue;
-    if (rule === 'skip') skipLd = true; else spans.push([m.index, m.index + m[0].length]);
+    if (rule === 'skip') skipLd = true; else spans.push([x.start, x.end]);
   }
-  if (spans.length) {
-    const before = at >= 0 ? head.slice(0, at) : null;
-    head = removeSpans(head, spans);
-    if (before != null) at = removeSpans(before, spans.filter(([x]) => x < before.length)).length;
-  }
+  if (spans.length) [head, mhead, at] = cutSpans(head, mhead, spans, at);
   const kept = {
     ...meta,
     tags: meta.tags.filter((t) => (t.tag === 'link' ? !skipCanonical : !skip.has(t.key.toLowerCase()))),
@@ -754,52 +886,78 @@ export function injectHead(html, meta, { rule = 'replace', ldId = LD_ID } = {}) 
   if (at >= 0) {
     const ls = head.lastIndexOf('\n', at - 1) + 1;
     const indent = /^[ \t]*$/.test(head.slice(ls, at)) ? head.slice(ls, at) : '';
-    head = head.slice(0, at) + renderMeta(kept, { ldId, indent }).slice(indent.length) + head.slice(at);
-  } else if (fragment) {
+    head = head.slice(0, at) + render(kept, { ldId, indent }).slice(indent.length) + head.slice(at);
+  } else if (r.kind === 'fragment') {
     const body = head.replace(/\s+$/, '');
-    head = (body ? `${body}\n` : '') + renderMeta(kept, { ldId }) + '\n';
+    head = (body ? `${body}${eol}` : '') + render(kept, { ldId }) + eol;
   } else {
     const ls = head.lastIndexOf('\n') + 1;
     const tail = head.slice(ls);
-    if (/^[ \t]*$/.test(tail)) head = head.slice(0, ls) + renderMeta(kept, { ldId, indent: `${tail}  ` }) + '\n' + tail;
-    else head = `${head}\n${renderMeta(kept, { ldId })}\n`;
+    if (/^[ \t]*$/.test(tail)) head = head.slice(0, ls) + render(kept, { ldId, indent: `${tail}  ` }) + eol + tail;
+    else head = `${head}${eol}${render(kept, { ldId })}${eol}`;
   }
-  return src.slice(0, hs) + head + src.slice(he);
+  return src.slice(0, r.start) + head + src.slice(r.end);
 }
 
-/** The same for a Markdown story: the block lives in the front matter as a "head: |" field, which the site build copies into <head>. */
+/**
+ * The same for a Markdown story: the block lives in the front matter as a "head: |" field, which the site build copies into
+ * <head>. The file's own line ending (LF or CRLF) is kept. A head: field that does not start with the tll-meta start marker
+ * was written by someone else, so it is never replaced: StoryMetaError, and the file stays as it is. So are damaged markers.
+ */
 export function injectMarkdown(md, meta) {
   const src = String(md ?? '');
-  const block = renderMeta(meta).split('\n').map((l) => `  ${l}`).join('\n');
-  const field = `head: |\n${block}`;
-  const m = src.match(/^(\uFEFF?---[ \t]*\r?\n)([\s\S]*?\r?\n)?(---[ \t]*(?:\r?\n|$))/);
-  if (!m) return `---\n${field}\n---\n${src}`;
+  const m = src.match(/^(﻿?---[ \t]*\r?\n)([\s\S]*?\r?\n)?(---[ \t]*(?:\r?\n|$))/);
+  const eol = /\r\n/.test(m ? m[0] : src) ? '\r\n' : '\n';
+  const field = ['head: |', ...renderMeta(meta).split('\n').map((l) => `  ${l}`)].join(eol);
+  if (!m) return `---${eol}${field}${eol}---${eol}${src}`;
   const lines = (m[2] || '').replace(/\r?\n$/, '').split(/\r?\n/).filter((l, i, arr) => !(arr.length === 1 && l === ''));
   const out = [];
   let replaced = false;
   for (let i = 0; i < lines.length; i++) {
-    if (/^head\s*:/.test(lines[i])) {
-      while (i + 1 < lines.length && (/^\s/.test(lines[i + 1]) || lines[i + 1] === '')) i++;
+    const hm = lines[i].match(/^head\s*:([\s\S]*)$/);
+    if (hm) {
+      const value = [];
+      while (i + 1 < lines.length && (/^\s/.test(lines[i + 1]) || lines[i + 1] === '')) value.push(lines[++i]);
+      const first = value.find((l) => l.trim() !== '');
+      if (!/^\s*\|-?\s*$/.test(hm[1]) || !first || first.trim() !== MARK_START) {
+        throw new StoryMetaError('the front matter has a head: field that tll-meta did not write; it was left as it is (move it, or start it with the tll-meta markers)');
+      }
+      markerPair(value.join('\n'), 'the head: field');
       if (!replaced) { out.push(field); replaced = true; }
       continue;
     }
     out.push(lines[i]);
   }
   if (!replaced) out.push(field);
-  return m[1] + out.join('\n') + '\n' + m[3] + src.slice(m[0].length);
+  return m[1] + out.join(eol) + eol + m[3] + src.slice(m[0].length);
 }
 
-/** One local story file, start to finish: parse, build, inject. kind is 'md' or 'html'. Returns { text, story, meta }. */
+/** What a story needs before its block is written: without a title, slug or published date the tags would be invented or broken. */
+export const REQUIRED = Object.freeze(['title', 'slug', 'datePublished']);
+
+/**
+ * One local story file, start to finish: parse, build, inject. kind is 'md' or 'html'.
+ * Returns { text, story, meta, missing, error }. When a required field is missing (missing is not empty) or the file has
+ * damaged markers or a foreign head: field (error is set), text is the input unchanged.
+ */
 export function injectStory(text, { kind = 'html', site = SITE, rule = 'replace', slug = '', contributors } = {}) {
-  const story = parseStory(kind === 'md' && !String(text).trimStart().startsWith('---') ? `---\n---\n${text}` : text, { slug, contributors });
+  const input = String(text ?? '');
+  const story = parseStory(kind === 'md' && !input.trimStart().startsWith('---') ? `---\n---\n${input}` : input, { slug, contributors });
   const meta = buildMeta(story, site);
-  const out = kind === 'md' ? injectMarkdown(text, meta) : injectHead(text, meta, { rule });
-  return { text: out, story, meta };
+  const missing = REQUIRED.filter((k) => !nonEmpty(story[k]));
+  if (missing.length) return { text: input, story, meta, missing, error: '' };
+  try {
+    const out = kind === 'md' ? injectMarkdown(input, meta) : injectHead(input, meta, { rule });
+    return { text: out, story, meta, missing, error: '' };
+  } catch (e) {
+    if (!(e instanceof StoryMetaError)) throw e;
+    return { text: input, story, meta, missing, error: e.message };
+  }
 }
 
 /* ------------------------------------------------------------------ webflow-template */
 
-// What Webflow writes on a CMS template page from Page settings (seen on the live Stories pages, 12 Nov 2026), so the
+// What Webflow writes on a CMS template page from Page settings (seen on the live Stories pages, November 12, 2026), so the
 // template head code must not write them again.
 export const WEBFLOW_EMITS = [
   ['<title>', 'SEO title binding (seo-title)'],
@@ -823,13 +981,16 @@ export function bindingStory() {
     seoTitle: token('seo-title'),
     excerpt: token('excerpt'),
     seoDescription: token('seo-description'),
-    author: { name: token('contributor:name'), slug: token('contributor:slug'), url: '', badge: '' },
+    author: { name: token('contributor:name'), slug: token('contributor:slug'), url: '', badge: token('contributor:badge', 'Option') },
     readingTime: token('reading-time', 'Number'),
     readingTimeFrom: '',
     wordCount: 0,
     image: { url: token('hero-image', 'ImageRef'), alt: '' },
     datePublished: token('published-date', 'Date'),
-    dateModified: token('last-updated', 'Date'),
+    // Head code cannot fall back from an empty field, and Last updated is empty on most stories. So dateModified binds the
+    // published date, as the live block does, and the live body script tll-st3-owner-edit-v1 swaps in Last updated when a
+    // story has one (it finds the block by the id tll-article-ld-v2, which is why the id stays).
+    dateModified: token('published-date', 'Date'),
     canonical: '',
     place: token('byline-location'),
     pillar: '',
@@ -840,29 +1001,45 @@ export function bindingStory() {
   };
 }
 
+/** The JSON-LD id on the Stories template. tll-st3-owner-edit-v1 (src/pages/story/v3/embed-st3-owner-edit-v1.html) looks it up. */
+export const TEMPLATE_LD_ID = 'tll-article-ld-v2';
+export const TIDY_ID = 'tll-ld-tidy-v1';
+
+/**
+ * The inline script that follows the JSON-LD block on the Stories template. It replaces tll-ld-unescape-v1 and only repairs
+ * what Webflow's bindings leave behind; it never touches dateModified:
+ *  - Webflow writes an apostrophe in CMS text as &#39; (and & as &amp;) inside the script: entities become characters again;
+ *  - a line break typed into a CMS field makes the JSON invalid: control characters become spaces before parsing;
+ *  - an empty Reading time leaves "timeRequired":"PTM": it is deleted;
+ *  - a contributor without a badge leaves an OrganizationRole with an empty roleName: author.memberOf is deleted.
+ * It reads and writes only #tll-article-ld-v2, the one block on the page filled from CMS bindings.
+ */
+export function tidyScript(ldId = TEMPLATE_LD_ID) {
+  return `<script id="${TIDY_ID}">(function(){var s=document.getElementById(${JSON.stringify(ldId)});if(!s)return;try{var t=document.createElement("textarea");function d(v){if(typeof v==="string"){if(v.indexOf("&")<0)return v;t.innerHTML=v;return t.value}if(Array.isArray(v))return v.map(d);if(v&&typeof v==="object"){for(var k in v)v[k]=d(v[k])}return v}var j=d(JSON.parse(s.textContent.replace(/[\\u0000-\\u001F]+/g," ")));(j["@graph"]||[]).forEach(function(n){if(!n||n["@type"]!=="Article")return;if(n.timeRequired==="PTM")delete n.timeRequired;var a=n.author,r=a&&a.memberOf;if(r&&!String(r.roleName||"").trim())delete a.memberOf});s.textContent=JSON.stringify(j)}catch(e){}})();</script>`;
+}
+
 /**
  * Head code for the Stories template. Tags Webflow already writes are left out (og:type article stays: it follows Webflow's
  * "website" so readers that keep the last value see article). Fields a binding cannot express are left out and listed in
- * notes: the badge (needs a choice between jobTitle and description), sources, sponsor, section, tags, image alt.
+ * notes: sources, sponsor, section, tags, image alt, article:modified_time.
  */
-export function webflowTemplate(site = SITE, { ldId = 'tll-article-ld-v3' } = {}) {
+export function webflowTemplate(site = SITE, { ldId = TEMPLATE_LD_ID } = {}) {
   const meta = buildMeta(bindingStory(), site);
-  // article:modified_time would bind last-updated, which is empty on most stories; an empty meta tag is worse than none.
+  // article:modified_time would only repeat the published date (head code cannot read Last updated), and the owner-edit
+  // script updates the JSON-LD only. Left out rather than stale.
   meta.tags = meta.tags.filter((t) => t.tag === 'link' || (!WEBFLOW_KEYS.has(t.key) && t.key !== 'article:modified_time'));
   const html = resolveTokens(renderMeta(meta, { ldId }));
-  // Webflow writes an apostrophe in CMS text as &#39; inside a script. This script (it replaces tll-ld-unescape-v1) turns
-  // entities back into characters, and fills an empty dateModified (no last-updated date) with datePublished, for readers that
-  // run scripts, which includes Google.
-  const tidy = `<script id="tll-ld-tidy-v1">(function(){var s=document.getElementById(${JSON.stringify(ldId)});if(!s)return;try{var t=document.createElement("textarea");function d(v){if(typeof v==="string"){if(v.indexOf("&")<0)return v;t.innerHTML=v;return t.value}if(Array.isArray(v))return v.map(d);if(v&&typeof v==="object"){for(var k in v)v[k]=d(v[k])}return v}var j=d(JSON.parse(s.textContent));(j["@graph"]||[]).forEach(function(n){if(n&&n["@type"]==="Article"&&!n.dateModified&&n.datePublished)n.dateModified=n.datePublished});s.textContent=JSON.stringify(j)}catch(e){}})();</script>`;
-  const code = html.replace(MARK_END, `${tidy}\n${MARK_END}`);
+  const code = html.replace(MARK_END, `${tidyScript(ldId)}\n${MARK_END}`);
   const notes = [
+    'This block is the one recommended head for the Stories template. It replaces the Stories part of prototypes/2026-11-11/schema-templates (see tools/story-meta/README.md).',
+    'Keep the id tll-article-ld-v2: the body script tll-st3-owner-edit-v1 finds the block by that id and sets dateModified to Last updated when a story has one. dateModified binds Published date here for that reason.',
+    'Required on every story: Name, Slug, Published date, Excerpt, Hero image, Reading time, Byline location, and a contributor with a Badge. tll-ld-tidy-v1 drops an empty reading time or badge from the JSON-LD, but twitter:data2 would still read " min read".',
     'Not in the template code, because a binding cannot express them (custom code has no conditions):',
-    '- author badge: Founder, Editor and Contributor belong in author.jobTitle, other badges in author.description. The badge stays in the visible byline.',
-    '- sources (citation), sponsor, pillar (articleSection, article:section) and hashtags (keywords, article:tag): a story without the field would print an empty value.',
+    '- sources (citation), sponsor, editor, pillar (articleSection, article:section) and hashtags (keywords, article:tag): a story without the field would print an empty value.',
     '- og:image:alt and twitter:image:alt: an image binding gives the address only, not its alt text.',
-    '- article:modified_time: last-updated is empty on most stories. In the JSON-LD, dateModified binds last-updated and tll-ld-tidy-v1 fills an empty one with datePublished.',
+    '- article:modified_time: head code cannot read Last updated, so it would only repeat the published date.',
     '- contentLocation prints byline-location as the CMS holds it (upper case on most stories).',
-    'Check before publishing: in the Designer, each token above should show as a field chip in the Stories template head code (Page settings, Custom code). The reading-time and last-updated tokens are new to this template.',
+    'Check before publishing: in the Designer, each token above should show as a field chip in the Stories template head code (Page settings, Custom code). The reading-time and contributor badge tokens are new to this template; let the field picker settle their binding types (Number, Option).',
   ];
   return { code, notes, webflowEmits: WEBFLOW_EMITS };
 }
@@ -926,8 +1103,7 @@ export function auditStory(html, site = SITE, opts = {}) {
       dateModified: [expArt.dateModified, got.dateModified],
       'author.name': [expArt.author?.name, dec(got.author?.name)],
       'author.url': [expArt.author?.url, got.author?.url],
-      'author.jobTitle': [expArt.author?.jobTitle, dec(got.author?.jobTitle)],
-      'author.description': [expArt.author?.description, dec(got.author?.description)],
+      'author.roleName': [expArt.author?.memberOf?.roleName, dec(got.author?.memberOf?.roleName)],
       'publisher.logo': [expArt.publisher?.logo?.url, got.publisher?.logo?.url || got.publisher?.logo],
       timeRequired: [expArt.timeRequired, got.timeRequired],
       'contentLocation.name': [expArt.contentLocation?.name, dec(got.contentLocation?.name)],

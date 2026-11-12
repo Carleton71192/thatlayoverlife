@@ -1,19 +1,22 @@
 #!/usr/bin/env node
-// Story share tags and structured data (12 Nov 2026). See README.md beside this file.
+// Story share tags and structured data (November 12, 2026). See README.md beside this file.
 //
 //   node tools/story-meta/cli.mjs inject <glob...> [--dry-run] [--check] [--rule replace|skip] [--contributors <export.json>]
+//                                            [--slug-from-filename]
 //   node tools/story-meta/cli.mjs audit --live [--csv <file>] [--limit <n>] [--sitemap <url>]
 //   node tools/story-meta/cli.mjs audit <glob...> [--csv <file>]        (local story pages)
 //   node tools/story-meta/cli.mjs webflow-template [--code-only]
 //   node tools/story-meta/cli.mjs print <file>                         (the block for one .md, .html or CMS .json, nothing written)
 //
 // Writes files only for "inject" without --dry-run or --check, and for "audit --csv". Never touches Webflow.
+// inject exit codes: 0 done; 1 with --check when a file is out of date or misses a required field, and in every mode when a
+// file was refused (damaged markers, a head: field it did not write); 2 for a usage error.
 // Behind an HTTPS proxy, run the live audit with NODE_USE_ENV_PROXY=1 so Node's fetch uses it.
 
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  SITE, auditStory, buildMeta, contributorsFromExport, injectStory, parseStory, renderMeta, storyUrlsFromSitemap, summarize, toCsv,
+  REQUIRED, SITE, auditStory, buildMeta, contributorsFromExport, injectStory, parseStory, renderMeta, storyUrlsFromSitemap, summarize, toCsv,
   webflowTemplate,
 } from './lib.mjs';
 
@@ -44,6 +47,13 @@ function expand(patterns) {
 
 const kindOf = (f) => (/\.(md|markdown)$/i.test(f) ? 'md' : /\.html?$/i.test(f) ? 'html' : '');
 
+/** The slug a file name gives, only when --slug-from-filename is set: the name without extension, or the folder for index.*. */
+function fileSlug(f, flags) {
+  if (!flags['slug-from-filename']) return '';
+  const base = path.basename(f).replace(/\.[^.]+$/, '');
+  return base.toLowerCase() === 'index' ? path.basename(path.dirname(path.resolve(f))) : base;
+}
+
 function loadContributors(file) {
   if (!file) return undefined;
   const j = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -54,13 +64,19 @@ function cmdInject(files, flags) {
   if (!files.length) { console.error('inject: give one or more .md or .html files (a glob is fine)'); return 2; }
   const contributors = loadContributors(flags.contributors);
   const rule = flags.rule === 'skip' ? 'skip' : 'replace';
-  let changed = 0, skipped = 0;
+  let changed = 0, skipped = 0, incomplete = 0, refused = 0;
   for (const f of files) {
     const kind = kindOf(f);
     if (!kind) { console.error(`skip (not .md or .html): ${f}`); skipped++; continue; }
     const text = fs.readFileSync(f, 'utf8');
-    const { text: out, story } = injectStory(text, { kind, rule, contributors, slug: path.basename(f).replace(/\.[^.]+$/, '') });
-    const missing = ['title', 'excerpt'].filter((k) => !story[k]).concat(story.author?.name ? [] : ['author'], story.image?.url ? [] : ['image']);
+    const { text: out, story, missing: required, error } = injectStory(text, { kind, rule, contributors, slug: fileSlug(f, flags) });
+    if (error) { console.error(`refused  ${f}: ${error}`); refused++; continue; }
+    if (required.length) {
+      console.log(`missing  ${f}  (needs ${required.join(', ')}; nothing written${required.includes('slug') && !flags['slug-from-filename'] ? '; --slug-from-filename takes the slug from the file name' : ''})`);
+      incomplete++;
+      continue;
+    }
+    const missing = ['excerpt'].filter((k) => !story[k]).concat(story.author?.name ? [] : ['author'], story.image?.url ? [] : ['image']);
     const note = missing.length ? `  (not found in the file: ${missing.join(', ')})` : '';
     if (out === text) { console.log(`unchanged  ${f}${note}`); continue; }
     changed++;
@@ -69,8 +85,12 @@ function cmdInject(files, flags) {
     fs.writeFileSync(f, out);
     console.log(`updated  ${f}${note}`);
   }
-  if (flags.check && changed) { console.error(`${changed} file(s) need "inject"`); return 1; }
   if (skipped) console.error(`${skipped} file(s) skipped: not .md or .html`);
+  if (refused) { console.error(`${refused} file(s) refused and left as they are`); return 1; }
+  if (flags.check && (changed || incomplete)) {
+    console.error(`${changed} file(s) need "inject", ${incomplete} file(s) miss a required field`);
+    return 1;
+  }
   return 0;
 }
 
@@ -144,7 +164,10 @@ async function cmdAudit(files, flags) {
   } else {
     if (!files.length) { console.error('audit: use --live, or give local story .html files'); return 2; }
     label = `${files.length} local file(s)`;
-    results = files.map((f) => ({ url: f, ...auditStory(fs.readFileSync(f, 'utf8'), SITE, { slug: path.basename(f, path.extname(f)) }) }));
+    results = files.map((f) => {
+      const a = auditStory(fs.readFileSync(f, 'utf8'), SITE, { slug: fileSlug(f, flags) });
+      return { url: f, ...a, slug: a.slug || f };
+    });
   }
   console.log(report(results, { label }));
   if (flags.csv) {
@@ -170,19 +193,21 @@ function cmdPrint(files, flags) {
   const f = files[0];
   if (!f) { console.error('print: give one .md, .html or .json file'); return 2; }
   const text = fs.readFileSync(f, 'utf8');
-  const story = parseStory(text, { contributors: loadContributors(flags.contributors), slug: path.basename(f).replace(/\.[^.]+$/, '') });
+  const story = parseStory(text, { contributors: loadContributors(flags.contributors), slug: fileSlug(f, flags) });
   const meta = buildMeta(story, SITE);
   console.log(renderMeta(meta));
   console.log(`\nvisible byline only: ${JSON.stringify(meta.visible)}`);
+  const missing = REQUIRED.filter((k) => !story[k]);
+  if (missing.length) { console.error(`missing  ${f}  (needs ${missing.join(', ')}; inject would not write this file)`); return 1; }
   return 0;
 }
 
 const USAGE = `usage:
-  node tools/story-meta/cli.mjs inject <glob...> [--dry-run] [--check] [--rule replace|skip] [--contributors <export.json>]
+  node tools/story-meta/cli.mjs inject <glob...> [--dry-run] [--check] [--rule replace|skip] [--contributors <export.json>] [--slug-from-filename]
   node tools/story-meta/cli.mjs audit --live [--csv <file>] [--limit <n>]
   node tools/story-meta/cli.mjs audit <glob...> [--csv <file>]
   node tools/story-meta/cli.mjs webflow-template [--code-only]
-  node tools/story-meta/cli.mjs print <file> [--contributors <export.json>]`;
+  node tools/story-meta/cli.mjs print <file> [--contributors <export.json>] [--slug-from-filename]`;
 
 async function main() {
   const [cmd, ...argv] = process.argv.slice(2);
