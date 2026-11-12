@@ -1,0 +1,7 @@
+<script id="tll-corrections-js-v1">
+/* 12 Nov 2026: each correction card gets its date as "Correction, 11 November 2026" (from the story's Last updated) and the story name links to the story. Text only; nothing invented: no date, no date line. */
+(function(){var M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function fmt(v){var d=new Date(v);if(!v||isNaN(d))return'';return d.getUTCDate()+' '+M[d.getUTCMonth()]+' '+d.getUTCFullYear();}
+function run(){[].forEach.call(document.querySelectorAll('[data-tll-corrections=entry]'),function(c){if(c.dataset.tllDone)return;c.dataset.tllDone='1';var d=c.querySelector('[data-tll-corr=date]'),h=c.querySelector('[data-tll-corr=story]');var t=d?fmt(d.getAttribute('data-date')):'';if(d)d.textContent=t?'Correction, '+t:'';var s=d&&d.getAttribute('data-slug');if(h&&s&&/^[a-z0-9-]+$/.test(s)&&!h.querySelector('a')){var a=document.createElement('a');a.href='/stories/'+s;a.textContent=h.textContent;h.textContent='';h.appendChild(a);}});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();})();
+</script>
