@@ -1,8 +1,9 @@
 # Files the live site loads from jsDelivr besides the site layers core and chunks. tools/release-layers.sh copies each one,
 # byte for byte, from the commit named here into every layers-release commit, at the same path, so Webflow only swaps the pin
 # (the SRI hashes on the pages stay the same). The working branch is over jsDelivr's 50 MB package limit; layers-release is not.
-# Format: <path> <source commit>. A path ending in / copies that folder (files only, not subfolders).
-# Commits are the pins live on www on 11 November 2026. To ship a newer version of one of these files, change its commit here,
+# Format: <path> <source commit>, one per line; every line needs a full commit. A path ending in / copies that folder
+# (files only, not subfolders); the release stops if a commit or folder is missing.
+# Commits are the pins live on www on 11 and 12 November 2026. To ship a newer version of one of these files, change its commit here,
 # release, then register the new SRI in Webflow.
 #
 # Page scripts (registered hosted scripts, each with SRI)
@@ -10,6 +11,8 @@ src/components/member-way/tll-member-way-v1.js e4342d4e84bbde288d5b258b8739bf493
 src/components/quick-log/tll-quick-log-v1.js cab2aea13df9506c4c7335448fcfff45204424a2
 src/pages/account/tll-acct-stories-v2.js a1fb28e5bfa1121902a03ce240686c7508807595
 src/components/photo-clean/tll-photo-clean-v1.js 22019832ad62816bc7c9f20805d2549615cfc508
+src/pages/share-photos/v3/tll-photo-send-v1.js 4d12668de9b7f6343d6187881272eed28109772e
+# Page code (a script tag in the page custom code of /the-map and /account, no SRI; only the pin in its src changes)
 dist/tll-share-v1.min.js 725d85ac3691013dcc16850bb7ef5fe87b8235a6
 # Map 2.0 (page embeds on /the-map, /my-passport and /account; the home dashboard reads data/owner-record.json).
 # 46a21a1 is what /the-map and /my-passport run. /account runs a81ffb9: same CSS and data, and the 46a21a1 script differs only

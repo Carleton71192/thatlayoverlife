@@ -17,7 +17,7 @@ const LAYERS = join('src', 'site-layers');
 const core = read(LAYERS, 'tll-site-layers-v16.js');
 const loader = core.slice(core.indexOf('/* Chunk loader:'), core.indexOf('})();', core.indexOf('/* Chunk loader:')) + 5);
 
-function runLoader({ src, pathname = '/stories', search = '', storage = {} }) {
+function runLoader({ src, pathname = '/stories', search = '', storage = {}, scripts = [] }) {
   const added = [];
   const keys = Object.keys(storage);
   const win = {
@@ -26,7 +26,7 @@ function runLoader({ src, pathname = '/stories', search = '', storage = {} }) {
     console: { warn() {} },
     document: {
       currentScript: src ? { src } : null,
-      querySelectorAll: () => [],
+      querySelectorAll: () => scripts,
       head: { appendChild: (s) => added.push(s) },
       createElement: () => { const a = {}; return { setAttribute: (k, v) => { a[k] = v; }, attrs: a }; },
     },
@@ -60,6 +60,24 @@ describe('core chunk loader: hosting comes from the core URL', () => {
     });
   }
 
+  it('without currentScript, takes the base from the last core script tag on the page', () => {
+    const base = `https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${'c'.repeat(40)}/src/site-layers/`;
+    const { win, added } = runLoader({ src: null, scripts: [
+      { src: `https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${'d'.repeat(40)}/src/site-layers/tll-site-layers-v16.js` },
+      { src: base + 'tll-site-layers-v16.js' },
+    ] });
+    expect(win.__tllLayersBase).toBe(base);
+    expect(added.length).toBeGreaterThan(0);
+    for (const s of added) expect(s.src.startsWith(base + 'chunks/')).toBe(true);
+  });
+
+  it('runs before tll-phase0-v1 in the built core, so the base is set when phase0 reads it', () => {
+    const at = (s) => core.indexOf(s);
+    expect(at('/* src/site-layers/tll-phase0-v1.js */')).toBeGreaterThan(0);
+    expect(at('/* Chunk loader:')).toBeGreaterThan(0);
+    expect(at('/* Chunk loader:')).toBeLessThan(at('/* src/site-layers/tll-phase0-v1.js */'));
+  });
+
   it('sets no base and loads no chunk when the core is not on its URL', () => {
     const { win, added } = runLoader({ src: 'https://example.net/other.js' });
     expect(win.__tllLayersBase).toBeUndefined();
@@ -69,8 +87,18 @@ describe('core chunk loader: hosting comes from the core URL', () => {
 
 describe('tll-phase0-v1: story search index from the same release', () => {
   const src = read(LAYERS, 'tll-phase0-v1.js');
+  const marker = '/* src/site-layers/tll-phase0-v1.js */';
+  const start = core.indexOf(marker);
+  const built = start < 0 ? '' : core.slice(start + marker.length, core.indexOf('\n/* src/site-layers/', start + marker.length));
 
-  function run(base) {
+  it('the built core carries this source (rebuild after editing it)', () => {
+    expect(start).toBeGreaterThan(-1);
+    const code = src.slice(src.indexOf('(function(){')).trim(); // the build drops the header comment
+    expect(code.length).toBeGreaterThan(100);
+    expect(built).toContain(code);
+  });
+
+  function run(base, code = src) {
     const fetch = vi.fn(() => Promise.resolve({ ok: false, json: () => Promise.resolve(null) }));
     const el = { style: {}, setAttribute() {}, appendChild() {} };
     const win = {
@@ -82,19 +110,21 @@ describe('tll-phase0-v1: story search index from the same release', () => {
       __tllLayersBase: base,
     };
     win.window = win;
-    vm.runInNewContext(src, win);
+    vm.runInNewContext(code, win);
     return fetch.mock.calls.map((c) => String(c[0]));
   }
 
-  it('fetches src/data/story-search-index.json from the commit the core came from', () => {
-    const pin = 'b'.repeat(40);
-    const calls = run(`https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${pin}/src/site-layers/`);
-    expect(calls).toContain(`https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${pin}/src/data/story-search-index.json`);
-  });
+  for (const [label, code] of [['source', src], ['built core copy', built]]) {
+    it(`${label}: fetches src/data/story-search-index.json from the commit the core came from`, () => {
+      const pin = 'b'.repeat(40);
+      const calls = run(`https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${pin}/src/site-layers/`, code);
+      expect(calls).toContain(`https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@${pin}/src/data/story-search-index.json`);
+    });
 
-  it('fetches no index when the core did not set a base', () => {
-    expect(run(undefined).some((u) => u.includes('story-search-index'))).toBe(false);
-  });
+    it(`${label}: fetches no index when the core did not set a base`, () => {
+      expect(run(undefined, code).some((u) => u.includes('story-search-index'))).toBe(false);
+    });
+  }
 });
 
 describe('built layers carry no pin of this repository', () => {
@@ -113,7 +143,7 @@ describe('tools/layers-release-carry.txt', () => {
   it('has one path and one full commit per line, no duplicates, no path the release builds itself', () => {
     expect(entries.length).toBeGreaterThan(0);
     for (const e of entries) {
-      expect(e.length).toBe(2);
+      expect(e.length, e.join(' ')).toBe(2);
       expect(e[1]).toMatch(/^[0-9a-f]{40}$/);
       expect(e[0]).not.toMatch(/^\/|\.\./);
       expect(e[0].startsWith('src/site-layers/')).toBe(false);
@@ -123,7 +153,8 @@ describe('tools/layers-release-carry.txt', () => {
 
   it('every entry exists at its commit and the release stays far under 50 MB', () => {
     let bytes = 0;
-    try { execFileSync('git', ['cat-file', '-e', `${entries[0][1]}^{commit}`], { cwd: root }); } catch { return; } // shallow clone: skip
+    const shallow = execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root }).toString().trim() === 'true';
+    if (shallow) return; // a shallow clone lacks the old commits; a full clone must have every one
     for (const [path, rev] of entries) {
       const out = execFileSync('git', ['ls-tree', '-l', rev, path], { cwd: root }).toString().trim();
       expect(out, `${path} at ${rev}`).not.toBe('');
