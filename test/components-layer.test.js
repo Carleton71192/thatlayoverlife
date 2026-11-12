@@ -1,4 +1,4 @@
-// 12 Nov 2026 codebase review: tll-components-v1, the shared sub-components of the stories and expat layers (see updates.md).
+// November 12, 2026 codebase review: tll-components-v1, the shared sub-components of the stories and expat layers (see updates.md).
 //   tll-components-v1.html  a core style: --tll-ui-* tokens, the tape, the small label (kicker), the empty state, a hidden utility.
 //                           The old class names sit beside the new ones in each selector, so Webflow page code keeps working.
 //   tll-components-v1.js    a core layer: window.__tllUI (el, style, json), the helpers the series, expat and story-is layers had copied.
@@ -81,7 +81,7 @@ describe('tokens', () => {
 });
 
 describe('the moved rules keep the values they had', () => {
-  it('the tape: same as .tll-wt-tape, .tll-wt-card-tape (tll-series-v1) and .tll-ex-tape (tll-expat-v1) before 12 Nov', () => {
+  it('the tape: same as .tll-wt-tape, .tll-wt-card-tape (tll-series-v1) and .tll-ex-tape (tll-expat-v1) before November 12, 2026', () => {
     const base = parse('display:inline-block;background:#0A0B14;color:#FDF9F3;font:600 11px/1.3 \'JetBrains Mono\',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;transform:rotate(-1.5deg);clip-path:polygon(0 8%,3% 0,97% 6%,100% 0,99% 92%,96% 100%,4% 94%,1% 100%);max-width:100%');
     expect(lower(decls('.tll-ui-tape'))).toEqual(lower(base));
     expect(decls('.tll-wt-tape')).toEqual({ ...decls('.tll-ui-tape'), margin: '0 0 10px' });
@@ -89,11 +89,11 @@ describe('the moved rules keep the values they had', () => {
     const ex = { ...decls('.tll-ex-tape') };
     expect([ex['font-size'], ex.padding]).toEqual(['10px', '5px 10px']);
   });
-  it('the small label: same as .tll-sr-k, .tll-ex-k and .tll-si-k before 12 Nov', () => {
+  it('the small label: same as .tll-sr-k, .tll-ex-k and .tll-si-k before November 12, 2026', () => {
     const old = parse('font:600 11px/1.4 \'JetBrains Mono\',ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px');
     for (const s of ['.tll-ui-kicker', '.tll-sr-k', '.tll-ex-k', '.tll-si-k']) expect(lower(decls(s)), s).toEqual(lower(old));
   });
-  it('the empty state: base plus --center is the inline style tll-stories-places-v1 wrote before 12 Nov', () => {
+  it('the empty state: base plus --center is the inline style tll-stories-places-v1 wrote before November 12, 2026', () => {
     const old = parse('border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a');
     expect(lower({ ...decls('.tll-ui-empty'), ...decls('.tll-ui-empty--center') })).toEqual(lower(old));
   });

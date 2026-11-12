@@ -2,7 +2,7 @@ import { createRequire } from 'module'; const { chromium } = createRequire(impor
 import fs from 'fs'; import path from 'path'; import url from 'url';
 const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
 const layer = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-stories-noimg-v1.js'), 'utf8');
-// The layer hides the broken image with .tll-ui-hidden and reads the --tll-ui-* tokens, both from the core style tll-components-v1 (12 Nov 2026).
+// The layer hides the broken image with .tll-ui-hidden and reads the --tll-ui-* tokens, both from the core style tll-components-v1 (November 12, 2026).
 const ui = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-components-v1.html'), 'utf8').trim();
 const lead = fs.readFileSync(path.join(DIR, 'code/stories-footer.html'), 'utf8').match(/<script id="tll-lib-lead-v1">[\s\S]*?<\/script>/)[0];
 const card = (img, c) => `<div><a class="tll-lib-card" data-tll-card="cms"><img class="tll-lib-img" alt="${c} story" ${img ? 'src="http://img.test/a.jpg"' : ''}><div class="tll-lib-body"><h2 class="tll-lib-title">${c}</h2></div><div data-tll-country="1" hidden>${c}</div></a></div>`;

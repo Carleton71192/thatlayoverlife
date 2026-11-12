@@ -4,7 +4,7 @@
    2. The lead slot goes to the newest story that has a photo; the photo-less one stays in the grid, next in line.
    The page's own scripts keep sorting and filtering; this only steps in when the first visible card has no photo.
    /stories only; nothing removed; no data-ms-* element touched.
-   12 Nov 2026 (codebase review, updates.md): the broken image is hidden with .tll-ui-hidden (tll-components-v1) instead of an
+   November 12, 2026 (codebase review, updates.md): the broken image is hidden with .tll-ui-hidden (tll-components-v1) instead of an
    inline style; colors and the font read the --tll-ui-* tokens. Deliberate fix: the inline display:none never won, because the
    /stories page code sets .tll-lib-img{display:block !important}, so a card without a photo showed the empty image box above the
    panel. The class rule (with !important, keyed on [data-tll-noimg]) hides it. No card is without a photo today, so no page changes. */

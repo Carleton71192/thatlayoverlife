@@ -1,4 +1,4 @@
-/* tll-components-v1 (12 Nov 2026, codebase review): the shared sub-components the stories side (/stories, story pages) and the expat
+/* tll-components-v1 (November 12, 2026, codebase review): the shared sub-components the stories side (/stories, story pages) and the expat
    side (/for-expats, the staged expat build) both draw from. Core style, every page, so a page layer or Webflow page code only adds
    class names. Values are today's values: adopting a class changes no pixel. Where two layers wrote the same rule twice, the rule now
    lives here once and the old class names are listed beside the new ones, so Webflow page code that still uses an old name keeps working.
@@ -29,7 +29,7 @@
    The style is tll-components-v1.html (registered in STYLES); this header documents it because the build sends the style's own comment
    to every page and strips this one. Nothing removed; no data-ms-* element touched.
 
-   Helpers (12 Nov 2026, codebase review). The small helpers that tll-series-v1, tll-expat-v1 and tll-story-is-v1
+   Helpers (November 12, 2026, codebase review). The small helpers that tll-series-v1, tll-expat-v1 and tll-story-is-v1
    each carried a copy of, now defined once in the core as window.__tllUI. The core runs before any chunk on every page (the chunk
    loader appends the chunks after it), so a chunk layer can read window.__tllUI at any point after its own path guard.
      el(tag, className, text)  a new element; className and text are optional (text is set only when it is not null or undefined)

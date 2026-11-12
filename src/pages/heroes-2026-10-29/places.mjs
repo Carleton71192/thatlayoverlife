@@ -4,7 +4,7 @@ import fs from 'fs'; import path from 'path'; import url from 'url';
 const DIR = path.dirname(url.fileURLToPath(import.meta.url)); const ROOT = path.resolve(DIR, '../../..');
 const layer = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-stories-places-v1.js'), 'utf8');
 const footer = fs.readFileSync(path.join(DIR, 'code/stories-footer.html'), 'utf8');
-// The empty-region note uses .tll-ui-empty, which lives in the core style tll-components-v1 (12 Nov 2026), so the harness adds that style too.
+// The empty-region note uses .tll-ui-empty, which lives in the core style tll-components-v1 (November 12, 2026), so the harness adds that style too.
 const ui = fs.readFileSync(path.join(ROOT, 'src/site-layers/tll-components-v1.html'), 'utf8').trim();
 let html = fs.readFileSync(path.join(DIR, 'fixtures/stories.html'), 'utf8').replace('<!--BUNDLE-->', ui + '<script>' + layer + '</script>').replace('</body>', footer + '<p>Got a trip like these? It could be the next story on the shelf.</p></body>');
 const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1440, height: 900 } }); const errs = [];

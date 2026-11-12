@@ -1,9 +1,12 @@
 # Codebase review and refactor, November 12, 2026
 
 This work is on its own branch, `worktree-wf_efebb3be-5ae-4`, not on the main working branch `claude/new-session-zxm063`. With
-your OK, its commits are cherry-picked onto `claude/new-session-zxm063` before the layers-release step; no files overlap, so that
-goes cleanly. Nothing was published, pushed, or changed in Webflow, and no file was deleted. The rebuilt site layers are committed
-in the repo only; they reach www only through the usual release step (see "What you need to decide").
+your OK, its commits are cherry-picked onto `claude/new-session-zxm063` before the layers-release step. Against that branch as
+committed (`af568b5`) the cherry-pick is clean. The font loading work is not committed yet. If it is committed first, both sides
+edit the last line of the build docstring in `src/site-layers/build-site-layers-v16.py`, so that conflict must be fixed by hand,
+and then the build and the tests must be run again. Nothing was published, pushed, or changed in Webflow, and no file was
+deleted. The rebuilt site layers are committed in the repo only; they reach www only through the usual release step (see
+"What you need to decide").
 
 ## In plain words
 
@@ -98,8 +101,8 @@ main at about 90 MB (non-media files are 74.4 MB), and `.git` stays 794 MB unles
 
 | Confidence | Assets | MB | What |
 |---|---:|---:|---|
-| High | 39 | 8.25 | 25 AVIFs in the "Generated" folder (8 Apr); 10 sharing images for pages that now 404 or 301 (press, press-trips, expats, newsletter, for-affiliates, spotlight, creators, countries, awards, pets); `jay-carleton-avatar.jpg` and `sortsol-walking-the-tidal-flats.jpg` (the CMS has its own copies); `tll_recovery_v2.min.js` and `tll-hero-halong-bay-test.mp4` (both answer 403) |
-| Medium | 53 | 13.23 | May photo uploads; 34 Antarctica photos from 23 Sep |
+| High | 39 | 8.25 | 25 AVIFs in the "Generated" folder (April 8); 10 sharing images for pages that now 404 or 301 (press, press-trips, expats, newsletter, for-affiliates, spotlight, creators, countries, awards, pets); `jay-carleton-avatar.jpg` and `sortsol-walking-the-tidal-flats.jpg` (the CMS has its own copies); `tll_recovery_v2.min.js` and `tll-hero-halong-bay-test.mp4` (both answer 403) |
+| Medium | 53 | 13.23 | May photo uploads; 34 Antarctica photos from September 23 |
 | Low, keep | 68 | 33.82 | 27 backgrounds for the sharing-image generator, 39 Layover Lounge and story photos (Lounge build still open), 2 sharing images for templates with only draft items |
 
 Deleting a Webflow asset cannot be undone through the API, and old newsletters or posts may link to any CDN URL.
@@ -242,7 +245,9 @@ inline note at 1440 and 390.
 ## 6. What you need to decide
 
 1. **Release.** The new core and chunks are committed on this work's own branch only. First, with your OK, its commits are
-   cherry-picked onto `claude/new-session-zxm063`. Then they need the usual release step (copy to
+   cherry-picked onto `claude/new-session-zxm063`. That is clean against `af568b5`. If the font loading work is committed
+   first, the build docstring conflict must be fixed by hand and the build and the tests run again (its font stacks then also
+   apply to the new `--tll-ui-*` font tokens in the core). Then they need the usual release step (copy to
    `layers-release`, register the core at that commit with its new SRI). Until then www keeps running `6ebffe0f`.
 2. **Deletions (nothing was deleted).**
    - Repo, duplicate page copies (audit 3): `src/pages/stories/v3/s3-stories.css` and `src/pages/stories/v3/s3-footer-block.html`

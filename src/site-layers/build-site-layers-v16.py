@@ -22,7 +22,7 @@ Consent Mode v2 at the very top. v12 = v11 plus stamps on the library cards and 
 runs only on /stories/{slug}: its style goes at the END of the body once the DOM is parsed, so it sits after the template's own head
 and footer styles in the cascade and wins every tie. 10 Nov 2026 (type system): the story and cover layers no longer carry a Google
 Fonts link (Newsreader and Inter Tight are gone; Playfair Display and JetBrains Mono come from the site head, Plex from Webflow), so
-the build injects no font link; tll-buttons-v1 joins STYLES as the one button set. 12 Nov 2026 (codebase review, see updates.md): tll-components-v1
+the build injects no font link; tll-buttons-v1 joins STYLES as the one button set. November 12, 2026 (codebase review, see updates.md): tll-components-v1
 joins STYLES (shared sub-components and the --tll-ui-* tokens) and the core (window.__tllUI helpers), right after img-variants."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -40,9 +40,9 @@ STYLES = [('src/site-layers/tll-nav-phone-v1.html', 'tll-nav-phone-v1', 'phone h
           ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Playfair Display italic'),
           ('src/site-layers/tll-buttons-v1.html', 'tll-buttons-v1', 'one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600'),
           ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields'),
-          ('src/site-layers/tll-components-v1.html', 'tll-components-v1', '12 Nov codebase review: shared sub-components (tape, kicker, empty state) and their --tll-ui-* tokens, old class names kept beside the new ones')]
+          ('src/site-layers/tll-components-v1.html', 'tll-components-v1', 'November 12, 2026 codebase review: shared sub-components (tape, kicker, empty state) and their --tll-ui-* tokens, old class names kept beside the new ones')]
 SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: CMS photos get a srcset from their site-bucket twin variants, the story hero loads first'),
-           ('src/site-layers/tll-components-v1.js', '12 Nov codebase review: window.__tllUI helpers (el, style, json) shared by the series, expat and story-is layers'),
+           ('src/site-layers/tll-components-v1.js', 'November 12, 2026 codebase review: window.__tllUI helpers (el, style, json) shared by the series, expat and story-is layers'),
            ('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar SETTINGS and CONTRIBUTIONS open their /account tab'),
            ('src/site-layers/tll-note-typing-v1.js', 'note button steps aside while typing'),
            ('src/components/edit-profile-fixes/tll-ep-country-v1.js', '/edit-profile country field reads "Portland, Oregon, USA"; pen name note copy'),
@@ -129,7 +129,7 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #   img-variants    (10 Nov, week one item 4) first in the core: its MutationObserver must see each img as the parser adds it, before a
 #                   lazy photo is fetched, and page-heroes, home-bands and the cover call its window.__tllImgV before they set a src.
 #   pwa-hold        (10 Nov) wraps window.fetch before the footer PWA client's window-load HEAD /sw.js, on every page.
-#   components      (12 Nov) window.__tllUI, the helpers the series, expat and story-is layers share; it must exist before any chunk runs.
+#   components      (November 12, 2026) window.__tllUI, the helpers the series, expat and story-is layers share; it must exist before any chunk runs.
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.

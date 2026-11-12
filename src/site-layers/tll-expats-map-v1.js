@@ -5,7 +5,7 @@
    expat directory), with a public profile, at the city they already show; never a live location, never coordinates.
    Map shapes: world-atlas 2.0.2 with topojson-client 3.1.0 and d3-geo 3.1.1, the same sources the map page uses. If the data
    or the map cannot load, the section stays hidden. Nothing removed; no data-ms-* element touched.
-   12 Nov 2026 (codebase review, updates.md): the map heading has its own hook, data-tll-x="expats-map-h2" (it borrowed "dir-h2",
+   November 12, 2026 (codebase review, updates.md): the map heading has its own hook, data-tll-x="expats-map-h2" (it borrowed "dir-h2",
    the hook the page script fills with the expert count; no style used it); colors and fonts read the --tll-ui-* tokens. Same look. */
 (function(){
 if(!/^\/for-expats\/?$/.test(location.pathname))return;

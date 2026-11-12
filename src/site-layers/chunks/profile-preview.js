@@ -567,7 +567,7 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var FLAGS='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
 var BADGES={'first-move-abroad':'First move abroad','lived-on-two-continents':'Lived on 2 continents','moved-back':'Moved back'};
-/* The small label (.tll-ex-k) and the washi tape (.tll-ex-tape) come from tll-components-v1 in the core since 12 Nov. */
+/* The small label (.tll-ex-k) and the washi tape (.tll-ex-tape) come from tll-components-v1 in the core since November 12, 2026. */
 var CSS='.tll-ex{font:400 15px/1.5 var(--tll-ui-f-body);color:var(--tll-ui-ink)}.tll-ex [hidden]{display:none!important}'+
 '.tll-ex-flag{font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--tll-ui-rose-text);margin:0 0 8px}'+
 '.tll-ex-stat{background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit;min-height:44px}.tll-ex-stat:focus-visible{outline:2px solid var(--tll-ui-rose-text);outline-offset:2px}'+

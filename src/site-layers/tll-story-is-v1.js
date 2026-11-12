@@ -5,7 +5,7 @@
    /stories/<slug>    One line inside the end-of-story ask: "One trip, told by the person who took it."
    /stories           The empty search note says what a story is instead of "Nothing filed for … yet".
    The FAQ entry and the charter rule are Designer edits for Nancy. No data-ms-* element touched; no form or field names changed.
-   12 Nov 2026 (codebase review, updates.md): .tll-si-k comes from tll-components-v1 (core) with .tll-ui-kicker beside it;
+   November 12, 2026 (codebase review, updates.md): .tll-si-k comes from tll-components-v1 (core) with .tll-ui-kicker beside it;
    colors and fonts read the --tll-ui-* tokens; el and style come from window.__tllUI. Same look. */
 (function(){
 var P=location.pathname.replace(/\/+$/,'')||'/';

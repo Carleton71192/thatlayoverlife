@@ -95,7 +95,7 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
 var ROUTES_LIVE=false,pv=/[?&]preview=wire(&|$)/.test(location.search);try{pv=pv||localStorage.getItem('tll-preview-wire')==='1';}catch(e){}
 if(!ROUTES_LIVE&&!pv)return;
 var P=location.pathname.replace(/\/+$/,'')||'/';
-/* The washi tape (.tll-wt-tape, .tll-wt-card-tape) and the small label (.tll-sr-k) come from tll-components-v1 in the core since 12 Nov. */
+/* The washi tape (.tll-wt-tape, .tll-wt-card-tape) and the small label (.tll-sr-k) come from tll-components-v1 in the core since November 12, 2026. */
 var CSS='.tll-sr-chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;font:400 14px/1.4 var(--tll-ui-f-body)}.tll-sr-chips button{min-height:44px;padding:0 14px;border:1.5px solid var(--tll-ui-ink);border-radius:999px;background:#fff;color:var(--tll-ui-ink);font:600 14px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer}.tll-sr-chips button[aria-pressed=true]{background:var(--tll-ui-ink);color:var(--tll-ui-paper)}'+
 '.tll-sr-box{max-width:680px;margin:28px auto;padding:16px 18px;border:1px solid var(--tll-ui-line);border-radius:4px;background:#fff;font:400 15px/1.55 var(--tll-ui-f-body);color:var(--tll-ui-ink)}.tll-sr-box ol{margin:8px 0 0;padding-left:20px}.tll-sr-box p{margin:0 0 6px}.tll-sr-box b{font-weight:600}.tll-sr-box small{display:block;color:var(--tll-ui-muted-2);margin-top:8px}'+
 '.tll-sr-box a{color:var(--tll-ui-ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--tll-ui-rose-text);text-underline-offset:3px}'+
@@ -172,7 +172,7 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev';
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var FLAGS='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
 var BADGES={'first-move-abroad':'First move abroad','lived-on-two-continents':'Lived on 2 continents','moved-back':'Moved back'};
-/* The small label (.tll-ex-k) and the washi tape (.tll-ex-tape) come from tll-components-v1 in the core since 12 Nov. */
+/* The small label (.tll-ex-k) and the washi tape (.tll-ex-tape) come from tll-components-v1 in the core since November 12, 2026. */
 var CSS='.tll-ex{font:400 15px/1.5 var(--tll-ui-f-body);color:var(--tll-ui-ink)}.tll-ex [hidden]{display:none!important}'+
 '.tll-ex-flag{font:600 10px/1 "JetBrains Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;color:var(--tll-ui-rose-text);margin:0 0 8px}'+
 '.tll-ex-stat{background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit;min-height:44px}.tll-ex-stat:focus-visible{outline:2px solid var(--tll-ui-rose-text);outline-offset:2px}'+
