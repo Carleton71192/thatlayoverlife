@@ -1,0 +1,271 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildMeta > snapshot: a real story from the index (Ghana, as the CMS holds it) 1`] = `
+{
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#article",
+        "@type": "Article",
+        "about": {
+          "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#place",
+        },
+        "articleSection": "Cultural Intelligence",
+        "author": {
+          "@type": "Person",
+          "jobTitle": "Founder",
+          "name": "Nancy Carleton",
+          "url": "https://www.thatlayover.life/contributors/nancy-carleton",
+        },
+        "breadcrumb": {
+          "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#breadcrumb",
+        },
+        "contentLocation": {
+          "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#place",
+          "@type": "Place",
+          "name": "Ghana",
+        },
+        "dateModified": "2026-09-19T08:00:00.000Z",
+        "datePublished": "2026-09-19T08:00:00.000Z",
+        "description": "Denmark had just thrown the coldest winter in 16 years at us, the map had a gap, and we had a few days. Then we landed in a country where everyone was wearing white except us.",
+        "headline": "Ghana asked us to wear all white. We complied. Eventually.",
+        "image": [
+          "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg",
+        ],
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "keywords": "Ghana, WestAfrica, EasterInWhite, MountAfadjato, BukaAccra, HibiscusIsAPersonality, MonkeysOnArrival",
+        "mainEntityOfPage": {
+          "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+          "@type": "WebPage",
+        },
+        "publisher": {
+          "@id": "https://www.thatlayover.life/#organization",
+          "@type": "Organization",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0dea106bf47c697c1967c3_tll-webclip.png",
+          },
+          "name": "That Layover Life",
+          "url": "https://www.thatlayover.life/",
+        },
+        "timeRequired": "PT3M",
+        "url": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+        "wordCount": 463,
+      },
+      {
+        "@id": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "item": "https://www.thatlayover.life/",
+            "name": "Home",
+            "position": 1,
+          },
+          {
+            "@type": "ListItem",
+            "item": "https://www.thatlayover.life/stories",
+            "name": "Stories",
+            "position": 2,
+          },
+          {
+            "@type": "ListItem",
+            "item": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+            "name": "Ghana asked us to wear all white. We complied. Eventually.",
+            "position": 3,
+          },
+        ],
+      },
+    ],
+  },
+  "tags": [
+    {
+      "href": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+      "rel": "canonical",
+      "tag": "link",
+    },
+    {
+      "attr": "name",
+      "content": "Accra at Easter, where everyone wears white and we did not get the memo. Mount Afadjato, Wli Waterfalls, the monkeys at Tafi Atome, and Buka.",
+      "key": "description",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "That Layover Life",
+      "key": "og:site_name",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "en_US",
+      "key": "og:locale",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "article",
+      "key": "og:type",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "Ghana at Easter: the whole country wears white",
+      "key": "og:title",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "Accra at Easter, where everyone wears white and we did not get the memo. Mount Afadjato, Wli Waterfalls, the monkeys at Tafi Atome, and Buka.",
+      "key": "og:description",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+      "key": "og:url",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg",
+      "key": "og:image",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "Kids in Ghana at Easter",
+      "key": "og:image:alt",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "2026-09-19T08:00:00.000Z",
+      "key": "article:published_time",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "2026-09-19T08:00:00.000Z",
+      "key": "article:modified_time",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "https://www.thatlayover.life/contributors/nancy-carleton",
+      "key": "article:author",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "Cultural Intelligence",
+      "key": "article:section",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "Ghana",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "WestAfrica",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "EasterInWhite",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "MountAfadjato",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "BukaAccra",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "HibiscusIsAPersonality",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "property",
+      "content": "MonkeysOnArrival",
+      "key": "article:tag",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "summary_large_image",
+      "key": "twitter:card",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Ghana at Easter: the whole country wears white",
+      "key": "twitter:title",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Accra at Easter, where everyone wears white and we did not get the memo. Mount Afadjato, Wli Waterfalls, the monkeys at Tafi Atome, and Buka.",
+      "key": "twitter:description",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "https://cdn.prod.website-files.com/6a0b29c6d081332e921900d8/6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg",
+      "key": "twitter:image",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Kids in Ghana at Easter",
+      "key": "twitter:image:alt",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Written by",
+      "key": "twitter:label1",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Nancy Carleton",
+      "key": "twitter:data1",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "Reading time",
+      "key": "twitter:label2",
+      "tag": "meta",
+    },
+    {
+      "attr": "name",
+      "content": "3 min read",
+      "key": "twitter:data2",
+      "tag": "meta",
+    },
+  ],
+  "url": "https://www.thatlayover.life/stories/ghana-easter-everyone-wears-white",
+  "visible": {
+    "authorBadge": "Founder",
+    "authorName": "Nancy Carleton",
+    "readingTimeLabel": "3 min read",
+  },
+}
+`;
