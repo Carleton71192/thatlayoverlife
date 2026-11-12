@@ -9,7 +9,7 @@
       <feDisplacementMap in="SourceGraphic" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
     <path id="top" d="M30,100 A70,70 0 1,1 170,100"/>
-    <path id="bottom" d="M34,100 A66,66 0 0,0 166,100"/>
+    <path id="bottom" d="M30,100 A70,70 0 0,0 170,100"/>
   </defs>
   <g class="stamp" filter="url(#ink)">
     <g fill="none" stroke="currentColor">
