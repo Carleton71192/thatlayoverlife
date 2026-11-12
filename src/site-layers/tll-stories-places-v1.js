@@ -3,7 +3,9 @@
    of an existing chip, in alphabetical order. The page's own chip script (TLL Stories chips v1) filters by the card's region text, so the new
    chips work through it; if that script has already wired its chips, the new ones filter the same way on their own. A region with no
    story yet shows the page's own "No stories from ... yet" note. Also: "the next story on the shelf" reads "the next story in the
-   library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched. */
+   library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched.
+   12 Nov 2026 (codebase review, updates.md): the empty-region note takes the .tll-ui-empty classes from tll-components-v1
+   instead of an inline style, same values. */
 (function(){
 if(!/^\/stories\/?$/.test(location.pathname))return;
 var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania']; /* alphabetical after All places (Nancy, 29 Oct) */
@@ -28,7 +30,7 @@ function chips(){
     var n=0;[].forEach.call(grid.children,function(el){var r=el.querySelector('[data-tll-region]');var show=!!r&&r.textContent.trim()===v;el.style.display=show?'':'none';if(show)n++;});
     var note=document.getElementById('tll-chip-note');if(note)note.remove();
     if(!n){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');
-      note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';
+      note.className='tll-ui-empty tll-ui-empty--center'; /* the empty state from tll-components-v1 (same values as the inline style it replaced, 12 Nov) */
       note.textContent='No stories from '+v+' yet. Be the first.';grid.parentNode.insertBefore(note,grid);}
   });});
 }

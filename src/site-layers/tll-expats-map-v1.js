@@ -4,7 +4,9 @@
    place they show on it. Data: the Worker's GET /expats-map, which lists only members who switched on Expats (or are in the
    expat directory), with a public profile, at the city they already show; never a live location, never coordinates.
    Map shapes: world-atlas 2.0.2 with topojson-client 3.1.0 and d3-geo 3.1.1, the same sources the map page uses. If the data
-   or the map cannot load, the section stays hidden. Nothing removed; no data-ms-* element touched. */
+   or the map cannot load, the section stays hidden. Nothing removed; no data-ms-* element touched.
+   12 Nov 2026 (codebase review, updates.md): the map heading has its own hook, data-tll-x="expats-map-h2" (it borrowed "dir-h2",
+   the hook the page script fills with the expert count; no style used it); colors and fonts read the --tll-ui-* tokens. Same look. */
 (function(){
 if(!/^\/for-expats\/?$/.test(location.pathname))return;
 var API='https://tll-travel-wire.thatlayoverlife.workers.dev/expats-map';
@@ -19,14 +21,14 @@ function libs(){var p=Promise.resolve();
   if(!window.topojson)p=p.then(function(){return load(CDN+'topojson-client@3.1.0/dist/topojson-client.min.js');});
   if(!(window.d3&&window.d3.geoPath&&window.d3.geoNaturalEarth1)){p=p.then(function(){return window.d3&&window.d3.range?0:load(CDN+'d3-array@3.2.4/dist/d3-array.min.js');}).then(function(){return load(CDN+'d3-geo@3.1.1/dist/d3-geo.min.js');});}
   return p;}
-var CSS='[data-tll-x="expats-map"]{padding:clamp(48px,7vw,88px) 0}[data-tll-x="expats-map"] .tll-em-lede{max-width:60ch;color:#5F5A54;margin:0 0 20px}'+
-'.tll-em-map{width:100%;height:auto;display:block;margin:0 0 24px}.tll-em-map path{fill:#EFE8DC;stroke:#FDF9F3;stroke-width:.5}.tll-em-map path.on{fill:#067A79}.tll-em-map .dot{fill:#C8325B;stroke:#FDF9F3;stroke-width:2}'+
+var CSS='[data-tll-x="expats-map"]{padding:clamp(48px,7vw,88px) 0}[data-tll-x="expats-map"] .tll-em-lede{max-width:60ch;color:var(--tll-ui-muted-2);margin:0 0 20px}'+
+'.tll-em-map{width:100%;height:auto;display:block;margin:0 0 24px}.tll-em-map path{fill:#EFE8DC;stroke:var(--tll-ui-paper);stroke-width:.5}.tll-em-map path.on{fill:var(--tll-ui-teal-text)}.tll-em-map .dot{fill:var(--tll-ui-rose-text);stroke:var(--tll-ui-paper);stroke-width:2}'+
 '.tll-em-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:0;padding:0;list-style:none}'+
-'.tll-em-c{border:1px solid #E0DACE;border-radius:4px;background:#FDF9F3;padding:14px 16px}.tll-em-c h3{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:800 20px/1.2 "Playfair Display",Georgia,serif;color:#0A0B14}'+
+'.tll-em-c{border:1px solid var(--tll-ui-line);border-radius:4px;background:var(--tll-ui-paper);padding:14px 16px}.tll-em-c h3{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:800 20px/1.2 var(--tll-ui-f-head);color:var(--tll-ui-ink)}'+
 '.tll-em-c h3 img{width:24px;height:24px;border-radius:50%;box-shadow:0 0 0 1px rgba(10,11,20,.18)}.tll-em-c ul{margin:0;padding:0;list-style:none}'+
-'.tll-em-c li{margin:0 0 6px;font:400 15px/1.4 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}.tll-em-c a{color:#0A0B14;font-weight:600;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}'+
-'.tll-em-c small{display:block;color:#5F5A54;font-size:13px}.tll-em-c small img{width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin:0 4px 0 2px}'+
-'.tll-em-join{margin:18px 0 0;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif}.tll-em-join a{color:#0A0B14;text-decoration:underline;text-decoration-color:#C8325B;text-underline-offset:3px}';
+'.tll-em-c li{margin:0 0 6px;font:400 15px/1.4 var(--tll-ui-f-body);color:var(--tll-ui-ink)}.tll-em-c a{color:var(--tll-ui-ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--tll-ui-rose-text);text-underline-offset:3px}'+
+'.tll-em-c small{display:block;color:var(--tll-ui-muted-2);font-size:13px}.tll-em-c small img{width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin:0 4px 0 2px}'+
+'.tll-em-join{margin:18px 0 0;font:400 15px/1.5 var(--tll-ui-f-body)}.tll-em-join a{color:var(--tll-ui-ink);text-decoration:underline;text-decoration-color:var(--tll-ui-rose-text);text-underline-offset:3px}';
 function el(t,a,x){var e=document.createElement(t);if(a)for(var k in a)e.setAttribute(k,a[k]);if(x!=null)e.textContent=x;return e;}
 function build(data,world){
   if(document.querySelector('[data-tll-x="expats-map"]'))return;
@@ -34,7 +36,7 @@ function build(data,world){
   var st=el('style',{id:'tll-expats-map-v1'});st.textContent=CSS;document.head.appendChild(st);
   var sec=el('section',{'data-tll-x':'expats-map','aria-labelledby':'tll-em-h'}),inner=el('div',{'data-tll-x':'inner'});
   var ey=el('div',{'data-tll-x':'eyebrow'});ey.appendChild(el('div',null,'THE EXPATS MAP · WHERE MEMBERS LIVE'));inner.appendChild(ey);
-  inner.appendChild(el('h2',{id:'tll-em-h','data-tll-x':'dir-h2'},'Where our expats call home.'));
+  inner.appendChild(el('h2',{id:'tll-em-h','data-tll-x':'expats-map-h2'},'Where our expats call home.'));
   inner.appendChild(el('p',{'class':'tll-em-lede'},'Members who list themselves as expats, shown by the home base on their profile. Only people who switched it on, and only the city they chose to show.'));
   var have={};Object.keys(data.countries||{}).forEach(function(c){have[norm(ALIAS[c]||cname(c))]=c;have[norm(cname(c))]=c;});
   try{

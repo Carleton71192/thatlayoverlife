@@ -69,8 +69,10 @@ describe('tll-pwa-hold-v1: no /sw.js request until the PWA exists', () => {
 
 describe('tll-pros-v1 and tll-series-v1: no request to Worker routes that are not deployed', () => {
   const pros = read(LAYERS, 'tll-pros-v1.js');
-  const series = read(LAYERS, 'tll-series-v1.js');
-  const story = 'https://www.thatlayover.life/stories/luxembourg-schengen-road-trip';
+  // 12 Nov 2026: the series layer takes el, style and its GET helper from window.__tllUI, which the core defines before any chunk runs,
+  // so the stand-in runs the core helper layer first, as the site does.
+  const series = read(LAYERS, 'tll-components-v1.js') + read(LAYERS, 'tll-series-v1.js');
+  const story ='https://www.thatlayover.life/stories/luxembourg-schengen-road-trip';
 
   it('a story page sends nothing to /pros or /series/story while the routes are off', async () => {
     for (const src of [pros, series]) {

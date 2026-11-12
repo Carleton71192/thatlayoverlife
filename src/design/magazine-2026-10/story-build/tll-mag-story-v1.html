@@ -7,7 +7,7 @@
    Restyles only: no element is removed, no binding changes, no data-* hook moves except the two the script makes (the hero caption
    under the photo and the author row into the head). Rose means "you can press this". One gutter, one radius, one measure. */
 :root{--st3-f-head:'Playfair Display',Georgia,serif;--st3-f-body:'IBM Plex Sans Condensed',system-ui,sans-serif;
-  --mg-ink:#0A0B14;--mg-cream:#F7F1E8;--mg-paper:#FDF9F3;--mg-line:#D8D0C4;--mg-text:#2a2a2a;--mg-muted:#6B6660;--mg-rose:#C8325B;--mg-teal:#067A79;
+  --mg-ink:#0A0B14;--mg-cream:#F7F1E8;--mg-paper:#FDF9F3;--mg-line:#D8D0C4;--mg-text:#2a2a2a;--mg-muted:#6B6660;--mg-rose:#C8325B;
   --mg-head:'Playfair Display',Georgia,serif;--mg-text-f:'IBM Plex Sans Condensed',system-ui,sans-serif;--mg-mono:'JetBrains Mono',ui-monospace,monospace;--mg-m:16px;--mg-r:4px}
 @media(min-width:900px){:root{--mg-m:40px}}
 .tll-story-article{font-family:var(--mg-text-f)}
@@ -138,7 +138,7 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 .tll-gallery-grid{display:grid !important;grid-template-columns:repeat(2,1fr) !important;gap:8px !important}
 @media(min-width:600px){.tll-gallery-grid{grid-template-columns:repeat(3,1fr) !important;gap:12px !important}}
 @media(min-width:900px){.tll-gallery-grid{grid-template-columns:repeat(4,1fr) !important}}
-.tll-gallery-link{display:block;border-radius:var(--mg-r);overflow:hidden;background:var(--mg-ink2)}
+.tll-gallery-link{display:block;border-radius:var(--mg-r);overflow:hidden;background:var(--mg-ink)}
 .tll-gallery-img{width:100% !important;height:auto !important;aspect-ratio:1 !important;object-fit:cover !important;border-radius:0 !important;display:block}
 .tll-story-aftermatter{padding-top:48px !important}
 .tll-aftermatter-container{gap:36px !important}
