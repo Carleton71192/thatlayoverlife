@@ -125,6 +125,10 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 .tll-gallery-img{width:100% !important;height:auto !important;aspect-ratio:1 !important;object-fit:cover !important;border-radius:0 !important;display:block}
 .tll-story-aftermatter{padding-top:48px !important}
 .tll-aftermatter-container{gap:36px !important}
+/* Visual audit, 12 Nov 2026 (S6 to S8): list items take the paragraph color; the stray divider dot after the eyebrow is hidden (its neighbors are hidden); 12px floor for the small labels. Keep these last in this block. */
+.tll-story-body>.w-richtext.tll-body li{color:inherit}
+.tll-story-hero .tll-story-meta-row>.tll-story-meta-divider:nth-child(4){display:none !important}
+[data-tll-ledger] .tll-sl-title,[data-tll-ledger] .tll-ledger-k,[data-tll-places] [data-tll-places-label],[data-tll-places] [data-tll-places-note],[data-tll-links-card]>:first-child,.tll-story-body .tll-signoff-label,.tll-story-aftermatter .tll-related-header .tll-eyebrow-teal,.tll-story-feedback .tll-eyebrow-teal,.tll-related-loc{font-size:12px !important}
 </style>
 <script id="tll-mag-story-js-v1">
 /* Three small moves the CSS cannot make: the hero caption goes under the photo with the writer's credit, the author row (the bound
