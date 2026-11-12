@@ -163,7 +163,7 @@ export function buildStory(fields, { contributorId, slug, now }) {
     'charter-agreed-at': String(fields['agree-charter']) === 'true' ? new Date(now).toISOString() : null,
     'byline-location': [city, country].filter(Boolean).join(', ').toUpperCase() || null,
     city: city || null,
-    'trip-when': clean(fields['Field 5'] || fields['trip-when'], 80) || null,
+    'trip-when': clean(fields['trip-when'] || fields['field-5'] || fields['Field 5'], 80) || null,
     region: REGION_IDS[String(fields.region || '').toLowerCase()] || null,
     status: STORIES.status.InReview,
     syndication: synd.join(', ') || null,
@@ -181,9 +181,15 @@ export function buildStory(fields, { contributorId, slug, now }) {
   return { fieldData: fd, placement: placement.join('\n'), checks, countryCodes: bylineCountries(country || city), country };
 }
 
+/** The /submit forms send each input under its HTML name (fields() in tll-intake-v1 keys by e.name). Both forms have an
+ *  input named "field-5" (Webflow's default; data-name "Field 5"): the trip date in the story form, the title in the link-out
+ *  form. Until 12 Nov 2026 the Worker read only 'Field 5', so every link-out was refused and every trip date dropped. The old
+ *  keys stay accepted. */
+const linkoutTitle = (fields) => fields['field-5'] || fields['Field 5'] || fields.title;
+
 /** Stories fieldData for a link-out. */
 export function buildLinkout(fields, { contributorId, slug, now, memberName }) {
-  const title = clean(fields['Field 5'] || fields.title, 200);
+  const title = clean(linkoutTitle(fields), 200);
   const url = clean(fields['external-url'], 600);
   const summary = clean(fields.summary, 240);
   const country = clean(fields.country, 80);
@@ -276,7 +282,7 @@ export async function handleIntake(request, env, { fetchImpl = fetch, now = Date
       return reply({ saved: true, held: true, kind, ids });
     }
     const taken = await storySlugs(env, fetchImpl);
-    const title = clean(kind === 'story' ? fields.name : (fields['Field 5'] || fields.title), 200);
+    const title = clean(kind === 'story' ? fields.name : linkoutTitle(fields), 200);
     if (!title) return reply({ error: 'A title is needed.' }, 400);
     const slug = uniqueSlug(title, taken);
     const built = kind === 'story' ? buildStory(fields, { contributorId: contributor.id, slug, now }) : buildLinkout(fields, { contributorId: contributor.id, slug, now, memberName });

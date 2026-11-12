@@ -51,6 +51,68 @@ describe('intake: stories', () => {
   });
 });
 
+// 12 Nov 2026: the /submit page sends each input under its HTML name, and both forms have an input named "field-5" (Webflow's
+// default; data-name "Field 5"): the trip date in the story form, the title in the link-out form. The Worker read only
+// 'Field 5', so every link-out answered "A title is needed." and every trip date was dropped. These send what the page sends.
+function storyWorld() {
+  const calls = []; const kv = new Map();
+  const env = { WEBFLOW_TOKEN: 't', MEMBERSTACK_KEY: 'k', STORIES_COLLECTION_ID: 'stories', CONTRIBUTORS_COLLECTION_ID: 'people',
+    WIRE_KV: { get: async (k) => kv.get(k) ?? null, put: async (k, v) => { kv.set(k, v); } } };
+  const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
+  const fetchImpl = async (url, init = {}) => {
+    const method = init.method || 'GET'; const body = init.body ? JSON.parse(init.body) : null;
+    calls.push({ url: String(url), method, body });
+    if (/\/members\/verify-token$/.test(url)) return json({ data: { id: 'mem_1' } });
+    if (/\/collections\/people\/items\?/.test(url)) return json({ items: [{ id: 'c1', fieldData: { 'memberstack-id': 'mem_1', name: 'Zain Example' } }] });
+    if (/\/collections\/stories\/items\?/.test(url) && method === 'GET') return json({ items: [] });
+    if (/\/collections\/stories\/items$/.test(url) && method === 'POST') return json({ id: 's1' });
+    return json({ error: 'not expected in this test' }, 500);
+  };
+  const send = (kind, fields) => handleIntake(new Request('https://w/intake', { method: 'POST', headers: { Authorization: 'Bearer tok' }, body: JSON.stringify({ kind, fields }) }), env, { fetchImpl, now: NOW });
+  const created = () => calls.filter((c) => c.method === 'POST' && /\/collections\/stories\/items$/.test(c.url)).map((c) => c.body);
+  return { send, created };
+}
+
+describe('intake: the "field-5" key the /submit page actually sends', () => {
+  const linkout = { 'external-url': 'https://example.com/a', 'field-5': 'A piece elsewhere', country: 'Denmark', summary: 'One line.' };
+  it('a link-out with its title under "field-5" is saved as a draft, not refused', async () => {
+    const w = storyWorld();
+    const r = await w.send('linkout', linkout);
+    const j = await r.json();
+    expect(r.status).toBe(200);
+    expect(j).toMatchObject({ saved: true, held: true, kind: 'linkout', slug: 'a-piece-elsewhere' });
+    const [made] = w.created();
+    expect(made.isDraft).toBe(true);
+    expect(made.fieldData.name).toBe('A piece elsewhere');
+    expect(made.fieldData['seo-title']).toBe('A piece elsewhere');
+    expect(made.fieldData['external-url']).toBe('https://example.com/a');
+  });
+  it('buildLinkout reads "field-5" and still reads the old keys', () => {
+    const opts = { contributorId: 'c1', slug: 's', now: NOW, memberName: 'Zain' };
+    expect(buildLinkout(linkout, opts).fieldData.name).toBe('A piece elsewhere');
+    expect(buildLinkout({ ...linkout, 'field-5': undefined, 'Field 5': 'Old key' }, opts).fieldData.name).toBe('Old key');
+    expect(buildLinkout({ ...linkout, 'field-5': undefined, title: 'Title key' }, opts).fieldData.name).toBe('Title key');
+  });
+  it('a link-out with no title at all is still refused', async () => {
+    const r = await storyWorld().send('linkout', { ...linkout, 'field-5': '  ' });
+    expect(r.status).toBe(400);
+    expect(await r.json()).toEqual({ error: 'A title is needed.' });
+  });
+  it('a story keeps its trip date sent under "field-5"', async () => {
+    const { 'Field 5': _old, ...rest } = roberta;
+    const w = storyWorld();
+    const r = await w.send('story', { ...rest, 'field-5': 'November 2022' });
+    expect(r.status).toBe(200);
+    const [made] = w.created();
+    expect(made.isDraft).toBe(true);
+    expect(made.fieldData.name).toBe('Unmatchable Pompeii');
+    expect(made.fieldData['trip-when']).toBe('November 2022');
+    expect(buildStory({ ...rest, 'field-5': 'May 2024' }, { contributorId: 'c1', slug: 'u', now: NOW }).fieldData['trip-when']).toBe('May 2024');
+    expect(buildStory(roberta, { contributorId: 'c1', slug: 'u', now: NOW }).fieldData['trip-when']).toBe('November 2022'); // old key
+    expect(buildStory({ ...rest, 'trip-when': 'June 2021' }, { contributorId: 'c1', slug: 'u', now: NOW }).fieldData['trip-when']).toBe('June 2021');
+  });
+});
+
 // 11 Nov 2026 (Nancy: photo submissions land as Draft and only approved photos ever show). Until this change the Worker created
 // each member photo as a published item with the member's name in the item name, the slug and the alt text, and GET /lounge
 // handed it to the /gallery page within minutes. Everything below is made up: no member's name is in this file.
