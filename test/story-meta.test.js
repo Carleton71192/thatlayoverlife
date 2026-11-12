@@ -335,6 +335,36 @@ describe('injectHead', () => {
     expect(once.startsWith('<style>.a{}</style>\n')).toBe(true);
     expect(injectHead(once, meta)).toBe(once);
   });
+  describe('the Stories template id tll-article-ld-v2', () => {
+    const LIVE = () => PAGE().replace('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article"', '<script type="application/ld+json" id="tll-article-ld-v2">{"@context":"https://schema.org","@type":"Article"')
+      .replace('</body>', '<script id="tll-st3-owner-edit-v1">document.getElementById("tll-article-ld-v2")</script>\n</body>');
+    const ids = (html) => [...html.matchAll(/<script\b[^>]*\bid="([^"]+)"[^>]*type="application\/ld\+json"|<script\b[^>]*type="application\/ld\+json"[^>]*\bid="([^"]+)"/g)].map((m) => m[1] || m[2]);
+    it('a page whose Article block has that id keeps it, so the live body scripts still find the block', () => {
+      const out = injectHead(LIVE(), meta);
+      expect(out).not.toContain('"headline":"Old"');
+      expect(ids(out)).toEqual(['tll-article-ld-v2']);
+      expect(out).not.toContain('tll-story-ld');
+      expect(out.match(/tll-article-ld-v2/g)).toHaveLength(2);
+      expect(injectHead(out, meta)).toBe(out);
+      expect(injectStory(out, { kind: 'html' }).text).toBe(injectStory(injectStory(out, { kind: 'html' }).text, { kind: 'html' }).text);
+      expect(injectStory(LIVE(), { kind: 'html' }).text).toContain('id="tll-article-ld-v2"');
+    });
+    it('a page without that id gets tll-story-ld, and an explicit ldId wins', () => {
+      expect(ids(injectHead(PAGE(), meta))).toEqual(['tll-story-ld']);
+      expect(ids(injectHead(LIVE(), meta, { ldId: 'my-ld' }))).toEqual(['my-ld']);
+    });
+    it('the id on a block that is not an Article, or only in a script string, does not count', () => {
+      const notArticle = PAGE().replace('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization"', '<script type="application/ld+json" id="tll-article-ld-v2">{"@context":"https://schema.org","@type":"Organization"');
+      expect(injectHead(notArticle, meta)).toContain('id="tll-story-ld"');
+      const inString = PAGE('  <script>var s = \'<script type="application/ld+json" id="tll-article-ld-v2">{"@type":"Article"}<\\/script>\';</script>\n');
+      expect(injectHead(inString, meta)).toContain('id="tll-story-ld"');
+    });
+    it('rule skip keeps the template block as it is and writes no second JSON-LD', () => {
+      const out = injectHead(LIVE(), meta, { rule: 'skip' });
+      expect(out).toContain('"headline":"Old"');
+      expect(ids(out)).toEqual(['tll-article-ld-v2']);
+    });
+  });
   it('injectStory on a page is a fixed point (parse, build, inject, again)', () => {
     const once = injectStory(PAGE(), { kind: 'html' }).text;
     expect(injectStory(once, { kind: 'html' }).text).toBe(once);
@@ -477,8 +507,8 @@ describe('front matter edge cases', () => {
     expect(data).toEqual({ title: 'A long title, continued', slug: 'x' });
   });
   it('keeps a key whose value holds U+2028 or U+2029', () => {
-    const { data } = parseFrontMatter('---\nimage_alt: one two three\nslug: x\n---\n');
-    expect(data.image_alt).toBe('one two three');
+    const { data } = parseFrontMatter('---\nimage_alt: one\u2028two\u2029three\nslug: x\n---\n');
+    expect(data.image_alt).toBe('one\u2028two\u2029three');
     expect(data.slug).toBe('x');
   });
 });

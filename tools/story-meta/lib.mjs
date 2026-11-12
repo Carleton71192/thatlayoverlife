@@ -805,6 +805,15 @@ function markerPair(text, where) {
  * Cuts spans out of the original text and its masked copy alike. A tag that stood alone on its line takes the whole line
  * with it (decided on the original text). Returns [text, masked, at], with `at` moved to match.
  */
+/** True when the head has an Article JSON-LD script with the id tll-article-ld-v2 (the Stories template block). */
+function hasTemplateLd(head, mhead) {
+  return ldScripts(head, mhead).some((x) => {
+    const len = mhead.slice(x.start, x.end).match(/^<script\b[^>]*>/i)[0].length;
+    if (attrsOf(head.slice(x.start, x.start + len)).id !== TEMPLATE_LD_ID) return false;
+    try { return !!articleNode(JSON.parse(x.inner)); } catch { return false; }
+  });
+}
+
 function cutSpans(text, masked, spans, at = -1) {
   let o = text, mk = masked;
   for (const [a, b] of [...spans].sort((x, y) => y[0] - x[0])) {
@@ -832,11 +841,15 @@ function cutSpans(text, masked, spans, at = -1) {
  *  - A page with <body> and no <head> gets <head>, the block and </head> just before <body>.
  *  - Input with neither <head> nor <body> is treated as head code (a fragment, like the Webflow head code box): the block
  *    goes at the end.
+ *  - The JSON-LD id: an explicit ldId wins. Without one, a head that already has an Article block with the id
+ *    tll-article-ld-v2 keeps that id, so the live page scripts that look it up (tll-st3-owner-edit-v1, tll-ld-unescape-v1)
+ *    still find the block. Any other head gets tll-story-ld.
  */
-export function injectHead(html, meta, { rule = 'replace', ldId = LD_ID } = {}) {
+export function injectHead(html, meta, { rule = 'replace', ldId } = {}) {
   const src = String(html ?? '');
   const masked = maskHtml(src);
   const r = headRange(src, masked);
+  if (!ldId) ldId = r.kind !== 'body-only' && hasTemplateLd(src.slice(r.start, r.end), masked.slice(r.start, r.end)) ? TEMPLATE_LD_ID : LD_ID;
   // The block uses the file's own line ending.
   const eol = /\r\n/.test(src) ? '\r\n' : '\n';
   const render = (m, opts) => renderMeta(m, opts).replace(/\n/g, eol);
@@ -906,7 +919,7 @@ export function injectHead(html, meta, { rule = 'replace', ldId = LD_ID } = {}) 
  */
 export function injectMarkdown(md, meta) {
   const src = String(md ?? '');
-  const m = src.match(/^(﻿?---[ \t]*\r?\n)([\s\S]*?\r?\n)?(---[ \t]*(?:\r?\n|$))/);
+  const m = src.match(/^(\uFEFF?---[ \t]*\r?\n)([\s\S]*?\r?\n)?(---[ \t]*(?:\r?\n|$))/);
   const eol = /\r\n/.test(m ? m[0] : src) ? '\r\n' : '\n';
   const field = ['head: |', ...renderMeta(meta).split('\n').map((l) => `  ${l}`)].join(eol);
   if (!m) return `---${eol}${field}${eol}---${eol}${src}`;

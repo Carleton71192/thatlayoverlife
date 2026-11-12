@@ -87,7 +87,7 @@ The front matter reader handles the subset a story file needs: `key: value`, quo
 ## Escaping
 
 - Attribute values: `&`, `"`, `'`, `<`, `>` become entities.
-- JSON inside `<script type="application/ld+json">`: `<`, `>` and `&` become `<`, `>`, `&`, so `</script>` and `<!--` cannot appear; U+2028 and U+2029 are escaped. Accents and emoji stay as characters (São Paulo stays São Paulo).
+- JSON inside `<script type="application/ld+json">`: `<`, `>` and `&` become `\u003c`, `\u003e`, `\u0026`, so `</script>` and `<!--` cannot appear; U+2028 and U+2029 are escaped. Accents and emoji stay as characters (São Paulo stays São Paulo).
 
 ## Injection rules
 
@@ -98,6 +98,7 @@ The front matter reader handles the subset a story file needs: `key: value`, quo
 - **Equivalent tags outside the markers** (the same og:, twitter:, article: or description key; a canonical link; an Article JSON-LD script):
   - `--rule replace` (default): they are removed, so each key has one value, the block's.
   - `--rule skip`: they stay, and the block leaves those keys out.
+- **The JSON-LD id:** when the Article block being replaced has the id `tll-article-ld-v2` (a saved copy of a live story page), the new block keeps that id, so `tll-st3-owner-edit-v1` and `tll-ld-unescape-v1` on that page still find it. Any other page gets `tll-story-ld`.
 - `<title>`, charset, viewport, icons, styles, other scripts and other JSON-LD (an Organization, say) are never touched.
 - The file's own line ending (LF or CRLF) is kept.
 - Markdown: the block goes into the front matter as a `head: |` field (two-space indent), which a site build copies into `<head>`. The body is not touched. A `head:` field that does not start with the tll-meta start marker was written by someone else: the file is reported and left as it is.
