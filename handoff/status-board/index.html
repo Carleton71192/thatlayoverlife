@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLL Status Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,800;1,800&display=swap">
+<style>
+/* Layout: summary strip, then "waiting on you", then every project as a block of rows. Status lives in a colored stripe and pill on each row. */
+:root {
+  --bg: #FAF7F2;
+  --panel: #FFFFFF;
+  --ink: #0A0B14;
+  --muted: #5B5F6E;
+  --line: #E6E0D6;
+  --accent: #D63859;
+  --accent-soft: #FCE6EC;
+  --teal: #067A79;
+  --s-done: #6B7280;
+  --s-live: #157F3C;
+  --s-test: #067A79;
+  --s-prog: #2F5BD3;
+  --s-you: #C2410C;
+  --s-block: #B91C1C;
+  --s-prop: #7C3AED;
+  --s-not: #8A8F9C;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1220; --panel: #121A2B; --ink: #F1EEE8; --muted: #A3A9B8; --line: #243049;
+    --accent: #F0507A; --accent-soft: #3A1A28; --teal: #00C9C8;
+    --s-done: #8B93A3; --s-live: #4ADE80; --s-test: #2DD4D3; --s-prog: #7EA2FF; --s-you: #FB923C;
+    --s-block: #F87171; --s-prop: #B794F6; --s-not: #7B8294;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1220; --panel: #121A2B; --ink: #F1EEE8; --muted: #A3A9B8; --line: #243049;
+  --accent: #F0507A; --accent-soft: #3A1A28; --teal: #00C9C8;
+  --s-done: #8B93A3; --s-live: #4ADE80; --s-test: #2DD4D3; --s-prog: #7EA2FF; --s-you: #FB923C;
+  --s-block: #F87171; --s-prop: #B794F6; --s-not: #7B8294;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.45 var(--font-body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+h1 { font: 800 clamp(28px, 4vw, 40px)/1.1 var(--font-display); margin: 0; text-wrap: balance; }
+h1 em { color: var(--accent); }
+.sub { color: var(--muted); margin: 0; max-width: 70ch; }
+.mono { font-family: var(--font-mono); font-size: 12.5px; }
+h2 { font: 600 13px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+
+.summary { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  border-radius: 999px; padding: 6px 12px; font: 500 14px var(--font-body); cursor: pointer; }
+.chip .n { font: 600 13px var(--font-mono); font-variant-numeric: tabular-nums; }
+.chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.chip:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.tools input, .tools select { font: 15px var(--font-body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.tools input { flex: 1 1 220px; min-width: 0; }
+.tools label.check { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 14px; }
+
+.you { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 12px; padding: 16px; }
+.you h2 { color: var(--accent); }
+
+.project { display: grid; gap: 0; }
+.project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.project-head h3 { font: 800 20px/1.2 var(--font-display); margin: 0; }
+.bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: var(--line); min-width: 120px; flex: 0 1 220px; }
+.bar span { background: var(--c); }
+.rows { display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: 4px 1fr auto; gap: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.row .stripe { background: var(--c); }
+.row .body { padding: 10px 0; display: grid; gap: 4px; min-width: 0; }
+.row .title { font-weight: 600; overflow-wrap: anywhere; }
+.row .next { color: var(--muted); font-size: 15px; overflow-wrap: anywhere; }
+.row .next b { color: var(--ink); font-weight: 500; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; color: var(--muted); }
+.pill { display: inline-block; border-radius: 999px; padding: 2px 9px; font: 600 11.5px/1.5 var(--font-mono); color: var(--c); border: 1px solid var(--c); white-space: nowrap; }
+.row .act { padding: 10px 12px 10px 0; display: flex; align-items: flex-start; }
+.row.is-done .title { text-decoration: line-through; text-decoration-color: var(--muted); }
+.row.is-done { opacity: .72; }
+button.tick { font: 500 13px var(--font-body); border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 8px; padding: 6px 10px; cursor: pointer; white-space: nowrap; }
+button.tick:hover { border-color: var(--ink); }
+button.tick:disabled { opacity: .5; cursor: default; }
+
+.notice { border: 1px dashed var(--line); border-radius: 10px; padding: 14px 16px; color: var(--muted); }
+.empty { color: var(--muted); font-size: 15px; padding: 6px 2px; }
+footer { color: var(--muted); font-size: 14px; display: grid; gap: 6px; }
+
+@media (max-width: 560px) {
+  .row { grid-template-columns: 4px 1fr; }
+  .row .act { grid-column: 2; padding: 0 0 10px; }
+}
+@media (prefers-reduced-motion: no-preference) { .row { transition: opacity .2s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>That Layover Life, <em>where everything stands</em></h1>
+    <p class="sub">Every project and task across the sessions, with its status, who has the next move and what that move is. Sessions update these rows as work moves. Tick a row when you have done your part.</p>
+    <p class="sub mono" id="stamp">Loading the board.</p>
+  </header>
+
+  <section aria-labelledby="sum-h">
+    <h2 id="sum-h">By status (tap to filter)</h2>
+    <div class="summary" id="summary"></div>
+  </section>
+
+  <div class="tools">
+    <label for="q" class="mono" style="position:absolute;left:-9999px">Search</label>
+    <input id="q" type="search" placeholder="Search tasks, pages, next steps">
+    <label for="site" class="mono" style="position:absolute;left:-9999px">Site</label>
+    <select id="site"><option value="">All sites</option></select>
+    <label class="check" for="showdone"><input id="showdone" type="checkbox"> Show done</label>
+  </div>
+
+  <section class="you" aria-labelledby="you-h" id="you-sec">
+    <h2 id="you-h">Waiting on you</h2>
+    <div class="rows" id="you"></div>
+  </section>
+
+  <section aria-labelledby="all-h">
+    <h2 id="all-h">All projects</h2>
+    <div id="projects" style="display:grid;gap:26px"></div>
+  </section>
+
+  <footer>
+    <div>Statuses: live on www, on the test site, in progress, waiting on you, blocked, proposed, not started, done.</div>
+    <div class="mono" id="foot"></div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var STATUS = {
+    'waiting-on-nancy': { label: 'waiting on you', c: '--s-you', order: 0 },
+    'blocked':          { label: 'blocked',        c: '--s-block', order: 1 },
+    'in-progress':      { label: 'in progress',    c: '--s-prog', order: 2 },
+    'on-test-site':     { label: 'on test site',   c: '--s-test', order: 3 },
+    'proposed':         { label: 'proposed',       c: '--s-prop', order: 4 },
+    'not-started':      { label: 'not started',    c: '--s-not', order: 5 },
+    'live':             { label: 'live on www',    c: '--s-live', order: 6 },
+    'done':             { label: 'done',           c: '--s-done', order: 7 }
+  };
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var items = [], meta = {}, db = null, filter = null;
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function fmtDate(v) {
+    if (!v) return '';
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(v));
+    if (!m) return String(v);
+    return (+m[3]) + ' ' + MONTHS[+m[2] - 1] + ' ' + m[1];
+  }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function st(s) { return STATUS[s] || STATUS['not-started']; }
+  function color(s) { return 'var(' + st(s).c + ')'; }
+
+  function readDocs(snap) {
+    var list = snap && (snap.docs || snap.documents || snap);
+    if (!Array.isArray(list)) return [];
+    return list.map(function (d) {
+      var data = typeof d.data === 'function' ? d.data() : (d.data || d);
+      var o = Object.assign({}, data);
+      o._id = d.id || o.id;
+      return o;
+    });
+  }
+
+  function rowHtml(it, showProject) {
+    var s = it.status || 'not-started';
+    var done = s === 'done';
+    var meta = [];
+    meta.push('<span class="pill" style="--c:' + color(s) + '">' + esc(st(s).label) + '</span>');
+    if (showProject && it.project) meta.push('<span>' + esc(it.project) + '</span>');
+    if (it.owner) meta.push('<span>next move: ' + esc(it.owner) + '</span>');
+    if (it.site) meta.push('<span class="mono">' + esc(it.site) + '</span>');
+    if (it.updated) meta.push('<span class="mono">' + esc(fmtDate(it.updated)) + '</span>');
+    if (it.source) meta.push('<span class="mono">' + esc(it.source) + '</span>');
+    var btn = done
+      ? '<button class="tick" data-id="' + esc(it._id) + '" data-to="reopen">Reopen</button>'
+      : (s === 'waiting-on-nancy' ? '<button class="tick" data-id="' + esc(it._id) + '" data-to="done">I did my part</button>' : '');
+    return '<div class="row' + (done ? ' is-done' : '') + '" style="--c:' + color(s) + '">' +
+      '<div class="stripe"></div>' +
+      '<div class="body"><div class="title">' + esc(it.title) + '</div>' +
+      (it.next_step ? '<div class="next"><b>Next:</b> ' + esc(it.next_step) + '</div>' : '') +
+      (it.note ? '<div class="next"><b>Your note:</b> ' + esc(it.note) + '</div>' : '') +
+      '<div class="meta">' + meta.join('') + '</div></div>' +
+      '<div class="act">' + btn + '</div></div>';
+  }
+
+  function matches(it) {
+    var q = $('q').value.trim().toLowerCase();
+    var site = $('site').value;
+    if (filter && it.status !== filter) return false;
+    if (!filter && !$('showdone').checked && it.status === 'done') return false;
+    if (site && it.site !== site) return false;
+    if (q) {
+      var hay = [it.title, it.project, it.next_step, it.owner, it.source, it.site, it.note].join(' ').toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  }
+
+  function render() {
+    // summary
+    var counts = {};
+    items.forEach(function (it) { counts[it.status] = (counts[it.status] || 0) + 1; });
+    $('summary').innerHTML = Object.keys(STATUS).sort(function (a, b) { return STATUS[a].order - STATUS[b].order; })
+      .filter(function (k) { return counts[k]; })
+      .map(function (k) {
+        return '<button class="chip" type="button" data-status="' + k + '" aria-pressed="' + (filter === k) + '" style="--c:' + color(k) + '">' +
+          '<span class="dot"></span>' + esc(STATUS[k].label) + ' <span class="n">' + counts[k] + '</span></button>';
+      }).join('');
+
+    // site options
+    var sites = {};
+    items.forEach(function (it) { if (it.site) sites[it.site] = 1; });
+    var sel = $('site'), cur = sel.value;
+    sel.innerHTML = '<option value="">All sites</option>' + Object.keys(sites).sort().map(function (s) {
+      return '<option' + (s === cur ? ' selected' : '') + '>' + esc(s) + '</option>';
+    }).join('');
+
+    var shown = items.filter(matches);
+    var sortFn = function (a, b) {
+      return st(a.status).order - st(b.status).order || String(b.updated || '').localeCompare(String(a.updated || '')) || String(a.title).localeCompare(String(b.title));
+    };
+
+    var you = shown.filter(function (it) { return it.status === 'waiting-on-nancy'; }).sort(sortFn);
+    $('you-sec').hidden = !you.length;
+    $('you').innerHTML = you.map(function (it) { return rowHtml(it, true); }).join('');
+
+    var groups = {};
+    shown.forEach(function (it) { var p = it.project || 'Other'; (groups[p] = groups[p] || []).push(it); });
+    var all = {};
+    items.forEach(function (it) { var p = it.project || 'Other'; (all[p] = all[p] || []).push(it); });
+    var names = Object.keys(groups).sort(function (a, b) {
+      var oa = Math.min.apply(null, groups[a].map(function (i) { return st(i.status).order; }));
+      var ob = Math.min.apply(null, groups[b].map(function (i) { return st(i.status).order; }));
+      return oa - ob || a.localeCompare(b);
+    });
+    $('projects').innerHTML = names.length ? names.map(function (p) {
+      var rows = groups[p].sort(sortFn);
+      var tot = all[p].length;
+      var segs = Object.keys(STATUS).sort(function (a, b) { return STATUS[a].order - STATUS[b].order; }).map(function (k) {
+        var n = all[p].filter(function (i) { return i.status === k; }).length;
+        return n ? '<span title="' + esc(STATUS[k].label) + ': ' + n + '" style="--c:' + color(k) + ';flex:' + n + '"></span>' : '';
+      }).join('');
+      var settled = all[p].filter(function (i) { return i.status === 'done' || i.status === 'live'; }).length;
+      return '<div class="project"><div class="project-head"><h3>' + esc(p) + '</h3>' +
+        '<div style="display:flex;gap:10px;align-items:center"><span class="mono" style="color:var(--muted)">' + settled + ' of ' + tot + ' live or done</span>' +
+        '<div class="bar" role="img" aria-label="' + esc(p) + ' status mix">' + segs + '</div></div></div>' +
+        '<div class="rows">' + rows.map(function (it) { return rowHtml(it, false); }).join('') + '</div></div>';
+    }).join('') : '<div class="empty">Nothing matches these filters.</div>';
+
+    var open = items.filter(function (i) { return i.status !== 'done' && i.status !== 'live'; }).length;
+    $('stamp').textContent = (meta.updated ? 'Last gathered ' + fmtDate(meta.updated) + '. ' : '') + open + ' open, ' +
+      items.filter(function (i) { return i.status === 'waiting-on-nancy'; }).length + ' waiting on you.';
+    $('foot').textContent = meta.note || '';
+  }
+
+  document.addEventListener('click', function (e) {
+    var chip = e.target.closest('.chip');
+    if (chip) { var s = chip.getAttribute('data-status'); filter = filter === s ? null : s; render(); return; }
+    var b = e.target.closest('button.tick');
+    if (!b || !db) return;
+    var id = b.getAttribute('data-id'), to = b.getAttribute('data-to');
+    var it = items.find(function (i) { return i._id === id; });
+    if (!it) return;
+    b.disabled = true;
+    var patch = to === 'done'
+      ? { status: 'done', prev_status: it.status, done_on: today(), updated: today(), ticked_by_nancy: true }
+      : { status: it.prev_status || 'waiting-on-nancy', updated: today(), ticked_by_nancy: false };
+    Promise.resolve(db.doc('items/' + id).update(patch)).catch(function () {
+      b.disabled = false;
+      b.textContent = 'Could not save. Try again';
+    });
+  });
+  ['q', 'site', 'showdone'].forEach(function (id) { $(id).addEventListener('input', render); $(id).addEventListener('change', render); });
+
+  render();
+  var timer = setTimeout(function () {
+    if (!items.length) $('stamp').textContent = 'The board did not load. Reload the page, and sign in to claude.ai if you are signed out.';
+  }, 10000);
+
+  if (window.claude && window.claude.use) {
+    window.claude.use('db').then(function (d) {
+      db = d;
+      if (!db) { clearTimeout(timer); $('stamp').textContent = 'Sign in to claude.ai to see the board.'; return; }
+      db.collection('items').onSnapshot(function (snap) {
+        clearTimeout(timer);
+        items = readDocs(snap).filter(function (i) { return i.title; });
+        if (!items.length) $('stamp').textContent = 'No rows yet.';
+        render();
+      }, function () { clearTimeout(timer); $('stamp').textContent = 'The board could not be read. Reload the page.'; });
+      db.doc('meta/board').onSnapshot(function (snap) {
+        var d = snap && (typeof snap.data === 'function' ? snap.data() : snap.data);
+        meta = d || {};
+        render();
+      }, function () {});
+    }).catch(function () { clearTimeout(timer); $('stamp').textContent = 'The board could not load here.'; });
+  } else {
+    clearTimeout(timer);
+    $('stamp').textContent = 'Open this page on claude.ai to see the board.';
+  }
+})();
+</script>
+</body>
+</html>
