@@ -341,3 +341,7 @@ The test site was published by another session with layers 16.56.0. Checked ther
 - **Story pages:** "Last updated" is gone where the story has no date and shows "12 October 2026" on the one story that has one. Related cards read "12 min read". The end block carries the new line.
 - **/for-press:** the new charter link was bright teal on a white card, unreadable. Fixed with the site's rose link style, staged, not on the test site yet.
 - **Not tested:** the funding label and the correction line with real values (no story has either yet), a signed-in submission through the new Worker, and anything signed in.
+
+### 12 November 2026: Changes line cut back (your decision, "Cut it, ride the next publish")
+
+www went out at 06:44 UTC with the charter, and no story has a funding value yet, so "Added funding labels to every story." was untrue live. The charter's Changes line now reads "1.1: Clarified when review happens and how we use AI." (staged; it goes live with the next www publish). The sentence comes back when the funding values from your sheet are filled in.
