@@ -1,13 +1,13 @@
 # Link-out titles and trip dates from /submit (12 November 2026)
 
-For Nancy. Nothing in this note is live yet. The fix is in the repo and tested; the Worker is not deployed. Nothing changes in Webflow.
+For Nancy. **Live since 12 November 2026, 09:28 UTC** (Worker version `4ff59e28`, on your "deploy the field-5 fix"). Nothing changes in Webflow.
 
 ## In short
 
 - On /submit, every "link to a piece published elsewhere" is refused by the Worker with "A title is needed.", even when the member typed a title. The member still sees "Saved. It is with the editor.", so nobody notices; no draft is made for you.
 - Every full story sent from /submit loses its trip date ("When were you there?"). The story itself still arrives as a draft.
 - The fix is small: the Worker now reads the title and the trip date under the name the page really sends. Nothing on the page changes.
-- **Needs you:** a yes to deploy the Worker.
+- Deployed on your yes: the live code of `040dddfb` plus this fix only. The photo hold is still not deployed. After the deploy every Worker page answered normally; no test story or link-out was sent.
 
 ## What was wrong
 
