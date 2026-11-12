@@ -1,0 +1,16 @@
+{
+ "_about": "SAMPLE. A made-up traveler for signed-out visitors on /the-map (Nancy, 25 Oct 2026: option B). Not anyone's real trips. Shown with a SAMPLE MAP label.",
+ "v": 2,
+ "travelers": [{ "id": "t1", "name": "Sample traveler", "pet": false }],
+ "states": {
+  "724": { "t1": "lived" }, "826": { "t1": "lived" },
+  "250": { "t1": "visited" }, "380": { "t1": "visited" }, "620": { "t1": "visited" }, "276": { "t1": "visited" },
+  "528": { "t1": "visited" }, "056": { "t1": "visited" }, "756": { "t1": "visited" }, "040": { "t1": "visited" },
+  "203": { "t1": "visited" }, "300": { "t1": "visited" }, "792": { "t1": "visited" }, "504": { "t1": "visited" },
+  "818": { "t1": "visited" }, "404": { "t1": "visited" }, "710": { "t1": "visited" }, "356": { "t1": "visited" },
+  "764": { "t1": "visited" }, "704": { "t1": "visited" }, "392": { "t1": "visited" }, "410": { "t1": "visited" },
+  "036": { "t1": "visited" }, "554": { "t1": "visited" }, "124": { "t1": "visited" }, "484": { "t1": "visited" },
+  "188": { "t1": "visited" }, "604": { "t1": "visited" }, "032": { "t1": "visited" }, "152": { "t1": "visited" },
+  "784": { "t1": "layover" }, "634": { "t1": "layover" }, "702": { "t1": "layover" }
+ }
+}
