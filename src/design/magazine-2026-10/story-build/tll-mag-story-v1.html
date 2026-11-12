@@ -43,6 +43,12 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 .tll-story-hero-content .st3-author-name::after{content:none}
 .tll-story-hero-content .st3-author-filed{font:400 14px/1.4 var(--mg-text-f);letter-spacing:0;text-transform:none;color:var(--mg-muted);margin-top:2px}
 .tll-story-hero-content .st3-author-filed [data-st3-loc]{text-transform:capitalize}
+/* Visual audit, 12 Nov 2026 (N10, Nancy: "Add"): the Receipts line under the byline, written by the script from the Receipts rows. A link to
+   the Receipts block: mono 12px, muted, rose underline, 40px tap height. The last rule only matters if Webflow's link code is absent and
+   the browser makes the jump itself: the block then stops clear of the sticky header (77px). */
+.tll-story-hero-content .tll-mg-rcpt{display:inline-flex;justify-self:start;align-items:center;min-height:40px;margin:6px 0 0;font:400 12px/1.5 var(--mg-mono);letter-spacing:.04em;text-transform:none;color:var(--mg-muted);text-decoration:underline;text-decoration-color:var(--mg-rose);text-decoration-thickness:1px;text-underline-offset:4px;overflow-wrap:anywhere}
+.tll-story-hero-content .tll-mg-rcpt:hover{color:var(--mg-ink)}
+[data-tll-ledger="story"]{scroll-margin-top:104px}
 .tll-mg-stamp{position:absolute;right:12px;top:12px;width:96px;color:var(--mg-cream);opacity:.95}
 .tll-mg-stamp svg{display:block;width:100%;height:auto}
 @media(min-width:900px){
@@ -58,8 +64,14 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 .tll-story-body>.st3-from{font:400 14px/1.5 var(--mg-text-f);color:var(--mg-muted)}
 .tll-story-body>.st3-from a{color:var(--mg-ink);text-decoration:underline;text-decoration-color:var(--mg-rose);text-underline-offset:3px}
 .tll-story-body>.st3-lede{display:none !important}
-.tll-story-body>.w-richtext.tll-body{font-family:var(--mg-text-f) !important;font-size:19px !important;line-height:1.6 !important;color:var(--mg-text) !important}
-.tll-story-body>.w-richtext.tll-body p{margin:0 0 1.2em}
+/* Visual audit, 12 Nov 2026 (N1, Nancy: "B"): the kit's reading measure. Story text is 18px / 1.65 in a 560px column (about 73 characters a
+   line), 24px between paragraphs. --st3-col is the template's own column variable: the template sizes the reading column and the blocks
+   after the story (places, Traveled with, the Receipts, the pitch box, the author card, the feedback block) from it, so one number keeps
+   them all on one left and right edge. The p and li rule is needed because a site head rule (17px / 1.7, !important) sets them directly. */
+:root{--st3-col:560px}
+.tll-story-body>.w-richtext.tll-body{font-family:var(--mg-text-f) !important;font-size:18px !important;line-height:1.65 !important;color:var(--mg-text) !important}
+.tll-story-body>.w-richtext.tll-body p,.tll-story-body>.w-richtext.tll-body li{font-size:18px !important;line-height:1.65 !important}
+.tll-story-body>.w-richtext.tll-body p{margin:0 0 24px}
 .tll-story-body>.w-richtext.tll-body>p:first-child::first-letter{font-family:var(--mg-head);font-size:3.6em;line-height:.85;float:left;padding:.08em .1em 0 0;color:var(--mg-ink);font-weight:800}
 .tll-story-body>.w-richtext.tll-body h2,.tll-story-body>.w-richtext.tll-body h3{font-family:var(--mg-head);font-weight:800;font-size:28px;line-height:1.1;letter-spacing:-.01em;margin:1.4em 0 .5em;color:var(--mg-ink)}
 .tll-story-body>.w-richtext.tll-body h3{font-size:24px}
@@ -113,6 +125,11 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 .tll-story-body .tll-inline-photo{margin:2em 0 2.4em !important;max-width:none !important;width:auto !important;padding:0}
 .tll-story-body .tll-inline-photo a{display:block;border-radius:var(--mg-r);overflow:hidden}
 .tll-story-body .tll-inline-photo img{display:block;width:100%;height:auto;max-height:none;object-fit:cover;border-radius:var(--mg-r)}
+/* Visual audit, 12 Nov 2026 (N2, Nancy: "Whole"): a photo in the story text is shown whole, never cropped and never taller than 70% of the
+   window, centered. The square rule further down (.tll-gallery-img) is for the end gallery grid; it also caught these photos because they
+   carry the same class. The box keeps the photo's own shape; when the 70% cap makes the box wider than the photo, the photo sits centered
+   inside it (contain). Until a photo has loaded its box holds a 4:3 place, the shape most story photos have, so the page moves little. */
+.tll-story-body .tll-inline-photo img{aspect-ratio:auto 4 / 3 !important;max-height:70vh !important;object-fit:contain !important}
 .tll-story-body .tll-inline-photo figcaption{font:400 13px/1.45 var(--mg-text-f);color:var(--mg-muted);margin:10px 0 0;text-wrap:pretty}
 @media(min-width:900px){.tll-story-body .tll-inline-photo{margin:2.4em calc(-1*min(6vw,100px)) 2.8em !important}.tll-story-body .tll-inline-photo figcaption{padding:0 min(6vw,100px)}}
 .tll-story-gallery{background:var(--mg-cream) !important;padding:48px 0 56px !important}
@@ -133,7 +150,8 @@ h1.tll-story-title{font-family:var(--mg-head) !important;font-weight:800 !import
 <script id="tll-mag-story-js-v1">
 /* Three small moves the CSS cannot make: the hero caption goes under the photo with the writer's credit, the author row (the bound
    byline) moves into the head with the reading time, and the stamp is drawn from the story's byline location (the data-st3-byline attribute, as the st3 script reads it; the span's own text is the contributor's home), the date and the pillar.
-   Nothing is deleted; the caption element is hidden, not removed. Runs once. */
+   Nothing is deleted; the caption element is hidden, not removed. Runs once.
+   12 Nov 2026: a fourth move, the Receipts line under the byline (rcpt() below); it also gives the Receipts block an id and two scroll attributes. */
 (function(){
 var SVG='<svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><filter id="tll-mg-ink" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter><path id="tll-mg-top" d="M30,100 A70,70 0 1,1 170,100"/><path id="tll-mg-bottom" d="M34,100 A66,66 0 0,0 166,100"/></defs><g filter="url(#tll-mg-ink)"><g fill="none" stroke="currentColor"><circle cx="100" cy="100" r="94" stroke-width="3"/><circle cx="100" cy="100" r="86" stroke-width="1.2"/><circle cx="100" cy="100" r="58" stroke-width="1.2"/></g><g fill="currentColor" font-family="\'JetBrains Mono\',ui-monospace,monospace" text-anchor="middle"><text font-size="12.5" font-weight="600" letter-spacing="3"><textPath href="#tll-mg-top" startOffset="50%">THAT LAYOVER LIFE</textPath></text><text font-size="9" letter-spacing="1.4"><textPath href="#tll-mg-bottom" startOffset="50%">{A}</textPath></text><text x="100" y="82" font-size="8" letter-spacing="3" font-weight="600">TLL</text><text x="100" y="{Y}" font-size="{S}" font-weight="600" letter-spacing="1">{P}</text><text x="100" y="124" font-size="9.5" letter-spacing="2">{D}</text></g></g></svg>';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -147,6 +165,30 @@ function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16
   var u=(window.__tllMgN=(window.__tllMgN||0)+1);svg=svg.replace(/tll-mg-(ink|top|bottom)/g,'tll-mg-$1-'+u);
   return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
 function txt(el){return el&&!el.classList.contains('w-dyn-bind-empty')?el.textContent.trim():'';}
+/* 12 Nov 2026 (visual audit N10, Nancy: "Add"): one linked line under the byline, for example "Edited by {editor} · Sources listed · Published
+   2 August 2024". Every fact is read from the Receipts rows already on the page (data-tll-lg); nothing is typed here but the three labels.
+   It prints nothing unless two facts exist. The date reads day first, as the Receipts show it after the template script (the same pattern
+   is used here because this runs before that script). "Updated" shows only when the Last updated row holds a date of its own: the template
+   copies the Published date into an empty Last updated row, and that copy is not an update. Runs once, inside run(). */
+var RMD=/^(January|February|March|April|May|June|July|August|September|October|November|December) (\d{1,2}), (\d{4})$/;
+function rcpt(c,a){var led=document.querySelector('[data-tll-ledger="story"]');if(!led||!a||c.querySelector('.tll-mg-rcpt'))return;
+  function v(k){return txt(led.querySelector('[data-tll-lg="'+k+'"]')).replace(/\s+/g,' ');}
+  function d(s){var m=s.match(RMD);return m?m[2]+' '+m[1]+' '+m[3]:s;}
+  var ed=v('edited-by'),src=v('sources').replace(/<[^>]*>/g,'').trim(),pub=d(v('published')),upd=d(v('updated')),f=[];
+  if(ed)f.push('Edited by '+ed);
+  if(src)f.push('Sources listed');
+  if(upd&&upd!==pub)f.push('Updated '+upd);else if(pub)f.push('Published '+pub);
+  if(f.length<2)return;
+  if(!led.id)led.id='receipts';
+  /* Webflow's own in-page link code (webflow.js, module "scroll") handles the click. Two attributes that code reads on the target are set
+     here: data-scroll-time 0 makes the jump instant (its slow glide passes every photo on the way, the photos load and change height, and
+     the glide then stops short of the block or past it), and data-scroll mid puts the block in the middle of the window, clear of the
+     sticky header. */
+  led.setAttribute('data-scroll-time','0');led.setAttribute('data-scroll','mid');
+  var l=document.createElement('a');l.className='tll-mg-rcpt';l.href='#'+led.id;
+  /* a line break may fall only after a dot, never inside a fact */
+  l.textContent=f.map(function(x){return x.replace(/ /g,'\u00a0');}).join('\u00a0\u00b7 ');
+  a.insertAdjacentElement('afterend',l);}
 function run(){
   var hero=document.querySelector('.tll-story-hero'),c=hero&&hero.querySelector('.tll-story-hero-content');
   if(!c||c.dataset.tllMag)return;c.dataset.tllMag='1';
@@ -158,7 +200,7 @@ function run(){
   var a=document.querySelector('.st3-author');
   if(a){var mins=document.querySelector('.tll-story-reading-time'),m=txt(mins).match(/\d+/),w=a.querySelector('[data-st3-when]');
     if(m&&w){var sp=document.createElement('span');sp.className='tll-mg-mins';sp.textContent=' · '+m[0]+' min read';w.insertAdjacentElement('afterend',sp);}
-    c.appendChild(a);}
+    c.appendChild(a);rcpt(c,a);}
   var L=document.querySelector('[data-st3-loc]'),loc=(L&&(L.getAttribute('data-st3-byline')||L.getAttribute('data-st3-country-name')||'').trim())||txt(L)||txt(document.querySelector('.tll-story-meta-row .tll-eyebrow-teal'));
   var place=(loc.split(',')[0]||'').trim().toUpperCase();
   var when=txt(document.querySelector('[data-st3-when]')),d=when.match(/(\d{1,2}) (\w{3})\w* (\d{4})/)||when.match(/(\w{3})\w* (\d{1,2}),? (\d{4})/);
