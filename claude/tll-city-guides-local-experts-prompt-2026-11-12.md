@@ -1,6 +1,6 @@
 # Claude Code prompt: TLL city guides, place pages and the Local Expert bench
 
-Received from Nancy in the cloud session on 12 Nov 2026. Saved verbatim below except for formatting of this header.
+Received from Nancy in the cloud session on 12 Nov 2026; updated by her the same day (decisions on URLs, the index threshold, the vote name, type and color, clips and events). This file holds the updated version.
 
 Date: 12 Nov 2026
 Design reference (source of truth for layout): canvas "TLL Airport Guide Template: CPH", https://claude.ai/artifact/VH43pbGoF37D4d9T6omSQ6 (boards: the page, and "Under the hood")
@@ -31,10 +31,13 @@ Build Copenhagen first, end to end. Do not start a second city until Copenhagen 
 - More photos and video everywhere. Stand-in photos are allowed under build principles v1.1 section 5 (credited, real place, "Been here? Replace this photo", never in member strips, no stock video).
 - Expert bench is open and large. No cap per city, no invitation needed, no paid placement, order rotates.
 - Experts keep their content. TLL shows a teaser and links to their site.
-- No star ratings and no blended review score. TLL's own signals only: "Still good" votes and "Picked by N locals". Outside review sites are links, not imported data.
+- No star ratings and no blended review score. TLL's own signals only: "Crew Approved" votes and "Picked by N locals". Outside review sites are links, not imported data.
 - Posting rules from Flows v2 apply to picks, places, events and media: live at once, the money question, auto-checks, held-from-feeds, Notion queue.
 - Thin pages stay out of search until they pass a threshold (Phase 5).
 - Sign-up 16+. Never show where anyone is now. City or country only.
+- Answered 12 Nov: city pages live at the root, **/copenhagen** (check for slug clashes with existing pages and reserve a list of blocked slugs). The index threshold is approved: checked facts plus two stories or one Local Expert. The vote is called **"Crew Approved"** (the opposite stays "Closed or changed"). Type and color follow the current spec in build principles v1.1 section 6 (Playfair Display, IBM Plex Sans Condensed, JetBrains Mono, Syne in the wordmark only), not the older design system file.
+- Clips (12 Nov, Claude's recommendation, Nancy to confirm): no video uploads in this build. A clip is a link to the member's own post, shown as a poster image with a play mark; the outside player loads only on tap and only after consent. $0 storage, no third-party script on page load, and the view goes to the creator.
+- Events (12 Nov): automated. Nancy approves **sources** once per city (official city and tourism calendars, named community groups); events from approved sources are pulled weekly and publish without a per-event approval, each showing its source and a link. Check each source's terms and prefer official feeds or iCal. Events from unapproved sources or member submissions go through the normal live-then-flag checks.
 
 ## How to work (non-negotiable)
 
@@ -58,7 +61,7 @@ Build Copenhagen first, end to end. Do not start a second city until Copenhagen 
 | **Cities** | name, country (ref), slug, airport codes, hero media (ref Media), intro, verdict tabs (7 rows: label, verdict, why, steps, link), linked expat hub, index state | One page per city. Airport is a section. |
 | **Facts** | city (ref), topic (entry, transit, bags, lounges, power, pets, status), text, source URL, source type (Official, Press, Secondary, Weak), last checked, checked by, tier (weekly, monthly, quarterly), state (ok, being rechecked) | Rendered as cards with "Last checked". Overdue shows "Being rechecked". |
 | **Places** | name, city (ref), type (eat, drink, bakery, sight, sauna, stay, shop, service), zone (airside, in town, day trip), minutes from gate, opened date, map link, official site, outside links (review sites, Instagram), Google place ID (ID only), photo (ref Media), index state | Deduplicate on name plus city. Nancy merges duplicates in Notion. |
-| **Picks** | place (ref), member (Memberstack ID), dish or tip (one line), source URL (expert's own post), photo (ref Media), money answer and labels, still-good count, closed count, status (live, held, needs recheck, removed), created | One member, one pick per place. |
+| **Picks** | place (ref), member (Memberstack ID), dish or tip (one line), source URL (expert's own post), photo (ref Media), money answer and labels, crew-approved count, closed count, status (live, held, needs recheck, removed), created | One member, one pick per place. |
 | **Experts** (or profile fields) | member ID, cities known (multi-ref), specialties (up to 3 from the fixed interest list), site URL, social URL, bio line, status (member, Local Expert), followed-link switch (Nancy only), business flag | Public card shows only opted-in fields. |
 | **Events** | title, city (ref), start, end, area, minutes from airport, type badge (Official, Community, Paid), listed by, link | Past events drop off by date. |
 | **Media** | file or embed URL, kind (photo, clip up to 30s), photo source (member, TLL, press library, stock), credit text, city (ref), places (multi-ref), AI flag, member ID | Drives captions and the replace link. |
@@ -69,7 +72,7 @@ If Webflow limits block this (item counts, nested references, per-member votes),
 ## Phase 1: City template (Copenhagen)
 
 - Build the template from the canvas, section by section: hero with media mosaic and "What brings you here?" cards; member media strip; 01 How long have you got (tabs); 02 Facts; 03 Eat this, not that (with type filters: bakeries, brunch, street food, vegan and so on); 04 New and talked about (places opened in the last 180 days); 05 On this week; 06 Photos and clips; 07 The local truth (picks with votes, link to the expat hub); 08 People who did it (stories and itineraries); 09 Longer trips; Trip kit (labeled); FAQ; page footer line with owner, checker count, next check.
-- URL plan for Nancy's approval before any redirect: /[city] or /cities/[city] as the hub; today's /layovers/cph-copenhagen-6h becomes an itinerary under it; 301 redirects listed in the change log, none applied without approval.
+- URLs: /[city] is the hub (/copenhagen); today's /layovers/cph-copenhagen-6h becomes an itinerary under it; 301 redirects listed in the change log, none applied without approval.
 - Tabs are real links with their own anchors (and work without JavaScript as stacked sections).
 - Schema: Article with author and dateModified; FAQPage; BreadcrumbList; ItemList for picks; Event for events; VideoObject for clips; Airport inside the transit section. No AggregateRating anywhere.
 - Fix on the existing template while here: og:type "article", add JSON-LD, remove duplicate layover slugs from the sitemap.
@@ -111,7 +114,7 @@ If Webflow limits block this (item counts, nested references, per-member votes),
 - The city page shows bench depth from live data: "12 locals on food, 4 on dogs".
 
 **Self-cleaning:**
-- "Still good" and "Closed or changed" votes on every pick and place: signed-in members only, one vote per member per item, stored server-side. Three "closed" votes from different members set status "needs recheck", hide the pick from the page and create a Notion "TLL Flags" row.
+- "Crew Approved" and "Closed or changed" votes on every pick and place: signed-in members only, one vote per member per item, stored server-side. Three "closed" votes from different members set status "needs recheck", hide the pick from the page and create a Notion "TLL Flags" row.
 - Picks from members with no activity for 12 months get "needs a recheck".
 - All Flows v2 auto-checks run on picks (affiliate parameters, discount codes, commercial language, new-account link signal at 7 days, money answer mismatch).
 - Members can edit or remove their picks anytime from "My picks" (same pattern as "My stories").
@@ -123,7 +126,7 @@ If Webflow limits block this (item counts, nested references, per-member votes),
 - City and place media come from the Media collection. Hero mosaic: one clip slot and two photos.
 - Photo source field drives the caption: member credit, "Photo: [press library]" or "Stock photo", plus the "STAND-IN" tag and "Been here? Replace this photo" link into the photo form with the place prefilled.
 - A member photo tagged to the place replaces the stand-in automatically; keep the stand-in as fallback.
-- Clips: up to 30 seconds, muted, no autoplay when reduced motion is set, poster image, captions field. Propose hosting (upload with storage cost, or embeds from the member's own post) with prices; Nancy decides. No stock video: the clip slot shows a still until a real clip exists.
+- Clips: link-out cards per the 12 Nov decision above (poster image, play mark, loads the outside player on tap after consent). No stock video: the clip slot shows a still until a real clip exists.
 - Member strips (Layover Lounge rows) are member-only and hide when empty.
 - Per city, report the count of stand-ins left.
 
@@ -134,7 +137,7 @@ If Webflow limits block this (item counts, nested references, per-member votes),
 - Trigger: a story is tagged to a city with no page, or a member lists a new city under "Cities I know well". Create a draft Cities item from the template and a Notion row "New city: [name]".
 - Research routine (run by Claude on the row): entry and transit rules, airport to city transport, bags, lounges, pets, longer trips, press-library stand-ins. Every fact gets a source, a source type and a check date, following the 12 Nov STORM doc format. Weak sources are flagged, never stated as fact.
 - Nancy approves in Notion. The page goes live unindexed.
-- Index threshold (OPEN, Nancy to confirm): checked facts complete, plus two stories or one Local Expert. Below it: noindex, out of the sitemap, still shareable. Above it: indexable.
+- Index threshold (approved 12 Nov): checked facts complete, plus two stories or one Local Expert. Below it: noindex, out of the sitemap, still shareable. Above it: indexable.
 - The first contributor gets "Started this page" on the page and a notification with a share card.
 
 **Done when:** a test story for a new city produces a draft page, a Notion row and, after approval, a live noindexed page; adding a second story flips it to indexable.
@@ -151,7 +154,7 @@ If Webflow limits block this (item counts, nested references, per-member votes),
 
 ## Measurement (after analytics consent only)
 
-Events: city_tab_select (with tab), fact_source_click, pick_add_start, pick_add_complete, expert_badge_earned, vote_still_good, vote_closed, place_outlink_click (with type), replace_photo_click, standin_replaced, city_page_created, city_page_indexed. Monthly view for Nancy: experts per city, picks per expert, share of picks held, stand-ins left, time from sign-up to first pick. Report reader fit and contributor activity, not raw traffic.
+Events: city_tab_select (with tab), fact_source_click, pick_add_start, pick_add_complete, expert_badge_earned, vote_crew_approved, vote_closed, place_outlink_click (with type), replace_photo_click, standin_replaced, city_page_created, city_page_indexed. Monthly view for Nancy: experts per city, picks per expert, share of picks held, stand-ins left, time from sign-up to first pick. Report reader fit and contributor activity, not raw traffic.
 
 ## Done means
 
@@ -163,11 +166,7 @@ Events: city_tab_select (with tab), fact_source_click, pick_add_start, pick_add_
 
 ## Open for Nancy (ask after Step 0, in one message)
 
-1. URL shape: /copenhagen, /cities/copenhagen, or keep /airports/cph as the hub?
-2. Business accounts as experts with a "Business" label: yes or no?
-3. Index threshold: checked facts plus two stories or one Local Expert?
-4. Expert bar: 5 picks with photos plus a linked account, or a different number?
-5. Clips: upload to TLL (storage cost) or embed from the member's own post?
-6. Events: submitted by members and groups, or a weekly draft list pulled for approval?
-7. Name for the vote: "Still good" or "Crew Approved" (from Nancy's own guides)?
-8. The TLL design system file still lists Syne and DM Sans; the build follows the September spec (Playfair Display, IBM Plex Sans Condensed, JetBrains Mono). Update the file?
+1. Business accounts as experts with a "Business" label: yes or no? (Proposal in Phase 3.)
+2. Expert bar: Claude recommends 3 live picks with photos plus a linked account (the prompt says 5; use Nancy's answer).
+3. Confirm the clip recommendation above.
+4. The approved event sources for Copenhagen.
