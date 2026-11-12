@@ -15,10 +15,12 @@ var PURSUITS=[['foodie','Food'],['marathons','Marathons'],['trekking','Trekking'
 var LINES=[['The slide show.','Remember when Grandpa pulled out the slide projector after dinner? This is that.'],
   ['The trip deck.','Remember the 80-slide deck someone made of one weekend in Boston? This is that, except people ask to see it.'],
   ['The lost account.','A friend got locked out of Instagram and lost every travel photo with it. TLL is the copy that does not vanish when an app decides you are someone else.']];
+/* 12 Nov 2026 (font loading jump): the headline and lede widths are in em, not ch (a ch shrinks while the fallback font shows, so the lines
+   rewrapped when the web fonts arrived): 18ch of Playfair Display 800 = 11.88em, 60ch of IBM Plex Sans Condensed = 32.4em, the same once loaded. */
 var CSS='.tll-val{background:#FDF9F3;color:#0A0B14;padding:72px var(--h3-g,clamp(20px,5vw,72px)) 80px;font:400 17px/1.55 "IBM Plex Sans Condensed",system-ui,sans-serif}'+
 '.tll-val-in{max-width:1240px;margin:0 auto}.tll-val-ey{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;color:#067A79;margin:0 0 14px}'+
-'.tll-val h2{font:800 clamp(30px,4.6vw,52px)/1.04 "Playfair Display",Georgia,serif;margin:0 0 16px;max-width:18ch}.tll-val h2 em{font-style:italic;color:inherit}'+
-'.tll-val-lede{max-width:60ch;color:#3A3A3A;margin:0 0 36px}'+
+'.tll-val h2{font:800 clamp(30px,4.6vw,52px)/1.04 "Playfair Display",Georgia,serif;margin:0 0 16px;max-width:11.88em}.tll-val h2 em{font-style:italic;color:inherit}'+
+'.tll-val-lede{max-width:32.4em;color:#3A3A3A;margin:0 0 36px}'+
 '.tll-val-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 48px}'+
 '.tll-val-card{border-top:2px solid #0A0B14;padding:16px 0 0}.tll-val-card b{display:block;font:800 22px/1.15 "Playfair Display",Georgia,serif;margin:0 0 8px}.tll-val-card p{margin:0;color:#3A3A3A}'+
 '.tll-val-ask{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;border:1px solid #E0DACE;background:#fff;border-radius:4px;padding:20px}'+
