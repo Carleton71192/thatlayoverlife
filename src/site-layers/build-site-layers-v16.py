@@ -1,7 +1,7 @@
 """Builds the site layers from their parts. Run from anywhere: python3 src/site-layers/build-site-layers-v16.py
 Two kinds of output, deterministic (same inputs, same bytes):
   src/site-layers/tll-site-layers-v16.js  the core, the one registered site-wide header script (synchronous). In order: the consent
-      fallback, the chunk loader, the ten styles, the layers that must run before the first paint on their page (ux-1028 and
+      fallback, the chunk loader, the twelve styles, the layers that must run before the first paint on their page (ux-1028 and
       mbar-align head CSS, photos-form-v2 on /share-photos, album-settings on /the-map, phase0, and since the 1 Nov review the
       ads pause, page-heroes, stories-noimg, home-bands and lounge-labels; see CORE below) or on every page (division,
       note-typing, account-hash-tabs), the story layer (/stories/{slug}) and the cover layer (home).

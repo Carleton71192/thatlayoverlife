@@ -187,9 +187,60 @@ describe('story layer custom properties (tll-mag-story-v1)', () => {
     for (const m of mag.matchAll(/var\((--mg-[\w-]+)/g)) expect(defined.has(m[1]), m[1]).toBe(true);
     expect(mag).not.toContain('--mg-teal');
   });
-  it('the gallery tile shows the ink color while its photo loads (was var(--mg-ink2), never defined)', () => {
-    expect(mag).toContain('.tll-gallery-link{display:block;border-radius:var(--mg-r);overflow:hidden;background:var(--mg-ink)}');
+  it('the gallery tile keeps today\'s look: no background while its photo loads (the undefined var(--mg-ink2) is gone)', () => {
+    // var(--mg-ink2) was never defined, so the tile was transparent. Ink tiles would be a visible change: an owner choice in updates.md.
+    expect(mag).toContain('.tll-gallery-link{display:block;border-radius:var(--mg-r);overflow:hidden}');
+    expect(mag).not.toMatch(/\.tll-gallery-link\{[^}]*background/);
     expect(L('tll-site-layers-v16.js')).not.toContain('--mg-ink2');
+  });
+});
+
+// The repo has no DOM test environment (no jsdom or happy-dom), so these two checks work the cascade out from the rules themselves.
+// Both states were also checked in Chromium on November 12, 2026 by the independent reviewer (updates.md, section 5.3).
+describe('the broken-photo rule and the empty note win the cascade on /stories', () => {
+  // Specificity of a simple selector (no :is/:not/:where arguments in the selectors checked here): [ids, classes+attributes+pseudo-classes, types].
+  const spec = (sel) => {
+    const s = sel.replace(/::[\w-]+/g, ' ').replace(/\[[^\]]*\]/g, ' .a ').replace(/:[\w-]+/g, ' .p ');
+    return [(s.match(/#[\w-]+/g) || []).length, (s.match(/\.[\w-]+/g) || []).length, (s.replace(/[#.][\w-]+/g, ' ').match(/(^|[\s>+~])[a-z][\w-]*/gi) || []).length];
+  };
+  const beats = (a, b) => { for (let i = 0; i < 3; i++) if (a[i] !== b[i]) return a[i] > b[i]; return false; };
+  const rules = (src) => [...stripComments(src).matchAll(/([^{}@]+)\{([^{}]*)\}/g)].flatMap((m) => m[1].split(',').map((sel) => ({ sel: sel.trim(), body: m[2] })));
+  // the CSS of the /stories page code (repo copies of the Webflow head and footer), <style> blocks only
+  const page = ['stories-head.html', 'stories-footer.html'].map((f) => read('src', 'pages', 'heroes-2026-10-29', 'code', f))
+    .flatMap((s) => [...s.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map((m) => m[1])).join('\n');
+  const noimg = L('tll-stories-noimg-v1.js');
+  const layerCss = /var CSS=([\s\S]*?);\nfunction /.exec(noimg)[1].replace(/"\s*\+\s*"/g, '').replace(/^"|"$/g, '');
+
+  it('the specificity helper agrees with the CSS rules for the selectors used here', () => {
+    expect(spec('.tll-lib-img')).toEqual([0, 1, 0]);
+    expect(spec('[data-tll-noimg] img.tll-ui-hidden')).toEqual([0, 2, 1]);
+    expect(spec('html.tllp-stories .tll-lib-grid > * .tll-lib-img')).toEqual([0, 3, 1]);
+    expect(spec('#tll-chip-note')).toEqual([1, 0, 0]);
+  });
+  it('a card whose photo fails: [data-tll-noimg] img.tll-ui-hidden beats .tll-lib-img{display:block !important}', () => {
+    const hide = rules(layerCss).find((r) => r.sel === '[data-tll-noimg] img.tll-ui-hidden');
+    expect(hide.body.replace(/\s/g, '')).toBe('display:none!important');
+    // every page rule that sets display on the card image with !important (today just .tll-lib-img) loses on specificity,
+    // so the order of the page code and the layer's style in the document does not matter
+    const shows = rules(page).filter((r) => /\.tll-lib-img(?![\w-])[^\s>+~]*$/.test(r.sel) && /display\s*:[^;]*!important/.test(r.body));
+    expect(shows.map((r) => r.sel)).toContain('.tll-lib-img');
+    for (const r of shows) expect(beats(spec(hide.sel), spec(r.sel)), r.sel).toBe(true);
+    // .tll-ui-hidden alone would only tie with .tll-lib-img and lose to the later page rule, which is why the layer adds its own rule
+    expect(beats(spec('.tll-ui-hidden'), spec('.tll-lib-img'))).toBe(false);
+    // the layer marks the card and hides that card's own image, so the selector matches the image it hid
+    expect(noimg).toContain("img.classList.add('tll-ui-hidden')");
+    expect(noimg).toContain("k.setAttribute('data-tll-noimg','1')");
+    expect(noimg).toContain('function panel(k){\n  var img=cardImg(k);');
+  });
+  it('the empty-region note: each class it carries has a core rule, and no /stories page rule competes for the note', () => {
+    const places = L('tll-stories-places-v1.js');
+    const cls = /note\.className='([^']+)'/.exec(places)[1].split(' ');
+    expect(cls).toEqual(['tll-ui-empty', 'tll-ui-empty--center']);
+    for (const c of cls) expect(Object.keys(decls('.' + c)).length, c).toBeGreaterThan(0);
+    // nothing in the /stories page code targets the note by id, by role or by these classes, so the core rules apply as written
+    expect(rules(page).length).toBeGreaterThan(50);
+    for (const r of rules(page)) expect(r.sel, r.sel).not.toMatch(/tll-chip-note|tll-ui-empty|role=["']?status/);
+    expect(L('tll-site-layers-v16.js')).toContain('.tll-ui-empty{border:2px dashed var(--tll-ui-dash)');
   });
 });
 

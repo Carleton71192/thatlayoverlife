@@ -1,14 +1,16 @@
-# Codebase review and refactor, 12 Nov 2026
+# Codebase review and refactor, November 12, 2026
 
-Branch `claude/new-session-zxm063`. Nothing was published, pushed, or changed in Webflow, and no file was deleted. The rebuilt
-site layers are committed in the repo only; they reach www only through the usual release step (see "What you need to decide").
+This work is on its own branch, `worktree-wf_efebb3be-5ae-4`, not on the main working branch `claude/new-session-zxm063`. With
+your OK, its commits are cherry-picked onto `claude/new-session-zxm063` before the layers-release step; no files overlap, so that
+goes cleanly. Nothing was published, pushed, or changed in Webflow, and no file was deleted. The rebuilt site layers are committed
+in the repo only; they reach www only through the usual release step (see "What you need to decide").
 
 ## In plain words
 
 - **What was reviewed.** All the site's custom code in the repo, the live pages and the CSS they load. Three questions: which CSS
   variables are unused or broken, which media files nothing uses, and how the stories pages and the expat pages differ in structure.
 - **Unused CSS variables.** The code the repo serves to the site is almost clean: one unused variable (`--mg-teal`, removed) and one
-  broken reference (`--mg-ink2`, now pointing at `--mg-ink`). The rest of the unused variables (59 names) and the broken references
+  broken reference (`--mg-ink2`, removed; the gallery tile keeps today's look). The rest of the unused variables (59 names) and the broken references
   (8 names) live in Webflow (the site head, page code, the Webflow Variables panel and Webflow's stylesheet), in the map or in the
   share card. Those are listed below for you to approve; I did not touch them.
 - **Media.** No live page loads a picture from the repo. 717 screenshot and evidence files (474.9 MB) could move to an archive
@@ -24,7 +26,7 @@ site layers are committed in the repo only; they reach www only through the usua
   /account (signed out) and /submit at 390 and 1440 match pixel for pixel; the only differences seen also appear between two runs of
   the current build (section 5.2). One deliberate fix changes a state no page shows today: a story card whose photo fails to load now
   shows only its place-name panel, without the empty image box above it.
-  Tests: 454 pass (433 before, 21 new).
+  Tests: 457 pass (433 before, 24 new).
 
 ## 1. What was reviewed
 
@@ -46,7 +48,7 @@ site layers are committed in the repo only; they reach www only through the usua
 | Name | Where | Status | Action |
 |---|---|---|---|
 | `--mg-teal` | `src/design/magazine-2026-10/story-build/tll-mag-story-v1.html:10` | defined, read nowhere in the repo, on any of the 323 live pages or in the Webflow CSS | removed |
-| `--mg-ink2` | same file, line 141, `.tll-gallery-link{background:var(--mg-ink2)}` | read, never defined (no fallback), so the gallery tile was transparent while its photo loaded | now `var(--mg-ink)` |
+| `--mg-ink2` | same file, line 141, `.tll-gallery-link{background:var(--mg-ink2)}` | read, never defined (no fallback), so the gallery tile was transparent while its photo loaded | the background is removed, so the tile stays transparent as today; ink tiles are your choice (section 6) |
 | `--tll-i` | `tll-photos-form-v2.js:150` (setProperty) | looked unused in the layers, but the /share-photos page code reads `var(--tll-i,0)` | kept |
 | `--st3-col`, `--st3-f-head`, `--st3-f-body` | story layer | defined by the layer for the story template code in Webflow, which reads them | kept |
 | `--h3-g`, `--h3-line` | cover layer, `tll-redesign-p0-v1.js:49` | read with fallbacks; defined by the home page code | kept |
@@ -134,9 +136,10 @@ families and the expat side none.
 | `src/site-layers/tll-stories-places-v1.js` | The empty-region note uses `tll-ui-empty tll-ui-empty--center` instead of `style.cssText` (same values). | Inline layout to a shared piece; the /stories page code writes the same note and can switch to the class later. |
 | `src/site-layers/tll-stories-noimg-v1.js` | The broken image is hidden with `tll-ui-hidden` (plus `[data-tll-noimg] img.tll-ui-hidden{display:none!important}` in the layer) instead of `style.display`; tokens. | Inline style, and a **deliberate fix**: the inline `display:none` never won, because the /stories page code sets `.tll-lib-img{display:block !important}`. A story without a photo showed an empty ink image box above the panel; now only the panel shows. No story is without a photo today, so no page changes (see 5.3). |
 | `src/site-layers/tll-expats-map-v1.js` | The map heading hook is `data-tll-x="expats-map-h2"` (was `dir-h2`); tokens. | No style used the hook (checked in the live page, its CSS and the Webflow CSS), but the page script fills the first `dir-h2` with the expert count; if the directory moved below the map, the count would land in the map heading. |
-| `src/design/magazine-2026-10/story-build/tll-mag-story-v1.html` | `--mg-teal` removed; `.tll-gallery-link` background `var(--mg-ink)` (was the undefined `--mg-ink2`). | Unused variable; broken reference. |
-| `src/site-layers/tll-site-layers-v16.js`, `src/site-layers/chunks/*.js` | Rebuilt. Core 215,688 to 218,344 bytes (64,654 to 65,441 bytes gzip). 13 chunks changed (countries, edit-profile-preview, for-expats, for-expats-preview, pets, pets-preview, profile-preview, pursuits, stories, story, story-preview, submit, submit-preview), each a little smaller. | Build output. |
-| `test/components-layer.test.js` (new, 21 tests) | Registration and order in the core; every token used and defined; the moved rules resolve to exactly the old values (tape, label, empty state); no copies left in the layers; new class names beside old ones; helpers from `window.__tllUI` after each path guard; no inline layout left; the map hook; the helpers' behavior; the story layer variables; house rules. | |
+| `src/design/magazine-2026-10/story-build/tll-mag-story-v1.html` | `--mg-teal` removed; the `.tll-gallery-link` background (the undefined `--mg-ink2`) removed. | Unused variable; broken reference. The tile was transparent and still is, so no pixel moves. |
+| `src/site-layers/tll-site-layers-v16.js`, `src/site-layers/chunks/*.js` | Rebuilt. Core 215,688 to 218,319 bytes (64,654 to 65,436 bytes gzip). 13 chunks changed (countries, edit-profile-preview, for-expats, for-expats-preview, pets, pets-preview, profile-preview, pursuits, stories, story, story-preview, submit, submit-preview), each a little smaller. | Build output. |
+| `test/components-layer.test.js` (new, 24 tests) | Registration and order in the core; every token used and defined; the moved rules resolve to exactly the old values (tape, label, empty state); no copies left in the layers; new class names beside old ones; helpers from `window.__tllUI` after each path guard; no inline layout left; the map hook; the helpers' behavior; the story layer variables and the gallery tile; the cascade for the broken-photo rule and the empty note (worked out from the rules, as the repo has no DOM test environment); house rules. | |
+| `src/pages/heroes-2026-10-29/places.mjs`, `noimg.mjs` | These dev harnesses load one layer without the core, so they now add the `tll-components-v1` style block to the page they build. | The empty-region note and the hidden photo need `.tll-ui-empty`, `.tll-ui-hidden` and the tokens, which live in the core. With the style added, `noimg.mjs` renders the same screenshot, byte for byte, as the one committed in October. |
 | `test/lighthouse-fixes-layer.test.js` | The series stand-in runs the helper layer first, as the site does. Assertions unchanged. | The series layer now reads `window.__tllUI`. |
 
 ## 4. What I deliberately did not change
@@ -166,7 +169,7 @@ families and the expat side none.
 
 - `python3 src/site-layers/build-site-layers-v16.py`: 12 styles, 18 core layers, 24 chunks. The build was byte-stable before the
   change (a rebuild at the start changed nothing, and its core was byte-identical to the live core at `6ebffe0f`).
-- `npx vitest run`: 52 files, 454 tests, all pass (433 before; 21 new in `test/components-layer.test.js`).
+- `npx vitest run`: 52 files, 457 tests, all pass (433 before; 24 new in `test/components-layer.test.js`).
 
 ### 5.2 Pixel diffs (CURRENT build vs NEW build)
 
@@ -231,9 +234,15 @@ build injects, and every computed property was compared between CURRENT and NEW 
   `claude/codebase-review-2026-11-12/noimg-before-after-1440.png` (left before, right after; the dark band at the top of the left
   crop is the site header passing over the card). No story on /stories is without a photo today, so no live page changes.
 
+The repo has no DOM test environment, so the tests prove these two states by working out the cascade from the rules. Both were
+also checked in a real browser (Chromium) on November 12, 2026 by the independent reviewer: with one card photo made to fail, the
+image is `display:none` and the card shrinks to the panel; the empty-region note has the same computed style and size as the old
+inline note at 1440 and 390.
+
 ## 6. What you need to decide
 
-1. **Release.** The new core and chunks are committed here only. To go live they need the usual release step (copy to
+1. **Release.** The new core and chunks are committed on this work's own branch only. First, with your OK, its commits are
+   cherry-picked onto `claude/new-session-zxm063`. Then they need the usual release step (copy to
    `layers-release`, register the core at that commit with its new SRI). Until then www keeps running `6ebffe0f`.
 2. **Deletions (nothing was deleted).**
    - Repo, duplicate page copies (audit 3): `src/pages/stories/v3/s3-stories.css` and `src/pages/stories/v3/s3-footer-block.html`
@@ -252,6 +261,8 @@ build injects, and every computed property was compared between CURRENT and NEW 
    /stories, rose on /for-expats); card corner (4, 6, 10, 12, 14px today; the kit says 10); phone gutter 24px; one section width for
    the expat side; the /for-expats buttons on the site button set; the map label at 12px and its double padding; and whether the
    /stories page code and /for-expats `.tllx-empty` adopt `.tll-ui-empty`.
+   - **Ink tiles while gallery photos load** (not made). The "From the trip" gallery on story pages could show an ink square in each
+     tile while its photo loads or when one fails. Today the tiles show the page background, and this change keeps that.
 6. **Two deliberate fixes made here; say if you want either undone.** (a) A story card whose photo fails now shows only its
    place-name panel (before: an empty ink box above it), section 5.3. (b) The staged Living Library tape now matches the series
    card tape exactly (preview only). Both are invisible on www today.
