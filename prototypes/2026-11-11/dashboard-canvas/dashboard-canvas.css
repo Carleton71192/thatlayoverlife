@@ -1,0 +1,97 @@
+/* That Layover Life · dashboard canvas layer (prototype, 12 Nov 2026).
+   The stage, its layers, the loading preview, the hub tooltip and list, and the Paw Passport Stamp.
+   Brand Kit tokens; teal only on Midnight; nothing under 12px; square corners on controls. */
+:root{
+  --tll-dc-midnight:#0A0B14;
+  --tll-dc-midnight-2:#1A1A2E;
+  --tll-dc-cream:#F7F1E8;
+  --tll-dc-paper:#FDF9F3;
+  --tll-dc-ink:#1A1A1A;
+  --tll-dc-teal:#00C9C8;
+  --tll-dc-hair:rgba(247,241,232,.07);
+  --tll-dc-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --tll-dc-ease:cubic-bezier(.23,1,.32,1);
+}
+
+.tll-dc-sr{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* The stage: the aspect ratio is locked to the export's own (config.aspectRatio), so it scales down without reflow. */
+.tll-dc__stage{position:relative;width:100%;aspect-ratio:var(--tll-dc-ratio,96 / 47);background:var(--tll-dc-midnight-2);overflow:hidden;contain:layout paint}
+.tll-dc__stage > *{position:absolute;inset:0}
+.tll-dc__static{z-index:0;display:none}
+.tll-dc__static svg{display:block;width:100%;height:100%}
+.tll-dc__skeleton{z-index:1;display:none}
+.tll-dc__player{z-index:2;opacity:.6;visibility:hidden;transition:opacity 250ms var(--tll-dc-ease)}
+.tll-dc__player svg,.tll-dc__canvas{display:block;width:100%;height:100%}
+.tll-dc__pointer{z-index:3;touch-action:pan-y}
+.tll-dc__paw,.tll-dc__note,.tll-dc__tip{inset:auto}
+
+/* Which layer shows. Without JavaScript, or after an error, the still map stays. */
+.tll-dc:not([data-js]) .tll-dc__static,
+.tll-dc[data-state="error"] .tll-dc__static{display:block}
+.tll-dc[data-js]:not([data-player]):not([data-state="error"]) .tll-dc__skeleton{display:block}
+.tll-dc[data-player]:not([data-state="error"]) .tll-dc__player{opacity:1;visibility:visible}
+.tll-dc[data-state="error"] .tll-dc__pointer .tll-dc__mark{opacity:.5}
+
+/* The loading preview: a quiet graticule and one line of type. The shimmer runs only while loading and on screen. */
+.tll-dc__skeleton{
+  background:
+    repeating-linear-gradient(90deg,var(--tll-dc-hair) 0 1px,transparent 1px 8.333%),
+    repeating-linear-gradient(0deg,var(--tll-dc-hair) 0 1px,transparent 1px 16.66%),
+    var(--tll-dc-midnight-2);
+  overflow:hidden}
+.tll-dc__skeleton p{position:absolute;left:16px;bottom:14px;margin:0;font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(247,241,232,.62)}
+.tll-dc__skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(247,241,232,.06) 50%,transparent 70%);transform:translateX(-100%)}
+.tll-dc[data-state="loading"][data-inview="true"] .tll-dc__skeleton::after{animation:tll-dc-shimmer 1.6s linear infinite}
+@keyframes tll-dc-shimmer{to{transform:translateX(100%)}}
+
+/* STAND-IN label, top left over the stage (moves above it on phones, like the live map's label) */
+.tll-dc__frame{position:relative}
+.tll-dc__label{position:absolute;left:12px;top:12px;z-index:7;max-width:calc(100% - 96px);font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tll-dc-teal);background:var(--tll-dc-midnight);padding:6px 10px;pointer-events:none}
+.tll-dc[data-type]:not([data-type="standin"]) .tll-dc__label--standin{display:none}
+
+/* Error note over the still map */
+.tll-dc__note{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;margin:0;font:400 15px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:var(--tll-dc-cream);background:rgba(10,11,20,.9);padding:10px 12px}
+.tll-dc__note[hidden]{display:none}
+
+/* Hub marks and the tooltip */
+.tll-dc__mark{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border:1.5px solid var(--tll-dc-teal);border-radius:50%;background:var(--tll-dc-midnight-2);pointer-events:none;transition:transform 150ms var(--tll-dc-ease),background-color 150ms}
+.tll-dc__mark.is-on{background:var(--tll-dc-teal);transform:scale(1.35)}
+.tll-dc__tip{position:absolute;z-index:6;--tx:-50%;--ty:calc(-100% - 12px);transform:translate(var(--tx),var(--ty));
+  font:500 12px/1.35 var(--tll-dc-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+  color:var(--tll-dc-ink);background:var(--tll-dc-paper);padding:4px 6px;pointer-events:none}
+.tll-dc__tip b{font-weight:700}
+.tll-dc__tip.is-left{--tx:calc(-100% + 10px)}
+.tll-dc__tip.is-right{--tx:-10px}
+.tll-dc__tip.is-below{--ty:12px}
+.tll-dc__tip[hidden]{display:none}
+
+/* Keyboard route to the same hub information */
+.tll-dc__hubs-wrap{margin-top:14px}
+.tll-dc__hubs-cap{margin:0 0 8px;font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.18em;text-transform:uppercase;color:#9496AC}
+.tll-dc__hubs{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tll-dc__hub{min-height:44px;min-width:44px;padding:0 12px;border:1px solid rgba(247,241,232,.4);border-radius:0;background:transparent;color:var(--tll-dc-cream);font:600 12px/1 var(--tll-dc-mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.tll-dc__hub:hover{border-color:var(--tll-dc-teal);color:var(--tll-dc-teal)}
+.tll-dc__hub:focus-visible{outline:3px solid var(--tll-dc-cream);outline-offset:2px;box-shadow:0 0 0 6px var(--tll-dc-teal)}
+
+/* The Paw Passport Stamp. Stand-in: a separate small element; transform and filter only.
+   At rest it reads cream (teal art, desaturated and lifted); with pointer or focus on the pet guide it turns teal and rotates. */
+.tll-dc__paw{position:absolute;right:12px;top:12px;z-index:5;width:56px;height:56px;pointer-events:none;
+  transform-origin:50% 50%;filter:saturate(0) brightness(2.4);
+  transition:transform 250ms var(--tll-dc-ease),filter 250ms var(--tll-dc-ease)}
+.tll-dc__paw svg{display:block;width:100%;height:100%}
+.tll-dc__paw.is-paw-on,.tll-dc .is-paw-on{transform:rotate(-14deg) translate(2px,-2px) scale(1.06);filter:saturate(1) brightness(1)}
+/* 'layer' mode: the named layer inside the export rotates around its own center */
+.tll-dc__player .is-paw-on{transform-box:fill-box;transform-origin:center}
+
+@media (max-width:600px){
+  .tll-dc__paw{width:40px;height:40px;right:8px;top:8px}
+  .tll-dc__label{position:static;display:inline-block;max-width:none;margin:0 0 8px}
+}
+
+/* Reduced motion: no shimmer, no fades, no rotation. The stamp still changes color so the hover is still answered. */
+@media (prefers-reduced-motion: reduce){
+  .tll-dc__skeleton::after{animation:none!important;display:none}
+  .tll-dc__player,.tll-dc__mark,.tll-dc__paw{transition:none}
+  .tll-dc__paw.is-paw-on,.tll-dc .is-paw-on{transform:none}
+}

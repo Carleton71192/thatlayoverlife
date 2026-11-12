@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Canvas Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
+<style id="page-css">
+/* Demo page. Tokens: TLL Brand Kit. One theme; every color on the page comes from here. */
+:root{
+  color-scheme:light;
+  --midnight:#0A0B14;
+  --midnight-2:#1A1A2E;
+  --cream:#F7F1E8;
+  --paper:#FDF9F3;
+  --ink:#1A1A1A;
+  --text-2:#555555;
+  --muted:#6B6660;
+  --hair:#E8E2D6;
+  --hair-d:#23263c;
+  --teal:#00C9C8;       /* on Midnight only */
+  --teal-deep:#067A79;  /* teal text on light */
+  --rose:#F0507A;       /* headline accent only */
+  --rose-text:#C8325B;  /* small rose */
+  --rose-btn:#D63859;   /* filled button */
+  --rose-btn-h:#B82C4B;
+  --on-dark-2:#cfcbc4;
+  --on-dark-3:#9496AC;
+  --white:#FFFFFF;
+  --g:clamp(16px,5vw,72px);
+  --f-head:'Playfair Display',Georgia,serif;
+  --f-body:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--paper);scroll-padding-bottom:72px} /* keyboard focus stops clear of the fixed "All prototypes" link and the closed inspector */
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--f-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--teal-deep)}
+:focus-visible{outline:2px solid var(--rose-text);outline-offset:2px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+/* intro, on Paper */
+.intro{max-width:1240px;margin:0 auto;padding:28px var(--g) 48px}
+.wm{font:600 12px/1 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 40px}
+.intro .ey{font:600 12px/1.5 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin:0 0 14px}
+.intro h1{font:800 clamp(36px,6vw,64px)/1.03 var(--f-head);letter-spacing:-.01em;margin:0;max-width:16ch}
+.intro .lede{font-size:18px;line-height:1.6;max-width:64ch;margin:20px 0 0}
+.flag{display:inline-block;margin:22px 0 0;font:600 12px/1.5 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border:1px dashed var(--ink);padding:8px 10px;max-width:100%}
+.try{margin:26px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 28px;max-width:1000px}
+.try li{border-top:1px solid var(--hair);padding-top:10px;font-size:16px;line-height:1.45;color:var(--text-2)}
+.try b{display:block;font:600 12px/1.5 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+
+/* 02 · the chapter, copied from the live embed (405baa84): h3 classes and sizes as on www */
+.h3{font-family:var(--f-body);-webkit-font-smoothing:antialiased}
+.h3-in{max-width:1240px;margin:0 auto}
+.h3-sec{padding:clamp(72px,12vh,144px) var(--g)}
+.h3-dark{background:var(--midnight);color:var(--cream)}
+.h3-ey{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin:0 0 16px}
+.h3 h2{font-family:var(--f-head);font-weight:800;letter-spacing:-.01em;margin:0;color:var(--cream)}
+.h3 h2 em{font-style:italic;color:var(--rose)}
+.h3-title-l{font-size:clamp(36px,5.2vw,80px);line-height:.98;max-width:16ch}
+.h3-lede{font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--on-dark-2);max-width:46ch;margin:22px 0 0}
+.h3-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px}
+.h3-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1.5px solid transparent;border-radius:0;font-family:var(--f-body);font-size:16px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color 150ms ease,color 150ms ease,border-color 150ms ease}
+.h3-btn-rose{background:var(--rose-btn);color:var(--white)}
+.h3-btn-rose:hover{background:var(--rose-btn-h)}
+.h3-btn-line{border-color:currentColor;color:var(--cream);background:transparent}
+.h3-btn-line:hover{background:rgba(247,241,232,.1)}
+.h3-note{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-3)}
+.h3 a:focus-visible,.h3 button:focus-visible,.h3 input:focus-visible,.h3 select:focus-visible{outline:3px solid var(--cream);outline-offset:2px;box-shadow:0 0 0 6px var(--teal)}
+.h3-dash-map{position:relative;margin-top:32px}
+.h3-dash-line{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;margin:14px 0 0;font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark-2)}
+.h3-dash-line [data-dc-count]{color:var(--cream)}
+.h3-dash-cap{color:var(--on-dark-3)}
+.h3-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:48px 0 0;padding:0;list-style:none;border-top:1px solid var(--hair-d)}
+.h3-steps li{padding-top:18px}
+.h3-steps b{display:block;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.h3-steps span{font-size:15px;line-height:1.45;color:var(--on-dark-2)}
+@media(max-width:899px){.h3-steps{grid-template-columns:1fr}}
+
+/* demo controls under the map: SAMPLE trips + signup, and the €9 pet guide */
+.demo-row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;margin-top:28px}
+@media(max-width:899px){.demo-row{grid-template-columns:1fr}}
+.demo-box{border:1px dashed rgba(247,241,232,.35);padding:16px 16px 18px}
+.demo-cap{margin:0 0 10px;font:600 12px/1.5 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-3)}
+.demo-box fieldset{border:0;margin:0;padding:0;min-width:0}
+.demo-box legend{padding:0;margin:0 0 6px;font:600 12px/1.5 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cream)}
+.trip{display:flex;align-items:center;gap:12px;min-height:44px;font-size:16px;color:var(--cream);cursor:pointer}
+.trip input{width:20px;height:20px;margin:0;accent-color:var(--teal);flex:0 0 auto}
+.trip .code{margin-left:auto;font:600 12px/1 var(--f-mono);letter-spacing:.14em;color:var(--on-dark-3)}
+.demo-signup{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--hair-d)}
+.demo-signup p{margin:0;font-size:15px;line-height:1.45;color:var(--on-dark-2);flex:1 1 220px}
+.pet{position:relative;background:var(--midnight-2);padding:20px 18px}
+.pet .pet-ey{margin:0 0 10px;font:600 12px/1.5 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.pet .pet-t{margin:0;font:800 clamp(22px,2.2vw,28px)/1.12 var(--f-head);color:var(--cream);max-width:22ch}
+.pet .pet-m{margin:10px 0 16px;font:600 12px/1.5 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-2)}
+.pet .pet-n{margin:12px 0 0;font-size:14px;line-height:1.45;color:var(--on-dark-3);min-height:1.45em}
+.pet .pet-hint{margin:10px 0 0;font:600 12px/1.5 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-3)}
+
+/* how it is built, on Paper */
+.how{max-width:1240px;margin:0 auto;padding:64px var(--g) 120px}
+.how h2{font:800 clamp(28px,4vw,42px)/1.08 var(--f-head);margin:0 0 14px;max-width:22ch}
+.how h3{font:600 12px/1.5 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--teal-deep);margin:40px 0 12px}
+.how p{max-width:68ch;margin:0 0 14px}
+.tbl-wrap{overflow-x:auto;border-top:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair)}
+th{font:600 12px/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+td code,p code,li code{font-family:var(--f-mono);font-size:13px;background:var(--cream);padding:1px 4px}
+.how ul{max-width:68ch;padding-left:20px;margin:0 0 14px}
+.how li{margin:0 0 6px}
+
+/* state inspector (demo only) */
+.insp{position:fixed;left:12px;bottom:12px;z-index:60;width:min(300px,calc(100vw - 190px));background:var(--midnight);color:var(--cream);font:500 12px/1.45 var(--f-mono);border:1px solid var(--hair-d)}
+.insp-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 4px 4px 10px;border-bottom:1px solid var(--hair-d)}
+.insp-head span{letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.insp button,.insp select{min-height:44px;border:1px solid rgba(247,241,232,.4);border-radius:0;background:transparent;color:var(--cream);font:600 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:0 10px;cursor:pointer}
+.insp select{background:var(--midnight);min-width:0;max-width:100%}
+.insp :focus-visible{outline:3px solid var(--cream);outline-offset:1px;box-shadow:0 0 0 5px var(--teal)}
+.insp-body{padding:8px 10px 10px}
+.insp dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0}
+.insp dt{color:var(--on-dark-3);text-transform:uppercase;letter-spacing:.08em}
+.insp dd{margin:0;color:var(--cream);overflow-wrap:anywhere}
+.insp dd[data-i="state"]{color:var(--teal);font-weight:700}
+.insp ol{margin:8px 0 0;padding:6px 0 0;list-style:none;border-top:1px solid var(--hair-d);color:var(--on-dark-2);max-height:96px;overflow:auto}
+.insp ol li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.insp-ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.insp-ctl label{display:flex;align-items:center;gap:6px;color:var(--on-dark-3);text-transform:uppercase;letter-spacing:.08em}
+.insp.is-closed .insp-body{display:none}
+.insp.is-closed{width:auto}
+
+.corner{position:fixed;right:12px;bottom:12px;z-index:50;background:var(--midnight);color:var(--cream);font:600 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;padding:10px 12px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--hair-d)}
+.corner:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+@media(max-width:600px){:root{--g:16px}}
+</style>
+<style id="dashboard-canvas-css">
+/* That Layover Life · dashboard canvas layer (prototype, 12 Nov 2026).
+   The stage, its layers, the loading preview, the hub tooltip and list, and the Paw Passport Stamp.
+   Brand Kit tokens; teal only on Midnight; nothing under 12px; square corners on controls. */
+:root{
+  --tll-dc-midnight:#0A0B14;
+  --tll-dc-midnight-2:#1A1A2E;
+  --tll-dc-cream:#F7F1E8;
+  --tll-dc-paper:#FDF9F3;
+  --tll-dc-ink:#1A1A1A;
+  --tll-dc-teal:#00C9C8;
+  --tll-dc-hair:rgba(247,241,232,.07);
+  --tll-dc-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --tll-dc-ease:cubic-bezier(.23,1,.32,1);
+}
+
+.tll-dc-sr{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* The stage: the aspect ratio is locked to the export's own (config.aspectRatio), so it scales down without reflow. */
+.tll-dc__stage{position:relative;width:100%;aspect-ratio:var(--tll-dc-ratio,96 / 47);background:var(--tll-dc-midnight-2);overflow:hidden;contain:layout paint}
+.tll-dc__stage > *{position:absolute;inset:0}
+.tll-dc__static{z-index:0;display:none}
+.tll-dc__static svg{display:block;width:100%;height:100%}
+.tll-dc__skeleton{z-index:1;display:none}
+.tll-dc__player{z-index:2;opacity:.6;visibility:hidden;transition:opacity 250ms var(--tll-dc-ease)}
+.tll-dc__player svg,.tll-dc__canvas{display:block;width:100%;height:100%}
+.tll-dc__pointer{z-index:3;touch-action:pan-y}
+.tll-dc__paw,.tll-dc__note,.tll-dc__tip{inset:auto}
+
+/* Which layer shows. Without JavaScript, or after an error, the still map stays. */
+.tll-dc:not([data-js]) .tll-dc__static,
+.tll-dc[data-state="error"] .tll-dc__static{display:block}
+.tll-dc[data-js]:not([data-player]):not([data-state="error"]) .tll-dc__skeleton{display:block}
+.tll-dc[data-player]:not([data-state="error"]) .tll-dc__player{opacity:1;visibility:visible}
+.tll-dc[data-state="error"] .tll-dc__pointer .tll-dc__mark{opacity:.5}
+
+/* The loading preview: a quiet graticule and one line of type. The shimmer runs only while loading and on screen. */
+.tll-dc__skeleton{
+  background:
+    repeating-linear-gradient(90deg,var(--tll-dc-hair) 0 1px,transparent 1px 8.333%),
+    repeating-linear-gradient(0deg,var(--tll-dc-hair) 0 1px,transparent 1px 16.66%),
+    var(--tll-dc-midnight-2);
+  overflow:hidden}
+.tll-dc__skeleton p{position:absolute;left:16px;bottom:14px;margin:0;font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(247,241,232,.62)}
+.tll-dc__skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(247,241,232,.06) 50%,transparent 70%);transform:translateX(-100%)}
+.tll-dc[data-state="loading"][data-inview="true"] .tll-dc__skeleton::after{animation:tll-dc-shimmer 1.6s linear infinite}
+@keyframes tll-dc-shimmer{to{transform:translateX(100%)}}
+
+/* STAND-IN label, top left over the stage (moves above it on phones, like the live map's label) */
+.tll-dc__frame{position:relative}
+.tll-dc__label{position:absolute;left:12px;top:12px;z-index:7;max-width:calc(100% - 96px);font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tll-dc-teal);background:var(--tll-dc-midnight);padding:6px 10px;pointer-events:none}
+.tll-dc[data-type]:not([data-type="standin"]) .tll-dc__label--standin{display:none}
+
+/* Error note over the still map */
+.tll-dc__note{position:absolute;left:12px;right:12px;bottom:12px;z-index:5;margin:0;font:400 15px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:var(--tll-dc-cream);background:rgba(10,11,20,.9);padding:10px 12px}
+.tll-dc__note[hidden]{display:none}
+
+/* Hub marks and the tooltip */
+.tll-dc__mark{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border:1.5px solid var(--tll-dc-teal);border-radius:50%;background:var(--tll-dc-midnight-2);pointer-events:none;transition:transform 150ms var(--tll-dc-ease),background-color 150ms}
+.tll-dc__mark.is-on{background:var(--tll-dc-teal);transform:scale(1.35)}
+.tll-dc__tip{position:absolute;z-index:6;--tx:-50%;--ty:calc(-100% - 12px);transform:translate(var(--tx),var(--ty));
+  font:500 12px/1.35 var(--tll-dc-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;
+  color:var(--tll-dc-ink);background:var(--tll-dc-paper);padding:4px 6px;pointer-events:none}
+.tll-dc__tip b{font-weight:700}
+.tll-dc__tip.is-left{--tx:calc(-100% + 10px)}
+.tll-dc__tip.is-right{--tx:-10px}
+.tll-dc__tip.is-below{--ty:12px}
+.tll-dc__tip[hidden]{display:none}
+
+/* Keyboard route to the same hub information */
+.tll-dc__hubs-wrap{margin-top:14px}
+.tll-dc__hubs-cap{margin:0 0 8px;font:600 12px/1.4 var(--tll-dc-mono);letter-spacing:.18em;text-transform:uppercase;color:#9496AC}
+.tll-dc__hubs{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tll-dc__hub{min-height:44px;min-width:44px;padding:0 12px;border:1px solid rgba(247,241,232,.4);border-radius:0;background:transparent;color:var(--tll-dc-cream);font:600 12px/1 var(--tll-dc-mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.tll-dc__hub:hover{border-color:var(--tll-dc-teal);color:var(--tll-dc-teal)}
+.tll-dc__hub:focus-visible{outline:3px solid var(--tll-dc-cream);outline-offset:2px;box-shadow:0 0 0 6px var(--tll-dc-teal)}
+
+/* The Paw Passport Stamp. Stand-in: a separate small element; transform and filter only.
+   At rest it reads cream (teal art, desaturated and lifted); with pointer or focus on the pet guide it turns teal and rotates. */
+.tll-dc__paw{position:absolute;right:12px;top:12px;z-index:5;width:56px;height:56px;pointer-events:none;
+  transform-origin:50% 50%;filter:saturate(0) brightness(2.4);
+  transition:transform 250ms var(--tll-dc-ease),filter 250ms var(--tll-dc-ease)}
+.tll-dc__paw svg{display:block;width:100%;height:100%}
+.tll-dc__paw.is-paw-on,.tll-dc .is-paw-on{transform:rotate(-14deg) translate(2px,-2px) scale(1.06);filter:saturate(1) brightness(1)}
+/* 'layer' mode: the named layer inside the export rotates around its own center */
+.tll-dc__player .is-paw-on{transform-box:fill-box;transform-origin:center}
+
+@media (max-width:600px){
+  .tll-dc__paw{width:40px;height:40px;right:8px;top:8px}
+  .tll-dc__label{position:static;display:inline-block;max-width:none;margin:0 0 8px}
+}
+
+/* Reduced motion: no shimmer, no fades, no rotation. The stamp still changes color so the hover is still answered. */
+@media (prefers-reduced-motion: reduce){
+  .tll-dc__skeleton::after{animation:none!important;display:none}
+  .tll-dc__player,.tll-dc__mark,.tll-dc__paw{transition:none}
+  .tll-dc__paw.is-paw-on,.tll-dc .is-paw-on{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="corner" href="../index.html">All prototypes</a>
+
+<header class="intro">
+  <p class="wm">That Layover Life · Prototype</p>
+  <p class="ey">Home · 02 · Your travel dashboard</p>
+  <h1>The dashboard map, animated.</h1>
+  <p class="lede">The integration layer for an animation made in Fable: a player that takes a Lottie JSON, an SVG or a canvas export, a state machine that maps reader actions to its three segments, and a text version that says the same things. The Fable file was not attached to the brief, so the map below is a stand-in drawn in code on the same timeline. Drop the export into the config and the same triggers play it.</p>
+  <p class="flag">Stand-in animation · SAMPLE trips · Mock-up only, nothing here runs on www</p>
+  <ul class="try" aria-label="What to try">
+    <li><b>A · The Blank Map</b>Scroll the map into view. It plays once.</li>
+    <li><b>B · The Stamp Drop</b>Tick a SAMPLE trip. Each tick drops a stamp and the count updates.</li>
+    <li><b>C · The Connected Route</b>Point at or tab to "Build your free map".</li>
+    <li><b>Map Unfold</b>Press "Simulate signup". It plays A, then C.</li>
+    <li><b>Paw Passport Stamp</b>Point at or tab into the €9 pet guide.</li>
+    <li><b>Off screen</b>Open the state inspector (bottom left), then scroll away mid-animation. It shows zero frames drawn until you come back.</li>
+  </ul>
+</header>
+
+<main>
+<section class="h3 h3-sec h3-dark tll-dc" aria-labelledby="c2-t" data-dc>
+<div class="h3-in">
+  <p class="h3-ey">02 · Your travel dashboard</p>
+  <h2 id="c2-t" class="h3-title-l">Every place you have been, <em>in one spot.</em></h2>
+  <p class="h3-lede">Your stamps and stopovers on one map. It also shows where you haven't been, which is how the trouble starts.</p>
+  <div class="h3-ctas"><a class="h3-btn h3-btn-rose" href="https://www.thatlayover.life/the-map" data-dc-cta>Build your free map</a><span class="h3-note">Free to join.</span></div>
+
+  <div class="h3-dash-map">
+    <div class="tll-dc__frame">
+      <span class="tll-dc__label tll-dc__label--standin">STAND-IN ANIMATION: replace with the Fable export</span>
+      <div class="tll-dc__stage" data-dc-stage>
+        <div class="tll-dc__static" data-dc-static aria-hidden="true"><svg viewBox="0 0 960 470" preserveAspectRatio="none" focusable="false"><path d="M420 28h0M428 28h0M436 28h0M28 36h0M36 36h0M44 36h0M52 36h0M100 36h0M108 36h0M284 36h0M308 36h0M324 36h0M340 36h0M380 36h0M388 36h0M396 36h0M404 36h0M412 36h0M420 36h0M428 36h0M436 36h0M444 36h0M580 36h0M588 36h0M644 36h0M652 36h0M660 36h0M668 36h0M716 36h0M724 36h0M900 36h0M924 36h0M940 36h0M956 36h0M4 44h0M12 44h0M20 44h0M28 44h0M36 44h0M44 44h0M52 44h0M60 44h0M68 44h0M76 44h0M84 44h0M92 44h0M100 44h0M108 44h0M116 44h0M196 44h0M204 44h0M268 44h0M276 44h0M284 44h0M292 44h0M308 44h0M324 44h0M332 44h0M340 44h0M348 44h0M388 44h0M396 44h0M404 44h0M412 44h0M420 44h0M428 44h0M524 44h0M532 44h0M604 44h0M620 44h0M628 44h0M636 44h0M644 44h0M652 44h0M660 44h0M668 44h0M676 44h0M684 44h0M692 44h0M700 44h0M708 44h0M716 44h0M724 44h0M732 44h0M740 44h0M748 44h0M756 44h0M764 44h0M844 44h0M852 44h0M916 44h0M924 44h0M932 44h0M940 44h0M956 44h0M4 52h0M12 52h0M20 52h0M28 52h0M36 52h0M44 52h0M52 52h0M60 52h0M68 52h0M76 52h0M84 52h0M92 52h0M100 52h0M108 52h0M116 52h0M124 52h0M132 52h0M140 52h0M148 52h0M156 52h0M180 52h0M188 52h0M196 52h0M204 52h0M212 52h0M220 52h0M228 52h0M236 52h0M244 52h0M252 52h0M260 52h0M268 52h0M276 52h0M284 52h0M292 52h0M300 52h0M308 52h0M316 52h0M348 52h0M356 52h0M380 52h0M388 52h0M396 52h0M404 52h0M412 52h0M452 52h0M508 52h0M516 52h0M524 52h0M532 52h0M540 52h0M548 52h0M556 52h0M564 52h0M572 52h0M580 52h0M588 52h0M596 52h0M604 52h0M612 52h0M620 52h0M628 52h0M636 52h0M644 52h0M652 52h0M660 52h0M668 52h0M676 52h0M684 52h0M692 52h0M700 52h0M708 52h0M716 52h0M724 52h0M732 52h0M740 52h0M748 52h0M756 52h0M764 52h0M772 52h0M780 52h0M788 52h0M796 52h0M804 52h0M812 52h0M820 52h0M828 52h0M836 52h0M860 52h0M868 52h0M876 52h0M884 52h0M892 52h0M900 52h0M908 52h0M916 52h0M924 52h0M932 52h0M940 52h0M948 52h0M956 52h0M4 60h0M12 60h0M20 60h0M28 60h0M36 60h0M44 60h0M52 60h0M60 60h0M68 60h0M76 60h0M84 60h0M92 60h0M100 60h0M108 60h0M116 60h0M124 60h0M164 60h0M172 60h0M180 60h0M188 60h0M196 60h0M204 60h0M212 60h0M220 60h0M228 60h0M236 60h0M244 60h0M252 60h0M260 60h0M268 60h0M276 60h0M284 60h0M292 60h0M348 60h0M388 60h0M396 60h0M500 60h0M508 60h0M524 60h0M532 60h0M540 60h0M548 60h0M556 60h0M564 60h0M572 60h0M580 60h0M588 60h0M596 60h0M604 60h0M612 60h0M620 60h0M628 60h0M636 60h0M644 60h0M652 60h0M660 60h0M668 60h0M676 60h0M684 60h0M692 60h0M700 60h0M708 60h0M716 60h0M724 60h0M732 60h0M740 60h0M748 60h0M756 60h0M764 60h0M772 60h0M780 60h0M788 60h0M796 60h0M804 60h0M812 60h0M820 60h0M828 60h0M868 60h0M876 60h0M884 60h0M892 60h0M900 60h0M908 60h0M916 60h0M924 60h0M932 60h0M940 60h0M948 60h0M956 60h0M4 68h0M12 68h0M20 68h0M28 68h0M36 68h0M44 68h0M52 68h0M60 68h0M76 68h0M156 68h0M164 68h0M204 68h0M212 68h0M220 68h0M228 68h0M236 68h0M244 68h0M252 68h0M260 68h0M268 68h0M276 68h0M284 68h0M324 68h0M332 68h0M348 68h0M492 68h0M500 68h0M508 68h0M516 68h0M532 68h0M540 68h0M548 68h0M556 68h0M564 68h0M572 68h0M580 68h0M588 68h0M596 68h0M604 68h0M612 68h0M620 68h0M628 68h0M636 68h0M644 68h0M652 68h0M660 68h0M668 68h0M676 68h0M684 68h0M692 68h0M700 68h0M708 68h0M716 68h0M724 68h0M732 68h0M740 68h0M748 68h0M756 68h0M764 68h0M772 68h0M780 68h0M788 68h0M884 68h0M892 68h0M932 68h0M940 68h0M948 68h0M956 68h0M4 76h0M12 76h0M60 76h0M148 76h0M204 76h0M212 76h0M220 76h0M228 76h0M236 76h0M244 76h0M252 76h0M260 76h0M268 76h0M276 76h0M284 76h0M292 76h0M324 76h0M332 76h0M340 76h0M348 76h0M500 76h0M508 76h0M532 76h0M540 76h0M548 76h0M556 76h0M564 76h0M572 76h0M580 76h0M588 76h0M596 76h0M604 76h0M612 76h0M620 76h0M628 76h0M636 76h0M644 76h0M652 76h0M660 76h0M668 76h0M676 76h0M684 76h0M692 76h0M700 76h0M708 76h0M716 76h0M724 76h0M732 76h0M740 76h0M748 76h0M756 76h0M764 76h0M812 76h0M900 76h0M4 84h0M12 84h0M44 84h0M196 84h0M204 84h0M212 84h0M220 84h0M228 84h0M236 84h0M244 84h0M252 84h0M260 84h0M268 84h0M276 84h0M284 84h0M292 84h0M300 84h0M316 84h0M324 84h0M332 84h0M340 84h0M348 84h0M356 84h0M476 84h0M492 84h0M500 84h0M508 84h0M516 84h0M524 84h0M532 84h0M540 84h0M548 84h0M556 84h0M564 84h0M572 84h0M580 84h0M588 84h0M596 84h0M604 84h0M612 84h0M620 84h0M628 84h0M636 84h0M644 84h0M652 84h0M660 84h0M668 84h0M676 84h0M684 84h0M692 84h0M700 84h0M708 84h0M716 84h0M724 84h0M732 84h0M740 84h0M748 84h0M756 84h0M764 84h0M772 84h0M780 84h0M820 84h0M4 92h0M212 92h0M220 92h0M228 92h0M236 92h0M244 92h0M252 92h0M260 92h0M268 92h0M276 92h0M284 92h0M292 92h0M300 92h0M308 92h0M316 92h0M324 92h0M332 92h0M468 92h0M484 92h0M492 92h0M500 92h0M508 92h0M516 92h0M524 92h0M532 92h0M540 92h0M548 92h0M556 92h0M564 92h0M572 92h0M580 92h0M588 92h0M596 92h0M604 92h0M612 92h0M620 92h0M628 92h0M636 92h0M644 92h0M652 92h0M660 92h0M668 92h0M676 92h0M684 92h0M692 92h0M700 92h0M708 92h0M716 92h0M724 92h0M732 92h0M740 92h0M748 92h0M756 92h0M764 92h0M772 92h0M780 92h0M788 92h0M796 92h0M212 100h0M220 100h0M228 100h0M236 100h0M244 100h0M252 100h0M260 100h0M268 100h0M276 100h0M284 100h0M292 100h0M300 100h0M308 100h0M316 100h0M324 100h0M332 100h0M356 100h0M476 100h0M484 100h0M492 100h0M500 100h0M508 100h0M516 100h0M524 100h0M532 100h0M540 100h0M548 100h0M556 100h0M564 100h0M572 100h0M580 100h0M588 100h0M596 100h0M604 100h0M612 100h0M620 100h0M628 100h0M636 100h0M644 100h0M652 100h0M660 100h0M668 100h0M676 100h0M684 100h0M692 100h0M700 100h0M708 100h0M716 100h0M724 100h0M732 100h0M740 100h0M748 100h0M756 100h0M764 100h0M772 100h0M780 100h0M788 100h0M196 108h0M204 108h0M212 108h0M220 108h0M228 108h0M236 108h0M244 108h0M252 108h0M260 108h0M268 108h0M276 108h0M284 108h0M292 108h0M300 108h0M308 108h0M316 108h0M324 108h0M332 108h0M484 108h0M492 108h0M500 108h0M508 108h0M516 108h0M524 108h0M532 108h0M540 108h0M572 108h0M580 108h0M604 108h0M612 108h0M620 108h0M628 108h0M636 108h0M644 108h0M652 108h0M660 108h0M668 108h0M676 108h0M684 108h0M692 108h0M700 108h0M708 108h0M716 108h0M724 108h0M732 108h0M740 108h0M748 108h0M756 108h0M764 108h0M772 108h0M780 108h0M788 108h0M196 116h0M204 116h0M212 116h0M220 116h0M228 116h0M236 116h0M244 116h0M252 116h0M260 116h0M268 116h0M276 116h0M284 116h0M292 116h0M300 116h0M308 116h0M316 116h0M460 116h0M468 116h0M476 116h0M484 116h0M508 116h0M532 116h0M540 116h0M580 116h0M588 116h0M604 116h0M612 116h0M620 116h0M628 116h0M636 116h0M644 116h0M652 116h0M660 116h0M668 116h0M676 116h0M684 116h0M692 116h0M700 116h0M708 116h0M716 116h0M724 116h0M732 116h0M740 116h0M748 116h0M756 116h0M764 116h0M772 116h0M780 116h0M188 124h0M196 124h0M204 124h0M212 124h0M220 124h0M228 124h0M236 124h0M244 124h0M252 124h0M260 124h0M268 124h0M276 124h0M284 124h0M292 124h0M300 124h0M460 124h0M468 124h0M476 124h0M532 124h0M548 124h0M556 124h0M564 124h0M572 124h0M580 124h0M588 124h0M596 124h0M612 124h0M620 124h0M628 124h0M636 124h0M644 124h0M652 124h0M660 124h0M668 124h0M676 124h0M684 124h0M692 124h0M700 124h0M708 124h0M716 124h0M724 124h0M732 124h0M740 124h0M748 124h0M756 124h0M780 124h0M188 132h0M196 132h0M204 132h0M212 132h0M220 132h0M228 132h0M236 132h0M244 132h0M252 132h0M260 132h0M268 132h0M276 132h0M284 132h0M292 132h0M468 132h0M500 132h0M516 132h0M548 132h0M556 132h0M564 132h0M572 132h0M580 132h0M588 132h0M596 132h0M612 132h0M620 132h0M628 132h0M636 132h0M644 132h0M652 132h0M660 132h0M668 132h0M676 132h0M684 132h0M692 132h0M700 132h0M708 132h0M716 132h0M724 132h0M732 132h0M740 132h0M748 132h0M756 132h0M764 132h0M772 132h0M788 132h0M812 132h0M188 140h0M196 140h0M204 140h0M212 140h0M220 140h0M228 140h0M236 140h0M244 140h0M252 140h0M260 140h0M268 140h0M276 140h0M284 140h0M468 140h0M476 140h0M484 140h0M492 140h0M500 140h0M572 140h0M580 140h0M588 140h0M596 140h0M604 140h0M612 140h0M620 140h0M628 140h0M636 140h0M644 140h0M652 140h0M660 140h0M668 140h0M676 140h0M684 140h0M692 140h0M700 140h0M708 140h0M716 140h0M724 140h0M732 140h0M740 140h0M748 140h0M756 140h0M764 140h0M772 140h0M804 140h0M812 140h0M196 148h0M204 148h0M212 148h0M220 148h0M228 148h0M236 148h0M244 148h0M252 148h0M260 148h0M268 148h0M276 148h0M460 148h0M468 148h0M476 148h0M484 148h0M492 148h0M500 148h0M508 148h0M516 148h0M532 148h0M540 148h0M572 148h0M580 148h0M588 148h0M596 148h0M604 148h0M612 148h0M620 148h0M628 148h0M636 148h0M644 148h0M652 148h0M660 148h0M668 148h0M676 148h0M684 148h0M692 148h0M700 148h0M708 148h0M716 148h0M724 148h0M732 148h0M740 148h0M748 148h0M756 148h0M764 148h0M772 148h0M780 148h0M804 148h0M204 156h0M212 156h0M220 156h0M228 156h0M236 156h0M252 156h0M276 156h0M460 156h0M468 156h0M476 156h0M484 156h0M492 156h0M500 156h0M508 156h0M516 156h0M524 156h0M532 156h0M540 156h0M548 156h0M556 156h0M564 156h0M572 156h0M580 156h0M588 156h0M596 156h0M612 156h0M620 156h0M628 156h0M636 156h0M644 156h0M652 156h0M660 156h0M668 156h0M676 156h0M684 156h0M692 156h0M700 156h0M708 156h0M716 156h0M724 156h0M732 156h0M740 156h0M748 156h0M756 156h0M764 156h0M772 156h0M780 156h0M196 164h0M204 164h0M212 164h0M220 164h0M228 164h0M276 164h0M452 164h0M460 164h0M468 164h0M476 164h0M484 164h0M492 164h0M500 164h0M508 164h0M516 164h0M524 164h0M532 164h0M540 164h0M548 164h0M556 164h0M564 164h0M572 164h0M580 164h0M588 164h0M596 164h0M604 164h0M620 164h0M628 164h0M636 164h0M644 164h0M652 164h0M660 164h0M668 164h0M676 164h0M684 164h0M692 164h0M700 164h0M708 164h0M716 164h0M724 164h0M732 164h0M740 164h0M748 164h0M756 164h0M764 164h0M772 164h0M780 164h0M196 172h0M204 172h0M212 172h0M220 172h0M228 172h0M444 172h0M452 172h0M460 172h0M468 172h0M476 172h0M484 172h0M492 172h0M500 172h0M508 172h0M516 172h0M524 172h0M532 172h0M540 172h0M548 172h0M556 172h0M564 172h0M580 172h0M588 172h0M596 172h0M604 172h0M620 172h0M652 172h0M660 172h0M668 172h0M676 172h0M684 172h0M692 172h0M700 172h0M708 172h0M716 172h0M724 172h0M732 172h0M740 172h0M748 172h0M756 172h0M764 172h0M772 172h0M780 172h0M212 180h0M220 180h0M444 180h0M452 180h0M460 180h0M468 180h0M476 180h0M484 180h0M492 180h0M500 180h0M508 180h0M516 180h0M524 180h0M532 180h0M540 180h0M548 180h0M556 180h0M564 180h0M572 180h0M588 180h0M596 180h0M604 180h0M612 180h0M620 180h0M628 180h0M660 180h0M668 180h0M676 180h0M684 180h0M692 180h0M700 180h0M708 180h0M716 180h0M724 180h0M732 180h0M740 180h0M748 180h0M756 180h0M764 180h0M772 180h0M76 188h0M212 188h0M220 188h0M228 188h0M252 188h0M284 188h0M444 188h0M452 188h0M460 188h0M468 188h0M476 188h0M484 188h0M492 188h0M500 188h0M508 188h0M516 188h0M524 188h0M532 188h0M540 188h0M548 188h0M556 188h0M564 188h0M572 188h0M588 188h0M596 188h0M604 188h0M612 188h0M620 188h0M628 188h0M676 188h0M684 188h0M692 188h0M700 188h0M724 188h0M732 188h0M740 188h0M748 188h0M220 196h0M228 196h0M236 196h0M244 196h0M444 196h0M452 196h0M460 196h0M468 196h0M476 196h0M484 196h0M492 196h0M500 196h0M508 196h0M516 196h0M524 196h0M532 196h0M540 196h0M548 196h0M556 196h0M564 196h0M572 196h0M580 196h0M596 196h0M604 196h0M612 196h0M620 196h0M676 196h0M684 196h0M692 196h0M732 196h0M740 196h0M748 196h0M756 196h0M796 196h0M236 204h0M244 204h0M252 204h0M444 204h0M452 204h0M460 204h0M468 204h0M476 204h0M484 204h0M492 204h0M500 204h0M508 204h0M516 204h0M524 204h0M532 204h0M540 204h0M548 204h0M556 204h0M564 204h0M572 204h0M580 204h0M596 204h0M604 204h0M612 204h0M676 204h0M684 204h0M740 204h0M748 204h0M756 204h0M764 204h0M796 204h0M252 212h0M436 212h0M444 212h0M452 212h0M460 212h0M468 212h0M476 212h0M484 212h0M492 212h0M500 212h0M508 212h0M516 212h0M524 212h0M532 212h0M540 212h0M548 212h0M556 212h0M564 212h0M572 212h0M580 212h0M588 212h0M596 212h0M684 212h0M740 212h0M748 212h0M756 212h0M764 212h0M284 220h0M292 220h0M444 220h0M452 220h0M460 220h0M468 220h0M476 220h0M484 220h0M492 220h0M500 220h0M508 220h0M516 220h0M524 220h0M532 220h0M540 220h0M548 220h0M556 220h0M564 220h0M572 220h0M580 220h0M588 220h0M612 220h0M684 220h0M756 220h0M764 220h0M804 220h0M260 228h0M268 228h0M284 228h0M292 228h0M300 228h0M308 228h0M316 228h0M452 228h0M460 228h0M468 228h0M476 228h0M484 228h0M492 228h0M500 228h0M508 228h0M516 228h0M524 228h0M532 228h0M540 228h0M548 228h0M556 228h0M564 228h0M572 228h0M580 228h0M588 228h0M596 228h0M604 228h0M612 228h0M684 228h0M812 228h0M276 236h0M284 236h0M292 236h0M300 236h0M308 236h0M316 236h0M324 236h0M452 236h0M460 236h0M468 236h0M476 236h0M484 236h0M492 236h0M500 236h0M508 236h0M516 236h0M524 236h0M532 236h0M540 236h0M548 236h0M556 236h0M564 236h0M572 236h0M580 236h0M588 236h0M596 236h0M604 236h0M748 236h0M812 236h0M276 244h0M284 244h0M292 244h0M300 244h0M308 244h0M316 244h0M324 244h0M332 244h0M340 244h0M460 244h0M508 244h0M516 244h0M524 244h0M532 244h0M540 244h0M548 244h0M556 244h0M564 244h0M572 244h0M580 244h0M588 244h0M596 244h0M604 244h0M740 244h0M788 244h0M276 252h0M284 252h0M292 252h0M300 252h0M308 252h0M316 252h0M324 252h0M332 252h0M340 252h0M508 252h0M516 252h0M524 252h0M532 252h0M540 252h0M548 252h0M556 252h0M564 252h0M572 252h0M580 252h0M588 252h0M596 252h0M748 252h0M756 252h0M780 252h0M788 252h0M268 260h0M276 260h0M284 260h0M292 260h0M300 260h0M308 260h0M316 260h0M324 260h0M332 260h0M340 260h0M508 260h0M516 260h0M524 260h0M532 260h0M540 260h0M548 260h0M556 260h0M564 260h0M572 260h0M580 260h0M588 260h0M748 260h0M756 260h0M772 260h0M780 260h0M788 260h0M268 268h0M276 268h0M284 268h0M292 268h0M300 268h0M308 268h0M316 268h0M324 268h0M332 268h0M340 268h0M348 268h0M356 268h0M508 268h0M516 268h0M524 268h0M532 268h0M540 268h0M548 268h0M556 268h0M564 268h0M572 268h0M580 268h0M588 268h0M756 268h0M780 268h0M788 268h0M804 268h0M852 268h0M268 276h0M276 276h0M284 276h0M292 276h0M300 276h0M308 276h0M316 276h0M324 276h0M332 276h0M340 276h0M348 276h0M356 276h0M364 276h0M372 276h0M516 276h0M524 276h0M532 276h0M540 276h0M548 276h0M556 276h0M564 276h0M572 276h0M580 276h0M756 276h0M844 276h0M852 276h0M860 276h0M868 276h0M268 284h0M276 284h0M284 284h0M292 284h0M300 284h0M308 284h0M316 284h0M324 284h0M332 284h0M340 284h0M348 284h0M356 284h0M364 284h0M372 284h0M380 284h0M516 284h0M524 284h0M532 284h0M540 284h0M548 284h0M556 284h0M564 284h0M572 284h0M580 284h0M764 284h0M852 284h0M860 284h0M868 284h0M276 292h0M284 292h0M292 292h0M300 292h0M308 292h0M316 292h0M324 292h0M332 292h0M340 292h0M348 292h0M356 292h0M364 292h0M372 292h0M380 292h0M516 292h0M524 292h0M532 292h0M540 292h0M548 292h0M556 292h0M564 292h0M572 292h0M580 292h0M812 292h0M860 292h0M908 292h0M276 300h0M284 300h0M292 300h0M300 300h0M308 300h0M316 300h0M324 300h0M332 300h0M340 300h0M348 300h0M356 300h0M364 300h0M372 300h0M380 300h0M524 300h0M532 300h0M540 300h0M548 300h0M556 300h0M564 300h0M572 300h0M580 300h0M284 308h0M292 308h0M300 308h0M308 308h0M316 308h0M324 308h0M332 308h0M340 308h0M348 308h0M356 308h0M364 308h0M372 308h0M516 308h0M524 308h0M532 308h0M540 308h0M548 308h0M556 308h0M564 308h0M572 308h0M580 308h0M828 308h0M836 308h0M292 316h0M300 316h0M308 316h0M316 316h0M324 316h0M332 316h0M340 316h0M348 316h0M356 316h0M364 316h0M372 316h0M516 316h0M524 316h0M532 316h0M540 316h0M548 316h0M556 316h0M564 316h0M572 316h0M580 316h0M604 316h0M612 316h0M812 316h0M820 316h0M828 316h0M836 316h0M852 316h0M860 316h0M4 324h0M300 324h0M308 324h0M316 324h0M324 324h0M332 324h0M340 324h0M348 324h0M356 324h0M364 324h0M372 324h0M516 324h0M524 324h0M532 324h0M540 324h0M548 324h0M556 324h0M564 324h0M572 324h0M596 324h0M604 324h0M804 324h0M812 324h0M820 324h0M828 324h0M836 324h0M844 324h0M852 324h0M860 324h0M300 332h0M308 332h0M316 332h0M324 332h0M332 332h0M340 332h0M348 332h0M356 332h0M364 332h0M372 332h0M516 332h0M524 332h0M532 332h0M540 332h0M548 332h0M556 332h0M564 332h0M596 332h0M604 332h0M788 332h0M796 332h0M804 332h0M812 332h0M820 332h0M828 332h0M836 332h0M844 332h0M852 332h0M860 332h0M300 340h0M308 340h0M316 340h0M324 340h0M332 340h0M340 340h0M348 340h0M356 340h0M364 340h0M372 340h0M524 340h0M532 340h0M540 340h0M548 340h0M556 340h0M564 340h0M596 340h0M780 340h0M788 340h0M796 340h0M804 340h0M812 340h0M820 340h0M828 340h0M836 340h0M844 340h0M852 340h0M860 340h0M868 340h0M300 348h0M308 348h0M316 348h0M324 348h0M332 348h0M340 348h0M348 348h0M356 348h0M524 348h0M532 348h0M540 348h0M548 348h0M556 348h0M564 348h0M596 348h0M772 348h0M780 348h0M788 348h0M796 348h0M804 348h0M812 348h0M820 348h0M828 348h0M836 348h0M844 348h0M852 348h0M860 348h0M868 348h0M308 356h0M316 356h0M324 356h0M332 356h0M340 356h0M348 356h0M356 356h0M524 356h0M532 356h0M540 356h0M548 356h0M556 356h0M772 356h0M780 356h0M788 356h0M796 356h0M804 356h0M812 356h0M820 356h0M828 356h0M836 356h0M844 356h0M852 356h0M860 356h0M308 364h0M316 364h0M324 364h0M332 364h0M340 364h0M348 364h0M524 364h0M532 364h0M540 364h0M548 364h0M556 364h0M772 364h0M780 364h0M788 364h0M796 364h0M804 364h0M812 364h0M820 364h0M828 364h0M836 364h0M844 364h0M852 364h0M860 364h0M308 372h0M316 372h0M324 372h0M332 372h0M340 372h0M348 372h0M532 372h0M540 372h0M548 372h0M772 372h0M780 372h0M788 372h0M796 372h0M812 372h0M820 372h0M828 372h0M836 372h0M844 372h0M852 372h0M308 380h0M316 380h0M324 380h0M332 380h0M764 380h0M812 380h0M820 380h0M828 380h0M836 380h0M844 380h0M308 388h0M316 388h0M324 388h0M332 388h0M340 388h0M820 388h0M828 388h0M836 388h0M44 396h0M308 396h0M316 396h0M324 396h0M332 396h0M900 396h0M44 404h0M308 404h0M316 404h0M324 404h0M820 404h0M884 404h0M44 412h0M316 412h0M324 412h0M868 412h0M316 420h0M324 420h0M332 420h0M316 428h0M324 428h0M324 436h0M332 436h0" fill="none" stroke="rgba(247,241,232,.3)" stroke-width="3.4" stroke-linecap="round"/></svg></div>
+        <div class="tll-dc__skeleton" aria-hidden="true"><p>02 · Loading the map</p></div>
+        <div class="tll-dc__player" data-dc-player aria-hidden="true"></div>
+        <div class="tll-dc__pointer" data-dc-pointer aria-hidden="true"></div>
+        <div class="tll-dc__tip" data-dc-tip aria-hidden="true" hidden></div>
+        <span class="tll-dc__paw" data-dc-paw aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="29" fill="none" stroke="#00C9C8" stroke-width="2.5"/><circle cx="32" cy="32" r="24" fill="none" stroke="#00C9C8" stroke-width="1" stroke-dasharray="2 3"/><ellipse cx="32" cy="39" rx="8.5" ry="7" fill="#00C9C8"/><ellipse cx="21.5" cy="30" rx="3.6" ry="4.6" fill="#00C9C8" transform="rotate(-18 21.5 30)"/><ellipse cx="28" cy="23.5" rx="3.6" ry="4.8" fill="#00C9C8" transform="rotate(-6 28 23.5)"/><ellipse cx="36" cy="23.5" rx="3.6" ry="4.8" fill="#00C9C8" transform="rotate(6 36 23.5)"/><ellipse cx="42.5" cy="30" rx="3.6" ry="4.6" fill="#00C9C8" transform="rotate(18 42.5 30)"/></svg></span>
+        <p class="tll-dc__note" data-dc-note hidden>The animation did not load. This is the still map; the description and counts below still work.</p>
+      </div>
+    </div>
+    <p class="tll-dc-sr" data-dc-desc>A world map of the places you have been. Each place you add gets a stamp; a route joins them.</p>
+    <p class="tll-dc-sr" data-dc-live aria-live="polite" aria-atomic="true"></p>
+  </div>
+  <p class="h3-dash-line"><span data-dc-count>No stamps yet</span><span class="h3-dash-cap">SAMPLE · counted from the trips ticked below</span></p>
+
+  <div class="tll-dc__hubs-wrap">
+    <p class="tll-dc__hubs-cap" id="hubs-cap">Airport hubs on the map · focus one to see its coordinates</p>
+    <ul class="tll-dc__hubs" data-dc-hubs aria-labelledby="hubs-cap"><li class="h3-note">CPH · SOF · FRA · IST · DOH · SIN · GRU · JFK</li></ul>
+  </div>
+
+  <div class="demo-row">
+    <div class="demo-box">
+      <p class="demo-cap">Demo controls · not part of the chapter</p>
+      <fieldset>
+        <legend>SAMPLE trips · tick to mock-add a trip</legend>
+        <label class="trip"><input type="checkbox" data-trip value="CPH" data-label="Copenhagen, Denmark"> Copenhagen, Denmark <span class="code">CPH</span></label>
+        <label class="trip"><input type="checkbox" data-trip value="SOF" data-label="Sofia, Bulgaria"> Sofia, Bulgaria <span class="code">SOF</span></label>
+        <label class="trip"><input type="checkbox" data-trip value="IST" data-label="Istanbul, Türkiye"> Istanbul, Türkiye <span class="code">IST</span></label>
+        <label class="trip"><input type="checkbox" data-trip value="DOH" data-label="Doha, Qatar"> Doha, Qatar <span class="code">DOH</span></label>
+        <label class="trip"><input type="checkbox" data-trip value="GRU" data-label="São Paulo, Brazil"> São Paulo, Brazil <span class="code">GRU</span></label>
+      </fieldset>
+      <div class="demo-signup">
+        <button type="button" class="h3-btn h3-btn-line" data-demo-signup>Simulate signup</button>
+        <p>On the site this is Memberstack's signup callback. Here it plays Map Unfold.</p>
+      </div>
+    </div>
+
+    <div class="pet" data-dc-pet>
+      <p class="pet-ey">€9 pet guide</p>
+      <p class="pet-t">The EU pet travel guide. Read it before the ferry, not in the queue.</p>
+      <p class="pet-m">PDF · €9 · on Ko-fi</p>
+      <button type="button" class="h3-btn h3-btn-line" data-pet-demo aria-describedby="pet-demo-note">Get the guide · €9</button>
+      <p class="pet-n" id="pet-demo-note" aria-live="polite"></p>
+      <p class="pet-hint">Point here or tab in: the Paw Passport Stamp on the map turns and changes color.</p>
+    </div>
+  </div>
+
+  <ol class="h3-steps" aria-label="How the dashboard builds itself">
+    <li><b>01 · Profile</b><span>Sign up. You are live.</span></li>
+    <li><b>02 · Stories and photos</b><span>Add a trip. Or the photo from the gate.</span></li>
+    <li><b>03 · The map</b><span>Nobody likes a blank map.</span></li>
+  </ol>
+</div>
+</section>
+
+<section class="how" aria-labelledby="how-t">
+  <h2 id="how-t">How the layer behaves</h2>
+  <p>One controller owns the player. Triggers ask for a segment; the state machine decides whether it plays now, waits in the queue, or jumps straight to its end frame. Full notes, the drop-in steps and the events API are in the README beside this file.</p>
+
+  <h3>States</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">State</th><th scope="col">When</th><th scope="col">On screen</th></tr></thead>
+    <tbody>
+      <tr><td><code>idle</code></td><td>Before the chapter is within 600px of the screen. Nothing is loaded.</td><td>The loading preview, still.</td></tr>
+      <tr><td><code>loading</code></td><td>The player and export are loading, with an 8 second timeout.</td><td>The preview, with a slow shimmer (none with reduced motion).</td></tr>
+      <tr><td><code>ready</code></td><td>Loaded and resting on a frame.</td><td>The animation, still.</td></tr>
+      <tr><td><code>playing:A</code> <code>playing:B</code> <code>playing:C</code></td><td>A segment is playing. Map Unfold shows as A then C.</td><td>Frames 0 to 45, 46 to 90, 91 to 150.</td></tr>
+      <tr><td><code>paused:offscreen</code></td><td>Off screen or in a hidden tab. Playback and every frame loop are stopped.</td><td>Nothing is drawn.</td></tr>
+      <tr><td><code>reduced-motion</code></td><td>The reader asked for less motion. Triggers jump to each segment's end frame.</td><td>End frames only.</td></tr>
+      <tr><td><code>error</code></td><td>Load failed or timed out.</td><td>The still map, the description and the counts.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Triggers</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Trigger</th><th scope="col">Plays</th><th scope="col">If something is already playing</th></tr></thead>
+    <tbody>
+      <tr><td><code>view</code> (35% on screen)</td><td>A, once</td><td>Never repeats.</td></tr>
+      <tr><td><code>stamp:add</code> (tick)</td><td>B</td><td>Waits in the one-slot queue. Many ticks replay B once more. The count and the spoken line update at once.</td></tr>
+      <tr><td><code>cta:enter</code> (hover or focus)</td><td>C</td><td>Waits in the queue and takes the slot from B. Ignored while C itself is playing.</td></tr>
+      <tr><td><code>signup:success</code></td><td>Map Unfold (A then C)</td><td>Replaces whatever is playing and clears the queue.</td></tr>
+      <tr><td><code>pet:enter</code> / <code>pet:leave</code></td><td>Paw Passport Stamp</td><td>Independent of the map timeline.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>What the reader hears</h3>
+  <ul>
+    <li>"Stamp added. Three places on your map." when a trip is ticked, with the number worked out from the ticks.</li>
+    <li>"Route drawn through your three places." after C, or "Sample route drawn from Copenhagen to Sofia." with fewer than two stamps.</li>
+    <li>"Signed up. Your map is unfolding." then "Your map is ready." for Map Unfold.</li>
+    <li>"The animation did not load. The still map and this description stay in place." on error.</li>
+  </ul>
+</section>
+</main>
+
+<aside class="insp" data-insp aria-label="State inspector, demo only">
+  <div class="insp-head"><span>State inspector</span><button type="button" data-i-toggle aria-expanded="true">Hide</button></div>
+  <div class="insp-body">
+    <dl>
+      <dt>State</dt><dd data-i="state">idle</dd>
+      <dt>Frame</dt><dd data-i="frame">0</dd>
+      <dt>Queue</dt><dd data-i="queue">empty</dd>
+      <dt>On screen</dt><dd data-i="view">no</dd>
+      <dt>Tab</dt><dd data-i="page">visible</dd>
+      <dt>Less motion</dt><dd data-i="rm">off</dd>
+      <dt>rAF off screen</dt><dd data-i="raf">0</dd>
+      <dt>rAF total</dt><dd data-i="rafall">0</dd>
+    </dl>
+    <ol data-i-log aria-label="Recent events"></ol>
+    <div class="insp-ctl">
+      <label>Next load <select data-i-next><option value="none">normal</option><option value="error">fails</option><option value="timeout">times out</option></select></label>
+      <button type="button" data-i-reload>Reload player</button>
+    </div>
+  </div>
+</aside>
+
+<script type="module">
+/* Generated by build.cjs from the source files beside this page. Edit those, then rebuild. */
+/* ---- players/player-base.js ---- */
+/* Shared pieces for every player adapter: the common interface (as JSDoc), a tiny event emitter, and the frame clock.
+   The frame clock is the only requestAnimationFrame loop in this layer. It runs only while a segment is playing,
+   and pause() cancels the pending frame, so a paused clock schedules nothing. */
+
+/**
+ * @typedef {'frame'|'loaded'|'complete'|'error'} PlayerEvent
+ */
+
+/**
+ * @typedef {Object} PlayOptions
+ * @property {number} [speed]  Playback rate, 1 = the export's own frame rate.
+ */
+
+/**
+ * The interface every adapter implements. The controller only talks to this.
+ * @typedef {Object} Player
+ * @property {string} kind                           'lottie' | 'svg' | 'canvas' | 'standin'
+ * @property {number} fps
+ * @property {number} totalFrames
+ * @property {() => Promise<void>} load               Resolves when the first frame can be shown; rejects on failure.
+ * @property {(from:number, to:number, opts?:PlayOptions) => Promise<'complete'|'interrupted'>} playSegment
+ * @property {(n:number) => void} goToFrame           Shows frame n and stops there.
+ * @property {() => void} pause                       Freezes playback and stops any frame loop.
+ * @property {() => void} resume                      Continues a paused segment from where it stopped.
+ * @property {(s:number) => void} setSpeed
+ * @property {() => number} currentFrame
+ * @property {() => void} destroy
+ * @property {(event:PlayerEvent, fn:(detail:any) => void) => () => void} on   Returns an unsubscribe function.
+ * @property {(data:any) => void} [setData]           Optional: data-driven players (the stand-in) take the stamps here.
+ * @property {(selector:string) => (Element|null)} [layer]  Optional: a named layer inside the export (svg and lottie-svg).
+ */
+
+class Emitter {
+  constructor() { /** @type {Map<string, Set<Function>>} */ this._h = new Map(); }
+  /** @param {string} ev @param {(d:any)=>void} fn */
+  on(ev, fn) {
+    if (!this._h.has(ev)) this._h.set(ev, new Set());
+    this._h.get(ev).add(fn);
+    return () => { const s = this._h.get(ev); if (s) s.delete(fn); };
+  }
+  /** @param {string} ev @param {any} [detail] */
+  emit(ev, detail) {
+    const s = this._h.get(ev);
+    if (!s) return;
+    [...s].forEach(fn => { try { fn(detail); } catch (e) { console.error('[dashboard-canvas] listener for ' + ev + ' failed', e); } });
+  }
+  clear() { this._h.clear(); }
+}
+
+/** Counters the controller and the demo inspector read. One object for the whole page. */
+const RAF_STATS = { callbacks: 0, whilePaused: 0 };
+
+/**
+ * Drives a seek(frame) function with requestAnimationFrame, for the canvas and stand-in adapters.
+ * Time-based, so a slow phone drops frames instead of slowing the animation down.
+ */
+class FrameClock {
+  /** @param {{fps:number, seek:(f:number)=>void, onFrame?:(f:number)=>void}} o */
+  constructor(o) {
+    this.fps = o.fps; this.seek = o.seek; this.onFrame = o.onFrame || (() => {});
+    this.frame = 0; this.speed = 1; this.paused = false; this.running = false;
+    this._id = 0; this._last = null; this._to = 0; this._done = null;
+    this._tick = this._tick.bind(this);
+  }
+  _schedule() {
+    if (this._id || this.paused || !this.running) return;
+    this._id = requestAnimationFrame((t) => {
+      RAF_STATS.callbacks++;
+      if (this.paused) RAF_STATS.whilePaused++;
+      this._id = 0;
+      this._tick(t);
+    });
+  }
+  _cancel() { if (this._id) { cancelAnimationFrame(this._id); this._id = 0; } }
+  /** @param {number} t */
+  _tick(t) {
+    if (this.paused || !this.running) return;
+    if (this._last == null) this._last = t;
+    const dt = Math.min(100, t - this._last); /* a long gap (tab switch) never skips the whole segment */
+    this._last = t;
+    this.frame = Math.min(this._to, this.frame + dt / 1000 * this.fps * this.speed);
+    this.seek(this.frame); this.onFrame(this.frame);
+    if (this.frame >= this._to) { this._finish('complete'); return; }
+    this._schedule();
+  }
+  /** @param {'complete'|'interrupted'} how */
+  _finish(how) {
+    this.running = false; this._cancel(); this._last = null;
+    const d = this._done; this._done = null;
+    if (d) d(how);
+  }
+  /** @param {number} from @param {number} to @returns {Promise<'complete'|'interrupted'>} */
+  play(from, to) {
+    this._finish('interrupted');
+    this.frame = from; this._to = to; this.running = true; this.paused = false; this._last = null;
+    this.seek(from); this.onFrame(from);
+    return new Promise((res) => { this._done = res; this._schedule(); });
+  }
+  /** @param {number} f */
+  goTo(f) { this._finish('interrupted'); this.frame = f; this.seek(f); this.onFrame(f); }
+  pause() { this.paused = true; this._cancel(); this._last = null; }
+  resume() { if (!this.paused) return; this.paused = false; this._last = null; this._schedule(); }
+  /** @param {number} s */
+  setSpeed(s) { this.speed = s > 0 ? s : 1; }
+  destroy() { this._finish('interrupted'); this.paused = true; }
+}
+
+/** Loads a classic script once (lottie-web). Pinned URL plus optional SRI. @param {string} src @param {string} [integrity] */
+function loadScriptOnce(src, integrity) {
+  /** @type {any} */ const w = window;
+  w.__tllScripts = w.__tllScripts || {};
+  if (w.__tllScripts[src]) return w.__tllScripts[src];
+  w.__tllScripts[src] = new Promise((ok, no) => {
+    const s = document.createElement('script');
+    s.src = src; s.async = true;
+    if (integrity) { s.integrity = integrity; s.crossOrigin = 'anonymous'; }
+    s.onload = () => ok(undefined);
+    s.onerror = () => { delete w.__tllScripts[src]; no(new Error('Could not load ' + src)); };
+    document.head.appendChild(s);
+  });
+  return w.__tllScripts[src];
+}
+
+/* ---- players/standin-mask.js ---- */
+/* GENERATED by tools/make-standin-mask.mjs on 2026-11-12. Do not edit by hand.
+   Land grid (120 x 58 cells of 8px on a 960x470 canvas, 1744 land cells) and the Equal Earth fit
+   (scale, translate) used by the live chapter's map. Antarctica is left out, as on the live map. */
+const STANDIN_MASK = /*MASK*/{"w":960,"h":470,"step":8,"cols":120,"rows":58,"scale":177.712163,"translate":[480,259.758419],"rowsHex":["000000000000000000000000000000","000000000000000000000000000000","000000000000000000000000000000","0000000000000e0000000000000000","1e0c000012a1ff0000c0f060000095","fffe00c07af0fc006017ffff00603d","fffff3ffff19f081ffffffffff9fff","ffff0ffff810c0037fffffffff0fff","ff40187ff0d00007bfffffffe0030f","c100207ff8f000033fffffff040080","c40000fffdf80017ffffffffc20000","8000003fffc0002ffffffffff00000","0000003fffc8001fffffffffe00000","000000ffffc0000ff19fffffe00000","000000ffff00007930dfffffc00000","000001fffc0000702feffffe400000","000001fff80000228fefffffa40000","000001fff000003e01ffffff8c0000","000000ffe000007fb1ffffffc80000","0000007d2000007fffefffffc00000","000000f8200000fffff7ffffc00000","000000f8000001fffef47fffc00000","00000030000001ffff7e3fff800000","00400039100001ffff7e0f3c000000","0000001e000001ffffbc0e1e100000","00000007000001ffffb80c0f100000","00000001000003ffffe0040f000000","00000000180001ffffc80403080000","00000000df0000fffff80400040000","000000003f8000fffff00004040000","000000003fe00041fff00008200000","000000003fe00001ffe00006600000","000000007fe00001ffc00006e00000","000000007ff80001ffc00002682000","000000007ffe0000ff800002007800","000000007fff0000ff800001003800","000000003fff0000ff800000041040","000000003fff00007f800000000000","000000001ffe0000ff800000018000","000000000ffe0000ff98000007b000","8000000007fe0000ff3000000ff000","0000000007fe0000fe3000003ff000","0000000007fe00007e2000007ff800","0000000007f800007e200000fff800","0000000003f800007c000000fff000","0000000003f000007c000000fff000","0000000003f0000038000000f7e000","0000000003c000000000000107c000","0000000003e0000000000000038000","0400000003c0000000000000000080","040000000380000000000000020200","040000000180000000000000000800","0000000001c0000000000000000000","000000000180000000000000000000","0000000000c0000000000000000000","000000000000000000000000000000","000000000000000000000000000000","000000000000000000000000000000"]}/*END*/;
+
+/* ---- players/lottie-player.js ---- */
+/* Lottie adapter (lottie-web 5.12.2 from cdnjs, pinned). Loaded only when config.type is 'lottie' (or the paw stamp is a
+   Lottie asset): the controller imports nothing from cdnjs until then.
+   Builds: 'light' + svg renderer = lottie_light.min.js (about 46 KB gzipped); 'light' + canvas = lottie_light_canvas.min.js
+   (about 54 KB); 'full' = lottie.min.js (about 76 KB), only if the export uses expressions. Sizes measured from the npm tarball. */
+
+const LOTTIE_VERSION = '5.12.2';
+const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/' + LOTTIE_VERSION + '/';
+/* SRI computed from the npm tarball of the same version (cdnjs serves the npm files). Compare with cdnjs's listed SRI before going live. */
+const LOTTIE_BUILDS = {
+  'light-svg':    { file: 'lottie_light.min.js',        integrity: 'sha384-Vtbz3QbtSBqleuQry6kQy5smig1gPZCXUoTFN7RmN9QW47xpEDsV/J1w0Pw0rDJu' },
+  'light-canvas': { file: 'lottie_light_canvas.min.js', integrity: 'sha384-7smLPy87rn/83wziBl/IJ2/ijiuQpctXTpvFTe1pEG+Fzj8daB1DUrBMoCCkoO4/' },
+  'full':         { file: 'lottie.min.js',              integrity: 'sha384-J8C0MvgX4WP58J4N2W99vCKd2J6z99ynOJ5bEfE6jeP7kVTW1drYtv/jzrxM5jbm' }
+};
+
+/** @param {{renderer?:string, lottieBuild?:string}} cfg */
+function lottieScriptFor(cfg) {
+  const key = cfg.lottieBuild === 'full' ? 'full' : (cfg.renderer === 'canvas' ? 'light-canvas' : 'light-svg');
+  const b = LOTTIE_BUILDS[key];
+  return { src: CDN + b.file, integrity: b.integrity };
+}
+
+/**
+ * @param {HTMLElement} mount
+ * @param {{assetUrl?:string, animationData?:any, renderer?:'svg'|'canvas', lottieBuild?:'light'|'full', fps?:number, totalFrames?:number}} cfg
+ * @returns {import('./player-base.js').Player & {markers:()=>Array<{name:string,from:number,to:number}>}}
+ */
+function createLottiePlayer(mount, cfg) {
+  const em = new Emitter();
+  /** @type {any} */ let anim = null;
+  let speed = 1, destroyed = false;
+  /** @type {null|((how:'complete'|'interrupted')=>void)} */ let done = null;
+  let segTo = 0;
+
+  const abs = () => anim ? Math.round((anim.firstFrame || 0) + (anim.currentFrame || 0)) : 0;
+  function settle(how) { const d = done; done = null; if (d) d(how); }
+
+  const player = {
+    kind: 'lottie', fps: cfg.fps || 30, totalFrames: cfg.totalFrames || 150,
+    async load() {
+      const s = lottieScriptFor(cfg);
+      await loadScriptOnce(s.src, s.integrity);
+      if (destroyed) throw new Error('destroyed');
+      /** @type {any} */ const lottie = /** @type {any} */ (window).lottie || /** @type {any} */ (window).bodymovin;
+      if (!lottie) throw new Error('lottie-web did not define window.lottie');
+      await new Promise((ok, no) => {
+        const opts = {
+          container: mount, renderer: cfg.renderer === 'canvas' ? 'canvas' : 'svg', loop: false, autoplay: false,
+          rendererSettings: { preserveAspectRatio: 'xMidYMid meet', progressiveLoad: true, hideOnTransparent: true }
+        };
+        if (cfg.animationData) opts.animationData = typeof cfg.animationData === 'string' ? JSON.parse(cfg.animationData) : cfg.animationData;
+        else if (cfg.assetUrl) opts.path = cfg.assetUrl;
+        else { no(new Error('No Lottie export configured: set assetUrl or animationData')); return; }
+        anim = lottie.loadAnimation(opts);
+        anim.addEventListener('DOMLoaded', () => ok(undefined));
+        anim.addEventListener('data_failed', () => no(new Error('The Lottie file did not load')));
+        anim.addEventListener('error', () => no(new Error('The Lottie file could not be read')));
+        if (anim.isLoaded) ok(undefined); /* inline JSON can finish inside loadAnimation, before the listener exists */
+      });
+      if (destroyed) throw new Error('destroyed');
+      const d = anim.animationData || {};
+      if (d.fr) player.fps = d.fr;
+      if (d.op != null) player.totalFrames = Math.round(d.op - (d.ip || 0));
+      anim.addEventListener('enterFrame', () => em.emit('frame', abs()));
+      anim.addEventListener('complete', () => {
+        if (!done) return;
+        anim.resetSegments(true); anim.goToAndStop(segTo, true);
+        em.emit('frame', segTo);
+        settle('complete');
+      });
+      anim.resetSegments(true); anim.goToAndStop(0, true);
+      em.emit('loaded');
+    },
+    playSegment(from, to, opts) {
+      settle('interrupted');
+      if (!anim) return Promise.resolve('interrupted');
+      if (opts && opts.speed) player.setSpeed(opts.speed);
+      segTo = to;
+      return new Promise((res) => { done = res; anim.playSegments([from, to], true); });
+    },
+    goToFrame(n) { settle('interrupted'); if (!anim) return; anim.resetSegments(true); anim.goToAndStop(n, true); em.emit('frame', n); },
+    /* lottie-web's own loop stops scheduling frames once no animation is playing, so pause() is a full stop. */
+    pause() { if (anim) anim.pause(); },
+    resume() { if (anim && done) anim.play(); },
+    setSpeed(s) { speed = s > 0 ? s : 1; if (anim) anim.setSpeed(speed); },
+    currentFrame: abs,
+    layer(sel) { return mount.querySelector(sel); },
+    /** Markers the export carries (After Effects / Fable markers): [{name, from, to}]. */
+    markers() {
+      const list = (anim && anim.animationData && anim.animationData.markers) || [];
+      return list.map((m) => {
+        let name = m.cm;
+        try { const j = JSON.parse(m.cm); if (j && j.name) name = j.name; } catch (e) { /* plain text comment */ }
+        return { name: String(name), from: Math.round(m.tm), to: Math.round(m.tm + (m.dr || 0)) };
+      });
+    },
+    destroy() { destroyed = true; settle('interrupted'); if (anim) { anim.destroy(); anim = null; } em.clear(); },
+    on(ev, fn) { return em.on(ev, fn); }
+  };
+  return player;
+}
+
+/* ---- players/svg-player.js ---- */
+/* Inline SVG adapter: an SVG export whose parts are named <g id="..."> groups, animated with the Web Animations API.
+   No library and no requestAnimationFrame of its own. Every group animation sits on one shared clock of
+   totalFrames / fps seconds; seeking sets currentTime on all of them, playing a segment plays them all and stops
+   them at the segment's last frame. Paused animations cost nothing.
+
+   config.svg: the SVG markup (string) or config.assetUrl (same-origin .svg).
+   config.timeline: [{ target: '#stamp-1', from: 46, to: 70, keyframes: [{opacity:0, transform:'scale(1.6)'}, {opacity:1, transform:'none'}], easing: 'ease-out' }]
+   Frames are the export's frames; from/to say when each group moves on the shared clock. */
+
+/**
+ * @param {HTMLElement} mount
+ * @param {{svg?:string, assetUrl?:string, timeline?:Array<{target:string, from:number, to:number, keyframes:Keyframe[], easing?:string}>, fps?:number, totalFrames?:number}} cfg
+ * @returns {import('./player-base.js').Player}
+ */
+function createSvgPlayer(mount, cfg) {
+  const em = new Emitter();
+  const fps = cfg.fps || 30, total = cfg.totalFrames || 150;
+  const ms = (f) => f / fps * 1000;
+  /** @type {Animation[]} */ let anims = [];
+  let frame = 0, speed = 1, destroyed = false, timer = 0, segTo = 0, segStartedAt = 0, segStartFrame = 0, isPaused = false;
+  /** @type {null|((how:'complete'|'interrupted')=>void)} */ let done = null;
+
+  function settle(how) { clearTimeout(timer); timer = 0; const d = done; done = null; if (d) d(how); }
+  function seekAll(f) { frame = f; anims.forEach(a => { a.pause(); a.currentTime = ms(f); }); em.emit('frame', f); }
+  function liveFrame() {
+    if (!done || isPaused) return frame;
+    return Math.min(segTo, segStartFrame + (performance.now() - segStartedAt) / 1000 * fps * speed);
+  }
+  function arm() {
+    const left = ms(segTo - frame) / speed;
+    segStartedAt = performance.now(); segStartFrame = frame;
+    timer = setTimeout(() => { seekAll(segTo); settle('complete'); }, Math.max(0, left));
+  }
+
+  return {
+    kind: 'svg', fps, totalFrames: total,
+    async load() {
+      let markup = cfg.svg || '';
+      if (!markup && cfg.assetUrl) {
+        const r = await fetch(cfg.assetUrl);
+        if (!r.ok) throw new Error('The SVG export did not load (' + r.status + ')');
+        markup = await r.text();
+      }
+      if (destroyed) throw new Error('destroyed');
+      if (!/<svg[\s>]/i.test(markup)) throw new Error('No SVG export configured: set svg or assetUrl');
+      mount.innerHTML = markup;
+      const svg = mount.querySelector('svg');
+      if (svg) { svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false'); svg.style.width = '100%'; svg.style.height = '100%'; }
+      if (typeof Element.prototype.animate !== 'function') throw new Error('This browser has no Web Animations API');
+      anims = [];
+      (cfg.timeline || []).forEach((t) => {
+        mount.querySelectorAll(t.target).forEach((el) => {
+          /** @type {any} */ (el).style.transformBox = 'fill-box';
+          /** @type {any} */ (el).style.transformOrigin = 'center';
+          const a = el.animate(t.keyframes, {
+            delay: ms(t.from), duration: Math.max(1, ms(t.to - t.from)),
+            /* endDelay keeps every effect "active" to the end of the shared clock, so play() never auto-rewinds a finished one */
+            endDelay: ms(total - t.to) + 1000, fill: 'both', easing: t.easing || 'linear'
+          });
+          a.pause();
+          anims.push(a);
+        });
+      });
+      seekAll(0);
+      em.emit('loaded');
+    },
+    playSegment(from, to, opts) {
+      settle('interrupted');
+      if (opts && opts.speed) speed = opts.speed;
+      seekAll(from); segTo = to; isPaused = false;
+      return new Promise((res) => {
+        done = res;
+        anims.forEach(a => { a.playbackRate = speed; a.play(); });
+        arm();
+      });
+    },
+    goToFrame(n) { settle('interrupted'); seekAll(n); },
+    pause() {
+      if (!done || isPaused) return;
+      frame = liveFrame(); isPaused = true; clearTimeout(timer); timer = 0;
+      anims.forEach(a => a.pause());
+      if (anims[0] && anims[0].currentTime != null) frame = Number(anims[0].currentTime) / 1000 * fps;
+    },
+    resume() {
+      if (!done || !isPaused) return;
+      isPaused = false;
+      anims.forEach(a => { a.playbackRate = speed; a.play(); });
+      arm();
+    },
+    setSpeed(s) {
+      if (done && !isPaused) { frame = liveFrame(); clearTimeout(timer); }
+      speed = s > 0 ? s : 1; anims.forEach(a => { a.playbackRate = speed; });
+      if (done && !isPaused) arm();
+    },
+    currentFrame: () => Math.round(liveFrame()),
+    layer(sel) { return mount.querySelector(sel); },
+    destroy() { destroyed = true; settle('interrupted'); anims.forEach(a => a.cancel()); anims = []; mount.innerHTML = ''; em.clear(); },
+    on(ev, fn) { return em.on(ev, fn); }
+  };
+}
+
+/* ---- players/canvas-player.js ---- */
+/* Canvas / WebGL wrapper adapter. For an export that draws itself and exposes a seek(frame) function.
+   The wrapper owns the clock (FrameClock, the one rAF loop), so the export never runs its own loop:
+   when the controller pauses, nothing draws and nothing is scheduled.
+
+   config.create(mount) must return (or resolve to) a "scene":
+     { seek(frame:number): void, resize?(cssWidth:number, cssHeight:number, dpr:number): void,
+       setData?(data:any): void, totalFrames?: number, fps?: number, destroy?(): void }
+   or config.moduleUrl: a same-origin ES module whose export createScene(mount) returns the same. */
+
+/**
+ * @typedef {Object} CanvasScene
+ * @property {(frame:number) => void} seek
+ * @property {(w:number, h:number, dpr:number) => void} [resize]
+ * @property {(data:any) => void} [setData]
+ * @property {number} [totalFrames]
+ * @property {number} [fps]
+ * @property {() => void} [destroy]
+ */
+
+/**
+ * @param {HTMLElement} mount
+ * @param {{create?:(mount:HTMLElement)=>CanvasScene|Promise<CanvasScene>, moduleUrl?:string, fps?:number, totalFrames?:number, kind?:string}} cfg
+ * @returns {import('./player-base.js').Player}
+ */
+function createCanvasPlayer(mount, cfg) {
+  const em = new Emitter();
+  /** @type {CanvasScene|null} */ let scene = null;
+  /** @type {ResizeObserver|null} */ let ro = null;
+  let destroyed = false;
+  const clock = new FrameClock({ fps: cfg.fps || 30, seek: (f) => { if (scene) scene.seek(f); }, onFrame: (f) => em.emit('frame', f) });
+
+  const player = {
+    kind: cfg.kind || 'canvas', fps: cfg.fps || 30, totalFrames: cfg.totalFrames || 150,
+    async load() {
+      let make = cfg.create;
+      if (!make && cfg.moduleUrl) { const m = await import(cfg.moduleUrl); make = m.createScene; }
+      if (typeof make !== 'function') throw new Error('No canvas export configured: set create or moduleUrl');
+      scene = await make(mount);
+      if (destroyed) { if (scene && scene.destroy) scene.destroy(); throw new Error('destroyed'); }
+      if (!scene || typeof scene.seek !== 'function') throw new Error('The canvas export has no seek(frame) function');
+      if (scene.fps) { player.fps = scene.fps; clock.fps = scene.fps; }
+      if (scene.totalFrames) player.totalFrames = scene.totalFrames;
+      /* Resizing redraws the current frame once; it never starts a loop. */
+      if (scene.resize && 'ResizeObserver' in window) {
+        ro = new ResizeObserver((entries) => {
+          const r = entries[0].contentRect;
+          if (!scene || !r.width) return;
+          scene.resize(r.width, r.height, Math.min(2, window.devicePixelRatio || 1));
+          scene.seek(clock.frame);
+        });
+        ro.observe(mount);
+      }
+      clock.goTo(0);
+      em.emit('loaded');
+    },
+    playSegment(from, to, opts) { if (opts && opts.speed) clock.setSpeed(opts.speed); return clock.play(from, to); },
+    goToFrame(n) { clock.goTo(n); },
+    pause() { clock.pause(); },
+    resume() { clock.resume(); },
+    setSpeed(s) { clock.setSpeed(s); },
+    currentFrame: () => Math.round(clock.frame),
+    setData(d) { if (scene && scene.setData) { scene.setData(d); scene.seek(clock.frame); } },
+    layer(sel) { return mount.querySelector(sel); },
+    destroy() { destroyed = true; clock.destroy(); if (ro) ro.disconnect(); if (scene && scene.destroy) scene.destroy(); scene = null; em.clear(); },
+    on(ev, fn) { return em.on(ev, fn); }
+  };
+  return player;
+}
+
+/* ---- players/standin-player.js ---- */
+/* STAND-IN ANIMATION: replace with the Fable export.
+   Draws the same 150-frame timeline (30 fps, three segments) on a 2D canvas so every state and trigger can be clicked
+   through before the export exists. It runs behind the canvas adapter, so it uses the same clock, pause and seek path a
+   Fable WebGL/canvas export would.
+     0 to 45    The Blank Map: the land grid sweeps in west to east, no stamps.
+     46 to 90   The Stamp Drop: the newest stamp drops in and settles; earlier stamps are already there.
+     91 to 150  The Connected Route: a fast line trace joins the stamps in the order they were added.
+   Stamps come from setData({stamps}); the stand-in never draws a place it was not given. */
+
+
+const C_DOT = 'rgba(247,241,232,0.30)', C_SWEEP = 'rgba(0,201,200,0.55)', C_STAMP = '#F0507A', C_ROUTE = '#00C9C8', C_HEAD = '#F7F1E8';
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const easeOut3 = (t) => 1 - Math.pow(1 - t, 3);
+const easeOut4 = (t) => 1 - Math.pow(1 - t, 4);
+
+/** Decode the hex rows into a list of land cells [col,row]. */
+function landCells() {
+  const m = STANDIN_MASK, out = [];
+  m.rowsHex.forEach((hex, r) => {
+    for (let i = 0; i < hex.length; i++) {
+      const n = parseInt(hex[i], 16);
+      for (let b = 0; b < 4; b++) if (n & (8 >> b)) { const c = i * 4 + b; if (c < m.cols) out.push([c, r]); }
+    }
+  });
+  return out;
+}
+
+/**
+ * @param {{simulatedLoadMs?:number, failMode?:'none'|'error'|'timeout', sampleRoute?:Array<{x:number,y:number}>}} opts
+ */
+function createStandInScene(opts) {
+  return async function create(/** @type {HTMLElement} */ mount) {
+    if (opts.simulatedLoadMs) await new Promise(r => setTimeout(r, opts.simulatedLoadMs));
+    if (opts.failMode === 'error') throw new Error('Simulated load error (demo control)');
+    if (opts.failMode === 'timeout') await new Promise(() => {}); /* never resolves: the controller's timeout takes over */
+
+    const cv = document.createElement('canvas');
+    cv.setAttribute('aria-hidden', 'true');
+    cv.className = 'tll-dc__canvas';
+    mount.appendChild(cv);
+    const ctx = /** @type {CanvasRenderingContext2D} */ (cv.getContext('2d'));
+    const cells = landCells();
+    const M = STANDIN_MASK;
+    let W = 0, H = 0, dpr = 1, cssW = 0;
+    /** @type {Array<{x:number,y:number}>} */ let stamps = [];
+    /** @type {Array<{x:number,y:number}>} */ const sample = opts.sampleRoute || [];
+
+    function size(w, h, d) {
+      cssW = w; dpr = d; W = Math.round(w * d); H = Math.round(h * d);
+      if (cv.width !== W) cv.width = W;
+      if (cv.height !== H) cv.height = H;
+    }
+    const r0 = mount.getBoundingClientRect();
+    size(r0.width || 960, r0.height || 470, Math.min(2, window.devicePixelRatio || 1));
+
+    /** sizes are CSS px scaled down a little on phones, never below 60% */
+    const px = (v) => v * dpr * clamp(cssW / 960, 0.6, 1);
+
+    function stamp(x, y, scale, alpha) {
+      ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(scale, scale);
+      ctx.strokeStyle = C_STAMP; ctx.lineWidth = px(2.5);
+      ctx.beginPath(); ctx.arc(0, 0, px(11), 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = alpha * 0.45; ctx.lineWidth = px(1.25);
+      ctx.beginPath(); ctx.arc(0, 0, px(16), 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = alpha; ctx.fillStyle = C_STAMP;
+      ctx.beginPath(); ctx.arc(0, 0, px(3.5), 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+
+    /** sampled points along curved hops between the given places (in device px), with running length */
+    function routePoints(list) {
+      const pts = []; let len = 0;
+      for (let i = 0; i < list.length - 1; i++) {
+        const a = { x: list[i].x * W, y: list[i].y * H }, b = { x: list[i + 1].x * W, y: list[i + 1].y * H };
+        const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
+        let nx = -dy / d, ny = dx / d; if (ny > 0) { nx = -nx; ny = -ny; } /* bow the arc north */
+        const cx = mx + nx * d * 0.22, cy = my + ny * d * 0.22;
+        for (let s = (i === 0 ? 0 : 1); s <= 28; s++) {
+          const t = s / 28, x = (1 - t) * (1 - t) * a.x + 2 * (1 - t) * t * cx + t * t * b.x, y = (1 - t) * (1 - t) * a.y + 2 * (1 - t) * t * cy + t * t * b.y;
+          if (pts.length) len += Math.hypot(x - pts[pts.length - 1].x, y - pts[pts.length - 1].y);
+          pts.push({ x, y, len });
+        }
+      }
+      return { pts, len };
+    }
+
+    function draw(f) {
+      ctx.clearRect(0, 0, W, H);
+      /* 0 to 45: the land grid sweeps in */
+      const cw = W / M.cols, ch = H / M.rows, r = Math.max(0.6 * dpr, Math.min(cw, ch) * 0.22);
+      ctx.fillStyle = C_DOT;
+      if (f >= 45) {
+        ctx.beginPath();
+        for (const [c, rw] of cells) { const x = (c + 0.5) * cw, y = (rw + 0.5) * ch; ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, Math.PI * 2); }
+        ctx.fill();
+      } else {
+        for (const [c, rw] of cells) {
+          const a = clamp((f - (c / M.cols) * 30) / 15, 0, 1);
+          if (!a) continue;
+          ctx.globalAlpha = a; ctx.beginPath(); ctx.arc((c + 0.5) * cw, (rw + 0.5) * ch, r, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        if (f < 32) { const x = (f / 30) * W; ctx.fillStyle = C_SWEEP; ctx.fillRect(x, 0, Math.max(1, dpr), H); }
+      }
+      /* 46 to 90: the stamp drop (earlier stamps sit still) */
+      if (f >= 46 && stamps.length) {
+        const last = stamps.length - 1;
+        stamps.forEach((s, i) => {
+          const x = s.x * W, y = s.y * H;
+          if (i < last || f >= 90) { stamp(x, y, 1, 1); return; }
+          const p = easeOut3(clamp((f - 46) / 26, 0, 1));
+          stamp(x, y, 1 + 1.4 * (1 - p), p);
+          const q = clamp((f - 66) / 24, 0, 1);
+          if (q > 0 && q < 1) { ctx.save(); ctx.globalAlpha = (1 - q) * 0.6; ctx.strokeStyle = C_STAMP; ctx.lineWidth = px(1.5); ctx.beginPath(); ctx.arc(x, y, px(11) * (1 + q * 1.4), 0, Math.PI * 2); ctx.stroke(); ctx.restore(); }
+        });
+      }
+      /* 91 to 150: the connected route, a fast trace */
+      if (f >= 91) {
+        const list = stamps.length >= 2 ? stamps : sample;
+        if (list.length >= 2) {
+          const { pts, len } = routePoints(list);
+          const p = easeOut4(clamp((f - 91) / 40, 0, 1)), upto = len * p;
+          ctx.save(); ctx.strokeStyle = C_ROUTE; ctx.lineWidth = px(2); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+          if (stamps.length < 2) ctx.setLineDash([px(6), px(5)]); /* SAMPLE route between the two live guides: dashed */
+          ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
+          let head = pts[0];
+          for (let i = 1; i < pts.length && pts[i - 1].len < upto; i++) {
+            const a = pts[i - 1], b = pts[i];
+            if (b.len <= upto) { ctx.lineTo(b.x, b.y); head = b; }
+            else { const t = (upto - a.len) / ((b.len - a.len) || 1); head = { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, len: upto }; ctx.lineTo(head.x, head.y); }
+          }
+          ctx.stroke(); ctx.restore();
+          const fade = 1 - clamp((f - 131) / 15, 0, 1);
+          if (fade > 0) { ctx.save(); ctx.globalAlpha = fade; ctx.fillStyle = C_HEAD; ctx.beginPath(); ctx.arc(head.x, head.y, px(3.5), 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+        }
+      }
+    }
+
+    return {
+      fps: 30, totalFrames: 150,
+      seek: draw,
+      resize: (w, h, d) => size(w, h, d),
+      setData: (d) => { stamps = (d && d.stamps) ? d.stamps.slice() : []; },
+      destroy: () => { cv.remove(); }
+    };
+  };
+}
+
+/** @param {HTMLElement} mount @param {{fps?:number,totalFrames?:number,simulatedLoadMs?:number,failMode?:any,sampleRoute?:any}} cfg */
+function createStandInPlayer(mount, cfg) {
+  return createCanvasPlayer(mount, { kind: 'standin', fps: 30, totalFrames: 150, create: createStandInScene(cfg) });
+}
+
+/* ---- dashboard-canvas.js ---- */
+/* That Layover Life · 02 · Your travel dashboard · animation controller (prototype, 12 Nov 2026).
+   Plays an animation exported from Fable inside the dashboard chapter, driven by an explicit state machine.
+   Until the export arrives it plays the STAND-IN ANIMATION (players/standin-player.js), behind the same player interface.
+   Plain ES module, no build step. Types: dashboard-canvas.d.ts. How to drop the export in: README.md. */
+
+/* =====================================================================================================
+   FABLE_CONFIG: paste the export keys here. Everything else in this file reads from this object.
+   ===================================================================================================== */
+const FABLE_CONFIG = {
+  /* 1. The kind of export. Keep 'standin' until the Fable file is here.
+        'lottie' : Lottie JSON (lottie-web is loaded from cdnjs only in this case)
+        'svg'    : an interactive SVG with named <g id> groups (animated with the Web Animations API, no library)
+        'canvas' : a canvas or WebGL wrapper that exposes seek(frame)
+        'standin': the stand-in drawn by players/standin-player.js */
+  type: 'standin',
+
+  /* 2. Where the export is. Use ONE of these. */
+  assetUrl: '',          /* e.g. a pinned jsDelivr URL to the Lottie JSON or SVG in the repo */
+  animationData: null,   /* or paste the Lottie JSON object (or string) here */
+  svg: '',               /* type 'svg' only: the SVG markup, if not using assetUrl */
+  timeline: [],          /* type 'svg' only: [{ target:'#group-id', from, to, keyframes:[...], easing }] */
+  create: null,          /* type 'canvas' only: (mount) => ({ seek(frame), resize?, setData?, destroy? }) */
+  moduleUrl: '',         /* type 'canvas' only: or a same-origin ES module exporting createScene(mount) */
+
+  /* 3. Player settings. */
+  renderer: 'svg',       /* Lottie: 'svg' (lottie_light, smallest) or 'canvas' (lottie_light_canvas) */
+  lottieBuild: 'light',  /* 'light', or 'full' only if the export uses expressions */
+  fps: 30,
+  totalFrames: 150,
+  aspectRatio: [960, 470], /* the export's width and height; locks the stage. 960x470 matches the live map. */
+  speed: 1,
+  loadTimeoutMs: 8000,   /* after this the error state shows and the still map stays */
+
+  /* 4. Markers. Frame numbers from the brief. If the export carries markers with these names
+        (Lottie "markers", cm = name), their frames win over the numbers here. */
+  markers: {
+    A:      { name: 'The Blank Map',       from: 0,  to: 45 },
+    B:      { name: 'The Stamp Drop',      from: 46, to: 90 },
+    C:      { name: 'The Connected Route', from: 91, to: 150 },
+    /* Played on signup:success. A marker named 'Map Unfold' in the export replaces the default sequence (A then C). */
+    UNFOLD: { name: 'Map Unfold', sequence: ['A', 'C'] }
+  },
+
+  /* 5. The Paw Passport Stamp micro-interaction (pointer or focus on the €9 pet guide).
+        'css'  : a separate small element [data-dc-paw] rotates and shifts color with CSS (the stand-in)
+        'layer': a named layer inside the main export (its id, e.g. Lottie layer "ln") gets the same CSS class
+        'asset': a second small export with its own player; plays enter on pointer/focus in, leave on out */
+  paw: {
+    mode: 'css',
+    layer: 'paw-passport-stamp',
+    asset: { type: 'lottie', assetUrl: '', animationData: null, renderer: 'svg', fps: 30, totalFrames: 24, enter: [0, 12], leave: [12, 24] }
+  },
+
+  /* 6. Airport hubs for the pointer layer and the keyboard list. lat/lon are the airports' published coordinates.
+        x/y (0 to 1 across the canvas) are worked out with the live map's projection when left out;
+        set them by hand if the Fable art is drawn on a different projection. */
+  hubs: [
+    { code: 'CPH', name: 'Copenhagen', lat: 55.6181, lon: 12.6561, note: 'Live layover guide' },
+    { code: 'SOF', name: 'Sofia', lat: 42.6952, lon: 23.4062, note: 'Live layover guide' },
+    { code: 'FRA', name: 'Frankfurt', lat: 50.0333, lon: 8.5706 },
+    { code: 'IST', name: 'Istanbul', lat: 41.2622, lon: 28.7428 },
+    { code: 'DOH', name: 'Doha', lat: 25.2731, lon: 51.6081 },
+    { code: 'SIN', name: 'Singapore Changi', lat: 1.3592, lon: 103.9894 },
+    { code: 'GRU', name: 'São Paulo Guarulhos', lat: -23.4356, lon: -46.4731 },
+    { code: 'JFK', name: 'New York JFK', lat: 40.6398, lon: -73.7789 }
+  ],
+  /* The C segment needs two places. With fewer than two stamps it traces this SAMPLE route (the two live guides). */
+  sampleRoute: ['CPH', 'SOF'],
+
+  /* 7. Stand-in only. */
+  standin: { simulatedLoadMs: 700, failMode: 'none' }
+};
+
+/* ===================================================================================================== */
+
+
+
+
+
+
+
+/** Equal Earth, fitted exactly as the live chapter's h3-dash-js fits it (960x470, 8px inset, no Antarctica).
+ *  @param {number} lat @param {number} lon @returns {{x:number,y:number}} normalized 0..1 */
+function projectToCanvas(lat, lon) {
+  const A1 = 1.340264, A2 = -0.081106, A3 = 0.000893, A4 = 0.003796, M = Math.sqrt(3) / 2;
+  const lam = lon * Math.PI / 180, phi = lat * Math.PI / 180;
+  const l = Math.asin(M * Math.sin(phi)), l2 = l * l, l6 = l2 * l2 * l2;
+  const X = lam * Math.cos(l) / (M * (A1 + 3 * A2 * l2 + l6 * (7 * A3 + 9 * A4 * l2)));
+  const Y = l * (A1 + A2 * l2 + l6 * (A3 + A4 * l2));
+  const m = STANDIN_MASK;
+  return { x: (m.translate[0] + m.scale * X) / m.w, y: (m.translate[1] - m.scale * Y) / m.h };
+}
+
+/** "55.62° N · 12.66° E" @param {number} lat @param {number} lon */
+function formatCoords(lat, lon) {
+  return Math.abs(lat).toFixed(2) + '° ' + (lat >= 0 ? 'N' : 'S') + ' · ' + Math.abs(lon).toFixed(2) + '° ' + (lon >= 0 ? 'E' : 'W');
+}
+/** @param {number} lat @param {number} lon */
+function spokenCoords(lat, lon) {
+  return Math.abs(lat).toFixed(2) + ' degrees ' + (lat >= 0 ? 'north' : 'south') + ', ' + Math.abs(lon).toFixed(2) + ' degrees ' + (lon >= 0 ? 'east' : 'west');
+}
+const WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+/** "Three places on your map." @param {number} n */
+function placesSentence(n) {
+  if (!n) return 'No places on your map yet.';
+  return (WORDS[n] || String(n)) + (n === 1 ? ' place' : ' places') + ' on your map.';
+}
+
+/* The queue rule, in one place (README, "Queued transitions"):
+   1. A segment that is playing always finishes, except when signup:success arrives: Map Unfold replaces it at once
+      and clears the queue (it replays the whole map, so nothing queued is lost).
+   2. Any other trigger during playback goes into a one-slot queue. A newer trigger takes the slot if its priority
+      is the same or higher (C over B); a lower one is dropped. Many quick ticks therefore replay B once more, not N times.
+      Counts and the spoken announcement update at once for every tick; only the animation is coalesced.
+   3. Retriggering the segment that is playing: B queues one replay (each tick replays it), C is ignored (hover jitter).
+   4. A plays once. A trigger before A has played first plays A, then the trigger. Map Unfold opens with A itself,
+      so a signup that comes first plays Map Unfold once, with no separate A before it.
+   5. While loading, off screen or in a hidden tab, triggers wait in the same slot and play on return.
+   6. With reduced motion nothing plays: each trigger jumps to its segment's end frame.
+   7. A ends on the blank map. If places are already stamped when A ends, B follows to drop them in (or, with reduced
+      motion, A jumps to B's end frame), so the resting frame never shows fewer places than the reader has. */
+const PRIORITY = { A: 0, B: 1, C: 2, UNFOLD: 3 };
+const RETRIGGER = { A: 'ignore', B: 'queue', C: 'ignore', UNFOLD: 'ignore' };
+
+/** @typedef {'idle'|'loading'|'ready'|'playing:A'|'playing:B'|'playing:C'|'playing:unfold'|'paused:offscreen'|'reduced-motion'|'error'} DashState */
+/** @typedef {{label:string, from:number, to:number}} Step */
+/** @typedef {{id:string, label:string, x:number, y:number}} Stamp */
+
+class DashboardCanvas {
+  /**
+   * @param {HTMLElement} root  the chapter element holding the [data-dc-*] parts
+   * @param {typeof FABLE_CONFIG} [config]
+   */
+  constructor(root, config = FABLE_CONFIG) {
+    this.root = root;
+    this.config = config;
+    this.em = new Emitter();
+    /** @type {DashState} */ this.state = 'idle';
+    /** @type {import('./players/player-base.js').Player|null} */ this.player = null;
+    /** @type {import('./players/player-base.js').Player|null} */ this.pawPlayer = null;
+    this.loaded = false;
+    this.frame = 0; this.restFrame = 0;
+    this.aPlayed = false; this.wantA = false;
+    /** @type {null|{id:number,key:string,steps:Step[],i:number}} */ this.run = null;
+    /** @type {string|null} */ this.queue = null;
+    this.inView = false; this.pageVisible = !document.hidden; this.nearScreen = false;
+    this.reduced = false;
+    /** @type {DashState} */ this.resumeTo = 'ready';
+    this.runId = 0; this.loadId = 0;
+    /** @type {Stamp[]} */ this.stamps = [];
+    this.lastSaid = '';
+    this.stats = RAF_STATS;
+    /** @type {Array<() => void>} */ this._off = [];
+    const q = (s) => /** @type {HTMLElement|null} */ (root.querySelector(s));
+    this.el = {
+      stage: q('[data-dc-stage]'), mount: q('[data-dc-player]'), overlay: q('[data-dc-pointer]'), tip: q('[data-dc-tip]'),
+      paw: q('[data-dc-paw]'), live: q('[data-dc-live]'), desc: q('[data-dc-desc]'), hubs: q('[data-dc-hubs]'),
+      count: q('[data-dc-count]'), note: q('[data-dc-note]')
+    };
+    this.hubs = config.hubs.map((h) => Object.assign({}, h, (h.x == null || h.y == null) ? projectToCanvas(h.lat, h.lon) : {}));
+    this.segments = this._resolveSegments([]);
+  }
+
+  /* ------------------------------------------------------------------ public API */
+
+  /** Wire observers and listeners. Nothing heavy loads until the chapter is near the screen. */
+  start() {
+    const r = this.root, st = this.el.stage;
+    r.setAttribute('data-js', '');
+    r.setAttribute('data-type', this.config.type);
+    if (st) st.style.setProperty('--tll-dc-ratio', this.config.aspectRatio[0] + ' / ' + this.config.aspectRatio[1]);
+    this._renderHubs();
+    this._renderText();
+    this._setState('idle', 'start');
+
+    const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (mq) {
+      this.reduced = mq.matches;
+      const onMq = () => this._setReduced(mq.matches);
+      mq.addEventListener ? mq.addEventListener('change', onMq) : mq.addListener(onMq);
+      this._off.push(() => mq.removeEventListener ? mq.removeEventListener('change', onMq) : mq.removeListener(onMq));
+    }
+    const onVis = () => { this.pageVisible = !document.hidden; this._emit('visibility', { pageVisible: this.pageVisible }); this._activity('page ' + (this.pageVisible ? 'visible' : 'hidden')); };
+    document.addEventListener('visibilitychange', onVis);
+    this._off.push(() => document.removeEventListener('visibilitychange', onVis));
+
+    if (!st || !('IntersectionObserver' in window)) { this.inView = true; this.nearScreen = true; this._load(); this.trigger('view'); return this; }
+    /* Lazy load: start fetching the player and the export when the stage is within 600px of the screen (as h3-dash-js does). */
+    const near = new IntersectionObserver((en) => {
+      if (en.some(e => e.isIntersecting)) { near.disconnect(); this.nearScreen = true; this._load(); }
+    }, { rootMargin: '600px 0px' });
+    near.observe(st);
+    /* Activity: any pixel on screen counts as in view; 35% on screen counts as "seen", which plays A once. */
+    const seen = new IntersectionObserver((en) => {
+      const e = en[en.length - 1];
+      const was = this.inView;
+      this.inView = e.isIntersecting;
+      r.setAttribute('data-inview', String(this.inView));
+      if (was !== this.inView) { this._emit('visibility', { inView: this.inView }); this._activity(this.inView ? 'on screen' : 'off screen'); }
+      if (e.isIntersecting && e.intersectionRatio >= 0.35) this.trigger('view');
+    }, { threshold: [0, 0.35] });
+    seen.observe(st);
+    this._off.push(() => { near.disconnect(); seen.disconnect(); });
+    return this;
+  }
+
+  /**
+   * Fire a trigger. Names: 'view', 'stamp:add', 'stamp:remove', 'cta:enter', 'cta:leave', 'signup:success', 'pet:enter', 'pet:leave'.
+   * @param {string} name @param {any} [detail]
+   */
+  trigger(name, detail) {
+    this._emit('trigger', { name, detail });
+    switch (name) {
+      case 'view': this.wantA = true; this._request('A', name); break;
+      case 'stamp:add': {
+        const s = this._stampFrom(detail); if (!s) return;
+        if (!this.stamps.some(x => x.id === s.id)) this.stamps.push(s);
+        this._stampsChanged();
+        this._say('Stamp added. ' + placesSentence(this.stamps.length));
+        this._request('B', name); break;
+      }
+      case 'stamp:remove': {
+        const id = typeof detail === 'string' ? detail : (detail && (detail.id || detail.code));
+        const before = this.stamps.length;
+        this.stamps = this.stamps.filter(x => x.id !== id);
+        if (this.stamps.length === before) return;
+        this._stampsChanged();
+        this._say('Stamp removed. ' + placesSentence(this.stamps.length));
+        break;
+      }
+      case 'cta:enter': this._request('C', name); break;
+      case 'cta:leave': break; /* C always finishes; leaving the CTA does not rewind the route */
+      case 'signup:success': this._say('Signed up. Your map is unfolding.'); this._request('UNFOLD', name); break;
+      case 'pet:enter': this._paw(true); break;
+      case 'pet:leave': this._paw(false); break;
+      default: console.warn('[dashboard-canvas] unknown trigger', name);
+    }
+  }
+
+  /** Replace every stamp at once (the real site passes the member's saved places here). @param {Array<any>} list */
+  setStamps(list) {
+    this.stamps = (list || []).map(d => this._stampFrom(d)).filter(Boolean);
+    this._stampsChanged();
+  }
+
+  /** @param {string} ev @param {(d:any)=>void} fn */
+  on(ev, fn) { return this.em.on(ev, fn); }
+
+  /** @param {number} s */
+  setSpeed(s) { this.config.speed = s; if (this.player) this.player.setSpeed(s); }
+
+  /** Start again from idle (used after an error, and by the demo's "Reload player"). */
+  reload() {
+    this._teardownPlayer();
+    this.run = null; this.queue = null; this.aPlayed = false; this.restFrame = 0; this.frame = 0;
+    this._setState('idle', 'reload');
+    if (this.nearScreen) this._load();
+    if (this.inView) this.wantA = true;
+  }
+
+  /** Everything the demo inspector shows. */
+  snapshot() {
+    return {
+      state: this.state, frame: Math.round(this.frame), restFrame: this.restFrame, queue: this.queue,
+      running: this.run ? this.run.key : null, inView: this.inView, pageVisible: this.pageVisible, reduced: this.reduced,
+      aPlayed: this.aPlayed, player: this.player ? this.player.kind : this.config.type, stamps: this.stamps.length,
+      raf: { callbacks: RAF_STATS.callbacks, whilePaused: RAF_STATS.whilePaused }
+    };
+  }
+
+  destroy() {
+    this._teardownPlayer();
+    this._off.forEach(f => f()); this._off = [];
+    this.em.clear();
+  }
+
+  /* ------------------------------------------------------------------ state machine */
+
+  /** @param {DashState} next @param {string} reason */
+  _setState(next, reason) {
+    const from = this.state;
+    if (from === next && reason !== 'start') return;
+    this.state = next;
+    this.root.setAttribute('data-state', next);
+    this._emit('statechange', { from, to: next, reason });
+  }
+
+  _canPlay() { return this.loaded && this.state !== 'error' && this.inView && this.pageVisible && !this.reduced; }
+
+  /** @param {string} key @param {string} why */
+  _request(key, why) {
+    if (!this.segments[key]) return;
+    if (this.state === 'error') { this._emit('queue', { key, action: 'ignored', why: 'error state' }); return; }
+    if (key === 'A' && this.aPlayed) return;
+    if (this.reduced) {
+      if (this.loaded) this._jump(key); else this.queue = this._merge(this.queue, key);
+      return;
+    }
+    if (this.run) {
+      if (key === 'UNFOLD' && this.run.key !== 'UNFOLD') {
+        this._emit('queue', { key, action: 'replaces', replaced: this.run.key });
+        this.queue = null;
+        if (this._canPlay()) { this._play('UNFOLD'); return; }
+        const step = this.run.steps[this.run.i];
+        this.run = null;
+        if (this.player && step) { this.player.goToFrame(step.to); this.restFrame = step.to; }
+        this.resumeTo = 'ready';
+        this.queue = 'UNFOLD';
+        return;
+      }
+      if (key === this.run.key && RETRIGGER[key] === 'ignore') { this._emit('queue', { key, action: 'dropped', why: key + ' is already playing' }); return; }
+      this._enqueue(key);
+      return;
+    }
+    if (!this._canPlay()) { this._enqueue(key); return; }
+    if (!this.aPlayed && key !== 'A' && key !== 'UNFOLD') { this._enqueue(key); this._play('A'); return; }
+    this._play(key);
+  }
+
+  /** @param {string} key */
+  _enqueue(key) {
+    if (key === 'A') return; /* A waits on wantA, not in the slot */
+    const before = this.queue;
+    this.queue = this._merge(this.queue, key);
+    this._emit('queue', { key, action: this.queue === key ? (before && before !== key ? 'replaced ' + before : 'queued') : 'dropped', queue: this.queue });
+  }
+
+  /** @param {string|null} pending @param {string} key */
+  _merge(pending, key) {
+    if (!pending || key === pending) return key;
+    return PRIORITY[key] >= PRIORITY[pending] ? key : pending;
+  }
+
+  /** @param {string} key */
+  _play(key) {
+    const seg = this.segments[key];
+    const run = { id: ++this.runId, key, steps: seg.steps, i: 0 };
+    this.run = run;
+    if (key === 'A' || key === 'UNFOLD') this.aPlayed = true;
+    if (key === 'UNFOLD') this.queue = null;
+    this._step(run);
+  }
+
+  /** @param {{id:number,key:string,steps:Step[],i:number}} run */
+  _step(run) {
+    if (run !== this.run || !this.player) return;
+    if (run.i >= run.steps.length) { this._finishRun(run); return; }
+    const st = run.steps[run.i];
+    this._setState(/** @type {DashState} */ ('playing:' + st.label), run.key);
+    this._emit('segmentstart', { key: run.key, label: st.label, from: st.from, to: st.to });
+    this.player.playSegment(st.from, st.to, { speed: this.config.speed }).then((how) => {
+      if (run !== this.run || how !== 'complete') return; /* a newer run, or we interrupted it: ignore */
+      this.restFrame = st.to;
+      this._emit('segmentend', { key: run.key, label: st.label, frame: st.to });
+      run.i++;
+      this._step(run);
+    });
+  }
+
+  /** @param {{id:number,key:string,steps:Step[],i:number}} run */
+  _finishRun(run) {
+    this.run = null;
+    /* A ends on the blank map. If the reader already has places (a member's saved map), drop them in next,
+       so the resting frame never shows fewer places than the reader has. */
+    if (run.key === 'A' && this.stamps.length && !this.queue) this.queue = 'B';
+    this._done(run.key);
+    if (!this.inView || !this.pageVisible) { this.resumeTo = 'ready'; this._setState('paused:offscreen', 'finished off screen'); return; }
+    this._setState('ready', run.key + ' finished');
+    this._drain();
+  }
+
+  _drain() {
+    if (this.run || !this._canPlay()) return;
+    if (!this.aPlayed && this.wantA && this.queue !== 'UNFOLD') { this._play('A'); return; } /* Map Unfold already opens with A */
+    if (this.queue) { const k = this.queue; this.queue = null; this._emit('queue', { key: k, action: 'dequeued' }); this._request(k, 'queue'); }
+  }
+
+  /** Reduced motion: no playback, straight to the end frame. @param {string} key */
+  _jump(key) {
+    /* A's end frame is the blank map; with places already stamped, rest on the Stamp Drop's end frame instead */
+    const seg = this.segments[key === 'A' && this.stamps.length ? 'B' : key]; if (!seg || !this.player) return;
+    const end = seg.steps[seg.steps.length - 1].to;
+    this.aPlayed = true; /* every later end frame already contains A's map, so a late "view" must not jump back to 45 */
+    this.player.goToFrame(end);
+    this.restFrame = end; this.frame = end;
+    this._emit('segmentend', { key, label: key === 'UNFOLD' ? 'unfold' : key, frame: end, jumped: true });
+    this._done(key);
+  }
+
+  /** What to say when a segment is done. @param {string} key */
+  _done(key) {
+    if (key === 'A') this._say('The map is open. ' + placesSentence(this.stamps.length));
+    else if (key === 'C') {
+      if (this.stamps.length >= 2) this._say('Route drawn through your ' + (WORDS[this.stamps.length] || String(this.stamps.length)).toLowerCase() + ' places.', true);
+      else this._say('Sample route drawn from ' + this._routeNames() + '.', true);
+    } else if (key === 'UNFOLD') this._say('Your map is ready. ' + placesSentence(this.stamps.length));
+  }
+
+  /** Off screen or hidden tab: pause everything; back: resume exactly where it was. @param {string} why */
+  _activity(why) {
+    if (!this.loaded || this.state === 'error') { if (this.inView && this.pageVisible) this._drain(); return; }
+    const active = this.inView && this.pageVisible;
+    if (!active) {
+      if (this.state !== 'paused:offscreen') {
+        this.resumeTo = this.state;
+        if (this.player) this.player.pause();
+        if (this.pawPlayer) this.pawPlayer.pause();
+        this._setState('paused:offscreen', why);
+      }
+      return;
+    }
+    if (this.state === 'paused:offscreen') {
+      const to = this.reduced ? 'reduced-motion' : this.resumeTo;
+      this._setState(to, why);
+      if (this.run && this.player) this.player.resume();
+      if (this.pawPlayer) this.pawPlayer.resume();
+    }
+    this._drain();
+  }
+
+  /** @param {boolean} on */
+  _setReduced(on) {
+    this.reduced = on;
+    this._emit('reduced', { reduced: on });
+    if (!this.loaded || this.state === 'error') return;
+    if (on) {
+      const run = this.run;
+      this.run = null;
+      if (run) this._jump(run.key);
+      if (this.queue) { const k = this.queue; this.queue = null; this._jump(k); }
+      if (this.state === 'paused:offscreen') this.resumeTo = 'reduced-motion';
+      else this._setState('reduced-motion', 'reduced motion on');
+    } else {
+      if (this.state === 'paused:offscreen') this.resumeTo = 'ready';
+      else { this._setState('ready', 'reduced motion off'); this._drain(); }
+    }
+  }
+
+  /* ------------------------------------------------------------------ loading */
+
+  _load() {
+    if (this.player || this.state === 'loading') return;
+    const id = ++this.loadId;
+    this.loaded = false;
+    this._setState('loading', 'near screen');
+    const mount = this.el.mount;
+    if (!mount) { this._fail(new Error('No [data-dc-player] element')); return; }
+    let player;
+    try { player = this._createPlayer(mount, this.config); } catch (e) { this._fail(e); return; }
+    this.player = player;
+    const timeout = setTimeout(() => { if (id === this.loadId && !this.loaded) this._fail(new Error('The animation took longer than ' + this.config.loadTimeoutMs + ' ms to load')); }, this.config.loadTimeoutMs);
+    player.load().then(() => {
+      clearTimeout(timeout);
+      if (id !== this.loadId || this.player !== player || this.state === 'error') { player.destroy(); return; } /* late, after a timeout or reload */
+      this._onLoaded();
+    }).catch((err) => {
+      clearTimeout(timeout);
+      if (id !== this.loadId) return;
+      this._fail(err);
+    });
+    if (this.config.paw.mode === 'asset') this._loadPaw();
+  }
+
+  _onLoaded() {
+    const p = /** @type {any} */ (this.player);
+    this.loaded = true;
+    this.segments = this._resolveSegments(typeof p.markers === 'function' ? p.markers() : []);
+    p.on('frame', (f) => { this.frame = f; this._emit('frame', f); });
+    this.root.setAttribute('data-player', p.kind);
+    if (p.setData) p.setData({ stamps: this.stamps });
+    p.setSpeed(this.config.speed);
+    p.goToFrame(0);
+    this._emit('loaded', { kind: p.kind, segments: this.segments });
+    const resting = this.reduced ? 'reduced-motion' : 'ready';
+    if (!this.inView || !this.pageVisible) { this.resumeTo = resting; this._setState('paused:offscreen', 'loaded off screen'); }
+    else this._setState(resting, 'loaded');
+    if (this.reduced) {
+      if (this.wantA) this._jump('A');
+      if (this.queue) { const k = this.queue; this.queue = null; this._jump(k); }
+      return;
+    }
+    this._drain();
+  }
+
+  /** @param {any} err */
+  _fail(err) {
+    this.loadId++;
+    this._teardownPlayer();
+    this._setState('error', String(err && err.message || err));
+    if (this.el.note) this.el.note.hidden = false;
+    this._emit('error', { message: String(err && err.message || err) });
+    this._say('The animation did not load. The still map and this description stay in place.');
+  }
+
+  _teardownPlayer() {
+    if (this.player) { this.player.destroy(); this.player = null; }
+    if (this.pawPlayer) { this.pawPlayer.destroy(); this.pawPlayer = null; }
+    this.loaded = false;
+    if (this.el.mount) this.el.mount.innerHTML = '';
+    if (this.el.note) this.el.note.hidden = true;
+    this.root.removeAttribute('data-player');
+  }
+
+  /** @param {HTMLElement} mount @param {any} cfg */
+  _createPlayer(mount, cfg) {
+    switch (cfg.type) {
+      case 'lottie': return createLottiePlayer(mount, cfg);
+      case 'svg': return createSvgPlayer(mount, cfg);
+      case 'canvas': return createCanvasPlayer(mount, cfg);
+      case 'standin': return createStandInPlayer(mount, Object.assign({}, cfg.standin, { sampleRoute: this._routePoints() }));
+      default: throw new Error('Unknown export type: ' + cfg.type);
+    }
+  }
+
+  /** Marker names in the export win over the numbers in the config. @param {Array<{name:string,from:number,to:number}>} found */
+  _resolveSegments(found) {
+    const m = this.config.markers, byName = new Map(found.map(x => [x.name.trim().toLowerCase(), x]));
+    /** @type {Record<string, {steps: Step[]}>} */ const out = {};
+    ['A', 'B', 'C'].forEach((k) => {
+      const hit = byName.get(String(m[k].name).toLowerCase());
+      out[k] = { steps: [{ label: k, from: hit ? hit.from : m[k].from, to: hit ? hit.to : m[k].to }] };
+    });
+    const u = m.UNFOLD, hit = byName.get(String(u.name).toLowerCase());
+    if (hit) out.UNFOLD = { steps: [{ label: 'unfold', from: hit.from, to: hit.to }] };
+    else if (u.from != null && u.to != null) out.UNFOLD = { steps: [{ label: 'unfold', from: u.from, to: u.to }] };
+    else out.UNFOLD = { steps: (u.sequence || ['A', 'C']).map(k => out[k].steps[0]) };
+    return out;
+  }
+
+  /* ------------------------------------------------------------------ Paw Passport Stamp */
+
+  /** @param {boolean} on */
+  _paw(on) {
+    const p = this.config.paw;
+    this.root.setAttribute('data-paw', on ? 'on' : 'off');
+    if (p.mode === 'css' && this.el.paw) this.el.paw.classList.toggle('is-paw-on', on);
+    else if (p.mode === 'layer') {
+      const el = this.player && this.player.layer ? this.player.layer('#' + p.layer) : null;
+      if (el) el.classList.toggle('is-paw-on', on);
+    } else if (p.mode === 'asset' && this.pawPlayer) {
+      const seg = on ? p.asset.enter : p.asset.leave;
+      if (this.reduced || !this.inView || !this.pageVisible) this.pawPlayer.goToFrame(on ? p.asset.enter[1] : 0);
+      else this.pawPlayer.playSegment(seg[0], seg[1]);
+    }
+    this._emit('paw', { on, mode: p.mode });
+  }
+
+  _loadPaw() {
+    const a = this.config.paw.asset, mount = this.el.paw;
+    if (!mount) return;
+    const pl = this._createPlayer(mount, Object.assign({ type: 'lottie' }, a));
+    this.pawPlayer = pl;
+    pl.load().catch(() => { if (this.pawPlayer === pl) { pl.destroy(); this.pawPlayer = null; } });
+  }
+
+  /* ------------------------------------------------------------------ stamps, text fallback, live region */
+
+  /** @param {any} d @returns {Stamp|null} */
+  _stampFrom(d) {
+    if (!d) return null;
+    const code = typeof d === 'string' ? d : d.code;
+    const hub = code ? this.hubs.find(h => h.code === code) : null;
+    if (hub) return { id: code, label: d.label || hub.name, x: hub.x, y: hub.y };
+    if (d.x != null && d.y != null) return { id: String(d.id || d.label), label: String(d.label || d.id), x: d.x, y: d.y };
+    if (d.lat != null && d.lon != null) { const p = projectToCanvas(d.lat, d.lon); return { id: String(d.id || d.label), label: String(d.label || d.id), x: p.x, y: p.y }; }
+    return null;
+  }
+
+  _stampsChanged() {
+    if (this.player && this.player.setData) this.player.setData({ stamps: this.stamps });
+    /* when resting, redraw the resting frame so a removed stamp disappears at once */
+    if (this.player && this.loaded && !this.run) this.player.goToFrame(this.restFrame);
+    this._renderText();
+    this._emit('stamps', { count: this.stamps.length });
+  }
+
+  _routePoints() {
+    return (this.config.sampleRoute || []).map(c => this.hubs.find(h => h.code === c)).filter(Boolean).map(h => ({ x: h.x, y: h.y }));
+  }
+  _routeNames() {
+    return (this.config.sampleRoute || []).map(c => { const h = this.hubs.find(x => x.code === c); return h ? h.name : c; }).join(' to ');
+  }
+
+  _renderText() {
+    const n = this.stamps.length;
+    if (this.el.count) this.el.count.textContent = n ? n + (n === 1 ? ' place' : ' places') + ' stamped' : 'No stamps yet';
+    if (this.el.desc) {
+      const kind = this.config.type === 'standin' ? 'A stand-in animation of the travel map. ' : 'An animated travel map. ';
+      const places = n ? 'Stamped: ' + this.stamps.map(s => s.label).join(', ') + '. ' : 'No places stamped yet. ';
+      const hubs = 'Airport hubs marked on the map, also listed below: ' + this.hubs.map(h => h.code + ' ' + h.name).join(', ') + '.';
+      this.el.desc.textContent = kind + 'It starts as a blank world map, drops a stamp for each place you add, and draws a route between them. ' + places + placesSentence(n) + ' ' + hubs;
+    }
+  }
+
+  /** Polite live region. The same sentence twice in a row is said once (hover can fire C often). @param {string} text @param {boolean} [dedupe] */
+  _say(text, dedupe) {
+    if (dedupe && text === this.lastSaid) return;
+    this.lastSaid = text;
+    const live = this.el.live;
+    this._emit('announce', { text });
+    if (!live) return;
+    live.textContent = '';
+    setTimeout(() => { live.textContent = text; }, 60);
+  }
+
+  /* ------------------------------------------------------------------ hubs: pointer layer, tooltip, keyboard list */
+
+  _renderHubs() {
+    const { overlay, hubs: list, tip } = this.el;
+    if (overlay) {
+      overlay.querySelectorAll('.tll-dc__mark').forEach(n => n.remove());
+      this.hubs.forEach((h) => {
+        const m = document.createElement('span');
+        m.className = 'tll-dc__mark'; m.setAttribute('aria-hidden', 'true'); m.dataset.hub = h.code;
+        m.style.left = (h.x * 100).toFixed(3) + '%'; m.style.top = (h.y * 100).toFixed(3) + '%';
+        overlay.appendChild(m);
+      });
+      const move = (/** @type {PointerEvent} */ e) => {
+        const r = overlay.getBoundingClientRect();
+        const px = e.clientX - r.left, py = e.clientY - r.top, rad = e.pointerType === 'touch' ? 30 : 22;
+        let best = null, bd = Infinity;
+        this.hubs.forEach((h) => { const d = Math.hypot(h.x * r.width - px, h.y * r.height - py); if (d < bd) { bd = d; best = h; } });
+        if (best && bd <= rad) this._tip(best, 'pointer'); else this._tip(null, 'pointer');
+      };
+      overlay.addEventListener('pointermove', move);
+      overlay.addEventListener('pointerdown', move);
+      /* A finger lifting fires pointerleave at once, so a tapped tooltip stays until the next tap elsewhere or Escape. */
+      overlay.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'touch') this._tip(null, 'pointer'); });
+      const outside = (/** @type {PointerEvent} */ e) => { if (this._tipSrc === 'pointer' && !overlay.contains(/** @type {Node} */ (e.target))) this._tip(null, 'pointer'); };
+      document.addEventListener('pointerdown', outside);
+      this._off.push(() => document.removeEventListener('pointerdown', outside));
+    }
+    if (list) {
+      list.innerHTML = '';
+      this.hubs.forEach((h) => {
+        const li = document.createElement('li');
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'tll-dc__hub'; b.dataset.hub = h.code;
+        b.innerHTML = '<span aria-hidden="true">' + h.code + '</span><span class="tll-dc-sr">' + h.code + ', ' + h.name + ', ' + spokenCoords(h.lat, h.lon) + (h.note ? '. ' + h.note : '') + '</span>';
+        b.addEventListener('focus', () => this._tip(h, 'focus'));
+        b.addEventListener('blur', () => this._tip(null, 'focus'));
+        b.addEventListener('mouseenter', () => this._tip(h, 'list'));
+        b.addEventListener('mouseleave', () => this._tip(null, 'list'));
+        li.appendChild(b); list.appendChild(li);
+      });
+    }
+    if (tip) {
+      const esc = (/** @type {KeyboardEvent} */ e) => { if (e.key === 'Escape' && !tip.hidden) this._tip(null, 'escape'); };
+      document.addEventListener('keydown', esc);
+      this._off.push(() => document.removeEventListener('keydown', esc));
+    }
+  }
+
+  /** @param {any} h @param {string} src */
+  _tip(h, src) {
+    const tip = this.el.tip; if (!tip) return;
+    if (!h) {
+      if (src === 'escape' || this._tipSrc === src) { tip.hidden = true; this._tipSrc = null; this._mark(null); }
+      return;
+    }
+    this._tipSrc = src;
+    tip.innerHTML = '<b>' + h.code + '</b> ' + h.name + '<br>' + formatCoords(h.lat, h.lon);
+    tip.style.left = (h.x * 100).toFixed(3) + '%';
+    tip.style.top = (h.y * 100).toFixed(3) + '%';
+    tip.classList.toggle('is-left', h.x > 0.7);
+    tip.classList.toggle('is-right', h.x < 0.15);
+    tip.classList.toggle('is-below', h.y < 0.3);
+    tip.hidden = false;
+    this._mark(h.code);
+    if (src === 'focus') setTimeout(() => this._tipIntoView(), 0);
+    this._emit('hub', { code: h.code, source: src });
+  }
+  /** The hub buttons sit under the map, so on a wide screen a focused button can be on screen while its tooltip
+   *  (up on the map) is not. Scroll just enough to show both, when both fit; otherwise leave the page alone. */
+  _tipIntoView() {
+    const tip = this.el.tip, btn = /** @type {HTMLElement|null} */ (document.activeElement);
+    if (!tip || tip.hidden || this._tipSrc !== 'focus' || !btn || !btn.classList.contains('tll-dc__hub')) return;
+    const t = tip.getBoundingClientRect(), b = btn.getBoundingClientRect();
+    if (t.top >= 0 && t.bottom <= window.innerHeight) return;
+    const top = Math.min(t.top, b.top) - 8, bottom = Math.max(t.bottom, b.bottom) + 8;
+    /* keep clear of anything fixed to the bottom edge (scroll-padding-bottom) when there is room for that too */
+    const padB = parseFloat(getComputedStyle(document.documentElement).scrollPaddingBottom) || 0;
+    const room = bottom - top <= window.innerHeight - padB ? window.innerHeight - padB : window.innerHeight;
+    if (bottom - top > room) return;
+    window.scrollBy(0, t.top < 0 ? top : bottom - room);
+  }
+
+  /** @param {string|null} code */
+  _mark(code) {
+    if (!this.el.overlay) return;
+    this.el.overlay.querySelectorAll('.tll-dc__mark').forEach(m => m.classList.toggle('is-on', /** @type {HTMLElement} */ (m).dataset.hub === code));
+  }
+
+  /** @param {string} ev @param {any} d */
+  _emit(ev, d) { this.em.emit(ev, d); this.em.emit('*', { type: ev, detail: d }); }
+}
+
+/** Helper for the real site and the demo: find the chapter and start it. @param {HTMLElement|string} [root] @param {typeof FABLE_CONFIG} [config] */
+function mountDashboardCanvas(root = '[data-dc]', config = FABLE_CONFIG) {
+  const el = typeof root === 'string' ? /** @type {HTMLElement|null} */ (document.querySelector(root)) : root;
+  if (!el) return null;
+  return new DashboardCanvas(el, config).start();
+}
+
+/* ---- demo.js ---- */
+/* Demo wiring for index.html only. On the real site these listeners live in the chapter's embed script;
+   the controller and FABLE_CONFIG stay as they are. Everything here is a mock: SAMPLE trips, a pretend signup. */
+
+
+
+
+
+
+const root = /** @type {HTMLElement} */ (document.querySelector('[data-dc]'));
+const dash = new DashboardCanvas(root, FABLE_CONFIG);
+
+/* ---------------- Mock Memberstack. On the live site: the signup callback calls dash.trigger('signup:success'). */
+const mockMemberstack = {
+  /** @type {Array<(m:any)=>void>} */ _cbs: [],
+  /** @param {(m:any)=>void} cb */ onSignup(cb) { this._cbs.push(cb); },
+  signup() { const m = { id: 'mem_sample', sample: true }; this._cbs.forEach(cb => cb(m)); }
+};
+mockMemberstack.onSignup(() => dash.trigger('signup:success'));
+
+/* ---------------- Inspector (subscribes to controller events; it never schedules frames of its own) */
+const ins = /** @type {HTMLElement} */ (document.querySelector('[data-insp]'));
+const f = (k) => /** @type {HTMLElement} */ (ins.querySelector('[data-i="' + k + '"]'));
+const log = /** @type {HTMLElement} */ (ins.querySelector('[data-i-log]'));
+let offBase = null, offCount = 0;
+function paint() {
+  const s = dash.snapshot();
+  f('state').textContent = s.state;
+  f('frame').textContent = String(s.frame);
+  f('queue').textContent = s.queue || 'empty';
+  f('view').textContent = s.inView ? 'yes' : 'no';
+  f('page').textContent = s.pageVisible ? 'visible' : 'hidden';
+  f('rm').textContent = s.reduced ? 'on' : 'off';
+  if (offBase != null) offCount = RAF_STATS.callbacks - offBase;
+  f('raf').textContent = String(offCount);
+  f('rafall').textContent = String(RAF_STATS.callbacks);
+}
+/** @param {string} t */
+function note(t) {
+  const li = document.createElement('li');
+  li.textContent = t;
+  log.prepend(li);
+  while (log.children.length > 6) log.lastChild && log.removeChild(log.lastChild);
+}
+dash.on('*', (e) => {
+  const d = e.detail || {};
+  if (e.type === 'statechange') {
+    note(d.from + ' → ' + d.to + (d.reason ? ' (' + d.reason + ')' : ''));
+    if (d.to === 'paused:offscreen') { offBase = RAF_STATS.callbacks; offCount = 0; }
+    else if (d.from === 'paused:offscreen') { if (offBase != null) offCount = RAF_STATS.callbacks - offBase; offBase = null; }
+  } else if (e.type === 'queue') note('queue: ' + d.key + ' ' + d.action);
+  else if (e.type === 'trigger' && d.name !== 'view') note('trigger: ' + d.name);
+  else if (e.type === 'announce') note('said: "' + d.text + '"');
+  if (e.type !== 'frame' || (RAF_STATS.callbacks % 3 === 0)) paint();
+});
+const toggle = /** @type {HTMLButtonElement} */ (ins.querySelector('[data-i-toggle]'));
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') !== 'true';
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.textContent = open ? 'Hide' : 'Show';
+  ins.classList.toggle('is-closed', !open);
+});
+/* Starts closed at every width: open, it is fixed over the bottom left of the page and would cover keyboard focus there. */
+toggle.click();
+const nextLoad = /** @type {HTMLSelectElement} */ (ins.querySelector('[data-i-next]'));
+ins.querySelector('[data-i-reload]').addEventListener('click', () => {
+  FABLE_CONFIG.standin.failMode = /** @type {any} */ (nextLoad.value);
+  dash.reload();
+});
+
+/* ---------------- Triggers */
+/* B: SAMPLE trips. Each tick adds a stamp and replays The Stamp Drop; unticking removes it without animation. */
+document.querySelectorAll('[data-trip]').forEach((box) => {
+  box.addEventListener('change', () => {
+    const b = /** @type {HTMLInputElement} */ (box);
+    dash.trigger(b.checked ? 'stamp:add' : 'stamp:remove', { code: b.value, label: b.dataset.label });
+  });
+});
+/* C: hover or keyboard focus on the CTA */
+const cta = /** @type {HTMLElement} */ (document.querySelector('[data-dc-cta]'));
+cta.addEventListener('pointerenter', () => dash.trigger('cta:enter'));
+cta.addEventListener('focus', () => dash.trigger('cta:enter'));
+cta.addEventListener('pointerleave', () => dash.trigger('cta:leave'));
+cta.addEventListener('blur', () => dash.trigger('cta:leave'));
+/* Map Unfold: the pretend signup */
+document.querySelector('[data-demo-signup]').addEventListener('click', () => mockMemberstack.signup());
+/* Paw Passport Stamp: pointer or focus on the €9 pet guide */
+const pet = /** @type {HTMLElement} */ (document.querySelector('[data-dc-pet]'));
+pet.addEventListener('pointerenter', () => dash.trigger('pet:enter'));
+pet.addEventListener('pointerleave', () => { if (!pet.contains(document.activeElement)) dash.trigger('pet:leave'); });
+pet.addEventListener('focusin', () => dash.trigger('pet:enter'));
+pet.addEventListener('focusout', (e) => { if (!pet.contains(/** @type {Node} */ (e.relatedTarget))) dash.trigger('pet:leave'); });
+document.querySelector('[data-pet-demo]').addEventListener('click', () => {
+  const n = document.getElementById('pet-demo-note');
+  if (n) n.textContent = 'Demo only: no checkout here. On the site this opens the guide on Ko-fi.';
+});
+
+dash.start();
+paint();
+
+/* For the browser check (check.cjs) and for poking at it from the console. */
+/** @type {any} */ (window).TLLDash = {
+  dash, FABLE_CONFIG, RAF_STATS, FrameClock, projectToCanvas, formatCoords, mockMemberstack, lottieScriptFor,
+  adapters: { createLottiePlayer, createSvgPlayer, createCanvasPlayer, createStandInPlayer }
+};
+
+</script>
+</body>
+</html>

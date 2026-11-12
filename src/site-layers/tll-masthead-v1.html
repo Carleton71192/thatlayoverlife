@@ -1,6 +1,8 @@
 <style id="tll-masthead-v1">
 /* 26 Oct 2026: the masthead line in the footer, in italic. The script tll-masthead-v1.js writes the text.
    10 Nov 2026: Playfair Display 800 italic (the type system; the site head loads it on every page, so the Georgia fallback that
-   showed on every page but the home and story pages is gone with the Newsreader request). */
-footer p.tll-masthead{font-family:'Playfair Display',Georgia,serif !important;font-style:italic;font-weight:800 !important;font-size:18px !important;line-height:1.4 !important;letter-spacing:0 !important;text-transform:none !important;max-width:34ch;text-wrap:pretty}
+   showed on every page but the home and story pages is gone with the Newsreader request).
+   12 Nov 2026 (font loading jump): max-width 21.76em, which is 34ch of Playfair Display 800 italic ("0" = 0.64em), so the line wraps
+   the same in the fallback font as once the web font is in (a ch shrinks while the fallback shows). */
+footer p.tll-masthead{font-family:'Playfair Display',Georgia,serif !important;font-style:italic;font-weight:800 !important;font-size:18px !important;line-height:1.4 !important;letter-spacing:0 !important;text-transform:none !important;max-width:21.76em;text-wrap:pretty}
 </style>
