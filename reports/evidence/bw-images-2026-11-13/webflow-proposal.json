@@ -1,0 +1,20 @@
+{
+ "note": "Bandwidth fix 3, home part (reports/bandwidth-2026-11-13.md). One change to one Designer element on the home page: the hero image that the cover layer replaces before the first frame. It is written eager with high fetch priority, so the browser's preload scanner downloads the Curacao photo (Curacao-p-1600.jpg, 310,642 bytes on phones at 3x and on desktop; Curacao-p-800.jpg, 87,968 bytes at 2x) on every home view with JavaScript, and nobody sees it: in the checks the img already showed the cover photo at its first animation frame, the only largest-paint entry was the cover photo, and the Curacao file was never painted. Set to lazy, the browser asks for nothing until layout; by then the cover layer has set the cover photo (it sets loading eager, its own srcset and src itself), so the Curacao photo is never fetched. With JavaScript off, browsers ignore loading=lazy and the Curacao photo loads and shows as today (checked at 390 and 1440). Checked against the www home page fetched once after the 07:35 UTC publish on 13 Nov 2026 (core 16.63.0, pin 1f2e549a).",
+ "needs": "Nothing. Works with the live core (16.63.0) and with this branch's core: checked both ways (with 16.63.0 the cover still loads p-1600 at 3x; with this branch p-800). So the order of the Webflow publish and the layers release does not matter.",
+ "do_not_touch": "No nav, footer, form, field name or data-ms-* element is involved. The img keeps its src, srcset, sizes, alt, class, decoding and data-tll-parallax as they are.",
+ "edits": [
+  {
+   "apply_order": 1,
+   "priority": 1,
+   "page": "Home (/)",
+   "block_id": null,
+   "element": "the Image element directly inside the div with custom attribute data-h3-hero=1 (classes inline-div-4-1-2-...-29); the image has class inline-imgraw-0-1-2-3-4-5, custom attribute data-tll-parallax=hero, alt \"Azure water and a quiet boat, shot by someone who actually went\", file 6a115e2be857613f33b48a9d_Curacao.jpg",
+   "how_in_webflow": "Image settings: Load from Eager to Lazy. Custom attributes: delete fetchpriority=high. Nothing else.",
+   "where": "Home page body, the hero image (Designer element, not an embed or custom code block)",
+   "find": "data-tll-parallax=\"hero\" loading=\"eager\" fetchpriority=\"high\"",
+   "replace": "data-tll-parallax=\"hero\" loading=\"lazy\"",
+   "occurrences_in_page_html": 1,
+   "check_after_publish": "One plain GET of the home page: the find string is gone and the replace string is there once. In a browser with Webflow images served from a cache: no request for any Curacao file, the cover photo is the first image request."
+  }
+ ]
+}

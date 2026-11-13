@@ -1,0 +1,8 @@
+<style id="tll-paw-hero-img-v1">
+/* 13 Nov 2026 (bandwidth fix 7, reports/bandwidth-2026-11-13.md): the /the-paw-passport hero background is the 1.18 MB original
+   Montenegro photo in the Webflow class .tll-paw-hero. Webflow built smaller copies of the same file, so phones take the 1080px copy
+   (about 208 KB) and wider screens the 1600px copy (about 441 KB). The box, the cover fit, the position and the dark shade on top stay
+   as they are. This style is in the head before the page is parsed, so the original is never asked for. */
+body .tll-paw-hero{background-image:url("https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-1080.jpg")}
+@media (min-width:768px){body .tll-paw-hero{background-image:url("https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a0e02265e2392e5fc632431_Montenegro%20coast-p-1600.jpg")}}
+</style>

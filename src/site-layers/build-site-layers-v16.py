@@ -25,7 +25,8 @@ Fonts link (Newsreader and Inter Tight are gone; Playfair Display and JetBrains 
 the build injects no font link; tll-buttons-v1 joins STYLES as the one button set. 12 Nov 2026 (font loading jump on phones):
 tll-font-fallbacks-v1 goes first in STYLES (metric-matched local fallback faces TLLSansA, TLLSansR, TLLSerifG, TLLSerifN, TLLSerifT), and
 fallbacks() below puts their names into every font stack of the layers as they are built, right after the web font, so a layer's source
-keeps its plain stack and the download carries the fallbacks."""
+keeps its plain stack and the download carries the fallbacks. 13 Nov 2026 (bandwidth fixes 2, 3 and 7, reports/bandwidth-2026-11-13.md):
+img-variants caps card and cover photos at 2x on phones (cap()), tll-rail-hold-v1 joins the core, tll-paw-hero-img-v1 joins STYLES."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -42,7 +43,8 @@ STYLES = [('src/site-layers/tll-font-fallbacks-v1.html', 'tll-font-fallbacks-v1'
           ('src/site-layers/tll-shelf-ring-v1.html', 'tll-shelf-ring-v1', 'home library rail: room for the avatar ring on phones'),
           ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Playfair Display italic'),
           ('src/site-layers/tll-buttons-v1.html', 'tll-buttons-v1', 'one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600'),
-          ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields')]
+          ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields'),
+          ('src/site-layers/tll-paw-hero-img-v1.html', 'tll-paw-hero-img-v1', '13 Nov bandwidth fix 7: /the-paw-passport hero takes the 1080px copy on phones and the 1600px copy wider, not the 1.18 MB original')]
 SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: CMS photos get a srcset from their site-bucket twin variants, the story hero loads first'),
            ('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar SETTINGS and CONTRIBUTIONS open their /account tab'),
            ('src/site-layers/tll-note-typing-v1.js', 'note button steps aside while typing'),
@@ -59,6 +61,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-profile-count-v1.js', '29 Oct: profile STORIES stat keeps the writer own count (the head script wrote the site total)'),
            ('src/site-layers/tll-hover-v1.js', '29 Oct Nancy: dark pink hover on light backgrounds instead of bright teal on /account'),
            ('src/site-layers/tll-home-bands-v1.js', '29 Oct Nancy: home photo bands use members story photos at full size, credited and linked'),
+           ('src/site-layers/tll-rail-hold-v1.js', '13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen'),
            ('src/site-layers/tll-photos-caption-v1.js', '29 Oct: /share-photos caption room 600 characters with a running count (was cut at 256)'),
            ('src/site-layers/tll-lounge-labels-v1.js', '29 Oct Nancy: /gallery tile labels small, in the corner, off the photo'),
            ('src/site-layers/tll-stories-places-v1.js', '29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line'),
@@ -130,12 +133,14 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #   img-variants    (10 Nov, week one item 4) first in the core: its MutationObserver must see each img as the parser adds it, before a
 #                   lazy photo is fetched, and page-heroes, home-bands and the cover call its window.__tllImgV before they set a src.
 #   pwa-hold        (10 Nov) wraps window.fetch before the footer PWA client's window-load HEAD /sw.js, on every page.
+#   rail-hold       (13 Nov, bandwidth fix 3) its hold style must be in place before the home rail is parsed, and it counts the rail's
+#                   draws from the first one, so it cannot wait for a chunk.
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
-        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-lounge-labels-v1',
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-lounge-labels-v1',
         'tll-home-value-v1', 'tll-pwa-hold-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
