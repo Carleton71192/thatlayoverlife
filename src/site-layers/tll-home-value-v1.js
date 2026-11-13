@@ -13,7 +13,7 @@ var on=PUBLIC;try{on=on||localStorage.getItem('tll-preview-value')==='1';}catch(
 if(!on&&q!=='value')return;
 var PURSUITS=[['foodie','Food'],['marathons','Marathons'],['trekking','Trekking'],['dog-travel','Dog travel']];
 var LINES=[['The slide show.','Remember when Grandpa pulled out the slide projector after dinner? This is that.'],
-  ['The trip deck.','Remember the 80-slide deck someone made of one weekend in Boston? This is that, except people ask to see it.'],
+  ['The trip deck.','Remember the 80-slide deck someone made of one weekend in Sacramento? This is that, except people ask to see it.'],
   ['The lost account.','A friend got locked out of Instagram and lost every travel photo with it. TLL is the copy that does not vanish when an app decides you are someone else.']];
 /* 12 Nov 2026 (font loading jump): the headline and lede widths are in em, not ch (a ch shrinks while the fallback font shows, so the lines
    rewrapped when the web fonts arrived): 18ch of Playfair Display 800 = 11.88em, 60ch of IBM Plex Sans Condensed = 32.4em, the same once loaded. */
