@@ -56,7 +56,7 @@ The CSV tells us exactly which files used the bytes. It does not separate bots f
 
 | # | Fix | GB saved a month (estimate) | Who |
 |---|---|---|---|
-| 1 | Cap our own live testing (section 4) | 30 to 60 | I can do this. Already in effect since 13 Nov, 07:50 UTC |
+| 1 | Cap our own live testing (section 4) | 30 to 60 | I can do this. Already in effect since 13 Nov, 06:50 UTC |
 | 2 | Phones get images at 2x instead of 3x on story cards and the home cover. Change the size rules in the site layers so phones load the 800 px files instead of the 1080 px ones. Your profile page on a phone would drop from about 10 MB to about 4.5 to 6 MB. Cards look very slightly softer on 3x phones | 0.5 to 1.5 | I can do this |
 | 3 | Home page: stop the old Curacao photo from downloading. The cover script replaces it, so nobody sees it. Set it to lazy loading and keep it as the fallback for visitors without scripts. Hide the zero-size rail images on phones until they are shown, after confirming they never appear. Saves 150 to 780 KB per home view | 0.3 to 0.8 | I can do this |
 | 4 | Footer counts read the existing site-stats CMS item instead of downloading /stories, /sitemap.xml and the pet page. Saves about 126 KB per new visitor. The counts and the story rail stay as they are | 0.1 to 0.3 | I can do this |
@@ -85,7 +85,7 @@ Not recommended now:
 
 ## 4. What we change in our own testing starting today
 
-These rules are logged as a standing rule for every session in handoff/WEBFLOW-LOCK.md (13 November, 07:50 UTC).
+These rules are logged as a standing rule for every session in handoff/WEBFLOW-LOCK.md (13 November, 06:50 UTC).
 
 1. **No Webflow images, video or fonts in test runs.** Every browser test against www or the webflow.io test site blocks them, unless the test is about images.
 2. **Layout-shift and loading-speed tests use local copies.** These tests need real images, so we download each image once and serve it from a local copy. We never block them, because missing images would change the results.
