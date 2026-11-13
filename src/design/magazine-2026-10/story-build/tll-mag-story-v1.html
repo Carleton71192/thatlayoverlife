@@ -18,7 +18,7 @@
 .tll-story-hero-content{display:grid;grid-template-columns:minmax(0,1fr);row-gap:0;max-width:1280px !important;padding:28px var(--mg-m) 24px !important}
 .tll-story-hero-content>*{grid-column:1;min-width:0}
 .tll-mg-fig{position:relative;width:calc(100% - 2*var(--mg-m));max-width:1200px;margin:0 auto}
-.tll-story-hero-img{position:relative !important;inset:auto !important;display:block;width:100% !important;height:auto !important;max-height:85vh;aspect-ratio:auto;object-fit:cover !important;margin:0 !important;border-radius:var(--mg-r);transform:none !important}
+.tll-story-hero-img{position:relative !important;inset:auto !important;display:block;width:100% !important;height:auto !important;max-height:85vh;aspect-ratio:auto var(--tll-hero-r,16/9);object-fit:cover !important;margin:0 !important;border-radius:var(--mg-r);transform:none !important}
 .tll-mg-cap{display:flex;justify-content:space-between;gap:16px;margin:10px 0 0;font:400 13px/1.4 var(--mg-text-f);color:var(--mg-muted)}
 .tll-mg-cap b{font-weight:500;color:var(--mg-ink)}
 .tll-mg-cap:empty{display:none}
@@ -166,6 +166,15 @@ function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16
      page. Each copy now gets its own suffix from one page-wide counter, so url(#...) and the textPath href point at their own defs. */
   var u=(window.__tllMgN=(window.__tllMgN||0)+1);svg=svg.replace(/tll-mg-(ink|top|bottom)/g,'tll-mg-$1-'+u);
   return svg.replace('{P}',txt).replace('{S}',s).replace('{Y}',y);}
+/* 13 Nov 2026 (the hero photo jump): the hero photo has no width or height in the template, so until it arrived its box was the 28 px
+   alt text line and the whole story under it moved down when it landed (0.4 to 1.2 layout shift on about half of story loads). The style
+   above reserves the box with aspect-ratio: auto r, where r is this photo's own width/height from the table below (the last 8 hex digits
+   of its CMS file id, written by src/site-layers/build-hero-ratios-v1.py from the photo's header), or 16/9 (42 of the 57 heroes on 13 Nov) for a photo the table does
+   not know yet. "auto" means the photo's own ratio wins the moment the browser knows it, so the finished page is the same to the pixel;
+   the table only decides the box before that. Set as the custom property --tll-hero-r on the img; nothing else changes. */
+/*HERO*/var HR={"01c473b4":"2074/1556","01c473b8":"2334/1556","0d7a5e0f":"2074/1556","932f4444":"1668/1106","932f4447":"1365/2048","afac103a":"1176/662","d06aea74":"2400/1350","d4c03dde":"2400/1350","78f9344b":"2400/1350","8370d8db":"2400/1350","79b01a5d":"1500/2000","fa1eb1e9":"2000/1125","8dede017":"2048/1152","79098e82":"2048/1152","515f22ac":"1500/2000","19eb8686":"2400/1350","5478a717":"2000/1125","94a5312d":"2048/1152","4217b3e5":"2048/1152","f14394b0":"2048/1152","2b0ccefd":"2048/1152","416602dc":"2048/1152","f06bfdbe":"2048/1152","2af83866":"2048/1152","9531db5a":"2048/1152","5ab6599c":"2048/1152","f06b5212":"2000/1125","4aac00a8":"2000/1500","46a582f6":"2048/1152","2eab5e22":"2048/1152","a3b92de4":"960/540","03353758":"1536/864","54fdf31c":"2048/1152","fe795589":"2048/1152","c6928ff9":"2048/1152","e34b31ae":"2000/1125","a97df6be":"960/764","e34c64a1":"2000/1125","6e9e43ca":"1284/722","5896075a":"2000/1125","c2767744":"1488/837","d1325f1b":"2000/2000","282fcde5":"960/540","065c1b18":"2048/1152","324f780d":"2042/1148","e2fc6ffe":"2048/1152","6e984068":"2048/1152","8f978be4":"2048/1152","1e26e4dd":"2048/1152","1e178f43":"2048/1152","1cb482cb":"2576/1449","64ae16b6":"1800/1568","648a3c30":"1440/1920","2f7d3279":"1536/1920","df4ddecf":"2096/1179","8cc6e62e":"2400/1800","d082aa37":"1125/2000"};
+function heroR(img){var m=/\/6a0b29c6d081332e921900d8\/([0-9a-f]{24})_/.exec(img.getAttribute('src')||''),r=m&&HR[m[1].slice(-8)];
+  if(r&&/^\d+\/\d+$/.test(r))img.style.setProperty('--tll-hero-r',r);}
 function txt(el){return el&&!el.classList.contains('w-dyn-bind-empty')?el.textContent.trim():'';}
 /* 12 Nov 2026 (visual audit N10, Nancy: "Add"): one linked line under the byline, for example "Edited by {editor} · Sources listed · Published
    2 August 2024". Every fact is read from the Receipts rows already on the page (data-tll-lg); nothing is typed here but the three labels.
@@ -195,6 +204,7 @@ function run(){
   var hero=document.querySelector('.tll-story-hero'),c=hero&&hero.querySelector('.tll-story-hero-content');
   if(!c||c.dataset.tllMag)return;c.dataset.tllMag='1';
   var img=hero.querySelector('.tll-story-hero-img'),cap=hero.querySelector('[data-tll-hero-caption]'),by=txt(document.querySelector('.st3-author-name'));
+  if(img)heroR(img);
   if(img){var f=document.createElement('div');f.className='tll-mg-cap';var ct=cap?txt(cap.querySelector('div')||cap):'';
     if(ct){var s=document.createElement('span');s.textContent=ct;f.appendChild(s);}
     if(by){var cr=document.createElement('span');var b=document.createElement('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+by));f.appendChild(cr);}

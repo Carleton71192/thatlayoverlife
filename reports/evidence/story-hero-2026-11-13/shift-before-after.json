@@ -1,0 +1,1431 @@
+{
+ "what": "Layout shift of /stories/{slug} before (layers core 16.63.0 as live, pin 1f2e549a) and after (this branch), 13 Nov 2026",
+ "method": "Playwright Chromium, buffered layout-shift observer, sum of all shifts over 7 s after DOMContentLoaded (restore: load, scroll to 1233, reload). Phones isMobile, DPR 3. Documents: 13 Nov plain-GET snapshots of the live pages (byte equal to www). Every Webflow file from the existing local cache; files not in it aborted, never fetched. Memberstack held 40 s, every non-GET aborted. hold 0: photo served at once; hold 1500: only the hero photo held 1.5 s (a slow photo, the case that jumped). 3 runs per cell, base and after interleaved. photo_max: shift landing within 250 ms after the photo arrives, counted when it arrives after DOMContentLoaded.",
+ "pooled": {
+  "hold0_base": {
+   "n": 54,
+   "median": 0.1695,
+   "mean": 0.2055,
+   "max": 0.8292,
+   "runs_ge_0.1": 32
+  },
+  "hold0_after": {
+   "n": 54,
+   "median": 0.1548,
+   "mean": 0.2037,
+   "max": 0.8292,
+   "runs_ge_0.1": 30
+  },
+  "hold1500_base": {
+   "n": 54,
+   "median": 0.7201,
+   "mean": 0.6715,
+   "max": 1.2792,
+   "runs_ge_0.1": 54
+  },
+  "hold1500_after": {
+   "n": 54,
+   "median": 0.1539,
+   "mean": 0.1955,
+   "max": 0.8292,
+   "runs_ge_0.1": 30
+  }
+ },
+ "shift_matrix": [
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0093,
+   "max": 0.0118,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.014,
+   "max": 0.0141,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0118,
+   "max": 0.0118,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.3086,
+   "max": 0.3108,
+   "big": 3,
+   "photo_median": 0.1839,
+   "photo_max": 0.1839,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.3861,
+   "max": 0.3861,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.3861,
+   "max": 0.3861,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.3861,
+   "max": 0.3861,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.8313,
+   "max": 0.8314,
+   "big": 3,
+   "photo_median": 0.4688,
+   "photo_max": 0.4688,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0444,
+   "max": 0.0444,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0444,
+   "max": 0.0448,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0446,
+   "max": 0.0448,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.3537,
+   "max": 0.3537,
+   "big": 3,
+   "photo_median": 0.09,
+   "photo_max": 0.09,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.4162,
+   "max": 0.4162,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.4162,
+   "max": 0.4162,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.3896,
+   "max": 0.4163,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.851,
+   "max": 0.851,
+   "big": 3,
+   "photo_median": 0.2308,
+   "photo_max": 0.2308,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.1202,
+   "max": 0.1228,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.1204,
+   "max": 0.1523,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.1209,
+   "max": 0.121,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.4305,
+   "max": 0.4339,
+   "big": 3,
+   "photo_median": 0.1112,
+   "photo_max": 0.1112,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.3567,
+   "max": 0.3567,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.3567,
+   "max": 0.3567,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.3822,
+   "max": 0.3822,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "pantanal-gli",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.8596,
+   "max": 0.8596,
+   "big": 3,
+   "photo_median": 0.2388,
+   "photo_max": 0.2388,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0122,
+   "max": 0.0169,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0111,
+   "max": 0.0165,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.014,
+   "max": 0.0169,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.2281,
+   "max": 0.2308,
+   "big": 3,
+   "photo_median": 0.1464,
+   "photo_max": 0.1464,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.3963,
+   "max": 0.3963,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.3963,
+   "max": 0.3963,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.3963,
+   "max": 0.3963,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.7972,
+   "max": 0.7972,
+   "big": 3,
+   "photo_median": 0.4688,
+   "photo_max": 0.4688,
+   "hero_h": [
+    675
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0259,
+   "max": 0.0259,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0259,
+   "max": 0.055,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0259,
+   "max": 0.0259,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.3426,
+   "max": 0.3754,
+   "big": 3,
+   "photo_median": 0.0905,
+   "photo_max": 0.0905,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.3656,
+   "max": 0.3656,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.3656,
+   "max": 0.3656,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.3657,
+   "max": 0.3657,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.8272,
+   "max": 0.8539,
+   "big": 3,
+   "photo_median": 0.2308,
+   "photo_max": 0.2308,
+   "hero_h": [
+    184.64
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0861,
+   "max": 0.0864,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.1213,
+   "max": 0.1217,
+   "big": 2,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0861,
+   "max": 0.0861,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.4098,
+   "max": 0.4098,
+   "big": 3,
+   "photo_median": 0.1013,
+   "photo_max": 0.1013,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.3148,
+   "max": 0.3402,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.3148,
+   "max": 0.3402,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.315,
+   "max": 0.3403,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "sort-sol-bla",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.7924,
+   "max": 0.8177,
+   "big": 3,
+   "photo_median": 0.2388,
+   "photo_max": 0.2388,
+   "hero_h": [
+    201.53
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0145,
+   "max": 0.0148,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0126,
+   "max": 0.0145,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0145,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0097,
+   "max": 0.0126,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.4301,
+   "max": 0.6169,
+   "big": 3,
+   "photo_median": 0.2509,
+   "photo_max": 0.2509,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.8292,
+   "max": 0.8292,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.8292,
+   "max": 0.8292,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.403,
+   "max": 0.8292,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "1440x900:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 1.2792,
+   "max": 1.2792,
+   "big": 3,
+   "photo_median": 0.5312,
+   "photo_max": 0.5312,
+   "hero_h": [
+    765
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0432,
+   "max": 0.0432,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0621,
+   "max": 0.0621,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0421,
+   "max": 0.0432,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.5911,
+   "max": 0.5922,
+   "big": 3,
+   "photo_median": 0.264,
+   "photo_max": 0.264,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.1888,
+   "max": 0.1888,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.1888,
+   "max": 0.1888,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.1888,
+   "max": 0.1888,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "360x800:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 1.1323,
+   "max": 1.1323,
+   "big": 3,
+   "photo_median": 0.5467,
+   "photo_max": 0.5467,
+   "hero_h": [
+    437.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.0401,
+   "max": 0.0567,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:fresh",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.0389,
+   "max": 0.0437,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.0389,
+   "max": 0.0428,
+   "big": 0,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 0.6345,
+   "max": 0.6479,
+   "big": 3,
+   "photo_median": 0.2884,
+   "photo_max": 0.2884,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "after",
+   "n": 3,
+   "median": 0.1867,
+   "max": 0.1867,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:restore",
+   "hold": 0,
+   "v": "base",
+   "n": 3,
+   "median": 0.1867,
+   "max": 0.1867,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "after",
+   "n": 3,
+   "median": 0.1867,
+   "max": 0.1867,
+   "big": 3,
+   "photo_median": 0.0,
+   "photo_max": 0.0,
+   "hero_h": [
+    477.33
+   ]
+  },
+  {
+   "story": "spain-madrid",
+   "case": "390x844:restore",
+   "hold": 1500,
+   "v": "base",
+   "n": 3,
+   "median": 1.1603,
+   "max": 1.1603,
+   "big": 3,
+   "photo_median": 0.5656,
+   "photo_max": 0.5656,
+   "hero_h": [
+    477.33
+   ]
+  }
+ ],
+ "finished_look": [
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "w": 390,
+   "boxes_equal": true,
+   "img_base": [
+    16,
+    394.34,
+    358,
+    477.33
+   ],
+   "img_after": [
+    16,
+    394.34,
+    358,
+    477.33
+   ],
+   "body_top": [
+    907.86,
+    907.86
+   ],
+   "docH": [
+    8281,
+    8281
+   ],
+   "ar_after": "auto 1440 / 1920",
+   "top": "identical 1170x2532",
+   "full": "identical 1170x24843"
+  },
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "w": 360,
+   "boxes_equal": true,
+   "img_base": [
+    16,
+    394.34,
+    328,
+    437.33
+   ],
+   "img_after": [
+    16,
+    394.34,
+    328,
+    437.33
+   ],
+   "body_top": [
+    867.86,
+    867.86
+   ],
+   "docH": [
+    8593,
+    8593
+   ],
+   "ar_after": "auto 1440 / 1920",
+   "top": "identical 1080x2400",
+   "full": "identical 1080x25779"
+  },
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "w": 1440,
+   "boxes_equal": true,
+   "img_base": [
+    120,
+    453.73,
+    1200,
+    765
+   ],
+   "img_after": [
+    120,
+    453.73,
+    1200,
+    765
+   ],
+   "body_top": [
+    1254.92,
+    1254.92
+   ],
+   "docH": [
+    6991,
+    6991
+   ],
+   "ar_after": "auto 1440 / 1920",
+   "top": "identical 1440x900",
+   "full": "identical 1440x6991"
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "w": 390,
+   "boxes_equal": false,
+   "img_base": [
+    16,
+    429.7,
+    358,
+    201.53
+   ],
+   "img_after": [
+    16,
+    429.7,
+    358,
+    201.53
+   ],
+   "body_top": [
+    685.61,
+    685.61
+   ],
+   "docH": [
+    20977,
+    20988
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "33104 px differ in (72, 493, 1098, 2470)",
+   "full": "size (1170, 62931) vs (1170, 62964)",
+   "note": "Pantanal loads in two states with the unchanged build: a second base load differs from the first in the same way (breadcrumb arrow shade, the From line 3 px lower, page height 11 to 33 px). The fixed build matches a base load to the pixel at every width (top screen and full page): 390 the first base load, 360 and 1440 the second."
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "w": 360,
+   "boxes_equal": false,
+   "img_base": [
+    16,
+    465.06,
+    328,
+    184.64
+   ],
+   "img_after": [
+    16,
+    465.06,
+    328,
+    184.64
+   ],
+   "body_top": [
+    722.27,
+    722.27
+   ],
+   "docH": [
+    21877,
+    21866
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "10856 px differ in (75, 493, 694, 2376)",
+   "full": "size (1080, 65631) vs (1080, 65598)",
+   "note": "Pantanal loads in two states with the unchanged build: a second base load differs from the first in the same way (breadcrumb arrow shade, the From line 3 px lower, page height 11 to 33 px). The fixed build matches a base load to the pixel at every width (top screen and full page): 390 the first base load, 360 and 1440 the second."
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "w": 1440,
+   "boxes_equal": true,
+   "img_base": [
+    120,
+    525.7,
+    1200,
+    675
+   ],
+   "img_after": [
+    120,
+    525.7,
+    1200,
+    675
+   ],
+   "body_top": [
+    1236.89,
+    1236.89
+   ],
+   "docH": [
+    19976,
+    19976
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "86 px differ in (166, 142, 253, 152)",
+   "full": "1047 px differ in (166, 142, 796, 19257)",
+   "note": "Pantanal loads in two states with the unchanged build: a second base load differs from the first in the same way (breadcrumb arrow shade, the From line 3 px lower, page height 11 to 33 px). The fixed build matches a base load to the pixel at every width (top screen and full page): 390 the first base load, 360 and 1440 the second."
+  },
+  {
+   "story": "sort-sol-black-sun-denmark",
+   "w": 390,
+   "boxes_equal": true,
+   "img_base": [
+    16,
+    465.06,
+    358,
+    201.53
+   ],
+   "img_after": [
+    16,
+    465.06,
+    358,
+    201.53
+   ],
+   "body_top": [
+    720.97,
+    720.97
+   ],
+   "docH": [
+    16469,
+    16469
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "identical 1170x2532",
+   "full": "identical 1170x49407"
+  },
+  {
+   "story": "sort-sol-black-sun-denmark",
+   "w": 360,
+   "boxes_equal": true,
+   "img_base": [
+    16,
+    465.06,
+    328,
+    184.64
+   ],
+   "img_after": [
+    16,
+    465.06,
+    328,
+    184.64
+   ],
+   "body_top": [
+    704.08,
+    704.08
+   ],
+   "docH": [
+    17167,
+    17167
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "identical 1080x2400",
+   "full": "identical 1080x51501"
+  },
+  {
+   "story": "sort-sol-black-sun-denmark",
+   "w": 1440,
+   "boxes_equal": true,
+   "img_base": [
+    120,
+    597.67,
+    1200,
+    675
+   ],
+   "img_after": [
+    120,
+    597.67,
+    1200,
+    675
+   ],
+   "body_top": [
+    1308.86,
+    1308.86
+   ],
+   "docH": [
+    15129,
+    15129
+   ],
+   "ar_after": "auto 2400 / 1350",
+   "top": "identical 1440x900",
+   "full": "identical 1440x15129"
+  }
+ ],
+ "unknown_hero_default_16_9": [
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "cls": 0.08853
+  },
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "cls": 0.008
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "cls": 0.12064
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "cls": 0.01169
+  },
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "cls": 0.23335
+  },
+  {
+   "story": "spain-madrid-wedding-ibiza",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "cls": 0.00756
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "case": "390x844:fresh",
+   "hold": 1500,
+   "cls": 0.12064
+  },
+  {
+   "story": "pantanal-glimmers-in-the-wild",
+   "case": "1440x900:fresh",
+   "hold": 1500,
+   "cls": 0.00964
+  }
+ ],
+ "bandwidth": {
+  "webflow_bytes_in_browsers": 0,
+  "webflow_bytes_header_reads": 901120,
+  "header_reads": 55,
+  "html_gets": 0,
+  "browser_loads": 266,
+  "note": "Hero sizes: 2 from the local cache, 55 from one ranged GET of the first 16 KB each, once. Every browser load served every Webflow file from the cache."
+ }
+}
