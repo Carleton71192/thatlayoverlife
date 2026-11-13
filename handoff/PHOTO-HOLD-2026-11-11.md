@@ -53,7 +53,7 @@ Once Part 2 is live and checked, the hold line in Part 1 can be set to `false` i
 
 ## Before you deploy
 
-1. The independent review of this change passed on 11 November 2026 (reviewed at commit 9728ca9), and handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**. Before you deploy, run `git diff --stat af5de76 -- src ':!src/site-layers' ':!src/pages' ':!src/design'`: it must list only `src/intake.js` and `src/index.js`. (Corrected 12 November: the earlier line left out `':!src/design'` and so also listed two home cover design files, which the Worker does not use.)
+1. The independent review of this change passed on 11 November 2026 (reviewed at commit 9728ca9), and handoff/WEBFLOW-LOCK.md says **"photo hold review passed"**. Before you deploy, run `git diff --stat af5de76 -- src ':!src/site-layers' ':!src/pages' ':!src/design' ':!src/site' ':!src/dashboard'`: it must list only `src/intake.js` and `src/index.js`. (Corrected 12 November: the earlier line left out `':!src/design'`. Corrected 13 November: also leaves out `src/site` and `src/dashboard`, page copies and a design lab the Worker does not use.) The field-5 part of `src/intake.js` is already live (version `4ff59e28`, 12 November); the rest of the difference is the photo hold.
 2. Please do not add fields to the Photo submissions collection, or rename it, before the Worker is deployed. If Webflow refuses to publish single items after a structure change, the Worker that is live today leaves each photo "queued to publish", and the next site publish by anyone puts it live.
 
 ## The deploy, on your Mac
@@ -112,7 +112,7 @@ I added no new sentence. The thank-you box already makes the promise in your wor
 Undoing either part while the other is not live brings back instant publishing. Please undo only one at a time.
 
 - **Part 1:** in `src/site-layers/tll-intake-v1.js` change `var HOLD_PHOTOS=true;` to `var HOLD_PHOTOS=false;`, run `python3 src/site-layers/build-site-layers-v16.py` and `npx vitest run`, then release the site code as usual. Or put site layers 16.58.0 back in the site header (pin `3066315b`). Do this only when the Worker with the hold is live.
-- **Part 2:** in the Cloudflare dashboard open Workers, `tll-travel-wire`, Deployments, and roll back to the version before this deploy (`040dddfb` when today's audit ran; `npx wrangler deployments list` shows the current one, so note it before you deploy). Or run `npx wrangler rollback` in the repo folder. Drafts already created stay in the CMS as drafts; delete them there if you do not want them.
+- **Part 2:** in the Cloudflare dashboard open Workers, `tll-travel-wire`, Deployments, and roll back to the version before this deploy (`4ff59e28` since 12 November 2026, 09:28 UTC, with the field-5 fix; do not go back to `040dddfb`, which would undo that fix; `npx wrangler deployments list` shows the current one, so note it before you deploy). Or run `npx wrangler rollback` in the repo folder. Drafts already created stay in the CMS as drafts; delete them there if you do not want them.
 
 ## Still open, yours to decide
 
