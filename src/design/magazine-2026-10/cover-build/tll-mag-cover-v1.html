@@ -161,8 +161,9 @@ function stampText(svg,place){var p=String(place||'');var s=p.length>10?'11':'16
 /* LCP (1 Nov 2026): in the site bundle this runs in the head, so the cover photo is asked for here, before the hero is parsed, at high
    priority; the hero would otherwise start its fetch only after the bundle has run. The page's own hero file still loads once (Designer). */
 /* 10 Nov 2026 (week one item 4): when the cover photo has Webflow variants (its site-bucket twin, tll-img-variants-v1), the preload carries
-   the same srcset and sizes as the img below, so the browser fetches one file sized for the screen, once. */
-(function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;var V=window.__tllImgV,ss=V&&V.srcset(COVER.img);if(ss){l.setAttribute('imagesrcset',ss);l.setAttribute('imagesizes','100vw');}l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
+   the same srcset and sizes as the img below, so the browser fetches one file sized for the screen, once. 13 Nov 2026 (bandwidth fix 2):
+   both take their sizes from window.__tllImgV.cap('100vw'), so a phone at 3x fetches the file a 2x phone fetches (800px, was 1600px). */
+(function(){if(!COVER.img||!COVER.slug)return;try{if(document.querySelector('link[rel="preload"][href="'+COVER.img+'"]'))return;var l=document.createElement('link');l.rel='preload';l.as='image';l.href=COVER.img;var V=window.__tllImgV,ss=V&&V.srcset(COVER.img);if(ss){l.setAttribute('imagesrcset',ss);l.setAttribute('imagesizes',V.cap?V.cap('100vw'):'100vw');}l.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(l);}catch(e){}})();
 function run(){
   var hero=document.querySelector('[data-h3-hero]');if(!hero||hero.dataset.tllCover)return;hero.dataset.tllCover=COVER.slug?'1':'0';if(!COVER.slug)return;
   hero.style.setProperty('--tll-cover-pos-phone',COVER.posPhone||'50% 50%');hero.style.setProperty('--tll-cover-pos-desk',COVER.posDesk||'50% 50%');hero.style.setProperty('--tll-cover-zoom',COVER.phoneZoom||'0%');
@@ -170,7 +171,7 @@ function run(){
   /* the cover is the page's largest paint: eager, high priority, async decode. 10 Nov 2026 (week one item 4): no more guesswork and no
      more stripping either; the srcset holds only the variants Webflow built for the photo's twin (tll-img-variants-v1), full width, the
      same as the preload above, and is written before src. A photo with no variants keeps the original, as before. */
-  if(img){img.loading='eager';img.setAttribute('fetchpriority','high');img.decoding='async';var V=window.__tllImgV;if(!(V&&V.apply(img,'100vw',COVER.img))){img.removeAttribute('srcset');img.removeAttribute('sizes');}img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
+  if(img){img.loading='eager';img.setAttribute('fetchpriority','high');img.decoding='async';var V=window.__tllImgV;if(!(V&&V.apply(img,V.cap?V.cap('100vw'):'100vw',COVER.img))){img.removeAttribute('srcset');img.removeAttribute('sizes');}img.src=COVER.img;img.alt=COVER.alt||'';if(COVER.w){img.width=COVER.w;img.height=COVER.h;}}
   var h1=hero.querySelector('h1');if(!h1)return;var words=h1.parentNode;var ey=h1.previousElementSibling;if(ey&&ey.tagName==='DIV')ey.classList.add('tll-mg-eyebrow');
   var chip=document.createElement('a');chip.className='tll-mg-chip';chip.href='/contributors/'+COVER.authorSlug;
   /* eager is written out: the site footer marks every img without a loading attribute as lazy, and the chip sits inside the hero, above the

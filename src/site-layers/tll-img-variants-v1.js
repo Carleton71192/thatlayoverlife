@@ -21,7 +21,13 @@
    The story hero (.tll-story-hero-img, the largest paint on a story page) is lazy in the template; here it becomes eager with high
    fetch priority. Alt text, width, height and classes are never changed. Images inside any data-ms-* element are never touched.
    Files with no twin variants stay on their originals (as of 10 Nov: chesney-lish-spain-hero, chesney-lish-avatar, barzy-adam-avatar,
-   and the two CMS files without a twin name, 17932678182301 and uwjpidtfgp3gwxuzeefz). No external host is added. */
+   and the two CMS files without a twin name, 17932678182301 and uwjpidtfgp3gwxuzeefz). No external host is added.
+   13 Nov 2026 (bandwidth fix 2, reports/bandwidth-2026-11-13.md): phones at 3x pick card and cover photos the way a 2x phone does.
+   cap() puts entries in front of a sizes list that only match phones (up to 767px) at 2.5 dppx and up, each two thirds of the width
+   the list gives there, so a 343px card at 3x takes the 800px file (was 1080) and the cover the 800px file (was 1600). Phones at 1x
+   and 2x, tablets and desktops match none of the new entries and pick exactly as before. Card photos (library, related, home rail
+   and postcards, profile and destination cards) and the home cover use it (the cover through window.__tllImgV.cap); story heroes,
+   inline and gallery photos, bands and avatars keep their sizes. */
 (function(){
 if(window.__tllImgV)return;
 var H='https://cdn.prod.website-files.com/',SITE='69d6145cf421c777840c1e25',W=[500,800,1080,1600,2000];
@@ -59,15 +65,34 @@ var BYP=[['h3-card-by','40px'],['h3-card-ph','(min-width:991px) 26vw, 80vw'],['h
   ['tll-mg-chip','36px'],['h3-c5-ph','(min-width:991px) 50vw, 100vw']];
 var INLINE='(min-width:991px) 880px, calc(100vw - 48px)';
 var LEAD='(min-width:1280px) 700px, (min-width:991px) 55vw, (min-width:768px) 95vw, calc(100vw - 48px)';
+/* 13 Nov (bandwidth fix 2): the card photos whose sizes go through cap() */
+var CARD={'tll-lib-img':1,'tll-related-img':1,'h3-card-ph':1,'h3-pc':1};
+var PH3='(max-width:767px) and (min-resolution:2.5dppx)';
+function split(s){var out=[],d=0,b=0;for(var i=0;i<s.length;i++){var c=s.charAt(i);if(c==='(')d++;else if(c===')')d--;else if(c===','&&!d){out.push(s.slice(b,i).trim());b=i+1;}}out.push(s.slice(b).trim());return out;}
+/* cap(sizes): the same list with phone-at-3x entries in front (see the header). Entries for 768px and up are not repeated; a list it
+   cannot read (or one already capped) comes back unchanged. */
+function cap(s){
+  if(typeof s!=='string'||!s||s.indexOf('dppx')>=0)return s;
+  var L=split(s),add=[];
+  for(var i=0;i<L.length;i++){
+    var m=/^(.*?)\s*((?:calc|min|max|clamp)\(.*\)|\d+(?:\.\d+)?(?:px|vw))$/i.exec(L[i]);if(!m)return s;
+    var c=m[1],l=m[2];if(/,|\bor\b|\bnot\b/i.test(c))return s;
+    var w=/min-width:\s*(\d+)px/i.exec(c);if(w&&+w[1]>=768)continue;
+    var px=/^(\d+(?:\.\d+)?)px$/i.exec(l);
+    add.push(PH3+(c?' and '+c:'')+' '+(px?Math.round(px[1]*2/3)+'px':'calc('+(/^calc\(/i.test(l)?l.slice(4):l)+' * 2 / 3)'));
+    if(!c)break;
+  }
+  return add.length?add.join(', ')+', '+s:s;
+}
 function has(e,c){return !!e&&(' '+(e.getAttribute('class')||'')+' ').indexOf(' '+c+' ')>=0;}
 function guess(img){
   var i,p=img.parentElement;
   if(img.closest&&img.closest('.tll-inline-photo'))return INLINE;
-  if(has(img,'tll-lib-img')){var it=img.closest&&img.closest('.tll-lib-grid>*');if(it&&!it.previousElementSibling)return LEAD;}
-  for(i=0;i<BY.length;i++)if(has(img,BY[i][0]))return BY[i][1];
-  for(i=0;i<BYP.length;i++)if(has(p,BYP[i][0]))return BYP[i][1];
+  if(has(img,'tll-lib-img')){var it=img.closest&&img.closest('.tll-lib-grid>*');if(it&&!it.previousElementSibling)return cap(LEAD);}
+  for(i=0;i<BY.length;i++)if(has(img,BY[i][0]))return CARD[BY[i][0]]?cap(BY[i][1]):BY[i][1];
+  for(i=0;i<BYP.length;i++)if(has(p,BYP[i][0]))return CARD[BYP[i][0]]?cap(BYP[i][1]):BYP[i][1];
   /* review 10 Nov: classless CMS card photos on /destinations and contributor pages are about 300px wide on desktop, full column on phones */
-  if(!img.getAttribute('class')&&/^\/(destinations$|contributors\/)/.test(location.pathname.replace(/\/+$/,''))&&img.closest&&img.closest('.w-dyn-item'))return '(min-width:991px) 300px, calc(100vw - 32px)';
+  if(!img.getAttribute('class')&&/^\/(destinations$|contributors\/)/.test(location.pathname.replace(/\/+$/,''))&&img.closest&&img.closest('.w-dyn-item'))return cap('(min-width:991px) 300px, calc(100vw - 32px)');
   var w=parseInt(img.getAttribute('width'),10);
   return w>0&&w<=160?w+'px':'100vw';
 }
@@ -135,5 +160,5 @@ if(window.MutationObserver){
 /* once the page is parsed: every img again, in case one was missed */
 function pass(){var l=document.images;for(var i=0;i<l.length;i++)consider(l[i]);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',pass);else pass();
-window.__tllImgV={twin:twin,srcset:srcset,pick:pick,apply:apply,sizes:guess};
+window.__tllImgV={twin:twin,srcset:srcset,pick:pick,apply:apply,sizes:guess,cap:cap};
 })();

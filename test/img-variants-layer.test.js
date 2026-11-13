@@ -107,7 +107,8 @@ describe('tll-img-variants-v1 source and its callers (house rules)', () => {
     const cover = readFileSync(join(root, 'src', 'design', 'magazine-2026-10', 'cover-build', 'tll-mag-cover-v1.html'), 'utf8');
     const bands = readFileSync(join(root, 'src', 'site-layers', 'tll-home-bands-v1.js'), 'utf8');
     const heroes = readFileSync(join(root, 'src', 'site-layers', 'tll-page-heroes-v1.js'), 'utf8');
-    expect(cover).toMatch(/V\.apply\(img,'100vw',COVER\.img\)/);
+    expect(cover).toMatch(/V\.apply\(img,V\.cap\?V\.cap\('100vw'\):'100vw',COVER\.img\)/);
+    expect(cover).toMatch(/l\.setAttribute\('imagesizes',V\.cap\?V\.cap\('100vw'\):'100vw'\)/);
     expect(cover).toMatch(/imagesrcset/);
     expect(cover).not.toMatch(/img\.removeAttribute\('srcset'\);img\.removeAttribute\('sizes'\);img\.loading/);
     expect(bands).toMatch(/V\.apply\(i,'100vw',p\.src\)/);
