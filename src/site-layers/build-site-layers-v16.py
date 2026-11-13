@@ -26,7 +26,8 @@ the build injects no font link; tll-buttons-v1 joins STYLES as the one button se
 tll-font-fallbacks-v1 goes first in STYLES (metric-matched local fallback faces TLLSansA, TLLSansR, TLLSerifG, TLLSerifN, TLLSerifT), and
 fallbacks() below puts their names into every font stack of the layers as they are built, right after the web font, so a layer's source
 keeps its plain stack and the download carries the fallbacks. 13 Nov 2026 (bandwidth fixes 2, 3 and 7, reports/bandwidth-2026-11-13.md):
-img-variants caps card and cover photos at 2x on phones (cap()), tll-rail-hold-v1 joins the core, tll-paw-hero-img-v1 joins STYLES."""
+img-variants caps card and cover photos at 2x on phones (cap()), tll-rail-hold-v1 joins the core, tll-paw-hero-img-v1 joins STYLES.
+Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (the home library jump, N9) join the core."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -62,6 +63,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-hover-v1.js', '29 Oct Nancy: dark pink hover on light backgrounds instead of bright teal on /account'),
            ('src/site-layers/tll-home-bands-v1.js', '29 Oct Nancy: home photo bands use members story photos at full size, credited and linked'),
            ('src/site-layers/tll-rail-hold-v1.js', '13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen'),
+           ('src/site-layers/tll-library-hold-v1.js', '13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9)'),
            ('src/site-layers/tll-photos-caption-v1.js', '29 Oct: /share-photos caption room 600 characters with a running count (was cut at 256)'),
            ('src/site-layers/tll-lounge-labels-v1.js', '29 Oct Nancy: /gallery tile labels small, in the corner, off the photo'),
            ('src/site-layers/tll-stories-places-v1.js', '29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line'),
@@ -138,13 +140,15 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #                   draws from the first one, so it cannot wait for a chunk.
 #   self-data       (13 Nov, bandwidth fixes 4 and 5) seeds the count caches from the page's Site stats item before any DOMContentLoaded
 #                   listener, and on profiles hides other members' cards from the first paint so their lazy photos are never requested.
+#   library-hold    (13 Nov) the home library swipe row height: it listens for the library's first draw, which runs while the page is
+#                   parsed (before the first paint), and keeps the row's height from the previous view of this tab before that draw.
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
-        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-lounge-labels-v1',
-        'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
+        'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).

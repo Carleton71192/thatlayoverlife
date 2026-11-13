@@ -16,10 +16,13 @@ var CSS=".h3-il[data-tll-band] figcaption{padding:0!important;background:none!im
 ".h3-il[data-tll-band] figcaption b{font-weight:600}"+
 ".h3-il[data-tll-band] figcaption a:hover b,.h3-il[data-tll-band] figcaption a:focus-visible b{text-decoration:underline;text-decoration-color:#F0507A;text-underline-offset:3px}"+
 ".h3-il[data-tll-band] figcaption a:focus-visible{outline:3px solid #F0507A;outline-offset:3px}";
+/* closed(f): the parser has finished the figure (it, or a box around it, already has a next node), so its caption text is all there. */
+function closed(f){for(var e=f;e&&e!==document.body;e=e.parentNode)if(e.nextSibling)return true;return false;}
 function swap(){
-  if(!document.getElementById('tll-home-bands-v1')){var s=document.createElement('style');s.id='tll-home-bands-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  var parsing=document.readyState==='loading';
   Object.keys(B).forEach(function(k){
-    var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band'))return;
+    var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band')||(parsing&&!closed(f)))return;
+    if(!document.getElementById('tll-home-bands-v1')){var s=document.createElement('style');s.id='tll-home-bands-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
     var p=B[k],i=f.querySelector('img'),c=f.querySelector('figcaption');if(!i||!c)return;
     f.setAttribute('data-tll-band','1');
     /* 10 Nov 2026 (week one item 4): the band no longer drops to the 2400 px original on every screen. Its srcset comes from the photo's
@@ -31,5 +34,16 @@ function swap(){
     var b=document.createElement('b');b.textContent=p.by;a.appendChild(b);c.textContent='';c.appendChild(a);
   });
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',swap);else swap();
+/* 13 Nov 2026 (the photo interlude settled after load): the swap ran when the page was parsed, after the first band had been painted, and
+   its new caption (the place, then the writer's name) takes two lines on phones where the old one took one, so the
+   caption grew and moved while a reader who had reloaded at the band was looking at it. Now each band is swapped as soon as the parser
+   has closed its figure (so the caption text is complete), before that band is painted, the same way the value section goes in (tll-home-value-v1); the page-parsed
+   event stays as the fallback. swap() skips a band it has done (data-tll-band), so the extra calls cost nothing. */
+function done(){return Object.keys(B).every(function(k){var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');return !!(f&&f.getAttribute('data-tll-band'));});}
+if(document.readyState==='loading'){
+  if(window.MutationObserver){var mo=new MutationObserver(function(){if(document.querySelector('figure.h3-il')){swap();if(done())mo.disconnect();}});
+    mo.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',function(){mo.disconnect();});}
+  document.addEventListener('DOMContentLoaded',swap);
+}else swap();
 })();

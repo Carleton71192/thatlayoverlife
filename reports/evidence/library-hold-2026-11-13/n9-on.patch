@@ -1,0 +1,11 @@
+--- a/src/site-layers/tll-home-value-v1.js
++++ b/src/site-layers/tll-home-value-v1.js
+@@ -52,7 +52,7 @@
+ /* ---- N9 block begins. Measured 12 Nov 2026 (build:home CHANGES.md): a fresh load does not shift more than today, but a reload that
+    restores a phone to a scrolled position shifts more, because the section then sits where the reader is when the web fonts arrive.
+    That misses the bar set for N9, so the block is switched off. true = on phones, after the library; false = under the cover, as today. */
+-var N9_PHONES_AFTER_LIBRARY=false;
++var N9_PHONES_AFTER_LIBRARY=true;
+ var PHONE='(max-width:760px)';
+ function phone(){try{return !!(window.matchMedia&&window.matchMedia(PHONE).matches);}catch(e){return false;}}
+ function library(){var s=document.querySelector('[data-h3-shelf]');return s&&s.closest?s.closest('.w-embed'):null;}

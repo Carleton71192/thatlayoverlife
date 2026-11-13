@@ -7,6 +7,7 @@
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
+   core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
    core   src/site-layers/tll-lounge-labels-v1.js (29 Oct Nancy: /gallery tile labels small, in the corner, off the photo)
    core   src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    core   src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
@@ -418,10 +419,13 @@ var CSS=".h3-il[data-tll-band] figcaption{padding:0!important;background:none!im
 ".h3-il[data-tll-band] figcaption b{font-weight:600}"+
 ".h3-il[data-tll-band] figcaption a:hover b,.h3-il[data-tll-band] figcaption a:focus-visible b{text-decoration:underline;text-decoration-color:#F0507A;text-underline-offset:3px}"+
 ".h3-il[data-tll-band] figcaption a:focus-visible{outline:3px solid #F0507A;outline-offset:3px}";
+/* closed(f): the parser has finished the figure (it, or a box around it, already has a next node), so its caption text is all there. */
+function closed(f){for(var e=f;e&&e!==document.body;e=e.parentNode)if(e.nextSibling)return true;return false;}
 function swap(){
-  if(!document.getElementById('tll-home-bands-v1')){var s=document.createElement('style');s.id='tll-home-bands-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
+  var parsing=document.readyState==='loading';
   Object.keys(B).forEach(function(k){
-    var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band'))return;
+    var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');if(!f||f.getAttribute('data-tll-band')||(parsing&&!closed(f)))return;
+    if(!document.getElementById('tll-home-bands-v1')){var s=document.createElement('style');s.id='tll-home-bands-v1';s.textContent=CSS;(document.body||document.head).appendChild(s);}
     var p=B[k],i=f.querySelector('img'),c=f.querySelector('figcaption');if(!i||!c)return;
     f.setAttribute('data-tll-band','1');
     /* 10 Nov 2026 (week one item 4): the band no longer drops to the 2400 px original on every screen. Its srcset comes from the photo's
@@ -433,7 +437,18 @@ function swap(){
     var b=document.createElement('b');b.textContent=p.by;a.appendChild(b);c.textContent='';c.appendChild(a);
   });
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',swap);else swap();
+/* 13 Nov 2026 (the photo interlude settled after load): the swap ran when the page was parsed, after the first band had been painted, and
+   its new caption (the place, then the writer's name) takes two lines on phones where the old one took one, so the
+   caption grew and moved while a reader who had reloaded at the band was looking at it. Now each band is swapped as soon as the parser
+   has closed its figure (so the caption text is complete), before that band is painted, the same way the value section goes in (tll-home-value-v1); the page-parsed
+   event stays as the fallback. swap() skips a band it has done (data-tll-band), so the extra calls cost nothing. */
+function done(){return Object.keys(B).every(function(k){var f=document.querySelector('figure.h3-il[data-h3-il="'+k+'"]');return !!(f&&f.getAttribute('data-tll-band'));});}
+if(document.readyState==='loading'){
+  if(window.MutationObserver){var mo=new MutationObserver(function(){if(document.querySelector('figure.h3-il')){swap();if(done())mo.disconnect();}});
+    mo.observe(document.documentElement,{childList:true,subtree:true});
+    document.addEventListener('DOMContentLoaded',function(){mo.disconnect();});}
+  document.addEventListener('DOMContentLoaded',swap);
+}else swap();
 })();
 /* src/site-layers/tll-rail-hold-v1.js */
 (function(){
@@ -452,6 +467,54 @@ function watch(){if(done)return;var s=document.querySelector('[data-h3-shelf]');
   io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++)if(es[i].isIntersecting){go();return;}},{rootMargin:'1250px 0px 1250px 0px'});
   io.observe(s);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch);else watch();
+})();
+/* src/site-layers/tll-library-hold-v1.js */
+(function(){
+if(!/^\/(index\.html)?$/.test(location.pathname))return;
+if(window.__tllLibHold)return;window.__tllLibHold=1;
+var KEY='tll-lib-hold-v1',hold=0,W=window.innerWidth;
+/* The second rule is the Layover guides band right under the library (13 Nov, same measurements): its heading "The hours between flights."
+   (Playfair Display 800, 28px on phones) is 323.4px wide set in Playfair and 313.7px in the fallback face, so on a phone 354 to 363px wide
+   (360 is the common one) it took one line until the web font arrived and then two, and the band grew 29px under a reader restored to the
+   photo interlude below it. Up to 365px wide the heading keeps room for its two lines from the first paint; wider phones fit it on one
+   line in either face and are left as they are. */
+var CSS='.h3-shelf:not(.is-pinned) [data-h3-track]>.h3-card:not([hidden]):not([aria-hidden="true"]){min-height:var(--tll-lib-hold,0px)}'+
+'@media (max-width:365px){[data-h3-guides] .h3g-title{min-height:calc(2 * 1.04em)}}';
+var st=document.createElement('style');st.id='tll-library-hold-v1';st.textContent=CSS;(document.head||document.documentElement).appendChild(st);
+function set(h){if(!(h>hold))return;hold=Math.ceil(h);document.documentElement.style.setProperty('--tll-lib-hold',hold+'px');
+  try{sessionStorage.setItem(KEY,JSON.stringify({w:W,h:hold}));}catch(e){}}
+try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s&&s.w===W&&s.h>0&&s.h<2000)set(s.h);}catch(e){}
+/* The tallest card, from copies: each card is copied through an inert template, its images lose src and srcset (the boxes keep their size
+   from the CSS: the 40px avatar, the 4:5 photo), stamps and ids are dropped, and the copies are laid out at the real card width in a hidden
+   box inside the library row, then removed in the same task, so nothing is painted. Cards taken out of the rail by a script (inline
+   display:none or aria-hidden) are left out, as they never show. */
+function measure(){
+  var sec=document.querySelector('[data-h3-shelf]'),track=sec&&sec.querySelector('[data-h3-track]');if(!track||sec.classList.contains('is-pinned'))return;
+  var cards=[].filter.call(track.querySelectorAll('.h3-card'),function(c){return c.getAttribute('aria-hidden')!=='true'&&c.style.display!=='none';});
+  var ref=null;for(var i=0;i<cards.length;i++){if(!cards[i].hidden&&cards[i].offsetWidth>0){ref=cards[i];break;}}if(!ref)return;
+  var w=ref.getBoundingClientRect().width,t=document.createElement('template');
+  t.innerHTML=cards.map(function(c){return c.outerHTML;}).join('');
+  [].forEach.call(t.content.querySelectorAll('img,source'),function(m){m.removeAttribute('src');m.removeAttribute('srcset');m.removeAttribute('data-tll-v');});
+  [].forEach.call(t.content.querySelectorAll('.tll-mg-card-stamp,svg'),function(m){m.parentNode&&m.parentNode.removeChild(m);});
+  [].forEach.call(t.content.querySelectorAll('[id]'),function(m){m.removeAttribute('id');});
+  var box=document.createElement('div');box.className='h3-track';box.setAttribute('aria-hidden','true');
+  box.style.cssText='position:absolute;left:0;top:0;width:'+w+'px;height:0;margin:0;padding:0;overflow:hidden;visibility:hidden;display:block;pointer-events:none;contain:layout style';
+  box.appendChild(document.importNode(t.content,true));
+  [].forEach.call(box.children,function(k){k.hidden=false;k.style.cssText='display:flex;flex-direction:column;width:'+w+'px;min-height:0;margin:0;flex:none';});
+  track.parentNode.appendChild(box);
+  var m=0;[].forEach.call(box.children,function(k){var h=k.getBoundingClientRect().height;if(h>m)m=h;});
+  box.parentNode.removeChild(box);set(m);
+}
+function safe(){try{measure();}catch(e){}}
+/* When: each library draw announces itself with h3:stories, synchronously at the end of the draw, so the hold is in place in the same task
+   as the draw (the first one runs while the page is parsed, before the first paint; the feed's one runs before its frame is painted).
+   Also when the web fonts have arrived, when the page is parsed and loaded, and after a change of window width (the hold starts over there). */
+document.addEventListener('h3:stories',safe);
+document.addEventListener('DOMContentLoaded',safe);window.addEventListener('load',safe);
+try{document.fonts&&document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',safe);}catch(e){}
+var rz=0;window.addEventListener('resize',function(){if(window.innerWidth===W)return;clearTimeout(rz);rz=setTimeout(function(){W=window.innerWidth;hold=0;
+  document.documentElement.style.removeProperty('--tll-lib-hold');safe();},200);});
+if(document.readyState!=='loading')safe();
 })();
 /* src/site-layers/tll-lounge-labels-v1.js */
 (function(){
