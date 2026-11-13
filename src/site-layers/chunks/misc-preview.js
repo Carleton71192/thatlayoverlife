@@ -40,7 +40,7 @@ if(!/^\/gallery\/?$/.test(location.pathname))return;
 var Q=/[?&]preview=lounge(-above)?(?:[&#]|$)/.exec(location.search);if(!Q)return;
 if(window.__tllLoungeDeck)return;window.__tllLoungeDeck=1;
 var ABOVE=!!Q[1],FAR=140,SHARE='/share-photos';
-var PLEX="font-family:'IBM Plex Sans Condensed',system-ui,sans-serif!important;",MONO="font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace!important;";
+var PLEX="font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif!important;",MONO="font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace!important;";
 var P='html body .tll-deck ';
 var CSS=
 "html body .tll-deck{box-sizing:border-box;margin:0 0 30px;padding:14px 0 6px;overflow:hidden;text-align:center;color:#0A0B14}"+
@@ -63,7 +63,7 @@ P+".tll-deck-credit{position:absolute;left:10px;bottom:10px;max-width:calc(100% 
   "font-weight:600;font-size:10px;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;text-align:left;overflow-wrap:anywhere;background:rgba(10,11,20,.62);color:#F7F1E8;border-radius:2px}"+
 P+"a.tll-deck-open{"+MONO+"font-weight:600;font-size:12px!important;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:#0A0B14!important;"+
   "text-decoration:underline!important;text-decoration-color:#C8325B!important;text-decoration-thickness:2px!important;text-underline-offset:4px!important;padding:14px 10px}"+
-P+".tll-deck-end-line{margin:0 14px 22px;font-family:'Playfair Display',Georgia,serif!important;font-weight:800;font-size:30px;line-height:1.15;letter-spacing:0;color:#0A0B14}"+
+P+".tll-deck-end-line{margin:0 14px 22px;font-family:'Playfair Display',TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif!important;font-weight:800;font-size:30px;line-height:1.15;letter-spacing:0;color:#0A0B14}"+
 P+".tll-deck-end-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 10px}"+
 P+".tll-deck-bar{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 6px}"+
 P+".tll-deck-btn{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:48px;min-width:48px;margin:0;padding:0 22px;"+PLEX+
