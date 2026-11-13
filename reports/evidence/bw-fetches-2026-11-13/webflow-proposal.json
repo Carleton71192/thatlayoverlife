@@ -1,0 +1,157 @@
+{
+ "title": "Bandwidth fixes 4 and 5 (reports/bandwidth-2026-11-13.md): no more page downloads for counts; other members' card photos not loaded on profiles",
+ "note": "Exact find and replace inside each named block; every find occurs exactly once in its block (checked against the live www HTML of 13 Nov 2026 07:35 UTC, where each block is printed verbatim, and against the read of the /the-paw-passport footer code and of the tllfactsv1 source by the Data API). If a find does not match exactly once, skip that edit and report it. Every edited script keeps its old request as the fallback when the layers core or the page data is missing, so the edits are safe in any order. Nothing here touches data-ms-* elements, the nav or footer components, forms or field names (F1, which is inside the footer component, is kept apart under owner_ok_required and is NOT part of this proposal until the owner says so).",
+ "needs": {
+  "layers_core": "tllsitelayersv16 at a release commit built from branch claude/fix-bw-fetches-2026-11-13 (adds core layer tll-self-data-v1; chunks unchanged). Build SRI of this branch: sha384-HirE9yeXFhXl1uUr7yD3EvPyeaGIN1fSXvmys8vkjAAYcraZyJNEHEeaPMlQX24D. Register and apply it the same way as 16.63.0 (rollback 16.63.0, pin 1f2e549aee8627b2f67211463f764380f751c17b, sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd). Fix 5 (profiles) needs only this.",
+  "order": "Any. The code edits fall back to today's requests until the core and the D1/D2 data are live; the core seeds nothing until D1 is on a page."
+ },
+ "edits": [
+  {
+   "id": "E1",
+   "block": "home embed holding <script id=h3-mag-js> (chapter 04 Magnus line; repo copy src/pages/home/live-2026-10-28/embeds/a4c1009d.html)",
+   "location": "page home (69d6145df421c777840c1e46)",
+   "style_or_script_id": "h3-mag-js",
+   "apply_order": 1,
+   "count": 1,
+   "find": "fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){\nvar m=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!m)return;",
+   "replace": "(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var x=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!x)throw Error('no list');return x[1];})).then(function(c){\nvar m=[0,c];"
+  },
+  {
+   "id": "E2",
+   "block": "page footer code (freeform) of /the-paw-passport, <script id=tll-paw-mag-count-v1>",
+   "location": "page the-paw-passport (6a3e5e3ed36c8c6a1df1d12e)",
+   "style_or_script_id": "tll-paw-mag-count-v1",
+   "apply_order": 2,
+   "count": 1,
+   "find": "fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){\nvar m=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!m)return;\n",
+   "replace": "(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var x=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!x)throw Error('no list');return x[1];})).then(function(c){\nvar m=[0,c];\n"
+  },
+  {
+   "id": "E3",
+   "block": "about embed holding the <script> \"About (E1.10 and E2.1 ...)\" (repo copy src/pages/about/after-2026-10-20b/embed-c024f6d7-about.html)",
+   "location": "page about (6a0e05a2685ba39d73f2feb7)",
+   "style_or_script_id": "about-facts-script",
+   "apply_order": 3,
+   "count": 1,
+   "find": "get('/pets/magnus-waffles').then(function(d){\nvar scripts=Array.from(d.querySelectorAll('script')),match;\nscripts.some(function(s){if(s.textContent.indexOf('window.TLL_PET=')<0)return false;match=s.textContent.match(/countries:\\s*(\"(?:\\\\.|[^\"\\\\])*\")/);return !!match;});\nif(!match)return;",
+   "replace": "(window.tllPetCountries?window.tllPetCountries('magnus-waffles').then(function(c){return [0,JSON.stringify(c)];}):get('/pets/magnus-waffles').then(function(d){\nvar scripts=Array.from(d.querySelectorAll('script')),match;\nscripts.some(function(s){if(s.textContent.indexOf('window.TLL_PET=')<0)return false;match=s.textContent.match(/countries:\\s*(\"(?:\\\\.|[^\"\\\\])*\")/);return !!match;});\nreturn match;})).then(function(match){\nif(!match)return;"
+  },
+  {
+   "id": "E4",
+   "block": "home page head code (freeform), <script id=tll-live-writers-v1>",
+   "location": "page home (69d6145df421c777840c1e46)",
+   "style_or_script_id": "tll-live-writers-v1",
+   "apply_order": 4,
+   "count": 1,
+   "find": "function run(){var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}",
+   "replace": "function has(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/^\\s*(\\w+) writers? so far\\./.test(t.nodeValue))return true;}return false;}\nfunction run(){if(!has())return;var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}"
+  },
+  {
+   "id": "E5",
+   "block": "home embed holding <script id=h3-shelf-js> (the library rail)",
+   "location": "page home (69d6145df421c777840c1e46)",
+   "style_or_script_id": "h3-shelf-js",
+   "apply_order": 5,
+   "count": 1,
+   "find": "function fresh(){fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';})",
+   "replace": "function fresh(){(window.tllSelfDoc?window.tllSelfDoc('/stories').catch(function(){return '';}):fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';}))"
+  },
+  {
+   "id": "E6",
+   "block": "registered site script tllfactsv1 (inline, site footer): a new version 1.1.0 with this one change, applied in place of 1.0.0",
+   "location": "site",
+   "style_or_script_id": "tllfactsv1",
+   "apply_order": 6,
+   "count": 1,
+   "find": "function magnus(){if(!/(magnus|samoyed)/i.test(document.body.textContent))return;fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var m=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!m)return;var n=m[1]",
+   "replace": "function magnus(){if(!/(magnus|samoyed)/i.test(document.body.textContent))return;var hit=0;walk(function(t){if(/\\b22(?=\\s*(countries|COUNTRIES|Countries)\\b)/.test(t.nodeValue))hit=1;});if(!hit)return;(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var x=h.match(/window\\.TLL_PET=\\{countries:\"([^\"]*)\"/);if(!x)throw Error('no list');return x[1];})).then(function(c){var m=[0,c];var n=m[1]"
+  }
+ ],
+ "registered_script": {
+  "id": "E6",
+  "how": "tllfactsv1 is a registered inline script (site footer, version 1.0.0, 1,530 characters). Register version 1.1.0 with the 1.0.0 source after edit E6 (1,775 characters, under the 2,000 limit), then add_site_script tllfactsv1 version 1.1.0, location footer, no attributes, in place of 1.0.0. The other 14 site scripts stay as they are. Rollback: add_site_script tllfactsv1 version 1.0.0."
+ },
+ "designer": [
+  {
+   "id": "D1",
+   "what": "Render the Site stats item into the page (fix 4: footer counts and the head story count stop downloading /stories and /sitemap.xml).",
+   "pages": [
+    {
+     "page": "home",
+     "page_id": "69d6145df421c777840c1e46"
+    },
+    {
+     "page": "/stories",
+     "page_id": "69d61469f421c777840c204d"
+    },
+    {
+     "page": "/the-paw-passport",
+     "page_id": "6a3e5e3ed36c8c6a1df1d12e"
+    },
+    {
+     "page": "/about",
+     "page_id": "6a0e05a2685ba39d73f2feb7"
+    },
+    {
+     "page": "Stories Template",
+     "page_id": "6a0b29eedc14f1444e935766"
+    },
+    {
+     "page": "Contributors Template",
+     "page_id": "6a0b29c8a7b1840afe9390ab"
+    }
+   ],
+   "steps": [
+    "On each page, as a page-level element directly before the TLL Site Footer instance (a sibling, NOT inside the footer or nav component): add a Div Block with the custom attribute hidden = hidden.",
+    "Inside it add a Collection List bound to Site stats (collection 6ae602821fa37291336b5680), limit 1 item. Leave the Empty State inside the hidden div.",
+    "Inside the Collection Item add an Embed with exactly: <span hidden data-tll-site-stats data-stories=\"STORIES\" data-travelers=\"TRAVELERS\" data-pets=\"PETS\" data-countries=\"COUNTRIES\"></span> where each capital word is replaced with the Embed's Add Field for the Number field of the same name (stories, travelers, pets, countries).",
+    "Read back in the published HTML: one span[data-tll-site-stats] per page with four whole numbers equal to the item (57, 6, 1, 54 on 13 Nov)."
+   ],
+   "why_not_the_footer": "The footer component is on every page and would be the natural place, but the footer component is out of bounds for this work. Pages without D1 keep today's behavior (one /stories and two sitemap requests per new visitor)."
+  },
+  {
+   "id": "D2",
+   "what": "Render Magnus's country list into the pages that show his number (fix 4: home, /the-paw-passport, /about stop downloading his pet page). The /the-paw-passport count stays bound to the Pets item.",
+   "pages": [
+    {
+     "page": "home",
+     "page_id": "69d6145df421c777840c1e46"
+    },
+    {
+     "page": "/the-paw-passport",
+     "page_id": "6a3e5e3ed36c8c6a1df1d12e"
+    },
+    {
+     "page": "/about",
+     "page_id": "6a0e05a2685ba39d73f2feb7"
+    }
+   ],
+   "steps": [
+    "In the same hidden Div Block as D1 on these pages, add a Collection List bound to Pets (collection 6a0be8194ccc05a63fbdcfa3), limit 20, no filter.",
+    "Inside the Collection Item add an Embed with exactly: <span hidden data-tll-pet=\"SLUG\" data-tll-pet-countries=\"COUNTRIESLIST\"></span> with Add Field for Slug and for the plain text field Countries list (countries-list), which is the field the pet page prints as window.TLL_PET.countries.",
+    "Read back: span[data-tll-pet=\"magnus-waffles\"] carries the same text as TLL_PET.countries on /pets/magnus-waffles."
+   ],
+   "caveat": "A double quote typed into Countries list would end the attribute early. The pet page has the same limit today (it prints the field inside a JS string)."
+  }
+ ],
+ "owner_ok_required": [
+  {
+   "id": "F1",
+   "block": "INSIDE THE FOOTER COMPONENT \"TLL Site Footer\" (710ff458-c06e-d602-a663-e5e88ca1456b): the HtmlEmbed holding <style id=tll-foot-v1> and the footer scripts (repo src/components/footer/tll-foot-v1.html), commissioned label script, function home()",
+   "location": "site",
+   "style_or_script_id": "tll-foot-v1 commissioned script",
+   "apply_order": 1,
+   "count": 1,
+   "find": "set={};fetch('/stories').then(function(r){return r.ok?r.text():'';})",
+   "replace": "set={};(window.tllSelfDoc?window.tllSelfDoc('/stories').catch(function(){return '';}):fetch('/stories').then(function(r){return r.ok?r.text():'';}))",
+   "why": "This block is inside the footer component (TLL Site Footer). Hard rule: no footer component edits without the owner's explicit word. Effect: home makes one /stories request instead of two (77.5 KB less per home first view). Without it everything else still works."
+  }
+ ],
+ "not_changed_and_why": [
+  "tll-live-counts-v3.3 (footer component embed): unchanged. It already reads sessionStorage tllCounts5 first; the core seeds that key from D1 before its DOMContentLoaded run, so it never fetches where D1 is.",
+  "tll-live-stories-v1 (site head code): unchanged, same reason (tllStoryN).",
+  "Home library rail (h3-shelf-js): still reads /stories once per home view to add stories newer than the ten cards typed in its embed (E5 only shares the request). Removing that request needs the rail to be built from a Stories collection list, a larger Designer change; not done here so the rail stays exactly as it is.",
+  "tll_home_story_counter and tllacctpetsv1 (registered scripts): no request on these pages (their elements are absent or the account page only)."
+ ],
+ "evidence": "reports/evidence/bw-fetches-2026-11-13/before-after.json (results) and harness/ (the cache harness; profile addresses replaced by profile-1 to profile-4)"
+}

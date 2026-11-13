@@ -1,0 +1,1073 @@
+{
+ "note": "Cache harness, 13 Nov 2026. Live www HTML saved by the 07:35 post-publish check (two profiles with stories from the 06:56 carry snapshot); every Webflow-host request served from the local cache or aborted; 0 Webflow bytes and 0 HTML GETs in these runs. Wire bytes are the sizes measured on real loads on 13 Nov (nov13/bandwidth/per-visit): /stories 77,538, /sitemap.xml 3,611, /pets/magnus-waffles 48,141. \"after\" = core + edits E1 to E6 + Designer data D1/D2 (rendered with the values the CMS holds now); \"after_code_only\" = core + edits, no Designer data; \"after_with_F1\" adds the footer edit that needs the owner's OK. Each run is one fresh first view (no cookies, no session storage). The rail order is random by design, so its set of cards, shown count and total are compared. Profile image requests before the fix depend on timing (how far the page had laid out before the profile script ran), so they vary run to run.",
+ "rows": [
+  {
+   "page": "/",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/stories",
+     "/pets/magnus-waffles",
+     "/stories"
+    ],
+    "self_wire_bytes": 339729,
+    "webflow_image_requests": 24,
+    "webflow_image_wire_bytes": 4611393
+   },
+   "after": {
+    "self_requests": [
+     "/stories",
+     "/stories"
+    ],
+    "self_wire_bytes": 155076,
+    "webflow_image_requests": 24,
+    "webflow_image_wire_bytes": 4611393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/stories",
+     "/stories"
+    ],
+    "self_wire_bytes": 287977,
+    "webflow_image_requests": 24,
+    "webflow_image_wire_bytes": 4836666,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "after_with_F1": {
+    "self_requests": [
+     "/stories"
+    ],
+    "self_wire_bytes": 77538,
+    "webflow_image_requests": 24,
+    "webflow_image_wire_bytes": 4683268,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [
+     "· 15 places",
+     "· 15 places"
+    ],
+    "paw_lines_count": 0,
+    "rail_cards": 56,
+    "rail_shown": 6,
+    "rail_total": "57"
+   }
+  },
+  {
+   "page": "/",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/stories",
+     "/pets/magnus-waffles",
+     "/stories"
+    ],
+    "self_wire_bytes": 339729,
+    "webflow_image_requests": 29,
+    "webflow_image_wire_bytes": 5119049
+   },
+   "after": {
+    "self_requests": [
+     "/stories",
+     "/stories"
+    ],
+    "self_wire_bytes": 155076,
+    "webflow_image_requests": 28,
+    "webflow_image_wire_bytes": 4475103,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/stories",
+     "/stories"
+    ],
+    "self_wire_bytes": 287977,
+    "webflow_image_requests": 28,
+    "webflow_image_wire_bytes": 5046762,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "after_with_F1": {
+    "self_requests": [
+     "/stories"
+    ],
+    "self_wire_bytes": 77538,
+    "webflow_image_requests": 25,
+    "webflow_image_wire_bytes": 3807375,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 20
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [
+     "· 15 places",
+     "· 15 places"
+    ],
+    "paw_lines_count": 0,
+    "rail_cards": 56,
+    "rail_shown": 6,
+    "rail_total": "57"
+   }
+  },
+  {
+   "page": "/the-paw-passport",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 181042,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1305797
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1305797,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1305797,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1305797,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 4,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  },
+  {
+   "page": "/the-paw-passport",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 181042,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1234555
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1234555,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1234555,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 1234555,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 4,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  },
+  {
+   "page": "profile P1",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 13
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [],
+    "profile_meta": "",
+    "profile_pets_shown": false,
+    "robots": "noindex, follow"
+   }
+  },
+  {
+   "page": "profile P1",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 35,
+    "webflow_image_wire_bytes": 8636542
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [],
+    "profile_meta": "",
+    "profile_pets_shown": false,
+    "robots": "noindex, follow"
+   }
+  },
+  {
+   "page": "profile P2",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 12,
+    "webflow_image_wire_bytes": 4572414
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [],
+    "profile_meta": "",
+    "profile_pets_shown": false,
+    "robots": "noindex, follow"
+   }
+  },
+  {
+   "page": "profile P2",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 24,
+    "webflow_image_wire_bytes": 2098219
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 0,
+    "webflow_image_wire_bytes": 0,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [],
+    "profile_meta": "",
+    "profile_pets_shown": false,
+    "robots": "noindex, follow"
+   }
+  },
+  {
+   "page": "profile P3",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 13,
+    "webflow_image_wire_bytes": 4696297
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 614320,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 13
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 614320,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 614320,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "1 STORY",
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [
+     "unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city"
+    ],
+    "profile_meta": "1 STORY · NEWEST FIRST",
+    "profile_pets_shown": false,
+    "robots": null
+   }
+  },
+  {
+   "page": "profile P3",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 31,
+    "webflow_image_wire_bytes": 6758283
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 179004,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 179004,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 179004,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "1 STORY",
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [
+     "unmatchable-pompeii-how-i-designed-my-perfect-day-in-the-roman-city"
+    ],
+    "profile_meta": "1 STORY · NEWEST FIRST",
+    "profile_pets_shown": false,
+    "robots": null
+   }
+  },
+  {
+   "page": "profile P4",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "1 STORY",
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [
+     "spain-madrid-wedding-ibiza"
+    ],
+    "profile_meta": "1 STORY · NEWEST FIRST",
+    "profile_pets_shown": false,
+    "robots": null
+   }
+  },
+  {
+   "page": "profile P4",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 37,
+    "webflow_image_wire_bytes": 9055935
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 797845,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 797845,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 797845,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "1 STORY",
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null,
+    "profile_story_cards": [
+     "spain-madrid-wedding-ibiza"
+    ],
+    "profile_meta": "1 STORY · NEWEST FIRST",
+    "profile_pets_shown": false,
+    "robots": null
+   }
+  },
+  {
+   "page": "/about",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 181042,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 931567
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 931567,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 931567,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 3,
+    "webflow_image_wire_bytes": 931567,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  },
+  {
+   "page": "/about",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 181042,
+    "webflow_image_requests": 5,
+    "webflow_image_wire_bytes": 841338
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 5,
+    "webflow_image_wire_bytes": 841338,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/pets/magnus-waffles",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 5,
+    "webflow_image_wire_bytes": 841338,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "after_with_F1": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 5,
+    "webflow_image_wire_bytes": 841338,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 12
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  },
+  {
+   "page": "/stories/spain-madrid-wedding-ibiza",
+   "width": 390,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 15
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 15
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  },
+  {
+   "page": "/stories/spain-madrid-wedding-ibiza",
+   "width": 1440,
+   "before": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories",
+     "/pets/magnus-waffles"
+    ],
+    "self_wire_bytes": 132901,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393
+   },
+   "after": {
+    "self_requests": [],
+    "self_wire_bytes": 0,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 15
+   },
+   "after_code_only": {
+    "self_requests": [
+     "/sitemap.xml",
+     "/sitemap.xml",
+     "/stories"
+    ],
+    "self_wire_bytes": 84760,
+    "webflow_image_requests": 2,
+    "webflow_image_wire_bytes": 419393,
+    "counts_and_lists_identical": true,
+    "page_errors": [],
+    "non_get_aborted": 15
+   },
+   "what_was_compared": {
+    "footer": "54 COUNTRIES IN OUR STORIES 57 STORIES 6 TRAVELERS 1 PET",
+    "tllCounts": {
+     "p": 1,
+     "s": 57,
+     "t": 6,
+     "c": 54
+    },
+    "head_story_numbers": [
+     "57 stories"
+    ],
+    "magnus_home": [],
+    "paw_lines_count": 0,
+    "rail_cards": null,
+    "rail_shown": null,
+    "rail_total": null
+   }
+  }
+ ]
+}
