@@ -1,0 +1,287 @@
+{
+ "note": "Merge step, 13 Nov 2026 (opus-5.5 tll5o5). Do the staged Webflow edits work on the LIVE core 16.63.0 (pin 1f2e549a), before any layers release? Documents: the live www HTML saved after the 07:35 UTC publish, with edits E1 to E5 of reports/evidence/bw-fetches-2026-11-13/webflow-proposal.json and the hero edit of reports/evidence/bw-images-2026-11-13/webflow-proposal.json applied (each find exactly once), the SRI and pin left as they are; tllfactsv1 served as 1.1.0 (edit E6). Layers served live from jsDelivr at the live pin. Every Webflow-host request served from the local cache or aborted: 0 Webflow bytes, 0 HTML GETs; every non-GET aborted. Harness: the bw-fetches cache harness with one more mode (live). Result: probes (footer counts, tllCounts, story numbers, Magnus lines, rail total and shown count, profile cards) identical on all 8 runs; no page errors; with the live core the Curacao photo is no longer requested on home, and home, /the-paw-passport, /about and the story make one /pets/magnus-waffles request fewer (E6 only fetches when a 22 countries line is on the page), and home one /sitemap.xml fewer (E4: the writers line is no longer on the page). The rail order is random by design, so rail card photos differ run to run. D1 and D2 (Designer data) were not part of this check: they only do something with the new core.",
+ "rows": [
+  {
+   "page": "/",
+   "width": 390,
+   "probes_identical": true,
+   "rail_total": [
+    "57",
+    "57"
+   ],
+   "self_requests_before": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/stories",
+    "/pets/magnus-waffles",
+    "/stories"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/stories",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [
+     "69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-1600.jpg"
+    ],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    20,
+    20
+   ]
+  },
+  {
+   "page": "/",
+   "width": 1440,
+   "probes_identical": true,
+   "rail_total": [
+    "57",
+    "57"
+   ],
+   "self_requests_before": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/stories",
+    "/pets/magnus-waffles",
+    "/stories"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/stories",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [
+     "69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao-p-1600.jpg"
+    ],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    20,
+    20
+   ]
+  },
+  {
+   "page": "/the-paw-passport",
+   "width": 390,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    12,
+    12
+   ]
+  },
+  {
+   "page": "/the-paw-passport",
+   "width": 1440,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    12,
+    12
+   ]
+  },
+  {
+   "page": "/about",
+   "width": 390,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/sitemap.xml",
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/sitemap.xml",
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    12,
+    12
+   ]
+  },
+  {
+   "page": "/about",
+   "width": 1440,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/sitemap.xml",
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/sitemap.xml",
+    "/pets/magnus-waffles",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    12,
+    12
+   ]
+  },
+  {
+   "page": "/stories/spain-madrid-wedding-ibiza",
+   "width": 390,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    15,
+    15
+   ]
+  },
+  {
+   "page": "/stories/spain-madrid-wedding-ibiza",
+   "width": 1440,
+   "probes_identical": true,
+   "rail_total": [
+    null,
+    null
+   ],
+   "self_requests_before": [
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories",
+    "/pets/magnus-waffles"
+   ],
+   "self_requests_live_core_plus_edits": [
+    "/sitemap.xml",
+    "/sitemap.xml",
+    "/stories"
+   ],
+   "curacao_requests": [
+    [],
+    []
+   ],
+   "page_errors": [
+    [],
+    []
+   ],
+   "non_get_aborted": [
+    15,
+    15
+   ]
+  }
+ ]
+}
