@@ -1,0 +1,146 @@
+<style id="tv-v2-css">
+/* Travelers v2 (20 Oct 2026, Packet C C3, prototype 3.2 screen Travelers v2). Cream cards from the Contributors list (visibility Public) and the Pets list
+   (Is public on), chips with counts, one open slot whose copy follows the filter. Every number comes from the card's own CMS data; nothing is typed. */
+[data-tll-travelers="v2"]{background:#F7F1E8}
+[data-tll-roster-grid]{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr)) !important;gap:24px !important;align-items:stretch}
+[data-tll-roster-grid]>.w-embed,[data-tv-list],[data-tv-list]>.w-dyn-items{display:contents}
+[data-tv-list] .w-dyn-empty{display:none}
+[data-tll-roster-grid] .w-dyn-item{display:flex;min-width:0}
+[data-tll-roster-grid] .w-dyn-item.tv-hide,[data-tv-open].tv-hide{display:none !important}
+.tv-card{width:100%;min-height:100%;position:relative;font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif;transition:box-shadow var(--tll-t-hover,150ms) ease,border-color var(--tll-t-hover,150ms) ease}
+@media(hover:hover) and (pointer:fine){.tv-card:hover{box-shadow:0 12px 28px rgba(10,11,20,.12);border-color:#cfc6b6}}
+.tv-card:focus-visible{outline:3px solid #0A0B14;outline-offset:2px}
+.tv-photo img{position:absolute;inset:0;width:100% !important;height:100% !important;max-width:none;object-fit:cover;object-position:center;border-radius:0 !important;margin:0 !important;display:block}
+.tv-photo img.w-dyn-bind-empty,.tv-photo img:not([src]),.tv-photo img[src=""]{display:none}
+.tv-initials{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:clamp(48px,6vw,96px);letter-spacing:-.04em;color:#F7F1E8}
+.tv-photo.tv-noimg .tv-initials{display:flex}
+.tv-label,.tv-pet{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;font-weight:700;line-height:1;padding:6px 10px;text-transform:uppercase;z-index:1;white-space:nowrap}
+.tv-label{background:#F7F1E8;color:#0A0B14}
+.tv-label.tv-badge{background:#F0507A;color:#0A0B14}
+.tv-label.w-dyn-bind-empty{display:none}
+.tv-pet{background:#00C9C8;color:#0A0B14}
+.tv-body{gap:8px}
+.tv-name{font-family:'Playfair Display',Georgia,serif !important;font-weight:800 !important;font-size:22px !important;line-height:1.05 !important;letter-spacing:-.02em !important;color:#0A0B14}
+.tv-line{font-size:14px;line-height:1.45;color:#3a3a3a}
+.tv-line.w-dyn-bind-empty,.tv-home.w-dyn-bind-empty{display:none}
+.tv-meta{gap:6px 12px;padding-top:8px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#6B6660;text-transform:uppercase}
+.tv-home{color:#6B6660;font:inherit;letter-spacing:inherit}
+.tv-flags{gap:4px}
+.tv-flags span{width:18px;height:18px;border-radius:50%;background:#E0DACE center/cover no-repeat;box-shadow:0 0 0 1.5px #FDF9F3;display:inline-block}
+.tv-stats{gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#6B6660;border-top:1px solid #E0DACE;padding-top:10px;margin-top:8px}
+.tv-stats:empty{display:none}
+.tv-stats b{color:#0A0B14;font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:16px;letter-spacing:0;margin-right:4px}
+.tv-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:3px solid #0A0B14;border-bottom:1px solid #E0DACE;padding:20px 0;margin:0 0 40px}
+.tv-chip{font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif;font-size:14px;font-weight:600;padding:10px 16px;min-height:44px;border-radius:999px;border:1px solid #0A0B14;background:transparent;color:#0A0B14;cursor:pointer;display:inline-flex;align-items:center;line-height:1}
+.tv-chip[aria-pressed="true"]{background:#0A0B14;color:#F7F1E8}
+.tv-chip:focus-visible{outline:3px solid #0A0B14;outline-offset:2px;box-shadow:0 0 0 6px #00C9C8}
+.tv-count{margin-left:auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;color:#6B6660;text-transform:uppercase}
+.tv-open{border:2px dashed #c9b89a;background:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:280px;min-width:0}
+.tv-open-ey{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:2px;color:#6B6660;text-transform:uppercase}
+.tv-open-t{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:24px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 0;color:#0A0B14}
+.tv-open p{font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif;font-size:14px;line-height:1.5;color:#3a3a3a;margin:10px 0 0}
+.tv-open-cta{align-self:flex-start;font-family:'IBM Plex Sans Condensed','DM Sans',system-ui,sans-serif;font-size:15px;font-weight:600;background:#F0507A;color:#0A0B14;border:0;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none}
+.tv-foot{margin-top:40px;padding-top:16px;border-top:1px solid #E0DACE;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:1.5px;color:#6B6660;text-transform:uppercase}
+.tv-foot a{color:#067A79;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.tv-foot a:hover{text-decoration:underline}
+.tll-travelers-title em{display:inline-block;transition:opacity 220ms ease}
+.tll-travelers-title em.is-out{opacity:0}
+@media(prefers-reduced-motion:reduce){.tll-travelers-title em{transition:none}}
+</style>
+<div class="tv-bar" role="group" aria-label="Filter the Travelers" data-tv-chips>
+<button type="button" class="tv-chip" data-tv-filter="everyone" aria-pressed="true">Everyone<span data-tv-n></span></button>
+<button type="button" class="tv-chip" data-tv-filter="expats" aria-pressed="false">Live there<span data-tv-n></span></button>
+<button type="button" class="tv-chip" data-tv-filter="creators" aria-pressed="false">Make things<span data-tv-n></span></button>
+<button type="button" class="tv-chip" data-tv-filter="press" aria-pressed="false">Press<span data-tv-n></span></button>
+<button type="button" class="tv-chip" data-tv-filter="pets" aria-pressed="false">Pets<span data-tv-n></span></button>
+<span class="tv-count" data-tv-countline aria-live="polite"></span>
+</div>
+<script id="tv-v2-js">
+/* Travelers v2: fills each card from its CMS-bound data attributes (initials, label fallback, circle flags, snapshot numbers, pet places), fills the
+   card links (url mode plus data-st3-base and data-st3-slug, since collectionPage links publish broken through the API), shuffles the people
+   with a seed that changes once a day (the API refused the random sort), drives the chips, ?list=, the search box and the open slot. */
+(function(){
+  var D=document,S=D.querySelector('[data-tll-travelers="v2"]');if(!S)return;
+  S.dataset.tllDone='1';var q=D.querySelector('input[data-tll-trav-search]');if(q)q.dataset.tllDone='1';
+  var FLAG='https://cdn.jsdelivr.net/gh/HatScripts/circle-flags/flags/';
+  var FILTERS=['everyone','expats','creators','press','pets'];
+  var ALIAS={all:'everyone','live-there':'expats',expats:'expats','make-things':'creators',creators:'creators',press:'press',pets:'pets',everyone:'everyone'};
+  var OPEN={
+    everyone:{ey:'OPEN SLOT',t:'Your name here.',b:'Sign up and your page is live, story or no story. One story gets you a byline that stays yours.',c:'Join the Travelers →',h:'/signup'},
+    expats:{ey:'OPEN SLOT · LIVE THERE',t:'Your city here.',b:'Eight years somewhere beats eight days everywhere. Switch on Live there in your profile and your page lists under the city you call home.',c:'Claim your city →',h:'/edit-profile'},
+    creators:{ey:'OPEN SLOT · MAKE THINGS',t:'Your work here.',b:'Photographers, filmmakers, writers with a newsletter. Switch on Make things and the links you choose sit on your page.',c:'Add your links →',h:'/edit-profile'},
+    press:{ey:'OPEN SLOT · PRESS',t:'Your press card here.',b:'Working travel journalists. Switch on Press, an editor reviews within 48 hours, and hosted trips stay labeled at the top of every story.',c:'Apply as press →',h:'/edit-profile'},
+    pets:{ey:'OPEN SLOT · PETS',t:'Your companion here.',b:'Any species, with paperwork. A pet gets a passport page and a count of their own.',c:'Add a pet →',h:'/my-pets'}
+  };
+  function seed(){var d=new Date();return d.getUTCFullYear()*10000+(d.getUTCMonth()+1)*100+d.getUTCDate();}
+  function rnd(s){return function(){s=(s*1664525+1013904223)%4294967296;return s/4294967296;};}
+  function shuffle(list){if(!list)return;var items=[].slice.call(list.querySelectorAll('.w-dyn-item')),r=rnd(seed()),i,j,t;
+    for(i=items.length-1;i>0;i--){j=Math.floor(r()*(i+1));t=items[i];items[i]=items[j];items[j]=t;}
+    var p=items[0]&&items[0].parentNode;if(p)items.forEach(function(n){p.appendChild(n);});}
+  function on(card,k){var m=card.querySelector('[data-tv-on="'+k+'"]');return !!m&&!m.classList.contains('w-condition-invisible');}
+  function initials(n){var p=(n||'').trim().split(/\s+/);return (((p[0]||'')[0]||'')+((p.length>1?p[p.length-1]:'')[0]||'')).toUpperCase();}
+  function stat(st,n,k){var s=D.createElement('span'),b=D.createElement('b');b.textContent=n;s.appendChild(b);s.appendChild(D.createTextNode(k));st.appendChild(s);}
+  function photo(card,name){var ph=card.querySelector('.tv-photo'),img=ph&&ph.querySelector('img');
+    var has=img&&(img.getAttribute('src')||'').trim()&&!img.classList.contains('w-dyn-bind-empty');
+    if(ph&&!has){ph.classList.add('tv-noimg');var ini=ph.querySelector('[data-tv-initials]');if(ini)ini.textContent=initials(name);}}
+  function people(card){
+    var name=(card.getAttribute('data-name')||'').trim();photo(card,name);
+    var lab=card.querySelector('.tv-label');if(lab){var t=(lab.textContent||'').trim();if(!t){lab.textContent='TRAVELER';lab.classList.remove('w-dyn-bind-empty');}else lab.classList.add('tv-badge');}
+    var fl=card.querySelector('[data-tv-flags]'),codes=(card.getAttribute('data-tll-flags')||'').toLowerCase().split(/[\s,]+/).filter(function(c){return /^[a-z]{2}$/.test(c);}).slice(0,5);
+    if(fl){if(!codes.length)fl.style.display='none';else codes.forEach(function(c){var s=D.createElement('span');s.style.backgroundImage='url('+FLAG+c+'.svg)';s.setAttribute('title',c.toUpperCase());fl.appendChild(s);});}
+    var home=card.querySelector('.tv-home');if(home&&!(home.textContent||'').trim())home.style.display='none';
+    var st=card.querySelector('[data-tv-stats]'),snap=null;try{snap=JSON.parse(card.getAttribute('data-tll-snapshot')||'null');}catch(e){}
+    if(st){st.textContent='';
+      if(snap&&typeof snap.countries==='number'){var n=snap.countries,txt=on(card,'ranges')?(n<10?'under 10':Math.floor(n/10)*10+'-something'):String(n);stat(st,txt,'COUNTRIES');}
+      if(snap&&typeof snap.storiesBy==='number'&&snap.storiesBy>0)stat(st,String(snap.storiesBy),snap.storiesBy===1?'STORY':'STORIES');}
+    card.setAttribute('aria-label',name+'. Open the profile');
+  }
+  function pet(card){
+    var name=(card.getAttribute('data-name')||'').trim();photo(card,name);
+    var lab=card.querySelector('.tv-label');if(lab&&!(lab.textContent||'').trim())lab.style.display='none';
+    var line=card.querySelector('.tv-line');if(line&&!(line.textContent||'').trim())line.style.display='none';
+    var st=card.querySelector('[data-tv-stats]'),n=(card.getAttribute('data-tll-countries')||'').split(',').filter(function(x){return x.trim();}).length;
+    if(st){st.textContent='';if(n)stat(st,String(n),n===1?'PLACE':'PLACES');}
+    card.setAttribute('aria-label',name+'. Open the passport');
+  }
+  function links(){[].forEach.call(S.querySelectorAll('a[data-st3-base][data-st3-slug]'),function(a){var s=(a.getAttribute('data-st3-slug')||'').trim();
+    if(s)a.setAttribute('href',a.getAttribute('data-st3-base')+encodeURIComponent(s));else a.removeAttribute('href');});}
+  function verb(){var em=D.querySelector('.tll-travelers-title em');if(!em)return;var W=['are','live','photograph','were'],i=Math.floor(Math.random()*W.length);em.textContent=W[i];
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    setInterval(function(){em.classList.add('is-out');setTimeout(function(){i=(i+1)%W.length;em.textContent=W[i];em.classList.remove('is-out');},240);},3200);}
+  function run(){
+    var grid=S.querySelector('[data-tll-roster-grid]');if(!grid)return;
+    shuffle(S.querySelector('[data-tll-cms-cards="roster"]'));
+    var cards=[].slice.call(grid.querySelectorAll('[data-tll-trav-card]'));
+    cards.forEach(function(c){if(c.getAttribute('data-tll-trav-card')==='pet')pet(c);else people(c);});
+    links();verb();
+    var chips=[].slice.call(S.querySelectorAll('[data-tv-filter]')),open=S.querySelector('[data-tv-open]'),line=S.querySelector('[data-tv-countline]'),note=D.querySelector('[data-tll-trav-search-note]');
+    function kind(c){return c.getAttribute('data-tll-trav-card');}
+    function item(c){return c.closest('.w-dyn-item')||c;}
+    function matches(c,f){if(f==='everyone')return true;if(f==='pets')return kind(c)==='pet';return kind(c)!=='pet'&&on(c,f);}
+    function text(c){return ((c.getAttribute('aria-label')||'')+' '+(c.textContent||'')).toLowerCase();}
+    var cur='everyone';
+    try{var p=new URLSearchParams(location.search),l=(p.get('list')||'').toLowerCase();if(ALIAS[l])cur=ALIAS[l];var v=p.get('q')||p.get('country');if(q&&v)q.value=v;}catch(e){}
+    FILTERS.forEach(function(f){var n=cards.filter(function(c){return matches(c,f);}).length;var ch=S.querySelector('[data-tv-filter="'+f+'"] [data-tv-n]');if(ch)ch.textContent=' · '+n;});
+    function apply(){
+      var words=q?q.value.trim().toLowerCase().split(/\s+/).filter(Boolean):[],shown=0,total=0;
+      cards.forEach(function(c){var ok=matches(c,cur);if(ok)total++;if(ok&&words.length){var s=text(c);ok=words.every(function(w){return s.indexOf(w)>-1;});}
+        item(c).classList.toggle('tv-hide',!ok);if(ok)shown++;});
+      chips.forEach(function(ch){ch.setAttribute('aria-pressed',ch.getAttribute('data-tv-filter')===cur?'true':'false');});
+      if(open){var o=OPEN[cur]||OPEN.everyone;open.classList.toggle('tv-hide',words.length>0);
+        open.querySelector('[data-tv-open-ey]').textContent=o.ey;open.querySelector('[data-tv-open-t]').textContent=o.t;open.querySelector('[data-tv-open-b]').textContent=o.b;
+        var a=open.querySelector('[data-tv-open-cta]');a.textContent=o.c;a.setAttribute('href',o.h);}
+      if(line)line.textContent=words.length?shown+' OF '+total:total+(total===1?' CARD':' CARDS');
+      if(note){if(!words.length){note.hidden=true;note.textContent='';}
+        else if(!shown){note.hidden=false;note.innerHTML='Nobody by that name yet. If you know them, <a href="/signup">send them the signup link</a>.';}
+        else{note.hidden=false;note.textContent=shown===1?'1 match.':shown+' matches.';}}
+    }
+    chips.forEach(function(ch){ch.addEventListener('click',function(){cur=ch.getAttribute('data-tv-filter');apply();
+      try{var u=new URL(location.href);if(cur==='everyone')u.searchParams.delete('list');else u.searchParams.set('list',cur);history.replaceState(null,'',u);}catch(e){}});});
+    if(q){var t;q.addEventListener('input',function(){clearTimeout(t);t=setTimeout(apply,120);});q.addEventListener('search',apply);}
+    if(note){note.setAttribute('aria-live','polite');}
+    apply();
+  }
+  if(D.readyState==='loading')D.addEventListener('DOMContentLoaded',run);else run();
+})();
+</script>
