@@ -51,8 +51,9 @@ var CSS='.tll-val{background:#FDF9F3;color:#0A0B14;padding:72px var(--h3-g,clamp
         last rule above takes that pause away (only when this section is the one above the band). */
 /* ---- N9 block begins. Measured 12 Nov 2026 (build:home CHANGES.md): a fresh load does not shift more than today, but a reload that
    restores a phone to a scrolled position shifts more, because the section then sits where the reader is when the web fonts arrive.
-   That misses the bar set for N9, so the block is switched off. true = on phones, after the library; false = under the cover, as today. */
-var N9_PHONES_AFTER_LIBRARY=false;
+   That missed the bar set for N9. 13 Nov 2026: tll-library-hold-v1 holds the library height, N9 now passes in all 12 cases, and it is switched on.
+   true = on phones, after the library; false = under the cover. */
+var N9_PHONES_AFTER_LIBRARY=true;
 var PHONE='(max-width:760px)';
 function phone(){try{return !!(window.matchMedia&&window.matchMedia(PHONE).matches);}catch(e){return false;}}
 function library(){var s=document.querySelector('[data-h3-shelf]');return s&&s.closest?s.closest('.w-embed'):null;}

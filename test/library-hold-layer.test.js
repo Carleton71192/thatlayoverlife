@@ -138,10 +138,10 @@ describe('tll-library-hold-v1 source and build', () => {
 });
 
 describe('N9 stays off in the committed code', () => {
-  it('tll-home-value-v1 and the built core keep N9_PHONES_AFTER_LIBRARY false', () => {
-    expect(read('src', 'site-layers', 'tll-home-value-v1.js')).toMatch(/^var N9_PHONES_AFTER_LIBRARY=false;$/m);
-    expect(core).toMatch(/^var N9_PHONES_AFTER_LIBRARY=false;$/m);
-    expect(core).not.toMatch(/N9_PHONES_AFTER_LIBRARY=true/);
+  it('tll-home-value-v1 and the built core switch N9_PHONES_AFTER_LIBRARY on (Nancy, 13 Nov 2026)', () => {
+    expect(read('src', 'site-layers', 'tll-home-value-v1.js')).toMatch(/^var N9_PHONES_AFTER_LIBRARY=true;$/m);
+    expect(core).toMatch(/^var N9_PHONES_AFTER_LIBRARY=true;$/m);
+    expect(core).not.toMatch(/N9_PHONES_AFTER_LIBRARY=false/);
   });
 });
 
