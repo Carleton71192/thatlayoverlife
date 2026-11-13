@@ -1,6 +1,6 @@
 # Photo hold: member photos wait for you before anyone sees them (11 November 2026)
 
-For Nancy. Nothing in this note is live yet. Nothing was deployed, released or published, and nothing changed in Webflow.
+For Nancy. **Update 13 November 2026, about 12:02 UTC: Part 2 is live.** You deployed the Worker (version `7a3c7b00`); `/lounge` answers `{"photos":[],"held":true}`. Part 1 has been live on www since 12 November. Rollback for Part 2: `npx wrangler rollback 4ff59e28-430d-4ea1-afda-6d53acb9adfd`. The rest of this note is as written on 11 November.
 
 ## In short
 
