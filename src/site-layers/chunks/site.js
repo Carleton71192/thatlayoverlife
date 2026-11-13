@@ -109,9 +109,9 @@ setTimeout(run,1200);setTimeout(run,3000);
 var CSS=".ep-i[data-tll-help]{cursor:pointer;-webkit-tap-highlight-color:transparent}"+
 ".ep-i[data-tll-help]:focus-visible{outline:3px solid #C8325B;outline-offset:2px;border-radius:50%}"+
 ".tll-help-note{display:block;margin:8px 0 2px;padding:10px 12px;max-width:520px;border-left:3px solid #067A79;background:#E8F4F3;color:#0A0B14;"+
-"font:400 14px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;letter-spacing:0;text-transform:none;border-radius:2px}"+
+"font:400 14px/1.45 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif;letter-spacing:0;text-transform:none;border-radius:2px}"+
 ".tll-help-note[hidden]{display:none!important}"+
-".tll-tagline-hint{margin:6px 0 0;font:400 13px/1.45 'IBM Plex Sans Condensed',system-ui,sans-serif;color:#5F5A54}";
+".tll-tagline-hint{margin:6px 0 0;font:400 13px/1.45 'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif;color:#5F5A54}";
 var n=0,open=null;
 function close(){if(!open)return;open.note.hidden=true;open.mark.setAttribute('aria-expanded','false');open=null;}
 function wire(mark){
@@ -149,11 +149,11 @@ var API='https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new';
 var P=location.pathname.replace(/\/+$/,'')||'/';
 var CSS='.tll-wn-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#C8325B;margin-left:6px;vertical-align:middle;box-shadow:0 0 0 2px #FDF9F3}'+
 '.tll-wn-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}'+
-'.tll-wn{max-width:760px;margin:20px auto;padding:0 16px;font:400 15px/1.5 "IBM Plex Sans Condensed",system-ui,sans-serif;color:#0A0B14}'+
+'.tll-wn{max-width:760px;margin:20px auto;padding:0 16px;font:400 15px/1.5 "IBM Plex Sans Condensed",TLLSansA,TLLSansR,system-ui,sans-serif;color:#0A0B14}'+
 '.tll-wn-k{font:600 11px/1.4 "JetBrains Mono",ui-monospace,monospace;letter-spacing:1.5px;text-transform:uppercase;color:#067A79;margin:0 0 8px}'+
 '.tll-wn-card{border:1px solid #E0DACE;border-left:3px solid #C8325B;border-radius:4px;background:#fff;padding:14px 16px;margin:0 0 10px}'+
-'.tll-wn-card h3{font:800 19px/1.2 "Playfair Display",Georgia,serif;margin:0 0 4px}.tll-wn-card p{margin:0 0 10px;color:#3a3833}'+
-'.tll-wn-row{display:flex;flex-wrap:wrap;gap:8px}.tll-wn-row a,.tll-wn-row button{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:4px;font:600 14px/1 "IBM Plex Sans Condensed",sans-serif;cursor:pointer;text-decoration:none}'+
+'.tll-wn-card h3{font:800 19px/1.2 "Playfair Display",TLLSerifG,TLLSerifN,TLLSerifT,Georgia,serif;margin:0 0 4px}.tll-wn-card p{margin:0 0 10px;color:#3a3833}'+
+'.tll-wn-row{display:flex;flex-wrap:wrap;gap:8px}.tll-wn-row a,.tll-wn-row button{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:4px;font:600 14px/1 "IBM Plex Sans Condensed",TLLSansA,TLLSansR,sans-serif;cursor:pointer;text-decoration:none}'+
 '.tll-wn-row a{background:#C8325B;color:#fff;border:0}.tll-wn-row button{background:transparent;border:1.5px solid #0A0B14;color:#0A0B14}';
 function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
 function css(){if(document.getElementById('tll-whats-new-v1'))return;var s=el('style');s.id='tll-whats-new-v1';s.textContent=CSS;document.head.appendChild(s);}
