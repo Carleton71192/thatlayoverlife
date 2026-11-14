@@ -77,8 +77,8 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 
 ## Decisions waiting (answer when you have time)
 
-**Story page jump on phones: OK to release the repaired fuller fix (A2)? (from your phone)**
-Reply "release A2" or "wait". You chose A on 14 Nov. The repaired version passed an independent check: no story load jumped (0 of about 465 measured loads over the limit, against about 1 in 3 today), no flash of the old dark top, reloads stay put, and your template edits still win. Small leftover: a place name of about 30 letters or more gives one small nudge of the photo (no current story has one). It would go out as core 16.65.0 (branch claude/fix-story-first-frame-a2-2026-11-14, commit 73ab244): test site first, then www after the usual checks and your yes. Evidence: reports/evidence/story-first-frame-2026-11-14/ (judge-a2.md). About 1 minute.
+**Story page jump on phones: A2 is on the test site; www needs your yes (from your phone)**
+You said "Release A2" on 14 Nov. Core 16.65.0 is on that-layover-life.webflow.io since 19:29 UTC; www and thatlayover.life still run 16.64.0. Three independent checks of the test site are running. When they pass, reply "publish www" to put it live (or "wait"). Rollback is one step (the old version stays registered). Evidence: reports/evidence/story-first-frame-2026-11-14/ and, when done, reports/evidence/release-16.65.0-check/. About 1 minute.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
