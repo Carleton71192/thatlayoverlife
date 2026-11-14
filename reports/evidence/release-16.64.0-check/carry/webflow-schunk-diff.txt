@@ -1,0 +1,44 @@
+== module 1655 ratio 0.9933
+   delete WWW: _, | TEST: 
+   delete WWW: var_=_(_.target);_&&_.closest(".w-editor-bem-EditorOverlay").length|| | TEST: 
+   insert WWW:  | TEST: (_.target)
+   delete WWW: _.env("editor"),_= | TEST: 
+== module 286 ratio 0.9871
+   delete WWW: ,_=_.env("editor")?".w-editor-body":"body",_="header, "+_+" > .header, "+_+" > .w-nav:not([data-_-scroll])" | TEST: 
+   replace WWW: _ | TEST: "header, body > .header, body > .w-nav:not([data-_-scroll])"
+== module 322 ratio 0.8068
+   delete WWW: var_,_,_; | TEST: 
+   delete WWW: _=function(_){var_; | TEST: 
+   insert WWW:  | TEST: _})},_=!1;try{_=localStorage&&localStorage.getItem&&localStorage.getItem("WebflowEditor")}catch
+   replace WWW: = | TEST: ){}function
+   replace WWW: , | TEST: (){!_&&/\?edit/.test(_.hash)&&_()}
+   insert WWW:  | TEST: _
+   delete WWW: _.thirdPartyCookiesSupported=_, | TEST: 
+   delete WWW: )})},(_=window.document.createElement("iframe")).src="https://webflow.com/site/third-party-cookie-check.html",_.style.display="none",_.sandbox="allow-scripts allow-same-origin",_=function(_){"WF_third_party_cookies_unsupported"===_.data?(_(_,_),_(!1)):"WF_third_party_cookies_supported"===_.data&&(_( | TEST: 
+   delete WWW: )}function_(_,_){window.removeEventListener("message",_,!1),_.remove( | TEST: 
+== module 3949 ratio 0.9961
+   delete WWW: :"editor"===_?window.WebflowEditor | TEST: 
+== module 9461 ratio 0.9463
+   delete WWW: var_= | TEST: 
+   replace WWW: ;_.define | TEST: .define
+   replace WWW: ,_= | TEST: ;
+   replace WWW: ,_=_.env | TEST: ||
+   delete WWW: "editor");_(_){_&&_.remove();return} | TEST: 
+   delete WWW: _|| | TEST: 
+   insert WWW:  | TEST: )
+== module 9858 ratio 0.9293
+   delete WWW: "mousemove"+_,_= | TEST: 
+   delete WWW: _, | TEST: 
+   delete WWW: _(! | TEST: 
+   replace WWW: ){var_= | TEST: ||
+   replace WWW: ,_=_.env("editor"); | TEST: &&
+   delete WWW: {_(_){var_=1===_.parents().length&&1===_.parents("svg").length,_=_.parents(".w-editor-bem-EditorHoverControls").length;_(_||_)return}_(_)}}}})),_.mouseMoveOutside=(_=_,_(function(_){_(_.open){var_=_(_.target);_(-1===_.inArray(_.el[0],_.parents(_))){var_=_.parents(".w-editor-bem-EditorHoverControls") | TEST: 
+   insert WWW:  | TEST: var
+   insert WWW:  | TEST: ;_.open||
+   delete WWW: !_.open){ | TEST: 
+   delete WWW: ;var_ | TEST: 
+   delete WWW: _=_.env("editor"); | TEST: 
+   delete WWW: !_&& | TEST: 
+   delete WWW: _.hovering&&_&&_.on(_,_.mouseMoveOutside), | TEST: 
+   replace WWW: } | TEST: )
+   delete WWW: ),_.off(_,_.mouseMoveOutside | TEST: 

@@ -1,0 +1,33 @@
+{
+ "check": "release 16.64.0 carry check, plain GETs only, no browser",
+ "run": "2026-11-14, about 07:35 to 07:40 UTC, test site published 07:34:04 UTC (pages stamped 07:34:06), www and apex last published 2026-11-13 07:35:38 UTC",
+ "pages": ["/", "/the-paw-passport", "/about", "/stories", "/travelers", "/layovers", "/the-map", "/for-expats", "/cookies", "/stories/vietnam-ninja-duckies", "one contributor profile page (the only /contributors/ link reachable from /stories, through the story page)"],
+ "hosts": ["https://that-layover-life.webflow.io", "https://www.thatlayover.life"],
+ "all_status": 200,
+ "core": {
+  "test": "pin 6ec769bb8fa05d21a459b6d106652854754c4c37 with sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr exactly once on 11 of 11 pages; old pin absent; the SRI equals the sha384 of src/site-layers/tll-site-layers-v16.js at the pin",
+  "www": "pin 1f2e549aee8627b2f67211463f764380f751c17b with sha384-H+oSdrkc... once on 11 of 11 pages (16.63.0); new pin absent"
+ },
+ "tllfactsv1": {
+  "test": "tllfactsv1-1.1.0.js on 11 of 11 pages, 1,779 bytes, byte equal to src/site/live-2026-11-13/next/tllfactsv1-1.1.0.after.js; E6 find 0, replace 1",
+  "www": "tllfactsv1-1.0.0.js on 11 of 11 pages, 1,534 bytes, byte equal to tllfactsv1-1.0.0.before.js; E6 find 1; swapping the find once gives the 1.1.0 file exactly"
+ },
+ "staged_edits_on_test_vs_www": {
+  "HERO": "home: find 0 / replace 1 on test, find 1 / replace 0 on www; test hero img has loading=lazy, no fetchpriority, src, srcset, sizes, alt, class, decoding unchanged",
+  "E1": "home: test find 0 / replace 1, www find 1 / replace 0",
+  "E2": "/the-paw-passport: test find 0 / replace 1, www find 1 / replace 0 (the E1 counts on this page are E2 itself, since the E2 find starts with the E1 find)",
+  "E3": "/about: test find 0 / replace 1, www find 1 / replace 0",
+  "E4": "home: test find 0 / replace 1, www find 1 / replace 0",
+  "E5": "home: test find 0 / replace 1, www find 1 / replace 0"
+ },
+ "skipped_absent": {
+  "F1": "footer component find present once and replace absent on every page on both hosts (unchanged)",
+  "D1": "no data-tll-site-stats on any page on either host",
+  "D2": "no data-tll-pet-countries on any page on either host"
+ },
+ "diff": "normalized HTML diff (host names masked) of each pair: every difference is the Last Published comment, the core script tag, the tllfactsv1 script tag, the staged edit text on its page, and the webflow.schunk tag (370eb798fd9b1ff6 on www to 4eadd5ed11403fbe on test, SRI checked for both). Raw host difference: data-wf-domain only. See html-diff-www-vs-test.txt",
+ "webflow_runtime_chunk": "webflow.schunk 4eadd5ed (test, 57,200 bytes) vs 370eb798 (www, 58,629 bytes): same 16 webpack modules; six modules differ and every real change removes Webflow Designer or editor-only code (editor overlay and hover checks in the navbar and dropdown, the .w-editor-body selector, the third-party cookie check iframe, the WebflowEditor env branch). A Webflow platform update picked up by any publish, not from this release. See webflow-schunk-diff.txt",
+ "nav_footer_forms_data_ms": "byte identical between hosts on 11 of 11 pages (raw, no normalization). See nav-footer-forms-ms.json",
+ "fallback": "core 16.64.0 tllPetCountries falls back to the same /pets/<slug> request and regex when no D2 span is on the page; tllSelfDoc fetches the path and throws on a non-OK response, which E5 catches to an empty string as before",
+ "bytes": "1,568,914 bytes on the wire from Webflow hosts: 24 HTML pages plus 2 extra GETs of the home page (a profile fetch with an empty path), 2 tllfactsv1 files, 2 Webflow runtime chunks. No image, video or font requests. No non-GET requests."
+}

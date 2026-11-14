@@ -1,0 +1,207 @@
+===== about changed lines: 17
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -1954 +1954 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -2245 +2245,4 @@
+   -get('/pets/magnus-waffles').then(function(d){
+   +(window.tllPetCountries?window.tllPetCountries('magnus-waffles').then(function(c){
+   +return [0,JSON.stringify(c)];
+   +}
+   +):get('/pets/magnus-waffles').then(function(d){
+   @@ -2254,0 +2258,4 @@
+   +
+   +return match;
+   +}
+   +)).then(function(match){
+   @@ -2815 +2822 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -4747 +4754 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== cookies changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -1935 +1935 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -2536 +2536 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -4468 +4468 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== for-expats changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2357 +2357 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -3149 +3149 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -5444 +5444 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== home changed lines: 38
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2478,0 +2479,8 @@
+   +function has(){
+   +var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;
+   +while(t=w.nextNode()){
+   +if(/^\s*(\w+) writers? so far\./.test(t.nodeValue))return true;
+   +}
+   +return false;
+   +}
+   +
+   @@ -2479,0 +2488 @@
+   +if(!has())return;
+   @@ -2574 +2583 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -3840 +3849 @@
+   -<img class="inline-imgraw-0-1-2-3-4-5" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="Azure water and a quiet boat, shot by someone who actually went" decoding="async" sizes="(max-width: 2048px) 100vw, 2048px" data-tll-parallax="hero" loa
+   +<img class="inline-imgraw-0-1-2-3-4-5" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="Azure water and a quiet boat, shot by someone who actually went" decoding="async" sizes="(max-width: 2048px) 100vw, 2048px" data-tll-parallax="hero" loa
+   @@ -5063 +5072,4 @@
+   -fetch('/stories',{
+   +(window.tllSelfDoc?window.tllSelfDoc('/stories').catch(function(){
+   +return '';
+   +}
+   +):fetch('/stories',{
+   @@ -5068 +5080 @@
+   -).then(function(h){
+   +)).then(function(h){
+   @@ -6066 +6078 @@
+   -fetch('/pets/magnus-waffles',{
+   +(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{
+   @@ -6072,2 +6084 @@
+   -
+   -var m=h.match(/window\.TLL_PET=\{
+   +var x=h.match(/window\.TLL_PET=\{
+   @@ -6075 +6086,6 @@
+   -if(!m)return;
+   +if(!x)throw Error('no list');
+   +return x[1];
+   +}
+   +)).then(function(c){
+   +
+   +var m=[0,c];
+   @@ -6919 +6935 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -9088 +9104 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== layovers changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2100 +2100 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -2720 +2720 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -4652 +4652 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== contributor-profile changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2472 +2472 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -4315 +4315 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -6879 +6879 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== stories changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -3187 +3187 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -5631 +5631 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -8133 +8133 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== stories__vietnam-ninja-duckies changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2550 +2550 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -4431 +4431 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -7629 +7629 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== the-map changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2551 +2551 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -5786 +5786 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -10091 +10091 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== the-paw-passport changed lines: 20
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -1985 +1985 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -2735 +2735 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -4677 +4677 @@
+   -fetch('/pets/magnus-waffles',{
+   +(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{
+   @@ -4683,2 +4683 @@
+   -
+   -var m=h.match(/window\.TLL_PET=\{
+   +var x=h.match(/window\.TLL_PET=\{
+   @@ -4686 +4685,6 @@
+   -if(!m)return;
+   +if(!x)throw Error('no list');
+   +return x[1];
+   +}
+   +)).then(function(c){
+   +
+   +var m=[0,c];
+   @@ -4717 +4721 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
+===== travelers changed lines: 8
+   @@ -3 +3 @@
+   -<!-- Last Published: Fri Nov 13 2026 07:35:38 GMT+0000 (Coordinated Universal Time) -->
+   +<!-- Last Published: Sat Nov 14 2026 07:34:06 GMT+0000 (Coordinated Universal Time) -->
+   @@ -2166 +2166 @@
+   -<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@1f2e549aee8627b2f67211463f764380f751c17b/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-H+oSdrkcwOOlCvbyOd9Xm+EvqvWHK8Z0lJRpRfsE//z/ZWm7d2GXDxMktP77zztd" crossorigin="anonymous">
+   +<script src="https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@6ec769bb8fa05d21a459b6d106652854754c4c37/src/site-layers/tll-site-layers-v16.js" type="text/javascript" integrity="sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr" crossorigin="anonymous">
+   @@ -3778 +3778 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   @@ -6375 +6375 @@
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6ab13a0d90d9e8873f2f463c%2Ftllfactsv1-1.0.0.js" type="text/javascript">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25%2F689e5ba67671442434f3ca35%2F6af808ad37d7fb834ffcf809%2Ftllfactsv1-1.1.0.js" type="text/javascript">
