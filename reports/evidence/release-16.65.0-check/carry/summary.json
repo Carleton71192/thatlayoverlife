@@ -1,0 +1,500 @@
+{
+ "check": "release 16.65.0 carry check, plain GETs only (python requests), no browser",
+ "run": "2026-11-14, about 19:31 to 19:45 UTC; test site published 19:29:14 UTC (page stamp 19:29:11), www stamp 08:16:45 UTC",
+ "pages": [
+  "/",
+  "/stories",
+  "/about",
+  "/the-paw-passport",
+  "/travelers",
+  "/layovers",
+  "/the-map",
+  "/for-expats",
+  "/cookies",
+  "/stories/vietnam-ninja-duckies",
+  "/stories/lisbon-sun-sails-city-built-to-stand-back-up",
+  "one contributor profile (/contributors/<profile>; /stories links no profile directly, this is the only profile link on both story pages)"
+ ],
+ "hosts": [
+  "https://that-layover-life.webflow.io",
+  "https://www.thatlayover.life"
+ ],
+ "requests": [
+  {
+   "host": "test",
+   "path": "/",
+   "status": 200,
+   "bytes": 247943,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:29:29 GMT",
+   "t": "19:31:05Z"
+  },
+  {
+   "host": "www",
+   "path": "/",
+   "status": 200,
+   "bytes": 247935,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:05 GMT",
+   "t": "19:31:06Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories",
+   "status": 200,
+   "bytes": 289937,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:06 GMT",
+   "t": "19:31:07Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories",
+   "status": 200,
+   "bytes": 289929,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:21 GMT",
+   "t": "19:31:07Z"
+  },
+  {
+   "host": "test",
+   "path": "/about",
+   "status": 200,
+   "bytes": 132454,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:07 GMT",
+   "t": "19:31:08Z"
+  },
+  {
+   "host": "www",
+   "path": "/about",
+   "status": 200,
+   "bytes": 132446,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:20 GMT",
+   "t": "19:31:08Z"
+  },
+  {
+   "host": "test",
+   "path": "/the-paw-passport",
+   "status": 200,
+   "bytes": 131259,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:08 GMT",
+   "t": "19:31:08Z"
+  },
+  {
+   "host": "www",
+   "path": "/the-paw-passport",
+   "status": 200,
+   "bytes": 131251,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:19 GMT",
+   "t": "19:31:09Z"
+  },
+  {
+   "host": "test",
+   "path": "/travelers",
+   "status": 200,
+   "bytes": 172046,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:10 GMT",
+   "t": "19:31:10Z"
+  },
+  {
+   "host": "www",
+   "path": "/travelers",
+   "status": 200,
+   "bytes": 172038,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:23 GMT",
+   "t": "19:31:10Z"
+  },
+  {
+   "host": "test",
+   "path": "/layovers",
+   "status": 200,
+   "bytes": 126916,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:11 GMT",
+   "t": "19:31:11Z"
+  },
+  {
+   "host": "www",
+   "path": "/layovers",
+   "status": 200,
+   "bytes": 126908,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:24 GMT",
+   "t": "19:31:11Z"
+  },
+  {
+   "host": "test",
+   "path": "/the-map",
+   "status": 200,
+   "bytes": 245731,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:11 GMT",
+   "t": "19:31:11Z"
+  },
+  {
+   "host": "www",
+   "path": "/the-map",
+   "status": 200,
+   "bytes": 245723,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:25 GMT",
+   "t": "19:31:12Z"
+  },
+  {
+   "host": "test",
+   "path": "/for-expats",
+   "status": 200,
+   "bytes": 150147,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:12 GMT",
+   "t": "19:31:13Z"
+  },
+  {
+   "host": "www",
+   "path": "/for-expats",
+   "status": 200,
+   "bytes": 150139,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:26 GMT",
+   "t": "19:31:13Z"
+  },
+  {
+   "host": "test",
+   "path": "/cookies",
+   "status": 200,
+   "bytes": 124805,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:13 GMT",
+   "t": "19:31:13Z"
+  },
+  {
+   "host": "www",
+   "path": "/cookies",
+   "status": 200,
+   "bytes": 124797,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:27 GMT",
+   "t": "19:31:13Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories/vietnam-ninja-duckies",
+   "status": 200,
+   "bytes": 222656,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:30 GMT",
+   "t": "19:31:30Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories/vietnam-ninja-duckies",
+   "status": 200,
+   "bytes": 222648,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:17:28 GMT",
+   "t": "19:31:30Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories/lisbon-sun-sails-city-built-to-stand-back-up",
+   "status": 200,
+   "bytes": 215070,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:31 GMT",
+   "t": "19:31:31Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories/lisbon-sun-sails-city-built-to-stand-back-up",
+   "status": 200,
+   "bytes": 215062,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:31 GMT",
+   "t": "19:31:31Z"
+  },
+  {
+   "host": "test",
+   "path": "/contributors/<profile>",
+   "status": 200,
+   "bytes": 215272,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 19:31:41 GMT",
+   "t": "19:31:41Z"
+  },
+  {
+   "host": "www",
+   "path": "/contributors/<profile>",
+   "status": 200,
+   "bytes": 215264,
+   "wire": null,
+   "enc": "gzip",
+   "lm": "Sat, 14 Nov 2026 08:40:03 GMT",
+   "t": "19:31:42Z"
+  }
+ ],
+ "all_status_200": true,
+ "core_tag": {
+  "test": "one tll-site-layers-v16.js tag on 12 of 12 pages, pin 0daa78b4cdbd8cda2fccd488a6e35b78c0652e3e and sha384-lCTj52h4... each exactly once, in that tag; 6ec769bb and the 16.64.0 SRI absent on 12 of 12",
+  "www": "one tag on 12 of 12 pages, pin 6ec769bb8fa05d21a459b6d106652854754c4c37 with sha384-m7ORNXLx... once each; 0daa78b4 and its SRI absent on 12 of 12",
+  "per_page": {
+   "about": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "cookies": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "for-expats": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "home": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "layovers": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "contributor-profile": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "stories": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "stories__lisbon-sun-sails-city-built-to-stand-back-up": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "stories__vietnam-ninja-duckies": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "the-map": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "the-paw-passport": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   },
+   "travelers": {
+    "test": {
+     "core_tags": 1,
+     "new_pin": 1,
+     "new_sri": 1,
+     "old_pin": 0,
+     "old_sri": 0,
+     "stamp": "Sat Nov 14 2026 19:29:11 GMT+0000 (Coordinated Universal Time)"
+    },
+    "www": {
+     "core_tags": 1,
+     "new_pin": 0,
+     "new_sri": 0,
+     "old_pin": 1,
+     "old_sri": 1,
+     "stamp": "Sat Nov 14 2026 08:16:45 GMT+0000 (Coordinated Universal Time)"
+    }
+   }
+  }
+ },
+ "diff": "after masking host names and the Last Published stamp, each pair differs in exactly one segment: the core pin and SRI inside the core script tag (html-diff-www-vs-test.txt). Stronger raw check: taking the test HTML and swapping back only the core pin, the core SRI, the Last Published comment and the data-wf-domain value gives the www HTML byte for byte on 12 of 12 pages. The test host name occurs once per page (data-wf-domain only); canonical, og:url and all links use www on both hosts. The Webflow runtime chunk, tllfactsv1 and every other script tag are the same on both hosts.",
+ "nav_footer_forms_data_ms": "nav, footer and every form block (script and style bodies excluded from the tag scan) byte identical on 12 of 12 pages, raw without normalization; data-ms-* attributes (4 per page, data-ms-content and data-ms-member) identical in order and value on 12 of 12. See nav-footer-forms-ms.json",
+ "core_file": {
+  "url": "https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@0daa78b4cdbd8cda2fccd488a6e35b78c0652e3e/src/site-layers/tll-site-layers-v16.js",
+  "fetched": "once, HTTP 200, 250,582 bytes",
+  "sha384": "sha384-lCTj52h4CPjzkOy2Ls4A5XdnVYwEqHFIXJYewsQbjZB2jarPkrzxWG+vqRINw9l8, equal to the SRI in the tag",
+  "git": "byte equal (cmp) to git show 0daa78b4cdbd8cda2fccd488a6e35b78c0652e3e:src/site-layers/tll-site-layers-v16.js",
+  "provenance": "0daa78b4 is on layers-release, message 'built layers from 984dd05', parent 6ec769bb; the whole-tree diff between the two pins is this one file (44 insertions, 3 deletions)"
+ },
+ "notes": [
+  "www Last-Modified header for the lisbon story page read 19:31:31 GMT, but its body carries the 08:16:45 stamp and the 16.64.0 pin: a CDN cache refill, not a publish"
+ ],
+ "bytes": "Webflow hosts: 24 HTML GETs, 4,548,376 bytes decoded (gzip transfer, chunked, estimated about 1.33 MB on the wire by local gzip -6). jsDelivr: 1 GET, 250,582 bytes. No image, video, font or other asset requests; no non-GET requests; no browser."
+}
