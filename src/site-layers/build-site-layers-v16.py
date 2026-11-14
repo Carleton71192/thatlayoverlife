@@ -27,7 +27,8 @@ tll-font-fallbacks-v1 goes first in STYLES (metric-matched local fallback faces 
 fallbacks() below puts their names into every font stack of the layers as they are built, right after the web font, so a layer's source
 keeps its plain stack and the download carries the fallbacks. 13 Nov 2026 (bandwidth fixes 2, 3 and 7, reports/bandwidth-2026-11-13.md):
 img-variants caps card and cover photos at 2x on phones (cap()), tll-rail-hold-v1 joins the core, tll-paw-hero-img-v1 joins STYLES.
-Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (the home library jump, N9) join the core."""
+Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (the home library jump, N9) join the core.
+14 Nov 2026 (story page first-frame jump at 390): tll-story-avatar-v1 joins the core."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -64,6 +65,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-home-bands-v1.js', '29 Oct Nancy: home photo bands use members story photos at full size, credited and linked'),
            ('src/site-layers/tll-rail-hold-v1.js', '13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen'),
            ('src/site-layers/tll-library-hold-v1.js', '13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9)'),
+           ('src/site-layers/tll-story-avatar-v1.js', '14 Nov: story page writer photo sized 40px from the head, so it never paints at its natural size before the template style'),
            ('src/site-layers/tll-photos-caption-v1.js', '29 Oct: /share-photos caption room 600 characters with a running count (was cut at 256)'),
            ('src/site-layers/tll-lounge-labels-v1.js', '29 Oct Nancy: /gallery tile labels small, in the corner, off the photo'),
            ('src/site-layers/tll-stories-places-v1.js', '29 Oct Nancy: /stories place chips add Asia, Middle East and Oceania; in the library line'),
@@ -142,13 +144,16 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #                   listener, and on profiles hides other members' cards from the first paint so their lazy photos are never requested.
 #   library-hold    (13 Nov) the home library swipe row height: it listens for the library's first draw, which runs while the page is
 #                   parsed (before the first paint), and keeps the row's height from the previous view of this tab before that draw.
+#   story-avatar    (14 Nov) the story page writer photo: its size rule must be in place before the author row is parsed, long before the
+#                   template's end-of-body style, so it cannot wait for a chunk
+#                   (a chunk runs when it arrives, which can be after the author row is painted).
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
         'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
-        'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
+        'tll-story-avatar-v1', 'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).

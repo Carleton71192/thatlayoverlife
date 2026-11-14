@@ -8,6 +8,7 @@
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
+   core   src/site-layers/tll-story-avatar-v1.js (14 Nov: story page writer photo sized 40px from the head, so it never paints at its natural size before the template style)
    core   src/site-layers/tll-lounge-labels-v1.js (29 Oct Nancy: /gallery tile labels small, in the corner, off the photo)
    core   src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    core   src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
@@ -515,6 +516,15 @@ try{document.fonts&&document.fonts.addEventListener&&document.fonts.addEventList
 var rz=0;window.addEventListener('resize',function(){if(window.innerWidth===W)return;clearTimeout(rz);rz=setTimeout(function(){W=window.innerWidth;hold=0;
   document.documentElement.style.removeProperty('--tll-lib-hold');safe();},200);});
 if(document.readyState!=='loading')safe();
+})();
+/* src/site-layers/tll-story-avatar-v1.js */
+(function(){
+if(document.documentElement.getAttribute('data-wf-page')!=='6a0b29eedc14f1444e935766')return;
+if(document.getElementById('tll-story-avatar-v1'))return;
+var st=document.createElement('style');st.id='tll-story-avatar-v1';
+st.textContent='.st3-author-avatar{flex:none;width:40px;height:40px;overflow:hidden;box-sizing:border-box}'+
+'.st3-author-img{display:block;width:100%;height:100%;object-fit:cover}';
+(document.head||document.documentElement).appendChild(st);
 })();
 /* src/site-layers/tll-lounge-labels-v1.js */
 (function(){
