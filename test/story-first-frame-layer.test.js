@@ -13,7 +13,13 @@
 //    once both the template style and the footer style have been parsed.
 // 2. Two holds on the hero keep the photo from being pushed by the Receipts line and by the template script's rewrite of the
 //    place-and-date line (both measured in a trace: scratchpad nov14/a2).
-// The layout itself was measured in a real browser (scratchpad nov14/a2); here: the built core, the copied rules against the template,
+// A3 (same day, the 16.65.0 checks in reports/evidence/release-16.65.0-check/): what the page-parsed scripts do to the story head is
+// laid out before the first paint. PF.pre() writes the template script's place-and-date words at once (no more one-line clamp), gives
+// the country crumb the box of the link the template makes of it (data-tll-mg-wait-d), and puts an empty stand-in for the site flag
+// script's flags in front of the crumb text, taken out in the same step as the real flags arrive. Two more template rules (the arrow
+// before the hidden title crumb, the first place pill) join the early style. Below: PF against the real template and flag scripts,
+// run on a small tree that stands in for the story head.
+// The layout itself was measured in a real browser (scratchpad nov14/a2 and nov14/a3lab); here: the built core, the copied rules against the template,
 // the cascade on the finished page, and the early pieces run against a small stand-in for document and MutationObserver.
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
@@ -32,7 +38,8 @@ const story = core.slice(storyAt, core.indexOf('\n(function(){if(!/^\\/(index\\.
 const earlyText = JSON.parse(/ES\.textContent=("(?:[^"\\]|\\.)*");/.exec(story)[1]);
 const styleText = JSON.parse(/MS\.textContent=("(?:[^"\\]|\\.)*");/.exec(story)[1]);
 const placeSrc = /var hd=document\.head[\s\S]*?\}else place\(\);\n/.exec(story)[0];
-const runSrc = /\/\* F1: run\(\) as soon as[\s\S]*?document\.addEventListener\('DOMContentLoaded',function\(\)\{stop\(\);run\(\);late\(\);if\(!hd\)after\(\);\}\);\}\)\(\);/.exec(story)[0];
+const runSrc = /\/\* F1: run\(\) as soon as[\s\S]*?document\.addEventListener\('DOMContentLoaded',function\(\)\{stop\(\);run\(\);late\(\);if\(!hd\)after\(\);PF\.end\(\);\}\);\}\)\(\);/.exec(story)[0];
+const pfSrc = /var PF=\(function\(\)\{[\s\S]*?return \{pre:pre,done:done,end:end\};\}\)\(\);\n/.exec(story)[0];
 
 // A stand-in for the parts of the DOM the placement touches. Document order is one flat list; head nodes sit before body nodes.
 function fakeDom() {
@@ -166,7 +173,7 @@ describe('story first frame: the built core', () => {
     expect(story.indexOf(runSrc)).toBeGreaterThan(story.indexOf('function run(){'));
     expect(story).toContain('if(img)heroR(img);');
   });
-  it('carries the whole magazine style, then the two hold rules, and no copy of a template rule', () => {
+  it('carries the whole magazine style, then the hold rules, and no copy of a template rule', () => {
     const mag = read('src', 'design', 'magazine-2026-10', 'story-build', 'tll-mag-story-v1.html');
     const first = /<style id="tll-mag-story-v1">\n([^\n]*)/.exec(mag)[1];
     expect(styleText.startsWith(first)).toBe(true);
@@ -174,19 +181,25 @@ describe('story first frame: the built core', () => {
     expect(styleText).not.toContain(PAGE);
     const holds = styleText.slice(styleText.indexOf('/* F1 holds (A2'));
     expect(holds).toContain('.tll-story-hero[data-tll-mg-wait-r] .tll-mg-fig,.tll-story-hero[data-tll-mg-wait-r] .tll-story-hero-content>.tll-mg-stamp{visibility:hidden}');
-    expect(holds).toContain('.tll-story-hero[data-tll-mg-wait-d] .tll-story-hero-content .st3-author-filed{display:-webkit-box !important;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;visibility:hidden}');
-    // every hold rule needs its attribute on the hero, so nothing matches once the holds are cleared
-    for (const r of cssRules(holds)) for (const s of r.sels) expect(s).toMatch(/^\.tll-story-hero\[data-tll-mg-wait-[rd]\] /);
+    // A3: no clamp on the place-and-date line any more; wait-d gives the country crumb the box of the template's link
+    expect(holds).not.toContain('line-clamp');
+    expect(holds).toContain('.tll-story-hero[data-tll-mg-wait-d] [data-tll-breadcrumb] div[data-tll-crumb="country"]{display:inline-flex;align-items:center;min-height:44px}');
+    expect(styleText).toContain('.tll-story-hero [data-tll-breadcrumb] a{display:inline-flex;align-items:center;min-height:44px;');
+    expect(holds).toContain('.tll-story-hero [data-tll-mg-flags]>[data-t]::after{content:attr(data-t)}');
+    // every hold rule needs its attribute on the hero, or the flag stand-in (gone by the end of parsing), so nothing matches on the finished page
+    for (const r of cssRules(holds)) for (const s of r.sels) expect(s).toMatch(/^\.tll-story-hero(\[data-tll-mg-wait-[rd]\] | \[data-tll-mg-flags\]>)/);
   });
 });
 
 describe('story first frame: the template rules in the early style', () => {
   const all = earlyText.split('\n').filter((l) => l.startsWith(PAGE));
   const FOOT = PAGE + ' a[data-tll-commissioned="story"]{display:none}';
-  const early = all.filter((l) => l !== FOOT);
+  const R1 = [PAGE + ' [data-tll-breadcrumb] span:has(+ [data-tll-crumb="title"]){display:none !important}',
+    PAGE + ' .tll-story-meta-row > .tll-story-byline-loc:first-child,' + PAGE + ' .tll-story-meta-row > .tll-story-byline-loc:first-child + .tll-story-meta-divider{display:none !important}'];
+  const early = all.filter((l) => l !== FOOT && !R1.includes(l));
   it('covers the avatar, the byline row and the meta row, each keyed on the Stories Template page id with no added weight', () => {
     expect(early.length).toBe(15);
-    expect(all.length).toBe(16);
+    expect(all.length).toBe(18);
     const sel = early.map((l) => l.slice(0, l.indexOf('{'))).join('\n');
     for (const s of ['.st3-author-avatar', '.st3-author-img', '.st3-author-link', '.st3-author{', '.tll-story-meta-row>:nth-child(5)', '.tll-story-meta-row>:nth-child(6)'])
       expect(sel + '{').toContain(s.replace('{', ''));
@@ -202,11 +215,18 @@ describe('story first frame: the template rules in the early style', () => {
     }
   });
   it('also hides the commissioned link from the first paint, as the site footer style does, and holds nothing else', () => {
-    expect(all[all.length - 1]).toBe(FOOT);
+    expect(all[15]).toBe(FOOT);
     const foot = read('src', 'components', 'footer', 'tll-foot-v1.html');
     expect(foot).toContain('a[data-tll-commissioned="story"]{display:none;');
     // a commissioned story still shows it: the footer's own .tll-comm-on rule is heavier than the copy
     expect(foot).toContain('a[data-tll-commissioned="story"].tll-comm-on{display:inline-flex}');
+  });
+  it('A3: hides the arrow before the hidden title crumb and the first place pill from the first paint, as the template\'s r1 style does', () => {
+    expect(all.slice(16)).toEqual(R1);
+    const r1 = /<style id="tll-st3-r1-v1">\n([\s\S]*?)<\/style>/.exec(read('src', 'pages', 'story', 'after-2026-10-20', 'embed-3074c26c-after.html'))[1];
+    for (const l of R1) expect(r1).toContain(l.split(PAGE + ' ').join(''));
+    // the live story page carries the same r1 style (the 16.65.0 check snapshot of the template embed)
+    expect(read('src', 'pages', 'story', 'after-2026-10-20', 'embed-3074c26c-after.html')).toContain('<script id="tll-st3-story-js-v1">');
   });
   it('gives the tokens those rules use the template values', () => {
     const tokens = /\{([^}]*)\}/.exec(early[0])[1].split(';');
@@ -339,9 +359,11 @@ describe('story first frame: the early run in a stand-in page', () => {
       addEventListener: (t, fn) => { (listeners[t] = listeners[t] || []).push(fn); } };
     class MutationObserver { constructor(cb) { this.cb = cb; this.on = false; obs.push(this); } observe() { this.on = true; } disconnect() { this.on = false; } }
     const calls = { run: 0, rcpt: [] }; const MS = { nodeName: 'STYLE', nextElementSibling: null };
+    // PF (A3) stands in for itself here: pre() sets wait-d as it does when the template will make the country crumb a link
+    const PF = { pre: () => { log.push('pre'); hero.setAttribute('data-tll-mg-wait-d'); }, done: () => log.push('done'), end: () => log.push('end') };
     // MS: the story style, which the placement moves after each style as it arrives; it never makes a node count as whole
-    new Function('document', 'window', 'MutationObserver', 'run', 'rcpt', 'MS', runSrc)(document, { MutationObserver }, MutationObserver,
-      () => { calls.run++; if (state.author) state.moved = true; log.push('run'); }, (cc, a) => { calls.rcpt.push([cc, a]); log.push('rcpt'); }, MS);
+    new Function('document', 'window', 'MutationObserver', 'run', 'rcpt', 'MS', 'PF', runSrc)(document, { MutationObserver }, MutationObserver,
+      () => { calls.run++; if (state.author) state.moved = true; log.push('run'); }, (cc, a) => { calls.rcpt.push([cc, a]); log.push('rcpt'); }, MS, PF);
     const tick = () => obs.filter((o) => o.on).forEach((o) => o.cb([]));
     const fire = (t) => (listeners[t] || []).forEach((f) => f());
     const whole = () => ({ parentNode: { parentNode: body, nextElementSibling: null }, nextElementSibling: {} });
@@ -369,6 +391,8 @@ describe('story first frame: the early run in a stand-in page', () => {
     p.state.author = p.whole();
     p.tick();
     expect(Object.keys(p.attrs).sort()).toEqual(['data-tll-mg-wait-d', 'data-tll-mg-wait-r']);
+    // A3: PF.pre() runs right after the early run, so the stamp has read the date before the template's words go in
+    expect(p.log.slice(0, 3)).toEqual(['run', '+data-tll-mg-wait-r', 'pre']);
   });
   it('writes the Receipts line only once the Receipts block has arrived whole, and shows the photo in the same step', () => {
     const p = page();
@@ -407,6 +431,10 @@ describe('story first frame: the early run in a stand-in page', () => {
     expect(seen).toBe(1);
     expect(p.attrs).toEqual({});
     expect(p.log.indexOf('template')).toBeLessThan(p.log.lastIndexOf('-data-tll-mg-wait-d'));
+    // PF.done() (the old words back if the template never wrote its own) also runs after the template's handler; PF.end() runs in the
+    // core's own handler, before the template's, and only lets the flag stand-in go once the flag script's handler has had its turn
+    expect(p.log.indexOf('template')).toBeLessThan(p.log.indexOf('done'));
+    expect(p.log.indexOf('end')).toBeLessThan(p.log.indexOf('template'));
   });
   it('lets both holds go when the page is parsed if the Receipts block or the template script never came', () => {
     const p = page();
@@ -428,5 +456,219 @@ describe('story first frame: the early run in a stand-in page', () => {
     expect(p.calls.run).toBe(1);
     expect(p.obs.length).toBe(0);
     expect(p.log).toEqual(['run']);
+  });
+});
+
+// A3: PF against the real template script (its author() and place(), from the live embed) and the real site flag script
+// (src/site-layers/tllflagsv53.js), on a small element tree that stands in for the story head. Each case is run twice: once as the
+// page does without PF (the reference finished head) and once with PF.pre() before the first paint, then the page-parsed handlers in
+// the order the page adds them, with the observers' callbacks delivered after each handler, as a browser does.
+describe('story first frame A3: the page-parsed rewrites laid out before the first paint', () => {
+  const tplJs = read('src', 'pages', 'story', 'after-2026-10-20', 'embed-3074c26c-after.html');
+  const tplSrc = tplJs.slice(tplJs.indexOf('var MON='), tplJs.indexOf('function sponsored(){'));
+  const flagsSrc = read('src', 'site-layers', 'tllflagsv53.js');
+  const kebab = (k) => k.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
+  function world() {
+    const mos = []; let pending = new Set(); const listeners = []; const timers = [];
+    const notify = (n) => { for (const o of mos) if (o.on && o.t.contains(n)) pending.add(o); };
+    const flush = () => { while (pending.size) { const all = [...pending]; pending = new Set(); for (const o of all) if (o.on) o.cb([]); } };
+    class Text { constructor(v) { this.nodeType = 3; this.nodeValue = v; this.parentNode = null; } get textContent() { return this.nodeValue; } get html() { return this.nodeValue; } }
+    class El {
+      constructor(tag, attrs = {}, kids = []) {
+        this.nodeType = 1; this.tagName = tag.toUpperCase(); this.attrs = { ...attrs }; this.childNodes = []; this.parentNode = null; this.style = { cssText: '' };
+        const self = this;
+        this.dataset = new Proxy({}, { get: (t, k) => self.attrs['data-' + kebab(String(k))], set: (t, k, v) => { self.attrs['data-' + kebab(String(k))] = String(v); return true; } });
+        this.classList = { contains: (c) => self.cls().includes(c), remove: (c) => { self.attrs.class = self.cls().filter((x) => x !== c).join(' '); }, add: (c) => { if (!self.cls().includes(c)) self.attrs.class = self.cls().concat(c).join(' '); } };
+        for (const k of kids) this.appendChild(typeof k === 'string' ? new Text(k) : k);
+      }
+      cls() { return (this.attrs.class || '').split(/\s+/).filter(Boolean); }
+      get className() { return this.attrs.class || ''; } set className(v) { this.attrs.class = v; }
+      getAttribute(k) { return k in this.attrs ? this.attrs[k] : null; } setAttribute(k, v) { this.attrs[k] = String(v); } hasAttribute(k) { return k in this.attrs; } removeAttribute(k) { delete this.attrs[k]; }
+      get attributes() { return Object.keys(this.attrs).map((name) => ({ name, value: this.attrs[name] })); }
+      get firstChild() { return this.childNodes[0] || null; }
+      get nextSibling() { const p = this.parentNode; return p ? p.childNodes[p.childNodes.indexOf(this) + 1] || null : null; }
+      get children() { return this.childNodes.filter((n) => n.nodeType === 1); }
+      get textContent() { return this.childNodes.map((n) => n.textContent).join(''); }
+      set textContent(v) { this.childNodes.forEach((n) => { n.parentNode = null; }); this.childNodes = []; if (v !== '') { const t = new Text(String(v)); t.parentNode = this; this.childNodes.push(t); } notify(this); }
+      _rm(n) { const i = this.childNodes.indexOf(n); if (i > -1) this.childNodes.splice(i, 1); n.parentNode = null; }
+      insertBefore(n, ref) { if (n.parentNode) n.parentNode._rm(n); const i = ref ? this.childNodes.indexOf(ref) : -1; if (i < 0) this.childNodes.push(n); else this.childNodes.splice(i, 0, n); n.parentNode = this; notify(this); return n; }
+      appendChild(n) { return this.insertBefore(n, null); }
+      append(...xs) { for (const x of xs) this.appendChild(typeof x === 'string' ? new Text(x) : x); }
+      removeChild(n) { this._rm(n); notify(this); return n; }
+      replaceChild(n, old) { this.insertBefore(n, old); this._rm(old); notify(this); return old; }
+      remove() { if (this.parentNode) this.parentNode.removeChild(this); }
+      contains(n) { for (; n; n = n.parentNode) if (n === this) return true; return false; }
+      querySelectorAll(sel) { const alts = sel.split(',').map((s) => s.trim()); const out = []; const walk = (e) => { for (const c of e.children) { if (alts.some((a) => match(c, a))) out.push(c); walk(c); } }; walk(this); return out; }
+      querySelector(sel) { return this.querySelectorAll(sel)[0] || null; }
+      get html() { const a = Object.keys(this.attrs).sort().map((k) => ' ' + k + '="' + this.attrs[k] + '"').join('') + (this.style.cssText ? ' style="' + this.style.cssText + '"' : '');
+        return '<' + this.tagName.toLowerCase() + a + '>' + this.childNodes.map((n) => n.html).join('') + '</' + this.tagName.toLowerCase() + '>'; }
+    }
+    // compound selectors only (tag, .class, [attr], [attr=v], [attr="v"], [attr*="v"]): all that these scripts ask for
+    function match(el, s) {
+      const re = /^([a-z]+)|\.([\w-]+)|\[([\w-]+)(?:(\*?=)"?([^"\]]*)"?)?\]/gy; let m, seen = 0;
+      while ((m = re.exec(s))) { seen = re.lastIndex;
+        if (m[1] && el.tagName !== m[1].toUpperCase()) return false;
+        if (m[2] && !el.cls().includes(m[2])) return false;
+        if (m[3]) { const v = el.getAttribute(m[3]); if (v === null) return false; if (m[4] === '=' && v !== m[5]) return false; if (m[4] === '*=' && v.indexOf(m[5]) < 0) return false; } }
+      if (seen !== s.length) throw new Error('selector not covered by the stand-in: ' + s);
+      return true;
+    }
+    class MutationObserver { constructor(cb) { this.cb = cb; this.on = false; mos.push(this); } observe(t) { this.t = t; this.on = true; } disconnect() { this.on = false; } }
+    const root = new El('html');
+    const document = { readyState: 'loading', querySelector: (s) => root.querySelector(s), querySelectorAll: (s) => root.querySelectorAll(s),
+      createElement: (t) => new El(t), addEventListener: (t, fn) => { if (t === 'DOMContentLoaded') listeners.push(fn); } };
+    const setTimeout = (fn, ms) => { timers.push([ms, fn]); };
+    // a page-parsed handler may throw (the template's did, in one check); the others still run, and the callbacks come after each
+    const fire = () => { document.readyState = 'interactive'; for (const fn of listeners) { try { fn(); } catch (e) { } flush(); } };
+    const tick = () => { timers.sort((a, b) => a[0] - b[0]).splice(0).forEach(([, fn]) => { fn(); flush(); }); };
+    return { El, root, document, MutationObserver, setTimeout, fire, flush, tick, mos, listeners, timers };
+  }
+  // the story head as Webflow writes it (Balkans: no country, so the crumb stays text; Croatia and Southern Africa: a country link)
+  function story(w, { crumb, byline, country = '', countryName = '', home = 'Copenhagen, Denmark', when = 'September 19, 2026', flags = true }) {
+    const E = (t, a, k) => new w.El(t, a, k);
+    const loc = E('span', { 'data-st3-loc': '1', 'data-st3-byline': byline, 'data-st3-country': country, 'data-st3-country-name': countryName }, [home]);
+    const cr = E('div', { 'data-tll-crumb': 'country' }, [crumb]);
+    const hero = E('section', { class: 'tll-story-hero' }, [E('div', { class: 'tll-container tll-story-hero-content' }, [
+      E('div', { 'data-tll-breadcrumb': 'story' }, [E('a', { href: '/' }, ['Home']), E('span', {}, ['→']), E('a', { href: '/stories' }, ['Stories']), E('span', {}, ['→']), cr, E('span', {}, ['→']), E('div', { 'data-tll-crumb': 'title' }, ['A title'])]),
+      E('div', { class: 'st3-author', 'data-st3-author': '1' }, [E('a', { class: 'st3-author-link' }, [E('div', { class: 'st3-author-text' }, [E('div', { class: 'st3-author-name' }, ['A writer']),
+        E('div', { class: 'st3-author-place' }, [E('span', {}, ['From ']), loc, E('span', { 'data-st3-when': '1' }, [when]), E('span', { class: 'tll-mg-mins' }, [' · 9 min read'])])])])])])]);
+    const body = E('body', {}, [hero]); if (flags) body.appendChild(E('script', { src: 'https://cdn.prod.website-files.com/x/tllflagsv53-5.3.0.js' })); w.root.appendChild(body);
+    return { hero, loc, cr };
+  }
+  const tpl = (w) => new Function('document', tplSrc + '\nreturn {author:author,place:place};')(w.document);
+  const flagScript = (w, out) => new Function('document', 'setTimeout', '__out', flagsSrc.replace('function R(){', '__out.f=f;function R(){'))(w.document, w.setTimeout, out || {});
+  const pfOf = (w) => new Function('document', 'window', 'MutationObserver', 'setTimeout', pfSrc + '\nreturn PF;')(w.document, { MutationObserver: w.MutationObserver }, w.MutationObserver, w.setTimeout);
+  // the page as it is without A3: the template's handler, then the flag script's
+  function reference(o, { template = true, flagsRun = true } = {}) {
+    const w = world(); const s = story(w, o); const T = tpl(w);
+    w.document.addEventListener('DOMContentLoaded', () => { if (!template) throw new Error('template helper failure'); T.author(); T.place(); });
+    if (flagsRun && o.flags !== false) flagScript(w);
+    w.fire(); w.tick(); return { w, s };
+  }
+  // the page with A3: PF.pre() before the first paint, then the core's handler (PF.end), the template's, the core's after() (wait-d
+  // off, PF.done), the flag script's
+  function withPF(o, { template = true, flagsRun = true } = {}) {
+    const w = world(); const s = story(w, o); const T = tpl(w); const PF = pfOf(w);
+    // the country table is built in the first idle moment while the head loads
+    expect(w.timers.length).toBe(1); w.tick();
+    PF.pre(); const first = { html: s.hero.html, waitD: s.hero.hasAttribute('data-tll-mg-wait-d'), crumbText: s.cr.textContent, stand: s.cr.querySelector('[data-tll-mg-flags]') };
+    w.document.addEventListener('DOMContentLoaded', () => PF.end());
+    w.document.addEventListener('DOMContentLoaded', () => { if (!template) throw new Error('template helper failure'); T.author(); T.place(); });
+    w.document.addEventListener('DOMContentLoaded', () => { s.hero.removeAttribute('data-tll-mg-wait-d'); PF.done(); });
+    if (flagsRun && o.flags !== false) flagScript(w);
+    let atFlags = null; w.listeners.push(() => { atFlags = w.root.querySelectorAll('[data-tll-mg-flags]').length; });
+    w.fire(); const afterParse = { stand: w.root.querySelectorAll('[data-tll-mg-flags]').length, timers: w.timers.length };
+    w.tick(); return { w, s, first, afterParse, atFlags };
+  }
+  const BALKANS = { crumb: 'BALKANS', byline: 'BALKANS' };
+  const CROATIA = { crumb: 'CROATIA AND BOSNIA AND HERZEGOVINA', byline: 'CROATIA AND BOSNIA AND HERZEGOVINA', country: 'croatia', countryName: 'Croatia', when: 'May 9, 2023' };
+  const SAFRICA = { crumb: 'SOUTH AFRICA, ZIMBABWE, ZAMBIA AND BOTSWANA', byline: 'SOUTH AFRICA, ZIMBABWE, ZAMBIA AND BOTSWANA', country: 'south-africa', countryName: 'South Africa', when: 'June 23, 2024' };
+  const MADRID = { crumb: 'MADRID, SPAIN', byline: 'MADRID, SPAIN', country: 'spain', countryName: 'Spain', when: 'September 27, 2024' };
+  // the place-and-date line (its class in the template is left out here; nothing below reads it)
+  const placeLine = (s) => s.loc.parentNode.textContent;
+
+  it('writes the template\'s place and month into the place-and-date line before the first paint, and the template writes the same', () => {
+    const r = withPF(CROATIA), ref = reference(CROATIA);
+    expect(r.first.html).toContain('>Croatia And Bosnia And Herzegovina</span><span data-st3-when="1">May 2023</span>');
+    expect(placeLine(ref.s)).toBe('From Croatia And Bosnia And Herzegovina' + 'May 2023' + ' · 9 min read');
+    expect(placeLine(r.s)).toBe(placeLine(ref.s));
+  });
+  it('Balkans: no country link, four flag boxes and the "+8 countries" count in front of the crumb, read the way the flag script reads it', () => {
+    const r = withPF(BALKANS);
+    expect(r.first.waitD).toBe(false);
+    const st = r.first.stand;
+    expect(st).not.toBe(null);
+    expect(st.getAttribute('aria-hidden')).toBe('true');
+    expect(st.style.cssText).toBe('display:inline-flex;vertical-align:-6px;margin-right:6px');
+    expect(st.children.length).toBe(5);
+    expect(st.children.slice(0, 4).map((b) => b.style.cssText)).toEqual([0, -7, -7, -7].map((m) => 'display:block;flex:none;width:22px;height:22px;margin:0 0 0 ' + m + 'px;padding:0;border:0'));
+    expect(st.children[4].getAttribute('data-t')).toBe(' +8 countries');
+    // the stand-in has no text of its own: the crumb reads as before, for the template, the flag script and the US flag layer
+    expect(r.first.crumbText).toBe('BALKANS');
+    expect(st.textContent).toBe('');
+  });
+  it('takes the stand-in out in the same step as the real flags arrive, so the finished head is exactly the page\'s own', () => {
+    for (const o of [BALKANS, CROATIA, SAFRICA, MADRID]) {
+      const r = withPF(o), ref = reference(o);
+      expect(r.s.hero.html).toBe(ref.s.hero.html);
+      expect(r.w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(0);
+      expect(r.w.mos.every((m) => !m.on)).toBe(true);
+    }
+    // Balkans: gone before any later handler or task, not only by the next task
+    const b = withPF(BALKANS);
+    expect(b.afterParse.stand).toBe(0);
+  });
+  it('gives the crumb the box of the template\'s link only when the template will make one, and the link drops the stand-in with the old crumb', () => {
+    for (const [o, link] of [[BALKANS, false], [CROATIA, true], [SAFRICA, true], [MADRID, true]]) expect(withPF(o).first.waitD).toBe(link);
+    const r = withPF(SAFRICA);
+    expect(r.first.stand.children.length).toBe(4);
+    const a = r.s.hero.querySelector('[data-tll-crumb="country"]');
+    expect(a.tagName).toBe('A');
+    // the flag script's own box, in the link (it marks it aria-hidden as a property, which this tree does not write out)
+    expect(a.html).toContain('<span style="display:inline-flex;vertical-align:-6px;margin-right:6px"><img');
+    expect(r.afterParse.stand).toBe(0);
+    // no flags for Croatia: the flag script cannot read "Bosnia" or "Herzegovina" on their own, so there is nothing to stand in for
+    expect(withPF(CROATIA).first.stand).toBe(null);
+  });
+  it('reads a place as the flag script does', () => {
+    const out = {}; const w = world(); story(w, BALKANS); flagScript(w, out);
+    const places = ['BALKANS', 'CROATIA AND BOSNIA AND HERZEGOVINA', 'SOUTH AFRICA, ZIMBABWE, ZAMBIA AND BOTSWANA', 'MADRID, SPAIN', 'TEXAS HILL COUNTRY', 'Seven continents',
+      'São Paulo, Brazil', 'NEW ORLEANS, LOUISIANA', 'Bosnia & Herzegovina', 'Copenhagen/Malmo', 'Peru and Chile and Bolivia and Ecuador and Colombia', 'Japan'];
+    for (const p of places) {
+      const n = out.f(p).length; const r = withPF({ crumb: p, byline: p });
+      const st = r.first.stand;
+      if (!n) { expect(st).toBe(null); continue; }
+      expect(st.children.filter((c) => !c.hasAttribute('data-t')).length).toBe(Math.min(n, 4));
+      const t = st.children.find((c) => c.hasAttribute('data-t'));
+      expect(t ? t.getAttribute('data-t') : null).toBe(n > 4 ? ' +' + (n - 4) + ' countr' + (n - 4 > 1 ? 'ies' : 'y') : null);
+    }
+  });
+  it('puts the old words back after the template\'s handler if the template never wrote its own (it threw), and the finished head matches', () => {
+    for (const o of [BALKANS, CROATIA, SAFRICA]) {
+      const r = withPF(o, { template: false }), ref = reference(o, { template: false });
+      expect(r.s.hero.html).toBe(ref.s.hero.html);
+      expect(placeLine(r.s)).toBe('From Copenhagen, Denmark' + (o.when || 'September 19, 2026') + ' · 9 min read');
+    }
+  });
+  it('lets the stand-in go when the page is parsed if there is no flag script, and by the next task if the flag script never drew', () => {
+    const none = withPF({ ...BALKANS, flags: false });
+    expect(none.afterParse).toEqual({ stand: 0, timers: 0 });
+    expect(none.s.hero.html).toBe(reference({ ...BALKANS, flags: false }).s.hero.html);
+    const silent = withPF(BALKANS, { flagsRun: false });
+    expect(silent.afterParse.stand).toBe(1);
+    expect(silent.afterParse.timers).toBe(1);
+    expect(silent.w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(0);
+    expect(silent.s.hero.html).toBe(reference(BALKANS, { flagsRun: false }).s.hero.html);
+  });
+  it('leaves the head alone when the template has already done its part, and leaves a date it cannot read to the template', () => {
+    const w = world(); const s = story(w, CROATIA); const T = tpl(w); T.author(); T.place(); const before = s.hero.html;
+    const PF = pfOf(w); PF.pre(); PF.done();
+    // the crumb is a link already: no box, and the flags stand-in goes in front of the link text as for any crumb
+    expect(s.hero.hasAttribute('data-tll-mg-wait-d')).toBe(false);
+    expect(s.hero.html).toBe(before);
+    const odd = withPF({ ...BALKANS, when: '2026-09-19' });
+    expect(odd.first.html).toContain('<span data-st3-when="1">2026-09-19</span>');
+    expect(odd.s.hero.html).toBe(reference({ ...BALKANS, when: '2026-09-19' }).s.hero.html);
+  });
+  it('does nothing on a page with no story hero', () => {
+    const w = world(); const PF = pfOf(w); w.tick();
+    expect(() => { PF.pre(); PF.end(); PF.done(); }).not.toThrow();
+    expect(w.timers.length).toBe(0);
+  });
+  it('builds the country table as the flag script does, ahead of time, once, and reads listed names without it', () => {
+    expect(pfSrc).toContain('var FA=' + /A=(\{[^{}]*\})/.exec(flagsSrc)[1] + ',FN=null;');
+    expect(pfSrc).toContain("if(document.readyState==='loading')setTimeout(table,0);");
+    expect(pfSrc).toContain('function table(){if(FN)return;');
+    // Balkans is on the flag script's own list: read with no table at all (no Intl call before the first paint)
+    let made = 0; const RealDN = Intl.DisplayNames;
+    Intl.DisplayNames = function (...a) { made++; return new RealDN(...a); };
+    try {
+      const w = world(); story(w, BALKANS); const PF = pfOf(w); PF.pre();
+      expect(made).toBe(0);
+      expect(w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(1);
+      w.tick(); expect(made).toBe(1);
+      // the byline first: a name off the list builds it on the spot, and the idle build then does nothing more
+      const w2 = world(); story(w2, CROATIA); const PF2 = pfOf(w2); PF2.pre(); expect(made).toBe(2); w2.tick(); expect(made).toBe(2);
+    } finally { Intl.DisplayNames = RealDN; }
   });
 });
