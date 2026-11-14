@@ -28,3 +28,9 @@ The session branch moved 2f19e36 -> 5e470e6 (force-push with lease). claude/fix-
 at 1e841d5 (branch deletion is blocked by the session proxy). GitHub can still serve the old commit by its full
 hash until GitHub Support purges cached views; only Nancy can file that request.
 Anyone with an older local copy of claude/new-session-zxm063 should reset it to origin before pushing.
+
+## Live (14 Nov 2026, 08:16:50 UTC)
+- Published to www, the apex and the test site on Nancy's "Yes, if all pass", after three independent checks of the 07:34 test-site publish passed (evidence under reports/evidence/release-16.64.0-check/).
+- Live: core 16.64.0 (pin 6ec769bb), tllfactsv1 1.1.0 (E6), home hero lazy, E1 to E5.
+- Not done: D1 and D2 (hidden Site stats and Pets lists; Designer work on six pages). Without them the pages fetch counts as before. F1 waits for Nancy.
+- Notes from the checks, none blocking: library cards on phones are about 45 px taller (the hold uses the tallest card); phone photos use the 2x files (softer, by design); a pre-existing story layout jump at 390 with cached photos (same on the old version) is worth its own fix.
