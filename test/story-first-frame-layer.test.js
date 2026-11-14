@@ -41,7 +41,7 @@ function fakeDom() {
   const remove = (n) => { const i = idx(n); if (i > -1) order.splice(i, 1); };
   const document = { readyState: 'loading', documentElement: {}, addEventListener: (t, fn) => { (listeners[t] = listeners[t] || []).push(fn); } };
   function node(nodeName, parent) {
-    return { nodeName, id: '', textContent: '', parentNode: parent || null,
+    return { nodeName, id: '', textContent: '', sheet: null, parentNode: parent || null,
       compareDocumentPosition(o) { return idx(o) < idx(this) ? 2 : 4; },
       get nextSibling() { return order[idx(this) + 1] || null; },
       // the parser has gone past a node once anything follows it (all body nodes are siblings here)
@@ -56,7 +56,8 @@ function fakeDom() {
   class MutationObserver { constructor(cb) { this.cb = cb; this.on = false; observers.push(this); } observe() { this.on = true; } disconnect() { this.on = false; } }
   const window = { MutationObserver };
   // the parser adds a node; every live observer sees it in one batch
-  const add = (parent, nodeName, props = {}) => { const n = Object.assign(node(nodeName), props); parent.appendChild(n); observers.filter((o) => o.on).forEach((o) => o.cb([{ addedNodes: [n] }])); return n; };
+  const add = (parent, nodeName, props = {}) => { order.forEach((x) => { if (x.open) { x.open = false; x.sheet = {}; } });
+    const n = Object.assign(node(nodeName), { open: nodeName === 'STYLE' }, props); parent.appendChild(n); observers.filter((o) => o.on).forEach((o) => o.cb([{ addedNodes: [n] }])); return n; };
   const fire = (t) => { document.readyState = 'interactive'; (listeners[t] || []).forEach((f) => f()); };
   const styles = () => order.filter((n) => n.nodeName === 'STYLE');
   return { document, window, head, body, order, observers, add, fire, styles, MutationObserver };
@@ -238,7 +239,8 @@ describe('story first frame: the style placement in a stand-in page', () => {
     p.add(p.body, 'STYLE', { id: 'tll-foot-v1' }); p.add(p.body, 'DIV');
     expect(p.ES.parentNode).toBe(p.head);
     const tplStyle = p.add(p.body, 'STYLE', { id: 'tll-st3-story-v1' });
-    // still being parsed: nothing follows it yet
+    // still being parsed: no sheet yet
+    expect(tplStyle.sheet).toBe(null);
     expect(p.ES.parentNode).toBe(p.head);
     expect(p.order.indexOf(p.ES)).toBeLessThan(p.order.indexOf(tplStyle));
     p.add(p.body, 'SCRIPT');
@@ -336,18 +338,27 @@ describe('story first frame: the early run in a stand-in page', () => {
       getElementById: (id) => (id === 'tll-st3-story-js-v1' ? state.helper : null),
       addEventListener: (t, fn) => { (listeners[t] = listeners[t] || []).push(fn); } };
     class MutationObserver { constructor(cb) { this.cb = cb; this.on = false; obs.push(this); } observe() { this.on = true; } disconnect() { this.on = false; } }
-    const calls = { run: 0, rcpt: [] };
-    new Function('document', 'window', 'MutationObserver', 'run', 'rcpt', runSrc)(document, { MutationObserver }, MutationObserver,
-      () => { calls.run++; if (state.author) state.moved = true; log.push('run'); }, (cc, a) => { calls.rcpt.push([cc, a]); log.push('rcpt'); });
+    const calls = { run: 0, rcpt: [] }; const MS = { nodeName: 'STYLE', nextElementSibling: null };
+    // MS: the story style, which the placement moves after each style as it arrives; it never makes a node count as whole
+    new Function('document', 'window', 'MutationObserver', 'run', 'rcpt', 'MS', runSrc)(document, { MutationObserver }, MutationObserver,
+      () => { calls.run++; if (state.author) state.moved = true; log.push('run'); }, (cc, a) => { calls.rcpt.push([cc, a]); log.push('rcpt'); }, MS);
     const tick = () => obs.filter((o) => o.on).forEach((o) => o.cb([]));
     const fire = (t) => (listeners[t] || []).forEach((f) => f());
-    const whole = () => ({ parentNode: body, nextElementSibling: {} });
-    return { state, c, body, calls, obs, tick, fire, attrs, log, listeners, whole };
+    const whole = () => ({ parentNode: { parentNode: body, nextElementSibling: null }, nextElementSibling: {} });
+    return { state, c, body, calls, obs, tick, fire, attrs, log, listeners, whole, MS };
   }
   it('waits until the byline row has arrived whole, then runs before the page is parsed', () => {
     const p = page();
     p.tick(); expect(p.calls.run).toBe(0);
-    p.state.author = { parentNode: { parentNode: p.body, nextElementSibling: null }, nextElementSibling: null };
+    const col = { parentNode: { parentNode: p.body, nextElementSibling: null }, nextElementSibling: null };
+    p.state.author = { parentNode: col, nextElementSibling: null };
+    p.tick(); expect(p.calls.run).toBe(0);
+    // a node a script adds to the end of the body (a consent iframe) follows the article, which is one of the body's own children:
+    // that does not make the byline row whole
+    col.parentNode.nextElementSibling = { nodeName: 'IFRAME' };
+    p.tick(); expect(p.calls.run).toBe(0);
+    // nor does the story style moved in right after it
+    p.state.author.nextElementSibling = p.MS;
     p.tick(); expect(p.calls.run).toBe(0);
     p.state.author.nextElementSibling = {};
     p.tick(); expect(p.calls.run).toBe(1);
@@ -363,10 +374,14 @@ describe('story first frame: the early run in a stand-in page', () => {
     const p = page();
     p.state.author = p.whole();
     p.tick();
-    const sec = { parentNode: p.body, nextElementSibling: null };
+    const art = { parentNode: p.body, nextElementSibling: null };
+    const sec = { parentNode: art, nextElementSibling: null };
     p.state.ledger = { parentNode: sec, nextElementSibling: null };
     const runs = p.calls.run;
     p.tick(); expect(p.calls.run).toBe(runs); expect(p.calls.rcpt.length).toBe(0);
+    expect(p.attrs['data-tll-mg-wait-r']).toBe(1);
+    art.nextElementSibling = { nodeName: 'IFRAME' };
+    p.tick(); expect(p.calls.rcpt.length).toBe(0);
     expect(p.attrs['data-tll-mg-wait-r']).toBe(1);
     sec.nextElementSibling = {};
     p.tick(); expect(p.calls.rcpt).toEqual([[p.c, p.state.author]]);
@@ -381,7 +396,7 @@ describe('story first frame: the early run in a stand-in page', () => {
     p.tick();
     p.state.ledger = p.whole(); p.tick();
     // the template script is parsed: it adds its page-parsed handler, after the core's
-    p.state.helper = { parentNode: p.body, nextElementSibling: null };
+    p.state.helper = { parentNode: { parentNode: p.body, nextElementSibling: null }, nextElementSibling: null };
     let seen = null;
     p.listeners.DOMContentLoaded.push(() => { seen = p.attrs['data-tll-mg-wait-d']; p.log.push('template'); });
     p.tick(); expect(p.obs.every((o) => o.on)).toBe(true);
