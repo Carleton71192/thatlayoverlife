@@ -1,0 +1,717 @@
+{
+ "story:390x844 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0397,
+  "clsMax": 0.05671,
+  "over": 0,
+  "lcpMed": 406.0,
+  "fcpMed": 262.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "0/10",
+  "layouts": 1,
+  "cls": [
+   0.03959,
+   0.04262,
+   0.05671,
+   0.02593,
+   0.03891,
+   0.03891,
+   0.04283,
+   0.00045,
+   0.04283,
+   0.03987
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "story:390x844 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0034,
+  "clsMax": 0.0069,
+  "over": 0,
+  "lcpMed": 330.0,
+  "fcpMed": 286.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "0/10",
+  "layouts": 1,
+  "cls": [
+   0.00335,
+   0.00337,
+   0.00335,
+   0.00337,
+   0.00337,
+   0.00337,
+   0.00337,
+   0.00337,
+   0.00335,
+   0.0069
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "balkans:390x844 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0362,
+  "clsMax": 0.12111,
+  "over": 4,
+  "lcpMed": 392.0,
+  "fcpMed": 266.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.12111,
+   0.03529,
+   0.03622,
+   0.03529,
+   0.11623,
+   0.12111,
+   0.03624,
+   0.03622,
+   0.03529,
+   0.11623
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 7,
+   "h1.tll-display-xl.tll-text-bone": 3
+  },
+  "blocked": []
+ },
+ "balkans:390x844 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0094,
+  "clsMax": 0.01113,
+  "over": 0,
+  "lcpMed": 296.0,
+  "fcpMed": 254.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.00944,
+   0.01113,
+   0.00944,
+   0.00944,
+   0.00942,
+   0.00944,
+   0.00944,
+   0.00944,
+   0.00944,
+   0.00944
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "croatia:390x844 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.2126,
+  "clsMax": 0.21431,
+  "over": 10,
+  "lcpMed": 380.0,
+  "fcpMed": 224.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.21258,
+   0.21258,
+   0.21258,
+   0.1538,
+   0.21431,
+   0.21258,
+   0.14364,
+   0.14364,
+   0.21431,
+   0.14364
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "croatia:390x844 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0616,
+  "clsMax": 0.09326,
+  "over": 0,
+  "lcpMed": 286.0,
+  "fcpMed": 256.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.08216,
+   0.05523,
+   0.05523,
+   0.08215,
+   0.06806,
+   0.09326,
+   0.05523,
+   0.05523,
+   0.05523,
+   0.09326
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "story:1440x900 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0096,
+  "clsMax": 0.01035,
+  "over": 0,
+  "lcpMed": 398.0,
+  "fcpMed": 274.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "0/10",
+  "layouts": 1,
+  "cls": [
+   0.01035,
+   0.00975,
+   0.00935,
+   0.00975,
+   0.00936,
+   0.00937,
+   0.00975,
+   0.00937,
+   0.0001,
+   0.00975
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "story:1440x900 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0001,
+  "clsMax": 0.00215,
+  "over": 0,
+  "lcpMed": 304.0,
+  "fcpMed": 254.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "0/10",
+  "layouts": 1,
+  "cls": [
+   0.00014,
+   0.00014,
+   0.00014,
+   0.00014,
+   0.00215,
+   0.0001,
+   0.00014,
+   0.00014,
+   0.00014,
+   0.00014
+  ],
+  "lcpEl": {
+   "img.tll-story-hero-img": 10
+  },
+  "blocked": []
+ },
+ "balkans:1440x900 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0004,
+  "clsMax": 0.00324,
+  "over": 0,
+  "lcpMed": 254.0,
+  "fcpMed": 254.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.00097,
+   0.00038,
+   0.00037,
+   0.00037,
+   0.00033,
+   0.00012,
+   0.00289,
+   0.00037,
+   0.0001,
+   0.00324
+  ],
+  "lcpEl": {
+   "h1.tll-display-xl.tll-text-bone": 10
+  },
+  "blocked": []
+ },
+ "balkans:1440x900 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0004,
+  "clsMax": 0.00042,
+  "over": 0,
+  "lcpMed": 282.0,
+  "fcpMed": 282.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "10/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.0004,
+   0.00041,
+   0.00042,
+   0.00042,
+   0.00042,
+   0.00041,
+   0.00042,
+   0.00041,
+   0.00041,
+   0.00041
+  ],
+  "lcpEl": {
+   "h1.tll-display-xl.tll-text-bone": 10
+  },
+  "blocked": []
+ },
+ "croatia:1440x900 www": {
+  "loads": 10,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0129,
+  "clsMax": 0.01819,
+  "over": 0,
+  "lcpMed": 310.0,
+  "fcpMed": 294.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/10 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "0/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.01285,
+   0.01286,
+   0.01285,
+   0.01285,
+   0.01331,
+   0.0123,
+   0.01286,
+   0.01285,
+   0.01123,
+   0.01819
+  ],
+  "lcpEl": {
+   "h1.tll-display-xl.tll-text-bone": 10
+  },
+  "blocked": [
+   "6accd45f5502ede05be6b79a_croatia-hero-plitvice-boardwalk-rain-p-1600.jpg",
+   "dc6ab54fdf31c_6accd45f5502ede05be6b79a_croatia-hero-plitvice-boardwalk-rain.jpeg"
+  ]
+ },
+ "croatia:1440x900 test": {
+  "loads": 10,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0001,
+  "clsMax": 0.00515,
+  "over": 0,
+  "lcpMed": 280.0,
+  "fcpMed": 280.0,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "10/10 first, 0 at end",
+  "holds": "10 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 10
+  },
+  "hero": "0/10",
+  "rcpt": "10/10",
+  "layouts": 1,
+  "cls": [
+   0.00013,
+   0.00515,
+   0.00013,
+   0.00015,
+   0.00013,
+   0.00014,
+   0.00014,
+   0.00013,
+   0.00012,
+   0.00013
+  ],
+  "lcpEl": {
+   "h1.tll-display-xl.tll-text-bone": 10
+  },
+  "blocked": [
+   "6accd45f5502ede05be6b79a_croatia-hero-plitvice-boardwalk-rain-p-1600.jpg",
+   "dc6ab54fdf31c_6accd45f5502ede05be6b79a_croatia-hero-plitvice-boardwalk-rain.jpeg"
+  ]
+ },
+ "story:390x844:restore www": {
+  "loads": 5,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.193,
+  "clsMax": 0.22856,
+  "over": 5,
+  "lcpMed": 328,
+  "fcpMed": 328,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/5 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 5
+  },
+  "hero": "5/5",
+  "rcpt": "0/5",
+  "layouts": 1,
+  "cls": [
+   0.22856,
+   0.19299,
+   0.19299,
+   0.19299,
+   0.22856
+  ],
+  "lcpEl": {
+   "p": 5
+  },
+  "blocked": []
+ },
+ "story:390x844:restore test": {
+  "loads": 5,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0063,
+  "clsMax": 0.00627,
+  "over": 0,
+  "lcpMed": 384,
+  "fcpMed": 384,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "4/5 first, 0 at end",
+  "holds": "5 seen, 0 left",
+  "avatar": {
+   "44x44 50% img [44, 44]": 5
+  },
+  "hero": "5/5",
+  "rcpt": "0/5",
+  "layouts": 1,
+  "cls": [
+   0.00627,
+   0.00627,
+   0.00627,
+   0.00627,
+   0.00627
+  ],
+  "lcpEl": {
+   "p": 5
+  },
+  "blocked": []
+ },
+ "home:390x844 www": {
+  "loads": 3,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0034,
+  "clsMax": 0.00337,
+  "over": 0,
+  "lcpMed": 364,
+  "fcpMed": 364,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/3 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 3
+  },
+  "hero": "-",
+  "rcpt": "0/3",
+  "layouts": 1,
+  "cls": [
+   0.00337,
+   0.00337,
+   0.00337
+  ],
+  "lcpEl": {
+   "img.inline-imgraw-0-1-2-3-4-5": 3
+  },
+  "blocked": []
+ },
+ "home:390x844 test": {
+  "loads": 3,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0034,
+  "clsMax": 0.00337,
+  "over": 0,
+  "lcpMed": 328,
+  "fcpMed": 328,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/3 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 3
+  },
+  "hero": "-",
+  "rcpt": "0/3",
+  "layouts": 1,
+  "cls": [
+   0.00337,
+   0.00337,
+   0.00337
+  ],
+  "lcpEl": {
+   "img.inline-imgraw-0-1-2-3-4-5": 3
+  },
+  "blocked": []
+ },
+ "home:1440x900 www": {
+  "loads": 3,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0005,
+  "clsMax": 0.00049,
+  "over": 0,
+  "lcpMed": 336,
+  "fcpMed": 336,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/3 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 3
+  },
+  "hero": "-",
+  "rcpt": "0/3",
+  "layouts": 1,
+  "cls": [
+   0.00049,
+   0.0003,
+   0.00049
+  ],
+  "lcpEl": {
+   "img.inline-imgraw-0-1-2-3-4-5": 3
+  },
+  "blocked": []
+ },
+ "home:1440x900 test": {
+  "loads": 3,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0004,
+  "clsMax": 0.00049,
+  "over": 0,
+  "lcpMed": 344,
+  "fcpMed": 344,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/3 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 3
+  },
+  "hero": "-",
+  "rcpt": "0/3",
+  "layouts": 1,
+  "cls": [
+   0.00037,
+   0.00049,
+   0.0003
+  ],
+  "lcpEl": {
+   "img.inline-imgraw-0-1-2-3-4-5": 3
+  },
+  "blocked": []
+ },
+ "stories:390x844 www": {
+  "loads": 13,
+  "core": [
+   "6ec769bb"
+  ],
+  "clsMed": 0.0284,
+  "clsMax": 0.03616,
+  "over": 0,
+  "lcpMed": 776,
+  "fcpMed": 328,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/13 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 13
+  },
+  "hero": "-",
+  "rcpt": "0/13",
+  "layouts": 1,
+  "cls": [
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02834,
+   0.02845,
+   0.03616,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02834,
+   0.02845,
+   0.02845,
+   0.02845
+  ],
+  "lcpEl": {
+   "img.tll-lib-img": 13
+  },
+  "blocked": []
+ },
+ "stories:390x844 test": {
+  "loads": 13,
+  "core": [
+   "0daa78b4"
+  ],
+  "clsMed": 0.0284,
+  "clsMax": 0.29792,
+  "over": 1,
+  "lcpMed": 740,
+  "fcpMed": 308,
+  "errs": 0,
+  "scriptBad": 0,
+  "es": "0/13 first, 0 at end",
+  "holds": "0 seen, 0 left",
+  "avatar": {
+   "-": 13
+  },
+  "hero": "-",
+  "rcpt": "0/13",
+  "layouts": 1,
+  "cls": [
+   0.29792,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845,
+   0.02845
+  ],
+  "lcpEl": {
+   "img.tll-lib-img": 13
+  },
+  "blocked": []
+ }
+}

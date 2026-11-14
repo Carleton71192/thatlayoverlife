@@ -1,0 +1,56 @@
+Behavior check of release 16.65.0 (core pin 0daa78b4, fix A2) on the real test site against real www (core 16.64.0, pin 6ec769bb).
+Independent checker, read only: no Webflow tool calls, no publish. Checked 14 Nov 2026, 19:33 to 20:00 UTC.
+
+Verdict: PASS WITH NOTES.
+
+Method
+- One plain GET per page per host (home, /stories, three stories). Story HTML on the two hosts differs only in the Last Published stamp and
+  the core tag (pin and SRI); every other line is the same.
+- Chromium (Playwright, chromium.launch() with no options), fresh context per load. Main documents and reloads went to the real hosts over
+  the network (www.thatlayover.life and that-layover-life.webflow.io). Every non-GET aborted.
+- Same-origin fetches made by scripts: served from the plain-GET copy of the same host. Webflow css and js: local caches (no misses).
+  Webflow images, video, fonts: local caches; a miss was blocked (only the Croatia hero at 1440, two files, blocked on both hosts, so the
+  hero box is there at 1440 but the photo is not drawn). jsDelivr: 16.65.0 core and two chunks fetched once and cached (the cached core
+  matches the release SRI); everything else from earlier caches. Google fonts and third-party scripts cached after the first fetch.
+  Memberstack served patched (no hiding when its aborted app POST fails), the same on both hosts, as in the 16.64.0 check.
+- 390x844 at deviceScaleFactor 3 (mobile) and 1440x900. CLS = sum of every layout-shift entry with startTime up to 4 s.
+  Hosts alternated each round. Stories: 10 fresh loads per page, width and host (120). Reload after scrolling to 2,500 px on the
+  first story at 390: 5 per host. Home 390 and 1440, /stories 390: 3 per host, then 10 more /stories loads per host after an outlier.
+- Files: table.md (per case), summary.json, loads.csv (one row per load, numbers only), harness/ (the scripts; in lib.cjs one class
+  name string is split in two, otherwise as run).
+
+Results (test against www)
+1 Errors: 0 page errors and 0 failed scripts in all 168 measured loads on either host. Console errors on both hosts are the Memberstack
+  network error from the aborted POST and an about:blank sandbox notice, the same counts on both.
+2 Core: every test load ran pin 0daa78b4 (HTTP 200, SRI accepted, window.tllSelfDoc present); every www load ran 6ec769bb.
+  On all 65 test story loads style#tll-story-st3-early-v1 was added before first contentful paint and was gone by DOMContentLoaded;
+  it was never present at the end. Both holds (data-tll-mg-wait-r and -d) were set on every test story load and none was left at the end.
+  www never has the early style or holds (expected).
+3 Finished page: byline avatar 44x44, radius 50%, image 44x44 on both hosts in every load. Hero, h1, byline, Receipts line and story body
+  boxes: one final layout per case, the same on both hosts. Receipts line present on Balkans and Croatia (10 of 10 per width on both),
+  absent on the Madrid story on both. Hero photo visible and loaded at the end in every load except Croatia at 1440 (blocked, both hosts).
+4 Story CLS, median (max, loads over 0.1), www then test:
+  Madrid 390   0.0397 (0.057, 0)   0.0034 (0.007, 0)
+  Balkans 390  0.0362 (0.121, 4)   0.0094 (0.011, 0)
+  Croatia 390  0.2126 (0.214, 10)  0.0616 (0.093, 0)
+  Madrid 1440  0.0096 (0.010, 0)   0.0001 (0.002, 0)
+  Balkans 1440 0.0004 (0.003, 0)   0.0004 (0.0004, 0)
+  Croatia 1440 0.0129 (0.018, 0)   0.0001 (0.005, 0)
+  Reload at 2,500 px, Madrid 390: www 0.193 (0.229, 5 of 5), test 0.0063 (0.0063, 0 of 5).
+  LCP medians are lower on test in 5 of 6 story cases (Balkans 1440: 282 against 254 ms, h1 on www). FCP at 390 is 24 and 32 ms later
+  on test on Madrid and Croatia, as the author measured.
+5 Note, Croatia 390: one shift of 0.055 on every test load (10 of 10), about 60 ms after DOMContentLoaded, when the holds end. The photo
+  figure, the Receipts line and the route block move 38 px down. Trace: the place-and-date line (held to one line) becomes its final two
+  lines, "From Croatia And Bosnia And Herzegovina / May 2023, 8 min read" (+12 px on the byline), and the breadcrumb wraps to a second row
+  (+26 px). This is the case fix-a2.md lists as item 4 ("none of the saved stories do this"); Croatia does. It is still far better than
+  www (0.21 on every load) and under 0.1, so not a blocker. Any story with a long place name or a two-country breadcrumb will show the same.
+6 Home 390 and 1440 and /stories 390: same CLS as www (home 0.0034 and 0.0005 on both; /stories 0.0284 median on both). One /stories
+  test load reached 0.298 (the library grid and the bar under it hidden for about 160 ms, then back); 0 of the other 12 test loads and
+  0 of 13 www loads did this. The release only changes the story layer, which does not run on /stories (two hunks in the core diff, both
+  in the story layer), so this is a rare race that exists independently of 16.65.0.
+
+Bandwidth
+- Webflow: 0 image, video or font bytes. HTML: 194 page loads, 204 navigations (about 15.6 MB on the wire) plus 10 plain GETs (0.76 MB); one early
+  unrouted probe load fetched about 0.9 MB of Webflow css and js (upper bound) and one document. Total Webflow about 17.3 MB.
+- jsDelivr 0.34 MB (5 files, each once). Google fonts 0.06 MB. Other third parties about 11 MB (www loads AdSense and gtag; the test site
+  does not). Total under 30 MB. Disk free 8.2G before every batch.
