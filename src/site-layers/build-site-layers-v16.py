@@ -261,10 +261,56 @@ for name, rx, pub, staged in CHUNKS:
 head += '   No data-ms-* element is touched. */\n'
 consent = layer(CONSENT)
 styles = "(function(){var L=%s;var h=document.head||document.documentElement;for(var i=0;i<L.length;i++){if(document.getElementById(L[i][0]))continue;var s=document.createElement('style');s.id=L[i][0];s.textContent=L[i][1];h.appendChild(s);}})();\n" % json.dumps([css(f, i) for f, i, _ in STYLES])
+# F1 on the story page (14 Nov 2026, the first-frame jump at 390; reports/evidence/story-first-frame-2026-11-14/diagnosis.md, idea A).
+# The template rules the first paint needs, copied as they are from the Stories Template's own style (tll-st3-story-v1, which comes only
+# at the end of the body, after jQuery and webflow.js): the byline row with the writer's avatar (unsized, that photo was painted at its
+# natural 342x513 px and the template style then shrank it to 40 px) and the meta row. Keyed on the template's page id on html; :where()
+# keeps each rule exactly as heavy as the template's own, and the values are the template's, so the finished page is unchanged.
+ST3_PAGE = ':where(html[data-wf-page="6a0b29eedc14f1444e935766"])'
+ST3_EARLY = [
+    '{--st3-line:#E0DACE;--st3-rose:#F0507A;--st3-teal-deep:#067A79;--st3-muted:#6B6660;--st3-f-mono:\'JetBrains Mono\',ui-monospace,monospace}',
+    ' .tll-story-hero .tll-story-meta-row{display:flex !important;align-items:center !important;flex-wrap:wrap;gap:0 11px}',
+    ' .tll-story-hero .tll-story-meta-row>:nth-child(5),@P@ .tll-story-hero .tll-story-meta-row>:nth-child(6){display:none !important}',
+    ' .tll-story-hero .tll-story-meta-row>:not(:first-child) img{display:none !important}',
+    ' .tll-story-hero .tll-story-meta-row>:first-child img{width:26px !important;height:26px !important;border-radius:50% !important;border:1.5px solid rgba(247,241,232,.6) !important;box-shadow:none !important;vertical-align:-8px !important;margin-right:11px !important;box-sizing:border-box}',
+    ' .st3-author{display:flex;align-items:center;margin:0 0 26px;padding:0 0 20px;border-bottom:1px solid var(--st3-line)}',
+    ' .st3-author-link{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:inherit !important;text-decoration:none !important;border-radius:4px;transition:transform 150ms ease-out}',
+    ' .st3-author-avatar{flex:none;width:40px;height:40px;border-radius:50%;border:2px solid var(--st3-rose);overflow:hidden;background:#1d5e5d;box-sizing:border-box}',
+    ' .st3-author-img{display:block;width:100%;height:100%;object-fit:cover}',
+    ' .st3-author-name{font:700 14px/1.3 var(--st3-f-body);color:var(--st3-teal-deep)}',
+    ' .st3-author-name::after{content:"\\00A0\\2192";content:"\\00A0\\2192" / ""}',
+    ' .st3-author-filed{margin-top:2px;font:500 10px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-muted)}',
+    ' .st3-author-filed:has([data-st3-loc].w-dyn-bind-empty)>span:first-child{display:none}',
+    ' .st3-author-filed [data-st3-loc]:not(.w-dyn-bind-empty)+[data-st3-when]:not(.w-dyn-bind-empty)::before{content:"\\00A0\\00B7\\00A0"}',
+    ' .st3-author-filed .w-dyn-bind-empty{display:none}']
+st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1 */\n'
+             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY))
+OLD_STORY_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n"
+assert mag_js.count(OLD_STORY_RUN) == 1
+NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element follows it), before the first paint, so the photo box (heroR), the figure\n"
+                 "   and the byline in the head are there from the first frame. The Receipts line waits for the Receipts block to arrive whole (rcpt()\n"
+                 "   reads its rows), and run() waits while that block is still arriving. The page-parsed event stays as the fallback. */\n"
+                 "(function(){if(document.readyState!=='loading'){run();return;}var mo=null;\n"
+                 "function whole(n){for(;n&&n!==document.body;n=n.parentNode)if(n.nextElementSibling)return true;return false;}\n"
+                 "function late(){var c=document.querySelector('.tll-story-hero .tll-story-hero-content'),a=c&&c.querySelector('.st3-author');if(a)rcpt(c,a);}\n"
+                 "function stop(){if(mo){mo.disconnect();mo=null;}}\n"
+                 "if(window.MutationObserver){mo=new MutationObserver(function(){var led=document.querySelector('[data-tll-ledger=\"story\"]');\n"
+                 "  if(!whole(document.querySelector('.st3-author'))||(led&&!whole(led)))return;run();if(led){late();stop();}});\n"
+                 "  mo.observe(document.documentElement,{childList:true,subtree:true});}\n"
+                 "document.addEventListener('DOMContentLoaded',function(){stop();run();late();});})();\n")
+mag_js_early = mag_js.replace(OLD_STORY_RUN, NEW_STORY_RUN, 1)
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
-         "function place(){var s=document.createElement('style');s.id='tll-mag-story-v1';s.textContent=%s;document.body.appendChild(s);}\n"
-         "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
-         "%s})();\n") % (json.dumps(mag_css), mag_js)
+         "/* F1: the style goes in at once, so the story head is styled from the first paint. While the page is parsed it is kept after every style\n"
+         "   that arrives (the template's own tll-st3-story-v1 at the end of the body would otherwise win the ties for those frames); once the page\n"
+         "   is parsed it moves to the end of the body, as in v9 to v16. */\n"
+         "var MS=document.createElement('style');MS.id='tll-mag-story-v1';MS.textContent=%s;(document.head||document.documentElement).appendChild(MS);\n"
+         "var so=null;function place(){if(so){so.disconnect();so=null;}document.body.appendChild(MS);}\n"
+         "if(document.readyState==='loading'){if(window.MutationObserver){so=new MutationObserver(function(ms){var at=null;\n"
+         "  for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];\n"
+         "    if(n.nodeName==='STYLE'&&n!==MS&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
+         "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
+         "  document.addEventListener('DOMContentLoaded',place);}else place();\n"
+         "%s})();\n") % (json.dumps(st3_early + mag_css), mag_js_early)
 cov = read(COVER)
 cov_css = fallbacks(re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1))
 cov_js = fallbacks(re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1))
