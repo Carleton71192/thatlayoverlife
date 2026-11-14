@@ -1,0 +1,210 @@
+[
+ {
+  "host": "www",
+  "w": 1440,
+  "rep": 0,
+  "shifts": [
+   {
+    "t": 9952,
+    "v": 0.0031,
+    "nodes": [
+     "SPAN.h3-dash-cap"
+    ]
+   },
+   {
+    "t": 13251,
+    "v": 0.0029,
+    "nodes": [
+     "#text:take you?"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 1440,
+  "rep": 0,
+  "shifts": [
+   {
+    "t": 13256,
+    "v": 0.023,
+    "nodes": [
+     "#text:take you?"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "www",
+  "w": 360,
+  "rep": 0,
+  "shifts": [
+   {
+    "t": 16406,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 360,
+  "rep": 0,
+  "shifts": [
+   {
+    "t": 9718,
+    "v": 0.0344,
+    "nodes": [
+     "SPAN.h3-dash-cap",
+     "OL.h3-steps tll-rv tll-rv-in",
+     "FIGURE.h3 h3-il h3-il-tall"
+    ]
+   },
+   {
+    "t": 16416,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "www",
+  "w": 1440,
+  "rep": 1,
+  "shifts": [
+   {
+    "t": 9717,
+    "v": 0.003,
+    "nodes": [
+     "SPAN.h3-dash-cap"
+    ]
+   },
+   {
+    "t": 13221,
+    "v": 0.023,
+    "nodes": [
+     "#text:take you?"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 1440,
+  "rep": 1,
+  "shifts": [
+   {
+    "t": 13215,
+    "v": 0.0029,
+    "nodes": [
+     "#text:take you?"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "www",
+  "w": 360,
+  "rep": 1,
+  "shifts": [
+   {
+    "t": 9684,
+    "v": 0.0339,
+    "nodes": [
+     "SPAN.h3-dash-cap",
+     "OL.h3-steps tll-rv tll-rv-in"
+    ]
+   },
+   {
+    "t": 16400,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 360,
+  "rep": 1,
+  "shifts": [
+   {
+    "t": 16413,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "www",
+  "w": 1440,
+  "rep": 2,
+  "shifts": [
+   {
+    "t": 9615,
+    "v": 0.003,
+    "nodes": [
+     "SPAN.h3-dash-cap"
+    ]
+   },
+   {
+    "t": 13226,
+    "v": 0.0142,
+    "nodes": [
+     "#text:take you?"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 1440,
+  "rep": 2,
+  "shifts": [
+   {
+    "t": 13231,
+    "v": 0.2131,
+    "nodes": [
+     "#text:take you?",
+     "DIV.h3-ctas",
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "www",
+  "w": 360,
+  "rep": 2,
+  "shifts": [
+   {
+    "t": 16422,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ },
+ {
+  "host": "test",
+  "w": 360,
+  "rep": 2,
+  "shifts": [
+   {
+    "t": 16419,
+    "v": 0.0439,
+    "nodes": [
+     "FOOTER.inline-footer-0-1"
+    ]
+   }
+  ]
+ }
+]

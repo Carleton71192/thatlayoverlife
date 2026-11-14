@@ -1,0 +1,182 @@
+[
+ {
+  "host": "www",
+  "routed500": [],
+  "cardsAtRail": [
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 549
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 549
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 549
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 549
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 549
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 549
+   }
+  ],
+  "afterSwipe": "snb snb snb snb s0b s0b",
+  "pageErrors": 0
+ },
+ {
+  "host": "test",
+  "routed500": [],
+  "cardsAtRail": [
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 592
+   }
+  ],
+  "afterSwipe": "snb snb snb snb s0b s0b",
+  "pageErrors": 0
+ },
+ {
+  "host": "www",
+  "routed500": [
+   "^/stories$"
+  ],
+  "cardsAtRail": [
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 591
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 591
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 591
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 591
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 591
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 591
+   }
+  ],
+  "afterSwipe": "snb snb snb snb snb snb",
+  "pageErrors": 0
+ },
+ {
+  "host": "test",
+  "routed500": [
+   "^/stories$"
+  ],
+  "cardsAtRail": [
+   {
+    "d": "block",
+    "src": true,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": true,
+    "phH": 385,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 384,
+    "cardH": 592
+   },
+   {
+    "d": "block",
+    "src": false,
+    "phH": 385,
+    "cardH": 592
+   }
+  ],
+  "afterSwipe": "snb snb snb snb snb snb",
+  "pageErrors": 0
+ }
+]

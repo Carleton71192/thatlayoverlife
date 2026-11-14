@@ -1,0 +1,47 @@
+{
+ "check": "release 16.64.0 adversarial regression check, test site (that-layover-life.webflow.io) against www (www.thatlayover.life), Playwright, read only",
+ "run": "2026-11-14, about 07:45 to 08:15 UTC",
+ "verdict": "PASS WITH NOTES: nothing found that makes the www publish worse for visitors than today's www",
+ "method": [
+  "Documents served from the plain-GET copies saved by the carry check at 07:35 (11 pages per host) plus the chk1664 copies of /pets/magnus-waffles and /sitemap.xml; /account fetched once per host (HTML only, 212,664 and 212,656 bytes).",
+  "Core and chunks served from git at the pins (6ec769bb for test, 1f2e549a for www), byte equal to jsDelivr per the carry check.",
+  "Webflow images, fonts and video: served from the local caches of 13 and 14 Nov or answered with a 1x1 placeholder or aborted; none downloaded. Webflow bytes downloaded by this check: 425,320 (the two /account pages).",
+  "Every non-GET aborted (258 in all). Ad and analytics hosts recorded and aborted; the Google consent tool allowed.",
+  "116 page loads: 12 pages x 2 widths (360 at 3x, 1440) x 2 hosts; /stories routed to 500 (home 390 and 1440, /about, /the-paw-passport, /travelers; and with /sitemap.xml 500 too); /pets/magnus-waffles routed to 500 (home, /about, /the-paw-passport, a story page; and with /stories 500 too); slow 4G (150 ms plus 1.6 Mbps per response) with CPU 4x at 360 (home, /the-paw-passport, a story, a profile, /travelers); the layers core blocked (home, /about, /the-paw-passport, a profile); a rail swipe test; a scroll-to-footer shift test (3 repeats per host and width)."
+ ],
+ "core_changes_and_results": [
+  {"change": "tll-paw-hero-img-v1 style: /the-paw-passport hero background is the p-1080 copy on phones and p-1600 from 768px, not the 1.18 MB original", "riskiest_case": "shade and position lost, or a missing copy", "result": "the shade is a separate element (tll-paw-hero-shade), unchanged; both copies exist; background resolves to p-1080 at 360 and 390 and p-1600 at 1440; slow 4G LCP 6.0 s on test against 11.1 s on www", "www_same": "no, www loads the original"},
+  {"change": "cap(): card photo sizes on phones at 2.5x and up ask for the 2x file (library, related, rail, postcards, untyped list photos on /destinations and profiles; cover preload and cover img)", "riskiest_case": "a sizes list it cannot read, or blurry photos", "result": "at 360 x 3 /stories takes 55 p-800 files where www takes 52 p-1080; home cover p-800 against p-1080; no layout change, no overflow", "www_same": "no; intended bandwidth fix 2, photos about 2.2x density instead of 3x on such phones"},
+  {"change": "home bands swapped while the page is parsed (MutationObserver), style inserted only when a band is swapped", "riskiest_case": "a band left unswapped or a caption cut", "result": "rio and montenegro swapped on every run, same as www", "www_same": "yes"},
+  {"change": "tll-rail-hold-v1: on home up to 899 px, rail card photos hidden until two library draws or the rail is within 1250 px", "riskiest_case": "/stories 500 (only one draw)", "result": "hold released on every phone run (rail is within the margin), card photos display block; after swiping the row every visible card photo has a source on test, with or without /stories 500", "www_same": "no hold on www; outcome equal"},
+  {"change": "tll-library-hold-v1: swipe-row cards keep the height of the tallest card, saved per width in sessionStorage; Layover guides heading keeps two lines up to 365 px", "riskiest_case": "360 px", "result": "cards 566 px on test against 520 px on www at 360 (592 against 549 at 390); no overflow; home CLS equal at load (0.008 both at 360)", "www_same": "no; cosmetic, see notes"},
+  {"change": "N9 on: on phones (up to 760 px) the value section goes after the library", "riskiest_case": "/stories 500 and slow 4G", "result": "section present on every phone run, after the library; slow 4G home CLS 0.2294 on both hosts; desktop unchanged (after the cover)", "www_same": "no; owner choice 9"},
+  {"change": "trip deck line: Boston to Sacramento", "result": "text present on test", "www_same": "no; intended"},
+  {"change": "tll-self-data-v1: tllSelfDoc (memoised fetch, throws on non-OK), tllSiteStats, tllPetCountries (page span, then sessionStorage, then the pet page), profile pre-hide of other members' cards until the profile script ran", "riskiest_case": "/stories 500, /pets/magnus-waffles 500, core blocked, profile", "result": "/stories 500: rail keeps its 10 typed cards on both hosts, no page errors; pets 500: home Magnus line stays hidden, /about falls back to the Paw Passport sentence, /the-paw-passport keeps the typed 13 on both hosts; core blocked: E1, E2, E3 and tllfactsv1 fall back to the pet page and show 15 on both hosts; profile shows the same visible cards and pets as www, pre-hide style gone after load", "www_same": "yes for every visible result; test makes one /pets request where www makes two, and none on pages without the 22 text"},
+  {"change": "story page hero box reserved by aspect-ratio (table or 16/9)", "riskiest_case": "slow 4G", "result": "story page CLS 0.1279 on both hosts under slow 4G (the shift is the route block, not the hero)", "www_same": "yes"}
+ ],
+ "staged_edit_results": {
+  "hero_lazy": "with the core, the cover layer sets the cover photo and no Curacao file is requested on test (www asks for Curacao-p-1080 at 1.5 s under slow 4G); with the core blocked the Curacao photo still loads and shows, about 150 ms later than on www because of lazy",
+  "E1_E2_E3_E6": "counts 15 on both hosts in every normal and core-blocked run; same fallbacks under pets 500",
+  "E4": "the home page has no 'writers so far' text on either host, so the new guard only removes a sitemap request",
+  "E5": "/stories 500 handled as before (empty string, typed cards stay)"
+ },
+ "checks": {
+  "page_errors": "0 on 116 loads, both hosts",
+  "console_errors": "none new on test; Memberstack network warnings appear on both hosts because its POSTs are aborted",
+  "overflow_360": "none: scrollWidth equals 360 on all 12 pages on both hosts",
+  "consent": "no AdSense, Tag Manager, Analytics or Ahrefs request before consent on any run on either host; the Google consent tool loads the same way on both (it did not finish in the headless browser, so the banner itself was not exercised); the consent code is not part of this release",
+  "account_signed_out": "no errors, same requests on both hosts apart from the dropped pet page request"
+ },
+ "harness_artifacts_ruled_out": [
+  "A CORS error on www for the Worker owner-map and expats-map came from this harness caching the Worker answer (it echoes the origin); after removing those cache entries both hosts load them and /the-map, home, /for-expats and /about match (A3 runs).",
+  "Late layout shifts at the page foot while scrolling vary from run to run on both hosts (0.003 to 0.21 at 1440); the 0.044 footer shift at 360 is on both hosts; pre-existing."
+ ],
+ "notes": [
+  "Library cards are 43 to 46 px taller on phones than on www (hold set from the tallest of all 56 cards, hidden ones included); empty space at the foot of the shorter cards, in exchange for no jump when the feed redraws.",
+  "On phones at 3x, card and cover photos are the 2x files (bandwidth fix 2), slightly softer.",
+  "If the layers core fails to load, the home hero is lazy and paints about 150 ms later than on www.",
+  "/the-paw-passport hero on desktops wider than 1600 device pixels uses the p-1600 copy, slightly softer than the original.",
+  "Pre-existing on both hosts: /the-map 1440 CLS about 0.1 at load, home slow 4G CLS 0.23 at the cover, footer shift 0.044 at 360."
+ ]
+}

@@ -1,0 +1,8670 @@
+[
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 19,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 240,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1023,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    182,
+    1053
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0519,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 240,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1023,
+     0.008
+    ],
+    [
+     13333,
+     0.0439
+    ]
+   ],
+   "h3stories": [
+    182,
+    1053
+   ]
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 21,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "520,520,520,520,520,520",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 200,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     863,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    164,
+    916
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.052,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "520,520,520,520,520,520",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 200,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     863,
+     0.008
+    ],
+    [
+     13256,
+     0.0439
+    ]
+   ],
+   "h3stories": [
+    164,
+    916
+   ]
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 26,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 212,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     959,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    153,
+    1054
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0155,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 212,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     959,
+     0.0035
+    ],
+    [
+     13245,
+     0.012
+    ]
+   ],
+   "h3stories": [
+    153,
+    1054
+   ]
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 26,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "704,704,704,704,704,704",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 200,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     811,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    158,
+    853
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0256,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "704,704,704,704,704,704",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 200,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     811,
+     0.0035
+    ],
+    [
+     13239,
+     0.0221
+    ]
+   ],
+   "h3stories": [
+    158,
+    853
+   ]
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/travelers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.0024,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 124,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     3630,
+     0.0024
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0542,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 4900,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     3630,
+     0.0024
+    ],
+    [
+     10030,
+     0.0519
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/travelers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.0148,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     3631,
+     0.0148
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0148,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 4884,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     3631,
+     0.0148
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/travelers",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.1354,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     137,
+     0.0471
+    ],
+    [
+     178,
+     0.0814
+    ],
+    [
+     211,
+     0.0002
+    ],
+    [
+     310,
+     0.0035
+    ],
+    [
+     3606,
+     0.0032
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1354,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     137,
+     0.0471
+    ],
+    [
+     178,
+     0.0814
+    ],
+    [
+     211,
+     0.0002
+    ],
+    [
+     310,
+     0.0035
+    ],
+    [
+     3606,
+     0.0032
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/travelers",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.2412,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 212,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     207,
+     0.1525
+    ],
+    [
+     266,
+     0.0814
+    ],
+    [
+     278,
+     0.0002
+    ],
+    [
+     350,
+     0.0035
+    ],
+    [
+     3665,
+     0.0036
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.2412,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 212,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     207,
+     0.1525
+    ],
+    [
+     266,
+     0.0814
+    ],
+    [
+     278,
+     0.0002
+    ],
+    [
+     350,
+     0.0035
+    ],
+    [
+     3665,
+     0.0036
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/layovers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/layovers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 108,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 108,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/layovers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/layovers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 116,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 116,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/layovers",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/layovers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 132,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [
+    [
+     261,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 132,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [
+    [
+     261,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/layovers",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/layovers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 148,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [
+    [
+     257,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 148,
+   "lcpEl": "P.tllcx-verdict",
+   "shifts": [
+    [
+     257,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.4026,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 732,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     724,
+     0.4026
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.5575,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 732,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     724,
+     0.4026
+    ],
+    [
+     5791,
+     0.1549
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 21,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 2984,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1549,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 2984,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     5252,
+     0.1549
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.104,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 252,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     234,
+     0.0232
+    ],
+    [
+     343,
+     0.0035
+    ],
+    [
+     361,
+     0.0667
+    ],
+    [
+     371,
+     0.0078
+    ],
+    [
+     594,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1797,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 252,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     234,
+     0.0232
+    ],
+    [
+     343,
+     0.0035
+    ],
+    [
+     361,
+     0.0667
+    ],
+    [
+     371,
+     0.0078
+    ],
+    [
+     594,
+     0.0028
+    ],
+    [
+     5680,
+     0.0757
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/for-expats",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 3,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/for-expats",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/expats-map' from origin 'https://www.thatlayover"
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 3,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 192,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 192,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/for-expats",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 180,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     207,
+     0.039
+    ],
+    [
+     295,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 180,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     207,
+     0.039
+    ],
+    [
+     295,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/for-expats",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/expats-map' from origin 'https://www.thatlayover"
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 240,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     289,
+     0.039
+    ],
+    [
+     395,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 240,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     289,
+     0.039
+    ],
+    [
+     395,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/account",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 14,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/account (nav)",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 704,
+   "lcpEl": "SPAN.tll-nav-logo-block",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 704,
+   "lcpEl": "SPAN.tll-nav-logo-block",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/account",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 14,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/account (nav)",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 452,
+   "lcpEl": "SPAN.tll-nav-logo-block",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 452,
+   "lcpEl": "SPAN.tll-nav-logo-block",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/account",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/account (nav)",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.2972,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 144,
+   "lcpEl": "P.tll-body-l tll-text-bone tll-a",
+   "shifts": [
+    [
+     186,
+     0.2972
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.2972,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 144,
+   "lcpEl": "P.tll-body-l tll-text-bone tll-a",
+   "shifts": [
+    [
+     186,
+     0.2972
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/account",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/account (nav)",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.2972,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 144,
+   "lcpEl": "P.tll-body-l tll-text-bone tll-a",
+   "shifts": [
+    [
+     196,
+     0.2972
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.2972,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 144,
+   "lcpEl": "P.tll-body-l tll-text-bone tll-a",
+   "shifts": [
+    [
+     196,
+     0.2972
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/cookies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/cookies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/cookies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/cookies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 112,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 112,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/cookies",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/cookies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [
+    [
+     225,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [
+    [
+     225,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/cookies",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/cookies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 96,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [
+    [
+     231,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 96,
+   "lcpEl": "P.inline-p-1-1-2-3-4-5-6-7-8",
+   "shifts": [
+    [
+     231,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/about",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 116,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 116,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/about",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/about",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 124,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     159,
+     0.0358
+    ],
+    [
+     240,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 124,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     159,
+     0.0358
+    ],
+    [
+     240,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/about",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 156,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     203,
+     0.0358
+    ],
+    [
+     342,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 156,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     203,
+     0.0358
+    ],
+    [
+     342,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 172,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 172,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0.0036,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1600.jpg\")",
+   "lcpMs": 196,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     216,
+     0.0001
+    ],
+    [
+     261,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0036,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1600.jpg\")",
+   "lcpMs": 196,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     216,
+     0.0001
+    ],
+    [
+     261,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0.0036,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     222,
+     0.0001
+    ],
+    [
+     272,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0036,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     222,
+     0.0001
+    ],
+    [
+     272,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/stories",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 17,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/stories (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/sitemap.xml"
+  ],
+  "webflowImageRequests": 70,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 528,
+   "lcpEl": "IMG.tll-lib-img",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 528,
+   "lcpEl": "IMG.tll-lib-img",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/stories",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 17,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/stories (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/sitemap.xml"
+  ],
+  "webflowImageRequests": 70,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 260,
+   "lcpEl": "IMG.tll-lib-img",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 260,
+   "lcpEl": "IMG.tll-lib-img",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/stories",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 17,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/stories (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/sitemap.xml"
+  ],
+  "webflowImageRequests": 70,
+  "atLoad": {
+   "cls": 0.095,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 184,
+   "lcpEl": "H1.tll-display-xl tll-library-tit",
+   "shifts": [
+    [
+     317,
+     0.0195
+    ],
+    [
+     485,
+     0.072
+    ],
+    [
+     714,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.095,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 184,
+   "lcpEl": "H1.tll-display-xl tll-library-tit",
+   "shifts": [
+    [
+     317,
+     0.0195
+    ],
+    [
+     485,
+     0.072
+    ],
+    [
+     714,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/stories",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 17,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/stories (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/sitemap.xml"
+  ],
+  "webflowImageRequests": 70,
+  "atLoad": {
+   "cls": 0.095,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 164,
+   "lcpEl": "H1.tll-display-xl tll-library-tit",
+   "shifts": [
+    [
+     291,
+     0.0195
+    ],
+    [
+     451,
+     0.072
+    ],
+    [
+     646,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.095,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 164,
+   "lcpEl": "H1.tll-display-xl tll-library-tit",
+   "shifts": [
+    [
+     291,
+     0.0195
+    ],
+    [
+     451,
+     0.072
+    ],
+    [
+     646,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 180,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 180,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 160,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 160,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0.0159,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 160,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     201,
+     0.0037
+    ],
+    [
+     284,
+     0.0086
+    ],
+    [
+     388,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0159,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 160,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     201,
+     0.0037
+    ],
+    [
+     284,
+     0.0086
+    ],
+    [
+     388,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0.0159,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 164,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     205,
+     0.0037
+    ],
+    [
+     282,
+     0.0086
+    ],
+    [
+     387,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0159,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 164,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     205,
+     0.0037
+    ],
+    [
+     282,
+     0.0086
+    ],
+    [
+     387,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/contributors/X",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 61,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 168,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 168,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/contributors/X",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 64,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 212,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 212,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "test",
+  "path": "/contributors/X",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 61,
+  "atLoad": {
+   "cls": 0.1212,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 204,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     237,
+     0.117
+    ],
+    [
+     346,
+     0.0035
+    ],
+    [
+     527,
+     0.0007
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1212,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 204,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     237,
+     0.117
+    ],
+    [
+     346,
+     0.0035
+    ],
+    [
+     527,
+     0.0007
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A",
+  "host": "www",
+  "path": "/contributors/X",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 64,
+  "atLoad": {
+   "cls": 0.1212,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 224,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     267,
+     0.117
+    ],
+    [
+     373,
+     0.0035
+    ],
+    [
+     559,
+     0.0007
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1212,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 224,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     267,
+     0.117
+    ],
+    [
+     373,
+     0.0035
+    ],
+    [
+     559,
+     0.0007
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A2",
+  "host": "test",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 17,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 216,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1007,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    183,
+    1096
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0519,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 216,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1007,
+     0.008
+    ],
+    [
+     13283,
+     0.0439
+    ]
+   ],
+   "h3stories": [
+    183,
+    1096
+   ]
+  }
+ },
+ {
+  "run": "A2",
+  "host": "www",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "520,520,520,520,520,520",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 176,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     854,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    123,
+    913
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.052,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "520,520,520,520,520,520",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 176,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     854,
+     0.008
+    ],
+    [
+     13225,
+     0.0439
+    ]
+   ],
+   "h3stories": [
+    123,
+    913
+   ]
+  }
+ },
+ {
+  "run": "A2",
+  "host": "test",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 27,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 196,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     888,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    142,
+    936
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2166,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 196,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     888,
+     0.0035
+    ],
+    [
+     13232,
+     0.2131
+    ]
+   ],
+   "h3stories": [
+    142,
+    936
+   ]
+  }
+ },
+ {
+  "run": "A2",
+  "host": "www",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 156,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     770,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    115,
+    819
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0178,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 156,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     770,
+     0.0035
+    ],
+    [
+     13189,
+     0.0142
+    ]
+   ],
+   "h3stories": [
+    115,
+    819
+   ]
+  }
+ },
+ {
+  "run": "A2",
+  "host": "test",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 320,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1003,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 320,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     5302,
+     0.1003
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A2",
+  "host": "www",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 216,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1003,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 216,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     5192,
+     0.1003
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A2",
+  "host": "test",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.3622,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 2292,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     2264,
+     0.3622
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.4379,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 2292,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     2264,
+     0.3622
+    ],
+    [
+     5703,
+     0.0757
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A2",
+  "host": "www",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.1173,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 252,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     198,
+     0.0133
+    ],
+    [
+     231,
+     0.0232
+    ],
+    [
+     304,
+     0.0035
+    ],
+    [
+     324,
+     0.0667
+    ],
+    [
+     342,
+     0.0078
+    ],
+    [
+     613,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.193,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 252,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     198,
+     0.0133
+    ],
+    [
+     231,
+     0.0232
+    ],
+    [
+     304,
+     0.0035
+    ],
+    [
+     324,
+     0.0667
+    ],
+    [
+     342,
+     0.0078
+    ],
+    [
+     613,
+     0.0028
+    ],
+    [
+     5641,
+     0.0757
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 7,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 236,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1000,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    195,
+    1059
+   ]
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 12,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "520,520,520,520,520,520",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 152,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     818,
+     0.008
+    ]
+   ],
+   "h3stories": [
+    116,
+    860
+   ]
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 15,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 192,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     829,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    150,
+    924
+   ]
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 16,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "648,648,648,648,648,648",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 180,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     811,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    135,
+    877
+   ]
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 264,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 232,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 288,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/the-map",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 228,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.0962,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 244,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     223,
+     0.0232
+    ],
+    [
+     299,
+     0.0035
+    ],
+    [
+     321,
+     0.0667
+    ],
+    [
+     595,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.0962,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 232,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     210,
+     0.0232
+    ],
+    [
+     293,
+     0.0035
+    ],
+    [
+     313,
+     0.0667
+    ],
+    [
+     589,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 22,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.1304,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 252,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     227,
+     0.0232
+    ],
+    [
+     307,
+     0.0966
+    ],
+    [
+     320,
+     0.0078
+    ],
+    [
+     596,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/the-map",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-map (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 1,
+  "atLoad": {
+   "cls": 0.104,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 240,
+   "lcpEl": "IMG.tll-ph-in",
+   "shifts": [
+    [
+     212,
+     0.0232
+    ],
+    [
+     319,
+     0.0035
+    ],
+    [
+     336,
+     0.0667
+    ],
+    [
+     351,
+     0.0078
+    ],
+    [
+     618,
+     0.0028
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/for-expats",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 3,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/for-expats",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 3,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 160,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/for-expats",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 180,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     207,
+     0.039
+    ],
+    [
+     288,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/for-expats",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/for-expats (nav)",
+   "/travelers",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0425,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 188,
+   "lcpEl": "H1.inline-h1-0-1",
+   "shifts": [
+    [
+     219,
+     0.039
+    ],
+    [
+     337,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/about",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 124,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/about",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 124,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "test",
+  "path": "/about",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 144,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     178,
+     0.0358
+    ],
+    [
+     294,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "A3",
+  "host": "www",
+  "path": "/about",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 4,
+  "atLoad": {
+   "cls": 0.0393,
+   "sw": 1440,
+   "iw": 1440,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 128,
+   "lcpEl": "H1.tll-about-final-title",
+   "shifts": [
+    [
+     171,
+     0.0358
+    ],
+    [
+     289,
+     0.0035
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": null
+ },
+ {
+  "run": "B-slow4g",
+  "host": "test",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 19,
+  "atLoad": {
+   "cls": 0.2294,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 6288,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     6869,
+     0.1504
+    ],
+    [
+     8829,
+     0.079
+    ]
+   ],
+   "h3stories": [
+    5564,
+    10856
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.3196,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2086
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "566px",
+    "hs": "566,566,566,566,566,566",
+    "top": 1190,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 6288,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     6869,
+     0.1504
+    ],
+    [
+     8829,
+     0.079
+    ],
+    [
+     28732,
+     0.0901
+    ]
+   ],
+   "h3stories": [
+    5564,
+    10856
+   ]
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 6004,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     5655,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.008,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 6004,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     5655,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "test",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0.1279,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 5236,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     5854,
+     0.1035
+    ],
+    [
+     6264,
+     0.0164
+    ],
+    [
+     6666,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1279,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 5236,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     5854,
+     0.1035
+    ],
+    [
+     6264,
+     0.0164
+    ],
+    [
+     6666,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "test",
+  "path": "/contributors/X",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 61,
+  "atLoad": {
+   "cls": 0.0198,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 6212,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     5898,
+     0.0118
+    ],
+    [
+     6125,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0198,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 6212,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     5898,
+     0.0118
+    ],
+    [
+     6125,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "test",
+  "path": "/travelers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.0379,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 4960,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     5829,
+     0.008
+    ],
+    [
+     5982,
+     0.0041
+    ],
+    [
+     8801,
+     0.0003
+    ],
+    [
+     12000,
+     0.0106
+    ],
+    [
+     15219,
+     0.0148
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0921,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 18640,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     5829,
+     0.008
+    ],
+    [
+     5982,
+     0.0041
+    ],
+    [
+     8801,
+     0.0003
+    ],
+    [
+     12000,
+     0.0106
+    ],
+    [
+     15219,
+     0.0148
+    ],
+    [
+     18400,
+     0.0024
+    ],
+    [
+     24800,
+     0.0519
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "www",
+  "path": "/",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 23,
+  "atLoad": {
+   "cls": 0.2294,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "562,562,562,562,562,562",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 6424,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     6542,
+     0.1504
+    ],
+    [
+     8358,
+     0.079
+    ]
+   ],
+   "h3stories": [
+    5416,
+    10603
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2721,
+   "sw": 360,
+   "iw": 360,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 803
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "562,562,562,562,562,562",
+    "top": 2297,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 6424,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     6542,
+     0.1504
+    ],
+    [
+     8358,
+     0.079
+    ],
+    [
+     28382,
+     0.0427
+    ]
+   ],
+   "h3stories": [
+    5416,
+    10603
+   ]
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0.0123,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 11080,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     5248,
+     0.0042
+    ],
+    [
+     5632,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0123,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 11080,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [
+    [
+     5248,
+     0.0042
+    ],
+    [
+     5632,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "www",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0.1279,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 5272,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     5881,
+     0.1035
+    ],
+    [
+     6339,
+     0.0164
+    ],
+    [
+     6624,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.1279,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 5272,
+   "lcpEl": "H1.tll-display-xl tll-text-bone t",
+   "shifts": [
+    [
+     5881,
+     0.1035
+    ],
+    [
+     6339,
+     0.0164
+    ],
+    [
+     6624,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "www",
+  "path": "/contributors/X",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 64,
+  "atLoad": {
+   "cls": 0.0198,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 6396,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     6078,
+     0.0118
+    ],
+    [
+     6434,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0198,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 6396,
+   "lcpEl": "IMG.",
+   "shifts": [
+    [
+     6078,
+     0.0118
+    ],
+    [
+     6434,
+     0.008
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "B-slow4g",
+  "host": "www",
+  "path": "/travelers",
+  "w": 360,
+  "dpr": 3,
+  "slow4g_cpu4": true,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.1427,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 4984,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     5493,
+     0.009
+    ],
+    [
+     5778,
+     0.0959
+    ],
+    [
+     6161,
+     0.008
+    ],
+    [
+     6332,
+     0.0041
+    ],
+    [
+     9084,
+     0.0003
+    ],
+    [
+     12260,
+     0.0106
+    ],
+    [
+     15460,
+     0.0148
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.197,
+   "sw": 360,
+   "iw": 360,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 18972,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     5493,
+     0.009
+    ],
+    [
+     5778,
+     0.0959
+    ],
+    [
+     6161,
+     0.008
+    ],
+    [
+     6332,
+     0.0041
+    ],
+    [
+     9084,
+     0.0003
+    ],
+    [
+     12260,
+     0.0106
+    ],
+    [
+     15460,
+     0.0148
+    ],
+    [
+     18674,
+     0.0024
+    ],
+    [
+     25077,
+     0.0519
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "test",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 15,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 216,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     964,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    162
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.273,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 216,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     964,
+     0.1433
+    ],
+    [
+     13273,
+     0.1297
+    ]
+   ],
+   "h3stories": [
+    162
+   ]
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "test",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 168,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 168,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 200,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 200,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "test",
+  "path": "/travelers",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.0209,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 200,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     3747,
+     0.0209
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0209,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 5016,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     3747,
+     0.0209
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500-desk",
+  "host": "test",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 18,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "678,678,678,678,678,678",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 188,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     810,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    146
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0064,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "678,678,678,678,678,678",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 188,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     810,
+     0.0035
+    ],
+    [
+     13230,
+     0.0029
+    ]
+   ],
+   "h3stories": [
+    146
+   ]
+  }
+ },
+ {
+  "run": "C-stories+sitemap500",
+  "host": "test",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$",
+   "^/sitemap"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 15,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "10"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 168,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     948,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    126
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2809,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "10"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 168,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     948,
+     0.1433
+    ],
+    [
+     13214,
+     0.1376
+    ]
+   ],
+   "h3stories": [
+    126
+   ]
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "www",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "572,572,572,572,572,572",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 184,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     836,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    138
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2729,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "572,572,572,572,572,572",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 184,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     836,
+     0.1433
+    ],
+    [
+     13236,
+     0.1296
+    ]
+   ],
+   "h3stories": [
+    138
+   ]
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "www",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 140,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 188,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 188,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500",
+  "host": "www",
+  "path": "/travelers",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/travelers (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 10,
+  "atLoad": {
+   "cls": 0.0209,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 120,
+   "lcpEl": "H1.tll-display-xxl tll-text-bone ",
+   "shifts": [
+    [
+     3607,
+     0.0209
+    ]
+   ],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0.0209,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "lcpMs": 4860,
+   "lcpEl": "IMG.tll-trav-avatar",
+   "shifts": [
+    [
+     3607,
+     0.0209
+    ]
+   ],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "C-stories500-desk",
+  "host": "www",
+  "path": "/",
+  "w": 1440,
+  "dpr": 1,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 19,
+  "atLoad": {
+   "cls": 0.0035,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "678,678,678,678,678,678",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 184,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     789,
+     0.0035
+    ]
+   ],
+   "h3stories": [
+    132
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.0178,
+   "sw": 1440,
+   "iw": 1440,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 869
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "678,678,678,678,678,678",
+    "top": 2015,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 184,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     789,
+     0.0035
+    ],
+    [
+     13221,
+     0.0142
+    ]
+   ],
+   "h3stories": [
+    132
+   ]
+  }
+ },
+ {
+  "run": "C-stories+sitemap500",
+  "host": "www",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/stories$",
+   "^/sitemap"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "591,591,591,591,591,591",
+    "top": 2277,
+    "total": "10"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 148,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     872,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    123
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2885,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "591,591,591,591,591,591",
+    "top": 2277,
+    "total": "10"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 148,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     872,
+     0.1433
+    ],
+    [
+     13208,
+     0.1452
+    ]
+   ],
+   "h3stories": [
+    123
+   ]
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "test",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 19,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 348,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1283,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    285,
+    1350
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2809,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 348,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1283,
+     0.1433
+    ],
+    [
+     13384,
+     0.1376
+    ]
+   ],
+   "h3stories": [
+    285,
+    1350
+   ]
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "test",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "His country count is on his Paw Passport.",
+   "pf": null,
+   "lcpMs": 152,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "His country count is on his Paw Passport.",
+   "pf": null,
+   "lcpMs": 152,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "",
+    "Written from 13 countries and one transatlantic flight, by s",
+    "Samoyed",
+    "Magnus's passport"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 304,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "",
+    "Written from 13 countries and one transatlantic flight, by s",
+    "Samoyed",
+    "Magnus's passport"
+   ],
+   "pawBg": "Montenegro%20coast-p-1080.jpg\")",
+   "lcpMs": 304,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "test",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 256,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 256,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500+stories500",
+  "host": "test",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$",
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 15,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 264,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1091,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    207
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.273,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": true,
+    "after": "library",
+    "top": 2127
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "592px",
+    "hs": "592,592,592,592,592,592",
+    "top": 1227,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width:767px) and (min-resolution:2.5dppx) calc(100vw * 2 / 3), 100vw"
+   },
+   "lcpMs": 264,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1091,
+     0.1433
+    ],
+    [
+     13299,
+     0.1297
+    ]
+   ],
+   "h3stories": [
+    207
+   ]
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "www",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 22,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 384,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1051,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    184,
+    1138
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2729,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 384,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     1051,
+     0.1433
+    ],
+    [
+     13277,
+     0.1296
+    ]
+   ],
+   "h3stories": [
+    184,
+    1138
+   ]
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "www",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "His country count is on his Paw Passport.",
+   "pf": null,
+   "lcpMs": 156,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "His country count is on his Paw Passport.",
+   "pf": null,
+   "lcpMs": 156,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "",
+    "Written from 13 countries and one transatlantic flight, by s",
+    "Samoyed",
+    "Magnus's passport"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 228,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "",
+    "Written from 13 countries and one transatlantic flight, by s",
+    "Samoyed",
+    "Magnus's passport"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 228,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500",
+  "host": "www",
+  "path": "/stories/vietnam-ninja-duckies",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 18,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/stories/vietnam-ninja-duckies (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 24,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 184,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(min-width:1280px) 1200px, calc(100vw - 32px)"
+   },
+   "lcpMs": 184,
+   "lcpEl": "A.tll-mg-rcpt",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "D-pet500+stories500",
+  "host": "www",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [
+   "^/pets/magnus-waffles$",
+   "^/stories$"
+  ],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.1433,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "591,591,591,591,591,591",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 164,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     729,
+     0.1433
+    ]
+   ],
+   "h3stories": [
+    135
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.1434,
+   "sw": 390,
+   "iw": 390,
+   "val": {
+    "low": false,
+    "after": "hero",
+    "top": 829
+   },
+   "bands": [
+    "rio:swapped",
+    "denmark:-",
+    "montenegro:swapped",
+    "antarctica:-"
+   ],
+   "mag": [
+    "hidden:",
+    "hidden:"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 10,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "591,591,591,591,591,591",
+    "top": 2277,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "100vw"
+   },
+   "lcpMs": 164,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     729,
+     0.1433
+    ],
+    [
+     13201,
+     0.0001
+    ]
+   ],
+   "h3stories": [
+    135
+   ]
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "test",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.1758,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [
+    "rio:-",
+    "denmark:-",
+    "montenegro:-",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 1252,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "lazy",
+    "fp": null,
+    "sizes": "(max-width: 2048px) 100vw, 2048px"
+   },
+   "lcpMs": 356,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     859,
+     0.1758
+    ]
+   ],
+   "h3stories": [
+    150,
+    899
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.2149,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [
+    "rio:-",
+    "denmark:-",
+    "montenegro:-",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 1252,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "lazy",
+    "fp": null,
+    "sizes": "(max-width: 2048px) 100vw, 2048px"
+   },
+   "lcpMs": 356,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     859,
+     0.1758
+    ],
+    [
+     13235,
+     0.0392
+    ]
+   ],
+   "h3stories": [
+    150,
+    899
+   ]
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "test",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 112,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 112,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "test",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 232,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "test",
+  "path": "/contributors/X",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 2,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories"
+  ],
+  "webflowImageRequests": 57,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 172,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 172,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "www",
+  "path": "/",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/ (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/stories",
+   "/pets/magnus-waffles",
+   "/stories"
+  ],
+  "webflowImageRequests": 20,
+  "atLoad": {
+   "cls": 0.1758,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [
+    "rio:-",
+    "denmark:-",
+    "montenegro:-",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 1252,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width: 2048px) 100vw, 2048px"
+   },
+   "lcpMs": 112,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     636,
+     0.1758
+    ]
+   ],
+   "h3stories": [
+    80,
+    669
+   ]
+  },
+  "afterScroll": {
+   "cls": 0.1758,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [
+    "rio:-",
+    "denmark:-",
+    "montenegro:-",
+    "antarctica:-"
+   ],
+   "mag": [
+    "\u00b7 15 places",
+    "\u00b7 15 places"
+   ],
+   "aboutMag": null,
+   "pf": null,
+   "rail": {
+    "all": 56,
+    "shown": 6,
+    "hold": false,
+    "libHold": "",
+    "hs": "549,549,549,549,549,549",
+    "top": 1252,
+    "total": "57"
+   },
+   "hero": {
+    "loading": "eager",
+    "fp": "high",
+    "sizes": "(max-width: 2048px) 100vw, 2048px"
+   },
+   "lcpMs": 112,
+   "lcpEl": "IMG.inline-imgraw-0-1-2-3-4-5",
+   "shifts": [
+    [
+     636,
+     0.1758
+    ]
+   ],
+   "h3stories": [
+    80,
+    669
+   ]
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "www",
+  "path": "/about",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [
+   "Access to fetch at 'https://tll-travel-wire.thatlayoverlife.workers.dev/owner-map' from origin 'https://www.thatlayover."
+  ],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/about (nav)",
+   "/sitemap.xml",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 0,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 132,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": "He has crossed into 15 countries.",
+   "pf": null,
+   "lcpMs": 132,
+   "lcpEl": "P.tll-about-final-intro",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "www",
+  "path": "/the-paw-passport",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 16,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/the-paw-passport (nav)",
+   "/pets/magnus-waffles",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 2,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 204,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": null,
+   "magN": [
+    "15",
+    "Written from 15 countries and one transatlantic flight, by s",
+    "Samoyed \u00b7 15 countries",
+    "Magnus's passport: 15 countries and counting"
+   ],
+   "pawBg": "Montenegro%20coast.jpg\")",
+   "lcpMs": 204,
+   "lcpEl": "SECTION.tll-paw-hero",
+   "shifts": [],
+   "h3stories": []
+  }
+ },
+ {
+  "run": "F-nocore",
+  "host": "www",
+  "path": "/contributors/X",
+  "w": 390,
+  "dpr": 3,
+  "slow4g_cpu4": false,
+  "routed500": [],
+  "pageErrors": 0,
+  "consoleErrorsNonNetwork": [],
+  "adOrAnalyticsRequests": 0,
+  "consentToolRequests": 15,
+  "nonGetAborted": 3,
+  "sameOriginGets": [
+   "/contributors/X (nav)",
+   "/sitemap.xml",
+   "/sitemap.xml",
+   "/stories",
+   "/pets/magnus-waffles"
+  ],
+  "webflowImageRequests": 57,
+  "atLoad": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 152,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  },
+  "afterScroll": {
+   "cls": 0,
+   "sw": 390,
+   "iw": 390,
+   "val": null,
+   "bands": [],
+   "mag": [],
+   "aboutMag": null,
+   "pf": {
+    "cards": 52,
+    "visible": 52,
+    "pre": false,
+    "pets": 1,
+    "petsVis": 1
+   },
+   "lcpMs": 152,
+   "lcpEl": "IMG.",
+   "shifts": [],
+   "h3stories": []
+  }
+ }
+]
