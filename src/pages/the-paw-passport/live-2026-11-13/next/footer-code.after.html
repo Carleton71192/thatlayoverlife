@@ -1,0 +1,14 @@
+<script id="tll-paw-mag-count-v1">
+/* E4 (Nancy, 12 Nov 2026: her pet's count includes home). Magnus's number is never typed on this page. It is read from his pet page's
+   countries list (window.TLL_PET, the same source the home page uses) and written into every [data-tll-mag-n]: the attribute holds the
+   whole line, {n} becomes the number and {countries} becomes "country" or "countries". With scripts off the page code shows the line
+   without a number. */
+(function(){
+var ws=document.querySelectorAll('[data-tll-mag-n]');if(!ws.length)return;
+(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var x=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!x)throw Error('no list');return x[1];})).then(function(c){
+var m=[0,c];
+var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(!n)return;
+[].forEach.call(ws,function(w){var t=w.getAttribute('data-tll-mag-n')||'';w.textContent=t.split('{n}').join(String(n)).split('{countries}').join(n===1?'country':'countries');});
+}).catch(function(){});
+})();
+</script>
