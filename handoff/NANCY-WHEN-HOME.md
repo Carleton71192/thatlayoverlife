@@ -77,8 +77,8 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 
 ## Decisions waiting (answer when you have time)
 
-**Story page jump on phones: A2 checks found one regression; A3 in progress (from your phone)**
-Core 16.65.0 (A2) is on that-layover-life.webflow.io since 19:29 UTC; www and thatlayover.life still run 16.64.0. The three checks passed with one real regression: the Balkans story on narrow phones (320 to 375 px) now jumps 0.15, against 0.02 on www, because the country flags widen the breadcrumb after the page has painted. Everywhere else A2 is much better than www (Croatia 0.21 to 0.06, reload after scrolling 0.19 to 0.01). I am building A3, which holds the breadcrumb the same way A2 holds the date line, and will check it on the test site. Nothing to do yet. If you would rather put A2 live now anyway, reply "publish A2". Evidence: reports/evidence/release-16.65.0-check/.
+**Story page jump on phones: A2 found a regression, A3 failed its check, A4 in progress (from your phone)**
+Core 16.65.0 (A2) is on that-layover-life.webflow.io since 19:29 UTC; www and thatlayover.life still run 16.64.0. A2 made the Balkans story worse on narrow phones (0.15 against 0.02 on www). A3 fixed that, but one of two checks failed it: across 9 stories it moved other stories (Vietnam, Phuket, Lisbon) a little more than A2, and the cause was found. A4 is being built from both checks, with one repair round if needed. Nothing to do yet. If you would rather put A2 live now anyway, reply "publish A2". Evidence: reports/evidence/release-16.65.0-check/ and reports/evidence/story-a3-judge/.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
