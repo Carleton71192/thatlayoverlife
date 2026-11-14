@@ -27,7 +27,11 @@ tll-font-fallbacks-v1 goes first in STYLES (metric-matched local fallback faces 
 fallbacks() below puts their names into every font stack of the layers as they are built, right after the web font, so a layer's source
 keeps its plain stack and the download carries the fallbacks. 13 Nov 2026 (bandwidth fixes 2, 3 and 7, reports/bandwidth-2026-11-13.md):
 img-variants caps card and cover photos at 2x on phones (cap()), tll-rail-hold-v1 joins the core, tll-paw-hero-img-v1 joins STYLES.
-Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (the home library jump, N9) join the core."""
+Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (the home library jump, N9) join the core.
+14 Nov 2026 (the story first-frame jump at 390, reports/evidence/story-first-frame-2026-11-14/): the story layer gets F1 (its style in
+the head at once, the magazine moves run as soon as the byline row has arrived). A2: the copied template rules sit in their own head style,
+taken out once the template's style is parsed, so later template edits win; two holds keep the photo still for the Receipts line and the
+template script's place-and-date rewrite."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -266,6 +270,10 @@ styles = "(function(){var L=%s;var h=document.head||document.documentElement;for
 # at the end of the body, after jQuery and webflow.js): the byline row with the writer's avatar (unsized, that photo was painted at its
 # natural 342x513 px and the template style then shrank it to 40 px) and the meta row. Keyed on the template's page id on html; :where()
 # keeps each rule exactly as heavy as the template's own, and the values are the template's, so the finished page is unchanged.
+# A2 (14 Nov 2026, reports/evidence/story-first-frame-2026-11-14/judge.md, breakage 1): the copies live in a style of their own,
+# style#tll-story-st3-early-v1, which stays in the head (so it always comes before the template's style and loses every tie to it) and
+# is taken out as soon as the template's style has been parsed whole, or when the page is parsed. A Designer edit to those template
+# rules (a changed value, a removed rule) therefore always wins on the finished page; at worst the first frames show the old value.
 ST3_PAGE = ':where(html[data-wf-page="6a0b29eedc14f1444e935766"])'
 ST3_EARLY = [
     '{--st3-line:#E0DACE;--st3-rose:#F0507A;--st3-teal-deep:#067A79;--st3-muted:#6B6660;--st3-f-mono:\'JetBrains Mono\',ui-monospace,monospace}',
@@ -283,34 +291,58 @@ ST3_EARLY = [
     ' .st3-author-filed:has([data-st3-loc].w-dyn-bind-empty)>span:first-child{display:none}',
     ' .st3-author-filed [data-st3-loc]:not(.w-dyn-bind-empty)+[data-st3-when]:not(.w-dyn-bind-empty)::before{content:"\\00A0\\00B7\\00A0"}',
     ' .st3-author-filed .w-dyn-bind-empty{display:none}']
-st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1 */\n'
+st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1.\n'
+             '   Only until that style has been parsed: then this style is taken out, so the template always has the last word. */\n'
              + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY))
 OLD_STORY_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n"
 assert mag_js.count(OLD_STORY_RUN) == 1
 NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element follows it), before the first paint, so the photo box (heroR), the figure\n"
                  "   and the byline in the head are there from the first frame. The Receipts line waits for the Receipts block to arrive whole (rcpt()\n"
-                 "   reads its rows), and run() waits while that block is still arriving. The page-parsed event stays as the fallback. */\n"
-                 "(function(){if(document.readyState!=='loading'){run();return;}var mo=null;\n"
+                 "   reads its rows), and run() waits while that block is still arriving. The page-parsed event stays as the fallback.\n"
+                 "   A2 (14 Nov 2026, the judge's breakage 2, the photo nudged down on stories with a Receipts line): two holds on the hero, both set\n"
+                 "   when run() puts the byline into the head early. data-tll-mg-wait-r keeps the photo (and a stamp with no photo) invisible until\n"
+                 "   the Receipts block has arrived and the Receipts line is in, so the line never pushes a painted photo down. data-tll-mg-wait-d keeps\n"
+                 "   the place-and-date line to its first line, invisible, until the template's own script (tll-st3-story-js-v1, which shortens that\n"
+                 "   line to {place} and {Month Year} when the page is parsed) has run: its page-parsed listener is added once that script has been\n"
+                 "   parsed, so it runs after the template's. The styles for both holds are at the end of the story style; neither changes the\n"
+                 "   finished page. */\n"
+                 "(function(){if(document.readyState!=='loading'){run();return;}var mo=null,ran=0,rd=0,hd=0;\n"
                  "function whole(n){for(;n&&n!==document.body;n=n.parentNode)if(n.nextElementSibling)return true;return false;}\n"
-                 "function late(){var c=document.querySelector('.tll-story-hero .tll-story-hero-content'),a=c&&c.querySelector('.st3-author');if(a)rcpt(c,a);}\n"
+                 "function hold(k,on){var h=document.querySelector('.tll-story-hero');if(!h)return;if(on)h.setAttribute('data-tll-mg-wait-'+k,'');else h.removeAttribute('data-tll-mg-wait-'+k);}\n"
+                 "function late(){var c=document.querySelector('.tll-story-hero .tll-story-hero-content'),a=c&&c.querySelector('.st3-author');if(a)rcpt(c,a);rd=1;hold('r',0);}\n"
+                 "function after(){hold('d',0);}\n"
                  "function stop(){if(mo){mo.disconnect();mo=null;}}\n"
                  "if(window.MutationObserver){mo=new MutationObserver(function(){var led=document.querySelector('[data-tll-ledger=\"story\"]');\n"
-                 "  if(!whole(document.querySelector('.st3-author'))||(led&&!whole(led)))return;run();if(led){late();stop();}});\n"
+                 "  if(!ran){if(!whole(document.querySelector('.st3-author'))||(led&&!whole(led)))return;run();ran=1;\n"
+                 "    var c=document.querySelector('.tll-story-hero .tll-story-hero-content');if(c&&c.querySelector('.st3-author')){hold('d',1);hold('r',1);}}\n"
+                 "  if(!rd&&led&&whole(led))late();\n"
+                 "  var hs=document.getElementById('tll-st3-story-js-v1');if(!hd&&hs&&whole(hs)){hd=1;document.addEventListener('DOMContentLoaded',after);}\n"
+                 "  if(rd&&hd)stop();});\n"
                  "  mo.observe(document.documentElement,{childList:true,subtree:true});}\n"
-                 "document.addEventListener('DOMContentLoaded',function(){stop();run();late();});})();\n")
+                 "document.addEventListener('DOMContentLoaded',function(){stop();run();late();if(!hd)after();});})();\n")
+# the two holds (A2): matched only while the hero carries the attribute, so the finished page is unchanged
+HOLD_CSS = ('/* F1 holds (A2, 14 Nov 2026), set and cleared by the early run: nothing matches once the page is parsed */\n'
+            '.tll-story-hero[data-tll-mg-wait-r] .tll-mg-fig,.tll-story-hero[data-tll-mg-wait-r] .tll-story-hero-content>.tll-mg-stamp{visibility:hidden}\n'
+            '.tll-story-hero[data-tll-mg-wait-d] .tll-story-hero-content .st3-author-filed{display:-webkit-box !important;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;visibility:hidden}\n')
 mag_js_early = mag_js.replace(OLD_STORY_RUN, NEW_STORY_RUN, 1)
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
          "/* F1: the style goes in at once, so the story head is styled from the first paint. While the page is parsed it is kept after every style\n"
          "   that arrives (the template's own tll-st3-story-v1 at the end of the body would otherwise win the ties for those frames); once the page\n"
-         "   is parsed it moves to the end of the body, as in v9 to v16. */\n"
-         "var MS=document.createElement('style');MS.id='tll-mag-story-v1';MS.textContent=%s;(document.head||document.documentElement).appendChild(MS);\n"
-         "var so=null;function place(){if(so){so.disconnect();so=null;}document.body.appendChild(MS);}\n"
+         "   is parsed it moves to the end of the body, as in v9 to v16. A2: the copied template rules are in ES, a style of their own that stays in\n"
+         "   the head, before the template's style, and is taken out once that style has been parsed whole (an element other than MS follows it) or the page\n"
+         "   is parsed. */\n"
+         "var hd=document.head||document.documentElement,ES=null;\n"
+         "if(document.readyState==='loading'){ES=document.createElement('style');ES.id='tll-story-st3-early-v1';ES.textContent=%s;hd.appendChild(ES);}\n"
+         "var MS=document.createElement('style');MS.id='tll-mag-story-v1';MS.textContent=%s;hd.appendChild(MS);\n"
+         "var so=null,TS=null;function drop(){if(ES&&ES.parentNode)ES.parentNode.removeChild(ES);}\n"
+         "function past(n){for(;n&&n!==document.body;n=n.parentNode){var x=n.nextElementSibling;if(x===MS)x=x.nextElementSibling;if(x)return true;}return false;}\n"
+         "function place(){if(so){so.disconnect();so=null;}drop();document.body.appendChild(MS);}\n"
          "if(document.readyState==='loading'){if(window.MutationObserver){so=new MutationObserver(function(ms){var at=null;\n"
-         "  for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];\n"
-         "    if(n.nodeName==='STYLE'&&n!==MS&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
-         "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
+         "  for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];if(n.nodeName==='STYLE'&&n.id==='tll-st3-story-v1')TS=n;\n"
+         "    if(n.nodeName==='STYLE'&&n!==MS&&n!==ES&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
+         "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);if(TS&&past(TS))drop();});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
          "  document.addEventListener('DOMContentLoaded',place);}else place();\n"
-         "%s})();\n") % (json.dumps(st3_early + mag_css), mag_js_early)
+         "%s})();\n") % (json.dumps(st3_early), json.dumps(mag_css + HOLD_CSS), mag_js_early)
 cov = read(COVER)
 cov_css = fallbacks(re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1))
 cov_js = fallbacks(re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1))
