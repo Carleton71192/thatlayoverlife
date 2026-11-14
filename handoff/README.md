@@ -1,3 +1,5 @@
+> **Nancy, start here when home:** [NANCY-WHEN-HOME.md](NANCY-WHEN-HOME.md) lists everything that needs you, kept up to date by Claude sessions.
+
 > **HANDOFF VERSION: v9 · 5 October 2026 · 2.0 editorial look + accessibility + mobile.** Start with CLAUDE-CODE-PROMPT.md, then keep STATUS.md updated as you go.
 
 # TLL handoff for Claude Code · v9 · 5 October 2026
