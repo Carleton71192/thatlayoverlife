@@ -77,8 +77,8 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 
 ## Decisions waiting (answer when you have time)
 
-**Story page jump on phones: OK to release the small fix (from your phone)**
-Reply "release C" or "wait". C gives the writer's small photo its 40 px size from the first frame. In testing, the big jump went from about 1 in 3 story loads to none, and the finished page looks exactly as it does now. It would go out as core 16.65.0: test site first, then www after the usual checks and your yes. A fuller fix (A, no flash of the old dark hero, no jump on reload) is being repaired on its branch and will come back to you separately. Evidence: reports/evidence/story-first-frame-2026-11-14/ (diagnosis.md, judge.md, fix-c.md). About 1 minute.
+**Story page jump on phones: answered 14 Nov, "A"**
+You chose the fuller fix (A). The small fix (C) is held and not released. A is being repaired on branch claude/fix-story-first-frame-a2-2026-11-14 (it must stop overriding your template edits and must not add a jump on stories with an "Edited by ... Published ..." line), then checked independently. When it passes you get one more question: OK to release it as core 16.65.0, test site first, then www after the usual checks. Evidence: reports/evidence/story-first-frame-2026-11-14/.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
