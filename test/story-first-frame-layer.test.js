@@ -549,8 +549,6 @@ describe('story first frame A3: the page-parsed rewrites laid out before the fir
   // off, PF.done), the flag script's
   function withPF(o, { template = true, flagsRun = true } = {}) {
     const w = world(); const s = story(w, o); const T = tpl(w); const PF = pfOf(w);
-    // the country table is built in the first idle moment while the head loads
-    expect(w.timers.length).toBe(1); w.tick();
     PF.pre(); const first = { html: s.hero.html, waitD: s.hero.hasAttribute('data-tll-mg-wait-d'), crumbText: s.cr.textContent, stand: s.cr.querySelector('[data-tll-mg-flags]') };
     w.document.addEventListener('DOMContentLoaded', () => PF.end());
     w.document.addEventListener('DOMContentLoaded', () => { if (!template) throw new Error('template helper failure'); T.author(); T.place(); });
@@ -651,13 +649,12 @@ describe('story first frame A3: the page-parsed rewrites laid out before the fir
     expect(odd.s.hero.html).toBe(reference({ ...BALKANS, when: '2026-09-19' }).s.hero.html);
   });
   it('does nothing on a page with no story hero', () => {
-    const w = world(); const PF = pfOf(w); w.tick();
+    const w = world(); const PF = pfOf(w);
     expect(() => { PF.pre(); PF.end(); PF.done(); }).not.toThrow();
     expect(w.timers.length).toBe(0);
   });
-  it('builds the country table as the flag script does, ahead of time, once, and reads listed names without it', () => {
+  it('builds the country table as the flag script does, once, and only for a name off the flag script\'s own list', () => {
     expect(pfSrc).toContain('var FA=' + /A=(\{[^{}]*\})/.exec(flagsSrc)[1] + ',FN=null;');
-    expect(pfSrc).toContain("if(document.readyState==='loading')setTimeout(table,0);");
     expect(pfSrc).toContain('function table(){if(FN)return;');
     // Balkans is on the flag script's own list: read with no table at all (no Intl call before the first paint)
     let made = 0; const RealDN = Intl.DisplayNames;
@@ -666,9 +663,9 @@ describe('story first frame A3: the page-parsed rewrites laid out before the fir
       const w = world(); story(w, BALKANS); const PF = pfOf(w); PF.pre();
       expect(made).toBe(0);
       expect(w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(1);
-      w.tick(); expect(made).toBe(1);
-      // the byline first: a name off the list builds it on the spot, and the idle build then does nothing more
-      const w2 = world(); story(w2, CROATIA); const PF2 = pfOf(w2); PF2.pre(); expect(made).toBe(2); w2.tick(); expect(made).toBe(2);
+      expect(w.timers.length).toBe(0);
+      // a name off the list builds it, once for the page
+      const w2 = world(); story(w2, CROATIA); const PF2 = pfOf(w2); PF2.pre(); expect(made).toBe(1); PF2.pre(); expect(made).toBe(1);
     } finally { Intl.DisplayNames = RealDN; }
   });
 });

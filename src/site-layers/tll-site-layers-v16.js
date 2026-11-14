@@ -1275,11 +1275,10 @@ var PF=(function(){var P=null,W=null,AU=null,PH=null,FO=null;
 function tc(s){return /[a-z]/.test(s)?s:s.toLowerCase().replace(/(^|[\s,(\/-])(\S)/g,function(m,a,b){return a+b.toUpperCase();});}
 var FA={usa:'us',oregon:'us',maine:'us','texas hill country':'us',dubai:'ae','sao paulo':'br','ho chi minh city':'vn',copenhagen:'dk',balkans:'dk pl cz sk at hu si rs xk al mk bg','seven continents':'us br aq ie dk vn nz za'},FN=null;
 function fz(s){return(''+s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();}
-/* the flag script's table of country names, built as the flag script builds it. Building it costs about 9 ms (40 ms at a quarter of
-   the speed), almost all in the Intl constructor, so it is built in the first idle moment while the head is still loading, and
-   only built on the spot if the byline arrives first; the flag script builds its own copy later in any case */
+/* the flag script's table of country names, built as the flag script builds it, only when a place is not on its own list. It
+   costs about 9 ms (40 ms at a quarter of the speed), almost all in the Intl constructor, before the first paint; building it in
+   idle time while the head loads was tried and measured no better on slow 4G. The flag script builds its own copy later. */
 function table(){if(FN)return;FN={};for(var k in FA)FN[k]=FA[k];try{var d=new Intl.DisplayNames('en',{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=d.of(c);if(n!=c&&!/^(AN|BU|CS|DD|NH|RH|VD|YD)$/.test(c)&&!FN[fz(n)])FN[fz(n)]=c.toLowerCase();}}catch(e){}}
-if(document.readyState==='loading')setTimeout(table,0);
 function fq(s){s=fz(s);if(Object.prototype.hasOwnProperty.call(FA,s))return FA[s];table();return FN[s]||'';}
 function ff(t){var p=t.split(/,| and | & |\//i),o=[],l=1;p.forEach(function(x){if(!fz(x))return;var c=fq(x);c?c.split(' ').forEach(function(k){o.indexOf(k)<0&&o.push(k);}):l=0;});return l&&o.length?o:(fq(p[p.length-1])||'').split(' ').filter(String);}
 function unflag(){if(FO){FO.disconnect();FO=null;}if(PH&&PH.parentNode)PH.parentNode.removeChild(PH);PH=null;}
