@@ -291,9 +291,16 @@ ST3_EARLY = [
     ' .st3-author-filed:has([data-st3-loc].w-dyn-bind-empty)>span:first-child{display:none}',
     ' .st3-author-filed [data-st3-loc]:not(.w-dyn-bind-empty)+[data-st3-when]:not(.w-dyn-bind-empty)::before{content:"\\00A0\\00B7\\00A0"}',
     ' .st3-author-filed .w-dyn-bind-empty{display:none}']
-st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1.\n'
-             '   Only until that style has been parsed: then this style is taken out, so the template always has the last word. */\n'
-             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY))
+# A2: one site footer rule too. The story's "How this trip was paid for" link sits at the top of the story body and is hidden by the site
+# footer style (tll-foot-v1, parsed after the byline row) until the footer script marks a commissioned story; with no hero photo the body
+# is in view, so the early first paint showed the link and the footer style then pulled the story up 20 px (0.07 on the no-photo story).
+FOOT_SRC = 'src/components/footer/tll-foot-v1.html'
+FOOT_EARLY = ' a[data-tll-commissioned="story"]{display:none}'
+assert 'a[data-tll-commissioned="story"]{display:none;' in read(FOOT_SRC), 'the footer still hides the commissioned link'
+st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1,\n'
+             '   and the footer rule that hides the commissioned link, as in tll-foot-v1. Only until both styles have been parsed: then this\n'
+             '   style is taken out, so the template and the footer always have the last word. */\n'
+             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY + [FOOT_EARLY]))
 OLD_STORY_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n"
 assert mag_js.count(OLD_STORY_RUN) == 1
 NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element follows it), before the first paint, so the photo box (heroR), the figure\n"
@@ -328,19 +335,19 @@ mag_js_early = mag_js.replace(OLD_STORY_RUN, NEW_STORY_RUN, 1)
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
          "/* F1: the style goes in at once, so the story head is styled from the first paint. While the page is parsed it is kept after every style\n"
          "   that arrives (the template's own tll-st3-story-v1 at the end of the body would otherwise win the ties for those frames); once the page\n"
-         "   is parsed it moves to the end of the body, as in v9 to v16. A2: the copied template rules are in ES, a style of their own that stays in\n"
-         "   the head, before the template's style, and is taken out once that style has been parsed whole (an element other than MS follows it) or the page\n"
-         "   is parsed. */\n"
+         "   is parsed it moves to the end of the body, as in v9 to v16. A2: the copied template and footer rules are in ES, a style of their own that\n"
+         "   stays in the head, before both of those styles, and is taken out once both have been parsed whole (an element other than MS follows\n"
+         "   each) or the page is parsed. */\n"
          "var hd=document.head||document.documentElement,ES=null;\n"
          "if(document.readyState==='loading'){ES=document.createElement('style');ES.id='tll-story-st3-early-v1';ES.textContent=%s;hd.appendChild(ES);}\n"
          "var MS=document.createElement('style');MS.id='tll-mag-story-v1';MS.textContent=%s;hd.appendChild(MS);\n"
-         "var so=null,TS=null;function drop(){if(ES&&ES.parentNode)ES.parentNode.removeChild(ES);}\n"
+         "var so=null,TS=null,FS=null;function drop(){if(ES&&ES.parentNode)ES.parentNode.removeChild(ES);}\n"
          "function past(n){for(;n&&n!==document.body;n=n.parentNode){var x=n.nextElementSibling;if(x===MS)x=x.nextElementSibling;if(x)return true;}return false;}\n"
          "function place(){if(so){so.disconnect();so=null;}drop();document.body.appendChild(MS);}\n"
          "if(document.readyState==='loading'){if(window.MutationObserver){so=new MutationObserver(function(ms){var at=null;\n"
-         "  for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];if(n.nodeName==='STYLE'&&n.id==='tll-st3-story-v1')TS=n;\n"
+         "  for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];if(n.nodeName==='STYLE'){if(n.id==='tll-st3-story-v1')TS=n;if(n.id==='tll-foot-v1')FS=n;}\n"
          "    if(n.nodeName==='STYLE'&&n!==MS&&n!==ES&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
-         "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);if(TS&&past(TS))drop();});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
+         "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);if(TS&&FS&&past(TS)&&past(FS))drop();});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
          "  document.addEventListener('DOMContentLoaded',place);}else place();\n"
          "%s})();\n") % (json.dumps(st3_early), json.dumps(mag_css + HOLD_CSS), mag_js_early)
 cov = read(COVER)

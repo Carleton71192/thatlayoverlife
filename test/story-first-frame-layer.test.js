@@ -8,7 +8,9 @@
 // 1. The few template rules the first paint needs (keyed on the template's page id, as heavy as the template's own) are no longer
 //    inside the magazine style, which ends up after the template's style and so won every tie: they are in style#tll-story-st3-early-v1,
 //    which stays in the head and is taken out once the template's style has been parsed. The cascade test below edits two template
-//    values in a fixture and checks that the edited values win on the finished page.
+//    values in a fixture and checks that the edited values win on the finished page. The early style also hides the commissioned
+//    link as the site footer style does (that link pulled a no-photo story up 20 px when the footer style arrived); it is taken out
+//    once both the template style and the footer style have been parsed.
 // 2. Two holds on the hero keep the photo from being pushed by the Receipts line and by the template script's rewrite of the
 //    place-and-date line (both measured in a trace: scratchpad nov14/a2).
 // The layout itself was measured in a real browser (scratchpad nov14/a2); here: the built core, the copied rules against the template,
@@ -178,14 +180,17 @@ describe('story first frame: the built core', () => {
 });
 
 describe('story first frame: the template rules in the early style', () => {
-  const early = earlyText.split('\n').filter((l) => l.startsWith(PAGE));
+  const all = earlyText.split('\n').filter((l) => l.startsWith(PAGE));
+  const FOOT = PAGE + ' a[data-tll-commissioned="story"]{display:none}';
+  const early = all.filter((l) => l !== FOOT);
   it('covers the avatar, the byline row and the meta row, each keyed on the Stories Template page id with no added weight', () => {
     expect(early.length).toBe(15);
+    expect(all.length).toBe(16);
     const sel = early.map((l) => l.slice(0, l.indexOf('{'))).join('\n');
     for (const s of ['.st3-author-avatar', '.st3-author-img', '.st3-author-link', '.st3-author{', '.tll-story-meta-row>:nth-child(5)', '.tll-story-meta-row>:nth-child(6)'])
       expect(sel + '{').toContain(s.replace('{', ''));
     // :where() adds nothing to the weight: no early rule may sit outside it
-    for (const l of early) expect(l.replace(/:where\([^)]*\]\)/g, '')).not.toMatch(/html\[/);
+    for (const l of all) expect(l.replace(/:where\([^)]*\]\)/g, '')).not.toMatch(/html\[/);
     // the early style holds nothing else
     expect(earlyText.split('\n').filter((l) => l && !l.startsWith(PAGE) && !/^\/\*|^ {3}/.test(l))).toEqual([]);
   });
@@ -194,6 +199,13 @@ describe('story first frame: the template rules in the early style', () => {
       const rule = l.split(PAGE + ' ').join('');
       expect(st3).toContain(rule);
     }
+  });
+  it('also hides the commissioned link from the first paint, as the site footer style does, and holds nothing else', () => {
+    expect(all[all.length - 1]).toBe(FOOT);
+    const foot = read('src', 'components', 'footer', 'tll-foot-v1.html');
+    expect(foot).toContain('a[data-tll-commissioned="story"]{display:none;');
+    // a commissioned story still shows it: the footer's own .tll-comm-on rule is heavier than the copy
+    expect(foot).toContain('a[data-tll-commissioned="story"].tll-comm-on{display:inline-flex}');
   });
   it('gives the tokens those rules use the template values', () => {
     const tokens = /\{([^}]*)\}/.exec(early[0])[1].split(';');
@@ -220,9 +232,10 @@ describe('story first frame: the style placement in a stand-in page', () => {
     const tplStyle = p.add(p.body, 'STYLE', { id: 'tll-st3-story-v1' });
     expect(p.order.indexOf(p.MS)).toBe(p.order.indexOf(tplStyle) + 1);
   });
-  it('keeps the early style in the head, before the template style, until that style has been parsed whole, then takes it out', () => {
+  it('keeps the early style in the head, before the template style, until that style and the footer style have been parsed whole, then takes it out', () => {
     const p = load();
     p.add(p.body, 'STYLE'); p.add(p.body, 'DIV');
+    p.add(p.body, 'STYLE', { id: 'tll-foot-v1' }); p.add(p.body, 'DIV');
     expect(p.ES.parentNode).toBe(p.head);
     const tplStyle = p.add(p.body, 'STYLE', { id: 'tll-st3-story-v1' });
     // still being parsed: nothing follows it yet
@@ -230,6 +243,15 @@ describe('story first frame: the style placement in a stand-in page', () => {
     expect(p.order.indexOf(p.ES)).toBeLessThan(p.order.indexOf(tplStyle));
     p.add(p.body, 'SCRIPT');
     expect(p.ES.parentNode).toBe(null);
+    expect(p.order).not.toContain(p.ES);
+  });
+  it('waits for the footer style too when it comes after the template style', () => {
+    const p = load();
+    p.add(p.body, 'STYLE', { id: 'tll-st3-story-v1' }); p.add(p.body, 'DIV');
+    expect(p.ES.parentNode).toBe(p.head);
+    p.add(p.body, 'STYLE', { id: 'tll-foot-v1' });
+    expect(p.ES.parentNode).toBe(p.head);
+    p.add(p.body, 'SCRIPT');
     expect(p.order).not.toContain(p.ES);
   });
   it('takes the early style out when the page is parsed even if the template style never came', () => {
@@ -267,7 +289,7 @@ describe('story first frame: a later template edit wins on the finished page', (
   // the story page as it ends: the core's two styles placed by the built code, the template's own style at the end of the body
   function finished(tplText) {
     const p = load();
-    p.add(p.body, 'DIV');
+    p.add(p.body, 'DIV'); p.add(p.body, 'STYLE', { id: 'tll-foot-v1' }); p.add(p.body, 'DIV');
     const t = p.add(p.body, 'STYLE', { id: 'tll-st3-story-v1', textContent: tplText });
     p.add(p.body, 'SCRIPT');
     p.fire('DOMContentLoaded');
