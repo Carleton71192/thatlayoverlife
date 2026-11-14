@@ -1,0 +1,39 @@
+== home 13 changed lines
+   -function run(){var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}
+   +function has(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/^\s*(\w+) writers? so far\./.test(t.nodeValue))return true;}return false;}
+   +function run(){if(!has())return;var c=0;try{c=+sessionStorage.getItem('tllWriterN')||0;}catch(e){}if(c){apply(c);return;}
+   -<img class="inline-imgraw-0-1-2-3-4-5" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="Azure water and a quiet boat, shot by someone who actually went" decoding="async" sizes="(max-width: 2048px) 100
+   +<img class="inline-imgraw-0-1-2-3-4-5" src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6a115e2be857613f33b48a9d_Curacao.jpg" alt="Azure water and a quiet boat, shot by someone who actually went" decoding="async" sizes="(max-width: 2048px) 100
+   -function fresh(){fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';}).then(function(h){if(!h)return;
+   +function fresh(){(window.tllSelfDoc?window.tllSelfDoc('/stories').catch(function(){return '';}):fetch('/stories',{cache:'no-cache'}).then(function(r){return r.ok?r.text():'';})).then(function(h){if(!h)return;
+   -(function(){var ws=document.querySelectorAll('[data-h3-mag-wrap]');if(!ws.length)return;fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){
+   -var m=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!m)return;var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(n){[].forEach.call(document.querySelectorAll('[data-h3-mag-wrap]'),function(w){w.textContent=' · '+n+(n===1?' place':' pl
+   +(function(){var ws=document.querySelectorAll('[data-h3-mag-wrap]');if(!ws.length)return;(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var 
+   +var m=[0,c];var n=m[1].split(',').filter(function(x){return x.trim();}).length;if(n){[].forEach.call(document.querySelectorAll('[data-h3-mag-wrap]'),function(w){w.textContent=' · '+n+(n===1?' place':' places');w.hidden=false;});}}).catch(function(){});})();
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+== paw 6 changed lines
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+   -fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){
+   -var m=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!m)return;
+   +(window.tllPetCountries?window.tllPetCountries('magnus-waffles'):fetch('/pets/magnus-waffles',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(h){var x=h.match(/window\.TLL_PET=\{countries:"([^"]*)"/);if(!x)throw Error('no list');return x
+   +var m=[0,c];
+== about 5 changed lines
+   -get('/pets/magnus-waffles').then(function(d){
+   +(window.tllPetCountries?window.tllPetCountries('magnus-waffles').then(function(c){return [0,JSON.stringify(c)];}):get('/pets/magnus-waffles').then(function(d){
+   +return match;})).then(function(match){
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+== stories 2 changed lines
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+== story 2 changed lines
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+== profile 2 changed lines
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">
+== pet 2 changed lines
+   -<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.370eb798fd9b1ff6.js" type="text/javascript" integrity="sha384-t87W7EHQ9tAgrrBcKHzP754RIwl5V5o4rgS+iDcmRu+8QpBLA7dxnH/FDGic8dc5" crossorigin="anonymous">
+   +<script src="https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/js/webflow.schunk.4eadd5ed11403fbe.js" type="text/javascript" integrity="sha384-IW7g+J10Hto8KQYblbtsf/u6TO0lvtmtdFhkP0HO+AgUmcqZWoeZz36HDaJDt0KA" crossorigin="anonymous">

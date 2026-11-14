@@ -1,0 +1,39 @@
+Behavior check of the 14 Nov 2026 07:34:04 UTC test-site publish (core 16.64.0, pin 6ec769bb) against www (core 16.63.0, pin 1f2e549a).
+Independent checker, read only: no Webflow writes, no publish. Checked 14 Nov 2026 07:37 to about 08:30 UTC.
+
+Method
+- One plain GET per page per host at 07:37 UTC (home, /the-paw-passport, /about, /stories, one story, one traveler profile, the pet page,
+  the sitemap). Test pages carry pin 6ec769bb and tllfactsv1-1.1.0; www pages carry pin 1f2e549a and tllfactsv1-1.0.0.
+- html-diff.txt: www vs test HTML with host names, pin, SRI, stamp and the tllfactsv1 URL normalized. The only other differences are
+  the E1, E4, E5 and hero edits on home, E2 on /the-paw-passport, E3 on /about, and Webflow's own runtime chunk
+  (webflow.schunk.370eb798 to 4eadd5ed, a normal publish artifact). Story, /stories, profile and pet page differ only in that chunk.
+- Chromium (Playwright). W = www HTML at the www address, T = test HTML at the www address (hosts swapped as a www publish writes them),
+  Tt = test HTML at the test address (sanity). 390x844 (DPR 3, mobile) and 1440x900. Every non-GET aborted. Same-origin page fetches
+  served from the snapshots. Webflow hosts and jsDelivr served from local caches; a miss fetched once. Memberstack served patched
+  (no hiding on a failed app fetch), not held. Layout shift = buffered PerformanceObserver total over 6 s after load.
+- Bandwidth: 77 Webflow files fetched once each (13.4 MB, no URL twice), jsDelivr 55 files (0.9 MB), 16 HTML GETs (about 2.9 MB).
+
+Results (summary.json has every run)
+1 Errors: no page errors and no failed script loads on any page in W, T or Tt. The only console errors are from aborted non-GETs
+  (Memberstack app fetch, ERR_FAILED) and the ad hosts the proxy blocks, the same on both sides.
+2 Core: every T and Tt load runs pin 6ec769bb (SRI accepted; window.tllSelfDoc and tllPetCountries present). W runs 1f2e549a.
+3 Value section ("The trip deck." with Sacramento): T at 390 sits after the library (library top 1265, section top 2168, class
+  tll-val-low), at 1440 right under the cover (top 869). www today has it under the cover at both widths with the older lines.
+4 Library rail at 390 (height before and after the /stories redraw): T 610 to 610 in 6 of 6 loads (3 fresh, 3 restored to 2,500 px);
+  www 610 to 564 in 4 of 6. Layout shift at 390: fresh 0.0034 both; restored 0 on T vs 0.015 to 0.022 on www.
+  At 1440 the rail goes 706 to 648 on both (the shelf is pinned there and the hold is phone only, by design); restored at 2,500 px
+  both show 0.041 in most runs from the shelf head moving. Pre-existing, same on www.
+5 Story hero (hero photo held 1.5 s): T reserves the box (aspect-ratio auto 1440/1920 set from the table); layout shift 390:
+  0.00 and 0.039 vs 0.63 and 0.66 on www; 1440: 0.014 vs 0.42. Final hero box and page equal on both.
+  Fresh loads with the photo instant from cache: medians 0.040 W and 0.043 T. A pre-existing race in the story restyle (one frame
+  painted before the magazine layout, about 0.32) appears on both: W 4 of 21 loads, T 8 of 21 (not a significant difference;
+  same frames, same size). Worth a later fix, not caused by this release.
+6 Numbers: footer "54 countries in our stories, 57 stories, 6 travelers, 1 pet" on every page both sides; Magnus on home
+  "15 places" twice, on /the-paw-passport 15 in all four places; /about "89 plus Antarctica, 160 of the 250 places",
+  "He has crossed into 15 countries.", "89 + Antarctica, 3 layovers beside". Same on www. No NaN, undefined or placeholders.
+7 Hero image on home with JavaScript on: no Curacao request on T or Tt at 390 or 1440 (www requests Curacao-p-1600.jpg every load).
+  With JavaScript off the Curacao photo still loads on T, as on www.
+8 Same-origin page downloads per view drop as planned: home pet page 2 to 1 and sitemap 3 to 2; /the-paw-passport and /about pet
+  page 2 to 1; story and profile pet page 1 to 0. Profile shows one Webflow image fewer.
+Other pages (/the-paw-passport, /about, /stories, profile) at 390 and 1440: layout shift within the same ranges as www.
+Verdict: pass with notes. Nothing found that would make the www publish worse for visitors than today's www.
