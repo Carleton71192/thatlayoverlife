@@ -31,7 +31,10 @@ Same day: tll-self-data-v1 (bandwidth fixes 4 and 5) and tll-library-hold-v1 (th
 14 Nov 2026 (the story first-frame jump at 390, reports/evidence/story-first-frame-2026-11-14/): the story layer gets F1 (its style in
 the head at once, the magazine moves run as soon as the byline row has arrived). A2: the copied template rules sit in their own head style,
 taken out once the template's style is parsed, so later template edits win; two holds keep the photo still for the Receipts line and the
-template script's place-and-date rewrite."""
+template script's place-and-date rewrite. A3 (same day, the 16.65.0 checks): the template script's place-and-date words, its country link
+box and the site flag script's flags are laid out before the first paint, so the page-parsed rewrites no longer move the painted head.
+A4 (same day, the A3 checks): a static country table (region-names-v1.json), a flag stand-in made of img elements and put in as soon as
+the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -297,10 +300,40 @@ ST3_EARLY = [
 FOOT_SRC = 'src/components/footer/tll-foot-v1.html'
 FOOT_EARLY = ' a[data-tll-commissioned="story"]{display:none}'
 assert 'a[data-tll-commissioned="story"]{display:none;' in read(FOOT_SRC), 'the footer still hides the commissioned link'
+# A3: two more template rules. The template's tll-st3-r1-v1 style (parsed in the body, after the first paint) hides the first place pill
+# of the meta row (the place shows once, in the breadcrumb) and the arrow left in front of the hidden title crumb. Either made the head
+# lose a line once that style arrived, pulling the headline, byline and photo up 17 to 33 px (0.01 to 0.02 on the Croatia and Southern
+# Africa stories at 360 and 390). The same rules, keyed the same way, in the early style.
+R1_SRC = 'src/pages/story/after-2026-10-20/embed-3074c26c-after.html'
+R1_RULES = ['[data-tll-breadcrumb] span:has(+ [data-tll-crumb="title"]){display:none !important}',
+            '.tll-story-meta-row > .tll-story-byline-loc:first-child,.tll-story-meta-row > .tll-story-byline-loc:first-child + .tll-story-meta-divider{display:none !important}']
+for r in R1_RULES: assert r in read(R1_SRC), 'the template rule changed: ' + r[:60]
+R1_EARLY = [' ' + r.replace(',', ',@P@ ') for r in R1_RULES]
+# A4: the route strip under the hero. Until the template's style arrives (at the end of the body) the strip is laid out by Webflow's own
+# classes, 11 px taller at phone widths (26 px stop line, no ROUTE label); when the style arrives the strip shrinks and the story body under
+# it moves up (0.037 on the Phuket story at 412 whenever a frame was painted in between, on A2 too). The template's route rules, keyed
+# the same way, with the tokens they read, in the early style. The live template style is the 13 Nov snapshot below (the same bytes as
+# the style in the story pages saved for the A3 checks).
+ST3_SRC = 'src/pages/stories-template/live-2026-11-13/fonts/page-footer.after.html'
+ROUTE_RULES = ['[data-tll-route]{background:var(--st3-ink-2) !important;border-bottom:1px solid #1a1d35;display:flex !important;align-items:center;flex-wrap:wrap;gap:6px 10px;padding:11px max(var(--st3-pad),calc((100% - var(--st3-col)) / 2)) !important;color:var(--st3-cream)}',
+               '[data-tll-route]::before{content:"Route";font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-slate)}',
+               '[data-tll-route] [data-tll-route-stops]{font:600 11px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-cream)}',
+               '[data-tll-route] .tll-route-arrow{color:var(--st3-teal) !important;margin:0 10px !important}',
+               '[data-tll-route] [data-tll-route-note]{margin-left:auto;font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-teal)}',
+               '[data-tll-route] [data-tll-route-note].w-dyn-bind-empty{display:none}']
+ROUTE_PHONE = ['[data-tll-route]{padding:11px 16px !important}', '[data-tll-route] [data-tll-route-note]{margin-left:0;flex-basis:100%}']
+ROUTE_TOKENS = ['--st3-ink-2:#12141F', '--st3-cream:#F7F1E8', '--st3-teal:#00C9C8', '--st3-slate:#9496AC', '--st3-col:680px', '--st3-pad:28px']
+ST3_LIVE = read(ST3_SRC)
+for r in ROUTE_RULES + ROUTE_TOKENS: assert r in ST3_LIVE, 'the template route rule changed: ' + r[:60]
+assert '@media(max-width:767px){' + ''.join(ROUTE_PHONE) + '}' in ST3_LIVE, 'the template route rules for phones changed'
+ROUTE_EARLY = ['{' + ';'.join(ROUTE_TOKENS) + '}'] + [' ' + r for r in ROUTE_RULES]
 st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1,\n'
              '   and the footer rule that hides the commissioned link, as in tll-foot-v1. Only until both styles have been parsed: then this\n'
-             '   style is taken out, so the template and the footer always have the last word. */\n'
-             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY + [FOOT_EARLY]))
+             '   style is taken out, so the template and the footer always have the last word. A3: and the two template rules that hide the\n'
+             '   arrow before the hidden title crumb and the first place pill of the meta row, as in tll-st3-r1-v1. A4: and the template\'s route\n'
+             '   strip rules, as in tll-st3-story-v1. */\n'
+             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY + [FOOT_EARLY] + R1_EARLY + ROUTE_EARLY)
+             + '@media(max-width:767px){' + ''.join(ST3_PAGE + ' ' + r for r in ROUTE_PHONE) + '}\n')
 OLD_STORY_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n"
 assert mag_js.count(OLD_STORY_RUN) == 1
 NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element follows it), before the first paint, so the photo box (heroR), the figure\n"
@@ -312,30 +345,188 @@ NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element
                  "   the place-and-date line to its first line, invisible, until the template's own script (tll-st3-story-js-v1, which shortens that\n"
                  "   line to {place} and {Month Year} when the page is parsed) has run: its page-parsed listener is added once that script has been\n"
                  "   parsed, so it runs after the template's. The styles for both holds are at the end of the story style; neither changes the\n"
-                 "   finished page. */\n"
-                 "(function(){if(document.readyState!=='loading'){run();return;}var mo=null,ran=0,rd=0,hd=0;\n"
+                 "   finished page.\n"
+                 "   A3 (same day, the 16.65.0 checks): the place-and-date line is no longer clamped. PF.pre() writes the template's own words into it\n"
+                 "   at once, and data-tll-mg-wait-d now gives the country crumb the box of the link the template makes of it (see PF above).\n"
+                 "   A4 (same day, the A3 checks): data-tll-mg-wait-r goes on as soon as the hero has been parsed, and it now also keeps everything\n"
+                 "   after the hero in the story (the route strip, the story body) invisible, so a frame painted before the Receipts block has been\n"
+                 "   parsed shows no content that the Receipts line, or the byline moving into the head, could push down; the head (crumbs,\n"
+                 "   headline) is painted as before. It is let go when the Receipts block is in, when that block has arrived with no byline row\n"
+                 "   before it, or when the page is parsed. The flag stand-in goes in as soon as the country crumb has been parsed. */\n"
+                 "(function(){if(document.readyState!=='loading'){run();return;}var mo=null,ran=0,rd=0,hd=0,sh=0,cr=0;\n"
                  "/* A2: an element counts as arrived whole once an element follows it or one of its ancestors, below the body's own children (scripts\n"
                  "   add nodes to the end of the body while it is parsed, such as a consent iframe, which once made a half-parsed Receipts block count\n"
                  "   as whole on slow 4G), and never because of the story style, which is moved after each style as it arrives. */\n"
                  "function whole(n){for(;n&&n.parentNode&&n.parentNode!==document.body;n=n.parentNode){var x=n.nextElementSibling;if(x===MS)x=x.nextElementSibling;if(x)return true;}return false;}\n"
                  "function hold(k,on){var h=document.querySelector('.tll-story-hero');if(!h)return;if(on)h.setAttribute('data-tll-mg-wait-'+k,'');else h.removeAttribute('data-tll-mg-wait-'+k);}\n"
                  "function late(){var c=document.querySelector('.tll-story-hero .tll-story-hero-content'),a=c&&c.querySelector('.st3-author');if(a)rcpt(c,a);rd=1;hold('r',0);}\n"
-                 "function after(){hold('d',0);}\n"
-                 "function stop(){if(mo){mo.disconnect();mo=null;}}\n"
+                 "function after(){hold('d',0);PF.done();}\n"
+                 "/* A4: an error thrown by the template script while it is parsed means it never adds its page-parsed handler: let go at once.\n"
+                 "   Repair round (15 Nov): only if the script had not yet added that handler (a throw after it, at the end of the script, still\n"
+                 "   leaves the handler to write the words at DOMContentLoaded, so the hold stays until then). While the page is parsed,\n"
+                 "   document.addEventListener notes a DOMContentLoaded listener added by that script; it is put back once the script is in. */\n"
+                 "var tdl=0,oal=Object.prototype.hasOwnProperty.call(document,'addEventListener')?document.addEventListener:null,dal=document.addEventListener;\n"
+                 "function wal(ty){var s=document.currentScript;if(ty==='DOMContentLoaded'&&s&&s.id==='tll-st3-story-js-v1')tdl=1;return dal.apply(this,arguments);}\n"
+                 "function unwal(){if(document.addEventListener!==wal)return;if(oal)document.addEventListener=oal;else delete document.addEventListener;}\n"
+                 "try{document.addEventListener=wal;}catch(e){}\n"
+                 "function terr(){var s=document.currentScript;if(s&&s.id==='tll-st3-story-js-v1'&&!tdl)after();}\n"
+                 "function stop(){if(mo){mo.disconnect();mo=null;}window.removeEventListener('error',terr);unwal();}\n"
+                 "window.addEventListener('error',terr);\n"
                  "if(window.MutationObserver){mo=new MutationObserver(function(){var led=document.querySelector('[data-tll-ledger=\"story\"]');\n"
-                 "  if(!ran){if(!whole(document.querySelector('.st3-author'))||(led&&!whole(led)))return;run();ran=1;\n"
-                 "    var c=document.querySelector('.tll-story-hero .tll-story-hero-content');if(c&&c.querySelector('.st3-author')){hold('d',1);hold('r',1);}}\n"
+                 "  if(!sh&&document.querySelector('.tll-story-hero')){sh=1;hold('r',1);}\n"
+                 "  if(!cr){var C=document.querySelector('[data-tll-crumb=\"country\"]');if(C&&whole(C)){cr=1;PF.crumb(C);}}\n"
+                 "  if(!ran){var au=document.querySelector('.st3-author');if(!au&&!rd&&led&&whole(led)){rd=1;hold('r',0);}\n"
+                 "    if(!whole(au)||(led&&!whole(led)))return;run();ran=1;\n"
+                 "    var c=document.querySelector('.tll-story-hero .tll-story-hero-content');if(c&&c.querySelector('.st3-author'))PF.pre();else if(!rd){rd=1;hold('r',0);}}\n"
                  "  if(!rd&&led&&whole(led))late();\n"
-                 "  var hs=document.getElementById('tll-st3-story-js-v1');if(!hd&&hs&&whole(hs)){hd=1;document.addEventListener('DOMContentLoaded',after);}\n"
+                 "  var hs=document.getElementById('tll-st3-story-js-v1');if(!hd&&hs&&whole(hs)){hd=1;unwal();document.addEventListener('DOMContentLoaded',after);}\n"
                  "  if(rd&&hd)stop();});\n"
                  "  mo.observe(document.documentElement,{childList:true,subtree:true});}\n"
-                 "document.addEventListener('DOMContentLoaded',function(){stop();run();late();if(!hd)after();});})();\n")
+                 "document.addEventListener('DOMContentLoaded',function(){stop();run();late();if(!hd)after();PF.end();});})();\n")
 # the two holds (A2): matched only while the hero carries the attribute, so the finished page is unchanged
-HOLD_CSS = ('/* F1 holds (A2, 14 Nov 2026), set and cleared by the early run: nothing matches once the page is parsed */\n'
+HOLD_CSS = ('/* F1 holds (A2, 14 Nov 2026), set and cleared by the early run: nothing matches once the page is parsed. A3: wait-d gives the\n'
+            '   country crumb the box of the link the template script makes of it (as the magazine rule for the crumb links); the flag stand-in\n'
+            '   shows its count as generated text. A4: wait-r also keeps the photo before it moves into its figure and the story after the hero\n'
+            '   (the route strip, the body; never the nav, which comes before the hero, or the footer, which is outside the story) invisible */\n'
             '.tll-story-hero[data-tll-mg-wait-r] .tll-mg-fig,.tll-story-hero[data-tll-mg-wait-r] .tll-story-hero-content>.tll-mg-stamp{visibility:hidden}\n'
-            '.tll-story-hero[data-tll-mg-wait-d] .tll-story-hero-content .st3-author-filed{display:-webkit-box !important;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden;visibility:hidden}\n')
+            '.tll-story-hero[data-tll-mg-wait-r] .tll-story-hero-img,.tll-story-hero[data-tll-mg-wait-r]~*{visibility:hidden}\n'
+            '.tll-story-hero[data-tll-mg-wait-d] [data-tll-breadcrumb] div[data-tll-crumb="country"]{display:inline-flex;align-items:center;min-height:44px}\n'
+            '.tll-story-hero [data-tll-mg-flags]>[data-t]::after{content:attr(data-t)}\n')
+# A3 (14 Nov 2026, reports/evidence/release-16.65.0-check/): what the page-parsed scripts do to the story head, laid out before the first paint.
+# The template script (tll-st3-story-js-v1, src/pages/story/after-2026-10-20/embed-3074c26c-after.html) rewrites the place-and-date line
+# ({place} from the story's byline location, {Month Year}) and turns the country crumb into a link (inline-flex, 44 px tall in the
+# magazine style); the site flag script (tllflagsv53, a Webflow page script, src/site-layers/tllflagsv53.js) puts up to four 22 px flags
+# and "+N countries" in front of the crumb. At 320 to 412 px either can push the crumb onto a second row, and the painted headline, byline,
+# Receipts line and photo moved down 26 to 38 px (0.15 on the Balkans story at 360). PF.pre() runs right after the early run:
+#   - it writes the template's own words into the place-and-date line (the template writes the same words again, so nothing moves),
+#     and puts the old words back after the template's page-parsed handler if that handler never did its part (the script threw);
+#   - when the template will make the crumb a link, data-tll-mg-wait-d on the hero gives the crumb the link's box until that handler has run;
+#   - when the flag script will draw flags, an empty stand-in of the same size (no text of its own, so neither script reads it) sits in
+#     front of the crumb text until the real flags are in, in the same step; if no flag script is on the page, or none drew by the
+#     first task after DOMContentLoaded, it is taken out.
+# The country list and the reading of a place are the flag script's own (FLAGS_A below is read from src/site-layers/tllflagsv53.js).
+FLAGS = read('src/site-layers/tllflagsv53.js')
+for frag in ["function f(t){var p=t.split(/,| and | & |\\//i),o=[],l=1;p.forEach(function(x){if(!z(x))return;var c=q(x);c?c.split(' ').forEach(function(k){o.indexOf(k)<0&&o.push(k)}):l=0});return l&&o.length?o:(q(p[p.length-1])||'').split(' ').filter(String)}",
+             "function z(s){return(''+s).normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\\s+/g,' ').trim()}",
+             "if(!N){N=A;try{var d=new Intl.DisplayNames('en',{type:'region'});for(var a=65;a<91;a++)for(var b=65;b<91;b++){var c=String.fromCharCode(a,b),n=d.of(c);if(n!=c&&!/^(AN|BU|CS|DD|NH|RH|VD|YD)$/.test(c)&&!N[z(n)])N[z(n)]=c.toLowerCase()}}catch(e){}}return N[s]||''",
+             "D.querySelectorAll('.tll-lib-meta,.tll-story-byline-loc,[data-tll-crumb=country]')",
+             "var c=e.__f?[]:f(e.textContent);if(!c.length)return;",
+             "w.style.cssText='display:inline-flex;vertical-align:-6px;margin-right:6px';c.slice(0,4).forEach(function(k,j){",
+             "i.style.cssText='width:22px;height:22px;border-radius:50%;margin-left:'+(j?-7:0)+'px';w.appendChild(i)});if(c[4]){var n=c.length-4;w.append('\\xa0+'+n+' countr'+(n>1?'ies':'y'))}e.insertBefore(w,e.firstChild)",
+             "D.readyState[0]=='l'?D.addEventListener('DOMContentLoaded',R):R()"]:
+    assert frag in FLAGS, 'the flag script changed; check PF against it: ' + frag[:60]
+FLAGS_A = re.search(r"A=(\{[^{}]*\})", FLAGS).group(1)
+# A4 (14 Nov 2026, the A3 checks in reports/evidence/story-a3-judge/): the flag script's table of country names as a static copy. A3 built
+# it with Intl.DisplayNames before the first paint whenever a place was not on the flag script's own list (about 9 ms, 40 ms at a quarter
+# of the CPU speed), and that extra work let the browser paint a frame before the Receipts block had been parsed (the route strip and the
+# story body then moved when the Receipts line went in) and made the first paint later on slow phones. The names come from
+# src/site-layers/region-names-v1.json (written by build-region-names-v1.cjs in Chromium); the table is built from them here by the flag
+# script's own rules: its list first, then each code in order unless retired or its name is already taken, names read through its z().
+import unicodedata
+def flag_z(t):
+    t = re.sub('[\u0300-\u036f]', '', unicodedata.normalize('NFD', t)).lower()
+    return re.sub(r'\s+', ' ', re.sub('[^a-z ]+', ' ', t)).strip()
+FLAGS_KEYS = [a or b for a, b in re.findall(r"(?:'([^']+)'|([a-z]+)):'[a-z ]+'", FLAGS_A)]
+assert len(FLAGS_KEYS) == FLAGS_A.count(':') and 'balkans' in FLAGS_KEYS, 'the flag script list reads as expected'
+REGION = json.loads(read('src/site-layers/region-names-v1.json'))['names']
+assert len(REGION) > 240 and ['VN', 'Vietnam'] in REGION, 'region names file'
+REGION_N = {}
+for c, n in REGION:
+    k = flag_z(n)
+    if c != n and not re.match(r'^(AN|BU|CS|DD|NH|RH|VD|YD)$', c) and k not in FLAGS_KEYS and k not in REGION_N: REGION_N[k] = c.lower()
+assert all('|' not in k for k in REGION_N)
+FLAGS_T = '|'.join(c + k for k, c in REGION_N.items())
+TPL_JS = read('src/pages/story/after-2026-10-20/embed-3074c26c-after.html')
+for frag in ["function tc(s){return /[a-z]/.test(s)?s:s.toLowerCase().replace(/(^|[\\s,(\\/-])(\\S)/g,function(m,a,b){return a+b.toUpperCase();});}",
+             "function place(){var L=q('[data-st3-loc]');if(!L||L.dataset.st3Place)return;L.dataset.st3Place='1';",
+             "var where=by?tc(by):cn;if(where){L.textContent=where;L.classList.remove('w-dyn-bind-empty');}",
+             "var C=q('[data-tll-crumb=\"country\"]');if(C&&okSlug(cs)&&C.tagName!=='A'){var a=document.createElement('a');",
+             "function author(){var A=q('[data-st3-author]');if(!A||A.dataset.st3Done)return;A.dataset.st3Done='1';",
+             "var mo=t.match(/(January|February|March|April|May|June|July|August|September|October|November|December)/i),y=t.match(/\\b(19|20)\\d{2}\\b/);",
+             "if(mo&&y){w.textContent=mo[1].charAt(0).toUpperCase()+mo[1].slice(1).toLowerCase()+' '+y[0];return;}",
+             "function run(){links();author();place();"]:
+    assert frag in TPL_JS, 'the template script changed; check PF against it: ' + frag[:60]
+CRUMB_A = '.tll-story-hero [data-tll-breadcrumb] a{display:inline-flex;align-items:center;min-height:44px;'
+assert CRUMB_A in mag_css, 'the magazine style still sizes the crumb links'
+PF_SRC = ("/* A3 (14 Nov 2026): the template script's place-and-date words, the box of its country link and the site flag script's flags, laid out\n"
+          "   before the first paint (see the build script). Each piece mirrors the page script it stands in for and is let go after it.\n"
+          "   A4 (same day): the country names come from a static table (no Intl work before the first paint), the stand-in is made of the\n"
+          "   flag script's own elements (so it shrinks as the real flags do) and goes in as soon as the country crumb is parsed. */\n"
+          "var PF=(function(){var P=null,W=null,AU=null,PH=null,FO=null;\n"
+          "function tc(s){return /[a-z]/.test(s)?s:s.toLowerCase().replace(/(^|[\\s,(\\/-])(\\S)/g,function(m,a,b){return a+b.toUpperCase();});}\n"
+          "var FA=%s,FS=%s,FT=null,OWN=Object.prototype.hasOwnProperty;\n"
+          "function fz(s){return(''+s).normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z ]+/g,' ').replace(/\\s+/g,' ').trim();}\n"
+          "/* the flag script's table of country names: its own list, then the static copy of the names it reads from Intl.DisplayNames (FS,\n"
+          "   code and name, built from region-names-v1.json by the flag script's rules); a browser with no Intl.DisplayNames gets the list only,\n"
+          "   as the flag script does there */\n"
+          "function fq(s){s=fz(s);if(OWN.call(FA,s))return FA[s];if(typeof Intl!='object'||!Intl.DisplayNames)return '';\n"
+          "  if(!FT){FT={};for(var l=FS.split('|'),i=0;i<l.length;i++)FT[l[i].slice(2)]=l[i].slice(0,2);}return OWN.call(FT,s)?FT[s]:'';}\n"
+          "function ff(t){var p=t.split(/,| and | & |\\//i),o=[],l=1;p.forEach(function(x){if(!fz(x))return;var c=fq(x);c?c.split(' ').forEach(function(k){o.indexOf(k)<0&&o.push(k);}):l=0;});return l&&o.length?o:(fq(p[p.length-1])||'').split(' ').filter(String);}\n"
+          "function unflag(){if(FO){FO.disconnect();FO=null;}if(PH&&PH.parentNode)PH.parentNode.removeChild(PH);PH=null;}\n"
+          "/* the stand-in: the flag script's box (a span), the flag script's own img elements and inline style with no source (so the site's\n"
+          "   img rules size them exactly as they size the real flags; loading set, so the page's lazy-image pass skips them), the count as\n"
+          "   generated text. It goes in the same step as the real flags arrive in front of it, or with the crumb when the template swaps it */\n"
+          "function flag(C,n){var w=document.createElement('span');w.setAttribute('data-tll-mg-flags','');w.setAttribute('aria-hidden','true');w.style.cssText='display:inline-flex;vertical-align:-6px;margin-right:6px';\n"
+          "  for(var j=0;j<n&&j<4;j++){var i=document.createElement('img');i.alt='';i.setAttribute('loading','lazy');i.style.cssText='width:22px;height:22px;border-radius:50%%;margin-left:'+(j?-7:0)+'px';w.appendChild(i);}\n"
+          "  if(n>4){var x=document.createElement('span');x.style.cssText='display:block;margin:0;padding:0;border:0';x.setAttribute('data-t','\\u00a0+'+(n-4)+' countr'+(n-4>1?'ies':'y'));w.appendChild(x);}\n"
+          "  C.insertBefore(w,C.firstChild);PH=w;\n"
+          "  if(window.MutationObserver&&C.parentNode){FO=new MutationObserver(function(){if(!PH||!PH.parentNode){unflag();return;}\n"
+          "    for(var k=PH.parentNode.firstChild;k;k=k.nextSibling)if(k!==PH&&k.nodeType===1&&k.querySelector&&k.querySelector('img')){unflag();return;}});\n"
+          "    FO.observe(C.parentNode,{childList:true,subtree:true});}}\n"
+          "/* as soon as the country crumb has been parsed (A4): the stand-in from the crumb's own text */\n"
+          "function crumb(C){try{if(PH||!C.closest||!C.closest('.tll-story-hero'))return;var ct=C.textContent.trim(),k=ct?ff(ct):[];if(k.length)flag(C,k.length);}catch(e){}}\n"
+          "function pre(){var h=document.querySelector('.tll-story-hero');if(!h)return;\n"
+          "  var L=document.querySelector('[data-st3-loc]'),C=document.querySelector('[data-tll-crumb=\"country\"]'),link=false,cn='';AU=document.querySelector('[data-st3-author]');\n"
+          "  try{if(L&&!L.dataset.st3Place){var by=(L.getAttribute('data-st3-byline')||'').trim(),wh;cn=(L.getAttribute('data-st3-country-name')||'').trim();wh=by?tc(by):cn;\n"
+          "      link=!!(C&&C.tagName!=='A'&&/^[a-z0-9-]+$/.test((L.getAttribute('data-st3-country')||'').trim()));\n"
+          "      if(wh&&L.textContent!==wh){P=[L,L.textContent,L.getAttribute('class')];L.textContent=wh;L.classList.remove('w-dyn-bind-empty');}}\n"
+          "    var w=AU&&!AU.dataset.st3Done&&AU.querySelector('[data-st3-when]'),t=w&&!w.classList.contains('w-dyn-bind-empty')?w.textContent.trim():'';\n"
+          "    if(t){var mo=t.match(/(January|February|March|April|May|June|July|August|September|October|November|December)/i),y=t.match(/\\b(19|20)\\d{2}\\b/);\n"
+          "      if(mo&&y){var nt=mo[1].charAt(0).toUpperCase()+mo[1].slice(1).toLowerCase()+' '+y[0];if(nt!==w.textContent){W=[w,w.textContent];w.textContent=nt;}}}\n"
+          "    if(C&&h.contains(C)){if(link)h.setAttribute('data-tll-mg-wait-d','');if(!PH){var ct=C.textContent.trim()||(link?cn:''),k=ct?ff(ct):[];if(k.length)flag(C,k.length);}}\n"
+          "  }catch(e){}}\n"
+          "/* after the template's page-parsed handler: its words stay; if it never wrote them (it threw), the old words come back. A4: also\n"
+          "   at once when the template script itself throws while it is parsed (it then adds no handler), while the photo and the story\n"
+          "   below the head are still held */\n"
+          "function done(){if(P&&!P[0].dataset.st3Place){P[0].textContent=P[1];if(P[2]===null)P[0].removeAttribute('class');else P[0].setAttribute('class',P[2]);}if(W&&!(AU&&AU.dataset.st3Done))W[0].textContent=W[1];P=W=null;}\n"
+          "/* when the page is parsed: with no flag script on the page now, else at the latest in the next task. Repair round (15 Nov): if a real\n"
+          "   flag is in front of the stand-in it goes; if none came (the flag script failed or found no country), the stand-in stays as an\n"
+          "   empty box, hidden, so the crumb does not lose a line under a painted head (if flags still come later, it goes then). A stand-in\n"
+          "   that went out of the page with the old crumb (the template made the crumb a link) is let go as before */\n"
+          "function keep(){if(!PH)return;var C=PH.parentNode;if(!C||[].indexOf.call(document.querySelectorAll('[data-tll-mg-flags]'),PH)<0){unflag();return;}\n"
+          "  for(var k=C.firstChild;k;k=k.nextSibling)if(k!==PH&&k.nodeType===1&&k.querySelector&&k.querySelector('img')){unflag();return;}\n"
+          "  PH.style.visibility='hidden';}\n"
+          "function end(){if(!PH)return;if(!document.querySelector('script[src*=\"tllflags\"]'))keep();else setTimeout(keep,0);}\n"
+          "return {crumb:crumb,pre:pre,done:done,end:end};})();\n") % (FLAGS_A, json.dumps(FLAGS_T))
+NEW_STORY_RUN = PF_SRC + NEW_STORY_RUN
 mag_js_early = mag_js.replace(OLD_STORY_RUN, NEW_STORY_RUN, 1)
+# A4 (14 Nov 2026): the story layer's comments stay here and in its sources and are left out of the download, as every other layer's
+# header comment is. A2 and A3 had brought about 9 KB of comments into the core; on the lab's slow 4G model (one 1.6 Mbit/s pipe, the
+# core not compressed) every 5 KB costs about 25 ms of first paint. A comment is cut only where it starts outside a string on its line
+# (an even number of each quote mark before it on its line); a test checks that the code is the same token for token.
+def uncomment(t):
+    out, i = [], 0
+    for m in re.finditer(r'/\*.*?\*/', t, re.S):
+        if m.start() < i: continue
+        line = t[t.rfind('\n', 0, m.start()) + 1:m.start()]
+        if any(line.count(q) % 2 for q in '\'"`'): continue
+        if m.group(0) == '/*HERO*/': continue  # the hero table marker (build-hero-ratios-v1.py and its test look for it)
+        assert m.group(0).startswith('/* '), 'unexpected comment form: ' + m.group(0)[:40]
+        out.append(t[i:m.start()]); i = m.end()
+        if t[i:i + 1] == '\n' and (not out[-1] or out[-1].endswith('\n')): i += 1
+    out.append(t[i:])
+    return ''.join(out)
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
+         "/* Repair round (15 Nov 2026, the A4 checks): on a reload or a back or forward load the browser puts the reader back where they were.\n"
+         "   It does that as soon as the page is tall enough, by the element that was at the top of the view, and again when the page has\n"
+         "   loaded, by the scroll position, unless the first one still holds. With the head laid out from the first paint, the first one\n"
+         "   held more often, and content above the view that changed size later then left the page a few pixels off (3 px on the Balkans\n"
+         "   story at 390, 2,503 instead of 2,500). At the load event a scroll of one pixel and back (no frame in between, so nothing moves on\n"
+         "   the screen) lets the browser's own restore at the end of loading put the page exactly where it was, as it does for the page\n"
+         "   without this layer. Nothing is done when the page manages its own scroll restoration. */\n"
+         "try{var NV=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];\n"
+         "  if(NV&&(NV.type==='reload'||NV.type==='back_forward')&&history.scrollRestoration!=='manual'&&document.readyState!=='complete')\n"
+         "    window.addEventListener('load',function(){var x=window.scrollX,y=window.scrollY;if(y>=1){window.scrollTo(x,y-1);window.scrollTo(x,y);}});}catch(e){}\n"
          "/* F1: the style goes in at once, so the story head is styled from the first paint. While the page is parsed it is kept after every style\n"
          "   that arrives (the template's own tll-st3-story-v1 at the end of the body would otherwise win the ties for those frames); once the page\n"
          "   is parsed it moves to the end of the body, as in v9 to v16. A2: the copied template and footer rules are in ES, a style of their own that\n"
@@ -353,7 +544,8 @@ story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))ret
          "    if(n.nodeName==='STYLE'&&n!==MS&&n!==ES&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
          "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);if(TS&&FS&&past(TS)&&past(FS))drop();});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
          "  document.addEventListener('DOMContentLoaded',place);}else place();\n"
-         "%s})();\n") % (json.dumps(st3_early), json.dumps(mag_css + HOLD_CSS), mag_js_early)
+         "%s})();\n") % (json.dumps(uncomment(st3_early)), json.dumps(uncomment(mag_css + HOLD_CSS)), uncomment(mag_js_early))
+story = uncomment(story)
 cov = read(COVER)
 cov_css = fallbacks(re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1))
 cov_js = fallbacks(re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1))
