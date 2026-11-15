@@ -77,8 +77,8 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 
 ## Decisions waiting (answer when you have time)
 
-**Story page jump on phones: A2 found a regression, A3 failed its check, A4 in progress (from your phone)**
-Core 16.65.0 (A2) is on that-layover-life.webflow.io since 19:29 UTC; www and thatlayover.life still run 16.64.0. A2 made the Balkans story worse on narrow phones (0.15 against 0.02 on www). A3 fixed that, but one of two checks failed it: across 9 stories it moved other stories (Vietnam, Phuket, Lisbon) a little more than A2, and the cause was found. A4 is being built from both checks, with one repair round if needed. Nothing to do yet. If you would rather put A2 live now anyway, reply "publish A2". Evidence: reports/evidence/release-16.65.0-check/ and reports/evidence/story-a3-judge/.
+**Story page jump on phones: A4R is on the test site; www needs your yes (from your phone)**
+Core 16.66.0 (fix A4R) is on that-layover-life.webflow.io since 20:18 UTC on 15 Nov; www and thatlayover.life still run 16.64.0. It replaces A2, which made the Balkans story worse on narrow phones. In the lab A4R passed both independent checks: no story over 0.1 at any width, Balkans on phones 0.002 to 0.02 (A2 0.13 to 0.15), phone-width median 0.004 (www 0.066). Three checks of the real test site are running. When they pass, reply "publish www" to put it live (or "wait"). Rollback is one step (both older versions stay registered). Evidence: handoff/RELEASE-16.66.0.md. About 1 minute.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
