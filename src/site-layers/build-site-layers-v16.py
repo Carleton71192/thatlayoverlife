@@ -309,11 +309,31 @@ R1_RULES = ['[data-tll-breadcrumb] span:has(+ [data-tll-crumb="title"]){display:
             '.tll-story-meta-row > .tll-story-byline-loc:first-child,.tll-story-meta-row > .tll-story-byline-loc:first-child + .tll-story-meta-divider{display:none !important}']
 for r in R1_RULES: assert r in read(R1_SRC), 'the template rule changed: ' + r[:60]
 R1_EARLY = [' ' + r.replace(',', ',@P@ ') for r in R1_RULES]
+# A4: the route strip under the hero. Until the template's style arrives (at the end of the body) the strip is laid out by Webflow's own
+# classes, 11 px taller at phone widths (26 px stop line, no ROUTE label); when the style arrives the strip shrinks and the story body under
+# it moves up (0.037 on the Phuket story at 412 whenever a frame was painted in between, on A2 too). The template's route rules, keyed
+# the same way, with the tokens they read, in the early style. The live template style is the 13 Nov snapshot below (the same bytes as
+# the style in the story pages saved for the A3 checks).
+ST3_SRC = 'src/pages/stories-template/live-2026-11-13/fonts/page-footer.after.html'
+ROUTE_RULES = ['[data-tll-route]{background:var(--st3-ink-2) !important;border-bottom:1px solid #1a1d35;display:flex !important;align-items:center;flex-wrap:wrap;gap:6px 10px;padding:11px max(var(--st3-pad),calc((100% - var(--st3-col)) / 2)) !important;color:var(--st3-cream)}',
+               '[data-tll-route]::before{content:"Route";font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--st3-slate)}',
+               '[data-tll-route] [data-tll-route-stops]{font:600 11px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-cream)}',
+               '[data-tll-route] .tll-route-arrow{color:var(--st3-teal) !important;margin:0 10px !important}',
+               '[data-tll-route] [data-tll-route-note]{margin-left:auto;font:500 10.5px/1.4 var(--st3-f-mono);letter-spacing:1px;text-transform:uppercase;color:var(--st3-teal)}',
+               '[data-tll-route] [data-tll-route-note].w-dyn-bind-empty{display:none}']
+ROUTE_PHONE = ['[data-tll-route]{padding:11px 16px !important}', '[data-tll-route] [data-tll-route-note]{margin-left:0;flex-basis:100%}']
+ROUTE_TOKENS = ['--st3-ink-2:#12141F', '--st3-cream:#F7F1E8', '--st3-teal:#00C9C8', '--st3-slate:#9496AC', '--st3-col:680px', '--st3-pad:28px']
+ST3_LIVE = read(ST3_SRC)
+for r in ROUTE_RULES + ROUTE_TOKENS: assert r in ST3_LIVE, 'the template route rule changed: ' + r[:60]
+assert '@media(max-width:767px){' + ''.join(ROUTE_PHONE) + '}' in ST3_LIVE, 'the template route rules for phones changed'
+ROUTE_EARLY = ['{' + ';'.join(ROUTE_TOKENS) + '}'] + [' ' + r for r in ROUTE_RULES]
 st3_early = ('/* F1 (14 Nov 2026): the Stories Template rules the first paint needs (meta row, byline row and avatar), as in tll-st3-story-v1,\n'
              '   and the footer rule that hides the commissioned link, as in tll-foot-v1. Only until both styles have been parsed: then this\n'
              '   style is taken out, so the template and the footer always have the last word. A3: and the two template rules that hide the\n'
-             '   arrow before the hidden title crumb and the first place pill of the meta row, as in tll-st3-r1-v1. */\n'
-             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY + [FOOT_EARLY] + R1_EARLY))
+             '   arrow before the hidden title crumb and the first place pill of the meta row, as in tll-st3-r1-v1. A4: and the template\'s route\n'
+             '   strip rules, as in tll-st3-story-v1. */\n'
+             + ''.join(ST3_PAGE + r.replace('@P@', ST3_PAGE) + '\n' for r in ST3_EARLY + [FOOT_EARLY] + R1_EARLY + ROUTE_EARLY)
+             + '@media(max-width:767px){' + ''.join(ST3_PAGE + ' ' + r for r in ROUTE_PHONE) + '}\n')
 OLD_STORY_RUN = "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();\n"
 assert mag_js.count(OLD_STORY_RUN) == 1
 NEW_STORY_RUN = ("/* F1: run() as soon as the byline row has arrived (an element follows it), before the first paint, so the photo box (heroR), the figure\n"

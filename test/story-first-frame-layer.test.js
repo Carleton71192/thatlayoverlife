@@ -200,17 +200,23 @@ describe('story first frame: the template rules in the early style', () => {
   const FOOT = PAGE + ' a[data-tll-commissioned="story"]{display:none}';
   const R1 = [PAGE + ' [data-tll-breadcrumb] span:has(+ [data-tll-crumb="title"]){display:none !important}',
     PAGE + ' .tll-story-meta-row > .tll-story-byline-loc:first-child,' + PAGE + ' .tll-story-meta-row > .tll-story-byline-loc:first-child + .tll-story-meta-divider{display:none !important}'];
-  const early = all.filter((l) => l !== FOOT && !R1.includes(l));
+  // A4: the template's route strip rules, with the tokens they read, and its phone rules for the strip in one media block
+  const at = all.findIndex((l) => l.startsWith(PAGE + '{--st3-ink-2'));
+  const ROUTE = all.slice(at);
+  const PHONE = earlyText.split('\n').filter((l) => l.startsWith('@media'));
+  const early = all.filter((l) => l !== FOOT && !R1.includes(l) && !ROUTE.includes(l));
   it('covers the avatar, the byline row and the meta row, each keyed on the Stories Template page id with no added weight', () => {
     expect(early.length).toBe(15);
-    expect(all.length).toBe(18);
+    expect(all.length).toBe(25);
+    expect(ROUTE.length).toBe(7);
     const sel = early.map((l) => l.slice(0, l.indexOf('{'))).join('\n');
     for (const s of ['.st3-author-avatar', '.st3-author-img', '.st3-author-link', '.st3-author{', '.tll-story-meta-row>:nth-child(5)', '.tll-story-meta-row>:nth-child(6)'])
       expect(sel + '{').toContain(s.replace('{', ''));
     // :where() adds nothing to the weight: no early rule may sit outside it
     for (const l of all) expect(l.replace(/:where\([^)]*\]\)/g, '')).not.toMatch(/html\[/);
     // the early style holds nothing else
-    expect(earlyText.split('\n').filter((l) => l && !l.startsWith(PAGE) && !/^\/\*|^ {3}/.test(l))).toEqual([]);
+    expect(earlyText.split('\n').filter((l) => l && !l.startsWith(PAGE) && !/^\/\*|^ {3}/.test(l))).toEqual(PHONE);
+    expect(PHONE.length).toBe(1);
   });
   it('copies each rule exactly as the template writes it, so the first frames match the template', () => {
     for (const l of early.slice(1)) {
@@ -226,11 +232,19 @@ describe('story first frame: the template rules in the early style', () => {
     expect(foot).toContain('a[data-tll-commissioned="story"].tll-comm-on{display:inline-flex}');
   });
   it('A3: hides the arrow before the hidden title crumb and the first place pill from the first paint, as the template\'s r1 style does', () => {
-    expect(all.slice(16)).toEqual(R1);
+    expect(all.slice(16, 18)).toEqual(R1);
     const r1 = /<style id="tll-st3-r1-v1">\n([\s\S]*?)<\/style>/.exec(read('src', 'pages', 'story', 'after-2026-10-20', 'embed-3074c26c-after.html'))[1];
     for (const l of R1) expect(r1).toContain(l.split(PAGE + ' ').join(''));
     // the live story page carries the same r1 style (the 16.65.0 check snapshot of the template embed)
     expect(read('src', 'pages', 'story', 'after-2026-10-20', 'embed-3074c26c-after.html')).toContain('<script id="tll-st3-story-js-v1">');
+  });
+  it('A4: lays out the route strip from the first paint with the template\'s own rules, tokens and phone rules', () => {
+    for (const l of ROUTE.slice(1)) { expect(l.startsWith(PAGE + ' [data-tll-route]')).toBe(true); expect(st3).toContain(l.split(PAGE + ' ').join('')); }
+    for (const t of /\{([^}]*)\}/.exec(ROUTE[0])[1].split(';')) expect(st3).toContain(t);
+    expect(st3).toContain(PHONE[0].split(PAGE + ' ').join(''));
+    expect(PHONE[0]).toBe('@media(max-width:767px){' + PAGE + ' [data-tll-route]{padding:11px 16px !important}' + PAGE + ' [data-tll-route] [data-tll-route-note]{margin-left:0;flex-basis:100%}}');
+    // the strip is laid out by these copies only until the template's style is parsed: the same removal as every early rule
+    for (const l of ROUTE.concat(PHONE)) expect(l.replace(/:where\([^)]*\]\)/g, '')).not.toMatch(/html\[/);
   });
   it('gives the tokens those rules use the template values', () => {
     const tokens = /\{([^}]*)\}/.exec(early[0])[1].split(';');
