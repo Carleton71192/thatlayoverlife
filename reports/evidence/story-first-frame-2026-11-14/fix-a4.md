@@ -60,3 +60,39 @@ Finished page same as www in every case except banner-top (the reveal fade on th
 - Three lab runs overlapped: a killed harness kept running (Playwright closes its browser on SIGTERM and the harness relaunches one). Those runs were thrown out; every gate number above comes from runs with one browser, checked before each start.
 - The static table is Chromium's names (version 141). Rerun build-region-names-v1.cjs and the build if the flag script's names should follow a newer browser.
 - Bandwidth: 0 bytes from Webflow or jsDelivr (all cache hits or aborted images), no new HTML GET, 4,272 non-GET requests aborted. Lab data about 15 MB in scratchpad nov14/a4lab.
+
+## Repair round (15 Nov 2026, after the two A4 checks)
+
+One commit on the A4 branch: 413139c (on ea2cec2), pushed, not merged. Only the story layer of the core (src/site-layers/) and the story test changed.
+
+- Core at 413139c: 252,289 bytes, 76,036 bytes gzip -9 -n. SRI sha384-trfI5wInWYlCUfz0XKnR/BqQpouu3JHGMLplaS1AFlYR8UiNBqoOU/6oYwcAJYTl. A rebuild changes no bytes. Tests: 57 files, 601 tests pass.
+- Local copy: scratchpad nov14/a4core/tll-site-layers-v16-a4r-413139c.js (byte for byte the committed core).
+
+### What changed
+
+1. **Reload at 2,500 px ended at 2,503 (measure judge, gate part d).** Read in the Chromium source and checked in the lab: the browser restores the position twice, first by the element that was at the top of the view as soon as the page is tall enough, then by the scroll position when loading ends. The second one is skipped while the browser's scroll anchor still holds the element of the first one. On www and A2 a later style change clears that anchor before loading ends; with the A4 head laid out from the first paint it often did not, and a 6 px growth above the view was then followed by anchoring. Taking the hold under the head out made it worse (7 of 8 loads at 2,503), so the hold was not the cause. Fix: on a reload or a back or forward load (scroll restoration not manual), at the load event the layer scrolls one pixel up and back in the same task. Nothing moves on the screen, the anchor is cleared, and the browser's own restore at the end of loading puts the page exactly where it was, as on www.
+2. **Failed flag script on a Balkans-like story (adversarial judge, item 1).** When the page is parsed and no real flag is in front of the stand-in (404, throw, network error, missing tag, or the flag script drew nothing), the stand-in stays as an empty box with visibility hidden instead of being taken out. If flags still come later, it goes in the same step. A stand-in that left with the old crumb (the template made the crumb a link) goes as before.
+3. **Throw at the end of the template script (adversarial judge, note).** While the page is parsed, document.addEventListener notes whether tll-st3-story-js-v1 adds a DOMContentLoaded listener; a throw from that script releases the place-and-date hold at once only if it had not. The page's own document.addEventListener is put back as soon as that script has been parsed (or at DOMContentLoaded).
+
+### Gate (one browser at a time, the measure judge's m.cjs, same caches and routing; W, A2 and the new core in turn, rotated)
+
+1,053 unthrottled, 162 slow 4G and 60 recheck loads (plus 20 A4 loads in the recheck for reference). 0 bytes from Webflow or jsDelivr, no HTML GET, every non-GET aborted, no other browser running during any load.
+
+- **(a) PASS.** 0 of 351 unthrottled loads of the new core over 0.1 (highest 0.086, Southern Africa 768); 0 of 54 on slow 4G (highest 0.0195). www 151 and A2 29 unthrottled loads over 0.1.
+- **(b) PASS.** 52 cells have a www or A2 load over 0.1. At 768 the new core is 0.074 to 0.086 (A2 0.074 to 0.144). The Balkans reload was flagged on 3 loads (0.0455 against A2 0.0105) and passes the recheck below.
+- **(c) PASS after the recheck.** Flagged on 3 loads: the reload at 2,500 px on Balkans and Pantanal. 10 more loads per core: Balkans 0.0105 (A2 0.0105, A4 0.0105), Pantanal 0.0268 (A2 0.0284, A4 0.0268). Every core splits between a low and a high value on these reloads (the race between the restore and the template style arriving above the view, before the load event, so item 1 cannot touch it). No other cell is worse than A2 by more than 0.01; 30 unthrottled and 13 slow 4G cells are better by more than 0.01.
+- **(d) PASS.** All 351 unthrottled loads equal a www load box for box, including the 9 reload cells; in the recheck 20 of 20 ended at 2,500 (A4 in the same recheck: 7 of 10 Balkans reloads at 2,503). Slow 4G: 49 of 54 equal www; the other 5 are the known foot-of-story order race (the same 11 boxes with the same sizes in a band about 390 px tall, reader notes and the write-for-us ask in the other order), against 1 of 54 on A2 in this run and 1 on A4 in the judge's run. None of the three changes touches the foot of the story.
+- **(e) PASS.** No hold, stand-in or early style left on any gate load; 0 page errors on any core.
+- **(f) PASS.** Slow 4G median of cell differences in FCP, new core minus A2: -20 ms (range -128 to +88); all loads 6,704 against 6,696 ms. Unthrottled -4 ms.
+
+A3 gains kept (median, A2 in brackets): Balkans 320 0.0023 (0.134), 344 0.0039 (0.135), 360 0.0192 (0.151), 375 0.0213 (0.153); Croatia 390 0.0039 (0.055); Southern Africa 344 0.0039 (0.051), 360 0.0042 (0.059), 375 0.0041 (0.058), 390 0.0057 (0.059), 412 0.0073 (0.060). Phone-width median cell 0.0041 (A2 0.0143, www 0.0661).
+
+### Adversarial recheck (the adversarial judge's h6.cjs as h7.cjs, A4 and the new core, 2 loads each; www and A2 values are the judge's)
+
+- Flag script 404, throws, network error, tag missing, Balkans 360: A4 0.134 to 0.150, new core 0.0087 to 0.0195 (www 0.017 to 0.019, A2 0.015 to 0.021). zz-no-flag-tag 360: 0.150 to 0.014.
+- Throw at the end of the template script: Southern Africa 390 0.157 to 0.0039, Croatia 390 0.064 to 0.0039, Balkans 360 0.044 to 0.014. A throw at the top and a syntax error stay at 0.004 to 0.015.
+- Slow flag script, parser stalls after the hero and in the crumb, twelve countries, back and forward, older Intl names: within 0.01 of A4.
+- Unchanged: a throw inside the template's place step, Southern Africa 390 0.142 (www 0.071, A2 0.074). The US state flag (ADV5) was not addressed.
+- The price of item 2: when no flag came, the finished crumb keeps an empty hidden box in front of its text, so that crumb differs from www. Seen on the flag failure cases and on zz-turkiye with older Intl names (the flag script drew no flag where the static table expected one).
+
+Lab files: scratchpad nov14/a4fix-lab (m.cjs with the new core added, dbg.cjs, an5.py, out/fast.jsonl, slow.jsonl, recheck.jsonl, the reload traces d1 to d4) and nov14/a4fix-adv (h7.cjs, anR.py, out/R2.jsonl, R3.jsonl).
