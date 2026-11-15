@@ -391,6 +391,7 @@ describe('story first frame: the early run in a stand-in page', () => {
       querySelector: (s) => (s === '.st3-author' ? state.author : s === '[data-tll-ledger="story"]' ? state.ledger : s === '.tll-story-hero .tll-story-hero-content' ? c : s === '.tll-story-hero' ? (state.hero ? hero : null) : s === '[data-tll-crumb="country"]' ? state.crumb : null),
       getElementById: (id) => (id === 'tll-st3-story-js-v1' ? state.helper : null),
       addEventListener: (t, fn) => { (listeners[t] = listeners[t] || []).push(fn); } };
+    const origAdd = document.addEventListener;
     class MutationObserver { constructor(cb) { this.cb = cb; this.on = false; obs.push(this); } observe() { this.on = true; } disconnect() { this.on = false; } }
     const calls = { run: 0, rcpt: [] }; const MS = { nodeName: 'STYLE', nextElementSibling: null };
     // PF (A3) stands in for itself here: pre() sets wait-d as it does when the template will make the country crumb a link
@@ -404,7 +405,7 @@ describe('story first frame: the early run in a stand-in page', () => {
     const whole = () => ({ parentNode: { parentNode: body, nextElementSibling: null }, nextElementSibling: {} });
     // an error reported while a script runs, as the browser does: document.currentScript is that script
     const error = (id) => { document.currentScript = id ? { id } : null; (wl.error || []).slice().forEach((f) => f({})); document.currentScript = null; };
-    return { state, c, body, calls, obs, tick, fire, attrs, log, listeners, whole, MS, error, wl, document };
+    return { state, c, body, calls, obs, tick, fire, attrs, log, listeners, whole, MS, error, wl, document, origAdd };
   }
   it('waits until the byline row has arrived whole, then runs before the page is parsed', () => {
     const p = page();
@@ -470,6 +471,34 @@ describe('story first frame: the early run in a stand-in page', () => {
     p.fire('DOMContentLoaded');
     expect(p.attrs).toEqual({});
     expect(p.wl.error).toEqual([]);
+  });
+  it('repair round: keeps the place-and-date hold when the template script throws after it has added its page-parsed handler', () => {
+    const p = page();
+    expect(p.document.addEventListener).not.toBe(p.origAdd);
+    p.state.author = p.whole(); p.tick();
+    const order = [];
+    // the template script runs: it adds its page-parsed handler, then throws at its end
+    p.document.currentScript = { id: 'tll-st3-story-js-v1' };
+    p.document.addEventListener('DOMContentLoaded', () => order.push('template'));
+    p.document.currentScript = null;
+    p.error('tll-st3-story-js-v1');
+    expect(p.attrs['data-tll-mg-wait-d']).toBe(1);
+    expect(p.log).not.toContain('done');
+    // once the script is in, document.addEventListener is the page's own again
+    p.state.helper = p.whole(); p.tick();
+    expect(p.document.addEventListener).toBe(p.origAdd);
+    p.document.addEventListener('DOMContentLoaded', () => order.push('late'));
+    p.fire('DOMContentLoaded');
+    expect(order).toEqual(['template', 'late']);
+    expect(p.attrs).toEqual({});
+    expect(p.log.filter((x) => x === 'done').length).toBe(1);
+    // another script's page-parsed listener does not count
+    const q = page(); q.state.author = q.whole(); q.tick();
+    q.document.currentScript = { id: 'some-other-script' }; q.document.addEventListener('DOMContentLoaded', () => {}); q.document.currentScript = null;
+    q.error('tll-st3-story-js-v1');
+    expect(q.attrs['data-tll-mg-wait-d']).toBe(undefined);
+    q.fire('DOMContentLoaded');
+    expect(q.document.addEventListener).toBe(q.origAdd);
   });
   it('writes the Receipts line only once the Receipts block has arrived whole, and shows the photo in the same step', () => {
     const p = page();
@@ -711,15 +740,27 @@ describe('story first frame A3: the page-parsed rewrites laid out before the fir
       expect(placeLine(r.s)).toBe('From Copenhagen, Denmark' + (o.when || 'September 19, 2026') + ' · 9 min read');
     }
   });
-  it('lets the stand-in go when the page is parsed if there is no flag script, and by the next task if the flag script never drew', () => {
+  it('repair round: keeps the stand-in as an empty hidden box when no flag came (no flag script, or it never drew), and drops it if flags come later', () => {
+    // with the stand-in taken out, the head is the page's own
+    const strip = (r) => { const st = r.w.root.querySelector('[data-tll-mg-flags]'); const c = st.parentNode; c._rm(st); const h = r.s.hero.html; c.insertBefore(st, c.firstChild); return h; };
     const none = withPF({ ...BALKANS, flags: false });
-    expect(none.afterParse).toEqual({ stand: 0, timers: 0 });
-    expect(none.s.hero.html).toBe(reference({ ...BALKANS, flags: false }).s.hero.html);
+    expect(none.afterParse).toEqual({ stand: 1, timers: 0 });
+    const st = none.w.root.querySelector('[data-tll-mg-flags]');
+    expect(st.style.visibility).toBe('hidden');
+    expect(st.children.length).toBe(5);
+    expect(strip(none)).toBe(reference({ ...BALKANS, flags: false }).s.hero.html);
     const silent = withPF(BALKANS, { flagsRun: false });
     expect(silent.afterParse.stand).toBe(1);
     expect(silent.afterParse.timers).toBe(1);
+    const st2 = silent.w.root.querySelector('[data-tll-mg-flags]');
+    expect(st2.style.visibility).toBe('hidden');
+    expect(strip(silent)).toBe(reference(BALKANS, { flagsRun: false }).s.hero.html);
+    // the flag script draws after all: the stand-in goes in the same step, and the head is exactly the page's own
+    flagScript(silent.w); silent.w.flush();
     expect(silent.w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(0);
-    expect(silent.s.hero.html).toBe(reference(BALKANS, { flagsRun: false }).s.hero.html);
+    expect(silent.s.hero.html).toBe(reference(BALKANS).s.hero.html);
+    // normal loads: nothing is kept
+    expect(withPF(BALKANS).w.root.querySelectorAll('[data-tll-mg-flags]').length).toBe(0);
   });
   it('leaves the head alone when the template has already done its part, and leaves a date it cannot read to the template', () => {
     const w = world(); const s = story(w, CROATIA); const T = tpl(w); T.author(); T.place(); const before = s.hero.html;
@@ -783,5 +824,35 @@ describe('story first frame A3: the page-parsed rewrites laid out before the fir
     // a crumb outside the story hero is left alone
     const w2 = world(); const C = new w2.El('div', { 'data-tll-crumb': 'country' }, ['BALKANS']); w2.root.appendChild(C);
     pfOf(w2).crumb(C); expect(C.children.length).toBe(0);
+  });
+});
+
+// Repair round (15 Nov 2026, reports/evidence/story-a4-judge/measure/): on a reload at 2,500 px the A4 page sometimes ended 3 px lower than
+// www, because the browser's first, element-based restore still held when loading ended and content above the view had changed size
+// since. At the load event the layer scrolls one pixel and back (same task, no frame in between), which clears the browser's anchor so
+// its own restore at the end of loading puts the page back by the scroll position, as on www. Measured in a real browser (scratchpad
+// nov14/a4fix-lab: 10 of 10 reloads at 2,500); here: when it acts and what it does.
+describe('story layer, repair round: a reload or a back or forward load ends where the reader was', () => {
+  const nudgeSrc = /try\{var NV=performance\.getEntriesByType[\s\S]*?\}catch\(e\)\{\}\n/.exec(story)[0];
+  function run({ type = 'reload', restoration = 'auto', readyState = 'loading', y = 2503 } = {}) {
+    const calls = []; const ls = {};
+    const window = { scrollX: 0, scrollY: y, scrollTo: (a, b) => { calls.push([a, b]); window.scrollY = b; }, addEventListener: (t, f) => { (ls[t] = ls[t] || []).push(f); } };
+    const performance = { getEntriesByType: (k) => (k === 'navigation' && type ? [{ type }] : []) };
+    new Function('window', 'performance', 'history', 'document', nudgeSrc)(window, performance, { scrollRestoration: restoration }, { readyState });
+    (ls.load || []).forEach((f) => f());
+    return { calls, n: (ls.load || []).length, y: window.scrollY };
+  }
+  it('sits at the top of the story layer, before anything else in it', () => {
+    expect(story.indexOf(nudgeSrc)).toBe(story.indexOf('\n') + 1);
+  });
+  it('on a reload or a back or forward load, scrolls one pixel up and back at the load event, ending where it was', () => {
+    for (const type of ['reload', 'back_forward']) expect(run({ type })).toEqual({ calls: [[0, 2502], [0, 2503]], n: 1, y: 2503 });
+  });
+  it('does nothing on a fresh load, at the top of the page, with manual scroll restoration, or when the page has already loaded', () => {
+    expect(run({ type: 'navigate' })).toEqual({ calls: [], n: 0, y: 2503 });
+    expect(run({ type: null })).toEqual({ calls: [], n: 0, y: 2503 });
+    expect(run({ y: 0 })).toEqual({ calls: [], n: 1, y: 0 });
+    expect(run({ restoration: 'manual' })).toEqual({ calls: [], n: 0, y: 2503 });
+    expect(run({ readyState: 'complete' })).toEqual({ calls: [], n: 0, y: 2503 });
   });
 });
