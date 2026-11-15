@@ -38,7 +38,7 @@ const story = core.slice(storyAt, core.indexOf('\n(function(){if(!/^\\/(index\\.
 const earlyText = JSON.parse(/ES\.textContent=("(?:[^"\\]|\\.)*");/.exec(story)[1]);
 const styleText = JSON.parse(/MS\.textContent=("(?:[^"\\]|\\.)*");/.exec(story)[1]);
 const placeSrc = /var hd=document\.head[\s\S]*?\}else place\(\);\n/.exec(story)[0];
-const runSrc = /\/\* F1: run\(\) as soon as[\s\S]*?document\.addEventListener\('DOMContentLoaded',function\(\)\{stop\(\);run\(\);late\(\);if\(!hd\)after\(\);PF\.end\(\);\}\);\}\)\(\);/.exec(story)[0];
+const runSrc = /\(function\(\)\{if\(document\.readyState!=='loading'\)\{run\(\);return;\}var mo=null,ran=0[\s\S]*?document\.addEventListener\('DOMContentLoaded',function\(\)\{stop\(\);run\(\);late\(\);if\(!hd\)after\(\);PF\.end\(\);\}\);\}\)\(\);/.exec(story)[0];
 const pfSrc = /var PF=\(function\(\)\{[\s\S]*?return \{crumb:crumb,pre:pre,done:done,end:end\};\}\)\(\);\n/.exec(story)[0];
 
 // A stand-in for the parts of the DOM the placement touches. Document order is one flat list; head nodes sit before body nodes.
@@ -175,11 +175,14 @@ describe('story first frame: the built core', () => {
   });
   it('carries the whole magazine style, then the hold rules, and no copy of a template rule', () => {
     const mag = read('src', 'design', 'magazine-2026-10', 'story-build', 'tll-mag-story-v1.html');
-    const first = /<style id="tll-mag-story-v1">\n([^\n]*)/.exec(mag)[1];
-    expect(styleText.startsWith(first)).toBe(true);
+    // A4: the download carries no comments (they stay in the sources); the first rule of the source style comes first
+    const src = /<style id="tll-mag-story-v1">\n([\s\S]*?)<\/style>/.exec(mag)[1].replace(/\/\*[\s\S]*?\*\/\n?/g, '');
+    // (the build adds the fallback faces to each font stack, as for every layer)
+    const strip = (t) => t.replace(/,TLL(Serif|Sans)[A-Z]/g, '');
+    expect(strip(styleText).startsWith(strip(src).slice(0, 400))).toBe(true);
     expect(styleText).toContain('aspect-ratio:auto var(--tll-hero-r,16/9)');
     expect(styleText).not.toContain(PAGE);
-    const holds = styleText.slice(styleText.indexOf('/* F1 holds (A2'));
+    const holds = styleText.slice(styleText.indexOf('.tll-story-hero[data-tll-mg-wait-r] .tll-mg-fig'));
     expect(holds).toContain('.tll-story-hero[data-tll-mg-wait-r] .tll-mg-fig,.tll-story-hero[data-tll-mg-wait-r] .tll-story-hero-content>.tll-mg-stamp{visibility:hidden}');
     // A3: no clamp on the place-and-date line any more; wait-d gives the country crumb the box of the template's link
     expect(holds).not.toContain('line-clamp');
@@ -192,6 +195,17 @@ describe('story first frame: the built core', () => {
     for (const r of cssRules(holds)) for (const s of r.sels) expect(s).toMatch(/^\.tll-story-hero(\[data-tll-mg-wait-[rd]\]( |~\*$)| \[data-tll-mg-flags\]>)/);
     // the hold never reaches the nav (it comes before the hero) or anything outside the story article (the footer): only later siblings
     expect(holds.match(/~[^{,]*/g)).toEqual(['~*']);
+  });
+});
+
+describe('story first frame A4: the story layer download', () => {
+  it('carries no comments (they stay in the build script and the sources) and is valid script', async () => {
+    expect(story.match(/\/\*(?!HERO\*\/)/g)).toBe(null);
+    expect(earlyText).not.toContain('/*');
+    expect(styleText).not.toContain('/*');
+    const { transformSync } = await import('esbuild');
+    expect(() => transformSync(story, { loader: 'js' })).not.toThrow();
+    expect(() => transformSync(styleText, { loader: 'css' })).not.toThrow();
   });
 });
 

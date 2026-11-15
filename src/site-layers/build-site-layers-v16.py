@@ -487,6 +487,22 @@ PF_SRC = ("/* A3 (14 Nov 2026): the template script's place-and-date words, the 
           "return {crumb:crumb,pre:pre,done:done,end:end};})();\n") % (FLAGS_A, json.dumps(FLAGS_T))
 NEW_STORY_RUN = PF_SRC + NEW_STORY_RUN
 mag_js_early = mag_js.replace(OLD_STORY_RUN, NEW_STORY_RUN, 1)
+# A4 (14 Nov 2026): the story layer's comments stay here and in its sources and are left out of the download, as every other layer's
+# header comment is. A2 and A3 had brought about 9 KB of comments into the core; on the lab's slow 4G model (one 1.6 Mbit/s pipe, the
+# core not compressed) every 5 KB costs about 25 ms of first paint. A comment is cut only where it starts outside a string on its line
+# (an even number of each quote mark before it on its line); a test checks that the code is the same token for token.
+def uncomment(t):
+    out, i = [], 0
+    for m in re.finditer(r'/\*.*?\*/', t, re.S):
+        if m.start() < i: continue
+        line = t[t.rfind('\n', 0, m.start()) + 1:m.start()]
+        if any(line.count(q) % 2 for q in '\'"`'): continue
+        if m.group(0) == '/*HERO*/': continue  # the hero table marker (build-hero-ratios-v1.py and its test look for it)
+        assert m.group(0).startswith('/* '), 'unexpected comment form: ' + m.group(0)[:40]
+        out.append(t[i:m.start()]); i = m.end()
+        if t[i:i + 1] == '\n' and (not out[-1] or out[-1].endswith('\n')): i += 1
+    out.append(t[i:])
+    return ''.join(out)
 story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;\n"
          "/* F1: the style goes in at once, so the story head is styled from the first paint. While the page is parsed it is kept after every style\n"
          "   that arrives (the template's own tll-st3-story-v1 at the end of the body would otherwise win the ties for those frames); once the page\n"
@@ -505,7 +521,8 @@ story = ("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))ret
          "    if(n.nodeName==='STYLE'&&n!==MS&&n!==ES&&n.parentNode&&(n.compareDocumentPosition(MS)&2)&&(!at||(at.compareDocumentPosition(n)&4)))at=n;}\n"
          "  if(at)at.parentNode.insertBefore(MS,at.nextSibling);if(TS&&FS&&past(TS)&&past(FS))drop();});so.observe(document.documentElement,{childList:true,subtree:true});}\n"
          "  document.addEventListener('DOMContentLoaded',place);}else place();\n"
-         "%s})();\n") % (json.dumps(st3_early), json.dumps(mag_css + HOLD_CSS), mag_js_early)
+         "%s})();\n") % (json.dumps(uncomment(st3_early)), json.dumps(uncomment(mag_css + HOLD_CSS)), uncomment(mag_js_early))
+story = uncomment(story)
 cov = read(COVER)
 cov_css = fallbacks(re.search(r'<style id="tll-mag-cover-v1">\n(.*?)</style>', cov, re.S).group(1))
 cov_js = fallbacks(re.search(r'<script id="tll-mag-cover-js-v1">\n(.*?)</script>', cov, re.S).group(1))
