@@ -29,7 +29,8 @@ The three checks of 16.65.0 (reports/evidence/release-16.65.0-check/) found one 
 ## Webflow half
 1. Lock check, scope line in WEBFLOW-LOCK.md (done, 37e94d8).
 2. Registered tllsitelayersv16 16.66.0 at the pin above at 20:17:51 UTC; applied at site level in place of 16.65.0 at 20:18:00 UTC with every other script, location and order unchanged; read back (src/site/live-2026-11-15/r1666/site-scripts.after.json).
-3. Published the test site only at 20:18:14 UTC (publishTaskId 10917ba1-189e-4a52-88ed-4e07418ee70b); www and apex untouched. Independent checks under the bandwidth rule: running.
+3. Published the test site only at 20:18:14 UTC (publishTaskId 10917ba1-189e-4a52-88ed-4e07418ee70b); www and apex untouched. Independent checks under the bandwidth rule, 15 Nov 20:23 to 22:28 UTC: carry PASS (3b1654d), behavior PASS WITH NOTES (4096c17), regression PASS WITH NOTES (df20d9a). Nothing blocking. Evidence: reports/evidence/release-16.66.0-check/. Phone-width story CLS median 0.0043 on test against 0.066 on www; 0 of 140 phone loads over 0.1 on test (www 51). Balkans 320 to 344: 0.002 to 0.004 (www 0.127). Notes: Balkans 375 is 0.021 against www 0.016; slow 4G first paint about 100 ms later; reload LCP about 50 ms later; if the flag script fails, Balkans at 360 keeps an empty 137 px crumb box (29 px lower page, no movement); Chromium only.
+4. Waiting for Nancy's yes in chat before www and the apex.
 4. www and the apex only after Nancy's yes in chat.
 
 ## Rollback
