@@ -342,26 +342,51 @@ describe('tll-early-state-v1: /stories (C6)', () => {
     const c = start({ withLayer: false }); const pc = STORIES(c.d, { lead: bad }); chunkRuns(c.d); c.d.parsed(); c.d.run(700);
     expect(pa.inner.querySelector('.tllsb-form')).toBe(null); expect(pa.grid.querySelector('[data-tll-lead]')).toBe(null); expect(pa.b.html()).toBe(pc.b.html());
   });
-  it('marks the lead card when the grid has arrived whole: the pick, put first', () => {
+  it('a first card that is the pick leads from the moment it has been parsed, before the rest of the grid arrives', () => {
+    const { d } = start(); const p = STORIES(d, { upTo: 'bar' }); d.el(p.main, 'section', { class: 'tllvb-bar' });
+    const gs = d.el(p.main, 'section', { class: 'tll-library-grid-section' }); const grid = d.el(d.el(gs, 'div', { class: 'w-dyn-list' }), 'div', { class: 'tll-lib-grid w-dyn-items' });
+    const card = (slug, pick) => { const it = d.el(grid, 'div', { class: 'w-dyn-item', 'data-k': slug }); const a = d.el(it, 'a', { 'data-tll-card': 'cms', class: 'tll-lib-card', href: '/stories/' + slug }); d.el(a, 'div', { 'data-tll-date': '1' }, 'October 29, 2026'); if (pick) d.el(a, 'div', { 'data-tll-pick': '1' }); return it; };
+    const first = card('first', true); expect(first.hasAttribute('data-tll-lead')).toBe(false); // the card may still be growing
+    card('second', false); expect(first.getAttribute('data-tll-lead')).toBe('1');
+    const two = start(); const p2 = STORIES(two.d, { cards: [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null]], upTo: 'grid' });
+    expect(p2.grid.querySelector('[data-tll-lead]')).toBe(null); // no pick on the first card: the lead waits for the whole grid
+  });
+  it('the whole grid: the order the page gives it (newest first), the pick in front, the first card marked', () => {
     const cards = [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null], ['c', 'October 5, 2026', ''], ['d', 'October 2, 2026', 'w-condition-invisible']];
     const { d } = start(); const p = STORIES(d, { cards, upTo: 'grid' });
     expect(p.grid.querySelector('[data-tll-lead]')).toBe(null);
     d.el(p.main, 'section', { class: 'tll-library-news' });
-    expect(order(p.grid)).toEqual(['c', 'a', 'b', 'd']); expect(p.items.c.getAttribute('data-tll-lead')).toBe('1'); expect(p.grid.querySelectorAll('[data-tll-lead]').length).toBe(1);
+    expect(order(p.grid)).toEqual(['c', 'b', 'd', 'a']); expect(p.items.c.getAttribute('data-tll-lead')).toBe('1'); expect(p.grid.querySelectorAll('[data-tll-lead]').length).toBe(1);
+    // the same grid as the page's two scripts leave it without the layer
+    const c = start({ withLayer: false }); const pc = STORIES(c.d, { cards }); c.d.parsed(); expect(order(pc.grid)).toEqual(order(p.grid)); expect(pc.grid.querySelector('[data-tll-lead]').getAttribute('data-k')).toBe('c');
   });
   it('without a pick the newest by date leads (the first of two on the same day); a card the site hides cannot lead', () => {
     const cards = [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null], ['c', 'October 29, 2026', null]];
     const one = start(); const p1 = STORIES(one.d, { cards, upTo: 'footer' });
-    expect(order(p1.grid)).toEqual(['b', 'a', 'c']); expect(p1.items.b.getAttribute('data-tll-lead')).toBe('1');
-    const two = start({ hidden: (n) => n.getAttribute && n.getAttribute('data-k') === 'b' }); const p2 = STORIES(two.d, { cards, upTo: 'footer' });
-    expect(order(p2.grid)).toEqual(['c', 'a', 'b']); expect(p2.items.c.getAttribute('data-tll-lead')).toBe('1');
+    expect(order(p1.grid)).toEqual(['b', 'c', 'a']); expect(p1.items.b.getAttribute('data-tll-lead')).toBe('1');
+    const hide = (n) => n.getAttribute && n.getAttribute('data-k') === 'b';
+    const two = start({ hidden: hide }); const p2 = STORIES(two.d, { cards, upTo: 'footer' });
+    expect(order(p2.grid)).toEqual(['b', 'c', 'a']); expect(p2.items.c.getAttribute('data-tll-lead')).toBe('1'); expect(p2.grid.querySelectorAll('[data-tll-lead]').length).toBe(1);
+    const ctl = start({ hidden: hide, withLayer: false }); const pc = STORIES(ctl.d, { cards }); ctl.d.parsed(); expect(pc.grid.querySelector('[data-tll-lead]').getAttribute('data-k')).toBe('c');
   });
-  it('takes the lead mark off and puts the card back before the page scripts run', () => {
-    const cards = [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null]];
+  it('an early mark on the first card moves when the whole grid has a newer pick', () => {
+    const cards = [['a', 'October 1, 2026', ''], ['b', 'October 29, 2026', '']];
+    const { d } = start(); const p = STORIES(d, { cards, upTo: 'grid' }); expect(p.items.a.getAttribute('data-tll-lead')).toBe('1');
+    d.el(p.main, 'section', { class: 'tll-library-news' });
+    expect(order(p.grid)).toEqual(['b', 'a']); expect(p.items.b.getAttribute('data-tll-lead')).toBe('1'); expect(p.items.a.hasAttribute('data-tll-lead')).toBe(false);
+  });
+  it('puts the served order back and takes the mark off before the page scripts run', () => {
+    const cards = [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null], ['c', 'October 3, 2026', null]];
     const { d } = start(); const probe = "document.addEventListener('DOMContentLoaded',function(){window.__seen=[[].map.call(document.querySelector('.tll-lib-grid').children,function(k){return k.getAttribute('data-k');}).join(),!!document.querySelector('[data-tll-lead]')];});";
-    const p = STORIES(d, { cards, chips: probe + CHIPS_JS }); expect(order(p.grid)).toEqual(['b', 'a']);
-    d.parsed(); expect(d.window.__seen).toEqual(['a,b', false]);
-    expect(order(p.grid)).toEqual(['b', 'a']); expect(p.items.b.getAttribute('data-tll-lead')).toBe('1');
+    const p = STORIES(d, { cards, chips: probe + CHIPS_JS }); expect(order(p.grid)).toEqual(['b', 'c', 'a']);
+    d.parsed(); expect(d.window.__seen).toEqual(['a,b,c', false]);
+    expect(order(p.grid)).toEqual(['b', 'c', 'a']); expect(p.items.b.getAttribute('data-tll-lead')).toBe('1');
+  });
+  it('the chip script missing: the cards end in the order they were served in, as without the layer', () => {
+    const cards = [['a', 'October 1, 2026', null], ['b', 'October 29, 2026', null]];
+    const a = start(); const pa = STORIES(a.d, { cards, chips: null }); chunkRuns(a.d); expect(order(pa.grid)).toEqual(['b', 'a']); a.d.parsed(); a.d.run(700);
+    const c = start({ withLayer: false }); const pc = STORIES(c.d, { cards, chips: null }); chunkRuns(c.d); c.d.parsed(); c.d.run(700);
+    expect(order(pa.grid)).toEqual(['a', 'b']); expect(pa.b.html()).toBe(pc.b.html());
   });
   it('with a search (?q=) the lead is left to the page', () => {
     const { d } = start({ search: '?q=lisbon' }); const p = STORIES(d, { upTo: 'footer' });
@@ -530,6 +555,11 @@ describe('tll-early-state-v1: the profile head (C3)', () => {
   it('20 s without a page-parsed event: the stand-in and the early photo parts go', () => {
     const d = start(); const p = PROFILE(d, { upTo: 'list' }); d.el(p.art, 'section', { 'data-pf5': 'foot' }); d.run(20000);
     expect(ghostOf(p)).toBe(null); expect(d.styles()).toEqual([]); expect(p.ph.children.length).toBe(1);
+  });
+  it('a profile set to Off gets no stand-in and no early badge (the page hides it from visitors once its code has run)', () => {
+    const d = start(); const p = PROFILE(d, { rootAttrs: { 'data-visibility': 'Off' }, upTo: 'list' }); d.el(p.art, 'section', { 'data-pf5': 'foot' });
+    expect(ghostOf(p)).toBe(null); expect(d.styles()).toEqual([]); expect(p.ph.children.length).toBe(1);
+    const u = start(); const pu = PROFILE(u, { rootAttrs: { 'data-visibility': 'Unlisted' }, upTo: 'list' }); u.el(pu.art, 'section', { 'data-pf5': 'foot' }); expect(ghostOf(pu)).not.toBe(null);
   });
   it('no root, or another path: nothing', () => {
     const d = start(true, '/contributors'); const p = PROFILE(d, { upTo: 'list' }); d.el(p.art, 'section'); expect(ghostOf(p)).toBe(null);

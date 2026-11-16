@@ -283,7 +283,8 @@ def early_state_checks():
                   "function early(){ merge(); return !!document.querySelector('.tll-library-filters .tll-filters-inner[data-tll-merged]'); }"):
         assert piece in lead, 'early-state: tll-lib-lead-v1 no longer has ' + piece[:80]
     chips = read('src/pages/stories/live-2026-11-16/tll-lib-chips-v1.live.html')
-    for piece in ("date:Date.parse(d(el,'data-tll-date'))||0", "(b.date-a.date)||(a.i-b.i)"):
+    for piece in ("date:Date.parse(d(el,'data-tll-date'))||0", "(b.date-a.date)||(a.i-b.i)", "shown.forEach(function(r){grid.appendChild(r.el);});",
+                  "var items=[].slice.call(grid.children).filter(function(el){return el.hasAttribute('data-tll-card')||el.querySelector('[data-tll-card]');});"):
         assert piece in chips, 'early-state: tll-lib-chips-v1 no longer has ' + piece
     m = re.search(r"/\*order:([^*]+)\*/\s*(var ORDER=\[[^\]]*\];)", s)
     assert m and m.group(2) in read(m.group(1)), 'early-state: the place chip order changed'

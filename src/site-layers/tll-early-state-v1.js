@@ -20,9 +20,10 @@
               [data-ms-content] wrapper as soon as it has been parsed, the same move navOut() makes when the page is parsed. The
               wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
-              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The card that will lead
-              (the editor's pick, else the newest by date, as the page's chip and lead scripts work it out) is put first and marked.
-              Not with a search (?q=). (3) The place chips our stories chunk adds and orders (tll-stories-places-v1) go in when the
+              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The cards are put in the
+              order the page's chip script gives them (newest first), the editor's pick in front, and the first card is marked as
+              the lead, as the page's lead script marks it; a first card that is the pick leads from the moment it is parsed.
+              Before the page's scripts run the served order is put back. Not with a search (?q=). (3) The place chips our stories chunk adds and orders (tll-stories-places-v1) go in when the
               chip row has been parsed; the chunk then finds them and changes nothing. Taken back if the chunk fails. (4) The story
               count our chunk writes in front of the title (tll-stories-count-v1) goes in when the grid has been parsed, counted from
               the cards as the chunk counts them. Taken back if the chunk fails. (5) The title stays in its fallback faces until both
@@ -32,7 +33,7 @@
               shown until the page's code has filled it (one timer after the page-parsed listeners). Then the stand-in is removed
               and the real column shows. The home base is never in the stand-in: the core's own rule is that it stays hidden until
               the Worker says the member has switched it on. The badge and the initials on the photo go in early and are removed
-              right before the page's code adds its own.
+              right before the page's code adds its own. A profile set to Off gets no stand-in.
    If a page script is missing or throws, the page ends as it does without this layer: nothing here survives the hand-back.
    No data-ms-* attribute is read or written apart from finding the nav's wrapper; no form or field name is touched. If the core runs
    after the page is parsed, the layer does nothing. */
@@ -107,21 +108,31 @@ if(path==='/stories')(function(){
     if(!merged)merged=merge();return false;});
   before.push(unmerge);
 
-  /* (2) the lead card: chips v1 sorts by date, newest first; tll-lib-lead-v1 moves the editor's pick to the front and marks the first card */
-  var lead=null,ln=null,moved=false,grid=null;
+  /* (2) the lead card. At the page-parsed event chips v1 puts the cards in order (newest first, each card appended again) and
+     tll-lib-lead-v1 moves the editor's pick to the front and marks the first card shown. Here: the first card, when it is the pick,
+     leads from the moment it has been parsed; when the whole grid has arrived the same order, the same move and the same mark are made.
+     Before the page's scripts run the cards are put back in the order they were served in and the mark is taken off. */
+  var lead=null,was=null,grid=null;
   function txt(k,a){var n=q('['+a+']',k);return n?n.textContent.trim():'';}
+  function pickOf(k){return q('[data-tll-pick]:not(.w-condition-invisible)',k);}
+  /* a card the site hides (the stub story) cannot lead: the page's scripts skip what is not shown */
+  function shown(k){return W.getComputedStyle(k).display!=='none';}
   if(!/[?&]q=[^&]/.test(location.search)){
+    steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k||(!k.nextElementSibling&&!whole(g)))return false;
+      if(!lead&&pickOf(k)&&shown(k)){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
     steps.push(function(){grid=q('.tll-lib-grid');if(!grid||!whole(grid))return false;
-      var rows=[].slice.call(grid.children).map(function(k,i){return {k:k,i:i,d:Date.parse(txt(k,'data-tll-date'))||0};});
+      var rows=[].slice.call(grid.children).filter(function(k){return k.hasAttribute('data-tll-card')||q('[data-tll-card]',k);})
+        .map(function(k,i){return {k:k,i:i,d:Date.parse(txt(k,'data-tll-date'))||0};});
       if(!rows.length)return true;
-      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});
-      /* a card the site hides (the stub story) cannot lead: the page's scripts skip what is not shown */
-      var pick=null,top=null,i,k;for(i=0;i<rows.length&&!pick;i++){k=rows[i].k;if(W.getComputedStyle(k).display==='none')continue;
-        if(!top)top=k;if(q('[data-tll-pick]:not(.w-condition-invisible)',k))pick=k;}
-      lead=pick||top;if(!lead)return true;
-      if(grid.firstElementChild!==lead){ln=lead.nextSibling;grid.insertBefore(lead,grid.firstElementChild);moved=true;}
-      lead.setAttribute('data-tll-lead','1');return true;});
-    before.push(function(){if(!lead)return;lead.removeAttribute('data-tll-lead');if(moved&&lead.parentNode===grid)back(lead,grid,ln);});
+      was=[].slice.call(grid.childNodes);
+      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});rows.forEach(function(r){grid.appendChild(r.k);});
+      var kids=[].slice.call(grid.children),pick=null,top=null,i;
+      for(i=0;i<kids.length&&!pick;i++){if(shown(kids[i])&&pickOf(kids[i]))pick=kids[i];}
+      if(pick&&grid.firstElementChild!==pick){grid.insertBefore(pick,grid.firstElementChild);kids=[].slice.call(grid.children);}
+      for(i=0;i<kids.length&&!top;i++){if(shown(kids[i]))top=kids[i];}
+      if(lead&&lead!==top)lead.removeAttribute('data-tll-lead');lead=top;if(top)top.setAttribute('data-tll-lead','1');return true;});
+    before.push(function(){if(lead)lead.removeAttribute('data-tll-lead');
+      if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
   }
 
   /* (3) the place chips: what chips() in tll-stories-places-v1 (our stories chunk) makes */
@@ -246,6 +257,8 @@ if(/^\/contributors\/[^/]+$/.test(path))(function(){
   var swap=once(function(){drop(gs);drop(ghost);});
   steps.push(function(){root=q('[data-pf5="root"]');var hero=q('[data-pf5="hero"]');if(!root||!hero||!whole(hero))return false;
     var real=q('[data-pf5="id"]',hero);if(!real||real.parentNode!==hero)return true;
+    /* a page set to Off is hidden from visitors by the page's own code once it has run: nothing of it is filled in early */
+    if(A('visibility').toLowerCase()==='off')return true;
     slug=A('slug');ghost=real.cloneNode(true);ghost.setAttribute('data-tll-es-ghost','1');
     var name,n=count();try{name=build();stats(n);}catch(e){ghost=null;return true;}
     gs=sheet('tll-es-pf5-v1','[data-pf5="hero"]>[data-pf5="id"]:not([data-tll-es-ghost]){display:none!important}');
