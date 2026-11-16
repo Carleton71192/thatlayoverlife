@@ -1,0 +1,4 @@
+(() => { const f = document.querySelector('[data-tll-trav-search-wrap]'); const bar=document.querySelector('[data-tv-chips]');
+ const d=n=>{const c=getComputedStyle(n),b=n.getBoundingClientRect();return n.tagName+' disp='+c.display+' pos='+c.position+' h='+Math.round(b.height)+' w='+Math.round(b.width)+' y='+Math.round(b.top+scrollY)+' mh='+c.minHeight+' m='+c.margin+' fs='+c.fontSize+' cls='+n.className;};
+ const m=document.querySelector('main');
+ return f.outerHTML + '\n' + [f,...f.querySelectorAll('*')].map(d).join('\n')+'\nBAR '+bar.outerHTML.replace(/<style[\s\S]*?<\/style>/g,'')+'\n'+[bar,...bar.children].map(d).join('\n')+'\nGRIDTOP '+d(document.querySelector('[data-tll-roster-grid]'))+'\nH1 '+d(document.querySelector('.tll-travelers-title'))+'\nmainkids '+[...document.querySelector('.tll-trav-section > .tll-container').children].map(d).join('\n   '); })()

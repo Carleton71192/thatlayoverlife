@@ -1,0 +1,1 @@
+(() => { const f = document.querySelector('.tll-fyp'); return f.outerHTML + '\n' + [...f.querySelectorAll('*')].map(n => n.tagName + ' ' + getComputedStyle(n).fontSize + ' ' + getComputedStyle(n).minHeight+' '+Math.round(n.getBoundingClientRect().height)).join('|'); })()
