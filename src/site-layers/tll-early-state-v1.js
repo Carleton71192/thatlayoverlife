@@ -1,7 +1,7 @@
 /* tll-early-state-v1 (16 Nov 2026, layout shift sweep part B, causes C1, C3, C6 and C9; reports/evidence/cls-sweep-2026-11-16/fix.md).
    Some of the site's own code settles the first screen only when the page is parsed, after the first paint: the site head moves the nav
    out of the members wrapper (/account, /submit) and adds the Menu button (every page), the /stories page code moves the search form
-   into the filter row and marks the lead card, our stories chunk orders the place chips and writes the story count into the title, and
+   into the filter row and marks the lead card, our stories chunk orders the place chips, and
    the profile page code builds the profile head. Each of those moved what a reader was already looking at.
    This layer lays the same end state out while the page is parsed, before the first paint, and hands the page back right before the
    page's own code runs, so that code finds the page as it has always found it and the finished page is its own work.
@@ -24,10 +24,11 @@
               order the page's chip script gives them (newest first), the editor's pick in front, and the first card is marked as
               the lead, as the page's lead script marks it; a first card that is the pick leads from the moment it is parsed.
               Before the page's scripts run the served order is put back. Not with a search (?q=). (3) The place chips our stories chunk adds and orders (tll-stories-places-v1) go in when the
-              chip row has been parsed; the chunk then finds them and changes nothing. Taken back if the chunk fails. (4) The story
-              count our chunk writes in front of the title (tll-stories-count-v1) goes in when the grid has been parsed, counted from
-              the cards as the chunk counts them. Taken back if the chunk fails. (5) The title stays in its fallback faces until both
-              of its font files are in, then takes both at once (with one of the two in, the rose word jumped 130 px and back).
+              chip row has been parsed; the chunk then finds them and changes nothing. Taken back if the chunk fails. (4) The title stays in
+              its fallback faces until both of its font files are in, then takes both at once (with one of the two in, the rose
+              word jumped 130 px and back). The story count our chunk writes in front of the title is left to the chunk: put in
+              early it rewraps a title that is still in its fallback faces, which moved more of the page than the chunk's own
+              write does later.
      profile  /contributors/{slug}: a stand-in for the hero's text column, filled from the same attributes of [data-pf5="root"] the
               page's tll-pf5-profile-js-v1 and tll-pf5-n-v1 read, sits right after the real column, which is left untouched and not
               shown until the page's code has filled it (one timer after the page-parsed listeners). Then the stand-in is removed
@@ -127,7 +128,7 @@ if(path==='/stories')(function(){
       was=[].slice.call(grid.childNodes);
       rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});rows.forEach(function(r){grid.appendChild(r.k);});
       var kids=[].slice.call(grid.children),pick=null,top=null,i;
-      for(i=0;i<kids.length&&!pick;i++){if(shown(kids[i])&&pickOf(kids[i]))pick=kids[i];}
+      for(i=0;i<kids.length&&!pick;i++){if(pickOf(kids[i])&&shown(kids[i]))pick=kids[i];}
       if(pick&&grid.firstElementChild!==pick){grid.insertBefore(pick,grid.firstElementChild);kids=[].slice.call(grid.children);}
       for(i=0;i<kids.length&&!top;i++){if(shown(kids[i]))top=kids[i];}
       if(lead&&lead!==top)lead.removeAttribute('data-tll-lead');lead=top;if(top)top.setAttribute('data-tll-lead','1');return true;});
@@ -149,21 +150,7 @@ if(path==='/stories')(function(){
     chunkOut.push(function(){if(row.dataset.tllPlaces)return;added.forEach(drop);was.forEach(function(c){row.appendChild(c);});});
     return true;});
 
-  /* (4) the count in front of the title: what split() and put() in tll-stories-count-v1 (our stories chunk) make of the count-free title */
-  /*words:src/site-layers/tll-stories-count-v1.js*/
-  var WORDS=['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
-  if(chunk)steps.push(function(){var h=q('h1.tll-library-title'),g=q('.tll-lib-grid');if(!h||!g||!whole(g))return false;
-    if(q('[data-tll-count]',h))return true;
-    var t=h.firstChild;while(t&&t.nodeType!==3&&!t.textContent.trim())t=t.nextSibling;if(!t||t.nodeType!==3)return true;
-    var f=t.nodeValue.match(/^(\s*)Stories\b/);if(!f)return true;
-    var s={};[].forEach.call(D.querySelectorAll('a.tll-lib-card[href*="/stories/"]'),function(a){var u=(a.getAttribute('href')||'').split('?')[0].replace(/\/$/,'');if(u)s[u]=1;});
-    var n=Object.keys(s).length;if(!n)return true;
-    var old=t.nodeValue,span=D.createElement('span');span.setAttribute('data-tll-count','');span.textContent=n<=20?WORDS[n]:String(n);
-    t.nodeValue=(n===1?' story':' stories')+old.slice(f[0].length);h.insertBefore(span,t);
-    chunkOut.push(function(){if(span.parentNode!==h)return;drop(span);t.nodeValue=old;});
-    return true;});
-
-  /* (5) the title's two font files at once (the step tll-first-paint-v1 takes for the /the-map title). Until both are in, the title and
+  /* (4) the title's two font files at once (the step tll-first-paint-v1 takes for the /the-map title). Until both are in, the title and
      its rose word each stay in their own fallback faces (their own stacks without Playfair Display), so the title looks and wraps as it
      does today before the fonts arrive; what goes is the state with one file in. */
   steps.push(function(){var h=q('h1.tll-library-title'),F=D.fonts;if(!h||!whole(h))return false;

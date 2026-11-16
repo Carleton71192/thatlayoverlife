@@ -40,7 +40,7 @@ dresses the heroes of /travelers, /the-map, /about and /for-expats as the parser
 tll-first-paint-v1 joins the core for /travelers, /the-map and /about. The build checks the page rules that layer copies against the saved page
 code (FIRST_PAINT below), so a copy cannot drift from its source unnoticed.
 Part B, same day: tll-early-state-v1 joins the core. It lays out, while the page is parsed, what the site head (the nav on /account and
-/submit, the Menu button), the /stories page code and our stories chunk, and the profile page code settle at the page-parsed event, and
+/submit, the Menu button), the /stories page code and our stories chunk (the place chips), and the profile page code settle at the page-parsed event, and
 hands the page back right before that code runs. The build checks the page code it follows against the saved copies (EARLY_STATE below)."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -69,7 +69,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-ux-1028-v1.js', '28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero'),
            ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked'),
            ('src/site-layers/tll-first-paint-v1.js', '16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb)'),
-           ('src/site-layers/tll-early-state-v1.js', '16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row, lead card, chips and count, and the profile head laid out before the first paint, handed back to the page code right before it runs'),
+           ('src/site-layers/tll-early-state-v1.js', '16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row, lead card and place chips, and the profile head laid out before the first paint, handed back to the page code right before it runs'),
            ('src/site-layers/tll-story-ask-v1.js', '29 Oct: end-of-story ask, Pitch a layover story first, then send one photo'),
            ('src/site-layers/tll-open-slots-v1.js', '29 Oct: /spotlight coming-soon and open-slot cards become one Pitch your layover tile'),
            ('src/site-layers/tll-travelers-fix-v1.js', '29 Oct testers: /travelers link chips as labelled pills inside the card, no empty grid cell, one action tile instead of the open slot'),
@@ -260,9 +260,9 @@ def first_paint_checks():
     assert '@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\\"1\\"]){display:none}}' in s
 first_paint_checks()
 
-# 16 Nov 2026, part B: tll-early-state-v1 makes, early, what page code and two layers of our stories chunk make when the page is parsed.
+# 16 Nov 2026, part B: tll-early-state-v1 makes, early, what page code and one layer of our stories chunk make when the page is parsed.
 # Each line below is a piece of that code as it is saved in the repo (the site head of 13 Nov, the same as the live head on 16 Nov; the
-# /stories and profile scripts from the 16 Nov GET; the profile notes embed of 10 Nov, the same as live on 16 Nov; our two chunk layers
+# /stories and profile scripts from the 16 Nov GET; the profile notes embed of 10 Nov, the same as live on 16 Nov; our chunk layer
 # and the core's home base rule). If one changes, the build stops here and the layer has to be read against the new code.
 EARLY_STATE = 'src/site-layers/tll-early-state-v1.js'
 def early_state_checks():
@@ -291,12 +291,6 @@ def early_state_checks():
     places = read('src/site-layers/tll-stories-places-v1.js')
     for piece in ("var c=model.cloneNode(true);c.setAttribute('data-tll-place',p);c.textContent=p;", "c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');", "ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});"):
         assert piece in places and piece in s, 'early-state: tll-stories-places-v1 and the layer differ on ' + piece[:60]
-    m = re.search(r"/\*words:([^*]+)\*/\s*var WORDS=(\[[^\]]*\]);", s)
-    count = read(m.group(1)) if m else ''
-    assert m and ('var W=' + m.group(2)) in count, 'early-state: the count words changed'
-    for piece in ("return n<=20?W[n]:String(n);", "var f=t.nodeValue.match(/^(\\s*)Stories\\b/);", "span=document.createElement('span');span.setAttribute('data-tll-count','');",
-                  "var h=(a.getAttribute('href')||'').split('?')[0].replace(/\\/$/,'');"):
-        assert piece in count, 'early-state: tll-stories-count-v1 no longer has ' + piece[:60]
     m = re.search(r"/\*links:([^*]+)\*/\s*(var LINKS=\[\[.*?\]\];)", s)
     pf = read(m.group(1)) if m else ''
     assert m and m.group(2) in pf, 'early-state: the profile link list changed'

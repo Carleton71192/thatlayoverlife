@@ -6,7 +6,7 @@
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
    core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb))
-   core   src/site-layers/tll-early-state-v1.js (16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row, lead card, chips and count, and the profile head laid out before the first paint, handed back to the page code right before it runs)
+   core   src/site-layers/tll-early-state-v1.js (16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row, lead card and place chips, and the profile head laid out before the first paint, handed back to the page code right before it runs)
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
@@ -609,7 +609,7 @@ if(path==='/stories')(function(){
       was=[].slice.call(grid.childNodes);
       rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});rows.forEach(function(r){grid.appendChild(r.k);});
       var kids=[].slice.call(grid.children),pick=null,top=null,i;
-      for(i=0;i<kids.length&&!pick;i++){if(shown(kids[i])&&pickOf(kids[i]))pick=kids[i];}
+      for(i=0;i<kids.length&&!pick;i++){if(pickOf(kids[i])&&shown(kids[i]))pick=kids[i];}
       if(pick&&grid.firstElementChild!==pick){grid.insertBefore(pick,grid.firstElementChild);kids=[].slice.call(grid.children);}
       for(i=0;i<kids.length&&!top;i++){if(shown(kids[i]))top=kids[i];}
       if(lead&&lead!==top)lead.removeAttribute('data-tll-lead');lead=top;if(top)top.setAttribute('data-tll-lead','1');return true;});
@@ -629,20 +629,6 @@ if(path==='/stories')(function(){
       c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');have[p]=c;added.push(c);});
     ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});
     chunkOut.push(function(){if(row.dataset.tllPlaces)return;added.forEach(drop);was.forEach(function(c){row.appendChild(c);});});
-    return true;});
-
-  
-  
-  var WORDS=['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
-  if(chunk)steps.push(function(){var h=q('h1.tll-library-title'),g=q('.tll-lib-grid');if(!h||!g||!whole(g))return false;
-    if(q('[data-tll-count]',h))return true;
-    var t=h.firstChild;while(t&&t.nodeType!==3&&!t.textContent.trim())t=t.nextSibling;if(!t||t.nodeType!==3)return true;
-    var f=t.nodeValue.match(/^(\s*)Stories\b/);if(!f)return true;
-    var s={};[].forEach.call(D.querySelectorAll('a.tll-lib-card[href*="/stories/"]'),function(a){var u=(a.getAttribute('href')||'').split('?')[0].replace(/\/$/,'');if(u)s[u]=1;});
-    var n=Object.keys(s).length;if(!n)return true;
-    var old=t.nodeValue,span=D.createElement('span');span.setAttribute('data-tll-count','');span.textContent=n<=20?WORDS[n]:String(n);
-    t.nodeValue=(n===1?' story':' stories')+old.slice(f[0].length);h.insertBefore(span,t);
-    chunkOut.push(function(){if(span.parentNode!==h)return;drop(span);t.nodeValue=old;});
     return true;});
 
   
