@@ -1,8 +1,8 @@
 /* tll-early-state-v1 (16 Nov 2026, layout shift sweep part B, causes C1, C3, C6 and C9; reports/evidence/cls-sweep-2026-11-16/fix.md).
    Some of the site's own code settles the first screen only when the page is parsed, after the first paint: the site head moves the nav
    out of the members wrapper (/account, /submit) and adds the Menu button (every page), the /stories page code moves the search form
-   into the filter row and marks the lead card, our stories chunk orders the place chips, and
-   the profile page code builds the profile head. Each of those moved what a reader was already looking at.
+   into the filter row and marks the lead card, our stories chunk orders the place chips, and the profile page code builds the
+   profile head. Each of those moved what a reader was already looking at.
    This layer lays the same end state out while the page is parsed, before the first paint, and hands the page back right before the
    page's own code runs, so that code finds the page as it has always found it and the finished page is its own work.
      when     A MutationObserver watches the page arrive; a piece goes in once the elements it needs have arrived whole.
@@ -20,21 +20,22 @@
               [data-ms-content] wrapper as soon as it has been parsed, the same move navOut() makes when the page is parsed. The
               wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
-              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The cards are put in the
-              order the page's chip script gives them (newest first), the editor's pick in front, and the first card is marked as
-              the lead, as the page's lead script marks it; a first card that is the pick leads from the moment it is parsed.
-              Before the page's scripts run the served order is put back. Not with a search (?q=). (3) The place chips our stories chunk adds and orders (tll-stories-places-v1) go in when the
-              chip row has been parsed; the chunk then finds them and changes nothing. Taken back if the chunk fails. (4) The title stays in
-              its fallback faces until both of its font files are in, then takes both at once (with one of the two in, the rose
-              word jumped 130 px and back). The story count our chunk writes in front of the title is left to the chunk: put in
-              early it rewraps a title that is still in its fallback faces, which moved more of the page than the chunk's own
-              write does later.
+              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The cards are put in
+              the order the page's chip script gives them (newest first), the editor's pick in front, and the first card is marked
+              as the lead, as the page's lead script marks it; a first card that is the pick leads from the moment it is parsed.
+              Before the page's scripts run the served order is put back. Not with a search (?q=). (3) The place chips our stories
+              chunk adds and orders (tll-stories-places-v1) go in when the chip row has been parsed; the chunk then finds them and
+              changes nothing. Taken back if the chunk fails. (4) The title stays in its fallback faces until both of its font
+              files are in, then takes both at once (with one of the two in, the rose word jumped 130 px and back). The story count
+              our chunk writes in front of the title is left to the chunk: put in early it rewraps a title that is still in its
+              fallback faces, which moved more of the page than the chunk's own write does later.
      profile  /contributors/{slug}: a stand-in for the hero's text column, filled from the same attributes of [data-pf5="root"] the
               page's tll-pf5-profile-js-v1 and tll-pf5-n-v1 read, sits right after the real column, which is left untouched and not
               shown until the page's code has filled it (one timer after the page-parsed listeners). Then the stand-in is removed
-              and the real column shows. The flags in the stand-in are their round places only: no file is asked for early. The home base is never in the stand-in: the core's own rule is that it stays hidden until
-              the Worker says the member has switched it on. The badge and the initials on the photo go in early and are removed
-              right before the page's code adds its own. A profile set to Off gets no stand-in.
+              and the real column shows. The flags in the stand-in are their round places only: no file is asked for early. The
+              home base is never in the stand-in: the core's own rule is that it stays hidden until the Worker says the member has
+              switched it on. The badge and the initials on the photo go in early and are removed right before the page's code
+              adds its own. A profile set to Off gets no stand-in.
    If a page script is missing or throws, the page ends as it does without this layer: nothing here survives the hand-back.
    No data-ms-* attribute is read or written apart from finding the nav's wrapper; no form or field name is touched. If the core runs
    after the page is parsed, the layer does nothing. */
