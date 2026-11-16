@@ -36,3 +36,7 @@ The three checks of 16.65.0 (reports/evidence/release-16.65.0-check/) found one 
 ## Rollback
 - To A2: 16.65.0, pin 0daa78b4cdbd8cda2fccd488a6e35b78c0652e3e, sha384-lCTj52h4CPjzkOy2Ls4A5XdnVYwEqHFIXJYewsQbjZB2jarPkrzxWG+vqRINw9l8 (still registered): set_site_scripts from src/site/live-2026-11-15/r1666/site-scripts.before.json.
 - To what www runs: 16.64.0, pin 6ec769bb8fa05d21a459b6d106652854754c4c37, sha384-m7ORNXLxTadunuYNZM0nrBKIxd+Elr5YS7LL+uIj29kh3sEjfUdQgEhayOdjrEvr (still registered): src/site/live-2026-11-14/r1665/site-scripts.before.json.
+
+## Live
+
+Nancy in chat on 16 Nov: "Publish www". Published www, thatlayover.life and the test site at 09:06:09 UTC (publishTaskId 0c62d87b-5941-434a-8fd3-73dfbf22d640). www served pin 3df16988 from 09:06:29 UTC. www and test HTML are identical on 12 of 12 pages apart from the host name and the publish stamp (reports/evidence/release-16.66.0-live/). Rollback stays as above.
