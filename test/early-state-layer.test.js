@@ -473,6 +473,8 @@ const homeOut = (id, home) => { const meta = id.querySelector('[data-pf5="meta"]
 const ghostOf = (p) => p.hero.querySelector('[data-pf5="id"][data-tll-es-ghost]');
 const realOf = (p) => p.hero.children.find((n) => n.getAttribute('data-pf5') === 'id' && !n.hasAttribute('data-tll-es-ghost'));
 const asReal = (g) => g.html().replace(' data-tll-es-ghost="1"', '');
+// the stand-in's flags are places only: the page's own flags carry the file address and ask for it lazily
+const noFlagFiles = (h) => h.replace(/(<img alt="" class="pf5-flag" height="28") loading="lazy" src="[^"]*"/g, '$1');
 
 describe('tll-early-state-v1: the profile head (C3)', () => {
   const start = (withLayer = true, pathName = '/contributors/ada-example') => { const d = makeDom({ path: pathName }); HEAD(d, { withLayer }); return d; };
@@ -492,7 +494,7 @@ describe('tll-early-state-v1: the profile head (C3)', () => {
     it('the stand-in is what the page code makes, without the home base: ' + name, () => {
       const d = start(); const p = PROFILE(d, { ...opt, upTo: 'list' }); d.el(p.art, 'section', { 'data-pf5': 'foot' });
       const g = ghostOf(p); expect(g).not.toBe(null);
-      expect(asReal(g)).toBe(pageMade(opt));
+      expect(asReal(g)).toBe(noFlagFiles(pageMade(opt))); expect(g.querySelectorAll('img').every((i) => !i.hasAttribute('src'))).toBe(true);
       expect(g.textContent.includes((opt.rootAttrs && opt.rootAttrs['data-home'] !== undefined ? opt.rootAttrs['data-home'] : ROOT['data-home']) || '\u0000')).toBe(false);
     });
   }
@@ -523,7 +525,7 @@ describe('tll-early-state-v1: the profile head (C3)', () => {
     expect(ghostOf(p)).toBe(g); expect(d.styles()).toEqual(['tll-es-pf5-v1']); expect(p.id.querySelector('.pf5-partners')).toBe(null); // the real column is built, the notes not yet in
     d.run(0);
     expect(ghostOf(p)).toBe(null); expect(d.styles()).toEqual([]); expect(realOf(p)).toBe(p.id);
-    homeOut(p.id, ROOT['data-home']); expect(p.id.html()).toBe(want); expect(d.thrown).toEqual([]);
+    homeOut(p.id, ROOT['data-home']); expect(noFlagFiles(p.id.html())).toBe(want); expect(d.thrown).toEqual([]);
   });
   it('the finished page is the one the page code makes without the layer', () => {
     for (const opt of Object.values(CASES)) { const a = start(); const pa = PROFILE(a, opt); a.parsed(); a.run(0); a.load(); a.run(100);
@@ -540,7 +542,7 @@ describe('tll-early-state-v1: the profile head (C3)', () => {
   it('without the notes embed the stand-in leaves its parts out', () => {
     const opt = { ...CASES['from place, makes, portfolio, partners, open'], notes: null };
     const d = start(); const p = PROFILE(d, { ...opt, upTo: 'list' }); d.el(p.art, 'section', { 'data-pf5': 'foot' });
-    expect(asReal(ghostOf(p))).toBe(pageMade(opt)); expect(ghostOf(p).querySelector('.pf5-partners')).toBe(null);
+    expect(asReal(ghostOf(p))).toBe(noFlagFiles(pageMade(opt))); expect(ghostOf(p).querySelector('.pf5-partners')).toBe(null);
   });
   it('20 s without a page-parsed event: the stand-in and the early photo parts go', () => {
     const d = start(); const p = PROFILE(d, { upTo: 'list' }); d.el(p.art, 'section', { 'data-pf5': 'foot' }); d.run(20000);
