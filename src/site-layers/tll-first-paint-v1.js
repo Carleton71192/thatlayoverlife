@@ -1,10 +1,12 @@
 /* tll-first-paint-v1 (16 Nov 2026, layout shift sweep, causes C4, C5, C8 and C11; reports/evidence/cls-sweep-2026-11-16/fix.md).
-   /travelers and /the-map only. On both pages the page's own code settles the first screen after the first paint: styles that sit at the
-   end of the body, scripts that run when the page is parsed, the map that is drawn after load, the title verb that changes every 3.2 s.
+   /travelers, /the-map and (the page style only) /about. There the page's own code settles the first screen after the first paint: styles
+   that sit at the end of the body, scripts that run when the page is parsed, the map that is drawn after load, the title verb that
+   changes every 3.2 s.
    This layer lays the same end state out before the first paint and lets go once the page's own code has done its part, so the finished
    page is the page's own. Nothing is removed from the page, no data-ms-* element is touched, the nav and the footer are left alone.
      page style   style#tll-fp-page-v1 in the head: copies of the page rules that shape the first screen and arrive late (the /travelers
-                  search box from tll-trav-search-css; the Open full screen link on /the-map), three stand-ins for what the /travelers
+                  search box from tll-trav-search-css; the Open full screen link on /the-map; the phone sizes of the /about hero,
+                  which the page sets in an embed after the article), three stand-ins for what the /travelers
                   page script writes when the page is parsed (the empty search note is hidden; each chip count and the card count keep
                   room for one figure), and on /the-map the closed phone sheet of the map left out of the layout. In the head it comes
                   before the page's own styles, so the page wins every tie. Taken out right after the page-parsed listeners have run.
@@ -25,9 +27,9 @@
    ends as it does without this layer. If the core runs after the page is parsed, the layer does nothing. */
 (function(){
 var path=location.pathname.replace(/\/+$/,'')||'/';
-if(path!=='/travelers'&&path!=='/the-map')return;
+if(path!=='/travelers'&&path!=='/the-map'&&path!=='/about')return;
 if(document.readyState!=='loading'||!window.MutationObserver)return;
-var D=document,TRAV=path==='/travelers',HARD=20000;
+var D=document,TRAV=path==='/travelers',MAP=path==='/the-map',HARD=20000;
 /* Copies of page rules, one rule a line, exactly as the page has them (the build checks each against the saved page code). */
 var PAGE_TRAV=
 /*copy:src/pages/heroes-2026-10-29/code/travelers-footer.html*/
@@ -56,6 +58,14 @@ var PAGE_MAP=
    the hidden sheet is placed against the embed instead of the screen, and the browser books that as a jump of 0.13 nobody sees. Until
    the page is parsed the closed sheet is not laid out at all; an opened one is left alone. */
 "@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\"1\"]){display:none}}";
+var PAGE_ABOUT=
+"@media(max-width:600px){"+
+/*copy:src/pages/about/live-2026-11-13/next/embed-c024f6d7.after.html*/
+".tll-about-final-title{font-size:38px;letter-spacing:-.5px}"+
+".tll-about-final-hero{padding-top:52px;padding-bottom:40px}"+
+".tll-about-final-intro{font-size:18px}"+
+/*end*/
+"}";
 var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
 function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
 function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
@@ -67,7 +77,7 @@ function tick(){for(var i=steps.length-1;i>=0;i--){var done=true;try{done=steps[
   if(!steps.length&&mo){mo.disconnect();mo=null;}}
 
 /* the page style: until the page-parsed listeners have run */
-var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:PAGE_MAP),relA=once(function(){drop(A);});
+var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:MAP?PAGE_MAP:PAGE_ABOUT),relA=once(function(){drop(A);});
 setTimeout(relA,HARD);
 
 if(TRAV){
@@ -116,7 +126,7 @@ if(TRAV){
   }
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();
     setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
-}else{
+}else if(MAP){
   /* the map mount */
   var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null;
   var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}});
@@ -134,6 +144,6 @@ if(TRAV){
     var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
     var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
-}
+}else D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
 mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();

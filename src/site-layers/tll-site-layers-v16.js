@@ -5,7 +5,7 @@
    core   src/site-layers/tll-note-typing-v1.js (note button steps aside while typing)
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
-   core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers and /the-map first screen laid out before the first paint (late page styles, the map height, the title verb))
+   core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb))
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
@@ -408,9 +408,9 @@ if(document.readyState!=='loading')run();else if(EARLY)early();else document.add
 /* src/site-layers/tll-first-paint-v1.js */
 (function(){
 var path=location.pathname.replace(/\/+$/,'')||'/';
-if(path!=='/travelers'&&path!=='/the-map')return;
+if(path!=='/travelers'&&path!=='/the-map'&&path!=='/about')return;
 if(document.readyState!=='loading'||!window.MutationObserver)return;
-var D=document,TRAV=path==='/travelers',HARD=20000;
+var D=document,TRAV=path==='/travelers',MAP=path==='/the-map',HARD=20000;
 var PAGE_TRAV=
 "[data-tll-trav-search-wrap]{max-width:560px;margin:0 0 18px}"+
 "[data-tll-trav-search-wrap] label{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;margin:0 0 8px}"+
@@ -427,6 +427,12 @@ var OURS_TRAV=
 var PAGE_MAP=
 "[data-tll-map=fullscreen]{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#06302f;background:#00C9C8;padding:9px 18px;border-radius:6px;font-weight:700;text-decoration:none}"+
 "@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\"1\"]){display:none}}";
+var PAGE_ABOUT=
+"@media(max-width:600px){"+
+".tll-about-final-title{font-size:38px;letter-spacing:-.5px}"+
+".tll-about-final-hero{padding-top:52px;padding-bottom:40px}"+
+".tll-about-final-intro{font-size:18px}"+
+"}";
 var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
 function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
 function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
@@ -436,7 +442,7 @@ var parsed=0,steps=[],mo=null;
 function tick(){for(var i=steps.length-1;i>=0;i--){var done=true;try{done=steps[i]();}catch(e){}if(done)steps.splice(i,1);}
   if(!steps.length&&mo){mo.disconnect();mo=null;}}
 
-var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:PAGE_MAP),relA=once(function(){drop(A);});
+var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:MAP?PAGE_MAP:PAGE_ABOUT),relA=once(function(){drop(A);});
 setTimeout(relA,HARD);
 
 if(TRAV){
@@ -484,7 +490,7 @@ if(TRAV){
   }
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();
     setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
-}else{
+}else if(MAP){
   
   var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null;
   var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}});
@@ -502,7 +508,7 @@ if(TRAV){
     var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
     var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
-}
+}else D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
 mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();
 /* src/site-layers/tll-home-bands-v1.js */

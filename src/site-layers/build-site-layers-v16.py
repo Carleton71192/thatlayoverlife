@@ -37,7 +37,7 @@ A4 (same day, the A3 checks): a static country table (region-names-v1.json), a f
 the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed.
 16 Nov 2026 (layout shift sweep on the pages that are not stories, reports/evidence/cls-sweep-2026-11-16/, for release 16.67.0): page-heroes
 dresses the heroes of /travelers, /the-map, /about and /for-expats as the parser adds them (it waited for the page-parsed event), and
-tll-first-paint-v1 joins the core for /travelers and /the-map. The build checks the page rules that layer copies against the saved page
+tll-first-paint-v1 joins the core for /travelers, /the-map and /about. The build checks the page rules that layer copies against the saved page
 code (FIRST_PAINT below), so a copy cannot drift from its source unnoticed."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -65,7 +65,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-masthead-v1.js', 'footer masthead line: Written by the people who went'),
            ('src/site-layers/tll-ux-1028-v1.js', '28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero'),
            ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked'),
-           ('src/site-layers/tll-first-paint-v1.js', '16 Nov: /travelers and /the-map first screen laid out before the first paint (late page styles, the map height, the title verb)'),
+           ('src/site-layers/tll-first-paint-v1.js', '16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb)'),
            ('src/site-layers/tll-story-ask-v1.js', '29 Oct: end-of-story ask, Pitch a layover story first, then send one photo'),
            ('src/site-layers/tll-open-slots-v1.js', '29 Oct: /spotlight coming-soon and open-slot cards become one Pitch your layover tile'),
            ('src/site-layers/tll-travelers-fix-v1.js', '29 Oct testers: /travelers link chips as labelled pills inside the card, no empty grid cell, one action tile instead of the open slot'),
@@ -154,7 +154,7 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #                   listener, and on profiles hides other members' cards from the first paint so their lazy photos are never requested.
 #   library-hold    (13 Nov) the home library swipe row height: it listens for the library's first draw, which runs while the page is
 #                   parsed (before the first paint), and keeps the row's height from the previous view of this tab before that draw.
-#   first-paint     (16 Nov, layout shift sweep) its head styles and its watcher must be in place before /travelers and /the-map are
+#   first-paint     (16 Nov, layout shift sweep) its head styles and its watcher must be in place before /travelers, /the-map and /about are
 #                   parsed: it lays out, before the first paint, what those pages' own late styles and page-parsed scripts settle after it.
 #                   After page-heroes, so the hero is dressed before the /travelers title is measured (observers run in this order).
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
@@ -234,7 +234,7 @@ for name, _, pub, _ in CHUNKS: assert pub, 'chunk %s has no public layer left: d
 FIRST_PAINT = 'src/site-layers/tll-first-paint-v1.js'
 def first_paint_checks():
     s = read(FIRST_PAINT); blocks = re.findall(r'/\*copy:([^*]+)\*/\n(.*?)/\*end\*/', s, re.S)
-    assert len(blocks) == 3, 'first-paint: three copy blocks expected'
+    assert len(blocks) == 4, 'first-paint: four copy blocks expected'
     n = 0
     for f, body in blocks:
         src = read(f)
@@ -244,7 +244,8 @@ def first_paint_checks():
             rule = json.loads(line.rstrip('+;'))
             assert rule in src or json.dumps(rule)[1:-1] in src, 'first-paint: %s no longer has the rule %s' % (f, rule[:70])
             n += 1
-    assert n == 9, 'first-paint: nine copied rules expected, found %d' % n
+    assert n == 12, 'first-paint: twelve copied rules expected, found %d' % n
+    assert '@media(max-width:600px){.tll-about-final-title{' in read('src/pages/about/live-2026-11-13/next/embed-c024f6d7.after.html'), 'first-paint: the /about phone rules changed'
     m = re.search(r"/\*words:([^*]+)\*/\s*var WORDS=(\[[^\]]*\]);", s)
     assert m and ('var W=' + m.group(2)) in read(m.group(1)), 'first-paint: the /travelers verbs changed'
     assert "/everyone/i.test(tn.nodeValue))tn.nodeValue='People'" in read('src/site-layers/tll-travelers-fix-v1.js'), 'first-paint: the travelers chunk no longer renames the first chip'

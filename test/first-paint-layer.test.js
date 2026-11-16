@@ -227,9 +227,9 @@ const verb = (d, w) => { d.document.querySelector('.tll-travelers-title em').tex
 function themap(opts = {}, before = () => {}) { const d = makeDom({ path: '/the-map', ...opts }); before(d); runLayer(fpSrc, d); d.openBody(); PAGES['/the-map'](d, () => {}); return d; }
 const publicPage = (d) => { d.root.classList.add('tll-map-public'); d.el(d.head, 'script', { id: 'tll-map-invite-js-v1' }); };
 
-describe('tll-first-paint-v1: only on /travelers and /the-map, only while the page is parsed', () => {
+describe('tll-first-paint-v1: only on /travelers, /the-map and /about, only while the page is parsed', () => {
   it('does nothing on other paths', () => {
-    for (const path of ['/', '/stories', '/stories/a-story', '/about', '/for-expats', '/travelers/x', '/account']) {
+    for (const path of ['/', '/stories', '/stories/a-story', '/about/x', '/for-expats', '/travelers/x', '/account']) {
       const d = makeDom({ path }); runLayer(fpSrc, d);
       expect(d.styles(d.head)).toEqual([]); expect(d.observers.length).toBe(0); expect(d.timers.length).toBe(0); expect(d.docL.DOMContentLoaded).toBeUndefined();
     }
@@ -333,6 +333,22 @@ describe('tll-first-paint-v1 on /travelers', () => {
   });
 });
 
+describe('tll-first-paint-v1 on /about', () => {
+  it('carries the phone sizes of the hero until the page-parsed listeners have run, and nothing else', () => {
+    const d = makeDom({ path: '/about' }); runLayer(fpSrc, d);
+    expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']);
+    expect(d.document.getElementById('tll-fp-page-v1').textContent).toBe('@media(max-width:600px){.tll-about-final-title{font-size:38px;letter-spacing:-.5px}.tll-about-final-hero{padding-top:52px;padding-bottom:40px}.tll-about-final-intro{font-size:18px}}');
+    d.openBody(); PAGES['/about'](d, () => {});
+    expect(d.observers.filter((o) => o.on).length).toBe(0);
+    d.fire('DOMContentLoaded'); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']);
+    d.run(0); expect(d.styles(d.head)).toEqual([]);
+    expect(d.body.html()).not.toMatch(/tll-fp-/);
+  });
+  it('lets go after 20 s when the page never finishes parsing', () => {
+    const d = makeDom({ path: '/about' }); runLayer(fpSrc, d); d.run(19999); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']); d.run(20000); expect(d.styles(d.head)).toEqual([]);
+  });
+});
+
 describe('tll-first-paint-v1 on /the-map', () => {
   it('has the page style and the map hold in the head from the start', () => {
     const d = makeDom({ path: '/the-map' }); runLayer(fpSrc, d);
@@ -401,7 +417,9 @@ describe('tll-first-paint-v1 on /the-map', () => {
 describe('the copies in tll-first-paint-v1 match the page code, and the core carries both layers', () => {
   const blocks = [...fpSrc.matchAll(/\/\*copy:([^*]+)\*\/\n([\s\S]*?)\/\*end\*\//g)].map((m) => ({ file: m[1], rules: m[2].split('\n').map((l) => l.trim()).filter((l) => l.startsWith('"')).map((l) => JSON.parse(l.replace(/[+;]$/, ''))) }));
   it('every copied rule is still in the file it was copied from', () => {
-    expect(blocks.map((b) => [b.file, b.rules.length])).toEqual([['src/pages/heroes-2026-10-29/code/travelers-footer.html', 5], ['src/site-layers/tll-travelers-fix-v1.js', 3], ['src/pages/the-map/live-2026-11-16/embed-fs.live.html', 1]]);
+    expect(blocks.map((b) => [b.file, b.rules.length])).toEqual([['src/pages/heroes-2026-10-29/code/travelers-footer.html', 5], ['src/site-layers/tll-travelers-fix-v1.js', 3], ['src/pages/the-map/live-2026-11-16/embed-fs.live.html', 1],
+      ['src/pages/about/live-2026-11-13/next/embed-c024f6d7.after.html', 3]]);
+    expect(read('src', 'pages', 'about', 'live-2026-11-13', 'next', 'embed-c024f6d7.after.html')).toContain('@media(max-width:600px){' + blocks[3].rules.join(''));
     for (const b of blocks) { const src = read(...b.file.split('/')); for (const r of b.rules) expect(src.includes(r) || src.includes(JSON.stringify(r).slice(1, -1))).toBe(true); }
   });
   it('the travelers search rules are the ones in the live page footer style, and the verbs are the page script\'s', () => {
@@ -418,7 +436,7 @@ describe('the copies in tll-first-paint-v1 match the page code, and the core car
     expect(at('tll-page-heroes-v1')).toBeGreaterThan(-1);
     expect(at('tll-first-paint-v1')).toBeGreaterThan(at('tll-page-heroes-v1'));
     expect(at('tll-first-paint-v1')).toBeLessThan(core.indexOf("(function(){if(!/^\\/stories\\/[^/]+\\/?$/.test(location.pathname))return;"));
-    expect(core).toContain("if(path!=='/travelers'&&path!=='/the-map')return;");
+    expect(core).toContain("if(path!=='/travelers'&&path!=='/the-map'&&path!=='/about')return;");
     expect(core).toContain('function early(){var mo=null;(document.head||document.documentElement).appendChild(sheet());');
   });
   it('the core carries both layers without their comments, and the built code does the same job', () => {
