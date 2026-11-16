@@ -20,10 +20,11 @@
               [data-ms-content] wrapper as soon as it has been parsed, the same move navOut() makes when the page is parsed. The
               wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
-              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The cards are put in
-              the order the page's chip script gives them (newest first), the editor's pick in front, and the first card is marked
-              as the lead, as the page's lead script marks it; a first card that is the pick leads from the moment it is parsed.
-              Before the page's scripts run the served order is put back. Not with a search (?q=). (3) The place chips our stories
+              back the moment that script's element is parsed, right before it runs and merges for itself. (2) The first card
+              leads from the moment it is parsed. When the whole grid has arrived and the page's rules name another card (a pick
+              further down, a newer story), the page's own moves are made: the chip script's order (newest first), the pick in
+              front, the mark. Before the page's scripts run the mark is taken off and a changed order is put back. Not with a
+              search (?q=). (3) The place chips our stories
               chunk adds and orders (tll-stories-places-v1) go in when the chip row has been parsed; the chunk then finds them and
               changes nothing. Taken back if the chunk fails. (4) The title stays in its fallback faces until both of its font
               files are in, then takes both at once (with one of the two in, the rose word jumped 130 px and back). The story count
@@ -112,9 +113,11 @@ if(path==='/stories')(function(){
   before.push(unmerge);
 
   /* (2) the lead card. At the page-parsed event chips v1 puts the cards in order (newest first, each card appended again) and
-     tll-lib-lead-v1 moves the editor's pick to the front and marks the first card shown. Here: the first card, when it is the pick,
-     leads from the moment it has been parsed; when the whole grid has arrived the same order, the same move and the same mark are made.
-     Before the page's scripts run the cards are put back in the order they were served in and the mark is taken off. */
+     tll-lib-lead-v1 moves the editor's pick to the front and marks the first card shown. Here: the first card leads from the moment
+     it has been parsed (it is the pick or the newest story on all but rare days). When the whole grid has arrived the page's rules are
+     asked: if they name the first card, nothing more is done and the page sorts the rest when it is parsed, as it always has. If they
+     name another card, the page's own moves are made (the same order, the pick in front, the mark), so a grid that has been painted
+     moves as it does when the page does it. Before the page's scripts run the mark is taken off and a changed order is put back. */
   var lead=null,was=null,grid=null;
   function txt(k,a){var n=q('['+a+']',k);return n?n.textContent.trim():'';}
   function pickOf(k){return q('[data-tll-pick]:not(.w-condition-invisible)',k);}
@@ -122,18 +125,21 @@ if(path==='/stories')(function(){
   function shown(k){return W.getComputedStyle(k).display!=='none';}
   if(!/[?&]q=[^&]/.test(location.search)){
     steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k||(!k.nextElementSibling&&!whole(g)))return false;
-      if(!lead&&pickOf(k)&&shown(k)){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
+      if(!lead){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
     steps.push(function(){grid=q('.tll-lib-grid');if(!grid||!whole(grid))return false;
       var rows=[].slice.call(grid.children).filter(function(k){return k.hasAttribute('data-tll-card')||q('[data-tll-card]',k);})
         .map(function(k,i){return {k:k,i:i,d:Date.parse(txt(k,'data-tll-date'))||0};});
       if(!rows.length)return true;
+      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});
+      var to=null,pick=null,i;
+      for(i=0;i<rows.length&&!pick;i++){if(pickOf(rows[i].k)&&shown(rows[i].k))pick=rows[i].k;}
+      for(i=0;i<rows.length&&!pick&&!to;i++){if(shown(rows[i].k))to=rows[i].k;}
+      to=pick||to;
+      if(to&&to===lead&&grid.firstElementChild===to)return true;
       was=[].slice.call(grid.childNodes);
-      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});rows.forEach(function(r){grid.appendChild(r.k);});
-      var kids=[].slice.call(grid.children),pick=null,top=null,i;
-      for(i=0;i<kids.length&&!pick;i++){if(pickOf(kids[i])&&shown(kids[i]))pick=kids[i];}
-      if(pick&&grid.firstElementChild!==pick){grid.insertBefore(pick,grid.firstElementChild);kids=[].slice.call(grid.children);}
-      for(i=0;i<kids.length&&!top;i++){if(shown(kids[i]))top=kids[i];}
-      if(lead&&lead!==top)lead.removeAttribute('data-tll-lead');lead=top;if(top)top.setAttribute('data-tll-lead','1');return true;});
+      rows.forEach(function(r){grid.appendChild(r.k);});
+      if(pick&&grid.firstElementChild!==pick)grid.insertBefore(pick,grid.firstElementChild);
+      if(lead&&lead!==to)lead.removeAttribute('data-tll-lead');lead=to;if(to)to.setAttribute('data-tll-lead','1');return true;});
     before.push(function(){if(lead)lead.removeAttribute('data-tll-lead');
       if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
   }

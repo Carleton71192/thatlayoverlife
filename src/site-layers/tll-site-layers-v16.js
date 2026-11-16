@@ -602,18 +602,21 @@ if(path==='/stories')(function(){
   function shown(k){return W.getComputedStyle(k).display!=='none';}
   if(!/[?&]q=[^&]/.test(location.search)){
     steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k||(!k.nextElementSibling&&!whole(g)))return false;
-      if(!lead&&pickOf(k)&&shown(k)){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
+      if(!lead){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
     steps.push(function(){grid=q('.tll-lib-grid');if(!grid||!whole(grid))return false;
       var rows=[].slice.call(grid.children).filter(function(k){return k.hasAttribute('data-tll-card')||q('[data-tll-card]',k);})
         .map(function(k,i){return {k:k,i:i,d:Date.parse(txt(k,'data-tll-date'))||0};});
       if(!rows.length)return true;
+      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});
+      var to=null,pick=null,i;
+      for(i=0;i<rows.length&&!pick;i++){if(pickOf(rows[i].k)&&shown(rows[i].k))pick=rows[i].k;}
+      for(i=0;i<rows.length&&!pick&&!to;i++){if(shown(rows[i].k))to=rows[i].k;}
+      to=pick||to;
+      if(to&&to===lead&&grid.firstElementChild===to)return true;
       was=[].slice.call(grid.childNodes);
-      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});rows.forEach(function(r){grid.appendChild(r.k);});
-      var kids=[].slice.call(grid.children),pick=null,top=null,i;
-      for(i=0;i<kids.length&&!pick;i++){if(pickOf(kids[i])&&shown(kids[i]))pick=kids[i];}
-      if(pick&&grid.firstElementChild!==pick){grid.insertBefore(pick,grid.firstElementChild);kids=[].slice.call(grid.children);}
-      for(i=0;i<kids.length&&!top;i++){if(shown(kids[i]))top=kids[i];}
-      if(lead&&lead!==top)lead.removeAttribute('data-tll-lead');lead=top;if(top)top.setAttribute('data-tll-lead','1');return true;});
+      rows.forEach(function(r){grid.appendChild(r.k);});
+      if(pick&&grid.firstElementChild!==pick)grid.insertBefore(pick,grid.firstElementChild);
+      if(lead&&lead!==to)lead.removeAttribute('data-tll-lead');lead=to;if(to)to.setAttribute('data-tll-lead','1');return true;});
     before.push(function(){if(lead)lead.removeAttribute('data-tll-lead');
       if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
   }
