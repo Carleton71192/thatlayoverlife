@@ -20,9 +20,9 @@
      map          style#tll-fp-map-v1 (/the-map): the Map 2.0 mount keeps one screen of height until the map is drawn, so what follows it
                   starts below the screen instead of being pushed there after load. Let go when the map is taller than that, when the
                   embed's own status line reports a failure, when there is no mount, or after 20 s.
-     map title    style#tll-fp-maptitle-v1 (/the-map): the title keeps the height of its first layout while the web fonts arrive (its two
-                  font files come one after the other, and with one of them in the title is a line shorter for a frame). Let go when
-                  the font set has finished loading, or after 20 s.
+     map title    style#tll-fp-maptitle-v1 (/the-map): the title stays in the fallback faces until both of its font files are in (they
+                  come one after the other, and with one of them in the title is a line shorter for a frame). Let go when both
+                  have loaded or one has failed, or after 20 s.
      invite       /the-map: the signed-out "Start your own map" link is put in by the page head script when the page is parsed; here it
                   goes in as soon as the counter has been parsed, made the same way, only if that script is on the page. The script
                   finds it and leaves it.
@@ -75,6 +75,15 @@ function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
 function once(f){var d=0;return function(){if(!d){d=1;try{f();}catch(e){}}};}
 /* an element has arrived whole once an element follows it or one of its ancestors below the body's own children */
 function whole(n){for(;n&&n.parentNode&&n.parentNode!==D.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+/* a hidden copy of a title at the width it has, to measure heights the title could take without touching the title itself */
+function ghost(h,w){var c=h.cloneNode(true);c.removeAttribute('id');c.setAttribute('aria-hidden','true');
+  c.style.cssText='position:absolute!important;visibility:hidden!important;pointer-events:none!important;left:0!important;top:0!important;margin:0!important;'+
+    'min-height:0!important;height:auto!important;box-sizing:border-box!important;width:'+w+'px!important';
+  h.parentNode.appendChild(c);return c;}
+/* what a border-box height is as a min-height of that element */
+function inner(h,v){var cs=window.getComputedStyle(h);
+  if(cs.boxSizing!=='border-box')v-=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0)+(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.borderBottomWidth)||0);
+  return Math.round(v*100)/100;}
 var parsed=0,steps=[],mo=null;
 function tick(){for(var i=steps.length-1;i>=0;i--){var done=true;try{done=steps[i]();}catch(e){}if(done)steps.splice(i,1);}
   if(!steps.length&&mo){mo.disconnect();mo=null;}}
@@ -104,15 +113,10 @@ if(TRAV){
   var still=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var measure=function(){if(still||off)return;var h=D.querySelector('.tll-travelers-title'),em=h&&h.querySelector('em'),p=h&&h.parentNode;if(!em||!p)return;
     var w=h.getBoundingClientRect().width;if(!w)return;
-    var cs=window.getComputedStyle(h),c=h.cloneNode(true),ce=c.querySelector('em'),max=0;
-    c.removeAttribute('id');c.setAttribute('aria-hidden','true');
-    c.style.cssText='position:absolute!important;visibility:hidden!important;pointer-events:none!important;left:0!important;top:0!important;margin:0!important;'+
-      'min-height:0!important;height:auto!important;box-sizing:border-box!important;width:'+w+'px!important';
-    p.appendChild(c);
+    var c=ghost(h,w),ce=c.querySelector('em'),max=0;
     for(var i=0;i<WORDS.length;i++){ce.textContent=WORDS[i];max=Math.max(max,c.getBoundingClientRect().height);}
     p.removeChild(c);if(mo)mo.takeRecords();
-    var pad=cs.boxSizing==='border-box'?0:(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0)+(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.borderBottomWidth)||0);
-    var v=Math.round((max-pad)*100)/100;if(!(v>0))return;
+    var v=inner(h,max);if(!(v>0))return;
     var css='h1.tll-travelers-title{min-height:'+v+'px}';
     if(!C)C=sheet('tll-fp-title-v1',css);else if(C.textContent!==css)C.textContent=css;};
   var relC=function(){off=1;drop(C);C=null;if(emo){emo.disconnect();emo=null;}};
@@ -144,16 +148,21 @@ if(TRAV){
   /* the title while the web fonts arrive. The title is set in two Playfair Display files (800 and 800 italic for the rose words). They
      arrive one after the other, and with only one of them in, "Every country, on the map." fits one line at desktop widths where it
      takes two both before (fallback faces) and after: the page under the title went up 83 px and down again, or was painted one line
-     short and then moved down (0.24 to 0.37 at 1440). The title keeps the height of its first layout until the font set has finished
-     loading; if the finished title is a different height, it changes once then, as it did before. */
+     short and then moved down (0.24 to 0.37 at 1440). Until both files are in, the title stays in the fallback faces alone (its own
+     stack without Playfair Display), then takes both at once. The two files are asked for here, when the title has been parsed,
+     which is when the browser asks for them anyway. Nothing is done when both are already in. */
   steps.push(function(){var h=D.querySelector('.tll-map-title'),F=D.fonts;if(!h||(!parsed&&!whole(h)))return parsed;
-    if(!F||!F.addEventListener)return true;
-    var v=Math.round(h.getBoundingClientRect().height*100)/100;if(!(v>0))return true;
-    var T=sheet('tll-fp-maptitle-v1','h1.tll-map-title{min-height:'+v+'px}'),relT=once(function(){drop(T);});
-    var done=function(){if(F.status==='loaded')relT();};
-    F.addEventListener('loadingdone',done);F.addEventListener('loadingerror',done);
-    try{if(F.ready&&F.ready.then)F.ready.then(done,relT);}catch(e){}
-    setTimeout(relT,HARD);return true;});
+    if(!F||!F.load||!F.check||!window.Promise)return true;
+    var cs=window.getComputedStyle(h),fam=cs.fontFamily||'',rest=fam.replace(/^\s*["']?Playfair Display["']?\s*,\s*/i,'');
+    if(!rest||rest===fam)return true;
+    var em=h.querySelector('em'),ec=em&&window.getComputedStyle(em),txt=h.textContent||'',need=[cs.fontWeight+' 1em "Playfair Display"'];
+    if(ec&&ec.fontStyle==='italic')need.push('italic '+ec.fontWeight+' 1em "Playfair Display"');
+    var all=true,i;for(i=0;i<need.length;i++)if(!F.check(need[i],txt))all=false;
+    if(all)return true;
+    var T=sheet('tll-fp-maptitle-v1','h1.tll-map-title,h1.tll-map-title *{font-family:'+rest+'!important}'),relT=once(function(){drop(T);});
+    setTimeout(relT,HARD);
+    var jobs=[];for(i=0;i<need.length;i++)jobs.push(F.load(need[i],txt));
+    window.Promise.all(jobs).then(relT,relT);return true;});
   /* the invite */
   steps.push(function(){if(!D.documentElement.classList.contains('tll-map-public')||!D.getElementById('tll-map-invite-js-v1'))return true;
     if(D.querySelector('[data-tll-map-invite]'))return true;

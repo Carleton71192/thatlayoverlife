@@ -21,7 +21,7 @@ const core = read('src', 'site-layers', 'tll-site-layers-v16.js');
 const build = read('src', 'site-layers', 'build-site-layers-v16.py');
 
 // ---- a small DOM: elements, text, a selector engine for the selectors the two layers use, observers, timers ----
-function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = {} } = {}) {
+function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = {}, families = {}, fontsLoaded = [] } = {}) {
   const observers = []; const docL = {}; const winL = {}; const timers = []; const fontL = {}; const resizeObs = [];
   let doc;
   const notify = (target) => { observers.filter((o) => o.on && o.sees(target)).forEach((o) => { o.pending = true; }); };
@@ -36,7 +36,7 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
   class Text extends Node { constructor(t) { super(); this.nodeType = 3; this.nodeValue = t; } get textContent() { return this.nodeValue; } cloneNode() { return new Text(this.nodeValue); } }
   class El extends Node {
     constructor(tag) { super(); this.nodeType = 1; this.tagName = tag.toUpperCase(); this.attrs = {}; this.listeners = {}; const el = this;
-      this.style = { set cssText(v) { el.attrs.style = v; }, get cssText() { return el.attrs.style || ''; } };
+      this.style = { set cssText(v) { el.attrs.style = v; }, get cssText() { return el.attrs.style || ''; }, setProperty(k, v) { this[k] = v; } };
       this.classList = { add: (...c) => { const s = new Set(el.cls()); c.forEach((x) => s.add(x)); el.attrs.class = [...s].join(' '); notify(el); }, remove: (c) => { el.attrs.class = el.cls().filter((x) => x !== c).join(' '); },
         contains: (c) => el.cls().includes(c) }; }
     cls() { return (this.attrs.class || '').split(/\s+/).filter(Boolean); }
@@ -64,7 +64,8 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
     html() { const a = Object.keys(this.attrs).sort().filter((k) => this.attrs[k] !== '' || k !== 'style').map((k) => ` ${k}="${this.attrs[k]}"`).join('');
       return `<${this.tagName.toLowerCase()}${a}>${this.childNodes.map((n) => (n.nodeType === 3 ? n.nodeValue : n.html())).join('')}</${this.tagName.toLowerCase()}>`; }
   }
-  const simple = (n, s) => { // tag, .class, #id, [attr], [attr="v"] in one compound
+  const simple = (n, s) => { // tag, .class, #id, [attr], [attr="v"] in one compound; * for any element
+    if (s === '*') return true;
     const m = /^([a-z0-9]+)?((?:[.#][\w-]+|\[[\w-]+(?:="?[^"\]]*"?)?\])*)$/i.exec(s); if (!m) throw new Error('selector ' + s);
     if (m[1] && n.tagName !== m[1].toUpperCase()) return false;
     for (const p of m[2].match(/[.#][\w-]+|\[[^\]]+\]/g) || []) {
@@ -75,7 +76,9 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
     let a = n.parentNode; for (let i = parts.length - 2; i >= 0; i--) { while (a && a.nodeType === 1 && !simple(a, parts[i])) a = a.parentNode; if (!a || a.nodeType !== 1) return false; a = a.parentNode; } return true; });
   const root = new El('html'); const head = new El('head'); const body = new El('body'); root.appendChild(head);
   let fontReady; const fontsReady = new Promise((r) => { fontReady = r; });
-  doc = { readyState, documentElement: root, head, body: null, fonts: { status: 'loading', ready: fontsReady, addEventListener: (t, f) => { (fontL[t] = fontL[t] || []).push(f); } },
+  const fontJobs = []; const fontsIn = new Set(fontsLoaded);
+  doc = { readyState, documentElement: root, head, body: null, fonts: { status: 'loading', ready: fontsReady, addEventListener: (t, f) => { (fontL[t] = fontL[t] || []).push(f); },
+    check: (f) => fontsIn.has(f), load: (f, text) => new Promise((res, rej) => { fontJobs.push({ f, text, res: () => { fontsIn.add(f); res([]); }, rej }); }) },
     createElement: (t) => new El(t), createTextNode: (t) => new Text(t),
     getElementById: (id) => root.querySelector('#' + id), querySelector: (s) => root.querySelector(s), querySelectorAll: (s) => root.querySelectorAll(s),
     addEventListener: (t, f) => { (docL[t] = docL[t] || []).push(f); } };
@@ -83,8 +86,8 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
     observe(t, o) { this.on = true; this.target = t; this.sub = !!(o && o.subtree); } disconnect() { this.on = false; this.pending = false; } takeRecords() { this.pending = false; return []; }
     sees(n) { if (n === this.target) return true; if (!this.sub) return false; for (let x = n; x; x = x.parentNode) if (x === this.target) return true; return false; } }
   class ResizeObserver { constructor(cb) { this.cb = cb; this.on = false; resizeObs.push(this); } observe(t) { this.on = true; this.target = t; } disconnect() { this.on = false; } }
-  const window = { MutationObserver, ResizeObserver, innerHeight: 900, matchMedia: (q) => ({ matches: /reduce/.test(q) && reduced }),
-    getComputedStyle: (n) => ({ boxSizing: 'content-box', paddingTop: '0px', paddingBottom: '0px', borderTopWidth: '0px', borderBottomWidth: '0px', minHeight: n.id === 'tll-map-layers' && doc.getElementById('tll-fp-map-v1') ? '900px' : '0px' }),
+  const window = { MutationObserver, ResizeObserver, Promise, innerHeight: 900, matchMedia: (q) => ({ matches: /reduce/.test(q) && reduced }),
+    getComputedStyle: (n) => ({ fontFamily: families[n.tagName.toLowerCase()] || '', fontWeight: '800', fontStyle: n.tagName === 'EM' ? 'italic' : 'normal', boxSizing: 'content-box', paddingTop: '0px', paddingBottom: '0px', borderTopWidth: '0px', borderBottomWidth: '0px', minHeight: n.id === 'tll-map-layers' && doc.getElementById('tll-fp-map-v1') ? '900px' : '0px' }),
     addEventListener: (t, f) => { (winL[t] = winL[t] || []).push(f); }, requestAnimationFrame: (f) => { timers.push({ f, ms: 16 }); } };
   const setTimeout = (f, ms) => { timers.push({ f, ms: ms || 0 }); return timers.length; };
   const clearTimeout = (id) => { if (timers[id - 1]) timers[id - 1].f = null; };
@@ -97,7 +100,7 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
   const resize = () => resizeObs.filter((o) => o.on).forEach((o) => { o.cb([]); flush(); });
   const styles = (where) => where.children.filter((n) => n.tagName === 'STYLE').map((n) => n.id);
   const fontsDone = async () => { doc.fonts.status = 'loaded'; (fontL.loadingdone || []).forEach((f) => f()); fontReady(); await fontsReady; await null; };
-  return { document: doc, window, location: { pathname: path }, setTimeout, clearTimeout, root, head, body, el, openBody, flush, run, fire, resize, styles, observers, timers, docL, winL, fontL, resizeObs, El, fontsDone };
+  return { document: doc, window, location: { pathname: path }, setTimeout, clearTimeout, root, head, body, el, openBody, flush, run, fire, resize, styles, observers, timers, docL, winL, fontL, resizeObs, El, fontsDone, fontJobs };
 }
 const runLayer = (src, d) => new Function('window', 'document', 'location', 'setTimeout', 'clearTimeout', 'MutationObserver', 'NodeFilter', src)(d.window, d.document, d.location, d.setTimeout, d.clearTimeout, d.window.MutationObserver, { SHOW_TEXT: 4 });
 
@@ -109,7 +112,7 @@ const PAGES = {
     const bar = d.el(ts, 'div', { class: 'tv-bar', 'data-tv-chips': '' }); each(); const ev = d.el(bar, 'button', { class: 'tv-chip', 'data-tv-filter': 'everyone' }, 'Everyone'); each(); d.el(ev, 'span', { 'data-tv-n': '' }); each();
     d.el(bar, 'button', { class: 'tv-chip', 'data-tv-filter': 'expats' }, 'Live there'); each(); },
   '/the-map': (d, each) => { const m = d.el(d.body, 'main'); each(); const sec = d.el(m, 'section', { class: 'tll-section-dark tll-map-hero' }); each(); d.el(sec, 'div', { class: 'w-embed' }); each();
-    const inner = d.el(sec, 'div', { class: 'tll-container tll-map-hero-inner' }); each(); const copy = d.el(inner, 'div', {}); each(); d.el(copy, 'h1', { class: 'tll-display-xl tll-map-title' }, 'Every country, on the map.'); each(); d.el(copy, 'p', { class: 'tll-lede' }, 'Signed in, this is your map.'); each(); const hc = d.el(inner, 'div', { class: 'tll-map-hero-counter' }); each(); d.el(hc, 'div', { id: 'tll-map-counter' }, '0 / 250'); each();
+    const inner = d.el(sec, 'div', { class: 'tll-container tll-map-hero-inner' }); each(); const copy = d.el(inner, 'div', {}); each(); const mh = d.el(copy, 'h1', { class: 'tll-display-xl tll-map-title' }, 'Every country, '); each(); d.el(mh, 'em', { class: 'tll-text-rose' }, 'on the map'); each(); d.el(copy, 'p', { class: 'tll-lede' }, 'Signed in, this is your map.'); each(); const hc = d.el(inner, 'div', { class: 'tll-map-hero-counter' }); each(); d.el(hc, 'div', { id: 'tll-map-counter' }, '0 / 250'); each();
     const ms = d.el(m, 'section', { class: 'tll-map-section' }); each(); d.el(ms, 'p', { id: 'tllm-boot' }, 'LOADING THE MAP CODE'); each(); d.el(ms, 'div', { id: 'tll-map-layers' }); each(); d.el(ms, 'div', { class: 'tll-map-legend' }); each(); },
   '/about': (d, each) => { const m = d.el(d.body, 'main'); each(); const art = d.el(m, 'article', { class: 'tll-about-final' }); each(); const hero = d.el(art, 'header', { class: 'tll-about-final-hero' }); each();
     d.el(hero, 'h1', { class: 'tll-about-final-title' }, 'About'); each(); d.el(hero, 'p', {}, 'Intro'); each(); d.el(art, 'div', { class: 'tll-about-final-body' }); each(); },
@@ -410,25 +413,43 @@ describe('tll-first-paint-v1 on /the-map', () => {
     const noScript = themap({}, (d) => { d.root.classList.add('tll-map-public'); });
     expect(noScript.document.querySelector('[data-tll-map-invite]')).toBe(null);
   });
-  it('holds the title at the height of its first layout while the web fonts arrive, and lets go when the font set is done', async () => {
-    let h = 165.89; const rects = { 'h1.tll-display-xl': () => ({ width: 1052, height: h }) };
-    const d = makeDom({ path: '/the-map', rects }); runLayer(fpSrc, d); d.openBody();
+  const STACK = '"Playfair Display", TLLSerifG, TLLSerifN, TLLSerifT, Georgia, serif';
+  const tick = () => new Promise((r) => setImmediate(r));
+  it('keeps the title in the fallback faces until both of its font files are in, then gives it both at once', async () => {
+    const d = makeDom({ path: '/the-map', families: { h1: STACK } }); runLayer(fpSrc, d); d.openBody();
     const seen = []; PAGES['/the-map'](d, () => { const s = d.document.getElementById('tll-fp-maptitle-v1'); seen.push([!!d.document.querySelector('.tll-lede'), s ? s.textContent : null]); });
-    for (const [lede, css] of seen) expect(css).toBe(lede ? 'h1.tll-map-title{min-height:165.89px}' : null);
-    // one font file in, the other still loading: the hold stays, whatever the title's own height is for that frame
-    h = 83; d.fontL.loadingdone.forEach((f) => f()); d.fire('DOMContentLoaded'); d.run(0); d.fire('load');
-    expect(d.styles(d.head)).toContain('tll-fp-maptitle-v1');
-    await d.fontsDone();
+    for (const [lede, css] of seen) expect(css).toBe(lede ? 'h1.tll-map-title,h1.tll-map-title *{font-family:TLLSerifG, TLLSerifN, TLLSerifT, Georgia, serif!important}' : null);
+    // the two files are asked for with the title's own text, so the right parts of the font are loaded
+    expect(d.fontJobs.map((j) => [j.f, j.text])).toEqual([['800 1em "Playfair Display"', 'Every country, on the map'], ['italic 800 1em "Playfair Display"', 'Every country, on the map']]);
+    d.fontJobs[0].res(); await tick(); d.fire('DOMContentLoaded'); d.run(0); d.fire('load');
+    expect(d.styles(d.head)).toContain('tll-fp-maptitle-v1'); // one file in: still the fallback faces
+    d.fontJobs[1].res(); await tick();
     expect(d.styles(d.head)).not.toContain('tll-fp-maptitle-v1');
     expect(d.document.querySelector('.tll-map-title').getAttribute('style')).toBe(null);
   });
-  it('lets the title go after 20 s when the fonts never finish, and sets no hold without the font loading interface or the title', () => {
-    const d = themap({ rects: { 'h1.tll-display-xl': () => ({ width: 1052, height: 166 }) } });
-    d.run(19999); expect(d.styles(d.head)).toContain('tll-fp-maptitle-v1'); d.run(20000); expect(d.styles(d.head)).not.toContain('tll-fp-maptitle-v1');
-    const e = makeDom({ path: '/the-map', rects: { 'h1.tll-display-xl': () => ({ width: 1052, height: 166 }) } }); e.document.fonts = undefined; runLayer(fpSrc, e); e.openBody(); PAGES['/the-map'](e, () => {});
-    expect(e.styles(e.head)).toEqual(['tll-fp-page-v1', 'tll-fp-map-v1']);
-    const f = makeDom({ path: '/the-map' }); runLayer(fpSrc, f); f.openBody(); f.el(f.body, 'main'); f.fire('DOMContentLoaded');
-    expect(f.styles(f.head)).not.toContain('tll-fp-maptitle-v1');
+  it('lets the title go when a font file fails, and after 20 s when they never come', async () => {
+    const d = makeDom({ path: '/the-map', families: { h1: STACK } }); runLayer(fpSrc, d); d.openBody(); PAGES['/the-map'](d, () => {});
+    expect(d.styles(d.head)).toContain('tll-fp-maptitle-v1');
+    d.fontJobs[1].rej(new Error('network')); await tick();
+    expect(d.styles(d.head)).not.toContain('tll-fp-maptitle-v1');
+    const e = makeDom({ path: '/the-map', families: { h1: STACK } }); runLayer(fpSrc, e); e.openBody(); PAGES['/the-map'](e, () => {});
+    e.run(19999); expect(e.styles(e.head)).toContain('tll-fp-maptitle-v1'); e.run(20000); expect(e.styles(e.head)).not.toContain('tll-fp-maptitle-v1');
+  });
+  it('does nothing to the title when both files are already in, when its stack has no Playfair Display, without the font interface, or without a title', () => {
+    const a = makeDom({ path: '/the-map', families: { h1: STACK }, fontsLoaded: ['800 1em "Playfair Display"', 'italic 800 1em "Playfair Display"'] }); runLayer(fpSrc, a); a.openBody(); PAGES['/the-map'](a, () => {});
+    expect(a.styles(a.head)).toEqual(['tll-fp-page-v1', 'tll-fp-map-v1']); expect(a.fontJobs.length).toBe(0);
+    const b = makeDom({ path: '/the-map', families: { h1: 'Georgia, serif' } }); runLayer(fpSrc, b); b.openBody(); PAGES['/the-map'](b, () => {});
+    expect(b.styles(b.head)).toEqual(['tll-fp-page-v1', 'tll-fp-map-v1']); expect(b.fontJobs.length).toBe(0);
+    const c = makeDom({ path: '/the-map', families: { h1: STACK } }); c.document.fonts = undefined; runLayer(fpSrc, c); c.openBody(); PAGES['/the-map'](c, () => {});
+    expect(c.styles(c.head)).toEqual(['tll-fp-page-v1', 'tll-fp-map-v1']);
+    const f = makeDom({ path: '/the-map', families: { h1: STACK } }); runLayer(fpSrc, f); f.openBody(); f.el(f.body, 'main'); f.fire('DOMContentLoaded');
+    expect(f.styles(f.head)).not.toContain('tll-fp-maptitle-v1'); expect(f.fontJobs.length).toBe(0);
+  });
+  it('one file already in (the regular one, from other text): the title still waits in the fallback faces for the italic', async () => {
+    const d = makeDom({ path: '/the-map', families: { h1: STACK }, fontsLoaded: ['800 1em "Playfair Display"'] }); runLayer(fpSrc, d); d.openBody(); PAGES['/the-map'](d, () => {});
+    expect(d.styles(d.head)).toContain('tll-fp-maptitle-v1');
+    d.fontJobs.forEach((j) => j.res()); await tick();
+    expect(d.styles(d.head)).not.toContain('tll-fp-maptitle-v1');
   });
   it('stops watching the page once both jobs are done', () => {
     const d = themap({}, publicPage);
