@@ -7,7 +7,12 @@
      /travelers   the writers' faces beside the title (a row of faces above it on phones)
      /the-map     a story photo behind the hero, under a deep scrim, with its credit
      /about       a filmstrip of four story photos along the bottom of the hero, Magnus included
-     /for-expats  a story photo beside the hero, and a row of three story photos after the directory */
+     /for-expats  a story photo beside the hero, and a row of three story photos after the directory
+   16 Nov 2026 (layout shift sweep, cause C2; reports/evidence/cls-sweep-2026-11-16/): on /travelers, /the-map, /about and /for-expats the
+   photos went in when the page was parsed, after the first paint, and pushed the painted hero and everything under it down (0.08 to 0.14).
+   On those four paths the style now goes into the head at once and each hero is dressed as soon as the parser has added it, before the
+   first paint: a MutationObserver watches the page arrive (see early() below). When the page is parsed the style moves to the end of the
+   body, where it has always been, and the old run does whatever is still missing, so the finished page is the same. /stories is unchanged. */
 (function(){
 var path=location.pathname.replace(/\/+$/,'')||'/';
 var PAGES={'/stories':1,'/travelers':1,'/the-map':1,'/about':1,'/for-expats':1};
@@ -32,7 +37,7 @@ var P={
    missing variant drops the srcset and the original loads once. The two photos painted above the fold (/the-map backdrop, /for-expats
    side tile) ask for high priority and are preloaded from here with the same srcset and sizes, so the preload and the img are one
    request; on /for-expats only from 1100px up, where the tile sits beside the copy, since below that it is after the copy. */
-var V=window.__tllImgV||null;
+var V=window.__tllImgV||null,EARLY=path!=='/stories';
 var SZ={row:'(max-width:767px) 46vw, 220px',faces:'(min-width:1200px) 141px, 64px',map:'100vw',side:'(min-width:1100px) 320px, 100vw',strip:'(max-width:767px) 72vw, 25vw',band:'(max-width:767px) 72vw, 340px'};
 function preload(p,sz){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=p.src;var ss=V&&V.srcset(p.src);if(ss){pl.setAttribute('imagesrcset',ss);pl.setAttribute('imagesizes',sz);}
   pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
@@ -118,10 +123,21 @@ function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;re
    catch the two eager photos. */
 function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
   i.src=p.src;i.alt=p.alt||'';i.decoding='async';
-  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  i.style.objectPosition=p.pos||'50% 50%';
+  /* 16 Nov: a photo that has arrived while the page is still being parsed shows at once, without the fade, as it did when the photos went
+     in at the page-parsed event with the file already there (the fade would hold the largest paint back by its 400 ms). The inline
+     transition is taken off again two frames later, so the hover zoom and the finished markup are unchanged. */
+  function on(){if(EARLY&&document.readyState==='loading'&&!i.classList.contains('tll-ph-in')){i.style.transition='none';
+      var raf=window.requestAnimationFrame||function(f){setTimeout(f,32);};raf(function(){raf(function(){i.style.transition='';});});}
+    i.classList.add('tll-ph-in');}
   i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset')&&(!i.currentSrc||i.currentSrc===i.getAttribute('src')))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
-function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
+/* 16 Nov: in the early run a lazy photo's frame goes in at once (the frame is what takes the room), the img itself when the page is parsed,
+   exactly when it has always gone in. Put in while the page is still arriving, the lazy photos off to the side of a phone swipe row were
+   fetched too (three more files on /about and /for-expats at 390 px). */
+var LATER=[];
+function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');
+  if(!eager&&EARLY&&document.readyState==='loading')LATER.push(function(){f.appendChild(img(p,eager,sz,pri));});else f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
 function tile(p,eager,sz,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,sz,pri));a.appendChild(cap(p));return a;}
 
@@ -135,28 +151,48 @@ function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)
   /* tiles are about 220px wide on desktop and 46vw on phones; under the search bar the row is lazy, in the hero (no bar) it is eager */
   var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,SZ.row));});
   if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
-function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
+function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return !!inner;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
   /* above the fold, so eager, but low priority: the h1 is the page's largest paint, not these 64px circles */
   FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true,SZ.faces,'low'));
     var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
-  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
-function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
-  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
-  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
-function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
+  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');return true;}
+/* fin: the page is parsed. Before that (16 Nov) a part that goes at the end of its parent waits until the parent has arrived whole, so the
+   parser never adds a child after it and the order of the children is the one the page-parsed run has always made. Each function
+   returns true once nothing is left for it to do. */
+function map(fin){var sec=document.querySelector('section.tll-map-hero');if(!sec)return false;var p=P.sortsol;
+  if(!sec.querySelector('.tll-ph-bg')){var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');}
+  if(sec.querySelector('.tll-ph-credit'))return true;if(!fin&&!whole(sec))return false;
+  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);return true;}
+function about(fin){var hero=document.querySelector('.tll-about-final-hero');if(!hero)return false;if(hero.querySelector('.tll-ph-strip'))return true;if(!fin&&!whole(hero))return false;
   /* a quarter of the width, 72vw on phones */
-  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);}
-function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
-  var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
-  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
-  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);return true;}
+function expats(fin){var h1=document.querySelector('main h1')||(fin?document.querySelector('h1'):null);var sec=h1&&h1.closest('section');if(!sec)return false;
+  if(!sec.classList.contains('tll-ph-split')){if(!fin&&!whole(sec))return false;
+    var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
+    var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');}
+  if(document.querySelector('.tll-ph-band'))return true;
+  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir)return !!fin;if(!fin&&!whole(dir))return false;
   var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
   /* roughly 340px columns, 72vw on phones */
   var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,SZ.band));});band.appendChild(three);
-  dir.insertAdjacentElement('afterend',band);}
+  dir.insertAdjacentElement('afterend',band);return true;}
 
-function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}
-  try{({'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats})[path]();}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+/* 16 Nov: an element has arrived whole once an element follows it or one of its ancestors below the body's own children (scripts add
+   nodes to the end of the body while it is parsed, so the body's children are not asked). */
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==document.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+var PAGE={'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats};
+function sheet(){var s=document.getElementById('tll-page-heroes-v1');if(!s){s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;}return s;}
+function run(){var s=sheet();if(EARLY||!s.parentNode)document.body.appendChild(s);
+  try{PAGE[path](true);}catch(e){}
+  while(LATER.length){try{LATER.shift()();}catch(e){}}}
+/* 16 Nov, C2: the early run on the four hero paths. The style sits in the head until the page is parsed (it then moves to the end of the
+   body, as before); the observer calls the page's function each time the parser has added nodes, until it has nothing left to do. A throw
+   stops the early run only: the page-parsed run below still does the whole job, as it did before. */
+function early(){var mo=null;(document.head||document.documentElement).appendChild(sheet());
+  function stop(){if(mo){mo.disconnect();mo=null;}}
+  function step(){try{if(PAGE[path](false))stop();}catch(e){stop();}}
+  if(window.MutationObserver){mo=new MutationObserver(step);mo.observe(document.documentElement,{childList:true,subtree:true});step();}
+  document.addEventListener('DOMContentLoaded',function(){stop();run();});}
+if(document.readyState!=='loading')run();else if(EARLY)early();else document.addEventListener('DOMContentLoaded',run);
 })();

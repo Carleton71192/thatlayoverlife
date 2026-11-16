@@ -34,7 +34,11 @@ taken out once the template's style is parsed, so later template edits win; two 
 template script's place-and-date rewrite. A3 (same day, the 16.65.0 checks): the template script's place-and-date words, its country link
 box and the site flag script's flags are laid out before the first paint, so the page-parsed rewrites no longer move the painted head.
 A4 (same day, the A3 checks): a static country table (region-names-v1.json), a flag stand-in made of img elements and put in as soon as
-the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed."""
+the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed.
+16 Nov 2026 (layout shift sweep on the pages that are not stories, reports/evidence/cls-sweep-2026-11-16/, for release 16.67.0): page-heroes
+dresses the heroes of /travelers, /the-map, /about and /for-expats as the parser adds them (it waited for the page-parsed event), and
+tll-first-paint-v1 joins the core for /travelers and /the-map. The build checks the page rules that layer copies against the saved page
+code (FIRST_PAINT below), so a copy cannot drift from its source unnoticed."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -61,6 +65,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-masthead-v1.js', 'footer masthead line: Written by the people who went'),
            ('src/site-layers/tll-ux-1028-v1.js', '28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero'),
            ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked'),
+           ('src/site-layers/tll-first-paint-v1.js', '16 Nov: /travelers and /the-map first screen laid out before the first paint (late page styles, the map height, the title verb)'),
            ('src/site-layers/tll-story-ask-v1.js', '29 Oct: end-of-story ask, Pitch a layover story first, then send one photo'),
            ('src/site-layers/tll-open-slots-v1.js', '29 Oct: /spotlight coming-soon and open-slot cards become one Pitch your layover tile'),
            ('src/site-layers/tll-travelers-fix-v1.js', '29 Oct testers: /travelers link chips as labelled pills inside the card, no empty grid cell, one action tile instead of the open slot'),
@@ -149,12 +154,15 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #                   listener, and on profiles hides other members' cards from the first paint so their lazy photos are never requested.
 #   library-hold    (13 Nov) the home library swipe row height: it listens for the library's first draw, which runs while the page is
 #                   parsed (before the first paint), and keeps the row's height from the previous view of this tab before that draw.
+#   first-paint     (16 Nov, layout shift sweep) its head styles and its watcher must be in place before /travelers and /the-map are
+#                   parsed: it lays out, before the first paint, what those pages' own late styles and page-parsed scripts settle after it.
+#                   After page-heroes, so the hero is dressed before the /travelers title is measured (observers run in this order).
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
-        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-first-paint-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
         'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
@@ -219,6 +227,31 @@ for _, _, pub, staged in CHUNKS:
 assert not [n for n in BY if n not in covered], 'layers in SCRIPTS but in no chunk: ' + str([n for n in BY if n not in covered])
 assert len(set(c[0] for c in CHUNKS)) == len(CHUNKS), 'chunk names must be unique'
 for name, _, pub, _ in CHUNKS: assert pub, 'chunk %s has no public layer left: drop it from CHUNKS' % name
+
+# 16 Nov 2026: tll-first-paint-v1 carries copies of page rules (and of three rules of our own travelers chunk) so the first paint has
+# them. Each block is marked /*copy:<file>*/ ... /*end*/ with one rule a line as a double-quoted string; every rule must still be in
+# the file it names, as text or as it is written inside a JS string. /*words:<file>*/ marks the /travelers title verbs.
+FIRST_PAINT = 'src/site-layers/tll-first-paint-v1.js'
+def first_paint_checks():
+    s = read(FIRST_PAINT); blocks = re.findall(r'/\*copy:([^*]+)\*/\n(.*?)/\*end\*/', s, re.S)
+    assert len(blocks) == 3, 'first-paint: three copy blocks expected'
+    n = 0
+    for f, body in blocks:
+        src = read(f)
+        for line in body.split('\n'):
+            line = line.strip()
+            if not line.startswith('"'): continue
+            rule = json.loads(line.rstrip('+;'))
+            assert rule in src or json.dumps(rule)[1:-1] in src, 'first-paint: %s no longer has the rule %s' % (f, rule[:70])
+            n += 1
+    assert n == 9, 'first-paint: nine copied rules expected, found %d' % n
+    m = re.search(r"/\*words:([^*]+)\*/\s*var WORDS=(\[[^\]]*\]);", s)
+    assert m and ('var W=' + m.group(2)) in read(m.group(1)), 'first-paint: the /travelers verbs changed'
+    assert "/everyone/i.test(tn.nodeValue))tn.nodeValue='People'" in read('src/site-layers/tll-travelers-fix-v1.js'), 'first-paint: the travelers chunk no longer renames the first chip'
+    mapcss = read('map-2.0/dist/tll-map-layers.css')
+    assert '@media (max-width:760px){' in mapcss and '.tllm-drawer{position:fixed;left:0;right:0;bottom:0;' in mapcss, 'first-paint: the map sheet rule changed'
+    assert '@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\\"1\\"]){display:none}}' in s
+first_paint_checks()
 
 # Chunks first: the core embeds their hashes.
 files, hashes = {}, {}
@@ -564,7 +597,25 @@ cover = ("(function(){if(!/^\\/(index\\.html)?$/.test(location.pathname))return;
          "function place(){document.body.appendChild(CS);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
          "%s})();\n") % (json.dumps(cov_css), cov_js_early)
-core = (head + consent + LOADER + styles + ''.join(layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
+# 16 Nov 2026: the two layers of the layout shift sweep go into the core without their comments (about 9 KB of them), as the story
+# layer does since A4. Their sources keep every comment; first_paint_checks() above reads the copy markers from the source.
+BARE = ('tll-page-heroes-v1', 'tll-first-paint-v1')
+def bare(t):
+    out, i = [], 0
+    for m in re.finditer(r'/\*.*?\*/', t, re.S):
+        if m.start() < i: continue
+        line = t[t.rfind('\n', 0, m.start()) + 1:m.start()]
+        if any(line.count(q) % 2 for q in '\'"`'): continue
+        out.append(t[i:m.start()]); i = m.end()
+        if t[i:i + 1] == '\n' and (not out[-1] or out[-1].endswith('\n')): i += 1
+    out.append(t[i:])
+    return ''.join(out)
+def core_layer(p):
+    s = layer(p)
+    if os.path.basename(p)[:-3] not in BARE: return s
+    marker, rest = s.split('\n', 1)
+    return marker + '\n' + bare(rest)
+core = (head + consent + LOADER + styles + ''.join(core_layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
 
 os.makedirs(CHUNK_DIR, exist_ok=True)
 for name, b in files.items():

@@ -5,6 +5,7 @@
    core   src/site-layers/tll-note-typing-v1.js (note button steps aside while typing)
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
+   core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers and /the-map first screen laid out before the first paint (late page styles, the map height, the title verb))
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
@@ -269,14 +270,7 @@ var P={
  ghana:{src:C+'6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg',alt:'Three children sitting together on a bench in Ghana',place:'Ghana',by:'Nancy Carleton',href:'/stories/ghana-easter-everyone-wears-white',pos:'55% 50%'},
  magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%'}
 };
-/* Loading (10 Nov 2026, week one item 4; was 1 Nov). Each photo carries a srcset of its Webflow variants from tll-img-variants-v1
-   (window.__tllImgV, in the core ahead of this layer): CMS files take their site-bucket twin's -p-500 to -p-2000, and the table there knows
-   which widths exist, so jaguar, Sort Sol and Magnus (marked as having none until now) get theirs too. The 1 Nov try of {CMS URL}-p-{w}
-   always failed (the CMS bucket has no variants) and cost a 403 per tile before the original. src stays the original, the fallback; a
-   missing variant drops the srcset and the original loads once. The two photos painted above the fold (/the-map backdrop, /for-expats
-   side tile) ask for high priority and are preloaded from here with the same srcset and sizes, so the preload and the img are one
-   request; on /for-expats only from 1100px up, where the tile sits beside the copy, since below that it is after the copy. */
-var V=window.__tllImgV||null;
+var V=window.__tllImgV||null,EARLY=path!=='/stories';
 var SZ={row:'(max-width:767px) 46vw, 220px',faces:'(min-width:1200px) 141px, 64px',map:'100vw',side:'(min-width:1100px) 320px, 100vw',strip:'(max-width:767px) 72vw, 25vw',band:'(max-width:767px) 72vw, 340px'};
 function preload(p,sz){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=p.src;var ss=V&&V.srcset(p.src);if(ss){pl.setAttribute('imagesrcset',ss);pl.setAttribute('imagesizes',sz);}
   pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
@@ -289,7 +283,6 @@ var FACES=[
  {name:'Nancy Carleton',href:'/contributors/nancy-carleton',src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg',pos:'50% 35%'}
 ];
 var CSS=
-/* shared: tiles, captions, credit */
 ".tll-ph-tile{display:block;position:relative;text-decoration:none!important;color:inherit!important;-webkit-tap-highlight-color:transparent}"+
 ".tll-ph-img{display:block;position:relative;overflow:hidden;border-radius:2px;background:#E9E2D6}"+
 ".tll-ph-img img{display:block;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:cover;opacity:0;transition:opacity 400ms cubic-bezier(.23,1,.32,1),transform 600ms cubic-bezier(.23,1,.32,1)}"+
@@ -300,13 +293,11 @@ var CSS=
 ".tll-ph-cap b{display:block;font-weight:600;color:#1A1A1A}"+
 ".tll-ph-label{margin:0 0 16px;font:600 12px/1.4 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#C8325B}"+
 "@media (prefers-reduced-motion:reduce){.tll-ph-img img{transition:none;opacity:1}.tll-ph-tile:hover .tll-ph-img img{transform:none}}"+
-/* /stories: four covers under the title */
 ".tll-ph-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:960px;margin:36px auto 12px;padding:0 24px;box-sizing:border-box}"+
 ".tll-ph-row .tll-ph-img{aspect-ratio:4/5}"+
 ".tll-ph-row.tll-ph-row-below{margin:28px auto 8px}"+
 "@media (max-width:767px){.tll-ph-row{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;margin:22px 0 6px;padding:0 24px 6px;scroll-padding:0 24px;scrollbar-width:none}"+
 ".tll-ph-row::-webkit-scrollbar{display:none}.tll-ph-row>.tll-ph-tile{flex:0 0 46%;scroll-snap-align:start}.tll-ph-row .tll-ph-cap b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tll-ph-row .tll-ph-img{aspect-ratio:3/4}}"+
-/* /travelers: the writers' faces */
 ".tll-ph-faces{display:flex;gap:14px;margin:0 0 28px;padding:0;list-style:none}"+
 ".tll-ph-faces li{margin:0;padding:0;list-style:none}"+
 ".tll-ph-faces .tll-ph-img{width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px #F7F1E8,0 0 0 3.5px #C8325B}"+
@@ -320,7 +311,6 @@ var CSS=
 ".tll-ph-grid>.tll-ph-faces li:nth-child(even){transform:translateY(36px)}"+
 ".tll-ph-grid>.tll-ph-faces .tll-ph-img{width:100%;height:auto;aspect-ratio:4/5;border-radius:2px;box-shadow:none}"+
 ".tll-ph-grid>.tll-ph-faces .tll-ph-cap{width:auto;margin:8px 0 0;text-align:left}}"+
-/* /the-map: a story photo behind the hero */
 ".tll-ph-hasbg{position:relative!important;isolation:isolate;overflow:hidden;border-radius:0!important}"+
 ".tll-ph-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;background:#0A0B14}"+
 ".tll-ph-bg .tll-ph-img{position:absolute;inset:0;border-radius:0;background:#0A0B14}"+
@@ -332,7 +322,6 @@ var CSS=
 "@media (max-width:767px){html body section.tll-map-hero.tll-ph-hasbg{padding-top:244px!important;padding-bottom:64px!important}.tll-ph-bg .tll-ph-img{bottom:auto;height:270px}"+
 ".tll-ph-bg::after{background:linear-gradient(180deg,rgba(10,11,20,.1) 0,rgba(10,11,20,.35) 130px,rgba(10,11,20,.9) 225px,#0A0B14 268px)}"+
 ".tll-ph-credit{bottom:20px;left:24px;right:24px}}"+
-/* /about: a filmstrip along the bottom of the hero */
 ".tll-ph-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:56px 0 0;padding:0}"+
 ".tll-ph-strip .tll-ph-tile{height:320px}"+
 ".tll-ph-strip .tll-ph-img{height:100%;border-radius:0;background:#1A1C28}"+
@@ -342,7 +331,6 @@ var CSS=
 ".tll-ph-strip .tll-ph-tile:focus-visible{outline-color:#F0507A;outline-offset:-3px}"+
 "@media (max-width:767px){.tll-ph-strip{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-top:40px;scrollbar-width:none}"+
 ".tll-ph-strip::-webkit-scrollbar{display:none}.tll-ph-strip>.tll-ph-tile{flex:0 0 72%;height:240px;scroll-snap-align:start}}"+
-/* /for-expats: a photo beside the hero, a row of three after the directory */
 "@media (min-width:1100px){"+
 "section.tll-ph-split{max-width:1072px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 320px;column-gap:56px;align-items:center}"+
 "section.tll-ph-split h1{font-size:clamp(56px,5.2vw,76px)!important;line-height:1!important}}"+
@@ -356,53 +344,166 @@ var CSS=
 ".tll-ph-band .tll-ph-three::-webkit-scrollbar{display:none}.tll-ph-band .tll-ph-three>.tll-ph-tile{flex:0 0 72%;scroll-snap-align:start}}";
 
 function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
-/* sz: the sizes for the srcset (the box width); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
-   loading and the srcset are written before src, so the browser asks for one file.
-   loading is always written: the site footer (tll-core-v2) marks every img without one as lazy at DOMContentLoaded and on load, which would
-   catch the two eager photos. */
 function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
   i.src=p.src;i.alt=p.alt||'';i.decoding='async';
-  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  i.style.objectPosition=p.pos||'50% 50%';
+  
+  function on(){if(EARLY&&document.readyState==='loading'&&!i.classList.contains('tll-ph-in')){i.style.transition='none';
+      var raf=window.requestAnimationFrame||function(f){setTimeout(f,32);};raf(function(){raf(function(){i.style.transition='';});});}
+    i.classList.add('tll-ph-in');}
   i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset')&&(!i.currentSrc||i.currentSrc===i.getAttribute('src')))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
-function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
+var LATER=[];
+function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');
+  if(!eager&&EARLY&&document.readyState==='loading')LATER.push(function(){f.appendChild(img(p,eager,sz,pri));});else f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
 function tile(p,eager,sz,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,sz,pri));a.appendChild(cap(p));return a;}
 
 function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
-  /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
-     (?q=) shows its results first with no photos above them. "on the shelf" reads "in the library" (house words). */
+  
   var w=document.createTreeWalker(h1.closest('section')||h1.parentNode,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/next story on the shelf/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace('next story on the shelf','next story in the library');}
   if(document.querySelector('.tll-ph-row'))return;
   if(/[?&]q=[^&]/.test(location.search))return;
   var bar=document.querySelector('section.tllsb-bar');
-  /* tiles are about 220px wide on desktop and 46vw on phones; under the search bar the row is lazy, in the hero (no bar) it is eager */
+  
   var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,SZ.row));});
   if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
-function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
+function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return !!inner;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
-  /* above the fold, so eager, but low priority: the h1 is the page's largest paint, not these 64px circles */
+  
   FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true,SZ.faces,'low'));
     var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
-  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
-function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
-  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
-  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
-function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
-  /* a quarter of the width, 72vw on phones */
-  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);}
-function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
-  var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
-  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
-  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
+  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');return true;}
+function map(fin){var sec=document.querySelector('section.tll-map-hero');if(!sec)return false;var p=P.sortsol;
+  if(!sec.querySelector('.tll-ph-bg')){var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');}
+  if(sec.querySelector('.tll-ph-credit'))return true;if(!fin&&!whole(sec))return false;
+  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);return true;}
+function about(fin){var hero=document.querySelector('.tll-about-final-hero');if(!hero)return false;if(hero.querySelector('.tll-ph-strip'))return true;if(!fin&&!whole(hero))return false;
+  
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);return true;}
+function expats(fin){var h1=document.querySelector('main h1')||(fin?document.querySelector('h1'):null);var sec=h1&&h1.closest('section');if(!sec)return false;
+  if(!sec.classList.contains('tll-ph-split')){if(!fin&&!whole(sec))return false;
+    var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
+    var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) ;sec.appendChild(fig);sec.classList.add('tll-ph-split');}
+  if(document.querySelector('.tll-ph-band'))return true;
+  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir)return !!fin;if(!fin&&!whole(dir))return false;
   var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
-  /* roughly 340px columns, 72vw on phones */
+  
   var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,SZ.band));});band.appendChild(three);
-  dir.insertAdjacentElement('afterend',band);}
+  dir.insertAdjacentElement('afterend',band);return true;}
 
-function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}
-  try{({'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats})[path]();}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==document.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+var PAGE={'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats};
+function sheet(){var s=document.getElementById('tll-page-heroes-v1');if(!s){s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;}return s;}
+function run(){var s=sheet();if(EARLY||!s.parentNode)document.body.appendChild(s);
+  try{PAGE[path](true);}catch(e){}
+  while(LATER.length){try{LATER.shift()();}catch(e){}}}
+function early(){var mo=null;(document.head||document.documentElement).appendChild(sheet());
+  function stop(){if(mo){mo.disconnect();mo=null;}}
+  function step(){try{if(PAGE[path](false))stop();}catch(e){stop();}}
+  if(window.MutationObserver){mo=new MutationObserver(step);mo.observe(document.documentElement,{childList:true,subtree:true});step();}
+  document.addEventListener('DOMContentLoaded',function(){stop();run();});}
+if(document.readyState!=='loading')run();else if(EARLY)early();else document.addEventListener('DOMContentLoaded',run);
+})();
+/* src/site-layers/tll-first-paint-v1.js */
+(function(){
+var path=location.pathname.replace(/\/+$/,'')||'/';
+if(path!=='/travelers'&&path!=='/the-map')return;
+if(document.readyState!=='loading'||!window.MutationObserver)return;
+var D=document,TRAV=path==='/travelers',HARD=20000;
+var PAGE_TRAV=
+"[data-tll-trav-search-wrap]{max-width:560px;margin:0 0 18px}"+
+"[data-tll-trav-search-wrap] label{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;margin:0 0 8px}"+
+"input[data-tll-trav-search]{width:100%;box-sizing:border-box;height:48px;padding:0 16px 0 44px;border:1.5px solid #c9b89a;border-radius:999px;background:#FDF9F3 url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230A0B14' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E\") 16px 50% no-repeat;color:#0A0B14;font:500 16px/1 'Inter',system-ui,sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .15s ease,box-shadow .15s ease}"+
+"[data-tll-trav-search-note]{margin:8px 0 0;font-size:14px;line-height:1.5;color:#6B6660;min-height:1.5em}"+
+"[data-tll-trav-search-note][hidden]{display:none}"+
+"[data-tll-trav-search-note]:empty{display:none}"+
+"[data-tv-chips] [data-tv-n]:empty::after{content:' \\B7  0';visibility:hidden}"+
+"[data-tv-chips] [data-tv-countline]:empty::after{content:'0 CARDS';visibility:hidden}";
+var OURS_TRAV=
+"html body [data-tv-open]{display:none!important}"+
+"html body [data-tll-roster-grid] .w-embed::before,html body [data-tll-roster-grid] .w-embed::after{content:none!important;display:none!important}"+
+"html body [data-tv-chips] [data-tv-filter=\"pets\"]{display:none!important}";
+var PAGE_MAP=
+"[data-tll-map=fullscreen]{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#06302f;background:#00C9C8;padding:9px 18px;border-radius:6px;font-weight:700;text-decoration:none}"+
+"@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\"1\"]){display:none}}";
+var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
+function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
+function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
+function once(f){var d=0;return function(){if(!d){d=1;try{f();}catch(e){}}};}
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==D.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+var parsed=0,steps=[],mo=null;
+function tick(){for(var i=steps.length-1;i>=0;i--){var done=true;try{done=steps[i]();}catch(e){}if(done)steps.splice(i,1);}
+  if(!steps.length&&mo){mo.disconnect();mo=null;}}
+
+var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:PAGE_MAP),relA=once(function(){drop(A);});
+setTimeout(relA,HARD);
+
+if(TRAV){
+  
+  
+  var named=null;
+  var B=sheet('tll-fp-ours-v1',OURS_TRAV),hmo=null,relB=once(function(){drop(B);if(hmo){hmo.disconnect();hmo=null;}
+    if(named&&!D.getElementById('tll-travelers-fix-v1')&&named.nodeValue==='People')named.nodeValue='Everyone';});
+  var chunkIn=function(){if(D.getElementById('tll-travelers-fix-v1'))relB();};
+  steps.push(function(){var ev=D.querySelector('[data-tv-chips] [data-tv-filter="everyone"]');if(!ev||(!parsed&&!whole(ev)))return parsed;
+    var tn=ev.firstChild;if(tn&&tn.nodeType===3&&/^\s*Everyone\s*$/.test(tn.nodeValue)){tn.nodeValue='People';named=tn;}return true;});
+  if(D.head){hmo=new MutationObserver(chunkIn);hmo.observe(D.head,{childList:true});}
+  window.addEventListener('load',function(){setTimeout(relB,0);});
+  setTimeout(relB,HARD);
+
+  
+  
+  var WORDS=['are','live','photograph','were'];
+  var C=null,wrote=0,off=0,emo=null,rt=0;
+  var still=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var measure=function(){if(still||off)return;var h=D.querySelector('.tll-travelers-title'),em=h&&h.querySelector('em'),p=h&&h.parentNode;if(!em||!p)return;
+    var w=h.getBoundingClientRect().width;if(!w)return;
+    var cs=window.getComputedStyle(h),c=h.cloneNode(true),ce=c.querySelector('em'),max=0;
+    c.removeAttribute('id');c.setAttribute('aria-hidden','true');
+    c.style.cssText='position:absolute!important;visibility:hidden!important;pointer-events:none!important;left:0!important;top:0!important;margin:0!important;'+
+      'min-height:0!important;height:auto!important;box-sizing:border-box!important;width:'+w+'px!important';
+    p.appendChild(c);
+    for(var i=0;i<WORDS.length;i++){ce.textContent=WORDS[i];max=Math.max(max,c.getBoundingClientRect().height);}
+    p.removeChild(c);if(mo)mo.takeRecords();
+    var pad=cs.boxSizing==='border-box'?0:(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0)+(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.borderBottomWidth)||0);
+    var v=Math.round((max-pad)*100)/100;if(!(v>0))return;
+    var css='h1.tll-travelers-title{min-height:'+v+'px}';
+    if(!C)C=sheet('tll-fp-title-v1',css);else if(C.textContent!==css)C.textContent=css;};
+  var relC=function(){off=1;drop(C);C=null;if(emo){emo.disconnect();emo=null;}};
+  var again=function(){clearTimeout(rt);rt=setTimeout(function(){try{measure();}catch(e){}},200);};
+  if(!still){
+    steps.push(function(){var h=D.querySelector('.tll-travelers-title'),em=h&&h.querySelector('em');if(!em||(!parsed&&!whole(h)))return parsed;
+      emo=new MutationObserver(function(){wrote=1;var w=(em.textContent||'').replace(/\s+/g,' ').trim();if(w&&WORDS.indexOf(w)<0){WORDS.push(w);try{measure();}catch(e){}}});
+      emo.observe(em,{childList:true,characterData:true,subtree:true});
+      measure();return true;});
+    window.addEventListener('load',again);window.addEventListener('resize',again);
+    try{if(D.fonts&&D.fonts.addEventListener)D.fonts.addEventListener('loadingdone',again);}catch(e){}
+    
+    setTimeout(function(){if(!parsed)relC();},HARD);
+  }
+  D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();
+    setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
+}else{
+  
+  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null;
+  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}});
+  setTimeout(relM,HARD);
+  steps.push(function(){var root=D.getElementById('tll-map-layers');if(!root)return parsed;
+    var boot=D.getElementById('tllm-boot');
+    var drawn=function(){if(!root.querySelector('.tllm-bar'))return;var mh=parseFloat(window.getComputedStyle(root).minHeight)||0;if(root.getBoundingClientRect().height>mh+1)relM();};
+    if(window.ResizeObserver){ro=new window.ResizeObserver(drawn);ro.observe(root);}
+    else window.addEventListener('load',function(){setTimeout(relM,3000);});
+    if(boot){bmo=new MutationObserver(function(){if(/DID NOT|MAP ERROR/.test(boot.textContent||''))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    return true;});
+  
+  steps.push(function(){if(!D.documentElement.classList.contains('tll-map-public')||!D.getElementById('tll-map-invite-js-v1'))return true;
+    if(D.querySelector('[data-tll-map-invite]'))return true;
+    var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
+    var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
+  D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
+}
+mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();
 /* src/site-layers/tll-home-bands-v1.js */
 (function(){
