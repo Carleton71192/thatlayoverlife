@@ -503,6 +503,15 @@ if(TRAV){
     if(boot){bmo=new MutationObserver(function(){if(/DID NOT|MAP ERROR/.test(boot.textContent||''))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
     return true;});
   
+  steps.push(function(){var h=D.querySelector('.tll-map-title'),F=D.fonts;if(!h||(!parsed&&!whole(h)))return parsed;
+    if(!F||!F.addEventListener)return true;
+    var v=Math.round(h.getBoundingClientRect().height*100)/100;if(!(v>0))return true;
+    var T=sheet('tll-fp-maptitle-v1','h1.tll-map-title{min-height:'+v+'px}'),relT=once(function(){drop(T);});
+    var done=function(){if(F.status==='loaded')relT();};
+    F.addEventListener('loadingdone',done);F.addEventListener('loadingerror',done);
+    try{if(F.ready&&F.ready.then)F.ready.then(done,relT);}catch(e){}
+    setTimeout(relT,HARD);return true;});
+  
   steps.push(function(){if(!D.documentElement.classList.contains('tll-map-public')||!D.getElementById('tll-map-invite-js-v1'))return true;
     if(D.querySelector('[data-tll-map-invite]'))return true;
     var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;

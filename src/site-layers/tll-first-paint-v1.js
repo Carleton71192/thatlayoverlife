@@ -20,6 +20,9 @@
      map          style#tll-fp-map-v1 (/the-map): the Map 2.0 mount keeps one screen of height until the map is drawn, so what follows it
                   starts below the screen instead of being pushed there after load. Let go when the map is taller than that, when the
                   embed's own status line reports a failure, when there is no mount, or after 20 s.
+     map title    style#tll-fp-maptitle-v1 (/the-map): the title keeps the height of its first layout while the web fonts arrive (its two
+                  font files come one after the other, and with one of them in the title is a line shorter for a frame). Let go when
+                  the font set has finished loading, or after 20 s.
      invite       /the-map: the signed-out "Start your own map" link is put in by the page head script when the page is parsed; here it
                   goes in as soon as the counter has been parsed, made the same way, only if that script is on the page. The script
                   finds it and leaves it.
@@ -138,6 +141,19 @@ if(TRAV){
     else window.addEventListener('load',function(){setTimeout(relM,3000);});
     if(boot){bmo=new MutationObserver(function(){if(/DID NOT|MAP ERROR/.test(boot.textContent||''))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
     return true;});
+  /* the title while the web fonts arrive. The title is set in two Playfair Display files (800 and 800 italic for the rose words). They
+     arrive one after the other, and with only one of them in, "Every country, on the map." fits one line at desktop widths where it
+     takes two both before (fallback faces) and after: the page under the title went up 83 px and down again, or was painted one line
+     short and then moved down (0.24 to 0.37 at 1440). The title keeps the height of its first layout until the font set has finished
+     loading; if the finished title is a different height, it changes once then, as it did before. */
+  steps.push(function(){var h=D.querySelector('.tll-map-title'),F=D.fonts;if(!h||(!parsed&&!whole(h)))return parsed;
+    if(!F||!F.addEventListener)return true;
+    var v=Math.round(h.getBoundingClientRect().height*100)/100;if(!(v>0))return true;
+    var T=sheet('tll-fp-maptitle-v1','h1.tll-map-title{min-height:'+v+'px}'),relT=once(function(){drop(T);});
+    var done=function(){if(F.status==='loaded')relT();};
+    F.addEventListener('loadingdone',done);F.addEventListener('loadingerror',done);
+    try{if(F.ready&&F.ready.then)F.ready.then(done,relT);}catch(e){}
+    setTimeout(relT,HARD);return true;});
   /* the invite */
   steps.push(function(){if(!D.documentElement.classList.contains('tll-map-public')||!D.getElementById('tll-map-invite-js-v1'))return true;
     if(D.querySelector('[data-tll-map-invite]'))return true;
