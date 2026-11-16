@@ -6,7 +6,7 @@
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
    core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb))
-   core   src/site-layers/tll-early-state-v1.js (16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row, lead card and place chips, and the profile head laid out before the first paint, handed back to the page code right before it runs)
+   core   src/site-layers/tll-early-state-v1.js (16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row and lead card, and the profile head laid out before the first paint, handed back to the page code right before it runs)
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
@@ -572,11 +572,6 @@ if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-
 })();
 
 if(path==='/stories')(function(){
-  var chunk=q('script[src$="/chunks/stories.js"]'),chunkIn=0,chunkOut=[];
-  var failed=once(function(){for(var i=0;i<chunkOut.length;i++){try{chunkOut[i]();}catch(e){}}});
-  var gone=function(){if(!chunkIn)failed();};
-  if(chunk){chunk.addEventListener('load',function(){chunkIn=1;});chunk.addEventListener('error',gone);hard.push(gone);}
-
   
   var slot=null,form=null,fp=null,fn=null,clr=null,cp=null,cn=null,bar=null,bd='',bs=false,inner=null;
   function merge(){inner=q('.tll-library-filters .tll-filters-inner');form=q('.tllsb-form');bar=q('.tllsb-bar');
@@ -620,20 +615,6 @@ if(path==='/stories')(function(){
     before.push(function(){if(lead)lead.removeAttribute('data-tll-lead');
       if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
   }
-
-  
-  
-  var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];
-  if(chunk)steps.push(function(){var row=q('[data-tll-chips="place-sort"] .tll-chip-row');if(!row||!whole(row))return false;
-    if(row.dataset.tllPlaces)return true;
-    var have={},was=[].slice.call(row.childNodes),added=[];
-    [].forEach.call(row.querySelectorAll('[data-tll-place]'),function(c){have[c.getAttribute('data-tll-place')]=c;});
-    var model=q('.tll-shelf-chip[data-tll-place]',row);if(!model)return true;
-    chunkOut.push(function(){if(row.dataset.tllPlaces)return;added.forEach(drop);was.forEach(function(c){row.appendChild(c);});});
-    ORDER.forEach(function(p){if(have[p])return;var c=model.cloneNode(true);c.setAttribute('data-tll-place',p);c.textContent=p;
-      c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');have[p]=c;added.push(c);});
-    ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});
-    return true;});
 
   
   steps.push(function(){var h=q('h1.tll-library-title'),F=D.fonts;if(!h||!whole(h))return false;

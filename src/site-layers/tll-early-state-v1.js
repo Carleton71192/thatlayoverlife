@@ -1,8 +1,8 @@
 /* tll-early-state-v1 (16 Nov 2026, layout shift sweep part B, causes C1, C3, C6 and C9; reports/evidence/cls-sweep-2026-11-16/fix.md).
    Some of the site's own code settles the first screen only when the page is parsed, after the first paint: the site head moves the nav
    out of the members wrapper (/account, /submit) and adds the Menu button (every page), the /stories page code moves the search form
-   into the filter row and marks the lead card, our stories chunk orders the place chips, and the profile page code builds the
-   profile head. Each of those moved what a reader was already looking at.
+   into the filter row and marks the lead card, and the profile page code builds the profile head. Each of those moved what a
+   reader was already looking at.
    This layer lays the same end state out while the page is parsed, before the first paint, and hands the page back right before the
    page's own code runs, so that code finds the page as it has always found it and the finished page is its own work.
      when     A MutationObserver watches the page arrive; a piece goes in once the elements it needs have arrived whole.
@@ -24,12 +24,12 @@
               leads from the moment it is parsed. When the whole grid has arrived and the page's rules name another card (a pick
               further down, a newer story), the page's own moves are made: the chip script's order (newest first), the pick in
               front, the mark. Before the page's scripts run the mark is taken off and a changed order is put back. Not with a
-              search (?q=). (3) The place chips our stories
-              chunk adds and orders (tll-stories-places-v1) go in when the chip row has been parsed; the chunk then finds them and
-              changes nothing. Taken back if the chunk fails. (4) The title stays in its fallback faces until both of its font
-              files are in, then takes both at once (with one of the two in, the rose word jumped 130 px and back). The story count
-              our chunk writes in front of the title is left to the chunk: put in early it rewraps a title that is still in its
-              fallback faces, which moved more of the page than the chunk's own write does later.
+              search (?q=). (3) The title stays in its fallback faces until both of its font files are in, then takes both at once
+              (with one of the two in, the rose word jumped 130 px and back).
+              Two things our stories chunk does when the page is parsed are left to the chunk, after a try each. The story count
+              in front of the title: put in early it rewraps a title that is still in its fallback faces, which moved more of the
+              page than the chunk's own write does later. The place chips it adds and orders: put in early, the longer row wraps
+              on tablets, and a chip changes rows when the web font arrives (0.07 at 768 px against 0.03).
      profile  /contributors/{slug}: a stand-in for the hero's text column, filled from the same attributes of [data-pf5="root"] the
               page's tll-pf5-profile-js-v1 and tll-pf5-n-v1 read, sits right after the real column, which is left untouched and not
               shown until the page's code has filled it (one timer after the page-parsed listeners). Then the stand-in is removed
@@ -90,11 +90,6 @@ if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-
 
 /* ---- /stories (C6) ---- */
 if(path==='/stories')(function(){
-  var chunk=q('script[src$="/chunks/stories.js"]'),chunkIn=0,chunkOut=[];
-  var failed=once(function(){for(var i=0;i<chunkOut.length;i++){try{chunkOut[i]();}catch(e){}}});
-  var gone=function(){if(!chunkIn)failed();};
-  if(chunk){chunk.addEventListener('load',function(){chunkIn=1;});chunk.addEventListener('error',gone);hard.push(gone);}
-
   /* (1) the search form in the filter row: what merge() in the page's tll-lib-lead-v1 makes */
   var slot=null,form=null,fp=null,fn=null,clr=null,cp=null,cn=null,bar=null,bd='',bs=false,inner=null;
   function merge(){inner=q('.tll-library-filters .tll-filters-inner');form=q('.tllsb-form');bar=q('.tllsb-bar');
@@ -144,21 +139,7 @@ if(path==='/stories')(function(){
       if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
   }
 
-  /* (3) the place chips: what chips() in tll-stories-places-v1 (our stories chunk) makes */
-  /*order:src/site-layers/tll-stories-places-v1.js*/
-  var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];
-  if(chunk)steps.push(function(){var row=q('[data-tll-chips="place-sort"] .tll-chip-row');if(!row||!whole(row))return false;
-    if(row.dataset.tllPlaces)return true;
-    var have={},was=[].slice.call(row.childNodes),added=[];
-    [].forEach.call(row.querySelectorAll('[data-tll-place]'),function(c){have[c.getAttribute('data-tll-place')]=c;});
-    var model=q('.tll-shelf-chip[data-tll-place]',row);if(!model)return true;
-    chunkOut.push(function(){if(row.dataset.tllPlaces)return;added.forEach(drop);was.forEach(function(c){row.appendChild(c);});});
-    ORDER.forEach(function(p){if(have[p])return;var c=model.cloneNode(true);c.setAttribute('data-tll-place',p);c.textContent=p;
-      c.className='tll-shelf-chip';c.setAttribute('aria-pressed','false');have[p]=c;added.push(c);});
-    ORDER.forEach(function(p){if(have[p])row.appendChild(have[p]);});
-    return true;});
-
-  /* (4) the title's two font files at once (the step tll-first-paint-v1 takes for the /the-map title). Until both are in, the title and
+  /* (3) the title's two font files at once (the step tll-first-paint-v1 takes for the /the-map title). Until both are in, the title and
      its rose word each stay in their own fallback faces (their own stacks without Playfair Display), so the title looks and wraps as it
      does today before the fonts arrive; what goes is the state with one file in. */
   steps.push(function(){var h=q('h1.tll-library-title'),F=D.fonts;if(!h||!whole(h))return false;

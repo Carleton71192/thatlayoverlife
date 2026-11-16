@@ -1,6 +1,6 @@
 // Layout shift sweep, part B (16 Nov 2026, reports/evidence/cls-sweep-2026-11-16/fix.md), for core release 16.67.0.
 // One layer in the core, tll-early-state-v1: while the page is parsed it lays out what the site's own code settles at the page-parsed
-// event (the nav on /account and /submit, the Menu button, the /stories filter row, lead card and place chips, the profile head)
+// event (the nav on /account and /submit, the Menu button, the /stories filter row and lead card, the profile head)
 // and hands the page back right before that code runs.
 // The layout was measured in a real browser (the fix report). Here the layer runs against a small stand-in for the DOM, with a parser
 // that adds nodes one at a time and lets the observers run after each, together with the page's own code as it is saved in the repo
@@ -395,34 +395,15 @@ describe('tll-early-state-v1: /stories (C6)', () => {
     const { d } = start({ search: '?q=lisbon' }); const p = STORIES(d, { upTo: 'footer' });
     expect(p.grid.querySelector('[data-tll-lead]')).toBe(null); expect(p.inner.querySelector('.tllsb-form')).not.toBe(null);
   });
-  it('adds and orders the place chips as our chunk does; the chunk then changes nothing', () => {
-    const { d, ch } = start(); const p = STORIES(d, { upTo: 'filters' });
-    expect(chipNames(p.row)).toEqual(['all', 'Africa', 'Americas', 'Antarctica', 'Asia', 'Europe', 'Middle East', 'Oceania']);
-    const asia = p.row.querySelector('[data-tll-place="Asia"]'); expect(asia.html()).toBe('<a aria-pressed="false" class="tll-shelf-chip" data-tll-place="Asia" href="#" role="button">Asia</a>');
-    expect(p.row.firstChild.className).toBe('tll-filter-label'); expect(p.row.dataset.tllPlaces).toBe(undefined);
-    const before = p.row.html(); d.exec(PLACES_JS); fireOn(ch, 'load'); d.parsed();
-    expect(p.row.dataset.tllPlaces).toBe('1'); p.row.removeAttribute('data-tll-places'); expect(p.row.html()).toBe(before);
-  });
-  it('the chunk failing: the chips are as they were served', () => {
+  it('leaves the place chips to our chunk (put in early, the longer row changed its wrap on tablets when the web font came in)', () => {
     const { d, ch } = start(); const p = STORIES(d, { upTo: 'footer' });
-    expect(chipNames(p.row).length).toBe(8);
-    fireOn(ch, 'error');
     expect(chipNames(p.row)).toEqual(['all', 'Europe', 'Africa', 'Americas', 'Antarctica']);
-    const c = start({ withLayer: false }); const pc = STORIES(c.d, { upTo: 'footer' }); expect(p.row.html()).toBe(pc.row.html()); expect(p.h1.html()).toBe(pc.h1.html());
-  });
-  it('no chunk tag on the page: no chips from here; still the merge and the lead', () => {
-    const { d } = start({ noChunk: true }); const p = STORIES(d, { upTo: 'footer' });
-    expect(chipNames(p.row).length).toBe(5); expect(p.h1.textContent).toBe('Stories, all worth the detour.');
-    expect(p.inner.querySelector('.tllsb-form')).not.toBe(null); expect(p.grid.querySelector('[data-tll-lead]')).not.toBe(null);
+    d.exec(PLACES_JS); fireOn(ch, 'load'); d.parsed(); expect(chipNames(p.row)).toEqual(['all', 'Africa', 'Americas', 'Antarctica', 'Asia', 'Europe', 'Middle East', 'Oceania']);
   });
   it('leaves the story count in the title to our chunk', () => {
     const { d, ch } = start(); const p = STORIES(d, { upTo: 'footer' });
     expect(p.h1.html()).toBe('<h1 class="tll-display-xl tll-library-title">Stories, all worth the <em class="inline-em">detour</em>.</h1>');
     d.exec(COUNT_JS); fireOn(ch, 'load'); d.parsed(); expect(p.h1.textContent).toBe('Five stories, all worth the detour.');
-  });
-  it('20 s without the chunk: the chips are taken back', () => {
-    const { d } = start(); const p = STORIES(d); d.parsed(); d.run(20000);
-    expect(chipNames(p.row).length).toBe(5);
   });
   const FAM = { h1: '"Playfair Display", Georgia, serif', em: '"Playfair Display", TLLSerifG, TLLSerifN, TLLSerifT, Georgia, serif' };
   it('keeps the title in its own fallback faces until both font files are in, then lets go', async () => {
@@ -572,11 +553,13 @@ describe('tll-early-state-v1 in the build', () => {
   it('the build checks the page code the layer follows', () => {
     expect(build.includes("EARLY_STATE = 'src/site-layers/tll-early-state-v1.js'")).toBe(true); expect(build.includes('early_state_checks()')).toBe(true);
     for (const f of ['src/site/live-2026-11-13/fonts/site-head.after.html', 'src/pages/stories/live-2026-11-16/tll-lib-lead-v1.live.html', 'src/pages/stories/live-2026-11-16/tll-lib-chips-v1.live.html',
-      'src/pages/contributors-template/live-2026-11-10/after/tll-pf5-n-v1.html', 'src/site-layers/tll-stories-places-v1.js', 'src/site-layers/tll-phase0-v1.js']) expect(build.includes(f)).toBe(true);
+      'src/pages/contributors-template/live-2026-11-10/after/tll-pf5-n-v1.html', 'src/site-layers/tll-phase0-v1.js']) expect(build.includes(f)).toBe(true);
   });
-  it('no chunk source changed: the chunk layer the layer follows is the one in the stories chunk', () => {
+  it('leaves our stories chunk alone: the layer does not look for it and no chunk source changed', () => {
+    const code = layerSrc.slice(layerSrc.indexOf('(function(){'));
+    expect(code.includes('chunk')).toBe(false); expect(code.includes('data-tll-place')).toBe(false); expect(code.includes('data-tll-count')).toBe(false);
     const chunk = read('src', 'site-layers', 'chunks', 'stories.js');
-    expect(chunk.includes("var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];")).toBe(true); expect(layerSrc.includes("var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];")).toBe(true);
+    expect(chunk.includes("var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania'];")).toBe(true);
   });
   it('touches no data-ms-* attribute and no form or field name', () => {
     const code = layerSrc.slice(layerSrc.indexOf('(function(){'));
