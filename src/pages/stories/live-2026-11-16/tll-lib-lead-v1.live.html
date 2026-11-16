@@ -1,0 +1,26 @@
+<script id="tll-lib-lead-v1">
+/* Lead story: the first visible card in the grid, re-marked whenever the chips script or search re-orders or filters the grid. */
+(function(){
+  /* 9 Nov 2026: editor-picked lead. A card whose hidden [data-tll-pick] marker is rendered (the Stories switch "Featured in the
+     library" is on; Webflow adds w-condition-invisible when it is off) moves to the front of the grid and leads, as long as the
+     chips or a search have not hidden it. With no pick, or the pick filtered out, the first visible card leads as before. */
+  function vis(k){ return k.offsetParent!==null&&!k.hasAttribute('data-tll-q-miss')&&getComputedStyle(k).display!=='none'; }
+  function mark(){var g=document.querySelector('.tll-lib-grid'); if(!g) return; var kids=[].slice.call(g.children), lead=null, pick=null;
+    kids.forEach(function(k){ if(!pick&&vis(k)&&k.querySelector('[data-tll-pick]:not(.w-condition-invisible)')) pick=k; });
+    if(pick&&g.firstElementChild!==pick){ g.insertBefore(pick,g.firstElementChild); kids=[].slice.call(g.children); }
+    kids.forEach(function(k){ if(!lead&&vis(k)) lead=k; });
+    kids.forEach(function(k){ if(k===lead) k.setAttribute('data-tll-lead','1'); else k.removeAttribute('data-tll-lead'); });}
+  function merge(){ var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;
+    var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }
+  function run(){ merge(); var g=document.querySelector('.tll-lib-grid'); if(!g) return; mark();
+    var t; new MutationObserver(function(){clearTimeout(t);t=setTimeout(mark,30);}).observe(g,{childList:true,subtree:false,attributes:true,attributeFilter:['style','data-tll-q-miss']});
+    document.addEventListener('tll:lib-filtered',mark); setTimeout(mark,600); }
+  /* 7 Nov 2026: merge as soon as the filter row and the search form both exist in the parsed DOM, not only at DOMContentLoaded,
+     so the search form is in its place before the first paint where the parser allows it. While the document is still loading a
+     MutationObserver on documentElement retries after each parsed node and stops once merged or at DOMContentLoaded. run() keeps
+     its merge() call as the fallback; merge() does nothing when the form is already in the filter row. */
+  function early(){ merge(); return !!document.querySelector('.tll-library-filters .tll-filters-inner[data-tll-merged]'); }
+  if(document.readyState==='loading'&&!early()){ var mo=new MutationObserver(function(){ if(early()) mo.disconnect(); }); mo.observe(document.documentElement,{childList:true,subtree:true}); document.addEventListener('DOMContentLoaded',function(){ mo.disconnect(); }); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script>
