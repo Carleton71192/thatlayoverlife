@@ -25,6 +25,10 @@
      map title    style#tll-fp-maptitle-v1 (/the-map): the title stays in the fallback faces until both of its font files are in (they
                   come one after the other, and with one of them in the title is a line shorter for a frame). Let go when both
                   have loaded or one has failed, or after 20 s.
+     note         style#tll-fp-note-v1 (/about): the site's Tell the editor note (#tll-note, in the footer) takes no room until its own
+                  style, which comes 25 KB later in the page and fixes it to the corner of the screen, has been parsed. Until then it
+                  was laid out in the footer, 382 px tall, and the page was for a moment taller than it ends (see NOTE_ABOUT). Let go
+                  when that style is in, right before the page-parsed listeners run, or after 20 s.
      invite       /the-map: the signed-out "Start your own map" link is put in by the page head script when the page is parsed; here it
                   goes in as soon as the counter has been parsed, made the same way, only if that script is on the page. The script
                   finds it and leaves it.
@@ -71,6 +75,12 @@ var PAGE_ABOUT=
 ".tll-about-final-intro{font-size:18px}"+
 /*end*/
 "}";
+/* The site's Tell the editor note (#tll-note) is in the footer and its style (tll-note-v1-css, position:fixed, the card closed) comes
+   25 KB later in the page. Until that style is parsed the note is laid out in the footer, pill and open card, 382 px tall. With the
+   filmstrip in early that made the page taller for a moment than it ends. A browser puts the scroll position back after a reload as
+   soon as the page is tall enough for it, so after a reload at the very end it did so before the page was parsed, and the page's own
+   page-parsed work at the end of the article then moved the screen (0.45 to 0.52 at 390; 0.13 to 0.155 with the core before). */
+var NOTE_ABOUT="#tll-note{display:none}";
 var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
 function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
 function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
@@ -177,6 +187,14 @@ if(TRAV){
     var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
     var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
-}else D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
+}else{
+  /* /about: the note takes no room until its own style is in (the style element has its sheet once it has been parsed whole), and it
+     is back right before the page-parsed listeners run, so the site's scripts that measure find it as they always have */
+  var N=sheet('tll-fp-note-v1',NOTE_ABOUT),relN=once(function(){drop(N);});
+  steps.push(function(){var st=D.getElementById('tll-note-v1-css');if(parsed||(st&&st.sheet))relN();return !N.parentNode;});
+  window.addEventListener('DOMContentLoaded',function(){parsed=1;tick();},true);
+  setTimeout(relN,HARD);
+  D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
+}
 mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();

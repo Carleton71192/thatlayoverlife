@@ -434,6 +434,7 @@ var PAGE_ABOUT=
 ".tll-about-final-hero{padding-top:52px;padding-bottom:40px}"+
 ".tll-about-final-intro{font-size:18px}"+
 "}";
+var NOTE_ABOUT="#tll-note{display:none}";
 var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
 function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
 function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
@@ -527,7 +528,14 @@ if(TRAV){
     var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
     var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
   D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
-}else D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
+}else{
+  
+  var N=sheet('tll-fp-note-v1',NOTE_ABOUT),relN=once(function(){drop(N);});
+  steps.push(function(){var st=D.getElementById('tll-note-v1-css');if(parsed||(st&&st.sheet))relN();return !N.parentNode;});
+  window.addEventListener('DOMContentLoaded',function(){parsed=1;tick();},true);
+  setTimeout(relN,HARD);
+  D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
+}
 mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();
 /* src/site-layers/tll-early-state-v1.js */

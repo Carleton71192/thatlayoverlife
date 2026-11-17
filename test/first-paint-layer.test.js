@@ -340,18 +340,44 @@ describe('tll-first-paint-v1 on /travelers', () => {
 });
 
 describe('tll-first-paint-v1 on /about', () => {
-  it('carries the phone sizes of the hero until the page-parsed listeners have run, and nothing else', () => {
+  const PHONE = '@media(max-width:600px){.tll-about-final-title{font-size:38px;letter-spacing:-.5px}.tll-about-final-hero{padding-top:52px;padding-bottom:40px}.tll-about-final-intro{font-size:18px}}';
+  it('carries the phone sizes of the hero until the page-parsed listeners have run, and the note hold until right before them', () => {
     const d = makeDom({ path: '/about' }); runLayer(fpSrc, d);
-    expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']);
-    expect(d.document.getElementById('tll-fp-page-v1').textContent).toBe('@media(max-width:600px){.tll-about-final-title{font-size:38px;letter-spacing:-.5px}.tll-about-final-hero{padding-top:52px;padding-bottom:40px}.tll-about-final-intro{font-size:18px}}');
+    expect(d.styles(d.head)).toEqual(['tll-fp-page-v1', 'tll-fp-note-v1']);
+    expect(d.document.getElementById('tll-fp-page-v1').textContent).toBe(PHONE);
+    expect(d.document.getElementById('tll-fp-note-v1').textContent).toBe('#tll-note{display:none}');
     d.openBody(); PAGES['/about'](d, () => {});
+    expect(d.styles(d.head)).toEqual(['tll-fp-page-v1', 'tll-fp-note-v1']);
+    // the note hold is gone when the first document listener of the page-parsed event runs: the site's scripts find the note as served
+    let seen = null; d.document.addEventListener('DOMContentLoaded', () => { seen = d.styles(d.head); });
+    d.fire('DOMContentLoaded'); expect(seen).toEqual(['tll-fp-page-v1']); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']);
     expect(d.observers.filter((o) => o.on).length).toBe(0);
-    d.fire('DOMContentLoaded'); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']);
     d.run(0); expect(d.styles(d.head)).toEqual([]);
     expect(d.body.html()).not.toMatch(/tll-fp-/);
   });
+  it('the note takes no room until its own style has been parsed whole, then the hold goes at once (repair, note 2)', () => {
+    const d = makeDom({ path: '/about' }); runLayer(fpSrc, d); d.openBody(); PAGES['/about'](d, () => {});
+    const foot = d.el(d.body, 'footer'); d.el(foot, 'div', { id: 'tll-note' }); d.el(d.body, 'div', { class: 'w-embed' });
+    expect(d.styles(d.head)).toContain('tll-fp-note-v1');
+    // the style element is in the page but its text is still arriving: no sheet yet, the hold stays
+    const st = d.el(d.body, 'style', { id: 'tll-note-v1-css' }); expect(d.styles(d.head)).toContain('tll-fp-note-v1');
+    // parsed whole (the browser has made its sheet); the next node the parser adds is the note's script
+    st.sheet = {}; d.el(d.body, 'script', { id: 'tll-note-v1-js' });
+    expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']); expect(d.observers.filter((o) => o.on).length).toBe(0);
+    d.fire('DOMContentLoaded'); d.run(0); expect(d.styles(d.head)).toEqual([]);
+  });
+  it('the note hold is only the one rule, and the saved site footer still has the style it waits for', () => {
+    expect(fpSrc).toContain('var NOTE_ABOUT="#tll-note{display:none}";');
+    const foot = read('src', 'site', 'live-2026-11-13', 'fonts', 'site-footer.after.html');
+    expect(foot).toContain('<style id="tll-note-v1-css">'); expect(foot).toContain('#tll-note{position:fixed;');
+    // the style comes after the note in the page: the site footer code follows the footer the note sits in
+    const page = read('src', 'pages', 'heroes-2026-10-29', 'fixtures', 'about.html');
+    expect(page.indexOf('id="tll-note"')).toBeGreaterThan(-1); expect(page.indexOf('id="tll-note-v1-css"')).toBeGreaterThan(page.indexOf('id="tll-note"'));
+    // no other path gets it
+    for (const path of ['/travelers', '/the-map']) { const o = makeDom({ path }); runLayer(fpSrc, o); expect(o.styles(o.head)).not.toContain('tll-fp-note-v1'); }
+  });
   it('lets go after 20 s when the page never finishes parsing', () => {
-    const d = makeDom({ path: '/about' }); runLayer(fpSrc, d); d.run(19999); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1']); d.run(20000); expect(d.styles(d.head)).toEqual([]);
+    const d = makeDom({ path: '/about' }); runLayer(fpSrc, d); d.run(19999); expect(d.styles(d.head)).toEqual(['tll-fp-page-v1', 'tll-fp-note-v1']); d.run(20000); expect(d.styles(d.head)).toEqual([]);
   });
 });
 
@@ -415,7 +441,7 @@ describe('tll-first-paint-v1 on /the-map', () => {
     expect(js).toContain("function fail(msg) { root.appendChild(el('p', 'tllm-err', msg)); }");
     const emb = read('src', 'pages', 'the-map', 'live-2026-10-25', 'embed-682054d4-after.html');
     expect(emb).toContain("s.onload=function(){say('CODE LOADED FROM '+label+', STARTING');"); expect(emb).toContain('data-tll-version="46a21a18a404b7162bf3bd61c3c26ae70c441445"');
-    expect(build).toContain("'first-paint: the map code no longer marks the mount first'"); expect(build).toContain("'first-paint: the map embed status line changed'");
+    expect(build).toContain("'first-paint: the map code no longer marks the mount first'"); expect(build).toContain("'first-paint: the map embed status line changed'"); expect(build).toContain("'first-paint: the note style changed'");
   });
   it('lets the map hold go when the page is parsed and has no map mount, and after 20 s at the latest', () => {
     const d = makeDom({ path: '/the-map' }); runLayer(fpSrc, d); d.openBody(); d.el(d.body, 'main'); d.fire('DOMContentLoaded');
