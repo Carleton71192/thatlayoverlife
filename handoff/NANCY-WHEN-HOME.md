@@ -80,8 +80,8 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 **Story page jump on phones: done, live on www 16 Nov 09:06 UTC (16.66.0)**
 Nothing to do. If a story page looks wrong, say "roll back 16.66.0"; it takes one step.
 
-**Page jumps on eight more pages: 16.67.0 ready for the test site (your yes)**
-/travelers, /the-map, /for-expats, /about, /account, /submit, contributor profiles and /stories stop jumping while they load (lab: 42 of 200 loads over 0.1 before, 0 after). Built, merged (50e84bf), passed a measurement check, an attack check and a re-check after a small repair. Reply "test site" to put it on that-layover-life.webflow.io; then one look at /account while signed in, then "publish www". Two small leftovers: a reload on /for-expats can land on different content more often than today, and going back to a /stories search at desktop size jumps a bit more than today. Evidence: reports/evidence/cls-sweep-2026-11-16/.
+**Page jumps on eight more pages: 16.67.0 is on the test site; two things from you**
+Core 16.67.0 is on that-layover-life.webflow.io since 10:29 UTC on 17 Nov; www still runs 16.66.0. Three checks of the test site against www are running. (1) Open https://that-layover-life.webflow.io/account while signed in and say whether the tabs and panels look as on www (about 2 minutes; the lab can only test signed out). (2) When the checks pass, reply "publish www" (or "wait"). Rollback is one step. Evidence: handoff/RELEASE-16.67.0.md.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
