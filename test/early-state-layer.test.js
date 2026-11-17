@@ -28,7 +28,7 @@ const PF5_JS = read('src', 'pages', 'contributors-template', 'live-2026-11-16', 
 const PF5N_JS = script(read('src', 'pages', 'contributors-template', 'live-2026-11-10', 'after', 'tll-pf5-n-v1.html'), 'tll-pf5-n-v1');
 
 // ---- a small DOM: elements, text, a selector engine, observers, events with a capture phase, timers ----
-function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () => false, families = {}, fontsLoaded = [], cssHas = true } = {}) {
+function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () => false, families = {}, fontsLoaded = [], cssHas = true, raf = false } = {}) {
   const observers = []; const timers = []; let seq = 0; let now = 0; let doc; let win;
   const notify = (target) => { observers.forEach((o) => { if (o.on && o.sees(target)) o.pending = true; }); };
   const flush = () => { for (let k = 0; k < 50; k++) { const p = observers.filter((o) => o.on && o.pending); if (!p.length) return; p.forEach((o) => { o.pending = false; o.cb([]); }); } };
@@ -131,6 +131,9 @@ function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () 
     CSS: cssHas === null ? undefined : { supports: (q) => { if (cssHas === 'throw') throw new Error('lab'); return q === 'selector(:has(*))' && !!cssHas; } },
     matchMedia: () => ({ matches: false }), requestIdleCallback: () => {}, sessionStorage: { getItem: () => null, setItem: () => {} },
     getComputedStyle: (n) => ({ display: hidden(n) ? 'none' : 'block', fontFamily: families[n.tagName.toLowerCase()] || '', fontWeight: '800', fontStyle: n.tagName === 'EM' ? 'italic' : 'normal' }) };
+  // frames, only when a test asks for them: frame() runs the callbacks asked for since the frame before, as the browser does before it paints
+  const rafQ = []; if (raf) win.requestAnimationFrame = (f) => { rafQ.push(f); return rafQ.length; };
+  const frame = () => { const q = rafQ.splice(0); q.forEach((f) => { try { f(now); } catch (x) { thrown.push(x.message); } }); flush(); return q.length; };
   // the parser: add an element (or text) to a parent, then let the observers run, as at the end of a parser task
   const el = (parent, tag, attrs = {}, text) => { const n = new El(tag); Object.assign(n.attrs, attrs); if (text !== undefined && text !== null) { const t = new Text(text); t.parentNode = n; n.childNodes.push(t); }
     if (n.tagName === 'BODY') doc.body = n; parent.appendChild(n); flush(); return n; };
@@ -151,7 +154,7 @@ function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () 
     (winL.DOMContentLoaded || []).filter((l) => !l.cap).forEach((l) => { order.push('window'); call(l, ev); }); return order; };
   const load = () => { doc.readyState = 'complete'; (winL.load || []).slice().forEach((l) => call(l, { type: 'load' })); };
   const styles = () => head.children.filter((n) => n.tagName === 'STYLE').map((n) => n.id);
-  return { document: doc, window: win, root, head, el, text, body, inline, exec, run, parsed, load, flush, styles, observers, timers, thrown, fontJobs, El, Text };
+  return { document: doc, window: win, root, head, el, text, body, inline, exec, run, parsed, load, flush, styles, observers, timers, thrown, fontJobs, frame, El, Text };
 }
 const layer = (d) => d.exec(layerSrc);
 
@@ -197,6 +200,27 @@ describe('tll-early-state-v1: the Menu button (C9)', () => {
   it('passes a tap on the stand-in on to the real button', () => {
     const { d, b, nav, cta } = page(); d.el(b, 'main'); cta.querySelector('.tllmm-btn').click(); d.parsed();
     expect(nav.classList.contains('tllmm-open')).toBe(true); expect(cta.querySelector('.tllmm-btn').textContent).toBe('Close');
+  });
+  it('a tap that left the focus on the stand-in: the real button has it after the page is parsed, as after a tap on the real button (repair, note 7)', () => {
+    const { d, b, nav, cta } = page(); d.el(b, 'main'); const standIn = cta.querySelector('.tllmm-btn');
+    standIn.focus(); standIn.click(); expect(d.document.activeElement).toBe(standIn);
+    d.parsed(); const real = cta.querySelector('.tllmm-btn');
+    expect(real).not.toBe(standIn); expect(real.getAttribute('aria-hidden')).toBe(null); expect(d.document.activeElement).toBe(real);
+    expect(nav.classList.contains('tllmm-open')).toBe(true); expect(real.getAttribute('aria-expanded')).toBe('true'); expect(d.thrown).toEqual([]);
+    // the browser has put the focus on the body when the stand-in went: the same
+    const p2 = page(); p2.d.el(p2.b, 'main'); const s2 = p2.cta.querySelector('.tllmm-btn'); s2.focus(); s2.click();
+    p2.d.window.addEventListener('DOMContentLoaded', () => { p2.d.document.activeElement = p2.d.document.body; }, true); p2.d.parsed();
+    expect(p2.d.document.activeElement).toBe(p2.cta.querySelector('.tllmm-btn'));
+  });
+  it('the focus is not moved when the tap did not leave it on the stand-in, or when the reader has put it somewhere else since', () => {
+    // a browser that does not focus a tapped button: the menu opens, the focus stays where it was
+    const a = page(); a.d.el(a.b, 'main'); a.cta.querySelector('.tllmm-btn').click(); a.d.parsed();
+    expect(a.nav.classList.contains('tllmm-open')).toBe(true); expect(a.d.document.activeElement).toBe(null);
+    // tapped, then the focus went into a field before the page was parsed: it stays there
+    const c = page(); const main = c.d.el(c.b, 'main'); const field = c.d.el(main, 'input', { name: 'q' }); const s = c.cta.querySelector('.tllmm-btn'); s.focus(); s.click(); field.focus(); c.d.parsed();
+    expect(c.nav.classList.contains('tllmm-open')).toBe(true); expect(c.d.document.activeElement).toBe(field);
+    // no tap at all: nothing is opened and nothing is focused
+    const n = page(); n.d.el(n.b, 'main'); n.d.parsed(); expect(n.nav.classList.contains('tllmm-open')).toBe(false); expect(n.d.document.activeElement).toBe(null);
   });
   it('does nothing without the site head script, and leaves no button when that script throws', () => {
     const none = page({ menu: null }); none.d.el(none.b, 'main'); expect(none.cta.querySelector('.tllmm-btn')).toBe(null);
@@ -326,7 +350,7 @@ const chunkRuns = (d) => { d.exec(PLACES_JS); d.exec(COUNT_JS); };
 const fireOn = (n, t) => (n.listeners[t] || []).forEach((f) => f({ type: t }));
 
 describe('tll-early-state-v1: /stories (C6)', () => {
-  const start = (opt = {}) => { const d = makeDom({ path: '/stories', search: opt.search || '', hidden: opt.hidden, families: opt.families, fontsLoaded: opt.fontsLoaded }); const ch = HEAD(d, { chunk: opt.noChunk ? null : 'stories', withLayer: opt.withLayer !== false }); return { d, ch }; };
+  const start = (opt = {}) => { const d = makeDom({ path: '/stories', search: opt.search || '', hidden: opt.hidden, families: opt.families, fontsLoaded: opt.fontsLoaded, raf: !!opt.raf }); const ch = HEAD(d, { chunk: opt.noChunk ? null : 'stories', withLayer: opt.withLayer !== false }); return { d, ch }; };
   it('moves the search form into the filter row once the search bar has been parsed, made as the page makes it', () => {
     const { d } = start(); const p = STORIES(d, { upTo: 'bar' });
     expect(p.inner.querySelector('.tllsb-form')).toBe(null); // the bar has no element after it yet

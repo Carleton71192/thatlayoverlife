@@ -10,7 +10,8 @@
               out, the nav's early style is removed, the lead mark is taken off, and the early extras on the profile photo are
               removed. The page's own listeners then do their work in the same task, so no frame is painted in between.
      after    Window bubble of DOMContentLoaded, which runs after every listener on the document: follow-ups (a tap on the stand-in
-              Menu button is passed on, the profile stand-in is let go one timer later, after the page's own timer).
+              Menu button is passed on and the focus it left there goes to the real button, the profile stand-in is let go one timer
+              later, after the page's own timer).
      hard     After 20 s without a page-parsed event everything is handed back and the layer stops.
    Pieces:
      Menu     every page with the site head script tll-mobile-nav-js-v1: a stand-in button with the real button's class at the end of
@@ -63,7 +64,7 @@ function inDoc(n){return !!(n&&D.documentElement.contains(n));}
 
 /* ---- the Menu button (C9) ---- */
 if(D.getElementById('tll-mobile-nav-js-v1'))(function(){
-  var mb=null,tap=0;
+  var mb=null,tap=0,foc=0;
   steps.push(function(){var nav=q('.tll-nav-v1'),cta=nav&&q('.tll-nav-cta-row',nav);
     if(!cta||!q('.tll-nav-links-row',nav)||!done(cta))return false;
     if(nav.__tllmm||q('.tllmm-btn',cta))return true;
@@ -72,8 +73,12 @@ if(D.getElementById('tll-mobile-nav-js-v1'))(function(){
     /* the real button is the row's last child: should the parser still add to the row, the stand-in stays last */
     keep.push(function(){if(mb.parentNode&&mb.nextSibling)mb.parentNode.appendChild(mb);});
     return true;});
-  before.push(function(){drop(mb);});
-  after.push(function(){if(!tap)return;var b=q('.tll-nav-v1 .tll-nav-cta-row .tllmm-btn');if(b)b.click();});
+  before.push(function(){foc=!!(mb&&D.activeElement===mb);drop(mb);});
+  /* a tap on the stand-in is passed on. Where the tap left the focus on the stand-in (browsers that focus a tapped button) and it fell
+     back to the body when the stand-in went, the real button takes it first, as after a tap on the real button */
+  after.push(function(){if(!tap)return;var b=q('.tll-nav-v1 .tll-nav-cta-row .tllmm-btn');if(!b)return;
+    if(foc&&(!D.activeElement||D.activeElement===D.body||D.activeElement===mb)){try{b.focus({preventScroll:true});}catch(e){}}
+    b.click();});
 })();
 
 /* ---- the nav on /account and /submit (C1) ---- */
