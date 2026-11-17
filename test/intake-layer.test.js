@@ -17,6 +17,8 @@ const holdOff = src.replace(HOLD_ON, 'var HOLD_PHOTOS=false;');
 
 const API = 'https://tll-travel-wire.thatlayoverlife.workers.dev/intake';
 const SAVED = 'Saved. It is with the editor.';
+// 17 Nov 2026: what a story or link-out reads when the Worker call fails (before, it read SAVED either way).
+const SAVED_FORM = 'Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.';
 // The two done boxes as served on www on 11 Nov 2026.
 const PHOTOS_DONE = 'Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.';
 const STORY_DONE = 'Got it. Your story is with the editor.';
@@ -64,9 +66,10 @@ function run(pathname, { kind, doneText, source = src, token = 'tok_1', answer =
   new Function('window', 'document', 'location', 'setTimeout', 'MutationObserver', 'getComputedStyle', 'fetch', source)(
     window, document, { pathname }, () => {}, MutationObserver, (el) => ({ display: el.display }), fetch);
   // Webflow accepted the form: its done box shows. Then let every promise settle.
-  const accept = async () => { done.display = 'block'; observers.forEach((cb) => cb()); observers.forEach((cb) => cb()); await Promise.all(pending); for (let i = 0; i < 6; i += 1) await Promise.resolve(); };
+  const show = () => { done.display = 'block'; observers.forEach((cb) => cb()); observers.forEach((cb) => cb()); };
+  const accept = async () => { show(); await Promise.all(pending); for (let i = 0; i < 6; i += 1) await Promise.resolve(); };
   const added = () => done.children.map((c) => c.textContent);
-  return { calls, done, accept, added, observers };
+  return { calls, done, accept, show, added, observers };
 }
 
 describe('tll-intake-v1: the photo hold (HOLD_PHOTOS)', () => {
@@ -119,10 +122,18 @@ describe('tll-intake-v1: stories and link-outs are untouched by the hold', () =>
     expect(r.added()).toEqual([SAVED]); // the Worker answers {saved, held} without ok for a story (src/intake.js)
   });
 
-  it('a story answer with ok and held steps aside, and an older answer with a url keeps its link', async () => {
+  it('the saved line shows as soon as the done box shows, before the Worker answers (17 Nov: the 6 s wait)', () => {
+    const r = run('/submit', { kind: 'story', doneText: STORY_DONE });
+    r.show(); // no await: the Worker call is still in flight
+    expect(r.calls).toHaveLength(1);
+    expect(r.added()).toEqual([SAVED]);
+    expect(r.done.textContent).not.toMatch(/Sending it to the editor/);
+  });
+
+  it('a story answer with ok and held keeps the saved line, and an older answer with a url keeps its link', async () => {
     const held = run('/submit', { kind: 'story', doneText: STORY_DONE, answer: { status: 200, body: { ok: true, held: true } } });
     await held.accept();
-    expect(held.added()).toEqual([]);
+    expect(held.added()).toEqual([SAVED]);
     const old = run('/submit', { kind: 'story', doneText: STORY_DONE, answer: { status: 200, body: { ok: true, url: '/stories/a-title' } } });
     await old.accept();
     expect(old.added()).toEqual(['It is live. Read it on the site →']);
@@ -134,13 +145,20 @@ describe('tll-intake-v1: stories and link-outs are untouched by the hold', () =>
     expect(r.calls.map((c) => c.body.kind)).toEqual(['linkout']);
   });
 
-  it('a story the Worker could not set up, or a lost connection, reads the saved line', async () => {
+  it('a story the Worker could not set up, or a lost connection, says plainly that it reached the editor by form', async () => {
     const a = run('/submit', { kind: 'story', doneText: STORY_DONE, answer: { status: 502, body: { error: 'x' } } });
     await a.accept();
-    expect(a.added()).toEqual([SAVED]);
+    expect(a.added()).toEqual([SAVED_FORM]);
     const b = run('/submit', { kind: 'story', doneText: STORY_DONE, fail: true });
     await b.accept();
-    expect(b.added()).toEqual([SAVED]);
+    expect(b.added()).toEqual([SAVED_FORM]);
+    const c = run('/submit', { kind: 'story', doneText: STORY_DONE, answer: { status: 200, body: {} } });
+    await c.accept();
+    expect(c.added()).toEqual([SAVED_FORM]);
+  });
+
+  it('the new lines keep the copy rules: no em dash, no exclamation mark', () => {
+    for (const t of [SAVED, SAVED_FORM]) expect(t).not.toMatch(/[—!]|ship|ledger|filed/i);
   });
 
   it('a story is not posted without a sign-in, as before', async () => {
