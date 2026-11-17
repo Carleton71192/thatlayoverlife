@@ -1,6 +1,6 @@
 /* Judge-measure harness (independent; written for the 16.67.0 layout shift check, 17 Nov 2026).
    Usage: NODE_PATH=/home/user/thatlayoverlife/node_modules node jm.cjs <set> [cellFilter]
-     set = std (5 rounds, all cells) | cpu (3 rounds, CPU 4x, the 16 cells the builders changed) | smoke (1 round, a few cells)
+     set = std (5 rounds, all cells) | cpu (3 rounds, CPU 4x, the 16 cells the builders changed) | lay (15 rounds, /layovers 1440 only) | trav8 (one late look at /travelers 390) | smoke (1 round, a few cells)
    Two arms per cell, alternating first place by round: ctl = live 16.66.0 core from a local file, new = the rebuilt branch core.
    In both arms the www HTML (one plain GET per page, served from disk) has only the integrity attribute of the core tag removed.
    Rules kept: every non-GET aborted; Webflow-host files from the local caches or aborted (never fetched); ads and analytics get an
@@ -29,6 +29,8 @@ function plan(set) {
     for (const p of ['balkans', 'lisbon', 'safrica']) for (const w of [360, 390, 1440]) cells.push([p, w]);
     return { cells, rounds: 5, cpu: 1 };
   }
+  if (set === 'trav8') return { cells: [['travelers', 390]], rounds: 1, cpu: 1, wait: 8300 }; /* one late look: the verb has rotated twice by then */
+  if (set === 'lay') return { cells: [['layovers', 1440]], rounds: 15, cpu: 1 }; /* follow-up: the one cell whose median was more than 0.01 over the control in set std */
   if (set === 'cpu') { for (const p of CHANGED) for (const w of [390, 1440]) cells.push([p, w]); return { cells, rounds: 3, cpu: 4 }; }
   return { cells: [['travelers', 390], ['account', 1440], ['stories', 1440], ['balkans', 360]], rounds: 1, cpu: 1 };
 }
@@ -124,7 +126,7 @@ function othersRunning(own) { /* any chrome-like process that is not a child of 
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-async function oneLoad(browser, set, pg, w, arm, i, cpu) {
+async function oneLoad(browser, set, pg, w, arm, i, cpu, minWait) {
   const [vw, vh] = SIZES[w], phone = w < 800, pathn = PAGES[pg], html = armHtml(pg), core = ARMS[arm];
   const st = { nonGet: 0, ads: 0, hit: 0, git: 0, coreN: 0, aborted: [], net: [], errs: [], consErr: 0, failed: [], imgs: [] };
   const ctx = await browser.newContext({ viewport: { width: vw, height: vh }, isMobile: phone, hasTouch: phone, deviceScaleFactor: phone ? 3 : 1, userAgent: phone ? UA_PHONE : UA_DESK });
@@ -161,7 +163,7 @@ async function oneLoad(browser, set, pg, w, arm, i, cpu) {
   try {
     await pgObj.goto(ORIGIN + pathn, { waitUntil: 'load', timeout: 90000 });
     const a = await pgObj.evaluate(() => [performance.now(), window.__J && window.__J.loadT]);
-    const until = Math.max(5000, (a[1] || a[0]) + 4000); await sleep(Math.max(0, until - a[0]) + 50);
+    const until = Math.max(minWait || 5000, (a[1] || a[0]) + 4000); await sleep(Math.max(0, until - a[0]) + 50);
     const x = await pgObj.evaluate(PROBE);
     const sh = x.T.sh.map(s => ({ v: +s.v.toFixed(6), t: s.t, inp: s.inp, rs: s.rs[0], src: s.src }));
     const id = [set, pg, w, arm, i].join('-');
@@ -191,8 +193,8 @@ async function oneLoad(browser, set, pg, w, arm, i, cpu) {
     if (!browser) browser = await chromium.launch();
     for (const [arm, i] of todo) {
       for (let k = 0; k < 120; k++) { const o = othersRunning(process.pid); if (!o.length) break; waits++; if (k === 0) console.log('waiting for another browser: ' + o.slice(0, 2).join('; ')); await sleep(5000); }
-      let rec = await oneLoad(browser, SET, pg, w, arm, i, P.cpu);
-      if (!rec.ok) { console.log('retry ' + pg + ' ' + w + ' ' + arm + ' ' + i + ': ' + rec.fail); try { await browser.close(); } catch (e) { } browser = await chromium.launch(); rec = await oneLoad(browser, SET, pg, w, arm, i, P.cpu); }
+      let rec = await oneLoad(browser, SET, pg, w, arm, i, P.cpu, P.wait);
+      if (!rec.ok) { console.log('retry ' + pg + ' ' + w + ' ' + arm + ' ' + i + ': ' + rec.fail); try { await browser.close(); } catch (e) { } browser = await chromium.launch(); rec = await oneLoad(browser, SET, pg, w, arm, i, P.cpu, P.wait); }
       rec.othersSeen = othersRunning(process.pid).length;
       fs.appendFileSync(OUT, JSON.stringify(rec) + '\n'); n++;
       console.log([new Date().toISOString().slice(11, 19), SET, pg, w, arm, i, rec.ok ? 'cls ' + rec.cls + ' ni ' + rec.clsNI + ' fcp ' + rec.fcp + ' lcp ' + rec.lcp + ' box ' + rec.boxHash.slice(0, 6) + ' ab ' + rec.abortedN + ' err ' + rec.errN : 'FAILED ' + rec.fail].join(' '));
