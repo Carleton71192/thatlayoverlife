@@ -27,7 +27,8 @@
               further down, a newer story), the page's own moves are made: the chip script's order (newest first), the pick in
               front, the mark. Before the page's scripts run the mark is taken off and a changed order is put back. Not with a
               search (?q=). (3) The title stays in its fallback faces until both of its font files are in, then takes both at once
-              (with one of the two in, the rose word jumped 130 px and back).
+              (with one of the two in, the rose word jumped 130 px and back). With a search (?q=) it lets go in a frame of its own,
+              never in the frame in which the search filter brings the matching cards up.
               Two things our stories chunk does when the page is parsed are left to the chunk, after a try each. The story count
               in front of the title: put in early it rewraps a title that is still in its fallback faces, which moved more of the
               page than the chunk's own write does later. The place chips it adds and orders: put in early, the longer row wraps
@@ -132,7 +133,8 @@ if(path==='/stories')(function(){
   function pickOf(k){return q('[data-tll-pick]:not(.w-condition-invisible)',k);}
   /* a card the site hides (the stub story) cannot lead: the page's scripts skip what is not shown */
   function shown(k){return W.getComputedStyle(k).display!=='none';}
-  if(!/[?&]q=[^&]/.test(location.search)){
+  var QS=/[?&]q=[^&]/.test(location.search);
+  if(!QS){
     /* at once, before the card's own content has arrived: a frame painted with the first card half parsed and not yet marked showed
        it as a plain card, and marking it afterwards moved it (0.05 at 1440 in 1 load of 32) */
     steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k)return false;
@@ -170,8 +172,15 @@ if(path==='/stories')(function(){
     var sel='h1.tll-library-title.tll-library-title.tll-library-title.tll-library-title';
     var T=sheet('tll-es-libtitle-v1',sel+'{font-family:'+rest+'!important}'+(er?sel+' em{font-family:'+er+'!important}':'')),relT=once(function(){drop(T);});
     setTimeout(relT,HARD);
+    /* With a search (?q=) the core's own search filter (tll-phase0-v1) hides the cards that do not match once the search index has
+       answered, and the page's script does it again when the page is parsed: the matching cards come up from far below. In a frame that
+       also changes the title's faces the browser multiplies the two moves (0.71 at 1440 in 4 of 9 lab loads; apart they are 0.01 and
+       0.05). So with a search the title is let go in a frame in which the set of hidden cards is the one of the frame before. */
+    var go=relT;
+    if(QS&&W.requestAnimationFrame)go=function(){var n=-1,left=30,f=function(){var c=D.querySelectorAll('[data-tll-q-miss]').length;
+      if(c===n||--left<0)relT();else{n=c;W.requestAnimationFrame(f);}};W.requestAnimationFrame(f);};
     var jobs=[];for(i=0;i<need.length;i++)jobs.push(F.load(need[i],tx));
-    W.Promise.all(jobs).then(relT,relT);return true;});
+    W.Promise.all(jobs).then(go,go);return true;});
 })();
 
 /* ---- the profile head (C3) ---- */

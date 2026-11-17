@@ -471,6 +471,45 @@ describe('tll-early-state-v1: /stories (C6)', () => {
     const c = start({ families: FAM, fontsLoaded: ['800 1em "Playfair Display"', 'italic 800 1em "Playfair Display"'] }); STORIES(c.d, { upTo: 'filters' }); expect(c.d.document.getElementById('tll-es-libtitle-v1')).toBe(null); expect(c.d.fontJobs.length).toBe(0);
     const n = start({ families: { h1: 'Georgia, serif' } }); STORIES(n.d, { upTo: 'filters' }); expect(n.d.document.getElementById('tll-es-libtitle-v1')).toBe(null);
   });
+  const held = (d) => d.document.getElementById('tll-es-libtitle-v1') !== null;
+  const fontsIn = async (d) => { d.fontJobs.forEach((j) => j.res()); await new Promise((r) => setImmediate(r)); };
+  it('with a search (?q=) the title is let go in a frame of its own: not in the frame in which the search filter hides the other cards (repair, note 1)', async () => {
+    const { d } = start({ families: FAM, search: '?q=lisbon', raf: true }); const p = STORIES(d, { upTo: 'footer' }); expect(held(d)).toBe(true);
+    await fontsIn(d); expect(held(d)).toBe(true); // both files are in: with a search it waits for a quiet frame
+    expect(d.frame()).toBe(1); expect(held(d)).toBe(true); // the first frame only counts the hidden cards
+    // the search index answers: the core's filter marks the cards that do not match (tll-phase0-v1); this frame brings the matches up
+    p.items.torrevieja.setAttribute('data-tll-q-miss', '1'); p.items.krewe.setAttribute('data-tll-q-miss', '1');
+    expect(d.frame()).toBe(1); expect(held(d)).toBe(true);
+    // the next frame has the same hidden cards as the one before: the title takes its two files now
+    expect(d.frame()).toBe(1); expect(held(d)).toBe(false); expect(d.frame()).toBe(0);
+  });
+  it('with a search and nothing to hide (no match, or the index never answers) the title goes in the second frame', async () => {
+    const { d } = start({ families: FAM, search: '?q=zzzz', raf: true }); STORIES(d, { upTo: 'footer' }); await fontsIn(d);
+    d.frame(); expect(held(d)).toBe(true); d.frame(); expect(held(d)).toBe(false);
+  });
+  it('with a search: a set of hidden cards that never settles is not waited for longer than 30 frames, a failed font file lets go the same way, and 20 s is the last word', async () => {
+    const a = start({ families: FAM, search: '?q=lisbon', raf: true }); const pa = STORIES(a.d, { upTo: 'footer' }); await fontsIn(a.d);
+    const extra = []; let n = 0; for (; n < 40 && held(a.d); n++) { extra.push(a.d.el(pa.b, 'i', { 'data-tll-q-miss': '1' })); a.d.frame(); }
+    expect(held(a.d)).toBe(false); expect(n).toBe(31);
+    const b = start({ families: FAM, search: '?q=lisbon', raf: true }); STORIES(b.d, { upTo: 'footer' }); b.d.fontJobs[1].rej(new Error('x')); await new Promise((r) => setImmediate(r));
+    expect(held(b.d)).toBe(true); b.d.frame(); b.d.frame(); expect(held(b.d)).toBe(false);
+    // a tab that paints no frame: the hard release
+    const c = start({ families: FAM, search: '?q=lisbon', raf: true }); STORIES(c.d, { upTo: 'footer' }); await fontsIn(c.d); expect(held(c.d)).toBe(true); c.d.run(20000); expect(held(c.d)).toBe(false);
+    c.d.frame(); c.d.frame(); expect(c.d.thrown).toEqual([]);
+  });
+  it('without a search the title goes the moment both files are in, frames or not; with a search and no frame interface too', async () => {
+    const a = start({ families: FAM, raf: true }); STORIES(a.d, { upTo: 'footer' }); await fontsIn(a.d); expect(held(a.d)).toBe(false);
+    const b = start({ families: FAM, search: '?q=lisbon' }); STORIES(b.d, { upTo: 'footer' }); await fontsIn(b.d); expect(held(b.d)).toBe(false);
+    const c = start({ families: FAM, search: '?utm_source=x&q=italy', raf: true }); STORIES(c.d, { upTo: 'footer' }); await fontsIn(c.d); expect(held(c.d)).toBe(true); c.d.frame(); c.d.frame(); expect(held(c.d)).toBe(false);
+    // ?q= with nothing after it is no search
+    const e = start({ families: FAM, search: '?q=', raf: true }); STORIES(e.d, { upTo: 'footer' }); await fontsIn(e.d); expect(held(e.d)).toBe(false);
+  });
+  it('the filter the title waits for is the core\'s own: tll-phase0-v1 marks the cards that do not match with data-tll-q-miss, as the page script does', () => {
+    const p0 = read('src', 'site-layers', 'tll-phase0-v1.js');
+    expect(p0).toContain("item.setAttribute('data-tll-q-miss','1')"); expect(p0).toContain("apply();setTimeout(apply,1200);");
+    expect(read('src', 'pages', 'heroes-2026-10-29', 'code', 'stories-footer.html')).toContain("item.setAttribute('data-tll-q-miss','1')");
+    expect(layerSrc).toContain("D.querySelectorAll('[data-tll-q-miss]').length"); expect(layerSrc).toContain('var QS=/[?&]q=[^&]/.test(location.search);');
+  });
   it('20 s without a page-parsed event: merge and lead are handed back', () => {
     const { d } = start(); const p = STORIES(d, { upTo: 'footer' }); d.run(20000);
     expect(p.inner.querySelector('.tllsb-form')).toBe(null); expect(p.form.parentNode).toBe(p.bi); expect(p.grid.querySelector('[data-tll-lead]')).toBe(null); expect(order(p.grid)).toEqual(CARDS.map((c) => c[0]));
