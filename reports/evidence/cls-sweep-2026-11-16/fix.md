@@ -220,7 +220,7 @@ To know before release:
 - **/account at 390 in the stress set is 0.094** (control 0.30). The nav part is gone; what is left is the page's own gate card growing after it has been painted ("What is left", 5).
 - **/stories at 1440 stays at 0.030.** That is the title's font jump (0.013, C7, left alone as agreed) plus the story count our chunk writes into the title (0.016, "What is left", 1).
 - **The nav piece was rewritten at the end of this work**, after its first build turned out to switch off the /account tab rail for signed-in members ("Found on the way", 6). The final piece moves nothing in the page and was measured again on /account and /submit. The lab is signed out; one look at /account with a real signed-in session before release is worth the minute.
-- **On a slow phone (CPU 4x) the first paint of the profile and of /stories at phone width is 30 to 40 ms later** (about 430 and 530 ms against 400 and 490). At normal speed no cell is more than 18 ms later ("Cost").
+- **On a slow phone (CPU 4x) the first paint of the profile and of /stories at phone width is 30 to 40 ms later** (about 430 and 530 ms against 400 and 490). At normal speed every cell is inside the 30 ms line ("Cost").
 - **/stories at 412 px wide reads 0.10 with either core** (one load each): the title takes one more line when its web font arrives. A font jump, left alone as agreed, but close to the line ("What is left", 10).
 
 ## What changed: one new core layer, `tll-early-state-v1`
@@ -261,8 +261,6 @@ The build checks the page code the layer follows against saved copies (`early_st
 
 ## Results
 
-**Status, not final:** the /account and /submit rows of these sets are still being measured again with the final core: slow, sizes, fcp. Until this line is gone, those rows in the tables are from build bdc6d21, whose nav piece had the fault described under "Found on the way", 6. One load a cell with the final core is in already (the a3 check in `fix-b/extra.md`).
-
 All tables: `fix-b/table.md`; one row per load: `fix-b/loads.csv`. Loads were made between 22:35 UTC on 16 November and 01:00 UTC on 17 November.
 
 **Which build each row is from.** The layer changed twice while these sets ran, and only the pages a change touches were loaded again (with the control alongside each time). bdc6d21 is the core before the last two changes; 951b08c has the /stories lead card change; the final core (263014e) has the rewritten nav piece. The three built cores were compared byte for byte: bdc6d21 and 951b08c differ in one condition inside the /stories block of the layer; 951b08c and the final core differ only inside the nav block, which runs on /account and /submit alone. So every row was measured with the code the final core runs on that page.
@@ -271,13 +269,13 @@ All tables: `fix-b/table.md`; one row per load: `fix-b/loads.csv`. Loads were ma
 |---|---|
 | standard | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile, home, Balkans, Lisbon, Southern Africa |
 | CPU 4x | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
-| stress | 951b08c: /stories; bdc6d21: /account, /submit, profile |
+| stress | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
 | other pages | bdc6d21: all pages |
-| first paint | 951b08c: /stories; bdc6d21: /submit, profile, Balkans |
+| first paint | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile, Balkans |
 | finished page | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile, home, Balkans, Lisbon, Southern Africa, /travelers, /the-map, /for-expats, /about, /layovers, /the-paw-passport, /cookies, /login, /signup |
 | parser held | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
 | failure cases | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
-| other screens | 951b08c: /stories; bdc6d21: /account, /submit, profile |
+| other screens | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
 
 ### Standard (no throttle), 5 loads a cell
 
@@ -326,10 +324,10 @@ CLS counts every layout-shift entry (the input-excluded median is in brackets). 
 
 | cell | control median | control max | control over 0.1 | new median | new max | new over 0.1 | FCP control / new | LCP control / new | boxes equal |
 |---|---|---|---|---|---|---|---|---|---|
-| /account 390 | 0.3000 (0.2407) | 0.3101 | 3 of 3 | 0.0938 (0.0819) | 0.0938 | 0 of 3 | 140 / 112 | 408 / 376 | yes |
-| /account 1440 | 0.0692 (0.0692) | 0.0761 | 0 of 3 | 0.0184 (0.0184) | 0.0184 | 0 of 3 | 128 / 132 | 384 / 396 | yes |
-| /submit 390 | 0.1439 (0.1437) | 0.1439 | 3 of 3 | 0.0003 (0.0000) | 0.0003 | 0 of 3 | 112 / 124 | 112 / 160 | yes |
-| /submit 1440 | 0.0554 (0.0554) | 0.0555 | 0 of 3 | 0.0004 (0.0004) | 0.0004 | 0 of 3 | 128 / 156 | 128 / 156 | yes |
+| /account 390 | 0.3000 (0.2407) | 0.3000 | 3 of 3 | 0.0938 (0.0819) | 0.0938 | 0 of 3 | 136 / 132 | 400 / 388 | yes |
+| /account 1440 | 0.0692 (0.0692) | 0.0693 | 0 of 3 | 0.0184 (0.0184) | 0.0184 | 0 of 3 | 140 / 140 | 400 / 404 | yes |
+| /submit 390 | 0.1439 (0.1437) | 0.1441 | 3 of 3 | 0.0003 (0.0000) | 0.0003 | 0 of 3 | 108 / 128 | 108 / 152 | yes |
+| /submit 1440 | 0.0554 (0.0554) | 0.0554 | 0 of 3 | 0.0004 (0.0004) | 0.0004 | 0 of 3 | 116 / 132 | 116 / 132 | yes |
 | /contributors/<profile> 390 | 0.0763 (0.0763) | 0.0763 | 0 of 3 | 0.0004 (0.0001) | 0.0004 | 0 of 3 | 144 / 160 | 196 / 208 | yes |
 | /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 3 of 3 | 0.0019 (0.0019) | 0.0019 | 0 of 3 | 132 / 156 | 192 / 216 | yes |
 | /stories 390 | 0.0284 (0.0257) | 0.0284 | 0 of 3 | 0.0073 (0.0052) | 0.0073 | 0 of 3 | 240 / 204 | 976 / 276 | yes |
@@ -366,18 +364,19 @@ CLS counts every layout-shift entry (the input-excluded median is in brackets). 
 
 | cell | control median | control max | control over 0.1 | new median | new max | new over 0.1 | FCP control / new | LCP control / new | boxes equal |
 |---|---|---|---|---|---|---|---|---|---|
-| /submit 390 | 0.1437 (0.0000) | 0.1439 | 8 of 8 | 0.0002 (0.0000) | 0.0003 | 0 of 8 | 116 / 120 | 116 / 120 | yes |
+| /account 1440 | 0.3007 (0.3007) | 0.3007 | 8 of 8 | 0.0037 (0.0037) | 0.0037 | 0 of 8 | 146 / 148 | 174 / 186 | yes |
+| /submit 390 | 0.1438 (0.0000) | 0.1439 | 8 of 8 | 0.0002 (0.0000) | 0.0003 | 0 of 8 | 134 / 144 | 134 / 144 | yes |
 | /contributors/<profile> 390 | 0.0763 (0.0000) | 0.0763 | 0 of 8 | 0.0004 (0.0000) | 0.0004 | 0 of 8 | 126 / 140 | 172 / 194 | yes |
 | /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 5 of 8 | 0.0008 (0.0008) | 0.0019 | 0 of 8 | 140 / 146 | 214 / 212 | yes |
 | /stories 390 | 0.0284 (0.0002) | 0.0362 | 0 of 8 | 0.0073 (0.0002) | 0.0073 | 0 of 8 | 202 / 210 | 598 / 306 | yes |
 | /stories 1440 | 0.0804 (0.0804) | 0.1140 | 4 of 8 | 0.0311 (0.0311) | 0.0311 | 0 of 8 | 204 / 206 | 204 / 206 | yes |
 | story: Balkans 390 | 0.0034 (0.0000) | 0.0034 | 0 of 8 | 0.0000 (0.0000) | 0.0000 | 0 of 8 | 156 / 150 | 190 / 178 | yes |
 
-Loads over 0.1 with the new core: none in these five sets (245 loads). In the smaller sets (106 more loads) three: the profile at 1440 with the parser held inside the hero (0.102, control 0.156; "What is left", 6), and two pages with broken code (/submit at 390 with the site head script throwing, 0.141; /stories at 390 with our chunk not loading, 0.117, control 0.148; see the failure cases).
+Loads over 0.1 with the new core: none in these five sets (253 loads). In the smaller sets (106 more loads) three: the profile at 1440 with the parser held inside the hero (0.102, control 0.156; "What is left", 6), and two pages with broken code (/submit at 390 with the site head script throwing, 0.141; /stories at 390 with our chunk not loading, 0.117, control 0.148; see the failure cases).
 
 Largest paint:
 - /stories at 390 is earlier (about 300 ms against about 550): the lead card and its photo have their final size from the first paint.
-- /account at 1440: the same element with both cores, the greeting line of the member dashboard, which the page shows for a moment even to a signed-out visitor ("Found on the way", 7).
+- /account at 1440: the same element with both cores, the greeting line of the member dashboard, which the page shows for a moment even to a signed-out visitor ("Found on the way", 7). At CPU 4x it is painted later with the new core (see "The finished page", last point).
 - At CPU 4x the /stories 390 figure is 2.2 to 3.0 s with either core (the lead photo); the two sets of 3 loads do not separate the cores.
 
 
@@ -397,8 +396,8 @@ Checked on every load above and, with the body tree and the head, on one more lo
 Tables in `fix-b/extra.md`. In short:
 
 - **Page code missing or throwing** (11 cases: each of the two site head scripts, the two /stories scripts, our stories chunk, the two profile scripts; 23 cells at 390 and 1440): the finished page (boxes, body tree, head) equals the control with the same fault in 22 of the 23 cells. One cell differs in the lab: /stories at 1440 with `tll-lib-lead-v1` throwing, by one card photo far down the page (the card photos point above). The layout shift of a broken page can be higher than the control's, because what went in early is taken out again: /submit with the site head script throwing moves 0.14 at 390 (0.05 at 1440) when the nav's early style is removed and the nav is hidden again (the control never shows the nav at all in that case). /stories without `tll-lib-lead-v1` and the profile without its script move 0.02 to 0.07 for the same reason (control 0.005 to 0.03).
-- **Parser held for 350 ms at 11 points** (a paint lands there): the finished page equals the control at every point. /stories (6 points): 0.006 to 0.008 at 390 and 0.020 to 0.030 at 1440 (control 0.027 to 0.029 and 0.040 to 0.093). /submit after the nav: 0.0002 and 0.0001 (control 0.144 and 0.055). The profile after the hero and before the story list: 0.0004 at 390, 0.002 at 1440 (control 0.076 and 0.118). Two points stay high: the profile inside the hero (0.057 at 390, 0.102 at 1440; control 0.129 and 0.156; item 6 below) and /account after the nav at 390 (0.094; control 0.241; item 5 below; 0.019 at 1440).
-- **Other screens** (360x800, 412x915, 390x1100, 768x1024, 1440x1200), one load a cell. /account 1440x1200: 0.003 (control 0.300); the four phone and tablet sizes 0.004 to 0.009 with either core (item 4 below). /submit: 0.0003 to 0.007 (control 0.092 to 0.182), and 0.050 at 412x915 (control 0.197). Profile: 0.0004 to 0.008 at the four phone and tablet sizes (control 0.011 to 0.334), 0.039 at 1440x1200 (control 0.182). /stories: 0.008 at 360x800 and 390x1100 (control 0.018 to 0.040), 0.031 at 768x1024 (control 0.031), 0.029 at 1440x1200 (control 0.043), 0.099 at 412x915 (control 0.117). The high ones are item 10 below.
+- **Parser held for 350 ms at 11 points** (a paint lands there): the finished page equals the control at every point. /stories (6 points): 0.006 to 0.008 at 390 and 0.020 to 0.030 at 1440 (control 0.027 to 0.029 and 0.040 to 0.093). /submit after the nav: 0.0000 and 0.0001 (control 0.144 and 0.055). The profile after the hero and before the story list: 0.0004 at 390, 0.002 at 1440 (control 0.076 and 0.118). Two points stay high: the profile inside the hero (0.057 at 390, 0.102 at 1440; control 0.129 and 0.156; item 6 below) and /account after the nav at 390 (0.094; control 0.261; item 5 below; 0.019 at 1440).
+- **Other screens** (360x800, 412x915, 390x1100, 768x1024, 1440x1200), one load a cell. /account 1440x1200: 0.003 (control 0.300); the four phone and tablet sizes 0.004 to 0.009 with either core (item 4 below). /submit: 0.0000 to 0.009 (control 0.092 to 0.197). Profile: 0.0004 to 0.008 at the four phone and tablet sizes (control 0.011 to 0.334), 0.039 at 1440x1200 (control 0.182). /stories: 0.008 at 360x800 and 390x1100 (control 0.018 to 0.040), 0.031 at 768x1024 (control 0.031), 0.029 at 1440x1200 (control 0.043), 0.099 at 412x915 (control 0.117). The high ones are item 10 below.
 
 ## What is left, and why
 
@@ -415,8 +414,8 @@ Numbers are from the standard loads with the new core unless noted.
 9. **Signed-in members.** The lab is signed out. For a signed-in member the Menu piece does the same, and the nav piece sets the same style until the page is parsed, or until Memberstack has answered (`html.ms-loaded`) if that comes first. What a signed-out lab can show of the member's page was compared: the dashboard markup on /account when the page is parsed is the same with both cores (`fix-b/extra.md`). A check with a real signed-in session before release would close this.
 10. **Seen at other screen sizes, not part of this work:** 
    - /stories at 412x915: 0.099 (control 0.117). At this width the title takes one more line when Playfair arrives, 29 px, with either core: the C7 font jump, left alone as agreed. With the fonts blocked the same line is added when our chunk writes the story count (33 px, 0.110). The lab's fallback faces are not a phone's, so whether a phone wraps here is not known from the lab. Worth a look on a real phone at this width.
-   - /submit at 412x915: 0.050. A font jump: 0.000 with the fonts blocked (C10).
-   - /submit on tall screens (390x1100, 768x1024, 1440x1200): 0.004 to 0.007. A block of the form near the bottom of the page gets 56 px shorter when the page code runs.
+   - /submit at 412x915: 0.0002 in the load in the table, but 0.050 in an earlier load (build bdc6d21). A font jump that lands in some loads: 0.000 with the fonts blocked (C10).
+   - /submit on tall screens (390x1100, 768x1024, 1440x1200): 0.006 to 0.009. A block of the form near the bottom of the page gets 56 px shorter when the page code runs.
    - Profile at 1440x1200: 0.037. A section 1,000 px down is taken out about 1 s into the load (our profile chunk and the album; item 3). Below the screen at 1440x900.
    - Profile at 390x1100 and 768x1024: 0.005 and 0.008, the home base going out again (item 3).
 11. **Not looked into:** /login and /signup form jumps (survey: one load in five at 390), /layovers and /the-paw-passport font jumps (C10).
@@ -438,7 +437,7 @@ Numbers are from the standard loads with the new core unless noted.
 ## Cost
 
 - Core size: 276,440 bytes against 260,880 after part A (gzip 83,578 against 78,220). The layer goes into the core without its comments (15,560 bytes of code). On every page.
-- First paint: at normal speed no cell is more than 24 ms later. Medians per cell over the standard, finished-page, other-pages and first-paint sets (4 to 14 loads a cell and core, 37 cells): between 44 ms earlier and 24 ms later than the control; the eight cells in scope between 6 ms earlier and 24 ms later. Over all 234 loads a core the median is 148 ms with the control and 148 ms with the new core. Single sets of 5 loads scatter by about 30 ms either way with the same core (a frame is 16 ms), which is why the per-set columns above show differences of that size in both directions. At CPU 4x the three-load sets scatter too much to read. Six more loads a core on the three cells that looked later (core 951b08c): the profile at 390: 434 ms against 402 (+32); /stories at 390: 528 ms against 486 (+42); /stories at 1440: 522 ms against 516 (+6). So on a slow phone the first paint of the profile and of /stories at phone width is about 30 to 40 ms later, out of about 450 ms. The next point says where that goes.
+- First paint: at normal speed no cell is more than 24 ms later. Medians per cell over the standard, finished-page, other-pages and first-paint sets (4 to 14 loads a cell and core, 37 cells): between 44 ms earlier and 24 ms later than the control; the eight cells in scope between 2 ms earlier and 24 ms later. Over all 242 loads a core the median is 148 ms with the control and 148 ms with the new core. Single sets of 5 loads scatter by about 30 ms either way with the same core (a frame is 16 ms), which is why the per-set columns above show differences of that size in both directions. At CPU 4x the three-load sets scatter too much to read. Six more loads a core on the three cells that looked later (core 951b08c): the profile at 390: 434 ms against 402 (+32); /stories at 390: 528 ms against 486 (+42); /stories at 1440: 522 ms against 516 (+6). So on a slow phone the first paint of the profile and of /stories at phone width is about 30 to 40 ms later, out of about 450 ms. The next point says where that goes.
 - Work while the page is parsed: the layer runs once for each batch of nodes the parser adds (39 to 63 runs a load), until its pieces are in. Measured with a timer around each run (core bdc6d21 with the timer added, 26 loads): /account, /submit, home and a story 0.2 to 0.5 ms a load in total (up to 4.6 ms at CPU 4x); the profile 1.3 to 2.3 ms (7.6 to 11.0 at CPU 4x); /stories 18 to 33 ms, the longest single run 32 ms (at CPU 4x 77 to 100 ms, longest 53). On /stories nearly all of it is two steps that ask the browser for computed styles (the title's font, and whether a card is shown, once the whole grid has arrived); each makes the browser work out the styles of everything parsed so far. The browser has to do that work for its next frame in any case, so only part of it is added, but it is done earlier and in one piece. That is the likely source of the later first paint on /stories at CPU 4x (on the profile the stand-in itself has to be styled and painted). Not made lighter in this round. On a page with none of its pieces the layer sets up nothing. With the Menu piece alone it watches until the page is parsed, and each run is one check that the stand-in is still last in its row.
 - Bandwidth: no new request and none earlier than before, with one small exception. The stand-ins ask for no file. The exception: on /stories the set of lazy card photos the browser asks for can differ by a few cards far below the screen, in both directions (two fewer in the standard 1440 load, one more at 1440 when `tll-lib-lead-v1` throws; see "The finished page").
 
@@ -447,7 +446,7 @@ Numbers are from the standard loads with the new core unless noted.
 - Harness: `fix-b/harness/h2.cjs`, the part A harness unchanged (documents from the saved www HTML, the core tag routed to a local core with integrity removed in the routed HTML only, chunks from the git objects of pin 3df16988 with SRI intact, Webflow css, js, images and fonts from the local caches, anything not cached aborted, every non-GET aborted, ads and analytics answered empty, Memberstack patched as before, Math.random seeded). No new GET to a Webflow host in this part: the HTML copies of the survey and of part A are reused. `ev-dom.js` gives the body tree and the head list at the end of a load.
 - Chromium headless, one browser at a time, fresh context per load. 390x844 and 360x800: Android UA, isMobile, hasTouch, dsf 3. 1440x900: desktop UA, dsf 1.
 - CLS: sum of all layout-shift entries until at least 4 s after load and 5 s after navigation start. Every entry is counted; the input-excluded median is in brackets in the tables.
-- Sets (final core: 263014e): standard (5 loads a cell: the eight scope cells, home, three stories at 360, 390 and 1440), CPU 4x and stress (3 loads a scope cell), the part A pages and five more pages (3 loads a cell), first paint (8 more loads on six cells), finished page (1 load a cell on all 37 cells, with the body tree and head), parser held (11 points), failure cases (11 cases, 23 cells), other screens (5 sizes a scope page). 702 loads in these sets, half of them control. The /stories cells of every set were run again after the lead card change and the /account and /submit cells after the nav piece was rewritten; see "Results" for which build each row is from. Smaller checks named in the text (`out` files `g-*`): four more finished-page loads on four cells (dom2), fonts blocked at 412x915 and a card trace at 1440 (diag), uncached photos answered locally (ph), the members wrapper when the page is parsed (a3), work per run of the layer (tt), first paint at CPU 4x with 6 loads (cpufcp2).
+- Sets (final core: 263014e): standard (5 loads a cell: the eight scope cells, home, three stories at 360, 390 and 1440), CPU 4x and stress (3 loads a scope cell), the part A pages and five more pages (3 loads a cell), first paint (8 more loads a cell on seven cells), finished page (1 load a cell on all 37 cells, with the body tree and head), parser held (11 points), failure cases (11 cases, 23 cells), other screens (5 sizes a scope page). 718 loads in these sets, half of them control. The /stories cells of every set were run again after the lead card change and the /account and /submit cells after the nav piece was rewritten; see "Results" for which build each row is from. Smaller checks named in the text (`out` files `g-*`): four more finished-page loads on four cells (dom2), fonts blocked at 412x915 and a card trace at 1440 (diag), uncached photos answered locally (ph), the members wrapper when the page is parsed (a3), work per run of the layer (tt), first paint at CPU 4x with 6 loads (cpufcp2).
 - Files: `fix-b/table.md`, `fix-b/cells.json`, `fix-b/loads.csv` (one row per load), `fix-b/extra.md`, `fix-b/harness/`.
 - Limits: Chromium only; lab fonts (Liberation, no Georgia or Arial); documents served whole from disk, so the stress and held-parser sets stand in for a network; ads answered empty; signed-out only; one contributor profile.
 - No Webflow tool call, no publish, no non-GET request, no form sent. Webflow hosts in this part: 0 bytes.

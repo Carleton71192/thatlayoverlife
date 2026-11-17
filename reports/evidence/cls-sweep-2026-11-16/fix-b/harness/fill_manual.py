@@ -29,7 +29,7 @@ F['RESAFTER'] = ('Loads over 0.1 with the new core: none in these five sets (' +
     '(/submit at 390 with the site head script throwing, 0.141; /stories at 390 with our chunk not loading, 0.117, control 0.148; see the failure cases).\n\n'
     'Largest paint:\n'
     '- /stories at 390 is earlier (about 300 ms against about 550): the lead card and its photo have their final size from the first paint.\n'
-    '- /account at 1440: the same element with both cores, the greeting line of the member dashboard, which the page shows for a moment even to a signed-out visitor ("Found on the way", 7).\n'
+    '- /account at 1440: the same element with both cores, the greeting line of the member dashboard, which the page shows for a moment even to a signed-out visitor ("Found on the way", 7). At CPU 4x it is painted later with the new core (see "The finished page", last point).\n'
     '- At CPU 4x the /stories 390 figure is 2.2 to 3.0 s with either core (the lead photo); the two sets of 3 loads do not separate the cores.')
 
 F['BOXNOTE'] = ('In the standard, CPU 4x and stress sets every cell ended in one state, the same with both cores. In the one-load set three control loads differed '
@@ -46,18 +46,18 @@ F['IMGNOTE'] = ('In two cells it asks for fewer (profile 390: 19 against 20; /st
 F['FAILNOTE'] = 'One cell differs in the lab: /stories at 1440 with `tll-lib-lead-v1` throwing, by one card photo far down the page (the card photos point above).'
 
 F['SPLITNOTE'] = ('the finished page equals the control at every point. /stories (6 points): 0.006 to 0.008 at 390 and 0.020 to 0.030 at 1440 (control 0.027 to 0.029 and 0.040 to 0.093). '
-    '/submit after the nav: 0.0002 and 0.0001 (control 0.144 and 0.055). The profile after the hero and before the story list: 0.0004 at 390, 0.002 at 1440 (control 0.076 and 0.118). '
-    'Two points stay high: the profile inside the hero (0.057 at 390, 0.102 at 1440; control 0.129 and 0.156; item 6 below) and /account after the nav at 390 (0.094; control 0.241; item 5 below; 0.019 at 1440).')
+    '/submit after the nav: 0.0000 and 0.0001 (control 0.144 and 0.055). The profile after the hero and before the story list: 0.0004 at 390, 0.002 at 1440 (control 0.076 and 0.118). '
+    'Two points stay high: the profile inside the hero (0.057 at 390, 0.102 at 1440; control 0.129 and 0.156; item 6 below) and /account after the nav at 390 (0.094; control 0.261; item 5 below; 0.019 at 1440).')
 
 F['SIZENOTE'] = ('one load a cell. /account 1440x1200: 0.003 (control 0.300); the four phone and tablet sizes 0.004 to 0.009 with either core (item 4 below). '
-    '/submit: 0.0003 to 0.007 (control 0.092 to 0.182), and 0.050 at 412x915 (control 0.197). '
+    '/submit: 0.0000 to 0.009 (control 0.092 to 0.197). '
     'Profile: 0.0004 to 0.008 at the four phone and tablet sizes (control 0.011 to 0.334), 0.039 at 1440x1200 (control 0.182). '
     '/stories: 0.008 at 360x800 and 390x1100 (control 0.018 to 0.040), 0.031 at 768x1024 (control 0.031), 0.029 at 1440x1200 (control 0.043), 0.099 at 412x915 (control 0.117). The high ones are item 10 below.')
 
 F['SIZELEFT'] = ('\n   - /stories at 412x915: 0.099 (control 0.117). At this width the title takes one more line when Playfair arrives, 29 px, with either core: the C7 font jump, left alone as agreed. '
     'With the fonts blocked the same line is added when our chunk writes the story count (33 px, 0.110). The lab\'s fallback faces are not a phone\'s, so whether a phone wraps here is not known from the lab. Worth a look on a real phone at this width.\n'
-    '   - /submit at 412x915: 0.050. A font jump: 0.000 with the fonts blocked (C10).\n'
-    '   - /submit on tall screens (390x1100, 768x1024, 1440x1200): 0.004 to 0.007. A block of the form near the bottom of the page gets 56 px shorter when the page code runs.\n'
+    '   - /submit at 412x915: 0.0002 in the load in the table, but 0.050 in an earlier load (build bdc6d21). A font jump that lands in some loads: 0.000 with the fonts blocked (C10).\n'
+    '   - /submit on tall screens (390x1100, 768x1024, 1440x1200): 0.006 to 0.009. A block of the form near the bottom of the page gets 56 px shorter when the page code runs.\n'
     '   - Profile at 1440x1200: 0.037. A section 1,000 px down is taken out about 1 s into the load (our profile chunk and the album; item 3). Below the screen at 1440x900.\n'
     '   - Profile at 390x1100 and 768x1024: 0.005 and 0.008, the home base going out again (item 3).')
 
@@ -67,7 +67,7 @@ F['IMGCOST'] = ('no new request and none earlier than before, with one small exc
     'the browser asks for can differ by a few cards far below the screen, in both directions (two fewer in the standard 1440 load, one more at 1440 when `tll-lib-lead-v1` throws; see "The finished page").')
 
 F['SETS'] = ('standard (5 loads a cell: the eight scope cells, home, three stories at 360, 390 and 1440), CPU 4x and stress (3 loads a scope cell), the part A pages and five more pages (3 loads a cell), '
-    'first paint (8 more loads on six cells), finished page (1 load a cell on all 37 cells, with the body tree and head), parser held (11 points), failure cases (11 cases, 23 cells), other screens (5 sizes a scope page). '
+    'first paint (8 more loads a cell on seven cells), finished page (1 load a cell on all 37 cells, with the body tree and head), parser held (11 points), failure cases (11 cases, 23 cells), other screens (5 sizes a scope page). '
     + F['NALL'] + ' loads in these sets, half of them control. ' + 'The /stories cells of every set were run again after the lead card change and the /account and /submit cells after the nav piece was rewritten; see "Results" for which build each row is from.'
     + ' Smaller checks named in the text (`out` files `g-*`): ' + 'four more finished-page loads on four cells (dom2), fonts blocked at 412x915 and a card trace at 1440 (diag), uncached photos answered locally (ph), the members wrapper when the page is parsed (a3), work per run of the layer (tt), first paint at CPU 4x with 6 loads (cpufcp2).')
 import statistics as st

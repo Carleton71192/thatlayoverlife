@@ -122,14 +122,14 @@ What counts here is the finished page: with the page code broken it has to end a
 |---|---|---|---|---|
 | /account | 360x800 | 0.0077 | 0.0077 | yes |
 | /account | 390x1100 | 0.0070 | 0.0070 | yes |
-| /account | 412x915 | 0.0085 | 0.0085 | yes |
-| /account | 768x1024 | 0.0042 | 0.0041 | yes |
+| /account | 412x915 | 0.0086 | 0.0085 | yes |
+| /account | 768x1024 | 0.0042 | 0.0042 | yes |
 | /account | 1440x1200 | 0.2999 | 0.0027 | yes |
-| /submit | 360x800 | 0.1516 | 0.0003 | yes |
-| /submit | 390x1100 | 0.1816 | 0.0046 | yes |
-| /submit | 412x915 | 0.1974 | 0.0496 | yes |
-| /submit | 768x1024 | 0.1375 | 0.0070 | yes |
-| /submit | 1440x1200 | 0.0921 | 0.0056 | yes |
+| /submit | 360x800 | 0.1518 | 0.0000 | yes |
+| /submit | 390x1100 | 0.1587 | 0.0063 | yes |
+| /submit | 412x915 | 0.1974 | 0.0002 | yes |
+| /submit | 768x1024 | 0.1375 | 0.0085 | yes |
+| /submit | 1440x1200 | 0.0921 | 0.0066 | yes |
 | /contributors/<profile> | 360x800 | 0.0111 | 0.0004 | yes |
 | /contributors/<profile> | 390x1100 | 0.1505 | 0.0056 | yes |
 | /contributors/<profile> | 412x915 | 0.0861 | 0.0009 | yes |
