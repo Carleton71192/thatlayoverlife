@@ -19,6 +19,9 @@
 | slow | account-slow-1440 | end | 0.3011 (0.3011, 3 of 3) | 0.0037 (0.0037, 0 of 3) | 0.3011 / 0.0037 | 6340 / 6156 | 3 of 3 |  |
 | slow | stories-slow-390 | end | 0.0288 (0.3232, 1 of 3) | 0.0143 (0.2649, 1 of 3) | 0.0288 / 0.0143 | 6336 / 6256 | 3 of 3 |  |
 | slow | stories-slow-1440 | end | 0.0997 (0.274, 1 of 3) | 0.0843 (0.2182, 1 of 3) | 0.0997 / 0.0843 | 6064 / 6240 | 3 of 3 |  |
+| slow2 | stories-slow-390 | end | 0.0288 (0.0291, 0 of 8) | 0.0143 (0.2679, 3 of 8) | 0.0288 / 0.0143 | 6236.0 / 6246.0 | 8 of 8 |  |
+| slow2 | stories-slow-1440 | end | 0.1006 (0.2871, 8 of 8) | 0.0843 (0.1475, 3 of 8) | 0.1006 / 0.0843 | 6222.0 / 6236.0 | 8 of 8 |  |
+| slow2 | stories-slow-360 | end | 0.2986 (0.3033, 2 of 3) | 0.0158 (0.2326, 1 of 3) | 0.2986 / 0.0158 | 6164 / 6264 | 3 of 3 |  |
 | signedin | account-in-fast-390 | end | 0.1497 (0.1917, 2 of 2) | 0.1468 (0.1917, 2 of 2) | 0.0615 / 0.0262 | 318.0 / 424.0 | 2 of 2 |  |
 | signedin | account-in-late-390 | end | 0.151 (0.2304, 1 of 2) | 0.2436 (0.2436, 2 of 2) | 0.1509 / 0.2436 | 198.0 / 196.0 | 2 of 2 |  |
 | signedin | account-in-fast-1440 | end | 0.4147 (0.4147, 2 of 2) | 0.1176 (0.1176, 2 of 2) | 0.4147 / 0.1176 | 268.0 / 206.0 | 2 of 2 |  |
@@ -29,6 +32,9 @@
 | signedin | submit-in-late-1440 | end | 0.8664 (0.8741, 2 of 2) | 0.7955 (0.8117, 2 of 2) | 0.8664 / 0.7955 | 190.0 / 268.0 | 2 of 2 |  |
 | signedin | account-in-slow-390 | end | 0.1363 (0.1363, 1 of 1) | 0.1092 (0.1092, 1 of 1) | 0.1363 / 0.1092 | 6100 / 6140 | 1 of 1 |  |
 | signedin | submit-in-slow-390 | end | 1.0307 (1.0307, 1 of 1) | 1.0732 (1.0732, 1 of 1) | 1.0307 / 0.9111 | 6056 / 6032 | 1 of 1 |  |
+| signedin2 | account-in-late-390 | end | 0.2304 (0.2436, 5 of 8) | 0.2304 (0.2436, 6 of 8) | 0.2304 / 0.2304 | 478.0 / 282.0 | 8 of 8 |  |
+| signedin2 | account-in-late-1440 | end | 0.4207 (0.495, 4 of 4) | 0.1236 (0.1236, 4 of 4) | 0.4207 / 0.1236 | 234.0 / 252.0 | 4 of 4 |  |
+| signedin2 | submit-in-slow-390 | end | 1.0308 (1.2218, 3 of 3) | 1.0747 (1.0748, 3 of 3) | 1.0308 / 0.9126 | 6076 / 6212 | 3 of 3 |  |
 | fail | travelers-parity-throw-390 | end | 0.1281 (0.1281, 1 of 1) | 0.01 (0.01, 0 of 1) | 0.0128 / 0.005 | 632 / 316 | 1 of 1 | test left: style#tll-fp-title-v1; page errors www 1 / test 1 |
 | fail | map-parity-throw-390 | end | 0.1396 (0.1396, 1 of 1) | 0.0 (0.0, 0 of 1) | 0 / 0 | 300 / 328 | 1 of 1 | page errors www 1 / test 1 |
 | fail | expats-parity-throw-390 | end | 0.0878 (0.0878, 0 of 1) | 0.0097 (0.0097, 0 of 1) | 0 / 0 | 336 / 272 | 1 of 1 | page errors www 1 / test 1 |
@@ -76,6 +82,20 @@
 | fail | map-mapembed404-1440 | end | 0.2431 (0.3778, 2 of 2) | 0.0114 (0.0114, 0 of 2) | 0.2431 / 0.0114 | 714.0 / 414.0 | 2 of 2 |  |
 | fail | map-mapembed-throw-1440 | end | 0.1032 (0.1136, 1 of 2) | 0.011 (0.011, 0 of 2) | 0.1032 / 0.011 | 290.0 / 230.0 | 2 of 2 | page errors www 2 / test 2 |
 | fail | map-mapboot-throw-1440 | end | 0.0462 (0.0512, 0 of 2) | 0.0006 (0.0008, 0 of 2) | 0.0462 / 0.0006 | 358.0 / 360.0 | 0 of 2 | test left: style#tll-fp-map-v1; page errors www 2 / test 2; www map line: LOADING THE MAP CODE; test map line: LOADING THE MAP CODE |
+| fail2 | stories-throw-search+chips+s3-390 | end | 0.0556 (0.0556, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 708 / 448 | 1 of 1 | page errors www 3 / test 3 |
+| fail2 | stories-throw-lead+search-390 | end | 0.0123 (0.0123, 0 of 1) | 0.0177 (0.0177, 0 of 1) | 0.0002 / 0.0002 | 736 / 388 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-lead+chips-390 | end | 0.0127 (0.0127, 0 of 1) | 0.3681 (0.3681, 1 of 1) | 0.0002 / 0.0002 | 304 / 356 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-lead+s3-390 | end | 0.0123 (0.0123, 0 of 1) | 0.0177 (0.0177, 0 of 1) | 0.0002 / 0.0002 | 452 / 504 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-search+chips-390 | end | 0.0556 (0.0556, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 360 / 352 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-chips+s3-390 | end | 0.0556 (0.0556, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 528 / 404 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-search+s3-390 | end | 0.0361 (0.0361, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 708 / 320 | 1 of 1 | page errors www 2 / test 2 |
+| fail2 | stories-throw-search+chips+lead-390 | end | 0.0126 (0.0126, 0 of 1) | 0.3681 (0.3681, 1 of 1) | 0.0002 / 0.0002 | 412 / 420 | 1 of 1 | page errors www 3 / test 3 |
+| fail2 | stories-throw-search+lead+s3-390 | end | 0.02 (0.02, 0 of 1) | 0.0177 (0.0177, 0 of 1) | 0.0002 / 0.0002 | 448 / 396 | 1 of 1 | page errors www 3 / test 3 |
+| fail2 | stories-throw-chips+lead+s3-390 | end | 0.0127 (0.0127, 0 of 1) | 0.3681 (0.3681, 1 of 1) | 0.0002 / 0.0002 | 408 / 504 | 1 of 1 | page errors www 3 / test 3 |
+| fail2 | stories-footer4-throw-390 | end | 0.0127 (0.0127, 0 of 2) | 0.3675 (0.3681, 2 of 2) | 0.0002 / 0.0002 | 512.0 / 480.0 | 2 of 2 | page errors www 8 / test 8 |
+| fail2 | stories-footer4-throw-360 | end | 0.0152 (0.0152, 0 of 1) | 0.3685 (0.3685, 1 of 1) | 0.0003 / 0.0003 | 312 / 356 | 1 of 1 | page errors www 4 / test 4 |
+| fail2 | map-mapboot-throw-25s-390 | end | 0.139 (0.139, 1 of 1) | 0.0 (0.0, 0 of 1) | 0 / 0 | 492 / 596 | 1 of 1 | page errors www 1 / test 1 |
+| fail2 | map-mapboot-throw-25s-1440 | end | 0.2836 (0.2836, 1 of 1) | 0.0381 (0.0381, 0 of 1) | 0.2836 / 0.0381 | 708 / 632 | 1 of 1 | page errors www 1 / test 1 |
 | stq | stories-q-lisbon-390 | end | 0.4122 (0.5291, 3 of 3) | 0.3824 (0.3824, 3 of 3) | 0.1186 / 0.1186 | 700 / 344 | 3 of 3 |  |
 | stq | stories-q-lisbon-1440 | end | 0.2143 (0.7471, 3 of 3) | 0.1156 (0.1197, 3 of 3) | 0.2143 / 0.1156 | 344 / 288 | 3 of 3 |  |
 | stq | stories-q-italy-back-1440 | scrolled | 0.1416 (0.7151, 3 of 3) | 0.0801 (0.0801, 0 of 3) | 0.1416 / 0.0801 | 292 / 312 | 3 of 3 |  |
@@ -238,3 +258,10 @@
 | w320 | submit-320 | end | 0.1524 (0.1524, 2 of 2) | 0.007 (0.0079, 0 of 2) | 0.0 / 0.0 | 262.0 / 290.0 | 2 of 2 |  |
 | w320 | profile-320 | end | 0.0081 (0.0081, 0 of 2) | 0.0 (0.0, 0 of 2) | 0.0 / 0.0 | 260.0 / 278.0 | 2 of 2 |  |
 | w320 | stories-320 | end | 0.0307 (0.0307, 0 of 2) | 0.008 (0.008, 0 of 2) | 0.0003 / 0.0003 | 394.0 / 450.0 | 2 of 2 |  |
+| rep | stories-jsoff-1440 | end | 0.05 (0.096, 0 of 4) | 0.0043 (0.0985, 0 of 4) | 0.05 / 0.0043 | None / None | 4 of 4 |  |
+| rep | account-back-1440 | scrolled | 0.3007 (0.3007, 3 of 3) | 0.0037 (0.0037, 0 of 3) | 0.3007 / 0.0037 | 668 / 264 | 3 of 3 |  |
+| rep | account-back-1440 | back | 0.5239 (0.528, 3 of 3) | 0.3678 (0.3679, 3 of 3) | 0.5239 / 0.3678 | 124 / 112 | 0 of 3 |  |
+| rep | account-back-1440 | back2 | 0.5285 (0.8131, 3 of 3) | 0.354 (0.3677, 3 of 3) | 0.5285 / 0.354 | 108 / 144 | 3 of 3 |  |
+| rep | travelers-back-390 | scrolled | 0.1078 (0.1154, 2 of 2) | 0.005 (0.005, 0 of 2) | 0.0 / 0.0 | 626.0 / 578.0 | 0 of 2 | test left: style#tll-fp-title-v1 |
+| rep | travelers-back-390 | back | 0.2746 (0.2995, 2 of 2) | 0.0053 (0.0053, 0 of 2) | 0.2746 / 0.0053 | 106.0 / 100.0 | 0 of 2 | test left: style#tll-fp-title-v1 |
+| rep | travelers-back-390 | back2 | 0.2746 (0.2746, 2 of 2) | 0.0053 (0.0053, 0 of 2) | 0.2746 / 0.0053 | 106.0 / 102.0 | 0 of 2 | test left: style#tll-fp-title-v1 |
