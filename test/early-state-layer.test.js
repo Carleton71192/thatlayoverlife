@@ -223,11 +223,11 @@ describe('tll-early-state-v1: the Menu button (C9)', () => {
 });
 
 describe('tll-early-state-v1: the nav on /account and /submit (C1)', () => {
-  const NAV_CSS = 'html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav]){display:block!important}html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav])>:not(nav[data-tll-es-nav]){display:none!important}';
+  const NAV_CSS = 'html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav]){display:contents!important}html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav])>:not(nav[data-tll-es-nav]){display:none!important}';
   const page = (pathName, opt = {}, dom = {}) => { const d = makeDom({ path: pathName, ...dom }); HEAD(d, opt); const b = d.body(); const wrap = d.el(b, 'div', { class: 'tll-account-wrap' }); const mem = d.el(wrap, 'div', { 'data-ms-content': 'members' });
     const n = NAV(d, mem); return { d, b, wrap, mem, ...n }; };
   const sheetOf = (d) => d.head.children.filter((n) => n.tagName === 'STYLE' && n.id === 'tll-es-nav-v1')[0] || null;
-  it('shows the hidden wrapper with the nav as its only shown child, by a style and a mark on the nav; nothing is moved', () => {
+  it('shows the nav inside its hidden wrapper (no box for the wrapper, its other children hidden), by a style and a mark on the nav; nothing is moved', () => {
     const { d, wrap, mem, nav } = page('/account');
     const st = sheetOf(d); expect(st).not.toBe(null); expect(st.textContent).toBe(NAV_CSS); expect(d.styles()).toEqual(['tll-es-nav-v1']);
     expect(nav.getAttribute('data-tll-es-nav')).toBe(''); expect(nav.parentNode).toBe(mem); expect(mem.firstChild).toBe(nav); expect(mem.parentNode).toBe(wrap);

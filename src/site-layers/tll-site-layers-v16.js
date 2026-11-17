@@ -566,7 +566,7 @@ if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-
   steps.push(function(){var n=q('nav.tll-nav-v1'),w=n&&n.parentNode;if(!n)return false;
     if(!w||w.nodeType!==1||!w.hasAttribute('data-ms-content'))return true;
     nav=n;n.setAttribute(MARK,'');
-    st=sheet('tll-es-nav-v1',WR+'{display:block!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
+    st=sheet('tll-es-nav-v1',WR+'{display:contents!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
   
   before.push(function(){drop(st);if(nav)nav.removeAttribute(MARK);});
 })();

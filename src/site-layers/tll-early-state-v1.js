@@ -17,8 +17,8 @@
               the nav's button row, so the row has its final width (and, from 768 to 899 px, the header its final height) from the
               first paint. It is not announced and not in the tab order.
      nav      /account and /submit, with the site head script tll-proto-parity-js-v1: until the page is parsed a style shows the
-              nav's hidden [data-ms-content] wrapper with the nav as its only shown child, the picture navOut() makes when it moves
-              the nav in front of the wrapper. Nothing is moved, so page scripts that run while the page is parsed find it as served.
+              nav inside its hidden [data-ms-content] wrapper (the wrapper has no box of its own, its other children stay hidden),
+              the picture navOut() makes when it moves the nav in front of the wrapper. Nothing is moved, so page scripts that run while the page is parsed find it as served.
               The wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
               back the moment that script's element is parsed, right before it runs and merges for itself. (2) The first card
@@ -79,7 +79,9 @@ if(D.getElementById('tll-mobile-nav-js-v1'))(function(){
 /* ---- the nav on /account and /submit (C1) ---- */
 /* The nav is the first child of a [data-ms-content="members"] wrapper, which the site keeps hidden until Memberstack has answered
    (html.ms-loaded); navOut() in the site head moves the nav in front of the wrapper when the page is parsed. Here nothing is moved:
-   until then a style shows the wrapper with the nav as its only shown child, which is the same picture. The page's scripts that
+   until then a style gives the wrapper no box of its own (display:contents) and shows the nav as its only child, which is the same
+   picture; with a box of its own the wrapper would start at the top and count as moved by the nav's height when navOut() has run
+   (0.05 at 1440 on /account). The page's scripts that
    run while the page is parsed find the page as it was served (tll-a3-account-js-v1 on /account takes the first
    [data-ms-content="members"] in the document: with the nav moved out early that was the nav's own member block, and the account
    page lost its tab rail). No data-ms-* attribute is written; the mark is on the nav. Not where :has() is unknown. */
@@ -90,7 +92,7 @@ if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-
   steps.push(function(){var n=q('nav.tll-nav-v1'),w=n&&n.parentNode;if(!n)return false;
     if(!w||w.nodeType!==1||!w.hasAttribute('data-ms-content'))return true;
     nav=n;n.setAttribute(MARK,'');
-    st=sheet('tll-es-nav-v1',WR+'{display:block!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
+    st=sheet('tll-es-nav-v1',WR+'{display:contents!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
   /* let go before navOut() runs: it then moves the nav out in the same task, so no frame is painted in between */
   before.push(function(){drop(st);if(nav)nav.removeAttribute(MARK);});
 })();
