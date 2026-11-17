@@ -5,6 +5,8 @@
    core   src/site-layers/tll-note-typing-v1.js (note button steps aside while typing)
    core   src/site-layers/tll-ux-1028-v1.js (28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero)
    core   src/site-layers/tll-page-heroes-v1.js (29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked)
+   core   src/site-layers/tll-first-paint-v1.js (16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb))
+   core   src/site-layers/tll-early-state-v1.js (16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row and lead card, and the profile head laid out before the first paint, handed back to the page code right before it runs)
    core   src/site-layers/tll-home-bands-v1.js (29 Oct Nancy: home photo bands use members story photos at full size, credited and linked)
    core   src/site-layers/tll-rail-hold-v1.js (13 Nov bandwidth fix 3: home rail card photos on phones wait until the rail has its final six or is near the screen)
    core   src/site-layers/tll-library-hold-v1.js (13 Nov: home library swipe row holds the height of its tallest card, so the story feed redraw does not move the page (N9))
@@ -269,14 +271,7 @@ var P={
  ghana:{src:C+'6a0e027dbb2d090c01c473b8_6a0e0224fb0e0ee3c092ec01_Ghana%2520kids.jpeg',alt:'Three children sitting together on a bench in Ghana',place:'Ghana',by:'Nancy Carleton',href:'/stories/ghana-easter-everyone-wears-white',pos:'55% 50%'},
  magnus:{src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6ac9f3a6135a91817959e01a_magnus-holi-side.jpg',alt:'Magnus the Samoyed, his white coat dusted with Holi colors',place:'Magnus',by:'Paw Passport',href:'/pets/magnus-waffles',pos:'50% 30%'}
 };
-/* Loading (10 Nov 2026, week one item 4; was 1 Nov). Each photo carries a srcset of its Webflow variants from tll-img-variants-v1
-   (window.__tllImgV, in the core ahead of this layer): CMS files take their site-bucket twin's -p-500 to -p-2000, and the table there knows
-   which widths exist, so jaguar, Sort Sol and Magnus (marked as having none until now) get theirs too. The 1 Nov try of {CMS URL}-p-{w}
-   always failed (the CMS bucket has no variants) and cost a 403 per tile before the original. src stays the original, the fallback; a
-   missing variant drops the srcset and the original loads once. The two photos painted above the fold (/the-map backdrop, /for-expats
-   side tile) ask for high priority and are preloaded from here with the same srcset and sizes, so the preload and the img are one
-   request; on /for-expats only from 1100px up, where the tile sits beside the copy, since below that it is after the copy. */
-var V=window.__tllImgV||null;
+var V=window.__tllImgV||null,EARLY=path!=='/stories';
 var SZ={row:'(max-width:767px) 46vw, 220px',faces:'(min-width:1200px) 141px, 64px',map:'100vw',side:'(min-width:1100px) 320px, 100vw',strip:'(max-width:767px) 72vw, 25vw',band:'(max-width:767px) 72vw, 340px'};
 function preload(p,sz){try{var pl=document.createElement('link');pl.rel='preload';pl.as='image';pl.href=p.src;var ss=V&&V.srcset(p.src);if(ss){pl.setAttribute('imagesrcset',ss);pl.setAttribute('imagesizes',sz);}
   pl.setAttribute('fetchpriority','high');(document.head||document.documentElement).appendChild(pl);}catch(e){}}
@@ -289,7 +284,6 @@ var FACES=[
  {name:'Nancy Carleton',href:'/contributors/nancy-carleton',src:'https://cdn.prod.website-files.com/69d6145cf421c777840c1e25/6aba2059525e130282e72224_nancy-carleton-avatar.jpg',pos:'50% 35%'}
 ];
 var CSS=
-/* shared: tiles, captions, credit */
 ".tll-ph-tile{display:block;position:relative;text-decoration:none!important;color:inherit!important;-webkit-tap-highlight-color:transparent}"+
 ".tll-ph-img{display:block;position:relative;overflow:hidden;border-radius:2px;background:#E9E2D6}"+
 ".tll-ph-img img{display:block;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:cover;opacity:0;transition:opacity 400ms cubic-bezier(.23,1,.32,1),transform 600ms cubic-bezier(.23,1,.32,1)}"+
@@ -300,13 +294,11 @@ var CSS=
 ".tll-ph-cap b{display:block;font-weight:600;color:#1A1A1A}"+
 ".tll-ph-label{margin:0 0 16px;font:600 12px/1.4 'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#C8325B}"+
 "@media (prefers-reduced-motion:reduce){.tll-ph-img img{transition:none;opacity:1}.tll-ph-tile:hover .tll-ph-img img{transform:none}}"+
-/* /stories: four covers under the title */
 ".tll-ph-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:960px;margin:36px auto 12px;padding:0 24px;box-sizing:border-box}"+
 ".tll-ph-row .tll-ph-img{aspect-ratio:4/5}"+
 ".tll-ph-row.tll-ph-row-below{margin:28px auto 8px}"+
 "@media (max-width:767px){.tll-ph-row{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;gap:12px;margin:22px 0 6px;padding:0 24px 6px;scroll-padding:0 24px;scrollbar-width:none}"+
 ".tll-ph-row::-webkit-scrollbar{display:none}.tll-ph-row>.tll-ph-tile{flex:0 0 46%;scroll-snap-align:start}.tll-ph-row .tll-ph-cap b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tll-ph-row .tll-ph-img{aspect-ratio:3/4}}"+
-/* /travelers: the writers' faces */
 ".tll-ph-faces{display:flex;gap:14px;margin:0 0 28px;padding:0;list-style:none}"+
 ".tll-ph-faces li{margin:0;padding:0;list-style:none}"+
 ".tll-ph-faces .tll-ph-img{width:64px;height:64px;border-radius:50%;box-shadow:0 0 0 2px #F7F1E8,0 0 0 3.5px #C8325B}"+
@@ -320,7 +312,6 @@ var CSS=
 ".tll-ph-grid>.tll-ph-faces li:nth-child(even){transform:translateY(36px)}"+
 ".tll-ph-grid>.tll-ph-faces .tll-ph-img{width:100%;height:auto;aspect-ratio:4/5;border-radius:2px;box-shadow:none}"+
 ".tll-ph-grid>.tll-ph-faces .tll-ph-cap{width:auto;margin:8px 0 0;text-align:left}}"+
-/* /the-map: a story photo behind the hero */
 ".tll-ph-hasbg{position:relative!important;isolation:isolate;overflow:hidden;border-radius:0!important}"+
 ".tll-ph-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;background:#0A0B14}"+
 ".tll-ph-bg .tll-ph-img{position:absolute;inset:0;border-radius:0;background:#0A0B14}"+
@@ -332,7 +323,6 @@ var CSS=
 "@media (max-width:767px){html body section.tll-map-hero.tll-ph-hasbg{padding-top:244px!important;padding-bottom:64px!important}.tll-ph-bg .tll-ph-img{bottom:auto;height:270px}"+
 ".tll-ph-bg::after{background:linear-gradient(180deg,rgba(10,11,20,.1) 0,rgba(10,11,20,.35) 130px,rgba(10,11,20,.9) 225px,#0A0B14 268px)}"+
 ".tll-ph-credit{bottom:20px;left:24px;right:24px}}"+
-/* /about: a filmstrip along the bottom of the hero */
 ".tll-ph-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:56px 0 0;padding:0}"+
 ".tll-ph-strip .tll-ph-tile{height:320px}"+
 ".tll-ph-strip .tll-ph-img{height:100%;border-radius:0;background:#1A1C28}"+
@@ -342,7 +332,6 @@ var CSS=
 ".tll-ph-strip .tll-ph-tile:focus-visible{outline-color:#F0507A;outline-offset:-3px}"+
 "@media (max-width:767px){.tll-ph-strip{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-top:40px;scrollbar-width:none}"+
 ".tll-ph-strip::-webkit-scrollbar{display:none}.tll-ph-strip>.tll-ph-tile{flex:0 0 72%;height:240px;scroll-snap-align:start}}"+
-/* /for-expats: a photo beside the hero, a row of three after the directory */
 "@media (min-width:1100px){"+
 "section.tll-ph-split{max-width:1072px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 320px;column-gap:56px;align-items:center}"+
 "section.tll-ph-split h1{font-size:clamp(56px,5.2vw,76px)!important;line-height:1!important}}"+
@@ -356,53 +345,421 @@ var CSS=
 ".tll-ph-band .tll-ph-three::-webkit-scrollbar{display:none}.tll-ph-band .tll-ph-three>.tll-ph-tile{flex:0 0 72%;scroll-snap-align:start}}";
 
 function el(tag,cls){var e=document.createElement(tag);if(cls)e.className=cls;return e;}
-/* sz: the sizes for the srcset (the box width); pri: a fetchpriority hint. Boxes are sized by the CSS above (aspect-ratio or a fixed height).
-   loading and the srcset are written before src, so the browser asks for one file.
-   loading is always written: the site footer (tll-core-v2) marks every img without one as lazy at DOMContentLoaded and on load, which would
-   catch the two eager photos. */
 function img(p,eager,sz,pri){var i=document.createElement('img');i.loading=eager?'eager':'lazy';if(pri)i.setAttribute('fetchpriority',pri);if(V)V.apply(i,sz,p.src);
   i.src=p.src;i.alt=p.alt||'';i.decoding='async';
-  i.style.objectPosition=p.pos||'50% 50%';function on(){i.classList.add('tll-ph-in');}
+  i.style.objectPosition=p.pos||'50% 50%';
+  
+  function on(){if(EARLY&&document.readyState==='loading'&&!i.classList.contains('tll-ph-in')){i.style.transition='none';
+      var raf=window.requestAnimationFrame||function(f){setTimeout(f,32);};raf(function(){raf(function(){i.style.transition='';});});}
+    i.classList.add('tll-ph-in');}
   i.addEventListener('load',on);i.addEventListener('error',function(){if(!i.getAttribute('srcset')&&(!i.currentSrc||i.currentSrc===i.getAttribute('src')))on();});
   if(i.complete&&i.naturalWidth)on();return i;}
-function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');f.appendChild(img(p,eager,sz,pri));return f;}
+var LATER=[];
+function frame(p,eager,sz,pri){var f=el('span','tll-ph-img');
+  if(!eager&&EARLY&&document.readyState==='loading')LATER.push(function(){f.appendChild(img(p,eager,sz,pri));});else f.appendChild(img(p,eager,sz,pri));return f;}
 function cap(p){var c=el('span','tll-ph-cap');var b=el('b');b.textContent=p.place;c.appendChild(b);c.appendChild(document.createTextNode(p.by));return c;}
 function tile(p,eager,sz,pri){var a=el('a','tll-ph-tile');a.href=p.href;a.appendChild(frame(p,eager,sz,pri));a.appendChild(cap(p));return a;}
 
 function stories(){var h1=document.querySelector('.tll-library-hero h1');if(!h1)return;
-  /* Nancy, 29 Oct: "You can not see the search bar on top of scroll". The photos sit under the search bar, not in the hero, and a search
-     (?q=) shows its results first with no photos above them. "on the shelf" reads "in the library" (house words). */
+  
   var w=document.createTreeWalker(h1.closest('section')||h1.parentNode,NodeFilter.SHOW_TEXT),t;while(t=w.nextNode()){if(/next story on the shelf/.test(t.nodeValue))t.nodeValue=t.nodeValue.replace('next story on the shelf','next story in the library');}
   if(document.querySelector('.tll-ph-row'))return;
   if(/[?&]q=[^&]/.test(location.search))return;
   var bar=document.querySelector('section.tllsb-bar');
-  /* tiles are about 220px wide on desktop and 46vw on phones; under the search bar the row is lazy, in the hero (no bar) it is eager */
+  
   var row=el('div','tll-ph-row');['ibiza','jaguar','antarctica','fitzroy'].forEach(function(k){row.appendChild(tile(P[k],!bar,SZ.row));});
   if(bar){row.classList.add('tll-ph-row-below');bar.insertAdjacentElement('afterend',row);}else h1.insertAdjacentElement('afterend',row);}
-function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return;
+function travelers(){var inner=document.querySelector('.tll-travelers-hero .tll-travelers-hero-inner');if(!inner||inner.querySelector('.tll-ph-faces'))return !!inner;
   var ul=el('ul','tll-ph-faces');ul.setAttribute('aria-label','Some of the travelers');
-  /* above the fold, so eager, but low priority: the h1 is the page's largest paint, not these 64px circles */
+  
   FACES.forEach(function(f){var li=el('li');var a=el('a','tll-ph-tile');a.href=f.href;a.appendChild(frame({src:f.src,alt:'',pos:f.pos},true,SZ.faces,'low'));
     var c=el('span','tll-ph-cap');var b=el('b');b.textContent=f.name;c.appendChild(b);a.appendChild(c);li.appendChild(a);ul.appendChild(li);});
-  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');}
-function map(){var sec=document.querySelector('section.tll-map-hero');if(!sec||sec.querySelector('.tll-ph-bg'))return;var p=P.sortsol;
-  var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');
-  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);}
-function about(){var hero=document.querySelector('.tll-about-final-hero');if(!hero||hero.querySelector('.tll-ph-strip'))return;
-  /* a quarter of the width, 72vw on phones */
-  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);}
-function expats(){var h1=document.querySelector('main h1')||document.querySelector('h1');var sec=h1&&h1.closest('section');if(!sec||sec.classList.contains('tll-ph-split'))return;
-  var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
-  var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) /* Nancy, 29 Oct: Denmark, where she lives, makes more sense under her credit */;sec.appendChild(fig);sec.classList.add('tll-ph-split');
-  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir||document.querySelector('.tll-ph-band'))return;
+  inner.insertBefore(ul,inner.firstChild);inner.classList.add('tll-ph-grid');return true;}
+function map(fin){var sec=document.querySelector('section.tll-map-hero');if(!sec)return false;var p=P.sortsol;
+  if(!sec.querySelector('.tll-ph-bg')){var bg=el('div','tll-ph-bg');bg.setAttribute('aria-hidden','true');bg.appendChild(frame(p,true,SZ.map,'high'));sec.insertBefore(bg,sec.firstChild);sec.classList.add('tll-ph-hasbg');}
+  if(sec.querySelector('.tll-ph-credit'))return true;if(!fin&&!whole(sec))return false;
+  var cr=el('a','tll-ph-credit');cr.href=p.href;var b=el('b');b.textContent='Photo';cr.appendChild(b);cr.appendChild(document.createTextNode(' '+p.by+' · '+p.place));sec.appendChild(cr);return true;}
+function about(fin){var hero=document.querySelector('.tll-about-final-hero');if(!hero)return false;if(hero.querySelector('.tll-ph-strip'))return true;if(!fin&&!whole(hero))return false;
+  
+  var s=el('div','tll-ph-strip');['ibiza','magnus','fitzroy','jaguar'].forEach(function(k){s.appendChild(tile(P[k],false,SZ.strip));});hero.appendChild(s);return true;}
+function expats(fin){var h1=document.querySelector('main h1')||(fin?document.querySelector('h1'):null);var sec=h1&&h1.closest('section');if(!sec)return false;
+  if(!sec.classList.contains('tll-ph-split')){if(!fin&&!whole(sec))return false;
+    var copy=el('div','tll-ph-copy');while(sec.firstChild)copy.appendChild(sec.firstChild);sec.appendChild(copy);
+    var fig=el('div','tll-ph-side');fig.appendChild(tile(P.sortsol,true,SZ.side,'high')) ;sec.appendChild(fig);sec.classList.add('tll-ph-split');}
+  if(document.querySelector('.tll-ph-band'))return true;
+  var dir=document.querySelector('[data-tll-x="dir"]');if(!dir)return !!fin;if(!fin&&!whole(dir))return false;
   var band=el('section','tll-ph-band');band.setAttribute('aria-labelledby','tll-ph-band-t');var lab=el('p','tll-ph-label');lab.id='tll-ph-band-t';lab.textContent='From the stories';band.appendChild(lab);
-  /* roughly 340px columns, 72vw on phones */
+  
   var three=el('div','tll-ph-three');['montenegro','lapaz','ghana'].forEach(function(k){three.appendChild(tile(P[k],false,SZ.band));});band.appendChild(three);
-  dir.insertAdjacentElement('afterend',band);}
+  dir.insertAdjacentElement('afterend',band);return true;}
 
-function run(){if(!document.getElementById('tll-page-heroes-v1')){var s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;document.body.appendChild(s);}
-  try{({'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats})[path]();}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==document.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+var PAGE={'/stories':stories,'/travelers':travelers,'/the-map':map,'/about':about,'/for-expats':expats};
+function sheet(){var s=document.getElementById('tll-page-heroes-v1');if(!s){s=el('style');s.id='tll-page-heroes-v1';s.textContent=CSS;}return s;}
+function run(){var s=sheet();if(EARLY||!s.parentNode)document.body.appendChild(s);
+  try{PAGE[path](true);}catch(e){}
+  while(LATER.length){try{LATER.shift()();}catch(e){}}}
+function early(){var mo=null;(document.head||document.documentElement).appendChild(sheet());
+  function stop(){if(mo){mo.disconnect();mo=null;}}
+  function step(){try{if(PAGE[path](false))stop();}catch(e){stop();}}
+  if(window.MutationObserver){mo=new MutationObserver(step);mo.observe(document.documentElement,{childList:true,subtree:true});step();}
+  document.addEventListener('DOMContentLoaded',function(){stop();run();});}
+if(document.readyState!=='loading')run();else if(EARLY)early();else document.addEventListener('DOMContentLoaded',run);
+})();
+/* src/site-layers/tll-first-paint-v1.js */
+(function(){
+var path=location.pathname.replace(/\/+$/,'')||'/';
+if(path!=='/travelers'&&path!=='/the-map'&&path!=='/about')return;
+if(document.readyState!=='loading'||!window.MutationObserver)return;
+var D=document,TRAV=path==='/travelers',MAP=path==='/the-map',HARD=20000;
+var PAGE_TRAV=
+"[data-tll-trav-search-wrap]{max-width:560px;margin:0 0 18px}"+
+"[data-tll-trav-search-wrap] label{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6B6660;margin:0 0 8px}"+
+"input[data-tll-trav-search]{width:100%;box-sizing:border-box;height:48px;padding:0 16px 0 44px;border:1.5px solid #c9b89a;border-radius:999px;background:#FDF9F3 url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%230A0B14' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E\") 16px 50% no-repeat;color:#0A0B14;font:500 16px/1 'Inter',system-ui,sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .15s ease,box-shadow .15s ease}"+
+"[data-tll-trav-search-note]{margin:8px 0 0;font-size:14px;line-height:1.5;color:#6B6660;min-height:1.5em}"+
+"[data-tll-trav-search-note][hidden]{display:none}"+
+"[data-tll-trav-search-note]:empty{display:none}"+
+"[data-tv-chips] [data-tv-n]:empty::after{content:' \\B7  0';visibility:hidden}"+
+"[data-tv-chips] [data-tv-countline]:empty::after{content:'0 CARDS';visibility:hidden}";
+var OURS_TRAV=
+"html body [data-tv-open]{display:none!important}"+
+"html body [data-tll-roster-grid] .w-embed::before,html body [data-tll-roster-grid] .w-embed::after{content:none!important;display:none!important}"+
+"html body [data-tv-chips] [data-tv-filter=\"pets\"]{display:none!important}";
+var PAGE_MAP=
+"[data-tll-map=fullscreen]{display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:#06302f;background:#00C9C8;padding:9px 18px;border-radius:6px;font-weight:700;text-decoration:none}"+
+"@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\"1\"]){display:none}}";
+var PAGE_ABOUT=
+"@media(max-width:600px){"+
+".tll-about-final-title{font-size:38px;letter-spacing:-.5px}"+
+".tll-about-final-hero{padding-top:52px;padding-bottom:40px}"+
+".tll-about-final-intro{font-size:18px}"+
+"}";
+var NOTE_ABOUT="#tll-note{display:none}";
+var MAP_HOLD="#tll-map-layers{min-height:min(100vh,1400px)}";
+function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
+function drop(s){if(s&&s.parentNode)s.parentNode.removeChild(s);}
+function once(f){var d=0;return function(){if(!d){d=1;try{f();}catch(e){}}};}
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==D.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+function ghost(h,w){var c=h.cloneNode(true);c.removeAttribute('id');c.setAttribute('aria-hidden','true');
+  c.style.cssText='position:absolute!important;visibility:hidden!important;pointer-events:none!important;left:0!important;top:0!important;margin:0!important;'+
+    'min-height:0!important;height:auto!important;box-sizing:border-box!important;width:'+w+'px!important';
+  h.parentNode.appendChild(c);return c;}
+function inner(h,v){var cs=window.getComputedStyle(h);
+  if(cs.boxSizing!=='border-box')v-=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0)+(parseFloat(cs.borderTopWidth)||0)+(parseFloat(cs.borderBottomWidth)||0);
+  return Math.round(v*100)/100;}
+var parsed=0,steps=[],mo=null;
+function tick(){for(var i=steps.length-1;i>=0;i--){var done=true;try{done=steps[i]();}catch(e){}if(done)steps.splice(i,1);}
+  if(!steps.length&&mo){mo.disconnect();mo=null;}}
+
+var A=sheet('tll-fp-page-v1',TRAV?PAGE_TRAV:MAP?PAGE_MAP:PAGE_ABOUT),relA=once(function(){drop(A);});
+setTimeout(relA,HARD);
+
+if(TRAV){
+  
+  
+  var named=null;
+  var B=sheet('tll-fp-ours-v1',OURS_TRAV),hmo=null,relB=once(function(){drop(B);if(hmo){hmo.disconnect();hmo=null;}
+    if(named&&!D.getElementById('tll-travelers-fix-v1')&&named.nodeValue==='People')named.nodeValue='Everyone';});
+  var chunkIn=function(){if(D.getElementById('tll-travelers-fix-v1'))relB();};
+  steps.push(function(){var ev=D.querySelector('[data-tv-chips] [data-tv-filter="everyone"]');if(!ev||(!parsed&&!whole(ev)))return parsed;
+    var tn=ev.firstChild;if(tn&&tn.nodeType===3&&/^\s*Everyone\s*$/.test(tn.nodeValue)){tn.nodeValue='People';named=tn;}return true;});
+  if(D.head){hmo=new MutationObserver(chunkIn);hmo.observe(D.head,{childList:true});}
+  window.addEventListener('load',function(){setTimeout(relB,0);});
+  setTimeout(relB,HARD);
+
+  
+  
+  var WORDS=['are','live','photograph','were'];
+  var C=null,wrote=0,off=0,emo=null,rt=0;
+  var still=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var measure=function(){if(still||off)return;var h=D.querySelector('.tll-travelers-title'),em=h&&h.querySelector('em'),p=h&&h.parentNode;if(!em||!p)return;
+    var w=h.getBoundingClientRect().width;if(!w)return;
+    var c=ghost(h,w),ce=c.querySelector('em'),max=0;
+    for(var i=0;i<WORDS.length;i++){ce.textContent=WORDS[i];max=Math.max(max,c.getBoundingClientRect().height);}
+    p.removeChild(c);if(mo)mo.takeRecords();
+    var v=inner(h,max);if(!(v>0))return;
+    var css='h1.tll-travelers-title{min-height:'+v+'px}';
+    if(!C)C=sheet('tll-fp-title-v1',css);else if(C.textContent!==css)C.textContent=css;};
+  var relC=function(){off=1;drop(C);C=null;if(emo){emo.disconnect();emo=null;}};
+  var again=function(){clearTimeout(rt);rt=setTimeout(function(){try{measure();}catch(e){}},200);};
+  if(!still){
+    steps.push(function(){var h=D.querySelector('.tll-travelers-title'),em=h&&h.querySelector('em');if(!em||(!parsed&&!whole(h)))return parsed;
+      emo=new MutationObserver(function(){wrote=1;var w=(em.textContent||'').replace(/\s+/g,' ').trim();if(w&&WORDS.indexOf(w)<0){WORDS.push(w);try{measure();}catch(e){}}});
+      emo.observe(em,{childList:true,characterData:true,subtree:true});
+      measure();return true;});
+    window.addEventListener('load',again);window.addEventListener('resize',again);
+    try{if(D.fonts&&D.fonts.addEventListener)D.fonts.addEventListener('loadingdone',again);}catch(e){}
+    
+    setTimeout(function(){if(!parsed)relC();},HARD);
+  }
+  D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();
+    setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
+}else if(MAP){
+  
+  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null,rmo=null;
+  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}if(rmo){rmo.disconnect();rmo=null;}});
+  setTimeout(relM,HARD);
+  steps.push(function(){var root=D.getElementById('tll-map-layers');if(!root)return parsed;
+    var boot=D.getElementById('tllm-boot');
+    var drawn=function(){if(!root.querySelector('.tllm-bar'))return;var mh=parseFloat(window.getComputedStyle(root).minHeight)||0;if(root.getBoundingClientRect().height>mh+1)relM();};
+    if(window.ResizeObserver){ro=new window.ResizeObserver(drawn);ro.observe(root);}
+    else window.addEventListener('load',function(){setTimeout(relM,3000);});
+    
+    if(boot){bmo=new MutationObserver(function(){var t=boot.textContent||'';
+      if(/DID NOT|MAP ERROR/.test(t)||(/STARTING/.test(t)&&!root.classList.contains('tllm')))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    rmo=new MutationObserver(function(){if(root.querySelector('.tllm-err'))relM();});rmo.observe(root,{childList:true});
+    return true;});
+  
+  steps.push(function(){var h=D.querySelector('.tll-map-title'),F=D.fonts;if(!h||(!parsed&&!whole(h)))return parsed;
+    if(!F||!F.load||!F.check||!window.Promise)return true;
+    var cs=window.getComputedStyle(h),fam=cs.fontFamily||'',rest=fam.replace(/^\s*["']?Playfair Display["']?\s*,\s*/i,'');
+    if(!rest||rest===fam)return true;
+    var em=h.querySelector('em'),ec=em&&window.getComputedStyle(em),txt=h.textContent||'',need=[cs.fontWeight+' 1em "Playfair Display"'];
+    if(ec&&ec.fontStyle==='italic')need.push('italic '+ec.fontWeight+' 1em "Playfair Display"');
+    var all=true,i;for(i=0;i<need.length;i++)if(!F.check(need[i],txt))all=false;
+    if(all)return true;
+    var T=sheet('tll-fp-maptitle-v1','h1.tll-map-title,h1.tll-map-title *{font-family:'+rest+'!important}'),relT=once(function(){drop(T);});
+    setTimeout(relT,HARD);
+    var jobs=[];for(i=0;i<need.length;i++)jobs.push(F.load(need[i],txt));
+    window.Promise.all(jobs).then(relT,relT);return true;});
+  
+  steps.push(function(){if(!D.documentElement.classList.contains('tll-map-public')||!D.getElementById('tll-map-invite-js-v1'))return true;
+    if(D.querySelector('[data-tll-map-invite]'))return true;
+    var hc=D.querySelector('.tll-map-hero-counter');if(!hc)return parsed;
+    var a=D.createElement('a');a.href='/signup';a.setAttribute('data-tll-map-invite','1');a.textContent='Start your own map →';hc.parentNode.insertBefore(a,hc.nextSibling);return true;});
+  D.addEventListener('DOMContentLoaded',function(){parsed=1;tick();if(!D.getElementById('tll-map-layers'))relM();setTimeout(relA,0);});
+}else{
+  
+  var N=sheet('tll-fp-note-v1',NOTE_ABOUT),relN=once(function(){drop(N);});
+  steps.push(function(){var st=D.getElementById('tll-note-v1-css');if(parsed||(st&&st.sheet))relN();return !N.parentNode;});
+  window.addEventListener('DOMContentLoaded',function(){parsed=1;tick();},true);
+  setTimeout(relN,HARD);
+  D.addEventListener('DOMContentLoaded',function(){setTimeout(relA,0);});
+}
+mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
+})();
+/* src/site-layers/tll-early-state-v1.js */
+(function(){
+var D=document,W=window;
+if(D.readyState!=='loading'||!W.MutationObserver)return;
+if(W.__tllEarlyState)return;W.__tllEarlyState=1;
+var path=location.pathname.replace(/\/+$/,'')||'/',HARD=20000;
+var steps=[],keep=[],before=[],after=[],hard=[],mo=null,over=0;
+function q(s,r){return (r||D).querySelector(s);}
+function el(t,c,x){var e=D.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function drop(n){if(n&&n.parentNode)n.parentNode.removeChild(n);}
+function sheet(id,css){var s=D.createElement('style');s.id=id;s.textContent=css;(D.head||D.documentElement).appendChild(s);return s;}
+function once(f){var d=0;return function(){if(!d){d=1;try{f();}catch(e){}}};}
+function clear(n){while(n&&n.firstChild)n.removeChild(n.firstChild);}
+function whole(n){for(;n&&n.parentNode&&n.parentNode!==D.body;n=n.parentNode){if(n.nextElementSibling)return true;}return false;}
+function done(n){for(;n&&n.parentNode;n=n.parentNode){if(n.nextElementSibling)return true;if(n.parentNode===D.body)break;}return false;}
+function back(n,p,ref){if(n&&p)p.insertBefore(n,ref&&ref.parentNode===p?ref:null);}
+function inDoc(n){return !!(n&&D.documentElement.contains(n));}
+
+if(D.getElementById('tll-mobile-nav-js-v1'))(function(){
+  var mb=null,tap=0,foc=0;
+  steps.push(function(){var nav=q('.tll-nav-v1'),cta=nav&&q('.tll-nav-cta-row',nav);
+    if(!cta||!q('.tll-nav-links-row',nav)||!done(cta))return false;
+    if(nav.__tllmm||q('.tllmm-btn',cta))return true;
+    mb=el('button','tllmm-btn','Menu');mb.type='button';mb.tabIndex=-1;mb.setAttribute('aria-hidden','true');
+    mb.addEventListener('click',function(){tap=1;});cta.appendChild(mb);
+    
+    keep.push(function(){if(mb.parentNode&&mb.nextSibling)mb.parentNode.appendChild(mb);});
+    return true;});
+  before.push(function(){foc=!!(mb&&D.activeElement===mb);drop(mb);});
+  
+  after.push(function(){if(!tap)return;var b=q('.tll-nav-v1 .tll-nav-cta-row .tllmm-btn');if(!b)return;
+    if(foc&&(!D.activeElement||D.activeElement===D.body||D.activeElement===mb)){try{b.focus({preventScroll:true});}catch(e){}}
+    b.click();});
+})();
+
+if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-v1'))(function(){
+  var ok=false;try{ok=!!(W.CSS&&W.CSS.supports&&W.CSS.supports('selector(:has(*))'));}catch(e){}
+  if(!ok)return;
+  var nav=null,st=null,MARK='data-tll-es-nav',WR='html:not(.ms-loaded) [data-ms-content]:has(>nav['+MARK+'])';
+  steps.push(function(){var n=q('nav.tll-nav-v1'),w=n&&n.parentNode;if(!n)return false;
+    if(!w||w.nodeType!==1||!w.hasAttribute('data-ms-content'))return true;
+    nav=n;n.setAttribute(MARK,'');
+    st=sheet('tll-es-nav-v1',WR+'{display:contents!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
+  
+  before.push(function(){drop(st);if(nav)nav.removeAttribute(MARK);});
+})();
+
+if(path==='/stories')(function(){
+  
+  var slot=null,form=null,fp=null,fn=null,clr=null,cp=null,cn=null,bar=null,bd='',bs=false,inner=null;
+  function merge(){inner=q('.tll-library-filters .tll-filters-inner');form=q('.tllsb-form');bar=q('.tllsb-bar');
+    if(!inner||!form||!bar||!whole(bar)||!whole(inner))return false;
+    if(q('.tllsb-form',inner))return true;
+    fp=form.parentNode;fn=form.nextSibling;clr=D.getElementById('tll-lib-clear');if(clr){cp=clr.parentNode;cn=clr.nextSibling;}
+    bs=bar.hasAttribute('style');bd=bar.style.display;
+    slot=el('div','tll-lib-searchslot');slot.appendChild(form);if(clr)slot.appendChild(clr);inner.appendChild(slot);
+    inner.setAttribute('data-tll-merged','1');bar.style.display='none';return true;}
+  var unmerge=once(function(){if(!slot)return;
+    if(clr&&clr.parentNode===slot)back(clr,cp,cn);if(form.parentNode===slot)back(form,fp,fn);
+    drop(slot);inner.removeAttribute('data-tll-merged');bar.style.display=bd;if(!bs)bar.removeAttribute('style');});
+  var merged=false;
+  steps.push(function(){if(D.getElementById('tll-lib-lead-v1')){unmerge();return true;}
+    if(!merged)merged=merge();return false;});
+  before.push(unmerge);
+
+  
+  var lead=null,was=null,grid=null;
+  function txt(k,a){var n=q('['+a+']',k);return n?n.textContent.trim():'';}
+  function pickOf(k){return q('[data-tll-pick]:not(.w-condition-invisible)',k);}
+  
+  function shown(k){return W.getComputedStyle(k).display!=='none';}
+  var QS=/[?&]q=[^&]/.test(location.search);
+  if(!QS){
+    
+    steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k)return false;
+      if(!lead){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
+    steps.push(function(){grid=q('.tll-lib-grid');if(!grid||!whole(grid))return false;
+      var rows=[].slice.call(grid.children).filter(function(k){return k.hasAttribute('data-tll-card')||q('[data-tll-card]',k);})
+        .map(function(k,i){return {k:k,i:i,d:Date.parse(txt(k,'data-tll-date'))||0};});
+      if(!rows.length)return true;
+      rows.sort(function(a,b){return (b.d-a.d)||(a.i-b.i);});
+      var to=null,pick=null,i;
+      for(i=0;i<rows.length&&!pick;i++){if(pickOf(rows[i].k)&&shown(rows[i].k))pick=rows[i].k;}
+      for(i=0;i<rows.length&&!pick&&!to;i++){if(shown(rows[i].k))to=rows[i].k;}
+      to=pick||to;
+      if(to&&to===lead&&grid.firstElementChild===to)return true;
+      was=[].slice.call(grid.childNodes);
+      rows.forEach(function(r){grid.appendChild(r.k);});
+      if(pick&&grid.firstElementChild!==pick)grid.insertBefore(pick,grid.firstElementChild);
+      if(lead&&lead!==to)lead.removeAttribute('data-tll-lead');lead=to;if(to)to.setAttribute('data-tll-lead','1');return true;});
+    before.push(function(){if(lead)lead.removeAttribute('data-tll-lead');
+      if(was)was.forEach(function(n){if(n.parentNode===grid)grid.appendChild(n);});});
+  }
+
+  
+  steps.push(function(){var h=q('h1.tll-library-title'),F=D.fonts;if(!h||!whole(h))return false;
+    if(!F||!F.load||!F.check||!W.Promise)return true;
+    var PF=/^\s*["']?Playfair Display["']?\s*,\s*/i,cs=W.getComputedStyle(h),fam=cs.fontFamily||'',rest=fam.replace(PF,'');
+    if(!rest||rest===fam)return true;
+    var em=q('em',h),ec=em&&W.getComputedStyle(em),ef=ec?ec.fontFamily||'':'',er=ef.replace(PF,''),tx=h.textContent||'',need=[cs.fontWeight+' 1em "Playfair Display"'];
+    if(ec&&er&&er!==ef&&ec.fontStyle==='italic')need.push('italic '+ec.fontWeight+' 1em "Playfair Display"');else er='';
+    var all=true,i;for(i=0;i<need.length;i++)if(!F.check(need[i],tx))all=false;
+    if(all)return true;
+    
+    var sel='h1.tll-library-title.tll-library-title.tll-library-title.tll-library-title';
+    var T=sheet('tll-es-libtitle-v1',sel+'{font-family:'+rest+'!important}'+(er?sel+' em{font-family:'+er+'!important}':'')),relT=once(function(){drop(T);});
+    setTimeout(relT,HARD);
+    
+    var go=relT;
+    if(QS&&W.requestAnimationFrame)go=function(){var n=-1,left=30,f=function(){var c=D.querySelectorAll('[data-tll-q-miss]').length;
+      if(c===n||--left<0)relT();else{n=c;W.requestAnimationFrame(f);}};W.requestAnimationFrame(f);};
+    var jobs=[];for(i=0;i<need.length;i++)jobs.push(F.load(need[i],tx));
+    W.Promise.all(jobs).then(go,go);return true;});
+})();
+
+if(/^\/contributors\/[^/]+$/.test(path))(function(){
+  var root=null,ghost=null,gs=null,extras=[],slug='';
+  function A(n){var v=root.getAttribute('data-'+n);return v==null?'':String(v).trim();}
+  function on(k){var f=q('[data-pf5-flag="'+k+'"]');return !!(f&&!f.classList.contains('w-condition-invisible'));}
+  function UP(s){return String(s||'').toUpperCase();}
+  function g(k){return q('[data-pf5="'+k+'"]',ghost);}
+  function url(u){u=String(u||'').trim();return /^https?:\/\/\S+$/i.test(u)?u:'';}
+  function bit(meta,t){var l=meta.lastChild;if(l&&!(l.classList&&l.classList.contains('pf5-flags')))meta.appendChild(el('span',null,'·'));meta.appendChild(el('span',null,t));}
+  function arrow(a){var s=el('span',null,'↗');s.setAttribute('aria-hidden','true');a.appendChild(s);}
+  
+  var LINKS=[['instagram','Instagram'],['youtube','YouTube'],['website','Website'],['tiktok','TikTok'],['substack','Substack'],['strava','Strava'],['alltrails','AllTrails'],['komoot','Komoot'],['garmin','Garmin'],['beli','Beli']];
+  
+  function stats(n){var S=g('stats');if(!S)return;clear(S);
+    var snap=null;try{snap=JSON.parse(A('snapshot')||'null');}catch(e){}if(!snap||typeof snap!=='object')snap=null;
+    var rg=on('ranges'),items=[];
+    function ranged(v){v=+v||0;if(!rg)return String(v);if(v<10)return 'under 10';return (Math.floor(v/10)*10)+'-something';}
+    if(snap&&(+snap.countries||snap.antarctica)){items.push([ranged(snap.countries),snap.antarctica?'+AQ':'','COUNTRIES']);items.push([ranged(snap.places),rg?'':'/ 250','PLACES']);}
+    if(n>0)items.push([String(n),'',n===1?'STORY':'STORIES']);else if(n<0&&items.length)items.push(['0','','STORIES',1]);
+    if(snap&&+snap.layovers>0)items.push(['+'+(+snap.layovers),'','LAYOVERS']);
+    if(!items.length)return;
+    items.forEach(function(it){var d=el('div'),v=el('div','pf5-stat-v',it[0]+(it[1]?' ':''));if(it[1])v.appendChild(el('small',null,it[1]));
+      d.appendChild(v);d.appendChild(el('div','pf5-stat-k',it[2]));if(it[3])d.style.visibility='hidden';S.appendChild(d);});
+    var i=el('a','pf5-stat-i','i');i.href='/the-map';i.title='What counts: lived or stayed. Antarctica beside. Layovers beside, never inside.';i.setAttribute('aria-label','What counts');S.appendChild(i);}
+  
+  function count(){var L=q('[data-pf5="stories-list"]');if(!L||!whole(L))return -1;var n=0;
+    [].forEach.call(L.querySelectorAll('[data-pf5="story-card"]'),function(c){if((c.getAttribute('data-by')||'').trim()===slug)n++;});return n;}
+  
+  function build(){
+    var name=A('name'),credit=(A('credit')||'Full').toLowerCase();
+    name=credit==='pen'?(A('pen')||'Traveler'):credit==='first'?(name.split(/\s+/)[0]||'Traveler'):(name||'Traveler');
+    var parts=name.split(/\s+/),first=parts[0]||'Traveler',last=parts.length>1?parts.slice(1).join(' '):'';
+    var ey=g('eyebrow');if(ey)ey.textContent='TRAVELER · '+UP(slug);
+    var sl=g('name-slot'),h=sl&&q('h1,h2,h3',sl);
+    if(h){clear(h);h.appendChild(D.createTextNode(last?first+' ':first));if(last)h.appendChild(el('em',null,last));}
+    var ol=g('one-line');if(ol)ol.textContent=A('one-line');
+    var nv=!!D.getElementById('tll-pf5-n-v1'),P=null;
+    if(nv){try{P=JSON.parse(A('partners')||'null');}catch(e){P=null;}if(!P||typeof P!=='object'||Array.isArray(P))P=null;}
+    var meta=g('meta');
+    if(meta){clear(meta);
+      
+      var since=A('since'),y=since?String(new Date(since).getFullYear()):'';
+      if(y&&y!=='NaN')meta.appendChild(el('span',null,'ON TLL SINCE '+y));
+      var iso=A('flags').toLowerCase().split(/[\s,]+/).filter(function(c){return /^[a-z]{2}$/.test(c);}).slice(0,5),lab=null;
+      if(iso.length){var fg=el('span','pf5-flags');lab=el('span',null,'FROM · HAS LIVED IN');fg.appendChild(lab);var row=el('span','pf5-flags-row');
+        
+        iso.forEach(function(c){var i=D.createElement('img');i.className='pf5-flag';i.alt='';i.title=c.toUpperCase();i.width=28;i.height=28;row.appendChild(i);});
+        fg.appendChild(row);meta.appendChild(fg);}
+      if(nv){var place=A('from-place').toUpperCase();
+        if(lab)lab.textContent='FROM'+(place?' '+place:'')+(iso.length>1?' · HAS LIVED IN':'');else if(place)bit(meta,'FROM '+place);
+        var makes=A('makes').split(',').map(function(m){return m.trim().toUpperCase();}).filter(Boolean),cr=on('creators');
+        if(makes.length&&cr)bit(meta,'MAKES '+makes.join(' · '));
+        var work=P&&/^https:\/\//i.test(url(P.portfolio))?url(P.portfolio):'';
+        if(work&&cr){var l=meta.lastChild;if(l&&!(l.classList&&l.classList.contains('pf5-flags')))meta.appendChild(el('span',null,'·'));
+          var w0=el('a','pf5-work','SEE THE WORK →');w0.href=work;w0.target='_blank';w0.rel='noopener ugc';meta.appendChild(w0);}
+        if(P&&P.open===true)bit(meta,'OPEN TO PARTNERSHIPS');}}
+    var B=g('buttons'),N=g('contact-note');
+    if(B){clear(B);var mode=(A('contact')||'Relay').toLowerCase(),note='',email=A('email'),a;
+      if(mode==='email'){if(email){var m=email.split('@');a=el('a','pf5-btn',m.length===2?(m[0]+' [at] '+m[1]):email);a.href='mailto:'+email;B.appendChild(a);note='Email shown by their choice.';}}
+      else if(mode!=='off'){var href='/contact?relay='+encodeURIComponent(slug);
+        if(mode==='instagram'&&/^https?:\/\//i.test(A('link-instagram')))href=A('link-instagram');
+        a=el('a','pf5-btn','Get in touch');a.href=href;if(/^https?:/i.test(href)){a.target='_blank';a.rel='noopener';}B.appendChild(a);
+        note='Opens their chosen channel or the relay form. Nobody’s email is shown until they reply.';}
+      var shown=A('links-shown').toLowerCase().split(/[\s,]+/).filter(Boolean);
+      LINKS.forEach(function(k){var u=A('link-'+k[0]);if(!/^https?:\/\//i.test(u))return;if(shown.length&&shown.indexOf(k[0])<0)return;
+        var b=el('a','pf5-btn pf5-btn-line',k[1]+' ');b.href=u;b.target='_blank';b.rel='noopener';arrow(b);B.appendChild(b);});
+      if(N)N.textContent=note;B.setAttribute('data-pf5-ready','1');
+      if(P){var list=[];if(url(P.store))list.push(['Store',url(P.store)]);
+        (Array.isArray(P.links)?P.links:[]).slice(0,3).forEach(function(x){var u=url(x&&x.url),nm=String((x&&x.name)||'').trim();if(u&&nm)list.push([nm,u]);});
+        if(list.length){var w=el('div','pf5-partners');
+          list.forEach(function(x){var b=el('a','pf5-btn pf5-btn-line',x[0]);b.href=x[1];b.target='_blank';b.rel='sponsored noopener';b.appendChild(el('span','pf5-tag','PARTNER'));arrow(b);w.appendChild(b);});
+          B.appendChild(w);}}}
+    return name;}
+  var swap=once(function(){drop(gs);drop(ghost);});
+  steps.push(function(){root=q('[data-pf5="root"]');var hero=q('[data-pf5="hero"]');if(!root||!hero||!whole(hero))return false;
+    var real=q('[data-pf5="id"]',hero);if(!real||real.parentNode!==hero)return true;
+    
+    if(A('visibility').toLowerCase()==='off')return true;
+    slug=A('slug');ghost=real.cloneNode(true);ghost.setAttribute('data-tll-es-ghost','1');
+    var name,n=count();try{name=build();stats(n);}catch(e){ghost=null;return true;}
+    gs=sheet('tll-es-pf5-v1','[data-pf5="hero"]>[data-pf5="id"]:not([data-tll-es-ghost]){display:none!important}');
+    hero.insertBefore(ghost,real.nextSibling);
+    
+    if(n<0)steps.push(function(){var c=count();if(c<0)return false;try{stats(c);}catch(e){}return true;});
+    
+    try{var photo=q('[data-pf5="photo"]',hero),img=photo&&q('img',photo),badge=A('badge'),x;
+      if(photo){if(!(img&&!img.classList.contains('w-dyn-bind-empty')&&img.getAttribute('src'))){
+          x=el('div','pf5-initials',name.split(/\s+/).slice(0,2).map(function(p){return Array.from(p)[0]||'';}).join('').toUpperCase());photo.appendChild(x);extras.push(x);}
+        if(badge){x=el('span','pf5-badge',UP(badge));photo.appendChild(x);extras.push(x);}}}catch(e){}
+    return true;});
+  before.push(function(){extras.forEach(drop);});
+  
+  after.push(function(){setTimeout(swap,0);});
+  hard.push(swap);
+})();
+
+if(!steps.length)return;
+function run(list){for(var i=0;i<list.length;i++){try{list[i]();}catch(e){}}}
+function tick(){if(over)return;var i,d;
+  for(i=0;i<steps.length;i++){d=true;try{d=steps[i]();}catch(e){}if(d){steps.splice(i,1);i--;}}
+  run(keep);
+  if(!steps.length&&!keep.length&&mo){mo.disconnect();mo=null;}}
+var handBack=once(function(){over=1;steps=[];keep=[];if(mo){mo.disconnect();mo=null;}run(before);});
+var parsed=0;
+W.addEventListener('DOMContentLoaded',function(){parsed=1;handBack();},true);
+W.addEventListener('DOMContentLoaded',function(){run(after);});
+setTimeout(function(){if(!parsed)handBack();run(hard);},HARD);
+mo=new MutationObserver(tick);mo.observe(D.documentElement,{childList:true,subtree:true});tick();
 })();
 /* src/site-layers/tll-home-bands-v1.js */
 (function(){
