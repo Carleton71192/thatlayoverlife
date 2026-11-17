@@ -19,7 +19,9 @@
                   (the page does not rotate then); taken out when the page is parsed and the page script has not written a verb.
      map          style#tll-fp-map-v1 (/the-map): the Map 2.0 mount keeps one screen of height until the map is drawn, so what follows it
                   starts below the screen instead of being pushed there after load. Let go when the map is taller than that, when the
-                  embed's own status line reports a failure, when there is no mount, or after 20 s.
+                  embed's own status line reports a failure, when that line says the map code has loaded and the code has not marked
+                  the mount (it does that first thing when it runs), when the map code writes its own failure line into the mount,
+                  when there is no mount, or after 20 s.
      map title    style#tll-fp-maptitle-v1 (/the-map): the title stays in the fallback faces until both of its font files are in (they
                   come one after the other, and with one of them in the title is a line shorter for a frame). Let go when both
                   have loaded or one has failed, or after 20 s.
@@ -135,15 +137,21 @@ if(TRAV){
     setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
 }else if(MAP){
   /* the map mount */
-  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null;
-  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}});
+  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null,rmo=null;
+  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}if(rmo){rmo.disconnect();rmo=null;}});
   setTimeout(relM,HARD);
   steps.push(function(){var root=D.getElementById('tll-map-layers');if(!root)return parsed;
     var boot=D.getElementById('tllm-boot');
     var drawn=function(){if(!root.querySelector('.tllm-bar'))return;var mh=parseFloat(window.getComputedStyle(root).minHeight)||0;if(root.getBoundingClientRect().height>mh+1)relM();};
     if(window.ResizeObserver){ro=new window.ResizeObserver(drawn);ro.observe(root);}
     else window.addEventListener('load',function(){setTimeout(relM,3000);});
-    if(boot){bmo=new MutationObserver(function(){if(/DID NOT|MAP ERROR/.test(boot.textContent||''))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    /* A map that will not be drawn. The embed's status line says so itself (DID NOT, MAP ERROR), but for a map file that loads and
+       never starts only 9.6 s later, and the page under the empty hold then moved up a screen. Two earlier signs, both the map's own:
+       the line reads CODE LOADED ..., STARTING at the map script's load event, and a map code that has run has by then marked the
+       mount with the class tllm (its first step); and when its settings file does not come it writes p.tllm-err into the mount. */
+    if(boot){bmo=new MutationObserver(function(){var t=boot.textContent||'';
+      if(/DID NOT|MAP ERROR/.test(t)||(/STARTING/.test(t)&&!root.classList.contains('tllm')))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    rmo=new MutationObserver(function(){if(root.querySelector('.tllm-err'))relM();});rmo.observe(root,{childList:true});
     return true;});
   /* the title while the web fonts arrive. The title is set in two Playfair Display files (800 and 800 italic for the rose words). They
      arrive one after the other, and with only one of them in, "Every country, on the map." fits one line at desktop widths where it

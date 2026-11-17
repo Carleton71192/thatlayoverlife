@@ -258,6 +258,11 @@ def first_paint_checks():
     mapcss = read('map-2.0/dist/tll-map-layers.css')
     assert '@media (max-width:760px){' in mapcss and '.tllm-drawer{position:fixed;left:0;right:0;bottom:0;' in mapcss, 'first-paint: the map sheet rule changed'
     assert '@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\\"1\\"]){display:none}}' in s
+    # 17 Nov 2026 (repair after the adversarial check): the two early signs of a map that will not be drawn are read off code that
+    # is not ours to change here. If one of them changes, the build stops.
+    mapjs = read('map-2.0/dist/tll-map-layers.js')
+    assert -1 < mapjs.find("root.classList.add('tllm')") < mapjs.find('getJSON(CONFIG)') and "el('p', 'tllm-err', msg)" in mapjs, 'first-paint: the map code no longer marks the mount first'
+    assert ", STARTING');" in read('src/pages/the-map/live-2026-10-25/embed-682054d4-after.html'), 'first-paint: the map embed status line changed'
 first_paint_checks()
 
 # 16 Nov 2026, part B: tll-early-state-v1 makes, early, what page code makes when the page is parsed.

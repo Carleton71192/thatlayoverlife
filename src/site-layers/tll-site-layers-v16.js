@@ -495,15 +495,18 @@ if(TRAV){
     setTimeout(function(){relA();chunkIn();if(still)return;if(!wrote)relC();else{try{measure();}catch(e){}}},0);});
 }else if(MAP){
   
-  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null;
-  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}});
+  var M=sheet('tll-fp-map-v1',MAP_HOLD),ro=null,bmo=null,rmo=null;
+  var relM=once(function(){drop(M);if(ro){ro.disconnect();ro=null;}if(bmo){bmo.disconnect();bmo=null;}if(rmo){rmo.disconnect();rmo=null;}});
   setTimeout(relM,HARD);
   steps.push(function(){var root=D.getElementById('tll-map-layers');if(!root)return parsed;
     var boot=D.getElementById('tllm-boot');
     var drawn=function(){if(!root.querySelector('.tllm-bar'))return;var mh=parseFloat(window.getComputedStyle(root).minHeight)||0;if(root.getBoundingClientRect().height>mh+1)relM();};
     if(window.ResizeObserver){ro=new window.ResizeObserver(drawn);ro.observe(root);}
     else window.addEventListener('load',function(){setTimeout(relM,3000);});
-    if(boot){bmo=new MutationObserver(function(){if(/DID NOT|MAP ERROR/.test(boot.textContent||''))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    
+    if(boot){bmo=new MutationObserver(function(){var t=boot.textContent||'';
+      if(/DID NOT|MAP ERROR/.test(t)||(/STARTING/.test(t)&&!root.classList.contains('tllm')))relM();});bmo.observe(boot,{childList:true,characterData:true,subtree:true});}
+    rmo=new MutationObserver(function(){if(root.querySelector('.tllm-err'))relM();});rmo.observe(root,{childList:true});
     return true;});
   
   steps.push(function(){var h=D.querySelector('.tll-map-title'),F=D.fonts;if(!h||(!parsed&&!whole(h)))return parsed;

@@ -96,7 +96,8 @@ function makeDom({ path = '/', readyState = 'loading', reduced = false, rects = 
     if (n.tagName === 'BODY') { doc.body = n; } parent.appendChild(n); flush(); return n; };
   const openBody = () => { root.appendChild(body); doc.body = body; flush(); return body; };
   const run = (ms) => { const due = timers.filter((t) => t.f && t.ms <= ms); due.forEach((t) => { const f = t.f; t.f = null; f(); flush(); }); };
-  const fire = (t) => { if (t === 'DOMContentLoaded') { doc.readyState = 'interactive'; (docL[t] || []).slice().forEach((f) => { f(); flush(); }); } else { if (t === 'load') doc.readyState = 'complete'; (winL[t] || []).slice().forEach((f) => { f(); flush(); }); } };
+  // DOMContentLoaded: the window's capture listeners run before the document's own (the only window listener of this event in the two layers is a capture one)
+  const fire = (t) => { if (t === 'DOMContentLoaded') { doc.readyState = 'interactive'; (winL[t] || []).slice().forEach((f) => { f(); flush(); }); (docL[t] || []).slice().forEach((f) => { f(); flush(); }); } else { if (t === 'load') doc.readyState = 'complete'; (winL[t] || []).slice().forEach((f) => { f(); flush(); }); } };
   const resize = () => resizeObs.filter((o) => o.on).forEach((o) => { o.cb([]); flush(); });
   const styles = (where) => where.children.filter((n) => n.tagName === 'STYLE').map((n) => n.id);
   const fontsDone = async () => { doc.fonts.status = 'loaded'; (fontL.loadingdone || []).forEach((f) => f()); fontReady(); await fontsReady; await null; };
@@ -378,9 +379,43 @@ describe('tll-first-paint-v1 on /the-map', () => {
   it('lets the map hold go when the embed reports that the map did not load or start', () => {
     for (const msg of ['THE MAP CODE DID NOT LOAD FROM EITHER HOST', 'CODE LOADED FROM JSDELIVR BUT THE MAP DID NOT START', 'MAP ERROR: x is not a function']) {
       const d = themap(); const boot = d.document.getElementById('tllm-boot');
+      // a map code that has run marks the mount first, then the embed says STARTING
+      d.document.getElementById('tll-map-layers').classList.add('tllm');
       boot.textContent = 'CODE LOADED FROM JSDELIVR, STARTING'; d.flush(); expect(d.styles(d.head)).toContain('tll-fp-map-v1');
       boot.textContent = msg; d.flush(); expect(d.styles(d.head)).not.toContain('tll-fp-map-v1');
     }
+  });
+  it('lets the map hold go at once when the map file has loaded and the code never ran: the embed says STARTING and the mount is not marked (repair, note 3)', () => {
+    const d = themap(); const boot = d.document.getElementById('tllm-boot'); const root = d.document.getElementById('tll-map-layers');
+    expect(d.styles(d.head)).toContain('tll-fp-map-v1'); expect(root.classList.contains('tllm')).toBe(false);
+    boot.textContent = 'CODE LOADED FROM JSDELIVR, STARTING'; d.flush();
+    expect(d.styles(d.head)).not.toContain('tll-fp-map-v1'); expect(d.resizeObs.filter((o) => o.on).length).toBe(0);
+    // a later line of the embed changes nothing, and no observer of the layer is left on the mount or the line
+    boot.textContent = 'CODE LOADED FROM JSDELIVR BUT THE MAP DID NOT START'; d.flush(); expect(d.styles(d.head)).not.toContain('tll-fp-map-v1');
+    d.fire('DOMContentLoaded'); d.run(0); expect(d.observers.filter((o) => o.on && (o.target === boot || o.target === root)).length).toBe(0);
+    // the same from the second host
+    const e = themap(); e.document.getElementById('tllm-boot').textContent = 'CODE LOADED FROM STATICALLY, STARTING'; e.flush(); expect(e.styles(e.head)).not.toContain('tll-fp-map-v1');
+  });
+  it('lets the map hold go when the map code writes its own failure line into the mount (no settings file, no data)', () => {
+    const d = themap(); const boot = d.document.getElementById('tllm-boot'); const root = d.document.getElementById('tll-map-layers');
+    root.classList.add('tllm'); boot.textContent = 'CODE LOADED FROM JSDELIVR, STARTING'; d.flush(); expect(d.styles(d.head)).toContain('tll-fp-map-v1');
+    d.el(root, 'p', { class: 'tllm-err' }, 'The map could not start: 404'); expect(d.styles(d.head)).not.toContain('tll-fp-map-v1');
+    expect(d.observers.filter((o) => o.on && o.target === root).length).toBe(0);
+  });
+  it('a map that starts keeps the hold through STARTING and through what the map adds to the mount, until it is drawn', () => {
+    let h = 900; const d = themap({ rects: { '#tll-map-layers': () => ({ width: 1232, height: h }) } }); const boot = d.document.getElementById('tllm-boot'); const root = d.document.getElementById('tll-map-layers');
+    root.classList.add('tllm'); boot.textContent = 'CODE LOADED FROM JSDELIVR, STARTING'; d.flush();
+    d.el(root, 'div', { class: 'tllm-bar' }); d.el(root, 'div', { class: 'tllm-stage' }); boot.textContent = ''; d.flush(); d.resize();
+    expect(d.styles(d.head)).toContain('tll-fp-map-v1');
+    h = 2503; d.resize(); expect(d.styles(d.head)).not.toContain('tll-fp-map-v1');
+  });
+  it('the two early signs are the map\'s own: its code marks the mount before it asks for anything, and the embed says STARTING at the script\'s load event', () => {
+    const js = read('map-2.0', 'dist', 'tll-map-layers.js');
+    expect(js.indexOf("root.classList.add('tllm')")).toBeGreaterThan(-1); expect(js.indexOf("root.classList.add('tllm')")).toBeLessThan(js.indexOf('getJSON(CONFIG)'));
+    expect(js).toContain("function fail(msg) { root.appendChild(el('p', 'tllm-err', msg)); }");
+    const emb = read('src', 'pages', 'the-map', 'live-2026-10-25', 'embed-682054d4-after.html');
+    expect(emb).toContain("s.onload=function(){say('CODE LOADED FROM '+label+', STARTING');"); expect(emb).toContain('data-tll-version="46a21a18a404b7162bf3bd61c3c26ae70c441445"');
+    expect(build).toContain("'first-paint: the map code no longer marks the mount first'"); expect(build).toContain("'first-paint: the map embed status line changed'");
   });
   it('lets the map hold go when the page is parsed and has no map mount, and after 20 s at the latest', () => {
     const d = makeDom({ path: '/the-map' }); runLayer(fpSrc, d); d.openBody(); d.el(d.body, 'main'); d.fire('DOMContentLoaded');
