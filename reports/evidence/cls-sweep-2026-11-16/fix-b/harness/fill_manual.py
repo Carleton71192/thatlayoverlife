@@ -5,10 +5,24 @@ B = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F = json.load(open(os.path.join(B, 'fill-auto.json')))
 X = json.load(open(os.path.join(B, 'fill-late.json'))) if os.path.exists(os.path.join(B, 'fill-late.json')) else {}
 
-F['RESNOTE'] = ('All tables: `fix-b/table.md`; one row per load: `fix-b/loads.csv`. %s Loads were made between 22:35 UTC on 16 November and 00:20 UTC on 17 November.' % X.get('WHICH',
-    'Which core: three builds are in these tables. The /account and /submit rows are from the final core (' + F['HEAD'] + '). The /stories rows are from 951b08c, and all other rows from bdc6d21. '
-    'The three built cores were compared byte for byte: bdc6d21 and 951b08c differ in one condition inside the /stories block of the layer, 951b08c and the final core differ only inside the nav block, which runs on /account and /submit alone. '
-    'So each row was measured with the code the final core runs on that page. The control was loaded again alongside each time.'))
+BUILD = json.load(open(os.path.join(B, 'out', 'builds.json')))
+NAME = {'account': '/account', 'submit': '/submit', 'profile': 'profile', 'stories': '/stories', 'home': 'home', 'balkans': 'Balkans', 'lisbon': 'Lisbon', 'safrica': 'Southern Africa',
+        'travelers': '/travelers', 'map': '/the-map', 'expats': '/for-expats', 'about': '/about', 'layovers': '/layovers', 'paw': '/the-paw-passport', 'cookies': '/cookies', 'login': '/login', 'signup': '/signup'}
+SETN = {'std': 'standard', 'cpu': 'CPU 4x', 'slow': 'stress', 'other': 'other pages', 'fcp': 'first paint', 'dom': 'finished page', 'split': 'parser held', 'fail': 'failure cases', 'sizes': 'other screens'}
+def which():
+    L = []
+    for st_ in ('std', 'cpu', 'slow', 'other', 'fcp', 'dom', 'split', 'fail', 'sizes'):
+        b = BUILD[st_]; parts = []
+        for k, lab in (('final', 'final core'), ('951b08c', '951b08c'), ('bdc6d21', 'bdc6d21')):
+            pg = [NAME[p] for p in NAME if b.get(p) == k]
+            if pg: parts.append(lab + ': ' + ('all pages' if len(pg) == len(b) else ', '.join(pg)))
+        L.append('| %s | %s |' % (SETN[st_], '; '.join(parts)))
+    return '\n'.join(['| set | build of the new core, by page |', '|---|---|'] + L)
+F['RESNOTE'] = ('All tables: `fix-b/table.md`; one row per load: `fix-b/loads.csv`. Loads were made between 22:35 UTC on 16 November and 01:00 UTC on 17 November.\n\n'
+    '**Which build each row is from.** The layer changed twice while these sets ran, and only the pages a change touches were loaded again (with the control alongside each time). '
+    'bdc6d21 is the core before the last two changes; 951b08c has the /stories lead card change; the final core (' + F['HEAD'] + ') has the rewritten nav piece. '
+    'The three built cores were compared byte for byte: bdc6d21 and 951b08c differ in one condition inside the /stories block of the layer; 951b08c and the final core differ only inside the nav block, which runs on /account and /submit alone. '
+    'So every row was measured with the code the final core runs on that page.\n\n' + which())
 
 F['RESAFTER'] = ('Loads over 0.1 with the new core: none in these five sets (' + F['NBIG'] + ' loads). In the smaller sets (' + F['NSMALL'] + ' more loads) three: '
     'the profile at 1440 with the parser held inside the hero (0.102, control 0.156; "What is left", 6), and two pages with broken code '
@@ -56,6 +70,22 @@ F['SETS'] = ('standard (5 loads a cell: the eight scope cells, home, three stori
     'first paint (8 more loads on six cells), finished page (1 load a cell on all 37 cells, with the body tree and head), parser held (11 points), failure cases (11 cases, 23 cells), other screens (5 sizes a scope page). '
     + F['NALL'] + ' loads in these sets, half of them control. ' + 'The /stories cells of every set were run again after the lead card change and the /account and /submit cells after the nav piece was rewritten; see "Results" for which build each row is from.'
     + ' Smaller checks named in the text (`out` files `g-*`): ' + 'four more finished-page loads on four cells (dom2), fonts blocked at 412x915 and a card trace at 1440 (diag), uncached photos answered locally (ph), the members wrapper when the page is parsed (a3), work per run of the layer (tt), first paint at CPU 4x with 6 loads (cpufcp2).')
+import statistics as st
+def lcps(f, cpu):
+    R = {'ctl': [], 'new': []}
+    p = os.path.join(B, 'out', f)
+    if os.path.exists(p):
+        for l in open(p):
+            r = json.loads(l)
+            if r['page'] == 'account' and r['w'] == 1440 and ('cpu=4' in r['v']) == cpu and 'greeting' in (r.get('lcpEl') or ''): R['ctl' if 'core-1666' in r['v'] else 'new'].append(r['lcpT'])
+    return R
+L4, L1 = lcps('t-cpu.jsonl', True), lcps('t-std.jsonl', False)
+print('greeting line paint, std', L1, 'cpu', L4)
+F['ACCTSEE'] = ('- One more, on /account only. The page shows the empty member dashboard to every visitor as soon as its own script has run ("Found on the way", 7). With the new core it shows when the page is parsed instead, '
+    'because until then the nav\'s early style keeps the rest of the wrapper hidden. In a standard load that is the same moment (the greeting line is painted at %d ms against %d, medians of %d loads). '
+    'At CPU 4x it is about %.2f s later (%d ms against %d, %d loads), and it will be later by as long as the scripts at the end of the page take to arrive. '
+    'A signed-out visitor sees less of a dashboard that is not meant for them. A signed-in member on a slow phone sees the empty dashboard that much later; its content comes when Memberstack has answered, as before.'
+    % (st.median(L1['new']), st.median(L1['ctl']), len(L1['new']), (st.median(L4['new']) - st.median(L4['ctl'])) / 1000.0, st.median(L4['new']), st.median(L4['ctl']), len(L4['new']))) if L1['new'] and L4['new'] else ''
 fl = os.path.join(B, 'out', 'final5.flag'); done5 = open(fl).read().split() if os.path.exists(fl) else []
 todo = [x for x in ('std', 'cpu', 'dom', 'fail', 'split', 'slow', 'sizes', 'fcp') if x not in done5]
 F['STATUS'] = ('**Status, not final:** the /account and /submit rows of these sets are still being measured again with the final core: ' + ', '.join(todo) + '. Until this line is gone, those rows in the tables are from build bdc6d21, whose nav piece had the fault described under "Found on the way", 6. One load a cell with the final core is in already (the a3 check in `fix-b/extra.md`).\n\n') if todo else ''

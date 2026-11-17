@@ -8,10 +8,10 @@ Boxes: every laid-out box at the end of the load (position and size). Body tree:
 
 | cell | boxes equal | body tree equal | head equal | html classes equal | images: control / new / only new | control CLS | new CLS |
 |---|---|---|---|---|---|---|---|
-| /account 390 | yes | yes | yes | no | 0 / 0 / 0 | 0.0119 | 0.0119 |
-| /account 1440 | yes | yes | yes | no | 0 / 0 / 0 | 0.3007 | 0.0037 |
-| /submit 390 | yes | yes | yes | yes | 0 / 0 / 0 | 0.1437 | 0.0002 |
-| /submit 1440 | yes | yes | yes | yes | 0 / 0 / 0 | 0.0551 | 0.0003 |
+| /account 390 | yes | yes | yes | yes | 0 / 0 / 0 | 0.0119 | 0.0119 |
+| /account 1440 | yes | yes | yes | yes | 0 / 0 / 0 | 0.3007 | 0.0037 |
+| /submit 390 | yes | yes | yes | yes | 0 / 0 / 0 | 0.1437 | 0.0003 |
+| /submit 1440 | yes | yes | yes | yes | 0 / 0 / 0 | 0.0552 | 0.0004 |
 | /contributors/<profile> 390 | no | no | yes | yes | 20 / 19 / 0 | 0.0807 | 0.0004 |
 | /contributors/<profile> 1440 | yes | yes | yes | yes | 26 / 26 / 0 | 0.1180 | 0.0008 |
 | /stories 390 | yes | yes | yes | yes | 56 / 56 / 0 | 0.0284 | 0.0073 |
@@ -46,7 +46,7 @@ Boxes: every laid-out box at the end of the load (position and size). Body tree:
 | /signup 390 | yes | yes | yes | yes | 0 / 0 / 0 | 0.0109 | 0.0076 |
 | /signup 1440 | yes | yes | yes | yes | 0 / 0 / 0 | 0.0002 | 0.0018 |
 
-The html element: its classes are compared without the font loader's wf-* classes. Its `data-tll-floor` attribute is a counter the site's type floor script leaves (how many sizes it wrote in its last pass); it differs in these cells (control / new): /account 390: 6 / 1; /contributors/<profile> 390: 16 / 1; /the-map 390: 4 / 3; /the-map 1440: 4 / 3.
+The html element: its classes are compared without the font loader's wf-* classes. Its `data-tll-floor` attribute is a counter the site's type floor script leaves (how many sizes it wrote in its last pass); it differs in these cells (control / new): /account 390: 1 / 6; /contributors/<profile> 390: 16 / 1; /the-map 390: 4 / 3; /the-map 1440: 4 / 3.
 
 ### Four more loads a cell and core, for the three cells where one control load differed above (and home)
 
@@ -81,9 +81,9 @@ In those three control loads the site's own type floor or touch target script ha
 | profile, after the hero | 1440 | 0.1178 | 0.0017 | yes | yes | yes |
 | profile, before the story list | 390 | 0.0763 | 0.0004 | yes | yes | yes |
 | profile, before the story list | 1440 | 0.1178 | 0.0018 | yes | yes | yes |
-| /account, after the nav | 390 | 0.2407 | 0.0938 | yes | yes | no |
-| /account, after the nav | 1440 | 0.0692 | 0.0185 | yes | yes | no |
-| /submit, after the nav | 390 | 0.1437 | 0.0002 | yes | yes | yes |
+| /account, after the nav | 390 | 0.2612 | 0.0938 | yes | yes | yes |
+| /account, after the nav | 1440 | 0.0694 | 0.0185 | yes | yes | yes |
+| /submit, after the nav | 390 | 0.1439 | 0.0000 | yes | yes | yes |
 | /submit, after the nav | 1440 | 0.0552 | 0.0001 | yes | yes | yes |
 
 ## Failure cases, control against new
@@ -92,14 +92,14 @@ What counts here is the finished page: with the page code broken it has to end a
 
 | case | page | width | control CLS | new CLS | boxes equal | body tree equal | head equal | html classes equal |
 |---|---|---|---|---|---|---|---|---|
-| site head script tll-proto-parity-js-v1 throws when it starts | /account | 390 | 0.0000 | 0.0000 | yes | yes | yes | no |
-| site head script tll-proto-parity-js-v1 throws when it starts | /account | 1440 | 0.0166 | 0.0001 | yes | yes | yes | no |
-| site head script tll-proto-parity-js-v1 throws when it starts | /submit | 390 | 0.0002 | 0.1410 | yes | yes | yes | yes |
-| site head script tll-proto-parity-js-v1 throws when it starts | /submit | 1440 | 0.0002 | 0.0538 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 throws when it starts | /account | 390 | 0.0000 | 0.0000 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 throws when it starts | /account | 1440 | 0.0166 | 0.0001 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 throws when it starts | /submit | 390 | 0.0000 | 0.1410 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 throws when it starts | /submit | 1440 | 0.0000 | 0.0538 | yes | yes | yes | yes |
 | site head script tll-proto-parity-js-v1 not on the page | /account | 390 | 0.0000 | 0.0000 | yes | yes | yes | yes |
 | site head script tll-proto-parity-js-v1 not on the page | /account | 1440 | 0.0166 | 0.0166 | yes | yes | yes | yes |
-| site head script tll-proto-parity-js-v1 not on the page | /submit | 390 | 0.0000 | 0.0002 | yes | yes | yes | yes |
-| site head script tll-proto-parity-js-v1 not on the page | /submit | 1440 | 0.0000 | 0.0002 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 not on the page | /submit | 390 | 0.0142 | 0.0000 | yes | yes | yes | yes |
+| site head script tll-proto-parity-js-v1 not on the page | /submit | 1440 | 0.0002 | 0.0002 | yes | yes | yes | yes |
 | site head script tll-mobile-nav-js-v1 throws when it starts | /submit | 390 | 0.1439 | 0.0002 | yes | yes | yes | yes |
 | site head script tll-mobile-nav-js-v1 not on the page | /stories | 390 | 0.0318 | 0.0073 | yes | yes | yes | yes |
 | /stories script tll-lib-lead-v1 throws when it starts | /stories | 390 | 0.0123 | 0.0177 | yes | yes | yes | yes |
