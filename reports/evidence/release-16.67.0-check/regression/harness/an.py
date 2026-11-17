@@ -4,7 +4,7 @@ No page text, no box lists, no member data: only numbers, hashes and masked path
 import json, os, sys, csv, statistics as stt
 from collections import defaultdict
 D = '/tmp/claude-0/-home-user-thatlayoverlife/16a08c1e-77ab-50a3-8cf3-b364d5e24f1b/scratchpad/nov17/check1667-regression'
-SETS = ['story', 'slow', 'signedin', 'fail', 'stq', 'reload', 'tap', 'consent', 'rm', 'jsoff', 'back', 'resize', 'w320']
+SETS = ['story', 'slow', 'slow2', 'signedin', 'signedin2', 'fail', 'fail2', 'stq', 'reload', 'tap', 'consent', 'rm', 'jsoff', 'back', 'resize', 'w320']
 os.makedirs(D + '/out', exist_ok=True)
 med = lambda a: round(stt.median(a), 4) if a else None
 def stage_cls(rec):

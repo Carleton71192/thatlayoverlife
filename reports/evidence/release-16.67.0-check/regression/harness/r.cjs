@@ -84,11 +84,13 @@ function plan(set) {
     cell('account-in-fast-1440', 'account', 1440, { opts: { ms: 'in', msDelay: 20 }, rounds: 1 }), cell('stories-cmp-deny-390', 'stories', 390, { opts: { cmp: 'deny' }, rounds: 1, wait: 6000 })); return C; }
   /* slow 4G on four pages */
   if (set === 'slow') { for (const p of ['travelers', 'map', 'account', 'stories']) for (const w of [390, 1440]) C.push(cell(p + '-slow-' + w, p, w, { opts: { slow: 1 }, rounds: 3, wait: 4000 })); return C; }
+  /* repeats (11:50 UTC): /stories under slow 4G read higher on test in 2 of 3 first loads (the title hold lets go at the font swap) */
+  if (set === 'slow2') { for (const w of [390, 1440]) C.push(cell('stories-slow-' + w, 'stories', w, { opts: { slow: 1 }, rounds: 8, wait: 4000 })); C.push(cell('stories-slow-360', 'stories', 360, { opts: { slow: 1 }, rounds: 3, wait: 4000 })); return C; }
   /* scripts failing */
   if (set === 'fail') {
-    for (const p of EIGHT) C.push(cell(p + '-parity-throw-390', p, 390, { opts: { html: inl('tll-proto-parity-js-v1') } }));
+    for (const p of EIGHT) C.push(cell(p + '-parity-throw-390', p, 390, { opts: { html: inl('tll-proto-parity-js-v1') }, rounds: 1 }));
     for (const p of ['account', 'submit', 'stories']) C.push(cell(p + '-parity-throw-1440', p, 1440, { opts: { html: inl('tll-proto-parity-js-v1') } }));
-    for (const p of EIGHT) C.push(cell(p + '-mnav-throw-390', p, 390, { opts: { html: inl('tll-mobile-nav-js-v1') } }));
+    for (const p of EIGHT) C.push(cell(p + '-mnav-throw-390', p, 390, { opts: { html: inl('tll-mobile-nav-js-v1') }, rounds: 1 }));
     for (const w of [390, 1440]) { for (const id of ['tll-lib-search-v4', 'tll-lib-chips-v1', 'tll-lib-lead-v1', 'tll-s3-stories-js-v1']) C.push(cell('stories-' + id + '-throw-' + w, 'stories', w, { opts: { html: inl(id) } }));
       C.push(cell('stories-footer4-throw-' + w, 'stories', w, { opts: { html: inlAll(['tll-lib-search-v4', 'tll-lib-chips-v1', 'tll-lib-lead-v1', 'tll-s3-stories-js-v1']) } }));
       C.push(cell('stories-shareyours404-' + w, 'stories', w, { opts: { fail: [{ re: /tll_library_share_yours/, mode: '404' }] } }));
@@ -117,6 +119,17 @@ function plan(set) {
   if (set === 'w320') { for (const p of EIGHT) C.push(cell(p + '-320', p, 320, { wait: p === 'travelers' ? 11000 : 4000 })); return C; }
   if (set === 'signedin') { for (const p of ['account', 'submit']) for (const w of [390, 1440]) for (const [n, d] of [['fast', 20], ['late', 1500]]) C.push(cell(p + '-in-' + n + '-' + w, p, w, { opts: { ms: 'in', msDelay: d }, wait: 5000 }));
     for (const p of ['account', 'submit']) C.push(cell(p + '-in-slow-390', p, 390, { opts: { ms: 'in', msDelay: 20, slow: 1 }, rounds: 1, wait: 5000 })); return C; }
+  /* repeats (11:58 UTC): signed in /account 390 with a late member answer read 0.244 on test in 2 of 2 (www 0.230 and 0.071); signed-in /submit slow 390 one load each */
+  if (set === 'signedin2') { C.push(cell('account-in-late-390', 'account', 390, { opts: { ms: 'in', msDelay: 1500 }, wait: 5000, rounds: 8 }));
+    C.push(cell('account-in-late-1440', 'account', 1440, { opts: { ms: 'in', msDelay: 1500 }, wait: 5000, rounds: 4 }));
+    C.push(cell('submit-in-slow-390', 'submit', 390, { opts: { ms: 'in', msDelay: 20, slow: 1 }, wait: 5000, rounds: 3 })); return C; }
+  /* follow-ups (12:10 UTC): all four /stories footer scripts throwing read 0.369 on test (www 0.017); which pair does it. The map embed boot throwing keeps the map hold: watch past 20 s */
+  if (set === 'fail2') { const F = { search: 'tll-lib-search-v4', chips: 'tll-lib-chips-v1', lead: 'tll-lib-lead-v1', s3: 'tll-s3-stories-js-v1' };
+    for (const combo of [['search', 'chips', 's3'], ['lead', 'search'], ['lead', 'chips'], ['lead', 's3'], ['search', 'chips'], ['chips', 's3'], ['search', 's3'], ['search', 'chips', 'lead'], ['search', 'lead', 's3'], ['chips', 'lead', 's3']])
+      C.push(cell('stories-throw-' + combo.join('+') + '-390', 'stories', 390, { opts: { html: inlAll(combo.map(k => F[k])) }, rounds: 1 }));
+    C.push(cell('stories-footer4-throw-390', 'stories', 390, { opts: { html: inlAll(Object.values(F)) }, rounds: 2 }));
+    C.push(cell('stories-footer4-throw-360', 'stories', 360, { opts: { html: inlAll(Object.values(F)) }, rounds: 1 }));
+    for (const w of [390, 1440]) C.push(cell('map-mapboot-throw-25s-' + w, 'map', w, { opts: { html: mapBootThrow }, wait: 25000, rounds: 1 })); return C; }
   if (set === 'consent') { for (const p of EIGHT) C.push(cell(p + '-cmp-deny-390', p, 390, { opts: { cmp: 'deny' }, rounds: 1, wait: 6000 }));
     for (const p of ['stories', 'account']) C.push(cell(p + '-cmp-deny-1440', p, 1440, { opts: { cmp: 'deny' }, rounds: 1, wait: 6000 }));
     for (const p of ['travelers', 'stories']) C.push(cell(p + '-cmp-grant-390', p, 390, { opts: { cmp: 'grant' }, rounds: 1, wait: 6000 })); return C; }
@@ -174,7 +187,7 @@ const ctype = p => /\.css$/.test(p) ? 'text/css; charset=utf-8' : /\.json$/.test
 const NETLOG = path.join(D, 'results', 'net.json');
 const net = fs.existsSync(NETLOG) ? JSON.parse(fs.readFileSync(NETLOG, 'utf8')) : { docBytes: 0, docN: 0, copyN: 0, wfBytes: 0, wfFetched: [], thirdBytes: {}, thirdFetched: [], wfMediaAborted: {} };
 const saveNet = () => fs.writeFileSync(NETLOG, JSON.stringify(net, null, 1));
-const BUDGET = 85e6; /* this check's own limit for Webflow hosts, counted high: documents taken with route.fetch count their unpacked size */
+const BUDGET = 110e6; /* this check's own limit for Webflow hosts, counted high: documents taken with route.fetch count their unpacked size */
 
 /* ---------------- in-page code ---------------- */
 function INIT() {
@@ -263,7 +276,7 @@ async function oneLoad(browser, set, s, host, i) {
           if (pu.origin === O && pth === pathn && !st.docN) { st.docN++; /* the one real navigation */
             if (!o.html && !o.slow) { st.realReq = q; return route.continue(); }
             const r = await route.fetch(); let body = await r.text(); const hd = r.headers();
-            st.docBytes += (+hd['content-length'] || body.length) + 800; st.docStatus = r.status();
+            st.docRaw = body.length; st.docBytes += (+hd['content-length'] || zlib.gzipSync(body).length) + 800; st.docStatus = r.status(); /* from 12:15 UTC: wire size estimated as the gzip size (before: unpacked size) */
             if (o.html) { const b2 = o.html(body); st.htmlMod = b2.length - body.length; body = b2; }
             await wire(Math.round(body.length / 4)); /* the document's share of the pipe: compressed size, about a quarter */
             return route.fulfill({ status: r.status(), headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-cache' }, body }); }
@@ -316,7 +329,7 @@ async function oneLoad(browser, set, s, host, i) {
     rec.ok = 1;
     if (tl) rec.tl = tl;
   } catch (e) { rec.ok = 0; rec.fail = mask(String(e)).slice(0, 200); }
-  Object.assign(rec, { core: st.core, git: [...new Set(st.git)].sort(), docN: st.docN, copyN: st.copyN, docBytes: st.docBytes, docStatus: st.docStatus, htmlMod: st.htmlMod, nonGet: st.nonGet, ads: st.ads, hit: st.hit, hooked: [...new Set(st.hooked)],
+  Object.assign(rec, { core: st.core, git: [...new Set(st.git)].sort(), docN: st.docN, copyN: st.copyN, docBytes: st.docBytes, docStatus: st.docStatus, docRaw: st.docRaw, htmlMod: st.htmlMod, nonGet: st.nonGet, ads: st.ads, hit: st.hit, hooked: [...new Set(st.hooked)],
     navAborted: st.navAborted, aborted: st.aborted.slice(0, 30), abortedN: st.aborted.length, wfMedia: st.wfMedia.slice(0, 20), wfMediaN: st.wfMedia.length, net: [...new Set(st.net)], kept: st.kept,
     errs: st.errs.slice(0, 8), errN: st.errs.length, cons: [...new Set(st.cons)].slice(0, 10), consN: st.cons.length, scriptBad: st.scriptBad.slice(0, 8), routeFail: st.failed.slice(0, 4) });
   net.docBytes += st.docBytes; net.docN += st.docN; net.copyN = (net.copyN || 0) + st.copyN; saveNet();
