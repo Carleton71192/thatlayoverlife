@@ -7,7 +7,7 @@
    page's own code runs, so that code finds the page as it has always found it and the finished page is its own work.
      when     A MutationObserver watches the page arrive; a piece goes in once the elements it needs have arrived whole.
      before   Window capture of DOMContentLoaded, which runs before every listener on the document: the stand-in Menu button is taken
-              out, the nav is put back into its wrapper, the lead mark is taken off, and the early extras on the profile photo are
+              out, the nav's early style is removed, the lead mark is taken off, and the early extras on the profile photo are
               removed. The page's own listeners then do their work in the same task, so no frame is painted in between.
      after    Window bubble of DOMContentLoaded, which runs after every listener on the document: follow-ups (a tap on the stand-in
               Menu button is passed on, the profile stand-in is let go one timer later, after the page's own timer).
@@ -16,9 +16,10 @@
      Menu     every page with the site head script tll-mobile-nav-js-v1: a stand-in button with the real button's class at the end of
               the nav's button row, so the row has its final width (and, from 768 to 899 px, the header its final height) from the
               first paint. It is not announced and not in the tab order.
-     nav      /account and /submit, with the site head script tll-proto-parity-js-v1: the nav is moved in front of its
-              [data-ms-content] wrapper as soon as it has been parsed, the same move navOut() makes when the page is parsed. The
-              wrapper and every data-ms-* attribute are left as they are.
+     nav      /account and /submit, with the site head script tll-proto-parity-js-v1: until the page is parsed a style shows the
+              nav's hidden [data-ms-content] wrapper with the nav as its only shown child, the picture navOut() makes when it moves
+              the nav in front of the wrapper. Nothing is moved, so page scripts that run while the page is parsed find it as served.
+              The wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
               back the moment that script's element is parsed, right before it runs and merges for itself. (2) The first card
               leads from the moment the parser adds it. When the whole grid has arrived and the page's rules name another card (a pick
@@ -76,16 +77,22 @@ if(D.getElementById('tll-mobile-nav-js-v1'))(function(){
 })();
 
 /* ---- the nav on /account and /submit (C1) ---- */
+/* The nav is the first child of a [data-ms-content="members"] wrapper, which the site keeps hidden until Memberstack has answered
+   (html.ms-loaded); navOut() in the site head moves the nav in front of the wrapper when the page is parsed. Here nothing is moved:
+   until then a style shows the wrapper with the nav as its only shown child, which is the same picture. The page's scripts that
+   run while the page is parsed find the page as it was served (tll-a3-account-js-v1 on /account takes the first
+   [data-ms-content="members"] in the document: with the nav moved out early that was the nav's own member block, and the account
+   page lost its tab rail). No data-ms-* attribute is written; the mark is on the nav. Not where :has() is unknown. */
 if((path==='/account'||path==='/submit')&&D.getElementById('tll-proto-parity-js-v1'))(function(){
-  var nav=null,home=null,next=null,foc=null;
-  steps.push(function(){var n=q('nav.tll-nav-v1');if(!n||!whole(n))return false;
-    var w=n.closest('[data-ms-content]');if(!w||!w.parentNode)return true;
-    home=n.parentNode;next=n.nextSibling;w.parentNode.insertBefore(n,w);nav=n;return true;});
-  /* back into the wrapper, where navOut() expects it; not if the wrapper has left the page meanwhile */
-  before.push(function(){if(!nav||!inDoc(home)||nav.parentNode===home)return;
-    var a=D.activeElement;foc=a&&a!==D.body&&nav.contains(a)?a:null;
-    if(next&&next.parentNode===home)home.insertBefore(nav,next);else home.insertBefore(nav,home.firstChild);});
-  after.push(function(){if(foc&&inDoc(foc)){try{foc.focus({preventScroll:true});}catch(e){}}});
+  var ok=false;try{ok=!!(W.CSS&&W.CSS.supports&&W.CSS.supports('selector(:has(*))'));}catch(e){}
+  if(!ok)return;
+  var nav=null,st=null,MARK='data-tll-es-nav',WR='html:not(.ms-loaded) [data-ms-content]:has(>nav['+MARK+'])';
+  steps.push(function(){var n=q('nav.tll-nav-v1'),w=n&&n.parentNode;if(!n)return false;
+    if(!w||w.nodeType!==1||!w.hasAttribute('data-ms-content'))return true;
+    nav=n;n.setAttribute(MARK,'');
+    st=sheet('tll-es-nav-v1',WR+'{display:block!important}'+WR+'>:not(nav['+MARK+']){display:none!important}');return true;});
+  /* let go before navOut() runs: it then moves the nav out in the same task, so no frame is painted in between */
+  before.push(function(){drop(st);if(nav)nav.removeAttribute(MARK);});
 })();
 
 /* ---- /stories (C6) ---- */

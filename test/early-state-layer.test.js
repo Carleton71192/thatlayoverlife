@@ -28,7 +28,7 @@ const PF5_JS = read('src', 'pages', 'contributors-template', 'live-2026-11-16', 
 const PF5N_JS = script(read('src', 'pages', 'contributors-template', 'live-2026-11-10', 'after', 'tll-pf5-n-v1.html'), 'tll-pf5-n-v1');
 
 // ---- a small DOM: elements, text, a selector engine, observers, events with a capture phase, timers ----
-function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () => false, families = {}, fontsLoaded = [] } = {}) {
+function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () => false, families = {}, fontsLoaded = [], cssHas = true } = {}) {
   const observers = []; const timers = []; let seq = 0; let now = 0; let doc; let win;
   const notify = (target) => { observers.forEach((o) => { if (o.on && o.sees(target)) o.pending = true; }); };
   const flush = () => { for (let k = 0; k < 50; k++) { const p = observers.filter((o) => o.on && o.pending); if (!p.length) return; p.forEach((o) => { o.pending = false; o.cb([]); }); } };
@@ -128,6 +128,7 @@ function makeDom({ path = '/', search = '', readyState = 'loading', hidden = () 
   const clearTimeout = (id) => { const t = timers.find((x) => x.seq === id); if (t) t.f = null; };
   const setInterval = () => 0; const clearInterval = () => {};
   win = { MutationObserver, Promise, innerHeight: 900, document: doc, setTimeout, clearTimeout, setInterval, clearInterval, addEventListener: add(winL),
+    CSS: cssHas === null ? undefined : { supports: (q) => { if (cssHas === 'throw') throw new Error('lab'); return q === 'selector(:has(*))' && !!cssHas; } },
     matchMedia: () => ({ matches: false }), requestIdleCallback: () => {}, sessionStorage: { getItem: () => null, setItem: () => {} },
     getComputedStyle: (n) => ({ display: hidden(n) ? 'none' : 'block', fontFamily: families[n.tagName.toLowerCase()] || '', fontWeight: '800', fontStyle: n.tagName === 'EM' ? 'italic' : 'normal' }) };
   // the parser: add an element (or text) to a parent, then let the observers run, as at the end of a parser task
@@ -222,43 +223,66 @@ describe('tll-early-state-v1: the Menu button (C9)', () => {
 });
 
 describe('tll-early-state-v1: the nav on /account and /submit (C1)', () => {
-  const page = (pathName, opt = {}) => { const d = makeDom({ path: pathName }); HEAD(d, opt); const b = d.body(); const wrap = d.el(b, 'div', { class: 'tll-account-wrap' }); const mem = d.el(wrap, 'div', { 'data-ms-content': 'members' });
+  const NAV_CSS = 'html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav]){display:block!important}html:not(.ms-loaded) [data-ms-content]:has(>nav[data-tll-es-nav])>:not(nav[data-tll-es-nav]){display:none!important}';
+  const page = (pathName, opt = {}, dom = {}) => { const d = makeDom({ path: pathName, ...dom }); HEAD(d, opt); const b = d.body(); const wrap = d.el(b, 'div', { class: 'tll-account-wrap' }); const mem = d.el(wrap, 'div', { 'data-ms-content': 'members' });
     const n = NAV(d, mem); return { d, b, wrap, mem, ...n }; };
-  it('moves the nav in front of its members wrapper as soon as it has been parsed', () => {
+  const sheetOf = (d) => d.head.children.filter((n) => n.tagName === 'STYLE' && n.id === 'tll-es-nav-v1')[0] || null;
+  it('shows the hidden wrapper with the nav as its only shown child, by a style and a mark on the nav; nothing is moved', () => {
     const { d, wrap, mem, nav } = page('/account');
-    expect(nav.parentNode).toBe(mem);
-    d.el(mem, 'section', { class: 'after' });
-    expect(nav.parentNode).toBe(wrap); expect(nav.nextSibling).toBe(mem); expect(mem.getAttribute('data-ms-content')).toBe('members');
+    const st = sheetOf(d); expect(st).not.toBe(null); expect(st.textContent).toBe(NAV_CSS); expect(d.styles()).toEqual(['tll-es-nav-v1']);
+    expect(nav.getAttribute('data-tll-es-nav')).toBe(''); expect(nav.parentNode).toBe(mem); expect(mem.firstChild).toBe(nav); expect(mem.parentNode).toBe(wrap);
+    expect(Object.keys(mem.attrs)).toEqual(['data-ms-content']); expect(mem.getAttribute('data-ms-content')).toBe('members');
+    d.el(mem, 'section', { class: 'after' }); expect(nav.parentNode).toBe(mem); expect(d.styles()).toEqual(['tll-es-nav-v1']);
   });
-  it('puts it back before navOut() runs, which then moves it out: same finished page as without the layer', () => {
+  it('a page script that runs while the page is parsed finds the outer members wrapper first, as served (tll-a3-account-js-v1 takes the first one)', () => {
+    const { d, mem, nav } = page('/account'); const hero = d.el(mem, 'section', { class: 'tll-account-hero' });
+    const M = d.document.querySelector('[data-ms-content="members"]');
+    expect(M).toBe(mem); expect(M.querySelector('.tll-account-hero')).toBe(hero); expect(nav.closest('[data-ms-content]')).toBe(mem);
+  });
+  it('lets go before navOut() runs, which then moves the nav out: same finished page as without the layer', () => {
     for (const p of ['/account', '/submit']) {
       const a = page(p); a.d.el(a.mem, 'section', { class: 'after' }); a.d.el(a.wrap, 'div', { 'data-ms-content': 'anonymous' }); a.d.parsed();
       const c = page(p, { withLayer: false }); c.d.el(c.mem, 'section', { class: 'after' }); c.d.el(c.wrap, 'div', { 'data-ms-content': 'anonymous' }); c.d.parsed();
-      expect(a.nav.parentNode).toBe(a.wrap); expect(a.b.html()).toBe(c.b.html()); expect(a.d.thrown).toEqual([]);
+      expect(a.nav.parentNode).toBe(a.wrap); expect(a.nav.hasAttribute('data-tll-es-nav')).toBe(false); expect(a.d.styles()).toEqual([]);
+      expect(a.b.html()).toBe(c.b.html()); expect(a.d.thrown).toEqual([]);
     }
   });
-  it('the page script missing: the nav is not touched', () => {
-    const { d, mem, nav } = page('/account', { parity: null }); d.el(mem, 'section'); expect(nav.parentNode).toBe(mem); d.parsed(); expect(nav.parentNode).toBe(mem);
+  it('the page script missing: nothing is set', () => {
+    const { d, mem, nav } = page('/account', { parity: null }); d.el(mem, 'section'); expect(d.styles()).toEqual([]); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false);
+    d.parsed(); expect(nav.parentNode).toBe(mem); expect(d.styles()).toEqual([]);
   });
-  it('the page script throwing: the nav ends inside the wrapper, as it does without the layer', () => {
+  it('the page script throwing: style and mark are gone when the page is parsed and the nav ends inside the wrapper, as it does without the layer', () => {
     const bad = "throw new Error('lab');" + PARITY_JS;
-    const a = page('/submit', { parity: bad }); a.d.el(a.mem, 'section'); expect(a.nav.parentNode).toBe(a.wrap);
-    a.d.parsed(); expect(a.nav.parentNode).toBe(a.mem); expect(a.mem.firstChild).toBe(a.nav);
+    const a = page('/submit', { parity: bad }); a.d.el(a.mem, 'section'); expect(a.d.styles()).toEqual(['tll-es-nav-v1']);
+    a.d.parsed(); expect(a.nav.parentNode).toBe(a.mem); expect(a.mem.firstChild).toBe(a.nav); expect(a.d.styles()).toEqual([]); expect(a.nav.hasAttribute('data-tll-es-nav')).toBe(false);
     const c = page('/submit', { parity: bad, withLayer: false }); c.d.el(c.mem, 'section'); c.d.parsed();
     expect(a.b.html()).toBe(c.b.html());
   });
-  it('a second nav outside any wrapper: navOut() leaves the first one in, and so does the finished page here', () => {
-    const a = page('/account'); a.d.el(a.mem, 'section'); const extra = a.d.el(a.b, 'nav', { class: 'tll-nav-v1' }); a.d.el(a.b, 'footer'); a.d.parsed();
-    expect(a.nav.parentNode).toBe(a.mem); expect(extra.parentNode).toBe(a.b);
+  it('a second nav outside any wrapper: navOut() leaves the first one in, and the finished page is the one without the layer', () => {
+    const mk = (opt) => { const a = page('/account', opt); a.d.el(a.mem, 'section'); const extra = a.d.el(a.b, 'nav', { class: 'tll-nav-v1' }); a.d.el(a.b, 'footer'); a.d.parsed(); return { ...a, extra }; };
+    const a = mk({}); const c = mk({ withLayer: false });
+    expect(a.nav.parentNode).toBe(a.mem); expect(a.extra.parentNode).toBe(a.b); expect(a.d.styles()).toEqual([]); expect(a.b.html()).toBe(c.b.html());
   });
   it('other paths with the same markup are left alone', () => {
-    const { d, mem, nav } = page('/edit-profile'); d.el(mem, 'section'); expect(nav.parentNode).toBe(mem);
+    const { d, mem, nav } = page('/edit-profile'); d.el(mem, 'section'); expect(nav.parentNode).toBe(mem); expect(d.styles()).toEqual([]); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false);
   });
-  it('a wrapper that has left the page before the page-parsed event: the nav is not put back into it', () => {
-    const { d, wrap, mem, nav } = page('/account'); d.el(mem, 'section'); mem.remove(); d.parsed(); expect(nav.parentNode).toBe(wrap);
+  it('a nav that is not the child of a [data-ms-content] wrapper is left alone', () => {
+    const d = makeDom({ path: '/account' }); HEAD(d); const b = d.body(); const { nav } = NAV(d, b); d.el(b, 'main');
+    expect(d.styles()).toEqual([]); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false);
+    const e = makeDom({ path: '/account' }); HEAD(e); const eb = e.body(); const mem = e.el(eb, 'div', { 'data-ms-content': 'members' }); const mid = e.el(mem, 'div', { class: 'mid' }); const n2 = NAV(e, mid).nav; e.el(mem, 'section');
+    expect(e.styles()).toEqual([]); expect(n2.hasAttribute('data-tll-es-nav')).toBe(false);
   });
-  it('20 s without a page-parsed event: back into the wrapper', () => {
-    const { d, mem, nav } = page('/account'); d.el(mem, 'section'); d.run(20000); expect(nav.parentNode).toBe(mem); expect(mem.firstChild).toBe(nav);
+  it('where :has() is unknown, or cannot be asked, nothing is set', () => {
+    for (const cssHas of [false, null, 'throw']) { const { d, mem, nav } = page('/account', {}, { cssHas }); d.el(mem, 'section');
+      expect(d.styles()).toEqual([]); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false); d.parsed(); expect(nav.parentNode.getAttribute('class')).toBe('tll-account-wrap'); expect(d.thrown).toEqual([]); }
+  });
+  it('a wrapper that has left the page before the page-parsed event: the style goes and nothing throws', () => {
+    const { d, mem, nav } = page('/account'); d.el(mem, 'section'); mem.remove(); d.parsed();
+    expect(d.styles()).toEqual([]); expect(nav.parentNode).toBe(mem); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false); expect(d.thrown).toEqual([]);
+  });
+  it('20 s without a page-parsed event: style and mark are let go', () => {
+    const { d, mem, nav } = page('/account'); d.el(mem, 'section'); d.run(19999); expect(d.styles()).toEqual(['tll-es-nav-v1']);
+    d.run(1); expect(d.styles()).toEqual([]); expect(nav.hasAttribute('data-tll-es-nav')).toBe(false); expect(nav.parentNode).toBe(mem); expect(mem.firstChild).toBe(nav);
   });
 });
 
@@ -565,6 +589,10 @@ describe('tll-early-state-v1 in the build', () => {
   });
   it('touches no data-ms-* attribute and no form or field name', () => {
     const code = layerSrc.slice(layerSrc.indexOf('(function(){'));
-    expect(code.match(/data-ms-[a-z]+/g)).toEqual(['data-ms-content']); expect(/setAttribute\('data-ms|removeAttribute\('data-ms|\.name\s*=/.test(code)).toBe(false);
+    // the only data-ms-* name in the code is data-ms-content, and it is only read: to see that the nav's parent is such a wrapper, and in the selector of the nav's early style
+    const bare = code.replace(/\/\*[\s\S]*?\*\//g, '');
+    expect([...new Set(bare.match(/data-ms-[a-z]+/g))]).toEqual(['data-ms-content']); expect(bare.match(/data-ms-[a-z]+/g).length).toBe(2);
+    expect(bare.includes("w.hasAttribute('data-ms-content')")).toBe(true); expect(bare.includes("[data-ms-content]:has(>nav['+MARK+'])")).toBe(true);
+    expect(/setAttribute\('data-ms|removeAttribute\('data-ms|\.name\s*=/.test(code)).toBe(false); expect(/setAttribute\(MARK|removeAttribute\(MARK/.test(bare)).toBe(true); expect(bare.includes("MARK='data-tll-es-nav'")).toBe(true);
   });
 });

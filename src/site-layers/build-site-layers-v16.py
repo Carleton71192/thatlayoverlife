@@ -274,6 +274,14 @@ def early_state_checks():
                   "var b=document.createElement('button');b.type='button';b.className='tllmm-btn';",
                   "b.textContent='Menu';\ncta.appendChild(b);"):
         assert piece in head, 'early-state: the site head no longer has ' + piece[:80]
+    # the nav piece (17 Nov): it shows the wrapper the site hides until Memberstack has answered, and moves nothing, because the
+    # /account page script takes the first members wrapper in the document while the page is parsed
+    for piece in ('[data-ms-content="members"]{display:none}', 'html.ms-loaded [data-ms-content="members"]{display:block}'):
+        assert piece in head, 'early-state: the site head no longer has ' + piece
+    a3 = read('src/pages/account/a3-account.js')
+    for piece in ("var M=$('[data-ms-content=\"members\"]'); if(!M) return;", "H.classList.add('a3-on');"):
+        assert piece in a3, 'early-state: the /account page script no longer has ' + piece
+    assert "html:not(.ms-loaded) [data-ms-content]:has(>nav['+MARK+'])" in s and 'insertBefore(n,w)' not in s, 'early-state: the nav piece must not move the nav'
     lead = read('src/pages/stories/live-2026-11-16/tll-lib-lead-v1.live.html')
     for piece in ("var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;",
                   "var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }",
