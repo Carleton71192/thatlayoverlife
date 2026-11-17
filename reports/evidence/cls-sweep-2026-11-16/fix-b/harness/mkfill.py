@@ -34,17 +34,17 @@ print('FCP', len(C), 'cells', lo, hi, max(d, key=d.get), len(alla), len(allb), s
 print('FCP scope', {k: v for k, v in sorted(scope.items())})
 # every standard-speed load of the three builds, scope cells (the code a page runs is the same in all three apart from its own change)
 P = defaultdict(lambda: defaultdict(list)); SS = defaultdict(lambda: defaultdict(list))
-for f in ('f-std', 's-std', 't-std', 'u-scope', 'f-fcp', 's-fcp', 't-fcp', 'f-dom', 's-dom', 't-dom'):
+for f in ('f-std', 's-std', 't-std', 'u-scope', 'u-rest', 'f-fcp', 's-fcp', 't-fcp', 'f-dom', 's-dom', 't-dom', 'g-dom2'):
     for r in rows(f + '.jsonl'):
-        if r['page'] in ('account', 'submit', 'profile', 'stories') and r['w'] in (390, 1440) and r['h'] in (844, 900) and r['fcp'] is not None:
+        if r['page'] in ('account', 'submit', 'profile', 'stories', 'home', 'balkans', 'lisbon', 'safrica') and r['h'] in (800, 844, 900) and r['fcp'] is not None and r['v'].count('+') == r['v'].count('+eval='):
             P[(r['page'], r['w'])][r['k']].append(r['fcp'])
             if f in ('f-std', 's-std', 'u-scope'): SS[(r['page'], r['w'], f)][r['k']].append(r['fcp'])
 pd = {k: st.median(P[k]['new']) - st.median(P[k]['ctl']) for k in P}
 s390 = [st.median(SS[('stories', 390, f)]['new']) - st.median(SS[('stories', 390, f)]['ctl']) for f in ('f-std', 's-std', 'u-scope') if SS[('stories', 390, f)]['new']]
 print('POOLED', {k: (len(P[k]['new']), pd[k]) for k in sorted(P)}, 'stories 390 by 5-load set', s390)
-POOL = ('With every standard-speed load of the three builds pooled for the eight scope cells (%d to %d loads a cell and core) the new core is between %d ms earlier and %d ms later. '
+POOL = ('With every standard-speed load of the three builds pooled, for the eight scope cells, home and the three stories (%d cells, %d to %d loads a cell and core), the new core is between %d ms earlier and %d ms later (the scope cells between %d earlier and %d later). '
         'A single set of 5 loads can read far from that: /stories at 390 came out %s ms in three such sets, which is why its row in the standard table above shows 36 ms. '
-        % (min(len(P[k]['new']) for k in P), max(len(P[k]['new']) for k in P), -min(pd.values()), max(pd.values()), ', '.join('%+d' % x for x in s390)))
+        % (len(P), min(len(P[k]['new']) for k in P), max(len(P[k]['new']) for k in P), -min(pd.values()), max(pd.values()), -min(v for k, v in pd.items() if k[0] in ('account', 'submit', 'profile', 'stories')), max(v for k, v in pd.items() if k[0] in ('account', 'submit', 'profile', 'stories')), ', '.join('%+d' % x for x in s390)))
 G = defaultdict(lambda: defaultdict(list))
 for r in rows('g-cpufcp2.jsonl'): G[(r['page'], r['w'])][r['k']].append(r['fcp'])
 cp = {k: (st.median(G[k]['ctl']), st.median(G[k]['new']), len(G[k]['new'])) for k in sorted(G)}
@@ -72,7 +72,7 @@ def grp(pages, kind):
 LIGHT = ('account', 'submit', 'home', 'balkans')
 runs = [e['n'] for v in T.values() for e in v]
 F['TICKNOTE'] = ('the layer runs once for each batch of nodes the parser adds (%d to %d runs a load), until its pieces are in. Measured with a timer around each run (core bdc6d21 with the timer added, %d loads): '
-                 '/account, /submit, home and a story %.1f to %.1f ms a load in total (up to %.1f ms at CPU 4x); the profile %.1f to %.1f ms (%.1f to %.1f at CPU 4x); '
+                 '/account, /submit, home and a story %.1f to %.1f ms a load in total (up to %.1f ms at CPU 4x; with the first nav piece, the final one only adds a style); the profile %.1f to %.1f ms (%.1f to %.1f at CPU 4x); '
                  '/stories %.0f to %.0f ms, the longest single run %.0f ms (at CPU 4x %.0f to %.0f ms, longest %.0f). '
                  'On /stories nearly all of it is two steps that ask the browser for computed styles (the title\'s font, and whether a card is shown, once the whole grid has arrived); each makes the browser work out the styles of everything parsed so far. '
                  'The browser has to do that work for its next frame in any case, so only part of it is added, but it is done earlier and in one piece. That is the likely source of the later first paint on /stories at CPU 4x (on the profile the stand-in itself has to be styled and painted). Not made lighter in this round. '
