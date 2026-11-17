@@ -1,0 +1,1399 @@
+{
+ "check": "release 16.67.0 carry check, plain GETs only (python requests, no redirects followed), no browser, no Webflow tool calls",
+ "run": "2026-11-17, fetches 10:31:22Z to 10:31:42Z UTC; test site page stamp 10:29:16 UTC (17 Nov), www page stamp 09:06:01 UTC (16 Nov)",
+ "page_list_note": "The task asked for the 12 pages of the 16.66.0 carry check plus /travelers, /the-map, /for-expats, /account, /submit. Three of those five are already in the 12, so /login, /signup and the Balkans story (all in the kept judge-measure copies of www) were added to reach 17 distinct pages.",
+ "requests": [
+  {
+   "host": "test",
+   "path": "/",
+   "status": 200,
+   "bytes": 247943,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:29:24 GMT",
+   "age": "119",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:22Z"
+  },
+  {
+   "host": "www",
+   "path": "/",
+   "status": 200,
+   "bytes": 247935,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:06:29 GMT",
+   "age": "91510",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:23Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories",
+   "status": 200,
+   "bytes": 289937,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:23 GMT",
+   "age": null,
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:23Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories",
+   "status": 200,
+   "bytes": 289929,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:39 GMT",
+   "age": "91508",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:23Z"
+  },
+  {
+   "host": "test",
+   "path": "/about",
+   "status": 200,
+   "bytes": 132454,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:25 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:25Z"
+  },
+  {
+   "host": "www",
+   "path": "/about",
+   "status": 200,
+   "bytes": 132446,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:40 GMT",
+   "age": "91423",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:25Z"
+  },
+  {
+   "host": "test",
+   "path": "/the-paw-passport",
+   "status": 200,
+   "bytes": 131259,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:25 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:26Z"
+  },
+  {
+   "host": "www",
+   "path": "/the-paw-passport",
+   "status": 200,
+   "bytes": 131251,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:42 GMT",
+   "age": "91423",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:26Z"
+  },
+  {
+   "host": "test",
+   "path": "/travelers",
+   "status": 200,
+   "bytes": 172046,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:27 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:27Z"
+  },
+  {
+   "host": "www",
+   "path": "/travelers",
+   "status": 200,
+   "bytes": 172038,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:44 GMT",
+   "age": "91422",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:27Z"
+  },
+  {
+   "host": "test",
+   "path": "/layovers",
+   "status": 200,
+   "bytes": 126916,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:28 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:28Z"
+  },
+  {
+   "host": "www",
+   "path": "/layovers",
+   "status": 200,
+   "bytes": 126908,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:46 GMT",
+   "age": "91422",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:28Z"
+  },
+  {
+   "host": "test",
+   "path": "/the-map",
+   "status": 200,
+   "bytes": 245731,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:29 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:29Z"
+  },
+  {
+   "host": "www",
+   "path": "/the-map",
+   "status": 200,
+   "bytes": 245723,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:47 GMT",
+   "age": "91422",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:29Z"
+  },
+  {
+   "host": "test",
+   "path": "/for-expats",
+   "status": 200,
+   "bytes": 150147,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:30 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:30Z"
+  },
+  {
+   "host": "www",
+   "path": "/for-expats",
+   "status": 200,
+   "bytes": 150139,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:39 GMT",
+   "age": "91422",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:30Z"
+  },
+  {
+   "host": "test",
+   "path": "/cookies",
+   "status": 200,
+   "bytes": 124805,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:31 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:31Z"
+  },
+  {
+   "host": "www",
+   "path": "/cookies",
+   "status": 200,
+   "bytes": 124797,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:49 GMT",
+   "age": "91421",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:31Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories/vietnam-ninja-duckies",
+   "status": 200,
+   "bytes": 222656,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:32 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:32Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories/vietnam-ninja-duckies",
+   "status": 200,
+   "bytes": 222648,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:51 GMT",
+   "age": "91421",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:33Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories/lisbon-sun-sails-city-built-to-stand-back-up",
+   "status": 200,
+   "bytes": 215070,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:34 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:34Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories/lisbon-sun-sails-city-built-to-stand-back-up",
+   "status": 200,
+   "bytes": 215062,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:25 GMT",
+   "age": "91448",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:34Z"
+  },
+  {
+   "host": "test",
+   "path": "/contributors/<profile>",
+   "status": 200,
+   "bytes": 215272,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:36 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:36Z"
+  },
+  {
+   "host": "www",
+   "path": "/contributors/<profile>",
+   "status": 200,
+   "bytes": 215264,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:43 GMT",
+   "age": "87306",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:37Z"
+  },
+  {
+   "host": "test",
+   "path": "/account",
+   "status": 200,
+   "bytes": 212664,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:37 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:37Z"
+  },
+  {
+   "host": "www",
+   "path": "/account",
+   "status": 200,
+   "bytes": 212656,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:41 GMT",
+   "age": "73856",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:38Z"
+  },
+  {
+   "host": "test",
+   "path": "/submit",
+   "status": 200,
+   "bytes": 174259,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:38 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:38Z"
+  },
+  {
+   "host": "www",
+   "path": "/submit",
+   "status": 200,
+   "bytes": 174251,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:41 GMT",
+   "age": "73857",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:39Z"
+  },
+  {
+   "host": "test",
+   "path": "/login",
+   "status": 200,
+   "bytes": 141057,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:39 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:39Z"
+  },
+  {
+   "host": "www",
+   "path": "/login",
+   "status": 200,
+   "bytes": 141049,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:42 GMT",
+   "age": "73857",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:40Z"
+  },
+  {
+   "host": "test",
+   "path": "/signup",
+   "status": 200,
+   "bytes": 142862,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:40 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:40Z"
+  },
+  {
+   "host": "www",
+   "path": "/signup",
+   "status": 200,
+   "bytes": 142854,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 14:00:42 GMT",
+   "age": "73858",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:41Z"
+  },
+  {
+   "host": "test",
+   "path": "/stories/balkans-ev-road-trip-twelve-countries",
+   "status": 200,
+   "bytes": 218600,
+   "enc": "gzip",
+   "lm": "Tue, 17 Nov 2026 10:31:42 GMT",
+   "age": null,
+   "cache": "MISS",
+   "location": null,
+   "t": "10:31:42Z"
+  },
+  {
+   "host": "www",
+   "path": "/stories/balkans-ev-road-trip-twelve-countries",
+   "status": 200,
+   "bytes": 218592,
+   "enc": "gzip",
+   "lm": "Mon, 16 Nov 2026 09:07:24 GMT",
+   "age": "91458",
+   "cache": "HIT",
+   "location": null,
+   "t": "10:31:42Z"
+  }
+ ],
+ "webflow_html_bytes_total": 6327220,
+ "webflow_requests": 34,
+ "pages": {
+  "about": {
+   "test": {
+    "bytes": 132454,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 132446,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "account": {
+   "test": {
+    "bytes": 212664,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 2
+   },
+   "www": {
+    "bytes": 212656,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 2
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a1fb28e5bfa1121902a03ce240686c7508807595/src/pages/account/tll-acct-stories-v2.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@e4342d4e84bbde288d5b258b8739bf4930c40c97/src/components/member-way/tll-member-way-v1.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@725d85ac3691013dcc16850bb7ef5fe87b8235a6/dist/tll-share-v1.min.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a81ffb96ac9077c7e2cc7217f131a25dcef616a1/map-2.0/dist/tll-map-layers.css"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 18,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    }
+   }
+  },
+  "cookies": {
+   "test": {
+    "bytes": 124805,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 124797,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "for-expats": {
+   "test": {
+    "bytes": 150147,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 3
+   },
+   "www": {
+    "bytes": 150139,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 3
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "home": {
+   "test": {
+    "bytes": 247943,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 3
+   },
+   "www": {
+    "bytes": 247935,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 3
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@aeba470383a28a3d6143f282a758de18ded29aec/map-2.0/data/owner-record.json"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "layovers": {
+   "test": {
+    "bytes": 126916,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 126908,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "login": {
+   "test": {
+    "bytes": 141057,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 2
+   },
+   "www": {
+    "bytes": 141049,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 2
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 11,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    }
+   }
+  },
+  "contributor-profile": {
+   "test": {
+    "bytes": 215272,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 215264,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@e4342d4e84bbde288d5b258b8739bf4930c40c97/src/components/member-way/tll-member-way-v1.js",
+    "cdn.jsdelivr.net/gh/OWNER/circle-flags/flags/"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "signup": {
+   "test": {
+    "bytes": 142862,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 2
+   },
+   "www": {
+    "bytes": 142854,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 2
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 13,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    }
+   }
+  },
+  "stories": {
+   "test": {
+    "bytes": 289937,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 4
+   },
+   "www": {
+    "bytes": 289929,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 4
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "stories__balkans-ev-road-trip-twelve-countries": {
+   "test": {
+    "bytes": 218600,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 218592,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": null
+   }
+  },
+  "stories__lisbon-sun-sails-city-built-to-stand-back-up": {
+   "test": {
+    "bytes": 215070,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 215062,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": null,
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "stories__vietnam-ninja-duckies": {
+   "test": {
+    "bytes": 222656,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 222648,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": null,
+    "survey_www_2026-11-16T14:00Z": null,
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "submit": {
+   "test": {
+    "bytes": 174259,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 3
+   },
+   "www": {
+    "bytes": 174251,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 3
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@22019832ad62816bc7c9f20805d2549615cfc508/src/components/photo-clean/tll-photo-clean-v1.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "form",
+    "form",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 9,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    }
+   }
+  },
+  "the-map": {
+   "test": {
+    "bytes": 245731,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 245723,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@cab2aea13df9506c4c7335448fcfff45204424a2/src/components/quick-log/tll-quick-log-v1.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@e4342d4e84bbde288d5b258b8739bf4930c40c97/src/components/member-way/tll-member-way-v1.js",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@46a21a18a404b7162bf3bd61c3c26ae70c441445/map-2.0/dist/tll-map-layers.css",
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@725d85ac3691013dcc16850bb7ef5fe87b8235a6/dist/tll-share-v1.min.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "the-paw-passport": {
+   "test": {
+    "bytes": 131259,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 131251,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  },
+  "travelers": {
+   "test": {
+    "bytes": 172046,
+    "core_tags": 1,
+    "pin_a254306f": 1,
+    "sri_16670": 1,
+    "pin_3df16988": 0,
+    "sri_16660": 0,
+    "stamp": "Tue Nov 17 2026 10:29:16 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "that-layover-life.webflow.io",
+    "forms": 1
+   },
+   "www": {
+    "bytes": 172038,
+    "core_tags": 1,
+    "pin_3df16988": 1,
+    "sri_16660": 1,
+    "pin_a254306f": 0,
+    "sri_16670": 0,
+    "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "wf_domain": "www.thatlayover.life",
+    "forms": 1
+   },
+   "jsdelivr_srcs_test": [
+    "cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+    "cdn.jsdelivr.net/gh/OWNER/circle-flags/flags/"
+   ],
+   "normalized_changed_lines": 2,
+   "identical_after_core_swap_host_stamp_masked": true,
+   "raw_equal_after_core_stamp_domain_swap": true,
+   "remaining_raw_line_kinds_after_core_swap": [
+    "stamp"
+   ],
+   "nav_footer_forms_identical": true,
+   "blocks": [
+    "nav",
+    "footer",
+    "form"
+   ],
+   "data_ms_identical": true,
+   "data_ms_attrs": 4,
+   "www_unchanged": {
+    "www_today_stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)",
+    "judge_measure_www_2026-11-17T00:59Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "survey_www_2026-11-16T14:00Z": {
+     "byte_identical": true,
+     "stamp": "Mon Nov 16 2026 09:06:01 GMT+0000 (Coordinated Universal Time)"
+    },
+    "carry1666_test_copy_2026-11-15": {
+     "identical_after_stamp_domain_swap": true
+    }
+   }
+  }
+ },
+ "core": {
+  "jsdelivr_url": "https://cdn.jsdelivr.net/gh/OWNER/thatlayoverlife@a254306f6c62a79f314754d24b44041d61be716d/src/site-layers/tll-site-layers-v16.js",
+  "jsdelivr_fetches": 1,
+  "status": 200,
+  "x_jsd_version": "a254306f6c62a79f314754d24b44041d61be716d",
+  "bytes": 277485,
+  "sri_computed": "sha384-2Bc75us2J2jpgsYU/Hger8bd7CrNh9cZyfStM3otS/aENprUVw1HFUruv8eGw3cU",
+  "sri_expected": "sha384-2Bc75us2J2jpgsYU/Hger8bd7CrNh9cZyfStM3otS/aENprUVw1HFUruv8eGw3cU",
+  "sri_match": true,
+  "equals_git_show_a254306f": true,
+  "equals_committed_core_at_50e84bf": true,
+  "rebuild": {
+   "how": "git archive 50e84bf into scratch, python3 -I src/site-layers/build-site-layers-v16.py inside the extracted tree",
+   "core_line": "core   tll-site-layers-v16.js    271.0 KB  (81.9 KB gzip)  sha384-2Bc75us2J2jpgsYU/Hger8bd7CrNh9cZyfStM3otS/aENprUVw1HFUruv8eGw3cU",
+   "last_line": "built core with 13 styles, 22 core layers, story layer 18641 css bytes, cover layer 19878 css bytes; 24 chunks",
+   "equals_jsdelivr": true,
+   "chunks_rebuilt_equal_to_pin_tree": "24 of 24"
+  },
+  "pin_diff_3df16988_to_a254306f": [
+   "M\tsrc/site-layers/tll-site-layers-v16.js"
+  ],
+  "site_scripts_r1667": {
+   "before_vs_after": "one field differs: script 15 of 15 (tllsitelayersv16) version 16.66.0 to 16.67.0; ids and order equal",
+   "r1666_after_equals_r1667_before": true
+  }
+ },
+ "all": {
+  "pages": 17,
+  "status_200_both_hosts": true,
+  "test_core_pin_a254306f_and_sri_once_old_absent": true,
+  "www_core_pin_3df16988_and_sri_once_new_absent": true,
+  "raw_equal_after_core_stamp_domain_swap": true,
+  "nav_footer_forms_identical": true,
+  "data_ms_identical": true,
+  "www_byte_identical_to_judge_measure_copies": [
+   16,
+   16
+  ],
+  "www_byte_identical_to_survey_copies": [
+   14,
+   14
+  ],
+  "www_equal_to_16660_carry_test_copies_after_stamp_domain_swap": [
+   12,
+   12
+  ]
+ }
+}
