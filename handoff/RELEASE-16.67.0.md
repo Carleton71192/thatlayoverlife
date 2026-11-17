@@ -34,7 +34,11 @@ Checks: measurement PASS WITH NOTES (judge-measure/), adversarial PASS WITH NOTE
 ## Webflow
 1. Lock scope line (2c96cba). Before copy src/site/live-2026-11-17/r1667/site-scripts.before.json.
 2. Registered 16.67.0 at 10:28:50 UTC, applied 10:29:00, read back.
-3. Published the test site only (publishTaskId 9f1fb15d-286d-4a5a-b816-1586b2f44826), stamp 10:29:16 UTC. Independent checks: running.
+3. Published the test site only (publishTaskId 9f1fb15d-286d-4a5a-b816-1586b2f44826), stamp 10:29:16 UTC. Independent checks: carry PASS (98d69fe), behavior PASS WITH NOTES (0802677), regression PASS WITH NOTES (506480c). Regression notes: /stories on slow 4G two-state font race (both hosts); /stories with lib-lead and lib-chips both throwing jumps once (0.37 against 0.01); back to /account at 1440 lands 77 px high; /submit with the head parity script throwing 0.141 against 0.000.
 
 ## Rollback
 set_site_scripts with src/site/live-2026-11-17/r1667/site-scripts.before.json (core 16.66.0, pin 3df16988ac1674485a2fe44d24f3763073d0c98d, SRI sha384-trfI5wInWYlCUfz0XKnR/BqQpouu3JHGMLplaS1AFlYR8UiNBqoOU/6oYwcAJYTl), then publish.
+
+## Live
+
+Nancy in chat on 17 Nov: "Yeah they look the same" (signed-in /account on the test site) and "Publish www", applied once the three checks passed. Published www, thatlayover.life and the test site at 17:13:08 UTC (publishTaskId aa29423e-d694-4035-9fe8-a261d0e61d89). www served pin a254306f from 17:13:17 UTC; www and test HTML identical on 14 of 14 pages apart from host and stamp (reports/evidence/release-16.67.0-live/). Rollback stays as above.

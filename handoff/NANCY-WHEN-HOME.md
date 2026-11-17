@@ -80,8 +80,11 @@ Unblocks staging /for-press, the creator badge, the Rest of the trip page and th
 **Story page jump on phones: done, live on www 16 Nov 09:06 UTC (16.66.0)**
 Nothing to do. If a story page looks wrong, say "roll back 16.66.0"; it takes one step.
 
-**Page jumps on eight more pages: 16.67.0 is on the test site; two things from you**
-Core 16.67.0 is on that-layover-life.webflow.io since 10:29 UTC on 17 Nov; www still runs 16.66.0. Three checks of the test site against www are running. (1) Open https://that-layover-life.webflow.io/account while signed in and say whether the tabs and panels look as on www (about 2 minutes; the lab can only test signed out). (2) When the checks pass, reply "publish www" (or "wait"). Rollback is one step. Evidence: handoff/RELEASE-16.67.0.md.
+**Page jumps on eight more pages: done, live on www 17 Nov 17:13 UTC (16.67.0)**
+Nothing to do. If a page looks wrong, say "roll back 16.67.0"; it takes one step.
+
+**/submit send wait (a contributor pressed Send several times): three choices**
+Fix built and checked on a branch (button shows "Sending photos 1 of 3", "Saved" 6 s sooner, honest failure line). Choose: (1) after sending, only stop the autosave and keep the draft (recommended), or clear it and change "Your draft stays in your account either way."; (2) shorter failure line "Saved. The editor will add it to the draft list by hand." OK?; (3) photos stay 3000 px or go to 2000 px (about half the wait). Evidence: reports/evidence/submit-save-2026-11-17/.
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
