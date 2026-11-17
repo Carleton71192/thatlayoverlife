@@ -176,6 +176,11 @@ for (const i of [1, 2, 3, 4]) S.signedin2.push(cell('account-in-late-390-r' + i,
 for (const i of [1, 2, 3]) { S.signedin2.push(cell('account-in-fast-cut-1440-r' + i, 'account', 1440, { opts: { ms: 'in', msDelay: 20, stream: { mode: 'rand', n: 10, gap: 200, ttfb: 50, seed: 5 } }, wait: 7500, after: 4500 }));
   S.signedin2.push(cell('submit-in-fast-cut-390-r' + i, 'submit', 390, { opts: { ms: 'in', msDelay: 20, stream: { mode: 'rand', n: 10, gap: 200, ttfb: 50, seed: 5 } }, wait: 7500, after: 4500 })); }
 
+/* ---- repeats of /stories with a search term (17 Nov 02:55): one load of markup st-q-1440 read 0.71 with the new core ---- */
+S.stq2 = [];
+for (const i of [1, 2, 3, 4, 5, 6, 7, 8]) S.stq2.push(cell('st-q-1440-r' + i, 'stories', 1440, { query: '?q=lisbon' }));
+for (const i of [1, 2, 3, 4]) S.stq2.push(cell('st-q-390-r' + i, 'stories', 390, { query: '?q=lisbon' }));
+
 /* ---- the Menu button: open, Escape, and a tap on the stand-in before the page is parsed ---- */
 const menuFlow = async (page, s, id, rec, L) => {
   await page.goto(L.ORIGIN + L.PAGES[s.page], { waitUntil: 'load', timeout: 120000 }); await settle(page, L, 2500);
