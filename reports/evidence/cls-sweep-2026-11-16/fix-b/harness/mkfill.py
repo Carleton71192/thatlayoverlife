@@ -32,6 +32,19 @@ lo, hi = min(d.values()), max(d.values())
 scope = {k: v for k, v in d.items() if k[0] in ('account', 'submit', 'profile', 'stories')}
 print('FCP', len(C), 'cells', lo, hi, max(d, key=d.get), len(alla), len(allb), st.median(alla), st.median(allb))
 print('FCP scope', {k: v for k, v in sorted(scope.items())})
+# every standard-speed load of the three builds, scope cells (the code a page runs is the same in all three apart from its own change)
+P = defaultdict(lambda: defaultdict(list)); SS = defaultdict(lambda: defaultdict(list))
+for f in ('f-std', 's-std', 't-std', 'u-scope', 'f-fcp', 's-fcp', 't-fcp', 'f-dom', 's-dom', 't-dom'):
+    for r in rows(f + '.jsonl'):
+        if r['page'] in ('account', 'submit', 'profile', 'stories') and r['w'] in (390, 1440) and r['h'] in (844, 900) and r['fcp'] is not None:
+            P[(r['page'], r['w'])][r['k']].append(r['fcp'])
+            if f in ('f-std', 's-std', 'u-scope'): SS[(r['page'], r['w'], f)][r['k']].append(r['fcp'])
+pd = {k: st.median(P[k]['new']) - st.median(P[k]['ctl']) for k in P}
+s390 = [st.median(SS[('stories', 390, f)]['new']) - st.median(SS[('stories', 390, f)]['ctl']) for f in ('f-std', 's-std', 'u-scope') if SS[('stories', 390, f)]['new']]
+print('POOLED', {k: (len(P[k]['new']), pd[k]) for k in sorted(P)}, 'stories 390 by 5-load set', s390)
+POOL = ('With every standard-speed load of the three builds pooled for the eight scope cells (%d to %d loads a cell and core) the new core is between %d ms earlier and %d ms later. '
+        'A single set of 5 loads can read far from that: /stories at 390 came out %s ms in three such sets, which is why its row in the standard table above shows 36 ms. '
+        % (min(len(P[k]['new']) for k in P), max(len(P[k]['new']) for k in P), -min(pd.values()), max(pd.values()), ', '.join('%+d' % x for x in s390)))
 G = defaultdict(lambda: defaultdict(list))
 for r in rows('g-cpufcp2.jsonl'): G[(r['page'], r['w'])][r['k']].append(r['fcp'])
 cp = {k: (st.median(G[k]['ctl']), st.median(G[k]['new']), len(G[k]['new'])) for k in sorted(G)}
@@ -42,8 +55,10 @@ CPUF = ('At CPU 4x the three-load sets scatter too much to read. Six more loads 
         + '. So on a slow phone the first paint of the profile and of /stories at phone width is about 30 to 40 ms later, out of about 450 ms. The next point says where that goes.')
 F['FCPNOTE'] = ('at normal speed no cell is more than %d ms later. Medians per cell over the standard, finished-page, other-pages and first-paint sets (%d to %d loads a cell and core, %d cells): between %d ms earlier and %d ms later than the control; '
                 'the eight cells in scope between %d ms earlier and %d ms later. Over all %d loads a core the median is %d ms with the control and %d ms with the new core. '
-                'Single sets of 5 loads scatter by about 30 ms either way with the same core (a frame is 16 ms), which is why the per-set columns above show differences of that size in both directions. '
-                % (hi, min(len(C[k]['new']) for k in C), max(len(C[k]['new']) for k in C), len(C), -lo, hi, -min(scope.values()), max(scope.values()), len(alla), st.median(alla), st.median(allb))) + CPUF
+                % (hi, min(len(C[k]['new']) for k in C), max(len(C[k]['new']) for k in C), len(C), -lo, hi, -min(scope.values()), max(scope.values()), len(alla), st.median(alla), st.median(allb))
+                + POOL +
+                'A frame is 16 ms, so the per-set columns above show differences of up to about 30 ms in both directions. '
+                ) + CPUF
 
 # work per run of the layer (core of bdc6d21 with a timer around the layer's tick)
 T = defaultdict(list)

@@ -210,9 +210,9 @@ Standard loads (5 a cell) and CPU 4x slower (3 a cell): CLS median (max), every 
 | /submit 390 | 0.1437 (0.1437) | 0.0002 (0.0003) | 5 of 5 / 0 of 5 | 0.1439 (0.1439) | 0.0002 (0.0002) |
 | /submit 1440 | 0.0552 (0.0552) | 0.0003 (0.0003) | 0 of 5 / 0 of 5 | 0.0554 (0.0554) | 0.0003 (0.0003) |
 | /contributors/<profile> 390 | 0.0763 (0.0763) | 0.0004 (0.0004) | 0 of 5 / 0 of 5 | 0.0763 (0.0763) | 0.0004 (0.0004) |
-| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.0008 (0.0019) | 5 of 5 / 0 of 5 | 0.1178 (0.1178) | 0.0019 (0.0019) |
-| /stories 390 | 0.0284 (0.0362) | 0.0073 (0.0079) | 0 of 5 / 0 of 5 | 0.0284 (0.0284) | 0.0073 (0.0073) |
-| /stories 1440 | 0.1114 (0.1114) | 0.0311 (0.0311) | 4 of 5 / 0 of 5 | 0.0655 (0.0657) | 0.0300 (0.0311) |
+| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.0008 (0.0019) | 5 of 5 / 0 of 5 | 0.1178 (0.1178) | 0.0013 (0.0019) |
+| /stories 390 | 0.0284 (0.0361) | 0.0073 (0.0073) | 0 of 5 / 0 of 5 | 0.0284 (0.0284) | 0.0073 (0.0073) |
+| /stories 1440 | 0.0498 (0.1126) | 0.0311 (0.0311) | 1 of 5 / 0 of 5 | 0.0655 (0.0655) | 0.0311 (0.0311) |
 
 Target: under 0.05 median and no load over 0.1, also at CPU 4x. Met in all eight cells in both sets. Home, the three stories and the four part A pages are the same or lower (tables below).
 
@@ -220,6 +220,7 @@ To know before release:
 - **/account at 390 in the stress set is 0.094** (control 0.30). The nav part is gone; what is left is the page's own gate card growing after it has been painted ("What is left", 5).
 - **/stories at 1440 stays at 0.030.** That is the title's font jump (0.013, C7, left alone as agreed) plus the story count our chunk writes into the title (0.016, "What is left", 1).
 - **The nav piece was rewritten at the end of this work**, after its first build turned out to switch off the /account tab rail for signed-in members ("Found on the way", 6). The final piece moves nothing in the page and was measured again on /account and /submit. The lab is signed out; one look at /account with a real signed-in session before release is worth the minute.
+- **On /account the empty member dashboard shows a little later on a slow phone.** The page shows it to every visitor once its own script has run; with the new core it shows when the page is parsed. Same moment in a standard load, about 0.34 s later at CPU 4x ("The finished page", last point).
 - **On a slow phone (CPU 4x) the first paint of the profile and of /stories at phone width is 30 to 40 ms later** (about 430 and 530 ms against 400 and 490). At normal speed every cell is inside the 30 ms line ("Cost").
 - **/stories at 412 px wide reads 0.10 with either core** (one load each): the title takes one more line when its web font arrives. A font jump, left alone as agreed, but close to the line ("What is left", 10).
 
@@ -267,8 +268,8 @@ All tables: `fix-b/table.md`; one row per load: `fix-b/loads.csv`. Loads were ma
 
 | set | build of the new core, by page |
 |---|---|
-| standard | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile, home, Balkans, Lisbon, Southern Africa |
-| CPU 4x | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
+| standard | final core: /account, /submit, profile, /stories; bdc6d21: home, Balkans, Lisbon, Southern Africa |
+| CPU 4x | final core: all pages |
 | stress | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile |
 | other pages | bdc6d21: all pages |
 | first paint | final core: /account, /submit; 951b08c: /stories; bdc6d21: profile, Balkans |
@@ -287,10 +288,10 @@ CLS counts every layout-shift entry (the input-excluded median is in brackets). 
 | /account 1440 | 0.3007 (0.3007) | 0.3007 | 5 of 5 | 0.0037 (0.0037) | 0.0037 | 0 of 5 | 140 / 144 | 168 / 176 | yes |
 | /submit 390 | 0.1437 (0.0000) | 0.1437 | 5 of 5 | 0.0002 (0.0000) | 0.0003 | 0 of 5 | 148 / 132 | 148 / 132 | yes |
 | /submit 1440 | 0.0552 (0.0552) | 0.0552 | 0 of 5 | 0.0003 (0.0003) | 0.0003 | 0 of 5 | 136 / 152 | 136 / 152 | yes |
-| /contributors/<profile> 390 | 0.0763 (0.0000) | 0.0763 | 0 of 5 | 0.0004 (0.0000) | 0.0004 | 0 of 5 | 148 / 152 | 220 / 212 | yes |
-| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 5 of 5 | 0.0008 (0.0008) | 0.0019 | 0 of 5 | 144 / 168 | 208 / 228 | yes |
-| /stories 390 | 0.0284 (0.0002) | 0.0362 | 0 of 5 | 0.0073 (0.0002) | 0.0079 | 0 of 5 | 200 / 184 | 592 / 304 | yes |
-| /stories 1440 | 0.1114 (0.1114) | 0.1114 | 4 of 5 | 0.0311 (0.0311) | 0.0311 | 0 of 5 | 192 / 200 | 192 / 200 | yes |
+| /contributors/<profile> 390 | 0.0763 (0.0000) | 0.0763 | 0 of 5 | 0.0004 (0.0000) | 0.0004 | 0 of 5 | 132 / 152 | 188 / 212 | yes |
+| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 5 of 5 | 0.0008 (0.0008) | 0.0019 | 0 of 5 | 160 / 184 | 224 / 252 | yes |
+| /stories 390 | 0.0284 (0.0002) | 0.0361 | 0 of 5 | 0.0073 (0.0002) | 0.0073 | 0 of 5 | 176 / 212 | 576 / 312 | yes |
+| /stories 1440 | 0.0498 (0.0498) | 0.1126 | 1 of 5 | 0.0311 (0.0311) | 0.0311 | 0 of 5 | 224 / 240 | 224 / 240 | yes |
 | / 390 | 0.0034 (0.0000) | 0.0034 | 0 of 5 | 0.0000 (0.0000) | 0.0000 | 0 of 5 | 200 / 164 | 200 / 164 | yes |
 | / 1440 | 0.0005 (0.0005) | 0.0005 | 0 of 5 | 0.0005 (0.0005) | 0.0005 | 0 of 5 | 192 / 200 | 192 / 200 | yes |
 | story: Balkans 360 | 0.0196 (0.0000) | 0.0196 | 0 of 5 | 0.0088 (0.0000) | 0.0155 | 0 of 5 | 156 / 156 | 156 / 156 | yes |
@@ -313,10 +314,10 @@ CLS counts every layout-shift entry (the input-excluded median is in brackets). 
 | /account 1440 | 0.3008 (0.3008) | 0.3008 | 3 of 3 | 0.0037 (0.0037) | 0.0037 | 0 of 3 | 412 / 340 | 552 / 896 | yes |
 | /submit 390 | 0.1439 (0.0000) | 0.1439 | 3 of 3 | 0.0002 (0.0000) | 0.0002 | 0 of 3 | 424 / 300 | 424 / 300 | yes |
 | /submit 1440 | 0.0554 (0.0554) | 0.0554 | 0 of 3 | 0.0003 (0.0003) | 0.0003 | 0 of 3 | 476 / 340 | 476 / 340 | yes |
-| /contributors/<profile> 390 | 0.0763 (0.0001) | 0.0763 | 0 of 3 | 0.0004 (0.0001) | 0.0004 | 0 of 3 | 408 / 456 | 536 / 612 | yes |
-| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 3 of 3 | 0.0019 (0.0019) | 0.0019 | 0 of 3 | 388 / 404 | 556 / 532 | yes |
-| /stories 390 | 0.0284 (0.0257) | 0.0284 | 0 of 3 | 0.0073 (0.0052) | 0.0073 | 0 of 3 | 492 / 488 | 3000 / 2844 | yes |
-| /stories 1440 | 0.0655 (0.0655) | 0.0657 | 0 of 3 | 0.0300 (0.0300) | 0.0311 | 0 of 3 | 496 / 560 | 496 / 560 | yes |
+| /contributors/<profile> 390 | 0.0763 (0.0001) | 0.0763 | 0 of 3 | 0.0004 (0.0001) | 0.0004 | 0 of 3 | 420 / 424 | 532 / 588 | yes |
+| /contributors/<profile> 1440 | 0.1178 (0.1178) | 0.1178 | 3 of 3 | 0.0013 (0.0013) | 0.0019 | 0 of 3 | 412 / 464 | 584 / 620 | yes |
+| /stories 390 | 0.0284 (0.0257) | 0.0284 | 0 of 3 | 0.0073 (0.0052) | 0.0073 | 0 of 3 | 516 / 468 | 2904 / 2676 | yes |
+| /stories 1440 | 0.0655 (0.0655) | 0.0655 | 0 of 3 | 0.0311 (0.0311) | 0.0311 | 0 of 3 | 500 / 492 | 500 / 492 | yes |
 
 ### Stress: jQuery answer held 600 ms (a paint lands before the end-of-body scripts and the page-parsed event), 3 loads a cell
 
@@ -437,7 +438,7 @@ Numbers are from the standard loads with the new core unless noted.
 ## Cost
 
 - Core size: 276,440 bytes against 260,880 after part A (gzip 83,578 against 78,220). The layer goes into the core without its comments (15,560 bytes of code). On every page.
-- First paint: at normal speed no cell is more than 24 ms later. Medians per cell over the standard, finished-page, other-pages and first-paint sets (4 to 14 loads a cell and core, 37 cells): between 44 ms earlier and 24 ms later than the control; the eight cells in scope between 2 ms earlier and 24 ms later. Over all 242 loads a core the median is 148 ms with the control and 148 ms with the new core. Single sets of 5 loads scatter by about 30 ms either way with the same core (a frame is 16 ms), which is why the per-set columns above show differences of that size in both directions. At CPU 4x the three-load sets scatter too much to read. Six more loads a core on the three cells that looked later (core 951b08c): the profile at 390: 434 ms against 402 (+32); /stories at 390: 528 ms against 486 (+42); /stories at 1440: 522 ms against 516 (+6). So on a slow phone the first paint of the profile and of /stories at phone width is about 30 to 40 ms later, out of about 450 ms. The next point says where that goes.
+- First paint: at normal speed no cell is more than 24 ms later. Medians per cell over the standard, finished-page, other-pages and first-paint sets (4 to 14 loads a cell and core, 37 cells): between 44 ms earlier and 24 ms later than the control; the eight cells in scope between 2 ms earlier and 24 ms later. Over all 242 loads a core the median is 148 ms with the control and 148 ms with the new core. With every standard-speed load of the three builds pooled for the eight scope cells (12 to 33 loads a cell and core) the new core is between 8 ms earlier and 18 ms later. A single set of 5 loads can read far from that: /stories at 390 came out +36, -16, +36 ms in three such sets, which is why its row in the standard table above shows 36 ms. A frame is 16 ms, so the per-set columns above show differences of up to about 30 ms in both directions. At CPU 4x the three-load sets scatter too much to read. Six more loads a core on the three cells that looked later (core 951b08c): the profile at 390: 434 ms against 402 (+32); /stories at 390: 528 ms against 486 (+42); /stories at 1440: 522 ms against 516 (+6). So on a slow phone the first paint of the profile and of /stories at phone width is about 30 to 40 ms later, out of about 450 ms. The next point says where that goes.
 - Work while the page is parsed: the layer runs once for each batch of nodes the parser adds (39 to 63 runs a load), until its pieces are in. Measured with a timer around each run (core bdc6d21 with the timer added, 26 loads): /account, /submit, home and a story 0.2 to 0.5 ms a load in total (up to 4.6 ms at CPU 4x); the profile 1.3 to 2.3 ms (7.6 to 11.0 at CPU 4x); /stories 18 to 33 ms, the longest single run 32 ms (at CPU 4x 77 to 100 ms, longest 53). On /stories nearly all of it is two steps that ask the browser for computed styles (the title's font, and whether a card is shown, once the whole grid has arrived); each makes the browser work out the styles of everything parsed so far. The browser has to do that work for its next frame in any case, so only part of it is added, but it is done earlier and in one piece. That is the likely source of the later first paint on /stories at CPU 4x (on the profile the stand-in itself has to be styled and painted). Not made lighter in this round. On a page with none of its pieces the layer sets up nothing. With the Menu piece alone it watches until the page is parsed, and each run is one check that the stand-in is still last in its row.
 - Bandwidth: no new request and none earlier than before, with one small exception. The stand-ins ask for no file. The exception: on /stories the set of lazy card photos the browser asks for can differ by a few cards far below the screen, in both directions (two fewer in the standard 1440 load, one more at 1440 when `tll-lib-lead-v1` throws; see "The finished page").
 
