@@ -135,6 +135,10 @@ function plan(set) {
     for (const p of ['travelers', 'stories']) C.push(cell(p + '-cmp-grant-390', p, 390, { opts: { cmp: 'grant' }, rounds: 1, wait: 6000 })); return C; }
   if (set === 'story') { for (const w of [320, 330, 340, 344, 350, 360, 368, 375, 390]) C.push(cell('balkans-' + w, 'balkans', w, { rounds: 3 }));
     for (const w of [360, 390]) C.push(cell('safrica-' + w, 'safrica', w, { rounds: 3 })); return C; }
+  /* repeats (16:40 UTC): one-load leads from sets jsoff and back. JS off the two hosts serve the same HTML apart from the core pin; back on /account 1440 test landed 77 px above the wanted scroll */
+  if (set === 'rep') { C.push(cell('stories-jsoff-1440', 'stories', 1440, { opts: { ctx: { javaScriptEnabled: false } }, rounds: 4, wait: 2000 }));
+    C.push(cell('account-back-1440', 'account', 1440, { flow: backFlow('/about'), rounds: 3 }));
+    C.push(cell('travelers-back-390', 'travelers', 390, { flow: backFlow('/about'), rounds: 2 })); return C; }
   throw new Error('unknown set ' + set);
 }
 

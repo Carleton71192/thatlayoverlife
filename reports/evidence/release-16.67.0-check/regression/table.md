@@ -100,3 +100,141 @@
 | reload | expats-reload-end-1440 | reloaded | 0.8407 (0.8407, 2 of 2) | 0.8011 (0.8011, 2 of 2) | 0.8407 / 0.8011 | 116.0 / 124.0 | 2 of 2 | scroll www -1153,-1153 / test -1153,-1153 px from wanted |
 | reload | expats-reload-mid-1440 | scrolled | 0.0391 (0.0391, 0 of 2) | 0.0001 (0.0001, 0 of 2) | 0.0391 / 0.0001 | 508.0 / 302.0 | 2 of 2 |  |
 | reload | expats-reload-mid-1440 | reloaded | 0.8591 (0.8592, 2 of 2) | 0.8008 (0.8008, 2 of 2) | 0.8591 / 0.8008 | 132.0 / 146.0 | 0 of 2 | scroll www 0,0 / test 1152,1152 px from wanted |
+| tap | stories-earlytap-390 | end | 0.1768 (0.3241, 1 of 2) | 0.1403 (0.2655, 1 of 2) | 0.176 / 0.1399 | 6364.0 / 7242.0 | 2 of 2 |  |
+| tap | account-earlytap-390 | end | 0.1553 (0.1553, 2 of 2) | 0.1189 (0.1189, 2 of 2) | 0.0365 / 0.1189 | 6104.0 / 6216.0 | 2 of 2 |  |
+| tap | travelers-earlytap-390 | end | 0.1582 (0.1583, 2 of 2) | 0.0251 (0.0251, 0 of 2) | 0.1568 / 0.0244 | 6096.0 / 6184.0 | 2 of 2 | test left: style#tll-fp-title-v1 |
+| tap | map-earlytap-390 | end | 0.1847 (0.2061, 2 of 2) | 0.0009 (0.0009, 0 of 2) | 0.1839 / 0.0009 | 6248.0 / 6432.0 | 2 of 2 |  |
+| tap | about-earlytap-390 | end | 0.0255 (0.0255, 0 of 2) | 0.0012 (0.0012, 0 of 2) | 0.0123 / 0.0012 | 6476.0 / 6210.0 | 2 of 2 |  |
+| tap | stories-earlytap-fast-390 | end | 0.0293 (0.0293, 0 of 2) | 0.0076 (0.0082, 0 of 2) | 0.0001 / 0.0 | 490.0 / 444.0 | 2 of 2 |  |
+| consent | travelers-cmp-deny-390 | end | 0.1129 (0.1129, 1 of 1) | 0.01 (0.01, 0 of 1) | 0.0128 / 0.005 | 644 / 256 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| consent | map-cmp-deny-390 | end | 0.1396 (0.1396, 1 of 1) | 0.0 (0.0, 0 of 1) | 0 / 0 | 244 / 240 | 1 of 1 |  |
+| consent | expats-cmp-deny-390 | end | 0.0772 (0.0772, 0 of 1) | 0.0097 (0.0097, 0 of 1) | 0 / 0 | 244 / 352 | 1 of 1 |  |
+| consent | about-cmp-deny-390 | end | 0.0246 (0.0246, 0 of 1) | 0.0003 (0.0003, 0 of 1) | 0 / 0 | 220 / 260 | 1 of 1 |  |
+| consent | account-cmp-deny-390 | end | 0.0119 (0.0119, 0 of 1) | 0.0119 (0.0119, 0 of 1) | 0 / 0 | 228 / 216 | 1 of 1 |  |
+| consent | submit-cmp-deny-390 | end | 0.1439 (0.1439, 1 of 1) | 0.0002 (0.0002, 0 of 1) | 0 / 0 | 184 / 352 | 1 of 1 |  |
+| consent | profile-cmp-deny-390 | end | 0.0763 (0.0763, 0 of 1) | 0.0004 (0.0004, 0 of 1) | 0 / 0 | 208 / 248 | 1 of 1 |  |
+| consent | stories-cmp-deny-390 | end | 0.0361 (0.0361, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 364 / 340 | 1 of 1 |  |
+| consent | stories-cmp-deny-1440 | end | 0.0312 (0.0312, 0 of 1) | 0.03 (0.03, 0 of 1) | 0.0312 / 0.03 | 292 / 276 | 1 of 1 |  |
+| consent | account-cmp-deny-1440 | end | 0.3007 (0.3007, 1 of 1) | 0.0037 (0.0037, 0 of 1) | 0.3007 / 0.0037 | 216 / 224 | 1 of 1 |  |
+| consent | travelers-cmp-grant-390 | end | 0.1129 (0.1129, 1 of 1) | 0.01 (0.01, 0 of 1) | 0.0128 / 0.005 | 372 / 216 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| consent | stories-cmp-grant-390 | end | 0.0285 (0.0285, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 212 / 304 | 1 of 1 |  |
+| rm | travelers-rm-390 | end | 0.1431 (0.1431, 1 of 1) | 0.005 (0.005, 0 of 1) | 0 / 0 | 696 / 308 | 1 of 1 |  |
+| rm | map-rm-390 | end | 0.1396 (0.1396, 1 of 1) | 0.0 (0.0, 0 of 1) | 0 / 0 | 252 / 232 | 1 of 1 |  |
+| rm | expats-rm-390 | end | 0.0877 (0.0877, 0 of 1) | 0.0049 (0.0049, 0 of 1) | 0 / 0 | 236 / 212 | 1 of 1 |  |
+| rm | about-rm-390 | end | 0.0245 (0.0245, 0 of 1) | 0.0003 (0.0003, 0 of 1) | 0 / 0 | 376 / 248 | 1 of 1 |  |
+| rm | account-rm-390 | end | 0.0119 (0.0119, 0 of 1) | 0.0119 (0.0119, 0 of 1) | 0 / 0 | 228 / 212 | 1 of 1 |  |
+| rm | submit-rm-390 | end | 0.1439 (0.1439, 1 of 1) | 0.0002 (0.0002, 0 of 1) | 0 / 0 | 220 / 260 | 1 of 1 |  |
+| rm | profile-rm-390 | end | 0.0763 (0.0763, 0 of 1) | 0.0004 (0.0004, 0 of 1) | 0 / 0 | 224 / 224 | 1 of 1 |  |
+| rm | stories-rm-390 | end | 0.0285 (0.0285, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 272 / 488 | 1 of 1 |  |
+| rm | travelers-rm-1440 | end | 0.2981 (0.2981, 1 of 1) | 0.002 (0.002, 0 of 1) | 0.2981 / 0.002 | 284 / 248 | 1 of 1 |  |
+| rm | map-rm-1440 | end | 0.1003 (0.1003, 1 of 1) | 0.0114 (0.0114, 0 of 1) | 0.1003 / 0.0114 | 272 / 232 | 1 of 1 |  |
+| rm | account-rm-1440 | end | 0.3007 (0.3007, 1 of 1) | 0.0037 (0.0037, 0 of 1) | 0.3007 / 0.0037 | 228 / 352 | 1 of 1 |  |
+| rm | stories-rm-1440 | end | 0.0495 (0.0495, 0 of 1) | 0.0311 (0.0311, 0 of 1) | 0.0495 / 0.0311 | 300 / 304 | 1 of 1 |  |
+| jsoff | travelers-jsoff-390 | end | 0.0132 (0.0132, 0 of 1) | 0.0044 (0.0044, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | map-jsoff-390 | end | 0 (0, 0 of 1) | 0 (0, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | expats-jsoff-390 | end | 0.0044 (0.0044, 0 of 1) | 0.0044 (0.0044, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | about-jsoff-390 | end | 0.0044 (0.0044, 0 of 1) | 0.0044 (0.0044, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | account-jsoff-390 | end | 0 (0, 0 of 1) | 0 (0, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | submit-jsoff-390 | end | 0.0573 (0.0573, 0 of 1) | 0.0573 (0.0573, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | profile-jsoff-390 | end | 0.0007 (0.0007, 0 of 1) | 0.0013 (0.0013, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | stories-jsoff-390 | end | 0.0023 (0.0023, 0 of 1) | 0.0023 (0.0023, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | account-jsoff-1440 | end | 0 (0, 0 of 1) | 0 (0, 0 of 1) | 0 / 0 | None / None | 1 of 1 |  |
+| jsoff | stories-jsoff-1440 | end | 0.0043 (0.0043, 0 of 1) | 0.0985 (0.0985, 0 of 1) | 0.0043 / 0.0985 | None / None | 1 of 1 |  |
+| back | travelers-back-390 | scrolled | 0.1001 (0.1001, 1 of 1) | 0.005 (0.005, 0 of 1) | 0 / 0 | 300 / 648 | 0 of 1 | test left: style#tll-fp-title-v1 |
+| back | travelers-back-390 | back | 0.2746 (0.2746, 1 of 1) | 0.0053 (0.0053, 0 of 1) | 0.2746 / 0.0053 | 128 / 136 | 0 of 1 | test left: style#tll-fp-title-v1; scroll www 41 / test 0 px from wanted |
+| back | travelers-back-390 | back2 | 0.2995 (0.2995, 1 of 1) | 0.0053 (0.0053, 0 of 1) | 0.2995 / 0.0053 | 136 / 92 | 0 of 1 | test left: style#tll-fp-title-v1; scroll www 82 / test 0 px from wanted |
+| back | map-back-390 | scrolled | 0.171 (0.171, 1 of 1) | 0.008 (0.008, 0 of 1) | 0.008 / 0.008 | 648 / 560 | 1 of 1 |  |
+| back | map-back-390 | back | 1.5349 (1.5349, 1 of 1) | 0.0494 (0.0494, 0 of 1) | 1.5349 / 0.0494 | 124 / 132 | 0 of 1 | scroll www 3366 / test -26 px from wanted |
+| back | map-back-390 | back2 | 2.144 (2.144, 1 of 1) | 0.0421 (0.0421, 0 of 1) | 2.144 / 0.0421 | 180 / 136 | 0 of 1 | scroll www -23 / test -51 px from wanted |
+| back | expats-back-390 | scrolled | 0.0773 (0.0773, 0 of 1) | 0.0096 (0.0096, 0 of 1) | 0 / 0 | 760 / 548 | 1 of 1 |  |
+| back | expats-back-390 | back | 0.8614 (0.8614, 1 of 1) | 0.0691 (0.0691, 0 of 1) | 0.8614 / 0.0691 | 112 / 112 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| back | expats-back-390 | back2 | 0.8056 (0.8056, 1 of 1) | 0.0664 (0.0664, 0 of 1) | 0.8056 / 0.0664 | 116 / 320 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| back | about-back-390 | scrolled | 0.0243 (0.0243, 0 of 1) | 0 (0, 0 of 1) | 0 / 0 | 316 / 580 | 1 of 1 |  |
+| back | about-back-390 | back | 0.3265 (0.3265, 1 of 1) | 0.0058 (0.0058, 0 of 1) | 0.3265 / 0.0058 | 124 / 108 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| back | about-back-390 | back2 | 0.3919 (0.3919, 1 of 1) | 0.0058 (0.0058, 0 of 1) | 0.3919 / 0.0058 | 104 / 116 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| back | account-back-390 | scrolled | 0.0119 (0.0119, 0 of 1) | 0.0119 (0.0119, 0 of 1) | 0 / 0 | 312 / 528 | 1 of 1 |  |
+| back | account-back-390 | back | 0.2507 (0.2507, 1 of 1) | 0.2504 (0.2504, 1 of 1) | 0.2507 / 0.2504 | 128 / 112 | 1 of 1 | scroll www -215 / test -215 px from wanted |
+| back | account-back-390 | back2 | 0.251 (0.251, 1 of 1) | 0.2504 (0.2504, 1 of 1) | 0.251 / 0.2504 | 96 / 116 | 1 of 1 | scroll www -215 / test -215 px from wanted |
+| back | submit-back-390 | scrolled | 0.1437 (0.1437, 1 of 1) | 0.0003 (0.0003, 0 of 1) | 0 / 0 | 564 / 540 | 1 of 1 |  |
+| back | submit-back-390 | back | 0.4158 (0.4158, 1 of 1) | 0.0412 (0.0412, 0 of 1) | 0.4158 / 0.0412 | 100 / 116 | 1 of 1 | scroll www 0 / test 0 px from wanted |
+| back | submit-back-390 | back2 | 0.2369 (0.2369, 1 of 1) | 0.0412 (0.0412, 0 of 1) | 0.2369 / 0.0412 | 104 / 100 | 1 of 1 | scroll www 0 / test 0 px from wanted |
+| back | profile-back-390 | scrolled | 0.0763 (0.0763, 0 of 1) | 0.0004 (0.0004, 0 of 1) | 0 / 0 | 724 / 568 | 1 of 1 |  |
+| back | profile-back-390 | back | 1.3273 (1.3273, 1 of 1) | 0.6883 (0.6883, 1 of 1) | 1.3273 / 0.6883 | 136 / 144 | 0 of 1 | scroll www -31 / test 0 px from wanted |
+| back | profile-back-390 | back2 | 1.2904 (1.2904, 1 of 1) | 0.6883 (0.6883, 1 of 1) | 1.2904 / 0.6883 | 140 / 132 | 0 of 1 | scroll www -62 / test 0 px from wanted |
+| back | stories-back-390 | scrolled | 0.0361 (0.0361, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 684 / 636 | 1 of 1 |  |
+| back | stories-back-390 | back | 0.0046 (0.0046, 0 of 1) | 0.0019 (0.0019, 0 of 1) | 0.0046 / 0.0019 | 172 / 180 | 1 of 1 | scroll www 0 / test 0 px from wanted |
+| back | stories-back-390 | back2 | 0.0036 (0.0036, 0 of 1) | 0.0387 (0.0387, 0 of 1) | 0.0036 / 0.0387 | 200 / 168 | 1 of 1 | scroll www 0 / test 0 px from wanted |
+| back | travelers-back-1440 | scrolled | 0.0817 (0.0817, 0 of 1) | 0.0016 (0.0016, 0 of 1) | 0.0817 / 0.0016 | 612 / 552 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| back | travelers-back-1440 | back | 0.2507 (0.2507, 1 of 1) | 0.0001 (0.0001, 0 of 1) | 0.2507 / 0.0001 | 144 / 132 | 1 of 1 | test left: style#tll-fp-title-v1; scroll www 0 / test 0 px from wanted |
+| back | travelers-back-1440 | back2 | 0.703 (0.703, 1 of 1) | 0.0001 (0.0001, 0 of 1) | 0.703 / 0.0001 | 100 / 128 | 1 of 1 | test left: style#tll-fp-title-v1; scroll www 0 / test 0 px from wanted |
+| back | map-back-1440 | scrolled | 0.1003 (0.1003, 1 of 1) | 0.011 (0.011, 0 of 1) | 0.1003 / 0.011 | 596 / 532 | 1 of 1 |  |
+| back | map-back-1440 | back | 1.97 (1.97, 1 of 1) | 0.3076 (0.3076, 1 of 1) | 1.97 / 0.3076 | 140 / 136 | 0 of 1 | scroll www 2488 / test -26 px from wanted |
+| back | map-back-1440 | back2 | 1.6208 (1.6208, 1 of 1) | 0.2755 (0.2755, 1 of 1) | 1.6208 / 0.2755 | 136 / 136 | 0 of 1 | scroll www 62 / test -26 px from wanted |
+| back | account-back-1440 | scrolled | 0.3007 (0.3007, 1 of 1) | 0.0037 (0.0037, 0 of 1) | 0.3007 / 0.0037 | 600 / 560 | 1 of 1 |  |
+| back | account-back-1440 | back | 0.5239 (0.5239, 1 of 1) | 0.354 (0.354, 1 of 1) | 0.5239 / 0.354 | 112 / 128 | 0 of 1 | scroll www 0 / test -77 px from wanted |
+| back | account-back-1440 | back2 | 0.5239 (0.5239, 1 of 1) | 0.3679 (0.3679, 1 of 1) | 0.5239 / 0.3679 | 120 / 136 | 0 of 1 | scroll www 0 / test -77 px from wanted |
+| back | stories-back-1440 | scrolled | 0.1114 (0.1114, 1 of 1) | 0.0311 (0.0311, 0 of 1) | 0.1114 / 0.0311 | 620 / 656 | 1 of 1 |  |
+| back | stories-back-1440 | back | 0.0168 (0.0168, 0 of 1) | 0.0159 (0.0159, 0 of 1) | 0.0168 / 0.0159 | 204 / 172 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| back | stories-back-1440 | back2 | 0.0165 (0.0165, 0 of 1) | 0.0177 (0.0177, 0 of 1) | 0.0165 / 0.0177 | 192 / 168 | 0 of 1 | scroll www 0 / test 0 px from wanted |
+| resize | travelers-rotate-390 | a | 0.115 (0.115, 1 of 1) | 0.005 (0.005, 0 of 1) | 0 / 0 | 620 / 300 | 0 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-rotate-390 | land | 0.6398 (0.6398, 1 of 1) | 0.6398 (0.6398, 1 of 1) | 0 / 0 | 620 / 300 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-rotate-390 | port | 0.6407 (0.6407, 1 of 1) | 0.6407 (0.6407, 1 of 1) | 0 / 0 | 620 / 300 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-resize-1440 | a | 0.2999 (0.2999, 1 of 1) | 0.0017 (0.0017, 0 of 1) | 0.2999 / 0.0017 | 244 / 256 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-resize-1440 | w768 | 0.9108 (0.9108, 1 of 1) | 0.9367 (0.9367, 1 of 1) | 0 / 0 | 244 / 256 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-resize-1440 | w1440 | 0.6788 (0.6788, 1 of 1) | 0.6788 (0.6788, 1 of 1) | 0 / 0 | 244 / 256 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | map-rotate-390 | a | 0.1394 (0.1394, 1 of 1) | 0.0 (0.0, 0 of 1) | 0 / 0 | 236 / 344 | 1 of 1 |  |
+| resize | map-rotate-390 | land | 0.5371 (0.5371, 1 of 1) | 0.5371 (0.5371, 1 of 1) | 0 / 0 | 236 / 344 | 1 of 1 |  |
+| resize | map-rotate-390 | port | 0.5677 (0.5677, 1 of 1) | 0.5677 (0.5677, 1 of 1) | 0 / 0 | 236 / 344 | 1 of 1 |  |
+| resize | map-resize-1440 | a | 0.1136 (0.1136, 1 of 1) | 0.0114 (0.0114, 0 of 1) | 0.1136 / 0.0114 | 252 / 236 | 1 of 1 |  |
+| resize | map-resize-1440 | w768 | 0.6069 (0.6069, 1 of 1) | 0.6069 (0.6069, 1 of 1) | 0 / 0 | 252 / 236 | 1 of 1 |  |
+| resize | map-resize-1440 | w1440 | 0.4267 (0.4267, 1 of 1) | 0.4267 (0.4267, 1 of 1) | 0 / 0 | 252 / 236 | 1 of 1 |  |
+| resize | expats-rotate-390 | a | 0.0878 (0.0878, 0 of 1) | 0.0097 (0.0097, 0 of 1) | 0 / 0 | 1160 / 356 | 1 of 1 |  |
+| resize | expats-rotate-390 | land | 0.5371 (0.5371, 1 of 1) | 0.5371 (0.5371, 1 of 1) | 0 / 0 | 1160 / 356 | 1 of 1 |  |
+| resize | expats-rotate-390 | port | 0.5379 (0.5379, 1 of 1) | 0.5379 (0.5379, 1 of 1) | 0 / 0 | 1160 / 356 | 1 of 1 |  |
+| resize | expats-resize-1440 | a | 0.0393 (0.0393, 0 of 1) | 0.0001 (0.0001, 0 of 1) | 0.0393 / 0.0001 | 328 / 824 | 1 of 1 |  |
+| resize | expats-resize-1440 | w768 | 0.802 (0.802, 1 of 1) | 0.802 (0.802, 1 of 1) | 0 / 0 | 328 / 824 | 1 of 1 |  |
+| resize | expats-resize-1440 | w1440 | 0.5639 (0.5639, 1 of 1) | 0.5639 (0.5639, 1 of 1) | 0 / 0 | 328 / 824 | 1 of 1 |  |
+| resize | about-rotate-390 | a | 0.0245 (0.0245, 0 of 1) | 0.0002 (0.0002, 0 of 1) | 0 / 0 | 348 / 372 | 1 of 1 |  |
+| resize | about-rotate-390 | land | 0.916 (0.916, 1 of 1) | 0.916 (0.916, 1 of 1) | 0 / 0 | 348 / 372 | 1 of 1 |  |
+| resize | about-rotate-390 | port | 0.5379 (0.5379, 1 of 1) | 0.5379 (0.5379, 1 of 1) | 0 / 0 | 348 / 372 | 1 of 1 |  |
+| resize | about-resize-1440 | a | 0.0365 (0.0365, 0 of 1) | 0.0001 (0.0001, 0 of 1) | 0.0365 / 0.0001 | 332 / 220 | 1 of 1 |  |
+| resize | about-resize-1440 | w768 | 0.5601 (0.5601, 1 of 1) | 0.5601 (0.5601, 1 of 1) | 0 / 0 | 332 / 220 | 1 of 1 |  |
+| resize | about-resize-1440 | w1440 | 0.3938 (0.3938, 1 of 1) | 0.3938 (0.3938, 1 of 1) | 0 / 0 | 332 / 220 | 1 of 1 |  |
+| resize | account-rotate-390 | a | 0.0119 (0.0119, 0 of 1) | 0.0119 (0.0119, 0 of 1) | 0 / 0 | 240 / 280 | 1 of 1 |  |
+| resize | account-rotate-390 | land | 0.5371 (0.5371, 1 of 1) | 0.5371 (0.5371, 1 of 1) | 0 / 0 | 240 / 280 | 1 of 1 |  |
+| resize | account-rotate-390 | port | 0.5379 (0.5379, 1 of 1) | 0.5379 (0.5379, 1 of 1) | 0 / 0 | 240 / 280 | 1 of 1 |  |
+| resize | account-resize-1440 | a | 0.3007 (0.3007, 1 of 1) | 0.0037 (0.0037, 0 of 1) | 0.3007 / 0.0037 | 496 / 468 | 1 of 1 |  |
+| resize | account-resize-1440 | w768 | 0.3034 (0.3034, 1 of 1) | 0.3034 (0.3034, 1 of 1) | 0 / 0 | 496 / 468 | 1 of 1 |  |
+| resize | account-resize-1440 | w1440 | 0.2134 (0.2134, 1 of 1) | 0.2134 (0.2134, 1 of 1) | 0 / 0 | 496 / 468 | 1 of 1 |  |
+| resize | submit-rotate-390 | a | 0.1437 (0.1437, 1 of 1) | 0.0002 (0.0002, 0 of 1) | 0 / 0 | 284 / 304 | 1 of 1 |  |
+| resize | submit-rotate-390 | land | 0.5054 (0.5054, 1 of 1) | 0.5054 (0.5054, 1 of 1) | 0 / 0 | 284 / 304 | 1 of 1 |  |
+| resize | submit-rotate-390 | port | 0.5061 (0.5061, 1 of 1) | 0.5061 (0.5061, 1 of 1) | 0 / 0 | 284 / 304 | 1 of 1 |  |
+| resize | submit-resize-1440 | a | 0.0554 (0.0554, 0 of 1) | 0.0004 (0.0004, 0 of 1) | 0.0554 / 0.0004 | 404 / 216 | 1 of 1 |  |
+| resize | submit-resize-1440 | w768 | 0.3938 (0.3938, 1 of 1) | 0.3938 (0.3938, 1 of 1) | 0 / 0 | 404 / 216 | 1 of 1 |  |
+| resize | submit-resize-1440 | w1440 | 0.2626 (0.2626, 1 of 1) | 0.2626 (0.2626, 1 of 1) | 0 / 0 | 404 / 216 | 1 of 1 |  |
+| resize | profile-rotate-390 | a | 0.0763 (0.0763, 0 of 1) | 0.0004 (0.0004, 0 of 1) | 0.0001 / 0 | 344 / 288 | 1 of 1 |  |
+| resize | profile-rotate-390 | land | 0.5371 (0.5371, 1 of 1) | 0.5371 (0.5371, 1 of 1) | 0 / 0 | 344 / 288 | 1 of 1 |  |
+| resize | profile-rotate-390 | port | 0.5379 (0.5379, 1 of 1) | 0.5379 (0.5379, 1 of 1) | 0 / 0 | 344 / 288 | 1 of 1 |  |
+| resize | profile-resize-1440 | a | 0.1178 (0.1178, 1 of 1) | 0.0008 (0.0008, 0 of 1) | 0.1178 / 0.0008 | 332 / 288 | 1 of 1 |  |
+| resize | profile-resize-1440 | w768 | 0.6192 (0.6192, 1 of 1) | 0.6192 (0.6192, 1 of 1) | 0 / 0 | 332 / 288 | 1 of 1 |  |
+| resize | profile-resize-1440 | w1440 | 0.4518 (0.4518, 1 of 1) | 0.4518 (0.4518, 1 of 1) | 0 / 0 | 332 / 288 | 1 of 1 |  |
+| resize | stories-rotate-390 | a | 0.028 (0.028, 0 of 1) | 0.0073 (0.0073, 0 of 1) | 0.0002 / 0.0002 | 504 / 352 | 1 of 1 |  |
+| resize | stories-rotate-390 | land | 0.5371 (0.5371, 1 of 1) | 0.5371 (0.5371, 1 of 1) | 0 / 0 | 504 / 352 | 1 of 1 |  |
+| resize | stories-rotate-390 | port | 0.5379 (0.5379, 1 of 1) | 0.5379 (0.5379, 1 of 1) | 0 / 0 | 504 / 352 | 1 of 1 |  |
+| resize | stories-resize-1440 | a | 0.0498 (0.0498, 0 of 1) | 0.03 (0.03, 0 of 1) | 0.0498 / 0.03 | 400 / 332 | 1 of 1 |  |
+| resize | stories-resize-1440 | w768 | 0.6047 (0.6047, 1 of 1) | 0.6047 (0.6047, 1 of 1) | 0 / 0 | 400 / 332 | 1 of 1 |  |
+| resize | stories-resize-1440 | w1440 | 0.5178 (0.5178, 1 of 1) | 0.5178 (0.5178, 1 of 1) | 0 / 0 | 400 / 332 | 1 of 1 |  |
+| resize | travelers-resize-1440-390 | a | 0.235 (0.235, 1 of 1) | 0.0017 (0.0017, 0 of 1) | 0.235 / 0.0017 | 340 / 392 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-resize-1440-390 | w390 | 0.9556 (0.9556, 1 of 1) | 0.9558 (0.9558, 1 of 1) | 0 / 0 | 340 / 392 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | travelers-resize-1440-390 | w1440 | 0.6788 (0.6788, 1 of 1) | 0.6788 (0.6788, 1 of 1) | 0 / 0 | 340 / 392 | 1 of 1 | test left: style#tll-fp-title-v1 |
+| resize | map-resize-1440-390 | a | 0.0951 (0.0951, 0 of 1) | 0.0114 (0.0114, 0 of 1) | 0.0951 / 0.0114 | 288 / 292 | 1 of 1 |  |
+| resize | map-resize-1440-390 | w390 | 0.9088 (0.9088, 1 of 1) | 0.9088 (0.9088, 1 of 1) | 0 / 0 | 288 / 292 | 1 of 1 |  |
+| resize | map-resize-1440-390 | w1440 | 0.6828 (0.6828, 1 of 1) | 0.6828 (0.6828, 1 of 1) | 0 / 0 | 288 / 292 | 1 of 1 |  |
+| w320 | travelers-320 | end | 0.2339 (0.2374, 2 of 2) | 0.1681 (0.1681, 2 of 2) | 0.0548 / 0.0396 | 756.0 / 504.0 | 0 of 2 | test left: style#tll-fp-title-v1 |
+| w320 | map-320 | end | 0.1215 (0.1499, 1 of 2) | 0.0006 (0.0006, 0 of 2) | 0.0 / 0.0 | 454.0 / 356.0 | 2 of 2 |  |
+| w320 | expats-320 | end | 0.0235 (0.0235, 0 of 2) | 0.0 (0.0, 0 of 2) | 0.0 / 0.0 | 274.0 / 264.0 | 2 of 2 |  |
+| w320 | about-320 | end | 0.0027 (0.0027, 0 of 2) | 0.0002 (0.0003, 0 of 2) | 0.0 / 0.0 | 354.0 / 242.0 | 2 of 2 |  |
+| w320 | account-320 | end | 0.0064 (0.0064, 0 of 2) | 0.0063 (0.0063, 0 of 2) | 0.0 / 0.0 | 320.0 / 300.0 | 2 of 2 |  |
+| w320 | submit-320 | end | 0.1524 (0.1524, 2 of 2) | 0.007 (0.0079, 0 of 2) | 0.0 / 0.0 | 262.0 / 290.0 | 2 of 2 |  |
+| w320 | profile-320 | end | 0.0081 (0.0081, 0 of 2) | 0.0 (0.0, 0 of 2) | 0.0 / 0.0 | 260.0 / 278.0 | 2 of 2 |  |
+| w320 | stories-320 | end | 0.0307 (0.0307, 0 of 2) | 0.008 (0.008, 0 of 2) | 0.0003 / 0.0003 | 394.0 / 450.0 | 2 of 2 |  |
