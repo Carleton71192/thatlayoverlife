@@ -1,0 +1,2995 @@
+[
+ {
+  "run": "live one 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.7,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.7
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.3,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.7,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.7,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.2,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.65,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories",
+   "miss https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch one 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.7,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.7
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.5,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.7,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.2,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories",
+   "miss https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live mash 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.1,
+   6.1,
+   7.1,
+   8.1,
+   9.1,
+   10.1,
+   11.1,
+   12.1,
+   13.1
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.59,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "main",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch mash 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   1.0,
+   2.0,
+   3.1,
+   4.1,
+   5.1,
+   6.1,
+   7.1,
+   8.1,
+   9.1,
+   10.1,
+   11.1,
+   12.1,
+   13.1,
+   14.2
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.7,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.7
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.7,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.7,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.2,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "main",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live cached 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   17.4,
+   19.2
+  ],
+  "presses_with_event": 3,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ],
+   [
+    17.4,
+    "Send it to the editor"
+   ],
+   [
+    19.2,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6,
+   17.4
+  ],
+  "swallowed": [
+   17.4
+  ],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.7,
+    "FAIL",
+    2,
+    true,
+    "e best part."
+   ],
+   [
+    19.2,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    20.7,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 20.8,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.64,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": true,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 20.8,
+  "active": [
+   "body",
+   "div.w-form-fail",
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.2,
+    "div.w-form-fail",
+    true
+   ],
+   [
+    14.2,
+    "div.w-form-fail",
+    true
+   ],
+   [
+    20.7,
+    "div.w-form-done",
+    true
+   ],
+   [
+    20.7,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch cached 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   17.2
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ],
+   [
+    17.2,
+    "Photos are up. Sending"
+   ],
+   [
+    17.2,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6,
+   17.2
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "FAIL",
+    2,
+    true,
+    "e best part."
+   ],
+   [
+    17.2,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    18.7,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 18.7,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": true,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 18.7,
+  "active": [
+   "body",
+   "div.w-form-fail",
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-fail",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-fail",
+    true
+   ],
+   [
+    18.7,
+    "div.w-form-done",
+    true
+   ],
+   [
+    18.7,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live nopunct 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   15.9,
+   17.7
+  ],
+  "presses_with_event": 3,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Send it to the editor"
+   ],
+   [
+    15.9,
+    "Send it to the editor"
+   ],
+   [
+    17.7,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6,
+   15.9
+  ],
+  "swallowed": [
+   15.9
+  ],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    17.7,
+    "ok",
+    2,
+    true,
+    "he driver 🌙"
+   ]
+  ],
+  "worker": [
+   [
+    19.3,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 19.3,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.64,
+  "endSend": [],
+  "endBody": [
+   "hidden"
+  ],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 19.3,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    12.6,
+    "textarea[textarea].tll-pen-input.tll-pen-textarea",
+    false
+   ],
+   [
+    19.2,
+    "div.w-form-done",
+    true
+   ],
+   [
+    19.2,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch nopunct 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   15.9
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Send it to the editor"
+   ],
+   [
+    15.9,
+    "Photos are up. Sending"
+   ],
+   [
+    15.9,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6,
+   15.9
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    15.9,
+    "ok",
+    2,
+    true,
+    "he driver 🌙"
+   ]
+  ],
+  "worker": [
+   [
+    17.4,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 17.5,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [
+   [
+    "shown",
+    "alert"
+   ],
+   [
+    "hidden",
+    "alert"
+   ]
+  ],
+  "endBody": [
+   "hidden"
+  ],
+  "fail_box": false,
+  "done_first": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100,
+   "sy": 1462,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100,
+   "sy": 1462
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 17.5,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [
+   [
+    17.4,
+    "div.w-form-done",
+    "{\"block\":\"center\"}"
+   ]
+  ],
+  "foc": [
+   [
+    12.6,
+    "textarea[textarea].tll-pen-input.tll-pen-textarea",
+    false
+   ],
+   [
+    17.4,
+    "div.w-form-done",
+    true
+   ],
+   [
+    17.4,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live upfail 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   11.6
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    11.6,
+    "Send it to the editor"
+   ],
+   [
+    20.0,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   20.0
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.5,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "FAIL"
+   ],
+   [
+    11.8,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    16.0,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    20.0,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    21.5,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 21.5,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "The upload did not go through. Check your connection and send again. Nothing was sent.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 16.88,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 21.5,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    21.5,
+    "div.w-form-done",
+    true
+   ],
+   [
+    21.5,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch upfail 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0,
+   11.6
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    11.5,
+    "Sending photos 2 of 3"
+   ],
+   [
+    19.9,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   19.9
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "FAIL"
+   ],
+   [
+    11.8,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    15.9,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    19.9,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    21.5,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 21.5,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "The upload did not go through. Check your connection and send again. Nothing was sent.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 21.5,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    21.4,
+    "div.w-form-done",
+    true
+   ],
+   [
+    21.5,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live workerfail 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.55,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch workerfail 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 892,
+   "pct": 86,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ],
+   [
+    "Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live workeroff 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.59,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch workeroff 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 892,
+   "pct": 86,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ],
+   [
+    "Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED",
+   "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live key 1440x900",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.6,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818,
+   "docH": 2306
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch key 1440x900",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818,
+   "docH": 2306
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "live one 1440x900",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.2,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.6,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818,
+   "docH": 2306
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.2,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch one 1440x900",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818,
+   "docH": 2306
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100,
+   "sy": 818
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "c1667 one 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.1,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.56,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_first_t": 14.1,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 1,
+  "ls": "present (15 fields)",
+  "msJSON": [
+   "tllStoryDraft"
+  ]
+ },
+ {
+  "run": "branch+C one 390x844",
+  "loaded": {
+   "core": [
+    "3df16988"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "intake": true,
+   "end": true,
+   "steps": true
+  },
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "test-photo-1.jpg",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "test-photo-2.jpg",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "test-photo-3.jpg",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    2,
+    true,
+    "e best part."
+   ]
+  ],
+  "worker": [
+   [
+    14.2,
+    "story",
+    true
+   ]
+  ],
+  "preflight": 0,
+  "done_at": 14.2,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "fail_box": false,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194,
+   "docH": 2818
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99,
+   "sy": 1194
+  },
+  "intake": [
+   [
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_first_t": 14.2,
+  "active": [
+   "body",
+   "div.w-form-done"
+  ],
+  "siv": [],
+  "foc": [
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ],
+   [
+    14.1,
+    "div.w-form-done",
+    true
+   ]
+  ],
+  "cons": [
+   "error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "autosave_after_done": 0,
+  "ls": "absent",
+  "msJSON": []
+ }
+]
