@@ -21,7 +21,7 @@
               wrapper and every data-ms-* attribute are left as they are.
      stories  /stories: (1) the search form goes into the filter row, made the way the page's tll-lib-lead-v1 makes it; it is handed
               back the moment that script's element is parsed, right before it runs and merges for itself. (2) The first card
-              leads from the moment it is parsed. When the whole grid has arrived and the page's rules name another card (a pick
+              leads from the moment the parser adds it. When the whole grid has arrived and the page's rules name another card (a pick
               further down, a newer story), the page's own moves are made: the chip script's order (newest first), the pick in
               front, the mark. Before the page's scripts run the mark is taken off and a changed order is put back. Not with a
               search (?q=). (3) The title stays in its fallback faces until both of its font files are in, then takes both at once
@@ -109,7 +109,7 @@ if(path==='/stories')(function(){
 
   /* (2) the lead card. At the page-parsed event chips v1 puts the cards in order (newest first, each card appended again) and
      tll-lib-lead-v1 moves the editor's pick to the front and marks the first card shown. Here: the first card leads from the moment
-     it has been parsed (it is the pick or the newest story on all but rare days). When the whole grid has arrived the page's rules are
+     the parser adds it (it is the pick or the newest story on all but rare days). When the whole grid has arrived the page's rules are
      asked: if they name the first card, nothing more is done and the page sorts the rest when it is parsed, as it always has. If they
      name another card, the page's own moves are made (the same order, the pick in front, the mark), so a grid that has been painted
      moves as it does when the page does it. Before the page's scripts run the mark is taken off and a changed order is put back. */
@@ -119,7 +119,9 @@ if(path==='/stories')(function(){
   /* a card the site hides (the stub story) cannot lead: the page's scripts skip what is not shown */
   function shown(k){return W.getComputedStyle(k).display!=='none';}
   if(!/[?&]q=[^&]/.test(location.search)){
-    steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k||(!k.nextElementSibling&&!whole(g)))return false;
+    /* at once, before the card's own content has arrived: a frame painted with the first card half parsed and not yet marked showed
+       it as a plain card, and marking it afterwards moved it (0.05 at 1440 in 1 load of 32) */
+    steps.push(function(){var g=q('.tll-lib-grid'),k=g&&g.firstElementChild;if(!k)return false;
       if(!lead){lead=k;k.setAttribute('data-tll-lead','1');}return true;});
     steps.push(function(){grid=q('.tll-lib-grid');if(!grid||!whole(grid))return false;
       var rows=[].slice.call(grid.children).filter(function(k){return k.hasAttribute('data-tll-card')||q('[data-tll-card]',k);})

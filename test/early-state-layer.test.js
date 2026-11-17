@@ -342,11 +342,13 @@ describe('tll-early-state-v1: /stories (C6)', () => {
     const c = start({ withLayer: false }); const pc = STORIES(c.d, { lead: bad }); chunkRuns(c.d); c.d.parsed(); c.d.run(700);
     expect(pa.inner.querySelector('.tllsb-form')).toBe(null); expect(pa.grid.querySelector('[data-tll-lead]')).toBe(null); expect(pa.b.html()).toBe(pc.b.html());
   });
-  it('the first card leads from the moment it has been parsed, before the rest of the grid arrives', () => {
+  it('the first card leads from the moment the parser adds it, before its own content and the rest of the grid arrive', () => {
     const { d } = start(); const p = STORIES(d, { upTo: 'bar' }); d.el(p.main, 'section', { class: 'tllvb-bar' });
     const gs = d.el(p.main, 'section', { class: 'tll-library-grid-section' }); const grid = d.el(d.el(gs, 'div', { class: 'w-dyn-list' }), 'div', { class: 'tll-lib-grid w-dyn-items' });
     const card = (slug) => { const it = d.el(grid, 'div', { class: 'w-dyn-item', 'data-k': slug }); const a = d.el(it, 'a', { 'data-tll-card': 'cms', class: 'tll-lib-card', href: '/stories/' + slug }); d.el(a, 'div', { 'data-tll-date': '1' }, 'October 29, 2026'); return it; };
-    const first = card('first'); expect(first.hasAttribute('data-tll-lead')).toBe(false); // the card may still be growing
+    // a frame can be painted with the first card half parsed: it has to be the lead in that frame already
+    const first = d.el(grid, 'div', { class: 'w-dyn-item', 'data-k': 'first' }); expect(first.getAttribute('data-tll-lead')).toBe('1'); expect(first.childNodes.length).toBe(0);
+    const a1 = d.el(first, 'a', { 'data-tll-card': 'cms', class: 'tll-lib-card', href: '/stories/first' }); d.el(a1, 'div', { 'data-tll-date': '1' }, 'October 29, 2026');
     card('second'); expect(first.getAttribute('data-tll-lead')).toBe('1'); expect(grid.querySelectorAll('[data-tll-lead]').length).toBe(1);
   });
   it('the whole grid, when the page\'s rules name the first card: the mark stays and no card is moved', () => {
