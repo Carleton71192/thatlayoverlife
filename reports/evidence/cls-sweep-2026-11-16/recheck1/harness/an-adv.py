@@ -6,7 +6,7 @@ import json, os, sys, glob, re, collections, statistics, csv, gzip
 J = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'adv')
 out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(J, 'out')
 os.makedirs(out, exist_ok=True)
-ORDER = ['n1', 'n2', 'n2x', 'n2y', 'n3', 'n3slow', 'n7', 'atkq', 'atknav', 'atkenv', 'atkfail']
+ORDER = ['n1', 'n2', 'n2x', 'n2y', 'n3', 'n3slow', 'n7', 'atkq', 'atknav', 'atkenv', 'atkfail', 'fx']
 sets = sys.argv[2:] or [s for s in ORDER if os.path.exists(os.path.join(J, 'results', s + '.jsonl'))]
 EQ = ['box', 'tree', 'head', 'aria', 'foc', 'text']
 ARMS = ['ctl', 'old', 'new']

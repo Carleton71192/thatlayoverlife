@@ -2,9 +2,9 @@
 
 Arms: ctl = live 16.66.0 core, old = the afe01e7 build (before the repair), new = the repaired core (634b842). CLS counts every layout-shift entry. Late = the part later than 1 s after load.
 
-Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes equal in 128 (+0 apart from the /travelers title hold), body tree equal in 132, aria equal in 148, keyboard order equal in 147. New CLS lower by more than 0.01 in 129 stages, higher in 6. Over 0.1: ctl 85, new 40. Stages with something left behind in new: 0. Non-GET requests aborted: 1352. Failed loads: 0.
+Totals: 411 scenarios, 1016 loads, 555 compared stages (new against ctl). Boxes equal in 440 (+8 apart from the /travelers title hold), body tree equal in 449, aria equal in 524, keyboard order equal in 523. New CLS lower by more than 0.01 in 445 stages, higher in 38. Over 0.1: ctl 310, new 171. Stages with something left behind in new: 15. Non-GET requests aborted: 5093. Failed loads: 0.
 
-## Rows with a note (41)
+## Rows with a note (180)
 
 | set | scenario | stage | what |
 |---|---|---|---|
@@ -46,9 +46,148 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | n2 | expats-reload-bottom-1440-r4 | reloaded | boxes: 443/446 boxes; new higher by 0.054; scroll further from wanted: ctl +0, new -1153; console errors 14/19; new higher than old by 0.094 |
 | n2 | expats-reload-mid-1440-r4 | scrolled | console errors 8/12 |
 | n2 | expats-reload-mid-1440-r4 | reloaded | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12 |
+| n2x | expats-reload-bottom-390-r5 | scrolled | console errors 14/8 |
+| n2x | expats-reload-bottom-390-r5 | reloaded | boxes: 417/414 boxes; console errors 14/8 |
+| n2x | expats-reload-bottom-390-r6 | scrolled | console errors 8/12 |
+| n2x | expats-reload-bottom-390-r6 | reloaded | boxes: 414/417 boxes; scroll further from wanted: ctl -11, new -881; console errors 8/12 |
+| n2x | expats-reload-bottom-390-r7 | scrolled | console errors 8/12 |
+| n2x | expats-reload-bottom-390-r7 | reloaded | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -882; console errors 8/12 |
+| n2x | expats-reload-bottom-390-r8 | scrolled | console errors 12/8 |
+| n2x | expats-reload-bottom-390-r8 | reloaded | boxes: 417/414 boxes; console errors 12/8 |
+| n2x | expats-reload-bottom-390-r9 | scrolled | console errors 8/12 |
+| n2x | expats-reload-bottom-390-r9 | reloaded | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -882; console errors 8/12 |
+| n2x | expats-reload-bottom-390-r10 | scrolled | console errors 8/12 |
+| n2x | expats-reload-bottom-390-r10 | reloaded | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -880; console errors 8/12 |
+| n2y | about-reload-bottom-1440-r6 | reloaded | boxes: 21 lines differ (y or height by 81) |
+| n2y | about-reload-bottom-390-r6 | reloaded | boxes: 11 lines differ, names too; scroll further from wanted: ctl +0, new -111 |
+| n2y | about-reload-bottom-1440-r7 | reloaded | boxes: 21 lines differ (y or height by -81); scroll further from wanted: ctl +0, new -81 |
+| n2y | about-reload-bottom-1440-r8 | reloaded | boxes: 21 lines differ (y or height by 81) |
+| n2y | about-reload-bottom-390-r8 | reloaded | boxes: 11 lines differ, names too |
+| n2y | about-reload-bottom-390-r9 | reloaded | boxes: 11 lines differ, names too; scroll further from wanted: ctl +0, new -111 |
+| n2y | about-reload-bottom-1440-r10 | reloaded | boxes: 21 lines differ (y or height by -81); scroll further from wanted: ctl +0, new -81 |
+| n2y | about-reload-bottom-390-r11 | reloaded | boxes: 11 lines differ, names too |
+| n2y | about-reload-bottom-390-r12 | reloaded | boxes: 11 lines differ, names too |
+| n2y | expats-reload-bottom-1440-r5 | scrolled | console errors 14/13 |
+| n2y | expats-reload-bottom-1440-r5 | reloaded | console errors 14/13 |
+| n2y | expats-reload-bottom-1440-r6 | scrolled | console errors 18/14 |
+| n2y | expats-reload-bottom-1440-r6 | reloaded | boxes: 446/443 boxes; console errors 18/14 |
+| n2y | expats-reload-bottom-1440-r7 | scrolled | console errors 14/18 |
+| n2y | expats-reload-bottom-1440-r7 | reloaded | boxes: 443/446 boxes; new higher by 0.054; scroll further from wanted: ctl +0, new -1153; console errors 14/18 |
+| n2y | expats-reload-bottom-1440-r8 | scrolled | console errors 19/18 |
+| n2y | expats-reload-bottom-1440-r8 | reloaded | boxes: 96 lines differ, names too; console errors 19/18 |
+| n2y | expats-reload-bottom-1440-r9 | scrolled | console errors 14/18 |
+| n2y | expats-reload-bottom-1440-r9 | reloaded | boxes: 443/446 boxes; new higher by 0.054; scroll further from wanted: ctl +0, new -1153; console errors 14/18 |
+| n2y | expats-reload-mid-1440-r5 | scrolled | console errors 12/8 |
+| n2y | expats-reload-mid-1440-r5 | reloaded | boxes: 443/440 boxes; console errors 12/8 |
+| n2y | expats-reload-mid-1440-r6 | scrolled | console errors 8/12 |
+| n2y | expats-reload-mid-1440-r6 | reloaded | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12; new higher than old by 0.163 |
+| n2y | expats-reload-mid-1440-r8 | scrolled | console errors 8/12 |
+| n2y | expats-reload-mid-1440-r8 | reloaded | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12 |
 | n3 | map-code404-1440-r2 | end | new higher by 0.020 |
+| n3slow | map-never-empty-cut1-1440-r1 | end | new higher by 0.030; new higher than old by 0.018 |
+| n3slow | map-never-empty-cut1-1440-r2 | end | new higher by 0.015; new higher than old by 0.018 |
 | n7 | stories-earlytap-320 | open | new higher by 0.015 |
 | n7 | stories-earlytap-320 | closed | new higher by 0.015 |
+| atkq | st-hash-card-1440 | end | boxes: 1163/1165 boxes; new higher by 0.038 |
+| atkq | st-q-even-1440 | end | new higher by 0.030 |
+| atkq | st-q-cpu4-390 | end | boxes: 102 lines differ (x or width); new higher by 0.273 |
+| atkq | st-q-lead-throw-1440 | end | new higher by 0.010 |
+| atkq | st-q-reload-mid-390 | reloaded | late +0.914 |
+| atkq | st-q-reload-mid-1440 | scrolled | console errors 50/46 |
+| atkq | st-q-reload-mid-1440 | reloaded | boxes: 198/195 boxes; new higher by 0.117; console errors 50/46 |
+| atkq | st-q-reload-bottom-1440 | reloaded | new higher by 0.515; late +0.664 |
+| atkq | st-q-back-390 | back2 | late +0.514 |
+| atkq | st-q-back-1440 | back | boxes: 1 lines differ, names too; new higher by 0.028 |
+| atkq | st-q-back-1440 | back2 | boxes: 1 lines differ, names too; new higher by 0.955 |
+| atknav | travelers-reload-mid-390 | scrolled | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-mid-390 | reloaded | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-bottom-390 | scrolled | boxes: title hold +40 px; console errors 8/10; left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-bottom-390 | reloaded | boxes: 3 lines differ (x or width); new higher by 0.708; console errors 8/10; left: style#tll-fp-title-v1 |
+| atknav | map-reload-mid-390 | reloaded | boxes: 275/440 boxes |
+| atknav | map-reload-bottom-390 | reloaded | boxes: 51 lines differ (y or height by -27); scroll further from wanted: ctl -2664, new -2691 |
+| atknav | submit-reload-mid-390 | scrolled | console errors 9/8 |
+| atknav | submit-reload-mid-390 | reloaded | console errors 9/8 |
+| atknav | profile-reload-mid-390 | scrolled | console errors 8/10 |
+| atknav | profile-reload-mid-390 | reloaded | console errors 8/10 |
+| atknav | map-reload-mid-1440 | reloaded | boxes: 298/462 boxes |
+| atknav | map-reload-bottom-1440 | scrolled | console errors 10/8 |
+| atknav | map-reload-bottom-1440 | reloaded | boxes: 462/298 boxes; console errors 10/8 |
+| atknav | stories-reload-bottom-1440 | reloaded | boxes: 1152/1154 boxes; new higher by 0.334 |
+| atknav | travelers-reload-mid-1440 | scrolled | left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-mid-1440 | reloaded | left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-bottom-1440 | scrolled | console errors 8/10; left: style#tll-fp-title-v1 |
+| atknav | travelers-reload-bottom-1440 | reloaded | console errors 8/10; left: style#tll-fp-title-v1 |
+| atknav | about-back-390 | back | boxes: 1 lines differ, names too |
+| atknav | about-back-390 | back2 | boxes: 1 lines differ, names too |
+| atknav | about-back-1440 | back | boxes: 5 lines differ, names too |
+| atknav | about-back-1440 | back2 | boxes: 5 lines differ, names too |
+| atknav | expats-back-390 | back | boxes: 17 lines differ, names too |
+| atknav | expats-back-390 | back2 | boxes: 19 lines differ, names too |
+| atknav | expats-back-1440 | back | boxes: 16 lines differ, names too |
+| atknav | expats-back-1440 | back2 | boxes: 16 lines differ, names too |
+| atknav | map-back-390 | back | boxes: 275/440 boxes |
+| atknav | map-back-390 | back2 | boxes: 71 lines differ, names too; scroll further from wanted: ctl -21, new -26 |
+| atknav | map-back-1440 | back | boxes: 298/462 boxes |
+| atknav | map-back-1440 | back2 | boxes: 49 lines differ, names too |
+| atknav | stories-back-1440 | back | boxes: 1155/1153 boxes; console errors 42/38 |
+| atknav | stories-back-1440 | back2 | boxes: 1155/1153 boxes; console errors 42/38 |
+| atkenv | travelers-320 | end | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| atkfail | map-jq404-390 | end | boxes: 403 lines differ (x or width) |
+| atkfail | map-mnav-throw-390 | end | boxes: 403 lines differ (x or width) |
+| atkfail | map-pagechunk404-390 | end | boxes: 408 lines differ (x or width) |
+| atkfail | map-tll-map-invite-js-v1-throw-390 | end | boxes: 439/440 boxes |
+| atkfail | map-tll-map-invite-js-v1-throw-1440 | end | boxes: 461/462 boxes |
+| atkfail | map-tll-map-invite-js-v1-missing-1440 | end | boxes: 7 lines differ, names too |
+| atkfail | map-tll-mp3-passport-js-v1-throw-1440 | end | boxes: 434 lines differ (x or width) |
+| atkfail | map-tll-v91-map-clusters-v2-throw-1440 | end | boxes: 418 lines differ (x or width) |
+| atkfail | stories-tll-lib-lead-v1-throw-1440 | end | boxes: 1153/1155 boxes; console errors 8/10 |
+| atkfail | stories-tll-lib-lead-v1-missing-1440 | end | new higher by 0.035 |
+| atkfail | stories-shareyours404-1440 | end | boxes: 1150/1148 boxes; console errors 14/11 |
+| atkfail | about-note-nostyle-reload-bottom-390 | scrolled | boxes: 1 lines differ (x or width); console errors 15/14 |
+| atkfail | about-note-nostyle-reload-bottom-390 | reloaded | console errors 15/14 |
+| atkfail | map-noboot-never-empty-1440 | end | late +0.037 |
+| fx | st-q-reload-bottom-1440-fx1 | reloaded | new higher than old by 0.919 |
+| fx | st-q-back-1440-fx1 | back | boxes: 1 lines differ, names too; new higher by 0.356; new higher than old by 0.956 |
+| fx | st-q-back-1440-fx1 | back2 | boxes: 1 lines differ, names too; new higher than old by 0.031 |
+| fx | st-q-reload-mid-1440-fx1 | scrolled | console errors 44/50 |
+| fx | st-q-reload-mid-1440-fx1 | reloaded | boxes: 195/198 boxes; late +0.199; scroll further from wanted: ctl +0, new +955; console errors 44/50 |
+| fx | st-q-cpu4-390-fx1 | end | new higher by 0.014; console errors 12/10 |
+| fx | travelers-reload-bottom-390-fx1 | scrolled | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| fx | travelers-reload-bottom-390-fx1 | reloaded | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| fx | stories-reload-bottom-1440-fx1 | reloaded | boxes: 1152/1154 boxes; new higher by 0.334 |
+| fx | map-tll-map-invite-js-v1-throw-390-fx1 | end | boxes: 439/440 boxes |
+| fx | map-tll-map-invite-js-v1-throw-1440-fx1 | end | boxes: 461/462 boxes |
+| fx | stories-tll-lib-lead-v1-missing-1440-fx1 | end | new higher by 0.036 |
+| fx | stories-tll-lib-lead-v1-throw-1440-fx1 | end | boxes: 1153/1155 boxes; console errors 8/10 |
+| fx | st-q-reload-bottom-1440-fx2 | reloaded | new higher by 0.886; new higher than old by 0.474 |
+| fx | st-q-back-1440-fx2 | back | boxes: 1 lines differ, names too; new higher by 0.034 |
+| fx | st-q-back-1440-fx2 | back2 | boxes: 1 lines differ, names too; new higher by 0.955; new higher than old by 0.955 |
+| fx | st-q-reload-mid-1440-fx2 | reloaded | new higher by 0.578; new higher than old by 0.555 |
+| fx | st-q-reload-mid-390-fx2 | reloaded | new higher than old by 0.693 |
+| fx | st-q-back-390-fx2 | back | late +0.514 |
+| fx | st-q-cpu4-390-fx2 | end | new higher by 0.014 |
+| fx | st-hash-card-1440-fx2 | end | boxes: 1165/1163 boxes |
+| fx | travelers-reload-bottom-390-fx2 | scrolled | boxes: 2 lines differ (y or height by 1); left: style#tll-fp-title-v1 |
+| fx | travelers-reload-bottom-390-fx2 | reloaded | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| fx | stories-reload-bottom-1440-fx2 | reloaded | boxes: 1152/1154 boxes; new higher by 0.334 |
+| fx | map-tll-map-invite-js-v1-throw-390-fx2 | end | boxes: 439/440 boxes |
+| fx | map-tll-map-invite-js-v1-throw-1440-fx2 | end | boxes: 461/462 boxes |
+| fx | map-jq404-390-fx2 | end | boxes: 403 lines differ (x or width) |
+| fx | stories-tll-lib-lead-v1-missing-1440-fx2 | end | new higher by 0.035 |
+| fx | stories-tll-lib-lead-v1-throw-1440-fx2 | end | boxes: 1153/1155 boxes; new higher by 0.010; console errors 8/10 |
+| fx | st-q-reload-bottom-1440-fx3 | scrolled | console errors 47/49 |
+| fx | st-q-reload-bottom-1440-fx3 | reloaded | console errors 47/49 |
+| fx | st-q-back-1440-fx3 | back | boxes: 1 lines differ, names too; new higher by 0.356; new higher than old by 0.324 |
+| fx | st-q-back-1440-fx3 | back2 | boxes: 1 lines differ, names too; new higher by 0.955; late +0.314; new higher than old by 0.324 |
+| fx | st-q-reload-mid-1440-fx3 | reloaded | new higher by 0.904; late +0.465; new higher than old by 0.555 |
+| fx | st-q-back-390-fx3 | back | late +0.514 |
+| fx | travelers-reload-bottom-390-fx3 | scrolled | boxes: 3 lines differ, names too; console errors 8/10; left: style#tll-fp-title-v1 |
+| fx | travelers-reload-bottom-390-fx3 | reloaded | boxes: title hold +40 px; new higher by 0.165; console errors 8/10; left: style#tll-fp-title-v1 |
+| fx | stories-reload-bottom-1440-fx3 | scrolled | console errors 28/30 |
+| fx | stories-reload-bottom-1440-fx3 | reloaded | boxes: 1152/1154 boxes; new higher by 0.334; console errors 28/30 |
+| fx | map-tll-map-invite-js-v1-throw-390-fx3 | end | boxes: 439/440 boxes |
+| fx | map-tll-map-invite-js-v1-throw-1440-fx3 | end | boxes: 461/462 boxes |
+| fx | stories-tll-lib-lead-v1-throw-1440-fx3 | end | boxes: 1153/1155 boxes; console errors 8/10 |
 
 ## Groups (repeats pooled; values in load order per arm)
 
@@ -108,6 +247,36 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | n2 | expats-reload-mid-1440 | reloaded | ctl | 4 | 0.8590 / 0.8590 / 0.8590 | 4 | 0.000 | +0 +0 +0 +0 | - | - | - | body x4 |
 | n2 | expats-reload-mid-1440 | reloaded | old | 4 | 0.8008 / 0.8009 / 0.8010 | 4 | 0.000 | +1152 +1152 +1152 +1152 | - | - | - | body x4 |
 | n2 | expats-reload-mid-1440 | reloaded | new | 4 | 0.8008 / 0.8009 / 0.8010 | 4 | 0.000 | +1152 +1152 +1152 +1152 | - | - | - | body x4 |
+| n2x | expats-reload-bottom-390 | scrolled | ctl | 6 | 0.0772 / 0.0824 / 0.0878 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2x | expats-reload-bottom-390 | scrolled | old | 6 | 0.0049 / 0.0097 / 0.0097 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2x | expats-reload-bottom-390 | scrolled | new | 6 | 0.0049 / 0.0049 / 0.0097 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2x | expats-reload-bottom-390 | reloaded | ctl | 6 | 1.0891 / 1.0891 / 1.0997 | 6 | 0.012 | -881 -11 -10 -882 -10 -10 | - | - | - | body x6 |
+| n2x | expats-reload-bottom-390 | reloaded | old | 6 | 1.0168 / 1.0215 / 1.0216 | 6 | 0.012 | -882 -10 -881 -882 -881 -10 | - | - | - | body x6 |
+| n2x | expats-reload-bottom-390 | reloaded | new | 6 | 1.0118 / 1.0192 / 1.0216 | 6 | 0.012 | -10 -881 -882 -10 -882 -880 | - | - | - | body x6 |
+| n2y | about-reload-bottom-1440 | scrolled | ctl | 8 | 0.0360 / 0.0466 / 0.0615 | 0 | 0.000 | - | - | - | - | body x8 |
+| n2y | about-reload-bottom-1440 | scrolled | old | 8 | 0.0001 / 0.0005 / 0.0006 | 0 | 0.000 | - | - | - | - | body x8 |
+| n2y | about-reload-bottom-1440 | scrolled | new | 8 | 0.0001 / 0.0006 / 0.0006 | 0 | 0.000 | - | - | 112 to 152 | - | body x8 |
+| n2y | about-reload-bottom-1440 | reloaded | ctl | 8 | 0.0510 / 0.1066 / 0.1124 | 5 | 0.000 | +0 -81 +0 -81 +0 +0 +0 +0 | - | - | - | body x8 |
+| n2y | about-reload-bottom-1440 | reloaded | old | 8 | 0.1028 / 0.1030 / 0.1031 | 8 | 0.000 | +0 +0 +0 +0 +0 +0 +0 +0 | - | - | - | body x8 |
+| n2y | about-reload-bottom-1440 | reloaded | new | 8 | 0.0491 / 0.0513 / 0.0516 | 0 | 0.000 | +0 +0 -81 +0 +0 -81 +0 +0 | - | 86 to 114 | - | body x8 |
+| n2y | about-reload-bottom-390 | scrolled | ctl | 8 | 0.0243 / 0.0245 / 0.0246 | 0 | 0.000 | - | - | - | - | body x8 |
+| n2y | about-reload-bottom-390 | scrolled | old | 8 | 0.0000 / 0.0003 / 0.0003 | 0 | 0.000 | - | - | - | - | body x8 |
+| n2y | about-reload-bottom-390 | scrolled | new | 8 | 0.0000 / 0.0003 / 0.0003 | 0 | 0.000 | - | - | 116 to 161 | - | body x8 |
+| n2y | about-reload-bottom-390 | reloaded | ctl | 8 | 0.1288 / 0.1542 / 0.1747 | 8 | 0.000 | +0 +0 -111 -111 +0 -111 -111 -111 | - | - | - | body x8 |
+| n2y | about-reload-bottom-390 | reloaded | old | 8 | 0.4089 / 0.4700 / 0.4936 | 8 | 0.000 | +0 +0 +0 +0 +0 +0 +0 +0 | - | - | - | body x8 |
+| n2y | about-reload-bottom-390 | reloaded | new | 8 | 0.1288 / 0.1301 / 0.1311 | 8 | 0.000 | +0 -111 -111 +0 -111 -111 +0 +0 | - | 87 to 111 | - | body x8 |
+| n2y | expats-reload-bottom-1440 | scrolled | ctl | 6 | 0.0025 / 0.0391 / 0.0395 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2y | expats-reload-bottom-1440 | scrolled | old | 6 | 0.0001 / 0.0001 / 0.0007 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2y | expats-reload-bottom-1440 | scrolled | new | 6 | 0.0001 / 0.0001 / 0.0005 | 0 | 0.000 | - | - | - | - | body x6 |
+| n2y | expats-reload-bottom-1440 | reloaded | ctl | 6 | 0.7073 / 0.7472 / 0.8407 | 6 | 0.000 | +0 -1153 +0 -1153 +0 +0 | - | - | - | body x6 |
+| n2y | expats-reload-bottom-1440 | reloaded | old | 6 | 0.7074 / 0.8011 / 0.8014 | 6 | 0.000 | -1153 +0 -1153 -1153 -1153 -1153 | - | - | - | body x6 |
+| n2y | expats-reload-bottom-1440 | reloaded | new | 6 | 0.7073 / 0.7545 / 0.8014 | 6 | 0.000 | +0 +0 -1153 -1153 -1153 +0 | - | - | - | body x6 |
+| n2y | expats-reload-mid-1440 | scrolled | ctl | 4 | 0.0391 / 0.0391 / 0.0391 | 0 | 0.000 | - | - | - | - | body x4 |
+| n2y | expats-reload-mid-1440 | scrolled | old | 4 | 0.0001 / 0.0001 / 0.0004 | 0 | 0.000 | - | - | - | - | body x4 |
+| n2y | expats-reload-mid-1440 | scrolled | new | 4 | 0.0001 / 0.0003 / 0.0005 | 0 | 0.000 | - | - | - | - | body x4 |
+| n2y | expats-reload-mid-1440 | reloaded | ctl | 4 | 0.8008 / 0.8592 / 1.0220 | 4 | 0.000 | +1152 +0 +1152 +0 | - | - | - | body x4 |
+| n2y | expats-reload-mid-1440 | reloaded | old | 4 | 0.6383 / 0.8008 / 0.8010 | 4 | 0.000 | +1152 +0 +1152 +1152 | - | - | - | body x4 |
+| n2y | expats-reload-mid-1440 | reloaded | new | 4 | 0.6382 / 0.8008 / 0.8009 | 4 | 0.000 | +0 +1152 +1152 +1152 | - | - | - | body x4 |
 | n3 | map-never-empty-1440 | end | ctl | 2 | 0.0389 / 0.1612 / 0.2836 | 1 | 0.000 | - | - | - | - | body x2 |
 | n3 | map-never-empty-1440 | end | old | 2 | 0.0381 / 0.0382 / 0.0382 | 0 | 0.037 | - | 9556 to 9620 | - | - | body x2 |
 | n3 | map-never-empty-1440 | end | new | 2 | 0.0452 / 0.0452 / 0.0452 | 0 | 0.000 | - | 298 to 308 | - | - | body x2 |
@@ -162,6 +331,24 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | n3 | map-nodata-23s-390 | end | ctl | 1 | 0.1396 / 0.1396 / 0.1396 | 1 | 0.000 | - | - | - | - | body x1 |
 | n3 | map-nodata-23s-390 | end | old | 1 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 9649 | - | - | body x1 |
 | n3 | map-nodata-23s-390 | end | new | 1 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 319 | - | - | body x1 |
+| n3slow | map-even-390 | end | ctl | 2 | 0.1632 / 0.1681 / 0.1731 | 2 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-even-390 | end | old | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 5148 to 5685 | - | - | body x2 |
+| n3slow | map-even-390 | end | new | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 5174 to 5655 | - | - | body x2 |
+| n3slow | map-cut1-390 | end | ctl | 2 | 0.1738 / 0.1738 / 0.1738 | 2 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-cut1-390 | end | old | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 5138 to 5187 | - | - | body x2 |
+| n3slow | map-cut1-390 | end | new | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 5199 to 5204 | - | - | body x2 |
+| n3slow | map-never-empty-cut1-390 | end | ctl | 2 | 0.1737 / 0.1897 / 0.2058 | 2 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-never-empty-cut1-390 | end | old | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 13174 to 13190 | - | - | body x2 |
+| n3slow | map-never-empty-cut1-390 | end | new | 2 | 0.0000 / 0.0000 / 0.0000 | 0 | 0.000 | - | 3837 to 3890 | - | - | body x2 |
+| n3slow | map-even-1440 | end | ctl | 2 | 0.1076 / 0.1138 / 0.1200 | 2 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-even-1440 | end | old | 2 | 0.0125 / 0.0125 / 0.0125 | 0 | 0.000 | - | 5152 to 5348 | - | - | body x2 |
+| n3slow | map-even-1440 | end | new | 2 | 0.0125 / 0.0125 / 0.0125 | 0 | 0.000 | - | 5197 to 5264 | - | - | body x2 |
+| n3slow | map-cut1-1440 | end | ctl | 2 | 0.1095 / 0.1130 / 0.1164 | 2 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-cut1-1440 | end | old | 2 | 0.0125 / 0.0125 / 0.0125 | 0 | 0.000 | - | 5400 to 5605 | - | - | body x2 |
+| n3slow | map-cut1-1440 | end | new | 2 | 0.0125 / 0.0125 / 0.0125 | 0 | 0.000 | - | 5132 to 5273 | - | - | body x2 |
+| n3slow | map-never-empty-cut1-1440 | end | ctl | 2 | 0.0256 / 0.0333 / 0.0410 | 0 | 0.000 | - | - | - | - | body x2 |
+| n3slow | map-never-empty-cut1-1440 | end | old | 2 | 0.0376 / 0.0376 / 0.0376 | 0 | 0.037 | - | 13276 to 13287 | - | - | body x2 |
+| n3slow | map-never-empty-cut1-1440 | end | new | 2 | 0.0555 / 0.0556 / 0.0556 | 0 | 0.000 | - | 3823 to 3915 | - | - | body x2 |
 | n7 | stories-earlytap-390 | open | ctl | 3 | 0.0275 / 0.0275 / 0.0353 | 0 | 0.000 | - | - | - | - | button.tllmm-btn x3 |
 | n7 | stories-earlytap-390 | open | old | 3 | 0.0335 / 0.0335 / 0.0335 | 0 | 0.000 | - | - | - | 371 to 571 | body x3 |
 | n7 | stories-earlytap-390 | open | new | 3 | 0.0335 / 0.0335 / 0.0335 | 0 | 0.000 | - | - | - | 360 to 366 | button.tllmm-btn x3 |
@@ -323,6 +510,80 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | expats-reload-mid-1440-r4 | scrolled | 0.0391 | 0.0001 | 0.0001 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
 | expats-reload-mid-1440-r4 | reloaded | 0.8590 | 0.8008 | 0.8008 | 0.000 / 0.000 / 0.000 | 1440 / 2592 / 2592 (1440) | N N y y y y y | - | 0/0 | 8/12 | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12 |
 
+## Set n2x (6 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| expats-reload-bottom-390-r5 | scrolled | 0.0772 | 0.0097 | 0.0049 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 14/8 | console errors 14/8 |
+| expats-reload-bottom-390-r5 | reloaded | 1.0997 | 1.0216 | 1.0168 | 0.012 / 0.012 / 0.012 | 5523 / 5522 / 6394 (6404) | N N y N N N N | - | 0/0 | 14/8 | boxes: 417/414 boxes; console errors 14/8 |
+| expats-reload-bottom-390-r6 | scrolled | 0.0772 | 0.0049 | 0.0049 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-bottom-390-r6 | reloaded | 1.0891 | 1.0168 | 1.0118 | 0.012 / 0.012 / 0.012 | 6393 / 6394 / 5523 (6404) | N N y N N N N | - | 0/0 | 8/12 | boxes: 414/417 boxes; scroll further from wanted: ctl -11, new -881; console errors 8/12 |
+| expats-reload-bottom-390-r7 | scrolled | 0.0772 | 0.0049 | 0.0049 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-bottom-390-r7 | reloaded | 1.0891 | 1.0214 | 1.0216 | 0.012 / 0.012 / 0.012 | 6394 / 5523 / 5522 (6404) | N N y N N N N | - | 0/0 | 8/12 | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -882; console errors 8/12 |
+| expats-reload-bottom-390-r8 | scrolled | 0.0877 | 0.0096 | 0.0097 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 12/8 | console errors 12/8 |
+| expats-reload-bottom-390-r8 | reloaded | 1.0891 | 1.0216 | 1.0216 | 0.012 / 0.012 / 0.012 | 5522 / 5522 / 6394 (6404) | N N y N N N N | - | 0/0 | 12/8 | boxes: 417/414 boxes; console errors 12/8 |
+| expats-reload-bottom-390-r9 | scrolled | 0.0878 | 0.0097 | 0.0097 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-bottom-390-r9 | reloaded | 1.0891 | 1.0168 | 1.0216 | 0.012 / 0.012 / 0.012 | 6394 / 5523 / 5522 (6404) | N N y N N N N | - | 0/0 | 8/12 | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -882; console errors 8/12 |
+| expats-reload-bottom-390-r10 | scrolled | 0.0877 | 0.0097 | 0.0049 | 0.000 / 0.000 / 0.000 | 6404 / 6404 / 6404 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-bottom-390-r10 | reloaded | 1.0995 | 1.0216 | 1.0168 | 0.012 / 0.012 / 0.012 | 6394 / 6394 / 5524 (6404) | N N y N N N N | - | 0/0 | 8/12 | boxes: 414/417 boxes; scroll further from wanted: ctl -10, new -880; console errors 8/12 |
+
+## Set n2y (26 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| about-reload-bottom-1440-r5 | scrolled | 0.0365 | 0.0006 | 0.0001 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r5 | reloaded | 0.1124 | 0.1030 | 0.0511 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 (3787) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r5 | scrolled | 0.0245 | 0.0003 | 0.0003 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r5 | reloaded | 0.1747 | 0.4936 | 0.1310 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 (5014) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r6 | scrolled | 0.0615 | 0.0006 | 0.0006 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r6 | reloaded | 0.1056 | 0.1030 | 0.0515 | 0.000 / 0.000 / 0.000 | 3706 / 3787 / 3787 (3787) | N y y y y y y | - | 0/0 | 8/8 | boxes: 21 lines differ (y or height by 81) |
+| about-reload-bottom-390-r6 | scrolled | 0.0243 | 0.0002 | 0.0003 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r6 | reloaded | 0.1308 | 0.4089 | 0.1290 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 4903 (5014) | N N y y y y y | - | 0/0 | 8/8 | boxes: 11 lines differ, names too; scroll further from wanted: ctl +0, new -111 |
+| about-reload-bottom-1440-r7 | scrolled | 0.0567 | 0.0005 | 0.0006 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r7 | reloaded | 0.0510 | 0.1030 | 0.0491 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3706 (3787) | N y y y y y y | - | 0/0 | 8/8 | boxes: 21 lines differ (y or height by -81); scroll further from wanted: ctl +0, new -81 |
+| about-reload-bottom-390-r7 | scrolled | 0.0246 | 0.0003 | 0.0000 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r7 | reloaded | 0.1530 | 0.4936 | 0.1288 | 0.000 / 0.000 / 0.000 | 4903 / 5014 / 4903 (5014) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r8 | scrolled | 0.0567 | 0.0005 | 0.0006 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r8 | reloaded | 0.1104 | 0.1031 | 0.0516 | 0.000 / 0.000 / 0.000 | 3706 / 3787 / 3787 (3787) | N y y y y y y | - | 0/0 | 8/8 | boxes: 21 lines differ (y or height by 81) |
+| about-reload-bottom-390-r8 | scrolled | 0.0245 | 0.0003 | 0.0000 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r8 | reloaded | 0.1745 | 0.4936 | 0.1311 | 0.000 / 0.000 / 0.000 | 4903 / 5014 / 5014 (5014) | N N y y y y y | - | 0/0 | 8/8 | boxes: 11 lines differ, names too |
+| about-reload-bottom-1440-r9 | scrolled | 0.0360 | 0.0001 | 0.0005 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r9 | reloaded | 0.1076 | 0.1030 | 0.0510 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 (3787) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r9 | scrolled | 0.0246 | 0.0003 | 0.0002 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r9 | reloaded | 0.1550 | 0.4465 | 0.1291 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 4903 (5014) | N N y y y y y | - | 0/0 | 8/8 | boxes: 11 lines differ, names too; scroll further from wanted: ctl +0, new -111 |
+| about-reload-bottom-1440-r10 | scrolled | 0.0364 | 0.0005 | 0.0006 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r10 | reloaded | 0.1124 | 0.1028 | 0.0494 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3706 (3787) | N y y y y y y | - | 0/0 | 8/8 | boxes: 21 lines differ (y or height by -81); scroll further from wanted: ctl +0, new -81 |
+| about-reload-bottom-390-r10 | scrolled | 0.0243 | 0.0003 | 0.0003 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r10 | reloaded | 0.1533 | 0.4465 | 0.1291 | 0.000 / 0.000 / 0.000 | 4903 / 5014 / 4903 (5014) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r11 | scrolled | 0.0608 | 0.0001 | 0.0001 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r11 | reloaded | 0.0510 | 0.1030 | 0.0515 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 (3787) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r11 | scrolled | 0.0243 | 0.0003 | 0.0000 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r11 | reloaded | 0.1288 | 0.4101 | 0.1310 | 0.000 / 0.000 / 0.000 | 4903 / 5014 / 5014 (5014) | N N y y y y y | - | 0/0 | 8/8 | boxes: 11 lines differ, names too |
+| about-reload-bottom-1440-r12 | scrolled | 0.0365 | 0.0001 | 0.0006 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-1440-r12 | reloaded | 0.0869 | 0.1028 | 0.0516 | 0.000 / 0.000 / 0.000 | 3787 / 3787 / 3787 (3787) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r12 | scrolled | 0.0246 | 0.0000 | 0.0003 | 0.000 / 0.000 / 0.000 | 5014 / 5014 / 5014 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-390-r12 | reloaded | 0.1745 | 0.4936 | 0.1311 | 0.000 / 0.000 / 0.000 | 4903 / 5014 / 5014 (5014) | N N y y y y y | - | 0/0 | 8/8 | boxes: 11 lines differ, names too |
+| expats-reload-bottom-1440-r5 | scrolled | 0.0391 | 0.0007 | 0.0001 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 14/13 | console errors 14/13 |
+| expats-reload-bottom-1440-r5 | reloaded | 0.7073 | 0.8014 | 0.7073 | 0.000 / 0.000 / 0.000 | 5268 / 4115 / 5268 (5268) | y y y y y y y | - | 0/0 | 14/13 | console errors 14/13 |
+| expats-reload-bottom-1440-r6 | scrolled | 0.0391 | 0.0001 | 0.0001 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 18/14 | console errors 18/14 |
+| expats-reload-bottom-1440-r6 | reloaded | 0.8407 | 0.7074 | 0.7079 | 0.000 / 0.000 / 0.000 | 4115 / 5268 / 5268 (5268) | N N y N N N N | - | 0/0 | 18/14 | boxes: 446/443 boxes; console errors 18/14 |
+| expats-reload-bottom-1440-r7 | scrolled | 0.0395 | 0.0001 | 0.0001 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 14/18 | console errors 14/18 |
+| expats-reload-bottom-1440-r7 | reloaded | 0.7472 | 0.8014 | 0.8014 | 0.000 / 0.000 / 0.000 | 5268 / 4115 / 4115 (5268) | N N y N N N N | - | 0/0 | 14/18 | boxes: 443/446 boxes; new higher by 0.054; scroll further from wanted: ctl +0, new -1153; console errors 14/18 |
+| expats-reload-bottom-1440-r8 | scrolled | 0.0391 | 0.0005 | 0.0005 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 19/18 | console errors 19/18 |
+| expats-reload-bottom-1440-r8 | reloaded | 0.8398 | 0.8008 | 0.8012 | 0.000 / 0.000 / 0.000 | 4115 / 4115 / 4115 (5268) | N N y y N y y | - | 0/0 | 19/18 | boxes: 96 lines differ, names too; console errors 19/18 |
+| expats-reload-bottom-1440-r9 | scrolled | 0.0025 | 0.0001 | 0.0004 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 14/18 | console errors 14/18 |
+| expats-reload-bottom-1440-r9 | reloaded | 0.7472 | 0.8008 | 0.8012 | 0.000 / 0.000 / 0.000 | 5268 / 4115 / 4115 (5268) | N N y N N N N | - | 0/0 | 14/18 | boxes: 443/446 boxes; new higher by 0.054; scroll further from wanted: ctl +0, new -1153; console errors 14/18 |
+| expats-reload-bottom-1440-r10 | scrolled | 0.0391 | 0.0001 | 0.0001 | 0.000 / 0.000 / 0.000 | 5268 / 5268 / 5268 | y y y y y y y | - | 0/0 | 14/14 |  |
+| expats-reload-bottom-1440-r10 | reloaded | 0.7463 | 0.8014 | 0.7079 | 0.000 / 0.000 / 0.000 | 5268 / 4115 / 5268 (5268) | y y y y y y y | - | 0/0 | 14/14 |  |
+| expats-reload-mid-1440-r5 | scrolled | 0.0391 | 0.0004 | 0.0001 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 12/8 | console errors 12/8 |
+| expats-reload-mid-1440-r5 | reloaded | 0.8008 | 0.8008 | 0.6382 | 0.000 / 0.000 / 0.000 | 2592 / 2592 / 1440 (1440) | N N y y y y y | - | 0/0 | 12/8 | boxes: 443/440 boxes; console errors 12/8 |
+| expats-reload-mid-1440-r6 | scrolled | 0.0391 | 0.0001 | 0.0005 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-mid-1440-r6 | reloaded | 0.8592 | 0.6383 | 0.8009 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 2592 (1440) | N N y y y y y | - | 0/0 | 8/12 | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12; new higher than old by 0.163 |
+| expats-reload-mid-1440-r7 | scrolled | 0.0391 | 0.0001 | 0.0003 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 12/12 |  |
+| expats-reload-mid-1440-r7 | reloaded | 1.0220 | 0.8010 | 0.8008 | 0.000 / 0.000 / 0.000 | 2592 / 2592 / 2592 (1440) | y y y y y y y | - | 0/0 | 12/12 |  |
+| expats-reload-mid-1440-r8 | scrolled | 0.0391 | 0.0001 | 0.0004 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 8/12 | console errors 8/12 |
+| expats-reload-mid-1440-r8 | reloaded | 0.8592 | 0.8009 | 0.8008 | 0.000 / 0.000 / 0.000 | 1440 / 2592 / 2592 (1440) | N N y y y y y | - | 0/0 | 8/12 | boxes: 440/443 boxes; scroll further from wanted: ctl +0, new +1152; console errors 8/12 |
+
 ## Set n3 (34 scenarios)
 
 | scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
@@ -361,6 +622,23 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | map-css404-390-r2 | end | 0.1396 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y N y y y y y | - | 0/0 | 5/5 |  |
 | map-nodata-23s-1440 | end | 0.0269 | 0.0271 | 0.0008 | 0.000 / 0.027 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
 | map-nodata-23s-390 | end | 0.1396 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+
+## Set n3slow (12 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| map-even-390-r1 | end | 0.1731 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-cut1-390-r1 | end | 0.1738 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-never-empty-cut1-390-r1 | end | 0.1737 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-even-1440-r1 | end | 0.1200 | 0.0125 | 0.0125 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-cut1-1440-r1 | end | 0.1095 | 0.0125 | 0.0125 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-never-empty-cut1-1440-r1 | end | 0.0256 | 0.0376 | 0.0556 | 0.000 / 0.037 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 | new higher by 0.030; new higher than old by 0.018 |
+| map-even-390-r2 | end | 0.1632 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-cut1-390-r2 | end | 0.1738 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-never-empty-cut1-390-r2 | end | 0.2058 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-even-1440-r2 | end | 0.1076 | 0.0125 | 0.0125 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-cut1-1440-r2 | end | 0.1164 | 0.0125 | 0.0125 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-never-empty-cut1-1440-r2 | end | 0.0410 | 0.0376 | 0.0555 | 0.000 / 0.037 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 | new higher by 0.015; new higher than old by 0.018 |
 
 ## Set n7 (21 scenarios)
 
@@ -408,3 +686,353 @@ Totals: 105 scenarios, 309 loads, 154 compared stages (new against ctl). Boxes e
 | stories-menu-390 | closed | 0.0379 | - | 0.0088 | 0.002 / - / 0.002 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
 | expats-menu-390 | open | 0.0781 | - | 0.0057 | 0.001 / - / 0.001 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
 | expats-menu-390 | closed | 0.0790 | - | 0.0067 | 0.002 / - / 0.002 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+
+## Set atkq (53 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| st-q-italy-390 | end | 0.0635 | - | 0.0364 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-italy-1440 | end | 0.1982 | - | 0.0801 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-a-390 | end | 0.0635 | - | 0.0364 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-a-1440 | end | 0.1149 | - | 0.0147 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-none-390 | end | 0.1239 | - | 0.0990 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-none-1440 | end | 0.0597 | - | 0.0411 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-blank-390 | end | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-blank-1440 | end | 0.0498 | - | 0.0300 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| st-q-utm-390 | end | 0.0618 | - | 0.0364 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-utm-1440 | end | 0.1336 | - | 0.0802 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-two-words-1440 | end | 0.1000 | - | 0.0559 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-hash-390 | end | 1.2561 | - | 1.2369 | 0.020 / - / 0.020 | 668 / - / 668 | y y y y y y y | - | 0/0 | 6/6 |  |
+| st-q-hash-1440 | end | 0.8649 | - | 0.8323 | 0.307 / - / 0.307 | 1438 / - / 1438 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-hash-card-390 | end | 0.2960 | - | 0.2789 | 0.000 / - / 0.000 | 30761 / - / 30761 | y y y y y y y | - | 0/0 | 6/6 |  |
+| st-hash-card-1440 | end | 0.7409 | - | 0.7794 | 0.000 / - / 0.000 | 13206 / - / 13243 | N N y y y N y | - | 0/0 | 21/21 | boxes: 1163/1165 boxes; new higher by 0.038 |
+| st-q-rm-390 | end | 0.4199 | - | 0.3830 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-rm-1440 | end | 0.1694 | - | 0.1189 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-index404-390 | end | 0.0635 | - | 0.0364 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 11/11 |  |
+| st-q-index404-1440 | end | 0.0503 | - | 0.0317 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 11/11 |  |
+| st-q-indexslow-390 | end | 0.1819 | - | 0.1548 | 0.118 / - / 0.118 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-indexslow-1440 | end | 0.0857 | - | 0.0671 | 0.035 / - / 0.035 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-fonts404-390 | end | 0.4074 | - | 0.3798 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 14/14 |  |
+| st-q-fonts404-1440 | end | 0.2290 | - | 0.1517 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 14/14 |  |
+| st-q-fontsabort-1440 | end | 0.2012 | - | 0.1517 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 14/14 |  |
+| st-q-fontsslow-390 | end | 0.4079 | - | 0.3800 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-fontsslow-1440 | end | 0.2132 | - | 0.1640 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-fontcss404-1440 | end | 0.2007 | - | 0.1515 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 11/11 |  |
+| st-q-320-320 | end | 0.0753 | - | 0.0320 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-768-768 | end | 0.7705 | - | 0.6687 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-even-390 | end | 0.4096 | - | 0.3834 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| st-q-even-1440 | end | 0.0860 | - | 0.1165 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 12/12 | new higher by 0.030 |
+| st-q-cut1-390 | end | 0.5872 | - | 0.3834 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| st-q-cut1-1440 | end | 0.4502 | - | 0.1165 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| st-q-cut3-390 | end | 0.2921 | - | 0.2649 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 12/12 |  |
+| st-q-cut3-1440 | end | 0.1340 | - | 0.0831 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 16/16 |  |
+| st-q-cpu4-390 | end | 0.4116 | - | 0.6849 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y y y | - | 0/0 | 10/10 | boxes: 102 lines differ (x or width); new higher by 0.273 |
+| st-q-cpu4-1440 | end | 0.4434 | - | 0.3899 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-search-throw-1440 | end | 0.1336 | - | 0.0802 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 10/10 |  |
+| st-q-chips-throw-1440 | end | 0.5220 | - | 0.3730 | 0.310 / - / 0.310 | 0 / - / 0 | y y y y y y y | - | 1/1 | 10/10 |  |
+| st-q-lead-throw-1440 | end | 0.1444 | - | 0.1548 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 10/10 | new higher by 0.010 |
+| st-q-chunk404-390 | end | 0.4022 | - | 0.3680 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 11/11 |  |
+| st-q-chunk404-1440 | end | 0.3418 | - | 0.0983 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 11/11 |  |
+| st-q-signedin-390 | end | 0.4207 | - | 0.3838 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 3/3 |  |
+| st-q-signedin-1440 | end | 0.1701 | - | 0.1166 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 3/3 |  |
+| st-q-jsoff-390 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 44/44 |  |
+| st-q-chips-390 | loaded | 0.4199 | - | 0.3830 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-390 | place-Africa | 0.5526 | - | 0.5157 | 0.133 / - / 0.133 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-390 | place-Antarctica | 0.5526 | - | 0.5157 | 0.133 / - / 0.133 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-390 | place-all | 0.6914 | - | 0.6546 | 0.272 / - / 0.272 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-1440 | loaded | 0.1691 | - | 0.1156 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-1440 | place-Africa | 0.1935 | - | 0.1400 | 0.024 / - / 0.024 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-1440 | place-Antarctica | 0.1935 | - | 0.1400 | 0.024 / - / 0.024 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-chips-1440 | place-all | 0.2386 | - | 0.1851 | 0.070 / - / 0.070 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-q-reload-mid-390 | scrolled | 0.0712 | - | 0.0364 | 0.000 / - / 0.000 | 1350 / - / 1350 | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-reload-mid-390 | reloaded | 2.1334 | - | 2.1330 | 0.172 / - / 1.086 | 1350 / - / 1350 (1350) | y y y y y y y | - | 0/0 | 22/22 | late +0.914 |
+| st-q-reload-mid-1440 | scrolled | 0.1336 | - | 0.0802 | 0.000 / - / 0.000 | 1440 / - / 1440 | y y y y y y y | - | 0/0 | 50/46 | console errors 50/46 |
+| st-q-reload-mid-1440 | reloaded | 1.1035 | - | 1.2200 | 0.199 / - / 0.000 | 2395 / - / 1440 (1440) | N N y N N N N | - | 0/0 | 50/46 | boxes: 198/195 boxes; new higher by 0.117; console errors 50/46 |
+| st-q-reload-bottom-390 | scrolled | 0.0712 | - | 0.0364 | 0.000 / - / 0.000 | 3558 / - / 3558 | y y y y y y y | - | 0/0 | 32/32 |  |
+| st-q-reload-bottom-390 | reloaded | 2.3908 | - | 2.3906 | 1.304 / - / 1.304 | 3558 / - / 3558 (3558) | y y y y y y y | - | 0/0 | 32/32 |  |
+| st-q-reload-bottom-1440 | scrolled | 0.7124 | - | 0.0835 | 0.000 / - / 0.000 | 2790 / - / 2790 | y y y y y y y | - | 0/0 | 49/49 |  |
+| st-q-reload-bottom-1440 | reloaded | 1.2383 | - | 1.7536 | 0.000 / - / 0.664 | 2790 / - / 2790 (2790) | y y y y y y y | - | 0/0 | 49/49 | new higher by 0.515; late +0.664 |
+| st-q-back-390 | back | 1.5982 | - | 1.5981 | 0.579 / - / 0.579 | 1013 / - / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 |  |
+| st-q-back-390 | back2 | 1.5982 | - | 1.5981 | 0.065 / - / 0.579 | 1013 / - / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 | late +0.514 |
+| st-q-back-1440 | back | 0.9980 | - | 1.0261 | 0.335 / - / 0.335 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.028 |
+| st-q-back-1440 | back2 | 0.3995 | - | 1.3544 | 0.335 / - / 0.335 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.955 |
+
+## Set atknav (28 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| travelers-reload-mid-390 | scrolled | 0.1106 | - | 0.0050 | 0.000 / - / 0.000 | 1350 / - / 1350 | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| travelers-reload-mid-390 | reloaded | 0.3225 | - | 0.0052 | 0.048 / - / 0.000 | 1350 / - / 1350 (1350) | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-390 | scrolled | 0.1006 | - | 0.0050 | 0.000 / - / 0.000 | 7473 / - / 7514 | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/10 | boxes: title hold +40 px; console errors 8/10; left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-390 | reloaded | 0.0544 | - | 0.7626 | 0.048 / - / 0.000 | 7513 / - / 7514 (7514) | N y y N y N y | style#tll-fp-title-v1 | 0/0 | 8/10 | boxes: 3 lines differ (x or width); new higher by 0.708; console errors 8/10; left: style#tll-fp-title-v1 |
+| map-reload-mid-390 | scrolled | 0.2249 | - | 0.0853 | 0.085 / - / 0.085 | 1350 / - / 1350 | y y y y y y y | - | 0/0 | 8/8 |  |
+| map-reload-mid-390 | reloaded | 2.6061 | - | 1.3125 | 0.033 / - / 0.011 | 4716 / - / 1324 (1350) | N N N N N N y | - | 0/0 | 8/8 | boxes: 275/440 boxes |
+| map-reload-bottom-390 | scrolled | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 6603 / - / 6603 | y y y y y y y | - | 0/0 | 8/8 |  |
+| map-reload-bottom-390 | reloaded | 2.3243 | - | 2.1454 | 0.029 / - / 0.029 | 3939 / - / 3912 (6603) | N y y y y y y | - | 0/0 | 8/8 | boxes: 51 lines differ (y or height by -27); scroll further from wanted: ctl -2664, new -2691 |
+| account-reload-mid-390 | scrolled | 0.0119 | - | 0.0119 | 0.000 / - / 0.000 | 907 / - / 907 | y y y y y y y | - | 0/0 | 8/8 |  |
+| account-reload-mid-390 | reloaded | 0.2510 | - | 0.2504 | 0.000 / - / 0.000 | 692 / - / 692 (907) | y y y y y y y | - | 0/0 | 8/8 |  |
+| account-reload-bottom-390 | scrolled | 0.0119 | - | 0.0119 | 0.000 / - / 0.000 | 907 / - / 907 | y y y y y y y | - | 0/0 | 8/8 |  |
+| account-reload-bottom-390 | reloaded | 0.2507 | - | 0.2504 | 0.000 / - / 0.000 | 692 / - / 692 (907) | y y y y y y y | - | 0/0 | 8/8 |  |
+| submit-reload-mid-390 | scrolled | 0.1437 | - | 0.0000 | 0.000 / - / 0.000 | 638 / - / 638 | y y y y y y y | - | 0/0 | 9/8 | console errors 9/8 |
+| submit-reload-mid-390 | reloaded | 0.2369 | - | 0.0282 | 0.000 / - / 0.000 | 638 / - / 638 (638) | y y y y y y y | - | 0/0 | 9/8 | console errors 9/8 |
+| submit-reload-bottom-390 | scrolled | 0.1437 | - | 0.0000 | 0.000 / - / 0.000 | 638 / - / 638 | y y y y y y y | - | 0/0 | 9/9 |  |
+| submit-reload-bottom-390 | reloaded | 0.2372 | - | 0.0412 | 0.000 / - / 0.000 | 638 / - / 638 (638) | y y y y y y y | - | 0/0 | 9/9 |  |
+| profile-reload-mid-390 | scrolled | 0.0763 | - | 0.0004 | 0.000 / - / 0.000 | 1350 / - / 1350 | y y y y y y y | - | 0/0 | 8/10 | console errors 8/10 |
+| profile-reload-mid-390 | reloaded | 1.8140 | - | 1.0957 | 0.000 / - / 0.000 | 1350 / - / 1350 (1350) | y y y y y y y | - | 0/0 | 8/10 | console errors 8/10 |
+| profile-reload-bottom-390 | scrolled | 0.4005 | - | 0.3247 | 0.324 / - / 0.324 | 24823 / - / 24823 | y y y y y y y | - | 0/0 | 8/8 |  |
+| profile-reload-bottom-390 | reloaded | 1.4374 | - | 1.3612 | 0.000 / - / 0.000 | 24823 / - / 24823 (24550) | y y y y y y y | - | 0/0 | 8/8 |  |
+| stories-reload-mid-390 | scrolled | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 1350 / - / 1350 | y y y y y y y | - | 0/0 | 14/14 |  |
+| stories-reload-mid-390 | reloaded | 0.0303 | - | 0.0210 | 0.000 / - / 0.000 | 1350 / - / 1350 (1350) | y y y y y y y | - | 0/0 | 14/14 |  |
+| stories-reload-bottom-390 | scrolled | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 34694 / - / 34694 | y y y y y y y | - | 0/0 | 28/28 |  |
+| stories-reload-bottom-390 | reloaded | 0.0349 | - | 0.0134 | 0.000 / - / 0.000 | 34694 / - / 34694 (34694) | y y y y y y y | - | 0/0 | 28/28 |  |
+| map-reload-mid-1440 | scrolled | 0.3509 | - | 0.0037 | 0.000 / - / 0.000 | 1440 / - / 1440 | y y y y y y y | - | 0/0 | 8/8 |  |
+| map-reload-mid-1440 | reloaded | 1.9598 | - | 0.8158 | 0.000 / - / 0.000 | 3928 / - / 1414 (1440) | N N N N N N N | - | 0/0 | 8/8 | boxes: 298/462 boxes |
+| map-reload-bottom-1440 | scrolled | 0.3509 | - | 0.0114 | 0.000 / - / 0.000 | 4968 / - / 4968 | y y y y y y y | - | 0/0 | 10/8 | console errors 10/8 |
+| map-reload-bottom-1440 | reloaded | 1.2487 | - | 1.1300 | 0.000 / - / 0.000 | 3687 / - / 4250 (4968) | N N N N N N N | - | 0/0 | 10/8 | boxes: 462/298 boxes; console errors 10/8 |
+| stories-reload-mid-1440 | scrolled | 0.0498 | - | 0.0311 | 0.000 / - / 0.000 | 1440 / - / 1440 | y y y y y y y | - | 0/0 | 23/23 |  |
+| stories-reload-mid-1440 | reloaded | 0.0128 | - | 0.0040 | 0.000 / - / 0.000 | 1440 / - / 1440 (1440) | y y y y y y y | - | 0/0 | 23/23 |  |
+| stories-reload-bottom-1440 | scrolled | 0.2155 | - | 0.1971 | 0.166 / - / 0.166 | 14322 / - / 14322 | y y y y y y y | - | 0/0 | 28/28 |  |
+| stories-reload-bottom-1440 | reloaded | 0.2502 | - | 0.5844 | 0.000 / - / 0.000 | 14083 / - / 14322 (14322) | N N y y y N y | - | 0/0 | 28/28 | boxes: 1152/1154 boxes; new higher by 0.334 |
+| travelers-reload-mid-1440 | scrolled | 0.1416 | - | 0.0017 | 0.000 / - / 0.000 | 1440 / - / 1440 | y y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | left: style#tll-fp-title-v1 |
+| travelers-reload-mid-1440 | reloaded | 0.1060 | - | 0.0412 | 0.000 / - / 0.000 | 1440 / - / 1440 (1440) | y y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-1440 | scrolled | 0.1297 | - | 0.0017 | 0.000 / - / 0.000 | 3178 / - / 3178 | y y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/10 | console errors 8/10; left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-1440 | reloaded | 0.6329 | - | 0.4423 | 0.000 / - / 0.000 | 3178 / - / 3178 (3178) | y y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/10 | console errors 8/10; left: style#tll-fp-title-v1 |
+| about-back-390 | back | 0.3546 | - | 0.0000 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | N N y y y y y | - | 0/0 | 27/27 | boxes: 1 lines differ, names too |
+| about-back-390 | back2 | 0.3546 | - | 0.0000 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | N N y y y y y | - | 0/0 | 27/27 | boxes: 1 lines differ, names too |
+| about-back-1440 | back | 0.3149 | - | 0.0001 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 27/27 | boxes: 5 lines differ, names too |
+| about-back-1440 | back2 | 0.3149 | - | 0.0001 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 27/27 | boxes: 5 lines differ, names too |
+| expats-back-390 | back | 1.1968 | - | 0.1207 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | N N y y y y y | - | 0/0 | 20/20 | boxes: 17 lines differ, names too |
+| expats-back-390 | back2 | 0.8614 | - | 0.1207 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | N N y y y y y | - | 0/0 | 20/20 | boxes: 19 lines differ, names too |
+| expats-back-1440 | back | 0.6285 | - | 0.4074 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 20/20 | boxes: 16 lines differ, names too |
+| expats-back-1440 | back2 | 0.4073 | - | 0.4074 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y y y | - | 0/0 | 20/20 | boxes: 16 lines differ, names too |
+| map-back-390 | back | 1.5348 | - | 0.9257 | 0.033 / - / 0.008 | 4379 / - / 987 (1013) | N N N N N N y | - | 0/0 | 20/20 | boxes: 275/440 boxes |
+| map-back-390 | back2 | 2.1460 | - | 0.0495 | 0.008 / - / 0.008 | 992 / - / 987 (1013) | N N y y y y y | - | 0/0 | 20/20 | boxes: 71 lines differ, names too; scroll further from wanted: ctl -21, new -26 |
+| map-back-1440 | back | 1.8754 | - | 0.2755 | 0.000 / - / 0.000 | 3568 / - / 1054 (1080) | N N N N N N y | - | 0/0 | 20/20 | boxes: 298/462 boxes |
+| map-back-1440 | back2 | 1.9943 | - | 0.7383 | 0.000 / - / 0.000 | 2438 / - / 1028 (1080) | N N y y y y y | - | 0/0 | 20/20 | boxes: 49 lines differ, names too |
+| stories-back-390 | back | 0.0045 | - | 0.0019 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | y y y y y y y | - | 0/0 | 24/24 |  |
+| stories-back-390 | back2 | 0.0045 | - | 0.0019 | 0.000 / - / 0.000 | 1013 / - / 1013 (1013) | y y y y y y y | - | 0/0 | 24/24 |  |
+| stories-back-1440 | back | 0.0165 | - | 0.0155 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y N y | - | 0/0 | 42/38 | boxes: 1155/1153 boxes; console errors 42/38 |
+| stories-back-1440 | back2 | 0.0165 | - | 0.0155 | 0.000 / - / 0.000 | 1080 / - / 1080 (1080) | N N y y y N y | - | 0/0 | 42/38 | boxes: 1155/1153 boxes; console errors 42/38 |
+| about-reload-bottom-320 | scrolled | 0.0044 | - | 0.0000 | 0.000 / - / 0.000 | 6208 / - / 6208 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-320 | reloaded | 0.2997 | - | 0.3002 | 0.000 / - / 0.000 | 6207 / - / 6207 (6208) | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-768 | scrolled | 0.3503 | - | 0.0002 | 0.000 / - / 0.000 | 3757 / - / 3757 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-reload-bottom-768 | reloaded | 0.4775 | - | 0.1274 | 0.000 / - / 0.000 | 3622 / - / 3622 (3757) | y y y y y y y | - | 0/0 | 8/8 |  |
+
+## Set atkenv (51 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| about-rm-390 | end | 0.0245 | - | 0.0002 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-rm-1440 | end | 0.0365 | - | 0.0005 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-rm-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 4/4 |  |
+| map-rm-1440 | end | 0.3590 | - | 0.0114 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 4/4 |  |
+| stories-rm-390 | end | 0.0361 | - | 0.0061 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| stories-rm-1440 | end | 0.0498 | - | 0.0300 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| expats-rm-390 | end | 0.0772 | - | 0.0097 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-rm-1440 | end | 0.0391 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-never-empty-rm-1440 | end | 0.2836 | - | 0.0452 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-jsoff-390 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 0/0 |  |
+| about-jsoff-1440 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 0/0 |  |
+| map-jsoff-390 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 0/0 |  |
+| map-jsoff-1440 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 0/0 |  |
+| stories-jsoff-390 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 44/44 |  |
+| stories-jsoff-1440 | end | 0.0000 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 44/44 |  |
+| travelers-320 | end | 0.1690 | - | 0.1514 | 0.000 / - / 0.000 | 0 / - / 0 | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 4/4 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| map-320 | end | 0.0056 | - | 0.0012 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-320 | end | 0.0044 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-320 | end | 0.0051 | - | 0.0007 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| account-320 | end | 0.0120 | - | 0.0119 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| submit-320 | end | 0.2212 | - | 0.0006 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| profile-320 | end | 0.0044 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| stories-320 | end | 0.0558 | - | 0.0145 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| map-never-empty-320 | end | 0.0056 | - | 0.0012 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-nodata-320 | end | 0.0056 | - | 0.0012 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| about-in-fast-390 | end | 0.0253 | - | 0.0010 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| about-in-fast-1440 | end | 0.0375 | - | 0.0016 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| map-in-fast-390 | end | 0.0694 | - | 0.0413 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| map-in-fast-1440 | end | 0.0358 | - | 0.0369 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| stories-in-fast-390 | end | 0.0292 | - | 0.0077 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| stories-in-fast-1440 | end | 0.1136 | - | 0.0320 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| about-even-390 | end | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-cut1-390 | end | 0.0457 | - | 0.0004 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-cut3-390 | end | 0.0971 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+| about-even-1440 | end | 0.0365 | - | 0.0006 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-cut1-1440 | end | 0.0364 | - | 0.0006 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-cut3-1440 | end | 0.0365 | - | 0.0011 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+| stories-even-390 | end | 0.0274 | - | 0.0069 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| stories-cut1-390 | end | 0.0274 | - | 0.0069 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 10/10 |  |
+| stories-cut3-390 | end | 0.0267 | - | 0.0062 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| stories-even-1440 | end | 0.0667 | - | 0.0302 | 0.000 / - / 0.000 | 0 / - / 0 | y N y y y y y | - | 0/0 | 10/10 |  |
+| stories-cut1-1440 | end | 0.0663 | - | 0.0298 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| stories-cut3-1440 | end | 0.0655 | - | 0.0300 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| expats-even-390 | end | 0.0965 | - | 0.0096 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-cut1-390 | end | 0.0989 | - | 0.0097 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-cut3-390 | end | 0.0773 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+| expats-even-1440 | end | 0.0400 | - | 0.0005 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-cut1-1440 | end | 0.0416 | - | 0.0004 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| expats-cut3-1440 | end | 0.0415 | - | 0.0004 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+| about-small-390 | end | 0.0970 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+| about-small-1440 | end | 0.0365 | - | 0.0007 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 6/6 |  |
+
+## Set atkfail (79 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| map-jq404-390 | end | 0.1390 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y y y | - | 1/1 | 5/5 | boxes: 403 lines differ (x or width) |
+| map-ms404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| map-mnav-throw-390 | end | 0.1242 | - | 0.0034 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y y y | - | 1/1 | 4/4 | boxes: 403 lines differ (x or width) |
+| map-mnav-missing-390 | end | 0.1242 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-parity-throw-390 | end | 0.1630 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-sitechunk404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-pagechunk404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y y y | - | 0/0 | 5/5 | boxes: 408 lines differ (x or width) |
+| map-pagechunk-throw-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| about-jq404-390 | end | 0.0457 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 5/5 |  |
+| about-ms404-390 | end | 0.0245 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 1/1 |  |
+| about-mnav-throw-390 | end | 0.0108 | - | 0.0034 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| about-mnav-missing-390 | end | 0.0109 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-parity-throw-390 | end | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| about-sitechunk404-390 | end | 0.0245 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| about-pagechunk404-390 | end | 0.0243 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-pagechunk-throw-390 | end | 0.0243 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| stories-jq404-390 | end | 0.0283 | - | 0.0068 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 5/5 |  |
+| stories-ms404-390 | end | 0.0361 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| stories-mnav-throw-390 | end | 0.0241 | - | 0.0113 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-mnav-missing-390 | end | 0.0241 | - | 0.0079 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| stories-parity-throw-390 | end | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-sitechunk404-390 | end | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| stories-pagechunk404-390 | end | 0.1486 | - | 0.1164 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| stories-pagechunk-throw-390 | end | 0.1563 | - | 0.1164 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| map-tll-map-invite-js-v1-throw-390 | end | 0.0992 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 439/440 boxes |
+| map-tll-map-invite-js-v1-missing-390 | end | 0.0997 | - | 0.0014 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-tll-mp3-passport-js-v1-throw-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-tll-map-snapshot-v1-throw-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-tll-v91-map-clusters-v2-throw-390 | end | 0.1630 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-mapcode404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 7/7 |  |
+| map-mapcode-throw-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-mapcode-empty-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-mapcss404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-mapdata404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-mapembed404-390 | end | 0.1396 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-reveal404-390 | end | 0.1395 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-tll-map-invite-js-v1-throw-1440 | end | 0.4369 | - | 0.0032 | 0.000 / - / 0.000 | 0 / - / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 461/462 boxes |
+| map-tll-map-invite-js-v1-missing-1440 | end | 0.1943 | - | 0.0183 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y y y | - | 0/0 | 4/4 | boxes: 7 lines differ, names too |
+| map-tll-mp3-passport-js-v1-throw-1440 | end | 0.1612 | - | 0.0114 | 0.000 / - / 0.000 | 0 / - / 0 | N y y y y y y | - | 1/1 | 4/4 | boxes: 434 lines differ (x or width) |
+| map-tll-map-snapshot-v1-throw-1440 | end | 0.0980 | - | 0.0037 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-tll-v91-map-clusters-v2-throw-1440 | end | 0.1235 | - | 0.0037 | 0.000 / - / 0.000 | 0 / - / 0 | N y y y y y y | - | 1/1 | 4/4 | boxes: 418 lines differ (x or width) |
+| map-mapcode404-1440 | end | 0.0389 | - | 0.0452 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 7/7 |  |
+| map-mapcode-throw-1440 | end | 0.2836 | - | 0.0452 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-mapcode-empty-1440 | end | 0.2845 | - | 0.0452 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-mapcss404-1440 | end | 0.1161 | - | 0.0037 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-mapdata404-1440 | end | 0.0286 | - | 0.0008 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-mapembed404-1440 | end | 0.0935 | - | 0.0114 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| map-reveal404-1440 | end | 0.1199 | - | 0.0037 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 5/5 |  |
+| stories-tll-lib-lead-v1-throw-390 | end | 0.0199 | - | 0.0173 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-tll-lib-lead-v1-missing-390 | end | 0.0123 | - | 0.0191 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| stories-tll-lib-chips-v1-throw-390 | end | 0.0556 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-tll-lib-search-v4-throw-390 | end | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-tll-s3-stories-js-v1-throw-390 | end | 0.0361 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-shareyours404-390 | end | 0.0302 | - | 0.0082 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| stories-gsap404-390 | end | 0.0284 | - | 0.0070 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| stories-tll-lib-lead-v1-throw-1440 | end | 0.0931 | - | 0.0392 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y N y | - | 1/1 | 8/10 | boxes: 1153/1155 boxes; console errors 8/10 |
+| stories-tll-lib-lead-v1-missing-1440 | end | 0.0301 | - | 0.0655 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 8/8 | new higher by 0.035 |
+| stories-tll-lib-chips-v1-throw-1440 | end | 0.1356 | - | 0.0300 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-tll-lib-search-v4-throw-1440 | end | 0.0495 | - | 0.0311 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-tll-s3-stories-js-v1-throw-1440 | end | 0.0495 | - | 0.0311 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 8/8 |  |
+| stories-shareyours404-1440 | end | 0.0514 | - | 0.0319 | 0.000 / - / 0.000 | 0 / - / 0 | N N y y y N y | - | 0/0 | 14/11 | boxes: 1150/1148 boxes; console errors 14/11 |
+| stories-gsap404-1440 | end | 0.0495 | - | 0.0311 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 9/9 |  |
+| about-note-nostyle-390 | end | 0.0457 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-nostyle-1440 | end | 0.0006 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-style-renamed-390 | end | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-style-renamed-1440 | end | 0.0365 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-gone-390 | end | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-gone-1440 | end | 0.0365 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-js-throw-390 | end | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| about-note-js-throw-1440 | end | 0.0360 | - | 0.0001 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| about-note-js-missing-390 | end | 0.0243 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-js-missing-1440 | end | 0.0583 | - | 0.0006 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-style-first-390 | end | 0.0245 | - | 0.0003 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-style-first-1440 | end | 0.0615 | - | 0.0005 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| about-note-nostyle-reload-bottom-390 | scrolled | 0.0243 | - | 0.0003 | 0.000 / - / 0.000 | 5482 / - / 5482 | N N y y y y y | - | 0/0 | 15/14 | boxes: 1 lines differ (x or width); console errors 15/14 |
+| about-note-nostyle-reload-bottom-390 | reloaded | 0.1558 | - | 0.1315 | 0.000 / - / 0.000 | 5465 / - / 5465 (5482) | y y y y y y y | - | 0/0 | 15/14 | console errors 15/14 |
+| about-note-nostyle-reload-mid-390 | scrolled | 0.0246 | - | 0.0003 | 0.000 / - / 0.000 | 1350 / - / 1350 | y y y y y y y | - | 0/0 | 8/8 |  |
+| about-note-nostyle-reload-mid-390 | reloaded | 0.3193 | - | 0.0174 | 0.000 / - / 0.000 | 1347 / - / 1347 (1350) | y y y y y y y | - | 0/0 | 8/8 |  |
+| map-noboot-never-empty-1440 | end | 0.0389 | - | 0.0376 | 0.000 / - / 0.037 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 | late +0.037 |
+| map-noboot-1440 | end | 0.0974 | - | 0.0008 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| map-nomount-390 | end | 0.1351 | - | 0.0000 | 0.000 / - / 0.000 | 0 / - / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+
+## Set fx (51 scenarios)
+
+| scenario | stage | CLS ctl | CLS old | CLS new | late ctl / old / new | scroll y ctl / old / new (wanted) | new same as ctl: box tree head aria focus text class | left in new | errors ctl/new | console ctl/new | note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| st-q-reload-bottom-1440-fx1 | scrolled | 0.6960 | 0.6770 | 0.0802 | 0.000 / 0.000 / 0.000 | 2790 / 2790 / 2790 | y y y y y y y | - | 0/0 | 49/49 |  |
+| st-q-reload-bottom-1440-fx1 | reloaded | 1.7025 | 0.7594 | 1.6785 | 0.664 / 0.664 / 0.000 | 2790 / 2790 / 2790 (2790) | y y y y y y y | - | 0/0 | 49/49 | new higher than old by 0.919 |
+| st-q-back-1440-fx1 | back | 0.9980 | 0.3988 | 1.3544 | 0.335 / 0.335 / 0.335 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.356; new higher than old by 0.956 |
+| st-q-back-1440-fx1 | back2 | 0.9980 | 0.3988 | 0.4294 | 0.335 / 0.021 / 0.335 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher than old by 0.031 |
+| st-q-reload-mid-1440-fx1 | scrolled | 0.7088 | 0.0843 | 0.0802 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 44/50 | console errors 44/50 |
+| st-q-reload-mid-1440-fx1 | reloaded | 1.6877 | 1.1259 | 0.7801 | 0.000 / 0.664 / 0.199 | 1440 / 2395 / 2395 (1440) | N N y N N N N | - | 0/0 | 44/50 | boxes: 195/198 boxes; late +0.199; scroll further from wanted: ctl +0, new +955; console errors 44/50 |
+| st-q-reload-mid-390-fx1 | scrolled | 0.0635 | 0.0364 | 0.0364 | 0.000 / 0.000 / 0.000 | 1350 / 1350 / 1350 | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-reload-mid-390-fx1 | reloaded | 2.1334 | 2.1330 | 2.1330 | 1.086 / 0.172 / 1.086 | 1350 / 1350 / 1350 (1350) | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-back-390-fx1 | back | 1.5981 | 1.5981 | 1.5981 | 0.579 / 0.065 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 |  |
+| st-q-back-390-fx1 | back2 | 2.1092 | 1.5981 | 1.5982 | 0.579 / 0.065 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 |  |
+| st-q-cpu4-390-fx1 | end | 0.6709 | 0.6860 | 0.6849 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y N y y y y y | - | 0/0 | 12/10 | new higher by 0.014; console errors 12/10 |
+| st-hash-card-1440-fx1 | end | 0.7987 | 0.7794 | 0.7783 | 0.000 / 0.000 / 0.000 | 13243 / 13243 / 13243 | y y y y y y y | - | 0/0 | 21/21 |  |
+| st-q-even-1440-fx1 | end | 0.4502 | 0.1161 | 0.1165 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| travelers-reload-bottom-390-fx1 | scrolled | 0.1006 | 0.0050 | 0.0050 | 0.000 / 0.000 / 0.000 | 7473 / 7514 / 7514 | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-390-fx1 | reloaded | 0.9863 | 0.7631 | 0.7631 | 0.048 / 0.000 / 0.000 | 7473 / 7514 / 7514 (7514) | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| stories-reload-bottom-1440-fx1 | scrolled | 0.2155 | 0.1960 | 0.1960 | 0.166 / 0.166 / 0.166 | 14322 / 14322 / 14322 | y y y y y y y | - | 0/0 | 28/28 |  |
+| stories-reload-bottom-1440-fx1 | reloaded | 0.2502 | 0.5864 | 0.5844 | 0.000 / 0.000 / 0.000 | 14083 / 14322 / 14322 (14322) | N N y y y N y | - | 0/0 | 28/28 | boxes: 1152/1154 boxes; new higher by 0.334 |
+| map-tll-map-invite-js-v1-throw-390-fx1 | end | 0.0999 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 439/440 boxes |
+| map-tll-map-invite-js-v1-throw-1440-fx1 | end | 0.1732 | 0.0114 | 0.0037 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 461/462 boxes |
+| map-tll-v91-map-clusters-v2-throw-1440-fx1 | end | 0.0980 | 0.0114 | 0.0037 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-jq404-390-fx1 | end | 0.1632 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 1/1 | 5/5 |  |
+| stories-tll-lib-lead-v1-missing-1440-fx1 | end | 0.0303 | 0.0666 | 0.0666 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 8/8 | new higher by 0.036 |
+| stories-tll-lib-lead-v1-throw-1440-fx1 | end | 0.0919 | 0.0403 | 0.0392 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y y y N y | - | 1/1 | 8/10 | boxes: 1153/1155 boxes; console errors 8/10 |
+| map-rm-1440-fx1 | end | 0.0929 | 0.0114 | 0.0114 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| st-q-reload-bottom-1440-fx2 | scrolled | 0.7311 | 0.0834 | 0.0802 | 0.000 / 0.000 / 0.000 | 2790 / 2790 / 2790 | y y y y y y y | - | 0/0 | 49/49 |  |
+| st-q-reload-bottom-1440-fx2 | reloaded | 0.7924 | 1.2042 | 1.6785 | 0.664 / 0.000 / 0.000 | 2790 / 2790 / 2790 (2790) | y y y y y y y | - | 0/0 | 49/49 | new higher by 0.886; new higher than old by 0.474 |
+| st-q-back-1440-fx2 | back | 0.3955 | 1.0303 | 0.4294 | 0.335 / 0.000 / 0.021 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.034 |
+| st-q-back-1440-fx2 | back2 | 0.3997 | 0.3999 | 1.3544 | 0.335 / 0.021 / 0.335 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.955; new higher than old by 0.955 |
+| st-q-reload-mid-1440-fx2 | scrolled | 0.1176 | 0.0673 | 0.0632 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 50/50 |  |
+| st-q-reload-mid-1440-fx2 | reloaded | 1.1035 | 1.1259 | 1.6812 | 0.664 / 0.664 / 0.664 | 2395 / 2395 / 2395 (1440) | y y y y y y y | - | 0/0 | 50/50 | new higher by 0.578; new higher than old by 0.555 |
+| st-q-reload-mid-390-fx2 | scrolled | 0.0634 | 0.0374 | 0.0364 | 0.000 / 0.000 / 0.000 | 1350 / 1350 / 1350 | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-reload-mid-390-fx2 | reloaded | 2.8263 | 2.1330 | 2.8262 | 1.086 / 1.086 / 0.172 | 1350 / 1350 / 1350 (1350) | y y y y y y y | - | 0/0 | 22/22 | new higher than old by 0.693 |
+| st-q-back-390-fx2 | back | 1.5982 | 1.5981 | 1.5981 | 0.065 / 0.579 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 | late +0.514 |
+| st-q-back-390-fx2 | back2 | 1.5982 | 1.5981 | 1.5981 | 0.579 / 0.579 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 |  |
+| st-q-cpu4-390-fx2 | end | 0.6709 | 0.6860 | 0.6849 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 10/10 | new higher by 0.014 |
+| st-hash-card-1440-fx2 | end | 0.7978 | 0.7225 | 0.7225 | 0.000 / 0.000 / 0.000 | 13243 / 13206 / 13206 | N N y y y N y | - | 0/0 | 21/21 | boxes: 1165/1163 boxes |
+| st-q-even-1440-fx2 | end | 0.1093 | 0.1158 | 0.1165 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| travelers-reload-bottom-390-fx2 | scrolled | 0.1150 | 0.0050 | 0.0044 | 0.000 / 0.000 / 0.000 | 7513 / 7514 / 7514 | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: 2 lines differ (y or height by 1); left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-390-fx2 | reloaded | 0.9864 | 0.7631 | 0.7626 | 0.048 / 0.000 / 0.000 | 7473 / 7514 / 7514 (7514) | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/8 | boxes: title hold +40 px; left: style#tll-fp-title-v1 |
+| stories-reload-bottom-1440-fx2 | scrolled | 0.2786 | 0.1960 | 0.1971 | 0.166 / 0.166 / 0.166 | 14322 / 14322 / 14322 | y y y y y y y | - | 0/0 | 28/28 |  |
+| stories-reload-bottom-1440-fx2 | reloaded | 0.2502 | 0.5844 | 0.5844 | 0.000 / 0.000 / 0.000 | 14083 / 14322 / 14322 (14322) | N N y y y N y | - | 0/0 | 28/28 | boxes: 1152/1154 boxes; new higher by 0.334 |
+| map-tll-map-invite-js-v1-throw-390-fx2 | end | 0.0992 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 439/440 boxes |
+| map-tll-map-invite-js-v1-throw-1440-fx2 | end | 0.1922 | 0.0037 | 0.0037 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 461/462 boxes |
+| map-tll-v91-map-clusters-v2-throw-1440-fx2 | end | 0.1113 | 0.0114 | 0.0110 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-jq404-390-fx2 | end | 0.1624 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y y y y y | - | 1/1 | 5/5 | boxes: 403 lines differ (x or width) |
+| stories-tll-lib-lead-v1-missing-1440-fx2 | end | 0.0303 | 0.0666 | 0.0655 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 8/8 | new higher by 0.035 |
+| stories-tll-lib-lead-v1-throw-1440-fx2 | end | 0.0300 | 0.0392 | 0.0403 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y y y N y | - | 1/1 | 8/10 | boxes: 1153/1155 boxes; new higher by 0.010; console errors 8/10 |
+| map-rm-1440-fx2 | end | 0.3577 | 0.0037 | 0.0110 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |
+| st-q-reload-bottom-1440-fx3 | scrolled | 0.1340 | 0.6778 | 0.0632 | 0.000 / 0.000 / 0.000 | 2790 / 2790 / 2790 | y y y y y y y | - | 0/0 | 47/49 | console errors 47/49 |
+| st-q-reload-bottom-1440-fx3 | reloaded | 0.7924 | 0.7594 | 0.7643 | 0.664 / 0.199 / 0.664 | 2790 / 2790 / 2790 (2790) | y y y y y y y | - | 0/0 | 47/49 | console errors 47/49 |
+| st-q-back-1440-fx3 | back | 0.9980 | 1.0303 | 1.3544 | 0.335 / 0.335 / 0.335 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.356; new higher than old by 0.324 |
+| st-q-back-1440-fx3 | back2 | 0.3995 | 1.0303 | 1.3544 | 0.021 / 0.335 / 0.335 | 1080 / 1080 / 1080 (1080) | N N y y y y y | - | 0/0 | 56/56 | boxes: 1 lines differ, names too; new higher by 0.955; late +0.314; new higher than old by 0.324 |
+| st-q-reload-mid-1440-fx3 | scrolled | 0.3076 | 0.0835 | 0.0632 | 0.000 / 0.000 / 0.000 | 1440 / 1440 / 1440 | y y y y y y y | - | 0/0 | 50/50 |  |
+| st-q-reload-mid-1440-fx3 | reloaded | 0.7772 | 1.1259 | 1.6812 | 0.199 / 0.664 / 0.664 | 2395 / 2395 / 2395 (1440) | y y y y y y y | - | 0/0 | 50/50 | new higher by 0.904; late +0.465; new higher than old by 0.555 |
+| st-q-reload-mid-390-fx3 | scrolled | 0.0635 | 0.0364 | 0.0364 | 0.000 / 0.000 / 0.000 | 1350 / 1350 / 1350 | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-reload-mid-390-fx3 | reloaded | 2.1319 | 2.1330 | 2.1330 | 1.086 / 0.172 / 1.086 | 1350 / 1350 / 1350 (1350) | y y y y y y y | - | 0/0 | 22/22 |  |
+| st-q-back-390-fx3 | back | 2.1092 | 1.5981 | 1.5981 | 0.065 / 0.065 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 | late +0.514 |
+| st-q-back-390-fx3 | back2 | 1.5982 | 1.5981 | 1.5981 | 0.579 / 0.579 / 0.579 | 1013 / 1013 / 1013 (1013) | y y y y y y y | - | 0/0 | 30/30 |  |
+| st-q-cpu4-390-fx3 | end | 0.7997 | 0.6437 | 0.6417 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 10/10 |  |
+| st-hash-card-1440-fx3 | end | 0.7978 | 0.7794 | 0.7783 | 0.000 / 0.000 / 0.000 | 13243 / 13243 / 13243 | y y y y y y y | - | 0/0 | 21/21 |  |
+| st-q-even-1440-fx3 | end | 0.4504 | 0.1171 | 0.1175 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y N y y y y y | - | 0/0 | 12/12 |  |
+| travelers-reload-bottom-390-fx3 | scrolled | 0.1645 | 0.0050 | 0.0050 | 0.048 / 0.000 / 0.000 | 7513 / 7514 / 7514 | N N y y y N y | style#tll-fp-title-v1 | 0/0 | 8/10 | boxes: 3 lines differ, names too; console errors 8/10; left: style#tll-fp-title-v1 |
+| travelers-reload-bottom-390-fx3 | reloaded | 0.5972 | 0.7631 | 0.7626 | 0.048 / 0.000 / 0.000 | 7473 / 7514 / 7514 (7514) | N y y y y y y | style#tll-fp-title-v1 | 0/0 | 8/10 | boxes: title hold +40 px; new higher by 0.165; console errors 8/10; left: style#tll-fp-title-v1 |
+| stories-reload-bottom-1440-fx3 | scrolled | 0.2786 | 0.1960 | 0.1960 | 0.166 / 0.166 / 0.166 | 14322 / 14322 / 14322 | y y y y y y y | - | 0/0 | 28/30 | console errors 28/30 |
+| stories-reload-bottom-1440-fx3 | reloaded | 0.2502 | 0.5844 | 0.5844 | 0.000 / 0.000 / 0.000 | 14083 / 14322 / 14322 (14322) | N N y y y N y | - | 0/0 | 28/30 | boxes: 1152/1154 boxes; new higher by 0.334; console errors 28/30 |
+| map-tll-map-invite-js-v1-throw-390-fx3 | end | 0.0999 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 439/440 boxes |
+| map-tll-map-invite-js-v1-throw-1440-fx3 | end | 0.1748 | 0.0114 | 0.0114 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y N N N y | - | 1/1 | 4/4 | boxes: 461/462 boxes |
+| map-tll-v91-map-clusters-v2-throw-1440-fx3 | end | 0.0929 | 0.0114 | 0.0114 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 1/1 | 4/4 |  |
+| map-jq404-390-fx3 | end | 0.1390 | 0.0000 | 0.0000 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 1/1 | 5/5 |  |
+| stories-tll-lib-lead-v1-missing-1440-fx3 | end | 0.0784 | 0.0666 | 0.0666 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 8/8 |  |
+| stories-tll-lib-lead-v1-throw-1440-fx3 | end | 0.0303 | 0.0392 | 0.0403 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | N N y y y N y | - | 1/1 | 8/10 | boxes: 1153/1155 boxes; console errors 8/10 |
+| map-rm-1440-fx3 | end | 0.1083 | 0.0037 | 0.0114 | 0.000 / 0.000 / 0.000 | 0 / 0 / 0 | y y y y y y y | - | 0/0 | 4/4 |  |

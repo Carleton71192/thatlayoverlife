@@ -183,4 +183,13 @@ S.atkfail.push(cell('map-noboot-never-empty-1440', 'map', 1440, { opts: { html: 
 S.atkfail.push(cell('map-noboot-1440', 'map', 1440, { opts: { html: rep('<p id="tllm-boot"', '<p id="tllm-bootx"', 1) }, wait: 6000 }));
 S.atkfail.push(cell('map-nomount-390', 'map', 390, { opts: { html: rep('<div id="tll-map-layers"', '<div id="tll-map-layersx"', 1) }, wait: 8000 }));
 
+/* ---- follow-up fx (09:10 UTC): the single-load attack rows where new read higher than ctl or the finished page differed, 3 arms, 3 loads ---- */
+S.fx = [];
+const FXIDS = ['st-q-reload-bottom-1440', 'st-q-back-1440', 'st-q-reload-mid-1440', 'st-q-reload-mid-390', 'st-q-back-390', 'st-q-cpu4-390', 'st-hash-card-1440', 'st-q-even-1440',
+  'travelers-reload-bottom-390', 'stories-reload-bottom-1440',
+  'map-tll-map-invite-js-v1-throw-390', 'map-tll-map-invite-js-v1-throw-1440', 'map-tll-v91-map-clusters-v2-throw-1440', 'map-jq404-390', 'stories-tll-lib-lead-v1-missing-1440', 'stories-tll-lib-lead-v1-throw-1440',
+  'map-rm-1440'];
+const ALL = [].concat(S.atkq, S.atknav, S.atkenv, S.atkfail);
+for (let i = 1; i <= 3; i++) for (const id of FXIDS) { const b = ALL.find(x => x.id === id); if (!b) throw new Error('fx: no ' + id); S.fx.push(Object.assign({}, b, { id: id + '-fx' + i, arms: A3 })); }
+
 module.exports = S;
