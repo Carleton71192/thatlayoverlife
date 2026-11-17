@@ -138,6 +138,9 @@ const reloadFlow = where => async (page, s, id, rec, L) => {
   const e = await L.probe(page, id, 'reloaded'); e.wantY = y; rec.stages.push(e); };
 S.reload = [];
 for (const p of EIGHT) { S.reload.push(cell(p + '-reload-mid-390', p, 390, { flow: reloadFlow('mid') })); S.reload.push(cell(p + '-reload-bottom-390', p, 390, { flow: reloadFlow('bottom') })); if (['map', 'travelers', 'stories'].includes(p)) S.reload.push(cell(p + '-reload-mid-1440', p, 1440, { flow: reloadFlow('mid') })); }
+/* repeats (17 Nov 03:33): reload at the bottom of /for-expats and /about read higher with the new core in one load each */
+S.reload2 = [];
+for (const i of [1, 2, 3]) for (const p of ['expats', 'about']) S.reload2.push(cell(p + '-reload-bottom-390-r' + i, p, 390, { flow: reloadFlow('bottom') }));
 const backFlow = async (page, s, id, rec, L) => {
   await page.goto(L.ORIGIN + L.PAGES[s.page], { waitUntil: 'load', timeout: 120000 }); await settle(page, L, 2500);
   const y = await page.evaluate(() => { const y = Math.min(document.documentElement.scrollHeight - innerHeight, Math.round(innerHeight * 1.2)); window.scrollTo(0, y); return y; }); await L.sleep(600);
