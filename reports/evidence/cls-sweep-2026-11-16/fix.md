@@ -198,6 +198,7 @@ Delivered by the core alone, `src/site-layers/tll-site-layers-v16.js`. No chunk 
 - Built core (parts A and B): `src/site-layers/tll-site-layers-v16.js`, 276,440 bytes (part A alone: 260,880; 16.66.0: 252,289), SRI `sha384-rm9a+UhEyhRi7OWymOTl2Ji8o28uPBQD2TMRg6nRg/j1KkvzpCR+UuahQy1PwQu/`. This replaces the SRI in the part A header above.
 - The core file carries no version string, as in earlier releases: the version is given when the script is registered and in the release note. Nothing to bump in the file. No release note written.
 - Tests: 707 pass (648 after part A, 59 new in `test/early-state-layer.test.js`). A rebuild changes no bytes.
+- 17 November, after the adversarial check: four small repairs, see the last section, "Repair after the adversarial check". The core is now 277,485 bytes with SRI `sha384-2Bc75us2J2jpgsYU/Hger8bd7CrNh9cZyfStM3otS/aENprUVw1HFUruv8eGw3cU`, 720 tests pass. The numbers in parts A and B are from the build before the repair (afe01e7).
 
 ## Result in one table
 
@@ -451,3 +452,107 @@ Numbers are from the standard loads with the new core unless noted.
 - Files: `fix-b/table.md`, `fix-b/cells.json`, `fix-b/loads.csv` (one row per load), `fix-b/extra.md`, `fix-b/harness/`.
 - Limits: Chromium only; lab fonts (Liberation, no Georgia or Arial); documents served whole from disk, so the stress and held-parser sets stand in for a network; ads answered empty; signed-out only; one contributor profile.
 - No Webflow tool call, no publish, no non-GET request, no form sent. Webflow hosts in this part: 0 bytes.
+
+# Repair after the adversarial check (17 November 2026)
+
+The adversarial check (`judge-adversarial/notes.md` on the session branch, PASS WITH NOTES) named narrow cases where the 16.67.0 core read worse than the live core. Four of them are repaired here, in the core alone. Note numbers are that report's.
+
+- Branch `claude/cls-sweep-2026-11-16`, four commits on top of afe01e7, one per note: 5a7fc08 (note 7), d84e6d2 (note 1), 23e5ec4 (note 3), 7275765 (note 2). Not merged. `layers-release` not touched.
+- Built core: `src/site-layers/tll-site-layers-v16.js`, 277,485 bytes (before the repair: 276,440; gzip 83,846 against 83,578), SRI `sha384-2Bc75us2J2jpgsYU/Hger8bd7CrNh9cZyfStM3otS/aENprUVw1HFUruv8eGw3cU`. This replaces the SRI in the part B header.
+- Tests: 720 pass (707 before, 13 new, 3 changed). A rebuild changes no bytes. No chunk changed.
+- Changed files: `tll-early-state-v1.js` (notes 1 and 7), `tll-first-paint-v1.js` (notes 2 and 3), the build script (three new checks), the two test files.
+
+## Result in one table
+
+Three arms on the same www HTML: control = the live 16.66.0 core, before = the afe01e7 build, after = the repaired build. CLS counts every layout-shift entry.
+
+| note | case | control | before | after |
+|---|---|---|---|---|
+| 1 | /stories?q=lisbon at 1440, 9 loads | 0.169 to 0.177 in 4, 0.764 to 0.774 in 5 | 0.119 to 0.120 in 6, 0.713 in 3 | 0.099 to 0.120 in 9 |
+| 2 | /about at 390, reload at the very end, CLS (12, 4 and 12 loads) | 0.129 to 0.177, median 0.154 | 0.409 to 0.521 | 0.129 to 0.131 |
+| 2 | the same, where the reader ends | at the old position in 6 of 12, 111 px above it in 6 | at the old position in 4 of 4 | at the old position in 6 of 12, 111 px above it in 6 |
+| 2 | /about at 390, reload from mid page, 2 loads | 0.355 | 0.037 | 0.037 |
+| 2 | /for-expats at 390, reload at the very end (8, 4 and 8 loads): not changed, see below | 1.012 to 1.111; 880 px above in 3 of 8 | 1.017 to 1.022; 880 px above in 3 of 4 | 1.017 to 1.022; 880 px above in 7 of 8 |
+| 3 | /the-map, map file empty or throwing, or no settings file: when the one-screen hold lets go (6 cases) | no hold | 9.58 to 9.64 s | 0.29 to 0.37 s |
+| 3 | the same, CLS at 1440 (empty, throwing, no settings file) | 0.041, 0.028, 0.293 | 0.038, 0.038, 0.028, of which 0.037, 0.037, 0.027 at 9.6 s | 0.045, 0.045, 0.001, nothing late |
+| 3 | the same, CLS at 390 | 0.163, 0.174, 0.140 | 0.000 | 0.000 |
+| 7 | early tap on the stand-in Menu button, /stories and /account at 390, 2 loads each: where the focus ends | the real Menu button | body | the real Menu button |
+
+The finished page (box list, body tree, keyboard order, aria snapshot, as hashes) equals the control's in all 38 scenarios of notes 1, 3 and 7. After a reload at the end of /about it equals that of the control loads that end at the same scroll position, in all 12 loads.
+
+## Note 1: /stories with a search term
+
+**Cause.** With `?q=` the core's own search filter (`tll-phase0-v1`) hides the cards that do not match once the search index has answered, and the matching cards come up from far below. That move alone scores 0.05 at 1440, the title's change of faces alone 0.01. When the title's font hold was let go in the very frame of the filter, the browser multiplied the two: 0.66 for that one frame. Both events came about 100 ms after the title in the lab, so they met in 3 of 9 loads here (4 of 9 in the adversarial check). The control has the same meeting with either of its two font frames: 5 of 9 loads here.
+
+**Change.** In the /stories title piece of `tll-early-state-v1`: with a search, the hold is let go from a frame callback, in the first frame in which the count of hidden cards (`[data-tll-q-miss]`) is the one of the frame before. So the title never changes faces in a frame in which the filter has just changed the grid. At most 30 frames are waited for; a failed font file takes the same path; the 20 s release is unchanged and does not wait for a frame. Without a search nothing changes: the hold goes the moment both files are in.
+
+I did not stand the hold down for a search, as the check suggested. That gives the control's two font frames back, and each of them can meet the filter (the control's 0.77).
+
+**Numbers.** 1440, 9 loads an arm: after 0.099 to 0.120 in 9 of 9. The title is in its fallback faces about 100 ms longer with a search (hold gone 277 to 424 ms after navigation start, before 172 to 243 ms). 390, 3 loads: 0.383, 0.383, 0.399 (before 0.384, control 0.412). No match (`?q=zzzzqqq`), 3 loads: 0.015 to 0.041 (before 0.040, control 0.060). Document in pieces at CPU 4x, 2 loads: 0.118 and 0.119 (before 0.116 and 0.117, control 0.152). Reduced motion: 0.116 (control 0.169). /stories without a search, 3 loads: 0.030 to 0.031, as before.
+
+## Note 2: reload at the very end of /about
+
+**Cause.** A browser puts the scroll position back after a reload as soon as the page is tall enough for it, and otherwise at load. The site's Tell the editor note (`#tll-note`) is in the footer and its style, which fixes it to the corner of the screen, comes 25 KB later in the page. Until that style is parsed the note is laid out in the footer, 382 px tall, with either core. With the filmstrip in early (part A) the page was for that moment 6,023 px tall at 390, more than the 5,858 px it ends at (the control: 5,754). So after a reload at the very end the position came back while the page was still being parsed, and the page's own page-parsed work at the end of the article (a block of 250 px moves, the footer grows) then moved the screen: 0.28 to 0.36 in that frame.
+
+**Change.** `tll-first-paint-v1` on /about: `style#tll-fp-note-v1` (`#tll-note{display:none}`) keeps the note out of the layout until the note's own style has been parsed (the style element has its sheet), at the latest right before the page-parsed listeners run, or after 20 s. The site's scripts that measure at the page-parsed event find the note as served. The page is then never taller than it ends, and the position comes back at load, as with the control.
+
+**Numbers.** 390, reload at the very end: after 0.129 to 0.131 in 12 of 12 loads (control 0.129 to 0.177, before 0.409 to 0.521). What is left is one move of 111 px in both arms: the end of the article grows that much right after load. Whether the browser has put the position back before or after it is decided within a few ms: the reader ends at the old position or 111 px above it, 6 of 12 loads each way with the control and with the repaired core. Reload from mid page: 0.037 in both builds (control 0.355), so the gain there is kept. The note hold is gone 119 to 154 ms after navigation start in a standard load (79 to 109 ms after a reload), when the note's style has been parsed. With the note's style taken out of the page (2 loads): the hold goes at the page-parsed event and the finished page equals the control's. Document in pieces at CPU 4x (2 loads): 0.0004 and 0.0006 (control 0.025 and 0.036), finished page equal.
+
+**/for-expats, left as it is.** There the page never is tall enough early: both cores put the position back at load. About 30 ms after load our for-expats chunk adds its block (the expats map, 870 px at 390, high up in the page; it waits for its data), and the browser does not follow it when it has already put the position back. So the reader ends at the old position or 880 px above it with either core, and CLS reads about 1.0 either way because the block and the jump to the end land in one frame. In these loads the new core ended 880 px above in 7 of 8 (before the repair 3 of 4, in the adversarial check 3 of 4), the control in 3 of 8 (in the adversarial check 1 of 4). I do not know why the new core loses that race more often, and I did not look further. I left it because the clean fix is not in the core's part of this sweep: the block would need its room before it arrives, which changes how the chunk brings it in, and no chunk changes in this release. A scroll correction after load from the core would be guesswork about where the reader wanted to be. Proposal for a later piece of work: keep the room for the chunk's block from the start. CLS is not worse than the control (1.017 to 1.022 against 1.012 to 1.111).
+
+## Note 3: /the-map when the map code loads and never starts
+
+**Cause.** The hold waited for the embed's own DID NOT START line, which the embed writes 9.3 s after the map file has loaded.
+
+**Change.** Two earlier signs, both the map's own, now let the hold go too. (1) The embed's status line reads CODE LOADED ..., STARTING at the map script's load event; a map code that has run has by then put the class `tllm` on the mount, its first step. STARTING without that class means the file loaded and the code did not run (empty file, a throw at its start). (2) When its settings file does not come, the map code writes its failure line (`p.tllm-err`) into the mount. The 20 s release, the release on DID NOT and MAP ERROR, and the release when the map is drawn are unchanged. The build now stops if the map code no longer marks the mount before it asks for anything, or if the saved embed no longer writes STARTING.
+
+**Numbers.** The hold is gone 0.29 to 0.37 s after navigation start in all six cases (9.58 to 9.64 s before), which is when it goes on a map that draws (0.33 to 0.35 s; before 0.31 to 0.35 s). The page under it still moves up a screen, but now with the rest of the first load instead of 9.6 s in: at 1440 0.045 for the empty and the throwing file (control 0.041 and 0.028), the same as the 404 case had before the repair, and 0.001 with no settings file (control 0.293); at 390 nothing is counted. A cheaper end than that would mean keeping an empty screen of space on a broken page, which changes the finished page, so I did not. A map that starts: 0.004 at 1440 and 0.000 at 390 in 2 loads each, and 0.013 and 0.000 with the document in pieces at CPU 4x (control 0.095 and 0.139).
+
+## Note 7: early tap on the stand-in Menu button
+
+**Cause.** The tap was passed on to the real button at the page-parsed event, but the focus the tap had left on the stand-in fell to the body when the stand-in was taken out.
+
+**Change.** `tll-early-state-v1` remembers whether the stand-in was the active element when it is taken out, and if so gives the focus to the real button (without scrolling) before it passes the tap on. Nothing is focused when the tap did not focus the stand-in (browsers that do not focus a tapped button), or when the reader has put the focus somewhere else since.
+
+**Numbers.** /stories and /account at 390 with the document in pieces, 2 loads each: the menu is open, `aria-expanded` is true and the focus is on the real Menu button, as in the control; CLS as before (0.034 and 0.095; control 0.031 and 0.301). Menu opened and closed after load: unchanged.
+
+## Not changed
+
+- Note 9 (broken pages: /submit with the site head script throwing, the profile with its page script throwing). There is no clean sign, before the page is parsed, that a site script is going to throw. Left.
+- Notes 4, 5, 6, 8, 10, 11 and 12: left alone as instructed.
+
+## The 16 claimed cells, home and one story again
+
+Standard loads with the repaired core, 3 a cell and arm, control against after. No cell is worse; no load of the repaired core is over 0.1.
+
+| cell | control median | control max | control over 0.1 | new median | new max | new over 0.1 | FCP control / new | boxes equal | tree equal |
+|---|---|---|---|---|---|---|---|---|---|
+| /travelers 390 | 0.1130 | 0.1234 | 3 of 3 | 0.0100 | 0.0100 | 0 of 3 | 132 / 132 | 3 of 3 | 3 of 3 |
+| /travelers 1440 | 0.1357 | 0.1357 | 3 of 3 | 0.0058 | 0.0058 | 0 of 3 | 140 / 140 | 3 of 3 | 3 of 3 |
+| /the-map 390 | 0.1396 | 0.1396 | 3 of 3 | 0.0000 | 0.0000 | 0 of 3 | 148 / 136 | 3 of 3 | 3 of 3 |
+| /the-map 1440 | 0.3560 | 0.3628 | 3 of 3 | 0.0114 | 0.0114 | 0 of 3 | 156 / 152 | 3 of 3 | 3 of 3 |
+| /for-expats 390 | 0.0877 | 0.0878 | 0 of 3 | 0.0096 | 0.0097 | 0 of 3 | 136 / 136 | 3 of 3 | 3 of 3 |
+| /for-expats 1440 | 0.0391 | 0.0391 | 0 of 3 | 0.0001 | 0.0001 | 0 of 3 | 160 / 152 | 3 of 3 | 3 of 3 |
+| /about 390 | 0.0245 | 0.0246 | 0 of 3 | 0.0003 | 0.0003 | 0 of 3 | 132 / 128 | 3 of 3 | 3 of 3 |
+| /about 1440 | 0.0360 | 0.0566 | 0 of 3 | 0.0001 | 0.0005 | 0 of 3 | 136 / 140 | 3 of 3 | 3 of 3 |
+| /account 390 | 0.0119 | 0.0119 | 0 of 3 | 0.0119 | 0.0119 | 0 of 3 | 116 / 136 | 3 of 3 | 3 of 3 |
+| /account 1440 | 0.3007 | 0.3007 | 3 of 3 | 0.0037 | 0.0037 | 0 of 3 | 124 / 132 | 3 of 3 | 3 of 3 |
+| /submit 390 | 0.1437 | 0.1439 | 3 of 3 | 0.0000 | 0.0002 | 0 of 3 | 124 / 124 | 3 of 3 | 3 of 3 |
+| /submit 1440 | 0.0552 | 0.0552 | 0 of 3 | 0.0002 | 0.0003 | 0 of 3 | 124 / 140 | 3 of 3 | 3 of 3 |
+| /contributors/<profile> 390 | 0.0763 | 0.0763 | 0 of 3 | 0.0004 | 0.0004 | 0 of 3 | 132 / 152 | 3 of 3 | 3 of 3 |
+| /contributors/<profile> 1440 | 0.1178 | 0.1178 | 3 of 3 | 0.0011 | 0.0019 | 0 of 3 | 164 / 148 | 3 of 3 | 3 of 3 |
+| /stories 390 | 0.0284 | 0.0361 | 0 of 3 | 0.0070 | 0.0070 | 0 of 3 | 168 / 188 | 3 of 3 | 3 of 3 |
+| /stories 1440 | 0.0504 | 0.1129 | 1 of 3 | 0.0300 | 0.0300 | 0 of 3 | 200 / 196 | 3 of 3 | 3 of 3 |
+| / 390 | 0.0034 | 0.0034 | 0 of 3 | 0.0000 | 0.0000 | 0 of 3 | 184 / 180 | 3 of 3 | 3 of 3 |
+| / 1440 | 0.0005 | 0.0005 | 0 of 3 | 0.0005 | 0.0005 | 0 of 3 | 196 / 244 | 3 of 3 | 3 of 3 |
+| story: Lisbon 390 | 0.0040 | 0.0040 | 0 of 3 | 0.0006 | 0.0007 | 0 of 3 | 152 / 160 | 3 of 3 | 3 of 3 |
+| story: Lisbon 1440 | 0.0001 | 0.0001 | 0 of 3 | 0.0001 | 0.0001 | 0 of 3 | 168 / 148 | 3 of 3 | 3 of 3 |
+
+- Nothing is left behind apart from `style#tll-fp-title-v1` on /travelers (by design). Page errors: none in either arm. 300 non-GET requests aborted in this set, none sent.
+- First paint: medians of 3 loads move by up to 20 ms either way, and home at 1440 read 244 against 196. Six more loads an arm of that cell: 190 (after), 186 (before), 194 (control). No difference.
+
+## Method and files
+
+- As in parts A and B and in the two checks: www HTML from disk (the 17 copies of the measurement check), the core tag routed to a local core with the integrity attribute removed in the routed HTML only, files from the local caches, anything not cached aborted, every non-GET aborted (1,206 in all, none sent), one browser, one load at a time, arms in rotating order. Nothing was fetched from a Webflow host. No Webflow tool call, no publish, no form sent.
+- 338 loads in nine sets, none failed. Every scenario and arm: `repair/table.md`. One row per load: `repair/loads.csv` (numbers and hashes, no page text). Harness: `repair/harness/` (the adversarial check's `lib.cjs`, `scen.cjs` and `adv.cjs` with a third arm, the repair sets in `rscen.cjs`, the reload trace `dbg-reload.cjs`).
+- Limits: Chromium only, lab fonts, signed out, small counts (the table says how many loads each number is from).
