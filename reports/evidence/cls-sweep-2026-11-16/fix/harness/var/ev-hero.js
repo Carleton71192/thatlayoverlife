@@ -1,0 +1,1 @@
+(() => { const m = document.querySelector('main'); const sec = m.querySelector('section'); return sec.outerHTML.replace(/<style[\s\S]*?<\/style>/g,'<STYLE>').replace(/<script[\s\S]*?<\/script>/g,'<SCRIPT>').slice(0, 6000); })()

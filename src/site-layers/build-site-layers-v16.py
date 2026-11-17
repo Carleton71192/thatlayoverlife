@@ -34,7 +34,14 @@ taken out once the template's style is parsed, so later template edits win; two 
 template script's place-and-date rewrite. A3 (same day, the 16.65.0 checks): the template script's place-and-date words, its country link
 box and the site flag script's flags are laid out before the first paint, so the page-parsed rewrites no longer move the painted head.
 A4 (same day, the A3 checks): a static country table (region-names-v1.json), a flag stand-in made of img elements and put in as soon as
-the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed."""
+the crumb is parsed, and the photo hold now also covers the story after the hero from the moment the hero is parsed.
+16 Nov 2026 (layout shift sweep on the pages that are not stories, reports/evidence/cls-sweep-2026-11-16/, for release 16.67.0): page-heroes
+dresses the heroes of /travelers, /the-map, /about and /for-expats as the parser adds them (it waited for the page-parsed event), and
+tll-first-paint-v1 joins the core for /travelers, /the-map and /about. The build checks the page rules that layer copies against the saved page
+code (FIRST_PAINT below), so a copy cannot drift from its source unnoticed.
+Part B, same day: tll-early-state-v1 joins the core. It lays out, while the page is parsed, what the site head (the nav on /account and
+/submit, the Menu button), the /stories page code and the profile page code settle at the page-parsed event, and
+hands the page back right before that code runs. The build checks the page code it follows against the saved copies (EARLY_STATE below)."""
 import re, json, os, hashlib, base64, gzip, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
@@ -61,6 +68,8 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-masthead-v1.js', 'footer masthead line: Written by the people who went'),
            ('src/site-layers/tll-ux-1028-v1.js', '28 Oct UX review: type floor, success message contrast, Tell the editor clear of the home hero'),
            ('src/site-layers/tll-page-heroes-v1.js', '29 Oct: story photos on /stories, /travelers, /the-map, /about and /for-expats, credited and linked'),
+           ('src/site-layers/tll-first-paint-v1.js', '16 Nov: /travelers, /the-map and /about first screen laid out before the first paint (late page styles, the map height, the title verb)'),
+           ('src/site-layers/tll-early-state-v1.js', '16 Nov: the nav on /account and /submit, the Menu button, the /stories filter row and lead card, and the profile head laid out before the first paint, handed back to the page code right before it runs'),
            ('src/site-layers/tll-story-ask-v1.js', '29 Oct: end-of-story ask, Pitch a layover story first, then send one photo'),
            ('src/site-layers/tll-open-slots-v1.js', '29 Oct: /spotlight coming-soon and open-slot cards become one Pitch your layover tile'),
            ('src/site-layers/tll-travelers-fix-v1.js', '29 Oct testers: /travelers link chips as labelled pills inside the card, no empty grid cell, one action tile instead of the open slot'),
@@ -149,12 +158,17 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 #                   listener, and on profiles hides other members' cards from the first paint so their lazy photos are never requested.
 #   library-hold    (13 Nov) the home library swipe row height: it listens for the library's first draw, which runs while the page is
 #                   parsed (before the first paint), and keeps the row's height from the previous view of this tab before that draw.
+#   first-paint     (16 Nov, layout shift sweep) its head styles and its watcher must be in place before /travelers, /the-map and /about are
+#                   parsed: it lays out, before the first paint, what those pages' own late styles and page-parsed scripts settle after it.
+#                   After page-heroes, so the hero is dressed before the /travelers title is measured (observers run in this order).
+#   early-state     (16 Nov, layout shift sweep part B) its watcher must see the nav, the /stories filter row and grid and the profile hero as
+#                   the parser adds them, and its window capture listener must be in place before the page-parsed event.
 # Accepted tradeoff (1 Nov): travelers-fix (18 KB) stays in the travelers chunk although its top-level style() call shapes the first paint
 # of /travelers, so on a slow connection that page can show the retired open-slot tile and the old link chips for a moment before the
 # chunk lands. Weighed against adding 18 KB to every page, the brief flash on one directory page was accepted.
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
-        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
+        'tll-ads-v1', 'tll-page-heroes-v1', 'tll-first-paint-v1', 'tll-early-state-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
         'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
@@ -219,6 +233,89 @@ for _, _, pub, staged in CHUNKS:
 assert not [n for n in BY if n not in covered], 'layers in SCRIPTS but in no chunk: ' + str([n for n in BY if n not in covered])
 assert len(set(c[0] for c in CHUNKS)) == len(CHUNKS), 'chunk names must be unique'
 for name, _, pub, _ in CHUNKS: assert pub, 'chunk %s has no public layer left: drop it from CHUNKS' % name
+
+# 16 Nov 2026: tll-first-paint-v1 carries copies of page rules (and of three rules of our own travelers chunk) so the first paint has
+# them. Each block is marked /*copy:<file>*/ ... /*end*/ with one rule a line as a double-quoted string; every rule must still be in
+# the file it names, as text or as it is written inside a JS string. /*words:<file>*/ marks the /travelers title verbs.
+FIRST_PAINT = 'src/site-layers/tll-first-paint-v1.js'
+def first_paint_checks():
+    s = read(FIRST_PAINT); blocks = re.findall(r'/\*copy:([^*]+)\*/\n(.*?)/\*end\*/', s, re.S)
+    assert len(blocks) == 4, 'first-paint: four copy blocks expected'
+    n = 0
+    for f, body in blocks:
+        src = read(f)
+        for line in body.split('\n'):
+            line = line.strip()
+            if not line.startswith('"'): continue
+            rule = json.loads(line.rstrip('+;'))
+            assert rule in src or json.dumps(rule)[1:-1] in src, 'first-paint: %s no longer has the rule %s' % (f, rule[:70])
+            n += 1
+    assert n == 12, 'first-paint: twelve copied rules expected, found %d' % n
+    assert '@media(max-width:600px){.tll-about-final-title{' in read('src/pages/about/live-2026-11-13/next/embed-c024f6d7.after.html'), 'first-paint: the /about phone rules changed'
+    m = re.search(r"/\*words:([^*]+)\*/\s*var WORDS=(\[[^\]]*\]);", s)
+    assert m and ('var W=' + m.group(2)) in read(m.group(1)), 'first-paint: the /travelers verbs changed'
+    assert "/everyone/i.test(tn.nodeValue))tn.nodeValue='People'" in read('src/site-layers/tll-travelers-fix-v1.js'), 'first-paint: the travelers chunk no longer renames the first chip'
+    mapcss = read('map-2.0/dist/tll-map-layers.css')
+    assert '@media (max-width:760px){' in mapcss and '.tllm-drawer{position:fixed;left:0;right:0;bottom:0;' in mapcss, 'first-paint: the map sheet rule changed'
+    assert '@media (max-width:760px){#tll-map-layers .tllm-drawer:not([data-open=\\"1\\"]){display:none}}' in s
+    # 17 Nov 2026 (repair after the adversarial check): the two early signs of a map that will not be drawn, and the note style the
+    # /about note piece waits for, are read off code that is not ours to change here. If one of them changes, the build stops.
+    mapjs = read('map-2.0/dist/tll-map-layers.js')
+    assert -1 < mapjs.find("root.classList.add('tllm')") < mapjs.find('getJSON(CONFIG)') and "el('p', 'tllm-err', msg)" in mapjs, 'first-paint: the map code no longer marks the mount first'
+    assert ", STARTING');" in read('src/pages/the-map/live-2026-10-25/embed-682054d4-after.html'), 'first-paint: the map embed status line changed'
+    foot = read('src/site/live-2026-11-13/fonts/site-footer.after.html')
+    assert '<style id="tll-note-v1-css">' in foot and '#tll-note{position:fixed;' in foot, 'first-paint: the note style changed'
+first_paint_checks()
+
+# 16 Nov 2026, part B: tll-early-state-v1 makes, early, what page code makes when the page is parsed.
+# Each line below is a piece of that code as it is saved in the repo (the site head of 13 Nov, the same as the live head on 16 Nov; the
+# /stories and profile scripts from the 16 Nov GET; the profile notes embed of 10 Nov, the same as live on 16 Nov; and the core's
+# home base rule). If one changes, the build stops here and the layer has to be read against the new code.
+EARLY_STATE = 'src/site-layers/tll-early-state-v1.js'
+def early_state_checks():
+    s = read(EARLY_STATE)
+    head = read('src/site/live-2026-11-13/fonts/site-head.after.html')
+    for piece in ("function navOut(){var navs=$$('nav.tll-nav-v1');if(!navs.length)return;if(navs.some(function(n){return !n.closest('[data-ms-content]');}))return;var n=navs[0],w=n.closest('[data-ms-content]');w.parentNode.insertBefore(n,w);}",
+                  "function run(){monogram();wordmark();navOut();",
+                  "if(nav.__tllmm)return;nav.__tllmm=1;var row=nav.querySelector('.tll-nav-links-row'),cta=nav.querySelector('.tll-nav-cta-row');if(!row||!cta)return;",
+                  "var b=document.createElement('button');b.type='button';b.className='tllmm-btn';",
+                  "b.textContent='Menu';\ncta.appendChild(b);"):
+        assert piece in head, 'early-state: the site head no longer has ' + piece[:80]
+    # the nav piece (17 Nov): it shows the wrapper the site hides until Memberstack has answered, and moves nothing, because the
+    # /account page script takes the first members wrapper in the document while the page is parsed
+    for piece in ('[data-ms-content="members"]{display:none}', 'html.ms-loaded [data-ms-content="members"]{display:block}'):
+        assert piece in head, 'early-state: the site head no longer has ' + piece
+    a3 = read('src/pages/account/a3-account.js')
+    for piece in ("var M=$('[data-ms-content=\"members\"]'); if(!M) return;", "H.classList.add('a3-on');"):
+        assert piece in a3, 'early-state: the /account page script no longer has ' + piece
+    assert "html:not(.ms-loaded) [data-ms-content]:has(>nav['+MARK+'])" in s and 'insertBefore(n,w)' not in s, 'early-state: the nav piece must not move the nav'
+    lead = read('src/pages/stories/live-2026-11-16/tll-lib-lead-v1.live.html')
+    for piece in ("var inner=document.querySelector('.tll-library-filters .tll-filters-inner'), form=document.querySelector('.tllsb-form'), bar=document.querySelector('.tllsb-bar'); if(!inner||!form||!bar||inner.querySelector('.tllsb-form')) return;",
+                  "var slot=document.createElement('div'); slot.className='tll-lib-searchslot'; slot.appendChild(form); var clr=document.getElementById('tll-lib-clear'); if(clr) slot.appendChild(clr); inner.appendChild(slot); inner.setAttribute('data-tll-merged','1'); bar.style.display='none'; }",
+                  "k.querySelector('[data-tll-pick]:not(.w-condition-invisible)')",
+                  "if(pick&&g.firstElementChild!==pick){ g.insertBefore(pick,g.firstElementChild);",
+                  "if(k===lead) k.setAttribute('data-tll-lead','1'); else k.removeAttribute('data-tll-lead');",
+                  "function early(){ merge(); return !!document.querySelector('.tll-library-filters .tll-filters-inner[data-tll-merged]'); }"):
+        assert piece in lead, 'early-state: tll-lib-lead-v1 no longer has ' + piece[:80]
+    chips = read('src/pages/stories/live-2026-11-16/tll-lib-chips-v1.live.html')
+    for piece in ("date:Date.parse(d(el,'data-tll-date'))||0", "(b.date-a.date)||(a.i-b.i)", "shown.forEach(function(r){grid.appendChild(r.el);});",
+                  "var items=[].slice.call(grid.children).filter(function(el){return el.hasAttribute('data-tll-card')||el.querySelector('[data-tll-card]');});"):
+        assert piece in chips, 'early-state: tll-lib-chips-v1 no longer has ' + piece
+    m = re.search(r"/\*links:([^*]+)\*/\s*(var LINKS=\[\[.*?\]\];)", s)
+    pf = read(m.group(1)) if m else ''
+    assert m and m.group(2) in pf, 'early-state: the profile link list changed'
+    for piece in ("ey.textContent='TRAVELER · '+UP(slug);", "if(y&&y!=='NaN') bits.push('ON TLL SINCE '+y);", "g.appendChild(el('span',null,'FROM · HAS LIVED IN'));",
+                  "on('ranges')?'':'/ 250', 'PLACES'", "var c=el('a','pf5-btn','Get in touch'); c.href=href;", "note='Email shown by their choice.';",
+                  "note='Opens their chosen channel or the relay form. Nobody’s email is shown until they reply.';", "B.setAttribute('data-pf5-ready','1');",
+                  "if(D.readyState==='loading') D.addEventListener('DOMContentLoaded',run); else run();"):
+        assert piece in pf, 'early-state: tll-pf5-profile-js-v1 no longer has ' + piece[:60]
+    notes = read('src/pages/contributors-template/live-2026-11-10/after/tll-pf5-n-v1.html')
+    for piece in ("if(lab) lab.textContent='FROM'+(place?' '+place:'')+(n>1?' · HAS LIVED IN':'');", "if(makes.length&&on('creators')) bit(meta,'MAKES '+makes.join(' · '));",
+                  "var w0=el('a','pf5-work','SEE THE WORK →'); w0.href=work; w0.target='_blank'; w0.rel='noopener ugc';", "if(P&&P.open===true) bit(meta,'OPEN TO PARTNERSHIPS');",
+                  "a.rel='sponsored noopener'; a.appendChild(el('span','pf5-tag','PARTNER'));", "function later(){ setTimeout(run,0); }"):
+        assert piece in notes, 'early-state: tll-pf5-n-v1 no longer has ' + piece[:60]
+    assert "if(show||!home)return;var meta=document.querySelector('[data-pf5=\"meta\"]');" in read('src/site-layers/tll-phase0-v1.js'), 'early-state: the home base rule in tll-phase0-v1 changed'
+early_state_checks()
 
 # Chunks first: the core embeds their hashes.
 files, hashes = {}, {}
@@ -564,7 +661,26 @@ cover = ("(function(){if(!/^\\/(index\\.html)?$/.test(location.pathname))return;
          "function place(){document.body.appendChild(CS);}\n"
          "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place);else place();\n"
          "%s})();\n") % (json.dumps(cov_css), cov_js_early)
-core = (head + consent + LOADER + styles + ''.join(layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
+# 16 Nov 2026: the two layers of the layout shift sweep go into the core without their comments (about 9 KB of them), as the story
+# layer does since A4. Their sources keep every comment; first_paint_checks() above reads the copy markers from the source.
+BARE = ('tll-page-heroes-v1', 'tll-first-paint-v1')
+BARE += ('tll-early-state-v1',)  # part B, same day
+def bare(t):
+    out, i = [], 0
+    for m in re.finditer(r'/\*.*?\*/', t, re.S):
+        if m.start() < i: continue
+        line = t[t.rfind('\n', 0, m.start()) + 1:m.start()]
+        if any(line.count(q) % 2 for q in '\'"`'): continue
+        out.append(t[i:m.start()]); i = m.end()
+        if t[i:i + 1] == '\n' and (not out[-1] or out[-1].endswith('\n')): i += 1
+    out.append(t[i:])
+    return ''.join(out)
+def core_layer(p):
+    s = layer(p)
+    if os.path.basename(p)[:-3] not in BARE: return s
+    marker, rest = s.split('\n', 1)
+    return marker + '\n' + bare(rest)
+core = (head + consent + LOADER + styles + ''.join(core_layer(p) for p in paths(CORE)) + story + cover).encode('utf-8')
 
 os.makedirs(CHUNK_DIR, exist_ok=True)
 for name, b in files.items():
