@@ -1,0 +1,8561 @@
+[
+ {
+  "run": "submit live one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.51,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    19.7,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:20 AM. Kept on this device. Photos are added when you send.",
+   "Draft saved · 8:21 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TORUEPNTX Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:22 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TESIYRPBQ Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live mash 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.1,
+   6.1,
+   7.1,
+   8.1,
+   9.1,
+   10.1,
+   11.1,
+   12.1,
+   13.1
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.51,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    19.7,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:23 AM. Kept on this device. Photos are added when you send.",
+   "Draft saved · 8:24 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TRC2CTQS4 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C mash 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.1,
+   6.1,
+   7.1,
+   8.1,
+   9.1,
+   10.1,
+   11.1,
+   12.1,
+   13.1
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:25 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TRBNNVBF9 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live cached 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   17.2,
+   19.1
+  ],
+  "presses_with_event": 3,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ],
+   [
+    17.3,
+    "Send it to the editor"
+   ],
+   [
+    19.1,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5,
+   17.3
+  ],
+  "swallowed": [
+   17.3
+  ],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ],
+   [
+    19.1,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    20.6,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 20.6,
+  "fail_box": true,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.55,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    20.6,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    26.6,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:26 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TY4EPWW1J Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C cached 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   17.2
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ],
+   [
+    17.2,
+    "Photos are up. Sending"
+   ],
+   [
+    17.3,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5,
+   17.3
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ],
+   [
+    17.3,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    18.8,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 18.8,
+  "fail_box": true,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    18.8,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:27 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   18.8
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    18.9,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    18.9,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TJ05RYLGP Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live nopunct 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   15.7,
+   17.5
+  ],
+  "presses_with_event": 3,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Send it to the editor"
+   ],
+   [
+    15.8,
+    "Send it to the editor"
+   ],
+   [
+    17.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5,
+   15.8
+  ],
+  "swallowed": [
+   15.8
+  ],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    17.6,
+    "ok",
+    3,
+    "he driver 🌙",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    19.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 19.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.54,
+  "endSend": [],
+  "endBody": [
+   "hidden"
+  ],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    19.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    19.7,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    25.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:28 AM. Kept on this device. Photos are added when you send.",
+   "Draft saved · 8:29 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T2WFY09MF Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C nopunct 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   15.7
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Send it to the editor"
+   ],
+   [
+    15.8,
+    "Photos are up. Sending"
+   ],
+   [
+    15.8,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6,
+   15.8
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    15.8,
+    "ok",
+    3,
+    "he driver 🌙",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    17.3,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 17.3,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [
+   [
+    "shown",
+    "alert"
+   ],
+   [
+    "hidden",
+    "alert"
+   ]
+  ],
+  "endBody": [
+   "hidden"
+  ],
+  "done_first": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100
+  },
+  "intake": [
+   [
+    17.3,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:30 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [
+   [
+    17.3,
+    "div.w-form-done",
+    "{\"block\":\"center\"}"
+   ]
+  ],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   17.3
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    17.5,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    17.5,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TN4WB1XXF Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live upfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   11.4
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    11.4,
+    "Send it to the editor"
+   ],
+   [
+    19.8,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   19.8
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "FAIL"
+   ],
+   [
+    11.7,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    15.8,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    19.9,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    21.4,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 21.4,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "The upload did not go through. Check your connection and send again. Nothing was sent.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 16.8,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    21.4,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    27.4,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:31 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.4
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 13,
+    "body": true,
+    "hero": false,
+    "gallery": 0,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TA6OG3L1E Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C upfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0,
+   11.4
+  ],
+  "presses_with_event": 2,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    11.4,
+    "Sending photos 2 of 3"
+   ],
+   [
+    19.8,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   19.8
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "FAIL"
+   ],
+   [
+    11.6,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    15.8,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    19.9,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    21.4,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 21.4,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "The upload did not go through. Check your connection and send again. Nothing was sent.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    21.4,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:32 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   21.4
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    21.5,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    21.5,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TJ1575B8U Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live workerfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.54,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:34 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TZXML71H2 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C workerfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.0,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.0,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 869,
+   "pct": 92
+  },
+  "intake": [
+   [
+    14.0,
+    "Saved. It is with the editor.",
+    "status"
+   ],
+   [
+    20.1,
+    "Saved. The editor will add it to the draft list by hand.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "save_line": [
+   "Draft saved · 8:35 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.0
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TANY98M0E Saved. The editor will add it to the draft list by hand.",
+  "visits": []
+ },
+ {
+  "run": "submit live workeroff 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.0,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.53,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:36 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TTDTJA6IH Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C workeroff 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 869,
+   "pct": 92
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ],
+   [
+    20.1,
+    "Saved. The editor will add it to the draft list by hand.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "save_line": [
+   "Draft saved · 8:37 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.4,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T00V3BR0I Saved. The editor will add it to the draft list by hand.",
+  "visits": []
+ },
+ {
+  "run": "submit live workerslow 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.55,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    39.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:39 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.4,
+   19.6
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TXYQIDBKI Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C workerslow 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.0,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:40 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.0
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TF0T8FAQ9 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live revisit 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.0,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.0,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.46,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.0,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.0,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:42 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=THYJ7H9UZ Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:43 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C revisit 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:44 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TDLHBK6BI Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:45 AM. Kept on this device. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "",
+      "bodyFilled": false,
+      "country": ""
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 4,
+       "body": false,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+      },
+      "accountSent": {
+       "at": true,
+       "sent": true,
+       "fields": 15,
+       "body": true,
+       "hero": true,
+       "gallery": 2,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+      },
+      "browser": {
+       "fields": 4,
+       "body": false,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft",
+       "tllStorySent"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": {
+      "fields": 4,
+      "body": false,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit live+early revisit 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "One editor reads every word in Copenhagen · Reply in 48 hours",
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.54,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:46 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -20.2,
+   -18.8,
+   -0.2,
+   19.8
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TPMTTN2VC Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:47 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C+early revisit 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 8:48 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -20.2,
+   -18.8,
+   -0.2,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TPPIUPZFV Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Already sent to the editor. A copy stays in your account.",
+     "restoredOffer": false,
+     "alreadySent": true,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:49 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "",
+      "bodyFilled": false,
+      "country": ""
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 3,
+       "body": false,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "invite-link,lounge-photo-pick,trip-code"
+      },
+      "accountSent": {
+       "at": true,
+       "sent": true,
+       "fields": 15,
+       "body": true,
+       "hero": true,
+       "gallery": 2,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+      },
+      "browser": {
+       "fields": 3,
+       "body": false,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft",
+       "tllStorySent"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 3,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": {
+      "fields": 3,
+      "body": false,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 3,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 3,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit live postfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": null,
+  "fail_box": true,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.51,
+  "endSend": [],
+  "endBody": [],
+  "done_first": null,
+  "done_last": false,
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [
+   "Draft saved · 8:51 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way.Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TZ3A8SW29",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:52 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C postfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": null,
+  "fail_box": true,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": null,
+  "done_last": false,
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [
+   "Draft saved · 8:53 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.4,
+   19.6
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way.Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T06OTVSMJ",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:54 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit live+early postfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": null,
+  "fail_box": true,
+  "labels": [
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "up": [
+   "One editor reads every word in Copenhagen · Reply in 48 hours",
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.54,
+  "endSend": [],
+  "endBody": [],
+  "done_first": null,
+  "done_last": false,
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [
+   "Draft saved · 8:55 AM. Kept on this device and in your account. Photos are added when you send.",
+   "Draft saved · 8:56 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -20.2,
+   -18.8,
+   -0.2,
+   19.8
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way.Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TUMFTYP97",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:56 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 12,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 12,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 12,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 12,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 12,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C+early postfail 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "FAIL",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": null,
+  "fail_box": true,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": null,
+  "done_last": false,
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [
+   "Draft saved · 8:57 AM. Kept on this device and in your account. Photos are added when you send.",
+   "Draft saved · 8:58 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -20.2,
+   -18.9,
+   -0.2,
+   19.8
+  ],
+  "ms_writes": [
+   [
+    -0.1,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.9,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way.Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T85VK1LXX",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 8:59 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C race 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:00 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": 13.8,
+  "ms_reads": [
+   -24.8,
+   -6.1,
+   13.9,
+   14.3
+  ],
+  "ms_writes": [
+   [
+    -6.0,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.0,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.4,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.4,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T5M8P4ISH Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.5,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    19.7,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:01 AM. Kept on this device and in your account. Photos are added when you send.",
+   "Draft saved · 9:02 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T0QVT6OQJ Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:03 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.4,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TV06C8Q8T Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live key 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.54,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:05 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TOX4IARQE Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C key 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:06 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.4,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.3,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.3,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TOA0TCT72 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit live workerfail 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.3,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.0,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.0,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.5,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.0,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:08 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   19.7
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T086YEUP6 Saved. It is with the editor.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C workerfail 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ],
+   [
+    20.1,
+    "Saved. The editor will add it to the draft list by hand.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "save_line": [
+   "Draft saved · 9:09 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T4AEMGFA9 Saved. The editor will add it to the draft list by hand.",
+  "visits": []
+ },
+ {
+  "run": "submit merged+C revisit 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:10 AM. Kept on this device. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.2,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=T607EHZT1 Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 9:11 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "",
+      "bodyFilled": false,
+      "country": ""
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 4,
+       "body": false,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+      },
+      "accountSent": {
+       "at": true,
+       "sent": true,
+       "fields": 15,
+       "body": true,
+       "hero": true,
+       "gallery": 2,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+      },
+      "browser": {
+       "fields": 4,
+       "body": false,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft",
+       "tllStorySent"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": {
+      "fields": 4,
+      "body": false,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "share-photos live one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "share-photos.js"
+   ],
+   "pc": false,
+   "send": true,
+   "intake": true,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 1,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the Lounge →"
+   ],
+   [
+    4.2,
+    "Sending…"
+   ]
+  ],
+  "requestSubmit": [
+   4.2
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "photos",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    4.2,
+    "ok",
+    1,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 5.7,
+  "fail_box": false,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending your photo. Keep this page open.",
+   "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+  ],
+  "silent_faded_s": 4.2,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -2.8
+  ],
+  "ms_writes": [],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": []
+  },
+  "done_text": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+  "visits": []
+ },
+ {
+  "run": "share-photos merged one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "share-photos.js"
+   ],
+   "pc": false,
+   "send": true,
+   "intake": true,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 1,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the Lounge →"
+   ],
+   [
+    4.2,
+    "Sending…"
+   ]
+  ],
+  "requestSubmit": [
+   4.2
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "photos",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    4.2,
+    "ok",
+    1,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 5.8,
+  "fail_box": false,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending your photo. Keep this page open.",
+   "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+  ],
+  "silent_faded_s": 4.2,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -2.8
+  ],
+  "ms_writes": [],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": []
+  },
+  "done_text": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+  "visits": []
+ },
+ {
+  "run": "share-photos live one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "share-photos.js"
+   ],
+   "pc": false,
+   "send": true,
+   "intake": true,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 1,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the Lounge →"
+   ],
+   [
+    4.2,
+    "Sending…"
+   ]
+  ],
+  "requestSubmit": [
+   4.2
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "photos",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    4.2,
+    "ok",
+    1,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 5.8,
+  "fail_box": false,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending your photo. Keep this page open.",
+   "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+  ],
+  "silent_faded_s": 4.21,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -2.8
+  ],
+  "ms_writes": [],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": []
+  },
+  "done_text": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+  "visits": []
+ },
+ {
+  "run": "share-photos merged one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "share-photos.js"
+   ],
+   "pc": false,
+   "send": true,
+   "intake": true,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 1,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the Lounge →"
+   ],
+   [
+    4.2,
+    "Sending…"
+   ]
+  ],
+  "requestSubmit": [
+   4.2
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "photos",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    4.2,
+    "ok",
+    1,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 5.7,
+  "fail_box": false,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending your photo. Keep this page open.",
+   "A human looks at every photo before it goes up. Changed your mind later? Write to hello@thatlayover.life and we take it down."
+  ],
+  "silent_faded_s": 4.2,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -2.8
+  ],
+  "ms_writes": [],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": []
+  },
+  "done_text": "Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.",
+  "visits": []
+ },
+ {
+  "run": "my-pets live one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "pets.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": false,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 2,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Create passport →"
+   ],
+   [
+    8.4,
+    "Issuing…"
+   ]
+  ],
+  "requestSubmit": [
+   8.4
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "avatar",
+    "ok"
+   ],
+   [
+    4.4,
+    "pet-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    8.4,
+    "ok",
+    2,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 9.9,
+  "fail_box": false,
+  "labels": [
+   "Create passport → [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 2 photos. Keep this page open.",
+   "Sent 1 of 2. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 8.39,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -3.9,
+   -2.8
+  ],
+  "ms_writes": [
+   [
+    8.4,
+    "pets",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "pets"
+   ]
+  },
+  "done_text": "Passport issued. Your bestie has a page now. A human checks the details before it goes public, usually within 48 hours.",
+  "visits": []
+ },
+ {
+  "run": "my-pets merged one 390x844",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "pets.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": false,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 2,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 2"
+   ],
+   [
+    8.4,
+    "Issuing…"
+   ]
+  ],
+  "requestSubmit": [
+   8.4
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "avatar",
+    "ok"
+   ],
+   [
+    4.4,
+    "pet-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    8.4,
+    "ok",
+    2,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 9.9,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 2 [disabled]",
+   "Sending photos 2 of 2 [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 2 photos. Keep this page open.",
+   "Sent 1 of 2. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -4.0,
+   -2.8
+  ],
+  "ms_writes": [
+   [
+    8.4,
+    "pets",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "pets"
+   ]
+  },
+  "done_text": "Passport issued. Your bestie has a page now. A human checks the details before it goes public, usually within 48 hours.",
+  "visits": []
+ },
+ {
+  "run": "my-pets live one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "pets.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": false,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 2,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Create passport →"
+   ],
+   [
+    8.3,
+    "Issuing…"
+   ]
+  ],
+  "requestSubmit": [
+   8.3
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "avatar",
+    "ok"
+   ],
+   [
+    4.3,
+    "pet-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    8.4,
+    "ok",
+    2,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 9.9,
+  "fail_box": false,
+  "labels": [
+   "Create passport → [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 2 photos. Keep this page open.",
+   "Sent 1 of 2. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 8.35,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -4.0,
+   -2.8
+  ],
+  "ms_writes": [
+   [
+    8.3,
+    "pets",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "pets"
+   ]
+  },
+  "done_text": "Passport issued. Your bestie has a page now. A human checks the details before it goes public, usually within 48 hours.",
+  "visits": []
+ },
+ {
+  "run": "my-pets merged one 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "pets.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": false,
+   "end": false,
+   "cPatched": false
+  },
+  "photos": 2,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 2"
+   ],
+   [
+    8.4,
+    "Issuing…"
+   ]
+  ],
+  "requestSubmit": [
+   8.4
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "avatar",
+    "ok"
+   ],
+   [
+    4.4,
+    "pet-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    8.4,
+    "ok",
+    2,
+    "",
+    true
+   ]
+  ],
+  "worker": [],
+  "done_at": 10.0,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 2 [disabled]",
+   "Sending photos 2 of 2 [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 2 photos. Keep this page open.",
+   "Sent 1 of 2. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "intake": [],
+  "intake_seq": [],
+  "save_line": [],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": null,
+  "race_tick": null,
+  "ms_reads": [
+   -4.0,
+   -2.8
+  ],
+  "ms_writes": [
+   [
+    8.4,
+    "pets",
+    false
+   ]
+  ],
+  "writes_after_done": [],
+  "draft_end": {
+   "account": null,
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "pets"
+   ]
+  },
+  "done_text": "Passport issued. Your bestie has a page now. A human checks the details before it goes public, usually within 48 hours.",
+  "visits": []
+ },
+ {
+  "run": "submit live revisit 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": false
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Send it to the editor"
+   ],
+   [
+    12.5,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.5
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.5,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.5,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 12.55,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Sending it to the editor…",
+    null
+   ],
+   [
+    20.1,
+    "Saved. It is with the editor.",
+    null
+   ]
+  ],
+  "intake_seq": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:19 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -19.0,
+   -0.4,
+   19.6
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "writes_after_done": [
+   [
+    19.8,
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": false,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": {
+    "fields": 15,
+    "body": true,
+    "hero": true
+   },
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TA8LRT13P Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 15,
+      "body": true,
+      "hero": true
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 9:20 AM. Kept on this device. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "A test story for the send check",
+      "bodyFilled": true,
+      "country": "Testland"
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 13,
+       "body": true,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+      },
+      "accountSent": null,
+      "browser": {
+       "fields": 13,
+       "body": true,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "A test story for the send check",
+     "bodyFilled": true,
+     "country": "Testland"
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": {
+      "fields": 13,
+      "body": true,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 13,
+      "body": true,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,invite-link,lounge-photo-pick,name,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "run": "submit merged+C+early revisit 1440x900",
+  "loaded": {
+   "core": [
+    "a254306f"
+   ],
+   "chunk": [
+    "site.js",
+    "submit.js"
+   ],
+   "pc": true,
+   "send": false,
+   "intake": true,
+   "end": true,
+   "cPatched": true
+  },
+  "photos": 3,
+  "presses": [
+   0.0
+  ],
+  "presses_with_event": 1,
+  "submit_events": [
+   [
+    0.0,
+    "Sending photos 1 of 3"
+   ],
+   [
+    12.6,
+    "Sending to Copenhagen…"
+   ]
+  ],
+  "requestSubmit": [
+   12.6
+  ],
+  "swallowed": [],
+  "uploads": [
+   [
+    0.2,
+    "hero-image",
+    "ok"
+   ],
+   [
+    4.4,
+    "photo-gallery",
+    "ok"
+   ],
+   [
+    8.6,
+    "photo-gallery",
+    "ok"
+   ]
+  ],
+  "posts": [
+   [
+    12.6,
+    "ok",
+    3,
+    "e best part.",
+    true
+   ]
+  ],
+  "worker": [
+   [
+    14.1,
+    "story",
+    true
+   ]
+  ],
+  "done_at": 14.1,
+  "fail_box": false,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "up": [
+   "Removing location data and sending 3 photos. Keep this page open.",
+   "Sent 1 of 3. Keep this page open.",
+   "Sent 2 of 3. Keep this page open.",
+   "Photos are up. Sending."
+  ],
+  "silent_faded_s": 0.0,
+  "endSend": [],
+  "endBody": [],
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "intake": [
+   [
+    14.1,
+    "Saved. It is with the editor.",
+    "status"
+   ]
+  ],
+  "intake_seq": [
+   "Saved. It is with the editor."
+  ],
+  "save_line": [
+   "Draft saved · 9:21 AM. Kept on this device and in your account. Photos are added when you send."
+  ],
+  "siv": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "pageErr": [],
+  "aborted": [
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new",
+   "GET https://www.thatlayover.life/sitemap.xml",
+   "GET https://www.thatlayover.life/stories"
+  ],
+  "misses": [],
+  "pre_autosave": 1,
+  "race_tick": null,
+  "ms_reads": [
+   -20.3,
+   -18.9,
+   -0.3,
+   14.1
+  ],
+  "ms_writes": [
+   [
+    -0.2,
+    "tllStoryDraft",
+    false
+   ],
+   [
+    14.3,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "writes_after_done": [
+   [
+    14.3,
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "draft_end": {
+   "account": {
+    "at": true,
+    "sent": true,
+    "fields": 15,
+    "body": true,
+    "hero": true,
+    "gallery": 2,
+    "turnstileOnly": false,
+    "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+   },
+   "accountSent": null,
+   "browser": null,
+   "msKeys": [
+    "tllStoryDraft"
+   ]
+  },
+  "done_text": "It's with the editor. Nancy reads it. You'll hear back within 48 hours at the email on your account. Questions meanwhile: hello@thatlayover.life. Your draft stays in your account either way. Traveled with someone? Send them this link so they can add their version of the trip: https://www.thatlayover.life/submit?trip=TJK8NVECP Saved. It is with the editor.",
+  "visits": [
+   {
+    "tag": "same browser",
+    "view": {
+     "save": "Already sent to the editor. A copy stays in your account.",
+     "restoredOffer": false,
+     "alreadySent": true,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    },
+    "after20": {
+     "view": {
+      "save": "Draft saved · 9:22 AM. Kept on this device and in your account. Photos are added when you send.",
+      "restoredOffer": false,
+      "alreadySent": false,
+      "title": "",
+      "bodyFilled": false,
+      "country": ""
+     },
+     "draft": {
+      "account": {
+       "at": true,
+       "sent": false,
+       "fields": 4,
+       "body": false,
+       "hero": false,
+       "gallery": 0,
+       "turnstileOnly": false,
+       "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+      },
+      "accountSent": {
+       "at": true,
+       "sent": true,
+       "fields": 15,
+       "body": true,
+       "hero": true,
+       "gallery": 2,
+       "turnstileOnly": false,
+       "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+      },
+      "browser": {
+       "fields": 4,
+       "body": false,
+       "hero": false
+      },
+      "msKeys": [
+       "tllStoryDraft",
+       "tllStorySent"
+      ]
+     },
+     "ms": 1
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "view": {
+     "save": "Draft restored from your last visit. Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": true,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": {
+      "fields": 4,
+      "body": false,
+      "hero": false
+     },
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   },
+   {
+    "tag": "new browser",
+    "view": {
+     "save": "Already sent to the editor. A copy stays in your account.",
+     "restoredOffer": false,
+     "alreadySent": true,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "accountSent": null,
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft"
+     ]
+    }
+   },
+   {
+    "tag": "new browser after visit 2",
+    "view": {
+     "save": "Your words save as a draft every 20 seconds. Photos are added when you send.",
+     "restoredOffer": false,
+     "alreadySent": false,
+     "title": "",
+     "bodyFilled": false,
+     "country": ""
+    },
+    "draft": {
+     "account": {
+      "at": true,
+      "sent": false,
+      "fields": 4,
+      "body": false,
+      "hero": false,
+      "gallery": 0,
+      "turnstileOnly": false,
+      "keys": "cf-turnstile-response,invite-link,lounge-photo-pick,trip-code"
+     },
+     "accountSent": {
+      "at": true,
+      "sent": true,
+      "fields": 15,
+      "body": true,
+      "hero": true,
+      "gallery": 2,
+      "turnstileOnly": false,
+      "keys": "agree-charter=on,body,cf-turnstile-response,city,contributor-name,country,email,excerpt,hero-image,invite-link,lounge-photo-pick,name,photo-gallery,region,trip-code"
+     },
+     "browser": null,
+     "msKeys": [
+      "tllStoryDraft",
+      "tllStorySent"
+     ]
+    }
+   }
+  ]
+ }
+]
