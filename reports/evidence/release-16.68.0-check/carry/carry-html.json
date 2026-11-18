@@ -1,0 +1,3249 @@
+{
+ "pages": {
+  "home": {
+   "bytes_www": 247935,
+   "bytes_test": 247943,
+   "sha256_www": "b522643bc00bf16f5bc4fde2d386bc3a261d82e50944a98e8f70628e41637936",
+   "sha256_test": "83432e5a89da12122b998de824d190b54cca8583917c935c5929cc8a8d7eaef2",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "c37b8ff9cf8c3dfb2137635bda97d964e660dea779ace7cfe825467be6a17380"
+     ],
+     "sha256_test": [
+      "c37b8ff9cf8c3dfb2137635bda97d964e660dea779ace7cfe825467be6a17380"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "bb15694fd747f4e52f016aa9e903a77a51c49c28185efa6a92bf9f2dbd24f7c7"
+     ],
+     "sha256_test": [
+      "bb15694fd747f4e52f016aa9e903a77a51c49c28185efa6a92bf9f2dbd24f7c7"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 3,
+     "count_test": 3,
+     "sha256_www": [
+      "1a037ae522670895494e6a6ac4fc4de43a46c8967d9c5af5ed55241e4fdeefe7",
+      "c3c0581225cdc59ccda65ea7c3c06033f61456fd9fb0422a630c4a672cb4c57c",
+      "872e4849f03fba13d3ce1e6e875090ec852e7dd3318e6299f0bb1b62800693da"
+     ],
+     "sha256_test": [
+      "1a037ae522670895494e6a6ac4fc4de43a46c8967d9c5af5ed55241e4fdeefe7",
+      "c3c0581225cdc59ccda65ea7c3c06033f61456fd9fb0422a630c4a672cb4c57c",
+      "872e4849f03fba13d3ce1e6e875090ec852e7dd3318e6299f0bb1b62800693da"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "get",
+     "action": "/stories",
+     "fields": [
+      [
+       "input",
+       "text",
+       "Search-the-library",
+       "Search-the-library",
+       "Search the library"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-The-Layover-Letter",
+     "id": "wf-form-The-Layover-Letter",
+     "data-name": "The Layover Letter",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "email",
+       "email",
+       "h3-news-email",
+       "email"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "stories": {
+   "bytes_www": 289929,
+   "bytes_test": 289937,
+   "sha256_www": "4e17a7aa85f5db74d5d611222e563a85385dd5e58eb7cfa6692e4eeec289ecdc",
+   "sha256_test": "84cc0fdc48973b109419f4b5a5012979d5362215bbd7acc6d8eeaab4f433480c",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "2867e34881937877a35f247311649b4679e43fa977e0eed2f27f62817a2e695f"
+     ],
+     "sha256_test": [
+      "2867e34881937877a35f247311649b4679e43fa977e0eed2f27f62817a2e695f"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "fc2152512466794bc0c10c1def96a89a17f2cf23d0da8a7fb5354daf8b59ddf0"
+     ],
+     "sha256_test": [
+      "fc2152512466794bc0c10c1def96a89a17f2cf23d0da8a7fb5354daf8b59ddf0"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 3,
+     "count_test": 3,
+     "sha256_www": [
+      "dffafd47fce401880eb5b7d15da9ec6ddaf76a63a761db1f8e31259c5e81292a",
+      "84da1392804ef31c8cf0a04f8cb6165795fc76a1bd77e5df9f4755b914e85535",
+      "52ae275660c95008a7ddd8685e407f92bdb38f7ce5197fac7f1dc157c6fa79d8"
+     ],
+     "sha256_test": [
+      "dffafd47fce401880eb5b7d15da9ec6ddaf76a63a761db1f8e31259c5e81292a",
+      "84da1392804ef31c8cf0a04f8cb6165795fc76a1bd77e5df9f4755b914e85535",
+      "52ae275660c95008a7ddd8685e407f92bdb38f7ce5197fac7f1dc157c6fa79d8"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "q",
+       "tll-lib-q",
+       "q"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "email",
+       "email",
+       "field",
+       "email"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "about": {
+   "bytes_www": 132446,
+   "bytes_test": 132454,
+   "sha256_www": "e63aa1fc826e1ba7f6f37d4432d2efeaa6cae20f1f9a4fe0101a49cf39442487",
+   "sha256_test": "49a7cc3c0a581d0b64669e056e75dc943c5e7e4d7a0e43cd689e361ff4aa6884",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "796c9e6b766c72ebbdd66c20fa49cf4d51439ae5c79239a162aa78333cc97f39"
+     ],
+     "sha256_test": [
+      "796c9e6b766c72ebbdd66c20fa49cf4d51439ae5c79239a162aa78333cc97f39"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "2f732349c21b845420b334094208ff42d520aee04602297a7d114b182921028b"
+     ],
+     "sha256_test": [
+      "2f732349c21b845420b334094208ff42d520aee04602297a7d114b182921028b"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "0c698a3e3fa00f7dfa39f2e78f67a4950ee5c171e275d0363c8c5b8db3db7449"
+     ],
+     "sha256_test": [
+      "0c698a3e3fa00f7dfa39f2e78f67a4950ee5c171e275d0363c8c5b8db3db7449"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "paw-passport": {
+   "bytes_www": 131251,
+   "bytes_test": 131259,
+   "sha256_www": "165e2fe52e1f62b532801bd26ba23ff78aa4e8c2e2cfed50d170737d435226bc",
+   "sha256_test": "e386145def95c1eaba01d737068c91eca06d282bcabf15a6345db058c27c6157",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "eec847ff51c430e898136333d091dd1e546ab72a530d812c15e02b12f0c0bfd6"
+     ],
+     "sha256_test": [
+      "eec847ff51c430e898136333d091dd1e546ab72a530d812c15e02b12f0c0bfd6"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "a8034454ba58135db449d9184e9f8a6366229dbdeca1d753e6209b7c97f10c5a"
+     ],
+     "sha256_test": [
+      "a8034454ba58135db449d9184e9f8a6366229dbdeca1d753e6209b7c97f10c5a"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "6a2ac59a303e177f6b3719acd52e55c419cfa5a4ea87d3c0828059b79ebffce7"
+     ],
+     "sha256_test": [
+      "6a2ac59a303e177f6b3719acd52e55c419cfa5a4ea87d3c0828059b79ebffce7"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "travelers": {
+   "bytes_www": 172038,
+   "bytes_test": 172046,
+   "sha256_www": "e4a224c6dd4ca6dd91d233ef47b2bb5221e880c01c306d24f1fbd40b3aadeebd",
+   "sha256_test": "53838adaad84c6d47441fadb7024066652ce94259a7faa984f2f8a1afb743a5c",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ef117d364449d6d8e266d087c682f8058ab2fc375752149b39763a42c53c3ed8"
+     ],
+     "sha256_test": [
+      "ef117d364449d6d8e266d087c682f8058ab2fc375752149b39763a42c53c3ed8"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "0dbf3cf03935a81d0a03a7974dadd6e641fffc56c89c1801a881cbb8d2bc3b4f"
+     ],
+     "sha256_test": [
+      "0dbf3cf03935a81d0a03a7974dadd6e641fffc56c89c1801a881cbb8d2bc3b4f"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "b9bbbd62a2733ad5b7629bb3d7399c26ecb657d18141251d25cc8a2cd28dceab"
+     ],
+     "sha256_test": [
+      "b9bbbd62a2733ad5b7629bb3d7399c26ecb657d18141251d25cc8a2cd28dceab"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "layovers": {
+   "bytes_www": 126908,
+   "bytes_test": 126916,
+   "sha256_www": "f91e75101664ff53579b17213e085c7160a82d3a87a55be782013142a0a0793d",
+   "sha256_test": "600433ae8c754682be925448f0ce6717d958ff84838f16a32f773c002f7b4c04",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "a90e8fea65848df28ae42b13a83960ecd61d79adb53788f5f7614ee42e7df67f"
+     ],
+     "sha256_test": [
+      "a90e8fea65848df28ae42b13a83960ecd61d79adb53788f5f7614ee42e7df67f"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "a98aa6b1c10e762771d4f13a4696ddb02b533b5eda502ad50dd490d931697030"
+     ],
+     "sha256_test": [
+      "a98aa6b1c10e762771d4f13a4696ddb02b533b5eda502ad50dd490d931697030"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "the-map": {
+   "bytes_www": 245723,
+   "bytes_test": 245731,
+   "sha256_www": "2067eef40763fc215d430023886bf3e32f00f81173e2032ed15421f838839694",
+   "sha256_test": "7184e9190bb3a7eff031c31d40fb9ad7b63be063d10d17da72a0bcd9b5c61c90",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "e90fc05a2050288ef9d38a67ec7f065be1b03a089ff7c932d1dbdc701a7fffc2",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "sha256_test": [
+      "e90fc05a2050288ef9d38a67ec7f065be1b03a089ff7c932d1dbdc701a7fffc2",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "10859c5b4346662d6a2d639ca688b691ffe70fc089365988ffffef7feedde2be"
+     ],
+     "sha256_test": [
+      "10859c5b4346662d6a2d639ca688b691ffe70fc089365988ffffef7feedde2be"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "151197f1d2e61b7f29d7d9143dd4b755d4f30cc5cf785a3859b2f6194807f30d"
+     ],
+     "sha256_test": [
+      "151197f1d2e61b7f29d7d9143dd4b755d4f30cc5cf785a3859b2f6194807f30d"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "for-expats": {
+   "bytes_www": 150139,
+   "bytes_test": 150147,
+   "sha256_www": "4cd9b71b632ca5728876daa1c4c10f1985b7270be725ba81e06f88110ea075a8",
+   "sha256_test": "80e55d02d5d24d899fd4fb181bd180a65c8e0c9ffc0ee91f8d18c75279067d3e",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "5c334d423fe1ec35e24753ac95d0a2bf677ff94adb540e3b324c7230df27d8c3"
+     ],
+     "sha256_test": [
+      "5c334d423fe1ec35e24753ac95d0a2bf677ff94adb540e3b324c7230df27d8c3"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "8cc54698163abe6a5efab957ab5bbe3fbf53ad7707d22d186b719777732c2acc"
+     ],
+     "sha256_test": [
+      "8cc54698163abe6a5efab957ab5bbe3fbf53ad7707d22d186b719777732c2acc"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 3,
+     "count_test": 3,
+     "sha256_www": [
+      "fd32ee061df0c317b7c19c08d25c01891102f2130068793ff40531d0b56f724d",
+      "b97a16289f1647d07f5fd9eada6b75c4123d53d2c5b2f1a0cc91fde9449e8de1",
+      "dada78c01b443e6658f307225e1cd766874614ea3b5bce3d5bbdf54517f89fb4"
+     ],
+     "sha256_test": [
+      "fd32ee061df0c317b7c19c08d25c01891102f2130068793ff40531d0b56f724d",
+      "b97a16289f1647d07f5fd9eada6b75c4123d53d2c5b2f1a0cc91fde9449e8de1",
+      "dada78c01b443e6658f307225e1cd766874614ea3b5bce3d5bbdf54517f89fb4"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "location-expert",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "field",
+       "le-name",
+       "Field"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "le-email",
+       "email"
+      ],
+      [
+       "input",
+       "text",
+       "city-country",
+       "le-city",
+       "city-country"
+      ],
+      [
+       "input",
+       "text",
+       "years-there",
+       "le-years",
+       "years-there"
+      ],
+      [
+       "textarea",
+       null,
+       "local-truth",
+       "le-pitch",
+       "local-truth"
+      ],
+      [
+       "input",
+       "text",
+       "field",
+       "le-links",
+       "Field"
+      ],
+      [
+       "input",
+       "checkbox",
+       "age-and-terms",
+       "checkbox",
+       "age-and-terms"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Expat group listing",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "group-name",
+       "xg-name",
+       "group-name"
+      ],
+      [
+       "input",
+       "text",
+       "city-or-area",
+       "xg-area",
+       "city-or-area"
+      ],
+      [
+       "input",
+       "text",
+       "country",
+       "xg-country",
+       "country"
+      ],
+      [
+       "input",
+       "url",
+       "group-link",
+       "xg-link",
+       "group-link"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "xg-email",
+       "email"
+      ],
+      [
+       "input",
+       "checkbox",
+       "runs-group-and-open",
+       "xg-check",
+       "runs-group-and-open"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "cookies": {
+   "bytes_www": 124797,
+   "bytes_test": 124805,
+   "sha256_www": "751dffb7f186d92c6adffbf0370e4d577eb80fdab8defc1bc50fd453fd1e8382",
+   "sha256_test": "e56a27cd4624868070543c086897d189f9e581ba03de64b9851be30cbdb01a58",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "5c10dcb64e93a93e58a68c3681a3555f5edcc1f7f6b846df723ac771ec803227"
+     ],
+     "sha256_test": [
+      "5c10dcb64e93a93e58a68c3681a3555f5edcc1f7f6b846df723ac771ec803227"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "983ab3b443e6b82520176fe50405135d5ffff2ce69bbcf788f0f708d18d50fba"
+     ],
+     "sha256_test": [
+      "983ab3b443e6b82520176fe50405135d5ffff2ce69bbcf788f0f708d18d50fba"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "balkans": {
+   "bytes_www": 218592,
+   "bytes_test": 218600,
+   "sha256_www": "eba573eb8d3725ac8879540a098e0a02250348d9f830951b94d7d4212a68fc92",
+   "sha256_test": "866a600852dc1e0fbda265c914835fb03752a6cab2d8895ab43c0629c5cae08d",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "3c03af1bc705b9b63be7fe476668d765ca2ecfeab16a264a7877e387e4253767"
+     ],
+     "sha256_test": [
+      "3c03af1bc705b9b63be7fe476668d765ca2ecfeab16a264a7877e387e4253767"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "597a9bdd05420a76405fed664bc31d898abe0d911e3c4727db7ce3fb07357dac"
+     ],
+     "sha256_test": [
+      "597a9bdd05420a76405fed664bc31d898abe0d911e3c4727db7ce3fb07357dac"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "lisbon": {
+   "bytes_www": 215062,
+   "bytes_test": 215070,
+   "sha256_www": "de3c05a2fdcb9812d62311fc9fcce3c1460c831caa03cf4125779579e5a8a5f6",
+   "sha256_test": "6a16721164a3c3d2fb76bacb2e8e1b8047007687cd4186dea41418c42a494bbc",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "3c03af1bc705b9b63be7fe476668d765ca2ecfeab16a264a7877e387e4253767"
+     ],
+     "sha256_test": [
+      "3c03af1bc705b9b63be7fe476668d765ca2ecfeab16a264a7877e387e4253767"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "597a9bdd05420a76405fed664bc31d898abe0d911e3c4727db7ce3fb07357dac"
+     ],
+     "sha256_test": [
+      "597a9bdd05420a76405fed664bc31d898abe0d911e3c4727db7ce3fb07357dac"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 4,
+    "count_test": 4,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "account": {
+   "bytes_www": 212656,
+   "bytes_test": 212664,
+   "sha256_www": "3e0e6b0f1996501304dd068757d680aab54e935c0d3a07de587dafe785bc32c9",
+   "sha256_test": "c6c425eb6e49fcf899bc7f60d0c310b792c84b08d052e908ca1b917834fb4433",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "4d1f786a93d6bb4b4c0be9b0bc4fa9481b918dcf4b73f85f316d8c9b093cbbb3",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "sha256_test": [
+      "4d1f786a93d6bb4b4c0be9b0bc4fa9481b918dcf4b73f85f316d8c9b093cbbb3",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "c8bdc1fdaad138d535c43f980ed6d017048e9d3ae0d01951145305cd94511eda"
+     ],
+     "sha256_test": [
+      "c8bdc1fdaad138d535c43f980ed6d017048e9d3ae0d01951145305cd94511eda"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "cf094fdf6d11081c79650f5cb8550406472b85c20e73d4d5d2cfb69130f210c5"
+     ],
+     "sha256_test": [
+      "cf094fdf6d11081c79650f5cb8550406472b85c20e73d4d5d2cfb69130f210c5"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 16,
+    "count_test": 16,
+    "identical": true,
+    "attr_names": [
+     "data-ms-action",
+     "data-ms-content",
+     "data-ms-member",
+     "data-ms-modal"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "submit": {
+   "bytes_www": 174251,
+   "bytes_test": 175648,
+   "sha256_www": "1b472c9325bbcf62bcb854b91473fa0da5feb3f4aaf957deb2529f5bcb764c90",
+   "sha256_test": "f88cf82cf6c43209ee213376ff79b0866a9b3919201435a6ec21eb7e795f038e",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 1,
+    "pc_new_in_test": 1,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 1,
+    "c_after_in_test": 1,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "620709e5bac6284b5c69681e3c8f7dd5ccd135aa51f8f7f9d854ca1512d95c8c"
+     ],
+     "sha256_test": [
+      "620709e5bac6284b5c69681e3c8f7dd5ccd135aa51f8f7f9d854ca1512d95c8c"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "343bd31659900116626e2545a68e858f12f94d67480329656c891d3b7282490f"
+     ],
+     "sha256_test": [
+      "343bd31659900116626e2545a68e858f12f94d67480329656c891d3b7282490f"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 3,
+     "count_test": 3,
+     "sha256_www": [
+      "873a4c6836cd3d5b1b7055bbe77062313017ef1872553bf831fced4c4a1ad303",
+      "621d2fe3f9fc6c156858b0dd516b93bc521a539c149fcf7c5d5cb6f81abcc813",
+      "9a1d00c7e8e28c571f9adb23edb8201bf0107d03c40a810d1bdc3bbadbfdaeb6"
+     ],
+     "sha256_test": [
+      "873a4c6836cd3d5b1b7055bbe77062313017ef1872553bf831fced4c4a1ad303",
+      "621d2fe3f9fc6c156858b0dd516b93bc521a539c149fcf7c5d5cb6f81abcc813",
+      "9a1d00c7e8e28c571f9adb23edb8201bf0107d03c40a810d1bdc3bbadbfdaeb6"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 9,
+    "count_test": 9,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member",
+     "data-ms-member-bound"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "wf-form-Story-submission",
+     "id": "wf-form-Story-submission",
+     "data-name": "Story submission",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "country",
+       "field",
+       "country"
+      ],
+      [
+       "input",
+       "text",
+       "city",
+       "field",
+       "city"
+      ],
+      [
+       "input",
+       "text",
+       "field-5",
+       "trip-when",
+       "Field 5"
+      ],
+      [
+       "input",
+       "text",
+       "name",
+       "field",
+       "name"
+      ],
+      [
+       "textarea",
+       null,
+       "excerpt",
+       "field",
+       "excerpt"
+      ],
+      [
+       "textarea",
+       null,
+       "body",
+       "field",
+       "body"
+      ],
+      [
+       "select",
+       null,
+       "region",
+       "story-region",
+       "region"
+      ],
+      [
+       "input",
+       "number",
+       "reading-time",
+       "field",
+       "reading-time"
+      ],
+      [
+       "input",
+       "checkbox",
+       "theme-salty-air",
+       "theme-salty-air",
+       "theme-salty-air"
+      ],
+      [
+       "input",
+       "checkbox",
+       "theme-wild-routes",
+       "theme-wild-routes",
+       "theme-wild-routes"
+      ],
+      [
+       "input",
+       "checkbox",
+       "theme-alpine-escape",
+       "theme-alpine-escape",
+       "theme-alpine-escape"
+      ],
+      [
+       "input",
+       "checkbox",
+       "theme-desert-glow",
+       "theme-desert-glow",
+       "theme-desert-glow"
+      ],
+      [
+       "input",
+       "checkbox",
+       "theme-sunset-mode",
+       "theme-sunset-mode",
+       "theme-sunset-mode"
+      ],
+      [
+       "input",
+       "text",
+       "sensory-anchors",
+       "field",
+       "sensory-anchors"
+      ],
+      [
+       "input",
+       "text",
+       "pets-along",
+       "field",
+       "pets-along"
+      ],
+      [
+       "textarea",
+       null,
+       "pet-notes",
+       null,
+       null
+      ],
+      [
+       "textarea",
+       null,
+       "pull-quote",
+       "field",
+       "pull-quote"
+      ],
+      [
+       "input",
+       "text",
+       "reader-question",
+       "field",
+       "reader-question"
+      ],
+      [
+       "input",
+       "text",
+       "sign-off",
+       "field",
+       "sign-off"
+      ],
+      [
+       "input",
+       "text",
+       "hashtag-set",
+       "field",
+       "hashtag-set"
+      ],
+      [
+       "input",
+       "checkbox",
+       "sponsored",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "affiliation",
+       "field-2",
+       "affiliation"
+      ],
+      [
+       "input",
+       "text",
+       "disclosure-line",
+       "field-2",
+       "disclosure-line"
+      ],
+      [
+       "input",
+       "text",
+       "co-travelers",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "same-trip-as",
+       null,
+       null
+      ],
+      [
+       "input",
+       "hidden",
+       "trip-code",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "invite-link",
+       null,
+       null
+      ],
+      [
+       "button",
+       "button",
+       null,
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shoutouts",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-1-name",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "shout-1-type",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-1-city",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-1-link",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-1-affiliate",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-1-comped",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-2-name",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "shout-2-type",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-2-city",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-2-link",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-2-affiliate",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-2-comped",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-3-name",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "shout-3-type",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-3-city",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-3-link",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-3-affiliate",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-3-comped",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-4-name",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "shout-4-type",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-4-city",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-4-link",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-4-affiliate",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-4-comped",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-5-name",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "shout-5-type",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-5-city",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "shout-5-link",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-5-affiliate",
+       null,
+       null
+      ],
+      [
+       "input",
+       "checkbox",
+       "shout-5-comped",
+       null,
+       null
+      ],
+      [
+       "button",
+       "button",
+       null,
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "contributor-name",
+       "tll-story-contributor-name",
+       "contributor-name"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-story-contributor-email",
+       "email"
+      ],
+      [
+       "input",
+       "text",
+       "instagram",
+       "tll-story-contributor-instagram",
+       "instagram"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "radio",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "radio",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "radio",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "text",
+       "credit-website",
+       "field-2",
+       "credit-website"
+      ],
+      [
+       "input",
+       "text",
+       "credit-instagram",
+       "field-2",
+       "credit-instagram"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-newsletter",
+       "checkbox",
+       "syndication-newsletter"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-social",
+       "checkbox",
+       "syndication-social"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-press",
+       "checkbox",
+       "syndication-press"
+      ],
+      [
+       "input",
+       "checkbox",
+       "checkbox-3",
+       "show-posted-date",
+       "Checkbox 3"
+      ],
+      [
+       "input",
+       "checkbox",
+       "checkbox-4",
+       "show-traveled-date",
+       "Checkbox 4"
+      ],
+      [
+       "input",
+       "checkbox",
+       "checkbox-5",
+       "show-edited-date",
+       "Checkbox 5"
+      ],
+      [
+       "input",
+       "file",
+       "hero-image",
+       "field",
+       "hero-image"
+      ],
+      [
+       "input",
+       "file",
+       "photo-gallery",
+       "field",
+       "photo-gallery"
+      ],
+      [
+       "input",
+       "checkbox",
+       "agree-charter",
+       "checkbox",
+       "agree-charter"
+      ],
+      [
+       "input",
+       "checkbox",
+       "lounge-photo",
+       null,
+       null
+      ],
+      [
+       "select",
+       null,
+       "lounge-photo-pick",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "lounge-photo-place",
+       null,
+       null
+      ],
+      [
+       "input",
+       "text",
+       "lounge-caption",
+       null,
+       null
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "url",
+       "external-url",
+       "field-5",
+       "external-url"
+      ],
+      [
+       "input",
+       "text",
+       "field-5",
+       "field-5",
+       "Field 5"
+      ],
+      [
+       "input",
+       "text",
+       "country",
+       "field-5",
+       "country"
+      ],
+      [
+       "input",
+       "text",
+       "summary",
+       "field-5",
+       "summary"
+      ],
+      [
+       "input",
+       "checkbox",
+       "gated",
+       "checkbox-3",
+       "gated"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "my-pets": {
+   "bytes_www": 148668,
+   "bytes_test": 148676,
+   "sha256_www": "2b28e755f87693e50551ab406939f9047408d657bded36db9fe92cb3638494c9",
+   "sha256_test": "b68bc7f6c417cc4d885fcbb30e252300aa89531926c71bef48be13e9b30067a7",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 1,
+    "pc_new_in_test": 1,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1",
+      "82eec5a7b5223408dc297b39f372b4a1c0eefe0d021b9c24e2b55a08a1834b74"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ea8e4cbefce909bdf51ab4c50d7747b042b5561410e27f384900a518dde94cb5"
+     ],
+     "sha256_test": [
+      "ea8e4cbefce909bdf51ab4c50d7747b042b5561410e27f384900a518dde94cb5"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "8e40bebccb2c32b2ba6ce59f07ab4ecac141567994a970e4877eb2349f5571b7",
+      "635ee4413bd5ae29e3dd62625d442796097bd3bd4237d71617292ec741ccfd86"
+     ],
+     "sha256_test": [
+      "8e40bebccb2c32b2ba6ce59f07ab4ecac141567994a970e4877eb2349f5571b7",
+      "635ee4413bd5ae29e3dd62625d442796097bd3bd4237d71617292ec741ccfd86"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 7,
+    "count_test": 7,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member",
+     "data-ms-member-bound"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "name",
+       "field",
+       "name"
+      ],
+      [
+       "select",
+       null,
+       "species",
+       "pet-species",
+       "species"
+      ],
+      [
+       "input",
+       "text",
+       "breed",
+       "field",
+       "breed"
+      ],
+      [
+       "input",
+       "number",
+       "age",
+       "field",
+       "age"
+      ],
+      [
+       "textarea",
+       null,
+       "bio",
+       "field",
+       "bio"
+      ],
+      [
+       "input",
+       "checkbox",
+       "has-eu-passport",
+       "checkbox",
+       "has-eu-passport"
+      ],
+      [
+       "input",
+       "file",
+       "avatar",
+       "field",
+       "avatar"
+      ],
+      [
+       "input",
+       "file",
+       "pet-gallery",
+       "field",
+       "pet-gallery"
+      ],
+      [
+       "input",
+       null,
+       "pet-countries",
+       null,
+       null
+      ],
+      [
+       "input",
+       null,
+       "pet-instagram",
+       null,
+       null
+      ],
+      [
+       "input",
+       null,
+       "pet-tiktok",
+       null,
+       null
+      ],
+      [
+       "input",
+       null,
+       "pet-strava",
+       null,
+       null
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "share-photos": {
+   "bytes_www": 181968,
+   "bytes_test": 181976,
+   "sha256_www": "0e12173865b6d7c9cf36b6393156670806400a70642969f5036e4414f45f1a0b",
+   "sha256_test": "cbc2f66f98c82c286dffc47086913b7e8b934305f14208dc2837d2ae31acd85a",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "sha256_test": [
+      "ccf0571243866c7fa113346ba9d15e6c2c5165ea9034febb49dd312a88fb03b1"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "eb4d9cbc00dc99c127929860b8d7bc711c124b14dac84dd3e5527716333feaae"
+     ],
+     "sha256_test": [
+      "eb4d9cbc00dc99c127929860b8d7bc711c124b14dac84dd3e5527716333feaae"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "b5cdb070d3f67759c03c6e29bfa40e42e9c4fa274949aa1421cf5e295c04ab95",
+      "e2145ee619b9cc4f560481884b5bd8b68a68d0fa25846077a9840066b0bda044"
+     ],
+     "sha256_test": [
+      "b5cdb070d3f67759c03c6e29bfa40e42e9c4fa274949aa1421cf5e295c04ab95",
+      "e2145ee619b9cc4f560481884b5bd8b68a68d0fa25846077a9840066b0bda044"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 7,
+    "count_test": 7,
+    "identical": true,
+    "attr_names": [
+     "data-ms-content",
+     "data-ms-member",
+     "data-ms-member-bound"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "file",
+       "photos",
+       "photos-upload",
+       "photos"
+      ],
+      [
+       "input",
+       "text",
+       "country",
+       "tll-photo-country",
+       "country"
+      ],
+      [
+       "input",
+       "text",
+       "city",
+       "tll-photo-city",
+       "city"
+      ],
+      [
+       "input",
+       "number",
+       "year",
+       "tll-photo-year",
+       "year"
+      ],
+      [
+       "select",
+       null,
+       "trip-type",
+       "photos-trip-type",
+       "trip-type"
+      ],
+      [
+       "input",
+       "text",
+       "caption",
+       "tll-photo-caption",
+       "caption"
+      ],
+      [
+       "input",
+       "text",
+       "pets-along",
+       "tll-photo-pets",
+       "pets-along"
+      ],
+      [
+       "input",
+       "text",
+       "contributor-name",
+       "tll-photo-contributor-name",
+       "contributor-name"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-photo-contributor-email",
+       "email"
+      ],
+      [
+       "input",
+       "text",
+       "instagram",
+       "tll-photo-contributor-instagram",
+       "instagram"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "tll-credit-personal",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "tll-credit-anonymous",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "radio",
+       "credit-mode",
+       "tll-credit-other",
+       "credit-mode"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-social",
+       "tll-syndication-social",
+       "syndication-social"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-rotation",
+       "tll-syndication-rotation",
+       "syndication-rotation"
+      ],
+      [
+       "input",
+       "checkbox",
+       "syndication-press",
+       "tll-syndication-press",
+       "syndication-press"
+      ],
+      [
+       "input",
+       "checkbox",
+       "agree-rights",
+       "tll-agree-rights",
+       "agree-rights"
+      ],
+      [
+       "input",
+       "checkbox",
+       "agree-licence",
+       "agree-licence",
+       "agree-licence"
+      ],
+      [
+       "input",
+       "checkbox",
+       "agree-people",
+       "agree-people",
+       "agree-people"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "login": {
+   "bytes_www": 141049,
+   "bytes_test": 141057,
+   "sha256_www": "35c69de748d8bb498bff28e8668e942008b928a5916d9ee66346ed44d8f4d4bc",
+   "sha256_test": "096db3b971c8b29edcae8f46c345badb4ffdda8a4d2c0bafc0aeae5bd904bfc7",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "207a44ac1346e2aae481a9329afe04e47931136fba055a8d49b0c5179a8a9a76"
+     ],
+     "sha256_test": [
+      "207a44ac1346e2aae481a9329afe04e47931136fba055a8d49b0c5179a8a9a76"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "b7551e6d599974e43debc47e47166a299004dfd4ca6bd43ba1a6062efdf60102"
+     ],
+     "sha256_test": [
+      "b7551e6d599974e43debc47e47166a299004dfd4ca6bd43ba1a6062efdf60102"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "9b46147d03fa029a6b5a5f2f686151f4cdf0f03bde33af4305d57b1489b5a03d",
+      "80bfb8f26f4df62d8328bc85720c3dd3e9c7a4dc4f59cf3351e36fe84e6e82da"
+     ],
+     "sha256_test": [
+      "9b46147d03fa029a6b5a5f2f686151f4cdf0f03bde33af4305d57b1489b5a03d",
+      "80bfb8f26f4df62d8328bc85720c3dd3e9c7a4dc4f59cf3351e36fe84e6e82da"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 11,
+    "count_test": 11,
+    "identical": true,
+    "attr_names": [
+     "data-ms-auth-provider",
+     "data-ms-content",
+     "data-ms-form",
+     "data-ms-member",
+     "data-ms-plan:add",
+     "data-ms-social-auth-allow-signup"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "email",
+       "email",
+       "field",
+       "email"
+      ],
+      [
+       "input",
+       "password",
+       "password",
+       "field",
+       "password"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  },
+  "signup": {
+   "bytes_www": 142854,
+   "bytes_test": 142862,
+   "sha256_www": "ac958753d74737a0596cf0466b8eed232a0656b2d5de0e57268a948eddaa0da1",
+   "sha256_test": "ce5eef30f58308030ff58b3ea5f7042ac479c5dd8543c55772d1925ad9975c68",
+   "counts": {
+    "core_old_in_www": 1,
+    "core_new_in_test": 1,
+    "core_new_in_www": 0,
+    "core_old_in_test": 0,
+    "pc_old_in_www": 0,
+    "pc_new_in_test": 0,
+    "pc_new_in_www": 0,
+    "pc_old_in_test": 0,
+    "c_before_in_www": 0,
+    "c_after_in_test": 0,
+    "c_after_in_www": 0,
+    "c_before_in_test": 0,
+    "lastpub_www": 1,
+    "lastpub_test": 1,
+    "dom_www": 1,
+    "dom_test": 1,
+    "webflow_io_in_test": 1,
+    "webflow_io_in_www": 0
+   },
+   "lastpub_www": [
+    "Last Published: Tue Nov 17 2026 17:13:02 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "lastpub_test": [
+    "Last Published: Wed Nov 18 2026 09:34:42 GMT+0000 (Coordinated Universal Time)"
+   ],
+   "count_mismatches": {},
+   "identical_after_allowed_substitutions": true,
+   "blocks": {
+    "nav": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "f7c8ae202ac3698833e94fe0f7efbaff585eddb0e1c4306c923250f62a3a1776"
+     ],
+     "sha256_test": [
+      "f7c8ae202ac3698833e94fe0f7efbaff585eddb0e1c4306c923250f62a3a1776"
+     ],
+     "identical": true
+    },
+    "footer": {
+     "count_www": 1,
+     "count_test": 1,
+     "sha256_www": [
+      "85ec8f588569aa060d2579c34804668a1038a863c3b8f22d474dcfcdccb935fd"
+     ],
+     "sha256_test": [
+      "85ec8f588569aa060d2579c34804668a1038a863c3b8f22d474dcfcdccb935fd"
+     ],
+     "identical": true
+    },
+    "form": {
+     "count_www": 2,
+     "count_test": 2,
+     "sha256_www": [
+      "470664287b116f2ed700c20323653feb6087b05915d3e99551700d75b244225b",
+      "6c79f94941a50581539181eae47b9b52f42b605c17d5cefc81cfbb1e3f40beab"
+     ],
+     "sha256_test": [
+      "470664287b116f2ed700c20323653feb6087b05915d3e99551700d75b244225b",
+      "6c79f94941a50581539181eae47b9b52f42b605c17d5cefc81cfbb1e3f40beab"
+     ],
+     "identical": true
+    }
+   },
+   "data_ms": {
+    "count_www": 13,
+    "count_test": 13,
+    "identical": true,
+    "attr_names": [
+     "data-ms-auth-provider",
+     "data-ms-content",
+     "data-ms-form",
+     "data-ms-member",
+     "data-ms-plan:add"
+    ]
+   },
+   "forms_www": [
+    {
+     "name": "",
+     "id": null,
+     "data-name": "Html Form",
+     "method": "post",
+     "action": null,
+     "fields": [
+      [
+       "input",
+       "text",
+       "first-name",
+       "field",
+       "first-name"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "field",
+       "email"
+      ],
+      [
+       "input",
+       "password",
+       "password",
+       "field",
+       "password"
+      ],
+      [
+       "input",
+       "checkbox",
+       "checkbox",
+       "checkbox",
+       "Checkbox"
+      ],
+      [
+       "input",
+       "checkbox",
+       "age-16",
+       "checkbox-2",
+       "age-16"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    },
+    {
+     "name": "wf-form-Tell-the-editor",
+     "id": "tll-note-form",
+     "data-name": "Tell the editor",
+     "method": "get",
+     "action": null,
+     "fields": [
+      [
+       "textarea",
+       null,
+       "Note",
+       "tll-note-text",
+       "Note"
+      ],
+      [
+       "input",
+       "email",
+       "email",
+       "tll-note-email",
+       "Email"
+      ],
+      [
+       "input",
+       "hidden",
+       "page",
+       null,
+       "Page"
+      ],
+      [
+       "input",
+       "submit",
+       null,
+       null,
+       null
+      ]
+     ]
+    }
+   ],
+   "forms_identical": true,
+   "ok": true
+  }
+ },
+ "all_ok": true
+}
