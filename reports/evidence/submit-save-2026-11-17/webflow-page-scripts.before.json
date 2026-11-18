@@ -1,0 +1,65 @@
+{
+  "read": "2026-11-18 get_page_scripts, read only, opus-5.5 wfpln",
+  "pages": {
+    "submit": {
+      "page_id": "6a0d5e5eb7804d3a750dc266",
+      "lastUpdated": "2026-10-25T17:43:59.473Z",
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotocleanv11",
+          "version": "1.1.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ]
+    },
+    "my-pets": {
+      "page_id": "6a0df9ffc4a846ee4db92b63",
+      "lastUpdated": "2026-10-25T17:43:59.007Z",
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllmemberwayv11",
+          "version": "1.1.0",
+          "location": "footer",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotocleanv11",
+          "version": "1.1.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ]
+    },
+    "share-photos": {
+      "page_id": "6a0dfca3f9fa5b751d154257",
+      "lastUpdated": "2026-10-23T13:19:21.405Z",
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotosendv1",
+          "version": "1.0.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ]
+    }
+  }
+}

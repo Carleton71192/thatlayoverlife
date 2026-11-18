@@ -1,0 +1,66 @@
+{
+  "read": "PLANNED, not written: only tllphotocleanv11 1.1.0 -> 1.2.0 on /submit and /my-pets",
+  "pages": {
+    "submit": {
+      "page_id": "6a0d5e5eb7804d3a750dc266",
+      "lastUpdated": null,
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotocleanv11",
+          "version": "1.2.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ]
+    },
+    "my-pets": {
+      "page_id": "6a0df9ffc4a846ee4db92b63",
+      "lastUpdated": null,
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllmemberwayv11",
+          "version": "1.1.0",
+          "location": "footer",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotocleanv11",
+          "version": "1.2.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ]
+    },
+    "share-photos": {
+      "page_id": "6a0dfca3f9fa5b751d154257",
+      "lastUpdated": "2026-10-23T13:19:21.405Z",
+      "scripts": [
+        {
+          "id": "tllgateflashv1",
+          "version": "1.0.0",
+          "location": "header",
+          "attributes": {}
+        },
+        {
+          "id": "tllphotosendv1",
+          "version": "1.0.0",
+          "location": "footer",
+          "attributes": {}
+        }
+      ],
+      "note": "no change (photo clean is not on this page)"
+    }
+  }
+}
