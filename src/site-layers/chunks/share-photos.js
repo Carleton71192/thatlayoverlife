@@ -43,7 +43,7 @@ function endCheck(form){
   ta.addEventListener('input',function(){if(/[.!?…"”')\]]$/.test(lastLine(ta.value)))[].forEach.call(form.querySelectorAll('.tll-end-note'),function(n){n.remove();});});
 }
 var SAVED='Saved. It is with the editor.';
-var SAVED_FORM='Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.';
+var SAVED_FORM='Saved. The editor will add it to the draft list by hand.';
 /* The done box on /share-photos reads "A human looks at every photo before it goes up". If it says so, a second line would
    only repeat it. */
 function promised(done){return /looks at every photo|with the editor/i.test(done.textContent||'');}

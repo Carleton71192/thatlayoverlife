@@ -18,8 +18,8 @@
    Expat and press applications are not sent here; Nancy approves them from the next-day report.
    17 Nov 2026 (a writer on /submit waited about 6 s on "Sending it to the editor…" after the done box showed, and read it as
    "it did not seem to save"): the Webflow copy is already saved when the done box shows, so the saved line shows at once and
-   the Worker call finishes in the background. If that call fails the line says so plainly: the story reached the editor by
-   form and the editor adds the draft by hand (before, success and failure printed the same line). The done box is scrolled
+   the Worker call finishes in the background. If that call fails the line says so plainly: "Saved. The editor will add it to
+   the draft list by hand." (Nancy's short line, 18 Nov; before, success and failure printed the same line). The done box is scrolled
    into view when it first shows (the long form collapses above it). The end-of-story note also shows next to the Send
    button, because the story box sits on step 1, which is hidden when Send is pressed on step 3.
    Field names unchanged; nothing removed; no data-ms-* element touched. */
@@ -50,7 +50,7 @@ function endCheck(form){
   ta.addEventListener('input',function(){if(/[.!?…"”')\]]$/.test(lastLine(ta.value)))[].forEach.call(form.querySelectorAll('.tll-end-note'),function(n){n.remove();});});
 }
 var SAVED='Saved. It is with the editor.';
-var SAVED_FORM='Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.';
+var SAVED_FORM='Saved. The editor will add it to the draft list by hand.';
 /* The done box on /share-photos reads "A human looks at every photo before it goes up". If it says so, a second line would
    only repeat it. */
 function promised(done){return /looks at every photo|with the editor/i.test(done.textContent||'');}

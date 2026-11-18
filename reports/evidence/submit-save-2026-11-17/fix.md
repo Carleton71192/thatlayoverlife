@@ -1,4 +1,8 @@
-# /submit send wait: the fix (17 Nov 2026)
+# /submit send wait: the fix (17 Nov 2026; Nancy's choices applied 18 Nov)
+
+18 Nov 2026, Nancy chose ("Keep going with your recommendations"): (1) after the send only stop the autosave and keep the draft
+in the account (part C rewritten below); (2) the Worker failure line is exactly "Saved. The editor will add it to the draft list
+by hand." (part B); (3) photos stay at 3000 px (`EDGE` unchanged in part A).
 
 Branch `claude/submit-send-wait-2026-11-17`, from the session branch at `c949801`. Built and tested without a browser (the only
 browser was in use): vitest with a small stand-in DOM (`test/mini-dom.js`). Nothing was published, registered or sent; no
@@ -58,8 +62,8 @@ What changes:
   and the editor gets the form notification). The Worker call that makes the draft runs in the background. "Sending it to the
   editor…" is gone.
 - If the Worker call fails (an error answer, no network, or an answer with neither `saved` nor `ok`), the line becomes:
-  "Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand."
-  Before, success and failure printed the same line. Success is now `r.ok` and (`saved` or `ok`), which matches what the live
+  "Saved. The editor will add it to the draft list by hand." (Nancy's line, 18 Nov; the 17 Nov draft line was three lines long
+  on a phone and pushed the done box below the screen, `check.md` note 2.) Before, success and failure printed the same line. Success is now `r.ok` and (`saved` or `ok`), which matches what the live
   Worker answers (`{saved:true, held:true}`, `src/intake.js` 313).
 - An older Worker answer with `ok` and a `url` still turns the line into "It is live. Read it on the site". An answer with `ok`
   and `held` now keeps the saved line (before, the line was removed; with the line now shown at once, removing it 6 s later
@@ -82,24 +86,47 @@ picking either side.
 Rollback: revert the `src/site-layers/tll-intake-v1.js` change, rebuild, and release; or keep serving the previous core pin.
 The Worker needs no change for either direction (the page reads both its answers correctly).
 
-## C. Page code: stop the autosave and clear the draft once the done box shows (proposal only, NOT applied)
+## C. Page code: stop the autosave after the send and keep the draft in the account, marked sent (proposal only, NOT applied)
+
+Nancy's choice (18 Nov 2026, "Keep going with your recommendations"): after the send, only stop the autosave; do not delete the
+draft. The done box sentence "Your draft stays in your account either way." stays true. This replaces the 17 Nov proposal,
+which removed the account copy and so contradicted that sentence (`check.md`, note 1).
 
 Where: the inline three-step script `tll-form-steps-js-v2` in the /submit page custom code (Before `</body>`). Repo copy:
 `src/pages/submit/live-2026-11-11/followups/footer.before.html` lines 71 to 83. Changing it is a Webflow page custom code write
 and a publish, to be done later. Nothing in the repo or on the site was changed for C.
 
-What it does: once Webflow's done box shows (the story was accepted), the 20 s autosave stops, the local draft
-(`localStorage.tllStoryDraft`) is removed, and the account copy (`tllStoryDraft` in the member JSON) is removed. An autosave
-whose account write was already on its way when the box showed does not write (it checks the same flag). Why: today the
-autosave keeps running after the send and writes the sent story (now with the photo links) back to this browser and the
-account, so the next visit fills the form again and says "Draft restored from your last visit"; a writer who thinks the first
-send failed may send it again.
+What the page does with the draft today (read from the before block and the gallery layer, and run in
+`test/submit-sent-draft.test.js`):
 
-Checked in a scratch run (not committed) on the exported story form in the stand-in DOM: with the current block, 60 s after the
-done box the draft is back in this browser and still on the account, and the interval still runs; with the proposed block both
-are gone and no interval is left. The before text below matches the repo file byte for byte.
+1. At the first submit event the steps script's submit handler removes this browser's copy (`localStorage.tllStoryDraft`). The
+   account copy (`tllStoryDraft` in the member JSON) is not touched: it is whatever the last autosave wrote.
+2. The 20 s autosave keeps running. Photo clean puts the photo links into the form, so the snapshot differs from the last one,
+   and the next tick writes the sent story (now with the links) back to this browser and to the account, as an ordinary draft.
+3. On the next visit the steps script fills the form with it, and the gallery layer (`tll-submit-gallery-v1.js`, in the core
+   chunk) sees the browser copy and says "Draft restored from your last visit." The sent story looks unsent and invites a
+   second send.
 
-Before (lines 71 to 83, exact):
+What the after block does:
+
+- Once Webflow's done box shows (the story was accepted), the autosave stops for good (`sent` flag, interval cleared). An
+  autosave whose account read was already on its way when the box showed does not write.
+- This browser's copy is removed again, so the gallery layer has nothing to call "restored". (That is what the existing submit
+  handler meant to do; the autosave used to undo it.)
+- The account copy is KEPT: one last write saves the form as sent (`tllStoryDraft = {at, fields, sent}`), so the account holds
+  the story exactly as it went out, photo links included. If the form were empty at that point, the fields already on the
+  account are kept. This write waits for any autosave account write still on its way, so it cannot be overwritten by it.
+- On a later visit, an account copy marked sent is not put back into the form. The autosave line says
+  "Already sent to the editor. A copy stays in your account." instead, and no "Draft restored" line shows.
+- When the writer starts a new story, the first autosave moves the sent copy to `tllStorySent` in the member JSON and writes
+  the new draft as `tllStoryDraft`. So the last sent story stays in the account even after a new draft begins.
+
+Why a sent mark rather than deleting: keeping the draft and avoiding a second send pull the same way only if the restore code
+can tell a sent copy from an unsent one. The mark does that with one field the restore reads; nothing is lost, the done box
+text stays true, and nothing outside this page reads `tllStoryDraft` (checked in the repo: only the page's own scripts, the
+gallery layer and the form extras' trip code reader, which reads the browser copy only).
+
+Before (lines 71 to 83 of `footer.before.html`, exact):
 
 ```js
 var last='';
@@ -117,38 +144,45 @@ setInterval(autosave,20000);
 f.addEventListener('submit',function(){try{localStorage.removeItem(KEY);}catch(e){}});
 ```
 
-After (replaces exactly those lines; lines 76 to 81 are unchanged):
+After (replaces exactly those lines; lines 73, 75 to 77, 79 to 81 and 83 are unchanged, and five lines are added at the end):
 
 ```js
-var last='',sent=false;
+var last='',sent=false,pend=null;
 function autosave(){if(sent)return;var o=snap(),s=JSON.stringify(o);if(s===last||Object.keys(o).length===0)return;last=s;
 try{localStorage.setItem(KEY,s);}catch(e){}
-var ms=window.$memberstackDom;if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){if(sent)return;var j=(r&&r.data)||{};j.tllStoryDraft={at:new Date().toISOString(),fields:o};return ms.updateMemberJSON({json:j});}).catch(function(){});}
+var ms=window.$memberstackDom;if(ms&&ms.getMemberJSON){pend=ms.getMemberJSON().then(function(r){if(sent)return;var j=(r&&r.data)||{};if(j.tllStoryDraft&&j.tllStoryDraft.sent)j.tllStorySent=j.tllStoryDraft;j.tllStoryDraft={at:new Date().toISOString(),fields:o};return ms.updateMemberJSON({json:j});}).catch(function(){});}
 var t=new Date();save.textContent='Draft saved '+t.getHours()+':'+('0'+t.getMinutes()).slice(-2)+' · waits on your account';}
 try{fill(JSON.parse(localStorage.getItem(KEY)||'null'));}catch(e){}
 var ms=window.$memberstackDom;
-if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){var j=(r&&r.data)||{};if(j.tllStoryDraft&&j.tllStoryDraft.fields)fill(j.tllStoryDraft.fields);
+if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){var j=(r&&r.data)||{};var d=j.tllStoryDraft;if(d&&d.sent)save.textContent='Already sent to the editor. A copy stays in your account.';else if(d&&d.fields)fill(d.fields);
 var links=j.tllLinks||{};var w=f.querySelector('input[name="credit-website"]');var ig=f.querySelector('input[name="credit-instagram"]');
 function pre(el,v){if(el&&v&&!el.value){el.value=v;var l=el.closest('.tll-pen-field');var lab=l&&l.querySelector('.tll-pen-label');if(lab&&!lab.querySelector('.tllst-prefilled')){var s=document.createElement('span');s.className='tllst-prefilled';s.textContent='PREFILLED';lab.appendChild(s);}}}
 pre(w,links.website);pre(ig,links.instagram);if((!links.website||!links.instagram)&&ms.getCurrentMember){ms.getCurrentMember().then(function(m){var c=(m&&m.data&&m.data.customFields)||{};pre(w,c.website||c.Website);pre(ig,c.instagram||c.Instagram);}).catch(function(){});}}).catch(function(){});}
 var timer=setInterval(autosave,20000);
 f.addEventListener('submit',function(){try{localStorage.removeItem(KEY);}catch(e){}});
-/* 17 Nov 2026: once Webflow has accepted the story (its done box shows), stop the autosave and clear the saved draft in this browser and on the account, so the next visit does not bring the sent story back as a draft. */
+/* 18 Nov 2026 (Nancy: keep the draft, only stop the autosave). Once Webflow's done box shows: the autosave stops, this browser's copy is removed again (the submit handler above removes it, then the autosave used to write it back), and the account copy is kept, marked sent, after any account write still on its way. A later visit then says it was sent instead of filling the form again; a new draft moves the sent copy to tllStorySent. */
 var wrap=f.closest('.w-form')||f.parentNode,done=wrap&&wrap.querySelector('.w-form-done');
 function sentNow(){if(sent||!done||getComputedStyle(done).display==='none')return;sent=true;clearInterval(timer);try{localStorage.removeItem(KEY);}catch(e){}
-if(ms&&ms.getMemberJSON){ms.getMemberJSON().then(function(r){var j=(r&&r.data)||{};if(!j.tllStoryDraft)return;delete j.tllStoryDraft;return ms.updateMemberJSON({json:j});}).catch(function(){});}}
+var o=snap(),m=window.$memberstackDom;if(m&&m.getMemberJSON){Promise.resolve(pend).then(function(){return m.getMemberJSON();}).then(function(r){var j=(r&&r.data)||{},d=j.tllStoryDraft,at=new Date().toISOString();j.tllStoryDraft={at:at,fields:Object.keys(o).length?o:((d&&d.fields)||{}),sent:at};return m.updateMemberJSON({json:j});}).catch(function(){});}}
 if(done&&window.MutationObserver)new MutationObserver(sentNow).observe(done,{attributes:true,attributeFilter:['style','class']});
 ```
 
-Rollback: put the before block back in the page custom code and publish.
+Rollback: put the before block back in the page custom code and publish. An account copy already marked sent then fills the
+form again on the next visit, as today.
 
-Known limit: Memberstack's two JSON calls are not atomic. If an autosave's account write is already sent when the box shows, it
-can land after the clear; the window is one autosave call in a 20 s cycle. The local copy is always cleared.
+Known limits:
+
+- Memberstack's JSON calls are not atomic. The sent write waits for this page's own autosave write; a write from another tab or
+  device at the same moment can still land after it.
+- A second device that still holds an older browser copy of the story fills the form from that copy (the browser copy is read
+  before the account), and the gallery layer says "Draft restored" there; the account copy is still marked sent. Rare: the
+  writer would need to have drafted the same story on two devices.
+- A writer who is not signed in cannot send (the form asks to sign in first), so the account copy always exists after a send.
 
 ## Tests
 
-- `npx vitest run`: 61 files, 738 tests, all pass (before: 59 files, 720 tests; 2 new test files with 16 tests, 2 tests added
-  and 2 changed in `test/intake-layer.test.js`).
+- `npx vitest run`: 62 files, 743 tests, all pass (18 Nov; 17 Nov: 61 files, 738 tests; before the branch: 59 files, 720
+  tests; 3 new test files with 21 tests, 2 tests added and 2 changed in `test/intake-layer.test.js`).
 - `node --test worker/test/*.test.js`: 83 pass (unchanged).
 - New `src/components/photo-clean/test/photo-clean.test.js` (9): label progress and restore, presses during the uploads do
   nothing, Webflow sees the real label, failure restores, the cached second press sends, and the 22019832 version swallows that
@@ -158,6 +192,15 @@ can land after the clear; the window is one autosave call in a 20 s cycle. The l
   one post, the saved line at once, the done box scrolled into view. Worker failure and no network give the honest line. A story
   ending in an emoji: two presses, one upload pass, one post, the note visible next to Send. Fixing the line removes both notes.
   Signed out: one post, no Worker call. Against the 17 Nov code, 5 of the 7 fail.
+- New `test/submit-sent-draft.test.js` (5, 18 Nov): reads the before and after blocks of part C from this file, puts each into
+  the steps script from `footer.before.html`, and runs it with photo clean and the BUILT submit chunk on the exported story
+  form, Memberstack as a stand-in that keeps the member JSON across visits. Before: the autosave writes the sent story back
+  after the done box (browser and account), the interval still runs, and the next visit fills the form and says "Draft
+  restored from your last visit." After: no autosave write after the done box (one write only, the sent mark), no interval
+  left, no browser copy, the account keeps the story as sent with its photo links; the next visit, in the same browser or a
+  new one, leaves the form empty and says "Already sent to the editor. A copy stays in your account."; a new story's first
+  autosave keeps the sent copy as `tllStorySent`; an autosave account write already on its way when the done box shows (made
+  slow on purpose) lands first and the sent mark after it (without the wait for it, that test fails).
 - Changed `test/intake-layer.test.js`: the saved line before the Worker answers, `ok`+`held` keeps it, failures give the new line.
 - `test/mini-dom.js`: the stand-in DOM (selectors, capture and bubble, requestSubmit with the "already firing" rule, a manual
   clock). A test helper, not a browser.
@@ -167,16 +210,15 @@ can land after the clear; the window is one autosave call in a 20 s cycle. The l
 ## New page text (copy rules: US English, no em dashes, no exclamation marks)
 
 - Button: "Sending your photo", "Sending photos 1 of 3" (and so on), "Photos are up. Sending".
-- Done box, Worker failure: "Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor
-  will add it by hand."
+- Done box, Worker failure: "Saved. The editor will add it to the draft list by hand."
+- Steps autosave line, later visit after a send (part C, page code): "Already sent to the editor. A copy stays in your account."
 - Removed: "Sending it to the editor…".
 
 ## Not done, on purpose
 
 - No Webflow, publish, registration, Cloudinary, Memberstack or Worker call. No change to `layers-release` or to 16.67.0.
 - C is a proposal in this file only.
-- The upload size (`EDGE=3000` in photo clean; `refute.md` suggests 2000 to roughly halve each upload) is unchanged: it changes
-  what the editor receives, so it is a decision for the editor.
+- The upload size stays `EDGE=3000` in photo clean (Nancy, 18 Nov: photos stay at 3000 px; `refute.md` had suggested 2000).
 - The end check is not moved before the uploads, and Send does not jump back to step 1: the note next to Send is the smallest
   visible fix.
 - Turnstile (path E) is untouched: webflow.js was not read.

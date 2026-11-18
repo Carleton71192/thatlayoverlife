@@ -17,7 +17,7 @@ const CHUNK = readFileSync(join(root, 'src/site-layers/chunks/submit.js'), 'utf8
 const FORM = readFileSync(join(root, 'src/pages/submit/live-2026-10-29/form-story-export-2026-10-13.html'), 'utf8');
 const LABEL = 'Send it to the editor';
 const SAVED = 'Saved. It is with the editor.';
-const SAVED_FORM = 'Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.';
+const SAVED_FORM = 'Saved. The editor will add it to the draft list by hand.';
 const WORKER = 'https://tll-travel-wire.thatlayoverlife.workers.dev/intake';
 
 // The export ends at the form; the live page has Webflow's done and fail boxes after it (story-form-lines 625 to 629).
@@ -108,7 +108,7 @@ describe('/submit Send with photo clean and the built submit chunk together', ()
     expect((t.dom.scrolls || []).filter((s) => s.el === t.done)).toEqual([]);
   });
 
-  it('when the Worker fails, or the connection drops, the line says the story reached the editor by form', async () => {
+  it('when the Worker fails, or the connection drops, the line says the editor will add it to the draft list by hand', async () => {
     for (const worker of [{ status: 502, body: { error: 'Saved, and we will set it up by hand.' } }, 'offline']) {
       const t = setup({ worker });
       t.btn.click(); await t.dom.tick(14000);

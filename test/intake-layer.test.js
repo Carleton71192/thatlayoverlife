@@ -18,7 +18,7 @@ const holdOff = src.replace(HOLD_ON, 'var HOLD_PHOTOS=false;');
 const API = 'https://tll-travel-wire.thatlayoverlife.workers.dev/intake';
 const SAVED = 'Saved. It is with the editor.';
 // 17 Nov 2026: what a story or link-out reads when the Worker call fails (before, it read SAVED either way).
-const SAVED_FORM = 'Saved. It reached the editor by form. The copy to the draft list did not go through, so the editor will add it by hand.';
+const SAVED_FORM = 'Saved. The editor will add it to the draft list by hand.';
 // The two done boxes as served on www on 11 Nov 2026.
 const PHOTOS_DONE = 'Got them. A human looks at every photo before it goes up, so give us a little time. Changed your mind? Write to hello@thatlayover.life and we take it down, before or after it is published.';
 const STORY_DONE = 'Got it. Your story is with the editor.';
@@ -145,7 +145,7 @@ describe('tll-intake-v1: stories and link-outs are untouched by the hold', () =>
     expect(r.calls.map((c) => c.body.kind)).toEqual(['linkout']);
   });
 
-  it('a story the Worker could not set up, or a lost connection, says plainly that it reached the editor by form', async () => {
+  it('a story the Worker could not set up, or a lost connection, says plainly that the editor will add it to the draft list by hand', async () => {
     const a = run('/submit', { kind: 'story', doneText: STORY_DONE, answer: { status: 502, body: { error: 'x' } } });
     await a.accept();
     expect(a.added()).toEqual([SAVED_FORM]);
