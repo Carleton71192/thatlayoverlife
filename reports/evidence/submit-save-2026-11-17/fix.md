@@ -47,6 +47,13 @@ merged, register a new version of the script pointing at the merge commit's jsDe
 merge commit), swap it in on the pages that carry photo clean (/submit, and per its header /my-pets), and publish. That is a
 Webflow write and a publish: not done here. It does not wait for the core release; A and B can go out in either order.
 
+jsDelivr-ready facts (18 Nov, after the merge into `claude/new-session-zxm063`): file
+`src/components/photo-clean/tll-photo-clean-v1.js`, 7920 bytes, integrity
+`sha384-b9+lDanshflZ9KVhLlM/GTjhrqKXDFpVs+iXXE5NYL7BLq1hiKvHH6v7kWFDo/rP` (unchanged by the 18 Nov choices; `EDGE=3000`), held by
+merge commit `f67f3f74d9a5b4c20ec282ac4935ebe2831be667` on the session branch (last changed in `780e8dbf3d6d5a190b86d8844b28e5773b7435d9`).
+URL to register:
+`https://cdn.jsdelivr.net/gh/Carleton71192/thatlayoverlife@f67f3f74d9a5b4c20ec282ac4935ebe2831be667/src/components/photo-clean/tll-photo-clean-v1.js`.
+
 Rollback: register or re-apply the 22019832 pin and integrity above on the same pages and publish. Nothing else depends on the
 new version.
 
