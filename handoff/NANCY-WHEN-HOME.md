@@ -83,8 +83,8 @@ Nothing to do. If a story page looks wrong, say "roll back 16.66.0"; it takes on
 **Page jumps on eight more pages: done, live on www 17 Nov 17:13 UTC (16.67.0)**
 Nothing to do. If a page looks wrong, say "roll back 16.67.0"; it takes one step.
 
-**/submit send wait: on the test site; your yes for www after the checks**
-Your three choices are in (draft kept and marked sent, short failure line, photos stay 3000 px). On that-layover-life.webflow.io since 09:34 UTC on 18 Nov: the Send button shows "Sending photos 1 of 3", "Saved" comes about 6 s sooner, and a sent story is not offered again. www unchanged. Two checks of the test site are running (no real stories sent). When they pass, reply "publish www" (or "wait"). Please do not send a real story on the test site: it goes to the real form. Evidence: handoff/RELEASE-16.68.0.md.
+**/submit send wait: done, live on www 18 Nov 10:38 UTC (16.68.0, photo clean 1.2.0, /submit page code)**
+Nothing to do. If sending looks wrong, say "roll back the send fix"; each part undoes in one step. Two small follow-ups are noted in handoff/RELEASE-16.68.0.md (the "Already sent" line rarely shows; a blank visit can say "Draft restored").
 
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.

@@ -20,9 +20,13 @@ Button faded without a label: 12.5 to 16.8 s live, 0 s new. "Saved" line 6 s soo
 - Test-site sends are real: do not send test stories on the test site except a deliberate one by Nancy.
 
 ## Webflow (test site)
-Scope c1d5fba. Writes and read-backs 09:32 to 09:34 UTC; published the test site only (publishTaskId 39d1066c-7f02-4d6e-a7ed-0aea17f6b2cf). Checks: running.
+Scope c1d5fba. Writes and read-backs 09:32 to 09:34 UTC; published the test site only (publishTaskId 39d1066c-7f02-4d6e-a7ed-0aea17f6b2cf). Checks: carry PASS (7bcb13b), behavior PASS WITH NOTES (fce7d5a; real test-site documents with stubbed sends: 0 s faded button against 12.5 to 16.8 s on www, 0 swallowed presses against 4, exact failure line, sent story not refilled, page loads unchanged).
 
 ## Rollback (each alone, then publish)
 - A: set_page_scripts on /submit and /my-pets with reports/evidence/submit-save-2026-11-17/webflow-page-scripts.before.json (photo clean 1.1.0). Never delete the registered script.
 - B: set_site_scripts with src/site/live-2026-11-18/r1668/site-scripts.before.json (16.67.0, pin a254306f).
 - C: set_page_freeform_code on the /submit footer with reports/evidence/submit-save-2026-11-17/webflow-c-before.html.
+
+## Live
+
+Nancy in chat on 18 Nov: "Publish www", applied once both checks passed. Published www, thatlayover.life and the test site at 10:38:37 UTC (publishTaskId 086d7edd-fc02-49c6-884d-efabbd6f05ae). www and test HTML identical on 12 of 12 pages apart from host and stamp (reports/evidence/release-16.68.0-live/). Rollback stays as above.
