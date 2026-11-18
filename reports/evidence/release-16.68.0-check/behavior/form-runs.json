@@ -1,0 +1,3920 @@
+[
+ {
+  "run": "submit test one 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.2,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59178
+ },
+ {
+  "run": "submit www one 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.6,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58566
+ },
+ {
+  "run": "submit test mash 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "mash",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 14,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Send it to the editor",
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59199
+ },
+ {
+  "run": "submit www mash 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "mash",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 14,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58543
+ },
+ {
+  "run": "submit www cached 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "cached",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 3,
+  "pressesWithEvent": 3,
+  "swallowed": 1,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 1,
+  "worker": 1,
+  "faded": 12.6,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 20.6,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": true,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58527
+ },
+ {
+  "run": "submit test cached 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "cached",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 1,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Send it to the editor",
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 18.8,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": true,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59177
+ },
+ {
+  "run": "submit test nopunct 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "nopunct",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 17.3,
+  "done_first": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 290,
+   "bot": 579,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 1,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59217
+ },
+ {
+  "run": "submit www nopunct 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "nopunct",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 3,
+  "pressesWithEvent": 3,
+  "swallowed": 1,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 19.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58527
+ },
+ {
+  "run": "submit www upfail 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "upfail",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 4,
+  "uploadsFailed": 1,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 16.71,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 21.4,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 13,
+   "gallery": 0,
+   "hero": false
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58607
+ },
+ {
+  "run": "submit test upfail 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "upfail",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 4,
+  "uploadsFailed": 1,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 21.6,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59239
+ },
+ {
+  "run": "submit test workerfail 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "workerfail",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.2,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 869,
+   "pct": 92
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "failLineExact": true,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59210
+ },
+ {
+  "run": "submit www workerfail 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "workerfail",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.54,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58594
+ },
+ {
+  "run": "submit www revisit 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "revisit",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v2 22019832:tll-photo-clean-v1.js:200",
+   "v2 a254306f:site.js:200",
+   "v2 a254306f:submit.js:200",
+   "v2 a254306f:tll-site-layers-v16.js:200",
+   "v3 22019832:tll-photo-clean-v1.js:200",
+   "v3 a254306f:site.js:200",
+   "v3 a254306f:submit.js:200",
+   "v3 a254306f:tll-site-layers-v16.js:200",
+   "v4 22019832:tll-photo-clean-v1.js:200",
+   "v4 a254306f:site.js:200",
+   "v4 a254306f:submit.js:200",
+   "v4 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 www.thatlayover.life",
+   "v2 200 www.thatlayover.life",
+   "v3 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.54,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 292699
+ },
+ {
+  "run": "submit test revisit 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "revisit",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200",
+   "v2 0f04fabf:site.js:200",
+   "v2 0f04fabf:submit.js:200",
+   "v2 0f04fabf:tll-site-layers-v16.js:200",
+   "v2 f67f3f74:tll-photo-clean-v1.js:200",
+   "v3 0f04fabf:site.js:200",
+   "v3 0f04fabf:submit.js:200",
+   "v3 0f04fabf:tll-site-layers-v16.js:200",
+   "v3 f67f3f74:tll-photo-clean-v1.js:200",
+   "v4 0f04fabf:site.js:200",
+   "v4 0f04fabf:submit.js:200",
+   "v4 0f04fabf:tll-site-layers-v16.js:200",
+   "v4 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io",
+   "v2 200 that-layover-life.webflow.io",
+   "v3 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": true,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": true
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 4,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": true,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 4,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 296069
+ },
+ {
+  "run": "submit test postfail 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "postfail",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200",
+   "v2 0f04fabf:site.js:200",
+   "v2 0f04fabf:submit.js:200",
+   "v2 0f04fabf:tll-site-layers-v16.js:200",
+   "v2 f67f3f74:tll-photo-clean-v1.js:200",
+   "v3 0f04fabf:site.js:200",
+   "v3 0f04fabf:submit.js:200",
+   "v3 0f04fabf:tll-site-layers-v16.js:200",
+   "v3 f67f3f74:tll-photo-clean-v1.js:200",
+   "v4 0f04fabf:site.js:200",
+   "v4 0f04fabf:submit.js:200",
+   "v4 0f04fabf:tll-site-layers-v16.js:200",
+   "v4 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io",
+   "v2 200 that-layover-life.webflow.io",
+   "v3 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 0,
+  "postsFailed": 1,
+  "worker": 0,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "done_at": null,
+  "done_first": null,
+  "done_last": false,
+  "fail_box": true,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 295989
+ },
+ {
+  "run": "submit www postfail 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "postfail",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v2 22019832:tll-photo-clean-v1.js:200",
+   "v2 a254306f:site.js:200",
+   "v2 a254306f:submit.js:200",
+   "v2 a254306f:tll-site-layers-v16.js:200",
+   "v3 22019832:tll-photo-clean-v1.js:200",
+   "v3 a254306f:site.js:200",
+   "v3 a254306f:submit.js:200",
+   "v3 a254306f:tll-site-layers-v16.js:200",
+   "v4 22019832:tll-photo-clean-v1.js:200",
+   "v4 a254306f:site.js:200",
+   "v4 a254306f:submit.js:200",
+   "v4 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 www.thatlayover.life",
+   "v2 200 www.thatlayover.life",
+   "v3 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 0,
+  "postsFailed": 1,
+  "worker": 0,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "done_at": null,
+  "done_first": null,
+  "done_last": false,
+  "fail_box": true,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 292793
+ },
+ {
+  "run": "submit www workeroff 390x844",
+  "page": "submit",
+  "host": "www",
+  "scen": "workeroff",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58543
+ },
+ {
+  "run": "submit test workeroff 390x844",
+  "page": "submit",
+  "host": "test",
+  "scen": "workeroff",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 558,
+   "bot": 847,
+   "pct": 99
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 869,
+   "pct": 92
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "failLineExact": true,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59209
+ },
+ {
+  "run": "submit test one 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59179
+ },
+ {
+  "run": "submit www one 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.54,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58543
+ },
+ {
+  "run": "submit www mash 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "mash",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 14,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.54,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58573
+ },
+ {
+  "run": "submit test mash 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "mash",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 14,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59178
+ },
+ {
+  "run": "submit test cached 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "cached",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 1,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 18.8,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": true,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59203
+ },
+ {
+  "run": "submit www cached 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "cached",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 3,
+  "pressesWithEvent": 3,
+  "swallowed": 1,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 1,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 20.6,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": true,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58563
+ },
+ {
+  "run": "submit www nopunct 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "nopunct",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 3,
+  "pressesWithEvent": 3,
+  "swallowed": 1,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 19.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58548
+ },
+ {
+  "run": "submit test nopunct 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "nopunct",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 17.3,
+  "done_first": {
+   "top": 668,
+   "bot": 859,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 668,
+   "bot": 859,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59194
+ },
+ {
+  "run": "submit test upfail 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "upfail",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 4,
+  "uploadsFailed": 1,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Send it to the editor",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 21.4,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59225
+ },
+ {
+  "run": "submit www upfail 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "upfail",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 2,
+  "pressesWithEvent": 2,
+  "swallowed": 0,
+  "uploads": 4,
+  "uploadsFailed": 1,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 16.8,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Send it to the editor",
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 21.6,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 13,
+   "gallery": 0,
+   "hero": false
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58582
+ },
+ {
+  "run": "submit www workerfail 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "workerfail",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.6,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 58527
+ },
+ {
+  "run": "submit test workerfail 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "workerfail",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Send it to the editor",
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor.",
+   "Saved. The editor will add it to the draft list by hand."
+  ],
+  "failLineExact": true,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 59210
+ },
+ {
+  "run": "submit test revisit 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "revisit",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200",
+   "v2 0f04fabf:site.js:200",
+   "v2 0f04fabf:submit.js:200",
+   "v2 0f04fabf:tll-site-layers-v16.js:200",
+   "v2 f67f3f74:tll-photo-clean-v1.js:200",
+   "v3 0f04fabf:site.js:200",
+   "v3 0f04fabf:submit.js:200",
+   "v3 0f04fabf:tll-site-layers-v16.js:200",
+   "v3 f67f3f74:tll-photo-clean-v1.js:200",
+   "v4 0f04fabf:site.js:200",
+   "v4 0f04fabf:submit.js:200",
+   "v4 0f04fabf:tll-site-layers-v16.js:200",
+   "v4 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io",
+   "v2 200 that-layover-life.webflow.io",
+   "v3 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    true
+   ]
+  ],
+  "acct_end": {
+   "sent": true,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": true,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": true
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 4,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": true,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 4,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 295950
+ },
+ {
+  "run": "submit www revisit 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "revisit",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v2 22019832:tll-photo-clean-v1.js:200",
+   "v2 a254306f:site.js:200",
+   "v2 a254306f:submit.js:200",
+   "v2 a254306f:tll-site-layers-v16.js:200",
+   "v3 22019832:tll-photo-clean-v1.js:200",
+   "v3 a254306f:site.js:200",
+   "v3 a254306f:submit.js:200",
+   "v3 a254306f:tll-site-layers-v16.js:200",
+   "v4 22019832:tll-photo-clean-v1.js:200",
+   "v4 a254306f:site.js:200",
+   "v4 a254306f:submit.js:200",
+   "v4 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 www.thatlayover.life",
+   "v2 200 www.thatlayover.life",
+   "v3 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 1,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]"
+  ],
+  "done_at": 14.1,
+  "done_first": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 777,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [
+   "Sending it to the editor…",
+   "Saved. It is with the editor."
+  ],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [
+   [
+    "tllStoryDraft",
+    false
+   ]
+  ],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 292812
+ },
+ {
+  "run": "submit www postfail 1440x900",
+  "page": "submit",
+  "host": "www",
+  "scen": "postfail",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:submit.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v2 22019832:tll-photo-clean-v1.js:200",
+   "v2 a254306f:site.js:200",
+   "v2 a254306f:submit.js:200",
+   "v2 a254306f:tll-site-layers-v16.js:200",
+   "v3 22019832:tll-photo-clean-v1.js:200",
+   "v3 a254306f:site.js:200",
+   "v3 a254306f:submit.js:200",
+   "v3 a254306f:tll-site-layers-v16.js:200",
+   "v4 22019832:tll-photo-clean-v1.js:200",
+   "v4 a254306f:site.js:200",
+   "v4 a254306f:submit.js:200",
+   "v4 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 www.thatlayover.life",
+   "v2 200 www.thatlayover.life",
+   "v3 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life",
+   "v4 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 0,
+  "postsFailed": 1,
+  "worker": 0,
+  "faded": 12.55,
+  "labels": [
+   "Send it to the editor [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "done_at": null,
+  "done_first": null,
+  "done_last": false,
+  "fail_box": true,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 292797
+ },
+ {
+  "run": "submit test postfail 1440x900",
+  "page": "submit",
+  "host": "test",
+  "scen": "postfail",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:submit.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200",
+   "v2 0f04fabf:site.js:200",
+   "v2 0f04fabf:submit.js:200",
+   "v2 0f04fabf:tll-site-layers-v16.js:200",
+   "v2 f67f3f74:tll-photo-clean-v1.js:200",
+   "v3 0f04fabf:site.js:200",
+   "v3 0f04fabf:submit.js:200",
+   "v3 0f04fabf:tll-site-layers-v16.js:200",
+   "v3 f67f3f74:tll-photo-clean-v1.js:200",
+   "v4 0f04fabf:site.js:200",
+   "v4 0f04fabf:submit.js:200",
+   "v4 0f04fabf:tll-site-layers-v16.js:200",
+   "v4 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": true,
+  "docs": 5,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io",
+   "v2 200 that-layover-life.webflow.io",
+   "v3 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io",
+   "v4 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 3,
+  "uploadsFailed": 0,
+  "postsOk": 0,
+  "postsFailed": 1,
+  "worker": 0,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 3 [disabled]",
+   "Sending photos 2 of 3 [disabled]",
+   "Sending photos 3 of 3 [disabled]",
+   "Sending to Copenhagen… [disabled]",
+   "Send it to the editor"
+  ],
+  "done_at": null,
+  "done_first": null,
+  "done_last": false,
+  "fail_box": true,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": {
+   "sent": false,
+   "fields": 15,
+   "gallery": 2,
+   "hero": true
+  },
+  "visits": [
+   {
+    "tag": "same browser",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": {
+     "restored": false,
+     "acct_sent": false,
+     "sentCopy": false
+    }
+   },
+   {
+    "tag": "same browser, third visit",
+    "restored": true,
+    "already": false,
+    "title": true,
+    "body": true,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   },
+   {
+    "tag": "new browser",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 15,
+    "after20": null
+   },
+   {
+    "tag": "new browser after visit 2",
+    "restored": false,
+    "already": false,
+    "title": false,
+    "body": false,
+    "acct_sent": false,
+    "acct_fields": 13,
+    "after20": null
+   }
+  ],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED",
+   "v1 error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+   "v2 error: Failed to load resource: net::ERR_FAILED",
+   "v3 error: Failed to load resource: net::ERR_FAILED",
+   "v4 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 296024
+ },
+ {
+  "run": "my-pets test one 390x844",
+  "page": "my-pets",
+  "host": "test",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:pets.js:200",
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 e4342d4e:tll-member-way-v1.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 2,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 2 [disabled]",
+   "Sending photos 2 of 2 [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "done_at": 9.9,
+  "done_first": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 53684
+ },
+ {
+  "run": "my-pets www one 390x844",
+  "page": "my-pets",
+  "host": "www",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:pets.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v1 e4342d4e:tll-member-way-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 2,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 8.35,
+  "labels": [
+   "Create passport → [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "done_at": 9.9,
+  "done_first": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 558,
+   "bot": 672,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 53567
+ },
+ {
+  "run": "my-pets www one 1440x900",
+  "page": "my-pets",
+  "host": "www",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [
+   "22019832 sha384-AAifp68s"
+  ],
+  "chunks": [
+   "v1 22019832:tll-photo-clean-v1.js:200",
+   "v1 a254306f:pets.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200",
+   "v1 e4342d4e:tll-member-way-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 2,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 8.39,
+  "labels": [
+   "Create passport → [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "done_at": 9.9,
+  "done_first": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 53560
+ },
+ {
+  "run": "my-pets test one 1440x900",
+  "page": "my-pets",
+  "host": "test",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [
+   "f67f3f74 sha384-b9+lDans"
+  ],
+  "chunks": [
+   "v1 0f04fabf:pets.js:200",
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 e4342d4e:tll-member-way-v1.js:200",
+   "v1 f67f3f74:tll-photo-clean-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": true,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 2,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 0.0,
+  "labels": [
+   "Sending photos 1 of 2 [disabled]",
+   "Sending photos 2 of 2 [disabled]",
+   "Photos are up. Sending [disabled]",
+   "Issuing… [disabled]"
+  ],
+  "done_at": 10.0,
+  "done_first": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 586,
+   "bot": 675,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 53631
+ },
+ {
+  "run": "share-photos test one 390x844",
+  "page": "share-photos",
+  "host": "test",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [],
+  "chunks": [
+   "v1 0f04fabf:share-photos.js:200",
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 4d12668d:tll-photo-send-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": false,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 1,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 4.2,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "done_at": 5.8,
+  "done_first": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 60845
+ },
+ {
+  "run": "share-photos www one 390x844",
+  "page": "share-photos",
+  "host": "www",
+  "scen": "one",
+  "vp": "390x844",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [],
+  "chunks": [
+   "v1 4d12668d:tll-photo-send-v1.js:200",
+   "v1 a254306f:share-photos.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": false,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 1,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 4.15,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "done_at": 5.7,
+  "done_first": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 362,
+   "bot": 487,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 60782
+ },
+ {
+  "run": "share-photos www one 1440x900",
+  "page": "share-photos",
+  "host": "www",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "a254306f sha384-2Bc75us2"
+  ],
+  "pc": [],
+  "chunks": [
+   "v1 4d12668d:tll-photo-send-v1.js:200",
+   "v1 a254306f:share-photos.js:200",
+   "v1 a254306f:site.js:200",
+   "v1 a254306f:tll-site-layers-v16.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": false,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 www.thatlayover.life"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 1,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 4.19,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "done_at": 5.8,
+  "done_first": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch www.thatlayover.life/sitemap.xml",
+   "GET fetch www.thatlayover.life/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 60758
+ },
+ {
+  "run": "share-photos test one 1440x900",
+  "page": "share-photos",
+  "host": "test",
+  "scen": "one",
+  "vp": "1440x900",
+  "core": [
+   "0f04fabf sha384-a9tcQUfk"
+  ],
+  "pc": [],
+  "chunks": [
+   "v1 0f04fabf:share-photos.js:200",
+   "v1 0f04fabf:site.js:200",
+   "v1 0f04fabf:tll-site-layers-v16.js:200",
+   "v1 4d12668d:tll-photo-send-v1.js:200"
+  ],
+  "selfDoc": "function",
+  "pcRan": false,
+  "cBlock": false,
+  "docs": 1,
+  "docStatus": [
+   "v1 200 that-layover-life.webflow.io"
+  ],
+  "navAborted": [],
+  "presses": 1,
+  "pressesWithEvent": 1,
+  "swallowed": 0,
+  "uploads": 1,
+  "uploadsFailed": 0,
+  "postsOk": 1,
+  "postsFailed": 0,
+  "worker": 0,
+  "faded": 4.16,
+  "labels": [
+   "Send it to the Lounge → [disabled]",
+   "Sending… [disabled]"
+  ],
+  "done_at": 5.7,
+  "done_first": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "done_last": {
+   "top": 356,
+   "bot": 457,
+   "pct": 100
+  },
+  "fail_box": false,
+  "intake": [],
+  "failLineExact": false,
+  "siv": 0,
+  "writes_after_done": [],
+  "acct_end": null,
+  "visits": [],
+  "pageErr": [],
+  "cons": [
+   "v1 error: Failed to load resource: net::ERR_FAILED"
+  ],
+  "aborted": [
+   "GET fetch that-layover-life.webflow.io/sitemap.xml",
+   "GET fetch that-layover-life.webflow.io/stories",
+   "GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new"
+  ],
+  "misses": [],
+  "nonStubNonGet": [],
+  "netHosts": [],
+  "docBytes": 60828
+ }
+]
