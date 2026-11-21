@@ -86,6 +86,9 @@ Nothing to do. If a page looks wrong, say "roll back 16.67.0"; it takes one step
 **/submit send wait: done, live on www 18 Nov 10:38 UTC (16.68.0, photo clean 1.2.0, /submit page code)**
 Nothing to do. If sending looks wrong, say "roll back the send fix"; each part undoes in one step. Two small follow-ups are noted in handoff/RELEASE-16.68.0.md (the "Already sent" line rarely shows; a blank visit can say "Draft restored").
 
+**/submit drafts follow signed-in writers: on the test site; reply "publish www"**
+Found on 21 Nov: the form read the account before Memberstack had loaded, so a signed-in writer's draft never came back on another device, their website and Instagram were never prefilled, and the "Already sent" line never showed. Fixed in the /submit page code and checked twice (178 browser runs, nothing typed is ever overwritten, signed out unchanged); on that-layover-life.webflow.io since 10:53 UTC. Reply "publish www" (or "wait"). Rollback is one step. Evidence: reports/evidence/submit-account-read-2026-11-21/.
+
 **Expat hub Phase 1: 24 calls and the "ADD LINK" question**
 Open https://claude.ai/artifact/JT54VN2CoFpDBMWcsvoCTL, answer the 24 calls (blanks take the recommendation), press Copy and paste into chat. Say whether "ADD LINK" means LINK Denmark as a third group or a link you will send, and send the Ko-fi product links. Unblocks staging Phase 1 on /for-expats. About 25 minutes.
 
