@@ -1,0 +1,50 @@
+SAME acct             early  390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME acct             real   390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME acct             500    390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME acct             3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash False
+SAME acct             never  390x844   seq True detail True counts True consKinds True (n 12/12) structHash True
+SAME typing           500    390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME typing           3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash False
+SAME typing-country   3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash False
+SAME typing-other     3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME sent             real   390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME sent             3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME links            real   390x844   seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME links            3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash False
+SAME cf               3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME links-typed      3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME signedout        real   390x844   seq True detail True counts True consKinds True (n 12/12) structHash True
+SAME signedout-blank  real   390x844   seq True detail True counts True consKinds True (n 60/60) structHash True
+SAME blank            3000   390x844   seq True detail True counts True consKinds True (n 13/13) structHash False
+DIFF send             real   390x844   seq True detail False counts True consKinds True (n 70/70) structHash False
+      detail 1 [(8, '5e5fe81d', '4b28d46')]
+DIFF send             3000   390x844   seq True detail False counts True consKinds True (n 65/65) structHash False
+      detail 1 [(8, '17e0ea81', '78183fc7')]
+SAME postfail         3000   390x844   seq True detail True counts True consKinds True (n 66/66) structHash False
+SAME acct             early  1440x900  seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME acct             real   1440x900  seq True detail True counts True consKinds True (n 14/14) structHash False
+SAME acct             500    1440x900  seq True detail True counts True consKinds True (n 14/14) structHash False
+SAME acct             3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash False
+SAME acct             never  1440x900  seq True detail True counts True consKinds True (n 12/13) structHash False
+SAME typing           500    1440x900  seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME typing           3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME typing-country   3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME typing-other     3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME sent             real   1440x900  seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME sent             3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME links            real   1440x900  seq True detail True counts True consKinds True (n 14/14) structHash True
+SAME links            3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME cf               3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME links-typed      3000   1440x900  seq True detail True counts True consKinds True (n 13/13) structHash True
+SAME signedout        real   1440x900  seq True detail True counts True consKinds True (n 12/12) structHash True
+SAME signedout-blank  real   1440x900  seq True detail True counts True consKinds True (n 60/60) structHash True
+SAME blank            3000   1440x900  seq True detail True counts True consKinds True (n 13/14) structHash False
+DIFF send             real   1440x900  seq True detail False counts True consKinds True (n 70/71) structHash True
+      detail 1 [(8, '97bc30be', '1b5109cd')]
+DIFF send             3000   1440x900  seq True detail False counts True consKinds True (n 67/66) structHash True
+      detail 1 [(8, 'f3383282', 'cba6da39')]
+SAME postfail         3000   1440x900  seq True detail True counts True consKinds True (n 66/67) structHash False
+compared 42 same 38 diff [('send', 'real', '390x844'), ('send', '3000', '390x844'), ('send', 'real', '1440x900'), ('send', '3000', '1440x900')]
+c3 runs: posts 6 uploads 12 worker 4 pageErr 0 misses 0
+c3 console kinds {'error: Failed to load resource: net::ERR_FAILED': 975, 'error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)': 2}
+aborted kinds ['GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new', 'GET https://www.thatlayover.life/sitemap.xml', 'GET https://www.thatlayover.life/stories']

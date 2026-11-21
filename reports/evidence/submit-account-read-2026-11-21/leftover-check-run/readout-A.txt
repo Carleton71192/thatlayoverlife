@@ -1,0 +1,185 @@
+## leftover 3000 390x844 
+   c2  | load: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | newbr visit 1: empty A:- L:- w0 trip=T6E7I6C1L
+   c2  | newbr visit 2: empty A:- L:- w0 trip=T7YGX6GGL
+   c2  | pageErr 0 cons 65 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=TEST
+   c3  | +20s: empty A:- L:- w0
+   c3  | visit 2 same: empty A:- L:- w0 trip=TBRGJ71YB
+   c3  |   +20s: empty A:- L:- w0
+   c3  | visit 3 same: empty A:- L:- w0 trip=TGN5F7IP9
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TC3E27N5L
+   c3  | newbr visit 2: empty A:- L:- w0 trip=T99I87RKO
+   c3  | pageErr 0 cons 65 misses 0 posts 0
+## leftover 3000 1440x900 
+   c2  | load: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | newbr visit 1: empty A:- L:- w0 trip=TWHV88Y74
+   c2  | newbr visit 2: empty A:- L:- w0 trip=T6S9R92LB
+   c2  | pageErr 0 cons 65 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=TEST
+   c3  | +20s: empty A:- L:- w0
+   c3  | visit 2 same: empty A:- L:- w0 trip=TVKSJ9NZR
+   c3  |   +20s: empty A:- L:- w0
+   c3  | visit 3 same: empty A:- L:- w0 trip=TASVUA4QO
+   c3  | newbr visit 1: empty A:- L:- w0 trip=T02DJA94R
+   c3  | newbr visit 2: empty A:- L:- w0 trip=T24OUADJT
+   c3  | pageErr 0 cons 65 misses 0 posts 0
+## leftover-acct 3000 390x844 
+   c2  | load: acct-draft RESTORED radio=pen A:draft L:helper-only w0 trip=TEST
+   c2  | pageErr 0 cons 13 misses 0 posts 0
+   c3  | load: acct-draft radio=pen A:draft L:- w0 trip=TEST
+   c3  | pageErr 0 cons 13 misses 0 posts 0
+## leftover-acct 3000 1440x900 
+   c2  | load: acct-draft RESTORED radio=pen A:draft L:helper-only w0 trip=TEST
+   c2  | pageErr 0 cons 13 misses 0 posts 0
+   c3  | load: acct-draft radio=pen A:draft L:- w0 trip=TEST
+   c3  | pageErr 0 cons 13 misses 0 posts 0
+## leftover real 390x844 
+   c2  | load: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0 trip=TEST
+   c2  | newbr visit 1: empty A:- L:- w0 trip=T2AC8C0EF
+   c2  | newbr visit 2: empty A:- L:- w0 trip=TXIEDC2H3
+   c2  | pageErr 0 cons 70 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=TEST
+   c3  | +20s: empty A:- L:- w0
+   c3  | visit 2 same: empty A:- L:- w0 trip=T7CKXCLHS
+   c3  |   +20s: empty A:- L:- w0
+   c3  | visit 3 same: empty A:- L:- w0 trip=TVOZJD28C
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TRYE2D4AX
+   c3  | newbr visit 2: empty A:- L:- w0 trip=TLDQND6DH
+   c3  | pageErr 0 cons 70 misses 0 posts 0
+## upgrade real 390x844 (visit 1 on the live footer)
+   c2  | load: empty A:- L:- w0 trip=TY12UD8O0
+   c2  | +20s: empty A:helper-only L:helper-only w1
+   c2  | visit 2 same: empty RESTORED/empty A:helper-only L:helper-only w0 trip=TY12UD8O0
+   c2  |   +20s: empty RESTORED/empty A:helper-only L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:helper-only L:helper-only w0 trip=TY12UD8O0
+   c2  | newbr visit 1: empty A:helper-only L:- w0 trip=T6VSXE86T
+   c2  | newbr visit 2: empty A:helper-only L:- w0 trip=TZ594EAA4
+   c2  | pageErr 0 cons 70 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=TQR6LECPY
+   c3  | +20s: empty A:helper-only L:helper-only w1
+   c3  | visit 2 same: empty A:helper-only L:- w0 trip=TQR6LECPY
+   c3  |   +20s: empty A:helper-only L:- w0
+   c3  | visit 3 same: empty A:helper-only L:- w0 trip=TU165FA8Q
+   c3  | newbr visit 1: empty A:helper-only L:- w0 trip=TVH30FCBV
+   c3  | newbr visit 2: empty A:helper-only L:- w0 trip=TUXJZFEFH
+   c3  | pageErr 0 cons 70 misses 0 posts 0
+## upgrade-out real 390x844 (visit 1 on the live footer)
+   c2  | load: empty A:- L:- w0 trip=T4CF4FGTS
+   c2  | +20s: empty A:- L:helper-only w0
+   c2  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0 trip=T4CF4FGTS
+   c2  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0 trip=T4CF4FGTS
+   c2  | newbr visit 1: empty A:- L:- w0 trip=TXP1EGGFN
+   c2  | newbr visit 2: empty A:- L:- w0 trip=TUWT3GII5
+   c2  | pageErr 0 cons 60 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=TZFXJGKTJ
+   c3  | +20s: empty A:- L:helper-only w0
+   c3  | visit 2 same: empty A:- L:- w0 trip=TZFXJGKTJ
+   c3  |   +20s: empty A:- L:- w0
+   c3  | visit 3 same: empty A:- L:- w0 trip=TNZ9THIB1
+   c3  | newbr visit 1: empty A:- L:- w0 trip=T44R7HKDU
+   c3  | newbr visit 2: empty A:- L:- w0 trip=TKHYHHMGQ
+   c3  | pageErr 0 cons 60 misses 0 posts 0
+## upgrade 3000 1440x900 (visit 1 on the live footer)
+   c2  | load: empty A:- L:- w0 trip=TI76ZHOR2
+   c2  | +20s: empty A:helper-only L:helper-only w1
+   c2  | visit 2 same: empty RESTORED/empty A:helper-only L:helper-only w0 trip=TI76ZHOR2
+   c2  |   +20s: empty RESTORED/empty A:helper-only L:helper-only w0
+   c2  | visit 3 same: empty RESTORED/empty A:helper-only L:helper-only w0 trip=TI76ZHOR2
+   c2  | newbr visit 1: empty A:helper-only L:- w0 trip=T7P8VIQNS
+   c2  | newbr visit 2: empty A:helper-only L:- w0 trip=T5Z53IV1Q
+   c2  | pageErr 0 cons 66 misses 0 posts 0
+   c3  | load: empty A:- L:- w0 trip=T89DWIZN6
+   c3  | +20s: empty A:helper-only L:helper-only w1
+   c3  | visit 2 same: empty A:helper-only L:- w0 trip=T89DWIZN6
+   c3  |   +20s: empty A:helper-only L:- w0
+   c3  | visit 3 same: empty A:helper-only L:- w0 trip=TFPNBJX5J
+   c3  | newbr visit 1: empty A:helper-only L:- w0 trip=TYDOZK1KN
+   c3  | newbr visit 2: empty A:helper-only L:- w0 trip=TY2QEK5Z5
+   c3  | pageErr 0 cons 65 misses 0 posts 0
+## localdraft 3000 390x844 
+   c2  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  |   +20s: local-draft A:draft L:draft w1
+   c2  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c2  | newbr visit 1: empty A:- L:- w0 trip=T6D5NL08Q
+   c2  | newbr visit 2: local-draft A:draft L:- w0 trip=TCCO8L4N3
+   c2  | pageErr 0 cons 65 misses 0 posts 0
+   c3  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  |   +20s: local-draft A:draft L:draft w1
+   c3  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TSWUOLYY4
+   c3  | newbr visit 2: local-draft A:draft L:- w0 trip=TJEQ8M3DH
+   c3  | pageErr 0 cons 65 misses 0 posts 0
+## localdraft real 390x844 
+   c2  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  |   +20s: local-draft A:draft L:draft w1
+   c2  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c2  | newbr visit 1: empty A:- L:- w0 trip=TWLCKMT0C
+   c2  | newbr visit 2: local-draft A:draft L:- w0 trip=T6KRQMV5J
+   c2  | pageErr 0 cons 70 misses 0 posts 0
+   c3  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  |   +20s: local-draft A:draft L:draft w1
+   c3  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TYAP9NIGP
+   c3  | newbr visit 2: local-draft A:draft L:- w0 trip=TWETCNKJ9
+   c3  | pageErr 0 cons 70 misses 0 posts 0
+## localdraft real 1440x900 
+   c2  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  |   +20s: local-draft A:draft L:draft w1
+   c2  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c2  | newbr visit 1: empty A:- L:- w0 trip=TV7C3O7RU
+   c2  | newbr visit 2: local-draft A:draft L:- w0 trip=TW14RO9WG
+   c2  | pageErr 0 cons 71 misses 0 posts 0
+   c3  | load: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  | visit 2 same: local-draft RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  |   +20s: local-draft A:draft L:draft w1
+   c3  | visit 3 same: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TC6R5OX5L
+   c3  | newbr visit 2: local-draft A:draft L:- w0 trip=TI4AKOZAX
+   c3  | pageErr 0 cons 71 misses 0 posts 0
+## localdraft-body real 390x844 
+   c2  | load: local-body RESTORED A:- L:draft w0 trip=TLOCAL
+   c2  | pageErr 0 cons 14 misses 0 posts 0
+   c3  | load: local-body RESTORED A:- L:draft w0 trip=TLOCAL
+   c3  | pageErr 0 cons 14 misses 0 posts 0
+## localdraft-acct 3000 390x844 
+   c2  | load: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c2  | pageErr 0 cons 13 misses 0 posts 0
+   c3  | load: local-draft RESTORED A:draft L:draft w0 trip=TLOCAL
+   c3  | pageErr 0 cons 13 misses 0 posts 0
+## signedout-revisit real 390x844 
+   c2  | load: typed A:- L:- w0 trip=TMXH1PFNM
+   c2  | +20s: typed A:- L:draft w0
+   c2  | visit 2 same: typed RESTORED A:- L:draft w0 trip=TMXH1PFNM
+   c2  |   +20s: typed A:- L:draft w0
+   c2  | visit 3 same: typed RESTORED A:- L:draft w0 trip=TMXH1PFNM
+   c2  | newbr visit 1: empty A:- L:- w0 trip=TI1SCQF9Y
+   c2  | newbr visit 2: empty A:- L:- w0 trip=TL4H0QHEC
+   c2  | pageErr 0 cons 60 misses 0 posts 0
+   c3  | load: typed A:- L:- w0 trip=TIXJIQJTC
+   c3  | +20s: typed A:- L:draft w0
+   c3  | visit 2 same: typed RESTORED A:- L:draft w0 trip=TIXJIQJTC
+   c3  |   +20s: typed A:- L:draft w0
+   c3  | visit 3 same: typed RESTORED A:- L:draft w0 trip=TIXJIQJTC
+   c3  | newbr visit 1: empty A:- L:- w0 trip=TAELSRJEN
+   c3  | newbr visit 2: empty A:- L:- w0 trip=TJSCRRLH4
+   c3  | pageErr 0 cons 60 misses 0 posts 0
+runs 28 pageErr 0 misses 0 posts 0
