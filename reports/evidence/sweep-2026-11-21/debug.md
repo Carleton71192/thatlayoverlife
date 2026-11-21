@@ -1,7 +1,7 @@
-# Sweep 21 Nov 2026, lens DEBUG: what is broken on www
+# Sweep Nov 21, 2026, lens DEBUG: what is broken on www
 
 Read only. No Webflow, Memberstack, Cloudinary or Worker writes; no form sent; every non-GET aborted in the browser.
-Live state checked: core 16.68.0 (layers-release pin 0f04fabf), www as served on 21 Nov 2026 between 09:52 and 10:50 UTC.
+Live state checked: core 16.68.0 (layers-release pin 0f04fabf), www as served on Nov 21, 2026 between 09:52 and 10:50 UTC.
 No member data in this file or the evidence: profile slugs are masked as /contributors/<profile>.
 
 ## How
@@ -16,8 +16,8 @@ No member data in this file or the evidence: profile slugs are masked as /contri
   links without a name, `href="#"` links, unresolved tokens). Documents come from the GET cache; Webflow CSS, JS, fonts and
   images from the shared asset cache (fetched once); jsDelivr and the Worker GETs live. Memberstack is a stand-in in both
   states (signed out answers no member), so `data-ms-*` behavior is not exercised.
-- Targeted runs (debug/bin/x.cjs): R1 with `?country=Denmark`, the /the-map full screen link clicked, layers fed changed markup,
-  same-site fetches per page.
+- Targeted runs (debug/bin/x.cjs, y.cjs): R1 with `?country=Denmark`, both /the-map links to `#tll-map-canvas` clicked, layers
+  fed changed markup, same-site fetches per page.
 - Webflow-host bytes for this lens: about 32 MB (26.5 MB browser assets, 5.2 MB HTML, 57 KB scripts).
 
 Harness noise, not site faults: Turnstile and Memberstack POSTs are aborted by the harness, so their "Failed to load resource:
@@ -26,7 +26,7 @@ net::ERR_FAILED" lines and "[Cloudflare Turnstile] Error: 300010" warnings are o
 
 ## Result in one line
 
-0 page errors in 90 loads; 0 console errors from site code; 0 4xx/5xx on our assets; all 11 jsDelivr pins 200; all 8 Worker GET
+0 page errors in 116 loads (90 in the main pass, 26 targeted); 0 console errors from site code; 0 4xx/5xx on our assets; all 11 jsDelivr pins 200; all 8 Worker GET
 endpoints the pages call answer 200; all 302 internal link targets answer 200 or a 301. The broken things are behavioral.
 
 ## Findings
@@ -35,21 +35,24 @@ Severity: high = broken or blocks a user; medium = confusing or noticeably off; 
 
 1. **D1 (KNOWN, still live): /for-expats shows no experts.** All widths, signed in or out. "The experts so far." keeps its
    fallback link and no card, and the country finder answers "No expert in Denmark yet" while the Worker's /expats-map lists
-   2 expats (countries dk and th) and the map shows them. The page footer script (`loadTravelers`, for-expats.html at byte
+   2 expats (countries dk and th), the list the expats map layer reads. The page footer script (`loadTravelers`, for-expats.html at byte
    142105) fetches /travelers and reads `a.tll-trav-card-dark[href^="/contributors/"]` with `[data-tll-t^="pill-"]` country
    pills; live /travelers has 9 profile links, all `a.tv-card`, 0 `tll-trav-card-dark` and 0 `data-tll-t="pill-` attributes.
    Severity high. Fix lives in page code (/for-expats footer). Smallest fix: build the list from the Worker's
    GET /expats-map (slug, country, place), which the map already uses, instead of parsing /travelers. KNOWN:
    handoff/NANCY-WHEN-HOME.md "Codebase refactor branch awaiting your OK", origin/claude/codebase-refactor-2026-11-12 updates.md
    section 6 item 4 (R1).
-2. **D2 (new): /the-map "OPEN FULL SCREEN →" does nothing.** 390 and 1440, signed in and out. Both links on the page
-   (`a[data-tll-map="fullscreen"]` in the hero and the ghost button in `.tll-map-cta-row`) point at `#tll-map-canvas`, an id
-   that no page has any more (0 of 33). The page's fs-embed script starts with `if(!a||!c)return;`, so no handler is bound and
-   a tap only sets the hash. Severity medium. Fix lives in page code (/the-map, the fs-embed and the two links). Smallest fix:
-   point both at `#tll-map-layers` and call `requestFullscreen()` on that root (the Map 2.0 container), or remove the link.
+2. **D2 (new): /the-map "Edit your countries on the map ↑" does nothing.** 390 and 1440, signed in and out. The ghost button
+   in `.tll-map-explainer-inner .tll-map-cta-row` links `#tll-map-canvas`, an id no page has any more (0 of 33). Clicked from
+   where it sits, the page stays put (1440 signed out: scrollY 4692 before and after, the map 3,952 px above; 390 signed in:
+   20680 before and after) and only the hash changes. The hero "OPEN FULL SCREEN →" with the same href works, because the
+   Map 2.0 code (map-2.0/dist/tll-map-layers.js at 46a21a18) has its own full-screen click handler (full screen on in both runs, 1440 and 390); the page's own fs-embed script
+   still looks for `#tll-map-canvas` and returns at once. Severity medium. Fix lives in page code (/the-map explainer link).
+   Smallest fix: change that link's href to `#tll-map-layers` (the Map 2.0 root); the dead fs-embed script can go at the
+   same time.
 3. **D3 (new): /account "Newsletter" card leads to the home page.** All widths, signed in. The settings card "Newsletter. It
    lands when a story earns it. Manage your subscription. Preferences →" links /newsletter, which answers 301 to / since the
-   9 Nov redirect import (handoff/WEBFLOW-LOCK.md 9 Nov 08:05). Severity medium. Fix lives in the Designer (/account settings
+   Nov 9 redirect import (handoff/WEBFLOW-LOCK.md Nov 9 08:05). Severity medium. Fix lives in the Designer (/account settings
    card link). Smallest fix: link the card to where the newsletter is managed today, or hide the card until a page exists;
    decision for Nancy which.
 4. **D4 (KNOWN): footer links /awards, /spotlight, /creators answer 301** on all 32 pages with the footer. Severity low.
@@ -62,7 +65,7 @@ Severity: high = broken or blocks a user; medium = confusing or noticeably off; 
    (`?embed=1` view and a capture click on `path.country`). Both load on all 33 pages. Severity low. Fix lives in the Webflow
    site scripts (Designer or a release). Smallest fix: remove both from the site-level applied scripts after a check that no
    CMS item still renders `#tll-map-canvas` or `path.country`; decision for Nancy.
-7. **D7 (KNOWN decision, stale flag): staged Worker routes ship to everyone.** `tll-series-v1` (`ROUTES_LIVE=false`, 11,040
+7. **D7 (KNOWN decision, stale flag): staged Worker routes reach every visitor.** `tll-series-v1` (`ROUTES_LIVE=false`, 11,040
    bytes) rides in the public countries, for-expats, pets, pursuits, stories and story chunks, and `tll-pros-v1`
    (`ROUTE_LIVE=false`, 6,266 bytes) in profile, pursuits and story; both exit at once without `?preview=wire`. Their comments
    say "set it to true once GET /series (/pros) answers 200"; both answer 200 today (series lists 0 stories, pros 0 entries).
@@ -76,19 +79,33 @@ Severity: high = broken or blocks a user; medium = confusing or noticeably off; 
    `getElementById` finds the style. Severity low. Page code. Smallest fix: rename the script id (for example
    `tll-edit-dir-js-v1`).
 10. **D10 (new): /submit Write or Link picker uses `<a href="#" aria-pressed>` without `role="button"`.**
-    `[data-tll-fork-pick="write"]` and `[data-tll-fork-pick="link"]`; `aria-pressed` is not allowed on a link, so screen
-    readers announce two links to "#". Severity low. Page code (/submit). Smallest fix: add `role="button"` to both.
-11. **D11 (new): two versions of the Map 2.0 code are live.** /the-map loads map-2.0 at 46a21a18 (25 Oct) and /account at
-    a81ffb96 (20 Oct). The only difference is the signed-out sample map, which /account never shows, so nothing is broken
+    `[data-tll-fork-pick="write"]` and `[data-tll-fork-pick="link"]`; `aria-pressed` is not allowed on a link, so assistive tech
+    meets two links to "#" whose pressed state may not be read. Severity low. Page code (/submit). Smallest fix: add `role="button"` to both.
+11. **D11 (new): two versions of the Map 2.0 code are live.** /the-map loads map-2.0 at 46a21a18 (Oct 25) and /account at
+    a81ffb96 (Oct 20). The only difference is the signed-out sample map, which /account never shows, so nothing is broken
     today; a later map fix would reach one page only. Severity low. Page code (/account map embed `data-tll-version`). Smallest
     fix: move /account to the same pin at the next map change.
-12. **D12 (new): the ledger sync runs on every page for members.** `tll_ledger_sync-1.0.0.js` (site-wide) calls Memberstack
+12. **D12 (new): the places sync runs on every page for members.** The site-wide script with asset id 6ab3ffc725f5275a468b5b0c (the places sync) calls Memberstack
     `getCurrentMember` and `queryDataRecords` on each page view of a signed-in member and can add up to 8 records per view
-    when the member's places are not in the trip_ledger table. Read from the script; not exercised (the stand-in answers no
+    when the member's places are not yet in its Memberstack data table. Read from the script; not exercised (the stand-in answers no
     records). Severity low. Webflow site script. Smallest fix: run it only on /the-map and /account; decision for Nancy since it
     touches Memberstack behavior.
+13. **D13 (KNOWN): every page downloads /stories and /sitemap.xml for counts.** Same-site fetches per load (390, signed
+    out): /sitemap.xml twice and /stories once on story pages, the profile, /travelers, /cookies, /about, /the-paw-passport,
+    /for-expats and /edit-profile; /stories three /sitemap.xml requests; home three /stories requests, two /sitemap.xml and
+    /pets/<pet>; /for-expats adds /travelers (the R1 parse). Later requests may be answered 304 by the browser cache; the
+    harness counts requests, not bytes. Severity low. KNOWN: NANCY-WHEN-HOME "D1 and D2: hidden Site stats and Pets lists"
+    and "Footer sitting ... F1 fetch line" (bandwidth fix 4; that note says two /stories requests on home, this pass saw
+    three).
 
-Targeted runs (R1 in the browser, the full screen click, changed markup, same-site fetches): waiting for the browser; this section is filled in by the next commit.
+Targeted runs (debug/results/extra.jsonl, extra2.jsonl), 0 page errors in all 26:
+- R1 in the browser, /for-expats?country=Denmark at 1440 and 390: heading "The experts so far.", 0 expert cards, the fallback
+  link, and "No expert in Denmark yet. Live there? The desk is yours to claim." (D1).
+- Layers fed changed markup, no page error in any: Lisbon story without the gallery section, without the share row, and with
+  its h1 turned into an h2; /stories without `tll-lib-grid`; /travelers without `tv-card`; home without `data-h3-track`; the
+  profile with no h1.
+- Signed out with the stand-in answering no member cookie, /account and /edit-profile send no Worker request (in the main pass
+  the stand-in still returned a cookie, so the Worker POSTs logged there are the harness, not the site).
 
 
 ## Checked and fine
@@ -111,4 +128,5 @@ Targeted runs (R1 in the browser, the full screen click, changed markup, same-si
 
 - debug/results/out390.jsonl, out1440.jsonl, in.jsonl, extra.jsonl (one line per load; masked), net.json (bytes)
 - debug/static.json (static pass), debug/link-status.txt (status per internal path, masked)
-- debug/bin/ (harness: d.cjs, x.cjs, static.py, an.py, run scripts)
+- debug/results/extra2.jsonl (the /the-map explainer link clicked)
+- debug/bin/ (harness: d.cjs, x.cjs, y.cjs, static.py, an.py, run scripts)
