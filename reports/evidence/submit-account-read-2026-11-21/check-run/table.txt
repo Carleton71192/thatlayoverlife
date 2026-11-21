@@ -1,0 +1,275 @@
+## acct early 390x844
+   live | load: acct-draft radio=pen A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct real 390x844
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct 500 390x844
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct 3000 390x844
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct never 390x844
+   live | load: empty A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 12 12 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing 500 390x844
+   live | load: typed A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing 3000 390x844
+   live | load: typed A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing-country 3000 390x844
+   live | load: country-only A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing-other 3000 390x844
+   live | load: empty radio=anon A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## sent real 390x844
+   live | load: empty A:SENT L:- w0
+   new  | load: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## sent 3000 390x844
+   live | load: empty A:SENT L:- w0
+   new  | load: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## links real 390x844
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## links 3000 390x844
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## cf 3000 390x844
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## links-typed 3000 390x844
+   live | load: empty web=typed,ig=- A:- L:- w0
+   new  | load: empty pref1 web=typed,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## signedout real 390x844
+   live | load: typed A:- L:- w0
+   new  | (same)
+   live | +20s: typed A:- L:draft w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 12 12 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## signedout-blank real 390x844
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | +20s: empty A:- L:helper-only w0
+   new  | +20s: empty A:- L:- w0
+   live | visit 2 same: empty RESTORED/empty A:- L:helper-only w0
+   new  | visit 2 same: empty A:- L:- w0
+   live |   +20s: empty A:- L:helper-only w0
+   new  |   +20s: empty A:- L:- w0
+   live | visit 3 same: empty RESTORED/empty A:- L:helper-only w0
+   new  | visit 3 same: empty A:- L:- w0
+   live | newbr visit 1: empty A:- L:- w0
+   new  | (same)
+   live | newbr visit 2: empty A:- L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 60 60 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## blank 3000 390x844
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | +20s: empty A:helper-only L:helper-only w1
+   new  | +20s: empty A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## send real 390x844
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1): sendtext A:SENT L:- w2
+   new  | (same)
+   live | visit 2 same: empty A:SENT L:- w0
+   new  | visit 2 same: empty SENTLINE A:SENT L:- w0
+   live |   +20s: empty A:helper-only A.sentCopy L:helper-only w1
+   new  |   +20s: empty SENTLINE A:SENT L:- w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only A.sentCopy L:helper-only w0
+   new  | visit 3 same: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 1: empty A:SENT L:- w0
+   new  | newbr visit 1: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 2: empty A:helper-only A.sentCopy L:- w0
+   new  | newbr visit 2: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 70 70 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## send 3000 390x844
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1): sendtext A:SENT L:- w2
+   new  | (same)
+   live | visit 2 same: empty A:SENT L:- w0
+   new  | visit 2 same: empty SENTLINE A:SENT L:- w0
+   live |   +20s: empty A:helper-only A.sentCopy L:helper-only w1
+   new  |   +20s: empty SENTLINE A:SENT L:- w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only A.sentCopy L:helper-only w0
+   new  | visit 3 same: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 1: empty A:SENT L:- w0
+   new  | newbr visit 1: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 2: empty A:helper-only A.sentCopy L:- w0
+   new  | newbr visit 2: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 66 65 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## postfail 3000 390x844
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1 failed): sendtext A:draft L:draft w2
+   new  | (same)
+   live | visit 2 same: sendtext RESTORED A:draft L:draft w0
+   new  | (same)
+   live |   +20s: sendtext A:draft L:draft w1
+   new  | (same)
+   live | visit 3 same: sendtext RESTORED A:draft L:draft w0
+   new  | (same)
+   live | newbr visit 1: empty A:draft L:- w0
+   new  | newbr visit 1: sendtext A:draft L:- w0
+   live | newbr visit 2: empty A:draft L:- w0
+   new  | newbr visit 2: sendtext A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED', 'error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)'] counts 66 66 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct early 1440x900
+   live | load: acct-draft radio=pen A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct real 1440x900
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## acct 500 1440x900
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct 3000 1440x900
+   live | load: empty A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## acct never 1440x900
+   live | load: empty A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 12 12 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## typing 500 1440x900
+   live | load: typed A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing 3000 1440x900
+   live | load: typed A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## typing-country 3000 1440x900
+   live | load: country-only A:draft L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## typing-other 3000 1440x900
+   live | load: empty radio=anon A:draft L:- w0
+   new  | load: acct-draft radio=pen A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## sent real 1440x900
+   live | load: empty A:SENT L:- w0
+   new  | load: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## sent 3000 1440x900
+   live | load: empty A:SENT L:- w0
+   new  | load: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## links real 1440x900
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 14 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## links 3000 1440x900
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## cf 3000 1440x900
+   live | load: empty A:- L:- w0
+   new  | load: empty pref2 web=acct,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 14 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## links-typed 3000 1440x900
+   live | load: empty web=typed,ig=- A:- L:- w0
+   new  | load: empty pref1 web=typed,ig=acct A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## signedout real 1440x900
+   live | load: typed A:- L:- w0
+   new  | (same)
+   live | +20s: typed A:- L:draft w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 12 12 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## signedout-blank real 1440x900
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | +20s: empty A:- L:helper-only w0
+   new  | +20s: empty A:- L:- w0
+   live | visit 2 same: empty RESTORED/empty A:- L:helper-only w0
+   new  | visit 2 same: empty A:- L:- w0
+   live |   +20s: empty A:- L:helper-only w0
+   new  |   +20s: empty A:- L:- w0
+   live | visit 3 same: empty RESTORED/empty A:- L:helper-only w0
+   new  | visit 3 same: empty A:- L:- w0
+   live | newbr visit 1: empty A:- L:- w0
+   new  | (same)
+   live | newbr visit 2: empty A:- L:- w0
+   new  | (same)
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 60 60 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## blank 3000 1440x900
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | +20s: empty A:helper-only L:helper-only w1
+   new  | +20s: empty A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## send real 1440x900
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1): sendtext A:SENT L:- w2
+   new  | (same)
+   live | visit 2 same: empty A:SENT L:- w0
+   new  | visit 2 same: empty SENTLINE A:SENT L:- w0
+   live |   +20s: empty A:helper-only A.sentCopy L:helper-only w1
+   new  |   +20s: empty SENTLINE A:SENT L:- w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only A.sentCopy L:helper-only w0
+   new  | visit 3 same: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 1: empty A:SENT L:- w0
+   new  | newbr visit 1: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 2: empty A:helper-only A.sentCopy L:- w0
+   new  | newbr visit 2: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 70 70 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## send 3000 1440x900
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1): sendtext A:SENT L:- w2
+   new  | (same)
+   live | visit 2 same: empty A:SENT L:- w0
+   new  | visit 2 same: empty SENTLINE A:SENT L:- w0
+   live |   +20s: empty A:helper-only A.sentCopy L:helper-only w1
+   new  |   +20s: empty SENTLINE A:SENT L:- w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only A.sentCopy L:helper-only w0
+   new  | visit 3 same: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 1: empty A:SENT L:- w0
+   new  | newbr visit 1: empty SENTLINE A:SENT L:- w0
+   live | newbr visit 2: empty A:helper-only A.sentCopy L:- w0
+   new  | newbr visit 2: empty SENTLINE A:SENT L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 67 67 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## postfail 3000 1440x900
+   live | load: empty A:- L:- w0
+   new  | (same)
+   live | send(posts 1 failed): sendtext A:draft L:draft w2
+   new  | (same)
+   live | visit 2 same: sendtext RESTORED A:draft L:draft w0
+   new  | (same)
+   live |   +20s: sendtext A:draft L:draft w1
+   new  | (same)
+   live | visit 3 same: sendtext RESTORED A:draft L:draft w0
+   new  | (same)
+   live | newbr visit 1: empty A:draft L:- w0
+   new  | newbr visit 1: sendtext A:draft L:- w0
+   live | newbr visit 2: empty A:draft L:- w0
+   new  | newbr visit 2: sendtext A:draft L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED', 'error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)'] counts 67 66 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+runs 84 posts 12 uploads 24 worker 8 misses 0
+aborted {'GET https://www.thatlayover.life/sitemap.xml': 296, 'GET https://www.thatlayover.life/stories': 148, 'GET https://tll-travel-wire.thatlayoverlife.workers.dev/whats-new': 44}
+all console kinds {'error: Failed to load resource: net::ERR_FAILED': 1948, 'error: Failed to load resource: the server responded with a status of 500 (Internal Server Error)': 4} pageErr 0

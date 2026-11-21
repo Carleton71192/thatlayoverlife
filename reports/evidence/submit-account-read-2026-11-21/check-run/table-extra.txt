@@ -1,0 +1,43 @@
+## leftover 3000 390x844
+   live | load: empty RESTORED/empty A:- L:helper-only w0
+   new  | (same)
+   live | +20s: empty A:helper-only L:helper-only w1
+   new  | +20s: empty RESTORED/empty A:- L:helper-only w0
+   live | visit 2 same: empty RESTORED/empty A:helper-only L:helper-only w0
+   new  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0
+   live |   +20s: empty A:helper-only L:helper-only w1
+   new  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only L:helper-only w0
+   new  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0
+   live | newbr visit 1: empty A:helper-only L:- w0
+   new  | newbr visit 1: empty A:- L:- w0
+   live | newbr visit 2: empty A:helper-only L:- w0
+   new  | newbr visit 2: empty A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 65 65 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## leftover-acct 3000 390x844
+   live | load: empty RESTORED/empty A:draft L:helper-only w0
+   new  | load: acct-draft RESTORED radio=pen A:draft L:helper-only w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+## leftover 3000 1440x900
+   live | load: empty RESTORED/empty A:- L:helper-only w0
+   new  | (same)
+   live | +20s: empty A:helper-only L:helper-only w1
+   new  | +20s: empty RESTORED/empty A:- L:helper-only w0
+   live | visit 2 same: empty RESTORED/empty A:helper-only L:helper-only w0
+   new  | visit 2 same: empty RESTORED/empty A:- L:helper-only w0
+   live |   +20s: empty A:helper-only L:helper-only w1
+   new  |   +20s: empty RESTORED/empty A:- L:helper-only w0
+   live | visit 3 same: empty RESTORED/empty A:helper-only L:helper-only w0
+   new  | visit 3 same: empty RESTORED/empty A:- L:helper-only w0
+   live | newbr visit 1: empty A:helper-only L:- w0
+   new  | newbr visit 1: empty A:- L:- w0
+   live | newbr visit 2: empty A:helper-only L:- w0
+   new  | newbr visit 2: empty A:- L:- w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 66 66 | pageErr 0 0 | textNoSave same True | structNoPrefill same True
+## leftover-acct 3000 1440x900
+   live | load: empty RESTORED/empty A:draft L:helper-only w0
+   new  | load: acct-draft RESTORED radio=pen A:draft L:helper-only w0
+   console kinds ['error: Failed to load resource: net::ERR_FAILED'] counts 13 13 | pageErr 0 0 | textNoSave same True | structNoPrefill same False
+runs 8 posts 0 uploads 0 worker 0 misses 0
+aborted {'GET https://www.thatlayover.life/sitemap.xml': 48, 'GET https://www.thatlayover.life/stories': 24}
+all console kinds {'error: Failed to load resource: net::ERR_FAILED': 314} pageErr 0
