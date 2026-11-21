@@ -129,3 +129,45 @@ Runs: `npx vitest run` 63 files, 753 tests, all pass (743 before plus these 10);
 - Not run in a browser against the saved live page (a later check can reuse `check-final-run/h2.cjs` with Memberstack arriving
   late, as on the real page).
 - The real Memberstack, Turnstile, Cloudinary, Webflow form endpoint and Worker were not used (stand-ins).
+
+## c3: a leftover copy without the four fields is removed at load (21 Nov 2026, check note 1)
+
+`check.md` note 1: a browser that already holds a copy written by the live footer on a blank visit (only fields other scripts fill,
+for example `invite-link`, `lounge-photo-pick`, `trip-code`) kept seeing "Draft restored from your last visit." over an empty form
+with c2, on every visit, because c2 stops new leftovers but never removes old ones.
+
+Where the line comes from: `src/site-layers/tll-submit-gallery-v1.js` (in `chunks/submit.js`), `autosaveLine(form)`, sets
+`restored=!!localStorage.getItem('tllStoryDraft')`. It runs from `run()` at DOMContentLoaded (or at once if the chunk loads later),
+and again at 1.2 s and 3 s, but returns early until `.tllst-save` exists. The steps script builds `.tllst-save` in its `init()` and
+reads this browser's copy later in the same synchronous `init()`, so nothing can read the key in between. The footer alone can
+remove the leftover before the gallery layer looks: no core or chunk change.
+
+`webflow-c3-after.html` (c2 files kept as they are) changes one line of the steps script and adds one comment above it:
+
+```diff
+-try{fill(JSON.parse(localStorage.getItem(KEY)||'null'));}catch(e){}
++/* 21 Nov 2026 (c3): the old footer saved a draft on blank visits, with only the fields other scripts fill. Such a copy in this browser (none of name, excerpt, body or country) is removed at load instead of filled, so the autosave line no longer says a draft was restored over an empty form. */
++try{var lo=JSON.parse(localStorage.getItem(KEY)||'null');if(lo&&!own(lo))localStorage.removeItem(KEY);else fill(lo);}catch(e){}
+```
+
+A copy with any of name, excerpt, body or country is filled exactly as with c2 and still says "Draft restored". No new page text.
+Side effect: the story extras script (`src/pages/submit/embed-lounge.html`) reuses a `trip-code` from this browser's copy; a removed
+leftover means a fresh trip code on the next visit, as for any browser without a draft.
+
+Files: `webflow-c3-after.html` 11137 bytes, 11129 characters, `sha384-PjyB0x3Jw3oWBh37tLPDMuLSLB4EbdYIghrvSj4UHMdhc9C4zMFOvDUTVZ8tWgxc`.
+
+Tests (`test/submit-account-read.test.js`, 6 more, 16 in the file): the file diff above; a leftover made by the live footer's blank
+visit (signed out and Memberstack 2 s late, chunk after and before the steps script): c2 shows "Draft restored", c3 removes the copy
+during init, shows the plain line past the gallery layer's 1.2 s and 3 s passes, writes nothing on a blank visit, and saves and
+restores a typed draft as before; a leftover with only city, a credit pick and helper fields is removed, odd copies (`{}`, `[]`, a
+string, a number) are removed, and broken JSON is left as with c2 (no error); a copy with any one of the four fields is kept and filled the same as c2; leftover
+plus account draft with Memberstack 2 s late: leftover removed, account draft fills the form, no "Draft restored"; with no
+leftover, c3 gives the same results as c2 over 24 scenarios (Memberstack 0 s, 2 s, 20 s, never; account draft, sent, none; typed or
+not; two visits). Mutation check: no removal (4 tests fail), remove always (5), remove and also fill (3), removal 1.5 s late (4).
+
+Browser run (`c3-run/`, the check harness `h3b.cjs` plus a `c3` variant, same saved page and stand-ins, 390x844, 14 runs: 7 scenarios, c2 and c3,
+page errors 0, cache misses 0): leftover (Memberstack 3000 ms and real): c2 "Draft restored" over an empty form on every visit;
+c3 the plain line on every visit, the copy gone at load, 0 writes. Leftover plus account draft (3000, real): both fill the account
+draft; c2 also says "Draft restored", c3 does not. Account draft, signed-out typed draft, blank visit: c2 and c3 the same.
+
+Runs: `npx vitest run` 63 files, 759 tests, all pass; `node --test worker/test/*.test.js` 83 pass. No Webflow write, no publish.

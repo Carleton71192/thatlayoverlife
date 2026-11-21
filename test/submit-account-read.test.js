@@ -9,6 +9,7 @@
 // Worker are stand-ins; nothing is sent anywhere; no real member data.
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { createDom } from './mini-dom.js';
@@ -29,6 +30,9 @@ const RESTORED = 'Draft restored from your last visit.';
 const STEPS_RE = /<script id="tll-form-steps-js-v2">([\s\S]*?)<\/script>/;
 const BEFORE = STEPS_RE.exec(BEFORE_HTML)[1];
 const AFTER = STEPS_RE.exec(AFTER_HTML)[1];
+// c3 (same day, check note 1): a leftover copy in this browser with none of the four fields is removed at load instead of filled
+const C3_HTML = read(DIR + 'webflow-c3-after.html');
+const C3 = STEPS_RE.exec(C3_HTML)[1];
 
 const PAGE = FORM.replace(/<\/form><\/div>\s*$/, '</form><div class="w-form-done" style="display:none"><div>It is with the editor. Your draft stays in your account either way.</div></div>'
   + '<div class="w-form-fail" style="display:none"><div>That did not send.</div></div></div>');
@@ -37,7 +41,7 @@ const DRAFT = { at: '2026-11-20T18:00:00.000Z', fields: { name: 'The night bus',
 
 // One page load. `account` is the stand-in member JSON, kept across visits; `late` is when Memberstack shows up (ms after the
 // steps script runs; null = never, signed out); `browser` is this browser's localStorage, carried from one visit to the next.
-function visit({ block, account, late = 0, browser = new Map(), customFields = {}, slowDraftWrite = 0 }) {
+function visit({ block, account, late = 0, browser = new Map(), customFields = {}, slowDraftWrite = 0, chunkFirst = false }) {
   const dom = createDom({ pathname: '/submit', html: PAGE });
   for (const [k, v] of browser) dom.store.set(k, v);
   const d = dom.document; const w = dom.window;
@@ -69,9 +73,11 @@ function visit({ block, account, late = 0, browser = new Map(), customFields = {
   };
   const createImageBitmap = () => Promise.resolve({ width: 4032, height: 3024, close() {} });
   // the live order: the steps script runs at DOMContentLoaded, photo clean at the end of the body, the chunk later from the core
+  // (chunkFirst: the chunk before the steps script, the other side of the order, to show when the gallery layer reads this browser's copy)
+  if (chunkFirst) dom.run(CHUNK, { fetch, createImageBitmap });
   dom.run(block, { fetch, createImageBitmap });
   dom.run(PHOTO_CLEAN, { fetch, createImageBitmap });
-  dom.run(CHUNK, { fetch, createImageBitmap });
+  if (!chunkFirst) dom.run(CHUNK, { fetch, createImageBitmap });
   const q = (n) => form.querySelector(`[name="${n}"]`);
   return { dom, form, btn, done, posts, reads, q, save: form.querySelector('.tllst-save'), browser: dom.store, shownAt: () => shownAt };
 }
@@ -286,6 +292,137 @@ describe('/submit: the account read waits for Memberstack (submit-account-read-2
       helpers(t);
       await t.dom.tick(41000);
       expect(t.browser.has('tllStoryDraft')).toBe(saves);
+    }
+  });
+});
+
+// c3 (21 Nov, check note 1 in reports/evidence/submit-account-read-2026-11-21/check.md): a browser that already holds a copy written
+// by the live footer on a blank visit (only fields other scripts fill) kept seeing "Draft restored from your last visit." over an
+// empty form with c2, because the gallery layer in the submit chunk says so whenever this browser's copy exists. The gallery layer
+// reads that copy only once the steps script has built .tllst-save, and the steps script reads and now removes the copy in the same
+// synchronous init, so the footer alone can clean it up (no core change).
+const IDLE = 'Your words save as a draft every 20 seconds. Photos are added when you send.';
+describe('/submit c3: a leftover copy without the four fields is removed at load (submit-account-read-2026-11-21, check note 1)', () => {
+  // a leftover as the live footer writes it: a blank visit, other scripts fill their fields, left open past one autosave tick
+  const leftover = async (late = null) => {
+    const t = visit({ block: BEFORE, account: { json: {}, writes: [] }, late });
+    helpers(t);
+    await t.dom.tick(21000);
+    const o = JSON.parse(t.browser.get('tllStoryDraft'));
+    return { browser: t.browser, o };
+  };
+  const shot = (t) => ({ four: four(t), line: t.save.textContent, has: t.browser.has('tllStoryDraft') });
+
+  it('files: c3 changes one line of c2 (the load-time read of this browser\'s copy) and adds one comment; c2 files are kept as they are; no new page text', () => {
+    expect(createHash('sha384').update(AFTER_HTML).digest('base64')).toBe('12ICmEg6gz0q02hbdXeY36z3wDw0ztw8stfIVqoAk/MWQfvZl6ApO2QPddT8hMGe');
+    expect(BEFORE_HTML).toBe(LIVE_18NOV);
+    expect(C3_HTML.length).toBeLessThan(50000);
+    expect(C3_HTML.replace(C3, '')).toBe(AFTER_HTML.replace(AFTER, ''));
+    const al = AFTER.split('\n'); const cl = C3.split('\n');
+    const gone = al.filter((l) => !cl.includes(l)); const added = cl.filter((l) => !al.includes(l));
+    expect(gone).toEqual(["try{fill(JSON.parse(localStorage.getItem(KEY)||'null'));}catch(e){}"]);
+    expect(added).toHaveLength(2);
+    expect(added[0]).toMatch(/^\/\* 21 Nov 2026 \(c3\):[^\n]*\*\/$/);
+    expect(added[1]).toBe("try{var lo=JSON.parse(localStorage.getItem(KEY)||'null');if(lo&&!own(lo))localStorage.removeItem(KEY);else fill(lo);}catch(e){}");
+    expect(al.filter((l) => !gone.includes(l))).toEqual(cl.filter((l) => !added.includes(l)));
+    expect(cl.indexOf(added[1])).toBe(al.indexOf(gone[0]) + 1); // same place, after own() and the autosave, before the account read
+    const strings = (s) => [...s.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/'([^']*)'/g)].map((m) => m[1]);
+    expect(strings(C3).filter((x) => !strings(AFTER).includes(x))).toEqual([]);
+    expect(added[0]).not.toMatch(/—|!/);
+  });
+
+  it('a leftover from a blank visit on the live footer: c2 says "Draft restored" over an empty form (note 1); c3 removes it at load and shows the plain line, in both script orders', async () => {
+    for (const late of [null, 2000]) {
+      const { browser, o } = await leftover(late);
+      expect(['name', 'excerpt', 'body', 'country'].filter((k) => o[k])).toEqual([]);
+      expect(Object.keys(o).sort()).toEqual(expect.arrayContaining(['cf-turnstile-response', 'invite-link', 'trip-code']));
+      const b = visit({ block: AFTER, account: { json: {}, writes: [] }, browser: new Map(browser), late });
+      await b.dom.tick(3500);
+      expect(shot(b)).toEqual({ four: ['', '', '', ''], line: RESTORED + ' ' + IDLE, has: true }); // the wrong line, every visit
+      for (const chunkFirst of [false, true]) {
+        const t = visit({ block: C3, account: { json: {}, writes: [] }, browser: new Map(browser), late, chunkFirst });
+        expect(t.browser.has('tllStoryDraft')).toBe(false); // removed during the steps script's init
+        await t.dom.tick(3500); // past the gallery layer's 1.2 s and 3 s passes
+        expect(shot(t)).toEqual({ four: ['', '', '', ''], line: IDLE, has: false });
+        expect(t.q('trip-code').value).toBe(''); // the helper values of the leftover are not put back
+        await t.dom.tick(40000); // a blank visit still writes nothing
+        expect(t.browser.has('tllStoryDraft')).toBe(false);
+        const n = visit({ block: C3, account: { json: {}, writes: [] }, browser: t.browser, late });
+        await n.dom.tick(3500);
+        expect(shot(n)).toEqual({ four: ['', '', '', ''], line: IDLE, has: false });
+        n.q('name').value = 'A title'; // once the writer types, the autosave saves a draft as before
+        await n.dom.tick(20000);
+        expect(JSON.parse(n.browser.get('tllStoryDraft')).name).toBe('A title');
+        const r = visit({ block: C3, account: { json: {}, writes: [] }, browser: n.browser, late });
+        await r.dom.tick(3500);
+        expect(r.q('name').value).toBe('A title');
+        expect(r.save.textContent).toBe(RESTORED + ' ' + IDLE);
+      }
+    }
+  });
+
+  it('a leftover with only picks and other fields (city, credit choice, theme) is removed too; nothing of it is filled', async () => {
+    const browser = new Map([['tllStoryDraft', JSON.stringify({ city: 'Athens', 'credit-mode=anonymous': 1, 'trip-code': 'TRIP-OLD', 'cf-turnstile-response': 'old-token' })]]);
+    const t = visit({ block: C3, account: { json: {}, writes: [] }, browser, late: null });
+    await t.dom.tick(3500);
+    expect(shot(t)).toEqual({ four: ['', '', '', ''], line: IDLE, has: false });
+    expect([t.q('city').value, t.q('trip-code').value]).toEqual(['', '']);
+    expect(t.form.querySelector('input[name="credit-mode"][value="anonymous"]').checked).toBe(false);
+    for (const bad of ['{}', '[]', '"text"', '7', 'not json']) { // odd copies: removed or ignored, never an error
+      const x = visit({ block: C3, account: { json: {}, writes: [] }, browser: new Map([['tllStoryDraft', bad]]), late: null });
+      await x.dom.tick(3500);
+      expect(x.save.textContent).toBe(bad === 'not json' ? RESTORED + ' ' + IDLE : IDLE);
+      expect(four(x)).toEqual(['', '', '', '']);
+    }
+  });
+
+  it('a copy with any one of the four fields is kept and filled exactly as with c2, and says "Draft restored"', async () => {
+    for (const k of ['name', 'excerpt', 'body', 'country']) {
+      const copy = JSON.stringify({ [k]: 'Kept words', 'trip-code': 'TRIP-KEPT', 'cf-turnstile-response': 'old-token' });
+      const res = [];
+      for (const block of [AFTER, C3]) {
+        const t = visit({ block, account: { json: {}, writes: [] }, browser: new Map([['tllStoryDraft', copy]]), late: null });
+        await t.dom.tick(3500);
+        res.push({ ...shot(t), copy: t.browser.get('tllStoryDraft'), trip: t.q('trip-code').value });
+      }
+      expect(res[1]).toEqual(res[0]);
+      expect(res[1].line).toBe(RESTORED + ' ' + IDLE);
+      expect(res[1].four.filter((x) => x)).toEqual(['Kept words']);
+      expect(res[1].copy).toBe(copy);
+    }
+  });
+
+  it('a leftover and an account draft, Memberstack 2 s late: c3 removes the leftover, the account draft fills the form, no "Draft restored"', async () => {
+    const { browser } = await leftover(null);
+    const account = { json: { tllStoryDraft: clone(DRAFT), tllLinks: {} }, writes: [] };
+    const t = visit({ block: C3, account, browser, late: 2000 });
+    await t.dom.tick(3000);
+    expect(t.reads).toEqual([2000]);
+    expect(shot(t)).toEqual({ four: [DRAFT.fields.name, DRAFT.fields.excerpt, DRAFT.fields.body, DRAFT.fields.country], line: IDLE, has: false });
+    await t.dom.tick(20000); // the next autosave keeps the account draft in this browser again
+    expect(JSON.parse(t.browser.get('tllStoryDraft')).body).toBe(DRAFT.fields.body);
+    expect(account.json.tllStoryDraft.fields.body).toBe(DRAFT.fields.body);
+  });
+
+  it('with no leftover, c3 does exactly what c2 does (Memberstack 0 s, 2 s, 20 s, never; account draft, sent, none; typed or not)', async () => {
+    const seeds = { draft: { tllStoryDraft: clone(DRAFT), tllLinks: {} }, sent: { tllStoryDraft: { ...clone(DRAFT), sent: DRAFT.at }, tllLinks: {} }, none: { tllLinks: { website: 'https://example.com' } } };
+    for (const late of [0, 2000, 20000, null]) {
+      for (const seed of Object.keys(seeds)) {
+        for (const typed of [false, true]) {
+          const res = [];
+          for (const block of [AFTER, C3]) {
+            const account = { json: clone(seeds[seed]), writes: [] };
+            const t = visit({ block, account, late });
+            if (typed) { await t.dom.tick(500); t.q('excerpt').value = 'Typed now'; }
+            await t.dom.tick(45000);
+            const n = visit({ block, account, browser: t.browser, late });
+            await n.dom.tick(3500);
+            const plain = (x) => JSON.parse(JSON.stringify(x).replace(/"(at|sent)":"[^"]*"/g, '"$1":"T"').replace(/\d{1,2}:\d{2}/g, 'H:M')); // clock times read the real clock
+            res.push(plain({ a: shot(t), b: shot(n), reads: [t.reads, n.reads], writes: account.writes.map((x) => [x.at, x.json]), store: [...n.browser], web: t.q('credit-website').value }));
+          }
+          expect(res[1]).toEqual(res[0]);
+        }
+      }
     }
   });
 });
