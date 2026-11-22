@@ -54,13 +54,19 @@ function wire(){
       else el.setAttribute('aria-hidden','true');});
   });
 }
+function strip(){[].forEach.call(document.querySelectorAll('.tll-lib-byline[role],.tll-lib-byline[tabindex]'),function(b){
+  if(!b.querySelector('[data-tll-bl][role="link"]'))return;b.removeAttribute('role');b.removeAttribute('tabindex');b.removeAttribute('aria-label');});}
+var watching=false;
+function watch(){if(watching||!window.MutationObserver||!document.querySelector('.tll-lib-byline'))return;watching=true;
+  new MutationObserver(strip).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['role','tabindex']});}
 function go(e){var t=e.target.closest&&e.target.closest('[data-tll-bl]');if(!t)return;
   if(e.type==='keydown'&&e.key!=='Enter')return;
   e.preventDefault();e.stopPropagation();
   var href=t.getAttribute('data-tll-bl');if(e.metaKey||e.ctrlKey)window.open(href,'_blank','noopener');else location.href=href;}
 document.addEventListener('click',go,true);document.addEventListener('keydown',go,true);
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
-setTimeout(wire,800);setTimeout(wire,2000);
+function pass(){wire();strip();watch();}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',pass);else pass();
+setTimeout(pass,800);setTimeout(pass,2000);
 })();
 /* src/site-layers/tll-story-fixes-1029-v1.js */
 (function(){
