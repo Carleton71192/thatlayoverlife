@@ -8,7 +8,7 @@ subset (C10). No member data here; profile paths stay masked.
 
 Scope: the 56 non-KNOWN items split by order; this file covers items 29 to 56 (B08 to C12), plus a note on WATCH.
 Default was REFUTED when a claim could not be reproduced. None had to fall back to that: every item below reproduced from code or
-cached HTML, and 7 needed a change to the class, the fix or the question.
+cached HTML. Count: 22 CONFIRMED, 6 CHANGED (B11, B14, C05, C07, C08, C09), 0 REFUTED.
 
 ## Result
 
