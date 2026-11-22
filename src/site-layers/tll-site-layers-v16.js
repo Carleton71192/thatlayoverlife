@@ -27,7 +27,7 @@
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults when the head consent tool is missing)
    Styles: tll-font-fallbacks-v1 (fallback faces sized like Plex and Playfair, so text keeps its lines when the web fonts arrive), tll-nav-phone-v1 (phone header), tll-contrast-v1 (contrast), tll-note-phone-v1 (round note button on phones), tll-photos-tap-v1 (/share-photos drop zone tap on iPhones), tll-home-coords-v1 (home photo coordinates inside the screen on phones), tll-footer-wordmark-v1 (footer wordmark matches the header), tll-tap-colors-v1 (/account Stories tab: ink text and a rose underline on hover and tap, no rose or teal text), tll-shelf-ring-v1 (home library rail: room for the avatar ring on phones), tll-masthead-v1 (footer masthead line in Playfair Display italic), tll-buttons-v1 (one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600), tll-focus-v1 (10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields), tll-sweep-1121-v1 (22 Nov: layout, type and contrast fixes from the 21 Nov sweep, one block a finding), tll-paw-hero-img-v1 (13 Nov bandwidth fix 7: /the-paw-passport hero takes the 1080px copy on phones and the 1600px copy wider, not the 1.18 MB original)
    The other layers come in per-path chunks from chunks/ at this same commit, loaded by the chunk loader below:
-   chunk  site /^/: tll-footer-wordmark-v1, tll-masthead-v1, tll-hover-v1, tll-byline-links-v1, tll-story-fixes-1029-v1, tll-email-hello-v1, tll-ep-help-v1, tll-whats-new-v1, tll-note-footer-v1, tll-p0-closeout-v1
+   chunk  site /^/: tll-footer-wordmark-v1, tll-masthead-v1, tll-hover-v1, tll-byline-links-v1, tll-story-fixes-1029-v1, tll-email-hello-v1, tll-ep-help-v1, tll-whats-new-v1, tll-note-footer-v1, tll-gate-return-v1, tll-p0-closeout-v1
    chunk  home /^\/(index\.html)?$/: tll-redesign-p0-v1, tll-trust-v1
    chunk  stories /^\/stories$/: tll-stories-places-v1, tll-series-v1, tll-story-is-v1, tll-trust-v1, tll-stories-count-v1, tll-stories-strip-v1
    chunk  story /^\/stories\/[^/]+$/: tll-story-ask-v1, tll-story-captions-v1, tll-pros-v1, tll-series-v1, tll-story-is-v1, tll-trust-v1 (+ staged in story-preview: tll-ux-v1)
@@ -56,7 +56,7 @@ if(!src){var all=document.querySelectorAll('script[src*="tll-site-layers-v16"]')
 var m=/^(.*\/)tll-site-layers-v16\.js(?:[?#].*)?$/.exec(src);if(!m){try{console.warn('tll-site-layers: not served from its pinned URL, chunks skipped');}catch(e){}return;}
 var P=location.pathname.replace(/\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);
 try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}
-var C=[['site',/^/,'sha384-9tz6E95ZAvkGGbGWB2hRaWDGGxgaWQBwbdfRyVSmuGzh6/94q/EjvbDdmUqZYRSs'],
+var C=[['site',/^/,'sha384-8z8XfnC0SMHBHg4XJNuj/utbT0gpTWI+2bbXRZ3DQ3Mf5NBdn7Lnm/FSFrnNdo/G'],
 ['home',/^\/(index\.html)?$/,'sha384-cguoozIbTjibeN3Nh1E3/TrmsCN6NsoUyrvhbZuOC8X23mzTLAmpt4Omh0lMss8d'],
 ['stories',/^\/stories$/,'sha384-63g9EIEAaAmgXZu8uij5466Mg/c28y0paPvYjbDNu8ICTgo6OOlMVH1+971wEXtu'],
 ['story',/^\/stories\/[^/]+$/,'sha384-whRLjrz6JsOE/hq+FrzzFppWoiPoGLg/5A//3fpm6wHIwRT2SEfpWjZrsqUvjY5v','story-preview','sha384-cu1py1IUdG1gVs40onQisOLjtKBl5QbpyYHKX2qCopWA0eCIpdIeHflWxHRtfauz'],
