@@ -171,6 +171,13 @@ describe('A14 mono text under 12px lifted to the floor', () => {
     expect((sweep.replace(/\/\*[\s\S]*?\*\//g, '').match(/\.tll-lib-meta\b/g) || []).length).toBe(2);
   });
 
+  // Check of the sweep, note 8: the /for-expats eyebrows are 10px in the page CSS; the page's tll-floor-js lifted the map's eyebrow
+  // (drawn by tll-expats-map-v1) only when the map came before window load. In the floor list it is 12px whenever it comes.
+  it('names the /for-expats eyebrow, which the page sets to 10px and the expats map adds late', () => {
+    expect(block).toContain(',[data-tll-x=eyebrow],');
+    expect(read('src', 'pages', 'heroes-2026-10-29', 'code', 'for-expats-head.html')).toContain('[data-tll-x=eyebrow],[data-tll-x=label],[data-tll-x=desk-eyebrow],[data-tll-x=step-n]{font-family:\'JetBrains Mono\',monospace;font-size:10px;');
+    expect(read('src', 'site-layers', 'tll-expats-map-v1.js')).toContain("el('div',{'data-tll-x':'eyebrow'})");
+  });
 });
 
 describe('A15 profile album tape: the photos and countries line wraps inside its tape', () => {
