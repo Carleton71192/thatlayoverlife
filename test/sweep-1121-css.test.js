@@ -75,3 +75,28 @@ describe('A05 /about lower half: the buttons join the set, the cite and the list
     expect(inCore("html body .tll-about-final-cite,html body .tll-about-final-li{font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif}")).toBe(true);
   });
 });
+
+describe('A06 /submit and /my-pets form text reaches AA (scoped: /share-photos page code already passes)', () => {
+  const P = 'html:is([data-wf-page="6a0d5e5eb7804d3a750dc266"],[data-wf-page="6a0df9ffc4a846ee4db92b63"]) body';
+  const mix = (fg, bg, a) => '#' + fg.slice(1).match(/../g).map((x, i) => Math.round(parseInt(x, 16) * a + parseInt(bg.slice(1 + i * 2, 3 + i * 2), 16) * (1 - a)).toString(16).padStart(2, '0')).join('');
+  it('help text, help and status: ink at 72%, weight 400, upright', () => {
+    rule(`${P} .tll-pen-helptext,${P} .tll-pen-help,${P} .tll-pen-status{color:rgba(13,15,26,.72);font-weight:400;font-style:normal}`);
+    for (const bg of ['#FDF9F3', '#FFFFFF', '#F7F1E8']) {
+      expect(ratio(mix('#0D0F1A', bg, 0.5), bg)).toBeLessThan(4.5);
+      expect(ratio(mix('#0D0F1A', bg, 0.72), bg)).toBeGreaterThan(7);
+    }
+  });
+  it('legend in the AA rose, labels 13.5px, placeholders #6B6660 (over the page rule, also !important)', () => {
+    rule(`${P} .tll-pen-legend{color:#C8325B}`);
+    rule(`${P} .tll-pen-label{font-size:13.5px;letter-spacing:.04em}`);
+    rule(`${P} ::placeholder{color:#6B6660 !important}`);
+    expect(ratio('#C8325B', '#F7F1E8')).toBeGreaterThan(4.5);
+    expect(ratio('#6B6660', '#F7F1E8')).toBeGreaterThan(4.5);
+    expect(ratio('#8B857C', '#FDF9F3')).toBeLessThan(4.5);
+  });
+  it('keys on the two page ids only, so /share-photos keeps its own teal legends', () => {
+    const block = sweep.split('/* A06')[1].split('/* ')[0];
+    expect(block).not.toContain('6a0dfca3f9fa5b751d154257');
+    expect(block.match(/data-wf-page/g).length).toBe(12);
+  });
+});
