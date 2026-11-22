@@ -82,10 +82,10 @@ nothing was downloaded from Webflow hosts; every non-GET aborted.
 
 | | Before (1ef84ab) | After (this follow-up) |
 |---|---|---|
-| Core tll-site-layers-v16.js | 272,423 B | 273,683 B, 79.2 KB gzip |
-| Core sha384 | sha384-rX6JpX+ziDO8ce0A32rdwa+F2hX4IyqAQ8eXNR648g+BpItDm62qGyZxty1TxIFF | sha384-zZQB/zsehgGnNd/jgQFu0T1AqScv35Wvg4rT533wLyECh6g4NFcOeANuIB6Qe25t |
+| Core tll-site-layers-v16.js | 272,423 B | 273,848 B, 79.2 KB gzip (273,683 B at f3bc3f4, before review 2) |
+| Core sha384 | sha384-rX6JpX+ziDO8ce0A32rdwa+F2hX4IyqAQ8eXNR648g+BpItDm62qGyZxty1TxIFF | sha384-7BuGLQzS/89d4eCS1J14BHSv96uxPPr4tl62X1kJtq7Ngzljs24q8/rce1BHepYz |
 | chunks/site.js | 23,692 B | 20,588 B (site-preview.js 23,839 B is new) |
-| vitest | 827 tests, 72 files | 844 tests, 72 files, all pass |
+| vitest | 827 tests, 72 files | 849 tests, 72 files, all pass (844 at f3bc3f4) |
 | node --test worker/test | 83 | 83, all pass |
 
 | Note | What | Why | Before | After (measured) |
@@ -93,9 +93,18 @@ nothing was downloaded from Webflow hosts; every non-GET aborted.
 | 1 (A08) | tll-gate-return-v1: the card rule is html body #tll-gate-back.tll-gate-back (1,1,2) with !important on position, right, bottom, left, top and z-index; the /account lift is one attribute heavier (bottom:76px !important) | the site head's parallax rule .tllp-home :has(> img[data-tll-parallax="hero"]) ~ * (0,2,1) matched the card on the home page | position relative, z-index 2, 2264px below the fold at 390 (Chromium, that rule and the layer) | fixed, 16px from the right and bottom; unit test reads the page rule from the saved site head and compares weights |
 | 2 (A08, C14) | tll-gate-return-v1 moves to the site chunk's staged list; site gets a site-preview variant | the card's words wait for Nancy (class-c C14) | in the public site chunk | only with ?preview=, ?qr= or a tll-preview-* key (loader test); code and tests kept |
 | 2 (A01, C13) | no code change; a test runs the saved live /stories page code (search v4 and the Stories 3.0 companion) with ?q=zzqx | the fallback is public, its words wait for Nancy too | untested against the live page code | the page note wins when the page code runs first and when the companion comes after the fallback |
-| 3 (A12) | new core layer tll-place-wait-v1 and a tll-sweep-1121-v1 rule: while a ?place= that names a place chip is pending, .tll-lib-grid is visibility:hidden (no reflow); the replay takes the mark off once it pressed the chip, found none or gave up (its 3 s wait); the core lets go if the chunk fails, 3 s after the chunk has run, and after 10 s | with late scripts all cards painted, then dropped to the place's | core and chunks 3 s late, /stories?place=Asia at 390: CLS 0.5179 in 3 of 3 loads (live 0.2569) | 0.2569 in 5 of 5 loads, Asia pressed, 11 cards, grid visible at the end; normal speed ?place=Europe at 1440 0.0299 (live 0.0309); no ?place=: nothing changes (unit test) |
+| 3 (A12) | new core layer tll-place-wait-v1 and a tll-sweep-1121-v1 rule: while a ?place= that names a place chip is pending, .tll-lib-grid is visibility:hidden (no reflow); the replay takes the mark off once it pressed the chip, found none or gave up (its 3 s wait); the core lets go at once if the chunk fails, 3.5 s after the later of the chunk's load and DOMContentLoaded (review 2, below), and after 10 s | with late scripts all cards painted, then dropped to the place's | core and chunks 3 s late, /stories?place=Asia at 390: CLS 0.5179 in 3 of 3 loads (live 0.2569) | 0.2569 in 5 of 5 loads, Asia pressed, 11 cards, grid visible at the end; normal speed ?place=Europe at 1440 0.0299 (live 0.0309); no ?place=: nothing changes (unit test) |
 | 4 (A14) | html body .tll-lib-meta:not(#tll-mono-12){letter-spacing:1px !important} | at 12px the page's 2px !important with nowrap and an ellipsis clipped more place names | place tags clipped of 57: 6 at 390, 2 at 1440 (live 2 and 1) | 2 at 390, 1 at 1440. Every element the floor reaches, on the 34 cached pages at both widths: only .tll-lib-meta meets 2px or more with nowrap and an ellipsis, so no other class changed |
 | 8 (A14) | [data-tll-x=eyebrow] joins the A14 list | the page sets the /for-expats eyebrows to 10px; its floor script lifted only some, the map's only when the map drew before window load | the five eyebrows 12, 10, 10 (map), 10, 12px, 3 of 3 loads at 390 and at 1440 | 12px each in every load |
+
+Review 2 (review-2.md on claude/new-session-zxm063), finding 3.1: tll-place-wait-v1 started its 3 s at the stories chunk's load,
+but the replay in tll-stories-places-v1 (and the page's chip script) waits for DOMContentLoaded, which the /stories footer scripts can
+hold back seconds after the chunk has run. In that case the mark went before the replay had started, and all cards showed before the
+place's. The core's wait now starts at the later of the chunk's load and DOMContentLoaded, and is 3.5 s, so it does not let go before
+the replay gives up (29 polls of 100 ms, about 2.9 s plus timer drift). The chunk error path and the 10 s cap are unchanged. Unit
+tests: page still loading with DOMContentLoaded 4 s and 1 s after the chunk load, DOMContentLoaded before the chunk load, and a chunk
+error while loading. Run against the f3bc3f4 layer, the four timing cases and the existing 3 s case (now 3.5 s) fail; the error case
+passes on both. The note 3 browser figures above were measured at f3bc3f4 and were not run again.
 
 For the release: the A08 card is no longer public, so C14 can be answered at any time; to make the card public, move
 tll-gate-return-v1 back to the site chunk's public list in build-site-layers-v16.py and rebuild. A01's fallback (C13) stays public.
