@@ -124,3 +124,14 @@ describe('A13 buttons outside the set join it (404, /submit steps, /the-map, /ac
     expect(src).not.toContain('.tll-btn-google');
   });
 });
+
+describe('A10 tap targets reach 44px', () => {
+  it('on touch screens the nav pair, the /travelers link chips and the /for-expats country field; Save for later everywhere', () => {
+    rule('@media(pointer:coarse){html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:44px !important}html body .tll-trav-linkchips span,html body [data-tll-x="finder-input"]{min-height:44px !important;box-sizing:border-box}}');
+    rule('html body .tll-save-btn{min-height:44px !important;box-sizing:border-box}');
+  });
+  it('comes after the button set, whose compact nav rule (40px, !important) it overrides on touch screens', () => {
+    expect(core.indexOf('["tll-sweep-1121-v1",')).toBeGreaterThan(core.indexOf('["tll-buttons-v1",'));
+    expect(read('src', 'site-layers', 'tll-buttons-v1.html')).toContain('html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:40px !important;');
+  });
+});
