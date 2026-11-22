@@ -1,0 +1,40 @@
+===== head 48441 chars
+   605 script   3782 tll-consent-v3                |  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('consent','default',{ad_storage:'denied',ad_user_dat
+  4388 style     734 tll-embed-mode                |  .tll-embed body > *:not(main){display:none [important];} .tll-embed nav,.tll-embed .tll-nav-v1,.tll-embed footer,.tll-embed .tll-footer-v1{d
+  5123 script    110 -                             | if(/[?&]embed=1/.test(location.search)){document.documentElement.classList.add('tll-embed');}
+  5234 style     482 -                             |  #cc-main{ --cc-bg:#0D0F1A; --cc-primary-color:#F7F1E8; --cc-secondary-color:#00C9C8; --cc-btn-primary-bg:#D63859; --cc-btn-primary-colo
+  5717 style    1061 tll-shelf-fix                 |  .tll-shelf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;} .tll-shelf-card{display:flex;flex-direction
+  6779 style    1238 tll-craft-polish              |  /* TLL craft polish (2026-07-28): form focus rings, button feel, a11y focus, mobile form hardening */ .w-input,.w-select,input[type="text"]
+  8246 style    1038 tll-proto-type-v1             |  /* Prototype parity (2026-09-20, Claude Design handoff): Playfair Display 800 headlines, Plex Condensed body, story hero contrast */ h1,h2,
+  9285 style    2017 tll-consistency-v1            |  /* One page shell site-wide, matched to the Claude Design prototype (2026-09-20) */ :root{--tll-ink:#0A0B14;--tll-rose:#F0507A;--tll-rose-d
+ 11303 script   2004 tll-live-stories-v1           |  /* Live story count from the sitemap (no hardcoded counts) + prototype search placeholder. Member dashboards (/account, /profile) show the 
+ 13308 style    1403 tll-mobile-nav-v1             |  .tllmm-btn{display:none;align-items:center;gap:8px;background:transparent;border:1px solid rgba(247,241,232,.35);color:#F7F1E8;border-radiu
+ 14712 script   1295 tll-mobile-nav-js-v1          |  /* Mobile nav (2026-09-20): the nav had no menu under 768px, so phone readers could not reach Stories, Destinations or Travelers. */ (funct
+ 16008 style    6205 tll-proto-parity-v1           |  /* Prototype parity layer v1 (2026-09-21). Font aliases so legacy families render in brand fonts, nav lockup, public placeholders hidden. *
+ 22214 script    182 -                             | (function(){var p=(location.pathname.replace(/^\/|\/$/g,'')||'home').split('/')[0];document.documentElement.classList.add('tllp-'+p.replace(
+ 22397 script  10009 tll-proto-parity-js-v1        |  /* Prototype parity layer v1 (2026-09-21): contrast repair, nav wordmark, consent defaults, copy fixes, fabricated-content cleanup. Mobi
+ 32407 style      89 -                             | @media(max-width:767px){.tllsp-feat{grid-template-columns:1fr [important]}}
+ 32497 style    2220 tll-v9-chrome-v1              |  /* v9 chrome (5 Oct 2026): J03 focus ring, J04 skip link, J05 muted greys, J06 text and tap floors, J07 MENU under 900px. Additive: overrid
+ 34718 script   3112 tll-v9-chrome-js-v1           |  /* v9 chrome script: landmarks (header, nav aria-label Main, main#main, footer), SKIP TO CONTENT, MENU / CLOSE ✕ labels and close-on-pick, 
+ 37832 style    1113 tll-v9-type-v1                |  /* v9 J11 (6 Oct 2026): the 2.0 type scale. Home hero 148px / .94 (186px collided with the eyebrow, Nancy 6 Oct). Story titles keep their o
+ 38946 style    1009 tll-v91-hero-scrim-v1         |  /* v9.1 fix 02 (6 Oct 2026, DRAFT): bottom scrim on the home hero photo so the teal eyebrow clears 4.5:1, and the eyebrow at 12px / 0.18em.
+ 39956 style    3126 tll-v91-motion-v1             |  /* v9.1 fix 09 (6 Oct 2026, DRAFT): one motion spec for the whole site. Enter: ease-out cubic-bezier(.23,1,.32,1), 200 to 300ms, opacity + 
+ 43083 script   1093 tll-v91-motion-js-v1          |  /* The JS half of the reduced-motion hook: window.tllReduced is true when the OS asks for less motion; scripts that move things check it. *
+ 44177 style    2677 tll-floor-v1                  |  /* TLL type floor and tap targets, Packet A (19 Oct 2026, prototype 3.3). 12px minimum on every eyebrow, meta, chip and caption rule that 
+ 46855 script    969 tll-floor-js-v1               |  /* Safety net for the 12px floor: any visible text run still under 12px after the stylesheet gets 12px inline. Runs once after load. It 
+ 47825 style     616 tll-ms-blocks-early-v1        |  /* 7 Nov 2026 (baseline audit): the member and anonymous blocks are hidden or shown by tll-core-v2-css in the site FOOTER, which the phone 
+totals {'script': 22556, 'style': 25028}
+===== footer 44807 chars
+     0 script    614 -                             |  (function(){ function wire(){ [].slice.call(document.querySelectorAll('[data-tll-cookie-prefs], a[href^="javascript:"]')).forEach(fun
+   615 script   1533 -                             |  /* TLL story share fixes (2026-07-30): wire the broken 'Copy link' button to the clipboard, and point LinkedIn/X share at the current story
+  2149 style    1477 tll-pass-a                    |  /* PASS A (2026-07-29): site-wide contrast + form cleanup */ .tll-mypets-stat-num{color:#00857F [important];} .tll-bg-paper .tll-card .tll-t
+  3627 style     434 tll-core-v2-css               |  /* Ported from retired perf polish v7: member/anonymous blocks never flash, logo stays legible, 44px touch targets */ [data-ms-content="mem
+  4062 style    6477 tll-forms-v2                  |  /* TLL form system v2 (2026-09-25). The forms had drifted into four separate input families with three border widths, three corner radii
+ 10540 script   2616 tll-core-v2                   |  /* TLL core v2 (2026-09-21). Replaces 11 retired registered scripts with only the behavior the site still needs: lazy images, member-pag
+ 13157 script   5859 tll-a11y-motion-v1            |  /* Accessibility + motion (2026-09-28): 3px focus ring and a Skip to content link; WCAG AA contrast repair for brand accent text (after loa
+ 19017 script   4448 tll-ga4-events-v1             |  /* TLL GA4 events v1 (2026-10-12, approved by Nancy). Consent-gated: tllEv() sends nothing unless gtag exists AND CookieConsent reports the
+ 23466 style    4245 tll-note-v1-css               |  /* Tell the editor, Packet A (19 Oct 2026, prototype 3.3). Fixed bottom left, under the cookie banner (banner z-index 70), 44px pill, ca
+ 27712 script   1539 tll-note-v1-js                |  /* Tell the editor behavior: open and close, page URL into the hidden field, Escape closes, focus returns to the pill, aria-expanded on the
+ 29384 style    2647 tll-pwa-v1-css                |  /* PWA (9 Nov 2026): install card, update toast, standalone safe areas. Ink #0A0B14, cream #F7F1E8, rose #F0507A (5.7:1 on ink). */ .tll-pw
+ 32032 script  12775 tll-pwa-v1-js                 |  /* PWA client (9 Nov 2026). Adds the head tags (theme color, home-screen metas, the manifest link once the Worker answers), registers /sw.j
+totals {'script': 29384, 'style': 15280}

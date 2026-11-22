@@ -1,0 +1,44 @@
+404-head.html              MATCH reports/evidence/2026-09-30/webflow/page-code/404.head.html
+about-head.html            MATCH src/pages/heroes-2026-10-29/code/about-head.html
+account-footer.html        NO EXACT SNAPSHOT
+account-head.html          NO EXACT SNAPSHOT
+contrib-tpl-footer.html    NO EXACT SNAPSHOT
+contrib-tpl-head.html      MATCH src/seo/live-2026-10-28/contributors-template-code-head.html
+cookies-head.html          MATCH src/seo/live-2026-10-28/cookies-head-head.html
+countries-tpl-footer.html  MATCH src/pages/country/live-2026-11-11/after/template-footer.html
+countries-tpl-head.html    MATCH src/pages/country/live-2026-11-11/after/template-head.html; src/pages/country/live-2026-11-11/before/template-head.html
+destinations-footer.html   MATCH src/pages/sweep-2026-10-19/destinations-footer-after.html
+destinations-head.html     NO EXACT SNAPSHOT
+edit-profile-footer.html   MATCH reports/evidence/2026-09-30/webflow/page-code/edit-profile.footer.html; src/pages/edit-profile/before-2026-10-20/page-footer-before.html
+edit-profile-head.html     MATCH src/pages/edit-profile/before-2026-10-20/page-head-before.html
+for-expats-footer.html     MATCH src/pages/heroes-2026-10-29/code/for-expats-footer.html
+for-expats-head.html       MATCH src/pages/heroes-2026-10-29/code/for-expats-head.html
+for-press-footer.html      MATCH reports/evidence/2026-09-30/webflow/page-code/for-press.footer.html
+for-press-head.html        NO EXACT SNAPSHOT
+gallery-footer.html        NO EXACT SNAPSHOT
+gallery-head.html          NO EXACT SNAPSHOT
+home-footer.html           NO EXACT SNAPSHOT
+home-head.html             MATCH src/pages/home/live-2026-11-13/next/head-code.after.html; src/pages/home/live-2026-11-13/next/head-code.readback.html
+layovers-head.html         MATCH src/pages/layovers/live-2026-11-11/head.after-followups.html
+login-footer.html          MATCH src/pages/auth/au3-footer-block.html
+login-head.html            NO EXACT SNAPSHOT
+my-pets-footer.html        MATCH reports/evidence/2026-09-30/webflow/page-code/my-pets.footer.html
+my-pets-head.html          MATCH reports/evidence/2026-09-30/webflow/page-code/my-pets.head.html
+paw-footer.html            MATCH src/pages/the-paw-passport/live-2026-11-13/next/footer-code.after.html; src/pages/the-paw-passport/live-2026-11-13/next/footer-code.readback.html
+paw-head.html              NO EXACT SNAPSHOT
+pets-tpl-footer.html       NO EXACT SNAPSHOT
+pets-tpl-head.html         NO EXACT SNAPSHOT
+share-photos-footer.html   MATCH src/pages/share-photos/v3/page-footer-new.html; src/pages/share-photos/v3/verify/page-footer-readback.html
+share-photos-head.html     MATCH src/pages/share-photos/live-2026-10-23/page-head-before.html
+signup-footer.html         MATCH src/pages/auth/au3-footer-block.html
+signup-head.html           NO EXACT SNAPSHOT
+stories-footer.html        NO EXACT SNAPSHOT
+stories-head.html          NO EXACT SNAPSHOT
+story-tpl-footer.html      MATCH src/pages/stories-template/live-2026-11-13/fonts/page-footer.after.html
+story-tpl-head.html        MATCH src/pages/stories-template/live-2026-11-13/fonts/page-head.after.html
+submit-footer.html         MATCH reports/evidence/submit-account-read-2026-11-21/webflow-c3-after.html
+submit-head.html           MATCH reports/evidence/2026-09-30/webflow/page-code/submit.head.html; src/pages/submit/live-2026-10-29/page-head-live.html
+the-map-footer.html        NO EXACT SNAPSHOT
+the-map-head.html          NO EXACT SNAPSHOT
+travelers-footer.html      MATCH src/pages/travelers/live-2026-11-10/after/page-footer.html
+travelers-head.html        MATCH src/pages/travelers/live-2026-11-13/fonts/page-head.after.html
