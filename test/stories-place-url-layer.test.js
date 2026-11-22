@@ -67,8 +67,8 @@ describe('tll-stories-places-v1 byline dots (A16)', () => {
 
 // Check of the sweep, note 3: with late scripts a shared ?place= link painted all cards, then dropped to the place's (CLS 0.52). The core
 // layer tll-place-wait-v1 marks html while a valid ?place= is pending and the core style keeps the grid visibility:hidden (no reflow);
-// the replay above takes the mark off once it has pressed the chip; the core takes it off if the chunk fails, 3 s after the chunk has
-// run, and after 10 s in any case.
+// the replay above takes the mark off once it has pressed the chip; the core takes it off if the chunk fails, 3.5 s after the later of
+// the chunk's load and DOMContentLoaded (the replay waits for DOMContentLoaded; review 2, finding 3.1), and after 10 s in any case.
 describe('tll-place-wait-v1 holds the grid while a ?place= is pending (check note 3)', () => {
   const wait = read('src', 'site-layers', 'tll-place-wait-v1.js');
   const core = read('src', 'site-layers', 'tll-site-layers-v16.js');
@@ -105,14 +105,54 @@ describe('tll-place-wait-v1 holds the grid while a ?place= is pending (check not
     await dom.tick(2800); expect(mark(dom)).toBe(true);
     await dom.tick(200); expect(mark(dom)).toBe(false);
   });
-  it('the core alone lets go 3 s after the chunk has run, at once if it fails, and after 10 s in any case', async () => {
+  it('the core alone lets go 3.5 s after the chunk has run, at once if it fails, and after 10 s in any case', async () => {
     const a = open('/stories', '?place=Europe'); a.fire('load');
-    await a.dom.tick(2999); expect(mark(a.dom)).toBe(true);
+    await a.dom.tick(3499); expect(mark(a.dom)).toBe(true);
     await a.dom.tick(1); expect(mark(a.dom)).toBe(false);
     const b = open('/stories', '?place=Europe'); b.fire('error'); expect(mark(b.dom)).toBe(false);
     const c = open('/stories', '?place=Europe');
     await c.dom.tick(9999); expect(mark(c.dom)).toBe(true);
     await c.dom.tick(1); expect(mark(c.dom)).toBe(false);
+  });
+  // Review 2, finding 3.1: the chunk can run while the page is still loading and the page's footer scripts hold DOMContentLoaded
+  // back; the replay and the page's chip script both wait for it, so the core's wait starts there.
+  const parsed = (dom) => { dom.document.readyState = 'interactive'; dom.document.dispatchEvent(new dom.window.Event('DOMContentLoaded')); };
+  it('page still loading, DOMContentLoaded 4 s after the chunk load: the grid stays hidden until the replay has pressed the chip', async () => {
+    const { dom, fire } = open('/stories', '?place=Africa'); dom.document.readyState = 'loading';
+    const history = { state: null, replaceState() {} };
+    dom.run(src, { history }); dom.run(chipsPage, { history }); fire('load');
+    await dom.tick(4000); expect(mark(dom)).toBe(true);
+    expect(chip(dom, 'Africa').getAttribute('aria-pressed')).not.toBe('true');
+    parsed(dom); await dom.tick(200);
+    expect(chip(dom, 'Africa').getAttribute('aria-pressed')).toBe('true');
+    expect(mark(dom)).toBe(false);
+  });
+  it('page still loading, DOMContentLoaded 4 s after the chunk load: the core alone lets go 3.5 s after DOMContentLoaded', async () => {
+    const { dom, fire } = open('/stories', '?place=Europe'); dom.document.readyState = 'loading'; fire('load');
+    await dom.tick(4000); expect(mark(dom)).toBe(true);
+    parsed(dom);
+    await dom.tick(3499); expect(mark(dom)).toBe(true);
+    await dom.tick(1); expect(mark(dom)).toBe(false);
+  });
+  it('page still loading, DOMContentLoaded 1 s after the chunk load: 3.5 s from DOMContentLoaded', async () => {
+    const { dom, fire } = open('/stories', '?place=Europe'); dom.document.readyState = 'loading'; fire('load');
+    await dom.tick(1000); parsed(dom);
+    await dom.tick(3499); expect(mark(dom)).toBe(true);
+    await dom.tick(1); expect(mark(dom)).toBe(false);
+  });
+  it('DOMContentLoaded before the chunk load: 3.5 s from the chunk load, and the replay still lets go first', async () => {
+    const { dom, fire } = open('/stories', '?place=Europe'); dom.document.readyState = 'loading';
+    await dom.tick(500); parsed(dom);
+    await dom.tick(1500); fire('load');
+    await dom.tick(3499); expect(mark(dom)).toBe(true);
+    await dom.tick(1); expect(mark(dom)).toBe(false);
+    const b = open('/stories', '?place=Europe'); b.dom.document.readyState = 'loading'; parsed(b.dom);
+    b.dom.run(src, { history: { replaceState() {} } }); b.fire('load');
+    await b.dom.tick(2950); expect(mark(b.dom)).toBe(false);
+  });
+  it('a chunk error while the page is still loading lets go at once', () => {
+    const { dom, fire } = open('/stories', '?place=Europe'); dom.document.readyState = 'loading'; fire('error');
+    expect(mark(dom)).toBe(false);
   });
   it('the core style hides with visibility, not display, only while marked; the layer is in the core and its list matches the chips', () => {
     const css = read('src', 'site-layers', 'tll-sweep-1121-v1.html');

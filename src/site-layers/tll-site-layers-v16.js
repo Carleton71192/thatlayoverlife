@@ -22,7 +22,7 @@
    core   src/site-layers/tll-ads-v1.js (31 Oct Nancy: AdSense, tastefully (story pages, library, countries only))
    core   src/site-layers/tll-pwa-hold-v1.js (10 Nov Lighthouse: the footer PWA client HEAD /sw.js is answered locally with a 404 until the PWA Worker is live (no console 404, nothing registered))
    core   src/site-layers/tll-self-data-v1.js (13 Nov bandwidth fixes 4 and 5: counts and pet lists from data on the page instead of downloading /stories, the sitemap and the pet page; other members' cards on a profile hidden before their photos load)
-   core   src/site-layers/tll-place-wait-v1.js (22 Nov check of the 21 Nov sweep, note 3: a /stories?place= link keeps the card grid hidden (visibility) while the stories chunk comes and A12 presses the chip (its 3 s wait; 10 s cap))
+   core   src/site-layers/tll-place-wait-v1.js (22 Nov check of the 21 Nov sweep, note 3: a /stories?place= link keeps the card grid hidden (visibility) while the stories chunk comes and A12 presses the chip (3.5 s after the later of the chunk load and DOMContentLoaded; 10 s cap))
    story  src/design/magazine-2026-10/story-build/tll-mag-story-v1.html (the magazine story page: Playfair Display 800 and Plex, the byline in the head, the stamp on the photo; /stories/{slug} only)
    cover  src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html (the magazine cover: the cover story photo full bleed, the chip, the stamp; home page only)
    first  src/site-layers/tll-consent-mode-v2.js (Consent Mode v2 defaults when the head consent tool is missing)
@@ -1545,7 +1545,9 @@ if(PLACES.indexOf(want)<0)return;
 var c=document.querySelector('script[src*="/chunks/stories.js"],script[src*="/chunks/stories-preview.js"]');if(!c)return;
 var h=document.documentElement;function show(){h.removeAttribute('data-tll-place-wait');}
 h.setAttribute('data-tll-place-wait','');
-c.addEventListener('load',function(){setTimeout(show,3000);});c.addEventListener('error',show);
+function late(){setTimeout(show,3500);}
+c.addEventListener('load',function(){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',late);else late();});
+c.addEventListener('error',show);
 setTimeout(show,10000);
 })();
 (function(){if(!/^\/stories\/[^/]+\/?$/.test(location.pathname))return;if(document.getElementById('tll-mag-story-v1'))return;

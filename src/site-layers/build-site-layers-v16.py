@@ -135,7 +135,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-p0-closeout-v1.js', '11 Nov launch blockers: Example Text placeholders cleared on /submit and /share-photos; Cookie settings opens /cookies outside Europe'),
            ('src/site-layers/tll-pwa-hold-v1.js', '10 Nov Lighthouse: the footer PWA client HEAD /sw.js is answered locally with a 404 until the PWA Worker is live (no console 404, nothing registered)'),
            ('src/site-layers/tll-self-data-v1.js', '13 Nov bandwidth fixes 4 and 5: counts and pet lists from data on the page instead of downloading /stories, the sitemap and the pet page; other members\' cards on a profile hidden before their photos load'),
-           ('src/site-layers/tll-place-wait-v1.js', '22 Nov check of the 21 Nov sweep, note 3: a /stories?place= link keeps the card grid hidden (visibility) while the stories chunk comes and A12 presses the chip (its 3 s wait; 10 s cap)')]
+           ('src/site-layers/tll-place-wait-v1.js', '22 Nov check of the 21 Nov sweep, note 3: a /stories?place= link keeps the card grid hidden (visibility) while the stories chunk comes and A12 presses the chip (3.5 s after the later of the chunk load and DOMContentLoaded; 10 s cap)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
 CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
