@@ -46,3 +46,16 @@ describe('A18 tll-series-v1 and tll-pros-v1 ride only in preview chunks', () => 
     expect(load('/stories')).toEqual(['site.js', 'stories.js']);
   });
 });
+
+describe('A19 tll-open-slots-v1 (draft /spotlight only) is staged; tll-home-value-v1 no longer says STAGED', () => {
+  it('the public misc chunk drops open-slots, the preview keeps it', () => {
+    expect(chunk('misc')).not.toContain('/* src/site-layers/tll-open-slots-v1.js */');
+    expect(chunk('misc')).toContain('/* src/site-layers/tll-lounge-members-v1.js */');
+    expect(chunk('misc-preview')).toContain('/* src/site-layers/tll-open-slots-v1.js */');
+  });
+  it('the home value header matches its PUBLIC=true', () => {
+    const s = read('src', 'site-layers', 'tll-home-value-v1.js');
+    expect(s).toContain('var PUBLIC=true;');
+    expect(s.split('*/')[0]).not.toMatch(/STAGED: renders only/);
+  });
+});

@@ -14,7 +14,7 @@
    core   src/site-layers/tll-stories-noimg-v1.js (29 Oct Nancy: /stories card without a photo shows a plain panel; the lead goes to the newest story with a photo)
    core   src/site-layers/tll-mbar-align-v1.js (29 Oct Nancy: member bar links line up with the page column)
    core   src/site-layers/tll-photos-form-v2.js (29 Oct Nancy: /share-photos takes 30 photos and PNG)
-   core   src/site-layers/tll-home-value-v1.js (31 Oct Value Playbook Phase 1: home value section, staged behind ?preview=value)
+   core   src/site-layers/tll-home-value-v1.js (31 Oct Value Playbook Phase 1: home value section, public since 31 Oct (PUBLIC=true))
    core   src/site-layers/tll-album-settings-v1.js (31 Oct Nancy: per-continent map counts (numbers only) and how each member counts continents (7, 6 or 5))
    core   src/site-layers/tll-division-v1.js (31 Oct Value Playbook Phase 7: tll or paw-passport on GA4 and revenue links, entity from one setting)
    core   src/site-layers/tll-phase0-v1.js (31 Oct Nancy: Phase 0 fixes (contact relay, support headline, search, map buttons, shelf count, Thailand stub))
@@ -42,7 +42,7 @@
    chunk  pursuits /^\/pursuits\/[^/]+$/: tll-stamps-v1, tll-work-trips-v1 (+ staged in pursuits-preview: tll-pros-v1, tll-series-v1)
    chunk  pets /^\/(pets\/[^/]+|my-pets|the-paw-passport)$/: tll-crew-v1, tll-album-v1 (+ staged in pets-preview: tll-series-v1, tll-paw-v1, tll-pet-passport-v1)
    chunk  countries /^\/countries\/[^/]+$/:  (+ staged in countries-preview: tll-series-v1)
-   chunk  misc /^\/(spotlight|gallery)$/: tll-open-slots-v1, tll-lounge-members-v1 (+ staged in misc-preview: tll-lounge-deck-v1)
+   chunk  misc /^\/(spotlight|gallery)$/: tll-lounge-members-v1 (+ staged in misc-preview: tll-open-slots-v1, tll-lounge-deck-v1)
    No data-ms-* element is touched. */
 /* src/site-layers/tll-consent-mode-v2.js */
 window.dataLayer=window.dataLayer||[];if(typeof window.gtag!=='function'){window.gtag=function(){dataLayer.push(arguments);};}
@@ -71,7 +71,7 @@ var C=[['site',/^/,'sha384-oy5hXDkR0y8b3+jrbgYwlBWgOtz9neSLzdG1vhYSV5+pJ9DurJ23X
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-7PE2x3khdQ/wYs+L6BAnOhxyfI7Akm2PJGJR6DJMI5HvIRp/tenwB9eQPxDFEL6h','pursuits-preview','sha384-mgFpXrKZRW3st2Ue2d6WpvOKyFH6ZQqREM7ZBCz0yZeKDVqrJ8SKpaJtEecR+vg9'],
 ['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-NEkYk5VEGIXIQk72Zl8MtLfDOTr48XWNsBGbvFle/7420UJaFw8FA60FWfelIymU','pets-preview','sha384-eTioXSS9opdZPHIv6BuARTdsqrCXpvhsOA+VDkKJ96Z2bbCY4oGFyAMjKv+i7CtT'],
 ['countries',/^\/countries\/[^/]+$/,'','countries-preview','sha384-QW92osqmvPzuMstf0mTAcdiSnE/TQwTk+9Ozu8dsMxVm5IJyza7Lz2UYA2+6FP6Q'],
-['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj','misc-preview','sha384-4etMvW7fySF4S3yjjYhhsh5PZ8jNcz0muB/9sUHT2i+uWaqwM6T9Ben14zSAqmrT']],h=document.head||document.documentElement;
+['misc',/^\/(spotlight|gallery)$/,'sha384-+GffksQ7+Q4wXqSJBvtw5J7/oNiIB/gB+Laf/erRQ1MMiyk5PUuqY+wwmrFkXtYH','misc-preview','sha384-4etMvW7fySF4S3yjjYhhsh5PZ8jNcz0muB/9sUHT2i+uWaqwM6T9Ben14zSAqmrT']],h=document.head||document.documentElement;
 for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}if(!g)continue;
   var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}
 })();

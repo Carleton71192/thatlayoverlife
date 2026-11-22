@@ -107,7 +107,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-lounge-members-v1.js', '31 Oct Nancy: member photos appear in the Lounge'),
            ('src/site-layers/tll-lounge-deck-v1.js', '11 Nov Nancy: the Lounge as a swipeable postcard deck on /gallery, staged behind ?preview=lounge'),
            ('src/site-layers/tll-crew-v1.js', '31 Oct Nancy approved the companions mockup: invite then accept, Travels with, shared pets'),
-           ('src/site-layers/tll-home-value-v1.js', '31 Oct Value Playbook Phase 1: home value section, staged behind ?preview=value'),
+           ('src/site-layers/tll-home-value-v1.js', '31 Oct Value Playbook Phase 1: home value section, public since 31 Oct (PUBLIC=true)'),
            ('src/site-layers/tll-collections-v1.js', '31 Oct Nancy: souvenir collections on /edit-profile and profiles, private by default with opt in'),
            ('src/site-layers/tll-whats-new-v1.js', '31 Oct Nancy: What is new dot and /account card for signed-in members, entries switched on in the CMS'),
            ('src/site-layers/tll-stamps-v1.js', '31 Oct Value Playbook Phase 2: pursuit stamps and badges, hub noindex until 6 stories from 3 writers'),
@@ -201,7 +201,7 @@ CHUNKS = [
     ('pursuits', r'/^\/pursuits\/[^/]+$/', ['tll-stamps-v1', 'tll-work-trips-v1'], ['tll-pros-v1', 'tll-series-v1']),
     ('pets', r'/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/', ['tll-crew-v1', 'tll-album-v1'], ['tll-series-v1', 'tll-paw-v1', 'tll-pet-passport-v1']),
     ('countries', r'/^\/countries\/[^/]+$/', [], ['tll-series-v1']),
-    ('misc', r'/^\/(spotlight|gallery)$/', ['tll-open-slots-v1', 'tll-lounge-members-v1'], ['tll-lounge-deck-v1']),
+    ('misc', r'/^\/(spotlight|gallery)$/', ['tll-lounge-members-v1'], ['tll-open-slots-v1', 'tll-lounge-deck-v1']),
 ]
 
 def read(p): return open(p, encoding='utf-8').read()
