@@ -28,7 +28,16 @@ function chips(){
       note.textContent='No stories from '+v+' yet. Be the first.';grid.parentNode.insertBefore(note,grid);}
   });});
 }
-function run(){chips();words();}
+function url(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-chips="place-sort"] [data-tll-place]');if(!c||!history.replaceState)return;
+  var v=c.getAttribute('data-tll-place')||'',q=new URLSearchParams(location.search);if(!v||v==='all')q.delete('place');else q.set('place',v);
+  var s=q.toString();history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash);}
+document.addEventListener('click',url);
+function replay(){var want=(new URLSearchParams(location.search).get('place')||'').trim().toLowerCase();if(!want||want==='all')return;var n=0;
+  (function go(){var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');
+    if(!grid||!grid.dataset.tllChips){if(++n<30)setTimeout(go,100);return;}
+    var hit=null;[].forEach.call(document.querySelectorAll('[data-tll-chips="place-sort"] [data-tll-place]'),function(c){if((c.getAttribute('data-tll-place')||'').toLowerCase()===want)hit=c;});
+    if(hit&&hit.getAttribute('aria-pressed')!=='true')hit.click();})();}
+function run(){chips();words();replay();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 setTimeout(words,1500);
 })();
