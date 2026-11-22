@@ -10,4 +10,7 @@ html:is([data-wf-page="6a0d5e5eb7804d3a750dc266"],[data-wf-page="6a0df9ffc4a846e
 html:is([data-wf-page="6a0d5e5eb7804d3a750dc266"],[data-wf-page="6a0df9ffc4a846ee4db92b63"]) body .tll-pen-legend{color:#C8325B}
 html:is([data-wf-page="6a0d5e5eb7804d3a750dc266"],[data-wf-page="6a0df9ffc4a846ee4db92b63"]) body .tll-pen-label{font-size:13.5px;letter-spacing:.04em}
 html:is([data-wf-page="6a0d5e5eb7804d3a750dc266"],[data-wf-page="6a0df9ffc4a846ee4db92b63"]) body ::placeholder{color:#6B6660 !important}
+/* A10 tap targets under 44px: nav pair 40px on phones (the button set's compact size beat the site floor), story Save for later 26px tall, /travelers link chips and the /for-expats country field 32px on phones */
+@media(pointer:coarse){html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:44px !important}html body .tll-trav-linkchips span,html body [data-tll-x="finder-input"]{min-height:44px !important;box-sizing:border-box}}
+html body .tll-save-btn{min-height:44px !important;box-sizing:border-box}
 </style>
