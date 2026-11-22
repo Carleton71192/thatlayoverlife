@@ -1,0 +1,32 @@
+<script>
+/* TLL Lounge v2 (2026-09-29, screen 39): tiles carry data-tll-img and data-tll-credit set in the page; the script paints the photo and the credit label, keeps OPEN SLOT · <place> on tiles without a photo, and keeps the location filter chips (v1, 2026-07-03). ADD YOURS tile always visible. */
+(function(){
+  var MONO="font-family:'JetBrains Mono',monospace;letter-spacing:2px;";
+  function boot(){
+    if(document.querySelector('[data-tll-lounge-chips]'))return;
+    var tiles=[].slice.call(document.querySelectorAll('[data-tll-loc]'));if(!tiles.length)return;
+    var grid=tiles[0].parentElement;
+    tiles.forEach(function(t){
+      var img=t.getAttribute('data-tll-img'), cr=t.getAttribute('data-tll-credit'), loc=t.getAttribute('data-tll-loc')||'';
+      if(t.getAttribute('data-tll-photo-ready')==='true')return;
+      if(img){ t.style.backgroundImage="url('"+img+"')"; t.setAttribute('data-tll-has-img','1'); t.setAttribute('role','img'); t.setAttribute('aria-label',(cr||loc)+' photo');t.setAttribute('data-tll-photo-ready','true'); var c=document.createElement('span'); c.className='tll-lounge-credit'; c.textContent=cr||loc.toUpperCase(); t.appendChild(c); }
+      else { var tag=document.createElement('span'); tag.className='tll-lounge-open'; tag.textContent='OPEN SLOT · '+loc.toUpperCase(); t.appendChild(tag); }
+    });
+    var seen={},conts=[];tiles.forEach(function(t){var l=t.getAttribute('data-tll-loc');if(!seen[l]){seen[l]=1;conts.push(l);}});
+    var row=document.createElement('div');row.setAttribute('data-tll-lounge-chips','');
+    row.setAttribute('role','group');row.setAttribute('aria-label','Filter photos by region');
+    row.style.cssText='display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 auto 26px;max-width:900px';
+    function chip(label,val){var c=document.createElement('button');c.type='button';c.textContent=label.toUpperCase();c.setAttribute('data-val',val);c.setAttribute('aria-pressed','false');
+      c.style.cssText=MONO+'cursor:pointer;font-size:11px;padding:8px 14px;border:1px solid #E0DACE;border-radius:999px;background:#ffffff;color:#1A1A1A;text-decoration:none';return c;}
+    row.appendChild(chip('All places','all'));
+    conts.forEach(function(l){row.appendChild(chip(l,l));});
+    grid.parentNode.insertBefore(row,grid);
+    function paint(v){[].slice.call(row.children).forEach(function(c){var on=c.getAttribute('data-val')===v;
+      c.style.background=on?'#0D0F1A':'#ffffff';c.style.color=on?'#ffffff':'#1A1A1A';c.style.borderColor=on?'#0D0F1A':'#E0DACE';c.setAttribute('aria-pressed',on?'true':'false');});}
+    row.addEventListener('click',function(e){var t=e.target.closest('button[data-val]');if(!t||!row.contains(t))return;e.preventDefault();
+      var v=t.getAttribute('data-val');paint(v);
+      tiles.forEach(function(tile){var show=(v==='all'||tile.getAttribute('data-tll-loc')===v);tile.style.display=show?'':'none';tile.setAttribute('aria-hidden',show?'false':'true');});});
+    paint('all');}
+  if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);
+})();
+</script>
