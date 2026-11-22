@@ -100,3 +100,27 @@ describe('A06 /submit and /my-pets form text reaches AA (scoped: /share-photos p
     expect(block.match(/data-wf-page/g).length).toBe(12);
   });
 });
+
+describe('A13 buttons outside the set join it (404, /submit steps, /the-map, /account export, /for-expats)', () => {
+  const src = read('src', 'site-layers', 'tll-buttons-v1.html');
+  const B = 'html body .tll404-btn,html body .tllst-nav button.tllst-next,html body .tllst-nav button.tllst-back,html body a.tll-park-cta,html body a.tlllb-cta,html body .tll-exp button,html body a[data-tll-btn],html body a[data-tll-x="finder-go"]';
+  it('square, Plex 600, 48px, no capitals', () => {
+    expect(src).toContain(B + '{box-sizing:border-box;min-height:48px !important;');
+    expect(src).toContain('border-radius:0 !important;border:1.5px solid currentColor !important;');
+  });
+  it('display is set on links only, so the /submit step buttons keep their own hide rule', () => {
+    expect(src).toContain('html body a.tll404-btn,html body a.tll-park-cta,html body a.tlllb-cta,html body a[data-tll-btn],html body a[data-tll-x="finder-go"]{display:inline-flex;');
+    expect(src).not.toContain(B + '{display');
+  });
+  it('one rose fill a group; the 404 second and third buttons outlined in cream, Back and the expats ghost in ink', () => {
+    expect(src).toContain('html body .tll404-ctas>.tll404-btn:first-child,html body .tllst-nav button.tllst-next,html body a.tll-park-cta,html body a.tlllb-cta,html body .tll-exp button,html body a[data-tll-btn="rose"],html body a[data-tll-x="finder-go"]{background:#D63859 !important;color:#FFFFFF !important;');
+    expect(src).toContain('html body .tll404-ctas>.tll404-btn:not(:first-child){background:transparent !important;color:#F7F1E8 !important;border-color:#F7F1E8 !important}');
+    expect(src).toContain('html body .tllst-nav button.tllst-back,html body a[data-tll-btn="ghost"]{background:transparent !important;color:#0A0B14 !important;');
+    expect(ratio('#FFFFFF', '#F0507A')).toBeLessThan(3.5);
+    expect(ratio('#FFFFFF', '#D63859')).toBeGreaterThan(4.5);
+    expect(inCore('html body .tll404-ctas>.tll404-btn:not(:first-child){background:transparent !important;')).toBe(true);
+  });
+  it('leaves the Memberstack buttons on /login and /signup for class C (C02)', () => {
+    expect(src).not.toContain('.tll-btn-google');
+  });
+});
