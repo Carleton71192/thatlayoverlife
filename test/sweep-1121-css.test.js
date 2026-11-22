@@ -147,3 +147,17 @@ describe('A09 the Tell the editor pill moves right on /account at 960px and wide
     expect(read('src', 'site-layers', 'tll-note-phone-v1.html')).toContain('html.tll-typing #tll-note:not([data-open="true"]){display:none !important}');
   });
 });
+
+describe('A14 mono text under 12px lifted to the floor', () => {
+  const block = sweep.split('/* A14')[1].split('\n')[1];
+  it('one rule, 12px, with an id in its weight so it outweighs the page rules that set 10 to 11px with !important', () => {
+    expect(block).toMatch(/^html body :is\(.+\):not\(#tll-mono-12\)\{font-size:12px !important\}$/);
+    expect(inCore(block)).toBe(true);
+  });
+  it('names the measured classes on /stories, /the-map, /account, profiles and the eyebrow pages', () => {
+    for (const c of ['.tll-lib-meta', '.tll-lib-read', '.tllm-card-label', '.tllm-cell-l', '[data-tll-wr=stats] dt', '[data-tll-wr=sheet] li small', '.tll-alb-tape b', '.tll-lounge-credit', '.tll404-eyebrow', '.tllpr-eyebrow']) expect(block).toContain(c);
+  });
+  it('reaches no SVG text (map and stamp labels are drawn to size) and no prose class', () => {
+    expect(/\b(text|tspan|textPath|svg)\b/.test(block)).toBe(false);
+  });
+});
