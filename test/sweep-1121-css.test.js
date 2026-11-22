@@ -173,3 +173,16 @@ describe('A15 profile album tape: the photos and countries line wraps inside its
     for (const c of ['profile', 'pets']) expect(read('src', 'site-layers', 'chunks', `${c}.js`)).toContain('.tll-alb-tape small{white-space:normal;');
   });
 });
+
+describe('A17 /the-map sample banner in the loaded face', () => {
+  it('outweighs the inline font shorthand the map script sets, and the mono label keeps its own inline face', () => {
+    expect(sweep).toContain("html body #tllm-sample{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif !important}");
+    expect(inCore("html body #tllm-sample{font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif !important}")).toBe(true);
+    expect(read('map-2.0', 'dist', 'tll-map-layers.js')).toContain('font:400 15px/1.5 "IBM Plex Sans",system-ui,sans-serif');
+  });
+  it('the A14 floor reaches only the SAMPLE MAP label (the first span), not the 15px line beside it', () => {
+    expect(sweep).toContain(',#tllm-sample>span:first-child,');
+    expect(sweep).not.toContain('#tllm-sample span');
+    expect(read('map-2.0', 'dist', 'tll-map-layers.js')).toContain('b.appendChild(k); b.appendChild(t);');
+  });
+});
