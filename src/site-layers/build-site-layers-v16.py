@@ -59,6 +59,7 @@ STYLES = [('src/site-layers/tll-font-fallbacks-v1.html', 'tll-font-fallbacks-v1'
           ('src/site-layers/tll-masthead-v1.html', 'tll-masthead-v1', 'footer masthead line in Playfair Display italic'),
           ('src/site-layers/tll-buttons-v1.html', 'tll-buttons-v1', 'one button set: filled rose, outlined, text link; square corners; IBM Plex Sans Condensed 600'),
           ('src/site-layers/tll-focus-v1.html', 'tll-focus-v1', '10 Nov hygiene: 2px rose keyboard focus ring (focus-visible) on links, buttons and fields'),
+          ('src/site-layers/tll-sweep-1121-v1.html', 'tll-sweep-1121-v1', '22 Nov: layout, type and contrast fixes from the 21 Nov sweep, one block a finding'),
           ('src/site-layers/tll-paw-hero-img-v1.html', 'tll-paw-hero-img-v1', '13 Nov bandwidth fix 7: /the-paw-passport hero takes the 1080px copy on phones and the 1600px copy wider, not the 1.18 MB original')]
 SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: CMS photos get a srcset from their site-bucket twin variants, the story hero loads first'),
            ('src/components/member-bar/tll-account-hash-tabs-v1.js', 'member bar SETTINGS and CONTRIBUTIONS open their /account tab'),
