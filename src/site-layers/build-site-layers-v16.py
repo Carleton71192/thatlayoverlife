@@ -134,7 +134,8 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-gate-return-v1.js', '22 Nov sweep A08: after signing in from the /submit, /my-pets or /share-photos gate, one card offers the way back; staged (site-preview) until Nancy OKs the words, class-c C14'),
            ('src/site-layers/tll-p0-closeout-v1.js', '11 Nov launch blockers: Example Text placeholders cleared on /submit and /share-photos; Cookie settings opens /cookies outside Europe'),
            ('src/site-layers/tll-pwa-hold-v1.js', '10 Nov Lighthouse: the footer PWA client HEAD /sw.js is answered locally with a 404 until the PWA Worker is live (no console 404, nothing registered)'),
-           ('src/site-layers/tll-self-data-v1.js', '13 Nov bandwidth fixes 4 and 5: counts and pet lists from data on the page instead of downloading /stories, the sitemap and the pet page; other members\' cards on a profile hidden before their photos load')]
+           ('src/site-layers/tll-self-data-v1.js', '13 Nov bandwidth fixes 4 and 5: counts and pet lists from data on the page instead of downloading /stories, the sitemap and the pet page; other members\' cards on a profile hidden before their photos load'),
+           ('src/site-layers/tll-place-wait-v1.js', '22 Nov check of the 21 Nov sweep, note 3: a /stories?place= link keeps the card grid hidden (visibility) while the stories chunk comes and A12 presses the chip (its 3 s wait; 10 s cap)')]
 MAG = 'src/design/magazine-2026-10/story-build/tll-mag-story-v1.html'
 COVER = 'src/design/magazine-2026-10/cover-build/tll-mag-cover-v1.html'
 CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
@@ -172,7 +173,7 @@ CONSENT = 'src/site-layers/tll-consent-mode-v2.js'
 CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1', 'tll-ux-1028-v1', 'tll-mbar-align-v1', 'tll-photos-form-v2',
         'tll-album-settings-v1', 'tll-division-v1', 'tll-phase0-v1', 'tll-drafted-v1',
         'tll-ads-v1', 'tll-page-heroes-v1', 'tll-first-paint-v1', 'tll-early-state-v1', 'tll-stories-noimg-v1', 'tll-home-bands-v1', 'tll-rail-hold-v1', 'tll-library-hold-v1',
-        'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1']
+        'tll-lounge-labels-v1', 'tll-home-value-v1', 'tll-pwa-hold-v1', 'tll-self-data-v1', 'tll-place-wait-v1']
 # Chunks: (name, JS regex tested against location.pathname without trailing slashes, public layers, staged layers). A layer that runs on
 # several pages is repeated in each of their chunks, so a page fetches one chunk besides site. Inside a chunk the order follows SCRIPTS.
 # site holds the unguarded layers that run on every page at DOMContentLoaded or later (none shapes the first paint).
