@@ -1,6 +1,7 @@
-/* tll-home-value-v1 (31 Oct 2026, Value Playbook Phase 1: homepage value messaging). STAGED: renders only for a preview,
-   https://www.thatlayover.life/?preview=value (remembered in this browser; ?preview=off clears it). The public home page is
-   unchanged until Nancy approves; then PUBLIC below flips to true.
+/* tll-home-value-v1 (31 Oct 2026, Value Playbook Phase 1: homepage value messaging). PUBLIC since 31 Oct 2026 (Nancy: "launch
+   both", commit 556cc7a): PUBLIC below is true, so every visitor of the home page gets it. Before that it rendered only for a
+   preview, https://www.thatlayover.life/?preview=value (remembered in this browser; ?preview=off clears it); that switch still works.
+   (22 Nov 2026, sweep of 21 Nov, A19: this header said STAGED.)
    Under the weekly cover: the value line and the three section 2 lines from the playbook (slide show, uncle deck, lost account),
    then the call to action as one question, "What do you collect?", with the pursuit hubs as answers. Copy is the playbook's own,
    in Nancy's words. Clicks carry division "tll" for GA4 (Phase 7 tagging). No nav or footer touched; no data-ms-* element. */
