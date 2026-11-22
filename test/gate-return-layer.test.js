@@ -69,3 +69,49 @@ describe('tll-gate-return-v1 (A08)', () => {
     expect(/setAttribute\(['"]data-ms|removeAttribute\(['"]data-ms/.test(src)).toBe(false);
   });
 });
+
+// Check of the sweep, note 1: on the home page the site head's parallax rule (.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *,
+// position:relative and z-index 2, no !important) also matched the card and beat its one-class rule, so the card sat at the foot of the
+// page. The card's position, offsets and z-index now carry !important in a heavier rule, so no plain page rule can move it.
+function specificity(sel) {
+  let a = 0, b = 0, c = 0; let s = sel;
+  s = s.replace(/:(has|is|not)\(((?:[^()]|\([^()]*\))*)\)/g, (m, f, inner) => { const w = inner.split(',').map((x) => specificity(x.replace(/^\s*[>~+]\s*/, ''))).sort((x, y) => (y[0] - x[0]) || (y[1] - x[1]) || (y[2] - x[2]))[0]; a += w[0]; b += w[1]; c += w[2]; return ' '; });
+  s = s.replace(/:where\((?:[^()]|\([^()]*\))*\)/g, ' ');
+  a += (s.match(/#[\w-]+/g) || []).length;
+  b += (s.match(/\.[\w-]+|\[[^\]]*\]|:(?!:)[\w-]+/g) || []).length;
+  c += (s.replace(/\[[^\]]*\]/g, '').match(/(^|[\s>~+])[a-z][\w-]*/gi) || []).length;
+  return [a, b, c];
+}
+const heavier = (x, y) => x[0] !== y[0] ? x[0] > y[0] : x[1] !== y[1] ? x[1] > y[1] : x[2] > y[2];
+const CSS = /var CSS='([^;]*?\{[\s\S]*?)';\n/.exec(src)[1].replace(/'\+\n'/g, '');
+const ruleOf = (sel) => { const i = CSS.indexOf(sel + '{'); expect(i, sel).toBeGreaterThanOrEqual(0); return CSS.slice(i + sel.length + 1, CSS.indexOf('}', i)); };
+
+describe('tll-gate-return-v1 card position holds on every page (check note 1)', () => {
+  const head = readFileSync(join(here, '..', 'src', 'site', 'live-2026-11-13', 'fonts', 'site-head.after.html'), 'utf8');
+  const PARALLAX = '.tllp-home :has(> img[data-tll-parallax="hero"]) ~ *';
+  const BASE = 'html body #tll-gate-back.tll-gate-back';
+  const ACCOUNT = 'html[data-wf-page="6a0d5c23c57426a9c563e8de"] body #tll-gate-back.tll-gate-back';
+  it('the site head rule that moved it on the home page is still there: (0,2,1), position:relative, z-index 2, not !important', () => {
+    expect(head).toContain(PARALLAX + ',');
+    expect(head).toContain('{position:relative;z-index:2}');
+    expect(specificity(PARALLAX)).toEqual([0, 2, 1]);
+  });
+  it('the card rule outweighs it and holds position, offsets and z-index with !important', () => {
+    expect(specificity(BASE)).toEqual([1, 1, 2]);
+    expect(heavier(specificity(BASE), specificity(PARALLAX))).toBe(true);
+    const body = ruleOf(BASE);
+    for (const d of ['position:fixed', 'right:16px', 'bottom:16px', 'left:auto', 'top:auto', 'z-index:2147483000']) expect(body, d).toContain(d + ' !important');
+    expect(CSS).not.toMatch(/(^|\})\.tll-gate-back\{/);
+  });
+  it('on /account at 960px and wider the lift above the Tell the editor pill still wins over the base rule', () => {
+    expect(CSS).toContain('@media(min-width:960px){' + ACCOUNT + '{bottom:76px !important}}');
+    expect(heavier(specificity(ACCOUNT), specificity(BASE))).toBe(true);
+  });
+  it('the card shows on the home page with that rule on the element', async () => {
+    const s = session(); s.setItem('tll-gate-return', JSON.stringify({ p: '/submit', t: Date.now() }));
+    const dom = await visit('/', s, { html: '<div class="tllp-home"><div data-h3-hero><img data-tll-parallax="hero"></div></div>' });
+    const card = dom.document.getElementById('tll-gate-back');
+    expect(card.className).toBe('tll-gate-back');
+    expect(dom.document.getElementById('tll-gate-return-v1').textContent).toContain(BASE + '{position:fixed !important;');
+  });
+});

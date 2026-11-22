@@ -141,7 +141,7 @@ describe('A09 the Tell the editor pill moves right on /account at 960px and wide
     rule('@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] body #tll-note{left:auto;right:calc(16px + env(safe-area-inset-right))}}');
   });
   it('the gate return card (A08) sits above it there', () => {
-    expect(read('src', 'site-layers', 'tll-gate-return-v1.js')).toContain('@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] .tll-gate-back{bottom:76px}}');
+    expect(read('src', 'site-layers', 'tll-gate-return-v1.js')).toContain('@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] body #tll-gate-back.tll-gate-back{bottom:76px !important}}');
   });
   it('the hide-while-typing rule is already live (tll-note-phone-v1), so nothing else is added', () => {
     expect(read('src', 'site-layers', 'tll-note-phone-v1.html')).toContain('html.tll-typing #tll-note:not([data-open="true"]){display:none !important}');
