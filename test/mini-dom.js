@@ -196,8 +196,8 @@ export function createDom({ pathname = '/submit', html = '' } = {}) {
       re.lastIndex = i; m = re.exec(s); if (!m) throw new Error('mini-dom selector not supported: ' + s);
       i = re.lastIndex;
       if (m[1]) { const t = m[1].toLowerCase(); if (t !== '*') tests.push((e) => e.localName === t); }
-      else if (m[2]) tests.push((e) => e.id === m[2]);
-      else if (m[3]) tests.push((e) => e.classList.contains(m[3]));
+      else if (m[2]) { const id = m[2]; tests.push((e) => e.id === id); }
+      else if (m[3]) { const c = m[3]; tests.push((e) => e.classList.contains(c)); }
       else if (m[4]) {
         const k = m[4]; const op = m[5]; const ci = !!m[9]; let v = m[6] ?? m[7] ?? m[8];
         if (ci && v) v = v.toLowerCase();
