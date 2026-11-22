@@ -351,7 +351,27 @@ LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file
           "  var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}\n"
           "})();\n") % ',\n'.join(rules)
 
-def css(f, i): return [i, fallbacks(re.search(r'<style id="%s">\n(.*)</style>' % i, read(f), re.S).group(1))]
+# 22 Nov 2026 (sweep of 21 Nov, defrag; the core-size finding B11): the styles' comments stay in their source files and are left out of the
+# download (13.7 KB of the core, more than this sweep's own rules add), the way each layer's header comment already is. Comments inside a
+# quoted string are kept (none today).
+def nocomments(c):
+    out, i, q, n = [], 0, None, len(c)
+    while i < n:
+        ch = c[i]
+        if q:
+            out.append(ch)
+            if ch == '\\' and i + 1 < n: out.append(c[i + 1]); i += 2; continue
+            if ch == q: q = None
+            i += 1; continue
+        if ch in '"\'': q = ch; out.append(ch); i += 1; continue
+        if c.startswith('/*', i):
+            j = c.find('*/', i + 2); assert j > 0, 'unclosed comment in a style'; i = j + 2
+            while i < n and c[i] in ' \t': i += 1
+            if i < n and c[i] == '\n' and (not out or out[-1] == '\n'): i += 1
+            continue
+        out.append(ch); i += 1
+    return ''.join(out)
+def css(f, i): return [i, fallbacks(nocomments(re.search(r'<style id="%s">\n(.*)</style>' % i, read(f), re.S).group(1)))]
 mag = read(MAG)
 mag_css = fallbacks(re.search(r'<style id="tll-mag-story-v1">\n(.*?)</style>', mag, re.S).group(1))
 mag_js = fallbacks(re.search(r'<script id="tll-mag-story-js-v1">\n(.*?)</script>', mag, re.S).group(1))

@@ -186,3 +186,19 @@ describe('A17 /the-map sample banner in the loaded face', () => {
     expect(read('map-2.0', 'dist', 'tll-map-layers.js')).toContain('b.appendChild(k); b.appendChild(t);');
   });
 });
+
+describe('the core styles go without their comments (defrag, core size)', () => {
+  const L = JSON.parse(/\(function\(\)\{var L=(\[\[.*?\]\]);var h=document\.head/.exec(core)[1]);
+  it('no style in the core carries a comment', () => {
+    expect(L.length).toBe(14);
+    for (const [id, text] of L) expect(text.includes('/*'), id).toBe(false);
+  });
+  it('every rule of each source is still there (same braces, same declarations once the comments are out)', () => {
+    for (const [id, text] of L) {
+      const s = read('src', 'site-layers', `${id}.html`);
+      const body = /<style id="[^"]+">\n([\s\S]*)<\/style>/.exec(s)[1].replace(/\/\*[\s\S]*?\*\//g, '');
+      expect(text.split('{').length, id).toBe(body.split('{').length);
+      expect(text.split(';').length, id).toBe(body.split(';').length);
+    }
+  });
+});
