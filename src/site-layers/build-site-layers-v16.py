@@ -131,6 +131,7 @@ SCRIPTS = [('src/site-layers/tll-img-variants-v1.js', '10 Nov week one item 4: C
            ('src/site-layers/tll-stories-count-v1.js', '10 Nov week one item 3: /stories headline count from tllCounts.s (the footer figure), cards until then; words to twenty, digits above'),
            ('src/site-layers/tll-stories-strip-v1.js', '10 Nov week one item 5: the four-cover strip under the /stories search bar is hidden at parse time (it repeated the grid)'),
            ('src/site-layers/tll-note-footer-v1.js', '10 Nov hygiene: the Tell the editor pill fades out while the footer is on screen'),
+           ('src/site-layers/tll-gate-return-v1.js', '22 Nov sweep A08: after signing in from the /submit, /my-pets or /share-photos gate, one card offers the way back'),
            ('src/site-layers/tll-p0-closeout-v1.js', '11 Nov launch blockers: Example Text placeholders cleared on /submit and /share-photos; Cookie settings opens /cookies outside Europe'),
            ('src/site-layers/tll-pwa-hold-v1.js', '10 Nov Lighthouse: the footer PWA client HEAD /sw.js is answered locally with a 404 until the PWA Worker is live (no console 404, nothing registered)'),
            ('src/site-layers/tll-self-data-v1.js', '13 Nov bandwidth fixes 4 and 5: counts and pet lists from data on the page instead of downloading /stories, the sitemap and the pet page; other members\' cards on a profile hidden before their photos load')]
@@ -180,7 +181,7 @@ CORE = ['tll-img-variants-v1', 'tll-account-hash-tabs-v1', 'tll-note-typing-v1',
 # Staged code (UX_PUBLIC=false), so the public is unaffected; preview testers' signup_start counts cover those three pages only.
 CHUNKS = [
     ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
-                      'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1', 'tll-note-footer-v1', 'tll-p0-closeout-v1'], []),
+                      'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1', 'tll-note-footer-v1', 'tll-gate-return-v1', 'tll-p0-closeout-v1'], []),
     ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1', 'tll-trust-v1'], []),
     ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-trust-v1', 'tll-stories-count-v1', 'tll-stories-strip-v1'], []),
     ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-trust-v1'], ['tll-ux-v1']),
