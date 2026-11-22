@@ -161,3 +161,15 @@ describe('A14 mono text under 12px lifted to the floor', () => {
     expect(/\b(text|tspan|textPath|svg)\b/.test(block)).toBe(false);
   });
 });
+
+describe('A15 profile album tape: the photos and countries line wraps inside its tape', () => {
+  const src = read('src', 'site-layers', 'tll-album-v1.js');
+  it('small wraps and no longer asks for 9px; the continent name stays on one line', () => {
+    expect(src).toContain('.tll-alb-tape small{white-space:normal;font-weight:500;');
+    expect(src).not.toContain('.tll-alb-tape small{font-size:9px');
+    expect(src).toContain('.tll-alb-tape b,.tll-alb-tape small{display:block;white-space:nowrap}');
+  });
+  it('the profile and pets chunks carry it', () => {
+    for (const c of ['profile', 'pets']) expect(read('src', 'site-layers', 'chunks', `${c}.js`)).toContain('.tll-alb-tape small{white-space:normal;');
+  });
+});

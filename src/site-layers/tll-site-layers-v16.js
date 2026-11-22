@@ -63,13 +63,13 @@ var C=[['site',/^/,'sha384-oy5hXDkR0y8b3+jrbgYwlBWgOtz9neSLzdG1vhYSV5+pJ9DurJ23X
 ['submit',/^\/submit$/,'sha384-VktF5AXIM7AEWGM9dzMvfxzU7L9YrU4hpWbkXFpCtNMEfGcJ+3hsTgl46EhjmyVM','submit-preview','sha384-i7nIf+tpKGFUmVvXBW77FP6mpT3qy+vWGQw37KwwvY2dVzxBSERAur6MwbQG+T7a'],
 ['share-photos',/^\/share-photos$/,'sha384-uoZrsptUVDrS9Bea7KGffpTQOPGbNz+lOSdMpN/d7QUhLkkiw1abBjuF+1eOh8DY'],
 ['edit-profile',/^\/edit-profile/,'sha384-XWj3WrK241Gx3UzZUSdiAuf01tjnB4i0qQHhoR74nl6KhL62L9QH7WxEzGYgls/p','edit-profile-preview','sha384-UGfJaiX27XcuU0Ve48Mw+VDSL//97a1iH7fHq/tNdF48cNJuy2GiPeHQCvEV+izl'],
-['profile',/^\/contributors\/[^/]+$/,'sha384-OdhQL47SE6zwR8f/+CmlqbdCTJAQfuh1X9XNxeBHK5mzR1wxwG+VJtaBSrkzlloj','profile-preview','sha384-qBDF2+mhBJr9Ls36vIvVCZbn1ehWR4GhV9qpoAcy5hdHDTEXnT0oDOKZ21/jfJ7z'],
+['profile',/^\/contributors\/[^/]+$/,'sha384-XMIqN7EhlOpaLGDISDK+cTHOolstFB7JA/TP7e6/QRCshM8V9kfkSeob7UneiJQ/','profile-preview','sha384-bSg20gHmaz4RygYsBlOrdnSlOxIQU8XEgxzDgXLI642vdFdyPHxb9TfpkjP5nYfR'],
 ['account',/^\/account$/,'sha384-hywGIDkbXt9QXbYw2bbcf4NjbJYEuJHt28SfNUFlcbcNHwX1WbBi6U2iKr5fNkI+','account-preview','sha384-YI4TqK1ja9iK9F5hF+PiRJVPsytZ0g2BnnEQrMhmII1rpuac7I0NAj+tyvGRtMVV'],
 ['map',/^\/the-map$/,'sha384-5AYGvKWCk7jhVb3hSxC07gSo/naF5f07vODBe5Butkgpx5Fz+JxVnPkFznp5aCGp'],
 ['for-expats',/^\/for-expats$/,'sha384-4dEErpgOGxUfu9fBJxzG1PW7+8dIsu5aFXP3cgJ7cJ66Hs783KPmvl0gmBiJIF3c','for-expats-preview','sha384-5LUvWcOtmCA6X1Wma6OwJybhDSVBWETpdTIqZuPK19WJelZpwNORjIZXS3OBrGeo'],
 ['travelers',/^\/travelers$/,'sha384-vZ+jXJIUPtQxxESgFwUOx336cgsZIjyn+99Wb6rEo09+BWCquvNDffm3DccwufV1'],
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-L437ChJqovliCF58UHoxaqhBd1eE6NJtzgNCCiiJRBi5eb1gT21H8q2inwvQXhOa'],
-['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-NXCRZ0VNYUrcmgTYNsxQb/mcCOvELbr6v70tfwdLqKjeScEAgsX9F4Kxw8PmwZBC','pets-preview','sha384-hosl+nhSonsmJwJDl+u2WnGbdGnsZIjH0u+hldYpydr2HXh8QfVa9SaMCvZAsKIX'],
+['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-Co5r+7IobaJveRWCCSahTvRJopDzLbw1/fQLCIaV2KF2hA+SwdfXbl4ZXLwFXWAa','pets-preview','sha384-eTioXSS9opdZPHIv6BuARTdsqrCXpvhsOA+VDkKJ96Z2bbCY4oGFyAMjKv+i7CtT'],
 ['countries',/^\/countries\/[^/]+$/,'sha384-iSxA4AAxuaiIqx+UN7vV5i7UjCgHhmwUO+IizaAE0zKP515KYxfKbQsk6HqWFjty'],
 ['misc',/^\/(spotlight|gallery)$/,'sha384-8EF4Rvlyb9Px7Ap+rpdiNHoDU6hPE0EV5dLIbQSLMGgZ+M/zz1CWT78I/9t9tUkj','misc-preview','sha384-4etMvW7fySF4S3yjjYhhsh5PZ8jNcz0muB/9sUHT2i+uWaqwM6T9Ben14zSAqmrT']],h=document.head||document.documentElement;
 for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}

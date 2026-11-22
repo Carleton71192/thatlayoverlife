@@ -4,7 +4,9 @@
    full screen, one photo per slide, caption in mono, the story title as the line, the projector click as the only sound (off by
    default). Keys: arrows or space, Esc to close; swipe on phones. The show is a link (?play=europe) and works on a TV browser.
    Photos come from GET /album: the member's live stories plus the collections and stamps they chose to show. Nothing private.
-   No data-ms-* element touched. */
+   No data-ms-* element touched.
+   22 Nov 2026 (sweep of 21 Nov, A15): the tape's second line ("N photos · N countries") was nowrap at 9px, painted at 12px by the
+   type floor, so it ran up to 35px past its tape; it now wraps inside the tape and takes the tape's size (the 9px is gone). */
 (function(){
 /* Pet passports (/pets/<slug>) borrow the projector for their slide show; the album itself shows on profiles only. */
 var m=/^\/contributors\/([^/]+)\/?$/.exec(location.pathname),PROJECTOR_ONLY=!m&&/^\/pets\/[^/]+\/?$/.test(location.pathname);if(!m&&!PROJECTOR_ONLY)return;var SLUG=m?m[1]:'';
@@ -21,7 +23,7 @@ var CSS='.tll-alb{max-width:1120px;margin:40px auto;padding:0 16px;font:400 15px
 '.tll-alb-mount img{width:100%;height:100%;object-fit:cover;display:block}'+
 '.tll-alb-mount:focus-visible{outline:3px solid #C8325B;outline-offset:3px}'+
 '.tll-alb-tape{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%) rotate(-2deg);background:rgba(232,201,120,.85);padding:5px 8px;font:600 10px/1.3 "JetBrains Mono",monospace;letter-spacing:.8px;text-transform:uppercase;white-space:normal;text-align:center;width:max-content;max-width:calc(100% + 8px);color:#0A0B14;box-shadow:0 1px 2px rgba(0,0,0,.12)}'+
-'.tll-alb-tape b,.tll-alb-tape small{display:block;white-space:nowrap}.tll-alb-tape small{font-size:9px;font-weight:500;letter-spacing:.5px;text-transform:none;margin-top:2px}'+
+'.tll-alb-tape b,.tll-alb-tape small{display:block;white-space:nowrap}.tll-alb-tape small{white-space:normal;font-weight:500;letter-spacing:.5px;text-transform:none;margin-top:2px}'+
 '.tll-alb-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%;color:#9A948B;font:600 12px/1 "JetBrains Mono",monospace;letter-spacing:1px;text-transform:uppercase;cursor:default}'+
 '.tll-alb-play{position:absolute;top:8px;right:8px;background:rgba(10,11,20,.72);color:#fff;border-radius:999px;padding:5px 10px;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:1px}'+
 '.tll-ss{position:fixed;inset:0;z-index:99999;background:#0A0B14;color:#F3EEE6;display:flex;flex-direction:column}'+
