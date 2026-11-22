@@ -51,3 +51,14 @@ describe('A02 /support email heading fits at 390', () => {
     rule('@media (max-width:479px){html body .tll-support-direct-title em{font-size:28px;overflow-wrap:anywhere}}');
   });
 });
+
+describe('A04 closing headings on /stories and /contact', () => {
+  it('a size floor of 26px (32px, the desktop size, at most) on both', () => {
+    rule('html body .tll-library-newsletter h3,html body .tll-contact-faq-card h3{font-size:clamp(26px,6vw,32px)}');
+  });
+  it('the /stories rose word takes the AA rose, outweighing the page rule html.tllp-stories .tll-library-newsletter h3 em (also !important)', () => {
+    rule('html.tllp-stories body .tll-library-newsletter h3 em{color:var(--s3-rose-t,#C8325B) !important}');
+    expect(ratio('#F0507A', '#F8F2E6')).toBeLessThan(3.1);
+    expect(ratio('#C8325B', '#F8F2E6')).toBeGreaterThan(4.5);
+  });
+});
