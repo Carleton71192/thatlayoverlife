@@ -6,7 +6,11 @@
    library" wherever it appears on /stories (house words). /stories only; nothing removed; no data-ms-* element touched.
    22 Nov 2026 (sweep of 21 Nov, A12): a chosen place chip is kept in the address as ?place= (replaceState, so a reload or a shared
    link keeps it; All places takes it out; ?q= and the rest stay), and on load a ?place= that names a chip presses that chip once the
-   page's chip script has wired the grid, through the chip's own click, so the page filters it the usual way. */
+   page's chip script has wired the grid, through the chip's own click, so the page filters it the usual way.
+   22 Nov 2026 (sweep of 21 Nov, A16): on a card whose writer name is long, the place wraps to a line of its own and that line began
+   with the page's "· " (17 of 57 cards at 390). dots() marks such a place data-tll-own-line (it sits below the name); the core style
+   tll-sweep-1121-v1 then drops the dot and keeps the place on its own line. Measured when the page is parsed, when the fonts are in,
+   after a chip or search redraw and on resize. */
 (function(){
 if(!/^\/stories\/?$/.test(location.pathname))return;
 var ORDER=['all','Africa','Americas','Antarctica','Asia','Europe','Middle East','Oceania']; /* alphabetical after All places (Nancy, 29 Oct) */
@@ -44,7 +48,12 @@ function replay(){var want=(new URLSearchParams(location.search).get('place')||'
     if(!grid||!grid.dataset.tllChips){if(++n<30)setTimeout(go,100);return;}
     var hit=null;[].forEach.call(document.querySelectorAll('[data-tll-chips="place-sort"] [data-tll-place]'),function(c){if((c.getAttribute('data-tll-place')||'').toLowerCase()===want)hit=c;});
     if(hit&&hit.getAttribute('aria-pressed')!=='true')hit.click();})();}
-function run(){chips();words();replay();}
+function dots(){[].forEach.call(document.querySelectorAll('.tll-lib-card [data-s3-place]'),function(p){var n=p.parentNode&&p.parentNode.querySelector('.tll-lib-byline-name');if(!n)return;
+  p.removeAttribute('data-tll-own-line');var a=n.getBoundingClientRect(),b=p.getBoundingClientRect();if(b.height>0&&a.height>0&&b.top>=a.bottom-2)p.setAttribute('data-tll-own-line','');});}
+var dt;function later(){clearTimeout(dt);dt=setTimeout(dots,120);}
+window.addEventListener('resize',later);document.addEventListener('tll:lib-filtered',later);document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[data-tll-place],[data-tll-sort]'))later();});
+try{document.fonts&&document.fonts.ready&&document.fonts.ready.then(later);}catch(e){}
+function run(){chips();words();replay();dots();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
 setTimeout(words,1500);
 })();

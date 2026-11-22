@@ -45,3 +45,22 @@ describe('tll-stories-places-v1 ?place= (A12)', () => {
     expect(history.calls).toEqual([]);
   });
 });
+
+describe('tll-stories-places-v1 byline dots (A16)', () => {
+  function byline(nameRect, placeRect) {
+    const dom = createDom({ pathname: '/stories', html: '<a class="tll-lib-card" href="/s"><div class="tll-lib-byline"><div class="tll-lib-byline-name">N</div><div data-s3-place="1">P</div></div></a>' });
+    dom.document.querySelector('.tll-lib-byline-name')._rect = nameRect; dom.document.querySelector('[data-s3-place]')._rect = placeRect;
+    dom.run(src, { history: { replaceState() {} } }); return dom.document.querySelector('[data-s3-place]');
+  }
+  it('marks a place that wrapped below the name', () => {
+    expect(byline({ top: 100, bottom: 118, height: 18, left: 40, right: 200, width: 160 }, { top: 120, bottom: 135, height: 15, left: 0, right: 120, width: 120 }).hasAttribute('data-tll-own-line')).toBe(true);
+  });
+  it('leaves a place beside the name, and a hidden card, unmarked', () => {
+    expect(byline({ top: 100, bottom: 118, height: 18, left: 40, right: 160, width: 120 }, { top: 102, bottom: 117, height: 15, left: 168, right: 300, width: 132 }).hasAttribute('data-tll-own-line')).toBe(false);
+    expect(byline({ top: 0, bottom: 0, height: 0, left: 0, right: 0, width: 0 }, { top: 0, bottom: 0, height: 0, left: 0, right: 0, width: 0 }).hasAttribute('data-tll-own-line')).toBe(false);
+  });
+  it('the core style drops the dot and keeps the marked place on its own line', () => {
+    const css = read('src', 'site-layers', 'tll-sweep-1121-v1.html');
+    expect(css).toContain('html.tllp-stories body .tll-lib-card [data-s3-place][data-tll-own-line]{flex-basis:100%}html.tllp-stories body .tll-lib-card [data-s3-place][data-tll-own-line]::before{content:none}');
+  });
+});
