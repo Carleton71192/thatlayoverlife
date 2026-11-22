@@ -37,7 +37,7 @@
    chunk  profile /^\/contributors\/[^/]+$/: tll-profile-count-v1, tll-pf-linkstack-v1, tll-crew-v1, tll-collections-v1, tll-stamps-v1, tll-album-v1, tll-pros-v1 (+ staged in profile-preview: tll-expat-v1)
    chunk  account /^\/account$/: tll-crew-v1, tll-export-v1, tll-metrics-v1, tll-work-trips-v1 (+ staged in account-preview: tll-ux-v1)
    chunk  map /^\/the-map$/: tll-redesign-p0-v1
-   chunk  for-expats /^\/for-expats$/: tll-expert-from-v1, tll-expats-map-v1, tll-series-v1 (+ staged in for-expats-preview: tll-expat-v1)
+   chunk  for-expats /^\/for-expats$/: tll-expert-from-v1, tll-label-for-v1, tll-expats-map-v1, tll-series-v1 (+ staged in for-expats-preview: tll-expat-v1)
    chunk  travelers /^\/travelers$/: tll-travelers-fix-v1
    chunk  pursuits /^\/pursuits\/[^/]+$/: tll-stamps-v1, tll-pros-v1, tll-series-v1, tll-work-trips-v1
    chunk  pets /^\/(pets\/[^/]+|my-pets|the-paw-passport)$/: tll-crew-v1, tll-album-v1, tll-series-v1 (+ staged in pets-preview: tll-paw-v1, tll-pet-passport-v1)
@@ -66,7 +66,7 @@ var C=[['site',/^/,'sha384-9tz6E95ZAvkGGbGWB2hRaWDGGxgaWQBwbdfRyVSmuGzh6/94q/Ejv
 ['profile',/^\/contributors\/[^/]+$/,'sha384-OdhQL47SE6zwR8f/+CmlqbdCTJAQfuh1X9XNxeBHK5mzR1wxwG+VJtaBSrkzlloj','profile-preview','sha384-qBDF2+mhBJr9Ls36vIvVCZbn1ehWR4GhV9qpoAcy5hdHDTEXnT0oDOKZ21/jfJ7z'],
 ['account',/^\/account$/,'sha384-hywGIDkbXt9QXbYw2bbcf4NjbJYEuJHt28SfNUFlcbcNHwX1WbBi6U2iKr5fNkI+','account-preview','sha384-YI4TqK1ja9iK9F5hF+PiRJVPsytZ0g2BnnEQrMhmII1rpuac7I0NAj+tyvGRtMVV'],
 ['map',/^\/the-map$/,'sha384-5AYGvKWCk7jhVb3hSxC07gSo/naF5f07vODBe5Butkgpx5Fz+JxVnPkFznp5aCGp'],
-['for-expats',/^\/for-expats$/,'sha384-GFmI4V0ANYkc82Z+FN0r9g6TIJE2vFgvZK1Ml7kdBcthdwpNVPpnI9sOD3oRKLeO','for-expats-preview','sha384-4Tr77XmD97K+Hlf2DWttsDtpSY+1618+mea4TjfTgKZpxd3v8Qvl5k3gpIc4B0Ta'],
+['for-expats',/^\/for-expats$/,'sha384-4dEErpgOGxUfu9fBJxzG1PW7+8dIsu5aFXP3cgJ7cJ66Hs783KPmvl0gmBiJIF3c','for-expats-preview','sha384-5LUvWcOtmCA6X1Wma6OwJybhDSVBWETpdTIqZuPK19WJelZpwNORjIZXS3OBrGeo'],
 ['travelers',/^\/travelers$/,'sha384-vZ+jXJIUPtQxxESgFwUOx336cgsZIjyn+99Wb6rEo09+BWCquvNDffm3DccwufV1'],
 ['pursuits',/^\/pursuits\/[^/]+$/,'sha384-L437ChJqovliCF58UHoxaqhBd1eE6NJtzgNCCiiJRBi5eb1gT21H8q2inwvQXhOa'],
 ['pets',/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/,'sha384-NXCRZ0VNYUrcmgTYNsxQb/mcCOvELbr6v70tfwdLqKjeScEAgsX9F4Kxw8PmwZBC','pets-preview','sha384-hosl+nhSonsmJwJDl+u2WnGbdGnsZIjH0u+hldYpydr2HXh8QfVa9SaMCvZAsKIX'],

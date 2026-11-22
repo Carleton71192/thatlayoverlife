@@ -27,6 +27,20 @@ if(window.MutationObserver)new MutationObserver(names).observe(document.document
 /* Capture on the document: before Webflow's submit handler, which is delegated on the document in the bubble phase. */
 document.addEventListener('submit',names,true);
 })();
+/* src/site-layers/tll-label-for-v1.js */
+(function(){
+if(!/^\/for-expats\/?$/.test(location.pathname))return;
+function ms(el){for(var n=el;n&&n.nodeType===1;n=n.parentNode){var a=n.attributes;for(var i=0;a&&i<a.length;i++)if(a[i].name.indexOf('data-ms-')===0)return true;}return false;}
+function run(){
+  var labs=document.querySelectorAll('form label[for=""]');
+  for(var i=0;i<labs.length;i++){var l=labs[i];if(l.getAttribute('for')!=='')continue;
+    var f=l.querySelector('input:not([type="hidden"]):not([type="submit"]),textarea,select');if(!f||!f.id)continue;
+    if(document.getElementById(f.id)!==f)continue;var form=l.closest('form');if(form&&ms(form))continue;
+    l.setAttribute('for',f.id);}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+setTimeout(run,1200);
+})();
 /* src/site-layers/tll-expats-map-v1.js */
 (function(){
 if(!/^\/for-expats\/?$/.test(location.pathname))return;
