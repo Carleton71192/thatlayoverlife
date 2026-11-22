@@ -33,3 +33,21 @@ describe('A03 .tll-cta-ghost-dark joins the outlined buttons in ink', () => {
     expect(ratio('#0A0B14', '#F7F4EE')).toBeGreaterThan(4.5);
   });
 });
+
+const sweep = read('src', 'site-layers', 'tll-sweep-1121-v1.html');
+const rule = (r) => { expect(sweep).toContain(r); expect(inCore(r)).toBe(true); };
+
+describe('tll-sweep-1121-v1 is a core style', () => {
+  it('the build lists it after the focus ring and the core injects it', () => {
+    const b = read('src', 'site-layers', 'build-site-layers-v16.py');
+    expect(b.indexOf("'tll-sweep-1121-v1'")).toBeGreaterThan(b.indexOf("'tll-focus-v1'"));
+    expect(core).toContain('["tll-sweep-1121-v1",');
+  });
+  it('touches no data-ms-* element', () => { expect(/data-ms-[\w-]+\s*[\]=]/.test(sweep.replace(/\/\*[\s\S]*?\*\//g, ''))).toBe(false); });
+});
+
+describe('A02 /support email heading fits at 390', () => {
+  it('under 480px the em is 28px and may break anywhere', () => {
+    rule('@media (max-width:479px){html body .tll-support-direct-title em{font-size:28px;overflow-wrap:anywhere}}');
+  });
+});
