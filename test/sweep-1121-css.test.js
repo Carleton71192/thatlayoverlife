@@ -62,3 +62,16 @@ describe('A04 closing headings on /stories and /contact', () => {
     expect(ratio('#C8325B', '#F8F2E6')).toBeGreaterThan(4.5);
   });
 });
+
+describe('A05 /about lower half: the buttons join the set, the cite and the list in Plex Condensed', () => {
+  const src = read('src', 'site-layers', 'tll-buttons-v1.html');
+  it('the filled one is rose, the other two outlined, all in the base rule', () => {
+    expect(src).toContain('html body .tll-place-btn,html body a.tll-about-final-button,html body a.tll-about-final-button-secondary,html body a.tll-about-final-button-light{display:inline-flex');
+    expect(src).toContain('html body a.tll-about-final-button{background:#D63859');
+    expect(src).toContain('html body a.tll-about-final-button-secondary,html body a.tll-about-final-button-light{background:transparent');
+  });
+  it('the cite and the list items get the loaded face (they asked for IBM Plex Sans, never loaded)', () => {
+    expect(src).toContain("html body .tll-about-final-cite,html body .tll-about-final-li{font-family:'IBM Plex Sans Condensed',system-ui,sans-serif}");
+    expect(inCore("html body .tll-about-final-cite,html body .tll-about-final-li{font-family:'IBM Plex Sans Condensed',TLLSansA,TLLSansR,system-ui,sans-serif}")).toBe(true);
+  });
+});
