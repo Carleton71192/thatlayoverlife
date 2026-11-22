@@ -160,6 +160,17 @@ describe('A14 mono text under 12px lifted to the floor', () => {
   it('reaches no SVG text (map and stamp labels are drawn to size) and no prose class', () => {
     expect(/\b(text|tspan|textPath|svg)\b/.test(block)).toBe(false);
   });
+  // Check of the sweep, note 4: at 12px the /stories place tags, which keep the page's letter-spacing 2px !important with nowrap and
+  // an ellipsis, clipped more names at 390. At the floor they take 1px; no other floor class has nowrap with an ellipsis.
+  it('the /stories place tag takes letter-spacing 1px at the floor, over the page rule', () => {
+    const page = read('src', 'pages', 'live-2026-11-21', 'stories', 'page-head.html');
+    expect(page).toMatch(/\.tll-lib-meta\{[^}]*letter-spacing:2px !important;[^}]*text-overflow:ellipsis;white-space:nowrap\}/);
+    const RULE = 'html body .tll-lib-meta:not(#tll-mono-12){letter-spacing:1px !important}';
+    expect(sweep).toContain(RULE); expect(inCore(RULE)).toBe(true);
+    expect(sweep.indexOf(RULE)).toBeGreaterThan(sweep.indexOf(block));
+    expect((sweep.replace(/\/\*[\s\S]*?\*\//g, '').match(/\.tll-lib-meta\b/g) || []).length).toBe(2);
+  });
+
 });
 
 describe('A15 profile album tape: the photos and countries line wraps inside its tape', () => {
