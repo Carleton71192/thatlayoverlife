@@ -124,9 +124,11 @@ function submit(){if(document.getElementById('tll-si'))return;var f=document.que
   var title=f.querySelector('input[name*="title" i],input[name*="headline" i],input[id*="title" i]');if(title&&!(title.nextElementSibling&&title.nextElementSibling.classList.contains('tll-si-hint'))){var hint=el('p','tll-si-hint','Sounds like a guide. Stories here are one trip, told by the person who took it. Keep going if that is what this is.');hint.hidden=true;title.insertAdjacentElement('afterend',hint);
     title.addEventListener('input',function(){hint.hidden=!/\b(best|top \d+|top ten|guide|destination|luxury|ultimate)\b/i.test(title.value);});}}
 function storyEnd(){var p=document.querySelector('.tll-sa');if(!p||p.querySelector('.tll-si-line'))return;var s=el('span','tll-si-line',' One trip, told by the person who took it. Could only you have written it? Then send it.');p.appendChild(s);}
-function search(){var n=document.getElementById('tll-q-note');if(!n||n.dataset.tllSi)return;n.dataset.tllSi='1';var q=n.querySelector('span'),a=n.querySelector('a');var word=q?q.textContent:'';n.textContent='';
-  n.appendChild(document.createTextNode('Nothing filed for “'));var sp=el('span','',word);n.appendChild(sp);n.appendChild(document.createTextNode('” yet. Every story here is one trip, told by someone who went. Yours could be the first. '));
-  var link=el('a','','See all stories');link.href='/stories';n.appendChild(link);if(a&&a.href&&!/\/stories\/?$/.test(a.getAttribute('href')||''))link.href=a.href;}
+function search(){var n=document.getElementById('tll-q-note');if(!n||n.dataset.tllSi||n.getAttribute('data-s3'))return;n.dataset.tllSi='1';var q=n.querySelector('span');var word=q?q.textContent:'';n.textContent='';
+  var k=document.querySelectorAll('.tll-lib-grid [data-tll-card]').length;
+  n.appendChild(document.createTextNode('No story matches “'));var sp=el('span','',word);n.appendChild(sp);n.appendChild(document.createTextNode('” yet'+(k?', so here are all '+k+'. ':'. ')+'Every story here is one trip, told by someone who went. '));
+  var share=el('a','','Share your story');share.href='/submit';n.appendChild(share);n.appendChild(document.createTextNode(' · '));
+  var link=el('a','','See all stories');link.href='/stories';n.appendChild(link);}
 function run(){if(P==='/submit')submit();else if(/^\/stories\/[^/]+$/.test(P))storyEnd();else if(P==='/stories'){search();setTimeout(search,1500);setTimeout(search,3500);}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(run,900);});else setTimeout(run,900);
 setTimeout(run,3000);
