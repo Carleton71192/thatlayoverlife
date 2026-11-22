@@ -1,0 +1,3803 @@
+{
+ "perf": [
+  {
+   "page": "about",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     152,
+     204,
+     124
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 144,
+    "fcp_all": [
+     140,
+     144,
+     160
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     156,
+     132,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "about",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0006,
+    "cls_all": [
+     0.0007,
+     0.0006,
+     0.0006
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     136,
+     132,
+     160
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0005,
+    "cls_all": [
+     0.0005,
+     0.0007,
+     0.0005
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     120,
+     136,
+     140
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0005,
+    "cls_all": [
+     0.0005,
+     0.0011,
+     0.0005
+    ],
+    "fcp": 260,
+    "fcp_all": [
+     188,
+     296,
+     260
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "account",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.1834,
+    "cls_all": [
+     0.1834,
+     0.1834,
+     0.1808
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     296,
+     128,
+     140
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.1804,
+    "cls_all": [
+     0.1804,
+     0.1804,
+     0.1804
+    ],
+    "fcp": 180,
+    "fcp_all": [
+     180,
+     248,
+     136
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.1804,
+    "cls_all": [
+     0.1804,
+     0.1804,
+     0.1804
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     128,
+     144,
+     140
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   }
+  },
+  {
+   "page": "account",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.1176,
+    "cls_all": [
+     0.1176,
+     0.1176,
+     0.1176
+    ],
+    "fcp": 164,
+    "fcp_all": [
+     164,
+     172,
+     128
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.1178,
+    "cls_all": [
+     0.1178,
+     0.1179,
+     0.1178
+    ],
+    "fcp": 124,
+    "fcp_all": [
+     124,
+     124,
+     144
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.1178,
+    "cls_all": [
+     0.1178,
+     0.1178,
+     0.1178
+    ],
+    "fcp": 264,
+    "fcp_all": [
+     140,
+     280,
+     264
+    ],
+    "pageErrors": 0,
+    "console": 15,
+    "nonGetAborted": 12,
+    "nav": []
+   }
+  },
+  {
+   "page": "contact",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 172,
+    "fcp_all": [
+     300,
+     172,
+     156
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 184,
+    "fcp_all": [
+     168,
+     184,
+     344
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 164,
+    "fcp_all": [
+     160,
+     164,
+     164
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "contact",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0031,
+    "cls_all": [
+     0.0032,
+     0.0031,
+     0.0027
+    ],
+    "fcp": 244,
+    "fcp_all": [
+     236,
+     244,
+     280
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0016,
+    "cls_all": [
+     0.0016,
+     0.0016,
+     0.0034
+    ],
+    "fcp": 184,
+    "fcp_all": [
+     172,
+     184,
+     296
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0016,
+    "cls_all": [
+     0.0034,
+     0.0016,
+     0.0016
+    ],
+    "fcp": 180,
+    "fcp_all": [
+     228,
+     164,
+     180
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "for-expats",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 172,
+    "fcp_all": [
+     172,
+     176,
+     116
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 192,
+    "fcp_all": [
+     176,
+     192,
+     204
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     136,
+     280,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "for-expats",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0003,
+    "cls_all": [
+     0.0003,
+     0.0003,
+     0.0001
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     156,
+     140,
+     200
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     140,
+     156,
+     256
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     152,
+     172,
+     140
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "gallery",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     288,
+     120,
+     136
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     128,
+     140,
+     360
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     140,
+     352,
+     148
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "gallery",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0388,
+    "cls_all": [
+     0.0388,
+     0.0386,
+     0.0845
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     140,
+     140,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0845,
+    "cls_all": [
+     0.0845,
+     0.0845,
+     0.0185
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     148,
+     128,
+     156
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0386,
+    "cls_all": [
+     0.0386,
+     0.0384,
+     0.0845
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     152,
+     164,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "home",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.0777,
+    "cls_all": [
+     0.079,
+     0.0777,
+     0.0777
+    ],
+    "fcp": 268,
+    "fcp_all": [
+     520,
+     228,
+     268
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0777,
+    "cls_all": [
+     0.0777,
+     0.2034,
+     0.0777
+    ],
+    "fcp": 212,
+    "fcp_all": [
+     212,
+     168,
+     276
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0777,
+    "cls_all": [
+     0.0777,
+     0.0777,
+     0.0777
+    ],
+    "fcp": 240,
+    "fcp_all": [
+     224,
+     284,
+     240
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "home",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0005,
+    "cls_all": [
+     0.0033,
+     0.0003,
+     0.0005
+    ],
+    "fcp": 252,
+    "fcp_all": [
+     272,
+     220,
+     252
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0005,
+    "cls_all": [
+     0.0005,
+     0.0005,
+     0.0005
+    ],
+    "fcp": 252,
+    "fcp_all": [
+     252,
+     224,
+     284
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0005,
+    "cls_all": [
+     0.0005,
+     0.0005,
+     0.4177
+    ],
+    "fcp": 264,
+    "fcp_all": [
+     276,
+     264,
+     236
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "my-pets",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.064,
+    "cls_all": [
+     0.064,
+     0.064,
+     0.945
+    ],
+    "fcp": 184,
+    "fcp_all": [
+     244,
+     144,
+     184
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.064,
+    "cls_all": [
+     0.064,
+     0.064,
+     0.8813
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     136,
+     136,
+     168
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.064,
+    "cls_all": [
+     0.064,
+     0.064,
+     0.0614
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     148,
+     156,
+     128
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "my-pets",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.8302,
+    "cls_all": [
+     0.8302,
+     0.8274,
+     0.8326
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     148,
+     176,
+     144
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.8271,
+    "cls_all": [
+     0.827,
+     0.8612,
+     0.8271
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     132,
+     176,
+     156
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.8269,
+    "cls_all": [
+     0.8272,
+     0.8269,
+     0.782
+    ],
+    "fcp": 128,
+    "fcp_all": [
+     128,
+     128,
+     168
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "profile",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 200,
+    "fcp_all": [
+     188,
+     200,
+     204
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 168,
+    "fcp_all": [
+     144,
+     168,
+     184
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     136,
+     140,
+     148
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "profile",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0008,
+    "cls_all": [
+     0.0008,
+     0.0013,
+     0.0008
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     144,
+     148,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0008,
+    "cls_all": [
+     0.0008,
+     0.0008,
+     0.0011
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     152,
+     144,
+     212
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0008,
+    "cls_all": [
+     0.0013,
+     0.0008,
+     0.0008
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     184,
+     176,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "share-photos",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     164,
+     136,
+     132
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     116,
+     156,
+     164
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 156,
+    "fcp_all": [
+     156,
+     180,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "share-photos",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0006,
+    "cls_all": [
+     0.0007,
+     0.0006,
+     0.0002
+    ],
+    "fcp": 164,
+    "fcp_all": [
+     132,
+     164,
+     244
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0002,
+    "cls_all": [
+     0.0002,
+     0.0004,
+     0.0002
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     140,
+     132,
+     136
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0007,
+    "cls_all": [
+     0.1095,
+     0.0007,
+     0.0006
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     264,
+     176,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 416,
+    "fcp_all": [
+     416,
+     308,
+     432
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 500,
+    "fcp_all": [
+     508,
+     320,
+     500
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 360,
+    "fcp_all": [
+     200,
+     384,
+     360
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0304,
+    "cls_all": [
+     0.03,
+     0.0304,
+     0.0307
+    ],
+    "fcp": 300,
+    "fcp_all": [
+     300,
+     224,
+     440
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.03,
+    "cls_all": [
+     0.0304,
+     0.03,
+     0.0299
+    ],
+    "fcp": 272,
+    "fcp_all": [
+     208,
+     484,
+     272
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0299,
+    "cls_all": [
+     0.0307,
+     0.0173,
+     0.0299
+    ],
+    "fcp": 268,
+    "fcp_all": [
+     420,
+     184,
+     268
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories__balkans-ev-road-trip-twelve-countries",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 208,
+    "fcp_all": [
+     284,
+     132,
+     208
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 280,
+    "fcp_all": [
+     248,
+     280,
+     336
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 124,
+    "fcp_all": [
+     124,
+     136,
+     116
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories__balkans-ev-road-trip-twelve-countries",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     164,
+     144,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     136,
+     132,
+     348
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 144,
+    "fcp_all": [
+     320,
+     136,
+     144
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 244,
+    "fcp_all": [
+     356,
+     140,
+     244
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 144,
+    "fcp_all": [
+     128,
+     144,
+     232
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0.0005
+    ],
+    "fcp": 164,
+    "fcp_all": [
+     140,
+     164,
+     256
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 272,
+    "fcp_all": [
+     148,
+     272,
+     304
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 204,
+    "fcp_all": [
+     164,
+     216,
+     204
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0001,
+    "cls_all": [
+     0.0001,
+     0.0001,
+     0.0001
+    ],
+    "fcp": 260,
+    "fcp_all": [
+     260,
+     276,
+     172
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "submit",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.0004,
+    "cls_all": [
+     0.0004,
+     0.0004,
+     0.0004
+    ],
+    "fcp": 120,
+    "fcp_all": [
+     112,
+     136,
+     120
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0004,
+    "cls_all": [
+     0.0004,
+     0.0004,
+     0.0004
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     128,
+     136,
+     160
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0004,
+    "cls_all": [
+     0.0004,
+     0.0004,
+     0.0004
+    ],
+    "fcp": 124,
+    "fcp_all": [
+     140,
+     124,
+     108
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "submit",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.7833,
+    "cls_all": [
+     0.7204,
+     0.7834,
+     0.7833
+    ],
+    "fcp": 128,
+    "fcp_all": [
+     128,
+     136,
+     116
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.7833,
+    "cls_all": [
+     0.7824,
+     0.7834,
+     0.7833
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     136,
+     240,
+     112
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.7833,
+    "cls_all": [
+     0.7833,
+     0.7842,
+     0.7799
+    ],
+    "fcp": 172,
+    "fcp_all": [
+     140,
+     172,
+     264
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "support",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 136,
+    "fcp_all": [
+     136,
+     156,
+     132
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 180,
+    "fcp_all": [
+     200,
+     144,
+     180
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 252,
+    "fcp_all": [
+     124,
+     252,
+     328
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "support",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0015,
+    "cls_all": [
+     0.0015,
+     0.0015,
+     0.0027
+    ],
+    "fcp": 196,
+    "fcp_all": [
+     244,
+     196,
+     172
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0027,
+    "cls_all": [
+     0.0039,
+     0.0005,
+     0.0027
+    ],
+    "fcp": 200,
+    "fcp_all": [
+     168,
+     300,
+     200
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0034,
+    "cls_all": [
+     0.0039,
+     0.0034,
+     0.0031
+    ],
+    "fcp": 168,
+    "fcp_all": [
+     168,
+     192,
+     164
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "the-map",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.0853,
+    "cls_all": [
+     0.0853,
+     0.0853,
+     0.0853
+    ],
+    "fcp": 144,
+    "fcp_all": [
+     136,
+     196,
+     144
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0853,
+    "cls_all": [
+     0.0853,
+     0.0853,
+     0.0853
+    ],
+    "fcp": 164,
+    "fcp_all": [
+     164,
+     256,
+     132
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0853,
+    "cls_all": [
+     0.0853,
+     0.0853,
+     0.0853
+    ],
+    "fcp": 144,
+    "fcp_all": [
+     116,
+     152,
+     144
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "the-map",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.011,
+    "cls_all": [
+     0.0111,
+     0.0109,
+     0.011
+    ],
+    "fcp": 192,
+    "fcp_all": [
+     192,
+     304,
+     120
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.011,
+    "cls_all": [
+     0.011,
+     0.0114,
+     0.011
+    ],
+    "fcp": 172,
+    "fcp_all": [
+     160,
+     172,
+     172
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.011,
+    "cls_all": [
+     0.011,
+     0.011,
+     0.011
+    ],
+    "fcp": 184,
+    "fcp_all": [
+     184,
+     232,
+     160
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "the-paw-passport",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 180,
+    "fcp_all": [
+     152,
+     208,
+     180
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 188,
+    "fcp_all": [
+     144,
+     192,
+     188
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     224,
+     140,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "the-paw-passport",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0083,
+    "cls_all": [
+     0.0083,
+     0.0005,
+     0.0083
+    ],
+    "fcp": 172,
+    "fcp_all": [
+     244,
+     172,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.008,
+    "cls_all": [
+     0.0083,
+     0.0006,
+     0.008
+    ],
+    "fcp": 196,
+    "fcp_all": [
+     196,
+     208,
+     164
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.008,
+    "cls_all": [
+     0.0006,
+     0.0087,
+     0.008
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     172,
+     176,
+     180
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "this-page-does-not-exist-sweep",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     132,
+     148,
+     216
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     116,
+     188,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0,
+    "cls_all": [
+     0,
+     0,
+     0
+    ],
+    "fcp": 148,
+    "fcp_all": [
+     148,
+     140,
+     152
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "this-page-does-not-exist-sweep",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0028,
+    "cls_all": [
+     0.003,
+     0.0028,
+     0.0006
+    ],
+    "fcp": 160,
+    "fcp_all": [
+     152,
+     160,
+     172
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0027,
+    "cls_all": [
+     0.0027,
+     0.0027,
+     0.0028
+    ],
+    "fcp": 176,
+    "fcp_all": [
+     168,
+     176,
+     176
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0025,
+    "cls_all": [
+     0.0025,
+     0.0003,
+     0.0027
+    ],
+    "fcp": 188,
+    "fcp_all": [
+     140,
+     188,
+     292
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "travelers",
+   "w": 390,
+   "live": {
+    "n": 3,
+    "cls": 0.0088,
+    "cls_all": [
+     0.0088,
+     0.0052,
+     0.012
+    ],
+    "fcp": 140,
+    "fcp_all": [
+     128,
+     196,
+     140
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.012,
+    "cls_all": [
+     0.002,
+     0.0158,
+     0.012
+    ],
+    "fcp": 188,
+    "fcp_all": [
+     188,
+     212,
+     156
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.0059,
+    "cls_all": [
+     0.002,
+     0.0088,
+     0.0059
+    ],
+    "fcp": 220,
+    "fcp_all": [
+     184,
+     236,
+     220
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  },
+  {
+   "page": "travelers",
+   "w": 1440,
+   "live": {
+    "n": 3,
+    "cls": 0.0069,
+    "cls_all": [
+     0.0069,
+     0.0045,
+     0.0381
+    ],
+    "fcp": 188,
+    "fcp_all": [
+     132,
+     188,
+     236
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "base": {
+    "n": 3,
+    "cls": 0.0046,
+    "cls_all": [
+     0.0055,
+     0.0045,
+     0.0046
+    ],
+    "fcp": 184,
+    "fcp_all": [
+     148,
+     196,
+     184
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   },
+   "br": {
+    "n": 3,
+    "cls": 0.008,
+    "cls_all": [
+     0.008,
+     0.0351,
+     0.0068
+    ],
+    "fcp": 152,
+    "fcp_all": [
+     152,
+     124,
+     188
+    ],
+    "pageErrors": 0,
+    "console": 3,
+    "nonGetAborted": 0,
+    "nav": []
+   }
+  }
+ ],
+ "sig": {
+  "base-br": {
+   "about.html 390 out": {
+    "elements": 140,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "about.html 1440 out": {
+    "elements": 168,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "account.html 390 in": {
+    "elements": 206,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "account.html 1440 in": {
+    "elements": 232,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "contact.html 390 out": {
+    "elements": 97,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "contact.html 1440 out": {
+    "elements": 123,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "for-expats.html 390 out": {
+    "elements": 234,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "div",
+      3
+     ]
+    ]
+   },
+   "for-expats.html 1440 out": {
+    "elements": 261,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "div",
+      3
+     ]
+    ]
+   },
+   "gallery.html 390 out": {
+    "elements": 107,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "gallery.html 1440 out": {
+    "elements": 133,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "home.html 390 out": {
+    "elements": 532,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "home.html 1440 out": {
+    "elements": 563,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "my-pets.html 390 in": {
+    "elements": 146,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "my-pets.html 1440 in": {
+    "elements": 172,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "profile.html 390 out": {
+    "elements": 595,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "profile.html 1440 out": {
+    "elements": 621,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "share-photos.html 390 out": {
+    "elements": 74,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "share-photos.html 1440 out": {
+    "elements": 98,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories.html 390 out": {
+    "elements": 1117,
+    "boxChanged": 57,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories.html 1440 out": {
+    "elements": 1143,
+    "boxChanged": 58,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories__balkans-ev-road-trip-twelve-countries.html 390 out": {
+    "elements": 288,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories__balkans-ev-road-trip-twelve-countries.html 1440 out": {
+    "elements": 305,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 390 out": {
+    "elements": 269,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 1440 out": {
+    "elements": 286,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "submit.html 390 in": {
+    "elements": 140,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "submit.html 1440 in": {
+    "elements": 166,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "support.html 390 out": {
+    "elements": 129,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "support.html 1440 out": {
+    "elements": 155,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "the-map.html 390 out": {
+    "elements": 433,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "the-map.html 1440 out": {
+    "elements": 445,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "the-paw-passport.html 390 out": {
+    "elements": 167,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "the-paw-passport.html 1440 out": {
+    "elements": 193,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "this-page-does-not-exist-sweep.html 390 out": {
+    "elements": 63,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "this-page-does-not-exist-sweep.html 1440 out": {
+    "elements": 89,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "travelers.html 390 out": {
+    "elements": 251,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "travelers.html 1440 out": {
+    "elements": 277,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   }
+  },
+  "live-br": {
+   "about.html 390 out": {
+    "elements": 140,
+    "boxChanged": 125,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "strong",
+      4
+     ],
+     [
+      "s",
+      "li.tll-about-final-li",
+      4
+     ],
+     [
+      "s",
+      "a.tll-about-final-button",
+      2
+     ],
+     [
+      "s",
+      "a.tll-about-final-button-light",
+      1
+     ],
+     [
+      "s",
+      "p.tll-about-final-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "cite.tll-about-final-cite.tll-about-final-cite",
+      1
+     ],
+     [
+      "s",
+      "a.tll-about-final-button-secondary",
+      1
+     ]
+    ]
+   },
+   "about.html 1440 out": {
+    "elements": 168,
+    "boxChanged": 146,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "strong",
+      4
+     ],
+     [
+      "s",
+      "li.tll-about-final-li",
+      4
+     ],
+     [
+      "s",
+      "a.tll-about-final-button",
+      2
+     ],
+     [
+      "s",
+      "cite.tll-about-final-cite.tll-about-final-cite",
+      1
+     ],
+     [
+      "s",
+      "a.tll-about-final-button-secondary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-about-final-button-light",
+      1
+     ],
+     [
+      "s",
+      "p.tll-about-final-eyebrow",
+      1
+     ]
+    ]
+   },
+   "account.html 390 in": {
+    "elements": 206,
+    "boxChanged": 179,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.a3-add",
+      8
+     ],
+     [
+      "s",
+      "dt",
+      3
+     ],
+     [
+      "s",
+      "li",
+      2
+     ],
+     [
+      "s",
+      "p.tll-exp-k",
+      1
+     ],
+     [
+      "s",
+      "span#a3-prog-l",
+      1
+     ],
+     [
+      "s",
+      "div.tll-eyebrow-teal.tll-account-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "button",
+      1
+     ],
+     [
+      "s",
+      "a",
+      1
+     ]
+    ]
+   },
+   "account.html 1440 in": {
+    "elements": 232,
+    "boxChanged": 201,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.a3-add",
+      8
+     ],
+     [
+      "s",
+      "dt",
+      3
+     ],
+     [
+      "s",
+      "li",
+      2
+     ],
+     [
+      "s",
+      "p.tll-exp-k",
+      1
+     ],
+     [
+      "s",
+      "span#a3-prog-l",
+      1
+     ],
+     [
+      "s",
+      "div.tll-eyebrow-teal.tll-account-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "button",
+      1
+     ],
+     [
+      "s",
+      "a",
+      1
+     ]
+    ]
+   },
+   "contact.html 390 out": {
+    "elements": 97,
+    "boxChanged": 53,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "h3",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "em.tll-text-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-cta-ghost-dark",
+      1
+     ]
+    ]
+   },
+   "contact.html 1440 out": {
+    "elements": 123,
+    "boxChanged": 69,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-cta-ghost-dark",
+      1
+     ]
+    ]
+   },
+   "for-expats.html 390 out": {
+    "elements": 234,
+    "boxChanged": 215,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "a",
+      "label",
+      6
+     ],
+     [
+      "s",
+      "div",
+      4
+     ],
+     [
+      "s",
+      "a",
+      2
+     ],
+     [
+      "a",
+      "label.tllpr-check",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "input",
+      1
+     ],
+     [
+      "s",
+      "a.w-button",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "div.tllpr-eyebrow",
+      1
+     ]
+    ]
+   },
+   "for-expats.html 1440 out": {
+    "elements": 263,
+    "boxChanged": 233,
+    "onlyB": 2,
+    "onlyA": 2,
+    "changed": [
+     [
+      "a",
+      "label",
+      6
+     ],
+     [
+      "s",
+      "div",
+      3
+     ],
+     [
+      "s",
+      "a",
+      2
+     ],
+     [
+      "a",
+      "label.tllpr-check",
+      1
+     ],
+     [
+      "s",
+      "a.w-button",
+      1
+     ]
+    ]
+   },
+   "gallery.html 390 out": {
+    "elements": 107,
+    "boxChanged": 18,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-lounge-credit",
+      17
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ]
+    ]
+   },
+   "gallery.html 1440 out": {
+    "elements": 133,
+    "boxChanged": 17,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-lounge-credit",
+      17
+     ]
+    ]
+   },
+   "home.html 390 out": {
+    "elements": 530,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ]
+    ]
+   },
+   "home.html 1440 out": {
+    "elements": 563,
+    "boxChanged": 0,
+    "onlyB": 2,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "text",
+      1
+     ]
+    ]
+   },
+   "my-pets.html 390 in": {
+    "elements": 146,
+    "boxChanged": 99,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-pen-label",
+      7
+     ],
+     [
+      "s",
+      "h6.tll-pen-label",
+      4
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend.tll-pen-legend",
+      3
+     ],
+     [
+      "s",
+      "p.tll-pen-help",
+      3
+     ],
+     [
+      "s",
+      "span.tll-pen-helptext",
+      2
+     ],
+     [
+      "s",
+      "h6",
+      2
+     ],
+     [
+      "s",
+      "span.tll-pen-status",
+      1
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend",
+      1
+     ],
+     [
+      "s",
+      "span#tll-pet-countries-help.tll-pen-helptext",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ]
+    ]
+   },
+   "my-pets.html 1440 in": {
+    "elements": 172,
+    "boxChanged": 118,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-pen-label",
+      7
+     ],
+     [
+      "s",
+      "h6.tll-pen-label",
+      4
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend.tll-pen-legend",
+      3
+     ],
+     [
+      "s",
+      "p.tll-pen-help",
+      3
+     ],
+     [
+      "s",
+      "h6",
+      2
+     ],
+     [
+      "s",
+      "span.tll-pen-helptext",
+      2
+     ],
+     [
+      "s",
+      "span.tll-pen-status",
+      1
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend",
+      1
+     ],
+     [
+      "s",
+      "span#tll-pet-countries-help.tll-pen-helptext",
+      1
+     ]
+    ]
+   },
+   "profile.html 390 out": {
+    "elements": 595,
+    "boxChanged": 533,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-alb-play",
+      7
+     ],
+     [
+      "s",
+      "b",
+      7
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "p.tll-alb-k",
+      1
+     ]
+    ]
+   },
+   "profile.html 1440 out": {
+    "elements": 621,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "share-photos.html 390 out": {
+    "elements": 74,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ]
+    ]
+   },
+   "share-photos.html 1440 out": {
+    "elements": 98,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   },
+   "stories.html 390 out": {
+    "elements": 1117,
+    "boxChanged": 190,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "img",
+      59
+     ],
+     [
+      "s",
+      "div.tll-lib-read",
+      57
+     ],
+     [
+      "s",
+      "div.tll-lib-meta",
+      57
+     ],
+     [
+      "a",
+      "div.tll-lib-byline",
+      57
+     ],
+     [
+      "s",
+      "span",
+      52
+     ],
+     [
+      "s",
+      "div.tll-filter-label",
+      2
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "h3.heading-8.tll-rv",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "em.tll-text-rose",
+      1
+     ],
+     [
+      "s",
+      "span.tll-eyebrow-rose",
+      1
+     ]
+    ]
+   },
+   "stories.html 1440 out": {
+    "elements": 1143,
+    "boxChanged": 122,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "img",
+      59
+     ],
+     [
+      "s",
+      "div.tll-lib-read",
+      57
+     ],
+     [
+      "s",
+      "div.tll-lib-meta",
+      57
+     ],
+     [
+      "a",
+      "div.tll-lib-byline",
+      57
+     ],
+     [
+      "s",
+      "span",
+      52
+     ],
+     [
+      "s",
+      "div.tll-filter-label",
+      2
+     ],
+     [
+      "s",
+      "em.tll-text-rose",
+      1
+     ],
+     [
+      "s",
+      "span.tll-eyebrow-rose",
+      1
+     ]
+    ]
+   },
+   "stories__balkans-ev-road-trip-twelve-countries.html 390 out": {
+    "elements": 288,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ]
+    ]
+   },
+   "stories__balkans-ev-road-trip-twelve-countries.html 1440 out": {
+    "elements": 305,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "button.tll-save-btn",
+      1
+     ]
+    ]
+   },
+   "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 390 out": {
+    "elements": 269,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ]
+    ]
+   },
+   "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 1440 out": {
+    "elements": 286,
+    "boxChanged": 1,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "button.tll-save-btn",
+      1
+     ]
+    ]
+   },
+   "submit.html 390 in": {
+    "elements": 140,
+    "boxChanged": 97,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-pen-label",
+      5
+     ],
+     [
+      "s",
+      "span.tll-pen-helptext",
+      3
+     ],
+     [
+      "s",
+      "p.tll-pen-help",
+      2
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend.tll-pen-legend",
+      2
+     ],
+     [
+      "s",
+      "div.tll-pen-label",
+      1
+     ],
+     [
+      "s",
+      "p.tll-si-k",
+      1
+     ],
+     [
+      "s",
+      "button.tllst-next",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "div.tll-pen-helptext",
+      1
+     ]
+    ]
+   },
+   "submit.html 1440 in": {
+    "elements": 166,
+    "boxChanged": 116,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span.tll-pen-label",
+      5
+     ],
+     [
+      "s",
+      "span.tll-pen-helptext",
+      3
+     ],
+     [
+      "s",
+      "p.tll-pen-help",
+      2
+     ],
+     [
+      "s",
+      "legend.tll-pen-legend.tll-pen-legend",
+      2
+     ],
+     [
+      "s",
+      "div.tll-pen-label",
+      1
+     ],
+     [
+      "s",
+      "p.tll-si-k",
+      1
+     ],
+     [
+      "s",
+      "button.tllst-next",
+      1
+     ],
+     [
+      "s",
+      "div.tll-pen-helptext",
+      1
+     ]
+    ]
+   },
+   "support.html 390 out": {
+    "elements": 129,
+    "boxChanged": 48,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "em.tll-text-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll-cta-ghost-dark",
+      1
+     ]
+    ]
+   },
+   "support.html 1440 out": {
+    "elements": 155,
+    "boxChanged": 67,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-cta-ghost-dark",
+      1
+     ]
+    ]
+   },
+   "the-map.html 390 out": {
+    "elements": 433,
+    "boxChanged": 296,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "div.tllm-cell-l",
+      8
+     ],
+     [
+      "s",
+      "span",
+      7
+     ],
+     [
+      "s",
+      "div.tllm-eyebrow",
+      4
+     ],
+     [
+      "s",
+      "span.tllm-chip-n",
+      4
+     ],
+     [
+      "s",
+      "p.tllm-card-asof",
+      2
+     ],
+     [
+      "s",
+      "a",
+      2
+     ],
+     [
+      "s",
+      "p.tllm-card-rule",
+      1
+     ],
+     [
+      "s",
+      "a.tllm-edit",
+      1
+     ],
+     [
+      "s",
+      "span.tllm-card-src",
+      1
+     ],
+     [
+      "s",
+      "a.tlllb-cta",
+      1
+     ],
+     [
+      "s",
+      "div#tllm-sample.tllm-sample",
+      1
+     ],
+     [
+      "s",
+      "span.tllm-card-label",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "div#tllm-bar-k.tllm-bar-k",
+      1
+     ],
+     [
+      "s",
+      "a.tll-park-cta",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "span#tllm-foot-k.tllm-bar-k",
+      1
+     ]
+    ]
+   },
+   "the-map.html 1440 out": {
+    "elements": 445,
+    "boxChanged": 339,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "div.tllm-cell-l",
+      8
+     ],
+     [
+      "s",
+      "div.tllm-eyebrow",
+      4
+     ],
+     [
+      "s",
+      "span.tllm-chip-n",
+      3
+     ],
+     [
+      "s",
+      "p.tllm-card-asof",
+      2
+     ],
+     [
+      "s",
+      "a",
+      2
+     ],
+     [
+      "s",
+      "span.tllm-frame-k",
+      2
+     ],
+     [
+      "s",
+      "p.tllm-card-rule",
+      1
+     ],
+     [
+      "s",
+      "span.tllm-card-src",
+      1
+     ],
+     [
+      "s",
+      "a.tlllb-cta",
+      1
+     ],
+     [
+      "s",
+      "div#tllm-sample.tllm-sample",
+      1
+     ],
+     [
+      "s",
+      "span.tllm-card-label",
+      1
+     ],
+     [
+      "s",
+      "summary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-park-cta",
+      1
+     ],
+     [
+      "s",
+      "div.maplibregl-ctrl-attrib-inner",
+      1
+     ],
+     [
+      "s",
+      "span",
+      1
+     ]
+    ]
+   },
+   "the-paw-passport.html 390 out": {
+    "elements": 167,
+    "boxChanged": 152,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "div.tll-fos-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "div.tll-paw-pill",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "div.tll-paw-ex-eyebrow",
+      1
+     ]
+    ]
+   },
+   "the-paw-passport.html 1440 out": {
+    "elements": 193,
+    "boxChanged": 155,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "div.tll-fos-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "div.tll-paw-pill",
+      1
+     ],
+     [
+      "s",
+      "div.tll-paw-ex-eyebrow",
+      1
+     ]
+    ]
+   },
+   "this-page-does-not-exist-sweep.html 390 out": {
+    "elements": 63,
+    "boxChanged": 10,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ],
+     [
+      "s",
+      "a.tll404-btn.w-inline-block",
+      1
+     ],
+     [
+      "s",
+      "a.tll404-btn.tll404-btn-ghost",
+      1
+     ],
+     [
+      "s",
+      "a.tll404-btn",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "div.tll404-eyebrow",
+      1
+     ]
+    ]
+   },
+   "this-page-does-not-exist-sweep.html 1440 out": {
+    "elements": 89,
+    "boxChanged": 9,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "a.tll404-btn.w-inline-block",
+      1
+     ],
+     [
+      "s",
+      "div.tll404-eyebrow",
+      1
+     ],
+     [
+      "s",
+      "a.tll404-btn.tll404-btn-ghost",
+      1
+     ],
+     [
+      "s",
+      "a.tll404-btn",
+      1
+     ]
+    ]
+   },
+   "travelers.html 390 out": {
+    "elements": 251,
+    "boxChanged": 123,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": [
+     [
+      "s",
+      "span",
+      4
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-primary",
+      1
+     ],
+     [
+      "s",
+      "a.tll-btn.tll-btn-ghost-rose",
+      1
+     ]
+    ]
+   },
+   "travelers.html 1440 out": {
+    "elements": 278,
+    "boxChanged": 0,
+    "onlyB": 0,
+    "onlyA": 0,
+    "changed": []
+   }
+  }
+ },
+ "fcp_reruns": [
+  {
+   "page": "about",
+   "w": 1440,
+   "live": {
+    "n": 24,
+    "median": 170.0
+   },
+   "base": {
+    "n": 24,
+    "median": 158.0
+   },
+   "br": {
+    "n": 24,
+    "median": 152.0
+   }
+  },
+  {
+   "page": "account",
+   "w": 1440,
+   "live": {
+    "n": 9,
+    "median": 156
+   },
+   "base": {
+    "n": 9,
+    "median": 140
+   },
+   "br": {
+    "n": 9,
+    "median": 148
+   }
+  },
+  {
+   "page": "share-photos",
+   "w": 1440,
+   "live": {
+    "n": 9,
+    "median": 136
+   },
+   "base": {
+    "n": 9,
+    "median": 148
+   },
+   "br": {
+    "n": 9,
+    "median": 152
+   }
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up",
+   "w": 1440,
+   "live": {
+    "n": 24,
+    "median": 160.0
+   },
+   "base": {
+    "n": 24,
+    "median": 174.0
+   },
+   "br": {
+    "n": 24,
+    "median": 220.0
+   }
+  },
+  {
+   "page": "submit",
+   "w": 1440,
+   "live": {
+    "n": 9,
+    "median": 136
+   },
+   "base": {
+    "n": 9,
+    "median": 140
+   },
+   "br": {
+    "n": 9,
+    "median": 136
+   }
+  },
+  {
+   "page": "support",
+   "w": 390,
+   "live": {
+    "n": 9,
+    "median": 176
+   },
+   "base": {
+    "n": 9,
+    "median": 172
+   },
+   "br": {
+    "n": 9,
+    "median": 164
+   }
+  },
+  {
+   "page": "travelers",
+   "w": 390,
+   "live": {
+    "n": 24,
+    "median": 156.0
+   },
+   "base": {
+    "n": 24,
+    "median": 174.0
+   },
+   "br": {
+    "n": 24,
+    "median": 156.0
+   }
+  }
+ ],
+ "errors": {
+  "fcp2.jsonl": 0,
+  "fcp3.jsonl": 0
+ }
+}
