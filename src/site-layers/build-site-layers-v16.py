@@ -183,8 +183,8 @@ CHUNKS = [
     ('site', r'/^/', ['tll-footer-wordmark-v1', 'tll-masthead-v1', 'tll-hover-v1', 'tll-byline-links-v1', 'tll-story-fixes-1029-v1',
                       'tll-email-hello-v1', 'tll-ep-help-v1', 'tll-whats-new-v1', 'tll-note-footer-v1', 'tll-gate-return-v1', 'tll-p0-closeout-v1'], []),
     ('home', r'/^\/(index\.html)?$/', ['tll-redesign-p0-v1', 'tll-trust-v1'], []),
-    ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-trust-v1', 'tll-stories-count-v1', 'tll-stories-strip-v1'], []),
-    ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-story-is-v1', 'tll-trust-v1'], ['tll-ux-v1']),
+    ('stories', r'/^\/stories$/', ['tll-stories-places-v1', 'tll-story-is-v1', 'tll-trust-v1', 'tll-stories-count-v1', 'tll-stories-strip-v1'], ['tll-series-v1']),
+    ('story', r'/^\/stories\/[^/]+$/', ['tll-story-ask-v1', 'tll-story-captions-v1', 'tll-story-is-v1', 'tll-trust-v1'], ['tll-pros-v1', 'tll-series-v1', 'tll-ux-v1']),
     ('submit', r'/^\/submit$/', ['tll-submit-ux-v1', 'tll-linkout-preview-v1', 'tll-linkout-summary-v1', 'tll-submit-gallery-v1', 'tll-submit-long-v1',
                                  'tll-intake-v1', 'tll-story-is-v1'], ['tll-ux-v1']),
     ('share-photos', r'/^\/share-photos$/', ['tll-photos-caption-v1', 'tll-intake-v1'], []),
@@ -193,14 +193,14 @@ CHUNKS = [
     ('edit-profile', r'/^\/edit-profile/', ['tll-ep-country-v1', 'tll-ep-ux-v1', 'tll-ep-marks-v1', 'tll-ep-linkstack-v1', 'tll-crew-v1',
                                            'tll-collections-v1', 'tll-stamps-v1', 'tll-work-trips-v1'], ['tll-expat-v1']),
     ('profile', r'/^\/contributors\/[^/]+$/', ['tll-profile-count-v1', 'tll-pf-linkstack-v1', 'tll-crew-v1', 'tll-collections-v1', 'tll-stamps-v1',
-                                               'tll-album-v1', 'tll-pros-v1'], ['tll-expat-v1']),
+                                               'tll-album-v1'], ['tll-pros-v1', 'tll-expat-v1']),
     ('account', r'/^\/account$/', ['tll-crew-v1', 'tll-export-v1', 'tll-metrics-v1', 'tll-work-trips-v1'], ['tll-ux-v1']),
     ('map', r'/^\/the-map$/', ['tll-redesign-p0-v1'], []),
-    ('for-expats', r'/^\/for-expats$/', ['tll-expert-from-v1', 'tll-label-for-v1', 'tll-expats-map-v1', 'tll-series-v1'], ['tll-expat-v1']),
+    ('for-expats', r'/^\/for-expats$/', ['tll-expert-from-v1', 'tll-label-for-v1', 'tll-expats-map-v1'], ['tll-series-v1', 'tll-expat-v1']),
     ('travelers', r'/^\/travelers$/', ['tll-travelers-fix-v1'], []),
-    ('pursuits', r'/^\/pursuits\/[^/]+$/', ['tll-stamps-v1', 'tll-pros-v1', 'tll-series-v1', 'tll-work-trips-v1'], []),
-    ('pets', r'/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/', ['tll-crew-v1', 'tll-album-v1', 'tll-series-v1'], ['tll-paw-v1', 'tll-pet-passport-v1']),
-    ('countries', r'/^\/countries\/[^/]+$/', ['tll-series-v1'], []),
+    ('pursuits', r'/^\/pursuits\/[^/]+$/', ['tll-stamps-v1', 'tll-work-trips-v1'], ['tll-pros-v1', 'tll-series-v1']),
+    ('pets', r'/^\/(pets\/[^/]+|my-pets|the-paw-passport)$/', ['tll-crew-v1', 'tll-album-v1'], ['tll-series-v1', 'tll-paw-v1', 'tll-pet-passport-v1']),
+    ('countries', r'/^\/countries\/[^/]+$/', [], ['tll-series-v1']),
     ('misc', r'/^\/(spotlight|gallery)$/', ['tll-open-slots-v1', 'tll-lounge-members-v1'], ['tll-lounge-deck-v1']),
 ]
 
@@ -235,7 +235,7 @@ for _, _, pub, staged in CHUNKS:
     covered |= set(pub) | set(staged)
 assert not [n for n in BY if n not in covered], 'layers in SCRIPTS but in no chunk: ' + str([n for n in BY if n not in covered])
 assert len(set(c[0] for c in CHUNKS)) == len(CHUNKS), 'chunk names must be unique'
-for name, _, pub, _ in CHUNKS: assert pub, 'chunk %s has no public layer left: drop it from CHUNKS' % name
+for name, _, pub, staged in CHUNKS: assert pub or staged, 'chunk %s has no layer left: drop it from CHUNKS' % name
 
 # 16 Nov 2026: tll-first-paint-v1 carries copies of page rules (and of three rules of our own travelers chunk) so the first paint has
 # them. Each block is marked /*copy:<file>*/ ... /*end*/ with one rule a line as a double-quoted string; every rule must still be in
@@ -327,12 +327,14 @@ def chunk(name, rx, names):
     head = ('/* tll-site-layers-v16 chunk %s: loaded by the core loader on paths matching %s, after the core and in this order. Built by '
             'src/site-layers/build-site-layers-v16.py; each layer keeps its own path guard. No data-ms-* element is touched. */\n') % (name, rx)
     b = (head + body).encode('utf-8'); files[name] = b; hashes[name] = sri(b)
+# 22 Nov 2026 (sweep of 21 Nov, A18): a chunk may hold staged layers only (countries, once tll-series-v1 left the public lists). It has no
+# public file; its loader rule carries an empty hash, and the loader skips it unless a preview flag switches it to its -preview variant.
 for name, rx, pub, staged in CHUNKS:
-    chunk(name, rx, pub)
+    if pub: chunk(name, rx, pub)
     if staged: chunk(name + '-preview', rx, pub + staged)
 rules = []
 for name, rx, pub, staged in CHUNKS:
-    r = "['%s',%s,'%s'" % (name, rx, hashes[name])
+    r = "['%s',%s,'%s'" % (name, rx, hashes[name] if pub else '')
     if staged: r += ",'%s-preview','%s'" % (name, hashes[name + '-preview'])
     rules.append(r + ']')
 LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file at the same pinned commit, read off this script's own src, so no\n"
@@ -345,7 +347,7 @@ LOADER = ("/* Chunk loader: the per-path layers live in chunks/ beside this file
           "var P=location.pathname.replace(/\\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(location.search);\n"
           "try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}\n"
           "var C=[%s],h=document.head||document.documentElement;\n"
-          "for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}\n"
+          "for(var j=0;j<C.length;j++){var c=C[j];if(!c[1].test(P))continue;var n=c[0],g=c[2];if(pv&&c[3]){n=c[3];g=c[4];}if(!g)continue;\n"
           "  var s=document.createElement('script');s.src=m[1]+'chunks/'+n+'.js';s.setAttribute('integrity',g);s.setAttribute('crossorigin','anonymous');s.async=false;h.appendChild(s);}\n"
           "})();\n") % ',\n'.join(rules)
 
