@@ -1,0 +1,18 @@
+# Sweep Nov 21, 2026: class C, questions for Nancy
+
+Written Nov 22, 2026. One line each: the question, then the recommendation. Ids follow ranked.md with the verify-2 corrections.
+
+- C01 /account: the Newsletter card links /newsletter, which answers 301 to home; where is the newsletter managed now? Recommendation: hide the card until a page exists.
+- C02 /signup and /login: may we give the Memberstack forms unique ids and set Label For (id "field" x3 and 5 empty For on /signup, "field" x2 and 2 on /login, plus /edit-profile x4), bring their buttons (Continue with Google, Log in, Create my account) into the button set, and check where Memberstack sends a member after login? Recommendation: yes, on the test site first; no name or data-ms-* attribute changes.
+- C03 /account: which menu stays (the member bar or the 7 side tabs), and which export (the in-browser JSON or the Worker zip)? Recommendation: keep the side menu and the Worker zip, and show profile progress once.
+- C04 Story pages: may we cut the story end (about 11 modules) to one ask of each kind? Recommendation: photos before reader notes, one share ask, the Tell the editor pill only, and Keep reading filled from the same place, not only the same writer.
+- C05 /stories: which theme chips, if any, should /stories offer? Recommendation: none for now (55 cards with a pillar: 53 Stories From the Road, 1 Travel Logistics, 1 Cultural Intelligence, counted from the cards), or later only pillars with at least 3 stories; A12 writes ?place= only.
+- C06 /submit, /my-pets, /share-photos: which face for inputs and the Body box, and which text did the contributor's "black text" note mean? Recommendation: Plex Sans Condensed at 17 px with line height 1.6 (no new font load), and ask the contributor.
+- C07 All pages: may we move the five site scripts that talk to Memberstack (the places sync, tll_save_story, tll_reader_notes, tll_reader_notes_form, tll_saved_shelf) to page scripts on the pages that use them? Recommendation: yes, on the test site first; frees up to 4 more of the 15 slots (the 2 map scripts are class B, B25).
+- C09 Story pages: keep the Sep 28 date order you chose ("7 May 2023") or move to US order ("May 7, 2023")? Recommendation: US order; note that the template's tree walker also rewrites dates inside contributors' own story text, so that walker should stop touching story text either way.
+- C10 About 15 places: arrows from a font subset or from SVG? Recommendation: the font subset (Google Fonts text=←→↗ for Plex Sans Condensed 400/600 and JetBrains Mono 600 covers them).
+- C11 Five member pages: may the core become the one owner of member and visitor block visibility (today tllgateflashv1, the site head early rule, the site footer core CSS and the core's early state)? Recommendation: yes, after a signed-in run on the test site.
+- C12 /about and 404: "Get In" to "Get in", and the 404's "Back to the gate" to "Back to home" with a search box? Recommendation: yes to both.
+- C13 (new, from A01): the /stories empty-search fallback now reads "No story matches “q” yet, so here are all N. Every story here is one trip, told by someone who went. Share your story · See all stories" (only when the page note is missing); OK? Recommendation: yes; the page's own note ("No stories match ... Share your story → / Clear the search") stays the one most visitors see.
+- C14 (new, from A08): after signing in from a gate, a small card offers "Back to your story / pets / photos"; OK, and should Memberstack's own login redirect be set to send members back instead? Recommendation: keep the card, and check the redirect setting on the test site (C02).
+- C08 was answered by the code (the core ring already wins everywhere) and moved to class B (B26).
