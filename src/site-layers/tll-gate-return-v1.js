@@ -7,6 +7,9 @@
    bottom right so nothing on the page moves (on /account at 960px and wider it sits above the Tell the editor pill, which A09 moves there). The key is cleared when the member is back on that page, clicks the link or closes the
    card, and after 30 minutes. It reads the member the way tll-phase0-v1 does (getCurrentMember, read only) and writes nothing to
    Memberstack; the gate links and every data-ms-* element are left as they are (the click is only read). Every page (site chunk).
+   22 Nov 2026 (check of the sweep, note 2): the card's words wait for Nancy (class-c C14), so the layer rides only in the site-preview
+   chunk until she answers: it runs with a preview flag (?preview=, ?qr=) or a tll-preview-* localStorage key, which a tester keeps
+   across the sign-in. To make it public, move it back to the site chunk's public list in build-site-layers-v16.py and rebuild.
    22 Nov 2026 (check of the sweep, note 1): on the home page the site head's parallax rule .tllp-home :has(> img[data-tll-parallax=
    "hero"]) ~ * (0,2,1) also matches the card and made it position:relative, z-index 2, so it sat at the foot of the page. The card's
    rule now carries an id and html body (1,1,2) and !important on position, the offsets and z-index, so it stays fixed bottom right on

@@ -42,3 +42,28 @@ describe('tll-story-is-v1 search note (A01)', () => {
     expect(dom.document.getElementById('tll-q-note').textContent.startsWith('No story matches “q” yet. Every')).toBe(true);
   });
 });
+
+// Check of the sweep, note 2 (class-c C13): the fallback above is public but its words wait for Nancy; it must only show when the page
+// note is missing. Run with the saved live /stories page code (search v4 writes the note, the Stories 3.0 companion rewrites it with
+// data-s3): the page note wins whether the page code runs before the layer or after the fallback was already written.
+describe('tll-story-is-v1 search note: the live page note wins (C13)', () => {
+  const foot = readFileSync(join(here, '..', 'src', 'pages', 'live-2026-11-21', 'stories', 'page-footer.html'), 'utf8');
+  const v4 = /<script id="tll-lib-search-v4">\n([\s\S]*?)<\/script>/.exec(foot)[1];
+  const s3 = /<script id="tll-s3-stories-js-v1">\n([\s\S]*?)<\/script>/.exec(foot)[1];
+  const PAGE_NOTE = 'No stories match “zzqx” yet. Share your story →Clear the search';
+  function stories() { const dom = createDom({ pathname: '/stories', html: cards(57) }); dom.window.location.search = '?q=zzqx'; return dom; }
+  it('page code first (as on the live page): the layer stands aside', async () => {
+    const dom = stories();
+    dom.run(v4); dom.run(s3); dom.run(src); await dom.tick(5000);
+    const n = dom.document.getElementById('tll-q-note');
+    expect(n.textContent).toBe(PAGE_NOTE);
+    expect([n.getAttribute('data-s3'), n.getAttribute('data-tll-si')]).toEqual(['1', null]);
+  });
+  it('the companion late, after the fallback was written: the page note still replaces it and the layer does not come back', async () => {
+    const dom = stories();
+    dom.run(v4); dom.run(src); await dom.tick(1000);
+    expect(dom.document.getElementById('tll-q-note').textContent.startsWith('No story matches “zzqx” yet, so here are all 57.')).toBe(true);
+    dom.run(s3); await dom.tick(5000);
+    expect(dom.document.getElementById('tll-q-note').textContent).toBe(PAGE_NOTE);
+  });
+});
