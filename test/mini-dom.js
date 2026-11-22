@@ -23,6 +23,7 @@ export function createDom({ pathname = '/submit', html = '' } = {}) {
     set textContent(v) { this.nodeValue = String(v); }
     get nextSibling() { return sib(this, 1); }
     remove() { detach(this); }
+    cloneNode() { return new Text(this.nodeValue); }
   }
 
   function sib(n, d) { const p = n.parentNode; if (!p) return null; const i = p.childNodes.indexOf(n); return p.childNodes[i + d] || null; }
@@ -99,6 +100,7 @@ export function createDom({ pathname = '/submit', html = '' } = {}) {
     replaceChild(c, old) { this.insertBefore(c, old); detach(old); return old; }
     removeChild(c) { detach(c); return c; }
     remove() { detach(this); }
+    cloneNode(deep) { const c = new Element(this.localName); this.attrs.forEach((v, k) => c.setAttribute(k, v)); if (deep) this.childNodes.forEach((n) => c.appendChild(n.cloneNode(true))); return c; }
     insertAdjacentElement(pos, el) {
       if (pos === 'afterend') return this.parentNode.insertBefore(el, this.nextSibling);
       if (pos === 'beforebegin') return this.parentNode.insertBefore(el, this);

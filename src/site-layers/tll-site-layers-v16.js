@@ -58,7 +58,7 @@ var P=location.pathname.replace(/\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(loca
 try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}
 var C=[['site',/^/,'sha384-odd6sL4XEa0idn4EATQ2EG+cxCf25IGj63+smCdxamqdo700VtvmKj8dbPjyaLFw'],
 ['home',/^\/(index\.html)?$/,'sha384-cguoozIbTjibeN3Nh1E3/TrmsCN6NsoUyrvhbZuOC8X23mzTLAmpt4Omh0lMss8d'],
-['stories',/^\/stories$/,'sha384-63g9EIEAaAmgXZu8uij5466Mg/c28y0paPvYjbDNu8ICTgo6OOlMVH1+971wEXtu'],
+['stories',/^\/stories$/,'sha384-tiKkY3CS3F16DkmgRB5OIcMf4a7ruL5Yh3a4nHWRaqOht5mIfe8cRzE1Cng4Tn4h'],
 ['story',/^\/stories\/[^/]+$/,'sha384-whRLjrz6JsOE/hq+FrzzFppWoiPoGLg/5A//3fpm6wHIwRT2SEfpWjZrsqUvjY5v','story-preview','sha384-cu1py1IUdG1gVs40onQisOLjtKBl5QbpyYHKX2qCopWA0eCIpdIeHflWxHRtfauz'],
 ['submit',/^\/submit$/,'sha384-VktF5AXIM7AEWGM9dzMvfxzU7L9YrU4hpWbkXFpCtNMEfGcJ+3hsTgl46EhjmyVM','submit-preview','sha384-i7nIf+tpKGFUmVvXBW77FP6mpT3qy+vWGQw37KwwvY2dVzxBSERAur6MwbQG+T7a'],
 ['share-photos',/^\/share-photos$/,'sha384-uoZrsptUVDrS9Bea7KGffpTQOPGbNz+lOSdMpN/d7QUhLkkiw1abBjuF+1eOh8DY'],
