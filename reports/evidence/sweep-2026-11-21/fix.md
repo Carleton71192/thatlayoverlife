@@ -12,10 +12,12 @@ vitest file for each, the core rebuilt with build-site-layers-v16.py in every co
 | Core sha384 | sha384-a9tcQUfkTLuUzZ1IXfw7dVcXSKJnilK7aqF6p5HiS5d80ghZvRrQ6Akt8Ewg/2st | sha384-rX6JpX+ziDO8ce0A32rdwa+F2hX4IyqAQ8eXNR648g+BpItDm62qGyZxty1TxIFF |
 | Public chunks story / stories / pursuits / pets / for-expats / profile | 30.7 / 28.6 / 46.5 / 41.6 / 21.7 / 71.8 KB | 13.0 / 17.2 / 28.4 / 29.8 / 10.3 / 64.0 KB |
 | vitest | 759 tests, 63 files | 827 tests, 72 files, all pass |
-| node --test worker/test | 83 | 83, all pass |
+| node --test worker/test/*.test.js | 83 | 83, all pass |
 
 The sweep's own rules add about 8.5 KB to the core; leaving the styles' comments out of the download (last row of the table below)
 takes 13.7 KB off, so the core ends 5.1 KB smaller than 16.68.0.
+The worker figures come from `node --test worker/test/*.test.js`; the bare `node --test worker/test` fails on Node 22 (it looks for a
+module of that name), as review 2 (finding 3.3) found.
 
 Browser check (build/bin/chk.cjs, results in build/chk.jsonl): 16 cells, the cached pages with this branch's core and chunks served
 from the worktree in place of the pinned jsDelivr files, 390 and 1440, signed out and signed in with the stand-in. 0 page errors,
@@ -86,7 +88,7 @@ nothing was downloaded from Webflow hosts; every non-GET aborted.
 | Core sha384 | sha384-rX6JpX+ziDO8ce0A32rdwa+F2hX4IyqAQ8eXNR648g+BpItDm62qGyZxty1TxIFF | sha384-7BuGLQzS/89d4eCS1J14BHSv96uxPPr4tl62X1kJtq7Ngzljs24q8/rce1BHepYz |
 | chunks/site.js | 23,692 B | 20,588 B (site-preview.js 23,839 B is new) |
 | vitest | 827 tests, 72 files | 849 tests, 72 files, all pass (844 at f3bc3f4) |
-| node --test worker/test | 83 | 83, all pass |
+| node --test worker/test/*.test.js | 83 | 83, all pass |
 
 | Note | What | Why | Before | After (measured) |
 |---|---|---|---|---|
@@ -95,7 +97,7 @@ nothing was downloaded from Webflow hosts; every non-GET aborted.
 | 2 (A01, C13) | no code change; a test runs the saved live /stories page code (search v4 and the Stories 3.0 companion) with ?q=zzqx | the fallback is public, its words wait for Nancy too | untested against the live page code | the page note wins when the page code runs first and when the companion comes after the fallback |
 | 3 (A12) | new core layer tll-place-wait-v1 and a tll-sweep-1121-v1 rule: while a ?place= that names a place chip is pending, .tll-lib-grid is visibility:hidden (no reflow); the replay takes the mark off once it pressed the chip, found none or gave up (its 3 s wait); the core lets go at once if the chunk fails, 3.5 s after the later of the chunk's load and DOMContentLoaded (review 2, below), and after 10 s | with late scripts all cards painted, then dropped to the place's | core and chunks 3 s late, /stories?place=Asia at 390: CLS 0.5179 in 3 of 3 loads (live 0.2569) | 0.2569 in 5 of 5 loads, Asia pressed, 11 cards, grid visible at the end; normal speed ?place=Europe at 1440 0.0299 (live 0.0309); no ?place=: nothing changes (unit test) |
 | 4 (A14) | html body .tll-lib-meta:not(#tll-mono-12){letter-spacing:1px !important} | at 12px the page's 2px !important with nowrap and an ellipsis clipped more place names | place tags clipped of 57: 6 at 390, 2 at 1440 (live 2 and 1) | 2 at 390, 1 at 1440. Every element the floor reaches, on the 34 cached pages at both widths: only .tll-lib-meta meets 2px or more with nowrap and an ellipsis, so no other class changed |
-| 8 (A14) | [data-tll-x=eyebrow] joins the A14 list | the page sets the /for-expats eyebrows to 10px; its floor script lifted only some, the map's only when the map drew before window load | the five eyebrows 12, 10, 10 (map), 10, 12px, 3 of 3 loads at 390 and at 1440 | 12px each in every load |
+| 8 (A14) | [data-tll-x=eyebrow] joins the A14 list | the page sets the /for-expats eyebrows to 10px; its floor script sets 12px inline on the element that holds the text, at DOMContentLoaded and at window load, so the map's eyebrow, drawn by tll-expats-map-v1, kept 10px unless the map drew before window load | only the map's eyebrow text was really 10px. The harness read the outer box of the five: 12, 10, 10 (map), 10, 12px, 3 of 3 loads at 390 and at 1440. The second and fourth (THE DIRECTORY, WHAT A LOCATION EXPERT DOES) hold their text in an inner div, which the floor script had already set to 12px, so their text was 12px; the first and fifth hold their text directly and were 12px (review 2, finding 3.2) | 12px each in every load |
 
 Review 2 (review-2.md on claude/new-session-zxm063), finding 3.1: tll-place-wait-v1 started its 3 s at the stories chunk's load,
 but the replay in tll-stories-places-v1 (and the page's chip script) waits for DOMContentLoaded, which the /stories footer scripts can
