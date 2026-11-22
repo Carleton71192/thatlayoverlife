@@ -72,3 +72,30 @@ variable and always failed; no existing test changed result.
   A01 required: that layer rides in the submit chunk too, but search() runs only on /stories (run() calls it for that path only).
   When the in-progress /submit fix lands, rebuild rather than merge the chunk files.
 - New copy waiting for Nancy's OK: the A01 fallback and the A08 card words (class-c.md C13, C14).
+
+## Nov 22 follow-up: the notes of the independent check
+
+The check of this branch (check.md on claude/new-session-zxm063, section 6) passed it with notes; notes 1 to 4 and 8 are resolved
+here, one commit each, the core rebuilt in each. Notes 5 to 7 asked for no code change. Browser runs use a copy of the check harness
+(check/bin on claude/new-session-zxm063) with the plain-GET cache; images and fonts not in the cache are answered with stand-ins, so
+nothing was downloaded from Webflow hosts; every non-GET aborted.
+
+| | Before (1ef84ab) | After (this follow-up) |
+|---|---|---|
+| Core tll-site-layers-v16.js | 272,423 B | 273,683 B, 79.2 KB gzip |
+| Core sha384 | sha384-rX6JpX+ziDO8ce0A32rdwa+F2hX4IyqAQ8eXNR648g+BpItDm62qGyZxty1TxIFF | sha384-zZQB/zsehgGnNd/jgQFu0T1AqScv35Wvg4rT533wLyECh6g4NFcOeANuIB6Qe25t |
+| chunks/site.js | 23,692 B | 20,588 B (site-preview.js 23,839 B is new) |
+| vitest | 827 tests, 72 files | 844 tests, 72 files, all pass |
+| node --test worker/test | 83 | 83, all pass |
+
+| Note | What | Why | Before | After (measured) |
+|---|---|---|---|---|
+| 1 (A08) | tll-gate-return-v1: the card rule is html body #tll-gate-back.tll-gate-back (1,1,2) with !important on position, right, bottom, left, top and z-index; the /account lift is one attribute heavier (bottom:76px !important) | the site head's parallax rule .tllp-home :has(> img[data-tll-parallax="hero"]) ~ * (0,2,1) matched the card on the home page | position relative, z-index 2, 2264px below the fold at 390 (Chromium, that rule and the layer) | fixed, 16px from the right and bottom; unit test reads the page rule from the saved site head and compares weights |
+| 2 (A08, C14) | tll-gate-return-v1 moves to the site chunk's staged list; site gets a site-preview variant | the card's words wait for Nancy (class-c C14) | in the public site chunk | only with ?preview=, ?qr= or a tll-preview-* key (loader test); code and tests kept |
+| 2 (A01, C13) | no code change; a test runs the saved live /stories page code (search v4 and the Stories 3.0 companion) with ?q=zzqx | the fallback is public, its words wait for Nancy too | untested against the live page code | the page note wins when the page code runs first and when the companion comes after the fallback |
+| 3 (A12) | new core layer tll-place-wait-v1 and a tll-sweep-1121-v1 rule: while a ?place= that names a place chip is pending, .tll-lib-grid is visibility:hidden (no reflow); the replay takes the mark off once it pressed the chip, found none or gave up (its 3 s wait); the core lets go if the chunk fails, 3 s after the chunk has run, and after 10 s | with late scripts all cards painted, then dropped to the place's | core and chunks 3 s late, /stories?place=Asia at 390: CLS 0.5179 in 3 of 3 loads (live 0.2569) | 0.2569 in 5 of 5 loads, Asia pressed, 11 cards, grid visible at the end; normal speed ?place=Europe at 1440 0.0299 (live 0.0309); no ?place=: nothing changes (unit test) |
+| 4 (A14) | html body .tll-lib-meta:not(#tll-mono-12){letter-spacing:1px !important} | at 12px the page's 2px !important with nowrap and an ellipsis clipped more place names | place tags clipped of 57: 6 at 390, 2 at 1440 (live 2 and 1) | 2 at 390, 1 at 1440. Every element the floor reaches, on the 34 cached pages at both widths: only .tll-lib-meta meets 2px or more with nowrap and an ellipsis, so no other class changed |
+| 8 (A14) | [data-tll-x=eyebrow] joins the A14 list | the page sets the /for-expats eyebrows to 10px; its floor script lifted only some, the map's only when the map drew before window load | the five eyebrows 12, 10, 10 (map), 10, 12px, 3 of 3 loads at 390 and at 1440 | 12px each in every load |
+
+For the release: the A08 card is no longer public, so C14 can be answered at any time; to make the card public, move
+tll-gate-return-v1 back to the site chunk's public list in build-site-layers-v16.py and rebuild. A01's fallback (C13) stays public.
