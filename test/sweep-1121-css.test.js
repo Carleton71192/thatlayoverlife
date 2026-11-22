@@ -135,3 +135,15 @@ describe('A10 tap targets reach 44px', () => {
     expect(read('src', 'site-layers', 'tll-buttons-v1.html')).toContain('html body .tll-nav-v1 .tll-btn,html body .tll-nav-v1 a.tll-nav-signup,html body .tll-nav-v1 a.tll-nav-pen-cta{min-height:40px !important;');
   });
 });
+
+describe('A09 the Tell the editor pill moves right on /account at 960px and wider', () => {
+  it('keyed to the /account page id; the phone round button (under 960px) stays bottom left', () => {
+    rule('@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] body #tll-note{left:auto;right:calc(16px + env(safe-area-inset-right))}}');
+  });
+  it('the gate return card (A08) sits above it there', () => {
+    expect(read('src', 'site-layers', 'tll-gate-return-v1.js')).toContain('@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] .tll-gate-back{bottom:76px}}');
+  });
+  it('the hide-while-typing rule is already live (tll-note-phone-v1), so nothing else is added', () => {
+    expect(read('src', 'site-layers', 'tll-note-phone-v1.html')).toContain('html.tll-typing #tll-note:not([data-open="true"]){display:none !important}');
+  });
+});

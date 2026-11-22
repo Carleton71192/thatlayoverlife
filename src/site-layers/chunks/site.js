@@ -231,6 +231,7 @@ if(WORDS[P])document.addEventListener('click',function(e){
 function member(cb){var n=0,iv=setInterval(function(){var ms=window.$memberstackDom;if(ms&&ms.getCurrentMember){clearInterval(iv);ms.getCurrentMember().then(function(r){cb(!!(r&&r.data));}).catch(function(){cb(false);});}else if(++n>40){clearInterval(iv);cb(false);}},150);}
 var CSS='.tll-gate-back{position:fixed;right:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:4px;max-width:min(360px,calc(100% - 92px));box-sizing:border-box;padding:4px 4px 4px 16px;background:#0A0B14;color:#F7F1E8;border:1.5px solid #F7F1E8;font:600 16px/1.2 "IBM Plex Sans Condensed",TLLSansA,TLLSansR,system-ui,sans-serif}'+
 '.tll-gate-back a{display:inline-flex;align-items:center;min-height:44px;color:#F7F1E8 !important;text-decoration:underline;text-decoration-color:#F0507A;text-decoration-thickness:2px;text-underline-offset:4px}'+
+'@media(min-width:960px){html[data-wf-page="6a0d5c23c57426a9c563e8de"] .tll-gate-back{bottom:76px}}'+
 '.tll-gate-back button{flex:none;width:44px;height:44px;margin:0;padding:0;border:0;background:transparent;color:#F7F1E8;font:400 22px/1 system-ui,sans-serif;cursor:pointer}';
 function show(v){
   if(document.getElementById('tll-gate-back'))return;
