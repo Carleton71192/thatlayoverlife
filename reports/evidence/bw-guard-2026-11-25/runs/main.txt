@@ -1,0 +1,46 @@
+S0 sanity host seen by stub ["www.thatlayover.life:45585"]
+DISCONNECTED during S0
+S1 host spellings (block mode) {"upper":"blocked","apex":"blocked","apexUpper":"blocked","cdn":"blocked","cdnUpper":"blocked","assetsGlobal":"blocked","deepSub":"blocked","webflowIo":"blocked","wfioUpper":"blocked","trailingDot":"REACHED SERVER","cdnTrailingDot":"REACHED SERVER","otherSub":"REACHED SERVER","uploadsWebflowCom":"REACHED SERVER","noExtImg":"blocked","extUpper":"blocked","encodedExt":"blocked","cssBackground":"blocked","fetchNoExtImage":"REACHED SERVER (counted as non-media)","fetchEncodedExt":"REACHED SERVER"}
+S1 stats {"label":"s1","mode":"block","bytes":437,"mb":0,"pageLoads":1,"responses":2,"blocked":13,"nonGet":0,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S1
+S2 redirect non-Webflow img -> Webflow img "REACHED SERVER (not blocked)"
+S2 redirect Webflow page path -> Webflow img "blocked"
+S2 redirect other host img -> Webflow img "REACHED SERVER (not blocked)"
+S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted {"stubSent":300000,"guardBytes":0}
+S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads {"added":0,"pageLoads":2}
+S2 caller route.fetch result 200
+S2 caller route.fetch non-Webflow URL redirecting to Webflow image (block mode) "REACHED SERVER (not blocked, not counted)"
+DISCONNECTED during S2
+S3 sw register "ok"
+S3 service worker {"swInstallWebflowImage":"blocked","swPOST":"blocked","swPUT":"blocked","sw500KBWebflowScriptSent":500000,"pageImgThroughSW":"blocked","pagePOSTThroughSW":"blocked","pagePostResult":"blocked","guardStats":{"label":"s3","mode":"block","bytes":500197,"mb":0.5,"pageLoads":2,"responses":1,"blocked":2,"nonGet":3,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"dayBaseMB":0,"stopped":null}}
+S3 serviceWorkers block variant error "page.evaluate: Target page, context or browser has been closed"
+DISCONNECTED during S3
+S4 block mode {"videoHits":0,"noExtVideoHits":0,"fetchRangeMp4":0,"rangeOnNonMedia":[{"range":"bytes=0-99","sent":800000}],"guardBytes":800197}
+S4 cache mode {"videoNetworkFetches":1,"rangesSentUpstream":[null],"sentBytes":2000000,"stats":{"label":"s4-cache","mode":"cache","bytes":6800761,"mb":6.801,"pageLoads":1,"responses":4,"blocked":0,"nonGet":0,"cacheHits":1,"cacheFetches":3,"cacheRefused":0,"dayBaseMB":0,"stopped":null}}
+S4 cache mode after reload: new upstream video fetches 0
+DISCONNECTED during S4
+S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s {"stubSentMB":4.99,"guardMB":0,"tripped":0}
+S5 log line after close ["- 25 Nov 15:51 UTC, s5-stream: wf-guard block run, 1 page loads, 0 Webflow responses, 0.00 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests"]
+S5 polling 200 KB Webflow fetches, run cap 1 MB {"trips":["wf-guard: s5-poll reached 1.00 MB from Webflow, the run cap is 1 MB; run stopped"],"fetchesBeforeStop":7,"stubSentMB":1.4,"guardMB":1.001,"laterHits":0,"log":["- 25 Nov 15:51 UTC, s5-poll: wf-guard block run, 1 page loads, 5 Webflow responses, 1.00 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests; STOPPED at the run cap"]}
+DISCONNECTED during S5
+S6 two contexts, same cache, same image at the same time: upstream fetches 2
+UNHANDLED REJECTION route.fetch: socket hang up
+S6 first fetch failed in A; B (guarded before) and C (guarded after) load it: upstream fetches 2
+S6 shared run log ["- 25 Nov 15:51 UTC, s6-shared: wf-guard cache run, 5 page loads, 3 Webflow responses, 0.00 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests; cache 1 hits, 3 first fetches, 0 refused"]
+DISCONNECTED during S6
+S6c page target closed, then 400 KB more in the same context {"guardMB":0.5,"log":["- 25 Nov 15:51 UTC, s6c-page: wf-guard block run, 1 page loads, 1 Webflow responses, 0.10 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests"]}
+DISCONNECTED during S6c
+S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB {"tripsB":["day"],"log":["# log","- 25 Nov 15:51 UTC, s8-a: wf-guard block run, 1 page loads, 1 Webflow responses, 0.60 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests","- 25 Nov 15:51 UTC, s8-b: wf-guard block run, 1 page loads, 1 Webflow responses, 0.60 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests; STOPPED at the daily cap"]}
+S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB {"trips":[],"log":["# log","- 25 Nov 15:51 UTC, s8-c: wf-guard block run, 1 page loads, 1 Webflow responses, 0.60 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests","- 25 Nov 15:51 UTC, s8-d: wf-guard block run, 1 page loads, 1 Webflow responses, 0.60 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests"],"dayTotal":1.2}
+S8 third run after the cap "refused: wf-guard: the daily total for 25 Nov in /tmp/wfgchk-8wpBLD/log.md is already 1.20 MB (cap "
+DISCONNECTED during S8
+S9 page results {"post":"blocked","head":"blocked","put":"blocked","del":"blocked","patch":"blocked","beacon":true}
+S9 non-GET requests that reached the stub ["POST /s9-beacon-unload","POST /s9-keepalive","POST /s9-beacon-unload","POST /s9-keepalive","POST /s9-apirequest"]
+S9 stats {"label":"s9","mode":"block","bytes":0,"mb":0,"pageLoads":5,"responses":0,"blocked":0,"nonGet":14,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S9
+S10 caller fallback({url}) rewriting to a Webflow image "blocked"
+S10 caller continue({url}) rewriting to a Webflow image "blocked"
+S10 page.goto a Webflow image "blocked"
+S10 caller route registered BEFORE guard (documented limit) "blocked"
+unhandled rejections seen ["route.fetch: socket hang up"]
+DISCONNECTED during S10
