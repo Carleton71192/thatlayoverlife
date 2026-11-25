@@ -1,0 +1,23 @@
+# DRAFT, 25 Nov 2026. Not live. Paste in Site settings, SEO, Indexing only after Nancy says yes.
+# Replaces the short version from 13 Nov, which was never saved.
+# Private member pages: nothing here for search engines.
+User-agent: *
+Disallow: /account
+Disallow: /edit-profile
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /my-pets
+Disallow: /search
+
+# SEO-tool crawlers that send no visitors. Google, Bing, Apple, Ahrefs and AI search bots stay allowed.
+User-agent: SemrushBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: DataForSeoBot
+User-agent: Barkrowler
+User-agent: serpstatbot
+Disallow: /
+
+Sitemap: https://www.thatlayover.life/sitemap.xml
