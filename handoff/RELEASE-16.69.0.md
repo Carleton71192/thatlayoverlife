@@ -21,3 +21,6 @@ Pin 77b56b3f8413045f2c49c3b40bd7e658689b6a90, SRI sha384-7BuGLQzS/89d4eCS1J14BHS
 
 ## Rollback
 set_site_scripts with src/site/live-2026-11-22/r1669/site-scripts.before.json (16.68.0, pin 0f04fabf), then publish. Never delete the registered script.
+
+## Live
+Nancy in chat on 25 Nov: "Published www" (read as "Publish www"; Webflow showed www still on the 22 Nov publish). Published www, thatlayover.life and the test site on 25 Nov (publishTaskId c57a0e40-fafb-406e-93df-ff49edcfbff2); www served the new pin from 08:01:33 UTC. www and test HTML identical on 12 of 12 pages (reports/evidence/release-16.69.0-live/). Rollback stays as above.
