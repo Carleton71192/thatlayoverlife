@@ -164,3 +164,69 @@ describe('tll-place-wait-v1 holds the grid while a ?place= is pending (check not
     expect(JSON.parse(/var PLACES=(\[[^\]]*\])/.exec(wait)[1].replace(/'/g, '"'))).toEqual(order);
   });
 });
+
+// Check 3 of the 21 Nov sweep, note 1: with ?place=Asia at 1440 the replay took the mark off right after its click, and the page's
+// lead layer (tll-lib-lead-v1: a MutationObserver on the grid, 30 ms debounce) then moved the lead mark to the Asia story 40 to 60 ms
+// after the grid was shown, one shift of 0.0292. The page's chip click fires no tll:lib-filtered, so the replay now waits for the grid
+// to be quiet for 100 ms after its click (0.4 s at most) and only then shows it. Lead layer run from the saved live /stories footer.
+describe('tll-stories-places-v1 shows the grid only after the lead layer has run (check 3, note 1)', () => {
+  const wait = read('src', 'site-layers', 'tll-place-wait-v1.js');
+  const lead = /<script id="tll-lib-lead-v1">\n([\s\S]*?)<\/script>/.exec(read('src', 'pages', 'live-2026-11-21', 'stories', 'page-footer.html'))[1];
+  const mark = (dom) => dom.document.documentElement.hasAttribute('data-tll-place-wait');
+  // The stand-in fires observers by hand; deliver records the way a browser does, after the running task, to each observer on the grid
+  // whose options match (child list of the grid; an attribute of a card only with subtree and the name in its filter; removing an
+  // attribute that is not there is no change). style.display writes are not seen here; the page's chip script also re-appends the cards.
+  function deliver(dom, grid) {
+    let recs = [];
+    const flushRecs = () => { const r = recs; recs = []; dom.observers.filter((o) => o.target === grid).forEach((o) => {
+      const mine = r.filter((x) => (x.type === 'childList' ? o.opts.childList : o.opts.attributes && o.opts.subtree && (!o.opts.attributeFilter || o.opts.attributeFilter.includes(x.name))));
+      if (mine.length) o.cb(mine, o.mo); }); };
+    const send = (rec = { type: 'childList' }) => { if (!recs.length) Promise.resolve().then(flushRecs); recs.push(rec); };
+    ['appendChild', 'insertBefore'].forEach((n) => { const f = grid[n]; grid[n] = function (...a) { const r = f.apply(this, a); send(); return r; }; });
+    [...grid.children].forEach((k) => {
+      const set = k.setAttribute, rm = k.removeAttribute;
+      k.setAttribute = function (n, v) { set.call(this, n, v); send({ type: 'attributes', name: n }); };
+      k.removeAttribute = function (n) { const had = this.hasAttribute(n); rm.call(this, n); if (had) send({ type: 'attributes', name: n }); };
+    });
+    return send;
+  }
+  function open(search) {
+    const dom = createDom({ pathname: '/stories', html: PAGE }); dom.window.location.search = search;
+    const el = dom.document.createElement('script'); el.setAttribute('src', 'https://cdn.jsdelivr.net/gh/x/y@abc/src/site-layers/chunks/stories.js'); dom.document.head.appendChild(el);
+    dom.run(wait); const grid = dom.document.querySelector('.tll-lib-grid'); const send = deliver(dom, grid);
+    const history = { state: null, replaceState() {} };
+    dom.run(src, { history }); dom.run(chipsPage, { history }); dom.run(lead); el.dispatchEvent(new dom.window.Event('load'));
+    const leadRegion = () => { const k = [...grid.children].find((c) => c.getAttribute('data-tll-lead') === '1'); return k ? k.querySelector('[data-tll-region]').textContent : null; };
+    return { dom, grid, send, leadRegion };
+  }
+  it('?place=Asia: the lead mark is on the Asia story before the grid is shown, and the grid is shown within 0.2 s of the click', async () => {
+    const { dom, leadRegion } = open('?place=Asia');
+    expect(leadRegion()).toBe('Africa'); expect(mark(dom)).toBe(true);
+    let clickedAt = -1, shownAt = -1, leadWhenShown = null;
+    while (await dom.step()) {
+      if (clickedAt < 0 && chip(dom, 'Asia').getAttribute('aria-pressed') === 'true') clickedAt = dom.now();
+      if (shownAt < 0 && !mark(dom)) { shownAt = dom.now(); leadWhenShown = leadRegion(); }
+      if (shownAt >= 0 || dom.now() > 10000) break;
+    }
+    expect(clickedAt).toBeGreaterThanOrEqual(0);
+    expect(leadWhenShown).toBe('Asia');
+    expect(shownAt - clickedAt).toBeGreaterThanOrEqual(100);
+    expect(shownAt - clickedAt).toBeLessThanOrEqual(200);
+  });
+  it('?place=Europe (the lead does not move): still shown about 0.1 s after the click, far inside the core\'s 3.5 s', async () => {
+    const { dom } = open('?place=Europe');
+    await dom.tick(100); expect(chip(dom, 'Europe').getAttribute('aria-pressed')).toBe('true'); expect(mark(dom)).toBe(true);
+    await dom.tick(150); expect(mark(dom)).toBe(false);
+  });
+  it('a grid that keeps changing is shown 0.4 s after the click at the latest', async () => {
+    const { dom, send } = open('?place=Asia');
+    await dom.tick(100); expect(chip(dom, 'Asia').getAttribute('aria-pressed')).toBe('true');
+    for (let t = 50; t < 400; t += 50) { send(); await dom.tick(50); expect(mark(dom), `${t} ms after the click`).toBe(true); }
+    await dom.tick(49); expect(mark(dom)).toBe(true);
+    await dom.tick(1); expect(mark(dom)).toBe(false);
+  });
+  it('no chip to press: shown at once, as before', async () => {
+    const a = open('?place=Oceania'); a.dom.document.querySelector('[data-tll-place="Oceania"]').remove();
+    await a.dom.tick(100); expect(mark(a.dom)).toBe(false);
+  });
+});
