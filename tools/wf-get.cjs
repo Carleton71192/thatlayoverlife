@@ -51,7 +51,8 @@ async function wfGet(urls, opts) {
         const wf = isWf(url);
         if (wf && run.refusedKeys.has(url)) { run.refusedAgain++; res.error = 'refused: over the size limit earlier in this run'; break; }
         /* waits while other runs' open reservations hold what is left of the daily cap; a cap reached in counted bytes stops the run */
-        const grant = wf ? await run.reserveWait(run.getCap) : { bytes: maxFileMB * 1e6, by: 'get' };
+        /* each GET reserves --max-filesize plus room for the allowance of a refused response (see countFor in wf-guard.cjs) */
+        const grant = wf ? await run.reserveWait() : { bytes: maxFileMB * 1e6, by: 'get' };
         if (!grant.bytes) {
           if (grant.by === 'busy') { res.error = `refused: other runs held what is left of the daily cap for ${run.reserveWaitMs / 1000} s`; break; }
           stopped = run.error; res.error = 'stopped at a cap'; break;
@@ -60,7 +61,7 @@ async function wfGet(urls, opts) {
         const r = await curlFetch(url, { maxBytes: limit, timeoutS: 60, curl: opts.curl, curlArgs: opts.curlArgs }).promise;
         run.gets++; if (r.status !== 200) run.non200++;
         /* a response refused or cut at the size limit counts more than curl read (see countedBytes in wf-guard.cjs) */
-        const used = wf ? W.countedBytes(r, limit) : 0, atCap = r.truncated && grant.by !== 'get';
+        const used = wf ? W.countFor(r, limit, grant) : 0, atCap = r.truncated && grant.by !== 'get' && limit < run.getCap;
         if (wf) {
           run.responses++; if (r.timedOut) run.unfinished++;
           if (r.truncated) { run.refusedKeys.add(url); if (!atCap) run.tooBig++; }

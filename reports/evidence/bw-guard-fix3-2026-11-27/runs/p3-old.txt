@@ -1,0 +1,37 @@
+0.4s P3 fetch-once: fetch() of /nr-video {"page":"blocked","requests":["no range"],"deliveredToClient":3000239,"counted":3000239}
+0.6s P3 fetch-once: fetch() of /nr-video-chunked {"page":"blocked","requests":["no range"],"deliveredToClient":3000623,"counted":3000242}
+0.7s P3 fetch-once: fetch() of /r-video {"page":"blocked","requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+0.9s P3 fetch-once: fetch() of /r-video with Range bytes=0- {"page":"blocked","requests":["bytes=0-"],"deliveredToClient":3000293,"counted":3000293}
+1.1s P3 fetch-once: fetch() of /json-small {"page":[200,300000],"requests":["no range"],"deliveredToClient":300246,"counted":300246}
+1.3s P3 fetch-once: fetch() of /json-08 {"page":[200,800000],"requests":["no range"],"deliveredToClient":800246,"counted":800246}
+1.6s P3 fetch-once: fetch() of /json-big {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000247,"counted":3000247}
+1.8s P3 fetch-once: fetch() of /json-big-nr {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000246,"counted":3000246}
+2.0s P3 fetch-once: fetch() of /font-noext {"page":"blocked","requests":["no range"],"deliveredToClient":3000241,"counted":3000241}
+2.3s P3 fetch-once: fetch() of /img-noext {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+2.5s P3 fetch-once: fetch() of /v.json {"page":"blocked","requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+2.7s P3 fetch-once: fetch() of /page-noext {"page":[200,2000000],"requests":["no range"],"deliveredToClient":2000239,"counted":2000239}
+3.0s P3 fetch-once allowVideo: fetch() of /nr-video {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000239,"counted":3000239}
+3.3s P3 fetch-once allowVideo: fetch() of /nr-video-chunked {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000623,"counted":3000242}
+3.6s P3 fetch-once allowVideo: fetch() of /r-video {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+3.8s P3 fetch-once allowVideo: fetch() of /r-video with Range bytes=0- {"page":[206,3000000],"requests":[],"deliveredToClient":0,"counted":0}
+4.0s P3 fetch-once allowVideo: fetch() of /json-small {"page":[200,300000],"requests":["no range"],"deliveredToClient":300246,"counted":300246}
+4.2s P3 fetch-once allowVideo: fetch() of /json-08 {"page":[200,800000],"requests":["no range"],"deliveredToClient":800246,"counted":800246}
+4.5s P3 fetch-once allowVideo: fetch() of /json-big {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000247,"counted":3000247}
+4.7s P3 fetch-once allowVideo: fetch() of /json-big-nr {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000246,"counted":3000246}
+4.9s P3 fetch-once allowVideo: fetch() of /font-noext {"page":"blocked","requests":["no range"],"deliveredToClient":3000241,"counted":3000241}
+5.2s P3 fetch-once allowVideo: fetch() of /img-noext {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+5.5s P3 fetch-once allowVideo: fetch() of /v.json {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+5.7s P3 fetch-once allowVideo: fetch() of /page-noext {"page":[200,2000000],"requests":["no range"],"deliveredToClient":2000239,"counted":2000239}
+6.0s P3 block: fetch() of /nr-video {"page":"blocked","requests":["no range"],"deliveredToClient":3000239,"counted":3000239}
+6.2s P3 block: fetch() of /nr-video-chunked {"page":"blocked","requests":["no range"],"deliveredToClient":3000623,"counted":3000242}
+6.4s P3 block: fetch() of /r-video {"page":"blocked","requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+6.6s P3 block: fetch() of /r-video with Range bytes=0- {"page":"blocked","requests":["bytes=0-"],"deliveredToClient":3000293,"counted":3000293}
+6.8s P3 block: fetch() of /json-small {"page":[200,300000],"requests":["no range"],"deliveredToClient":300246,"counted":300246}
+6.9s P3 block: fetch() of /json-08 {"page":[200,800000],"requests":["no range"],"deliveredToClient":800246,"counted":800246}
+7.2s P3 block: fetch() of /json-big {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000247,"counted":3000247}
+7.5s P3 block: fetch() of /json-big-nr {"page":[200,3000000],"requests":["no range"],"deliveredToClient":3000246,"counted":3000246}
+7.7s P3 block: fetch() of /font-noext {"page":"blocked","requests":["no range"],"deliveredToClient":3000241,"counted":3000241}
+7.9s P3 block: fetch() of /img-noext {"page":"blocked","requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+8.0s P3 block: fetch() of /v.json {"page":"blocked","requests":["no range"],"deliveredToClient":3000240,"counted":3000240}
+8.3s P3 block: fetch() of /page-noext {"page":[200,2000000],"requests":["no range"],"deliveredToClient":2000239,"counted":2000239}
+8.3s unhandled rejections []

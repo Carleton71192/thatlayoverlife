@@ -36,7 +36,7 @@ const unhandled = [];
 process.on('unhandledRejection', e => { unhandled.push(String(e && e.message || e)); });
 
 /* ---------- stub server ---------- */
-let server, port, hits = {}, ranges = [], sent = [];
+let server, port, hits = {}, ranges = [], sent = [], r3log = [];
 const hit = k => { hits[k] = (hits[k] || 0) + 1; };
 const A = () => `http://127.0.0.1:${port}`;
 const L = () => `http://localhost:${port}`;
@@ -73,6 +73,17 @@ function page(p) {
     <img src="http://uploads-ssl.webflow.com:${port}/img/old.png"><script>window.__s = fetch('http://cdn.prod.website-files.com.:${port}/a%2Epng').then(r=>r.status, e=>'blocked');</script>`;
   return null;
 }
+const MP4HEAD = Buffer.concat([Buffer.from([0, 0, 0, 0x20]), Buffer.from('ftypisom'), Buffer.alloc(20)]);
+const withHead = (head, n) => { const b = Buffer.alloc(n, 3); head.copy(b); return b; };
+const R3 = {
+  big3: { type: 'application/json', r: true, body: () => Buffer.alloc(3e6, 120) },
+  nr3: { type: 'application/json', r: false, body: () => Buffer.alloc(3e6, 121) },
+  huge6: { type: 'application/json', r: true, body: () => Buffer.alloc(6e6, 122) },
+  octet: { type: 'application/octet-stream', r: true, body: () => withHead(MP4HEAD, 3e6) },
+  octetnr: { type: 'application/octet-stream', r: false, pause: 500, body: () => withHead(MP4HEAD, 3e6) },
+  octetdata: { type: 'application/octet-stream', r: true, body: () => Buffer.alloc(1.5e6, 7) },
+  slowvid: { type: 'video/mp4', r: false, pause: 500, body: () => withHead(MP4HEAD, 3e6) },
+};
 test.before(async () => {
   server = http.createServer((req, res) => {
     const p = req.url.split('?')[0]; hit(req.method + ' ' + p);
@@ -116,6 +127,30 @@ test.before(async () => {
       return res.end(body.subarray(a, b + 1));
     }
     if (p === '/hop') { res.writeHead(301, { location: `${L()}/landing.html` }); return res.end(); }
+    /* round 3 (bw-guard-fix2 checks): /r3/<name> files; ignoring or honouring Range, some that pause after their headers */
+    if (p.startsWith('/r3/')) {
+      const k = R3[p.slice(4)]; if (!k) { res.writeHead(404); return res.end(); }
+      const full = k.body(), rec = { name: p.slice(4), range: req.headers.range || null, sent: 0, closedEarly: false }; r3log.push(rec);
+      const m = k.r && /^bytes=(\d+)-(\d*)$/.exec(req.headers.range || '');
+      const h = { 'content-type': k.type, 'access-control-allow-origin': '*' };
+      let out = full, code = 200;
+      if (m) { const a = +m[1], b = m[2] ? Math.min(+m[2], full.length - 1) : full.length - 1; out = full.subarray(a, b + 1); code = 206; h['content-range'] = `bytes ${a}-${b}/${full.length}`; }
+      h['content-length'] = out.length;
+      res.writeHead(code, h);
+      if (!k.pause) { rec.sent = out.length; return res.end(out); }
+      res.flushHeaders(); res.write(out.subarray(0, 16)); rec.sent = 16;
+      let done = false; res.on('close', () => { if (!done) rec.closedEarly = true; });
+      setTimeout(() => { if (res.destroyed) return; rec.sent = out.length; done = true; res.end(out.subarray(16)); }, k.pause);
+      return;
+    }
+    /* A-1: a canonicalizing server. /canon/start redirects to the raw "|" form; the escaped form is sent back to the raw form */
+    if (p === '/canon/start') { res.writeHead(302, { location: '/canon/t|x' }); return res.end(); }
+    if (p === '/canon/t%7Cx') { res.writeHead(301, { location: '/canon/t|x' }); return res.end(); }
+    if (p === '/canon/t|x') { res.writeHead(200, { 'content-type': 'text/html' }); return res.end('<p>canon target</p><script>window.__loc = location.href</script>' + ' '.repeat(200000)); }
+    if (p === '/both/start') { res.writeHead(302, { location: '/both/t|x.html' }); return res.end(); }
+    if (p === '/both/t|x.html' || p === '/both/t%7Cx.html') { res.writeHead(200, { 'content-type': 'text/html' }); return res.end('<p>both</p>' + ' '.repeat(100000)); }
+    /* A-2: ignores Range and sends 3 MB with a Content-Length */
+    if (p.startsWith('/ign3/')) { hit('ign3'); res.writeHead(200, { 'content-type': 'application/javascript', 'access-control-allow-origin': '*', 'content-length': 3e6 }); return res.end(Buffer.alloc(3e6, 32)); }
     if (p === '/loop') { res.writeHead(302, { location: '/loop' }); return res.end(); }
     if (req.method !== 'GET') { res.writeHead(204); return res.end(); }
     res.writeHead(404); res.end('no');
@@ -323,8 +358,10 @@ test('wf-get: --max-filesize and the run cap stop a GET during the transfer (W5)
   /* N-2: cut at what is left of the run cap, it counts what curl read plus CUT_ALLOWANCE (was b.bytes < 0.5e6, the undercount) */
   assert.equal(b.stopped.cap, 'run'); assert.ok(b.bytes < 0.5e6 + W.CUT_ALLOWANCE && b.bytes > W.CUT_ALLOWANCE, String(b.bytes)); assert.equal(b.gets, 1, 'curl stops a file over the limit');
   const e = await G.wfGet([`${A()}/endless.js`, `${A()}/plain.html`], opt({ out: dir, quiet: true, runCapMB: 0.5 }));
-  /* N-2: a stream cut during the transfer counts what curl read plus CUT_ALLOWANCE (was e.bytes <= 0.5e6, the undercount) */
-  assert.equal(e.stopped.cap, 'run'); assert.ok(e.bytes <= 0.5e6 + W.CUT_ALLOWANCE && e.bytes > 0.4e6 + W.CUT_ALLOWANCE, 'a stream is cut during the transfer: ' + e.bytes); assert.equal(e.gets, 1);
+  /* N-2: a stream cut during the transfer counts what curl read plus CUT_ALLOWANCE, but (A-2, round 3) never more than its
+     grant, so the count stops at the 0.5 MB run cap (round 2 asserted 0.5 MB + CUT_ALLOWANCE here, which pinned a count past
+     the cap) */
+  assert.equal(e.stopped.cap, 'run'); assert.ok(e.bytes <= 0.5e6 && e.bytes > 0.4e6, 'a stream is cut during the transfer: ' + e.bytes); assert.equal(e.gets, 1);
   const many = Array.from({ length: 31 }, (_, i) => `${A()}/plain.html?n=${i}`);
   const c = await G.wfGet(many, opt({ out: dir, quiet: true }));
   assert.equal(c.gets, 30); assert.equal(c.stopped.cap, 'max');
@@ -433,6 +470,56 @@ test('N-7: a trip that refuses the first GET says it was refused and how much wa
   assert.match(r.stopped.message, /test-run stopped at the run cap of 0\.5 MB: a GET of http:\/\/127\.0\.0\.1:\d+\/cl\/3000\.js was refused because it was larger than the 0\.50 MB left; 0\.48 MB counted from Webflow in this run, the refused GET included/);
   assert.doesNotMatch(r.stopped.message, /reached 0\.00 MB/);
   assert.match(r.line, /0\.48 MB from Webflow \(M\); STOPPED at the run cap$/);
+});
+
+/* ---------- third round: findings of reports/evidence/bw-guard-fix2-2026-11-27/ (check-repro.md R-x, check-adversary.md A-x) ---------- */
+test('R-5, A-7: parser errors name the problem; "12 M requests" and "video 1080 M" are not sizes; a date in a path is not a date', () => {
+  const d27 = d('2026-11-27');
+  const why = l => { try { W.lineMBForDay(l, d27); return null; } catch (e) { return e.reason; } };
+  assert.match(why('| 27 Nov | x | 3 MB |'), /^a table row with a date and a size figure/);
+  assert.match(why('1. 27 Nov, x: 3 MB'), /^a numbered line with a date and a size figure/);
+  assert.match(why('## 27 Nov 2026 (2.5 MB)'), /^a heading with a date/);
+  assert.match(why('27 Nov, x: 3 MB'), /^a plain line \(not a bullet\)/);
+  assert.match(why('- sometime: 3 MB'), /^a bullet with a size figure but no date/);
+  assert.throws(() => W.dailyTotalMB('- 27 Nov, ok: 1 MB\n| 27 Nov | x | 3 MB |\n', d27), e => /line 2: \| 27 Nov \| x \| 3 MB \| \(a table row with a date and a size figure/.test(e.message) && !/at the start of a bullet/.test(e.message));
+  for (const [l, mb] of [['- 27 Nov, x: 2.5 MB (M); 12 M requests', 2.5], ['- 27 Nov, x: 1 MB, video 1080 M', 1], ['- 27 Nov, x: 0 MB, checked at 10 M', 0], ['- 27 Nov, x: 1 MB, 5 M&M', 1],
+    ['- 27 Nov, x: 3 M', 3], ['- 27 Nov, x: 3 M.', 3], ['- 27 Nov, x: 2 M (E)', 2], ['- 27 Nov, x: 1,500,000 bytes and 2 M (E)', 3.5], ['- 27 Nov, x: 5 to 7 M', 7]]) assert.equal(W.lineMBForDay(l, d27), mb, l);
+  assert.equal(W.lineMBForDay('See reports/evidence/bw-guard-fix-2026-11-27/check.md: 3 MB', d27), 0, 'a date in a folder name is not a date');
+  assert.throws(() => W.lineMBForDay('On 2026-11-27 a run used 3 MB', d27), W.WfLogFormatError, 'a date standing alone still is');
+  /* the real log reads as before: 21 Nov 97.4, 22 Nov 35, 25 Nov 9, 27 Nov 2.5 (today's lines) */
+  const f = path.join(__dirname, '..', '..', 'handoff', 'BANDWIDTH-LOG.md');
+  for (const [x, mb] of [['2026-11-21', 97.4], ['2026-11-22', 35], ['2026-11-25', 9], ['2026-11-27', 2.5]]) assert.equal(+W.readDailyTotalMB(f, d(x)).toFixed(3), mb, x);
+});
+test('A-2: a GET reserves getCapMB plus the allowance; a refused, cut or killed GET counts the allowance, never past its grant', () => {
+  const r = W.createRun({ label: 'a2', logFile: path.join(tmp(), 'log.md'), stateDir: path.join(tmp(), 's'), now: day, onTrip: 'close' });
+  const g = r.tryReserve(); assert.equal(g.bytes, 5e6 + W.ALLOW); assert.equal(g.by, 'get'); assert.equal(W.bodyLimit(g), 5e6);
+  r.settle(g, 0);
+  /* a GET in flight when the run stops: what reached the disk plus CUT_ALLOWANCE, up to the grant (round 2 counted 0) */
+  r.inflight.add({ job: { kill: () => 0 }, grant: { bytes: 5e6 }, settled: false });
+  r.inflight.add({ job: { kill: () => 1000 }, grant: { bytes: 0.1e6 }, settled: false });
+  r.killInflight(); assert.equal(r.bytes, W.CUT_ALLOWANCE + 0.1e6); assert.equal(r.unfinished, 2);
+  /* near a cap: a refused response counts at most its grant, so bytes counted plus open reservations never pass the cap */
+  const cut = { truncated: true, wire: 200, headers: {} };
+  assert.equal(W.countFor(cut, 50000, { bytes: 66384 }), 66384); assert.equal(W.countFor(cut, 1e6, { bytes: 5e6 + W.ALLOW }), 200 + W.CUT_ALLOWANCE);
+  assert.equal(W.countFor({ wire: 5000 }, 1, { bytes: 10 }), 5000, 'never less than what curl read');
+  r.close();
+});
+test('A-5: a reservation of a process whose pid is in use again (another start time) is stale', { skip: W.procStart(process.pid) ? false : 'no /proc here' }, () => {
+  const st = path.join(tmp(), 's'); fs.mkdirSync(st, { recursive: true });
+  const write = start => fs.writeFileSync(path.join(st, 'tally-2026-11-25.json'), JSON.stringify({ runs: { old1: { label: 'dead', pid: process.pid, pidStart: start, bytes: 0, reserved: 1e6, closed: false } } }));
+  write('1');
+  const a = W.createRun({ label: 'a5', logFile: path.join(tmp(), 'log.md'), stateDir: st, now: day, dayCapMB: 1, onTrip: 'close' });
+  assert.ok(a.tryReserve().bytes > 0, 'the stale reservation does not hold the cap'); a.close();
+  write(W.procStart(process.pid));
+  const b = W.createRun({ label: 'a5b', logFile: path.join(tmp(), 'log.md'), stateDir: st, now: day, dayCapMB: 1, onTrip: 'close' });
+  assert.equal(b.tryReserve().by, 'busy', 'a live reservation still holds it'); b.close();
+  assert.ok(JSON.parse(fs.readFileSync(path.join(st, 'tally-2026-11-25.json'), 'utf8')).runs[b.id].pidStart, 'runs record their start time');
+});
+test('A-6 and A-1 helpers: MP4, MOV and WebM headers; the Chromium form of a URL', () => {
+  assert.equal(W.looksLikeVideo(MP4HEAD), true); assert.equal(W.looksLikeVideo(Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 1, 2, 3, 4])), true);
+  assert.equal(W.looksLikeVideo(Buffer.from('\0\0\0\x14moov....')), true); assert.equal(W.looksLikeVideo(Buffer.from('{"json": true}')), false);
+  assert.equal(W.chromeForm('http://www.thatlayover.life/a|b^c?q=a|b#f'), 'http://www.thatlayover.life/a%7Cb%5Ec?q=a|b');
+  assert.equal(W.chromeForm('http://www.thatlayover.life/a%7Cb'), 'http://www.thatlayover.life/a%7Cb');
 });
 
 /* ---------- the guard in a real Chromium ---------- */
@@ -627,12 +714,13 @@ test.describe('guard in Chromium', { skip }, () => {
     await p.goto(`${L()}/endless.html`, { timeout: 10000 }).catch(() => { });
     for (let i = 0; i < 100 && !err; i++) await sleep(50);
     assert.ok(err instanceof W.WfBudgetError); assert.equal(err.cap, 'run');
-    /* N-2: the cut stream counts what curl read plus CUT_ALLOWANCE (these lines pinned 0.9 to 1.01 MB, the undercount) */
-    assert.ok(g.stats().bytes > 0.9e6 + W.CUT_ALLOWANCE && g.stats().bytes <= 1.01e6 + W.CUT_ALLOWANCE, 'bytes ' + g.stats().bytes);
+    /* N-2: the cut stream counts what curl read plus CUT_ALLOWANCE, up to its grant (A-2, round 3): the count reaches the
+       1 MB run cap and does not pass it. Round 2 asserted 1.2x MB here, a count past the cap. */
+    assert.ok(g.stats().bytes > 0.9e6 && g.stats().bytes <= 1e6, 'bytes ' + g.stats().bytes);
     assert.throws(() => g.check(), W.WfBudgetError);
-    assert.match(err.message, /a GET of \S+endless\.js was refused because it was larger than the 1\.00 MB left; 1\.2\d MB counted/);
+    assert.match(err.message, /a GET of \S+endless\.js was refused because it was larger than the 1\.00 MB left; 1\.00 MB counted/);
     await assert.rejects(p.goto(`${L()}/plain.html`));
-    assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /1\.2\d MB from Webflow \(M\).*STOPPED at the run cap/);
+    assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /1\.00 MB from Webflow \(M\).*STOPPED at the run cap/);
     /* a response that stalls is cut at the timeout and counted as unfinished */
     const b = await newGuarded({ mode: 'block', fetchTimeoutS: 1 });
     const p2 = await b.ctx.newPage(); await p2.goto(`${L()}/slow.html`, { timeout: 10000 }).catch(() => { }); await sleep(300);
@@ -664,8 +752,9 @@ test.describe('guard in Chromium', { skip }, () => {
     await p.goto(`${L()}/big.html`).catch(() => { });
     for (let i = 0; i < 50 && !err; i++) await sleep(50);
     assert.ok(err instanceof W.WfBudgetError); assert.equal(err.cap, 'run');
-    /* N-2: big.js is chunked and cut at about 0.08 MB; it counts that plus CUT_ALLOWANCE (was bytes <= 0.1e6, the undercount) */
-    assert.ok(g.stats().bytes > W.CUT_ALLOWANCE && g.stats().bytes <= 0.1e6 + W.CUT_ALLOWANCE, String(g.stats().bytes));
+    /* N-2: big.js is cut at about 0.08 MB; it counts that plus CUT_ALLOWANCE up to its grant, so the count is the 0.1 MB run
+       cap (A-2, round 3; round 2 asserted up to 0.1 MB + CUT_ALLOWANCE, a count past the cap) */
+    assert.ok(g.stats().bytes >= 0.08e6 && g.stats().bytes <= 0.1e6, String(g.stats().bytes));
     assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /STOPPED at the run cap/);
   });
 
@@ -781,5 +870,146 @@ test.describe('guard in Chromium', { skip }, () => {
     assert.equal(g.stats().nonGet, 2); assert.equal('unloadStopped' in g.stats(), false);
     await ctx.close(); await sleep(50);
     const line = fs.readFileSync(g.run.logFile, 'utf8'); assert.match(line, /2 non-GET requests aborted/); assert.doesNotMatch(line, /unload/);
+  });
+
+  /* ---------- third round: R-1, A-1 to A-6, R-3, R-4 ---------- */
+  test('R-1: an extensionless allowed file over the chunk is fetched once in all: the rest is asked for and joined; a 200 is kept', async () => {
+    for (const mode of ['fetch-once', 'block']) {
+      r3log = [];
+      const { ctx, g } = await newGuarded({ mode, cacheDir: path.join(tmp(), 'assets') });
+      const p = await ctx.newPage(); await p.goto(`${L()}/plain.html`);
+      const got = await p.evaluate(a => Promise.all(['big3', 'nr3', 'huge6'].map(n => fetch(`${a}/r3/${n}`).then(r => r.arrayBuffer()).then(b => b.byteLength, () => 'err'))), A());
+      assert.deepEqual(got, [3e6, 3e6, 'err'], mode);
+      const of = n => r3log.filter(x => x.name === n);
+      assert.deepEqual(of('big3').map(x => x.range), ['bytes=0-999999', 'bytes=1000000-2999999'], mode + ': the first chunk is not asked for again');
+      assert.equal(of('big3').reduce((a, x) => a + x.sent, 0), 3e6, 'the file once in all');
+      assert.deepEqual(of('nr3').map(x => x.range), ['bytes=0-999999'], 'the server ignored Range: its 200 is kept, no second GET');
+      assert.equal(of('nr3').reduce((a, x) => a + x.sent, 0), 3e6);
+      /* over getCapMB (5): stopped at the 206 headers, as the first version refused it; no second GET */
+      assert.equal(of('huge6').length, 1);
+      const s = g.stats(); assert.equal(s.joined, 1); assert.equal(s.tooBig, 1);
+      assert.ok(s.bytes < 6e6 + 2 * W.CUT_ALLOWANCE + 1e6 + 5000, 'counted ' + s.bytes);
+      await ctx.close();
+    }
+  });
+
+  test('A-6: an extensionless application/octet-stream video is seen by its first bytes and stopped; a 200 at its headers', async () => {
+    for (const mode of ['fetch-once', 'block']) {
+      r3log = [];
+      const { ctx, g } = await newGuarded({ mode, cacheDir: path.join(tmp(), 'assets') });
+      const p = await ctx.newPage(); await p.goto(`${L()}/plain.html`);
+      const got = await p.evaluate(a => Promise.all(['octet', 'octetnr', 'slowvid', 'octetdata'].map(n => fetch(`${a}/r3/${n}`).then(r => r.arrayBuffer()).then(b => b.byteLength, () => 'blocked'))), A());
+      assert.deepEqual(got, ['blocked', 'blocked', 'blocked', 1.5e6], mode);
+      const of = n => r3log.filter(x => x.name === n);
+      assert.equal(of('octet').length, 1, 'no second whole fetch'); assert.ok(of('octet')[0].sent <= 1e6);
+      for (const n of ['octetnr', 'slowvid']) { assert.equal(of(n).length, 1); assert.equal(of(n)[0].closedEarly, true, n + ' stopped after its headers'); assert.equal(of(n)[0].sent, 16); }
+      assert.equal(g.stats().blocked, mode === 'block' ? 4 : 3, 'the three videos (and in block mode the image of plain.html)');
+      await ctx.close();
+    }
+  });
+
+  test('A-1: a canonicalizing server cannot loop the redirect page; GETs and MB as in the first version (adversary loop.cjs)', async () => {
+    hits = {}; const trips = [];
+    const { ctx, g } = await newGuarded({ mode: 'block', runCapMB: 20, onTrip: e => trips.push(e.message) });
+    const p = await ctx.newPage(); await p.goto(`${A()}/canon/start`); await sleep(1500);
+    const canon = Object.entries(hits).filter(([k]) => k.startsWith('GET /canon/')).reduce((a, [, n]) => a + n, 0);
+    assert.equal(canon, 2, JSON.stringify(hits)); assert.deepEqual(trips, []);
+    assert.equal(p.url(), `${A()}/canon/t%7Cx`); assert.equal(await p.evaluate(() => window.__loc), `${A()}/canon/t%7Cx`);
+    const s = g.stats(); assert.ok(s.bytes < 0.21e6, 'bytes ' + s.bytes); assert.equal(s.pageLoads, 1); assert.equal(s.redirectPages, 1); assert.equal(s.gets, 2);
+    await ctx.close();
+    /* the hard limit: with the round 2 target form the browser misses the stored answer; the chain check then serves the
+       answer directly instead of a second redirect page (4 GETs, not 200) */
+    hits = {};
+    const b = await newGuarded({ mode: 'block', runCapMB: 20, redirectTargetForm: 'node', onTrip: e => trips.push(e.message) });
+    const p2 = await b.ctx.newPage(); await p2.goto(`${A()}/canon/start`).catch(() => { }); await sleep(1500);
+    const n2 = Object.entries(hits).filter(([k]) => k.startsWith('GET /canon/')).reduce((a, [, n]) => a + n, 0);
+    assert.ok(n2 <= 4, JSON.stringify(hits)); assert.deepEqual(trips, []);
+    assert.equal(b.g.stats().redirectPages, 1); assert.equal(b.g.stats().redirectDirect, 1);
+    await b.ctx.close(); await sleep(50);
+    assert.match(fs.readFileSync(b.g.run.logFile, 'utf8'), /1 redirected page loads answered directly to stop a loop/);
+    /* more than 8 redirect pages in 10 s in one context: the rest are answered directly */
+    hits = {};
+    const c = await newGuarded({ mode: 'block', hosts: ['127.0.0.1', 'localhost'] });
+    const p3 = await c.ctx.newPage();
+    for (let i = 0; i < 10; i++) await p3.goto(`${A()}/hop`);
+    assert.equal(c.g.stats().redirectPages, 8); assert.equal(c.g.stats().redirectDirect, 2); assert.equal(hits['GET /hop'], 10);
+    await c.ctx.close();
+  });
+
+  test('A-3: a replay miss costs no second fetch of the final page; two pages loading one redirecting URL share their fetches', async () => {
+    for (const mode of ['block', 'fetch-once']) {
+      hits = {};
+      const { ctx } = await newGuarded({ mode, cacheDir: path.join(tmp(), 'assets') });
+      const p = await ctx.newPage(); await p.goto(`${A()}/both/start`); await sleep(300);
+      assert.equal(p.url(), `${A()}/both/t%7Cx.html`);
+      assert.equal((hits['GET /both/t|x.html'] || 0) + (hits['GET /both/t%7Cx.html'] || 0), 1, mode + ' ' + JSON.stringify(hits));
+      await ctx.close();
+    }
+    hits = {};
+    const { ctx, g } = await newGuarded({ mode: 'block', hosts: ['127.0.0.1', 'localhost'] });
+    const [p1, p2, p3] = await Promise.all([ctx.newPage(), ctx.newPage(), ctx.newPage()]);
+    await Promise.all([p1.goto(`${A()}/hop`), p2.goto(`${A()}/hop`), p3.goto(`${L()}/landing.html`)]); await sleep(300);
+    for (const x of [p1, p2, p3]) assert.equal(x.url(), `${L()}/landing.html`);
+    assert.ok(hits['GET /landing.html'] <= 3, 'landing ' + hits['GET /landing.html'] + ' (the first version: 3)');
+    assert.ok(hits['GET /hop'] <= 2);
+    assert.equal(g.stats().pageLoads, 3);
+    await ctx.close();
+  });
+
+  test('A-4: in fetch-once a GET refused before anything was sent gives back its claim, so a later run can fetch the URL', async () => {
+    hits = {}; const st = path.join(tmp(), 's'), cacheDir = path.join(tmp(), 'assets');
+    const holder = W.createRun({ label: 'holder', logFile: path.join(tmp(), 'log.md'), stateDir: st, now: day, dayCapMB: 1, onTrip: 'close' });
+    const hold = holder.tryReserve(); assert.ok(hold.bytes > 0);
+    const a = await newGuarded({ mode: 'fetch-once', cacheDir, stateDir: st, dayCapMB: 1, reserveWaitS: 0.3 });
+    const p = await a.ctx.newPage(); await p.goto(`${L()}/plain.html`); await sleep(800);
+    assert.equal(hits['GET /img/a.png'] || 0, 0); assert.equal(a.g.stats().waitRefused, 1);
+    await a.ctx.close();
+    assert.match(fs.readFileSync(path.join(cacheDir, 'wf-guard-fetched.txt'), 'utf8'), /^released [0-9a-f]{40} http:\/\/127\.0\.0\.1:\d+\/img\/a\.png /m);
+    holder.settle(hold, 0); holder.close();
+    const b = await newGuarded({ mode: 'fetch-once', cacheDir, stateDir: st, dayCapMB: 1 });
+    const p2 = await b.ctx.newPage(); await p2.goto(`${L()}/plain.html`); await sleep(300);
+    assert.equal(hits['GET /img/a.png'], 1); assert.equal(b.g.stats().cacheFetches, 1); assert.equal(b.g.stats().cacheRefused, 0);
+    await b.ctx.close();
+  });
+
+  test('A-2: 60 GETs with a small Range header the server ignores, at a 3 MB day cap: one GET, the cap holds (adversary cap.cjs C1)', async () => {
+    for (const [mode, seq] of [['block', false], ['fetch-once', false], ['block', true]]) {
+      hits = {}; const trips = [];
+      const { ctx, g } = await newGuarded({ mode, cacheDir: path.join(tmp(), 'assets'), dayCapMB: 3, onTrip: e => trips.push(e.message) });
+      const p = await ctx.newPage(); await p.goto(`${L()}/plain.html`);
+      await p.evaluate(([a, seq]) => {
+        const one = i => fetch(`${a}/ign3/c1-${i}.js`, { headers: { Range: 'bytes=0-1' } }).then(r => r.status, () => 'err');
+        if (seq) return (async () => { for (let i = 0; i < 60; i++) await one(i); })();
+        return Promise.all(Array.from({ length: 60 }, (_, i) => one(i)));
+      }, [A(), seq]).catch(() => { });
+      await sleep(500);
+      const s = g.stats();
+      assert.ok((hits.ign3 || 0) <= 1, `${mode}${seq ? ' one by one' : ''}: ${hits.ign3} GETs reached the stub (the first version: 0 at once, 1 one by one; round 2: 60 and 12)`);
+      assert.ok(s.bytes <= 3e6, 'counted ' + s.bytes + ' must not pass the 3 MB cap'); assert.equal(s.stopped, 'day'); assert.equal(trips.length, 1);
+      await ctx.close();
+    }
+  });
+
+  test('R-3: a small Range on a file with an extension, from a server that ignores Range, is served whole as in the first version', async () => {
+    sent = [];
+    const { ctx, g } = await newGuarded({ mode: 'block' });
+    const p = await ctx.newPage(); await p.goto(`${L()}/plain.html`);
+    const got = await p.evaluate(a => fetch(`${a}/cl/800.js`, { headers: { Range: 'bytes=0-99' } }).then(r => r.arrayBuffer()).then(b => b.byteLength, () => 'err'), A());
+    assert.equal(got, 800000); assert.equal(sent.filter(x => x.p === '/cl/800.js').length, 1);
+    assert.ok(g.stats().bytes < 800000 + 2000, String(g.stats().bytes));
+    await ctx.close();
+  });
+
+  test('R-4: goto() on a redirecting URL returns the redirect page; finalResponse() and g.goto() give the final page', async () => {
+    const { ctx, g } = await newGuarded({ mode: 'block', hosts: ['127.0.0.1', 'localhost'] });
+    const p = await ctx.newPage();
+    const r0 = await p.goto(`${A()}/hop`);
+    assert.equal(r0.status(), 200); assert.equal(r0.headers()['x-wf-guard-redirect'], '1');
+    const fin = await g.finalResponse(p);
+    assert.equal(fin.url(), `${L()}/landing.html`); assert.equal(fin.headers()['x-wf-guard-redirect'], undefined); assert.match(await fin.text(), /landing/);
+    const r1 = await g.goto(p, `${A()}/hop`); assert.equal(r1.url(), `${L()}/landing.html`); assert.equal(r1.status(), 200);
+    const r2 = await g.goto(p, `${L()}/plain.html`); assert.equal(r2.url(), `${L()}/plain.html`);
+    assert.equal(await g.finalResponse(p), r2, 'no redirect: the last main-frame response');
+    await ctx.close();
   });
 });
