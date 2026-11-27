@@ -1,0 +1,29 @@
+      ---
+      duration_ms: 262.435055
+      type: 'test'
+      ...
+    # Subtest: guard refuses a second guard on one context, a context over the daily cap, the old cache mode and fetch-once without a folder
+    ok 16 - guard refuses a second guard on one context, a context over the daily cap, the old cache mode and fetch-once without a folder
+      ---
+      duration_ms: 9.546545
+      type: 'test'
+      ...
+    1..16
+ok 20 - guard in Chromium
+  ---
+  duration_ms: 9864.416156
+  type: 'suite'
+  ...
+1..20
+# tests 35
+# suites 1
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12156.354552
+# pass 35
+# fail 0
+# pass 35
+# fail 0

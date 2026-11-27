@@ -1,0 +1,56 @@
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/hello.html
+0.1s S0 sanity host seen by stub []
+DISCONNECTED during S0
+0.9s S1 host spellings (block mode) {"upper":"blocked","apex":"blocked","apexUpper":"blocked","cdn":"blocked","cdnUpper":"blocked","assetsGlobal":"blocked","deepSub":"blocked","webflowIo":"blocked","wfioUpper":"blocked","trailingDot":"blocked","cdnTrailingDot":"blocked","otherSub":"blocked","uploadsWebflowCom":"blocked","noExtImg":"blocked","extUpper":"blocked","encodedExt":"blocked","cssBackground":"blocked","fetchNoExtImage":"blocked","fetchEncodedExt":"blocked"}
+0.9s S1 stats {"label":"s1","mode":"cache-only","id":"8bbeca","bytes":0,"mb":0,"pageLoads":0,"gets":0,"responses":0,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":19,"missList":["image http://www.thatlayover.life:41195/s1-upper.png","image http://thatlayover.life:41195/s1-apex.png","image http://thatlayover.life:41195/s1-apexu.png","image http://cdn.prod.website-files.com:41195/s1-cdn.jpg","image http://cdn.prod.website-files.com:41195/s1-cdnu.webp","image http://assets-global.website-files.com:41195/s1-ag.avif","image http://a.b.c.website-files.com:41195/s1-deep.png","image http://that-layover-life.webflow.io:41195/s1-wfio.png","image http://that-layover-life.webflow.io:41195/s1-wfiou.png","image http://www.thatlayover.life.:41195/s1-dot.png","image http://cdn.prod.website-files.com.:41195/s1-cdndot.png","image http://cdn.thatlayover.life:41195/s1-othersub.png","image http://uploads-ssl.webflow.com:41195/s1-wfcom.png","image http://cdn.prod.website-files.com:41195/noext-img-1","image http://cdn.prod.website-files.com:41195/s1-EXTU.JPG","image http://cdn.prod.website-files.com:41195/s1-enc%2Epng","doc http://cdn.prod.website-files.com:41195/noext-img-fetch","image http://cdn.prod.website-files.com:41195/s1-enc2%2Epng","image http://cdn.prod.website-files.com:41195/s1-cssbg.png"],"blocked":0,"nonGet":0,"unloadStopped":0,"leaks":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S1
+1.7s S2 redirect non-Webflow img -> Webflow img "blocked"
+1.7s S2 redirect Webflow page path -> Webflow img "blocked"
+1.7s S2 redirect other host img -> Webflow img "blocked"
+1.7s S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted {"stubSent":0,"guardBytes":0}
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://localhost:41195/r?to=http%3A%2F%2Fwww.thatlayover.life%3A41195
+2.0s S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads {"added":0,"pageLoads":0}
+2.1s S2 caller route.fetch error "wf-guard: refused a Webflow fetch in mode cache-only (not in the cache): http://cdn.prod.website-files.com:41195/s2-d.png"
+2.1s S2 caller route.fetch result "err"
+2.1s S2 caller route.fetch non-Webflow URL redirecting to Webflow image (block mode) "blocked"
+DISCONNECTED during S2
+2.3s S3 sw register "ok"
+3.8s S3 service worker {"swInstallWebflowImage":"blocked","swPOST":"blocked","swPUT":"blocked","sw500KBWebflowScriptSent":0,"pageImgThroughSW":"blocked","pagePOSTThroughSW":"blocked","pagePostResult":"blocked","guardStats":{"label":"s3","mode":"cache-only","id":"20f205","bytes":0,"mb":0,"pageLoads":0,"gets":0,"responses":0,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":3,"missList":["image http://cdn.prod.website-files.com:41195/s3-install.png","doc http://www.thatlayover.life:41195/kb500.js","image http://cdn.prod.website-files.com:41195/s3-ctrl.png"],"blocked":0,"nonGet":3,"unloadStopped":0,"leaks":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}}
+DISCONNECTED during S3
+4.8s S4 block mode {"videoHits":0,"noExtVideoHits":0,"fetchRangeMp4":0,"rangeOnNonMedia":[],"guardBytes":0}
+6.4s S4 cache mode {"videoNetworkFetches":0,"rangesSentUpstream":[],"sentBytes":0,"stats":{"label":"s4-cache","mode":"fetch-once","id":"b1e28c","bytes":800197,"mb":0.8,"pageLoads":0,"gets":1,"responses":1,"cacheHits":0,"cacheFetches":1,"cacheRefused":0,"misses":0,"missList":[],"blocked":4,"nonGet":0,"unloadStopped":0,"leaks":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}}
+7.2s S4 cache mode after reload: new upstream video fetches 0
+DISCONNECTED during S4
+11.3s S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s {"stubSentMB":0,"guardMB":0,"tripped":0}
+11.7s S5 log line after close ["- 27 Nov 10:54 UTC, s5-stream: wf-guard cache-only run 731b44, 0 page loads, 0 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 1 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"]
+15.2s S5 polling 200 KB Webflow fetches, run cap 1 MB {"trips":[],"fetchesBeforeStop":0,"stubSentMB":0,"guardMB":0,"laterHits":0,"log":[]}
+DISCONNECTED during S5
+17.4s S6 two contexts, same cache, same image at the same time: upstream fetches 1
+18.7s S6 first fetch failed in A; B (guarded before) and C (guarded after) load it: upstream fetches 1
+18.7s S6 shared run log ["- 27 Nov 10:54 UTC, s6-shared: wf-guard fetch-once run c0d861, 0 page loads, 2 Webflow GETs, 0.00 MB from Webflow (M); 1 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; 2 refused as fetched before"]
+DISCONNECTED during S6
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb100.js
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb400.js
+19.5s S6c page target closed, then 400 KB more in the same context {"guardMB":0,"log":[]}
+DISCONNECTED during S6c
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb600.js
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb600.js
+20.4s S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB {"tripsB":[],"log":["# log","- 27 Nov 10:54 UTC, s8-a: wf-guard cache-only run e98fad, 0 page loads, 0 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 1 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"]}
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb600.js
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:41195/kb600.js
+20.5s S8 concurrent goto results ["loaded","loaded"]
+21.0s S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB {"trips":[],"log":["# log","- 27 Nov 10:54 UTC, s8-c: wf-guard cache-only run 8c2794, 0 page loads, 0 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 1 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted","- 27 Nov 10:54 UTC, s8-d: wf-guard cache-only run 16a374, 0 page loads, 0 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 1 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"],"dayTotal":0}
+21.0s S8 third run after the cap "STARTED"
+DISCONNECTED during S8
+24.2s S9 page results {"put":"blocked","post":"blocked","head":"blocked","del":"blocked","patch":"blocked","beacon":true}
+24.2s S9 non-GET requests that reached the stub ["POST /s9-keepalive","POST /s9-beacon-unload","POST /s9-beacon-unload","POST /s9-keepalive"]
+24.2s S9 stats {"label":"s9","mode":"cache-only","id":"238c1d","bytes":0,"mb":0,"pageLoads":0,"gets":0,"responses":0,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":0,"missList":[],"blocked":0,"nonGet":13,"unloadStopped":2,"leaks":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S9
+24.9s S10 caller fallback({url}) rewriting to a Webflow image "blocked"
+24.9s S10 caller continue({url}) rewriting to a Webflow image "blocked"
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://cdn.prod.website-files.com:41195/s10-nav.png
+24.9s S10 page.goto a Webflow image "blocked"
+25.4s S10 caller route registered BEFORE guard (documented limit) "blocked"
+25.5s all Webflow-host requests that reached the stub (host path) ["GET www.thatlayover.life/kb800.js","GET cdn.prod.website-files.com/slow-s6.png","GET cdn.prod.website-files.com/fail-s6.png"]
+25.5s unhandled rejections seen []
+DISCONNECTED during S10

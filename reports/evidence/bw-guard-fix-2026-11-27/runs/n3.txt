@@ -1,0 +1,12 @@
+N3 unload, guard none, navigate away {"webflowStub":["POST /u-xhr","POST /u-beacon","POST /u-ka-post","GET /u-ka-get.js","POST /u-realm-beacon","POST /u-realm-ka","POST /u-req-obj","GET /u-img.png","GET /v-ka-get.js","POST /v-beacon"],"localNonGet":["POST /u-local-beacon"],"stats":null}
+N3 unload, guard none, page.close {"webflowStub":["POST /u-beacon","POST /u-ka-post","GET /u-ka-get.js","POST /u-realm-beacon","POST /u-xhr","POST /v-beacon","POST /u-realm-ka","POST /u-req-obj","GET /v-ka-get.js","GET /u-img.png"],"localNonGet":["POST /u-local-beacon"],"stats":null}
+N3 unload, guard cache-only, navigate away {"webflowStub":[],"localNonGet":["POST /u-local-beacon"],"stats":{"nonGet":0,"unloadStopped":0,"leaks":0}}
+N3 unload, guard cache-only, page.close {"webflowStub":[],"localNonGet":["POST /u-local-beacon"],"stats":{"nonGet":0,"unloadStopped":0,"leaks":0}}
+N3 unload, guard cache-only all, navigate away {"webflowStub":[],"localNonGet":[],"stats":{"nonGet":0,"unloadStopped":0,"leaks":0}}
+N3 unload, guard cache-only all, page.close {"webflowStub":[],"localNonGet":[],"stats":{"nonGet":0,"unloadStopped":0,"leaks":0}}
+N1x cache-only, page preconnect loaded 3 times from htmlDir {"tcpConnectionsToWebflowStub":0,"httpRequests":[],"misses":0}
+N1x cache-only, page dnsPrefetch loaded 3 times from htmlDir {"tcpConnectionsToWebflowStub":0,"httpRequests":[],"misses":0}
+N1x cache-only, page websocket loaded 3 times from htmlDir {"tcpConnectionsToWebflowStub":3,"httpRequests":[],"misses":0}
+N1x cache-only, page imgMisses loaded 3 times from htmlDir {"tcpConnectionsToWebflowStub":0,"httpRequests":[],"misses":9}
+N1x cache-only, page nothing loaded 3 times from htmlDir {"tcpConnectionsToWebflowStub":0,"httpRequests":[],"misses":0}
+unhandled []
