@@ -1,0 +1,436 @@
+{
+ "perf": [
+  {
+   "page": "home.html",
+   "w": 390,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0,
+   "cls_br": 0,
+   "clsload_live": 0,
+   "clsload_br": 0,
+   "fcp_live": 280,
+   "fcp_br": 324,
+   "cls_live_all": [
+    0,
+    0,
+    0
+   ],
+   "cls_br_all": [
+    0,
+    0,
+    0
+   ],
+   "fcp_live_all": [
+    268,
+    280,
+    280
+   ],
+   "fcp_br_all": [
+    328,
+    272,
+    324
+   ],
+   "bytes_live": 304644,
+   "bytes_br": 304644,
+   "chunks_live": [
+    "site.js",
+    "home.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "home.js"
+   ],
+   "dcls": 0,
+   "dfcp": 44
+  },
+  {
+   "page": "home.html",
+   "w": 1440,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0.0229,
+   "cls_br": 0.0035,
+   "clsload_live": 0.0005,
+   "clsload_br": 0.0005,
+   "fcp_live": 296,
+   "fcp_br": 272,
+   "cls_live_all": [
+    0.4429,
+    0.0229,
+    0.0129
+   ],
+   "cls_br_all": [
+    0.2144,
+    0.0005,
+    0.0035
+   ],
+   "fcp_live_all": [
+    416,
+    228,
+    296
+   ],
+   "fcp_br_all": [
+    396,
+    272,
+    268
+   ],
+   "bytes_live": 304644,
+   "bytes_br": 304644,
+   "chunks_live": [
+    "site.js",
+    "home.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "home.js"
+   ],
+   "dcls": -0.0194,
+   "dfcp": -24
+  },
+  {
+   "page": "stories.html",
+   "w": 390,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0,
+   "cls_br": 0,
+   "clsload_live": 0,
+   "clsload_br": 0,
+   "fcp_live": 268,
+   "fcp_br": 212,
+   "cls_live_all": [
+    0,
+    0,
+    0
+   ],
+   "cls_br_all": [
+    0,
+    0,
+    0
+   ],
+   "fcp_live_all": [
+    296,
+    268,
+    192
+   ],
+   "fcp_br_all": [
+    212,
+    272,
+    176
+   ],
+   "bytes_live": 312852,
+   "bytes_br": 313523,
+   "chunks_live": [
+    "site.js",
+    "stories.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "stories.js"
+   ],
+   "dcls": 0,
+   "dfcp": -56
+  },
+  {
+   "page": "stories.html",
+   "w": 1440,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0.03,
+   "cls_br": 0.0307,
+   "clsload_live": 0.03,
+   "clsload_br": 0.0307,
+   "fcp_live": 288,
+   "fcp_br": 332,
+   "cls_live_all": [
+    0.0299,
+    0.03,
+    0.0308
+   ],
+   "cls_br_all": [
+    0.03,
+    0.0307,
+    0.0308
+   ],
+   "fcp_live_all": [
+    348,
+    288,
+    248
+   ],
+   "fcp_br_all": [
+    352,
+    220,
+    332
+   ],
+   "bytes_live": 312852,
+   "bytes_br": 313523,
+   "chunks_live": [
+    "site.js",
+    "stories.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "stories.js"
+   ],
+   "dcls": 0.0007,
+   "dfcp": 44
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up.html",
+   "w": 390,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0,
+   "cls_br": 0,
+   "clsload_live": 0,
+   "clsload_br": 0,
+   "fcp_live": 264,
+   "fcp_br": 216,
+   "cls_live_all": [
+    0,
+    0,
+    0
+   ],
+   "cls_br_all": [
+    0,
+    0,
+    0
+   ],
+   "fcp_live_all": [
+    332,
+    228,
+    264
+   ],
+   "fcp_br_all": [
+    208,
+    236,
+    216
+   ],
+   "bytes_live": 307795,
+   "bytes_br": 307795,
+   "chunks_live": [
+    "site.js",
+    "story.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "story.js"
+   ],
+   "dcls": 0,
+   "dfcp": -48
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up.html",
+   "w": 1440,
+   "signed": "out",
+   "n": [
+    3,
+    3
+   ],
+   "cls_live": 0.0001,
+   "cls_br": 0.0001,
+   "clsload_live": 0.0001,
+   "clsload_br": 0.0001,
+   "fcp_live": 268,
+   "fcp_br": 308,
+   "cls_live_all": [
+    0.0001,
+    0.0001,
+    0.0001
+   ],
+   "cls_br_all": [
+    0.0001,
+    0.0001,
+    0.0001
+   ],
+   "fcp_live_all": [
+    188,
+    372,
+    268
+   ],
+   "fcp_br_all": [
+    308,
+    236,
+    336
+   ],
+   "bytes_live": 307795,
+   "bytes_br": 307795,
+   "chunks_live": [
+    "site.js",
+    "story.js"
+   ],
+   "chunks_br": [
+    "site.js",
+    "story.js"
+   ],
+   "dcls": 0.0,
+   "dfcp": 40
+  }
+ ],
+ "errs": [
+  {
+   "page": "home.html",
+   "w": 390,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 6,
+   "cons_br": 6,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  },
+  {
+   "page": "home.html",
+   "w": 1440,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 6,
+   "cons_br": 6,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  },
+  {
+   "page": "stories.html",
+   "w": 390,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 3,
+   "cons_br": 3,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  },
+  {
+   "page": "stories.html",
+   "w": 1440,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 3,
+   "cons_br": 3,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up.html",
+   "w": 390,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 3,
+   "cons_br": 3,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  },
+  {
+   "page": "stories__lisbon-sun-sails-city-built-to-stand-back-up.html",
+   "w": 1440,
+   "pageerr_live": 0,
+   "pageerr_br": 0,
+   "cons_live": 3,
+   "cons_br": 3,
+   "new": [],
+   "gone": [],
+   "bad_br": [],
+   "nav": [],
+   "nonGet": 0
+  }
+ ],
+ "measures": {
+  "home.html 390 out": {},
+  "home.html 1440 out": {},
+  "stories.html 390 out": {},
+  "stories.html 1440 out": {},
+  "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 390 out": {},
+  "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 1440 out": {}
+ },
+ "sig": {
+  "home.html 390 out": {
+   "elements": 527,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 2,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  },
+  "home.html 1440 out": {
+   "elements": 558,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 2,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  },
+  "stories.html 390 out": {
+   "elements": 1117,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 0,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  },
+  "stories.html 1440 out": {
+   "elements": 1143,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 0,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  },
+  "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 390 out": {
+   "elements": 269,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 0,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  },
+  "stories__lisbon-sun-sails-city-built-to-stand-back-up.html 1440 out": {
+   "elements": 286,
+   "boxChanged": 0,
+   "onlyBr": 0,
+   "onlyLive": 0,
+   "unstable": 0,
+   "onlyBrEx": [],
+   "onlyLiveEx": [],
+   "changed": []
+  }
+ }
+}

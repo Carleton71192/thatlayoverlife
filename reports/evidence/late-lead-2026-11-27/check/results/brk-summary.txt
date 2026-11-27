@@ -1,0 +1,85 @@
+normal rapid-burst                             old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 24 inClick ok 6 at50 ok 12 | CLS 0.0305 [0.0303..0.0309] load 0.0305 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal rapid-burst                             new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 24 inClick ok 24 at50 ok 24 | CLS 0.03 [0.03..0.0307] load 0.03 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal rapid-trusted                           old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 24 inClick ok 0 at50 ok 9 | CLS 0.0307 [0.0307..0.031] load 0.0307 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal rapid-trusted                           new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 24 inClick ok 24 at50 ok 24 | CLS 0.0307 [0.0302..0.031] load 0.0307 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal empty Oceania,Antarctica,Asia           old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 9 inClick ok 0 at50 ok 3 | CLS 0.0307 [0.0148..0.0309] load 0.0307 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal empty Oceania,Antarctica,Asia           new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 9 inClick ok 9 at50 ok 9 | CLS 0.0302 [0.03..0.0307] load 0.0302 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal empty ?place=Oceania                    old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 3 inClick ok 0 at50 ok 0 | CLS 0.03 [0.0299..0.0307] load 0.03 | cardShift 0 | leads {'x': 3} | pressed {'Oceania': 3} shown {0: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal empty ?place=Oceania                    new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 3 inClick ok 3 at50 ok 3 | CLS 0.03 [0.0299..0.0303] load 0.03 | cardShift 0 | leads {'x': 3} | pressed {'Oceania': 3} shown {0: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal reduced-motion ?place=Asia then Europe,Asia old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 9 inClick ok 0 at50 ok 9 | CLS 0 [0..0] load 0 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal reduced-motion ?place=Asia then Europe,Asia new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 9 inClick ok 9 at50 ok 9 | CLS 0 [0..0] load 0 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal enter-key Asia                          old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 3 inClick ok 0 at50 ok 3 | CLS 0.0347 [0.031..0.0519] load 0.0347 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal enter-key Asia                          new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 3 inClick ok 3 at50 ok 3 | CLS 0.0299 [0.0299..0.031] load 0.0299 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal sort after Asia                         old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 6 inClick ok 0 at50 ok 6 | CLS 0.0587 [0.0581..0.0589] load 0.0587 | cardShift 0 | leads {'Le1u': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal sort after Asia                         new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 6 inClick ok 6 at50 ok 6 | CLS 0.0591 [0.0589..0.0591] load 0.0591 | cardShift 0 | leads {'Le1u': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+normal back-forward                            old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 12 inClick ok 3 at50 ok 12 | CLS 0.0308 [0.0305..0.0308] load 0.0308 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 15 navErr 0 | shows {'new': 9}
+normal back-forward                            new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 12 inClick ok 12 at50 ok 12 | CLS 0.0309 [0.0305..0.0309] load 0.0309 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 15 navErr 0 | shows {'new': 9}
+late3s rapid-burst                             old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 24 inClick ok 6 at50 ok 12 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s rapid-burst                             new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 24 inClick ok 24 at50 ok 24 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s rapid-trusted                           old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 24 inClick ok 3 at50 ok 5 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Ly91': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s rapid-trusted                           new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 24 inClick ok 24 at50 ok 24 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s empty Oceania,Antarctica,Asia           old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 9 inClick ok 0 at50 ok 0 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s empty Oceania,Antarctica,Asia           new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 9 inClick ok 9 at50 ok 9 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s empty ?place=Oceania                    old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 3 inClick ok 0 at50 ok 0 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lunf': 3} | pressed {'Oceania': 3} shown {0: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s empty ?place=Oceania                    new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 3 inClick ok 3 at50 ok 3 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'x': 3} | pressed {'Oceania': 3} shown {0: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s reduced-motion ?place=Asia then Europe,Asia old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 9 inClick ok 3 at50 ok 3 | CLS 0.2569 [0.2569..0.2569] load 0.2569 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s reduced-motion ?place=Asia then Europe,Asia new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 9 inClick ok 9 at50 ok 9 | CLS 0.2569 [0.2569..0.2569] load 0.2569 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s enter-key Asia                          old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 3 inClick ok 0 at50 ok 0 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s enter-key Asia                          new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 3 inClick ok 3 at50 ok 3 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s sort after Asia                         old n=3 | end ok 3 hidden 0 | badFr 3 hidFr 3 | clicks 6 inClick ok 0 at50 ok 3 | CLS 0.1584 [0.1584..0.1584] load 0.1584 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {57: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s sort after Asia                         new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 6 inClick ok 6 at50 ok 6 | CLS 0.1584 [0.1584..0.1584] load 0.1584 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {57: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 3 navErr 0 | shows {'new': 3}
+late3s back-forward                            old n=3 | end ok 0 hidden 3 | badFr 3 hidFr 3 | clicks 12 inClick ok 3 at50 ok 3 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lunf': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 15 navErr 0 | shows {'new': 9}
+late3s back-forward                            new n=3 | end ok 3 hidden 0 | badFr 0 hidFr 0 | clicks 12 inClick ok 12 at50 ok 12 | CLS 0.1374 [0.1374..0.1374] load 0.1374 | cardShift 0 | leads {'Lfre': 3} | pressed {'Asia': 3} shown {11: 3} | errs 0 cons 1 nonGet 0 miss 0 guard 0 navs 15 navErr 0 | shows {'new': 9}
+  normal rapid-burst old: burst BAD ok BAD BAD ok BAD BAD BAD
+  normal rapid-burst new: burst ok ok ok ok ok ok ok ok
+  normal rapid-trusted old: steps Asia:11/1(BAD) Europe:14/1(BAD) Oceania:1/1(BAD) Middle East:1/1(BAD) all:57/1 Asia:11/1(BAD) Antarctica:1/1(BAD) Asia:11/1(BAD)
+  normal rapid-trusted old: steps Asia:11/1(BAD) Europe:14/1(BAD) Oceania:1/1(BAD) Middle East:1/1(BAD) all:57/1(BAD) Asia:11/1(BAD) Antarctica:1/1(BAD) Asia:11/1(BAD)
+  normal rapid-trusted new: steps Asia:11/1 Europe:14/1 Oceania:1/1 Middle East:1/1 all:57/1 Asia:11/1 Antarctica:1/1 Asia:11/1
+  normal empty Oceania,Antarctica,Asia old: steps Oceania:0/1(BAD) Antarctica:0/1(BAD) Asia:11/1
+  normal empty Oceania,Antarctica,Asia new: steps Oceania:0/0 Antarctica:0/0 Asia:11/1
+  normal reduced-motion ?place=Asia then Europe,Asia old: steps Europe:14/1 Asia:11/1
+  normal reduced-motion ?place=Asia then Europe,Asia new: steps Europe:14/1 Asia:11/1
+  normal back-forward old: back1 ?place=Asia Asia:11/1 shows=['new 877']
+  normal back-forward old: back1 ?place=Asia Asia:11/1 shows=['new 883']
+  normal back-forward old: back1 ?place=Asia Asia:11/1 shows=['new 979']
+  normal back-forward old: back2 ?place=Asia Asia:11/1 shows=['new 1013']
+  normal back-forward old: back2 ?place=Asia Asia:11/1 shows=['new 1344']
+  normal back-forward old: back2 ?place=Asia Asia:11/1 shows=['new 945']
+  normal back-forward old: before ?place=Asia Asia:11/1 shows=['new 1046']
+  normal back-forward old: before ?place=Asia Asia:11/1 shows=['new 1075']
+  normal back-forward old: before ?place=Asia Asia:11/1 shows=['new 1095']
+  normal back-forward new: back1 ?place=Asia Asia:11/1 shows=['new 1168']
+  normal back-forward new: back1 ?place=Asia Asia:11/1 shows=['new 907']
+  normal back-forward new: back1 ?place=Asia Asia:11/1 shows=['new 914']
+  normal back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 1054']
+  normal back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 1056']
+  normal back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 979']
+  normal back-forward new: before ?place=Asia Asia:11/1 shows=['new 1048']
+  normal back-forward new: before ?place=Asia Asia:11/1 shows=['new 1133']
+  normal back-forward new: before ?place=Asia Asia:11/1 shows=['new 1204']
+  late3s rapid-burst old: burst BAD ok BAD BAD ok BAD BAD BAD
+  late3s rapid-burst new: burst ok ok ok ok ok ok ok ok
+  late3s rapid-trusted old: steps Asia:11/1(BAD) Europe:14/1 Oceania:1/1(BAD) Middle East:1/1(BAD) all:57/1 Asia:11/1(BAD) Antarctica:1/1(BAD) Asia:11/1(BAD)
+  late3s rapid-trusted old: steps Asia:11/1(BAD) Europe:14/1 Oceania:1/1(BAD) Middle East:1/1(BAD) all:57/1(BAD) Asia:11/1(BAD) Antarctica:1/1(BAD) Asia:11/1(BAD)
+  late3s rapid-trusted new: steps Asia:11/1 Europe:14/1 Oceania:1/1 Middle East:1/1 all:57/1 Asia:11/1 Antarctica:1/1 Asia:11/1
+  late3s empty Oceania,Antarctica,Asia old: steps Oceania:0/1(BAD) Antarctica:0/1(BAD) Asia:11/1(BAD)
+  late3s empty Oceania,Antarctica,Asia new: steps Oceania:0/0 Antarctica:0/0 Asia:11/1
+  late3s reduced-motion ?place=Asia then Europe,Asia old: steps Europe:14/1 Asia:11/1(BAD)
+  late3s reduced-motion ?place=Asia then Europe,Asia new: steps Europe:14/1 Asia:11/1
+  late3s back-forward old: back1 ?place=Asia Asia:11/1(BAD) shows=['new 6121']
+  late3s back-forward old: back1 ?place=Asia Asia:11/1(BAD) shows=['new 6132']
+  late3s back-forward old: back1 ?place=Asia Asia:11/1(BAD) shows=['new 6148']
+  late3s back-forward old: back2 ?place=Asia Asia:11/1(BAD) shows=['new 6119']
+  late3s back-forward old: back2 ?place=Asia Asia:11/1(BAD) shows=['new 6123']
+  late3s back-forward old: back2 ?place=Asia Asia:11/1(BAD) shows=['new 6142']
+  late3s back-forward old: before ?place=Asia Asia:11/1(BAD) shows=['new 6130']
+  late3s back-forward old: before ?place=Asia Asia:11/1(BAD) shows=['new 6155']
+  late3s back-forward old: before ?place=Asia Asia:11/1(BAD) shows=['new 6159']
+  late3s back-forward new: back1 ?place=Asia Asia:11/1 shows=['new 6110']
+  late3s back-forward new: back1 ?place=Asia Asia:11/1 shows=['new 6121']
+  late3s back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 6127']
+  late3s back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 6131']
+  late3s back-forward new: back2 ?place=Asia Asia:11/1 shows=['new 6133']
+  late3s back-forward new: before ?place=Asia Asia:11/1 shows=['new 6142']
+  late3s back-forward new: before ?place=Asia Asia:11/1 shows=['new 6149']
+  late3s back-forward new: before ?place=Asia Asia:11/1 shows=['new 6156']
