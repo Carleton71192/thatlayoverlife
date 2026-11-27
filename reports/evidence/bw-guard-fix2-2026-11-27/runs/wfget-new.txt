@@ -1,0 +1,14 @@
+W1 gzip page: counted bytes vs compressed body vs decoded body {"counted":726,"compressedBody":521,"decoded":240007,"savedFile":240007}
+W2 non-Webflow URL redirecting to a 300 KB Webflow file {"counted":300197,"stubSent":300000}
+W3 Webflow URL redirecting to a Webflow image {"result":302,"imageFetched":0}
+W4 Webflow image URL with no extension {"status":200,"fetched":1}
+W5 run cap 1 MB, first URL is a 3 MB file {"counted":983805,"gets":1,"stopped":"wf-guard: wfget-check stopped at the run cap of 1 MB: a GET of http://cdn.prod.website-files.com/doc.pdf was refused because it was larger than the 1.00 MB left; 0.98 MB counted from Webflow in this run, the refused GET included","secondFetched":0}
+W6 trailing dot host and other subdomain: counted {"counted":110392,"stubSent":110000}
+W7 Webflow redirect chain: counted vs sent {"counted":200411,"stubSent":200000}
+W8 files written ["gz.html","kb50.js","kb60.js","r__q_to=http_3A_2F_2Fwww.thatlayover.life_2Fkb200.js","r__q_to=http_3A_2F_2Fwww.thatlayover.life_2Fkb300.js"]
+W9 log lines ["- 27 Nov 11:38 UTC, wfget-check: wf-get run 494886, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 27 Nov 11:38 UTC, wfget-check: wf-get run ecd82a, 2 GETs (1 not 200), 0.30 MB from Webflow (M)","- 27 Nov 11:38 UTC, wfget-check: wf-get run cb0c0c, 1 GETs (1 not 200), 0.00 MB from Webflow (M)","- 27 Nov 11:38 UTC, wfget-check: wf-get run c6fa2e, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 27 Nov 11:38 UTC, wfget-check: wf-get run 1a68e0, 2 GETs (0 not 200), 0.11 MB from Webflow (M)","- 27 Nov 11:38 UTC, wfget-check: wf-get run 17dc24, 2 GETs (1 not 200), 0.20 MB from Webflow (M)"]
+W10 non-GET requests seen by the stub 0
+W11 default out folder (cwd is <scratch>/chk/tmp) {"out":"<scratch>/new/wf-get-out/w11-default-out","file":"<scratch>/new/wf-get-out/w11-default-out/kb1.js"}
+W12 35 URLs with the default --max {"gets":30,"stubRequests":30,"stopped":"wf-get: --max 30 GETs reached"}
+W13 --cache {"files":["43e04cddf361e3c0c9cf42d4c6eddbc5705dfe5b.b","43e04cddf361e3c0c9cf42d4c6eddbc5705dfe5b.json"],"hit":true}
+W14 6 MB file (default 5 MB limit), redirect to .mp4 {"results":["over --max-filesize 5 MB, not saved","refused: redirect to an image, video or font (http://cdn.prod.website-files.com/v.mp4)"],"counted":5000413,"stubSent":["/kb6000.js 6000000","/r 0"]}

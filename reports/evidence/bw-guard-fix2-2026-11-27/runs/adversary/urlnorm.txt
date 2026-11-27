@@ -1,0 +1,33 @@
+U1 "a|b" DIFF {"node":"http://www.thatlayover.life/a|b","chromium":"http://www.thatlayover.life/a%7Cb"}
+U1 "a^b" DIFF {"node":"http://www.thatlayover.life/a^b","chromium":"http://www.thatlayover.life/a%5Eb"}
+U1 "a[b]" same {"node":"http://www.thatlayover.life/a[b]","chromium":"http://www.thatlayover.life/a[b]"}
+U1 "a{b}" same {"node":"http://www.thatlayover.life/a%7Bb%7D","chromium":"http://www.thatlayover.life/a%7Bb%7D"}
+U1 "a`b" same {"node":"http://www.thatlayover.life/a%60b","chromium":"http://www.thatlayover.life/a%60b"}
+U1 "a'b" same {"node":"http://www.thatlayover.life/a'b","chromium":"http://www.thatlayover.life/a'b"}
+U1 "a\"b" same {"node":"http://www.thatlayover.life/a%22b","chromium":"http://www.thatlayover.life/a%22b"}
+U1 "a<b>" same {"node":"http://www.thatlayover.life/a%3Cb%3E","chromium":"http://www.thatlayover.life/a%3Cb%3E"}
+U1 "a b" same {"node":"http://www.thatlayover.life/a%20b","chromium":"http://www.thatlayover.life/a%20b"}
+U1 "a\\b" same {"node":"http://www.thatlayover.life/a/b","chromium":"http://www.thatlayover.life/a/b"}
+U1 "café" same {"node":"http://www.thatlayover.life/caf%C3%A9","chromium":"http://www.thatlayover.life/caf%C3%A9"}
+U1 "a%zz" same {"node":"http://www.thatlayover.life/a%zz","chromium":"http://www.thatlayover.life/a%zz"}
+U1 "a%7cb" same {"node":"http://www.thatlayover.life/a%7cb","chromium":"http://www.thatlayover.life/a%7cb"}
+U1 "?q=a|b" same {"node":"http://www.thatlayover.life/?q=a|b","chromium":"http://www.thatlayover.life/?q=a|b"}
+U1 "?q=a'b" same {"node":"http://www.thatlayover.life/?q=a%27b","chromium":"http://www.thatlayover.life/?q=a%27b"}
+U1 "?q=a^b" same {"node":"http://www.thatlayover.life/?q=a^b","chromium":"http://www.thatlayover.life/?q=a^b"}
+U1 "?q={x}" same {"node":"http://www.thatlayover.life/?q={x}","chromium":"http://www.thatlayover.life/?q={x}"}
+U1 "?q=a b" same {"node":"http://www.thatlayover.life/?q=a%20b","chromium":"http://www.thatlayover.life/?q=a%20b"}
+U1 "?q=`" same {"node":"http://www.thatlayover.life/?q=`","chromium":"http://www.thatlayover.life/?q=`"}
+U1 "?q=café" same {"node":"http://www.thatlayover.life/?q=caf%C3%A9","chromium":"http://www.thatlayover.life/?q=caf%C3%A9"}
+U1 "a;b" same {"node":"http://www.thatlayover.life/a;b","chromium":"http://www.thatlayover.life/a;b"}
+U1 "a,b" same {"node":"http://www.thatlayover.life/a,b","chromium":"http://www.thatlayover.life/a,b"}
+U1 "a!b" same {"node":"http://www.thatlayover.life/a!b","chromium":"http://www.thatlayover.life/a!b"}
+U1 "a~b" same {"node":"http://www.thatlayover.life/a~b","chromium":"http://www.thatlayover.life/a~b"}
+U1 "a$b" same {"node":"http://www.thatlayover.life/a$b","chromium":"http://www.thatlayover.life/a$b"}
+U1 "a@b" same {"node":"http://www.thatlayover.life/a@b","chromium":"http://www.thatlayover.life/a@b"}
+U1 "?q=%" same {"node":"http://www.thatlayover.life/?q=%","chromium":"http://www.thatlayover.life/?q=%"}
+U1 "a%2Fb" same {"node":"http://www.thatlayover.life/a%2Fb","chromium":"http://www.thatlayover.life/a%2Fb"}
+U1 "%41" same {"node":"http://www.thatlayover.life/%41","chromium":"http://www.thatlayover.life/%41"}
+U1 "?q=%41" same {"node":"http://www.thatlayover.life/?q=%41","chromium":"http://www.thatlayover.life/?q=%41"}
+U1 "a/./b/../c" same {"node":"http://www.thatlayover.life/a/c","chromium":"http://www.thatlayover.life/a/c"}
+U1 "A%2e%2E/b" same {"node":"http://www.thatlayover.life/A%2e%2E/b","chromium":"http://www.thatlayover.life/A%2e%2E/b"}
+U1 summary {"tried":32,"differ":2}
