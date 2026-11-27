@@ -21,3 +21,6 @@ __pycache__/
 
 # Working screenshots that agents drop in the repo root by mistake; the real copies live in the session scratchpad
 /shots/
+
+# wf-get saves pages here by default (tools/wf-get.cjs)
+/wf-get-out/
