@@ -1,0 +1,11 @@
+start | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X7 fetch-once allowVideo, empty cache: fetch() of an extensionless 3 MB video with Range bytes=0- {"page":[206,3000000],"requests":["bytes=0-"],"counted":3000293} | relayDeliveredSincePreviousLine=3000293
+-- reset | relayDeliveredSincePreviousLine=0
+X8 block: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":4,"served200":"closed","counted":9000922,"gets":4,"trip":"wf-guard: x8 brought the 27 Nov total to the daily cap of 12 MB; run stopped"} | relayDeliveredSincePreviousLine=9197301
+-- reset | relayDeliveredSincePreviousLine=0
+X8 fetch-once: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":4,"served200":"closed","counted":9000922,"gets":4,"trip":"wf-guard: x8 brought the 27 Nov total to the daily cap of 12 MB; run stopped"} | relayDeliveredSincePreviousLine=9325301
+X9 skipped: no g.goto or g.finalResponse in this tree | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X10 block: one page goes to 12 apex URLs that 301 to www pages, one after another {"requests":24,"gets":24,"pageLoads":12,"finalUrls":["r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-0","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-1","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-2","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-3","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-4","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-5","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-6","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-7","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-8","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-9","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-10","r?to=http%3A%2F%2Fwww.thatlayover.life%3A45573%2Flanding-x10-11"]} | relayDeliveredSincePreviousLine=64732
+exit 0

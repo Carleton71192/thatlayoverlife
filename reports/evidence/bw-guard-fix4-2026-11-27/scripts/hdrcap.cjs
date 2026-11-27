@@ -1,0 +1,3 @@
+const http=require('http');const {execFile}=require('child_process');
+const s=http.createServer((q,r)=>{const kb=+q.url.slice(1);const h={'content-type':'text/plain'};for(let i=0;i<kb/4;i++)h['x-pad-'+i]='a'.repeat(4000);r.writeHead(200,h);r.end('body');});
+s.listen(0,'127.0.0.1',async()=>{const p=s.address().port;for(const kb of [100,280,300,320,400,800]){const o=await new Promise(res=>execFile('curl',['-sS','--noproxy','*','-o','/dev/null','-D','-','-w','\n@@ %{size_header} %{exitcode}',`http://127.0.0.1:${p}/${kb}`],{encoding:'latin1',timeout:10000},(e,so,se)=>res({len:so.length,tail:so.slice(so.lastIndexOf('@@')).slice(0,40),err:String(se).trim().slice(0,120)})));console.log(kb,JSON.stringify(o));}s.close();});

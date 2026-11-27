@@ -11,6 +11,10 @@
    to handoff/BANDWIDTH-LOG.md of that same checkout. Both paths are fixed, wherever the command runs from.
    Limits: at most --max GETs (default 30; a redirect hop is a GET), at most --max-filesize MB per GET (default 5; curl stops the
    transfer there), and never more than is left of the run cap (200 MB) or the daily cap (250 MB, shared with every other run).
+   A GET that other runs' open reservations block waits for them (up to 60 s) and is then refused; only bytes really counted
+   stop the run. A GET refused or cut at a size limit counts with an allowance and is not asked for again in the same run.
+   Near a cap each GET keeps room for its headers and that allowance; when too little is left for that, the GET is refused
+   and the run goes on (the next URL). Response headers over 64 KB stop a GET.
    Redirects are followed by hand, one hop at a time (at most 5). Images, video and fonts are refused: by the URL before any
    request, by a redirect target before it is fetched, and by the content type after a GET (the file is then deleted).
    Only GET is ever sent. --cache <dir> also stores each 200 answer in the wf-guard cache layout, so a 'cache-only' browser run
@@ -47,13 +51,30 @@ async function wfGet(urls, opts) {
       for (let hop = 0; ; hop++) {
         if (run.gets >= max) { stopped = new Error(`wf-get: --max ${max} GETs reached`); stopped.cap = 'max'; res.error = 'stopped by --max during redirects'; break; }
         const wf = isWf(url);
-        const grant = wf ? run.reserve(run.getCap) : { bytes: maxFileMB * 1e6, by: 'get' };
-        if (!grant.bytes) { stopped = run.error; res.error = 'stopped at a cap'; break; }
-        const r = await curlFetch(url, { maxBytes: W.bodyLimit(grant), timeoutS: 60, curl: opts.curl, curlArgs: opts.curlArgs }).promise;
+        if (wf && run.refusedKeys.has(url)) { run.refusedAgain++; res.error = 'refused: over the size limit earlier in this run'; break; }
+        /* waits while other runs' open reservations hold what is left of the daily cap; a cap reached in counted bytes stops the run */
+        /* each GET reserves --max-filesize plus room for the allowance of a refused response (see countFor in wf-guard.cjs) */
+        const grant = wf ? await run.reserveWait() : { bytes: maxFileMB * 1e6, by: 'get' };
+        if (!grant.bytes) {
+          if (grant.by === 'busy') { res.error = `refused: other runs held what is left of the daily cap for ${run.reserveWaitMs / 1000} s`; break; }
+          if (grant.by === 'low') { run.lowRefused++; res.error = `refused: too little is left of the ${grant.cap} cap for another GET (F-3); the run goes on`; break; }
+          stopped = run.error; res.error = 'stopped at a cap'; break;
+        }
+        const limit = W.bodyLimit(grant);
+        /* X-3: response headers past W.HEADER_MARGIN stop the GET, so the body limit plus the headers fit in the grant */
+        const r = await curlFetch(url, { maxBytes: limit, maxHeaderBytes: wf ? W.HEADER_MARGIN : 0, timeoutS: 60, curl: opts.curl, curlArgs: opts.curlArgs }).promise;
         run.gets++; if (r.status !== 200) run.non200++;
-        if (wf) { run.responses++; if (r.truncated && grant.by === 'get') run.tooBig++; if (r.timedOut) run.unfinished++; run.settle(grant, r.wire, r.truncated && grant.by === 'get'); }
-        res.bytes += wf ? r.wire : 0; res.status = r.status; res.hops.push(`${r.status} ${url}`);
-        if (r.truncated) { res.error = grant.by === 'get' ? `over --max-filesize ${maxFileMB} MB, not saved` : 'stopped at a cap'; if (grant.by !== 'get') { run.trip(grant.by); stopped = run.error; } break; }
+        /* a response refused or cut at the size limit counts more than curl read (see countedBytes in wf-guard.cjs) */
+        const used = wf ? W.countFor(r, limit, grant) : 0; if (r.pastGrant) run.pastGrant += r.pastGrant;
+        const atCap = r.truncated && grant.by !== 'get' && limit < run.getCap;
+        if (wf) {
+          run.responses++; if (r.timedOut) run.unfinished++;
+          if (r.truncated || r.stopped) { run.refusedKeys.add(url); if (r.stopped) run.bigHeaders++; else if (!atCap) run.tooBig++; }
+          run.settle(grant, used, atCap);
+        }
+        res.bytes += used; res.status = r.status; res.hops.push(`${r.status} ${url}`);
+        if (r.truncated) { res.error = atCap ? 'stopped at a cap' : `over --max-filesize ${maxFileMB} MB, not saved`; if (atCap) { run.trip(grant.by, { refused: url, left: grant.bytes }); stopped = run.error; } else if (run.error) stopped = run.error; break; }
+        if (r.stopped) { res.error = `refused: ${r.stopped}, not saved`; break; }
         if (r.exit) { res.error = r.error || `curl exit ${r.exit}`; break; }
         const loc = r.status >= 300 && r.status < 400 ? r.headers.location : null;
         if (loc) {
