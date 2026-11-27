@@ -1,0 +1,11 @@
+start | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X7 fetch-once allowVideo, empty cache: fetch() of an extensionless 3 MB video with Range bytes=0- {"page":[206,1000000],"requests":["bytes=0-999999"],"counted":1000292} | relayDeliveredSincePreviousLine=1000292
+-- reset | relayDeliveredSincePreviousLine=0
+X8 block: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":47,"served200":"closed","counted":12042763,"gets":47,"trip":"wf-guard: x8 brought the 27 Nov total to 12.04 MB (12.04 MB in this run), which reached the daily cap of 12 MB for 27 Nov; run stopped"} | relayDeliveredSincePreviousLine=14445479
+-- reset | relayDeliveredSincePreviousLine=0
+X8 fetch-once: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":47,"served200":"closed","counted":12042763,"gets":47,"trip":"wf-guard: x8 brought the 27 Nov total to 12.04 MB (12.04 MB in this run), which reached the daily cap of 12 MB for 27 Nov; run stopped"} | relayDeliveredSincePreviousLine=12313600
+X9 skipped: no g.goto or g.finalResponse in this tree | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X10 block: one page goes to 12 apex URLs that 301 to www pages, one after another {"requests":24,"gets":24,"pageLoads":12,"redirectPages":12,"finalUrls":["landing-x10-0","landing-x10-1","landing-x10-2","landing-x10-3","landing-x10-4","landing-x10-5","landing-x10-6","landing-x10-7","landing-x10-8","landing-x10-9","landing-x10-10","landing-x10-11"]} | relayDeliveredSincePreviousLine=64732
+exit 0

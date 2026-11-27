@@ -1,0 +1,20 @@
+start | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X1 206 with unknown total (bytes 0-999999/*), fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["no range"],"counted":3000225} | relayDeliveredSincePreviousLine=3000225
+-- reset | relayDeliveredSincePreviousLine=0
+X1 206 with unknown total (bytes 0-999999/*), block: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["no range"],"counted":3000225} | relayDeliveredSincePreviousLine=3000225
+-- reset | relayDeliveredSincePreviousLine=0
+X2 416 to every Range, 200 without, fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["no range"],"counted":3000225} | relayDeliveredSincePreviousLine=3000225
+-- reset | relayDeliveredSincePreviousLine=0
+X2 416 to every Range, 200 without, block: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["no range"],"counted":3000225} | relayDeliveredSincePreviousLine=3000225
+-- reset | relayDeliveredSincePreviousLine=0
+X3 1.2 MB, Range honoured, fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,1200000],"requests":["no range"],"counted":1200225} | relayDeliveredSincePreviousLine=1200225
+-- reset | relayDeliveredSincePreviousLine=0
+X3 1.2 MB, Range honoured, block: page fetch() of an extensionless Webflow URL {"page":[200,1200000],"requests":["no range"],"counted":1200225} | relayDeliveredSincePreviousLine=1200225
+-- reset | relayDeliveredSincePreviousLine=0
+X4 block, run cap 2 MB, 12 endless Webflow streams at once {"requests":0,"counted":0,"reservedAtStop":0,"capBytes":2000000,"countedPlusReservedOverCap":false,"gets":0,"unfinished":1,"trip":"wf-guard: x4 reached 0.00 MB from Webflow, the run cap is 2 MB; run stopped"} | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X5 wf-get, run cap 0.5 MB, one endless stream {"counted":483817,"capBytes":500000,"countedOverCap":false,"stopped":"wf-guard: x5 reached 0.48 MB from Webflow, the run cap is 0.5 MB; run stopped"} | relayDeliveredSincePreviousLine=642048
+FATAL TypeError: run.reserveWait is not a function
+    at <scratch>/s/x/x.cjs:90:27
+exit 1

@@ -1,0 +1,21 @@
+start | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X1 206 with unknown total (bytes 0-999999/*), fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["bytes=0-999999","no range"],"counted":4000496} | relayDeliveredSincePreviousLine=4000496
+-- reset | relayDeliveredSincePreviousLine=0
+X1 206 with unknown total (bytes 0-999999/*), block: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["bytes=0-999999","no range"],"counted":4000496} | relayDeliveredSincePreviousLine=4000496
+-- reset | relayDeliveredSincePreviousLine=0
+X2 416 to every Range, 200 without, fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["bytes=0-999999","no range"],"counted":3000495} | relayDeliveredSincePreviousLine=3000495
+-- reset | relayDeliveredSincePreviousLine=0
+X2 416 to every Range, 200 without, block: page fetch() of an extensionless Webflow URL {"page":[200,3000000],"requests":["bytes=0-999999","no range"],"counted":3000495} | relayDeliveredSincePreviousLine=3000495
+-- reset | relayDeliveredSincePreviousLine=0
+X3 1.2 MB, Range honoured, fetch-once: page fetch() of an extensionless Webflow URL {"page":[200,1200000],"requests":["bytes=0-999999","no range"],"counted":2200524} | relayDeliveredSincePreviousLine=2200524
+-- reset | relayDeliveredSincePreviousLine=0
+X3 1.2 MB, Range honoured, block: page fetch() of an extensionless Webflow URL {"page":[200,1200000],"requests":["bytes=0-999999","no range"],"counted":2200524} | relayDeliveredSincePreviousLine=2200524
+-- reset | relayDeliveredSincePreviousLine=0
+X4 block, run cap 2 MB, 12 endless Webflow streams at once {"requests":1,"counted":2239817,"reservedAtStop":0,"capBytes":2000000,"countedPlusReservedOverCap":true,"gets":1,"unfinished":0,"trip":"wf-guard: x4 stopped at the run cap of 2 MB: a GET of http://cdn.prod.website-files.com:46603/endless.js?i=0 was refused because it was larger than the 2.00 MB left; 2.24 MB counted from Webflow in this run, the refused GET included"} | relayDeliveredSincePreviousLine=2927616
+-- reset | relayDeliveredSincePreviousLine=0
+X5 wf-get, run cap 0.5 MB, one endless stream {"counted":739817,"capBytes":500000,"countedOverCap":true,"stopped":"wf-guard: x5 stopped at the run cap of 0.5 MB: a GET of http://cdn.prod.website-files.com:46603/endless.js?w=1 was refused because it was larger than the 0.50 MB left; 0.74 MB counted from Webflow in "} | relayDeliveredSincePreviousLine=576512
+X6 tally: 1 MB reserved by a live pid, pid alive, start time differs; day cap 1.5 MB {"grant":{"bytes":0,"by":"busy","left":1500000},"tripped":false} | relayDeliveredSincePreviousLine=0
+X6 tally: 1 MB reserved by a live pid, pid alive, no start time stored; day cap 1.5 MB {"grant":{"bytes":0,"by":"busy","left":1500000},"tripped":false} | relayDeliveredSincePreviousLine=0
+X6 tally: 1 MB reserved by a live pid, pid alive, start time matches; day cap 1.5 MB {"grant":{"bytes":0,"by":"busy","left":1500000},"tripped":false} | relayDeliveredSincePreviousLine=0
+exit 0

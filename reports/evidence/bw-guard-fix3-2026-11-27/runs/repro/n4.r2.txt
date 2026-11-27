@@ -1,0 +1,16 @@
+N4 fetch-once: exit 0 signal null | relayDeliveredSincePreviousLine=0
+  RESULTS {"pageFetch":"err","nav":"err: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayo","navOther":"err: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://localhost:36","blank2":"err: page.goto: Navigation to \"http://localhost:36141/blank.html\" is interrupted by a","eval2":"EVAL2 page.evaluate: Execution context was destroyed, most likely because of a navigation url=chrome-error://chromewebdata/","ctxRequest":"caught: wf-guard: refused a Webflow fetch in mode fetch-on","ctxRequestOther":"caught: apiRequestContext.fetch: socket hang up\nCall log:\n","pageFetchAgain":"err"} | relayDeliveredSincePreviousLine=0
+  STATS {"failed":4,"gets":4,"cacheRefused":2,"misses":0} | relayDeliveredSincePreviousLine=0
+  ALIVE | relayDeliveredSincePreviousLine=0
+  Webflow stub requests per path {"/fail-doc.js":1,"/fail-img.png":1,"/fail-nav.html":1,"/fail-req.js":1} | relayDeliveredSincePreviousLine=0
+N4 block: exit 0 signal null | relayDeliveredSincePreviousLine=800
+  RESULTS {"pageFetch":200,"nav":200,"navOther":"err: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://localhost:36","blank2":"err: page.goto: Navigation to \"http://localhost:36141/blank.html\" is interrupted by a","caller c-other.js":"caught: route.fetch: socket hang up\nCall log:\n\u001b[2m  - → GE","caller c-wf.js":"caught: wf-guard: refused a Webflow fetch in mode block (f","eval2":[0,0],"ctxRequest":200,"ctxRequestOther":"caught: apiRequestContext.fetch: socket hang up\nCall log:\n","pageFetchAgain":200} | relayDeliveredSincePreviousLine=0
+  STATS {"failed":1,"gets":5,"cacheRefused":0,"misses":0} | relayDeliveredSincePreviousLine=0
+  ALIVE | relayDeliveredSincePreviousLine=0
+  Webflow stub requests per path {"/fail-doc.js":2,"/fail-nav.html":1,"/fail-c-wf.js":1,"/fail-req.js":1} | relayDeliveredSincePreviousLine=0
+N4 cache-only: exit 0 signal null | relayDeliveredSincePreviousLine=0
+  RESULTS {"pageFetch":"err","nav":"err: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayo","navOther":"err: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://localhost:36","blank2":"err: page.goto: Navigation to \"http://localhost:36141/blank.html\" is interrupted by a","eval2":"EVAL2 page.evaluate: Execution context was destroyed, most likely because of a navigation url=chrome-error://chromewebdata/","ctxRequest":"caught: wf-guard: refused a Webflow fetch in mode cache-on","ctxRequestOther":"caught: apiRequestContext.fetch: socket hang up\nCall log:\n","pageFetchAgain":"err"} | relayDeliveredSincePreviousLine=0
+  STATS {"failed":0,"gets":0,"cacheRefused":0,"misses":6} | relayDeliveredSincePreviousLine=0
+  ALIVE | relayDeliveredSincePreviousLine=0
+  Webflow stub requests per path {} | relayDeliveredSincePreviousLine=0
+exit 0

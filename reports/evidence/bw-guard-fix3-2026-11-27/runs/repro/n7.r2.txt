@@ -1,0 +1,6 @@
+N7 fetch-once page with 30 Webflow images at once (about 70 bytes each), run cap 200 MB, getCapMB 5 {"trips":[],"countedBytes":7440,"stubRequests":30,"cacheFetches":30,"stopped":null} | relayDeliveredSincePreviousLine=7440
+N7 fetch-once page with 45 Webflow images at once (about 70 bytes each), run cap 200 MB, getCapMB 5 {"trips":[],"countedBytes":11160,"stubRequests":45,"cacheFetches":45,"stopped":null} | relayDeliveredSincePreviousLine=11160
+N7b 240 MB already logged today (10 MB left), a page with 3 small Webflow images at once {"trips":[],"countedBytes":744,"cacheFetches":3} | relayDeliveredSincePreviousLine=744
+N2r race: page requests Webflow URLs every 1 ms while the caller runs unrouteAll and unroute 40 times {"httpRequestsAtWebflowStub":0,"sample":[],"tcpConnections":12,"misses":1256,"leaks":0} | relayDeliveredSincePreviousLine=0
+S6c guard(page): page closed, 400 KB more in the same context {"guardMB":0.5,"logBeforeContextClose":"","logAfter":"- 27 Nov 13:09 UTC, s6c: wf-guard block run c8fc0b, 2 page loads, 2 Webflow GETs, 0.50 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"} | relayDeliveredSincePreviousLine=500394
+exit 0

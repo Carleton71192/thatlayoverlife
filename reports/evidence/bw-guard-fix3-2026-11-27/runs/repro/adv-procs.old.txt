@@ -1,0 +1,9 @@
+P1 12 processes, one 190 KB file each, day cap 1 MB {"tallyMB":0.571,"logTotalMB":0.5700000000000001,"stubRequests":3,"stubBytesWritten":570591,"succeeded200":3,"perProcess":["refused at start","1 GETs 0.190 MB  [\"200 190197 \"]","refused at start","1 GETs 0.190 MB  [\"200 190197 \"]","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start","1 GETs 0.190 MB  [\"200 190197 \"]"]} | relayDeliveredSincePreviousLine=570591
+P2 8 processes, each: 190 KB, 3 MB with Content-Length, 3 MB chunked, 190 KB (max-filesize 1 MB), day cap 1 MB {"tallyMB":0.19,"logTotalMB":0.19,"stubRequests":2,"stubBytesWritten":3190395,"succeeded200":1,"perProcess":["refused at start","2 GETs 0.190 MB STOPPED [\"200 190197 \",\"200 196 stopped at a cap\"]","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start"]} | relayDeliveredSincePreviousLine=1630965
+FATAL WfBudgetError: wf-guard: the daily total for 27 Nov (logs <scratch>/tmp/wfp-C6PrzA/log.md and the tally in <scratch>/tmp/wfp-rbSp2D) is already 1.00 MB (cap 1 MB); not starting p3
+    at Object.createRun (<scratch>/old/tools/wf-guard.cjs:285:34)
+    at <scratch>/s/adversary/procs.cjs:28:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  cap: 'day'
+}
+exit 1

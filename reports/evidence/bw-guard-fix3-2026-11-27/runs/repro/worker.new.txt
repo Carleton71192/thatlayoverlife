@@ -1,0 +1,508 @@
+TAP version 13
+# Subtest: wordCount counts words in the HTML body, not tags or lone dashes
+ok 1 - wordCount counts words in the HTML body, not tags or lone dashes
+  ---
+  duration_ms: 4.294494
+  type: 'test'
+  ...
+# Subtest: htmlToText keeps paragraphs and line breaks and decodes entities
+ok 2 - htmlToText keeps paragraphs and line breaks and decodes entities
+  ---
+  duration_ms: 0.559905
+  type: 'test'
+  ...
+# Subtest: bodyHrefs and publicHttpUrl
+ok 3 - bodyHrefs and publicHttpUrl
+  ---
+  duration_ms: 1.535509
+  type: 'test'
+  ...
+# Subtest: publishes a story that passes every rule
+ok 4 - publishes a story that passes every rule
+  ---
+  duration_ms: 32.72712
+  type: 'test'
+  ...
+# Subtest: refuses a body under 300 words and accepts exactly 300
+ok 5 - refuses a body under 300 words and accepts exactly 300
+  ---
+  duration_ms: 5.117042
+  type: 'test'
+  ...
+# Subtest: refuses a missing rights tick
+ok 6 - refuses a missing rights tick
+  ---
+  duration_ms: 2.827545
+  type: 'test'
+  ...
+# Subtest: refuses a missing charter tick (existing rule kept)
+ok 7 - refuses a missing charter tick (existing rule kept)
+  ---
+  duration_ms: 1.07122
+  type: 'test'
+  ...
+# Subtest: refuses a missing affiliate declaration and records a yes in the disclosure
+ok 8 - refuses a missing affiliate declaration and records a yes in the disclosure
+  ---
+  duration_ms: 4.389309
+  type: 'test'
+  ...
+# Subtest: refuses an affiliate shout-out when the story says it has no affiliate links
+ok 9 - refuses an affiliate shout-out when the story says it has no affiliate links
+  ---
+  duration_ms: 1.308109
+  type: 'test'
+  ...
+# Subtest: refuses a link that does not open (404, 410 or no answer) and names it
+ok 10 - refuses a link that does not open (404, 410 or no answer) and names it
+  ---
+  duration_ms: 2.511379
+  type: 'test'
+  ...
+# Subtest: a link that refuses robots (403) or needs GET (405 on HEAD) still counts as resolving
+ok 11 - a link that refuses robots (403) or needs GET (405 on HEAD) still counts as resolving
+  ---
+  duration_ms: 3.839138
+  type: 'test'
+  ...
+# Subtest: refuses a link to a private address before fetching it
+ok 12 - refuses a link to a private address before fetching it
+  ---
+  duration_ms: 1.940405
+  type: 'test'
+  ...
+# Subtest: refuses a country that is archived (not on the list)
+ok 13 - refuses a country that is archived (not on the list)
+  ---
+  duration_ms: 1.474128
+  type: 'test'
+  ...
+# Subtest: refuses a hero photo from another Cloudinary cloud (existing rule kept)
+ok 14 - refuses a hero photo from another Cloudinary cloud (existing rule kept)
+  ---
+  duration_ms: 1.060966
+  type: 'test'
+  ...
+# Subtest: emails the writer their own copy when RESEND_KEY and MAIL_FROM are set
+ok 15 - emails the writer their own copy when RESEND_KEY and MAIL_FROM are set
+  ---
+  duration_ms: 1.718308
+  type: 'test'
+  ...
+# Subtest: uses the email from the token check when it is there, without a second lookup
+ok 16 - uses the email from the token check when it is there, without a second lookup
+  ---
+  duration_ms: 1.519842
+  type: 'test'
+  ...
+# Subtest: skips the email silently without RESEND_KEY or without MAIL_FROM
+ok 17 - skips the email silently without RESEND_KEY or without MAIL_FROM
+  ---
+  duration_ms: 3.696561
+  type: 'test'
+  ...
+# Subtest: a failed lookup or a refused send still publishes, says emailed false, and never logs the address or text
+ok 18 - a failed lookup or a refused send still publishes, says emailed false, and never logs the address or text
+  ---
+  duration_ms: 2.797875
+  type: 'test'
+  ...
+# Subtest: a repeat of the same publish within 10 minutes sends no second email
+ok 19 - a repeat of the same publish within 10 minutes sends no second email
+  ---
+  duration_ms: 2.052671
+  type: 'test'
+  ...
+# Subtest: the email copy follows the TLL rules
+ok 20 - the email copy follows the TLL rules
+  ---
+  duration_ms: 0.280848
+  type: 'test'
+  ...
+# Subtest: v5: sponsor rows write the disclosure line readers see and join the names into Sponsored by
+ok 21 - v5: sponsor rows write the disclosure line readers see and join the names into Sponsored by
+  ---
+  duration_ms: 4.278059
+  type: 'test'
+  ...
+# Subtest: v5: sponsored yes with no named row is refused; a v2 payload without rows keeps the old wording
+ok 22 - v5: sponsored yes with no named row is refused; a v2 payload without rows keeps the old wording
+  ---
+  duration_ms: 2.192252
+  type: 'test'
+  ...
+# Subtest: v5: reader question, anchors, hashtags and dates shown are written; absent keys write nothing
+ok 23 - v5: reader question, anchors, hashtags and dates shown are written; absent keys write nothing
+  ---
+  duration_ms: 5.559938
+  type: 'test'
+  ...
+# Subtest: v5: the byline step patches pen name, website and Instagram on the profile, only when they changed
+ok 24 - v5: the byline step patches pen name, website and Instagram on the profile, only when they changed
+  ---
+  duration_ms: 3.368962
+  type: 'test'
+  ...
+# Subtest: v5: a comped shout-out is marked in the links list
+ok 25 - v5: a comped shout-out is marked in the links list
+  ---
+  duration_ms: 1.398475
+  type: 'test'
+  ...
+# Subtest: v5: GET /themes lists the themes publicly
+ok 26 - v5: GET /themes lists the themes publicly
+  ---
+  duration_ms: 0.801251
+  type: 'test'
+  ...
+# Subtest: extras: sponsors, Lounge opt-in and the owner go on a Story extras item with the story's slug
+ok 27 - extras: sponsors, Lounge opt-in and the owner go on a Story extras item with the story's slug
+  ---
+  duration_ms: 2.020161
+  type: 'test'
+  ...
+# Subtest: extras: a failed extras save does not stop the story
+ok 28 - extras: a failed extras save does not stop the story
+  ---
+  duration_ms: 2.582872
+  type: 'test'
+  ...
+# Subtest: anonymous: the story is credited to the Anonymous profile, the writer's profile credit is untouched, the owner is kept
+ok 29 - anonymous: the story is credited to the Anonymous profile, the writer's profile credit is untouched, the owner is kept
+  ---
+  duration_ms: 1.57912
+  type: 'test'
+  ...
+# Subtest: anonymous: refused while the Anonymous profile is not configured
+ok 30 - anonymous: refused while the Anonymous profile is not configured
+  ---
+  duration_ms: 0.828475
+  type: 'test'
+  ...
+# Subtest: gallery: 25 photos for everyone; 26 or more needs Gallery Plus
+ok 31 - gallery: 25 photos for everyone; 26 or more needs Gallery Plus
+  ---
+  duration_ms: 3.358609
+  type: 'test'
+  ...
+# Subtest: gallery: with Gallery Plus, photos 26 to 50 go on the extras item
+ok 32 - gallery: with Gallery Plus, photos 26 to 50 go on the extras item
+  ---
+  duration_ms: 2.079316
+  type: 'test'
+  ...
+# Subtest: gallery: a canceled Gallery Plus plan does not count
+ok 33 - gallery: a canceled Gallery Plus plan does not count
+  ---
+  duration_ms: 1.348823
+  type: 'test'
+  ...
+# Subtest: parseShoutOuts reads back what shoutOutsHtml wrote, affiliate flag included
+ok 34 - parseShoutOuts reads back what shoutOutsHtml wrote, affiliate flag included
+  ---
+  duration_ms: 7.209925
+  type: 'test'
+  ...
+# Subtest: parseDisclosure reads the two answers back from the disclosure line
+ok 35 - parseDisclosure reads the two answers back from the disclosure line
+  ---
+  duration_ms: 0.915345
+  type: 'test'
+  ...
+# Subtest: parseDisclosure reads the Submit v5 line back into sponsor rows
+ok 36 - parseDisclosure reads the Submit v5 line back into sponsor rows
+  ---
+  duration_ms: 0.770787
+  type: 'test'
+  ...
+# Subtest: readLog keeps an unreadable log as a legacy entry instead of dropping it
+ok 37 - readLog keeps an unreadable log as a legacy entry instead of dropping it
+  ---
+  duration_ms: 0.681964
+  type: 'test'
+  ...
+# Subtest: the member field list never includes the fields an edit must not touch
+ok 38 - the member field list never includes the fields an edit must not touch
+  ---
+  duration_ms: 0.291536
+  type: 'test'
+  ...
+# Subtest: GET /story returns the owner's story in form shape
+ok 39 - GET /story returns the owner's story in form shape
+  ---
+  duration_ms: 29.455284
+  type: 'test'
+  ...
+# Subtest: GET /story refuses another member's story with 403 and an unknown slug with 404
+ok 40 - GET /story refuses another member's story with 403 and an unknown slug with 404
+  ---
+  duration_ms: 4.144599
+  type: 'test'
+  ...
+# Subtest: GET /story still finds the item when the slug filter is not honored
+ok 41 - GET /story still finds the item when the slug filter is not honored
+  ---
+  duration_ms: 2.102757
+  type: 'test'
+  ...
+# Subtest: GET /story needs a token
+ok 42 - GET /story needs a token
+  ---
+  duration_ms: 2.830028
+  type: 'test'
+  ...
+# Subtest: GET /story/mine lists only this member's stories with their state, newest first
+ok 43 - GET /story/mine lists only this member's stories with their state, newest first
+  ---
+  duration_ms: 11.808525
+  type: 'test'
+  ...
+# Subtest: saves a changed headline and city, logs the edit, sets last-updated and republishes the one item
+ok 44 - saves a changed headline and city, logs the edit, sets last-updated and republishes the one item
+  ---
+  duration_ms: 8.12382
+  type: 'test'
+  ...
+# Subtest: rights and charter are on file, so the edit form does not have to send them again
+ok 45 - rights and charter are on file, so the edit form does not have to send them again
+  ---
+  duration_ms: 5.695173
+  type: 'test'
+  ...
+# Subtest: a story that fails a publish rule is not written and the form hears which rule
+ok 46 - a story that fails a publish rule is not written and the form hears which rule
+  ---
+  duration_ms: 1.65817
+  type: 'test'
+  ...
+# Subtest: another member cannot update or take down the story
+ok 47 - another member cannot update or take down the story
+  ---
+  duration_ms: 2.093052
+  type: 'test'
+  ...
+# Subtest: nothing changed means nothing written
+ok 48 - nothing changed means nothing written
+  ---
+  duration_ms: 1.481349
+  type: 'test'
+  ...
+# Subtest: a held story keeps the edit on the item and is not republished
+ok 49 - a held story keeps the edit on the item and is not republished
+  ---
+  duration_ms: 2.577599
+  type: 'test'
+  ...
+# Subtest: saving a taken-down story puts it back, even with no field changes
+ok 50 - saving a taken-down story puts it back, even with no field changes
+  ---
+  duration_ms: 9.607988
+  type: 'test'
+  ...
+# Subtest: a changed country rewrites the byline and the region; the editor notes from this session land in the log
+ok 51 - a changed country rewrites the byline and the region; the editor notes from this session land in the log
+  ---
+  duration_ms: 2.215475
+  type: 'test'
+  ...
+# Subtest: a failed publish step says the changes are saved but not live, as 207
+ok 52 - a failed publish step says the changes are saved but not live, as 207
+  ---
+  duration_ms: 1.823596
+  type: 'test'
+  ...
+# Subtest: a failed patch changes nothing and says so
+ok 53 - a failed patch changes nothing and says so
+  ---
+  duration_ms: 1.629573
+  type: 'test'
+  ...
+# Subtest: 20 saves per member per hour, then 429
+ok 54 - 20 saves per member per hour, then 429
+  ---
+  duration_ms: 1.34722
+  type: 'test'
+  ...
+# Subtest: the story text is never logged
+ok 55 - the story text is never logged
+  ---
+  duration_ms: 2.918699
+  type: 'test'
+  ...
+# Subtest: take down unpublishes the live item and marks it draft; the slug and the item stay
+ok 56 - take down unpublishes the live item and marks it draft; the slug and the item stay
+  ---
+  duration_ms: 1.237038
+  type: 'test'
+  ...
+# Subtest: taking down a story that is already down is a no-op
+ok 57 - taking down a story that is already down is a no-op
+  ---
+  duration_ms: 0.734643
+  type: 'test'
+  ...
+# Subtest: GET on a POST story route is 405 and an unknown story route is 404
+ok 58 - GET on a POST story route is 405 and an unknown story route is 404
+  ---
+  duration_ms: 0.487317
+  type: 'test'
+  ...
+# Subtest: anonymous: the owner on the extras item can open and edit the story
+ok 59 - anonymous: the owner on the extras item can open and edit the story
+  ---
+  duration_ms: 1.850852
+  type: 'test'
+  ...
+# Subtest: anonymous: anyone else is refused, even another signed-in member
+ok 60 - anonymous: anyone else is refused, even another signed-in member
+  ---
+  duration_ms: 0.835229
+  type: 'test'
+  ...
+# Subtest: anonymous: the KV owner copy works when the extras item is missing
+ok 61 - anonymous: the KV owner copy works when the extras item is missing
+  ---
+  duration_ms: 1.143576
+  type: 'test'
+  ...
+# Subtest: anonymous: /story/mine lists the writer's Anonymous stories too
+ok 62 - anonymous: /story/mine lists the writer's Anonymous stories too
+  ---
+  duration_ms: 1.400433
+  type: 'test'
+  ...
+# Subtest: anonymous: switching an edit to Anonymous moves the credit and records the owner; switching back restores it
+ok 63 - anonymous: switching an edit to Anonymous moves the credit and records the owner; switching back restores it
+  ---
+  duration_ms: 7.55124
+  type: 'test'
+  ...
+# Subtest: extras: an edit with unchanged extras does not touch the extras item
+ok 64 - extras: an edit with unchanged extras does not touch the extras item
+  ---
+  duration_ms: 1.969217
+  type: 'test'
+  ...
+# Subtest: normalize strips case, punctuation and extra whitespace
+ok 65 - normalize strips case, punctuation and extra whitespace
+  ---
+  duration_ms: 2.697137
+  type: 'test'
+  ...
+# Subtest: damerauLevenshtein counts a swap as one edit
+ok 66 - damerauLevenshtein counts a swap as one edit
+  ---
+  duration_ms: 0.450853
+  type: 'test'
+  ...
+# Subtest: classifyEdit: spelling
+ok 67 - classifyEdit: spelling
+  ---
+  duration_ms: 1.389012
+  type: 'test'
+  ...
+# Subtest: classifyEdit: punctuation (missing comma)
+ok 68 - classifyEdit: punctuation (missing comma)
+  ---
+  duration_ms: 0.185241
+  type: 'test'
+  ...
+# Subtest: classifyEdit: capitalization
+ok 69 - classifyEdit: capitalization
+  ---
+  duration_ms: 0.282413
+  type: 'test'
+  ...
+# Subtest: classifyEdit: paragraph break inserted or removed
+ok 70 - classifyEdit: paragraph break inserted or removed
+  ---
+  duration_ms: 0.150867
+  type: 'test'
+  ...
+# Subtest: classifyEdit: sentence order
+ok 71 - classifyEdit: sentence order
+  ---
+  duration_ms: 0.189127
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects a changed number
+ok 72 - classifyEdit rejects a changed number
+  ---
+  duration_ms: 0.221034
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects a changed name
+ok 73 - classifyEdit rejects a changed name
+  ---
+  duration_ms: 0.416715
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects a removed joke clause
+ok 74 - classifyEdit rejects a removed joke clause
+  ---
+  duration_ms: 0.340801
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects an added word
+ok 75 - classifyEdit rejects an added word
+  ---
+  duration_ms: 0.162453
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects identical text and non-strings
+ok 76 - classifyEdit rejects identical text and non-strings
+  ---
+  duration_ms: 0.075279
+  type: 'test'
+  ...
+# Subtest: classifyEdit rejects a word swapped for a different word
+ok 77 - classifyEdit rejects a word swapped for a different word
+  ---
+  duration_ms: 0.149837
+  type: 'test'
+  ...
+# Subtest: checkCloudinaryUrl accepts the allowlisted transformations
+ok 78 - checkCloudinaryUrl accepts the allowlisted transformations
+  ---
+  duration_ms: 2.247884
+  type: 'test'
+  ...
+# Subtest: checkCloudinaryUrl accepts a URL with no transformations
+ok 79 - checkCloudinaryUrl accepts a URL with no transformations
+  ---
+  duration_ms: 0.461367
+  type: 'test'
+  ...
+# Subtest: checkCloudinaryUrl rejects generative and enhancing effects
+ok 80 - checkCloudinaryUrl rejects generative and enhancing effects
+  ---
+  duration_ms: 0.462945
+  type: 'test'
+  ...
+# Subtest: checkCloudinaryUrl rejects unlisted effects, other hosts and odd shapes
+ok 81 - checkCloudinaryUrl rejects unlisted effects, other hosts and odd shapes
+  ---
+  duration_ms: 0.224262
+  type: 'test'
+  ...
+# Subtest: checkCloudinaryUrl can require an untouched original
+ok 82 - checkCloudinaryUrl can require an untouched original
+  ---
+  duration_ms: 0.085815
+  type: 'test'
+  ...
+# Subtest: readingTime
+ok 83 - readingTime
+  ---
+  duration_ms: 0.304213
+  type: 'test'
+  ...
+1..83
+# tests 83
+# suites 0
+# pass 83
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 214.926563

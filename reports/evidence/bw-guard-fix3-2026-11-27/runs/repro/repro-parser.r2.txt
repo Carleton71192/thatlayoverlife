@@ -1,0 +1,30 @@
+N-5 one file, the same line twice -> 200
+N-5 dailyTotalMB on that text -> 200
+N-5 main has the line once, worktree once (a copy) -> 100
+N-5 main twice, worktree once -> 200
+N-5 main once, worktree twice plus another line -> 205
+N-5 three times in one file -> 300
+N-6 "1. 27 Nov, x: 3 MB"                                           -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: 1. 27 Nov, x: 3 MB
+N-6 "| 27 Nov | x | 3 MB |"                                        -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: | 27 Nov | x | 3 MB |
+N-6 "27 Nov, x: 3 MB"                                              -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: 27 Nov, x: 3 MB
+N-6 "- 27 Nov, x: 3 M"                                             -> 3
+N-6 "- 27 Nov, x: 3000000 bytes"                                   -> 3
+N-6 "- 27 Nov, x: 3,000,000 bytes"                                 -> 3
+N-6 "3 MB on 27 Nov (plain line, size before date)"                -> 0
+N-6 "## 27 Nov: 3 MB"                                              -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: ## 27 Nov: 3 MB
+N-6 "> 27 Nov, x: 3 MB"                                            -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: > 27 Nov, x: 3 MB
+N-6 "  27 Nov, x: 3 MB (indented, no bullet)"                      -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: 27 Nov, x: 3 MB (indented, no bullet)
+N-6 "1) 27 Nov, x: 3 MB"                                           -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: 1) 27 Nov, x: 3 MB
+N-6 "Budget: 250 MB a day; the 13 Nov STANDING RULE"               -> 0
+N-6 "- 27 Nov, x: 3 Mbit"                                          -> 0
+N-6 "- 27 Nov, x: 3 M pages"                                       -> 3
+N-6 "- 27 Nov, x: 300197 bytes, 0.30 MB from Webflow (M)"          -> 0.600197
+N-6 "- 27 Nov, x: 2 MB and 512 KB"                                 -> 2.512
+N-6 "Nov 27: 3 MB"                                                 -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: Nov 27: 3 MB
+N-6 "2026-11-27 x 3 MB"                                            -> THROWS WfLogFormatError: wf-guard: a log line that is not a bullet has a date and a size figure; write it as a bullet ("- 27 Nov, task: 3 MB (M)") so it counts: 2026-11-27 x 3 MB
+real log <main checkout>/handoff/BANDWIDTH-LOG.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":2.5}
+real log scratchpad/nov27/guard3/checkrepro/runs/../rep/handoff/BANDWIDTH-LOG.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":2.5}
+real log scratchpad/nov27/guard3/checkrepro/r2/handoff/BANDWIDTH-LOG.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":2.5}
+N-6 error text from readDailyTotalMB -> THROWS WfLogFormatError: wf-guard: 1 log line(s) have a size figure but no date the guard can read at the start of a bullet; fix them so the daily cap is right: |   <tmp>/bad.md:3: | 27 Nov | b | 3 MB |
+N-6 createRun on that log -> THROWS WfLogFormatError: wf-guard: 1 log line(s) have a size figure but no date the guard can read at the start of a bullet; fix them so the daily cap is right: |   <tmp>/bad.md:3: | 27 Nov | b | 3 MB |
+exit 0

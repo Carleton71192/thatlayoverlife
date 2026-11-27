@@ -1,0 +1,69 @@
+P1 history {"versions":21,"dayCells":441,"differences":0,"newErrors":0}
+P2 main {"20 Nov":5,"21 Nov":97.4,"22 Nov":35,"23 Nov":5,"24 Nov":5,"25 Nov":9,"27 Nov":2.5}
+P2 branch {"20 Nov":5,"21 Nov":97.4,"22 Nov":35,"23 Nov":5,"24 Nov":5,"25 Nov":9,"27 Nov":2.5}
+P2 zxm063 {"20 Nov":5,"21 Nov":97.4,"22 Nov":35,"23 Nov":5,"24 Nov":5,"25 Nov":9,"27 Nov":2.5}
+P2 readDailyTotalMB main+branch 21 Nov old 97.4 new 97.4
+P2 readDailyTotalMB main+branch 25 Nov old 9 new 9
+P2 readDailyTotalMB main+branch 27 Nov old 2.5 new 2.5
+P3 "1. 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "| 27 Nov | x | 3 MB |" -> new "throws WfLogFormatError" old 0
+P3 "27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "- 27 Nov, x: 3 M" -> new 3 old 0
+P3 "- 27 Nov, x: 3000000 bytes" -> new 3 old 0
+P3 "- 27 Nov, x: 3,000,000 bytes" -> new 3 old 0
+P3 "2) 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "> 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "> - 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "  27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "27 November 2026: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "Nov 27: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "2026-11-27 run: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "• 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "– 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "1.  27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old 0
+P3 "- [x] 27 Nov, x: 3 MB" -> new "throws WfLogFormatError" old "throws WfLogFormatError"
+P3 "- **27 Nov**, x: 3 MB" -> new 3 old 3
+P3 "-\t27 Nov, x: 3 MB" -> new 3 old 3
+P3 "| x | 27 Nov | 3 MB |" -> new "throws WfLogFormatError" old 0
+P3 "| 3 MB | 27 Nov |" -> new 0 old 0
+P3 "x: 3 MB on 27 Nov" -> new 0 old 0
+P3 "3 MB, 27 Nov" -> new 0 old 0
+P3 "- 27 Nov, x: 3 mb" -> new 3 old 3
+P3 "- 27 Nov, x: 3MB" -> new 3 old 3
+P3 "- 27 Nov, x: 3 Mb" -> new 3 old 3
+P3 "- 27 Nov, x: 3 m" -> new 0 old 0
+P3 "- 27 Nov, x: 3M" -> new 3 old 0
+P3 "- 27 Nov, x: 3.5M" -> new 3.5 old 0
+P3 "- 27 Nov, x: 3 megs" -> new 0 old 0
+P3 "- 27 Nov, x: 3 MBytes" -> new 0 old 0
+P3 "- 27 Nov, x: 3 Mbit" -> new 0 old 0
+P3 "- 27 Nov, x: 3e6 bytes" -> new 0 old 0
+P3 "- 27 Nov, x: 3 000 000 bytes" -> new 0 old 0
+P3 "- 27 Nov, x: 3 B" -> new 0 old 0
+P3 "- 27 Nov, x: 3 octets" -> new 0 old 0
+P3 "- 27 Nov, x: 2.5 MB (M)" -> new 2.5 old 2.5
+P3 "- 27 Nov, x: 2.5 MB (M); 12 M requests" -> new 2.5 old 2.5
+P3 "- 27 Nov, x: 0 MB, checked at 10 M" -> new 0 old 0
+P3 "- 27 Nov, x: 1 MB, 4 bytes of header" -> new 1.000004 old 1
+P3 "- 27 Nov, x: 1 MB; page size 300 bytes" -> new 1.0003 old 1
+P3 "- 27 Nov, x: 1 MB, video 1080 M" -> new 1 old 1
+P3 "- 27 Nov, x: 1 MB at 10 AM" -> new 1 old 1
+P3 "- 27 Nov, x: 1 MB, 5 M&M" -> new 1 old 1
+P3 "See reports/evidence/bw-guard-fix-2026-11-27/check.md: 3 MB" -> new 0 old 0
+P3 "  continued: reports/x-2026-11-27/ held 3 MB" -> new 0 old 0
+P3 "Mar 3 notes: 2 MB" -> new "throws WfLogFormatError" old 0
+P3 "Updated 27 Nov: budget 250 MB a day" -> new "throws WfLogFormatError" old 0
+P3 "## 27 Nov 2026 (2.5 MB)" -> new "throws WfLogFormatError" old 0
+P3 "<!-- 27 Nov: 3 MB -->" -> new "throws WfLogFormatError" old 0
+P3 "Budget: 250 MB a day; the 13 Nov rule" -> new 0 old 0
+P3 "From 1 Dec the budget is 250 MB a day" -> new "throws WfLogFormatError" old 0
+P3 "Version 1.2.2026 uses 3 MB" -> new "throws WfLogFormatError" old 0
+P4 one file, line twice new 200 old 100
+P4 main once, worktree once new 100 old 100
+P4 main once, worktree twice new 200 old 100
+P4 main twice, worktree once new 200 old 100
+P4 main twice, worktree twice new 200 old 100
+P4 main once, worktree once with trailing space new 100 old 100
+P4 main once, worktree once indented new 100 old 100
+P4 main once, worktree once with * bullet new 200 old 200
+exit 0
