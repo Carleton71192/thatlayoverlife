@@ -34,3 +34,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 27 Nov, bw-guard-fix4-check-repro: stubs on 127.0.0.1 only, 0 page loads, 0 MB from Webflow (M)
 - 27 Nov, late-lead-check: saved pages only, 368 browser page loads, 0 MB from Webflow (M)
 - 27 Nov, late-lead (branch claude/late-lead-2026-11-27): saved pages only, 256 browser page loads, 0 MB from Webflow (M)
+- 27 Nov, rl172 test publish check: 26 HTML GETs from Webflow hosts, about 1.7 MB (M); no images, no browser
