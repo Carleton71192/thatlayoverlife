@@ -145,7 +145,7 @@ Write or approve a recap so the unpublished pre-race item can return without tra
 
 Done today: release 16.64.0 live on www 14 Nov 08:16 UTC.
 
-**Bandwidth guard: one rule to approve.** The guard that caps Webflow downloads during automated checks passed its independent check on 27 Nov (tools/WF-GUARD.md). Say yes and a session adds its rule to the lock file: every automated browser run works from saved copies by default, and stops at 200 MB a run or 250 MB a day. About 2 minutes.
+**Bandwidth guard: one rule to approve.** The guard that caps Webflow downloads during automated checks passed its independent checks on 27 Nov, in both its saved-copies mode and its fetch-once mode (tools/WF-GUARD.md). Claude recommends yes. Say yes and a session adds its rule to the lock file: every automated browser run works from saved copies by default, and stops at 200 MB a run or 250 MB a day. About 2 minutes.
 
 **Live on www since 27 Nov 13:29 UTC: Asia fix, /submit draft save, Space key on the picks, /edit-profile id.** The /my-pets empty-state wording ("your besties", "Register your pet") is live on www since 14:12 UTC. The taller step bar on /submit still needs your OK. Also: someone published a new form-label script to www at 09:44 UTC on 27 Nov outside our log. Was that you?
 
