@@ -1,0 +1,10 @@
+W1 gzip page: counted bytes vs compressed body vs decoded body {"counted":726,"compressedBody":521,"decoded":240007,"savedFile":240007}
+W2 non-Webflow URL redirecting to a 300 KB Webflow file {"counted":0,"stubSent":300000}
+W3 Webflow URL redirecting to a Webflow image {"result":200,"imageFetched":1}
+W4 Webflow image URL with no extension {"status":200,"fetched":1}
+W5 run cap 1 MB, first URL is a 3 MB file {"counted":3000191,"gets":1,"stopped":"wf-guard: wfget-check reached 3.00 MB from Webflow, the run cap is 1 MB; run stopped","secondFetched":0}
+W6 trailing dot host and other subdomain: counted {"counted":0,"stubSent":110000}
+W7 Webflow redirect chain: counted vs sent {"counted":200411,"stubSent":200000}
+W8 files written ["doc.pdf","gz.html","kb50.js","kb60.js","noext-img-w.html","r__q_to=http_3A_2F_2Fcdn.prod.website-files.com_2Fw3.png","r__q_to=http_3A_2F_2Fwww.thatlayover.life_2Fkb200.js","r__q_to=http_3A_2F_2Fwww.thatlayover.life_2Fkb300.js"]
+W9 log lines ["- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 1 GETs (0 not 200), 0.00 MB from Webflow (M)","- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 2 GETs (0 not 200), 0.00 MB from Webflow (M)","- 25 Nov 15:57 UTC, wfget-check: wf-get plain GETs, 1 GETs (0 not 200), 0.20 MB from Webflow (M)"]
+W10 non-GET requests seen by the stub 0

@@ -1,0 +1,40 @@
+<link rel="canonical" href="https://www.thatlayover.life/submit">
+<style id="tll-share-fork-v1">
+/* Share fork (board D8, 30 Sep 2026): Write it here (dark card) or Link to it (rose outline). The story form is untouched; the fork only shows and hides. */
+[data-tll-fork]{margin:0 0 26px}
+[data-tll-fork-eb]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:#067A79;margin:0 0 10px}
+[data-tll-fork-grid]{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+[data-tll-fork-pick]{display:flex;flex-direction:column;gap:8px;border-radius:14px;padding:22px;text-decoration:none;border:2px solid #0A0B14;background:#0A0B14;color:#F7F1E8;transition:transform .15s}
+[data-tll-fork-pick]:hover{transform:translateY(-2px)}
+[data-tll-fork-pick="link"]{background:transparent;border-color:#F0507A;color:#0A0B14}
+[data-tll-fork-pick][aria-pressed="false"]{opacity:.62}
+[data-tll-fork-pick="link"][aria-pressed="true"]{background:#FFF6F8}
+[data-tll-fork-k]{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:22px;line-height:1.1}
+[data-tll-fork-t]{font-size:13.5px;line-height:1.5;opacity:.85}
+[data-tll-linkout][hidden]{display:none}
+[data-tll-linkout]{background:#fff;border:1px solid rgba(13,15,26,.08);border-radius:14px;box-shadow:0 1px 3px rgba(13,15,26,.05);padding:24px;margin:0 0 26px}
+[data-tll-linkout-h]{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:24px;line-height:1.15;margin:0 0 8px;color:#0A0B14}
+[data-tll-linkout-p]{font-size:14px;line-height:1.55;color:#3a3a3a;margin:0 0 18px}
+[data-tll-lo-field]{display:flex;flex-direction:column;gap:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6B6660;font-weight:600;margin:0 0 14px}
+[data-tll-lo-field] input{font:400 15px/1.4 'Inter',system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#0A0B14;border:1px solid #E0DACE;border-radius:8px;padding:13px 16px;background:#FBF7F0}
+[data-tll-lo-check]{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:#3a3a3a;line-height:1.5;margin:4px 0 16px}
+[data-tll-lo-check] input{margin-top:3px;accent-color:#F0507A;width:18px;height:18px;flex:none}
+[data-tll-lo-pass]{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.5px;color:#6B6660;line-height:1.7;margin:0 0 14px}
+[data-tll-linkout] .w-form-done,[data-tll-linkout] .w-form-fail{margin-top:14px;padding:14px 16px;border-radius:10px;font-size:14px;line-height:1.5}
+[data-tll-linkout] .w-form-done{background:#FDF9F3;border:1px solid #067A79}
+[data-tll-linkout] .w-form-fail{background:#FFF6F8;border:1px solid #F0507A}
+[data-tll-linkout] input[type="submit"],[data-tll-linkout] .w-button{background:#D63859;color:#fff;border:0;border-radius:999px;padding:14px 24px;font:600 12px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+</style>
+<script id="tll-share-fork-js-v1">
+(function(){
+  function init(){
+    var fork=document.querySelector('[data-tll-fork]'), write=document.querySelector('.tll-pen-form'), link=document.querySelector('[data-tll-linkout]'); if(!fork||!write||!link) return;
+    function pick(m){ var isLink=m==='link'; write.style.display=isLink?'none':''; if(isLink) link.removeAttribute('hidden'); else link.setAttribute('hidden',''); [].forEach.call(fork.querySelectorAll('[data-tll-fork-pick]'),function(a){a.setAttribute('aria-pressed',String(a.getAttribute('data-tll-fork-pick')===m));}); try{sessionStorage.setItem('tllShareMode',m);}catch(e){} }
+    fork.addEventListener('click',function(e){var a=e.target.closest('[data-tll-fork-pick]'); if(!a) return; e.preventDefault(); pick(a.getAttribute('data-tll-fork-pick'));});
+    var q=new URLSearchParams(location.search).get('mode'), s=null; try{s=sessionStorage.getItem('tllShareMode');}catch(e){}
+    pick(q==='link'||(!q&&s==='link')?'link':'write');
+    var f=link.querySelector('form'); if(f){ f.addEventListener('submit',function(){ var u=f.querySelector('[name="external-url"]'); if(u&&u.value&&!/^https?:\/\//i.test(u.value)) u.value='https://'+u.value; }); }
+  }
+  if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
+})();
+</script>

@@ -1,0 +1,8 @@
+E1 context route registered before guard(): local route ran, request reached server {"localRouteRan":0,"reachedServer":1,"body":"<html><head><meta name=\"color-scheme\" content=\"light dark\"></head><body><pre sty"}
+E2 page route registered before guard() continues a Webflow image "REACHED SERVER"
+E3 same, guard(page) "REACHED SERVER"
+E4 caller route.fetch error caught by caller; unhandled rejections raised by the guard {"caught":"route.fetch: socket hang up","unhandled":["route.fetch: socket hang up"]}
+E5 beacons when the page is closed ["POST localhost:39775/e5-beacon-close","POST www.thatlayover.life:39775/e5-keepalive-vis"]
+E5 beacons on navigation away (to a Webflow host too) ["POST localhost:39775/e5-beacon-close","POST www.thatlayover.life:39775/e5-keepalive-vis","POST localhost:39775/e5-beacon-close","POST www.thatlayover.life:39775/e5-keepalive-vis"]
+E6 cache mode: a 404 first fetch is stored and replayed (network fetches, stats) {"fetches":1,"stats":{"label":"e6","mode":"cache","bytes":163,"mb":0,"pageLoads":0,"responses":1,"blocked":0,"nonGet":0,"cacheHits":1,"cacheFetches":1,"cacheRefused":0,"dayBaseMB":0,"stopped":null}}
+unhandled rejections in total ["route.fetch: socket hang up"]

@@ -1,0 +1,6 @@
+Run 27 Nov 09:57 UTC, Playwright Chromium, local stub on 127.0.0.1 only (guard told to treat 127.0.0.1 as a Webflow host).
+One context, one page, three navigations to three HTML pages that share one stylesheet sent with cache-control: public, max-age=3600.
+{"withGuard":false,"cssHits":1,"htmlHits":3,"guardBytes":null}
+{"withGuard":true,"cssHits":3,"htmlHits":3,"guardBytes":101145}
+Guard log line (written to a scratch file, not the repo log):
+- 27 Nov 09:57 UTC, cache-probe: wf-guard block run, 3 page loads, 6 Webflow responses, 0.15 MB from Webflow (M); aborted 0 Webflow images, video or fonts and 0 non-GET requests

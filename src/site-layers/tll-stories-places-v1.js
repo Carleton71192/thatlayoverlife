@@ -9,6 +9,9 @@
    page's chip script has wired the grid, through the chip's own click, so the page filters it the usual way.
    22 Nov 2026 (check of the sweep, note 3): while that replay is pending the core layer tll-place-wait-v1 keeps the grid hidden
    (visibility, so no reflow); shown() takes its mark off once the chip is pressed, no chip matches or the replay gives up.
+   25 Nov 2026 (check 3 of the sweep, note 1): after a press the mark waits until the page's lead layer has moved the lead mark (the grid
+   quiet for 100 ms, 0.4 s at most), so ?place=Asia no longer shows the grid and then shifts it (0.0292 at 1440). The replay still lets
+   go by 3.3 s after DOMContentLoaded at worst (29 polls and the 0.4 s), inside the core's 3.5 s.
    22 Nov 2026 (sweep of 21 Nov, A16): on a card whose writer name is long, the place wraps to a line of its own and that line began
    with the page's "· " (17 of 57 cards at 390). dots() marks such a place data-tll-own-line (it sits below the name); the core style
    tll-sweep-1121-v1 then drops the dot and keeps the place on its own line. Measured when the page is parsed, when the fonts are in,
@@ -50,7 +53,13 @@ function replay(){var want=(new URLSearchParams(location.search).get('place')||'
   (function go(){var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');
     if(!grid||!grid.dataset.tllChips){if(++n<30)setTimeout(go,100);else shown();return;}
     var hit=null;[].forEach.call(document.querySelectorAll('[data-tll-chips="place-sort"] [data-tll-place]'),function(c){if((c.getAttribute('data-tll-place')||'').toLowerCase()===want)hit=c;});
-    if(hit&&hit.getAttribute('aria-pressed')!=='true')hit.click();shown();})();}
+    if(hit&&hit.getAttribute('aria-pressed')!=='true'){var q=settle(grid);hit.click();q();}else shown();})();}
+/* the page's lead layer re-marks the lead card 30 ms after the grid last changed and the chip click fires no tll:lib-filtered, so the
+   mark goes once the grid and its cards have been quiet for 100 ms after the click (0.4 s at most); watched from before the click */
+function settle(grid){var t,cap,mo,done=0;function end(){if(done)return;done=1;clearTimeout(t);clearTimeout(cap);try{mo&&mo.disconnect();}catch(e){}shown();}
+  function quiet(){if(!done){clearTimeout(t);t=setTimeout(end,100);}}
+  try{mo=new MutationObserver(quiet);mo.observe(grid,{childList:true,subtree:true,attributes:true,attributeFilter:['style','data-tll-lead','data-tll-q-miss']});}catch(e){}
+  cap=setTimeout(end,400);return quiet;}
 function dots(){[].forEach.call(document.querySelectorAll('.tll-lib-card [data-s3-place]'),function(p){var n=p.parentNode&&p.parentNode.querySelector('.tll-lib-byline-name');if(!n)return;
   p.removeAttribute('data-tll-own-line');var a=n.getBoundingClientRect(),b=p.getBoundingClientRect();if(b.height>0&&a.height>0&&b.top>=a.bottom-2)p.setAttribute('data-tll-own-line','');});}
 var dt;function later(){clearTimeout(dt);dt=setTimeout(dots,120);}

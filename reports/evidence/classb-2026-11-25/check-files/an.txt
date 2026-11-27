@@ -1,0 +1,64 @@
+
+== submit 390 signed in: before run0 vs run1 noise {}; before CLS [0.8505, 0.0004]; errs [0, 0]
+  B02 run0: {} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B02 run1: {} CLS 0.8505 errs 0 cons 3 nonGet 0 miss 1
+  B15 run0: {'style': 3} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B15 run1: {'style': 3} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B0215 run0: {'style': 3} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B0215 run1: {'style': 3} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B18 run0: {'attr': 2} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  B18 run1: {'attr': 2} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  all run0: {'style': 3, 'attr': 2} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+  all run1: {'style': 3, 'attr': 2} CLS 0.0004 errs 0 cons 3 nonGet 0 miss 1
+
+== submit 390 signed out: before run0 vs run1 noise {}; before CLS [0, 0]; errs [0, 0]
+  B02 run0: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B02 run1: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B15 run0: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B15 run1: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B0215 run0: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B0215 run1: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B18 run0: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  B18 run1: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  all run0: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+  all run1: {} CLS 0 errs 0 cons 2 nonGet 0 miss 1
+
+== submit 1440 signed in: before run0 vs run1 noise {}; before CLS [0.7752, 0.7718]; errs [0, 0]
+  B02 run0: {} CLS 0.7719 errs 0 cons 3 nonGet 0 miss 1
+  B02 run1: {} CLS 0.7719 errs 0 cons 3 nonGet 0 miss 1
+  B15 run0: {'box': 95, 'style': 3} CLS 0.7742 errs 0 cons 3 nonGet 0 miss 1
+  B15 run1: {'box': 95, 'style': 3} CLS 0.7776 errs 0 cons 3 nonGet 0 miss 1
+  B0215 run0: {'box': 95, 'style': 3} CLS 0.7753 errs 0 cons 3 nonGet 0 miss 1
+  B0215 run1: {'box': 95, 'style': 3} CLS 0.7752 errs 0 cons 3 nonGet 0 miss 1
+  B18 run0: {'attr': 2} CLS 0.7753 errs 0 cons 3 nonGet 0 miss 1
+  B18 run1: {'attr': 2} CLS 0.772 errs 0 cons 3 nonGet 0 miss 1
+  all run0: {'box': 95, 'style': 3, 'attr': 2} CLS 0.7719 errs 0 cons 3 nonGet 0 miss 1
+  all run1: {'box': 95, 'style': 3, 'attr': 2} CLS 0.7752 errs 0 cons 3 nonGet 0 miss 1
+
+== submit 1440 signed out: before run0 vs run1 noise {}; before CLS [0.0004, 0.0003]; errs [0, 0]
+  B02 run0: {} CLS 0.0002 errs 0 cons 2 nonGet 0 miss 1
+  B02 run1: {} CLS 0.0002 errs 0 cons 2 nonGet 0 miss 1
+  B15 run0: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+  B15 run1: {} CLS 0.0002 errs 0 cons 2 nonGet 0 miss 1
+  B0215 run0: {} CLS 0.0002 errs 0 cons 2 nonGet 0 miss 1
+  B0215 run1: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+  B18 run0: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+  B18 run1: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+  all run0: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+  all run1: {} CLS 0.0003 errs 0 cons 2 nonGet 0 miss 1
+
+== my-pets 390 signed in: before run0 vs run1 noise {}; before CLS [0.0614, 0.064]; errs [0, 0]
+  B08 run0: {'box': 2, 'text': 2} CLS 0.064 errs 0 cons 3 nonGet 0 miss 1
+  B08 run1: {'box': 2, 'text': 2} CLS 0.0614 errs 0 cons 3 nonGet 0 miss 1
+
+== my-pets 1440 signed in: before run0 vs run1 noise {}; before CLS [0.8538, 0.8188]; errs [0, 0]
+  B08 run0: {'box': 2, 'text': 2} CLS 0.8158 errs 0 cons 3 nonGet 0 miss 1
+  B08 run1: {'box': 2, 'text': 2} CLS 0.8158 errs 0 cons 3 nonGet 0 miss 1
+
+== edit-profile 390 signed in: before run0 vs run1 noise {}; before CLS [0.9655, 0.9655]; errs [0, 0]
+  B17 run0: {} CLS 0.0599 errs 0 cons 9 nonGet 5 miss 1
+  B17 run1: {} CLS 0.9655 errs 0 cons 9 nonGet 5 miss 1
+
+== edit-profile 1440 signed in: before run0 vs run1 noise {}; before CLS [0.1423, 0.1813]; errs [0, 0]
+  B17 run0: {} CLS 0.1423 errs 0 cons 9 nonGet 5 miss 1
+  B17 run1: {} CLS 0.181 errs 0 cons 9 nonGet 5 miss 1
