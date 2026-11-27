@@ -12,6 +12,10 @@
    25 Nov 2026 (check 3 of the sweep, note 1): after a press the mark waits until the page's lead layer has moved the lead mark (the grid
    quiet for 100 ms, 0.4 s at most), so ?place=Asia no longer shows the grid and then shifts it (0.0292 at 1440). The replay still lets
    go by 3.3 s after DOMContentLoaded at worst (29 polls and the 0.4 s), inside the core's 3.5 s.
+   27 Nov 2026 (asia-cls check, note 2): with the core and chunks late, the page's chip script has wired its chips first, so Asia,
+   Middle East and Oceania filter through the fallback below. It hid cards without moving them, which the page's lead layer does not
+   see, so the lead mark stayed on a hidden card. The fallback now sends tll:lib-filtered after it filters, the event the lead layer
+   (and the page's search) already use, so the first visible card leads after every place change.
    22 Nov 2026 (sweep of 21 Nov, A16): on a card whose writer name is long, the place wraps to a line of its own and that line began
    with the page's "· " (17 of 57 cards at 390). dots() marks such a place data-tll-own-line (it sits below the name); the core style
    tll-sweep-1121-v1 then drops the dot and keeps the place on its own line. Measured when the page is parsed, when the fonts are in,
@@ -42,6 +46,9 @@ function chips(){
     if(!n){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');
       note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';
       note.textContent='No stories from '+v+' yet. Be the first.';grid.parentNode.insertBefore(note,grid);}
+    /* 27 Nov: this filter sets display and does not re-append the cards, so the page's lead layer (it watches the grid's child list)
+       saw no change and the lead stayed on a hidden card; the event it listens for re-marks the first visible card at once */
+    try{document.dispatchEvent(new Event('tll:lib-filtered'));}catch(e){}
   });});
 }
 function url(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-chips="place-sort"] [data-tll-place]');if(!c||!history.replaceState)return;

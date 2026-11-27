@@ -26,6 +26,9 @@ function chips(){
     if(!n){note=document.createElement('div');note.id='tll-chip-note';note.setAttribute('role','status');
       note.style.cssText='border:2px dashed #c9b89a;border-radius:10px;padding:28px;margin-bottom:20px;text-align:center;background:#fff;font-size:14px;color:#3a3a3a';
       note.textContent='No stories from '+v+' yet. Be the first.';grid.parentNode.insertBefore(note,grid);}
+    /* 27 Nov: this filter sets display and does not re-append the cards, so the page's lead layer (it watches the grid's child list)
+       saw no change and the lead stayed on a hidden card; the event it listens for re-marks the first visible card at once */
+    try{document.dispatchEvent(new Event('tll:lib-filtered'));}catch(e){}
   });});
 }
 function url(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-chips="place-sort"] [data-tll-place]');if(!c||!history.replaceState)return;
