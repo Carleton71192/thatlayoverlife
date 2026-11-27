@@ -23,4 +23,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 27 Nov, bw-guard-fix2-check-adversary: stubs on 127.0.0.1 only, 0 page loads, 0 MB from Webflow (M)
 - 27 Nov, bw-guard-fix3-check-adversary: stubs on 127.0.0.1 only, 0 page loads, 0 MB from Webflow (M)
 - 27 Nov, rl170 www publish check: 44 HTML GETs from Webflow hosts, about 8.4 MB (M); no images, no browser
-- 27 Nov, correction to the rl170 www publish check line above: about 8.7 MB, not 8.4 MB (5.18 MB first round plus 3.56 MB re-fetch); the 8.4 figure is not added again (M)
+- 27 Nov, correction to the rl170 www publish check line above (first round plus re-fetch were under-added): add 0.3 MB (M)
