@@ -145,5 +145,7 @@ Write or approve a recap so the unpublished pre-race item can return without tra
 
 Done today: release 16.64.0 live on www 14 Nov 08:16 UTC.
 
+**On the test site since 27 Nov, waiting for your "publish www"**: the Asia story links no longer jump (core 16.70.0); /submit keeps text typed in the last 20 seconds; the Write it / Link to it picks work with the Space key; one duplicate script id on /edit-profile. Two more need your OK first: the /my-pets empty-state wording ("your besties", "Register your pet") and a taller step bar on /submit. Also: someone published a new form-label script to www at 09:44 UTC on 27 Nov outside our log. Was that you?
+
 **Sweep of Nov 21: 21 fixes live since 25 Nov; 13 questions for you**
 Debug, code tidy-up, UX and design audits on www, each finding double-checked. 21 fixes that need no Webflow change are built on branch claude/sweep-fixes-2026-11-21 (contrast, 44 px targets, the button set, 12 px small type, /stories keeps the chosen place in the address, /for-expats consent sentences tick their boxes, about 80 KB less code on most pages). Three independent checks: PASS WITH NOTES; their notes are fixed. Live on www since 25 Nov 08:01 UTC as core 16.69.0 (handoff/RELEASE-16.69.0.md; rollback there). Webflow page and Designer steps: reports/evidence/sweep-2026-11-21/class-b.md. Questions, one line each with a recommendation: class-c.md (C01 to C14). Reply with the ids you agree with, e.g. "C01 C02 C12 yes".
