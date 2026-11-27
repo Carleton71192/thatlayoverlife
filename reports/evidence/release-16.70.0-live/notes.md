@@ -7,4 +7,4 @@
 - 13 pages on www and test (home, /stories, /about, /travelers, /the-map, /for-expats, /account, /submit, /my-pets, /share-photos, /login, Balkans story, /edit-profile): HTML identical on 13 of 13 after masking host and stamp. Every page carries core pin 121b4fe9 once and no 77b56b3f.
 - Split from www HTML with tools/page-code-from-html.py: /submit head equals B18 after.html, /submit footer equals B02 after.html, /edit-profile footer equals B17 after.html (byte for byte, trailing newline stripped).
 - The apex is not reachable from this machine's proxy; it shares the publish.
-- Bandwidth: 44 HTML GETs from Webflow hosts, about 8.4 MB (M); no images, no browser.
+- Bandwidth: 44 HTML GETs from Webflow hosts, about 8.7 MB (M; 5.18 MB first round, 3.56 MB re-fetch); no images, no browser.
