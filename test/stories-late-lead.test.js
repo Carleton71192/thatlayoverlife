@@ -92,11 +92,21 @@ describe('late core: the lead mark follows the place filter (asia-cls check, not
     expect(state()).toMatchObject({ shown: 0, marked: 0 });
     expect(dom.document.getElementById('tll-chip-note')).not.toBe(null);
   });
-  it('the fallback sends tll:lib-filtered once per click, after the cards are filtered', async () => {
+  it('one tll:lib-filtered per chip click, sent after the chip has filtered the cards (fallback chips)', async () => {
     const { dom, chip } = await open('');
     const seen = []; dom.document.addEventListener('tll:lib-filtered', () => seen.push([...dom.document.querySelectorAll('.tll-lib-grid > div')].filter((d) => d.style.display !== 'none').length));
     chip('Asia').click(); chip('Middle East').click();
     expect(seen).toEqual([2, 0]);
+  });
+  it('a page chip, at normal speed or late: the lead is on the first visible card in the click itself, not 30 ms later', async () => {
+    for (const late of [false, true]) {
+      const { dom, state, chip } = await open('', { late }); await dom.tick(1000);
+      expect(state().leadRegion, `late ${late}`).toBe('Africa');
+      chip('Europe').click();
+      expect(state(), `late ${late}`).toMatchObject({ shown: 1, marked: 1, onFirst: true, leadHidden: false, leadRegion: 'Europe' });
+      chip('all').click();
+      expect(state(), `late ${late}`).toMatchObject({ shown: 4, onFirst: true, leadRegion: 'Africa' });
+    }
   });
   it('normal speed (chunk before the page scripts): unchanged, the page wires every chip and the lead follows', async () => {
     const { dom, state, chip } = await open('?place=Asia', { late: false });

@@ -59,7 +59,7 @@ var P=location.pathname.replace(/\/+$/,'')||'/',pv=/[?&](preview|qr)=/.test(loca
 try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf('tll-preview-')===0)pv=true;}}catch(e){}
 var C=[['site',/^/,'sha384-N1I8hHQScfy5IzZ017NoM6ryJKNGmISZk6RM0ugM9h2jIfow1BOaJ3RZfz2FQTOt','site-preview','sha384-PBk+JJ+cCtg5ZN45hES6qFjkqrg2viRhAuwHZvlHRwFfM1vTzSZyaJN3RWBhV58K'],
 ['home',/^\/(index\.html)?$/,'sha384-cguoozIbTjibeN3Nh1E3/TrmsCN6NsoUyrvhbZuOC8X23mzTLAmpt4Omh0lMss8d'],
-['stories',/^\/stories$/,'sha384-49SyNmi+Ok0+DN26QBb9tguuklAwYjbD9vxkUE9uUfs4XyJbIQS7BjyJsxuoFp/E','stories-preview','sha384-3p/8liya1vBWk3J/VIY7+gucBbfKk3wGnp+S6po+JLehsLSbuY+JA0C/CiTmoG/Q'],
+['stories',/^\/stories$/,'sha384-vWfoaU0d1LjPstBwk6CuBAs05p3ZtqNqd01+VMjFcxKsNrMHCQA4JAWcUhczawJX','stories-preview','sha384-qdiuy5Hx+PCI849g2LmbQL2ukAFAT/BLG1i+3cuz2rM1E3fQq6Fqfbxrko0rd9BO'],
 ['story',/^\/stories\/[^/]+$/,'sha384-fjWDVhh52tK1I2hdfDuPRYTNHW/ujEYiSrZmxdGpSv1IKt76/Zd+JqlKkApos4dZ','story-preview','sha384-cu1py1IUdG1gVs40onQisOLjtKBl5QbpyYHKX2qCopWA0eCIpdIeHflWxHRtfauz'],
 ['submit',/^\/submit$/,'sha384-VktF5AXIM7AEWGM9dzMvfxzU7L9YrU4hpWbkXFpCtNMEfGcJ+3hsTgl46EhjmyVM','submit-preview','sha384-i7nIf+tpKGFUmVvXBW77FP6mpT3qy+vWGQw37KwwvY2dVzxBSERAur6MwbQG+T7a'],
 ['share-photos',/^\/share-photos$/,'sha384-uoZrsptUVDrS9Bea7KGffpTQOPGbNz+lOSdMpN/d7QUhLkkiw1abBjuF+1eOh8DY'],
