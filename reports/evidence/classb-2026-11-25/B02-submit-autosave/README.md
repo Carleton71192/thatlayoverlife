@@ -22,6 +22,8 @@ from this browser's copy (the live load code fills only empty fields).
 **Check on the test site.** Type, reload after 5 s, the fields come back; send, then leave, and nothing is written back; send with the
 network off (fail box), type, and the copy comes back.
 
+**Known gap (same as the live 20 s autosave).** If a writer types and then clears every own field, the last copy stays in this browser and fills the form on the next visit. The live autosave behaves the same way.
+
 **Rollback.** Write before.html back to the /submit footer block and publish.
 
 **Tests.** test/classb-2026-11-25.test.js, "B02".

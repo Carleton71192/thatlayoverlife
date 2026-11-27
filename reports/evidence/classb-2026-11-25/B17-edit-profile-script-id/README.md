@@ -16,7 +16,7 @@ is unchanged, byte for byte.
 **Note.** before.html is the live block as is; it carries the live placeholder text of the directory editor unchanged (the same text
 is already in the repo's earlier copies of this page code).
 
-**Check on the test site.** Signed in, the directory editor renders and "Save directory settings" still answers.
+**Check on the test site.** Each id is used once on the page and nothing else in the block changes. (The live /edit-profile has had no `[data-tll-edit="dir-app"]` mount point since at least 12 Nov, so the directory editor does not render with or without this change. That is a separate item for Nancy.)
 
 **Rollback.** Write before.html back to the /edit-profile footer block and publish.
 
