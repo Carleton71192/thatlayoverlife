@@ -9,3 +9,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 22 Nov 22:10, scheduled Sunday Night Audit (PageSpeed on thatlayover.life): 5 to 20 MB (E, not logged by the task)
 - 20 to 25 Nov, scheduled TLL daily submissions report: 0 to 5 MB a day (E, not logged by the task)
 - 25 Nov, rl169 16.69.0 live check: 24 HTML GETs, about 4 MB (E); bandwidth audit: about 0 MB (M, saved HTML only)
+- 27 Nov, classb page code drafts: 0 page loads, 0 MB from Webflow hosts (M; Webflow MCP API reads only, saved HTML of 21 and 25 Nov)
