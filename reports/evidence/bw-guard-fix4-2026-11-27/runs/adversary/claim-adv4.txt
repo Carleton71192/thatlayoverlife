@@ -1,0 +1,3 @@
+K1 wait times out {"first":{"waits":1,"waitRefused":1,"cacheFetches":0},"laterRunWithBudget":{"cacheFetches":1,"cacheRefused":0,"cacheHits":0},"webflowStubRequests":1,"claimFiles":1}
+K2 context closes during the wait {"first":{"waits":1,"waitRefused":0,"cacheFetches":0},"laterRunWithBudget":{"cacheFetches":1,"cacheRefused":0,"cacheHits":0},"webflowStubRequests":1,"claimFiles":1}
+exit 0

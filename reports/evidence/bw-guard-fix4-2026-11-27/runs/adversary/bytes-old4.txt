@@ -1,0 +1,29 @@
+B1 8 MB extensionless JSON, Range honored, try 1 block {"page":"err Failed to fetch","wfRequests":["/big/b1-block-0"],"deliveredAtRelay":128000,"countedBytes":212,"trip":null}
+B1 8 MB extensionless JSON, Range honored, try 2 block {"page":"err Failed to fetch","wfRequests":["/big/b1-block-1"],"deliveredAtRelay":195584,"countedBytes":212,"trip":null}
+B1 8 MB extensionless JSON, Range honored, try 3 block {"page":"err Failed to fetch","wfRequests":["/big/b1-block-2"],"deliveredAtRelay":196608,"countedBytes":212,"trip":null}
+B1v 8 MB extensionless video/mp4, Range honored block {"page":"err Failed to fetch","wfRequests":["/big/b1v-block"],"deliveredAtRelay":291840,"countedBytes":205,"trip":null}
+B1 8 MB extensionless JSON, Range honored, try 1 fetch-once {"page":"err Failed to fetch","wfRequests":["/big/b1-fetch-once-0"],"deliveredAtRelay":261120,"countedBytes":212,"trip":null}
+B1 8 MB extensionless JSON, Range honored, try 2 fetch-once {"page":"err Failed to fetch","wfRequests":["/big/b1-fetch-once-1"],"deliveredAtRelay":290816,"countedBytes":212,"trip":null}
+B1 8 MB extensionless JSON, Range honored, try 3 fetch-once {"page":"err Failed to fetch","wfRequests":["/big/b1-fetch-once-2"],"deliveredAtRelay":128000,"countedBytes":212,"trip":null}
+B1v 8 MB extensionless video/mp4, Range honored fetch-once {"page":"err Failed to fetch","wfRequests":["/big/b1v-fetch-once"],"deliveredAtRelay":783360,"countedBytes":205,"trip":null}
+B2 3 MB extensionless JSON, 206 with total "*" block {"page":"200 3000000","wfRequests":["/star/b2-block"],"deliveredAtRelay":3000214,"countedBytes":3000214,"trip":null}
+B2 3 MB extensionless JSON, 206 with total "*" fetch-once {"page":"200 3000000","wfRequests":["/star/b2-fetch-once"],"deliveredAtRelay":3000214,"countedBytes":3000214,"trip":null}
+B3 fetch-once run 1 of 3 on one cache folder, run cap 1.02 MB fetch-once {"page":"eval page.evaluate: Target page, context or browser has been closed","wfRequests":["/star/b3"],"deliveredAtRelay":160768,"countedBytes":212,"trip":"wf-guard: adv4-B3 reached 0.00 MB from Webflow, the run cap is 1.02 MB; run stopped"}
+B3 fetch-once run 2 of 3 on one cache folder, run cap 1.02 MB fetch-once {"page":"err Failed to fetch","wfRequests":[],"deliveredAtRelay":0,"countedBytes":0,"trip":null}
+B3 fetch-once run 3 of 3 on one cache folder, run cap 1.02 MB fetch-once {"page":"err Failed to fetch","wfRequests":[],"deliveredAtRelay":0,"countedBytes":0,"trip":null}
+B4 0.98 MB .js with 60 KB of headers, run cap 1 MB block {"page":"eval page.evaluate: Target page, context or browser has been closed","wfRequests":["/hdr/b4-block.js"],"deliveredAtRelay":1040907,"countedBytes":1040907,"trip":"wf-guard: adv4-B4 reached 1.04 MB from Webflow, the run cap is 1 MB; run stopped"}
+B4 0.98 MB .js with 60 KB of headers, run cap 1 MB fetch-once {"page":"eval page.evaluate: Target page, context or browser has been closed","wfRequests":["/hdr/b4-fetch-once.js"],"deliveredAtRelay":1040907,"countedBytes":1040907,"trip":"wf-guard: adv4-B4 reached 1.04 MB from Webflow, the run cap is 1 MB; run stopped"}
+B4b 0.95 MB .js with 20 KB of headers, run cap 1 MB block {"page":"200 960000","wfRequests":["/hdr/b4b.js"],"deliveredAtRelay":980427,"countedBytes":980427,"trip":null}
+B5a 3 MB extensionless JSON, Range honored block {"page":"200 3000000","wfRequests":["/big/b5a-block"],"deliveredAtRelay":3000214,"countedBytes":3000214,"trip":null}
+B5b 3 MB extensionless JSON, Range ignored block {"page":"200 3000000","wfRequests":["/kb/b5b-block"],"deliveredAtRelay":3000192,"countedBytes":3000192,"trip":null}
+B5c 0.5 MB extensionless JSON, Range honored block {"page":"200 500000","wfRequests":["/big/b5c-block"],"deliveredAtRelay":500213,"countedBytes":500213,"trip":null}
+B5a 3 MB extensionless JSON, Range honored fetch-once {"page":"200 3000000","wfRequests":["/big/b5a-fetch-once"],"deliveredAtRelay":3000214,"countedBytes":3000214,"trip":null}
+B5b 3 MB extensionless JSON, Range ignored fetch-once {"page":"200 3000000","wfRequests":["/kb/b5b-fetch-once"],"deliveredAtRelay":3000192,"countedBytes":3000192,"trip":null}
+B5c 0.5 MB extensionless JSON, Range honored fetch-once {"page":"200 500000","wfRequests":["/big/b5c-fetch-once"],"deliveredAtRelay":500213,"countedBytes":500213,"trip":null}
+B6 extensionless octet-stream mp4, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/mp4/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream webm, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/webm/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream avi, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/avi/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream ts, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/ts/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream ogg, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/ogg/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream flv, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/flv/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}
+B6 extensionless octet-stream text, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/text/b6"],"deliveredAtRelay":3000200,"countedBytes":3000200,"trip":null}

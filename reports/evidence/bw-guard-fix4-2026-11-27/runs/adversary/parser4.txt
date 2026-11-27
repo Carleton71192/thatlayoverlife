@@ -1,0 +1,102 @@
+P1 33 log files x 92 days = 3036 cells; 225 non-zero new cells; 0 differences; errors old 0, new 0
+P1 totals zxm063-tip.md 20 Nov 5, 21 Nov 97.4, 22 Nov 35, 23 Nov 5, 24 Nov 5, 25 Nov 9, 26 Nov 0, 27 Nov 12.44
+P1 totals main-checkout.md 20 Nov 5, 21 Nov 97.4, 22 Nov 35, 23 Nov 5, 24 Nov 5, 25 Nov 9, 26 Nov 0, 27 Nov 12.44
+P2 line | old | new
+P2 "- 27 Nov, x: 3 M" | null | 3
+P2 "- 27 Nov, x: 3 M." | null | 3
+P2 "- 27 Nov, x: 3M" | null | 3
+P2 "- 27 Nov, x: 3 M (M)" | null | 3
+P2 "- 27 Nov, x: 2 MB and 3 M (E)" | 2 | 5
+P2 "- 27 Nov, x: 2 MB; y: 3 M" | 2 | THROW
+P2 "- 27 Nov, x: 3 M; y: 2 M" | null | THROW
+P2 "- 27 Nov, x: 3 M total" | null | THROW
+P2 "- 27 Nov, x: 3 M, estimated" | null | THROW
+P2 "- 27 Nov, x: 3 M [E]" | null | THROW
+P2 "- 27 Nov, x: 40 M, recheck 30 M (E)" | null | THROW
+P2 "- 27 Nov, 12 M requests, 2.5 MB (M)" | 2.5 | THROW
+P2 "- 27 Nov, 1 MB, video 1080 M" | 1 | THROW
+P2 "- 27 Nov, x: 3 Mbit/s link, 5 MB (M)" | 5 | 5
+P2 "- 27 Nov, x: 3 Mbps" | null | null
+P2 "- 27 Nov, x: 3 M&M" | null | null
+P2 "- 27 Nov, x: 3M/day" | null | THROW
+P2 "- 27 Nov, x: 1,080 M pixels" | null | THROW
+P2 "- 27 Nov, x: 0 M" | null | 0
+P2 "- 27 Nov, x: 3 M\t" | null | 3
+P2 "- 27 Nov, x: 3 M  " | null | 3
+P2 "- 27 Nov, x: 3 M;" | null | 3
+P2 "- 27 Nov, x: 3 M," | null | 3
+P2 "- 27 Nov, x: 3 M!" | null | THROW
+P2 "- 27 Nov, x: 3 M?" | null | THROW
+P2 "- 27 Nov, x: 3 M)" | null | THROW
+P2 "- 27 Nov, x: 3 M -- done" | null | THROW
+P2 "- 27 Nov, x: 3 M \u2014 done" | null | THROW
+P2 "- 27 Nov, x: about 3 M" | null | 3
+P2 "- 27 Nov, x: 3 to 5 M" | null | 5
+P2 "- 27 Nov, x: 3-5 M (E)" | null | 5
+P2 "- 27 Nov, x: 3 M [M]" | null | THROW
+P2 "- 27 Nov, x: 3 M{M}" | null | THROW
+P2 "- 27 Nov, x: (3 M)" | null | THROW
+P2 "- 27 Nov, x: 3 M.)" | null | THROW
+P2 "- 27 Nov, x: 3 M. Next: y." | null | THROW
+P2 "- 27 Nov, x: 3 M, 2 MB" | 2 | THROW
+P2 "- 27 Nov, x: 2 MB, 3 M" | 2 | THROW
+P2 "- 27 Nov, x: 3 M 2 M" | null | THROW
+P2 "- 27 Nov, x: 3 M" | null | 3
+P2 "- 27 Nov, x: 3 Μ" | null | null
+P2 "- 27 Nov, x: 3 m" | null | null
+P2 "- 27 Nov, x: 3 mb" | 3 | 3
+P2 "- 27 Nov, x: 3 Mb" | 3 | 3
+P2 "- 27 Nov, x: 3 MiB" | 3 | 3
+P2 "- 27 Nov, x: 3 megabyte" | 3 | 3
+P2 "- 27 Nov, x: 3,000 KB" | 3 | 3
+P2 "- 27 Nov, x: 3000000 bytes" | null | 3
+P2 "- 27 Nov, x: 3 B" | null | null
+P2 "- 27 Nov, x: 3e6 bytes" | null | null
+P2 "- 27 Nov, x: 3.5MB" | 3.5 | 3.5
+P2 "- 27 Nov, x: .5 MB" | null | null
+P2 "- 27 Nov, x: 0.5MB" | 0.5 | 0.5
+P2 "- 27 Nov, x: 5MB/s for 1 s" | 5 | 5
+P2 "- 27 Nov, x: ~3 MB" | 3 | 3
+P2 "- 27 Nov, x: 3 MB?" | 3 | 3
+P2 "- 27 Nov, x: under 3 MB" | 3 | 3
+P2 "- 27 Nov, x: 3_MB" | 3 | 3
+P2 "- 27 Nov, x: **3 MB**" | 3 | 3
+P2 "- 27 Nov, x: `3 MB`" | 3 | 3
+P2 "- 27 Nov, x: 3 MB_" | 3 | 3
+P2 "- 27 Nov, x: v1.3 MB" | null | null
+P2 "- 27 Nov, x: id7 MB" | null | null
+P2 "- 27 Nov, x: 3 MBs" | null | null
+P2 "- 27 Nov, x: 3 MB-ish" | 3 | 3
+P2 "- On 27 Nov, x: 3 M; y: 2 M" | null | null
+P2 "- On 27 Nov, x: 3 M" | null | THROW
+P2 "- On 27 Nov, x: 3 MB" | THROW | THROW
+P2 "- x: 3 M; y: 2 M" | null | null
+P2 "- x: 12 M requests" | null | null
+P2 "- note: 120 bytes header" | null | THROW
+P2 "* 27 Nov, x: 3 M" | null | 3
+P2 "+ 27 Nov, x: 3 M" | null | 3
+P2 "  - 27 Nov, x: 3 M" | null | 3
+P2 "-\t27 Nov, x: 3 M" | null | 3
+P2 "- 27 Nov 2026, x: 3 M" | null | 3
+P2 "- Nov 27, x: 3 M" | null | 3
+P2 "- 2026-11-27, x: 3 M" | null | 3
+P2 "- 27/11/2026, x: 3 M" | null | 3
+P2 "- 27.11.2026, x: 3 M" | null | 3
+P2 "- 26 to 27 Nov, x: 3 M" | null | 3
+P2 "- 27th Nov, x: 3 MB" | THROW | THROW
+P2 "- 27 November, x: 3 MB" | 3 | 3
+P2 "- Nov. 27, x: 3 MB" | THROW | THROW
+P2 "- 27 Nov, x: 3 MB (M); run abc123" | 3 | 3
+P2 "- 27 Nov 14:00 UTC, x: wf-guard block run abc123, 0 page loads, 1 Webflow GETs, 0.50 MB from Webflow (M)" | 0.5 | 0.5
+P2 "1. 27 Nov, x: 3 MB" | null | THROW
+P2 "| 27 Nov | 3 MB |" | null | THROW
+P2 "27 Nov, x: 3 MB" | null | THROW
+P2 "> 27 Nov, x: 3 MB" | null | THROW
+P2 "# 27 Nov 3 MB" | null | THROW
+P2 "Budget: 250 MB a day, the 13 Nov rule" | null | null
+P2 "- 27 Nov, x: 3 M (requests)" | null | 3
+P2 "- 27 Nov, x: 3 M (" | null | 3
+P2 "- 27 Nov, x: 3 MB, then 2 M" | 3 | THROW
+P2 "- 27 Nov, x: 3 M then 2 MB" | 2 | THROW
+P2 96 lines, 0 read lower by new without an error
+P3 28 real bullet lines, 524 mutations; new throws 145, old throws 6; 0 read lower by new without an error

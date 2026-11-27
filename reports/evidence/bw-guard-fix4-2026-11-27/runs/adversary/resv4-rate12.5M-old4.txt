@@ -1,0 +1,14 @@
+relay rate 12500000
+V1 12 wf-get processes, day cap 2 MB, max-filesize 1 MB {"capBytes":2000000,"maxCountedPlusReserved":2000000,"at":{"counted":0,"reserved":2000000},"overCap":false,"finalCounted":720156,"samples":36,"stubRequests":4,"delivered":725716,"perProcess":["refused at start","refused at start","2 GETs 0.360 MB STOPPED [ok; stopped at a cap]","2 GETs 0.360 MB STOPPED [ok; stopped at a cap]","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start"]}
+V2 8 wf-get processes, run cap 0.5 MB each, day cap 3 MB, chunked and slow files {"capBytes":3000000,"maxCountedPlusReserved":3000000,"at":{"counted":0,"reserved":3000000},"overCap":false,"finalCounted":2902320,"samples":45,"stubRequests":6,"delivered":2942155,"perProcess":["1 GETs 0.484 MB STOPPED [stopped at a cap]","1 GETs 0.484 MB STOPPED [stopped at a cap]","1 GETs 0.484 MB STOPPED [stopped at a cap]","1 GETs 0.484 MB STOPPED [stopped at a cap]","0 GETs 0.000 MB STOPPED [stopped at a cap]","0 GETs 0.000 MB STOPPED [stopped at a cap]","1 GETs 0.484 MB STOPPED [stopped at a cap]","1 GETs 0.484 MB STOPPED [stopped at a cap]"]}
+V3a live pid, real start time {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3b live pid, other start time {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3c live pid, no start time, updated 1 h ago {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3d live pid, no start time, updated 23.9 h ago {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3e live pid, no start time, updated 24.1 h ago {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3f live pid, no start time, no times {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3g live pid, no start time, updated 48 h in the future {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3h live pid, no start time, updated "yesterday" (unreadable) {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V3i dead pid, no start time, updated now {"grantBytes":1300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":1500000,"holderReservationSeen":false}
+V3j live pid, no start time, updated 25 h ago, started now {"grantBytes":300000,"by":"day","bodyLimit":null,"countedPlusThisGrant":500000,"holderReservationSeen":false}
+V4 damaged tally file (other run 1.4 MB counted), day cap 1.5 MB {"grantBytes":1500000,"by":"day","otherEntryAfter":"gone"}

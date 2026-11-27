@@ -1,0 +1,14 @@
+{"tag":"H2-1 20 KB headers, 0.1 MB","tree":"old","status":200,"ctype":"application/javascript","nHeaders":23,"body":100000,"wire":120144,"delivered":117420,"exit":0,"stopped":null,"err":""}
+{"tag":"H2-1 20 KB headers, 0.1 MB","tree":"new","status":200,"ctype":"application/javascript","nHeaders":23,"body":100000,"wire":120144,"delivered":117420,"exit":0,"stopped":null,"err":""}
+{"tag":"H2-2 60 KB headers, 0.6 MB, body limit 0.68 MB","tree":"old","status":200,"ctype":"application/javascript","nHeaders":63,"body":600000,"wire":660224,"delivered":648572,"exit":0,"stopped":null,"err":""}
+{"tag":"H2-2 60 KB headers, 0.6 MB, body limit 0.68 MB","tree":"new","status":200,"ctype":"application/javascript","nHeaders":63,"body":600000,"wire":660224,"delivered":648572,"exit":0,"stopped":null,"err":""}
+{"tag":"H2-3 100 KB headers, 0.1 MB","tree":"old","status":200,"ctype":"application/javascript","nHeaders":103,"body":100000,"wire":200304,"delivered":177842,"exit":0,"stopped":null,"err":""}
+{"tag":"H2-3 100 KB headers, 0.1 MB","tree":"new","status":200,"ctype":"application/javascript","nHeaders":103,"body":100000,"wire":200304,"delivered":177842,"exit":-1,"stopped":"headers over 64000 bytes","err":"curl exit -1"}
+{"tag":"H2-4 250 KB headers, 0.1 MB","tree":"old","status":0,"ctype":null,"nHeaders":0,"body":0,"wire":0,"delivered":291309,"exit":56,"stopped":null,"err":"curl: (56) process_pending_input: nghttp2_session_mem_recv() returned -905:Too many CONTIN"}
+{"tag":"H2-4 250 KB headers, 0.1 MB","tree":"new","status":0,"ctype":null,"nHeaders":0,"body":0,"wire":0,"delivered":291309,"exit":56,"stopped":null,"err":"curl: (56) process_pending_input: nghttp2_session_mem_recv() returned -905:Too many CONTIN"}
+{"tag":"H2-5 600 KB headers, 0.1 MB","tree":"old","status":0,"ctype":null,"nHeaders":0,"body":0,"wire":0,"delivered":556055,"exit":56,"stopped":null,"err":"curl: (56) process_pending_input: nghttp2_session_mem_recv() returned -905:Too many CONTIN"}
+{"tag":"H2-5 600 KB headers, 0.1 MB","tree":"new","status":200,"ctype":"application/javascript","nHeaders":67,"body":0,"wire":65195,"delivered":556055,"exit":-1,"stopped":"headers over 64000 bytes","err":"curl exit -1"}
+server session error ECONNRESET
+{"tag":"H2-6 no extra headers, 2 MB body, limit 1 MB","tree":"old","status":200,"ctype":"application/javascript","nHeaders":3,"body":0,"wire":113,"delivered":302074,"exit":63,"stopped":null,"err":"curl: (63) Maximum file size exceeded"}
+server session error ECONNRESET
+{"tag":"H2-6 no extra headers, 2 MB body, limit 1 MB","tree":"new","status":200,"ctype":"application/javascript","nHeaders":3,"body":0,"wire":113,"delivered":302074,"exit":63,"stopped":null,"err":"curl: (63) Maximum file size exceeded"}

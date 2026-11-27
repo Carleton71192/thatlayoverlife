@@ -1,0 +1,4 @@
+Q1 10 wf-get processes at once, day cap 2 MB, max-filesize 1 MB; files 0.9 MB, 3 MB, 0.9 MB {"tallyMB":1.801,"capMB":2,"stubRequests":4,"stubBytesWritten":7800766,"perProcess":["2 GETs 0.900 MB STOPPED","refused at start","2 GETs 0.900 MB STOPPED","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start","refused at start"]}
+FATAL TypeError: run.reserveWait is not a function
+    at <scratch>/scripts/adversary/procs3.cjs:31:27
+exit 1

@@ -1,0 +1,249 @@
+
+ RUN  v2.1.9 <scratch>/../adv4
+
+ ✓ test/first-paint-layer.test.js (53 tests) 229ms
+ ✓ test/story-first-frame-layer.test.js (49 tests) 497ms
+ ✓ test/early-state-layer.test.js (66 tests) 1300ms
+ ✓ test/story-meta.test.js (71 tests) 966ms
+   ✓ cli > --check and --dry-run write nothing; --check exits 1 when a file is out of date, 0 once written 302ms
+ ✓ test/export.test.js (11 tests) 93ms
+ ✓ test/stories-place-url-layer.test.js (21 tests) 55ms
+ ✓ test/intake.test.js (28 tests) 56ms
+ ✓ test/sweep-1121-css.test.js (32 tests) 15ms
+ ✓ test/classb-2026-11-25.test.js (22 tests) 104ms
+ ✓ test/submit-account-read.test.js (16 tests) 1675ms
+   ✓ /submit c3: a leftover copy without the four fields is removed at load (submit-account-read-2026-11-21, check note 1) > with no leftover, c3 does exactly what c2 does (Memberstack 0 s, 2 s, 20 s, never; account draft, sent, none; typed or not) 874ms
+stdout | test/profile-sync.test.js > handleProfileHook > patches and republishes the matching contributor on member.updated
+profile-sync {"member":"mem_1","item":"c-nancy","fields":["one-line","credit-mode","list-press"],"published":true}
+
+stdout | test/profile-sync.test.js > handleProfileHook > reports a member.updated with no contributor item instead of failing
+profile-sync {"member":"mem_none","skipped":"no Contributors item carries this Memberstack ID"}
+
+stdout | test/profile-sync.test.js > handleProfileHook > creates and publishes an item on member.created, stepping past a slug collision
+profile-sync {"member":"mem_new","item":"c-new","slug":"jay-smith-2","created":true,"fields":["name","slug","memberstack-id","member-since","visibility","contact-mode","credit-mode","home-base","avatar"],"published":true}
+
+stdout | test/profile-sync.test.js > handleProfileHook > treats a retried member.created as an update when the item already exists
+profile-sync {"member":"mem_9","item":"c-jay","fields":["name","languages"],"published":true}
+
+ ✓ test/profile-sync.test.js (24 tests) 45ms
+ ✓ test/intake-layer.test.js (20 tests) 26ms
+ ✓ test/library-hold-layer.test.js (16 tests) 10ms
+ ✓ test/expert-form-names-layer.test.js (12 tests) 10ms
+ ✓ test/submit-sent-draft.test.js (5 tests) 209ms
+ ✓ test/submit-send-wait.test.js (7 tests) 194ms
+ ✓ test/lighthouse-fixes-layer.test.js (15 tests) 45ms
+ ✓ src/components/photo-clean/test/photo-clean.test.js (9 tests) 33ms
+stdout | test/profile-save.test.js > handleProfileSave > writes the member's own item and publishes it
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line","credit-mode","pen-name"],"published":true}
+
+stdout | test/profile-save.test.js > handleProfileSave > only ever writes the item that carries the verified member id
+profile-save {"member":"mem_2","item":"c-jay","fields":["one-line"],"published":true}
+
+stdout | test/profile-save.test.js > handleProfileSave > answers 429 past 60 writes in one hour, keyed per member and hour
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+profile-save {"member":"mem_1","item":"c-nancy","fields":["one-line"],"published":true}
+
+ ✓ test/profile-save.test.js (13 tests) 34ms
+stdout | test/owner-map.test.js > POST /map-snapshot with states > stores the sanitized states for the owner and says so
+map-snapshot {"member":"mem_cmqcj6qqo35ab0sn20bafhzh3","item":"c-mem_cmqcj6qqo35ab0sn20bafhzh3","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/owner-map.test.js > POST /map-snapshot with states > never stores states for any other member, and their reply has no ownerMap key
+map-snapshot {"member":"mem_someone_else","item":"c-mem_someone_else","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/owner-map.test.js > POST /map-snapshot with states > never stores states when OWNER_MEMBER_ID is not set
+map-snapshot {"member":"mem_cmqcj6qqo35ab0sn20bafhzh3","item":"c-mem_cmqcj6qqo35ab0sn20bafhzh3","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/owner-map.test.js > POST /map-snapshot with states > does not trust an id that only the token payload carries
+map-snapshot {"member":"mem_cmqcj6qqo35ab0sn20bafhzh3","item":"c-mem_cmqcj6qqo35ab0sn20bafhzh3","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/owner-map.test.js > POST /map-snapshot with states > still accepts the old flat snapshot body, for the owner too, and keeps the stored map
+map-snapshot {"member":"mem_cmqcj6qqo35ab0sn20bafhzh3","item":"c-mem_cmqcj6qqo35ab0sn20bafhzh3","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/owner-map.test.js > POST /map-snapshot with states > a bad states record leaves the snapshot write alone and stores nothing
+map-snapshot {"member":"mem_cmqcj6qqo35ab0sn20bafhzh3","item":"c-mem_cmqcj6qqo35ab0sn20bafhzh3","snapshot":{"countries":84,"antarctica":false,"places":84,"layovers":3,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+ ✓ test/owner-map.test.js (16 tests) 39ms
+ ✓ test/img-variants-layer.test.js (16 tests) 18ms
+ ✓ test/map-live-counts.test.js (21 tests) 32ms
+ ✓ test/translate.test.js (16 tests) 57ms
+ ✓ test/gate-return-layer.test.js (11 tests) 35ms
+ ✓ test/crew.test.js (8 tests) 34ms
+ ✓ test/stamps.test.js (4 tests) 39ms
+ ✓ test/link-preview.test.js (15 tests) 17ms
+ ✓ test/zip.test.js (5 tests) 208ms
+ ✓ test/feed.test.js (16 tests) 47ms
+ ✓ test/bw-images-layer.test.js (12 tests) 13ms
+ ✓ test/shareables-count.test.js (17 tests) 37ms
+ ✓ test/self-data-layer.test.js (11 tests) 31ms
+stdout | test/map-snapshot.test.js > handleMapSnapshot > writes the JSON string to map-snapshot on the member's item and publishes
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"storiesBy":2,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+stdout | test/map-snapshot.test.js > handleMapSnapshot > answers 404 with no item and 429 past 30 writes in one hour
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+map-snapshot {"member":"mem_1","item":"c-nancy","snapshot":{"countries":87,"antarctica":true,"places":88,"layovers":12,"savedAt":"2026-10-20T12:00:00Z"},"published":true}
+
+ ✓ test/map-snapshot.test.js (8 tests) 26ms
+ ✓ test/collections.test.js (5 tests) 60ms
+ ✓ test/chunks-staged-layer.test.js (8 tests) 11ms
+stdout | test/story-hook.test.js > handleStoryHook > adds the story countries and keeps every other JSON key
+story-hook [{"item":"story-1","member":"mem_1","alpha2":["CL","AR"],"added":["032"]}]
+
+stdout | test/story-hook.test.js > handleStoryHook > uses the Countries reference when the story has one
+story-hook [{"item":"story-1","member":"mem_1","alpha2":["DK"],"added":["208"]}]
+
+stdout | test/story-hook.test.js > handleStoryHook > applies a story only once
+story-hook [{"item":"story-1","member":"mem_1","alpha2":["CL","AR"],"added":["152","032"]}]
+story-hook [{"item":"story-1","skipped":"already applied"}]
+
+stdout | test/story-hook.test.js > handleStoryHook > skips drafts, other collections and authors without a member ID
+story-hook [{"item":"story-1","skipped":"not live"},{"item":"story-1","skipped":"not a story"},{"item":"story-1","skipped":"contributor has no Memberstack ID"}]
+
+ ✓ test/story-hook.test.js (8 tests) 16ms
+stdout | test/story-hook.test.js > handleStoryHook > writes nothing when every country is already on the map
+story-hook [{"item":"story-1","member":"mem_1","alpha2":["CL","AR"],"added":[]}]
+
+ ✓ test/story-enrich.test.js (5 tests) 28ms
+ ✓ test/work-trips.test.js (3 tests) 96ms
+ ✓ test/tagger.test.js (17 tests) 23ms
+ ✓ test/story-hero-box-layer.test.js (9 tests) 10ms
+ ✓ test/story-is-search-layer.test.js (6 tests) 33ms
+stdout | test/press-apply.test.js > handlePressApply > saves a draft item in the Press applications collection
+press-apply {"member":"mem_1","outlet":"Afar"}
+
+stdout | test/press-apply.test.js > handlePressApply > uses PRESS_COLLECTION_ID when set
+press-apply {"member":"mem_1","outlet":"Afar"}
+
+stdout | test/press-apply.test.js > handlePressApply > answers 401, 400, 429 and 502
+press-apply {"member":"mem_1","outlet":"A"}
+press-apply {"member":"mem_1","outlet":"A"}
+press-apply {"member":"mem_1","outlet":"A"}
+
+ ✓ test/album.test.js (7 tests) 32ms
+ ✓ test/p0-closeout-layer.test.js (10 tests) 6ms
+ ✓ test/normalize.test.js (14 tests) 18ms
+ ✓ test/layout-rules-1111-layer.test.js (10 tests) 8ms
+ ✓ test/series.test.js (4 tests) 20ms
+ ✓ test/export-routes.test.js (3 tests) 15ms
+ ✓ test/label-for-layer.test.js (6 tests) 12ms
+ ✓ test/travelers-fix-layer.test.js (7 tests) 4ms
+ ✓ test/map-editing.test.js (8 tests) 4ms
+ ✓ test/byline-tabstops-layer.test.js (3 tests) 13ms
+ ✓ test/page-code-from-html.test.js (4 tests) 140ms
+ ✓ test/site-stats.test.js (4 tests) 27ms
+ ✓ test/pet-passport.test.js (3 tests) 26ms
+ ✓ test/link-summary.test.js (4 tests) 9ms
+ ✓ test/map-merge.test.js (6 tests) 6ms
+ ✓ test/paw.test.js (3 tests) 15ms
+ ✓ test/motion-lab.test.js (6 tests) 6ms
+ ✓ test/stories-count.test.js (4 tests) 3ms
+ ✓ test/living-library.test.js (2 tests) 6ms
+ ✓ test/feed-flags.test.js (6 tests) 5ms
+ ✓ test/site-layers-archive.test.js (3 tests) 15ms
+ ✓ test/expats-map.test.js (2 tests) 30ms
+ ✓ test/pros.test.js (2 tests) 5ms
+ ✓ test/link-stack.test.js (4 tests) 5ms
+ ✓ test/story-countries.test.js (5 tests) 4ms
+ ✓ test/webflow-retry.test.js (3 tests) 10ms
+ ✓ test/metrics.test.js (1 test) 18ms
+ ✓ test/whats-new.test.js (1 test) 10ms
+ ✓ test/share-layer.test.js (4 tests) 3ms
+ ✓ test/settings.test.js (1 test) 2ms
+ ✓ test/travel-style.test.js (1 test) 4ms
+stdout | test/press-apply.test.js > handlePressApply > answers 401, 400, 429 and 502
+press-apply {"member":"mem_1","error":"Webflow /collections/6ae1e636cd32722d8a175cb3/items: HTTP 500 {}"}
+
+ ✓ test/press-apply.test.js (7 tests) 4231ms
+   ✓ handlePressApply > answers 401, 400, 429 and 502 4214ms
+
+ Test Files  73 passed (73)
+      Tests  875 passed (875)
+   Start at  14:23:06
+   Duration  11.35s (transform 1.02s, setup 0ms, collect 4.47s, tests 11.22s, environment 17ms, prepare 4.52s)
+

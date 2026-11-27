@@ -1,0 +1,9 @@
+D1 run 1: fetch-once, 0.3 MB left of a 3 MB day cap {"page":"eval page.evaluate: Target page, context or browser has been clos","wfRequests":["/kb/d1-big.js"],"delivered":32768,"counted":190,"cacheFetches":0,"cacheRefused":0,"trip":"wf-guard: adv4-d brought the 27 Nov total to the daily cap of 3 MB; run stopped"}
+D1 run 2: fetch-once, fresh day budget (cap 10 MB), same cache {"page":"err, 200 50000","wfRequests":["/kb/d1-small.js"],"delivered":50190,"counted":50190,"cacheFetches":1,"cacheRefused":1,"trip":null}
+D1 run 3: fetch-once, fresh day budget (cap 10 MB), same cache {"page":"err, 200 50000","wfRequests":[],"delivered":0,"counted":0,"cacheFetches":0,"cacheRefused":1,"trip":null}
+D1 total {"delivered":82958,"requests":2}
+D1b run 1: fetch-once, 0.3 MB left, 50 KB script {"page":"200 50000","wfRequests":["/kb/d1b-small.js"],"delivered":50190,"counted":50190,"cacheFetches":1,"cacheRefused":0,"trip":null}
+D1b run 2: fresh day budget (cap 10 MB), same cache {"page":"200 50000","wfRequests":[],"delivered":0,"counted":0,"cacheFetches":0,"cacheRefused":0,"trip":null}
+D1b total {"delivered":50190,"requests":1}
+D2 block, 0.3 MB left, one 50 KB script asked for 40 times {"page":"eval page.evaluate: Target page, context or browser has been clos","wfRequests":["/kb/d2.js","/kb/d2.js","/kb/d2.js","/kb/d2.js","/kb/d2.js","/kb/d2.js"],"delivered":267334,"counted":251138,"cacheFetches":0,"cacheRefused":0,"trip":"wf-guard: adv4-d brought the 27 Nov total to the daily cap of 3 MB; run stopped"}
+D3 block, a .js with 70 KB of headers, asked for 3 times {"page":"200 100000, 200 100000, 200 100000","wfRequests":["/hdr/d3.js","/hdr/d3.js","/hdr/d3.js"],"delivered":513063,"counted":513063,"cacheFetches":0,"cacheRefused":0,"trip":null}
