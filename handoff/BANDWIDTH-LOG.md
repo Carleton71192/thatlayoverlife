@@ -25,3 +25,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 27 Nov, rl170 www publish check: 44 HTML GETs from Webflow hosts, about 8.4 MB (M); no images, no browser
 - 27 Nov, correction to the rl170 www publish check line above (first round plus re-fetch were under-added): add 0.3 MB (M)
 - 27 Nov, rl171 B08 test-site check: 3 HTML GETs from Webflow hosts, about 0.45 MB (M); no images, no browser
+- 27 Nov, late-lead (branch claude/late-lead-2026-11-27): saved pages only, 256 browser page loads, 0 MB from Webflow (M)
