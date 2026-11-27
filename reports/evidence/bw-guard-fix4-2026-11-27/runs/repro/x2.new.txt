@@ -1,0 +1,14 @@
+start | relayDeliveredSincePreviousLine=0
+-- reset | relayDeliveredSincePreviousLine=0
+X7 fetch-once allowVideo, empty cache: fetch() of an extensionless 3 MB video with Range bytes=0- {"page":[206,3000000],"requests":["bytes=0-"],"counted":3000293} | relayDeliveredSincePreviousLine=3000293
+-- reset | relayDeliveredSincePreviousLine=0
+X8 block: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":4,"served200":"closed","counted":11680229,"gets":4,"trip":"wf-guard: x8 stopped at the daily cap of 12 MB for 27 Nov: a GET of http://cdn.prod.website-files.com:34909/ign/x8-block-3.js was refused because it was larger "} | relayDeliveredSincePreviousLine=9261813
+-- reset | relayDeliveredSincePreviousLine=0
+X8 fetch-once: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB {"requests":4,"served200":"closed","counted":11680229,"gets":4,"trip":"wf-guard: x8 stopped at the daily cap of 12 MB for 27 Nov: a GET of http://cdn.prod.website-files.com:34909/ign/x8-fetch-once-3.js was refused because it was la"} | relayDeliveredSincePreviousLine=9196277
+-- reset | relayDeliveredSincePreviousLine=0
+X9 R-4: page.goto vs g.finalResponse vs g.goto on an apex 301 to www {"gotoStatus":200,"gotoMark":"1","finalResponse":[200,"http://www.thatlayover.life:34909/landing-x9","<p>landing /landing-"],"gGoto":[200,"http://www.thatlayover.life:34909/landing-x9b",false,"<p>landing /landing-"],"gets":4} | relayDeliveredSincePreviousLine=10778
+-- reset | relayDeliveredSincePreviousLine=0
+X10 block: one page goes to 12 apex URLs that 301 to www pages, one after another {"requests":24,"gets":24,"pageLoads":12,"redirectPages":8,"redirectDirect":4,"finalUrls":["landing-x10-0","landing-x10-1","landing-x10-2","landing-x10-3","landing-x10-4","landing-x10-5","landing-x10-6","landing-x10-7","r?to=http%3A%2F%2Fwww.thatlayover.life%3A34909%2Flanding-x10-8","r?to=http%3A%2F%2Fwww.thatlayover.life%3A34909%2Flanding-x10-9","r?to=http%3A%2F%2Fwww.thatlayover.life%3A34909%2Flanding-x10-10","r?to=http%3A%2F%2Fwww.thatlayover.life%3A34909%2Flanding-x10-11"]} | relayDeliveredSincePreviousLine=64732
+FATAL TypeError: Cannot read properties of undefined (reading 'close')
+    at <scratch>/s/x/x2.cjs:70:58
+exit 1

@@ -1,0 +1,135 @@
+{
+ "throw": {
+  "exit": 1,
+  "signal": null,
+  "seconds": 2.3,
+  "out": [
+   "counted before crash 300197",
+   "Error: harness bug"
+  ],
+  "logLines": [
+   "crash-throw: wf-guard block run 716de2, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 served from "
+  ],
+  "chromiumLeftOver": 0
+ },
+ "reject": {
+  "exit": 1,
+  "signal": null,
+  "seconds": 2.2,
+  "out": [
+   "counted before crash 300197",
+   "Error: unhandled"
+  ],
+  "logLines": [
+   "crash-reject: wf-guard block run 07cd1c, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 served from"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "exit": {
+  "exit": 1,
+  "signal": null,
+  "seconds": 2.2,
+  "out": [
+   "counted before crash 300197"
+  ],
+  "logLines": [
+   "crash-exit: wf-guard block run 2f6dd4, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 served from t"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "sigterm": {
+  "exit": 0,
+  "signal": null,
+  "seconds": 5.3,
+  "out": [
+   "counted before crash 300197",
+   "still alive after crash attempt"
+  ],
+  "logLines": [
+   "crash-sigterm: wf-guard block run 0e548b, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 served fro"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "sigterm-nohandler": {
+  "exit": null,
+  "signal": "SIGTERM",
+  "seconds": 2.2,
+  "out": [
+   "counted before crash 300197"
+  ],
+  "logLines": [],
+  "chromiumLeftOver": 0
+ },
+ "sigint": {
+  "exit": 130,
+  "signal": null,
+  "seconds": 2.3,
+  "out": [
+   "counted before crash 300197"
+  ],
+  "logLines": [
+   "crash-sigint: wf-guard block run d22ef1, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 served from"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "sigint-nohandler": {
+  "exit": null,
+  "signal": "SIGINT",
+  "seconds": 2.3,
+  "out": [
+   "counted before crash 300197"
+  ],
+  "logLines": [],
+  "chromiumLeftOver": 0
+ },
+ "sigkill": {
+  "exit": null,
+  "signal": "SIGKILL",
+  "seconds": 2.3,
+  "out": [
+   "counted before crash 300197"
+  ],
+  "logLines": [],
+  "chromiumLeftOver": 0
+ },
+ "browser-crash": {
+  "exit": 0,
+  "signal": null,
+  "seconds": 5.8,
+  "out": [
+   "counted before crash 300197",
+   "browser killed; ending normally without close",
+   "still alive after crash attempt"
+  ],
+  "logLines": [
+   "crash-browser-crash: wf-guard block run 0521db, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 serv"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "normal-noclose": {
+  "exit": 0,
+  "signal": null,
+  "seconds": 5.4,
+  "out": [
+   "counted before crash 300197",
+   "ending without close",
+   "still alive after crash attempt"
+  ],
+  "logLines": [
+   "crash-normal-noclose: wf-guard block run 73d960, 1 page loads, 1 Webflow GETs, 0.30 MB from Webflow (M); 0 ser"
+  ],
+  "chromiumLeftOver": 0
+ },
+ "trip-default": {
+  "exit": 1,
+  "signal": null,
+  "seconds": 2,
+  "out": [
+   "WfBudgetError: wf-guard: crash-trip-default reached 0.00 MB from Webflow, the run cap is 0.2 MB; run stopped"
+  ],
+  "logLines": [
+   "crash-trip-default: wf-guard block run 5de4a9, 0 page loads, 1 Webflow GETs, 0.00 MB from Webflow (M); 0 serve"
+  ],
+  "chromiumLeftOver": 0
+ }
+}

@@ -1,0 +1,4 @@
+I1 10 processes, day cap 3 MB, max-filesize 1 {"capBytes":3000000,"maxCountedPlusReserved":3000000,"overCap":false,"samples":330,"finalTally":2936169,"stubRequests":6,"deliveredAtRelay":3072507,"gets":6,"stopped":1,"refusedAtStart":0}
+I2 20 processes, day cap 5 MB, max-filesize 2 {"capBytes":5000000,"maxCountedPlusReserved":5000000,"overCap":false,"samples":393,"finalTally":4810181,"stubRequests":11,"deliveredAtRelay":5344385,"gets":11,"stopped":1,"refusedAtStart":0}
+I3 6 processes, day cap 1.2 MB, max-filesize 1 {"capBytes":1200000,"maxCountedPlusReserved":1200000,"overCap":false,"samples":347,"finalTally":940873,"stubRequests":3,"deliveredAtRelay":758517,"gets":3,"stopped":1,"refusedAtStart":0}
+exit 0

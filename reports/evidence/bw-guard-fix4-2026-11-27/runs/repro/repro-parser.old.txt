@@ -1,0 +1,30 @@
+N-5 one file, the same line twice -> 100
+N-5 dailyTotalMB on that text -> 200
+N-5 main has the line once, worktree once (a copy) -> 100
+N-5 main twice, worktree once -> 100
+N-5 main once, worktree twice plus another line -> 105
+N-5 three times in one file -> 100
+N-6 "1. 27 Nov, x: 3 MB"                                           -> 0
+N-6 "| 27 Nov | x | 3 MB |"                                        -> 0
+N-6 "27 Nov, x: 3 MB"                                              -> 0
+N-6 "- 27 Nov, x: 3 M"                                             -> 0
+N-6 "- 27 Nov, x: 3000000 bytes"                                   -> 0
+N-6 "- 27 Nov, x: 3,000,000 bytes"                                 -> 0
+N-6 "3 MB on 27 Nov (plain line, size before date)"                -> 0
+N-6 "## 27 Nov: 3 MB"                                              -> 0
+N-6 "> 27 Nov, x: 3 MB"                                            -> 0
+N-6 "  27 Nov, x: 3 MB (indented, no bullet)"                      -> 0
+N-6 "1) 27 Nov, x: 3 MB"                                           -> 0
+N-6 "Budget: 250 MB a day; the 13 Nov STANDING RULE"               -> 0
+N-6 "- 27 Nov, x: 3 Mbit"                                          -> 0
+N-6 "- 27 Nov, x: 3 M pages"                                       -> 0
+N-6 "- 27 Nov, x: 300197 bytes, 0.30 MB from Webflow (M)"          -> 0.3
+N-6 "- 27 Nov, x: 2 MB and 512 KB"                                 -> 2.512
+N-6 "Nov 27: 3 MB"                                                 -> 0
+N-6 "2026-11-27 x 3 MB"                                            -> 0
+real log <main checkout>/handoff/BANDWIDTH-LOG.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":12.44}
+real log scratchpad/nov27/guard4/checkrepro-work/zxm-log.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":12.44}
+real log scratchpad/nov27/guard4/checkrepro-work/old/handoff/BANDWIDTH-LOG.md {"2026-11-13":0,"2026-11-21":97.4,"2026-11-22":35,"2026-11-25":9,"2026-11-27":2.5}
+N-6 error text from readDailyTotalMB -> 1
+N-6 createRun on that log -> THROWS RangeError: Invalid time value
+exit 0

@@ -1,0 +1,97 @@
+E1 JSON 0.3 MB, Range honored | block
+   page "200 300000" / "200 300000"; requests 1/1 same; curl args same but -D; delivered 300224/300224 (+0); counted 300224/300224
+E2 JSON 3 MB, Range honored | block
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E3 JSON 8 MB (over getCapMB), Range honored (X-1) | block
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 195584/261120 (+65536); counted 223/5000223  MORE
+E4 JSON 3 MB, server sends total "*" to a Range (X-2) | block
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E5 JSON 3 MB, Range ignored | block
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E6 JSON 3 MB, 416 to every Range | block
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E7 JSON 3 MB, page sends Range bytes=0-99 | block
+   page "206 100" / "206 100"; requests 1/1 same; curl args same but -D; delivered 391/391 (+0); counted 391/391
+E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | block
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 3000293/3000293 (+0); counted 3000293/3000293
+E9 video/mp4 3 MB, no Range | block
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 3000218/3000218 (+0); counted 3000218/3000218
+E10 octet-stream MP4 3 MB, no Range (A-6) | block
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E11 page 2 MB text/html on www, Range ignored | block
+   page "200 2000000" / "200 2000000"; requests 1/1 same; curl args same but -D; delivered 2000218/2000218 (+0); counted 2000218/2000218
+E12 JSON 0.5 MB with 20 KB of headers | block
+   page "200 500000" / "200 500000"; requests 1/1 same; curl args same but -D; delivered 520454/520454 (+0); counted 520454/520454
+E13 JSON 0.5 MB with 100 KB of headers | block
+   page "200 500000" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 601414/601414 (+0); counted 601414/386086
+E14 chunked 8 MB, no Content-Length | block
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 7602176/7329023 (-273153); counted 5000228/5256228
+E15 XHR JSON 1 MB | block
+   page "200 1000000" / "200 1000000"; requests 1/1 same; curl args same but -D; delivered 1000225/1000225 (+0); counted 1000225/1000225
+E16 XHR JSON 8 MB (over getCapMB) | block
+   page "err" / "err"; requests 1/1 same; curl args same but -D; delivered 193536/291840 (+98304); counted 223/5000223  MORE
+E1 JSON 0.3 MB, Range honored | fetch-once
+   page "200 300000" / "200 300000"; requests 1/1 same; curl args same but -D; delivered 300224/300224 (+0); counted 300224/300224
+E2 JSON 3 MB, Range honored | fetch-once
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E3 JSON 8 MB (over getCapMB), Range honored (X-1) | fetch-once
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 193536/128000 (-65536); counted 223/5000223
+E4 JSON 3 MB, server sends total "*" to a Range (X-2) | fetch-once
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E5 JSON 3 MB, Range ignored | fetch-once
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E6 JSON 3 MB, 416 to every Range | fetch-once
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E7 JSON 3 MB, page sends Range bytes=0-99 | fetch-once
+   page "206 100" / "206 100"; requests 1/1 same; curl args same but -D; delivered 391/391 (+0); counted 391/391
+E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | fetch-once
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 3000293/3000293 (+0); counted 3000293/3000293
+E9 video/mp4 3 MB, no Range | fetch-once
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 3000218/3000218 (+0); counted 3000218/3000218
+E10 octet-stream MP4 3 MB, no Range (A-6) | fetch-once
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E11 page 2 MB text/html on www, Range ignored | fetch-once
+   page "200 2000000" / "200 2000000"; requests 1/1 same; curl args same but -D; delivered 2000218/2000218 (+0); counted 2000218/2000218
+E12 JSON 0.5 MB with 20 KB of headers | fetch-once
+   page "200 500000" / "200 500000"; requests 1/1 same; curl args same but -D; delivered 520454/520454 (+0); counted 520454/520454
+E13 JSON 0.5 MB with 100 KB of headers | fetch-once
+   page "200 500000" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 601414/601414 (+0); counted 601414/549926
+E14 chunked 8 MB, no Content-Length | fetch-once
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 6813421/5439488 (-1373933); counted 5000228/5256228
+E15 XHR JSON 1 MB | fetch-once
+   page "200 1000000" / "200 1000000"; requests 1/1 same; curl args same but -D; delivered 1000225/1000225 (+0); counted 1000225/1000225
+E16 XHR JSON 8 MB (over getCapMB) | fetch-once
+   page "err" / "err"; requests 1/1 same; curl args same but -D; delivered 390144/193536 (-196608); counted 223/5000223
+E1 JSON 0.3 MB, Range honored | fetch-once allowVideo
+   page "200 300000" / "200 300000"; requests 1/1 same; curl args same but -D; delivered 300224/300224 (+0); counted 300224/300224
+E2 JSON 3 MB, Range honored | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E3 JSON 8 MB (over getCapMB), Range honored (X-1) | fetch-once allowVideo
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 160768/226304 (+65536); counted 223/5000223  MORE
+E4 JSON 3 MB, server sends total "*" to a Range (X-2) | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E5 JSON 3 MB, Range ignored | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E6 JSON 3 MB, 416 to every Range | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E7 JSON 3 MB, page sends Range bytes=0-99 | fetch-once allowVideo
+   page "206 100" / "206 100"; requests 1/1 same; curl args same but -D; delivered 391/391 (+0); counted 391/391
+E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | fetch-once allowVideo
+   page "206 3000000" / "206 3000000"; requests 1/1 same; curl args same but -D; delivered 3000293/3000293 (+0); counted 3000293/3000293
+E9 video/mp4 3 MB, no Range | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000218/3000218 (+0); counted 3000218/3000218
+E10 octet-stream MP4 3 MB, no Range (A-6) | fetch-once allowVideo
+   page "200 3000000" / "200 3000000"; requests 1/1 same; curl args same but -D; delivered 3000225/3000225 (+0); counted 3000225/3000225
+E11 page 2 MB text/html on www, Range ignored | fetch-once allowVideo
+   page "200 2000000" / "200 2000000"; requests 1/1 same; curl args same but -D; delivered 2000218/2000218 (+0); counted 2000218/2000218
+E12 JSON 0.5 MB with 20 KB of headers | fetch-once allowVideo
+   page "200 500000" / "200 500000"; requests 1/1 same; curl args same but -D; delivered 520454/520454 (+0); counted 520454/520454
+E13 JSON 0.5 MB with 100 KB of headers | fetch-once allowVideo
+   page "200 500000" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 601414/601414 (+0); counted 601414/357365
+E14 chunked 8 MB, no Content-Length | fetch-once allowVideo
+   page "err Failed to fetch" / "err Failed to fetch"; requests 1/1 same; curl args same but -D; delivered 5175021/5568237 (+393216); counted 5000228/5256228  MORE
+E15 XHR JSON 1 MB | fetch-once allowVideo
+   page "200 1000000" / "200 1000000"; requests 1/1 same; curl args same but -D; delivered 1000225/1000225 (+0); counted 1000225/1000225
+E16 XHR JSON 8 MB (over getCapMB) | fetch-once allowVideo
+   page "err" / "err"; requests 1/1 same; curl args same but -D; delivered 261120/193536 (-67584); counted 223/5000223
+cases 48, same requests 48, same curl arguments apart from the header output 48, new delivered > old + 1 KB: 4

@@ -1,0 +1,4 @@
+B4 0.98 MB .js with 60 KB of headers, run cap 1 MB block {"page":"eval page.evaluate: Target page, context or browser has been closed","wfRequests":["/hdr/b4-block.js"],"deliveredAtRelay":1040907,"countedBytes":1040907,"trip":"wf-guard: adv3-B4 0.98 MB .js with 60 KB of headers, run cap 1 MB reached 1.04 MB from Webflow, the run cap is 1 MB; run stopped"}
+B4 0.98 MB .js with 60 KB of headers, run cap 1 MB fetch-once {"page":"eval page.evaluate: Target page, context or browser has been closed","wfRequests":["/hdr/b4-fetch-once.js"],"deliveredAtRelay":1040907,"countedBytes":1040907,"trip":"wf-guard: adv3-B4 0.98 MB .js with 60 KB of headers, run cap 1 MB reached 1.04 MB from Webflow, the run cap is 1 MB; run stopped"}
+B4b 0.95 MB .js with 20 KB of headers, run cap 1 MB block {"page":"200 960000","wfRequests":["/hdr/b4b.js"],"deliveredAtRelay":980427,"countedBytes":980427,"trip":null}
+exit 0

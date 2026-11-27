@@ -1,0 +1,11 @@
+X5r new endless, wf-get run cap 0.5 MB, 5 runs [counted, delivered]: [[436169,256201],[436169,290816],[436169,290816],[436169,457728],[436169,1431998]]
+X5r new chunked3MB, wf-get run cap 0.5 MB, 5 runs [counted, delivered]: [[436169,386048],[436169,356352],[436169,290816],[436169,497337],[436169,546816]]
+<scratch>/s/x/x5rep.cjs:27
+  srv.close(); R.srv.close(); process.exit(0);
+                     ^
+
+TypeError: Cannot read properties of undefined (reading 'close')
+    at <scratch>/s/x/x5rep.cjs:27:22
+
+Node.js v22.23.5
+exit 1

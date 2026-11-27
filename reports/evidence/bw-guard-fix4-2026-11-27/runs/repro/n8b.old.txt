@@ -1,0 +1,4 @@
+N8b content-length 3 MB, curl --max-filesize 1 MB {"guardCountsWire":164,"curlExit":63,"bytesDeliveredToClientHost":195584}
+N8b content-length 30 MB, curl --max-filesize 1 MB {"guardCountsWire":165,"curlExit":63,"bytesDeliveredToClientHost":195584}
+N8b chunked 30 MB, curl --max-filesize 1 MB {"guardCountsWire":1000169,"curlExit":63,"bytesDeliveredToClientHost":1147904}
+exit 0

@@ -1,0 +1,10 @@
+refused-by-length new [exit:delivered] ["63:2061312","63:160768","63:196608","63:195584","63:160768","63:261120","63:261120","63:128000","63:195584","63:226304"]
+<scratch>/s/x/refused.cjs:17
+  srv.close(); R.srv.close(); process.exit(0);
+                     ^
+
+TypeError: Cannot read properties of undefined (reading 'close')
+    at <scratch>/s/x/refused.cjs:17:22
+
+Node.js v22.23.5
+exit 1

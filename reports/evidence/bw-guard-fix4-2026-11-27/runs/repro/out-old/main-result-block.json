@@ -1,0 +1,269 @@
+{
+ "S0 sanity host seen by stub": [
+  "www.thatlayover.life:38595"
+ ],
+ "S1 host spellings (block mode)": {
+  "upper": "blocked",
+  "apex": "blocked",
+  "apexUpper": "blocked",
+  "cdn": "blocked",
+  "cdnUpper": "blocked",
+  "assetsGlobal": "blocked",
+  "deepSub": "blocked",
+  "webflowIo": "blocked",
+  "wfioUpper": "blocked",
+  "trailingDot": "blocked",
+  "cdnTrailingDot": "blocked",
+  "otherSub": "blocked",
+  "uploadsWebflowCom": "blocked",
+  "noExtImg": "blocked",
+  "extUpper": "blocked",
+  "encodedExt": "blocked",
+  "cssBackground": "blocked",
+  "fetchNoExtImage": "REACHED SERVER (counted as non-media)",
+  "fetchEncodedExt": "blocked"
+ },
+ "S1 stats": {
+  "label": "s1",
+  "mode": "block",
+  "id": "580b6e",
+  "bytes": 248,
+  "mb": 0,
+  "pageLoads": 0,
+  "gets": 1,
+  "responses": 1,
+  "cacheHits": 0,
+  "cacheFetches": 0,
+  "cacheRefused": 0,
+  "misses": 0,
+  "missList": [],
+  "blocked": 19,
+  "nonGet": 0,
+  "unloadStopped": 0,
+  "leaks": 0,
+  "unfinished": 0,
+  "tooBig": 0,
+  "failed": 0,
+  "redirectsIn": 0,
+  "redirectsFollowed": 0,
+  "lastWord": true,
+  "dayBaseMB": 0,
+  "stopped": null
+ },
+ "S2 redirect non-Webflow img -> Webflow img": "blocked",
+ "S2 redirect Webflow page path -> Webflow img": "blocked",
+ "S2 redirect other host img -> Webflow img": "blocked",
+ "S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted": {
+  "stubSent": 300000,
+  "guardBytes": 300197
+ },
+ "S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads": {
+  "added": 193,
+  "pageLoads": 0
+ },
+ "S2 caller route.fetch error": "wf-guard: refused a Webflow media fetch in mode block (image blocked): http://cdn.prod.website-files.com:38595/s2-d.png",
+ "S2 caller route.fetch result": "err",
+ "S2 caller route.fetch non-Webflow URL redirecting to Webflow image (block mode)": "blocked",
+ "S3 sw register": "ok",
+ "S3 service worker": {
+  "swInstallWebflowImage": "blocked",
+  "swPOST": "blocked",
+  "swPUT": "blocked",
+  "sw500KBWebflowScriptSent": 500000,
+  "pageImgThroughSW": "blocked",
+  "pagePOSTThroughSW": "blocked",
+  "pagePostResult": "blocked",
+  "guardStats": {
+   "label": "s3",
+   "mode": "block",
+   "id": "929052",
+   "bytes": 500197,
+   "mb": 0.5,
+   "pageLoads": 0,
+   "gets": 1,
+   "responses": 1,
+   "cacheHits": 0,
+   "cacheFetches": 0,
+   "cacheRefused": 0,
+   "misses": 0,
+   "missList": [],
+   "blocked": 2,
+   "nonGet": 3,
+   "unloadStopped": 0,
+   "leaks": 0,
+   "unfinished": 0,
+   "tooBig": 0,
+   "failed": 0,
+   "redirectsIn": 0,
+   "redirectsFollowed": 0,
+   "lastWord": true,
+   "dayBaseMB": 0,
+   "stopped": null
+  }
+ },
+ "S4 block mode": {
+  "videoHits": 0,
+  "noExtVideoHits": 0,
+  "fetchRangeMp4": 0,
+  "rangeOnNonMedia": [
+   {
+    "range": "bytes=0-99",
+    "sent": 800000
+   }
+  ],
+  "guardBytes": 800197
+ },
+ "S4 cache mode": {
+  "videoNetworkFetches": 0,
+  "rangesSentUpstream": [],
+  "sentBytes": 0,
+  "stats": {
+   "label": "s4-cache",
+   "mode": "fetch-once",
+   "id": "14a855",
+   "bytes": 800197,
+   "mb": 0.8,
+   "pageLoads": 0,
+   "gets": 1,
+   "responses": 1,
+   "cacheHits": 0,
+   "cacheFetches": 1,
+   "cacheRefused": 0,
+   "misses": 0,
+   "missList": [],
+   "blocked": 4,
+   "nonGet": 0,
+   "unloadStopped": 0,
+   "leaks": 0,
+   "unfinished": 0,
+   "tooBig": 0,
+   "failed": 0,
+   "redirectsIn": 0,
+   "redirectsFollowed": 0,
+   "lastWord": true,
+   "dayBaseMB": 0,
+   "stopped": null
+  }
+ },
+ "S4 cache mode after reload: new upstream video fetches": 0,
+ "S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s": {
+  "stubSentMB": 1.02,
+  "guardMB": 0.984,
+  "tripped": 1
+ },
+ "S5 log line after close": [
+  "- 27 Nov 14:40 UTC, s5-stream: wf-guard block run 312202, 0 page loads, 1 Webflow GETs, 0.98 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the run cap"
+ ],
+ "S5 polling 200 KB Webflow fetches, run cap 1 MB": {
+  "trips": [
+   "wf-guard: s5-poll reached 0.20 MB from Webflow, the run cap is 1 MB; run stopped"
+  ],
+  "fetchesBeforeStop": 2,
+  "stubSentMB": 0.4,
+  "guardMB": 0.4,
+  "laterHits": 0,
+  "log": [
+   "- 27 Nov 14:40 UTC, s5-poll: wf-guard block run 4198cb, 0 page loads, 1 Webflow GETs, 0.40 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; 1 unfinished; STOPPED at the run cap"
+  ]
+ },
+ "S6 two contexts, same cache, same image at the same time: upstream fetches": 1,
+ "S6 first fetch failed in A; B (guarded before) and C (guarded after) load it: upstream fetches": 1,
+ "S6 shared run log": [
+  "- 27 Nov 14:40 UTC, s6-shared: wf-guard fetch-once run ef9c4f, 0 page loads, 2 Webflow GETs, 0.00 MB from Webflow (M); 1 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; 2 refused as fetched before"
+ ],
+ "S6c page target closed, then 400 KB more in the same context": {
+  "guardMB": 0.5,
+  "log": []
+ },
+ "S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB": {
+  "tripsB": [
+   "day"
+  ],
+  "log": [
+   "# log",
+   "- 27 Nov 14:40 UTC, s8-a: wf-guard block run 4331a0, 1 page loads, 1 Webflow GETs, 0.60 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted",
+   "- 27 Nov 14:40 UTC, s8-b: wf-guard block run 687cb9, 0 page loads, 1 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the daily cap"
+  ]
+ },
+ "S8 concurrent goto results": [
+  "loaded",
+  "loaded"
+ ],
+ "S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB": {
+  "trips": [
+   "d day"
+  ],
+  "log": [
+   "# log",
+   "- 27 Nov 14:40 UTC, s8-d: wf-guard block run 68d0a8, 0 page loads, 0 Webflow GETs, 0.00 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the daily cap",
+   "- 27 Nov 14:40 UTC, s8-c: wf-guard block run 9f590e, 1 page loads, 1 Webflow GETs, 0.60 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"
+  ],
+  "dayTotal": 0.6
+ },
+ "S8 third run after the cap": "STARTED",
+ "S9 page results": {
+  "put": "blocked",
+  "post": "blocked",
+  "head": "blocked",
+  "del": "blocked",
+  "patch": "blocked",
+  "beacon": true
+ },
+ "S9 non-GET requests that reached the stub": [
+  "POST /s9-keepalive",
+  "POST /s9-beacon-unload",
+  "POST /s9-beacon-unload",
+  "POST /s9-keepalive"
+ ],
+ "S9 stats": {
+  "label": "s9",
+  "mode": "block",
+  "id": "f5a93f",
+  "bytes": 0,
+  "mb": 0,
+  "pageLoads": 0,
+  "gets": 0,
+  "responses": 0,
+  "cacheHits": 0,
+  "cacheFetches": 0,
+  "cacheRefused": 0,
+  "misses": 0,
+  "missList": [],
+  "blocked": 0,
+  "nonGet": 13,
+  "unloadStopped": 2,
+  "leaks": 0,
+  "unfinished": 0,
+  "tooBig": 0,
+  "failed": 0,
+  "redirectsIn": 0,
+  "redirectsFollowed": 0,
+  "lastWord": true,
+  "dayBaseMB": 0,
+  "stopped": null
+ },
+ "S10 caller fallback({url}) rewriting to a Webflow image": "blocked",
+ "S10 caller continue({url}) rewriting to a Webflow image": "blocked",
+ "S10 page.goto a Webflow image": "blocked",
+ "S10 caller route registered BEFORE guard (documented limit)": "blocked",
+ "all Webflow-host requests that reached the stub (host path)": [
+  "GET www.thatlayover.life/hello.html",
+  "GET cdn.prod.website-files.com/noext-img-fetch",
+  "GET www.thatlayover.life/kb300.js",
+  "GET www.thatlayover.life/s2-page.html",
+  "GET www.thatlayover.life/kb500.js",
+  "GET www.thatlayover.life/kb800.js",
+  "GET www.thatlayover.life/kb800.js",
+  "GET www.thatlayover.life/stream",
+  "GET www.thatlayover.life/kb200.js",
+  "GET www.thatlayover.life/kb200.js",
+  "GET cdn.prod.website-files.com/slow-s6.png",
+  "GET cdn.prod.website-files.com/fail-s6.png",
+  "GET www.thatlayover.life/kb100.js",
+  "GET www.thatlayover.life/kb400.js",
+  "GET www.thatlayover.life/kb600.js",
+  "GET www.thatlayover.life/kb600.js",
+  "GET www.thatlayover.life/kb600.js"
+ ],
+ "unhandled rejections seen": []
+}

@@ -1,0 +1,387 @@
+== a-bytes
+  B1 8 MB extensionless JSON, Range honored, try 1 block: deliveredAtRelay 195584/193536
+  MORE B1 8 MB extensionless JSON, Range honored, try 2 block: deliveredAtRelay 193536/195584
+  MORE B1 8 MB extensionless JSON, Range honored, try 3 block: deliveredAtRelay 193536/195584
+  B1v 8 MB extensionless video/mp4, Range honored block: deliveredAtRelay 193536/128000
+  B1 8 MB extensionless JSON, Range honored, try 1 fetch-once: deliveredAtRelay 259072/196608
+  MORE B1 8 MB extensionless JSON, Range honored, try 2 fetch-once: deliveredAtRelay 128000/193536
+  MORE B1 8 MB extensionless JSON, Range honored, try 3 fetch-once: deliveredAtRelay 259072/356352
+  B1v 8 MB extensionless video/mp4, Range honored fetch-once: deliveredAtRelay 193536/193536
+  B2 3 MB extensionless JSON, 206 with total "*" block: deliveredAtRelay 3000214/3000214
+  B2 3 MB extensionless JSON, 206 with total "*" fetch-once: deliveredAtRelay 3000214/3000214
+  MORE B3 fetch-once run 1 of 3 on one cache folder, run cap 1.02 MB fetch-once: deliveredAtRelay 193536/259072
+  B3 fetch-once run 2 of 3 on one cache folder, run cap 1.02 MB fetch-once: deliveredAtRelay 0/0
+  B3 fetch-once run 3 of 3 on one cache folder, run cap 1.02 MB fetch-once: deliveredAtRelay 0/0
+  B4 0.98 MB .js with 60 KB of headers, run cap 1 MB block: deliveredAtRelay 1040907/193536
+  B4 0.98 MB .js with 60 KB of headers, run cap 1 MB fetch-once: deliveredAtRelay 1040907/193536
+  B4b 0.95 MB .js with 20 KB of headers, run cap 1 MB block: deliveredAtRelay 980427/195584
+  B5a 3 MB extensionless JSON, Range honored block: deliveredAtRelay 3000214/3000214
+  B5b 3 MB extensionless JSON, Range ignored block: deliveredAtRelay 3000192/3000192
+  B5c 0.5 MB extensionless JSON, Range honored block: deliveredAtRelay 500213/500213
+  B5a 3 MB extensionless JSON, Range honored fetch-once: deliveredAtRelay 3000214/3000214
+  B5b 3 MB extensionless JSON, Range ignored fetch-once: deliveredAtRelay 3000192/3000192
+  B5c 0.5 MB extensionless JSON, Range honored fetch-once: deliveredAtRelay 500213/500213
+  B6 extensionless octet-stream mp4, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream webm, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream avi, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream ts, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream ogg, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream flv, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+  B6 extensionless octet-stream text, 3 MB, Range honored fetch-once: deliveredAtRelay 3000200/3000200
+== a-bytes-B1-rate12M
+  B1 8 MB extensionless JSON, Range honored, try 1 block: deliveredAtRelay 32768/32768
+  B1 8 MB extensionless JSON, Range honored, try 2 block: deliveredAtRelay 16384/16384
+  MORE B1 8 MB extensionless JSON, Range honored, try 3 block: deliveredAtRelay 16384/32768
+  B1v 8 MB extensionless video/mp4, Range honored block: deliveredAtRelay 16384/16384
+  B1 8 MB extensionless JSON, Range honored, try 1 fetch-once: deliveredAtRelay 16384/16384
+  B1 8 MB extensionless JSON, Range honored, try 2 fetch-once: deliveredAtRelay 16384/16384
+  B1 8 MB extensionless JSON, Range honored, try 3 fetch-once: deliveredAtRelay 16384/16384
+  B1v 8 MB extensionless video/mp4, Range honored fetch-once: deliveredAtRelay 16384/16384
+== a-bytes-B4
+  B4 0.98 MB .js with 60 KB of headers, run cap 1 MB block: deliveredAtRelay 1040907/193536
+  B4 0.98 MB .js with 60 KB of headers, run cap 1 MB fetch-once: deliveredAtRelay 1040907/193536
+  B4b 0.95 MB .js with 20 KB of headers, run cap 1 MB block: deliveredAtRelay 980427/195584
+== a-cap
+  C1 block: 60 fetches with Range bytes=0-1, server ignores Range (200, 3 MB), day cap 3 MB: requests 0/1, gets 0/1
+  C1 fetch-once: 60 fetches with Range bytes=0-1, server ignores Range (200, 3 MB), day cap 3 MB: requests 0/1, gets 0/1
+  C2 block: 60 fetches, no Range, server sends 3 MB, getCapMB 1, day cap 3 MB: requests 0/3, gets 0/3
+== a-cap3
+  C5 .js with Range bytes=0-1, server ignores Range (200, 0.9 MB): 4 runs on one tally, 8 fetches each, day cap : stubRequests 0/6
+  C5 same, fetch-once: 4 runs on one tally, 8 fetches each, day cap 5 MB: stubRequests 0/6
+  C6 extensionless, no Range, server honors Range (3 MB JSON, probe and join): 4 runs on one tally, 8 fetches ea: stubRequests 0/2
+  C6 same, fetch-once: 4 runs on one tally, 8 fetches each, day cap 5 MB: stubRequests 0/2
+== a-capseq-b
+  C1b block: 60 fetches at once, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: requests 1/4, gets 0/4
+  C1b fetch-once: 60 fetches at once, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: requests 1/4, gets 0/4
+== a-claim: no old output lines
+== a-forms: no old output lines
+== a-loop
+== a-parser3: no old output lines
+== a-procs3
+  Q1 10 wf-get processes at once, day cap 2 MB, max-filesize 1 MB; files 0.9 MB, 3 MB, 0.9 MB: stubRequests 4/2
+  Q2a real start time: live pid 24250 holds 1 MB reserved, day cap 1.5 MB: only in new
+  Q2b other start time: live pid 24250 holds 1 MB reserved, day cap 1.5 MB: only in new
+  Q2c no start time: live pid 24250 holds 1 MB reserved, day cap 1.5 MB: only in new
+  Q3 own tally entry: only in new
+== a-r4: no old output lines
+== a-redir
+  R6 block two pages goto the apex URL, a third goes straight to www/landing.html: wfRequests 5/2
+  R7 fetch-once localhost 302 to a Webflow page: wfRequests 1/2
+== adv-cap
+  MORE C1 block: 60 fetches with Range bytes=0-1, server ignores Range (200, 3 MB), day cap 3 MB: requests 0/1, gets 0/1, relayLine 0/196608
+  MORE C1 fetch-once: 60 fetches with Range bytes=0-1, server ignores Range (200, 3 MB), day cap 3 MB: requests 0/1, gets 0/1, relayLine 0/196608
+  MORE C2 block: 60 fetches, no Range, server sends 3 MB, getCapMB 1, day cap 3 MB: requests 0/3, gets 0/3, relayLine 0/584704
+  C3 fetch-once: extensionless octet-stream 3 MB, 3 MB JSON with Range ignored, 3 MB video/mp4: relayLine 9000577/9000577
+  C3 block: extensionless octet-stream 3 MB, 3 MB JSON with Range ignored, 3 MB video/mp4: relayLine 9000577/9000577
+  C4 fetch-once: extensionless 3 MB video by iframe, embed, object, script, prefetch, EventSource: relayLine 18001242/18001242
+== adv-capseq
+  C1s block: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 3 MB: relayLine 2031616/196608
+  MORE C1s fetch-once: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 3 MB: relayLine 128000/196608
+  MORE C1b block: 60 fetches at once, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: requests 0/4, gets 0/4, relayLine 0/12000792
+  MORE C1b fetch-once: 60 fetches at once, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: requests 1/4, gets 0/4, relayLine 0/10373778
+== adv-claim: no old output lines
+== adv-loop
+  R3b block, redirect to /loop/t|x?kb=200, server 301s the escaped form back, run cap 20 MB: relayLine 200400/200400
+  R3b block, redirect to /loop/t^x?kb=200, server 301s the escaped form back, run cap 20 MB: relayLine 200400/200400
+== adv-parser: no old output lines
+== adv-procs
+  MORE P1 12 processes, one 190 KB file each, day cap 1 MB: stubRequests 2/4, relayLine 380394/760788
+  MORE P2 8 processes, each: 190 KB, 3 MB with Content-Length, 3 MB chunked, 190 KB (max-filesize 1 MB), day cap 1 MB: relayLine 350965/2699509
+  P3 a live process holds 1 MB reserved, day cap 1 MB, reserveWaitS 2: only in new
+  P4 tally: a dead pid with 1 MB reserved, a live unrelated pid with 1 MB reserved, day cap 1.5 MB: only in new
+== adv-redir
+  R1 block apex 301 to www/landing.html: relayLine 485/485
+  R2 block 302 to /t|x.html (server answers both forms): relayLine 200378/200378
+  R3 block 302 to /loop/t|x, server 301s /loop/t%7Cx to /loop/t|x, 8 s: relayLine 389/389
+  R4 block JavaScript off: relayLine 485/485
+  R5 block page.content() right after goto: relayLine 485/485
+  R6 block two pages goto the apex URL, a third goes straight to www/landing.html: wfRequests 5/2, relayLine 1228/485
+  R7 block localhost 302 to a Webflow page: relayLine 258/258
+  R8 block 25-hop chain: relayLine 74314/72752
+  R9 block iframe apex 301 to www: relayLine 485/485
+  R1 fetch-once apex 301 to www/landing.html: relayLine 733/733
+  R2 fetch-once 302 to /t|x.html (server answers both forms): relayLine 200378/200378
+  R3 fetch-once 302 to /loop/t|x, server 301s /loop/t%7Cx to /loop/t|x, 8 s: relayLine 389/389
+  R4 fetch-once JavaScript off: relayLine 733/733
+  R5 fetch-once page.content() right after goto: relayLine 733/733
+  R6 fetch-once two pages goto the apex URL, a third goes straight to www/landing.html: relayLine 981/733
+  R7 fetch-once localhost 302 to a Webflow page: wfRequests 1/2, relayLine 258/506
+  R8 fetch-once 25-hop chain: relayLine 74562/72752
+  R9 fetch-once iframe apex 301 to www: relayLine 733/733
+  R10 caller route fulfills a 302 to a Webflow page: relayLine 258/258
+== adv-words
+  W1 3 MB (Content-Length) at run cap 0.5 MB: relayLine 195584/196608
+  MORE W2 the same 3 MB URL twice at --max-filesize 1: stubRequests 2/1, relayLine 392192/1022976
+  W3 chunked 3 MB at run cap 0.5 MB: relayLine 622265/271033
+  W4 3 MB with a query string that changes, --max-filesize 1, 4 URLs: relayLine 841728/743424
+== crash
+  throw: relayLine 300197/300197
+  reject: relayLine 300197/300197
+  exit: relayLine 300197/300197
+  sigterm: relayLine 300197/300197
+  sigterm-nohandler: relayLine 300197/300197
+  sigint: relayLine 300197/300197
+  sigint-nohandler: relayLine 300197/300197
+  sigkill: relayLine 300197/300197
+  browser-crash: relayLine 300197/300197
+  normal-noclose: relayLine 300197/300197
+  trip-default: relayLine 195584/0
+== ext4
+  E1 JSON 0.3 MB, Range honored | block: stubWrote 300224/300224, deliveredAtRelay 300224/300224
+  E2 JSON 3 MB, Range honored | block: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  MORE E3 JSON 8 MB (over getCapMB), Range honored (X-1) | block: stubWrote 8000225/8000225, deliveredAtRelay 195584/261120
+  E4 JSON 3 MB, server sends total "*" to a Range (X-2) | block: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E5 JSON 3 MB, Range ignored | block: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E6 JSON 3 MB, 416 to every Range | block: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E7 JSON 3 MB, page sends Range bytes=0-99 | block: stubWrote 391/391, deliveredAtRelay 391/391
+  E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | block: stubWrote 3000293/3000293, deliveredAtRelay 3000293/3000293
+  E9 video/mp4 3 MB, no Range | block: stubWrote 3000218/3000218, deliveredAtRelay 3000218/3000218
+  E10 octet-stream MP4 3 MB, no Range (A-6) | block: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E11 page 2 MB text/html on www, Range ignored | block: stubWrote 2000218/2000218, deliveredAtRelay 2000218/2000218
+  E12 JSON 0.5 MB with 20 KB of headers | block: stubWrote 520454/520454, deliveredAtRelay 520454/520454
+  E13 JSON 0.5 MB with 100 KB of headers | block: stubWrote 601414/601414, deliveredAtRelay 601414/601414
+  E14 chunked 8 MB, no Content-Length | block: stubWrote 8001339/8001339, deliveredAtRelay 7602176/7329023
+  E15 XHR JSON 1 MB | block: stubWrote 1000225/1000225, deliveredAtRelay 1000225/1000225
+  MORE E16 XHR JSON 8 MB (over getCapMB) | block: stubWrote 8000225/8000225, deliveredAtRelay 193536/291840
+  E1 JSON 0.3 MB, Range honored | fetch-once: stubWrote 300224/300224, deliveredAtRelay 300224/300224
+  E2 JSON 3 MB, Range honored | fetch-once: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E3 JSON 8 MB (over getCapMB), Range honored (X-1) | fetch-once: stubWrote 8000225/8000225, deliveredAtRelay 193536/128000
+  E4 JSON 3 MB, server sends total "*" to a Range (X-2) | fetch-once: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E5 JSON 3 MB, Range ignored | fetch-once: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E6 JSON 3 MB, 416 to every Range | fetch-once: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E7 JSON 3 MB, page sends Range bytes=0-99 | fetch-once: stubWrote 391/391, deliveredAtRelay 391/391
+  E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | fetch-once: stubWrote 3000293/3000293, deliveredAtRelay 3000293/3000293
+  E9 video/mp4 3 MB, no Range | fetch-once: stubWrote 3000218/3000218, deliveredAtRelay 3000218/3000218
+  E10 octet-stream MP4 3 MB, no Range (A-6) | fetch-once: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E11 page 2 MB text/html on www, Range ignored | fetch-once: stubWrote 2000218/2000218, deliveredAtRelay 2000218/2000218
+  E12 JSON 0.5 MB with 20 KB of headers | fetch-once: stubWrote 520454/520454, deliveredAtRelay 520454/520454
+  E13 JSON 0.5 MB with 100 KB of headers | fetch-once: stubWrote 601414/601414, deliveredAtRelay 601414/601414
+  E14 chunked 8 MB, no Content-Length | fetch-once: stubWrote 8001339/8001339, deliveredAtRelay 6813421/5439488
+  E15 XHR JSON 1 MB | fetch-once: stubWrote 1000225/1000225, deliveredAtRelay 1000225/1000225
+  E16 XHR JSON 8 MB (over getCapMB) | fetch-once: stubWrote 8000225/8000225, deliveredAtRelay 390144/193536
+  E1 JSON 0.3 MB, Range honored | fetch-once allowVideo: stubWrote 300224/300224, deliveredAtRelay 300224/300224
+  E2 JSON 3 MB, Range honored | fetch-once allowVideo: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  MORE E3 JSON 8 MB (over getCapMB), Range honored (X-1) | fetch-once allowVideo: stubWrote 8000225/8000225, deliveredAtRelay 160768/226304
+  E4 JSON 3 MB, server sends total "*" to a Range (X-2) | fetch-once allowVideo: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E5 JSON 3 MB, Range ignored | fetch-once allowVideo: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E6 JSON 3 MB, 416 to every Range | fetch-once allowVideo: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E7 JSON 3 MB, page sends Range bytes=0-99 | fetch-once allowVideo: stubWrote 391/391, deliveredAtRelay 391/391
+  E8 video/mp4 3 MB, page sends Range bytes=0- (X7) | fetch-once allowVideo: stubWrote 3000293/3000293, deliveredAtRelay 3000293/3000293
+  E9 video/mp4 3 MB, no Range | fetch-once allowVideo: stubWrote 3000218/3000218, deliveredAtRelay 3000218/3000218
+  E10 octet-stream MP4 3 MB, no Range (A-6) | fetch-once allowVideo: stubWrote 3000225/3000225, deliveredAtRelay 3000225/3000225
+  E11 page 2 MB text/html on www, Range ignored | fetch-once allowVideo: stubWrote 2000218/2000218, deliveredAtRelay 2000218/2000218
+  E12 JSON 0.5 MB with 20 KB of headers | fetch-once allowVideo: stubWrote 520454/520454, deliveredAtRelay 520454/520454
+  E13 JSON 0.5 MB with 100 KB of headers | fetch-once allowVideo: stubWrote 601414/601414, deliveredAtRelay 601414/601414
+  MORE E14 chunked 8 MB, no Content-Length | fetch-once allowVideo: stubWrote 8001339/8001339, deliveredAtRelay 5175021/5568237
+  E15 XHR JSON 1 MB | fetch-once allowVideo: stubWrote 1000225/1000225, deliveredAtRelay 1000225/1000225
+  E16 XHR JSON 8 MB (over getCapMB) | fetch-once allowVideo: stubWrote 8000225/8000225, deliveredAtRelay 261120/193536
+== f6
+== guard-tests-1: no old output lines
+== guard-tests-2: no old output lines
+== guard-tests-3: no old output lines
+== inv4-1
+  MORE I1 10 processes, day cap 3 MB, max-filesize 1: stubRequests 6/7, deliveredAtRelay 2183360/2822843, gets 6/7
+  I2 20 processes, day cap 5 MB, max-filesize 2: stubRequests 11/7, deliveredAtRelay 5580737/3601975, gets 11/7
+  I3 6 processes, day cap 1.2 MB, max-filesize 1: stubRequests 4/2, deliveredAtRelay 1115840/821856, gets 4/2
+== inv4-2
+  I1 10 processes, day cap 3 MB, max-filesize 1: stubRequests 10/6, deliveredAtRelay 3859131/3072507, gets 10/6
+  I2 20 processes, day cap 5 MB, max-filesize 2: deliveredAtRelay 5742839/5344385
+  MORE I3 6 processes, day cap 1.2 MB, max-filesize 1: deliveredAtRelay 495861/758517
+== main-block
+  S1 host spellings (block mode): relayLine 1778/1778
+  S1 stats: relayLine 0/0
+  S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted: relayLine 0/0
+  S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads: relayLine 422/422
+  S3 service worker: relayLine 392/392
+  S4 block mode: relayLine 800948/800948
+  S4 cache mode: relayLine 800948/800948
+  MORE S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s: relayLine 0/704560
+  MORE S5 polling 200 KB Webflow fetches, run cap 1 MB: relayLine 400707/801101
+  S6c page target closed, then 400 KB more in the same context: relayLine 500394/500394
+  S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB: relayLine 0/0
+  S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB: relayLine 0/0
+  S9 page results: relayLine 3882/3882
+  S9 stats: relayLine 0/0
+== main-cache-only
+  S1 host spellings (block mode): relayLine 1530/1530
+  S1 stats: relayLine 0/0
+  S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted: relayLine 0/0
+  S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads: relayLine 0/0
+  S3 service worker: relayLine 392/392
+  S4 block mode: relayLine 751/751
+  S4 cache mode: relayLine 800948/800948
+  S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s: relayLine 271/271
+  S5 polling 200 KB Webflow fetches, run cap 1 MB: relayLine 313/313
+  S6c page target closed, then 400 KB more in the same context: relayLine 0/0
+  S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB: relayLine 0/0
+  S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB: relayLine 0/0
+  S9 page results: relayLine 3882/3882
+  S9 stats: relayLine 0/0
+== n3
+  N3 unload, guard none, navigate away: relayLine 1772/1772
+  N3 unload, guard none, page.close: relayLine 1960/1960
+  N3 unload, guard cache-only, navigate away: relayLine 0/0
+  N3 unload, guard cache-only, page.close: relayLine 0/0
+  N3 unload, guard cache-only all, navigate away: relayLine 0/0
+  N3 unload, guard cache-only all, page.close: relayLine 0/0
+  N1x cache-only, page preconnect loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page dnsPrefetch loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page websocket loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page imgMisses loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page nothing loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page specPrerender loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page specPrefetch loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page linkPrefetch loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page iframe loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page popup loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page eventSource loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page worker loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page favicon loaded 3 times from htmlDir: relayLine 0/0
+  N1x cache-only, page video loaded 3 times from htmlDir: relayLine 0/0
+== n4
+  RESULTS: relayLine 0/0
+  STATS: relayLine 0/0
+  Webflow stub requests per path: relayLine 0/0
+  RESULTS #2: relayLine 0/0
+  STATS #2: relayLine 0/0
+  Webflow stub requests per path #2: relayLine 0/0
+  RESULTS #3: relayLine 0/0
+  STATS #3: relayLine 0/0
+  Webflow stub requests per path #3: relayLine 0/0
+== n5
+  MORE N5 2 wf-get processes at once, 600 KB each, daily cap 1 MB: stubWroteMB 0.6/1.2, relayLine 600197/793733
+  MORE N5 6 wf-get processes at once, 300 KB each, daily cap 1 MB: stubWroteMB 0.3/0.901, relayLine 300197/793930
+  MORE N5 12 wf-get processes at once, 200 KB each, daily cap 1 MB: stubWroteMB 0.2/0.801, relayLine 200197/800788
+  N8 wf-get --max-filesize 1, content-length 3 MB: relayLine 193536/160768
+  N8 wf-get --max-filesize 1, chunked 3 MB: relayLine 1142927/1098425
+  MORE N8 wf-get --max-filesize 1, content-length 30 MB: relayLine 195584/259072
+== n7
+  N7 fetch-once page with 30 Webflow images at once (about 70 bytes each), run cap 200 MB, getCapMB 5: relayLine 7440/7440
+  MORE N7 fetch-once page with 45 Webflow images at once (about 70 bytes each), run cap 200 MB, getCapMB 5: stubRequests 40/45, relayLine 0/11160
+  N7b 240 MB already logged today (10 MB left), a page with 3 small Webflow images at once: relayLine 0/744
+  N2r race: page requests Webflow URLs every 1 ms while the caller runs unrouteAll and unroute 40 times: relayLine 0/0
+  S6c guard(page): page closed, 400 KB more in the same context: relayLine 500394/500394
+== n8b
+  N8b content-length 3 MB, curl --max-filesize 1 MB: bytesDeliveredToClientHost 195584/195584
+  N8b content-length 30 MB, curl --max-filesize 1 MB: bytesDeliveredToClientHost 195584/195584
+  MORE N8b chunked 30 MB, curl --max-filesize 1 MB: bytesDeliveredToClientHost 1147904/1178624
+== new
+  N1a cache-only miss, navigate away: relayLine 0/0
+  N1b cache-only miss, page.close: relayLine 0/0
+  N1c cache-only miss, context.close: relayLine 0/0
+  N1d cache-only miss, page.close, unloadNonGet all: wfConnections 4/5, relayLine 0/0
+  N2 routes registered before guard(), cache-only: relayLine 0/0
+  N2 after unrouteAll and unroute(**/*): relayLine 0/0
+  N2 race: Webflow images requested in a loop while unrouteAll and unroute run 10 times: wfConnections 6/5, relayLine 0/0
+  N6a cache-only: video miss and a cached whole file: relayLine 0/0
+  N6b fetch-once allowVideo: what reached the stub: relayLine 10002391/10002391
+  N6c fetch-once, video not allowed: fetch() of an extensionless Webflow video: relayLine 3000207/3000207
+  N9 apex 301 to www page, guard off: relayLine 733/733
+  N9 apex 301 to www page, guard on (fetch-once): relayLine 733/733
+  N9 no guard: requests the route saw after fulfilling a 302 (navigation, then an image): relayLine 0/0
+== parser: no old output lines
+== refused: no old output lines
+== repro-browser
+  P1a fetch-once, 45 slow Webflow images at once: stubRequests 40/45
+  P1a fetch-once, 100 slow Webflow images at once: stubRequests 40/100
+  MORE P1b block, run cap 1 MB, ten 200 KB Webflow scripts at once: stubRequests 0/4, deliveredToClient 0/796175
+  P1d fetch-once, one GET at a time, reserveWaitS 1, four 2.5 s images: stubRequests 0/1
+  P2a block, 6 MB and chunked 8 MB Webflow scripts, page loaded 3 times: stubRequests 6/2, deliveredToClient 16396727/5339833
+  P2b block, run cap 1 MB, page polls 200 KB Webflow files: stubRequests 5/4, deliveredToClient 1000985/800788
+  P3 fetch-once: fetch() of /nr-video: deliveredToClient 3000239/3000239
+  P3 fetch-once: fetch() of /nr-video-chunked: deliveredToClient 3000623/3000623
+  P3 fetch-once: fetch() of /r-video: deliveredToClient 3000240/3000240
+  P3 fetch-once: fetch() of /r-video with Range bytes=0-: deliveredToClient 3000293/3000293
+  P3 fetch-once: fetch() of /json-small: deliveredToClient 300246/300246
+  P3 fetch-once: fetch() of /json-08: deliveredToClient 800246/800246
+  P3 fetch-once: fetch() of /json-big: deliveredToClient 3000247/3000247
+  P3 fetch-once: fetch() of /json-big-nr: deliveredToClient 3000246/3000246
+  P3 fetch-once: fetch() of /font-noext: deliveredToClient 3000241/3000241
+  P3 fetch-once: fetch() of /img-noext: deliveredToClient 3000240/3000240
+  P3 fetch-once: fetch() of /v.json: deliveredToClient 3000240/3000240
+  P3 fetch-once: fetch() of /page-noext: deliveredToClient 2000239/2000239
+  P3 fetch-once allowVideo: fetch() of /nr-video: deliveredToClient 3000239/3000239
+  P3 fetch-once allowVideo: fetch() of /nr-video-chunked: deliveredToClient 3000623/3000623
+  P3 fetch-once allowVideo: fetch() of /r-video: deliveredToClient 3000240/3000240
+  P3 fetch-once allowVideo: fetch() of /r-video with Range bytes=0-: deliveredToClient 0/0
+  P3 fetch-once allowVideo: fetch() of /json-small: deliveredToClient 300246/300246
+  P3 fetch-once allowVideo: fetch() of /json-08: deliveredToClient 800246/800246
+  P3 fetch-once allowVideo: fetch() of /json-big: deliveredToClient 3000247/3000247
+  P3 fetch-once allowVideo: fetch() of /json-big-nr: deliveredToClient 3000246/3000246
+  P3 fetch-once allowVideo: fetch() of /font-noext: deliveredToClient 3000241/3000241
+  P3 fetch-once allowVideo: fetch() of /img-noext: deliveredToClient 3000240/3000240
+  P3 fetch-once allowVideo: fetch() of /v.json: deliveredToClient 3000240/3000240
+  P3 fetch-once allowVideo: fetch() of /page-noext: deliveredToClient 2000239/2000239
+  P3 block: fetch() of /nr-video: deliveredToClient 3000239/3000239
+  P3 block: fetch() of /nr-video-chunked: deliveredToClient 3000623/3000623
+  P3 block: fetch() of /r-video: deliveredToClient 3000240/3000240
+  P3 block: fetch() of /r-video with Range bytes=0-: deliveredToClient 3000293/3000293
+  P3 block: fetch() of /json-small: deliveredToClient 300246/300246
+  P3 block: fetch() of /json-08: deliveredToClient 800246/800246
+  P3 block: fetch() of /json-big: deliveredToClient 3000247/3000247
+  P3 block: fetch() of /json-big-nr: deliveredToClient 3000246/3000246
+  P3 block: fetch() of /font-noext: deliveredToClient 3000241/3000241
+  P3 block: fetch() of /img-noext: deliveredToClient 3000240/3000240
+  P3 block: fetch() of /v.json: deliveredToClient 3000240/3000240
+  P3 block: fetch() of /page-noext: deliveredToClient 2000239/2000239
+  P4f block: a chain of 21 redirects before /landing.html: stubRequests 22/21
+  P4f block: a chain of 25 redirects before /landing.html: stubRequests 26/21
+  P4g fetch-once: a chain of 25 redirects: stubRequests 27/21
+== repro-parser
+  real log scratchpad/nov27/guard4/checkrepro-work/old/handoff/BANDWIDTH-LOG.md: only in old
+  real log scratchpad/nov27/guard4/checkrepro-work/new/handoff/BANDWIDTH-LOG.md: only in new
+== repro-proc
+  MORE A 2 wf-get processes at once, 600 KB each, daily cap 1 MB: stubRequests 1/2, deliveredToClient 600197/861317, stubWrote 600197/1200394
+  MORE A 6 wf-get processes at once, 300 KB each, daily cap 1 MB: stubRequests 1/3, deliveredToClient 300197/795978, stubWrote 300197/900591
+  MORE A 12 wf-get processes at once, 200 KB each, daily cap 1 MB: stubRequests 1/4, deliveredToClient 200197/796175, stubWrote 200197/800788
+  MORE A 12 wf-get processes at once, 190 KB each, daily cap 1 MB: stubRequests 1/4, deliveredToClient 190197/760788, stubWrote 190197/760788
+  B one wf-get run, five 300 KB files, daily cap 1 MB: stubRequests 4/3, deliveredToClient 1159663/862538
+  C wf-get --max-filesize 1, content-length 3 MB: deliveredToClient 290816/259072, stubWrote 3000198/3000198
+  C wf-get --max-filesize 1, content-length 30 MB: deliveredToClient 261120/193536, stubWrote 30000199/30000199
+  C wf-get --max-filesize 1, chunked 30 MB: deliveredToClient 1403904/1098425, stubWrote 4864777/4736761
+  C wf-get, the same 6 MB URL three times in one run: stubRequests 3/1, deliveredToClient 650240/160768
+  D1 wait shorter than the hold: stubRequests 1/0
+  D4 holder settles having used the whole cap: stubRequests 1/0
+== vitest: no old output lines
+== wfget
+  W1 gzip page: counted bytes vs compressed body vs decoded body: relayLine 726/726
+  W2 non-Webflow URL redirecting to a 300 KB Webflow file: relayLine 300416/300416
+  W3 Webflow URL redirecting to a Webflow image: relayLine 223/223
+  W4 Webflow image URL with no extension: relayLine 248/248
+  MORE W5 run cap 1 MB, first URL is a 3 MB file: relayLine 193536/195584
+  W6 trailing dot host and other subdomain: counted: relayLine 110392/110392
+  W7 Webflow redirect chain: counted vs sent: relayLine 200416/200416
+  W11 default out folder (cwd is <scratch> relayLine 1195/1195
+  W12 35 URLs with the default --max: relayLine 35850/35850
+  W13 --cache: relayLine 2195/2195
+  MORE W14 6 MB file (default 5 MB limit), redirect to .mp4: relayLine 160990/291038
+== worker: no old output lines
+== x
+  X1 206 with unknown total (bytes 0-999999/*), fetch-once: page fetch() of an extensionless Webflow URL: relayLine 3000225/3000225
+  X1 206 with unknown total (bytes 0-999999/*), block: page fetch() of an extensionless Webflow URL: relayLine 3000225/3000225
+  X2 416 to every Range, 200 without, fetch-once: page fetch() of an extensionless Webflow URL: relayLine 3000225/3000225
+  X2 416 to every Range, 200 without, block: page fetch() of an extensionless Webflow URL: relayLine 3000225/3000225
+  X3 1.2 MB, Range honoured, fetch-once: page fetch() of an extensionless Webflow URL: relayLine 1200225/1200225
+  X3 1.2 MB, Range honoured, block: page fetch() of an extensionless Webflow URL: relayLine 1200225/1200225
+  MORE X4 block, run cap 2 MB, 12 endless Webflow streams at once: requests 0/1, gets 0/1, relayLine 0/2770153
+  MORE X5 wf-get, run cap 0.5 MB, one endless stream: relayLine 642048/862208
+  X6 tally: 1 MB reserved by a live pid, pid alive, start time differs; day cap 1.5 MB: only in new
+  X6 tally: 1 MB reserved by a live pid, pid alive, no start time stored; day cap 1.5 MB: only in new
+  X6 tally: 1 MB reserved by a live pid, pid alive, start time matches; day cap 1.5 MB: only in new
+== x2
+  X7 fetch-once allowVideo, empty cache: fetch() of an extensionless 3 MB video with Range bytes=0-: relayLine 3000293/3000293
+  MORE X8 block: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: relayLine 9194229/9261813
+  X8 fetch-once: 60 fetches one after another, Range bytes=0-1 ignored (200, 3 MB), day cap 12 MB: relayLine 9259765/9196277
+  X10 block: one page goes to 12 apex URLs that 301 to www pages, one after another: relayLine 64732/64732
+  X9 R-4: page.goto vs g.finalResponse vs g.goto on an apex 301 to www: only in new
+== x3
+  X3 fetch-once: fetch() of an extensionless octet-stream MP4 3 MB, Range honoured: delivered 3000233/3000233
+  X3 fetch-once: fetch() of an extensionless octet-stream WebM 3 MB, Range honoured: delivered 3000233/3000233
+  X3 fetch-once: fetch() of an extensionless octet-stream MP4 3 MB, Range ignored: delivered 3000233/3000233
+  X3 block: fetch() of an extensionless octet-stream MP4 3 MB, Range honoured: delivered 3000233/3000233
+  X3 block: fetch() of an extensionless octet-stream WebM 3 MB, Range honoured: delivered 3000233/3000233
+  X3 block: fetch() of an extensionless octet-stream MP4 3 MB, Range ignored: delivered 3000233/3000233
+== x5rep: no old output lines
+== x8conn
+  X9 R-4: page.goto vs g.finalResponse vs g.goto on an apex 301 to www: only in new
+rows 372, rows with new delivered > old + 1 KB: 39

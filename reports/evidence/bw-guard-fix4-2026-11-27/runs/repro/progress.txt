@@ -1,0 +1,279 @@
+14:24:08 start repro-browser new
+14:25:09 end repro-browser new exit 0
+14:25:10 my chromium after repro-browser: 8 (all users' processes)
+14:25:10 start repro-proc new
+14:25:30 end repro-proc new exit 0
+14:25:31 my chromium after repro-proc: 6 (all users' processes)
+14:25:31 start repro-parser new
+14:25:31 end repro-parser new exit 0
+14:25:32 my chromium after repro-parser: 6 (all users' processes)
+14:25:32 start parser new
+14:25:32 end parser new exit 0
+14:25:33 my chromium after parser: 6 (all users' processes)
+14:25:33 start new new
+14:25:58 end new new exit 0
+14:25:59 my chromium after new: 8 (all users' processes)
+14:25:59 start n3 new
+14:26:42 end n3 new exit 0
+14:26:43 my chromium after n3: 8 (all users' processes)
+14:26:43 start n4 new
+14:26:51 end n4 new exit 0
+14:26:52 my chromium after n4: 8 (all users' processes)
+14:26:52 start n5 new
+14:26:58 end n5 new exit 0
+14:26:59 my chromium after n5: 6 (all users' processes)
+14:26:59 start n7 new
+14:27:26 end n7 new exit 0
+14:27:27 my chromium after n7: 8 (all users' processes)
+14:27:27 start n8b new
+14:27:27 end n8b new exit 0
+14:27:28 my chromium after n8b: 6 (all users' processes)
+14:27:28 start main-block new
+14:27:55 end main-block new exit 0
+14:27:56 my chromium after main-block: 8 (all users' processes)
+14:27:56 start main-cache-only new
+14:28:22 end main-cache-only new exit 0
+14:28:23 my chromium after main-cache-only: 8 (all users' processes)
+14:28:23 start crash new
+14:28:57 end crash new exit 0
+14:28:58 my chromium after crash: 6 (all users' processes)
+14:28:58 start wfget new
+14:28:59 end wfget new exit 0
+14:29:00 my chromium after wfget: 6 (all users' processes)
+14:29:00 start adv-redir new
+14:29:33 end adv-redir new exit 0
+14:29:34 my chromium after adv-redir: 8 (all users' processes)
+14:29:34 start adv-loop new
+14:31:35 end adv-loop new exit 0
+14:31:36 my chromium after adv-loop: 16 (all users' processes)
+14:31:36 start adv-cap new
+14:31:46 end adv-cap new exit 0
+14:31:47 my chromium after adv-cap: 13 (all users' processes)
+14:31:47 start adv-capseq new
+14:31:55 end adv-capseq new exit 0
+14:31:56 my chromium after adv-capseq: 14 (all users' processes)
+14:31:56 start adv-claim new
+14:32:03 end adv-claim new exit 0
+14:32:04 my chromium after adv-claim: 8 (all users' processes)
+14:32:04 start adv-procs new
+14:32:08 end adv-procs new exit 0
+14:32:09 my chromium after adv-procs: 6 (all users' processes)
+14:32:09 start adv-words new
+14:32:09 end adv-words new exit 0
+14:32:10 my chromium after adv-words: 6 (all users' processes)
+14:32:10 start adv-parser new
+14:32:11 end adv-parser new exit 0
+14:32:12 my chromium after adv-parser: 6 (all users' processes)
+14:32:12 start x new
+14:32:27 end x new exit 1
+14:32:28 my chromium after x: 12 (all users' processes)
+14:32:28 start x2 new
+14:32:34 end x2 new exit 1
+14:32:35 my chromium after x2: 13 (all users' processes)
+14:32:35 start x3 new
+14:32:40 end x3 new exit 0
+14:32:41 my chromium after x3: 13 (all users' processes)
+14:32:41 start x5rep new
+14:32:50 end x5rep new exit 1
+14:32:51 my chromium after x5rep: 14 (all users' processes)
+14:32:51 start x8conn new
+14:32:57 end x8conn new exit 0
+14:32:58 my chromium after x8conn: 16 (all users' processes)
+14:32:58 start refused new
+14:33:05 end refused new exit 1
+14:33:06 my chromium after refused: 12 (all users' processes)
+14:33:06 start a-bytes new
+14:33:40 end a-bytes new exit 0
+14:33:41 my chromium after a-bytes: 12 (all users' processes)
+14:33:41 start a-redir new
+14:34:15 end a-redir new exit 0
+14:34:16 my chromium after a-redir: 14 (all users' processes)
+14:34:16 start a-loop new
+14:36:16 end a-loop new exit 0
+14:36:17 my chromium after a-loop: 14 (all users' processes)
+14:36:17 start a-cap new
+14:36:28 end a-cap new exit 0
+14:36:29 my chromium after a-cap: 14 (all users' processes)
+14:36:29 start a-cap3 new
+14:36:37 end a-cap3 new exit 0
+14:36:38 my chromium after a-cap3: 14 (all users' processes)
+14:36:38 start a-capseq-b new
+14:36:46 end a-capseq-b new exit 0
+14:36:47 my chromium after a-capseq-b: 14 (all users' processes)
+14:36:47 start a-claim new
+14:36:53 end a-claim new exit 0
+14:36:54 my chromium after a-claim: 14 (all users' processes)
+14:36:54 start a-procs3 new
+14:36:57 end a-procs3 new exit 0
+14:36:58 my chromium after a-procs3: 12 (all users' processes)
+14:36:58 start a-r4 new
+14:36:59 end a-r4 new exit 0
+14:37:00 my chromium after a-r4: 14 (all users' processes)
+14:37:00 start a-forms new
+14:37:12 end a-forms new exit 0
+14:37:13 my chromium after a-forms: 15 (all users' processes)
+14:37:13 start a-parser3 new
+14:37:14 end a-parser3 new exit 0
+14:37:15 my chromium after a-parser3: 12 (all users' processes)
+14:37:15 ALL DONE new
+14:37:15 start repro-browser old
+14:38:10 end repro-browser old exit 0
+14:38:11 my chromium after repro-browser: 12 (all users' processes)
+14:38:11 start repro-proc old
+14:38:22 end repro-proc old exit 0
+14:38:23 my chromium after repro-proc: 6 (all users' processes)
+14:38:23 start repro-parser old
+14:38:23 end repro-parser old exit 0
+14:38:24 my chromium after repro-parser: 6 (all users' processes)
+14:38:24 start parser old
+14:38:24 end parser old exit 0
+14:38:25 my chromium after parser: 6 (all users' processes)
+14:38:25 start new old
+14:38:51 end new old exit 0
+14:38:52 my chromium after new: 13 (all users' processes)
+14:38:52 start n3 old
+14:39:36 end n3 old exit 0
+14:39:37 my chromium after n3: 16 (all users' processes)
+14:39:37 start n4 old
+14:39:44 end n4 old exit 0
+14:39:45 my chromium after n4: 13 (all users' processes)
+14:39:45 start n5 old
+14:39:51 end n5 old exit 0
+14:39:52 my chromium after n5: 8 (all users' processes)
+14:39:52 start n7 old
+14:40:17 end n7 old exit 0
+14:40:18 my chromium after n7: 14 (all users' processes)
+14:40:18 start n8b old
+14:40:19 end n8b old exit 0
+14:40:20 my chromium after n8b: 12 (all users' processes)
+14:40:20 start main-block old
+14:40:46 end main-block old exit 0
+14:40:47 my chromium after main-block: 8 (all users' processes)
+14:40:47 start main-cache-only old
+14:41:13 end main-cache-only old exit 0
+14:41:14 my chromium after main-cache-only: 8 (all users' processes)
+14:41:14 start crash old
+14:41:48 end crash old exit 0
+14:41:49 my chromium after crash: 6 (all users' processes)
+14:41:49 start wfget old
+14:41:50 end wfget old exit 0
+14:41:51 my chromium after wfget: 6 (all users' processes)
+14:41:51 start adv-redir old
+14:42:25 end adv-redir old exit 0
+14:42:26 my chromium after adv-redir: 8 (all users' processes)
+14:42:26 start adv-loop old
+14:44:26 end adv-loop old exit 0
+14:44:27 my chromium after adv-loop: 8 (all users' processes)
+14:44:27 start adv-cap old
+14:44:37 end adv-cap old exit 0
+14:44:38 my chromium after adv-cap: 8 (all users' processes)
+14:44:38 start adv-capseq old
+14:44:45 end adv-capseq old exit 0
+14:44:46 my chromium after adv-capseq: 8 (all users' processes)
+14:44:46 start adv-claim old
+14:44:47 end adv-claim old exit 1
+14:44:48 my chromium after adv-claim: 11 (all users' processes)
+14:44:48 start adv-procs old
+14:44:48 end adv-procs old exit 1
+14:44:49 my chromium after adv-procs: 6 (all users' processes)
+14:44:49 start adv-words old
+14:44:50 end adv-words old exit 0
+14:44:51 my chromium after adv-words: 6 (all users' processes)
+14:44:51 start x old
+14:45:03 end x old exit 1
+14:45:04 my chromium after x: 8 (all users' processes)
+14:45:04 start x2 old
+14:45:09 end x2 old exit 0
+14:45:10 my chromium after x2: 8 (all users' processes)
+14:45:10 start x3 old
+14:45:15 end x3 old exit 0
+14:45:16 my chromium after x3: 8 (all users' processes)
+14:45:16 start x5rep old
+14:45:24 end x5rep old exit 0
+14:45:25 my chromium after x5rep: 6 (all users' processes)
+14:45:25 start x8conn old
+14:45:31 end x8conn old exit 0
+14:45:32 my chromium after x8conn: 8 (all users' processes)
+14:45:32 start refused old
+14:45:39 end refused old exit 0
+14:45:40 my chromium after refused: 6 (all users' processes)
+14:45:40 start a-bytes old
+14:46:14 end a-bytes old exit 0
+14:46:15 my chromium after a-bytes: 8 (all users' processes)
+14:46:15 start a-redir old
+14:46:48 end a-redir old exit 0
+14:46:49 my chromium after a-redir: 8 (all users' processes)
+14:46:49 start a-loop old
+14:48:50 end a-loop old exit 0
+14:48:51 my chromium after a-loop: 8 (all users' processes)
+14:48:51 start a-cap old
+14:49:01 end a-cap old exit 0
+14:49:02 my chromium after a-cap: 8 (all users' processes)
+14:49:02 start a-cap3 old
+14:49:08 end a-cap3 old exit 0
+14:49:09 my chromium after a-cap3: 8 (all users' processes)
+14:49:09 start a-capseq-b old
+14:49:16 end a-capseq-b old exit 0
+14:49:17 my chromium after a-capseq-b: 8 (all users' processes)
+14:49:17 start a-claim old
+14:49:17 end a-claim old exit 1
+14:49:18 my chromium after a-claim: 11 (all users' processes)
+14:49:18 start a-procs3 old
+14:49:19 end a-procs3 old exit 1
+14:49:20 my chromium after a-procs3: 6 (all users' processes)
+14:49:20 start a-r4 old
+14:49:20 end a-r4 old exit 1
+14:49:21 my chromium after a-r4: 12 (all users' processes)
+14:49:21 start a-forms old
+14:49:22 end a-forms old exit 1
+14:49:23 my chromium after a-forms: 12 (all users' processes)
+14:49:23 ALL DONE old
+14:49:29 TREES DONE
+14:49:44 start ext4.new
+14:50:35 end ext4.new
+14:50:35 start ext4.old
+14:51:26 end ext4.old
+14:51:26 start a-bytes-B1-rate12M.new
+14:51:36 end a-bytes-B1-rate12M.new
+14:51:36 start a-bytes-B1-rate12M.old
+14:51:45 end a-bytes-B1-rate12M.old
+14:51:45 start a-bytes-B4.new
+14:51:49 end a-bytes-B4.new
+14:51:49 start a-bytes-B4.old
+14:51:53 end a-bytes-B4.old
+14:51:53 start guard-tests-1.new
+14:52:30 end guard-tests-1.new
+14:52:30 start guard-tests-2.new
+14:53:07 end guard-tests-2.new
+14:53:07 start guard-tests-3.new
+14:53:44 end guard-tests-3.new
+14:53:44 start worker.new
+14:53:44 end worker.new
+14:53:44 PHASE2 DONE
+14:53:56 start cut4-rate12M.both
+14:55:31 end cut4-rate12M.both
+14:55:31 start cut4-rate2M.both
+14:56:52 end cut4-rate2M.both
+14:56:52 start vitest.new
+14:57:05 end vitest.new
+14:57:05 PHASE3 DONE
+14:57:11 start refused-alt1.both
+14:57:26 end refused-alt1.both
+14:57:26 start refused-alt2.both
+14:57:40 end refused-alt2.both
+14:57:40 start refused-alt3.both
+14:57:55 end refused-alt3.both
+14:57:55 start x5rep-alt1.both
+14:58:12 end x5rep-alt1.both
+14:58:12 start x5rep-alt2.both
+14:58:28 end x5rep-alt2.both
+14:58:28 PHASE4 DONE
+14:58:30 start inv4-1.new
+14:58:32 end inv4-1.new
+14:58:32 start inv4-1.old
+14:58:35 end inv4-1.old
+14:58:35 start inv4-2.new
+14:58:38 end inv4-2.new
+14:58:38 start inv4-2.old
+14:58:40 end inv4-2.old
+14:58:40 PHASE5 DONE
