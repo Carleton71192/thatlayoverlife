@@ -36,7 +36,7 @@ const unhandled = [];
 process.on('unhandledRejection', e => { unhandled.push(String(e && e.message || e)); });
 
 /* ---------- stub server ---------- */
-let server, port, hits = {}, ranges = [];
+let server, port, hits = {}, ranges = [], sent = [];
 const hit = k => { hits[k] = (hits[k] || 0) + 1; };
 const A = () => `http://127.0.0.1:${port}`;
 const L = () => `http://localhost:${port}`;
@@ -58,6 +58,17 @@ function page(p) {
   if (p === '/unload.html') return `<!doctype html><p>unload</p><script>addEventListener('pagehide', () => {
     navigator.sendBeacon('${a}/u-beacon', 'x'); fetch('${a}/u-ka', {method:'POST', body:'y', keepalive:true}).catch(()=>{});
     navigator.sendBeacon('${l}/u-beacon-other', 'x'); fetch('${l}/u-ka-other', {method:'POST', body:'y', keepalive:true}).catch(()=>{}); });</script>`;
+  if (p === '/many.html') return Array.from({ length: 45 }, (_, i) => `<img src="${a}/slow/m${i}.png?ms=800">`).join('') + '<p>many</p>';
+  if (p === '/three.html') return Array.from({ length: 3 }, (_, i) => `<img src="${a}/slow/t${i}.png?ms=500">`).join('') + '<p>three</p>';
+  if (p === '/bigcl.html') return `<!doctype html><script src="${a}/cl/3000.js"></script><p>bigcl</p>`;
+  if (p === '/noext.html') return `<!doctype html><p>noext</p><script>
+    window.__v = fetch('${a}/media/clip').then(r => r.arrayBuffer()).then(b => b.byteLength, e => 'blocked');
+    window.__j = fetch('${a}/api/small').then(r => r.status + ' ' + r.headers.get('content-range') + ' ' + r.statusText.length).then(x => x, e => 'err');
+    window.__jt = fetch('${a}/api/small').then(r => r.text(), e => 'err');
+    window.__big = fetch('${a}/api/big').then(r => r.text()).then(t => t.length, e => 'err');</script>`;
+  if (p === '/landing.html') return `<!doctype html><p>landing</p><img src="rel.png"><script>window.__loc = location.href;</script>`;
+  if (p === '/beacon-live.html') return `<!doctype html><p>beacon</p><script>window.__b = navigator.sendBeacon('${a}/live-beacon', 'x');
+    window.__f = fetch('${a}/live-post', {method: 'POST', body: 'x'}).then(() => 'sent', () => 'stopped');</script>`;
   if (p === '/realhosts.html') return `<!doctype html><img src="http://www.thatlayover.life.:${port}/img/dot.png"><img src="http://cdn.thatlayover.life:${port}/img/sub.png">
     <img src="http://uploads-ssl.webflow.com:${port}/img/old.png"><script>window.__s = fetch('http://cdn.prod.website-files.com.:${port}/a%2Epng').then(r=>r.status, e=>'blocked');</script>`;
   return null;
@@ -91,6 +102,21 @@ test.before(async () => {
     if (p === '/redir-to-img') { res.writeHead(302, { location: '/img/r.png' }); return res.end(); }
     if (p === '/to-wf-img') { res.writeHead(302, { location: `${A()}/img/s2.png`, 'access-control-allow-origin': '*' }); return res.end(); }
     if (p === '/noext-img') { res.writeHead(200, { 'content-type': 'image/png' }); return res.end(PNG); }
+    if (p.startsWith('/slow/')) { const ms = +(/ms=(\d+)/.exec(req.url) || [0, 0])[1]; const t = setTimeout(() => { res.writeHead(200, { 'content-type': 'image/png' }); res.end(PNG); }, ms); res.on('close', () => clearTimeout(t)); return; }
+    if (p.startsWith('/cl/')) { const n = +p.slice(4).replace(/\.js$/, '') * 1000; res.writeHead(200, { 'content-type': 'application/javascript', 'content-length': n }); sent.push({ p, n }); return res.end(Buffer.alloc(n, 32)); }
+    if (p === '/media/clip' || p === '/api/small' || p === '/api/big') {
+      const body = p === '/media/clip' ? VIDEO : p === '/api/small' ? Buffer.from('{"small":true}') : Buffer.alloc(800000, 120);
+      const type = p === '/media/clip' ? 'video/mp4' : 'application/json';
+      ranges.push(`${p} ${req.headers.range || 'none'}`);
+      const m = /^bytes=(\d+)-(\d*)$/.exec(req.headers.range || '');
+      if (!m) { sent.push({ p, n: body.length }); res.writeHead(200, { 'content-type': type, 'content-length': body.length }); return res.end(body); }
+      const a = +m[1], b = m[2] ? Math.min(+m[2], body.length - 1) : body.length - 1;
+      sent.push({ p, n: b - a + 1 });
+      res.writeHead(206, { 'content-type': type, 'content-range': `bytes ${a}-${b}/${body.length}`, 'accept-ranges': 'bytes', 'content-length': b - a + 1 });
+      return res.end(body.subarray(a, b + 1));
+    }
+    if (p === '/hop') { res.writeHead(301, { location: `${L()}/landing.html` }); return res.end(); }
+    if (p === '/loop') { res.writeHead(302, { location: '/loop' }); return res.end(); }
     if (req.method !== 'GET') { res.writeHead(204); return res.end(); }
     res.writeHead(404); res.end('no');
   });
@@ -289,12 +315,16 @@ test('wf-get: a redirect to an image is refused before it is fetched, an image w
 test('wf-get: --max-filesize and the run cap stop a GET during the transfer (W5); --max is 30 by default', async () => {
   const dir = tmp();
   const a = await G.wfGet([`${A()}/huge.html`, `${A()}/plain.html`], opt({ out: dir, quiet: true, maxFileMB: 1 }));
-  assert.match(a.results[0].error, /over --max-filesize 1 MB/); assert.ok(a.bytes < 1.1e6, String(a.bytes)); assert.equal(a.results[1].status, 200);
+  /* N-2: huge.html is chunked, so curl cuts it during the transfer at 1 MB and it counts what curl read plus CUT_ALLOWANCE
+     (this assertion was a.bytes < 1.1e6, which pinned the undercount) */
+  assert.match(a.results[0].error, /over --max-filesize 1 MB/); assert.ok(a.bytes > 1e6 + W.CUT_ALLOWANCE && a.bytes < 1.1e6 + W.CUT_ALLOWANCE, String(a.bytes)); assert.equal(a.results[1].status, 200);
   assert.equal(fs.existsSync(path.join(dir, 'huge.html')), false);
   const b = await G.wfGet([`${A()}/huge.html`, `${A()}/plain.html`], opt({ out: dir, quiet: true, runCapMB: 0.5 }));
-  assert.equal(b.stopped.cap, 'run'); assert.ok(b.bytes < 0.5e6, String(b.bytes)); assert.equal(b.gets, 1, 'curl refuses a file of known size over the limit');
+  /* N-2: cut at what is left of the run cap, it counts what curl read plus CUT_ALLOWANCE (was b.bytes < 0.5e6, the undercount) */
+  assert.equal(b.stopped.cap, 'run'); assert.ok(b.bytes < 0.5e6 + W.CUT_ALLOWANCE && b.bytes > W.CUT_ALLOWANCE, String(b.bytes)); assert.equal(b.gets, 1, 'curl stops a file over the limit');
   const e = await G.wfGet([`${A()}/endless.js`, `${A()}/plain.html`], opt({ out: dir, quiet: true, runCapMB: 0.5 }));
-  assert.equal(e.stopped.cap, 'run'); assert.ok(e.bytes <= 0.5e6 && e.bytes > 0.4e6, 'a stream is cut during the transfer: ' + e.bytes); assert.equal(e.gets, 1);
+  /* N-2: a stream cut during the transfer counts what curl read plus CUT_ALLOWANCE (was e.bytes <= 0.5e6, the undercount) */
+  assert.equal(e.stopped.cap, 'run'); assert.ok(e.bytes <= 0.5e6 + W.CUT_ALLOWANCE && e.bytes > 0.4e6 + W.CUT_ALLOWANCE, 'a stream is cut during the transfer: ' + e.bytes); assert.equal(e.gets, 1);
   const many = Array.from({ length: 31 }, (_, i) => `${A()}/plain.html?n=${i}`);
   const c = await G.wfGet(many, opt({ out: dir, quiet: true }));
   assert.equal(c.gets, 30); assert.equal(c.stopped.cap, 'max');
@@ -316,6 +346,93 @@ test('wf-get CLI: exit 3 at the daily cap, 2 without a label; the output folder 
     assert.equal(fs.existsSync(path.join(dir, 'wf-get-out')), false);
     assert.match(W.makeCache(cacheDir).get(`${A()}/plain.html`).body.toString(), /plain/);
   } finally { fs.rmSync(out, { recursive: true, force: true }); try { fs.rmdirSync(path.dirname(out)); } catch (e) { } }
+});
+
+/* ---------- second round: check findings N-1 to N-7 (reports/evidence/bw-guard-fix-2026-11-27/check.md) ---------- */
+test('N-5: a line repeated in one log counts each time; a line in both logs counts as often as the file that holds it most', () => {
+  const dir = tmp(), a = path.join(dir, 'main.md'), b = path.join(dir, 'wt.md'), one = '- 25 Nov, sweep pass: 100 MB (E)\n';
+  fs.writeFileSync(a, one + one); fs.writeFileSync(b, one);
+  assert.equal(W.dailyTotalMB(one + one, day), 200);
+  assert.equal(W.readDailyTotalMB([a], day), 200, 'twice in one file');
+  assert.equal(W.readDailyTotalMB([b, b], day), 100, 'the same file twice counts once');
+  assert.equal(W.readDailyTotalMB([a, b], day), 200, 'main has it twice, the worktree once: the larger count, not 300');
+  fs.writeFileSync(b, one + '- 25 Nov, worktree only: 5 MB (M)\n');
+  assert.equal(W.readDailyTotalMB([a, b], day), 205);
+});
+test('N-6: a dated line with a size that is not a bullet fails loudly and names the line; "3 M" and "bytes" are sizes', () => {
+  const d27 = d('2026-11-27');
+  for (const l of ['1. 27 Nov, x: 3 MB', '| 27 Nov | x | 3 MB |', '27 Nov, x: 3 MB', '2) Nov 27: 3 MB', 'On 2026-11-27 a run used 3000000 bytes', '**27 Nov**, x: 3 M']) {
+    assert.throws(() => W.lineMBForDay(l, d27), e => e instanceof W.WfLogFormatError && e.message.includes(l), l);
+    assert.throws(() => W.dailyTotalMB(`# log\n- 27 Nov, ok: 1 MB\n${l}\n`, d27), e => e instanceof W.WfLogFormatError && e.message.includes('line 3: ' + l), l);
+  }
+  for (const [l, mb] of [['- 27 Nov, x: 3 M', 3], ['- 27 Nov, x: 3000000 bytes', 3], ['- 27 Nov, x: 1,500,000 bytes and 2 M (E)', 3.5], ['- 27 Nov, x: 5 to 7 M', 7], ['- 27 Nov, x: 0.6 MB (M); 0 MB from Webflow (M)', 0.6]]) assert.equal(W.lineMBForDay(l, d27), mb, l);
+  /* lines that are not log entries stay quiet: no size, no date, or prose whose sizes come before any date */
+  for (const l of ['## Period from about 20 Nov 2026', '| Date | MB |', 'Budget: 250 MB a day, 5 GB a month. Rules: the 13 Nov STANDING RULE.', 'took 5 m on 27 Nov']) assert.equal(W.lineMBForDay(l, d27), 0, l);
+  /* the real logs (this checkout and the main checkout) still parse with no error */
+  const f = path.join(__dirname, '..', '..', 'handoff', 'BANDWIDTH-LOG.md');
+  for (const x of ['2026-11-20', '2026-11-21', '2026-11-25', '2026-11-27']) W.readDailyTotalMB([f, W.MAIN_LOG], d(x));
+  const f2 = path.join(tmp(), 'log.md'); fs.writeFileSync(f2, '- 25 Nov, ok: 1 MB (M)\n| 25 Nov | table run | 40 MB |\n');
+  assert.throws(() => W.createRun({ label: 'x', logFile: f2, stateDir: path.join(tmp(), 's'), now: day }), e => e instanceof W.WfLogFormatError && /log\.md:2: \| 25 Nov \| table run \| 40 MB \|/.test(e.message));
+});
+test('N-1: open reservations never trip a run; a blocked GET waits, then is refused alone; a cap in counted bytes still trips', async () => {
+  const st = path.join(tmp(), 's'), f = path.join(tmp(), 'log.md'), mod = path.join(__dirname, '..', 'wf-guard.cjs');
+  /* another process holds a 1 MB reservation (the whole day cap) and keeps it for 1.5 s */
+  const child = execFile(process.execPath, ['-e', `const W=require(${JSON.stringify(mod)});const r=W.createRun({label:'holder',logFile:${JSON.stringify(f)},stateDir:${JSON.stringify(st)},now:'${day.toISOString()}',dayCapMB:1,onTrip:'close'});const g=r.tryReserve(5e6);console.log('held '+g.bytes);setTimeout(()=>{r.settle(g,0.2e6);console.log('settled');setTimeout(()=>{},2000);},1500);`]);
+  await new Promise(r => child.stdout.on('data', x => { if (/held/.test(x)) r(); }));
+  const trips = [];
+  const me = W.createRun({ label: 'me', logFile: f, stateDir: st, now: day, dayCapMB: 1, onTrip: e => trips.push(e.message) });
+  assert.equal(me.dayBaseBytes(), 0, 'a run starts: reservations are not bytes');
+  assert.deepEqual(me.tryReserve(5e6), { bytes: 0, by: 'busy', left: 1e6 });
+  const short = await me.reserveWait(5e6, 300);
+  assert.equal(short.bytes, 0); assert.equal(short.by, 'busy'); assert.equal(me.error, null); assert.deepEqual(trips, []);
+  assert.equal(me.waitRefused, 1);
+  const t0 = Date.now(); const g = await me.reserveWait(5e6, 10000);
+  assert.ok(Date.now() - t0 >= 500, 'waited for the other run to settle'); assert.equal(g.bytes, 0.8e6); assert.equal(g.by, 'day');
+  me.settle(g, 0.7e6); assert.deepEqual(trips, []);
+  /* now 0.9 MB is counted: 0.1 MB left is enough for a small GET, and a cap reached in counted bytes trips */
+  const g2 = me.tryReserve(5e6); assert.equal(g2.bytes, 0.1e6);
+  me.settle(g2, 0.1e6); assert.equal(trips.length, 1); assert.match(trips[0], /brought the 25 Nov total to 1\.00 MB \(0\.80 MB in this run\), which reached the daily cap of 1 MB/);
+  child.kill(); await new Promise(r => child.on('exit', r));
+  /* too little left in counted bytes: the run trips and says so */
+  const r3 = W.createRun({ label: 'tiny', logFile: path.join(tmp(), 'log.md'), stateDir: path.join(tmp(), 's'), now: day, runCapMB: 0.02, onTrip: e => trips.push(e.message) });
+  assert.equal(r3.tryReserve(5e6).by, 'run'); assert.match(trips[1], /tiny stopped at the run cap of 0\.02 MB: 0\.00 MB counted from Webflow in this run and 0\.02 MB left, too little for another GET/);
+});
+test('N-1: wf-get processes started together share the daily cap in counted bytes: as many run as fit, never more (check N5)', async () => {
+  const mod = path.join(__dirname, '..', 'wf-get.cjs');
+  for (const [n, kb, fit] of [[2, 600, 1], [6, 300, 3], [12, 190, 5]]) {
+    const st = path.join(tmp(), 's'), f = path.join(tmp(), 'log.md'); sent = [];
+    const at = Date.now() + 1500;
+    const code = i => `const G=require(${JSON.stringify(mod)});setTimeout(()=>G.wfGet([${JSON.stringify(`${A()}/cl/${kb}.js?p=`)}+${i}],{label:'n5-${i}',out:${JSON.stringify(tmp())},logFile:${JSON.stringify(f)},stateDir:${JSON.stringify(st)},dayCapMB:1,hosts:['127.0.0.1'],now:'${day.toISOString()}',quiet:true}).then(r=>console.log(JSON.stringify({ok:r.results[0].status===200&&!r.results[0].error,bytes:r.bytes,err:r.results[0].error||null,stopped:r.stopped&&r.stopped.message})),e=>console.log(JSON.stringify({ok:false,start:e.message}))),Math.max(0,${at}-Date.now()));`;
+    const outs = await Promise.all(Array.from({ length: n }, (_, i) => runCli(['-e', code(i)])));
+    const rs = outs.map(o => JSON.parse(o.stdout.trim() || '{"ok":false}'));
+    assert.equal(rs.filter(r => r.ok).length, fit, `${n} x ${kb} KB: ` + JSON.stringify(rs));
+    const whole = sent.filter(x => x.p.startsWith('/cl/')).length;
+    assert.ok(whole >= fit, 'stub answers ' + whole);
+    const t = W.readTally(st, day); const counted = Object.values(t.runs).reduce((s, r) => s + (+r.bytes || 0), 0);
+    assert.ok(fit * kb * 1000 <= 1e6 && counted >= fit * kb * 1000, `counted ${counted}`);
+  }
+});
+test('N-2: a response refused at a size limit counts its declared length up to the limit, or 256 KB; it is not fetched again', async () => {
+  const cut = (wire, cl) => ({ truncated: true, wire, headers: cl ? { 'content-length': String(cl) } : {} });
+  assert.equal(W.countedBytes({ truncated: false, wire: 1234, headers: {} }, 5e6), 1234);
+  assert.equal(W.countedBytes(cut(165, 3e6), 1e6), 165 + 1e6, 'declared 3 MB, limit 1 MB: the limit');
+  assert.equal(W.countedBytes(cut(165, 30e6), 0.1e6), 165 + W.CUT_ALLOWANCE, 'a small limit: the allowance');
+  assert.equal(W.countedBytes(cut(165, 0.2e6), 0.1e6), 165 + 0.2e6, 'never more than the declared length');
+  assert.equal(W.countedBytes(cut(1000169), 1e6), 1000169 + W.CUT_ALLOWANCE, 'cut during a chunked transfer: what curl read plus the allowance');
+  sent = [];
+  const dir = tmp();
+  const r = await G.wfGet([`${A()}/cl/3000.js`, `${A()}/cl/3000.js`], opt({ out: dir, quiet: true, maxFileMB: 1 }));
+  assert.match(r.results[0].error, /over --max-filesize 1 MB/); assert.match(r.results[1].error, /over the size limit earlier in this run/);
+  assert.ok(r.bytes > 1e6 && r.bytes < 1e6 + 1000, 'counted ' + r.bytes); assert.equal(r.gets, 1, 'asked for once');
+  assert.equal(sent.filter(x => x.p === '/cl/3000.js').length, 1);
+  assert.match(r.line, /1 over the size limit, 1 refused again as over the size limit earlier in the run$/);
+});
+test('N-7: a trip that refuses the first GET says it was refused and how much was counted', async () => {
+  const r = await G.wfGet([`${A()}/cl/3000.js`], opt({ out: tmp(), quiet: true, runCapMB: 0.5 }));
+  assert.equal(r.stopped.cap, 'run');
+  assert.match(r.stopped.message, /test-run stopped at the run cap of 0\.5 MB: a GET of http:\/\/127\.0\.0\.1:\d+\/cl\/3000\.js was refused because it was larger than the 0\.50 MB left; 0\.48 MB counted from Webflow in this run, the refused GET included/);
+  assert.doesNotMatch(r.stopped.message, /reached 0\.00 MB/);
+  assert.match(r.line, /0\.48 MB from Webflow \(M\); STOPPED at the run cap$/);
 });
 
 /* ---------- the guard in a real Chromium ---------- */
@@ -510,10 +627,12 @@ test.describe('guard in Chromium', { skip }, () => {
     await p.goto(`${L()}/endless.html`, { timeout: 10000 }).catch(() => { });
     for (let i = 0; i < 100 && !err; i++) await sleep(50);
     assert.ok(err instanceof W.WfBudgetError); assert.equal(err.cap, 'run');
-    assert.ok(g.stats().bytes > 0.9e6 && g.stats().bytes <= 1.01e6, 'bytes ' + g.stats().bytes);
+    /* N-2: the cut stream counts what curl read plus CUT_ALLOWANCE (these lines pinned 0.9 to 1.01 MB, the undercount) */
+    assert.ok(g.stats().bytes > 0.9e6 + W.CUT_ALLOWANCE && g.stats().bytes <= 1.01e6 + W.CUT_ALLOWANCE, 'bytes ' + g.stats().bytes);
     assert.throws(() => g.check(), W.WfBudgetError);
+    assert.match(err.message, /a GET of \S+endless\.js was refused because it was larger than the 1\.00 MB left; 1\.2\d MB counted/);
     await assert.rejects(p.goto(`${L()}/plain.html`));
-    assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /0\.9\d MB from Webflow \(M\).*STOPPED at the run cap/);
+    assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /1\.2\d MB from Webflow \(M\).*STOPPED at the run cap/);
     /* a response that stalls is cut at the timeout and counted as unfinished */
     const b = await newGuarded({ mode: 'block', fetchTimeoutS: 1 });
     const p2 = await b.ctx.newPage(); await p2.goto(`${L()}/slow.html`, { timeout: 10000 }).catch(() => { }); await sleep(300);
@@ -545,7 +664,8 @@ test.describe('guard in Chromium', { skip }, () => {
     await p.goto(`${L()}/big.html`).catch(() => { });
     for (let i = 0; i < 50 && !err; i++) await sleep(50);
     assert.ok(err instanceof W.WfBudgetError); assert.equal(err.cap, 'run');
-    assert.ok(g.stats().bytes <= 0.1e6, String(g.stats().bytes));
+    /* N-2: big.js is chunked and cut at about 0.08 MB; it counts that plus CUT_ALLOWANCE (was bytes <= 0.1e6, the undercount) */
+    assert.ok(g.stats().bytes > W.CUT_ALLOWANCE && g.stats().bytes <= 0.1e6 + W.CUT_ALLOWANCE, String(g.stats().bytes));
     assert.match(fs.readFileSync(g.run.logFile, 'utf8'), /STOPPED at the run cap/);
   });
 
@@ -581,5 +701,85 @@ test.describe('guard in Chromium', { skip }, () => {
     const g = W.guard(ctx, opt({ label: 'ok' })); await g.ready;
     assert.throws(() => W.guard(ctx, opt({ label: 'again' })), /already guarded/);
     await ctx.close();
+  });
+  /* ---------- second round: check findings N-1 to N-7 ---------- */
+  test('N-1: 45 small Webflow images at once in fetch-once load without a trip (check n7, was a stop at 0.00 MB)', async () => {
+    hits = {}; const trips = [];
+    const { ctx, g } = await newGuarded({ mode: 'fetch-once', cacheDir: path.join(tmp(), 'assets'), onTrip: e => trips.push(e.message) });
+    const p = await ctx.newPage(); await p.goto(`${L()}/many.html`, { timeout: 20000 });
+    assert.deepEqual(trips, []); assert.equal(g.stats().stopped, null);
+    assert.equal(await p.evaluate(() => [...document.images].filter(i => i.naturalWidth === 1).length), 45);
+    const s = g.stats(); assert.equal(s.cacheFetches, 45); assert.equal(s.gets, 45); assert.ok(s.waits >= 5, 'at least 5 GETs waited for reservations: ' + s.waits); assert.equal(s.waitRefused, 0);
+    assert.equal(Object.keys(hits).filter(k => k.startsWith('GET /slow/m')).length, 45);
+    await ctx.close();
+  });
+
+  test('N-1: 10 MB left of the daily cap and 3 images at once: all three load, no trip (check n7b)', async () => {
+    hits = {}; const trips = []; const f = path.join(tmp(), 'log.md'); fs.writeFileSync(f, '- 25 Nov, earlier work: 240 MB (M)\n');
+    const { ctx, g } = await newGuarded({ mode: 'fetch-once', cacheDir: path.join(tmp(), 'assets'), logFile: f, onTrip: e => trips.push(e.message) });
+    const p = await ctx.newPage(); await p.goto(`${L()}/three.html`, { timeout: 20000 });
+    assert.deepEqual(trips, []);
+    assert.equal(await p.evaluate(() => [...document.images].filter(i => i.naturalWidth === 1).length), 3);
+    assert.equal(g.stats().cacheFetches, 3); assert.ok(g.stats().waits >= 1, 'the third GET waited: ' + g.stats().waits);
+    await ctx.close(); await sleep(50);
+    assert.doesNotMatch(fs.readFileSync(f, 'utf8'), /STOPPED/);
+  });
+
+  test('N-2: block mode remembers a GET refused at getCapMB and never asks for it again in the run', async () => {
+    sent = [];
+    const { ctx, g } = await newGuarded({ mode: 'block', getCapMB: 1 });
+    const p = await ctx.newPage(); await p.goto(`${L()}/bigcl.html`); await p.goto(`${L()}/bigcl.html`); await sleep(200);
+    assert.equal(sent.filter(x => x.p === '/cl/3000.js').length, 1, 'fetched once');
+    const s = g.stats(); assert.equal(s.tooBig, 1); assert.equal(s.refusedAgain, 1); assert.equal(s.stopped, null);
+    assert.ok(s.bytes >= 1e6 && s.bytes < 1e6 + 1000, 'counted up to the 1 MB limit: ' + s.bytes);
+    await ctx.close(); await sleep(50);
+    assert.match(fs.readFileSync(g.run.logFile, 'utf8').trim(), /1 over the size limit, 1 refused again as over the size limit earlier in the run$/);
+  });
+
+  test('N-3: an extensionless fetch() of a Webflow video gets at most one chunk, with a Range header, in every fetching mode', async () => {
+    for (const o of [{ mode: 'fetch-once' }, { mode: 'fetch-once', allowVideo: true }, { mode: 'block' }]) {
+      ranges = []; sent = [];
+      const { ctx, g } = await newGuarded(Object.assign({ cacheDir: path.join(tmp(), 'assets'), videoChunkMB: 0.5 }, o));
+      const p = await ctx.newPage(); await p.goto(`${L()}/noext.html`); await sleep(300);
+      assert.equal(await p.evaluate(() => window.__v), 'blocked', JSON.stringify(o));
+      const clip = ranges.filter(r => r.startsWith('/media/clip'));
+      assert.deepEqual(clip, ['/media/clip bytes=0-499999'], JSON.stringify(o) + ' ' + clip);
+      const clipBytes = sent.filter(x => x.p === '/media/clip').reduce((a, x) => a + x.n, 0);
+      assert.ok(clipBytes <= 500000, 'the stub sent ' + clipBytes + ' video bytes, not 3 MB');
+      /* a small extensionless JSON comes whole, as a 200; a larger one (0.8 MB, over the 0.5 MB chunk) is asked for again whole */
+      assert.equal(await p.evaluate(() => window.__jt), '{"small":true}');
+      assert.match(await p.evaluate(() => window.__j), /^200 null/);
+      assert.equal(await p.evaluate(() => window.__big), 800000);
+      assert.ok(g.stats().bytes < 500000 + 14 + 500000 + 800000 + 5000, 'bytes ' + g.stats().bytes);
+      await ctx.close();
+    }
+  });
+
+  test('N-4: a redirected page load ends on the final URL, so relative links use the final host; fetched and counted once', async () => {
+    hits = {};
+    const { ctx, g } = await newGuarded({ mode: 'block', hosts: ['127.0.0.1', 'localhost'] });
+    const p = await ctx.newPage(); await p.goto(`${A()}/hop`);
+    assert.equal(p.url(), `${L()}/landing.html`);
+    assert.equal(await p.evaluate(() => window.__loc), `${L()}/landing.html`);
+    assert.equal(await p.evaluate(() => document.images[0].src), `${L()}/rel.png`, 'the relative image resolves against the final host');
+    assert.equal(hits['GET /hop'], 1); assert.equal(hits['GET /landing.html'], 1, 'the final page is not fetched a second time');
+    const s = g.stats(); assert.equal(s.pageLoads, 1, 'the small redirect page is not a page load'); assert.equal(s.redirectPages, 1); assert.equal(s.gets, 2);
+    /* a redirect loop: the guard follows 20 hops, then aborts the load; no redirect page, and Chromium never follows a hop itself */
+    hits = {};
+    await assert.rejects(p.goto(`${A()}/loop`)); await sleep(300);
+    assert.equal(hits['GET /loop'], 21, 'hops ' + hits['GET /loop']); assert.equal(g.stats().redirectPages, 1); assert.equal(g.stats().redirectLimit, 1);
+    assert.equal(g.stats().leaks, 0);
+    await ctx.close();
+  });
+
+  test('N-7: a beacon or non-GET fetch stopped in a live page counts as a non-GET request; the log has no unload counter', async () => {
+    hits = {};
+    const { ctx, g } = await newGuarded({});
+    const p = await ctx.newPage(); await p.goto(`${L()}/beacon-live.html`); await sleep(300);
+    assert.equal(await p.evaluate(() => window.__b), true); assert.equal(await p.evaluate(() => window.__f), 'stopped');
+    assert.equal(hits['POST /live-beacon'] || 0, 0); assert.equal(hits['POST /live-post'] || 0, 0);
+    assert.equal(g.stats().nonGet, 2); assert.equal('unloadStopped' in g.stats(), false);
+    await ctx.close(); await sleep(50);
+    const line = fs.readFileSync(g.run.logFile, 'utf8'); assert.match(line, /2 non-GET requests aborted/); assert.doesNotMatch(line, /unload/);
   });
 });
