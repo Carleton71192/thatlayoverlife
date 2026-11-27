@@ -14,3 +14,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 27 Nov, classb-check (independent check of the class B drafts): 3 HTML GETs, 0.6 MB (M); 126 browser page loads from cached pages and assets, 0 MB from Webflow (M)
 - 27 Nov, keep-going review (adversarial review of the asia, classb and guard tracks): 0 page loads, 0 HTML GETs, 0 MB from Webflow (M); one Chromium run against a local stub on 127.0.0.1 only
 - 25 Nov, asia-cls (?place=Asia lead-mark wait, branch claude/asia-cls-2026-11-25): 0 page loads, 0 MB from Webflow (M, saved page code and unit tests only)
+- 27 Nov, classb page code drafts: 0 page loads, 0 MB from Webflow hosts (M; Webflow MCP API reads only, saved HTML of 21 and 25 Nov)
