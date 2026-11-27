@@ -1,0 +1,5 @@
+Q1 10 wf-get processes at once, day cap 2 MB, max-filesize 1 MB; files 0.9 MB, 3 MB, 0.9 MB {"tallyMB":2,"capMB":2,"stubRequests":3,"stubBytesWritten":4800574,"perProcess":["2 GETs 1.100 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED","1 GETs 0.900 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED","0 GETs 0.000 MB STOPPED"]}
+Q2a real start time: live pid 25950 holds 1 MB reserved, day cap 1.5 MB {"storedStart":"17106024","grantBytes":0,"by":"busy"}
+Q2b other start time: live pid 25950 holds 1 MB reserved, day cap 1.5 MB {"storedStart":"17106025","grantBytes":1500000,"by":"day"}
+Q2c no start time: live pid 25950 holds 1 MB reserved, day cap 1.5 MB {"storedStart":"none","grantBytes":0,"by":"busy"}
+Q3 own tally entry {"pid":25855,"pidStart":"17105987","procField22":"17105987"}

@@ -1,0 +1,203 @@
+12:47:38 start repro-browser new
+12:48:37 end repro-browser new exit 0
+12:48:38 chromium processes after repro-browser: 8
+12:48:38 start repro-proc new
+12:48:59 end repro-proc new exit 0
+12:49:00 chromium processes after repro-proc: 6
+12:49:00 start repro-parser new
+12:49:00 end repro-parser new exit 0
+12:49:01 chromium processes after repro-parser: 6
+12:49:01 start parser new
+12:49:01 end parser new exit 0
+12:49:02 chromium processes after parser: 6
+12:49:02 start new new
+12:49:26 end new new exit 0
+12:49:27 chromium processes after new: 8
+12:49:27 start n3 new
+12:50:11 end n3 new exit 0
+12:50:12 chromium processes after n3: 8
+12:50:12 start n4 new
+12:50:19 end n4 new exit 0
+12:50:20 chromium processes after n4: 6
+12:50:20 start n5 new
+12:50:27 end n5 new exit 0
+12:50:28 chromium processes after n5: 6
+12:50:28 start n7 new
+12:50:52 end n7 new exit 0
+12:50:53 chromium processes after n7: 4
+12:50:53 start n8b new
+12:50:54 end n8b new exit 0
+12:50:55 chromium processes after n8b: 0
+12:50:55 start main-block new
+13:02:14 end main-block new exit 143
+13:02:15 chromium processes after main-block: 6
+13:02:15 start main-cache-only new
+13:02:41 end main-cache-only new exit 0
+13:02:42 chromium processes after main-cache-only: 2
+13:02:42 start crash new
+13:03:16 end crash new exit 0
+13:03:17 chromium processes after crash: 0
+13:03:17 start wfget new
+13:03:18 end wfget new exit 0
+13:03:19 chromium processes after wfget: 0
+13:03:19 start adv-redir new
+13:03:52 end adv-redir new exit 0
+13:03:53 chromium processes after adv-redir: 2
+13:03:53 start adv-loop new
+13:05:54 end adv-loop new exit 0
+13:05:55 chromium processes after adv-loop: 2
+13:05:55 start adv-cap new
+13:06:05 end adv-cap new exit 0
+13:06:06 chromium processes after adv-cap: 8
+13:06:06 start adv-capseq new
+13:06:13 end adv-capseq new exit 0
+13:06:14 chromium processes after adv-capseq: 8
+13:06:14 start adv-claim new
+13:06:21 end adv-claim new exit 0
+13:06:22 chromium processes after adv-claim: 2
+13:06:22 start adv-procs new
+13:06:26 end adv-procs new exit 0
+13:06:27 chromium processes after adv-procs: 0
+13:06:27 start adv-words new
+13:06:27 end adv-words new exit 0
+13:06:28 chromium processes after adv-words: 0
+13:06:28 start adv-parser new
+13:06:29 end adv-parser new exit 0
+13:06:30 chromium processes after adv-parser: 0
+13:06:30 ALL DONE new
+13:06:30 start repro-browser r2
+13:07:31 end repro-browser r2 exit 0
+13:07:32 chromium processes after repro-browser: 2
+13:07:32 start repro-proc r2
+13:07:52 end repro-proc r2 exit 0
+13:07:53 chromium processes after repro-proc: 0
+13:07:53 start repro-parser r2
+13:07:53 end repro-parser r2 exit 0
+13:07:54 chromium processes after repro-parser: 0
+13:07:54 start parser r2
+13:07:55 end parser r2 exit 0
+13:07:56 chromium processes after parser: 0
+13:07:56 start new r2
+13:08:21 end new r2 exit 0
+13:08:22 chromium processes after new: 2
+13:08:22 start n3 r2
+13:09:05 end n3 r2 exit 0
+13:09:06 chromium processes after n3: 2
+13:09:06 start n4 r2
+13:09:13 end n4 r2 exit 0
+13:09:14 chromium processes after n4: 0
+13:09:14 start n5 r2
+13:09:21 end n5 r2 exit 0
+13:09:22 chromium processes after n5: 0
+13:09:22 start n7 r2
+13:09:48 end n7 r2 exit 0
+13:09:49 chromium processes after n7: 2
+13:09:49 start n8b r2
+13:09:49 end n8b r2 exit 0
+13:09:50 chromium processes after n8b: 0
+13:09:50 start main-block r2
+13:10:17 end main-block r2 exit 0
+13:10:18 chromium processes after main-block: 2
+13:10:18 start main-cache-only r2
+13:10:43 end main-cache-only r2 exit 0
+13:10:44 chromium processes after main-cache-only: 2
+13:10:44 start crash r2
+13:11:18 end crash r2 exit 0
+13:11:19 chromium processes after crash: 0
+13:11:19 start wfget r2
+13:11:20 end wfget r2 exit 0
+13:11:21 chromium processes after wfget: 0
+13:11:21 start adv-redir r2
+13:11:54 end adv-redir r2 exit 0
+13:11:55 chromium processes after adv-redir: 2
+13:11:55 start adv-loop r2
+13:12:06 end adv-loop r2 exit 0
+13:12:07 chromium processes after adv-loop: 2
+13:12:07 start adv-cap r2
+13:12:18 end adv-cap r2 exit 0
+13:12:19 chromium processes after adv-cap: 2
+13:12:19 start adv-capseq r2
+13:12:28 end adv-capseq r2 exit 0
+13:12:29 chromium processes after adv-capseq: 2
+13:12:29 start adv-claim r2
+13:12:35 end adv-claim r2 exit 0
+13:12:36 chromium processes after adv-claim: 2
+13:12:36 start adv-procs r2
+13:12:41 end adv-procs r2 exit 0
+13:12:42 chromium processes after adv-procs: 0
+13:12:42 start adv-words r2
+13:12:42 end adv-words r2 exit 0
+13:12:43 chromium processes after adv-words: 0
+13:12:43 start adv-parser r2
+13:12:43 end adv-parser r2 exit 0
+13:12:44 chromium processes after adv-parser: 0
+13:12:44 ALL DONE r2
+13:12:44 start repro-browser old
+13:13:37 end repro-browser old exit 0
+13:13:38 chromium processes after repro-browser: 0
+13:13:38 start repro-proc old
+13:13:49 end repro-proc old exit 0
+13:13:50 chromium processes after repro-proc: 0
+13:13:50 start repro-parser old
+13:13:50 end repro-parser old exit 0
+13:13:51 chromium processes after repro-parser: 0
+13:13:51 start parser old
+13:13:51 end parser old exit 0
+13:13:52 chromium processes after parser: 0
+13:13:52 start new old
+13:14:16 end new old exit 0
+13:14:17 chromium processes after new: 2
+13:14:18 start n3 old
+13:15:00 end n3 old exit 0
+13:15:01 chromium processes after n3: 2
+13:15:01 start n4 old
+13:15:09 end n4 old exit 0
+13:15:10 chromium processes after n4: 0
+13:15:10 start n5 old
+13:15:15 end n5 old exit 0
+13:15:16 chromium processes after n5: 0
+13:15:16 start n7 old
+13:15:37 end n7 old exit 0
+13:15:38 chromium processes after n7: 2
+13:15:38 start n8b old
+13:15:39 end n8b old exit 0
+13:15:40 chromium processes after n8b: 0
+13:15:40 start main-block old
+13:16:05 end main-block old exit 0
+13:16:06 chromium processes after main-block: 0
+13:16:06 start main-cache-only old
+13:16:32 end main-cache-only old exit 0
+13:16:33 chromium processes after main-cache-only: 2
+13:16:33 start crash old
+13:17:07 end crash old exit 0
+13:17:08 chromium processes after crash: 0
+13:17:08 start wfget old
+13:17:09 end wfget old exit 0
+13:17:10 chromium processes after wfget: 0
+13:17:10 start adv-redir old
+13:17:42 end adv-redir old exit 0
+13:17:43 chromium processes after adv-redir: 2
+13:17:43 start adv-loop old
+13:19:44 end adv-loop old exit 0
+13:19:45 chromium processes after adv-loop: 2
+13:19:45 start adv-cap old
+13:19:55 end adv-cap old exit 0
+13:19:56 chromium processes after adv-cap: 2
+13:19:56 start adv-capseq old
+13:20:03 end adv-capseq old exit 0
+13:20:04 chromium processes after adv-capseq: 2
+13:20:04 start adv-claim old
+13:20:04 end adv-claim old exit 1
+13:20:05 chromium processes after adv-claim: 5
+13:20:05 start adv-procs old
+13:20:06 end adv-procs old exit 1
+13:20:07 chromium processes after adv-procs: 0
+13:20:07 start adv-words old
+13:20:07 end adv-words old exit 0
+13:20:08 chromium processes after adv-words: 0
+13:20:08 ALL DONE old
+13:20:14 TREES DONE
+13:20:40 end x new
+13:20:57 end x r2
+13:21:09 end x old
+13:21:09 X DONE
