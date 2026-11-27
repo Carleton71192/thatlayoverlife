@@ -1,0 +1,5 @@
+C5 .js with Range bytes=0-1, server ignores Range (200, 0.9 MB): 4 runs on one tally, 8 fetches each, day cap 5 MB {"tallyMB":0,"tallyBeforeClose":0,"capMB":5,"stubRequests":1,"stubBytesWritten":900191,"perRunMB":[0,0,0,0],"trips":4}
+C5 same, fetch-once: 4 runs on one tally, 8 fetches each, day cap 5 MB {"tallyMB":0,"tallyBeforeClose":0,"capMB":5,"stubRequests":0,"stubBytesWritten":0,"perRunMB":[0,0,0,0],"trips":4}
+C6 extensionless, no Range, server honors Range (3 MB JSON, probe and join): 4 runs on one tally, 8 fetches each, day cap 5 MB {"tallyMB":0,"tallyBeforeClose":0,"capMB":5,"stubRequests":0,"stubBytesWritten":0,"perRunMB":[0,0,0,0],"trips":4}
+C6 same, fetch-once: 4 runs on one tally, 8 fetches each, day cap 5 MB {"tallyMB":0,"tallyBeforeClose":0,"capMB":5,"stubRequests":0,"stubBytesWritten":0,"perRunMB":[0,0,0,0],"trips":4}
+exit 0

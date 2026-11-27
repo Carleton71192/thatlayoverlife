@@ -1,0 +1,7 @@
+X3 fetch-once: fetch() of an extensionless octet-stream MP4 3 MB, Range honoured {"page":[200,3000000],"requests":["/mp4-octet-fetch-once no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+X3 fetch-once: fetch() of an extensionless octet-stream WebM 3 MB, Range honoured {"page":[200,3000000],"requests":["/webm-octet-fetch-once no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+X3 fetch-once: fetch() of an extensionless octet-stream MP4 3 MB, Range ignored {"page":[200,3000000],"requests":["/mp4-octet-ign-fetch-once no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+X3 block: fetch() of an extensionless octet-stream MP4 3 MB, Range honoured {"page":[200,3000000],"requests":["/mp4-octet-block no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+X3 block: fetch() of an extensionless octet-stream WebM 3 MB, Range honoured {"page":[200,3000000],"requests":["/webm-octet-block no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+X3 block: fetch() of an extensionless octet-stream MP4 3 MB, Range ignored {"page":[200,3000000],"requests":["/mp4-octet-ign-block no range"],"deliveredPerConnection":[3000233],"delivered":3000233,"counted":3000233,"blocked":0}
+exit 0

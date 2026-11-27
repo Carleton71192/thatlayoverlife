@@ -3,7 +3,10 @@
    Rules: reports/bandwidth-2026-11-13.md section 4 (rules 1 to 6), reports/bandwidth-2026-11-25.md fix 1, and the fixes in
    reports/evidence/bw-guard-2026-11-25/check.md, reports/evidence/keep-going-2026-11-25/review.md (G1, G2, G4) and
    reports/evidence/bw-guard-fix-2026-11-27/check.md (N-1 to N-7), and of the two checks in
-   reports/evidence/bw-guard-fix2-2026-11-27/ (R-1, R-3 to R-5 in check-repro.md; A-1 to A-7 in check-adversary.md).
+   reports/evidence/bw-guard-fix2-2026-11-27/ (R-1, R-3 to R-5 in check-repro.md; A-1 to A-7 in check-adversary.md), and
+   round 4 after reports/evidence/bw-guard-fix3-2026-11-27/: the extensionless Range probe of rounds 2 and 3 is removed
+   (N-3 is a known gap again), X-3 (room for headers near a cap), the bare-M parser rule (adversary N-1), F-6 (old tally
+   entries) and F-3 (no GET when too little is left of a cap).
    Usage (details in tools/WF-GUARD.md):
      const { guard } = require('./tools/wf-guard.cjs');
      const g = guard(context, { label: 'my-check', cacheDir });   // mode 'cache-only' is the default
@@ -15,9 +18,10 @@
          last word after all routes of the caller. Mode 'cache-only' (default) serves it from a local cache folder and aborts
          a miss. Mode 'fetch-once' fetches a miss once with curl, stores it, and never fetches that URL again, across
          contexts and processes. Mode 'block' aborts images, video and fonts and fetches the rest with curl every time.
-     (b) Every byte of those fetches is counted on the wire. Each fetch reserves getCapMB plus room for an allowance and is
-         capped by --max-filesize at what is left of the budget, so a run cannot go over a cap during one response. A response
-         refused or cut at that limit counts with an allowance for what the server sent past it, up to its reservation.
+     (b) Every byte of those fetches is counted on the wire. Each fetch reserves getCapMB plus room for the headers and an
+         allowance, and is capped by --max-filesize at what is left of the budget less that room, so a run cannot go over a
+         cap during one response. A response refused or cut at that limit counts with an allowance for what the server sent
+         past it, up to its reservation. Headers over 64 KB stop the response. Too little left of a cap refuses the GET.
      (c) The run stops at 200 MB, or when the UTC day's total reaches 250 MB, counted in bytes really used (a GET that open
          reservations block waits for them instead). The day's total is the shared log in the main
          checkout, the log of this checkout and a running tally kept under a lock file next to the git repository, so two
@@ -31,13 +35,18 @@ const fs = require('fs'), path = require('path'), crypto = require('crypto'), os
 
 const MB = 1e6;
 const RUN_CAP_MB = 200, DAY_CAP_MB = 250, GET_CAP_MB = 5;
-const HEADER_ALLOWANCE = 16384;
-/* the smallest grant worth a GET; less than this left of a cap in bytes really counted stops the run */
-const MIN_GRANT = HEADER_ALLOWANCE * 2;
+/* X-3: room kept in every grant for the response headers. A response whose headers pass it is stopped at once and counted
+   (curlFetch maxHeaderBytes), so the body limit plus the headers always fit in the grant. */
+const HEADER_MARGIN = 64000;
+/* less than this left of a cap in bytes really counted stops the run */
+const MIN_GRANT = 32768;
 /* counted for a response that curl refused or cut at a size limit, beyond what curl read (see countedBytes) */
 const CUT_ALLOWANCE = 256000;
-/* reserved on top of a GET's body limit, so that the allowance of a refused or cut response fits in its own grant */
-const ALLOW = HEADER_ALLOWANCE + CUT_ALLOWANCE;
+/* reserved on top of a GET's body limit in every grant (far from a cap and near one), so that the headers and the allowance
+   of a refused or cut response fit in the GET's own grant */
+const ALLOW = HEADER_MARGIN + CUT_ALLOWANCE;
+/* F-3: a GET is not sent when the body limit left after ALLOW would be under this; it is refused and the run goes on */
+const MIN_BODY = 16000;
 const REPO_ROOT = path.resolve(__dirname, '..');
 const DEFAULT_LOG = path.join(REPO_ROOT, 'handoff', 'BANDWIDTH-LOG.md');
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -130,11 +139,6 @@ function typeOf(headers, head) {
   const ct = classifyType(headers && headers['content-type']);
   return ct === 'doc' && head && isOctet(headers && headers['content-type']) && looksLikeVideo(head) ? 'video' : ct;
 }
-/* "bytes a-b/total" -> { a, b, total } (total null for "*"), or null */
-function contentRange(s) {
-  const m = /^bytes\s+(\d+)-(\d+)\/(\d+|\*)$/i.exec(String(s || '').trim());
-  return m ? { a: +m[1], b: +m[2], total: m[3] === '*' ? null : +m[3] } : null;
-}
 
 /* wf-get's file name for a page: <path with / as __>.html, home.html for the root */
 function fileFor(u) {
@@ -172,21 +176,23 @@ const MON_ANY = '(?:[Jj]an(?:uary)?|[Ff]eb(?:ruary)?|[Mm]ar(?:ch)?|[Aa]pr(?:il)?
 const DATE_ANY_RE = new RegExp(`\\b\\d{1,2}(?:st|nd|rd|th)?\\s+(?:of\\s+)?${MON_ANY}\\b|\\b${MON_ANY}\\.?\\s+\\d{1,2}\\b|(?<![\\w/.-])\\d{4}[-/.]\\d{1,2}[-/.]\\d{1,2}(?![\\w/-])|(?<![\\w/.-])\\d{1,2}[-/.]\\d{1,2}[-/.]\\d{4}(?![\\w/-])`);
 const RUN_ID_RE = /\brun ([0-9a-f]{6})\b/;
 
-/* every size figure of a text: { mb, n, first } (first: index of the first figure, or -1).
+/* every size figure of a text: { mb, n, first, unread } (first: index of the first figure, or -1).
    A bare capital M ("3 M") is a size only where the real log would use it as one: followed by a marker in brackets
-   ("2 M (E)"), or at the end of a line that has no other size figure ("- 27 Nov, x: 3 M"). So "12 M requests" and
-   "1 MB, video 1080 M" do not count the M figure. */
+   ("2 M (E)"), or at the end of a line that has no other size figure ("- 27 Nov, x: 3 M"). Any other bare M figure
+   ("12 M requests", "1 MB, video 1080 M", "3 M; y: 2 M") is listed in unread; parseLogLine throws on it in a dated bullet. */
 function sizesOf(text) {
-  let mb = 0, n = 0, first = -1, x;
+  let mb = 0, n = 0, first = -1, x; const unread = [];
   const add = (v, u, i) => { mb += /^g/.test(u) ? v * 1000 : /^k/.test(u) ? v / 1000 : /^b/.test(u) ? v / MB : v; n++; if (first < 0 || i < first) first = i; };
   SIZE_RE.lastIndex = 0;
   while ((x = SIZE_RE.exec(text))) add(+(x[2] || x[1]).replace(/,/g, ''), x[3].toLowerCase(), x.index);
   const bare = []; BARE_M_RE.lastIndex = 0;
   while ((x = BARE_M_RE.exec(text))) bare.push({ v: +(x[2] || x[1]).replace(/,/g, ''), i: x.index, rest: text.slice(x.index + x[0].length) });
+  const n0 = n;
   for (const b of bare) {
-    if (/^\s*\(/.test(b.rest) || (/^\s*[.;,]?\s*$/.test(b.rest) && n === 0 && bare.length === 1)) add(b.v, 'm', b.i);
+    if (/^\s*\(/.test(b.rest) || (/^\s*[.;,]?\s*$/.test(b.rest) && n0 === 0 && bare.length === 1)) add(b.v, 'm', b.i);
+    else unread.push(text.slice(b.i, b.i + 24).trim());
   }
-  return { mb, n, first };
+  return { mb, n, first, unread };
 }
 /* what kind of line a non-bullet line is, for the error message */
 function lineKind(line) {
@@ -220,12 +226,18 @@ function parseLogLine(line) {
     return null;
   }
   const text = b[1].replace(/[*_`]+/g, '').trim();
-  const { mb, n } = sizesOf(text);
-  if (!n) return null;
+  const { mb, n, unread } = sizesOf(text);
+  if (!n && !unread.length) return null;
   let r = null;
   for (const [re, f] of DATE_PATTERNS) { const m = re.exec(text); if (m) { r = f(m); break; } }
   if (!r || r.m1 < 0 || r.m2 < 0 || r.m1 > 11 || r.m2 > 11 || !r.d1 || !r.d2 || r.d1 > 31 || r.d2 > 31) {
+    if (!n) return null;   /* an undated bullet whose only figure is a bare M the rule does not read: not a log entry */
     const reason = 'a bullet with a size figure but no date the guard can read at its start';
+    throw new WfLogFormatError(`wf-guard: ${reason}: ${line.trim()}`, { line, reason });
+  }
+  /* adversary N-1 (round 3): a dated bullet with a bare M figure the bare-M rule does not read would lose that figure; stop */
+  if (unread.length) {
+    const reason = `a dated bullet with a bare "M" figure the guard cannot read as a size ("${unread[0]}"); write MB (or "2 M (E)", or one bare M at the end of the line), or write the number without M`;
     throw new WfLogFormatError(`wf-guard: ${reason}: ${line.trim()}`, { line, reason });
   }
   const rid = RUN_ID_RE.exec(text);
@@ -311,10 +323,13 @@ function procStart(pid) {
   try { const t = fs.readFileSync(`/proc/${pid}/stat`, 'utf8'); return t.slice(t.lastIndexOf(')') + 2).split(' ')[19] || null; } catch (e) { return null; }
 }
 const MY_START = procStart(process.pid);
+/* F-6: an entry with no start time (written by older code, which always wrote "updated") is taken as stale once that time
+   is 24 h old, even if its pid is in use. An entry with no readable time at all keeps the old rule (alive while its pid is). */
+const NO_START_MAX_MS = 24 * 3600 * 1000;
 /* true while the process that made a tally entry is still running: same pid and, where known, the same start time */
 function ownerAlive(r) {
   if (!pidAlive(r.pid)) return false;
-  if (r.pidStart == null) return true;
+  if (r.pidStart == null) { const at = Date.parse(r.updated || r.started || ''); return !Number.isFinite(at) || Date.now() - at <= NO_START_MAX_MS; }
   const now = procStart(r.pid);
   return now == null || String(now) === String(r.pidStart);
 }
@@ -354,12 +369,16 @@ function countedBytes(r, limit) {
   if (r.stopped && Number.isFinite(cl) && !(r.headers && r.headers['content-encoding'])) return r.wire + Math.min(CUT_ALLOWANCE, Math.max(0, cl - ((r.body && r.body.length) || 0)));
   return (r.wire || 0) + CUT_ALLOWANCE;
 }
-/* the bytes a GET settles: what curl read, plus the allowance of countedBytes up to the GET's grant. Every grant holds room
-   for the allowance (ALLOW), and a GET near a cap may use only what was left, so the bytes counted plus the open
-   reservations never pass a cap. */
+/* the bytes a GET settles: what curl read, plus the allowance of countedBytes, never more than the GET's grant. Every
+   grant is the body limit plus ALLOW (room for the headers and the allowance), so the count is not cut short by the grant,
+   and the bytes counted plus the open reservations never pass a cap. What curl read can pass the grant only when a
+   response's headers ran past HEADER_MARGIN before the guard stopped it; that part is kept in r.pastGrant (and the run's
+   pastGrant count) instead of the cap. */
 function countFor(r, limit, grant) {
-  const est = countedBytes(r, limit), wire = (r && r.wire) || 0;
-  return Math.max(wire, grant && grant.bytes ? Math.min(est, grant.bytes) : est);
+  const est = Math.max(countedBytes(r, limit), (r && r.wire) || 0);
+  if (!(grant && grant.bytes)) return est;
+  if (r && est > grant.bytes) r.pastGrant = Math.max(0, ((r && r.wire) || 0) - grant.bytes);
+  return Math.min(est, grant.bytes);
 }
 
 /* ---------- runs (one log line each) ---------- */
@@ -386,7 +405,7 @@ function createRun(opts) {
     getCap: (opts.getCapMB != null ? opts.getCapMB : GET_CAP_MB) * MB,
     onTrip: opts.onTrip || 'throw', noLog: !!opts.noLog, startedAt: now(),
     bytes: 0, reserved: 0, gets: 0, non200: 0, responses: 0, pageLoads: 0, cacheHits: 0, cacheFetches: 0, cacheRefused: 0, misses: 0,
-    blocked: 0, nonGet: 0, leaks: 0, redirectPages: 0, redirectLimit: 0, redirectDirect: 0, joined: 0, shared: 0, unfinished: 0, tooBig: 0, refusedAgain: 0, waits: 0, waitRefused: 0, failed: 0, redirectsIn: 0, redirectsFollowed: 0,
+    blocked: 0, nonGet: 0, leaks: 0, redirectPages: 0, redirectLimit: 0, redirectDirect: 0, shared: 0, lowRefused: 0, bigHeaders: 0, pastGrant: 0, unfinished: 0, tooBig: 0, refusedAgain: 0, waits: 0, waitRefused: 0, failed: 0, redirectsIn: 0, redirectsFollowed: 0,
     missList: [], error: null, closed: false, contexts: new Set(), pending: new Set(), inflight: new Set(), refusedKeys: new Set(),
     reserveWaitMs: (opts.reserveWaitS != null ? opts.reserveWaitS : 60) * 1000,
   };
@@ -415,10 +434,13 @@ function createRun(opts) {
   if (start >= run.dayCap) throw new WfBudgetError(`wf-guard: the daily total for ${fmtDay(day)} (logs ${run.readLogs.join(', ')} and the tally in ${run.stateDir}) is already ${(start / MB).toFixed(2)} MB (cap ${run.dayCap / MB} MB); not starting ${run.label}`, { cap: 'day' });
 
   /* One try at reserving the next GET's bytes in the shared tally. With no arguments it reserves getCapMB plus ALLOW (room for
-     the allowance of a refused response), and the grant's body limit is getCapMB. want: the bytes to reserve; pad: the part
-     of want that is room for the allowance, not body. Returns { bytes, by, limit }:
+     the headers and the allowance of a refused response), and the grant's body limit is getCapMB. want: the bytes to
+     reserve; pad: the part of want that is room, not body (at least HEADER_MARGIN). The body limit is always the grant
+     less pad, also near a cap (X-3). Returns { bytes, by, limit }:
      - bytes > 0: granted; by is the cap that set the size ('get', 'run' or 'day'); limit is the body limit for curl.
      - bytes 0, by 'run' or 'day': less than MIN_GRANT is left of that cap in bytes really counted. The run trips.
+     - bytes 0, by 'low' (F-3): less than pad plus MIN_BODY is left of a cap in bytes really counted. This GET is refused
+       before it is sent; nothing trips, so no false stop, and the run goes on with what the cache has.
      - bytes 0, by 'busy': open reservations (of this run or of other runs) hold what is left. Nothing trips; wait and try
        again (reserveWait does).
      - bytes 0, by 'stopped': the run has already stopped.
@@ -427,17 +449,18 @@ function createRun(opts) {
   run.tryReserve = (want, pad) => {
     if (run.error || run.closed) return { bytes: 0, by: 'stopped' };
     if (want == null) { want = run.getCap + ALLOW; pad = ALLOW; }
-    pad = Math.max(0, Math.min(+pad || 0, want - 1));
+    pad = Math.max(HEADER_MARGIN, +pad || 0);
     const g = withLock(run.stateDir, () => {
       const t = readTally(run.stateDir, day);
       const runLeft = run.runCap - run.bytes, dayLeft = run.dayCap - realDay(t);
       const limit = Math.min(want, runLeft, dayLeft);
       const by = limit >= want ? 'get' : (runLeft <= dayLeft ? 'run' : 'day');
       if (limit < want && limit < MIN_GRANT) return { bytes: 0, by, left: Math.max(0, limit) };
+      if (limit < want && limit - pad < MIN_BODY) return { bytes: 0, by: 'low', left: limit, cap: by };
       const free = Math.min(runLeft - run.reserved, dayLeft - run.reserved - tallyReserved(t, run.id));
       if (free < limit) return { bytes: 0, by: 'busy', left: limit };
       run.reserved += limit; write(t);
-      return { bytes: limit, by, limit: Math.max(1, Math.min(want - pad, limit - (by === 'get' ? 0 : HEADER_ALLOWANCE))) };
+      return { bytes: limit, by, limit: Math.max(1, limit - pad) };
     });
     if (!g.bytes && (g.by === 'run' || g.by === 'day')) run.trip(g.by, { left: g.left });
     return g;
@@ -541,6 +564,9 @@ function logLine(r) {
   if (r.refusedAgain) extra.push(`${r.refusedAgain} refused again as over the size limit earlier in the run`);
   if (r.redirectLimit) extra.push(`${r.redirectLimit} aborted after 20 redirects`);
   if (r.waitRefused) extra.push(`${r.waitRefused} refused after waiting for other GETs to settle`);
+  if (r.lowRefused) extra.push(`${r.lowRefused} refused as too little was left of a cap`);
+  if (r.bigHeaders) extra.push(`${r.bigHeaders} stopped as their headers ran past the header margin`);
+  if (r.pastGrant) extra.push(`${r.pastGrant} header bytes read past a grant, not counted`);
   if (r.redirectDirect) extra.push(`${r.redirectDirect} redirected page loads answered directly to stop a loop`);
   if (r.shared) extra.push(`${r.shared} served from a GET already in flight`);
   if (extra.length) s += '; ' + extra.join(', ');
@@ -562,61 +588,55 @@ function parseHeaderFile(text) {
   return headers;
 }
 /* One GET with curl, redirects not followed. Returns { promise, kill() }. The promise gives
-   { status, headers, body, wire, exit, truncated, timedOut, error }; wire is body plus headers as received (compressed).
-   kill() stops it and returns the bytes received so far (from the files on disk; errs high for compressed bodies).
-   o: headers, maxBytes (body limit, curl --max-filesize), timeoutS, curl, curlArgs (extra arguments; WF_GUARD_CURL_ARGS as a
-   JSON array is the default, used by the tests to keep every request on this machine).
-   o.watch({ status, headers, head }): called every 5 ms once the response headers are in (curl flushes its header file per
-   line); head is the first 16 bytes of the body so far. It returns null to let the transfer go on, 'wait' to be asked
-   again, or a reason: curl is then stopped at once, and the result has stopped: <reason> (wire is what reached the disk). */
+   { status, headers, body, wire, exit, truncated, timedOut, stopped, error }; wire is body plus headers as received
+   (compressed). kill() stops it and returns the bytes received so far (errs high for compressed bodies).
+   o: headers, maxBytes (body limit, curl --max-filesize), maxHeaderBytes (X-3: curl is stopped at once when the response
+   headers pass this; the result then has stopped: 'headers over <n> bytes'), timeoutS, curl, curlArgs (extra arguments;
+   WF_GUARD_CURL_ARGS as a JSON array is the default, used by the tests to keep every request on this machine).
+   curl writes the headers to its stdout as it reads them (one flush per header line), so the guard sees their size at once.
+   curl itself refuses more than about 300 KB of response headers. */
+const WMARK = '\n@@wf-guard@@ ';
 function curlFetch(url, o) {
   o = o || {};
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'wfg-curl-'));
-  const hf = path.join(dir, 'h'), bf = path.join(dir, 'b');
+  const bf = path.join(dir, 'b');
   let extra = o.curlArgs;
   if (!extra && process.env.WF_GUARD_CURL_ARGS) { try { extra = JSON.parse(process.env.WF_GUARD_CURL_ARGS); } catch (e) { } }
-  const args = ['-sS', '--compressed', '--max-time', String(o.timeoutS || 30), '-D', hf, '-o', bf,
-    '-w', '%{http_code} %{size_download} %{size_header} %{exitcode}', '-A', (o.headers && o.headers['user-agent']) || 'Mozilla/5.0 (wf-guard bandwidth-counted check)'];
+  const args = ['-sS', '--compressed', '--max-time', String(o.timeoutS || 30), '-D', '-', '-o', bf,
+    '-w', WMARK + '%{http_code} %{size_download} %{size_header} %{exitcode}', '-A', (o.headers && o.headers['user-agent']) || 'Mozilla/5.0 (wf-guard bandwidth-counted check)'];
   if (o.maxBytes) args.push('--max-filesize', String(Math.max(1, Math.floor(o.maxBytes))));
-  /* with a watch, curl writes the body as it comes (no output buffer), so the first bytes can be read at once */
-  if (typeof o.watch === 'function') args.push('--no-buffer');
   for (const [k, v] of Object.entries(o.headers || {})) if (k !== 'user-agent' && v != null) args.push('-H', `${k}: ${v}`);
   args.push(...(extra || []), '--url', url);
   const size = f => { try { return fs.statSync(f).size; } catch (e) { return 0; } };
   const cleanup = () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) { } };
-  let child, killed = false, stopped = null, poll = null;
+  let child, killed = false, stopped = null, out = '';
+  const headerBytes = () => { const i = out.indexOf(WMARK); return Buffer.byteLength(i < 0 ? out : out.slice(0, i), 'latin1'); };
   const statusOf = t => { const i = String(t).lastIndexOf('HTTP/'); const m = i < 0 ? null : /^HTTP\/\S+\s+(\d{3})/.exec(t.slice(i)); return m ? +m[1] : 0; };
-  const watchOnce = () => {
-    let t; try { t = fs.readFileSync(hf, 'latin1'); } catch (e) { return; }
-    const i = t.lastIndexOf('HTTP/'); if (i < 0) return;
-    const blk = t.slice(i); if (!/\r?\n\r?\n/.test(blk)) return;
-    const status = statusOf(blk); if (!status || status < 200) return;
-    let head = Buffer.alloc(0);
-    try { const fd = fs.openSync(bf, 'r'); const b = Buffer.alloc(16); const n = fs.readSync(fd, b, 0, 16, 0); fs.closeSync(fd); head = b.subarray(0, n); } catch (e) { }
-    let v = null; try { v = o.watch({ status, headers: parseHeaderFile(blk), head }); } catch (e) { v = null; }
-    if (v === 'wait') return;
-    clearInterval(poll); poll = null;
-    if (v) { stopped = String(v); try { child.kill('SIGKILL'); } catch (e) { } }
-  };
   const promise = new Promise(resolve => {
-    let out = '', err = '';
+    let err = '';
     try { child = spawn(o.curl || 'curl', args, { stdio: ['ignore', 'pipe', 'pipe'] }); } catch (e) { cleanup(); return resolve({ status: 0, headers: {}, body: Buffer.alloc(0), wire: 0, exit: -1, error: String(e) }); }
-    if (typeof o.watch === 'function') poll = setInterval(watchOnce, 5);
-    child.stdout.on('data', d => { out += d; }); child.stderr.on('data', d => { err += d; });
+    child.stdout.setEncoding('latin1');
+    child.stdout.on('data', d => {
+      out += d;
+      if (o.maxHeaderBytes && !stopped && !killed && out.indexOf(WMARK) < 0 && headerBytes() > o.maxHeaderBytes) {
+        stopped = `headers over ${o.maxHeaderBytes} bytes`; try { child.kill('SIGKILL'); } catch (e) { }
+      }
+    });
+    child.stderr.on('data', d => { err += d; });
     child.on('error', e => { err += String(e); });
     child.on('close', code => {
-      if (poll) { clearInterval(poll); poll = null; }
-      const [st, dl, hd, ex] = out.trim().split(' ').map(Number);
-      let body = Buffer.alloc(0), headers = {}, htext = '';
-      try { body = fs.readFileSync(bf); } catch (e) { }
-      try { htext = fs.readFileSync(hf, 'latin1'); headers = parseHeaderFile(htext); } catch (e) { }
+      const wi = out.lastIndexOf(WMARK);
+      const htext = wi < 0 ? out : out.slice(0, wi);
+      const [st, dl, hd, ex] = wi < 0 ? [] : out.slice(wi + WMARK.length).trim().split(' ').map(Number);
+      let body = Buffer.alloc(0); try { body = fs.readFileSync(bf); } catch (e) { }
+      const headers = parseHeaderFile(htext);
       const exit = Number.isFinite(ex) ? ex : (code == null ? -1 : code);
-      const wire = Number.isFinite(dl) ? (dl || 0) + (hd || 0) : size(bf) + size(hf);
+      const wire = Number.isFinite(dl) && Number.isFinite(hd) ? (dl || 0) + (hd || 0) : body.length + Buffer.byteLength(htext, 'latin1');
       cleanup();
       resolve({ status: st || statusOf(htext), headers, body, wire, exit, truncated: exit === 63, timedOut: exit === 28, killed, stopped: stopped || undefined, error: exit ? err.trim() || `curl exit ${exit}` : undefined });
     });
   });
-  return { promise, kill: () => { killed = true; const n = size(bf) + size(hf); try { child && child.kill('SIGKILL'); } catch (e) { } return n; } };
+  return { promise, kill: () => { killed = true; const n = size(bf) + headerBytes(); try { child && child.kill('SIGKILL'); } catch (e) { } return n; } };
 }
 
 /* ---------- the local cache (same layout as scratchpad nov21/sweep-cache/assets) ---------- */
@@ -703,8 +723,8 @@ function cacheLookup(cache, url, range) {
 }
 
 /* the body limit for curl: the grant's own limit (tryReserve), else the grant, less room for the headers when the grant is
-   what is left of a cap */
-const bodyLimit = g => (g.limit != null ? g.limit : Math.max(1, g.bytes - (g.by === 'get' ? 0 : HEADER_ALLOWANCE)));
+   what is left of a cap (a grant made by hand) */
+const bodyLimit = g => (g.limit != null ? g.limit : Math.max(1, g.bytes - (g.by === 'get' ? 0 : HEADER_MARGIN)));
 
 /* a Range header cut to at most chunk bytes, or null when there is none or it cannot be read */
 function boundRange(range, chunk) {
@@ -804,23 +824,26 @@ function guard(target, opts) {
 
   /* the types a mode refuses for a URL whose own class is 'doc' (an extensionless fetch, or a URL with a non-media extension) */
   const refusedType = ct => ct !== 'doc' && (mode === 'block' || (ct === 'video' && !allow.video) || (ct === 'font' && !allow.font));
-  /* One GET from Webflow with curl: counted, capped at what is left of the budget. Every GET reserves getCapMB plus room for
-     the allowance (or o.body plus that room when the size is known), also with a small Range header, as the first version
-     did: a Range header the server ignores can bring the whole file. A response refused or cut at a size limit is counted
-     with an allowance (countFor) and remembered, so this run never asks for it again.
-     o.probe: no content type check and no size-limit count here (probeGet decides). o.watch: see curlFetch. o.ext: an
-     extensionless URL, whose application/octet-stream answer is checked for a video header (A-6).
+  /* One GET from Webflow with curl: counted, capped at what is left of the budget. Every GET reserves getCapMB plus ALLOW
+     (room for the headers and the allowance), also with a small Range header, as the first version did: a Range header the
+     server ignores can bring the whole file. The body limit is the grant less ALLOW, far from a cap and near one, and a
+     response whose headers pass HEADER_MARGIN is stopped and counted (X-3). A response refused or cut at a size limit is
+     counted with an allowance (countFor) and remembered, so this run never asks for it again. The content type is checked
+     after the GET, as in the first version. o.ext: an extensionless fetch or XHR, whose application/octet-stream answer is
+     also checked for a video header after the GET (A-6; this decides only whether to store and serve it, it adds no bytes).
      A GET refused before anything was sent (no grant) comes back with unsent: true. */
   async function netGet(url, headers, cls, o) {
     o = o || {};
     const rkey = headers.range ? `${url} [range ${headers.range}]` : url;
     if (run.refusedKeys.has(rkey)) { run.refusedAgain++; return { abort: 'over the size limit earlier in this run' }; }
-    const body = Math.max(1, Math.min(run.getCap, o.body != null ? o.body : run.getCap));
-    const grant = await run.reserveWait(body + ALLOW, null, () => ctxClosed, ALLOW);
-    if (!grant.bytes) return { unsent: true, abort: grant.by === 'busy' ? `other GETs held what is left of the budget for ${run.reserveWaitMs / 1000} s; this GET is refused, the run goes on` : ctxClosed ? 'its context closed' : 'stopped at a cap' };
+    const grant = await run.reserveWait(run.getCap + ALLOW, null, () => ctxClosed, ALLOW);
+    if (!grant.bytes) {
+      if (grant.by === 'low') run.lowRefused++;
+      return { unsent: true, abort: grant.by === 'busy' ? `other GETs held what is left of the budget for ${run.reserveWaitMs / 1000} s; this GET is refused, the run goes on` : grant.by === 'low' ? `less than ${((ALLOW + MIN_BODY) / MB).toFixed(3)} MB is left of the ${grant.cap} cap; this GET is refused, the run goes on` : ctxClosed ? 'its context closed' : 'stopped at a cap' };
+    }
     const h = {}; for (const x of ['range', 'accept', 'user-agent', 'accept-language']) if (headers[x]) h[x] = headers[x];
     const limit = bodyLimit(grant);
-    const job = curlFetch(url, Object.assign({ headers: h, maxBytes: limit, watch: o.watch }, fetchOpts));
+    const job = curlFetch(url, Object.assign({ headers: h, maxBytes: limit, maxHeaderBytes: HEADER_MARGIN }, fetchOpts));
     const ent = { job, grant, settled: false }; run.inflight.add(ent);
     const r = await job.promise;
     run.inflight.delete(ent);
@@ -828,82 +851,21 @@ function guard(target, opts) {
     ent.settled = true;
     run.gets++; run.responses++; if (r.status !== 200 && r.status !== 206) run.non200++;
     if (r.timedOut) run.unfinished++;
-    /* refused at the cap only when the cap set the limit; a response larger than a known size or getCapMB is over the size limit */
-    const atCap = r.truncated && grant.by !== 'get' && limit < body;
-    if (r.truncated) { run.refusedKeys.add(rkey); if (!atCap && !o.probe) run.tooBig++; }
-    run.settle(grant, countFor(r, limit, grant), atCap);
+    /* refused at the cap only when the cap set the limit; a response larger than getCapMB is over the size limit */
+    const atCap = r.truncated && grant.by !== 'get' && limit < run.getCap;
+    if (r.truncated || r.stopped) { run.refusedKeys.add(rkey); if (r.stopped) run.bigHeaders++; else if (!atCap) run.tooBig++; }
+    const used = countFor(r, limit, grant); if (r.pastGrant) run.pastGrant += r.pastGrant;
+    run.settle(grant, used, atCap);
     if (atCap) { run.trip(grant.by, { refused: url, left: grant.bytes }); return { abort: 'stopped at a cap' }; }
-    if (r.stopped) return { abort: r.stopped, stopped: true, status: r.status, headers: r.headers };
-    if (r.truncated) return { abort: 'over the size limit', truncated: true, status: r.status, headers: r.headers };
+    if (r.stopped) return { abort: `${r.stopped}, stopped` };
+    if (r.truncated) return { abort: 'over the size limit' };
     if (r.exit) { if (!r.timedOut) run.failed++; return { abort: r.timedOut ? 'timed out' : 'failed' }; }
     const ct = typeOf(r.headers, o.ext ? r.body : null);
-    if (!o.probe && cls === 'doc' && refusedType(ct)) { run.blocked++; return { abort: `content type ${ct}` }; }
+    if (cls === 'doc' && refusedType(ct)) { run.blocked++; return { abort: `content type ${ct}` }; }
     return { status: r.status, headers: r.headers, body: r.body };
   }
-
-  /* A fetch or XHR of a Webflow URL with no file extension could be a video (fetch() has no 'media' resource type). It is
-     asked for with Range: bytes=0-<videoChunkMB - 1>, and curl may take the whole getCapMB. The guard watches the headers
-     (and, for application/octet-stream, the first bytes) as they come and stops the transfer at once for:
-     a video (by type or by an MP4, MOV or WebM header), a type the mode refuses, or a 206 whose total is over getCapMB (the
-     first version refused that file too). Then:
-     - a 206 that holds the whole file: served as a 200;
-     - a 206 of the first chunk of a larger file of an allowed type: only the rest (bytes=<chunk>-<total - 1>) is fetched and
-       joined to the chunk, so the file is fetched once in all (R-1);
-     - a 200 (the server ignored the Range header): kept as the answer, as the first version would have fetched it;
-     - a 206 with no total, or a 416: fetched again whole, as before. */
-  async function probeGet(url, headers, cls) {
-    const probe = `bytes=0-${videoChunk - 1}`;
-    const watch = ({ status, headers: h, head }) => {
-      if (isOctet(h['content-type']) && head.length < 12) return 'wait';
-      const ct = typeOf(h, head);
-      if (ct === 'video' || refusedType(ct)) return `content type ${ct}`;
-      if (status === 206) { const cr = contentRange(h['content-range']); if (cr && cr.total != null && cr.total > run.getCap) return 'over the size limit'; }
-      return null;
-    };
-    const r = await netGet(url, Object.assign({}, headers, { range: probe }), cls, { probe: true, watch, ext: true });
-    if (r.stopped && /^content type/.test(r.abort)) {
-      run.blocked++;
-      return { abort: `${r.abort} on an extensionless fetch, stopped after its headers${/video/.test(r.abort) && allow.video ? ' (video needs a Range header)' : ''}` };
-    }
-    if (r.stopped || r.truncated) { run.tooBig++; run.refusedKeys.add(`${url} [range ${probe}]`); return { abort: 'over the size limit' }; }
-    if (r.abort) return r;
-    const ct = typeOf(r.headers, r.body);
-    if (ct === 'video' || refusedType(ct)) {
-      run.blocked++;
-      return { abort: `content type ${ct} on an extensionless fetch, stopped after at most ${videoChunk} bytes${ct === 'video' && allow.video ? ' (video needs a Range header)' : ''}` };
-    }
-    if (r.status === 206) {
-      const cr = contentRange(r.headers['content-range']);
-      if (cr && cr.a === 0 && r.body.length === cr.b + 1 && cr.total != null) {
-        const hd = Object.assign({}, r.headers); delete hd['content-range'];
-        if (cr.b + 1 === cr.total) return { status: 200, headers: hd, body: r.body };
-        if (cr.total > run.getCap) { run.tooBig++; run.refusedKeys.add(`${url} [range ${probe}]`); return { abort: 'over the size limit' }; }
-        const rest = await netGet(url, Object.assign({}, headers, { range: `bytes=${cr.b + 1}-${cr.total - 1}` }), cls, { probe: true, body: cr.total - cr.b - 1 });
-        if (rest.truncated || rest.stopped) { run.tooBig++; return { abort: 'over the size limit' }; }
-        if (rest.abort) return { abort: rest.abort };   /* not unsent: the first chunk was fetched */
-        const rc = contentRange(rest.headers['content-range']);
-        if (rest.status === 206 && rc && rc.a === cr.b + 1 && rc.total === cr.total && rest.body.length === cr.total - cr.b - 1) {
-          run.joined++;
-          return { status: 200, headers: hd, body: Buffer.concat([r.body, rest.body]) };
-        }
-        if (rest.status === 200 && rest.body.length === cr.total) return { status: 200, headers: rest.headers, body: rest.body };
-        run.failed++; return { abort: 'failed: the rest of the file did not match its first chunk' };
-      }
-      return netGet(url, headers, cls, { ext: true });
-    }
-    if (r.status === 416) return netGet(url, headers, cls, { ext: true });
-    return r;
-  }
+  /* a fetch or XHR of a URL with no file extension in its last path part */
   const extensionless = u => !/\.[A-Za-z0-9]{1,8}$/.test(decodedPath(u).split('/').pop() || '');
-  /* a video asked for with a Range header (or an extensionless fetch with the page's own Range) whose server ignores the
-     Range and starts a whole file larger than a chunk is stopped at its headers: video comes only in pieces */
-  const rangeWatch = ({ status, headers: h, head }) => {
-    if (status !== 200) return null;
-    if (isOctet(h['content-type']) && head.length < 12) return 'wait';
-    const ct = typeOf(h, head), cl = parseInt(h['content-length'], 10);
-    if (ct === 'video' && !(Number.isFinite(cl) && cl <= videoChunk)) return 'content type video: the server ignored the Range header';
-    return null;
-  };
 
   /* block mode: Webflow GETs of one context that are in flight, by key; a second request for the same key waits for the
      first and gets the same answer (A-3) */
@@ -919,30 +881,25 @@ function guard(target, opts) {
     }
     if (mode === 'cache-only') { run.noteMiss(url, cls); return { abort: 'not in the cache' }; }
     if (cls !== 'doc' && (mode === 'block' || (cls === 'video' && !allow.video) || (cls === 'font' && !allow.font))) { run.blocked++; return { abort: `${cls} blocked` }; }
-    /* video (fetch-once with allowVideo), and an extensionless fetch or XHR that sends its own Range header: the range is cut
-       to videoChunkMB. Video without a Range header is refused; an extensionless fetch without one is probed (probeGet). */
+    /* video (fetch-once with allowVideo) only in bounded pieces: a request without a Range header is refused, an open or long
+       range is cut to videoChunkMB. An extensionless fetch or XHR is one GET, as in the first version (N-3 is a known gap,
+       see tools/WF-GUARD.md); only its answer is checked for a video header (A-6). */
     const ext = !nav && cls === 'doc' && /^(fetch|xhr)$/.test(rtype) && extensionless(url);
-    if (cls === 'video' || (ext && range)) {
+    if (cls === 'video') {
       const b = boundRange(range, videoChunk);
-      if (!b && cls === 'video') { run.blocked++; return { abort: 'video without a Range header' }; }
-      if (b && b !== range) { range = b; headers = Object.assign({}, headers, { range }); if (cache) { const hit = cache.get(`${url} [range ${range}]`); if (hit) { run.cacheHits++; return hit; } } }
-      if (!b) { range = null; headers = Object.assign({}, headers); delete headers.range; }
+      if (!b) { run.blocked++; return { abort: 'video without a Range header' }; }
+      if (b !== range) { range = b; headers = Object.assign({}, headers, { range }); if (cache) { const hit = cache.get(`${url} [range ${range}]`); if (hit) { run.cacheHits++; return hit; } } }
     }
-    const get = async () => {
-      if (ext && !range) return probeGet(url, headers, cls);
-      const r = await netGet(url, headers, cls, range && (cls === 'video' || ext) ? { watch: rangeWatch, ext } : { ext });
-      if (r.stopped && /^content type/.test(r.abort)) run.blocked++;
-      return r;
-    };
+    const get = () => netGet(url, headers, cls, { ext });
     const key = range ? `${url} [range ${range}]` : url;
     if (mode === 'block') {
-      const bk = (ext ? 'ext ' : '') + key;
-      if (blockInflight.has(bk)) { run.shared++; return blockInflight.get(bk); }
-      const p = get(); blockInflight.set(bk, p);
-      try { return await p; } finally { blockInflight.delete(bk); }
+      if (blockInflight.has(key)) { run.shared++; return blockInflight.get(key); }
+      const p = get(); blockInflight.set(key, p);
+      try { return await p; } finally { blockInflight.delete(key); }
     }
     /* fetch-once: each key goes to the network once, ever (the claim file). A claim whose GET was refused before anything was
-       sent (no grant: waited too long, context closed, run stopped) is released, so a later run may fetch it (A-4). */
+       sent (no grant: waited too long, too little left of a cap, context closed, run stopped) is released, so a later run may
+     fetch it (A-4). Each key is one GET at most, so a released claim never follows bytes that were sent. */
     if (cache.inflight.has(key)) { await cache.inflight.get(key).catch(() => { }); const h = cache.get(key); if (h) { run.cacheHits++; return h; } run.cacheRefused++; return { abort: 'its one fetch failed' }; }
     if (!cache.claim(key)) { const h = await cache.waitFor(key, 60000); if (h) { run.cacheHits++; return h; } run.cacheRefused++; return { abort: 'fetched before' }; }
     const p = get().then(r => {
@@ -1176,7 +1133,7 @@ function guard(target, opts) {
       label: run.label, mode: run.mode, id: run.id, bytes: run.bytes, mb: +(run.bytes / MB).toFixed(3), pageLoads: run.pageLoads, gets: run.gets,
       responses: run.responses, cacheHits: run.cacheHits, cacheFetches: run.cacheFetches, cacheRefused: run.cacheRefused, misses: run.misses,
       missList: run.missList.slice(), blocked: run.blocked, nonGet: run.nonGet, leaks: run.leaks, refusedAgain: run.refusedAgain,
-      waits: run.waits, waitRefused: run.waitRefused, redirectPages: run.redirectPages, redirectLimit: run.redirectLimit, redirectDirect: run.redirectDirect, joined: run.joined, shared: run.shared,
+      waits: run.waits, waitRefused: run.waitRefused, redirectPages: run.redirectPages, redirectLimit: run.redirectLimit, redirectDirect: run.redirectDirect, shared: run.shared, lowRefused: run.lowRefused, bigHeaders: run.bigHeaders, pastGrant: run.pastGrant,
       unfinished: run.unfinished, tooBig: run.tooBig, failed: run.failed, redirectsIn: run.redirectsIn, redirectsFollowed: run.redirectsFollowed, lastWord,
       dayBaseMB: +(run.dayBaseBytes() / MB).toFixed(3), stopped: run.error ? run.error.cap : null,
     }),
@@ -1189,7 +1146,7 @@ function guard(target, opts) {
 }
 
 module.exports = {
-  guard, createRun, curlFetch, bodyLimit, countedBytes, countFor, CUT_ALLOWANCE, ALLOW, makeCache, chromeForm, looksLikeVideo, procStart, cacheLookup, boundRange, WfBudgetError, WfLogFormatError, isWebflowUrl, hostMatcher, classify, classifyType,
+  guard, createRun, curlFetch, bodyLimit, countedBytes, countFor, CUT_ALLOWANCE, ALLOW, HEADER_MARGIN, MIN_BODY, MIN_GRANT, makeCache, chromeForm, looksLikeVideo, procStart, cacheLookup, boundRange, WfBudgetError, WfLogFormatError, isWebflowUrl, hostMatcher, classify, classifyType,
   isMediaRequest, fileFor, parseLogLine, lineMBForDay, dailyTotalMB, readDailyTotalMB, appendLogLine, logLine, readTally, withLock,
   RUN_CAP_MB, DAY_CAP_MB, GET_CAP_MB, DEFAULT_LOG, REPO_ROOT, MAIN_ROOT, MAIN_LOG, STATE_DIR, WF_HOSTS,
 };
