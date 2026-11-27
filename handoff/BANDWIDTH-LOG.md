@@ -11,3 +11,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 25 Nov, rl169 16.69.0 live check: 24 HTML GETs, about 4 MB (E); bandwidth audit: about 0 MB (M, saved HTML only)
 - 25 Nov, asia-cls-check (independent check of 2c51cda): 362 browser page loads from cached pages and assets, 0 HTML GETs, 0 MB from Webflow (M)
 - 27 Nov, classb-check (independent check of the class B drafts): 3 HTML GETs, 0.6 MB (M); 126 browser page loads from cached pages and assets, 0 MB from Webflow (M)
+- 27 Nov, keep-going review (adversarial review of the asia, classb and guard tracks): 0 page loads, 0 HTML GETs, 0 MB from Webflow (M); one Chromium run against a local stub on 127.0.0.1 only
