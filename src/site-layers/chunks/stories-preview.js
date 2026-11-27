@@ -32,6 +32,11 @@ function url(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-ch
   var v=c.getAttribute('data-tll-place')||'',q=new URLSearchParams(location.search);if(!v||v==='all')q.delete('place');else q.set('place',v);
   var s=q.toString();history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash);}
 document.addEventListener('click',url);
+/* 27 Nov: after any place or sort chip has filtered the grid (its own handler runs first, on the chip), tell the page's lead layer at
+   once. The fallback above hides cards without moving them, which the lead layer's observer does not see; the page's chips move them,
+   which it sees only 30 ms later. Either way the lead mark sat on a hidden card for a while (for good, with the fallback). */
+document.addEventListener('click',function(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-chips="place-sort"] [data-tll-place],[data-tll-chips="place-sort"] [data-tll-sort]');
+  if(c)try{document.dispatchEvent(new Event('tll:lib-filtered'));}catch(x){}});
 function shown(){document.documentElement.removeAttribute('data-tll-place-wait');}
 function replay(){var want=(new URLSearchParams(location.search).get('place')||'').trim().toLowerCase();if(!want||want==='all'){shown();return;}var n=0;
   (function go(){var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');
