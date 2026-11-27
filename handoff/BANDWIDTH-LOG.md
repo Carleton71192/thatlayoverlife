@@ -17,3 +17,4 @@ One line per run that touches a Webflow host (www.thatlayover.life, the apex, th
 - 25 Nov, asia-cls (?place=Asia lead-mark wait, branch claude/asia-cls-2026-11-25): 0 page loads, 0 MB from Webflow (M, saved page code and unit tests only)
 - 27 Nov, classb page code drafts: 0 page loads, 0 MB from Webflow hosts (M; Webflow MCP API reads only, saved HTML of 21 and 25 Nov)
 - 27 Nov, rl170 test-site release: 28 HTML GETs from Webflow hosts, about 1.9 MB (M); no images, no browser
+- 27 Nov, bw-guard-fix (branch claude/bw-guard-fix-2026-11-27): fixed tools/wf-guard.cjs and tools/wf-get.cjs, tests against a stub server on 127.0.0.1 only, 0 page loads, 0 MB from Webflow (M)
