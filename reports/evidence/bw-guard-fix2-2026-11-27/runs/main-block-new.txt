@@ -1,0 +1,57 @@
+0.2s S0 sanity host seen by stub ["www.thatlayover.life:34075"]
+DISCONNECTED during S0
+0.9s S1 host spellings (block mode) {"upper":"blocked","apex":"blocked","apexUpper":"blocked","cdn":"blocked","cdnUpper":"blocked","assetsGlobal":"blocked","deepSub":"blocked","webflowIo":"blocked","wfioUpper":"blocked","trailingDot":"blocked","cdnTrailingDot":"blocked","otherSub":"blocked","uploadsWebflowCom":"blocked","noExtImg":"blocked","extUpper":"blocked","encodedExt":"blocked","cssBackground":"blocked","fetchNoExtImage":"REACHED SERVER (counted as non-media)","fetchEncodedExt":"blocked"}
+0.9s S1 stats {"label":"s1","mode":"block","id":"c670ab","bytes":248,"mb":0,"pageLoads":0,"gets":1,"responses":1,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":0,"missList":[],"blocked":19,"nonGet":0,"leaks":0,"refusedAgain":0,"waits":0,"waitRefused":0,"redirectPages":0,"redirectLimit":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S1
+1.6s S2 redirect non-Webflow img -> Webflow img "blocked"
+1.6s S2 redirect Webflow page path -> Webflow img "blocked"
+1.6s S2 redirect other host img -> Webflow img "blocked"
+1.6s S2 non-Webflow script redirected to a 300 KB Webflow script: stub sent, guard counted {"stubSent":300000,"guardBytes":300197}
+2.0s S2 navigation non-Webflow -> Webflow page: counted bytes added, pageLoads {"added":193,"pageLoads":1}
+2.0s S2 caller route.fetch error "wf-guard: refused a Webflow media fetch in mode block (image blocked): http://cdn.prod.website-files.com:34075/s2-d.png"
+2.0s S2 caller route.fetch result "err"
+2.0s S2 caller route.fetch non-Webflow URL redirecting to Webflow image (block mode) "blocked"
+DISCONNECTED during S2
+2.2s S3 sw register "ok"
+3.8s S3 service worker {"swInstallWebflowImage":"blocked","swPOST":"blocked","swPUT":"blocked","sw500KBWebflowScriptSent":500000,"pageImgThroughSW":"blocked","pagePOSTThroughSW":"blocked","pagePostResult":"blocked","guardStats":{"label":"s3","mode":"block","id":"979ea1","bytes":500197,"mb":0.5,"pageLoads":0,"gets":1,"responses":1,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":0,"missList":[],"blocked":2,"nonGet":3,"leaks":0,"refusedAgain":0,"waits":0,"waitRefused":0,"redirectPages":0,"redirectLimit":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}}
+DISCONNECTED during S3
+4.8s S4 block mode {"videoHits":0,"noExtVideoHits":0,"fetchRangeMp4":0,"rangeOnNonMedia":[{"range":"bytes=0-99","sent":800000}],"guardBytes":256195}
+6.3s S4 cache mode {"videoNetworkFetches":0,"rangesSentUpstream":[],"sentBytes":0,"stats":{"label":"s4-cache","mode":"fetch-once","id":"5fc975","bytes":256195,"mb":0.256,"pageLoads":0,"gets":1,"responses":1,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":0,"missList":[],"blocked":4,"nonGet":0,"leaks":0,"refusedAgain":0,"waits":0,"waitRefused":0,"redirectPages":0,"redirectLimit":0,"unfinished":0,"tooBig":1,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}}
+7.2s S4 cache mode after reload: new upstream video fetches 0
+DISCONNECTED during S4
+  goto refused: page.goto: Target page, context or browser has been closed
+11.3s S5 endless 1.28 MB/s Webflow script, run cap 1 MB, after 4 s {"stubSentMB":1.02,"guardMB":1.24,"tripped":1}
+11.6s S5 log line after close ["- 27 Nov 11:42 UTC, s5-stream: wf-guard block run b24630, 0 page loads, 1 Webflow GETs, 1.24 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the run cap"]
+15.2s S5 polling 200 KB Webflow fetches, run cap 1 MB {"trips":["wf-guard: s5-poll stopped at the run cap of 1 MB: a GET of http://www.thatlayover.life:34075/kb200.js?0.5098677261776116 was refused because it was larger than the 0.20 MB left; 1.00 MB counted from Webflow in this run, the refused GET included"],"fetchesBeforeStop":5,"stubSentMB":1,"guardMB":1.001,"laterHits":0,"log":["- 27 Nov 11:42 UTC, s5-poll: wf-guard block run 109a75, 0 page loads, 5 Webflow GETs, 1.00 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the run cap"]}
+DISCONNECTED during S5
+17.4s S6 two contexts, same cache, same image at the same time: upstream fetches 1
+18.8s S6 first fetch failed in A; B (guarded before) and C (guarded after) load it: upstream fetches 1
+18.8s S6 shared run log ["- 27 Nov 11:42 UTC, s6-shared: wf-guard fetch-once run cbf5d9, 0 page loads, 2 Webflow GETs, 0.00 MB from Webflow (M); 1 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; 2 refused as fetched before"]
+DISCONNECTED during S6
+19.7s S6c page target closed, then 400 KB more in the same context {"guardMB":0.5,"log":[]}
+DISCONNECTED during S6c
+  goto refused: page.goto: net::ERR_ABORTED; maybe frame was detached?
+20.8s S8 sequential runs, day cap 1 MB, 0.6 + 0.6 MB {"tripsB":["day"],"log":["# log","- 27 Nov 11:42 UTC, s8-a: wf-guard block run c409f4, 1 page loads, 1 Webflow GETs, 0.60 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted","- 27 Nov 11:42 UTC, s8-b: wf-guard block run 56387a, 0 page loads, 1 Webflow GETs, 0.38 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the daily cap"]}
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://www.thatlayover.life:34075/kb600.js
+21.0s S8 concurrent goto results ["loaded","loaded"]
+21.5s S8 concurrent runs, day cap 1 MB, 0.6 + 0.6 MB {"trips":["d day"],"log":["# log","- 27 Nov 11:42 UTC, s8-d: wf-guard block run 82e347, 0 page loads, 1 Webflow GETs, 0.38 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted; STOPPED at the daily cap","- 27 Nov 11:42 UTC, s8-c: wf-guard block run a0c946, 1 page loads, 1 Webflow GETs, 0.60 MB from Webflow (M); 0 served from the cache, 0 cache misses aborted, 0 images, video or fonts aborted, 0 non-GET requests aborted"],"dayTotal":0.98}
+21.5s S8 third run after the cap "STARTED"
+DISCONNECTED during S8
+24.8s S9 page results {"put":"blocked","post":"blocked","head":"blocked","del":"blocked","patch":"blocked","beacon":true}
+24.8s S9 non-GET requests that reached the stub ["POST /s9-beacon-unload","POST /s9-keepalive","POST /s9-beacon-unload","POST /s9-keepalive"]
+24.8s S9 stats {"label":"s9","mode":"block","id":"6b28c5","bytes":0,"mb":0,"pageLoads":0,"gets":0,"responses":0,"cacheHits":0,"cacheFetches":0,"cacheRefused":0,"misses":0,"missList":[],"blocked":0,"nonGet":15,"leaks":0,"refusedAgain":0,"waits":0,"waitRefused":0,"redirectPages":0,"redirectLimit":0,"unfinished":0,"tooBig":0,"failed":0,"redirectsIn":0,"redirectsFollowed":0,"lastWord":true,"dayBaseMB":0,"stopped":null}
+DISCONNECTED during S9
+25.5s S10 caller fallback({url}) rewriting to a Webflow image "blocked"
+25.5s S10 caller continue({url}) rewriting to a Webflow image "blocked"
+  goto refused: page.goto: net::ERR_BLOCKED_BY_CLIENT at http://cdn.prod.website-files.com:34075/s10-nav.png
+25.5s S10 page.goto a Webflow image "blocked"
+26.0s S10 caller route registered BEFORE guard (documented limit) "blocked"
+26.0s all Webflow-host requests that reached the stub (host path) ["GET www.thatlayover.life/hello.html","GET cdn.prod.website-files.com/noext-img-fetch","GET www.thatlayover.life/kb300.js","GET www.thatlayover.life/s2-page.html","GET www.thatlayover.life/kb500.js","GET www.thatlayover.life/kb800.js","GET www.thatlayover.life/kb800.js","GET www.thatlayover.life/stream","GET www.thatlayover.life/kb200.js","GET www.thatlayover.life/kb200.js","GET www.thatlayover.life/kb200.js","GET www.thatlayover.life/kb200.js","GET www.thatlayover.life/kb200.js","GET cdn.prod.website-files.com/slow-s6.png","GET cdn.prod.website-files.com/fail-s6.png","GET www.thatlayover.life/kb100.js","GET www.thatlayover.life/kb400.js","GET www.thatlayover.life/kb600.js","GET www.thatlayover.life/kb600.js","GET www.thatlayover.life/kb600.js","GET www.thatlayover.life/kb600.js"]
+26.0s unhandled rejections seen []
+DISCONNECTED during S10
+FATAL TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at Object.join (node:path:1354:7)
+    at <scratch>/rep/reports/evidence/bw-guard-fix2-2026-11-27/scripts/main2.cjs:286:25 {
+  code: 'ERR_INVALID_ARG_TYPE'
+}
+UNHANDLED REJECTION The "path" argument must be of type string. Received undefined
