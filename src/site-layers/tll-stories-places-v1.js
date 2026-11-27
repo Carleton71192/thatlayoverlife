@@ -12,6 +12,10 @@
    25 Nov 2026 (check 3 of the sweep, note 1): after a press the mark waits until the page's lead layer has moved the lead mark (the grid
    quiet for 100 ms, 0.4 s at most), so ?place=Asia no longer shows the grid and then shifts it (0.0292 at 1440). The replay still lets
    go by 3.3 s after DOMContentLoaded at worst (29 polls and the 0.4 s), inside the core's 3.5 s.
+   27 Nov 2026 (asia-cls check, note 2): with the core and chunks late, the page's chip script has wired its chips first, so Asia,
+   Middle East and Oceania filter through the fallback below. It hid cards without moving them, which the page's lead layer does not
+   see, so the lead mark stayed on a hidden card. After every place or sort chip click (fallback or page chip, replay included) the layer
+   now sends tll:lib-filtered, the event the lead layer (and the page's search) already use, so the first visible card leads at once.
    22 Nov 2026 (sweep of 21 Nov, A16): on a card whose writer name is long, the place wraps to a line of its own and that line began
    with the page's "· " (17 of 57 cards at 390). dots() marks such a place data-tll-own-line (it sits below the name); the core style
    tll-sweep-1121-v1 then drops the dot and keeps the place on its own line. Measured when the page is parsed, when the fonts are in,
@@ -48,6 +52,11 @@ function url(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-ch
   var v=c.getAttribute('data-tll-place')||'',q=new URLSearchParams(location.search);if(!v||v==='all')q.delete('place');else q.set('place',v);
   var s=q.toString();history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash);}
 document.addEventListener('click',url);
+/* 27 Nov: after any place or sort chip has filtered the grid (its own handler runs first, on the chip), tell the page's lead layer at
+   once. The fallback above hides cards without moving them, which the lead layer's observer does not see; the page's chips move them,
+   which it sees only 30 ms later. Either way the lead mark sat on a hidden card for a while (for good, with the fallback). */
+document.addEventListener('click',function(e){var c=e.target&&e.target.closest&&e.target.closest('[data-tll-chips="place-sort"] [data-tll-place],[data-tll-chips="place-sort"] [data-tll-sort]');
+  if(c)try{document.dispatchEvent(new Event('tll:lib-filtered'));}catch(x){}});
 function shown(){document.documentElement.removeAttribute('data-tll-place-wait');}
 function replay(){var want=(new URLSearchParams(location.search).get('place')||'').trim().toLowerCase();if(!want||want==='all'){shown();return;}var n=0;
   (function go(){var grid=document.querySelector('.tll-lib-grid')||document.querySelector('.tll-library-grid');
