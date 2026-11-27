@@ -1,0 +1,6 @@
+B5a 3 MB extensionless JSON, Range honored block {"page":"200 3000000","wfRequests":["/big/b5a-block bytes=0-999999","/big/b5a-block bytes=1000000-2999999"],"deliveredAtRelay":3000539,"countedBytes":3000539,"trip":null}
+B5b 3 MB extensionless JSON, Range ignored block {"page":"200 3000000","wfRequests":["/kb/b5b-block bytes=0-999999"],"deliveredAtRelay":3000192,"countedBytes":3000192,"trip":null}
+B5c 0.5 MB extensionless JSON, Range honored block {"page":"200 500000","wfRequests":["/big/b5c-block bytes=0-999999"],"deliveredAtRelay":500264,"countedBytes":500264,"trip":null}
+B5a 3 MB extensionless JSON, Range honored fetch-once {"page":"200 3000000","wfRequests":["/big/b5a-fetch-once bytes=0-999999","/big/b5a-fetch-once bytes=1000000-2999999"],"deliveredAtRelay":3000539,"countedBytes":3000539,"trip":null}
+B5b 3 MB extensionless JSON, Range ignored fetch-once {"page":"200 3000000","wfRequests":["/kb/b5b-fetch-once bytes=0-999999"],"deliveredAtRelay":3000192,"countedBytes":3000192,"trip":null}
+B5c 0.5 MB extensionless JSON, Range honored fetch-once {"page":"200 500000","wfRequests":["/big/b5c-fetch-once bytes=0-999999"],"deliveredAtRelay":500264,"countedBytes":500264,"trip":null}

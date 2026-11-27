@@ -1,0 +1,7 @@
+B6 extensionless octet-stream mp4, 3 MB, Range honored fetch-once {"page":"err Failed to fetch","wfRequests":["/sniff/mp4/b6 bytes=0-999999"],"deliveredAtRelay":1000252,"countedBytes":1000252,"trip":null}
+B6 extensionless octet-stream webm, 3 MB, Range honored fetch-once {"page":"err Failed to fetch","wfRequests":["/sniff/webm/b6 bytes=0-999999"],"deliveredAtRelay":1000252,"countedBytes":1000252,"trip":null}
+B6 extensionless octet-stream avi, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/avi/b6 bytes=0-999999","/sniff/avi/b6 bytes=1000000-2999999"],"deliveredAtRelay":3000511,"countedBytes":3000511,"trip":null}
+B6 extensionless octet-stream ts, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/ts/b6 bytes=0-999999","/sniff/ts/b6 bytes=1000000-2999999"],"deliveredAtRelay":3000511,"countedBytes":3000511,"trip":null}
+B6 extensionless octet-stream ogg, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/ogg/b6 bytes=0-999999","/sniff/ogg/b6 bytes=1000000-2999999"],"deliveredAtRelay":3000511,"countedBytes":3000511,"trip":null}
+B6 extensionless octet-stream flv, 3 MB, Range honored fetch-once {"page":"200 3000000","wfRequests":["/sniff/flv/b6 bytes=0-999999","/sniff/flv/b6 bytes=1000000-2999999"],"deliveredAtRelay":3000511,"countedBytes":3000511,"trip":null}
+B6 extensionless octet-stream text, 3 MB, Range honored fetch-once {"page":"err Failed to fetch","wfRequests":["/sniff/text/b6 bytes=0-999999"],"deliveredAtRelay":1000252,"countedBytes":1000252,"trip":null}

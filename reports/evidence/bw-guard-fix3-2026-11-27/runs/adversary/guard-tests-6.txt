@@ -1,0 +1,371 @@
+TAP version 13
+# Subtest: log parser: single days, ranges, the guard line format, ISO dates, GB and KB
+ok 1 - log parser: single days, ranges, the guard line format, ISO dates, GB and KB
+  ---
+  duration_ms: 4.435607
+  type: 'test'
+  ...
+# Subtest: log parser: the formats the check listed are read, not counted as 0 (check item 13)
+ok 2 - log parser: the formats the check listed are read, not counted as 0 (check item 13)
+  ---
+  duration_ms: 1.391338
+  type: 'test'
+  ...
+# Subtest: log parser: a dated-looking line it cannot read fails loudly instead of counting 0
+ok 3 - log parser: a dated-looking line it cannot read fails loudly instead of counting 0
+  ---
+  duration_ms: 1.950272
+  type: 'test'
+  ...
+# Subtest: log parser reads the real handoff/BANDWIDTH-LOG.md of this checkout and of the main checkout
+ok 4 - log parser reads the real handoff/BANDWIDTH-LOG.md of this checkout and of the main checkout
+  ---
+  duration_ms: 2.026046
+  type: 'test'
+  ...
+# Subtest: appendLogLine adds a newline when the file lacks one and keeps one line
+ok 5 - appendLogLine adds a newline when the file lacks one and keeps one line
+  ---
+  duration_ms: 0.426221
+  type: 'test'
+  ...
+# Subtest: paths: the log, the main checkout and the tally folder come from the script location (S8, G4)
+ok 6 - paths: the log, the main checkout and the tally folder come from the script location (S8, G4)
+  ---
+  duration_ms: 5.578905
+  type: 'test'
+  ...
+# Subtest: host matcher: the Webflow hosts with trailing dots, site subdomains and webflow.com, and nothing else (S1, W6)
+ok 7 - host matcher: the Webflow hosts with trailing dots, site subdomains and webflow.com, and nothing else (S1, W6)
+  ---
+  duration_ms: 1.001802
+  type: 'test'
+  ...
+# Subtest: classes: decoded extensions, resource types and content types; video ranges are bounded
+ok 8 - classes: decoded extensions, resource types and content types; video ranges are bounded
+  ---
+  duration_ms: 2.319751
+  type: 'test'
+  ...
+# Subtest: createRun: daily cap already reached throws before any traffic
+ok 9 - createRun: daily cap already reached throws before any traffic
+  ---
+  duration_ms: 1.515598
+  type: 'test'
+  ...
+# Subtest: createRun: run cap and daily cap trip, write one STOPPED line, and call onTrip
+ok 10 - createRun: run cap and daily cap trip, write one STOPPED line, and call onTrip
+  ---
+  duration_ms: 10.90492
+  type: 'test'
+  ...
+# Subtest: two runs at once share the tally under a lock: they cannot both pass the daily cap (S8)
+ok 11 - two runs at once share the tally under a lock: they cannot both pass the daily cap (S8)
+  ---
+  duration_ms: 20.510548
+  type: 'test'
+  ...
+# Subtest: the tally is shared across processes: an open run in another process counts at once (S8)
+ok 12 - the tally is shared across processes: an open run in another process counts at once (S8)
+  ---
+  duration_ms: 55.180103
+  type: 'test'
+  ...
+# Subtest: default onTrip stops the process with an uncaught WfBudgetError after the log line; an unclosed run logs at exit
+ok 13 - default onTrip stops the process with an uncaught WfBudgetError after the log line; an unclosed run logs at exit
+  ---
+  duration_ms: 83.90074
+  type: 'test'
+  ...
+# Subtest: the day CLI prints the total, and fails loudly on a log line it cannot read
+ok 14 - the day CLI prints the total, and fails loudly on a log line it cannot read
+  ---
+  duration_ms: 80.417934
+  type: 'test'
+  ...
+# Subtest: curlFetch: wire bytes, no redirects followed, the size limit and the timeout
+ok 15 - curlFetch: wire bytes, no redirects followed, the size limit and the timeout
+  ---
+  duration_ms: 1100.796974
+  type: 'test'
+  ...
+# Subtest: wf-get: counts wire bytes of compressed pages, saves decoded HTML, follows redirects by hand, refuses media, logs one line
+ok 16 - wf-get: counts wire bytes of compressed pages, saves decoded HTML, follows redirects by hand, refuses media, logs one line
+  ---
+  duration_ms: 62.307493
+  type: 'test'
+  ...
+# Subtest: wf-get: a redirect to an image is refused before it is fetched, an image without an extension after it (W3, W4)
+ok 17 - wf-get: a redirect to an image is refused before it is fetched, an image without an extension after it (W3, W4)
+  ---
+  duration_ms: 33.227692
+  type: 'test'
+  ...
+# Subtest: wf-get: --max-filesize and the run cap stop a GET during the transfer (W5); --max is 30 by default
+ok 18 - wf-get: --max-filesize and the run cap stop a GET during the transfer (W5); --max is 30 by default
+  ---
+  duration_ms: 567.356205
+  type: 'test'
+  ...
+# Subtest: wf-get CLI: exit 3 at the daily cap, 2 without a label; the output folder is fixed to the repo root; --cache stores pages
+ok 19 - wf-get CLI: exit 3 at the daily cap, 2 without a label; the output folder is fixed to the repo root; --cache stores pages
+  ---
+  duration_ms: 140.080021
+  type: 'test'
+  ...
+# Subtest: N-5: a line repeated in one log counts each time; a line in both logs counts as often as the file that holds it most
+ok 20 - N-5: a line repeated in one log counts each time; a line in both logs counts as often as the file that holds it most
+  ---
+  duration_ms: 0.971124
+  type: 'test'
+  ...
+# Subtest: N-6: a dated line with a size that is not a bullet fails loudly and names the line; "3 M" and "bytes" are sizes
+ok 21 - N-6: a dated line with a size that is not a bullet fails loudly and names the line; "3 M" and "bytes" are sizes
+  ---
+  duration_ms: 3.695249
+  type: 'test'
+  ...
+# Subtest: N-1: open reservations never trip a run; a blocked GET waits, then is refused alone; a cap in counted bytes still trips
+ok 22 - N-1: open reservations never trip a run; a blocked GET waits, then is refused alone; a cap in counted bytes still trips
+  ---
+  duration_ms: 1595.447311
+  type: 'test'
+  ...
+# Subtest: N-1: wf-get processes started together share the daily cap in counted bytes: as many run as fit, never more (check N5)
+ok 23 - N-1: wf-get processes started together share the daily cap in counted bytes: as many run as fit, never more (check N5)
+  ---
+  duration_ms: 5668.447423
+  type: 'test'
+  ...
+# Subtest: N-2: a response refused at a size limit counts its declared length up to the limit, or 256 KB; it is not fetched again
+ok 24 - N-2: a response refused at a size limit counts its declared length up to the limit, or 256 KB; it is not fetched again
+  ---
+  duration_ms: 19.980894
+  type: 'test'
+  ...
+# Subtest: N-7: a trip that refuses the first GET says it was refused and how much was counted
+ok 25 - N-7: a trip that refuses the first GET says it was refused and how much was counted
+  ---
+  duration_ms: 24.087251
+  type: 'test'
+  ...
+# Subtest: R-5, A-7: parser errors name the problem; "12 M requests" and "video 1080 M" are not sizes; a date in a path is not a date
+ok 26 - R-5, A-7: parser errors name the problem; "12 M requests" and "video 1080 M" are not sizes; a date in a path is not a date
+  ---
+  duration_ms: 1.864427
+  type: 'test'
+  ...
+# Subtest: A-2: a GET reserves getCapMB plus the allowance; a refused, cut or killed GET counts the allowance, never past its grant
+ok 27 - A-2: a GET reserves getCapMB plus the allowance; a refused, cut or killed GET counts the allowance, never past its grant
+  ---
+  duration_ms: 3.786983
+  type: 'test'
+  ...
+# Subtest: A-5: a reservation of a process whose pid is in use again (another start time) is stale
+ok 28 - A-5: a reservation of a process whose pid is in use again (another start time) is stale
+  ---
+  duration_ms: 4.445241
+  type: 'test'
+  ...
+# Subtest: A-6 and A-1 helpers: MP4, MOV and WebM headers; the Chromium form of a URL
+ok 29 - A-6 and A-1 helpers: MP4, MOV and WebM headers; the Chromium form of a URL
+  ---
+  duration_ms: 0.597959
+  type: 'test'
+  ...
+# Subtest: guard in Chromium
+    # Subtest: cache-only is the default: Webflow pages and assets come from the cache folders, misses are aborted and listed, 0 bytes
+    ok 1 - cache-only is the default: Webflow pages and assets come from the cache folders, misses are aborted and listed, 0 bytes
+      ---
+      duration_ms: 433.110002
+      type: 'test'
+      ...
+    # Subtest: real host names: trailing dots, site subdomains, webflow.com and an encoded extension are all caught (S1, W6)
+    ok 2 - real host names: trailing dots, site subdomains, webflow.com and an encoded extension are all caught (S1, W6)
+      ---
+      duration_ms: 410.250578
+      type: 'test'
+      ...
+    # Subtest: block mode: media aborted, other Webflow GETs fetched by the guard and counted, non-GET aborted
+    ok 3 - block mode: media aborted, other Webflow GETs fetched by the guard and counted, non-GET aborted
+      ---
+      duration_ms: 365.383233
+      type: 'test'
+      ...
+    # Subtest: fetch-once: each URL goes to the network once across contexts, also at the same time; video and fonts blocked (S6, G1, G2)
+    ok 4 - fetch-once: each URL goes to the network once across contexts, also at the same time; video and fonts blocked (S6, G1, G2)
+      ---
+      duration_ms: 914.062609
+      type: 'test'
+      ...
+    # Subtest: fetch-once with allowVideo: the Range header is kept and bounded, the whole video is never downloaded (G2)
+    ok 5 - fetch-once with allowVideo: the Range header is kept and bounded, the whole video is never downloaded (G2)
+      ---
+      duration_ms: 1073.383977
+      type: 'test'
+      ...
+    # Subtest: a failed fetch leaves no unhandled rejection and is never fetched again (fix 1)
+    ok 6 - a failed fetch leaves no unhandled rejection and is never fetched again (fix 1)
+      ---
+      duration_ms: 1034.536347
+      type: 'test'
+      ...
+    # Subtest: routes registered before guard() still run, and their continue() still meets the guard (E1, E2, E3)
+    ok 7 - routes registered before guard() still run, and their continue() still meets the guard (E1, E2, E3)
+      ---
+      duration_ms: 969.344768
+      type: 'test'
+      ...
+    # Subtest: routes registered after guard(): continue() meets the guard, fulfill() is free, fetch() is guarded and its answer can be fulfilled
+    ok 8 - routes registered after guard(): continue() meets the guard, fulfill() is free, fetch() is guarded and its answer can be fulfilled
+      ---
+      duration_ms: 413.561649
+      type: 'test'
+      ...
+    # Subtest: non-GET at page unload: beacons and keepalive POSTs to Webflow never leave, other hosts only with unloadNonGet all (fix 3)
+    ok 9 - non-GET at page unload: beacons and keepalive POSTs to Webflow never leave, other hosts only with unloadNonGet all (fix 3)
+      ---
+      duration_ms: 1502.743124
+      type: 'test'
+      ...
+    # Subtest: context.request and page.request: non-GET refused, Webflow GETs answered by the guard, redirects into Webflow caught
+    ok 10 - context.request and page.request: non-GET refused, Webflow GETs answered by the guard, redirects into Webflow caught
+      ---
+      duration_ms: 50.995676
+      type: 'test'
+      ...
+    # Subtest: a response that never finishes is cut at the run cap during the transfer, and the bytes are counted (S5)
+    ok 11 - a response that never finishes is cut at the run cap during the transfer, and the bytes are counted (S5)
+      ---
+      duration_ms: 1583.120372
+      type: 'test'
+      ...
+    # Subtest: a redirect from another host into a Webflow host is caught (S2); with strictRedirects false it is counted as a leak
+    ok 12 - a redirect from another host into a Webflow host is caught (S2); with strictRedirects false it is counted as a leak
+      ---
+      duration_ms: 807.810475
+      type: 'test'
+      ...
+    # Subtest: run cap on a big file: the run stops, the context closes, onTrip gets a WfBudgetError and the log says STOPPED
+    ok 13 - run cap on a big file: the run stops, the context closes, onTrip gets a WfBudgetError and the log says STOPPED
+      ---
+      duration_ms: 94.058804
+      type: 'test'
+      ...
+    # Subtest: shared run: two contexts, one tally, one line on run.close(); a page target works too
+    ok 14 - shared run: two contexts, one tally, one line on run.close(); a page target works too
+      ---
+      duration_ms: 239.835215
+      type: 'test'
+      ...
+    # Subtest: unrouteAll() and unroute(**/*) by the caller keep the guard in place
+    ok 15 - unrouteAll() and unroute(**/*) by the caller keep the guard in place
+      ---
+      duration_ms: 275.718686
+      type: 'test'
+      ...
+    # Subtest: guard refuses a second guard on one context, a context over the daily cap, the old cache mode and fetch-once without a folder
+    ok 16 - guard refuses a second guard on one context, a context over the daily cap, the old cache mode and fetch-once without a folder
+      ---
+      duration_ms: 7.940611
+      type: 'test'
+      ...
+    # Subtest: N-1: 45 small Webflow images at once in fetch-once load without a trip (check n7, was a stop at 0.00 MB)
+    ok 17 - N-1: 45 small Webflow images at once in fetch-once load without a trip (check n7, was a stop at 0.00 MB)
+      ---
+      duration_ms: 497.449836
+      type: 'test'
+      ...
+    # Subtest: N-1: 10 MB left of the daily cap and 3 images at once: all three load, no trip (check n7b)
+    ok 18 - N-1: 10 MB left of the daily cap and 3 images at once: all three load, no trip (check n7b)
+      ---
+      duration_ms: 192.802764
+      type: 'test'
+      ...
+    # Subtest: N-2: block mode remembers a GET refused at getCapMB and never asks for it again in the run
+    ok 19 - N-2: block mode remembers a GET refused at getCapMB and never asks for it again in the run
+      ---
+      duration_ms: 357.23056
+      type: 'test'
+      ...
+    # Subtest: N-3: an extensionless fetch() of a Webflow video gets at most one chunk, with a Range header, in every fetching mode
+    ok 20 - N-3: an extensionless fetch() of a Webflow video gets at most one chunk, with a Range header, in every fetching mode
+      ---
+      duration_ms: 1218.258642
+      type: 'test'
+      ...
+    # Subtest: N-4: a redirected page load ends on the final URL, so relative links use the final host; fetched and counted once
+    ok 21 - N-4: a redirected page load ends on the final URL, so relative links use the final host; fetched and counted once
+      ---
+      duration_ms: 730.476259
+      type: 'test'
+      ...
+    # Subtest: N-7: a beacon or non-GET fetch stopped in a live page counts as a non-GET request; the log has no unload counter
+    ok 22 - N-7: a beacon or non-GET fetch stopped in a live page counts as a non-GET request; the log has no unload counter
+      ---
+      duration_ms: 415.473688
+      type: 'test'
+      ...
+    # Subtest: R-1: an extensionless allowed file over the chunk is fetched once in all: the rest is asked for and joined; a 200 is kept
+    ok 23 - R-1: an extensionless allowed file over the chunk is fetched once in all: the rest is asked for and joined; a 200 is kept
+      ---
+      duration_ms: 593.575137
+      type: 'test'
+      ...
+    # Subtest: A-6: an extensionless application/octet-stream video is seen by its first bytes and stopped; a 200 at its headers
+    ok 24 - A-6: an extensionless application/octet-stream video is seen by its first bytes and stopped; a 200 at its headers
+      ---
+      duration_ms: 374.763475
+      type: 'test'
+      ...
+    # Subtest: A-1: a canonicalizing server cannot loop the redirect page; GETs and MB as in the first version (adversary loop.cjs)
+    ok 25 - A-1: a canonicalizing server cannot loop the redirect page; GETs and MB as in the first version (adversary loop.cjs)
+      ---
+      duration_ms: 4064.124837
+      type: 'test'
+      ...
+    # Subtest: A-3: a replay miss costs no second fetch of the final page; two pages loading one redirecting URL share their fetches
+    ok 26 - A-3: a replay miss costs no second fetch of the final page; two pages loading one redirecting URL share their fetches
+      ---
+      duration_ms: 1275.937596
+      type: 'test'
+      ...
+    # Subtest: A-4: in fetch-once a GET refused before anything was sent gives back its claim, so a later run can fetch the URL
+    ok 27 - A-4: in fetch-once a GET refused before anything was sent gives back its claim, so a later run can fetch the URL
+      ---
+      duration_ms: 1581.673909
+      type: 'test'
+      ...
+    # Subtest: A-2: 60 GETs with a small Range header the server ignores, at a 3 MB day cap: one GET, the cap holds (adversary cap.cjs C1)
+    ok 28 - A-2: 60 GETs with a small Range header the server ignores, at a 3 MB day cap: one GET, the cap holds (adversary cap.cjs C1)
+      ---
+      duration_ms: 1931.714848
+      type: 'test'
+      ...
+    # Subtest: R-3: a small Range on a file with an extension, from a server that ignores Range, is served whole as in the first version
+    ok 29 - R-3: a small Range on a file with an extension, from a server that ignores Range, is served whole as in the first version
+      ---
+      duration_ms: 123.486362
+      type: 'test'
+      ...
+    # Subtest: R-4: goto() on a redirecting URL returns the redirect page; finalResponse() and g.goto() give the final page
+    ok 30 - R-4: goto() on a redirecting URL returns the redirect page; finalResponse() and g.goto() give the final page
+      ---
+      duration_ms: 235.857221
+      type: 'test'
+      ...
+    1..30
+ok 30 - guard in Chromium
+  ---
+  duration_ms: 23871.838679
+  type: 'suite'
+  ...
+1..30
+# tests 59
+# suites 1
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 33710.973624
