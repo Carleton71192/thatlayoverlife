@@ -147,7 +147,7 @@ Done today: release 16.64.0 live on www 14 Nov 08:16 UTC.
 
 **Bandwidth guard: one rule to approve.** The guard that caps Webflow downloads during automated checks passed its independent checks on 27 Nov, in both its saved-copies mode and its fetch-once mode (tools/WF-GUARD.md). Claude recommends yes. Say yes and a session adds its rule to the lock file: every automated browser run works from saved copies by default, and stops at 200 MB a run or 250 MB a day. About 2 minutes.
 
-**On the test site, waiting for your "publish www": /stories lead story fix (core 16.71.0).** When the page loads slowly and a reader picks Asia, Middle East or Oceania, the big lead slot could stay on a story the filter had hidden. Now it moves to the first story that shows. Checked on saved pages (no misses in 8 of 8 slow loads per case, no layout change) and on the test site since 27 Nov 16:41 UTC (13 of 13 pages equal www apart from the core). Say "publish www".
+**Live on www since 28 Nov 09:16 UTC: /stories lead story fix (core 16.71.0).** On a slow load, picking Asia, Middle East or Oceania now moves the lead slot to the first story that shows.
 
 **Live on www since 27 Nov 13:29 UTC: Asia fix, /submit draft save, Space key on the picks, /edit-profile id.** The /my-pets empty-state wording ("your besties", "Register your pet") is live on www since 14:12 UTC. The taller step bar on /submit still needs your OK. Also: someone published a new form-label script to www at 09:44 UTC on 27 Nov outside our log. Was that you?
 
